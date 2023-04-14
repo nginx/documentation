@@ -162,6 +162,26 @@ sudo apt-get install -f /path/to/nms-nap-compiler-<version>_focal_amd64.deb -o D
     sudo yum install -f /path/to/nms-nap-compiler-<version>_el8.ngx.x86_64.rpm
     ```
 
+### Automatically Download and Install New WAF Compiler
+
+After a version of the NGINX App Protect WAF compiler has been successfully installed manually on Instance Manager, a new WAF compiler will be downloaded and installed automatically if Instance Manager determines a new WAF compiler is required.  A new WAF compiler is required when the data plane's NGINX App Protect WAF version has been [upgraded](#upgrade-nap-waf-version-on-managed-instances) or a new data plane with a new NGINX App Protect WAF version has been added. The user must [upload their NGINX App Protect WAF certificate and key](#upload-nginx-app-protect-waf-certificate-and-key) in order for NGINX Instance Manager to automatically download and install a new WAF compiler from the NGINX repo. Note, the NGINX App Protect WAF certificate and key only need to be uploaded once to Instance Manager. 
+
+If the automatic download and install of the new WAF compiler step fails, when publishing the NGINX configuration, the error message 
+
+``` text
+missing the specific compiler, please install it and try again.  
+```
+
+will appear. This happens if the NGINX App Protect WAF certificate and key are missing or not working, or if Instance Manager cannot connect to the NGINX Repository. Please check `/var/log/nms/nms.log` for errors.
+
+If you see the following error, your NGINX App Protect WAF certificate and key are missing, invalid, or have expired:
+
+```text
+error when creating the nginx repo retriever - NGINX repo certificates not found
+```
+
+Also, please refer to [Install the WAF Compiler](#install-the-waf-compiler) for details on how to manually install the new WAF compiler.
+
 ---
 
 ## Set Up Attack Signatures and Threat Campaigns
