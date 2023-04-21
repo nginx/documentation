@@ -1,0 +1,27 @@
+[build]
+  publish = "public"
+
+[context.production]
+  command = "make all"  
+  publish = "public"
+  
+[context.staging]
+  command = "make all-staging"
+  publish = "public"
+
+[context.development]
+  command = "make all-dev"
+  publish = "public"
+
+[context.deploy-preview]
+  command = "make deploy-preview"
+  publish = "public"
+
+[context.branch-deploy]
+  command = "make deploy-preview"
+  publish = "public"
+
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
