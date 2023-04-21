@@ -1,0 +1,34 @@
+# Redirects for specific pages or sections
+/nginx-ingress-controller/intro/nginx-ingress-controllers/ https://www.nginx.com/blog/guide-to-choosing-ingress-controller-part-4-nginx-ingress-controller-options/ 301!
+/nginx-management-suite/admin-guides/getting-started/prerequisites/configure-clickhouse/ https://docs.nginx.com/nginx-management-suite/admin-guides/getting-started/configure-clickhouse/ 301
+/nginxaas/azure/management/manual-scale/ https://docs.nginx.com/nginxaas/azure/management/scaling/ 301
+/nginx-agent/changelog/ https://github.com/nginx/agent/releases 301
+/install-community-modules https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/#installing-nginx-community-modules 301
+/nginx-management-suite/nginx-instance-manager/* /nginx-management-suite/nim/:splat 301!
+/nginx-app-protect/* /nginx-app-protect-waf/:splat 301
+/nginx-for-azure/* /nginxaas/azure/:splat 301
+/nginx-instance-manager/* /nginx-management-suite/:splat 301!
+/nginx-management-suite/acm/how-to/manage-api-infrastructure/ /nginx-management-suite/acm/how-to/infrastructure/manage-api-infrastructure/
+/nginx-management-suite/acm/how-to/publish-api/ /nginx-management-suite/acm/how-to/services/publish-api/
+/nginx-management-suite/acm/how-to/publish-api/#publish-api-proxy /nginx-management-suite/acm/how-to/services/publish-api/#publish-api-proxy
+/nginx-management-suite/acm/how-to/tls-policies/ /nginx-management-suite/acm/how-to/policies/tls-policies/
+/nginx-management-suite/acm/how-to/tls-policies/#secure-communications-between-an-api-proxy-and-a-backend-service /nginx-management-suite/acm/how-to/policies/tls-policies/#secure-communications-between-api-proxy-and-backend-service
+/nginx-management-suite/acm/how-to/policies/configure-proxy-buffers/ /nginx-management-suite/acm/how-to/policies/http-backend-configuration/#buffers
+/nginx-management-suite/acm/how-to/publish-developer-portal/ /nginx-management-suite/acm/how-to/devportals/publish-to-devportal/
+/nginx-management-suite/acm/how-to/enable-sso-devportal/ /nginx-management-suite/acm/how-to/infrastructure/enable-sso-devportal/
+
+# Redirects to the backend netlify sites for each product
+/nginx/* https://development--n-plus-public-docs.netlify.app/nginx/:splat 200!
+/nginxaas/azure/* https://docs-development--n4a-public-docs.netlify.app/nginxaas/azure/:splat 200!
+/nginx-agent/* https://dev--agent-public-docs.netlify.app/nginx-agent/:splat 200!
+/nginx-amplify/* https://dev--amplify-public-docs.netlify.app/nginx-amplify/:splat 200!
+/nginx-app-protect-dos/* https://development--nap-dos-public-docs.netlify.app/nginx-app-protect-dos/:splat 200!
+/nginx-app-protect-waf/* https://development--nap-public-docs.netlify.app/nginx-app-protect-waf/:splat 200!
+/nginx-controller/* https://development--ctlr-public-docs.netlify.app/nginx-controller/:splat 200!
+/nginx-ingress-controller/* https://development--nginx-kubernetes-ingress.netlify.app/nginx-ingress-controller/:splat 200!
+/nginx-management-suite/* https://development--nms-public-docs.netlify.app/nginx-management-suite/:splat 200!
+/nginx-service-mesh/* https://development--mesh-public-docs.netlify.app/nginx-service-mesh/:splat 200!
+/nginx-waf/* https://development--nginx-waf-docs.netlify.app/nginx-waf/:splat 200!
+
+# Keep at the bottom, otherwise the backend site redirects will break
+/* /404.html 404
