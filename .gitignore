@@ -17,3 +17,6 @@
 
 # watchdocs
 watchdocs.json
+
+# hugo
+ .hugo_build.lock
