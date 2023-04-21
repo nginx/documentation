@@ -39,5 +39,4 @@ docs:
 	hugo server --disableFastRender
 
 deploy-preview: hugo-mod
-	./scripts/copy-docs.sh  
 	hugo --gc -b ${NETLIFY_DEPLOY_URL}
