@@ -1,0 +1,19 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+
+# testing
+/coverage
+
+# production
+./public
+
+# misc
+.DS_Store
+*.pem
+
+# local env files
+.env*.local
+
+# watchdocs
+watchdocs.json
