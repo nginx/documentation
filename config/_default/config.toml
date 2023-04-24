@@ -22,7 +22,7 @@ refLinksErrorLevel = "WARNING"
     "taxonomy",
     "taxonomyTerm"
   ]
-  taxonomiesExcludedFromSitemap = ["tags", "categories"]
+  taxonomiesExcludedFromSitemap = ["tags", "categories", "doctypes"]
   logo = "NGINX-Management-Suite-product-icon.svg"
   nimvers = [ # list of NIM versions for the versions shortcode
     "0.9",
@@ -55,7 +55,7 @@ refLinksErrorLevel = "WARNING"
     "1.0.0",
     "1.1.0",
     "1.2.0",
-    "1.3.0",
+    "1.3.0"
   ]
 
 sectionPagesMenu = "docs"
