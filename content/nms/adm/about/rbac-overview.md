@@ -46,6 +46,8 @@ DELETE access gives permission to remove an object and corresponds to the DELETE
 
 ## Features
 
+These are the features used by ADM for RBAC. Each feature contains one or more objects, and these objects must all be assigned a value before the RBAC system will grant access.
+
 ### ENVIRONMENT-MANAGEMENT
 
 The ENVIRONMENT-MANAGEMENT feature controls access to environments and the `/environments` endpoint. Environments are a base object with no parent. Environment permissions are of the form `<envName>|<envUID>`.
@@ -102,70 +104,252 @@ The TCPUDP-COMPONENT-MANAGEMENT feature controls access to TCP/UDP components an
 
 {{< note >}} If a feature does not have an object listed, there is currently no enforcement or RBAC control over features based on that object, eg: Web components cannot be filtered based on the gateways they reference.{{< /note >}}
 
-## Examples
+## Best Practices
 
-Some examples of roles are described below.  For more details on how to assign roles and the special considerations which need to be taken into account when using the user interface (UI) see [Setting up User Roles]({{< relref "/nms/adm/getting-started/roles.md" >}}) section of **Getting-Started**.
+**Getting-Started**.
+* Every feature needs values set for each object contained in the feature. So all permissions should explicitly contain values set for each object.
 
-#### Local App Manager
+* If a feature references a different object (e.g. APP-MANAGEMENT references environments), then the permissions for any object referenced should also be granted in the corresponding feature. So if a role is granted access to env1 as an environment within the APP-MANAGEMENT feature, then that role should also be granted access to env1 as an environment within the ENVIRONMENT-MANAGEMENT feature.
 
-An app manager will often be given an environment under which they manage all resources. The permissions to configure this permission are of this form, where the environment is given the name `env1` and has UID `f114ff25-0708-46f5-8f7c-efe8d564ec25`.
+* All permissions within a particular feature (e.g ENVIRONMENT-MANAGEMENT) should be granted the same CRUD level of access. So if a particular permission has READ and DELETE access for ENVIRONMENT-MANAGEMENT, than all permissions under ENVIRONMENT-MANAGEMENT should have the same READ and DELETE access.
 
-* ENVIRONMENT-MANAGEMENT - READ
-  * Environments - `env1|f114ff25-0708-46f5-8f7c-efe8d564ec25`
-* APP-MANAGEMENT - CREATE, READ, UPDATE, DELETE
-  * Environments - `env1|f114ff25-0708-46f5-8f7c-efe8d564ec25`
-  * Apps - `All`
-* GATEWAY-MANAGEMENT - CREATE, READ, UPDATE, DELETE
-  * Environments - `env1|f114ff25-0708-46f5-8f7c-efe8d564ec25`
-  * Gateways - `All`
-* WEB-COMPONENT-MANAGEMENT - CREATE, READ, UPDATE, DELETE
-  * Environments - `env1|f114ff25-0708-46f5-8f7c-efe8d564ec25`
-  * Apps - `All`
-  * Web-Components - `All`
-* TCP-COMPONENT-MANAGEMENT - CREATE, READ, UPDATE, DELETE
-  * Environments - `env1|f114ff25-0708-46f5-8f7c-efe8d564ec25`
-  * Apps - `All`
-  * TCP-Components - `All`
+## **Example Roles**
 
-This permission allows a user to manage all ADM resources under the given environment `env1`
+It is recommended that roles be configured to limit permissions. An example scenario is detailed below. For more details on how to assign roles and the special considerations which need to be taken into account when using the user interface (UI) see [Setting up User Roles]({{< relref "/nms/adm/getting-started/roles.md" >}}) section of  **Getting-Started**.
 
-#### Guest User
+### Scenario
 
-A guest user may only need to read a few specific resources. For example, the guest user may need to read a specific app (`app1` with UID `3dd1eae2-11b4-47b2-be90-e421160601b6`), gateway (`gateway1` with UID `3b3b9ab3-b6c4-441c-b1ad-26ea7b6875ac`), and three web components (`webcomp1` with UID `f7039d7a-085e-46fe-aa5e-1125c13e1fd8`, `webcomp2` with UID `619370ab-b814-452f-8b3f-6bd3434aae9d`, `webcomp3` with UID `41b94747-585c-41ec-a4e2-f301dd658889`), where all resources are under `env1` and the web-components are under `app1`. The following permission would allow only read access to these resources.
+Platform Ops wants to deliver a platform, which enables a self-service app delivery model that allows teams of developers to work independently so that they can quickly deliver the value of their apps and services to the customer.
 
-* ENVIRONMENT-MANAGEMENT - READ
-  * Environments - `env1|f114ff25-0708-46f5-8f7c-efe8d564ec25`
-* APP-MANAGEMENT - READ
-  * Environments - `env1|f114ff25-0708-46f5-8f7c-efe8d564ec25`
-  * Apps - `env1ǀapp1|3dd1eae2-11b4-47b2-be90-e421160601b6`
-* GATEWAY-MANAGEMENT - READ
-  * Environments - `env1|f114ff25-0708-46f5-8f7c-efe8d564ec25`
-  * Gateways - `env1ǀgateway1|3b3b9ab3-b6c4-441c-b1ad-26ea7b6875ac`
-* WEB-COMPONENT-MANAGEMENT - READ
-  * Environments - `env1|f114ff25-0708-46f5-8f7c-efe8d564ec25`
-  * Apps - `env1ǀapp1|3dd1eae2-11b4-47b2-be90-e421160601b6`
-  * Web-Components - `env1ǀapp1ǀwebcomp1|f7039d7a-085e-46fe-aa5e-1125c13e1fd8`, `env1ǀapp1ǀwebcomp2|619370ab-b814-452f-8b3f-6bd3434aae9d`, `env1ǀapp1ǀwebcomp3|41b94747-585c-41ec-a4e2-f301dd658889`
+They want to enable multiple developers/teams to work on the same nginx.conf file without interfering with each others work. This means:
 
-When adding these permissions, this gives READ access to just the resources listed.
+* Developers can only access the environments, apps, components that have been defined in their role.
 
-#### App Developer
+* Developers can work independently to author different sections within a single nginx.conf file e.g. depending on how the role is configured server, locations, or upstream blocks.
 
-An app developer may need edit access over a few resources in order to deploy their apps, but should not have access to anything else. For example, they should have the ability to edit a specific app (`app1` with UID `3dd1eae2-11b4-47b2-be90-e421160601b6`) and two web-components (`webcomp1` with UID `f7039d7a-085e-46fe-aa5e-1125c13e1fd8`, `webcomp2` with UID `619370ab-b814-452f-8b3f-6bd3434aae9d`) as well as reading a specific gateway (`gateway1` with UID `3b3b9ab3-b6c4-441c-b1ad-26ea7b6875ac`). The following permissions would allow this
+### Short Description of App Delivery Manager Objects
 
-* ENVIRONMENT-MANAGEMENT - READ
-  * Environments - `env1|f114ff25-0708-46f5-8f7c-efe8d564ec25`
-* APP-MANAGEMENT - READ, UPDATE
-  * Environments - `env1|f114ff25-0708-46f5-8f7c-efe8d564ec25`
-  * Apps - `env1ǀapp1|3dd1eae2-11b4-47b2-be90-e421160601b6`
-* GATEWAY-MANAGEMENT - READ
-  * Environments - `env1|f114ff25-0708-46f5-8f7c-efe8d564ec25`
-  * Gateways - `env1ǀgateway1|3b3b9ab3-b6c4-441c-b1ad-26ea7b6875ac`
-* WEB-COMPONENT-MANAGEMENT - READ, UPDATE
-  * Environments - `env1|f114ff25-0708-46f5-8f7c-efe8d564ec25`
-  * Apps - `env1ǀapp1|3dd1eae2-11b4-47b2-be90-e421160601b6`
-  * Web-Components - `env1ǀapp1ǀwebcomp1|f7039d7a-085e-46fe-aa5e-1125c13e1fd8`, `env1ǀapp1ǀwebcomp2|619370ab-b814-452f-8b3f-6bd3434aae9d`
+An Environment is a logical container to group gateways and apps. This closely maps to customers organizational boundaries.
 
-For more details on  xxxxx to be continued!
+A Gateway represents an entry point for traffic for one or more Apps. Gateway allows user to define the top level FQDN’s under which other apps in the organization reside.
+
+A App is a logical container for components.
+
+Web components allow users to define routing behavior for the URIs under the apps. Each component can define URIs (/sales, /sales-data etc...) and specify which FQDNs these need to attach to via gateway references. Components also allow specifying the backend and can control the configuration for load balancing traffic to the backend servers.
+
+### Use Case Scenario
+
+The Platform Ops admin wants to enable teams and individual's to self-service their access to services and data so that they can work independently, complete their jobs quickly, while not interfering with the work of others or unintentionally accessing data they have not been explicitly granted to access.
+
+The Enterprise has a single website, `https://www.example.com`. This website serves two apps at the paths/support and /sales, each of which are owned by different teams. Additionally, there is a dedicated Admin responsible for managing ingress (gateway) to apps and a Read-only role meant for auditing purposes.
+
+### Role Configurations
+
+Details:
+
+* One environment - example-env
+* One gateway (server block) - www.example.com
+* Two Apps (Support and Sales), each with one web component (location blocks) (/support and /sales)
+* The website uses HTTPS
+* There is one instance group (ig1)
+* There is one site (site1)
+* Web components report analytics
+
+#### Example-Admin Role
+
+This is a custom role and not the built-in Admin role. This role has full access to all objects. Used to manage the full lifecycle of of all objects and data.
+
+Permissions:
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Feature                  | CRUD Level         | Objects                   |
+| ------------------------ | ------------------ | ------------------------- |
+| ENVIRONMENT-MANAGEMENT   | CRUD               | Environments: ALL         |
+| GATEWAY-MANAGEMENT       | CRUD               | Environments: ALL <br /> Gateways: ALL |
+| APP-MANAGEMENT           | CRUD               | Environments: ALL <br /> Apps: ALL |
+| WEB-COMPONENT-MANAGEMENT | CRUD               | Environments: ALL <br /> Apps: ALL <br /> Web Components: ALL |
+| SITE-MANAGEMENT          | CRUD               | Sites: ALL                |
+| INSTANCE-GROUPS          | CRUD               | Instance Groups: ALL      |
+| CERTS                    | CRUD               | Instance Groups: ALL <br /> Systems: ALL |
+| ANALYTICS                | CRUD               | N/A                       |
+
+{{</bootstrap-table>}}
+
+#### Gateway-Admin Role
+
+This role has full access to manage gateway objects, but only Read access to apps and components that use it. Additionally, this role manages the certificates placed on gateways.
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Feature                  | CRUD Level         | Objects                   |
+| ------------------------ | ------------------ | ------------------------- |
+| ENVIRONMENT-MANAGEMENT   | READ               | Environments: example-env |
+| GATEWAY-MANAGEMENT       | CRUD               | Environments: example-env  <br /> Gateways: ALL |
+| APP-MANAGEMENT           | READ               | Environments: example-env <br /> Apps: ALL |
+| WEB-COMPONENT-MANAGEMENT | READ               | Environments: example-env <br /> Apps: ALL <br /> Web Components: All |
+| SITE-MANAGEMENT          | READ               | Sites: site1              |
+| INSTANCE-GROUPS          | READ               | Instance Groups: ig1      |
+| CERTS                    | CRUD               | Instance Groups: ig1 <br /> Systems: ALL |
+| ANALYTICS                | READ               | N/A                       |
+
+{{</bootstrap-table>}}
+
+#### Support-App Role
+
+This role has access to the environment example-env and the gateway that serves as the ingress point for traffic to www.example.com. Additionally this role has full access rights to the Support app and any referenced component e.g. /support. Additionally this role has access to any traffic metrics for these specific objects. This role should not have access to any other app, components, or their data.
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Feature                  | CRUD Level         | Objects                   |
+| ------------------------ | ------------------ | ------------------------- |
+| ENVIRONMENT-MANAGEMENT   | READ               | Environments: example-env |
+| GATEWAY-MANAGEMENT       | READ               | Environments: example-env  <br /> Gateways: example.com |
+| APP-MANAGEMENT           | CRUD               | Environments: example-env <br /> Apps: Support |
+| WEB-COMPONENT-MANAGEMENT | CRUD               | Environments: example-env <br /> Apps: Support <br /> Web Components: All |
+| SITE-MANAGEMENT          | READ               | Sites: site1              |
+| INSTANCE-GROUPS          | READ               | Instance Groups: ig1      |
+| CERTS                    | None               | None                      |
+| ANALYTICS                | READ               | N/A                       |
+
+{{</bootstrap-table>}}
+
+#### Sales-App Role
+
+This role has access to the environment example-env and the gateway that serves as the ingress point for traffic to www.example.com. Additionally this role has full access rights to the Support app and any referenced component e.g. /sales. Additionally this role has access to any traffic metrics for these specific objects. This role should not have access to any other app, components, or their data.
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Feature                  | CRUD Level         | Objects                   |
+| ------------------------ | ------------------ | ------------------------- |
+| ENVIRONMENT-MANAGEMENT   | READ               | Environments: example-env |
+| GATEWAY-MANAGEMENT       | READ               | Environments: example-env  <br /> Gateways: example.com |
+| APP-MANAGEMENT           | CRUD               | Environments: example-env <br /> Apps: Sales |
+| WEB-COMPONENT-MANAGEMENT | CRUD               | Environments: example-env <br /> Apps: Sales <br /> Web Components: All |
+| SITE-MANAGEMENT          | READ               | Sites: site1              |
+| INSTANCE-GROUPS          | READ               | Instance Groups: ig1      |
+| CERTS                    | None               | None                      |
+| ANALYTICS                | READ               | N/A                       |
+
+{{</bootstrap-table>}}
+
+#### Read-Only
+
+This role has Read-only access to all objects and data related to example-env.
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Feature                  | CRUD Level         | Objects                   |
+| ------------------------ | ------------------ | ------------------------- |
+| ENVIRONMENT-MANAGEMENT   | READ               | Environments: example-env |
+| GATEWAY-MANAGEMENT       | READ               | Environments: example-env  <br /> Gateways: ALL |
+| APP-MANAGEMENT           | READ               | Environments: example-env <br /> Apps: ALL |
+| WEB-COMPONENT-MANAGEMENT | READ               | Environments: example-env <br /> Apps: ALL <br /> Web Components: All |
+| SITE-MANAGEMENT          | READ               | Sites: site1              |
+| INSTANCE-GROUPS          | READ               | Instance Groups: ig1      |
+| CERTS                    | READ               | Instance Groups: ig1 <br /> Systems: ALL |
+| ANALYTICS                | READ               | N/A                       |
+
+{{</bootstrap-table>}}
+
+### Full Access Table
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+|Product | Feature                  | Example Admin      | Gateway-Admin     | Support-App    | Sales-App       | Read-Only        |
+| ------ | ------------------------ | ------------------ | ----------------- | -------------- | --------------- | ---------------- |
+| ADM    | ENVIRONMENT-MANAGEMENT   | CRUD <br /> Environments: ALL | READ <br /> Environments: example-env | READ <br /> Environments: example-env | READ <br /> Environments: example-env | READ <br /> Environments: example-env |
+| ADM    | GATEWAY-MANAGEMENT       | CRUD <br /> Environments: ALL <br /> Gateways: ALL | CRUD <br /> Environments: example-env <br /> Gateways: ALL | READ <br /> Environments: example-env <br /> Gateways: example.com | READ <br /> Environments: example-env <br /> Gateways: example.com | READ <br /> Environments: example-env <br /> Gateways: ALL |
+| ADM    | APP-MANAGEMENT           | CRUD <br /> Environments: ALL  <br /> Apps: ALL | READ <br /> Environments: example-env  <br /> Apps: ALL | CRUD <br /> Environments: example-env  <br /> Apps: Support | CRUD <br /> Environments: example-env  <br /> Apps: Sales | READ <br /> Environments: example-env  <br /> Apps: ALL |
+| ADM    | WEB-COMPONENT-MANAGEMENT | CRUD <br /> Environments: ALL  <br /> Apps: ALL <br /> Web Components: ALL | READ <br /> Environments: example-env  <br /> Apps: ALL <br /> Web Components: ALL | CRUD <br /> Environments: example-env  <br /> Apps: Support <br /> Web Components: ALL | CRUD <br /> Environments: example-env  <br /> Apps: Sales <br /> Web Components: ALL | READ <br /> Environments: example-env  <br /> Apps: ALL <br /> Web Components: ALL |
+| ADM    | SITE-MANAGEMENT          | CRUD <br /> Sites: ALL | READ <br /> Sites: site1 | READ <br /> Sites: site1 | READ <br /> Sites: site1 | READ <br /> Sites: site1 |
+| IM     | INSTANCE-GROUPS          | CRUD <br /> Instance Groups: ALL | READ <br /> Instance Groups: ig1 | READ <br /> Instance Groups: ig1 | READ <br /> Instance Groups: ig1 | READ <br /> Instance Groups: ig1 |
+| IM     | CERTS                    | CRUD <br /> Instance Groups: ALL <br /> Systems: ALL | CRUD <br /> Instance Groups: ig1 <br /> Systems: ALL | None | None | READ <br /> Instance Groups: ig1 <br /> Systems: ALL |
+| IM     | ANALYTICS                | CRUD | READ | READ | READ | READ |
+
+{{</bootstrap-table>}}
+
+## Combination Rules
+
+The NMS system has several permission combination methods, which can be confusing if a user is not aware of them. This document is details how RBAC information is combined for this purpose.
+
+{{< note >}} These combination rules document the current behavior, but this behavior is not officially supported and is subject to change. It is recommended that the roles are set up according to the best practices, which will alleviate much of the confusion around these roles. {{< /note >}}
+
+### Multiple Permissions on the Same Object are Additive
+
+If a role has multiple permissions for the same feature, the resulting permissions is additive, i.e. the user will get access to all objects listed.
+
+In particular, if permissions with Objects: None is created along with another permission that sets objects, the resulting access will be all of the allowed objects.
+
+### There can be only one CRUD value for each feature
+
+For a given feature (e.g. ENVIRONMENT-MANAGEMENT), there can be only one CRUD level for that feature. In particular, the levels will be unioned together and so all allowed objects will get the CRUD levels for any object.
+
+#### Example 1
+
+A role gives READ access to env1 and READ, UPDATE, DELETE access to env2. The NMS system will combine these two permissions and it will result in READ, UPDATE, DELETE access to both env1 and env2.
+
+#### Example 2
+
+A role gives READ access for the All environments object, and CREATE, READ, UPDATE, DELETE access to env1. The NMS system combines these permissions and will result in CREATE, READ, UPDATE, DELETE access to All environments (including env1).
+
+### Assigning access to an object in a different feature, adds access to that object within the parent feature
+
+Several features have other objects as part of their permissions schema (e.g. the APP-MANAGEMENT permission contains the Environments object). When access is given to that object as part of another feature, the object is added to the relevant feature at the level of the existing permissions.
+
+#### Example 1
+
+A role gives READ access to env1 within the ENVIRONMENT-MANAGEMENT feature. The role also gives READ access to env2 within the APP-MANAGEMENT feature. NMS will combine the permissions and grant READ access in the ENVIRONMENT-MANAGEMENT feature to both env1 and env2.
+
+#### Example 2
+
+A role gives READ and UPDATE access to env1 within the ENVIRONMENT-MANAGEMENT feature. The role also gives READ access to env2 within the APP-MANAGEMENT feature. NMS will combine the permissions and grant READ and UPDATE access within the ENVIRONMENT-MANAGEMENT feature to both env1 and env2. Note that the APP-MANAGEMENT feature will not be affected by the combination of permissions.
+
+#### Example 3
+
+A role gives READ access to env1 within the ENVIRONMENT-MANAGEMENT feature. The role also gives full CREATE, READ, UPDATE, DELETE access to env2 within the APP-MANAGEMENT feature. NMS will combine permissions and grant READ access in the ENVIRONMENT-MANAGEMENT feature to both env1 and env2. Note that this combination does not affect the APP-MANAGEMENT feature.
+
+### Customer Cases
+
+Here are a few examples of possible customer cases to demonstrate what is possible and what is not possible with this RBAC system
+
+#### Case 1: Separate Prod and Dev roles
+
+**A customer has two environments Prod and Dev and wants to separate roles which are allowed to edit objects in each these environments. Can they do this?**
+
+Yes. By selecting only the Prod environment object in each permission feature when creating the role for Prod users and selecting only the Dev environment in each permission feature when creating the role for the Dev users, the customer can get this separation of permissions. As long as users are only assigned the one Prod or Dev role, they will not have access to objects in both environments.
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Users Role       | Access to Prod environments | Access to Dev environments |
+| ---------------- | --------------------------- | ------------------- |
+| Prod role        | READ, UPDATE                | None                |
+| Dev role         | None                        | READ, UPDATE              |
+| Both Prod and Dev roles | READ, UPDATE         | READ, UPDATE |
+
+{{</bootstrap-table>}}
+
+#### Case 2: Separate Prod role, Dev role with only read access to Prod
+
+**A customer has two environments Prod and Dev and wants separate roles which are allowed to edit objects in each of these environments. In addition, the customer wants to allow the users that can edit objects in the Dev environment to see (but not edit) objects in the Prod environment. Can they do this?**
+
+This is currently not possible with the current RBAC implementation. Since giving edit access to the Dev environment objects would give at least UPDATE access to those features, the combination rules would give UPDATE access to those features within the Prod environment as well. So, the customer would need to decide between allowing the user to edit objects in the Prod environment or not allowing the user to see objects in the Prod environment.
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Users Role          | Access to Prod environments | Access to Dev environments |
+| ------------------- | --------------------------- | -------------------------- |
+| Prod Read-Only role | READ                        | None                       |
+| Dev role            | None                        | READ, UPDATE               |
+| Both Prod Read-Only and Dev roles | READ, UPDATE  | READ, UPDATE               |
+
+{{</bootstrap-table>}}
+
+#### Case 3: Dev role, user can edit Apps and Web Components, but only read Gateways
+
+**Within the customer’s Dev environment, they want a role where a user can edit Apps and Web Components, but only read Gateways. Can they do this?**
+
+Yes, since combination only occurs between the same features, so the customer can assign READ and UPDATE to APP-MANAGEMENT and WEB-COMPONENT-MANAGEMENT and only READ access to GATEWAY-MANAGEMENT without any subsequent combination.
 
 ## FAQ
 
