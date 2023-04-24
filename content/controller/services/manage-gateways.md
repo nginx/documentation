@@ -1,0 +1,152 @@
+---
+authors: []
+categories:
+- services
+- gateways
+- app management
+date: "2020-10-26T15:32:41-06:00"
+description: Create, view, and edit Gateways
+docs: DOCS-373
+doctypes:
+- tutorial
+draft: false
+journeys:
+- using
+- renewing
+personas:
+- devops
+- netops
+roles:
+- admin
+tags:
+- docs
+title: Manage Gateways
+toc: true
+weight: 120
+---
+
+## Overview
+
+
+
+A **Gateway** represents the initial network entry point of application and/or API traffic into an NGINX instance in the traffic data path. You can share the same gateway for both application and API traffic.
+
+In a gateway, you define a group of **Ingress URIs** and **Certificates** that can then be used by [Application Components]({{< relref "/app-delivery/about-app-delivery.md#components" >}}). Adding these definitions at the gateway level means you don't have to define the URIs and certificates for each component. Instead, you can inherit these settings from the gateway and only configure each component's relative path(s). Alternatively, you can fully define the URI in the component; doing so will override any settings defined for the gateway.
+
+### Supported Component Types
+
+Gateways support both **HTTP/HTTPS** (commonly referred to as "web") components and **TCP/UDP** components.
+
+There are settings in the gateway, like web URIs, that apply only to web components. Likewise, there are settings in the gateway that apply only to TCP/UDP components, like TCP/UDP URIs.
+
+Gateways also have common settings -- that is, neither web- nor TCP/UDP-specific -- that can apply to either type of component. Components of either type inherit these settings unless they are overridden in the component definition. Component settings can only inherit or override gateway settings if they are of the same type or common setting. (In other words, a TCP/UDP component's settings won't override or inherit a web URI configured in the gateway.)
+
+### TLS
+
+For HTTPS URIs in a gateway, you can add custom TLS Settings associated with a specific URI (and its associated hostname) or add **Shared TLS Settings**. Web components can also have their own custom TLS Settings and Shared TLS Settings.
+
+Web components that do not have any custom TLS Settings or shared TLS settings can inherit the custom TLS settings or the shared TLS settings from the gateway.
+
+For TCP/UDP URIs in a gateway, you can add custom TLS settings associated with a specific URI (IP address and port range) or add **Shared TLS Settings**. TCP/UDP components that do not have any custom TLS Settings or shared TLS settings can inherit the custom TLS settings or shared TLS settings from the gateway.
+
+Web components that do not have any custom TLS settings can inherit TLS settings from the following sources in this order:
+
+- Shared TLS settings for the component
+- Custom TLS settings for the gateway (the URI host and port for the component and gateway must match)
+- Shared TLS settings for the gateway
+
+TCP/UDP components that do not have any custom TLS settings can inherit TLS settings from the following sources in this order:
+
+- Shared TLS settings for the component
+- Custom TLS settings for the gateway (the IP address in the component URI must match or be contained in the IP address in the gateway URI, and the port/port range in the component URI must match or be contained in the port/port range in the gateway URI)
+- Shared TLS settings for the gateway
+
+#### Examples
+
+Let's say we created a gateway with an **Ingress URI** definition that contains our application's **FQDN** and the associated **TLS Settings** needed to secure traffic.
+
+In the app component's ingress settings, we define a **Web URI** that uses a relative path. Together, the gateway URI -- "app.acme.com" -- and the component URIs -- "/widgets" -- form the absolute URI for our application: "app.acme.com/widgets". The component uses the certificate configured at the gateway level to secure traffic.
+
+{{% table %}}
+|Object | Name | URIs | TLS Setting |
+|---|---|---|---|
+|Gateway|acme-app-gw|`https://app.acme.com`| `acme-cert-1` <br/> (custom TLS setting for this URI) |
+|Web component|acme-app-widgets|`/widgets`| `acme-cert-1` <br/> (inherited from acme-app-gw) |
+{{% /table %}}
+
+Next, we will add some **TCP/UDP** settings.
+
+In the gateway, we add the TCP/UDP URI noted earlier: `tcp+tls://192.168.1.5:100-104` and a custom TLS setting of `acme-cert-2` for this URI. Then, we add a new TCP/UDP component with the URI `tcp+tls://192.168.1.5:100`.
+
+{{% table %}}
+|Object | Name | URIs | TLS Setting |
+|---|---|---|---|
+|Gateway|acme-app-gw|`https://app.acme.com`, <br/> `tcp+tls://192.168.1.5:100-104`| `acme-cert-1` <br/> `acme-cert-2`|
+|Web component|acme-app-widgets|`/widgets`| `acme-cert-1` <br/> (inherited from acme-app-gw) |
+|TCP/UDP component|acme-app-tcp-udp|`tcp+tls://192.168.1.5:100`| `acme-cert-2` <br/> (inherited from acme-app-gw) |
+{{% /table %}}
+
+In this configuration:
+
+- The web component continues to inherit the web URI and certificate from the gateway.
+- The TCP/UDP component **will** inherit the TLS setting from the gateway URI.
+- The TCP/UDP component **will not** inherit the web URI setting from the gateway.
+
+### Placements
+
+Gateways include **placements** that reference physical NGINX **instances** or **instance groups** (for example, an AWS cloud autoscale group).
+
+Placements define the **physical machines** that are used to manifest a particular path associated with a component.  
+
+When multiple placements are defined within a gateway, each placement represents a **resilient path** for any component that references that gateway.
+
+
+
+## Before You Begin
+
+- [Create an Environment for your Gateway]({{< relref "/services/manage-environments.md#create-an-environment" >}})
+
+## Create a Gateway
+
+
+
+To create a gateway:
+
+{{< include "gateways/add-gateway.md" >}}
+
+### General Configuration
+
+{{< include "gateways/gateway-general.md" >}}
+
+### Add Placements
+
+{{< include "gateways/gateway-placements.md" >}}
+
+### Set Hostnames
+
+{{< include "gateways/gateway-hostnames.md" >}}
+
+### Additional Settings
+
+{{< include "gateways/gateway-advanced.md" >}}
+
+
+
+## View, Edit, and Delete Gateways
+
+{{< include "gateways/view-edit-delete-gateways.md" >}}
+
+## Troubleshooting
+
+### Timeouts
+
+Timeouts are commonly reported when an instance doesn't report back to NGINX Controller within 60 seconds. A timeout can occur if one or more instances are under load or lose connectivity to NGINX Controller. If you experience timeouts when configuring a gateway, check your network connection and the status of the instance on which you're deploying the gateway.
+
+## What's Next
+
+- [Set Up Data Plane High Availability]({{< relref "/infrastructure/instances/ha-data-plane.md" >}})
+- [Create an App and App Component]({{< relref "/app-delivery/manage-apps.md" >}})
+
+{{< versions "3.0" "latest" "ctrlvers" >}}
+{{< versions "3.18" "latest" "apimvers" >}}
+{{< versions "3.20" "latest" "adcvers" >}}
