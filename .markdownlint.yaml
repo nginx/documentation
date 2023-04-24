@@ -18,7 +18,7 @@ MD013:
   heading_line_length: 60
   code_block_line_length: 80
   code_blocks: true
-  tables: true
+  tables: false
   headings: true
   headers: true
   strict: false
