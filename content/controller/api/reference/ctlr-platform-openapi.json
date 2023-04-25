@@ -1,871 +1,81 @@
 {
-    {
-      "openapi": "3.0.0",
-      "info":{
-        "title": "NGINX Controller REST API",
-        "version": "3.22.8-ADC"
-      },
-      "servers": [
+    "openapi": "3.0.0",
+    "info":{
+        "title": "NGINX Controller Platform REST API",
+        "version": "v1",
+        "description": "Manage the NGINX Controller platform."
+    },
+    "servers": [
         {
             "description": "NGINX Controller API",
             "url": "https://{{CONTROLLER_FQDN}}/api/v1"
-        }],
-      "tags": [
-        {
-            "name": "Platform",
-            "description": "Manage the NGINX Controller platform."
-        },
-        {
-            "name": "Analytics",
-            "description": "Use NGINX Controller Analytics to assess your system and application performance."
-        },
-        {
-            "name": "API Management",
-            "description": "Use the NGINX Controller API Management module to define, publish, secure, monitor, and analyze your APIs."
-        },
-        {
-            "name": "Application Delivery",
-            "description": "Use the NGINX Controller Application Delivery module to configure, secure, monitor, and troubleshoot load balancing for your applications."
-        }
-      ],
-      "paths": {
-        "/platform/auth/verify": {
-            "x-f5-experimental": true,
-            "post": {
-                "x-f5-experimental": true,
-                "tags": [
-                    "Platform",
-                    "Verify"
-                ],
-                "summary": "Request a collection of permitted actions",
-                "description": "Returns a list of authorized actions based on a list of requested actions and resources.\n",
-                "operationId": "doVerify",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/VerifyList"
-                            },
-                            "example": {
-                                "items": [
-                                    {
-                                        "path": "/services/environments/test1",
-                                        "method": "DELETE"
-                                    },
-                                    {
-                                        "path": "/services/environments/test2",
-                                        "method": "PUT"
-                                    }
-                                ]
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successfully retrieved a list of authorized actions.\n",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/VerifyList"
-                                },
-                                "example": {
-                                    "items": [
-                                        {
-                                            "path": "/services/environments/test1",
-                                            "method": "DELETE",
-                                            "permitted": false
-                                        },
-                                        {
-                                            "path": "/services/environments/test2",
-                                            "method": "PUT",
-                                            "permitted": true
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequest"
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/Unauthorized"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/Internal"
-                    }
-                }
-            }
-        },
-        "/platform/nodes": {
-            "get": {
-                "tags": [
-                    "Platform",
-                    "Nodes"
-                ],
-                "summary": "List all Nodes",
-                "operationId": "getNodeList",
-                "description": "Gets information about the NGINX Controller control-plane nodes.",
-                "responses": {
-                    "200": {
-                        "description": "Successfully retrieved the NGINX Controller nodes.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/NodeList"
-                                },
-                                "example": {
-                                    "items": [
-                                        {
-                                            "currentStatus": {
-                                                "hostname": "host-1",
-                                                "ip": "192.0.2.1",
-                                                "state": {
-                                                    "conditions": [],
-                                                    "selfConfigState": {
-                                                        "configured": 1,
-                                                        "configuring": 0,
-                                                        "deleting": 0,
-                                                        "error": 0,
-                                                        "isConfigured": true,
-                                                        "isConfiguring": false,
-                                                        "isDeleting": false,
-                                                        "isError": false,
-                                                        "total": 1
-                                                    }
-                                                }
-                                            },
-                                            "desiredState": {
-                                                "hostname": "host-1",
-                                                "ip": "192.0.2.1"
-                                            },
-                                            "metadata": {
-                                                "createTime": "2020-09-30T14:14:46Z",
-                                                "kind": "node",
-                                                "name": "host-1"
-                                            }
-                                        },
-                                        {
-                                            "currentStatus": {
-                                                "hostname": "host-2",
-                                                "ip": "192.0.2.2",
-                                                "state": {
-                                                    "conditions": [],
-                                                    "selfConfigState": {
-                                                        "configured": 1,
-                                                        "configuring": 0,
-                                                        "deleting": 0,
-                                                        "error": 0,
-                                                        "isConfigured": true,
-                                                        "isConfiguring": false,
-                                                        "isDeleting": false,
-                                                        "isError": false,
-                                                        "total": 1
-                                                    }
-                                                }
-                                            },
-                                            "desiredState": {
-                                                "hostname": "host-2",
-                                                "ip": "192.0.2.2"
-                                            },
-                                            "metadata": {
-                                                "createTime": "2020-09-30T14:19:13.755911Z",
-                                                "kind": "node",
-                                                "name": "host-2"
-                                            }
-                                        },
-                                        {
-                                            "currentStatus": {
-                                                "hostname": "host-3",
-                                                "ip": "192.0.2.3",
-                                                "state": {
-                                                    "conditions": [],
-                                                    "selfConfigState": {
-                                                        "configured": 1,
-                                                        "configuring": 0,
-                                                        "deleting": 0,
-                                                        "error": 0,
-                                                        "isConfigured": true,
-                                                        "isConfiguring": false,
-                                                        "isDeleting": false,
-                                                        "isError": false,
-                                                        "total": 1
-                                                    }
-                                                }
-                                            },
-                                            "desiredState": {
-                                                "hostname": "host-3",
-                                                "ip": "192.0.2.3"
-                                            },
-                                            "metadata": {
-                                                "createTime": "2020-09-30T14:19:16.155299Z",
-                                                "kind": "node",
-                                                "name": "host-3"
-                                            }
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequest"
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/Unauthorized"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/InternalServerError"
-                    }
-                }
-            },
+    }],
+    "paths": {
+        "/platform/auth/password-recovery": {
             "post": {
                 "tags": [
-                    "Platform",
-                    "Nodes"
+                    "Password"
                 ],
-                "summary": "Create a Node",
-                "operationId": "addNode",
-                "description": "Creates a new NGINX Controller control-plane node.\n\nAfter a node has been created, you must install NGINX Controller on the node to finish adding the node to the cluster.\nIn the JSON response, look for the `install.sh` command and join-key located under `currentStatus.state.conditions.message`.\nThe `type` is `install`. Copy and run this command with the join-key on the new node to finish the setup.\n\nNote: (Optional) If you're adding a deleted node back to the cluster, you must uninstall NGINX Controller from the node before \nrunning the `install.sh` command with the new join-key. To uninstall NGINX Controller, run the uninstall script on the node: \n`/opt/nginx-controller/uninstall.sh`.\n",
+                "summary": "Request password reset",
+                "description": "Creates a password recovery code for user with given email and sends an email with reset link. The reset link is valid for an hour.",
+                "operationId": "requestResetPassword",
                 "requestBody": {
-                    "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Node"
+                                "$ref": "#/components/schemas/ResetPasswordRequest"
                             },
                             "example": {
-                                "desiredState": {
-                                    "hostname": "host-2",
-                                    "ip": "192.0.2.2"
-                                },
                                 "metadata": {
-                                    "name": "host-2"
+                                    "name": "user@nginx.com"
                                 }
                             }
                         }
                     }
                 },
-                "responses": {
-                    "201": {
-                        "description": "Successfully created the NGINX Controller node.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Node"
-                                },
-                                "example": {
-                                    "currentStatus": {
-                                        "hostname": "host-2",
-                                        "ip": "192.0.2.2",
-                                        "state": {
-                                            "conditions": [
-                                                {
-                                                    "message": "install.sh --join-key eyJlbmRwb2ludCI6IjE5Mi4wLjIuMTo2NDQzIiwiY2FDZXJ0SGFzaCI6InNoYTI1Njp4IiwiZW5jcnlwdGlvblNlY3JldCI6IngiLCJ0b2tlbiI6IngiLCJjZXJ0aWZpY2F0ZUtleSI6IngifQo=",
-                                                    "type": "install"
-                                                }
-                                            ],
-                                            "selfConfigState": {
-                                                "configured": 0,
-                                                "configuring": 1,
-                                                "deleting": 0,
-                                                "error": 0,
-                                                "isConfigured": false,
-                                                "isConfiguring": true,
-                                                "isDeleting": false,
-                                                "isError": false,
-                                                "total": 1
-                                            }
-                                        }
-                                    },
-                                    "desiredState": {
-                                        "hostname": "host-2",
-                                        "ip": "192.0.2.2"
-                                    },
-                                    "metadata": {
-                                        "createTime": "2020-10-01T10:03:39.228626Z",
-                                        "kind": "node",
-                                        "name": "host-2"
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequest"
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/Unauthorized"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "409": {
-                        "$ref": "#/components/responses/Conflict"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/InternalServerError"
-                    },
-                    "501": {
-                        "$ref": "#/components/responses/NotImplemented"
-                    }
-                }
-            }
-        },
-        "/platform/nodes/{nodeName}": {
-            "get": {
-                "tags": [
-                    "Platform", 
-                    "Nodes"
-                ],
-                "summary": "Get a Node",
-                "operationId": "getNode",
-                "description": "Gets information about an NGINX Controller control-plane node by name.",
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/nodeName"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfully retrieved the specified NGINX Controller node.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Node"
-                                },
-                                "example": {
-                                    "currentStatus": {
-                                        "hostname": "host-2",
-                                        "ip": "192.0.2.2",
-                                        "state": {
-                                            "conditions": [
-                                                {
-                                                    "message": "install.sh --join-key eyJlbmRwb2ludCI6IjE5Mi4wLjIuMTo2NDQzIiwiY2FDZXJ0SGFzaCI6InNoYTI1Njp4IiwiZW5jcnlwdGlvblNlY3JldCI6IngiLCJ0b2tlbiI6IngiLCJjZXJ0aWZpY2F0ZUtleSI6IngifQo=",
-                                                    "type": "install"
-                                                }
-                                            ],
-                                            "selfConfigState": {
-                                                "configured": 0,
-                                                "configuring": 1,
-                                                "deleting": 0,
-                                                "error": 0,
-                                                "isConfigured": false,
-                                                "isConfiguring": true,
-                                                "isDeleting": false,
-                                                "isError": false,
-                                                "total": 1
-                                            }
-                                        }
-                                    },
-                                    "desiredState": {
-                                        "hostname": "host-2",
-                                        "ip": "192.0.2.2"
-                                    },
-                                    "metadata": {
-                                        "createTime": "2020-10-01T10:03:39.228626Z",
-                                        "kind": "node",
-                                        "name": "host-2"
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequest"
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/Unauthorized"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/InternalServerError"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "Platform",
-                    "Nodes"
-                ],
-                "summary": "Delete a Node",
-                "operationId": "deleteNode",
-                "description": "Deletes an NGINX Controller control-plane node by name.\nThe node's status is `isDeleting` while the workloads\nare being drained from it. Once draining is complete the node is deleted.\n\nNote: (Optional) You must uninstall NGINX Controller from the deleted node before you can add the node back to the cluster. \nTo uninstall NGINX Controller, run the uninstall script on the node: `/opt/nginx-controller/uninstall.sh`.\n",
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/nodeName"
-                    }
-                ],
-                "responses": {
-                    "202": {
-                        "description": "Successfully scheduled the node to be deleted.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Node"
-                                },
-                                "example": {
-                                    "currentStatus": {
-                                        "hostname": "host-2",
-                                        "ip": "192.0.2.2",
-                                        "state": {
-                                            "conditions": [],
-                                            "selfConfigState": {
-                                                "configured": 1,
-                                                "configuring": 0,
-                                                "deleting": 1,
-                                                "error": 0,
-                                                "isConfigured": true,
-                                                "isConfiguring": false,
-                                                "isDeleting": true,
-                                                "isError": false,
-                                                "total": 1
-                                            }
-                                        }
-                                    },
-                                    "desiredState": {
-                                        "hostname": "host-2",
-                                        "ip": "192.0.2.2"
-                                    },
-                                    "metadata": {
-                                        "createTime": "2020-10-01T10:03:39.228626Z",
-                                        "kind": "node",
-                                        "name": "host-2"
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequest"
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/Unauthorized"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/InternalServerError"
-                    },
-                    "501": {
-                        "$ref": "#/components/responses/NotImplemented"
-                    }
-                }
-            }
-        },
-        "/platform/roles": {
-            "get": {
-                "tags": [
-                    "Platform",
-                    "Roles"
-                ],
-                "summary": "List Roles",
-                "description": "Returns an unfiltered list of all Role resources.",
-                "operationId": "getRoles",
-                "responses": {
-                    "200": {
-                        "description": "Successfully retrieved a list of all of the Role resources.\n",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/RoleListResponse"
-                                },
-                                "example": {
-                                    "items": [
-                                        {
-                                            "currentStatus": {
-                                                "permissions": [
-                                                    {
-                                                        "access": "FULL",
-                                                        "path": "/"
-                                                    }
-                                                ]
-                                            },
-                                            "desiredState": {
-                                                "permissions": [
-                                                    {
-                                                        "access": "FULL",
-                                                        "path": "/"
-                                                    }
-                                                ]
-                                            },
-                                            "metadata": {
-                                                "createTime": "2020-02-24T21:29:59.866708Z",
-                                                "kind": "role",
-                                                "name": "admin"
-                                            }
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/Unauthorized"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/Internal"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Platform",
-                    "Roles"
-                ],
-                "summary": "Create a Role",
-                "description": "Creates a new Role resource.",
-                "operationId": "createRole",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Role"
-                            },
-                            "example": {
-                                "desiredState": {
-                                    "permissions": [
-                                        {
-                                            "access": "READ",
-                                            "path": "/services/environments/dev/"
-                                        },
-                                        {
-                                            "access": "WRITE",
-                                            "path": "/services/environments/test/"
-                                        }
-                                    ]
-                                },
-                                "metadata": {
-                                    "kind": "role",
-                                    "name": "role1",
-                                    "tags": [
-                                        "dev",
-                                        "test"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Successfully created the requested Role resource.\n",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Role"
-                                },
-                                "example": {
-                                    "currentStatus": {
-                                        "permissions": [
-                                            {
-                                                "access": "READ",
-                                                "path": "/services/environments/dev/"
-                                            },
-                                            {
-                                                "access": "WRITE",
-                                                "path": "/services/environments/test/"
-                                            }
-                                        ]
-                                    },
-                                    "desiredState": {
-                                        "permissions": [
-                                            {
-                                                "access": "READ",
-                                                "path": "/services/environments/dev/"
-                                            },
-                                            {
-                                                "access": "WRITE",
-                                                "path": "/services/environments/test/"
-                                            }
-                                        ]
-                                    },
-                                    "metadata": {
-                                        "createTime": "2020-02-24T22:55:51.729272Z",
-                                        "kind": "role",
-                                        "name": "role1",
-                                        "tags": [
-                                            "dev",
-                                            "test"
-                                        ]
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequest"
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/Unauthorized"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "409": {
-                        "$ref": "#/components/responses/Conflict"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/Internal"
-                    }
-                }
-            }
-        },
-        "/platform/roles/{roleName}": {
-            "get": {
-                "tags": [
-                    "Platform",
-                    "Roles"
-                ],
-                "summary": "Get a Role",
-                "description": "Returns information about a specific Role resource by its name.\n",
-                "operationId": "getRoleByName",
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/roleName"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfully retrieved the requested Role resource.\n",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Role"
-                                },
-                                "example": {
-                                    "currentStatus": {
-                                        "permissions": [
-                                            {
-                                                "access": "READ",
-                                                "path": "/services/environments/test/"
-                                            },
-                                            {
-                                                "access": "WRITE",
-                                                "path": "/services/environments/dev/"
-                                            }
-                                        ]
-                                    },
-                                    "desiredState": {
-                                        "permissions": [
-                                            {
-                                                "access": "READ",
-                                                "path": "/services/environments/test/"
-                                            },
-                                            {
-                                                "access": "WRITE",
-                                                "path": "/services/environments/dev/"
-                                            }
-                                        ]
-                                    },
-                                    "metadata": {
-                                        "createTime": "2020-02-24T22:38:33.842929Z",
-                                        "kind": "role",
-                                        "name": "role1",
-                                        "tags": [
-                                            "dev",
-                                            "test"
-                                        ]
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/Unauthorized"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/Internal"
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "Platform",
-                    "Roles"
-                ],
-                "summary": "Upsert a Role",
-                "description": "Creates a new Role resource or updates an existing Role resource.\n",
-                "operationId": "upsertRole",
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/roleName"
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Role"
-                            },
-                            "example": {
-                                "desiredState": {
-                                    "permissions": [
-                                        {
-                                            "access": "WRITE",
-                                            "path": "/services/environments/dev/"
-                                        }
-                                    ]
-                                },
-                                "metadata": {
-                                    "kind": "role",
-                                    "name": "role1",
-                                    "tags": [
-                                        "dev",
-                                        "test"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successfully updated the specified Role resource.\n",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Role"
-                                },
-                                "example": {
-                                    "currentStatus": {
-                                        "permissions": [
-                                            {
-                                                "access": "WRITE",
-                                                "path": "/services/environments/dev/"
-                                            }
-                                        ]
-                                    },
-                                    "desiredState": {
-                                        "permissions": [
-                                            {
-                                                "access": "WRITE",
-                                                "path": "/services/environments/dev/"
-                                            }
-                                        ]
-                                    },
-                                    "metadata": {
-                                        "createTime": "2020-02-24T22:38:33.842929Z",
-                                        "kind": "role",
-                                        "name": "role1",
-                                        "updateTime": "2020-02-24T22:53:14.340686Z",
-                                        "tags": [
-                                            "dev",
-                                            "test"
-                                        ]
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "201": {
-                        "description": "Successfully created the specified Role resource.\n",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Role"
-                                },
-                                "example": {
-                                    "currentStatus": {
-                                        "permissions": [
-                                            {
-                                                "access": "WRITE",
-                                                "path": "/services/environments/dev/"
-                                            }
-                                        ]
-                                    },
-                                    "desiredState": {
-                                        "permissions": [
-                                            {
-                                                "access": "WRITE",
-                                                "path": "/services/environments/dev/"
-                                            }
-                                        ]
-                                    },
-                                    "metadata": {
-                                        "createTime": "2020-02-24T22:38:33.842929Z",
-                                        "kind": "role",
-                                        "name": "role1",
-                                        "updateTime": "2020-02-24T22:53:14.340686Z",
-                                        "tags": [
-                                            "dev",
-                                            "test"
-                                        ]
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequest"
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/Unauthorized"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/Internal"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "Platform",
-                    "Roles"
-                ],
-                "summary": "Delete a Role",
-                "description": "Deletes a specific Role resource.",
-                "operationId": "deleteRole",
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/roleName"
-                    }
-                ],
                 "responses": {
                     "204": {
-                        "description": "Successfully deleted the role. No content was returned."
+                        "description": "Successfully created the password recovery code. No content was returned."
+                    }
+                }
+            }
+        },
+        "/platform/auth/password-recovery/{code}": {
+            "put": {
+                "tags": [
+                    "Password"
+                ],
+                "summary": "Password reset",
+                "description": "Check if the new password satisfies the policy constraints and update the password for the user associated with the recovery code.",
+                "operationId": "resetPassword",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/code"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ResetPassword"
+                            },
+                            "example": {
+                                "desiredState": {
+                                    "password": "NewPaw12!"
+                                },
+                                "metadata": {
+                                    "name": "user@nginx.com"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Successfully updated the password for the user. No content was returned."
                     },
                     "400": {
                         "$ref": "#/components/responses/BadRequest"
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/Unauthorized"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    },
-                    "409": {
-                        "$ref": "#/components/responses/Conflict"
                     },
                     "500": {
                         "$ref": "#/components/responses/Internal"
@@ -876,7 +86,6 @@
         "/platform/auth/providers": {
             "post": {
                 "tags": [
-                    "Platform",
                     "Authentication Providers"
                 ],
                 "summary": "Create an Authentication Provider",
@@ -1077,7 +286,6 @@
             },
             "get": {
                 "tags": [
-                    "Platform",
                     "Authentication Providers"
                 ],
                 "summary": "List all Authentication Providers",
@@ -1232,7 +440,6 @@
         "/platform/auth/providers/{providerName}": {
             "get": {
                 "tags": [
-                    "Platform",
                     "Authentication Providers"
                 ],
                 "summary": "Get an Authentication Provider",
@@ -1392,7 +599,6 @@
             },
             "patch": {
                 "tags": [
-                    "Platform",
                     "Authentication Providers"
                 ],
                 "summary": "Update an Authentication Provider",
@@ -1604,7 +810,6 @@
             },
             "put": {
                 "tags": [
-                    "Platform",
                     "Authentication Providers"
                 ],
                 "summary": "Update an Authentication Provider",
@@ -1927,7 +1132,6 @@
             },
             "delete": {
                 "tags": [
-                    "Platform",
                     "Authentication Providers"
                 ],
                 "summary": "Delete an Authentication Provider",
@@ -1963,10 +1167,80 @@
                 }
             }
         },
+        "/platform/auth/verify": {
+            "x-f5-experimental": true,
+            "post": {
+                "x-f5-experimental": true,
+                "tags": [
+                    "Verify Auth Permissions"
+                ],
+                "summary": "Request a collection of permitted actions",
+                "description": "Returns a list of authorized actions based on a list of requested actions and resources.\n",
+                "operationId": "doVerify",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/VerifyList"
+                            },
+                            "example": {
+                                "items": [
+                                    {
+                                        "path": "/services/environments/test1",
+                                        "method": "DELETE"
+                                    },
+                                    {
+                                        "path": "/services/environments/test2",
+                                        "method": "PUT"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully retrieved a list of authorized actions.\n",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/VerifyList"
+                                },
+                                "example": {
+                                    "items": [
+                                        {
+                                            "path": "/services/environments/test1",
+                                            "method": "DELETE",
+                                            "permitted": false
+                                        },
+                                        {
+                                            "path": "/services/environments/test2",
+                                            "method": "PUT",
+                                            "permitted": true
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/Internal"
+                    }
+                }
+            }
+        },
         "/platform/global": {
             "get": {
                 "tags": [
-                    "Platform",
                     "Global Settings"
                 ],
                 "summary": "Get the Global Settings",
@@ -1996,7 +1270,6 @@
             },
             "put": {
                 "tags": [
-                    "Platform",
                     "Global Settings"
                 ],
                 "operationId": "putGlobalSettings",
@@ -2038,7 +1311,6 @@
             },
             "patch": {
                 "tags": [
-                    "Platform",
                     "Global Settings"
                 ],
                 "operationId": "patchGlobalSettings",
@@ -2079,428 +1351,11 @@
                 }
             }
         },
-        "/platform/users": {
-            "get": {
-                "tags": [
-                    "Platform",
-                    "Users"
-                ],
-                "summary": "List all Users",
-                "operationId": "listUsers",
-                "description": "Returns an unfiltered list of all User resources.",
-                "responses": {
-                    "200": {
-                        "description": "Successfully retrieved a list of User resources.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/UserListResponse"
-                                },
-                                "example": {
-                                    "items": [
-                                        {
-                                            "metadata": {
-                                                "name": "john.doe@nginx.com",
-                                                "kind": "user",
-                                                "createTime": "2019-07-29T09:12:33.001Z",
-                                                "displayName": "John Doe",
-                                                "description": "NGINX controller user with prod env role"
-                                            },
-                                            "desiredState": {
-                                                "firstName": "John",
-                                                "lastName": "Doe",
-                                                "email": "john.doe@nginx.com",
-                                                "password": "********",
-                                                "roles": [
-                                                    {
-                                                        "ref": "/platform/roles/prod"
-                                                    }
-                                                ]
-                                            },
-                                            "currentStatus": {
-                                                "account": "1",
-                                                "id": 123,
-                                                "firstName": "John",
-                                                "lastName": "Doe",
-                                                "lastLogin": 1570132969,
-                                                "email": "john.doe@nginx.com",
-                                                "authn": "amplify",
-                                                "password": "********",
-                                                "roles": [
-                                                    {
-                                                        "ref": "/platform/roles/prod",
-                                                        "links": {
-                                                            "rel": "/api/v1/platform/roles/prod",
-                                                            "name": "prod"
-                                                        }
-                                                    }
-                                                ]
-                                            }
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/Unauthorized"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/InternalServerError"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Platform",
-                    "Users"
-                ],
-                "summary": "Create a User",
-                "operationId": "addUser",
-                "description": "Creates a new User resource.",
-                "requestBody": {
-                    "description": "Defines the details to use for the new User resource.",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/User"
-                            },
-                            "example": {
-                                "metadata": {
-                                    "name": "john.doe@nginx.com",
-                                    "displayName": "John Doe",
-                                    "description": "NGINX controller user with prod env role"
-                                },
-                                "desiredState": {
-                                    "firstName": "John",
-                                    "lastName": "Doe",
-                                    "email": "john.doe@nginx.com",
-                                    "password": "passwd123",
-                                    "roles": [
-                                        {
-                                            "ref": "/platform/roles/prod"
-                                        }
-                                    ],
-                                    "groups": [
-                                        {
-                                            "ref": "/platform/groups/guest"
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Successfully created the requested User resource.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/User"
-                                },
-                                "example": {
-                                    "metadata": {
-                                        "name": "john.doe@nginx.com",
-                                        "kind": "user",
-                                        "createTime": "2019-07-29T09:12:33.001Z",
-                                        "displayName": "John Doe",
-                                        "description": "NGINX controller user with prod env role"
-                                    },
-                                    "desiredState": {
-                                        "firstName": "John",
-                                        "lastName": "Doe",
-                                        "email": "john.doe@nginx.com",
-                                        "password": "********",
-                                        "roles": [
-                                            {
-                                                "ref": "/platform/roles/prod"
-                                            }
-                                        ],
-                                        "groups": [
-                                            {
-                                                "ref": "/platform/groups/guest"
-                                            }
-                                        ]
-                                    },
-                                    "currentStatus": {
-                                        "account": "1",
-                                        "id": 123,
-                                        "firstName": "John",
-                                        "lastName": "Doe",
-                                        "lastLogin": 1570132969,
-                                        "email": "john.doe@nginx.com",
-                                        "authn": "amplify",
-                                        "password": "********",
-                                        "roles": [
-                                            {
-                                                "ref": "/platform/roles/prod",
-                                                "links": {
-                                                    "rel": "/api/v1/platform/roles/prod",
-                                                    "name": "prod"
-                                                }
-                                            }
-                                        ],
-                                        "groups": [
-                                            {
-                                                "links": {
-                                                    "rel": "/api/v1/platform/auth/groups/guest",
-                                                    "name": "guest"
-                                                },
-                                                "ref": "/platform/groups/guest"
-                                            }
-                                        ]
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequest"
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/Unauthorized"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "409": {
-                        "$ref": "#/components/responses/Conflict"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/InternalServerError"
-                    }
-                }
-            }
-        },
-        "/platform/users/{userName}": {
-            "get": {
-                "tags": [
-                    "Platform",
-                    "Users"
-                ],
-                "summary": "Get a User",
-                "operationId": "getUser",
-                "description": "Gets information for an existing User resource.",
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/userName"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfully retrieved the requested User resource.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/User"
-                                },
-                                "example": {
-                                    "metadata": {
-                                        "name": "john.doe@nginx.com",
-                                        "kind": "user",
-                                        "createTime": "2019-07-29T09:12:33.001Z",
-                                        "displayName": "John Doe",
-                                        "description": "NGINX controller user with prod env role"
-                                    },
-                                    "desiredState": {
-                                        "firstName": "John",
-                                        "lastName": "Doe",
-                                        "email": "john.doe@nginx.com",
-                                        "password": "********",
-                                        "roles": [
-                                            {
-                                                "ref": "/platform/roles/prod"
-                                            }
-                                        ]
-                                    },
-                                    "currentStatus": {
-                                        "account": "1",
-                                        "id": 123,
-                                        "firstName": "John",
-                                        "lastName": "Doe",
-                                        "lastLogin": 1570132969,
-                                        "email": "john.doe@nginx.com",
-                                        "authn": "amplify",
-                                        "password": "********",
-                                        "roles": [
-                                            {
-                                                "ref": "/platform/roles/prod",
-                                                "links": {
-                                                    "rel": "/api/v1/platform/roles/prod",
-                                                    "name": "prod"
-                                                }
-                                            }
-                                        ]
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequest"
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/Unauthorized"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/InternalServerError"
-                    }
-                }
-            },
-            "patch": {
-                "tags": [
-                    "Platform",
-                    "Users"
-                ],
-                "summary": "Update a User",
-                "operationId": "updateUser",
-                "description": "Updates an existing User resource.",
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/userName"
-                    }
-                ],
-                "requestBody": {
-                    "description": "Defines the updates to make to the specified User resource.",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/UpdateUser"
-                            },
-                            "example": {
-                                "metadata": {
-                                    "name": "john.doe@nginx.com",
-                                    "displayName": "Jane Doe",
-                                    "description": "NGINX controller user with prod env role"
-                                },
-                                "desiredState": {
-                                    "firstName": "Jane",
-                                    "lastName": "Doe",
-                                    "password": "NewPassWd1234",
-                                    "verifyPassword": "OldPassWd1234",
-                                    "roles": [
-                                        {
-                                            "ref": "/platform/roles/new"
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successfully updated the specified User resource.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/UpdateUser"
-                                },
-                                "example": {
-                                    "metadata": {
-                                        "name": "john.doe@nginx.com",
-                                        "kind": "user",
-                                        "createTime": "2019-07-29T09:12:33.001Z",
-                                        "displayName": "Jane Doe",
-                                        "description": "NGINX controller user with prod env role"
-                                    },
-                                    "desiredState": {
-                                        "firstName": "Jane",
-                                        "lastName": "Doe",
-                                        "password": "********",
-                                        "roles": [
-                                            {
-                                                "ref": "/platform/roles/new"
-                                            }
-                                        ]
-                                    },
-                                    "currentStatus": {
-                                        "account": "1",
-                                        "id": 123,
-                                        "firstName": "Jane",
-                                        "lastName": "Doe",
-                                        "lastLogin": 1570132969,
-                                        "email": "john.doe@nginx.com",
-                                        "authn": "amplify",
-                                        "password": "********",
-                                        "roles": [
-                                            {
-                                                "ref": "/platform/roles/new",
-                                                "links": {
-                                                    "rel": "/api/v1/platform/roles/new",
-                                                    "name": "new"
-                                                }
-                                            }
-                                        ]
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequest"
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/Unauthorized"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/InternalServerError"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "Platform",
-                    "Users"
-                ],
-                "summary": "Delete a User",
-                "operationId": "deleteUser",
-                "description": "Deletes a User resource.",
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/userName"
-                    }
-                ],
-                "responses": {
-                    "204": {
-                        "description": "Successfully deleted the user. No content was returned."
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/Unauthorized"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/InternalServerError"
-                    }
-                }
-            }
-        },
         "/platform/global/features": {
             "x-f5-experimental": true,
             "get": {
                 "x-f5-experimental": true,
                 "tags": [
-                    "Platform",
                     "Global Features"
                 ],
                 "summary": "Get the Global Features",
@@ -2529,84 +1384,9 @@
                 }
             }
         },
-        "/platform/auth/password-recovery": {
-            "post": {
-                "tags": [
-                    "Platform",
-                    "Password"
-                ],
-                "summary": "Request password reset",
-                "description": "Creates a password recovery code for user with given email and sends an email with reset link. The reset link is valid for an hour.",
-                "operationId": "requestResetPassword",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/ResetPasswordRequest"
-                            },
-                            "example": {
-                                "metadata": {
-                                    "name": "user@nginx.com"
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "204": {
-                        "description": "Successfully created the password recovery code. No content was returned."
-                    }
-                }
-            }
-        },
-        "/platform/auth/password-recovery/{code}": {
-            "put": {
-                "tags": [
-                    "Platform",
-                    "Password"
-                ],
-                "summary": "Password reset",
-                "description": "Check if the new password satisfies the policy constraints and update the password for the user associated with the recovery code.",
-                "operationId": "resetPassword",
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/code"
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/ResetPassword"
-                            },
-                            "example": {
-                                "desiredState": {
-                                    "password": "NewPaw12!"
-                                },
-                                "metadata": {
-                                    "name": "user@nginx.com"
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "204": {
-                        "description": "Successfully updated the password for the user. No content was returned."
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequest"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/Internal"
-                    }
-                }
-            }
-        },
         "/platform/license": {
             "get": {
                 "tags": [
-                    "Platform",
                     "License"
                 ],
                 "summary": "Get a License",
@@ -2711,7 +1491,6 @@
             },
             "put": {
                 "tags": [
-                    "Platform",
                     "License"
                 ],
                 "summary": "Upload a License",
@@ -2927,7 +1706,6 @@
             },
             "delete": {
                 "tags": [
-                    "Platform",
                     "License"
                 ],
                 "operationId": "deleteLicense",
@@ -3040,7 +1818,6 @@
         "/platform/licenses/nginx-plus-licenses": {
             "get": {
                 "tags": [
-                    "Platform",
                     "License"
                 ],
                 "summary": "List all NGINX+ Licenses.",
@@ -3094,7 +1871,6 @@
         "/platform/licenses/nginx-plus-licenses/{licenseName}": {
             "get": {
                 "tags": [
-                    "Platform",
                     "License"
                 ],
                 "summary": "Get the NGINX Plus certificate and key bundle by name",
@@ -3173,7 +1949,6 @@
             "post": {
                 "deprecated": true,
                 "tags": [
-                    "Platform",
                     "License"
                 ],
                 "summary": "Upload a License",
@@ -3248,7 +2023,6 @@
         "/platform/login": {
             "post": {
                 "tags": [
-                    "Platform",
                     "Login"
                 ],
                 "summary": "Log in to NGINX Controller",
@@ -3296,7 +2070,6 @@
             },
             "get": {
                 "tags": [
-                    "Platform",
                     "Login"
                 ],
                 "summary": "Get Login Session",
@@ -3375,7 +2148,6 @@
         "/platform/oidc-handler": {
             "get": {
                 "tags": [
-                    "Platform",
                     "OIDC Handler"
                 ],
                 "summary": "OIDC redirect URL, that handles Login into controller using OIDC",
@@ -3443,7 +2215,6 @@
         "/platform/logout": {
             "post": {
                 "tags": [
-                    "Platform",
                     "Logout"
                 ],
                 "summary": "Log out of NGINX Controller",
@@ -3476,7 +2247,6 @@
         "/platform/login-providers": {
             "get": {
                 "tags": [
-                    "Platform",
                     "Login Providers"
                 ],
                 "summary": "List all Active Authentication Providers",
@@ -3504,10 +2274,1183 @@
                 }
             }
         },
+        "/platform/nodes": {
+            "get": {
+                "tags": [
+                    "Nodes"
+                ],
+                "summary": "List all Nodes",
+                "operationId": "getNodeList",
+                "description": "Gets information about the NGINX Controller control-plane nodes.",
+                "responses": {
+                    "200": {
+                        "description": "Successfully retrieved the NGINX Controller nodes.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NodeList"
+                                },
+                                "example": {
+                                    "items": [
+                                        {
+                                            "currentStatus": {
+                                                "hostname": "host-1",
+                                                "ip": "192.0.2.1",
+                                                "state": {
+                                                    "conditions": [],
+                                                    "selfConfigState": {
+                                                        "configured": 1,
+                                                        "configuring": 0,
+                                                        "deleting": 0,
+                                                        "error": 0,
+                                                        "isConfigured": true,
+                                                        "isConfiguring": false,
+                                                        "isDeleting": false,
+                                                        "isError": false,
+                                                        "total": 1
+                                                    }
+                                                }
+                                            },
+                                            "desiredState": {
+                                                "hostname": "host-1",
+                                                "ip": "192.0.2.1"
+                                            },
+                                            "metadata": {
+                                                "createTime": "2020-09-30T14:14:46Z",
+                                                "kind": "node",
+                                                "name": "host-1"
+                                            }
+                                        },
+                                        {
+                                            "currentStatus": {
+                                                "hostname": "host-2",
+                                                "ip": "192.0.2.2",
+                                                "state": {
+                                                    "conditions": [],
+                                                    "selfConfigState": {
+                                                        "configured": 1,
+                                                        "configuring": 0,
+                                                        "deleting": 0,
+                                                        "error": 0,
+                                                        "isConfigured": true,
+                                                        "isConfiguring": false,
+                                                        "isDeleting": false,
+                                                        "isError": false,
+                                                        "total": 1
+                                                    }
+                                                }
+                                            },
+                                            "desiredState": {
+                                                "hostname": "host-2",
+                                                "ip": "192.0.2.2"
+                                            },
+                                            "metadata": {
+                                                "createTime": "2020-09-30T14:19:13.755911Z",
+                                                "kind": "node",
+                                                "name": "host-2"
+                                            }
+                                        },
+                                        {
+                                            "currentStatus": {
+                                                "hostname": "host-3",
+                                                "ip": "192.0.2.3",
+                                                "state": {
+                                                    "conditions": [],
+                                                    "selfConfigState": {
+                                                        "configured": 1,
+                                                        "configuring": 0,
+                                                        "deleting": 0,
+                                                        "error": 0,
+                                                        "isConfigured": true,
+                                                        "isConfiguring": false,
+                                                        "isDeleting": false,
+                                                        "isError": false,
+                                                        "total": 1
+                                                    }
+                                                }
+                                            },
+                                            "desiredState": {
+                                                "hostname": "host-3",
+                                                "ip": "192.0.2.3"
+                                            },
+                                            "metadata": {
+                                                "createTime": "2020-09-30T14:19:16.155299Z",
+                                                "kind": "node",
+                                                "name": "host-3"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Nodes"
+                ],
+                "summary": "Create a Node",
+                "operationId": "addNode",
+                "description": "Creates a new NGINX Controller control-plane node.\n\nAfter a node has been created, you must install NGINX Controller on the node to finish adding the node to the cluster.\nIn the JSON response, look for the `install.sh` command and join-key located under `currentStatus.state.conditions.message`.\nThe `type` is `install`. Copy and run this command with the join-key on the new node to finish the setup.\n\nNote: (Optional) If you're adding a deleted node back to the cluster, you must uninstall NGINX Controller from the node before \nrunning the `install.sh` command with the new join-key. To uninstall NGINX Controller, run the uninstall script on the node: \n`/opt/nginx-controller/uninstall.sh`.\n",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Node"
+                            },
+                            "example": {
+                                "desiredState": {
+                                    "hostname": "host-2",
+                                    "ip": "192.0.2.2"
+                                },
+                                "metadata": {
+                                    "name": "host-2"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successfully created the NGINX Controller node.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Node"
+                                },
+                                "example": {
+                                    "currentStatus": {
+                                        "hostname": "host-2",
+                                        "ip": "192.0.2.2",
+                                        "state": {
+                                            "conditions": [
+                                                {
+                                                    "message": "install.sh --join-key eyJlbmRwb2ludCI6IjE5Mi4wLjIuMTo2NDQzIiwiY2FDZXJ0SGFzaCI6InNoYTI1Njp4IiwiZW5jcnlwdGlvblNlY3JldCI6IngiLCJ0b2tlbiI6IngiLCJjZXJ0aWZpY2F0ZUtleSI6IngifQo=",
+                                                    "type": "install"
+                                                }
+                                            ],
+                                            "selfConfigState": {
+                                                "configured": 0,
+                                                "configuring": 1,
+                                                "deleting": 0,
+                                                "error": 0,
+                                                "isConfigured": false,
+                                                "isConfiguring": true,
+                                                "isDeleting": false,
+                                                "isError": false,
+                                                "total": 1
+                                            }
+                                        }
+                                    },
+                                    "desiredState": {
+                                        "hostname": "host-2",
+                                        "ip": "192.0.2.2"
+                                    },
+                                    "metadata": {
+                                        "createTime": "2020-10-01T10:03:39.228626Z",
+                                        "kind": "node",
+                                        "name": "host-2"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/Conflict"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
+                    },
+                    "501": {
+                        "$ref": "#/components/responses/NotImplemented"
+                    }
+                }
+            }
+        },
+        "/platform/nodes/{nodeName}": {
+            "get": {
+                "tags": [
+                    "Nodes"
+                ],
+                "summary": "Get a Node",
+                "operationId": "getNode",
+                "description": "Gets information about an NGINX Controller control-plane node by name.",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/nodeName"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully retrieved the specified NGINX Controller node.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Node"
+                                },
+                                "example": {
+                                    "currentStatus": {
+                                        "hostname": "host-2",
+                                        "ip": "192.0.2.2",
+                                        "state": {
+                                            "conditions": [
+                                                {
+                                                    "message": "install.sh --join-key eyJlbmRwb2ludCI6IjE5Mi4wLjIuMTo2NDQzIiwiY2FDZXJ0SGFzaCI6InNoYTI1Njp4IiwiZW5jcnlwdGlvblNlY3JldCI6IngiLCJ0b2tlbiI6IngiLCJjZXJ0aWZpY2F0ZUtleSI6IngifQo=",
+                                                    "type": "install"
+                                                }
+                                            ],
+                                            "selfConfigState": {
+                                                "configured": 0,
+                                                "configuring": 1,
+                                                "deleting": 0,
+                                                "error": 0,
+                                                "isConfigured": false,
+                                                "isConfiguring": true,
+                                                "isDeleting": false,
+                                                "isError": false,
+                                                "total": 1
+                                            }
+                                        }
+                                    },
+                                    "desiredState": {
+                                        "hostname": "host-2",
+                                        "ip": "192.0.2.2"
+                                    },
+                                    "metadata": {
+                                        "createTime": "2020-10-01T10:03:39.228626Z",
+                                        "kind": "node",
+                                        "name": "host-2"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Nodes"
+                ],
+                "summary": "Delete a Node",
+                "operationId": "deleteNode",
+                "description": "Deletes an NGINX Controller control-plane node by name.\nThe node's status is `isDeleting` while the workloads\nare being drained from it. Once draining is complete the node is deleted.\n\nNote: (Optional) You must uninstall NGINX Controller from the deleted node before you can add the node back to the cluster. \nTo uninstall NGINX Controller, run the uninstall script on the node: `/opt/nginx-controller/uninstall.sh`.\n",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/nodeName"
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Successfully scheduled the node to be deleted.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Node"
+                                },
+                                "example": {
+                                    "currentStatus": {
+                                        "hostname": "host-2",
+                                        "ip": "192.0.2.2",
+                                        "state": {
+                                            "conditions": [],
+                                            "selfConfigState": {
+                                                "configured": 1,
+                                                "configuring": 0,
+                                                "deleting": 1,
+                                                "error": 0,
+                                                "isConfigured": true,
+                                                "isConfiguring": false,
+                                                "isDeleting": true,
+                                                "isError": false,
+                                                "total": 1
+                                            }
+                                        }
+                                    },
+                                    "desiredState": {
+                                        "hostname": "host-2",
+                                        "ip": "192.0.2.2"
+                                    },
+                                    "metadata": {
+                                        "createTime": "2020-10-01T10:03:39.228626Z",
+                                        "kind": "node",
+                                        "name": "host-2"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
+                    },
+                    "501": {
+                        "$ref": "#/components/responses/NotImplemented"
+                    }
+                }
+            }
+        },
+        "/platform/roles": {
+            "get": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "List Roles",
+                "description": "Returns an unfiltered list of all Role resources.",
+                "operationId": "getRoles",
+                "responses": {
+                    "200": {
+                        "description": "Successfully retrieved a list of all of the Role resources.\n",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RoleListResponse"
+                                },
+                                "example": {
+                                    "items": [
+                                        {
+                                            "currentStatus": {
+                                                "permissions": [
+                                                    {
+                                                        "access": "FULL",
+                                                        "path": "/"
+                                                    }
+                                                ]
+                                            },
+                                            "desiredState": {
+                                                "permissions": [
+                                                    {
+                                                        "access": "FULL",
+                                                        "path": "/"
+                                                    }
+                                                ]
+                                            },
+                                            "metadata": {
+                                                "createTime": "2020-02-24T21:29:59.866708Z",
+                                                "kind": "role",
+                                                "name": "admin"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/Internal"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Create a Role",
+                "description": "Creates a new Role resource.",
+                "operationId": "createRole",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Role"
+                            },
+                            "example": {
+                                "desiredState": {
+                                    "permissions": [
+                                        {
+                                            "access": "READ",
+                                            "path": "/services/environments/dev/"
+                                        },
+                                        {
+                                            "access": "WRITE",
+                                            "path": "/services/environments/test/"
+                                        }
+                                    ]
+                                },
+                                "metadata": {
+                                    "kind": "role",
+                                    "name": "role1",
+                                    "tags": [
+                                        "dev",
+                                        "test"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successfully created the requested Role resource.\n",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Role"
+                                },
+                                "example": {
+                                    "currentStatus": {
+                                        "permissions": [
+                                            {
+                                                "access": "READ",
+                                                "path": "/services/environments/dev/"
+                                            },
+                                            {
+                                                "access": "WRITE",
+                                                "path": "/services/environments/test/"
+                                            }
+                                        ]
+                                    },
+                                    "desiredState": {
+                                        "permissions": [
+                                            {
+                                                "access": "READ",
+                                                "path": "/services/environments/dev/"
+                                            },
+                                            {
+                                                "access": "WRITE",
+                                                "path": "/services/environments/test/"
+                                            }
+                                        ]
+                                    },
+                                    "metadata": {
+                                        "createTime": "2020-02-24T22:55:51.729272Z",
+                                        "kind": "role",
+                                        "name": "role1",
+                                        "tags": [
+                                            "dev",
+                                            "test"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/Conflict"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/Internal"
+                    }
+                }
+            }
+        },
+        "/platform/roles/{roleName}": {
+            "get": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Get a Role",
+                "description": "Returns information about a specific Role resource by its name.\n",
+                "operationId": "getRoleByName",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/roleName"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully retrieved the requested Role resource.\n",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Role"
+                                },
+                                "example": {
+                                    "currentStatus": {
+                                        "permissions": [
+                                            {
+                                                "access": "READ",
+                                                "path": "/services/environments/test/"
+                                            },
+                                            {
+                                                "access": "WRITE",
+                                                "path": "/services/environments/dev/"
+                                            }
+                                        ]
+                                    },
+                                    "desiredState": {
+                                        "permissions": [
+                                            {
+                                                "access": "READ",
+                                                "path": "/services/environments/test/"
+                                            },
+                                            {
+                                                "access": "WRITE",
+                                                "path": "/services/environments/dev/"
+                                            }
+                                        ]
+                                    },
+                                    "metadata": {
+                                        "createTime": "2020-02-24T22:38:33.842929Z",
+                                        "kind": "role",
+                                        "name": "role1",
+                                        "tags": [
+                                            "dev",
+                                            "test"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/Internal"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Upsert a Role",
+                "description": "Creates a new Role resource or updates an existing Role resource.\n",
+                "operationId": "upsertRole",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/roleName"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Role"
+                            },
+                            "example": {
+                                "desiredState": {
+                                    "permissions": [
+                                        {
+                                            "access": "WRITE",
+                                            "path": "/services/environments/dev/"
+                                        }
+                                    ]
+                                },
+                                "metadata": {
+                                    "kind": "role",
+                                    "name": "role1",
+                                    "tags": [
+                                        "dev",
+                                        "test"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully updated the specified Role resource.\n",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Role"
+                                },
+                                "example": {
+                                    "currentStatus": {
+                                        "permissions": [
+                                            {
+                                                "access": "WRITE",
+                                                "path": "/services/environments/dev/"
+                                            }
+                                        ]
+                                    },
+                                    "desiredState": {
+                                        "permissions": [
+                                            {
+                                                "access": "WRITE",
+                                                "path": "/services/environments/dev/"
+                                            }
+                                        ]
+                                    },
+                                    "metadata": {
+                                        "createTime": "2020-02-24T22:38:33.842929Z",
+                                        "kind": "role",
+                                        "name": "role1",
+                                        "updateTime": "2020-02-24T22:53:14.340686Z",
+                                        "tags": [
+                                            "dev",
+                                            "test"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "Successfully created the specified Role resource.\n",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Role"
+                                },
+                                "example": {
+                                    "currentStatus": {
+                                        "permissions": [
+                                            {
+                                                "access": "WRITE",
+                                                "path": "/services/environments/dev/"
+                                            }
+                                        ]
+                                    },
+                                    "desiredState": {
+                                        "permissions": [
+                                            {
+                                                "access": "WRITE",
+                                                "path": "/services/environments/dev/"
+                                            }
+                                        ]
+                                    },
+                                    "metadata": {
+                                        "createTime": "2020-02-24T22:38:33.842929Z",
+                                        "kind": "role",
+                                        "name": "role1",
+                                        "updateTime": "2020-02-24T22:53:14.340686Z",
+                                        "tags": [
+                                            "dev",
+                                            "test"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/Internal"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Delete a Role",
+                "description": "Deletes a specific Role resource.",
+                "operationId": "deleteRole",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/roleName"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successfully deleted the role. No content was returned."
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/Conflict"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/Internal"
+                    }
+                }
+            }
+        },
+        "/platform/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "List all Users",
+                "operationId": "listUsers",
+                "description": "Returns an unfiltered list of all User resources.",
+                "responses": {
+                    "200": {
+                        "description": "Successfully retrieved a list of User resources.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserListResponse"
+                                },
+                                "example": {
+                                    "items": [
+                                        {
+                                            "metadata": {
+                                                "name": "john.doe@nginx.com",
+                                                "kind": "user",
+                                                "createTime": "2019-07-29T09:12:33.001Z",
+                                                "displayName": "John Doe",
+                                                "description": "NGINX controller user with prod env role"
+                                            },
+                                            "desiredState": {
+                                                "firstName": "John",
+                                                "lastName": "Doe",
+                                                "email": "john.doe@nginx.com",
+                                                "password": "********",
+                                                "roles": [
+                                                    {
+                                                        "ref": "/platform/roles/prod"
+                                                    }
+                                                ]
+                                            },
+                                            "currentStatus": {
+                                                "account": "1",
+                                                "id": 123,
+                                                "firstName": "John",
+                                                "lastName": "Doe",
+                                                "lastLogin": 1570132969,
+                                                "email": "john.doe@nginx.com",
+                                                "authn": "amplify",
+                                                "password": "********",
+                                                "roles": [
+                                                    {
+                                                        "ref": "/platform/roles/prod",
+                                                        "links": {
+                                                            "rel": "/api/v1/platform/roles/prod",
+                                                            "name": "prod"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Create a User",
+                "operationId": "addUser",
+                "description": "Creates a new User resource.",
+                "requestBody": {
+                    "description": "Defines the details to use for the new User resource.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            },
+                            "example": {
+                                "metadata": {
+                                    "name": "john.doe@nginx.com",
+                                    "displayName": "John Doe",
+                                    "description": "NGINX controller user with prod env role"
+                                },
+                                "desiredState": {
+                                    "firstName": "John",
+                                    "lastName": "Doe",
+                                    "email": "john.doe@nginx.com",
+                                    "password": "passwd123",
+                                    "roles": [
+                                        {
+                                            "ref": "/platform/roles/prod"
+                                        }
+                                    ],
+                                    "groups": [
+                                        {
+                                            "ref": "/platform/groups/guest"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successfully created the requested User resource.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                },
+                                "example": {
+                                    "metadata": {
+                                        "name": "john.doe@nginx.com",
+                                        "kind": "user",
+                                        "createTime": "2019-07-29T09:12:33.001Z",
+                                        "displayName": "John Doe",
+                                        "description": "NGINX controller user with prod env role"
+                                    },
+                                    "desiredState": {
+                                        "firstName": "John",
+                                        "lastName": "Doe",
+                                        "email": "john.doe@nginx.com",
+                                        "password": "********",
+                                        "roles": [
+                                            {
+                                                "ref": "/platform/roles/prod"
+                                            }
+                                        ],
+                                        "groups": [
+                                            {
+                                                "ref": "/platform/groups/guest"
+                                            }
+                                        ]
+                                    },
+                                    "currentStatus": {
+                                        "account": "1",
+                                        "id": 123,
+                                        "firstName": "John",
+                                        "lastName": "Doe",
+                                        "lastLogin": 1570132969,
+                                        "email": "john.doe@nginx.com",
+                                        "authn": "amplify",
+                                        "password": "********",
+                                        "roles": [
+                                            {
+                                                "ref": "/platform/roles/prod",
+                                                "links": {
+                                                    "rel": "/api/v1/platform/roles/prod",
+                                                    "name": "prod"
+                                                }
+                                            }
+                                        ],
+                                        "groups": [
+                                            {
+                                                "links": {
+                                                    "rel": "/api/v1/platform/auth/groups/guest",
+                                                    "name": "guest"
+                                                },
+                                                "ref": "/platform/groups/guest"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/Conflict"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
+                    }
+                }
+            }
+        },
+        "/platform/users/{userName}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get a User",
+                "operationId": "getUser",
+                "description": "Gets information for an existing User resource.",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/userName"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully retrieved the requested User resource.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                },
+                                "example": {
+                                    "metadata": {
+                                        "name": "john.doe@nginx.com",
+                                        "kind": "user",
+                                        "createTime": "2019-07-29T09:12:33.001Z",
+                                        "displayName": "John Doe",
+                                        "description": "NGINX controller user with prod env role"
+                                    },
+                                    "desiredState": {
+                                        "firstName": "John",
+                                        "lastName": "Doe",
+                                        "email": "john.doe@nginx.com",
+                                        "password": "********",
+                                        "roles": [
+                                            {
+                                                "ref": "/platform/roles/prod"
+                                            }
+                                        ]
+                                    },
+                                    "currentStatus": {
+                                        "account": "1",
+                                        "id": 123,
+                                        "firstName": "John",
+                                        "lastName": "Doe",
+                                        "lastLogin": 1570132969,
+                                        "email": "john.doe@nginx.com",
+                                        "authn": "amplify",
+                                        "password": "********",
+                                        "roles": [
+                                            {
+                                                "ref": "/platform/roles/prod",
+                                                "links": {
+                                                    "rel": "/api/v1/platform/roles/prod",
+                                                    "name": "prod"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update a User",
+                "operationId": "updateUser",
+                "description": "Updates an existing User resource.",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/userName"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Defines the updates to make to the specified User resource.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateUser"
+                            },
+                            "example": {
+                                "metadata": {
+                                    "name": "john.doe@nginx.com",
+                                    "displayName": "Jane Doe",
+                                    "description": "NGINX controller user with prod env role"
+                                },
+                                "desiredState": {
+                                    "firstName": "Jane",
+                                    "lastName": "Doe",
+                                    "password": "NewPassWd1234",
+                                    "verifyPassword": "OldPassWd1234",
+                                    "roles": [
+                                        {
+                                            "ref": "/platform/roles/new"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully updated the specified User resource.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UpdateUser"
+                                },
+                                "example": {
+                                    "metadata": {
+                                        "name": "john.doe@nginx.com",
+                                        "kind": "user",
+                                        "createTime": "2019-07-29T09:12:33.001Z",
+                                        "displayName": "Jane Doe",
+                                        "description": "NGINX controller user with prod env role"
+                                    },
+                                    "desiredState": {
+                                        "firstName": "Jane",
+                                        "lastName": "Doe",
+                                        "password": "********",
+                                        "roles": [
+                                            {
+                                                "ref": "/platform/roles/new"
+                                            }
+                                        ]
+                                    },
+                                    "currentStatus": {
+                                        "account": "1",
+                                        "id": 123,
+                                        "firstName": "Jane",
+                                        "lastName": "Doe",
+                                        "lastLogin": 1570132969,
+                                        "email": "john.doe@nginx.com",
+                                        "authn": "amplify",
+                                        "password": "********",
+                                        "roles": [
+                                            {
+                                                "ref": "/platform/roles/new",
+                                                "links": {
+                                                    "rel": "/api/v1/platform/roles/new",
+                                                    "name": "new"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Delete a User",
+                "operationId": "deleteUser",
+                "description": "Deletes a User resource.",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/userName"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successfully deleted the user. No content was returned."
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
+                    }
+                }
+            }
+        },
         "/platform/integrations": {
             "get": {
                 "tags": [
-                    "Platform",
                     "Integrations"
                 ],
                 "summary": "List all Integrations",
@@ -3533,7 +3476,6 @@
             },
             "post": {
                 "tags": [
-                    "Platform",
                     "Integrations"
                 ],
                 "summary": "Create an Integration account",
@@ -3612,7 +3554,6 @@
         "/platform/integrations/{integrationName}": {
             "get": {
                 "tags": [
-                    "Platform",
                     "Integrations"
                 ],
                 "summary": "Get an Integration account",
@@ -3658,7 +3599,6 @@
             },
             "put": {
                 "tags": [
-                    "Platform",
                     "Integrations"
                 ],
                 "summary": "Upsert an Integration account",
@@ -3743,7 +3683,6 @@
             },
             "patch": {
                 "tags": [
-                    "Platform",
                     "Integrations"
                 ],
                 "summary": "Update an Integration account",
@@ -3825,7 +3764,6 @@
             },
             "delete": {
                 "tags": [
-                    "Platform",
                     "Integrations"
                 ],
                 "summary": "Delete an Integration account",
@@ -3861,7 +3799,6 @@
         "/platform/auth/groups": {
             "get": {
                 "tags": [
-                    "Platform",
                     "Groups"
                 ],
                 "summary": "List Authentication Groups",
@@ -3921,7 +3858,6 @@
             },
             "post": {
                 "tags": [
-                    "Platform",
                     "Groups"
                 ],
                 "summary": "Add an Authentication Group",
@@ -4021,7 +3957,6 @@
         "/platform/auth/groups/{groupName}": {
             "get": {
                 "tags": [
-                    "Platform",
                     "Groups"
                 ],
                 "summary": "Get an Authentication Group",
@@ -4096,7 +4031,6 @@
             },
             "put": {
                 "tags": [
-                    "Platform",
                     "Groups"
                 ],
                 "summary": "Upsert an Authentication Group",
@@ -4245,7 +4179,6 @@
             },
             "delete": {
                 "tags": [
-                    "Platform",
                     "Groups"
                 ],
                 "summary": "Delete an Authentication Group",
@@ -4277,9 +4210,9 @@
                     }
                 }
             }
-        },
-      },
-      "components": {
+        }
+    },
+    "components": {
         "securitySchemes": {
             "cookieAuth": {
                 "type": "apiKey",
@@ -4398,6 +4331,116 @@
                         "example": {
                             "code": 4000,
                             "message": "An internal error occurred while verifying the authorization. If the problem persists, contact the system administrator."
+                        }
+                    }
+                }
+            },
+            "InternalServerError": {
+                "description": "The request cannot be processed because of an internal server error.",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ErrorModel"
+                        }
+                    }
+                }
+            },
+            "Conflict": {
+                "description": "The request failed due to a conflict with an existing Node resource.",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ErrorModel"
+                        }
+                    }
+                }
+            },
+            "NotImplemented": {
+                "description": "The request method is not supported by the server in the current configuration and cannot be handled.",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ErrorModel"
+                        }
+                    }
+                }
+            },
+            "ServiceUnavailable": {
+                "description": "The request cannot be processed because service is unavailable. Please try resending the request. \n",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ErrorModel"
+                        },
+                        "example": {
+                            "message": "Error retrieving the user information. Try resending the request.",
+                            "code": 2351
+                        }
+                    }
+                }
+            },
+            "StatusConflict": {
+                "description": "Wrong username and/or password.\n",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ErrorModel"
+                        },
+                        "example": {
+                            "message": "Error logging in: incorrect username or password. Check the login credentials, then try resending the request.",
+                            "code": 2379
+                        }
+                    }
+                }
+            },
+            "NotFound": {
+                "description": "The specified authentication group was not found.\n",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ErrorModel"
+                        },
+                        "example": {
+                            "code": 8920,
+                            "message": "Error getting or deleting group: group not found."
+                        }
+                    }
+                }
+            },
+            "PaymentRequired": {
+                "description": "The request failed due to missing or expired license.",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ErrorModel"
+                        },
+                        "example": {
+                            "code": 4700,
+                            "details": [
+                                {
+                                    "description": "Error getting the NGINX Plus certificate and public key: the license is either expired or no license exists. Upload a valid license file and then try again."
+                                }
+                            ],
+                            "message": "payment required."
+                        }
+                    }
+                }
+            },
+            "FileNotFound": {
+                "description": "The requested certificate and key could not be found.",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ErrorModel"
+                        },
+                        "example": {
+                            "code": 4600,
+                            "details": [
+                                {
+                                    "description": "The requested resource was not found or is unavailable."
+                                }
+                            ],
+                            "message": "The requested NGINX Plus license is not found or is unavailable."
                         }
                     }
                 }
@@ -7031,7 +7074,7 @@
                         }
                     }
                 }
-            },
+            }
         },
         "examples": {
             "AWSRequest": {

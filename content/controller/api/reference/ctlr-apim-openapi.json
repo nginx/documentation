@@ -1,0 +1,14 @@
+{
+    "openapi": "3.0.0",
+    "info":{
+        "title": "NGINX Controller API Management REST API",
+        "version": "v1",
+        "description": "Manage the NGINX Controller APIM module."
+    },
+    "servers": [
+        {
+            "description": "NGINX Controller API",
+            "url": "https://{{CONTROLLER_FQDN}}/api/v1"
+    }],
+    "paths": {}
+}

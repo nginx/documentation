@@ -1,0 +1,14 @@
+{
+    "openapi": "3.0.0",
+    "info":{
+        "title": "NGINX Controller Application Delivery REST API",
+        "version": "v1",
+        "description": "Manage NGINX Controller ADC."
+    },
+    "servers": [
+        {
+            "description": "NGINX Controller API",
+            "url": "https://{{CONTROLLER_FQDN}}/api/v1"
+    }],
+    "paths": {}
+}

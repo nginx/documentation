@@ -1,0 +1,1259 @@
+{
+    "openapi": "3.0.0",
+    "info":{
+        "title": "NGINX Controller Analytics REST API",
+        "version": "v1",
+        "description": "Use the NGINX Controller Analytics API to get information about your system and application performance."
+    },
+    "servers": [
+        {
+            "description": "NGINX Controller API",
+            "url": "https://{{CONTROLLER_FQDN}}/api/v1"
+    }],
+    "paths": {
+        "/analytics/alerts/rules": {
+            "get": {
+                "tags": [
+                    "Alert Rules"
+                ],
+                "summary": "List all Alert Rules",
+                "operationId": "listAlertRules",
+                "x-f5-experimental": true,
+                "description": "Returns a list of all the Alert Rule resources.",
+                "responses": {
+                    "200": {
+                        "description": "Successfully retrieved a list of all the Alert Rule resources.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/AlertRule"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad input parameter, or possibly a bad URI. Check the input for typos and try again.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorModel"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "The request cannot be processed because of an internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Alert Rules"
+                ],
+                "summary": "Create an Alert Rule",
+                "description": "Creates a new Alert Rule resource.",
+                "operationId": "createAlertRule",
+                "x-f5-experimental": true,
+                "requestBody": {
+                    "description": "Defines the Alert Rule resource to create.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AlertRule"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successfully created the specified Alert Rule resource.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlertRule"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad input parameter, or possibly a bad URI. Check the input for typos and try again.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorModel"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "The request failed due to a naming conflict with an existing resource.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorModel"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "The request cannot be processed because of an internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/analytics/alerts/rules/{alertRuleName}": {
+            "parameters": [
+                {
+                    "name": "alertRuleName",
+                    "description": "Identifies the Alert Rule resource.",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Alert Rules"
+                ],
+                "summary": "Get an Alert Rule",
+                "description": "Returns information for the specified Alert Rule.",
+                "operationId": "getAlertRule",
+                "x-f5-experimental": true,
+                "responses": {
+                    "200": {
+                        "description": "Successfully returned the requested Alert Rule resource.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlertRule"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad input parameter, or possibly a bad URI. Check the input for typos and try again.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorModel"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "The resource defined in the URI could not be found. Check the URI for errors and try again.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorModel"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "The request cannot be processed because of an internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Alert Rules"
+                ],
+                "summary": "Upsert a Alert Rule",
+                "description": "Creates a new Alert Rule or updates an existing Alert Rule resource.",
+                "operationId": "updateAlertRule",
+                "x-f5-experimental": true,
+                "requestBody": {
+                    "description": "Defines the Alert Rule resource to create or the updates to make.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AlertRule"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully updated the specified Alert Rule resource.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlertRule"
+                                }
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "Successfully created the specified Alert Rule resource.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlertRule"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad input parameter, or possibly a bad URI. Check the input for typos and try again.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorModel"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "The request cannot be processed because of an internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Alert Rules"
+                ],
+                "summary": "Delete an Alert Rule",
+                "description": "Deletes the specified Alert Rule resource.",
+                "operationId": "deleteAlertRule",
+                "x-f5-experimental": true,
+                "responses": {
+                    "204": {
+                        "description": "Successfully deleted the specified Alert Rule resource."
+                    },
+                    "400": {
+                        "description": "Bad input parameter, or possibly a bad URI. Check the input for typos and try again.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorModel"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "The resource defined in the URI could not be found. Check the URI for errors and try again.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorModel"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "The request cannot be processed because of an internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/analytics/alerts/rules/{alertRuleName}/alerts": {
+            "parameters": [
+                {
+                    "name": "alertRuleName",
+                    "description": "Identifies the Alert Rule resource.",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Alerts"
+                ],
+                "summary": "Get ongoing Alerts",
+                "description": "Returns information about Alerts for the specified Alert Rule.",
+                "operationId": "getAlerts",
+                "x-f5-experimental": true,
+                "responses": {
+                    "200": {
+                        "description": "Successfully returned the requested Alerts.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Alert"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad input parameter, or possibly a bad URI. Check the input for typos and try again.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorModel"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "The resource defined in the URI could not be found. Check the URI for errors and try again.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorModel"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "The request cannot be processed because of an internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/analytics/alerts/rules/{alertRuleName}/alerts/{alertId}": {
+            "parameters": [
+                {
+                    "name": "alertRuleName",
+                    "description": "Identifies the Alert Rule resource.",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "name": "alertId",
+                    "description": "Identifies the Alert resource.",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Alerts"
+                ],
+                "summary": "Get Alert",
+                "description": "Returns information about the requested Alert for the specified Alert Rule.",
+                "operationId": "getAlert",
+                "responses": {
+                    "200": {
+                        "description": "Successfully returned the requested Alert.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Alert"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad input parameter, or possibly a bad URI. Check the input for typos and try again.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorModel"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "The resource defined in the URI could not be found. Check the URI for errors and try again.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorModel"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "The request cannot be processed because of an internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/analytics/catalogs/metrics": {
+            "get": {
+                "tags": [
+                    "Catalogs"
+                ],
+                "summary": "List the Metrics Catalog",
+                "operationId": "listMetricsDescriptions",
+                "description": "Lists all of the Metric resources in the Catalog.\n\nThe Metrics Catalog contains the definitions for all of the available NGINX and NGINX Controller Agent metrics.\nYou can use the Catalogs API to find information about the available Metrics, then use those Metrics to refine your Analytics data queries.\n",
+                "responses": {
+                    "200": {
+                        "description": "Successfully returned the Metrics Catalog list.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListMetricsDescriptionsResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/analytics/catalogs/metrics/{metricName}": {
+            "get": {
+                "tags": [
+                    "Catalogs"
+                ],
+                "summary": "Get a Metric Description",
+                "operationId": "getMetricDescription",
+                "description": "Gets the description of the specified Metric.\n",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "metricName",
+                        "description": "Name of the Metric resource.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully returned the requested Metric resource.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MetricDescriptionResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad input parameter, or possibly a bad URI. Check the input for typos and try again.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorModel"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "The specified Metric resource was not found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/analytics/catalogs/dimensions": {
+            "get": {
+                "tags": [
+                    "Catalogs"
+                ],
+                "summary": "List the Dimensions Catalog",
+                "operationId": "listDimensionsDescriptions",
+                "description": "Lists all of the Dimension resources in the Catalog.\n\nDimensions provide a means of refining the data returned by metrics and events queries.\nYou can use the List Dimensions Catalog endpoint to find out what Dimensions are available.\nThen, use the Get a Dimension endpoint to find out more about a specific dimension.\n",
+                "responses": {
+                    "200": {
+                        "description": "Successfully returned the requested Dimension resource.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListDimensionsDescriptionsResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/analytics/catalogs/dimensions/{dimensionName}": {
+            "get": {
+                "tags": [
+                    "Catalogs"
+                ],
+                "summary": "Get a Dimension Description",
+                "operationId": "getDimensionDescription",
+                "description": "Gets the description of the specified Dimension resource.\n",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "dimensionName",
+                        "description": "Name of the Dimension",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully returned the requested Dimension resource.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetDimensionDescriptionResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad input parameter, or possibly a bad URI. Check the input for typos and try again.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorModel"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "The specified Dimension resource was not found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/analytics/metrics": {
+            "get": {
+                "tags": [
+                    "Metrics"
+                ],
+                "summary": "Get Metrics",
+                "operationId": "queryMetrics",
+                "description": "Returns system Metrics data based on the query parameters provided.\n\nSupports filtering based on name and/or timestamp; aggregation over a configurable time span; and grouping by dimension.\n",
+                "parameters": [
+                    {
+                        "name": "names",
+                        "in": "query",
+                        "description": "Identifies the Metrics data that you want to receive.\n\n- Provide multiple names as a comma-separated list.\n- You can provide an aggregate function for each Metric (`AVG`, `SUM`, `COUNT`, `MAX`, `MIN`, or `RATE`).\n- Combining non-aggregated and aggregated Metrics in a single query would apply any `groupBy` clause to only the latter.\n- Metrics with aggregates require the `startTime` parameter.\n",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "AVG(controller.agent.cpu.system),SUM(plus.upstream.bytes_rcvd)"
+                        }
+                    },
+                    {
+                        "name": "startTime",
+                        "in": "query",
+                        "description": "Indicates the start of the time window to include Metrics from (inclusive).\n\n- If `startTime` is omitted, the last recorded value for the queried Metrics will be returned.\n- For aggregated Metrics, you must provide `startTime` in order to calculate the resolution.\n",
+                        "schema": {
+                            "$ref": "#/components/schemas/Time"
+                        },
+                        "example": "now-5h"
+                    },
+                    {
+                        "name": "endTime",
+                        "in": "query",
+                        "description": "Indicates the end of the time window to include Metrics from (non-inclusive).\n\n- Must be greater than `startTime`.\n- If `endTime` is not specified when `startTime` is present, `endTime` defaults to the current time.\n",
+                        "schema": {
+                            "$ref": "#/components/schemas/Time"
+                        }
+                    },
+                    {
+                        "name": "resolution",
+                        "in": "query",
+                        "description": "Changes the granularity of the returned data.\n\n- Must be a valid duration -- a string starting with a number followed by a unit of time (`y`, `M`, `w`, `d`, `h`, `m` or `s`).\n- When using a resolution, you must provide an aggregate function (or functions) in the `names` parameter and `startTime`.\n- If you do not provide a resolution, the maximum available resolution will be returned (`endTime` - `startTime`).\n",
+                        "schema": {
+                            "type": "string",
+                            "example": "30s"
+                        }
+                    },
+                    {
+                        "name": "filter",
+                        "in": "query",
+                        "description": "Filters results based on dimension values.\n\nConsists of one or more predicates in the form  `<dimension><operator><dimension value>` where:\n- `<dimension>` is the name of the dimension.\n- `<operator>` is one of the supported operators (`=`, `!=`, `<`, `<=`, `>=` `>`, `in` or `not`).\n- `<dimension value>` is value of the dimension(s) that you want to filter on.\n- `<dimension> and <dimension value>` is case sensitive.\n\nFor example: 'count > 100'\n\nPredicates can be combined into logical expressions using `OR`, `AND`, and `(` `)`.\nFor matching values, wildcard (`*`) use is supported.\n\nWrapping predicates in single quotes is recommended to ensure that the full query string is processed correctly.\n\nSee the Dimensions [Catalog](#/tags/catalogs) to find out more about Dimensions.\n",
+                        "schema": {
+                            "type": "string",
+                            "example": "((app!='app1' OR app='app2') AND environment in ('aa', 'bb')) AND (tags!='*tag1*' AND interface='ens*')"
+                        }
+                    },
+                    {
+                        "name": "groupBy",
+                        "in": "query",
+                        "description": "Groups the results according to the specified dimension(s).\n\n- Provide multiple dimension names as a comma-separated list.\n- All Metric names that you pass into the `names` parameter must be aggregated for the `groupBy` to work.\n",
+                        "schema": {
+                            "type": "string",
+                            "example": "app,environment"
+                        }
+                    },
+                    {
+                        "name": "seriesLimit",
+                        "in": "query",
+                        "description": "Sets an upper limit on the number of series returned.\nAlways returns additional series with dimension value named `all` (aggregating the values of all the metrics included in the results).\nIf the result does not include `all` stored dimensions values, the Metrics query returns series with dimension value named `other` (aggregating the values of all the metrics not included in the results).\nHas to be used along with the `orderSeriesBy` parameter.\n\n- Exactly one groupBy parameter must be provided in the query\n- Cannot be used along with `dimensions` parameter.\n",
+                        "schema": {
+                            "type": "integer",
+                            "example": 25
+                        }
+                    },
+                    {
+                        "name": "orderSeriesBy",
+                        "in": "query",
+                        "description": "Sorts the results according to the order specified. \n\nUsed along with the `seriesLimit` parameter.\n",
+                        "schema": {
+                            "type": "string",
+                            "example": "MAX DESC",
+                            "default": "SUM DESC"
+                        }
+                    },
+                    {
+                        "name": "dimensions",
+                        "in": "query",
+                        "description": "List of dimensions that should be returned in the response for each metric series.\n\nDimensions not specified in this parameter will be hidden in the results.\nThis might result in series having exact same dimension set, but being visible as separate.\n\nIf the `aggregation` and `groupBy` parameters are provided for a metric, any dimension provided in\nthe `dimensions` query parameter also has to be provided in the `groupBy` parameter.\n\nDimensions provided in the `groupBy` query parameter do not have to be provided in the `dimensions` query parameter.\n\n- To get a single series, provide the metric name with aggregation and the dimensions parameter with an empty value.\n- Cannot be used along with `seriesLimit`.\n",
+                        "schema": {
+                            "type": "string",
+                            "example": "app,environment"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully returned the requested Metrics data.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MetricQueryResult"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad input parameter, or possibly a bad URI. Check the input for typos and try again.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Alert": {
+                "title": "alert",
+                "type": "object",
+                "properties": {
+                    "uid": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "dimensions": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
+                    "startedTimestamp": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2019-07-29T09:12:33.001Z",
+                        "description": "Timestamp when the Alert started."
+                    },
+                    "startedValue": {
+                        "type": "number",
+                        "description": "Value of the metric that caused the Alert to start."
+                    },
+                    "lastCheckedTimestamp": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2019-07-29T09:12:33.001Z",
+                        "description": "Timestamp when the Alert was last checked."
+                    },
+                    "lastCheckedValue": {
+                        "type": "number",
+                        "description": "Value of the metric when the Alert was last checked."
+                    }
+                },
+                "required": [
+                    "uid",
+                    "dimensions",
+                    "startedTimestamp",
+                    "startedValue",
+                    "lastCheckedTimestamp",
+                    "lastCheckedValue"
+                ]
+            },
+            "AlertRuleStatus": {
+                "title": "AlertRuleStatus",
+                "type": "object",
+                "properties": {
+                    "alertsCount": {
+                        "type": "integer",
+                        "description": "Number of times an Alert for the Alert Rule has been started since creation."
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "ok",
+                            "ongoing"
+                        ],
+                        "description": "Alert Rule status:\n- `ok`: All the Alerts have expired or have never started.\n- `ongoing`: At least one Alert is currently ongoing.\n"
+                    },
+                    "lastStartedTimestamp": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2019-07-29T09:12:33.001Z",
+                        "description": "Timestamp when the Alert Rule transfered from 'ok' to 'ongoing' status."
+                    },
+                    "lastExpiredTimestamp": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2019-07-29T09:12:33.001Z",
+                        "description": "Timestamp when the Alert Rule transfered from 'ongoing' to 'ok' status."
+                    },
+                    "lastCheckedTimestamp": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2019-07-29T09:12:33.001Z",
+                        "description": "Timestamp of the last successful check of the Alert Rule."
+                    }
+                }
+            },
+            "AlertRule": {
+                "title": "AlertRule",
+                "type": "object",
+                "properties": {
+                    "metadata": {
+                        "$ref": "#/components/schemas/ResourceMeta"
+                    },
+                    "userEmail": {
+                        "type": "string",
+                        "format": "email",
+                        "readOnly": true,
+                        "description": "Email of the user who created the Alert Rule."
+                    },
+                    "metric": {
+                        "type": "string",
+                        "description": "A valid metric from the catalog.",
+                        "example": "upstream.network.latency.max"
+                    },
+                    "aggregation": {
+                        "type": "string",
+                        "description": "Aggregation of the metric over the configured period of time.",
+                        "readOnly": true
+                    },
+                    "filter": {
+                        "type": "string",
+                        "description": "The use of filter parameter limits the metrics data samples being taken into account for Alert Rule calculation\nto those matching the filter expression.\nFilter parameter syntax works the same as for `/analytics/metrics` API.\n\n- An empty filter parameter indicates that all collected data is going to be taken into account for Alert Rule calculation\n- `filter=app='myapp' AND (env='prod' or env='dev')` indicates that only samples related to desired app/env will be taken into account\n",
+                        "example": "((app!='app1' OR app='app2') AND environment in ('dev', 'prod')) AND (tags!='*tag1*' AND interface='ens*')"
+                    },
+                    "groupBy": {
+                        "type": "string",
+                        "description": "When `groupBy` is provided, alerts will be triggered for each distinct group of provided dimension(s).\nGroupBy parameter syntax works the same as for `/analytics/metrics` API.\n",
+                        "example": "app,environment"
+                    },
+                    "threshold": {
+                        "type": "number",
+                        "description": "Threshold to which the metric value will be compared to."
+                    },
+                    "operator": {
+                        "type": "string",
+                        "enum": [
+                            "ge",
+                            "le"
+                        ],
+                        "description": "Operator that defines which metric values will trigger an alert:\n\n- `ge`: metric value must be greater than or equal to the threshold in order to trigger an alert\n- `le`: metric value must be less than or equal to the threshold in order to trigger an alert\n"
+                    },
+                    "period": {
+                        "type": "string",
+                        "example": "1h",
+                        "description": "Period from which the metric aggregated value is calculated.\n\nMust be a valid duration - a string starting with a number followed by a unit of time (`h`, `m` or `s`).\n\n24h is the maximum allowed period.\n"
+                    },
+                    "notificationType": {
+                        "description": "Defines how notifications about triggered Alerts will be delivered to the user.",
+                        "type": "string",
+                        "enum": [
+                            "email"
+                        ]
+                    },
+                    "emailAddresses": {
+                        "type": "array",
+                        "minItems": 1,
+                        "uniqueItems": true,
+                        "items": {
+                            "type": "string",
+                            "format": "email",
+                            "example": "user@example.com"
+                        }
+                    },
+                    "mute": {
+                        "type": "boolean",
+                        "description": "Indicates if the Alert Rule is muted. (Muted Alert Rules will not trigger notifications).",
+                        "default": false
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/AlertRuleStatus",
+                        "readOnly": true
+                    }
+                },
+                "required": [
+                    "metadata",
+                    "metric",
+                    "threshold",
+                    "operator",
+                    "period"
+                ]
+            },
+            "SelfLinks": {
+                "type": "object",
+                "description": "The SelfLinks object contains a link from the resource to itself.\nThis object is used only in responses.\n",
+                "properties": {
+                    "rel": {
+                        "type": "string",
+                        "example": "/api/v1/services/environments/prod",
+                        "description": "`rel` contains the complete path fragment of a URI and can be used\nto construct a query to the object.\n"
+                    }
+                }
+            },
+            "ResourceMeta": {
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "pattern": "^[^A-Z\\s\\x00-\\x1f\\x60\\x7f\\;\\*\\\"\\[\\]\\{\\}\\\\\\/%\\?:=&\\~\\^|#<>]+$",
+                        "not": {
+                            "type": "string",
+                            "enum": [
+                                ".",
+                                ".."
+                            ]
+                        },
+                        "minLength": 1,
+                        "maxLength": 1024,
+                        "example": "resource-name",
+                        "description": "Resource name is a unique identifier for a resource within the context of a namespace.\nResource names must conform to [RFC 1738 Section 2.2](https://www.ietf.org/rfc/rfc1738.txt) and have a valid syntax for email addresses. The following rules are enforced:\n\n- do not utilize URL encoding;\n- do not include spaces;\n- do not use uppercase characters, for example, 'A-Z'; extended character sets are supported;\n- do not use the following characters: `\"`, `*`, `:`, `;`, `/`, `\\`, `%`, `?`, `hash`, `=`, `&`, `|`, `~`, `^`, `{`, `}`, `[`, `]`, `<`, `>`;\n- cannot start or end with an `@` sign;\n- cannot be only `.` or `..`\n\nFor example: For a collection resource located at\n\n`https://controller.example.com/api/v1/services/apps/shopping_@1`\n\nthe resource name is \"shopping_@1\".\n"
+                    },
+                    "displayName": {
+                        "type": "string",
+                        "example": "My Display Name",
+                        "description": "`displayName` is a user friendly resource name. It can be used to define \na longer, and less constrained, name for a resource.\n\nDisplay names:\n\n- are optional (defaults to an empty string if no value is provided),\n- do not have to be unique, \n- cannot be assigned by the server.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "This is a sample description string. It provides information about the resource.",
+                        "description": "`description` is a free-form text property. You can use it to provide information that helps \nto identify the resource.\n\nDescriptions:\n\n- are optional (defaults to an empty string if no value is provided),\n- do not have to be unique, \n- cannot be assigned by the server.\n"
+                    },
+                    "kind": {
+                        "type": "string",
+                        "example": "<collection>-<object>",
+                        "description": "Kind is a string representation of an API resource's data type.\nIt is assigned by the server and cannot be changed. \n\nWhen creating a `kind`, the server uses hyphens to connect word segments; \nsingleton and collection item resources are not pluralized.\n"
+                    },
+                    "uid": {
+                        "type": "string",
+                        "format": "uuid",
+                        "example": "d290f1ee-6c54-4b01-90e6-d701748f0851",
+                        "description": "Unique Identifier (UID)\n\nUID is a unique identifier in time and space for a resource. \nWhen you create a resource, the server assigns a UID to the resource.\n\nRefer to [IETF RFC 4122](https://tools.ietf.org/html/rfc4122) for more information.\n"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "example": [
+                            "production_public",
+                            "dev",
+                            "new_app",
+                            "us-west-1",
+                            "emea"
+                        ],
+                        "description": "You can assign `tags` to a resource as a way to help map, scope, \nand organize resources. \n\nThe system uses tag selectors to specify selection criteria that \nmatch resources that have particular tags.\n"
+                    },
+                    "ref": {
+                        "type": "string",
+                        "example": "/services/environments/prod",
+                        "description": "The `ref` field contains a reference to another NGINX Controller resource.\n"
+                    },
+                    "links": {
+                        "$ref": "#/components/schemas/SelfLinks"
+                    },
+                    "createTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2019-07-29T09:12:33.001Z",
+                        "description": "A timestamp that represents the server time when the resource was created.\n\nCreate time is not guaranteed to be set in \"happens-before\" order\nacross separate operations.\n\nIn JSON format, `create_time` type is encoded as a string in the\n[RFC 3339](https://www.ietf.org/rfc/rfc3339.txt).\n\nFor example: 2018-04-01T01:30:15.01Z\n\nCreate Time is assigned by the server and cannot be changed.\n"
+                    },
+                    "updateTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2019-07-29T10:12:33.001Z",
+                        "description": "A timestamp that represents the server time when the resource was last modified.\n\nResources that have never been updated do not have an `update_time` stamp.\n\nThe default value for resources that have never been updated is the local \nlanguage-specific equivalent of \"null\".\n\nIn JSON format, `update_time` type is encoded as a string as described in \n[RFC 3339](https://www.ietf.org/rfc/rfc3339.txt).\n"
+                    }
+                }
+            },
+            "ErrorDetail": {
+                "type": "object",
+                "required": [
+                    "description"
+                ],
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "example": "Error doing <action>: <reason for error>. This can lead to <potential consequences>. Try <action> to resolve the issue.",
+                        "description": "A detailed error message returned by the server. \n\nThese messages contain the following information, where applicable:\n\n- What happened.\n- Why it happened.\n- What the consequences are (if any).\n- Recommended action to take to resolve the issue.\n"
+                    }
+                }
+            },
+            "ErrorModel": {
+                "type": "object",
+                "required": [
+                    "message",
+                    "code"
+                ],
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "example": "Error doing <action>.",
+                        "description": "A human-readable message, in English, that describes the error.\n"
+                    },
+                    "code": {
+                        "type": "integer",
+                        "example": 1234567,
+                        "description": "A numeric error code that can be used to identify errors for support purposes.\n"
+                    },
+                    "details": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ErrorDetail"
+                        }
+                    }
+                }
+            },
+            "Time": {
+                "description": "Indicates a point in time.\n\nYou can provide time using ISO 8601 format or as an offset. An offset is a string that starts with `+` or `-`, followed by a number and a unit of time (`y`, `M`, `w`, `d`, `h`, `m` or `s`).\nExamples: \"2019-08-07T09:57:36.088757764Z\", \"now-3h\"\n",
+                "type": "string",
+                "example": "2019-08-07T09:57:36.088757764Z"
+            },
+            "MetricQueryResult": {
+                "type": "object",
+                "properties": {
+                    "queryMetadata": {
+                        "$ref": "#/components/schemas/MetricQueryMetadata"
+                    },
+                    "metrics": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Metric"
+                        }
+                    },
+                    "responseMetadata": {
+                        "$ref": "#/components/schemas/MetricResponseMetadata"
+                    }
+                }
+            },
+            "MetricResponseMetadata": {
+                "type": "object",
+                "properties": {
+                    "warning": {
+                        "type": "string"
+                    }
+                }
+            },
+            "MetricQueryMetadata": {
+                "type": "object",
+                "properties": {
+                    "startTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2019-08-07T09:57:36.088757764Z"
+                    },
+                    "endTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2019-08-07T09:57:36.088757764Z"
+                    },
+                    "resolution": {
+                        "type": "string",
+                        "example": "30m"
+                    }
+                }
+            },
+            "Metric": {
+                "type": "object",
+                "description": "Metrics provide a means of measuring and analyzing the performance of your systems and of NGINX Controller.",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "plus.upstream.response.count"
+                    },
+                    "aggr": {
+                        "type": "string",
+                        "enum": [
+                            "AVG",
+                            "COUNT",
+                            "SUM",
+                            "MAX",
+                            "MIN",
+                            "RATE"
+                        ],
+                        "example": "AVG"
+                    },
+                    "series": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Series"
+                        }
+                    }
+                }
+            },
+            "Series": {
+                "type": "object",
+                "properties": {
+                    "dimensions": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "example": {
+                            "app": "app1",
+                            "env": "prod"
+                        }
+                    },
+                    "timestamps": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "example": [
+                            "2019-08-07T09:57:30",
+                            "2019-08-07T09:57:35"
+                        ]
+                    },
+                    "values": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        },
+                        "example": [
+                            4.2,
+                            4.4
+                        ]
+                    }
+                }
+            },
+            "ListMetricsDescriptionsResponse": {
+                "type": "object",
+                "properties": {
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/MetricDescriptionRecord"
+                        }
+                    }
+                }
+            },
+            "MetricDescriptionResponse": {
+                "$ref": "#/components/schemas/MetricDescriptionRecord"
+            },
+            "MetricDescriptionRecord": {
+                "type": "object",
+                "required": [
+                    "metadata",
+                    "currentStatus"
+                ],
+                "properties": {
+                    "metadata": {
+                        "$ref": "#/components/schemas/ResourceMeta"
+                    },
+                    "currentStatus": {
+                        "$ref": "#/components/schemas/MetricDescription"
+                    }
+                }
+            },
+            "MetricDescription": {
+                "type": "object",
+                "description": "The information record for a Metrics Catalog resource.",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "nginx.http.request.bytes_sent"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Number of bytes sent to clients."
+                    },
+                    "unit": {
+                        "type": "string",
+                        "example": "bytes"
+                    },
+                    "aggregations": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "AVG",
+                                "COUNT",
+                                "SUM",
+                                "MAX",
+                                "MIN"
+                            ]
+                        },
+                        "example": [
+                            "AVG",
+                            "SUM"
+                        ]
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "counter",
+                            "gauge",
+                            "incremental"
+                        ],
+                        "example": "incremental"
+                    },
+                    "categories": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "example": [
+                            "nginx",
+                            "apimgmt_environment",
+                            "apimgmt_definition",
+                            "apimgmt_entry_point"
+                        ],
+                        "description": "An array of freeform strings containing the category(ies) of a Metrics Catalog resource."
+                    },
+                    "dimensions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ResourceRef"
+                        },
+                        "description": "An array of the Dimensions that apply to a Metrics Catalog resource."
+                    }
+                }
+            },
+            "ListDimensionsDescriptionsResponse": {
+                "type": "object",
+                "properties": {
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/DimensionDescriptionRecord"
+                        }
+                    }
+                }
+            },
+            "GetDimensionDescriptionResponse": {
+                "$ref": "#/components/schemas/DimensionDescriptionRecord"
+            },
+            "DimensionDescriptionRecord": {
+                "type": "object",
+                "required": [
+                    "metadata",
+                    "currentStatus"
+                ],
+                "properties": {
+                    "metadata": {
+                        "$ref": "#/components/schemas/ResourceMeta"
+                    },
+                    "currentStatus": {
+                        "$ref": "#/components/schemas/DimensionDescription"
+                    }
+                }
+            },
+            "DimensionDescription": {
+                "type": "object",
+                "description": "The information record for a Dimensions Catalog resource.",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "instance"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Instance name."
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "string",
+                            "int",
+                            "list"
+                        ],
+                        "example": "string"
+                    },
+                    "metrics": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ResourceRef"
+                        },
+                        "description": "An array of the Metrics that the Dimensions resource applies to."
+                    }
+                }
+            }
+        }
+    },
+
+}
