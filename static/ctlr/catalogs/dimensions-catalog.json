@@ -1,0 +1,193 @@
+[
+    {
+      "description": "The length of time for which monitor sample data is aggregated.",
+      "name": "aggregation_duration",
+      "type": "string"
+    },
+    {
+      "description": "Alias of the upstream server.",
+      "name": "alias",
+      "type": "string"
+    },
+    {
+      "description": "The name of an application. Application names are unique within the environment namespace where the app resides.",
+      "name": "app",
+      "type": "string"
+    },
+    {
+      "description": "The address of BIG-IP device",
+      "name": "big_ip_address",
+      "type": "string"
+    },
+    {
+      "description": "The name of a cache zone.",
+      "name": "cache_zone",
+      "type": "string"
+    },
+    {
+      "description": "The name of an application component.",
+      "name": "component",
+      "type": "string"
+    },
+    {
+      "description": "The ISO 3166-1 representation of the country from which a request was sent.",
+      "name": "country_code",
+      "type": "string"
+    },
+    {
+      "description": "Environment of the application.",
+      "name": "environment",
+      "type": "string"
+    },
+    {
+      "description": "Logical group to which the highest layer protocol processed by the proxy belongs. Allowed values are 'web' and 'tcp-udp'",
+      "name": "family",
+      "type": "string"
+    },
+    {
+      "description": "Path to a desired file.",
+      "name": "file_path",
+      "type": "string"
+    },
+    {
+      "description": "The name of gateway. The gateway can be shared across applications.",
+      "name": "gateway",
+      "type": "string"
+    },
+    {
+      "description": "Hostname as provided in the 'Host' header field from client's request.",
+      "name": "http.hostname",
+      "type": "string"
+    },
+    {
+      "description": "The HTTP method of the request. For example, 'GET', 'POST', 'PUT'.",
+      "name": "http.request_method",
+      "type": "string"
+    },
+    {
+      "description": "The 3-digit HTTP response status code. For example, '200', '404', '302'.",
+      "name": "http.response_code",
+      "type": "string"
+    },
+    {
+      "description": "The IP address and port, or the path to the UNIX-domain socket, of the upstream server.",
+      "name": "http.upstream_addr",
+      "type": "string"
+    },
+    {
+      "description": "The URI (path) section of the URL in a request.",
+      "name": "http.uri",
+      "type": "string"
+    },
+    {
+      "description": "A version schema.",
+      "name": "http.version_schema",
+      "type": "string"
+    },
+    {
+      "description": "The name of the NGINX Plus instance where the upstream server is running.",
+      "name": "instance",
+      "type": "string"
+    },
+    {
+      "description": "The tags associated with the NGINX Plus instance where the upstream server is running.",
+      "name": "instance.tags",
+      "type": "string"
+    },
+    {
+      "description": "The name of the NGINX instance group to manage set of instances that can be used for scaling and high availability.",
+      "name": "instance_group",
+      "type": "string"
+    },
+    {
+      "description": "local_id dimension.",
+      "name": "local_id",
+      "type": "string"
+    },
+    {
+      "description": "A location associated with one or more NGINX Plus instances.",
+      "name": "location",
+      "type": "string"
+    },
+    {
+      "description": "The user-defined filter provided in a metrics query.",
+      "name": "log_filter",
+      "type": "string"
+    },
+    {
+      "description": "A filesystem mount point.",
+      "name": "mount_point",
+      "type": "string"
+    },
+    {
+      "description": "A server network interface.",
+      "name": "network_interface",
+      "type": "string"
+    },
+    {
+      "description": "The hostname of the NGINX Plus instance.",
+      "name": "parent_hostname",
+      "type": "string"
+    },
+    {
+      "description": "Highest layer protocol that the proxy processes. Allowed values are: 'http', 'tcp', and 'udp'",
+      "name": "proxied_protocol",
+      "type": "string"
+    },
+    {
+      "description": "A Published API in the API Management module.",
+      "name": "published_api",
+      "type": "string"
+    },
+    {
+      "description": "Indicates whether the traffic was allowed to go through or was blocked by the firewall.",
+      "name": "request_outcome",
+      "type": "string"
+    },
+    {
+      "description": "The reason why the firewall blocked the traffic.",
+      "name": "request_outcome_reason",
+      "type": "string"
+    },
+    {
+      "description": "The unique identifier of the operating system where the Controller Agent is installed.",
+      "name": "root_uuid",
+      "type": "string"
+    },
+    {
+      "description": "Address of the upstream server",
+      "name": "upstream_addr",
+      "type": "string"
+    },
+    {
+      "description": "The 3-digit HTTP response status code sent by the upstream server. For example, '200', '404', '302'.",
+      "name": "upstream_response_code",
+      "type": "string"
+    },
+    {
+      "description": "A list of comma separated names of suspected attacks identified in a transaction.",
+      "name": "waf.attack_types",
+      "type": "string"
+    },
+    {
+      "description": "Value of the matching signatures that resulted in the security violation.",
+      "name": "waf.signature_ids",
+      "type": "string"
+    },
+    {
+      "description": "The likelihood that the security violation is indeed a threat.",
+      "name": "waf.violation_rating",
+      "type": "string"
+    },
+    {
+      "description": "The additional granularity of security violation that causes the traffic was blocked or flagged by the firewall.",
+      "name": "waf.violation_subviolations",
+      "type": "string"
+    },
+    {
+      "description": "The security violation that causes the traffic was blocked or flagged by the firewall.",
+      "name": "waf.violations",
+      "type": "string"
+    }
+  ]
+  
