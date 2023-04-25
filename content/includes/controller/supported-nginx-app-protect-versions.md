@@ -28,7 +28,7 @@ Refer to [Using NGINX App Protect with NGINX Controller](https://docs.nginx.com/
 | NGINX Controller v3.13              | v2.3 <hr> v2.1.1                                                                                | R23 <hr> R22                   |
 | NGINX Controller v3.12              | v2.1.1                                                                                          | R22                            |
 
-{{< bootstrap-table >}}
+{{< /bootstrap-table >}}
 
 <!-- Do not remove. Keep this code at the bottom of the include -->
 <!-- DOCS-324 -->

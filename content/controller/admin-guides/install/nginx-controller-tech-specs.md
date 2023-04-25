@@ -57,7 +57,7 @@ We recommend using a local volume for the analytics and config databases for tri
 | Analytics database |  <code style="white-space:nowrap;">/opt/nginx-controller/clickhouse_data</code>  | &#8226;&nbsp;50&nbsp;GB <br> &#8226;&nbsp;150&nbsp;GB if App Security is enabled |
 | Config database | <code style="white-space:nowrap;">/opt/nginx-controller/postgres_data</code> | 10&nbsp;GB |
 | Logs  | &#8226;&nbsp;<code style="white-space:nowrap;">/var/log/nginx-controller</code> <br> &#8226;&nbsp;<code style="white-space:nowrap;">/var/log/journal</code> <br> &#8226;&nbsp;<code style="white-space:nowrap;">/var/log/pods</code> <br> &#8226;&nbsp;<code style="white-space:nowrap;">/var/lib/docker/containers</code> <br> &#8226;&nbsp;<code style="white-space:nowrap;">/var/lib/kubelet</code> <br> &#8226;&nbsp;<code style="white-space:nowrap;">/var/lib/kubernetes</code>| 15&nbsp;GB cumulative |
-{{< bootstrap-table >}}
+{{< /bootstrap-table >}}
 
 
 &nbsp;
@@ -81,24 +81,7 @@ You can deploy NGINX Controller v3 into the following environments:
 NGINX Controller, using the Controller Agent, can monitor and manage up to 100 [NGINX Plus](https://www.nginx.com/products/nginx/) instances. When using Controller App Security, NGINX Controller can monitor and manage up to 30 NGINX Plus instances with NGINX App Protect installed.
 
 
-NGINX Controller supports the following [NGINX Plus](https://www.nginx.com/products/nginx/) versions:
-
-{{< bootstrap-table "table table-striped table-bordered" >}}
-
-| NGINX Plus | NGINX Controller | NGINX Controller ADC | NGINX Controller APIM |
-|------------|------------------|----------------------|-----------------------|
-| R28        | Not supported    | 3.22.6+              | Not supported         |
-| R27        | Not supported    | 3.22.4+              | Not supported         |
-| R26        | Not supported    | 3.22.2+              | Not supported         |
-| R25        | Not supported    | 3.20.1+              | 3.19.2+               |
-| R24        | 3.17+            | 3.20+                | 3.18+                 |
-| R23        | 3.12+            | 3.20.0 - 3.22.2      | 3.18+                 |
-| R22        | 3.5+             | 3.20.0 - 3.22.1      | 3.18+                 |
-| R21        | 3.5 - 3.12       | Not supported        | Not supported         |
-| R20        | 3.0 - 3.12       | Not supported        | Not supported         |
-| R19        | 2.6 - 3.5        | Not supported        | Not supported         |
-
-{{< bootstrap-table >}}
+{{<include "controller/supported-nginx-plus-versions.md">}}
 
 &nbsp;
 
@@ -106,38 +89,7 @@ NGINX Controller supports the following [NGINX Plus](https://www.nginx.com/produ
 
 ## NGINX App Protect Compatibility Matrix
 
-The App Security add-on for the NGINX Controller Application Delivery module is compatible with the versions of NGINX Plus and NGINX App Protect shown in the table below. New releases of NGINX Controller ADC support the last four versions of NGINX Plus at release time.
-
-{{< see-also >}}
-Refer to [Using NGINX App Protect with NGINX Controller](https://docs.nginx.com/nginx-app-protect/admin-guide/install-for-controller/) for installation instructions and additional information.
-{{< /see-also >}}
-
-{{< bootstrap-table "table table-striped table-bordered" >}}
-
-| NGINX Controller version            | NGINX App Protect version(s)                                                                    | NGINX Plus version(s)          |
-|-------------------------------------|-------------------------------------------------------------------------------------------------|--------------------------------|
-| NGINX Controller ADC v3.22.8        | v4.0, v4.1 <hr> v3.12, v3.11 <hr> v3.10.0, v3.9.1, v3.9.0 <hr> v3.8, v3.7, v3.6                 | R28 <hr> R27 <hr> R26 <hr> R25 |
-| NGINX Controller ADC v3.22.7        | v4.0, v4.1 <hr> v3.12, v3.11 <hr> v3.10.0, v3.9.1, v3.9.0 <hr> v3.8, v3.7, v3.6                 | R28 <hr> R27 <hr> R26 <hr> R25 |
-| NGINX Controller ADC v3.22.6        | v4.0, v4.1 <hr> v3.12, v3.11 <hr> v3.10.0, v3.9.1, v3.9.0 <hr> v3.8, v3.7, v3.6                 | R28 <hr> R27 <hr> R26 <hr> R25 |
-| NGINX Controller ADC v3.22.5        | v3.12, v3.11 <hr> v3.10.0, v3.9.1, v3.9.0 <hr> v3.8, v3.7, v3.6 <hr> v3.5, v3.4, v3.3, v3.2     | R27 <hr> R26 <hr> R25 <hr> R24 |
-| NGINX Controller ADC v3.22.4        | v3.11 <hr> v3.10.0, v3.9.1, v3.9.0 <hr> v3.8, v3.7, v3.6 <hr> v3.5, v3.4, v3.3, v3.2            | R27 <hr> R26 <hr> R25 <hr> R24 |
-| NGINX Controller ADC v3.22.3        | v3.10.0, v3.9.1, v3.9.0 <hr> v3.8, v3.7, v3.6 <hr> v3.5, v3.4, v3.3, v3.2 <hr> v3.1, v3.0, v2.3 | R26 <hr> R25 <hr> R24 <hr> R23 |
-| NGINX Controller ADC v3.22.2        | v3.9.1, v3.9.0 <hr> v3.8, v3.7, v3.6 <hr> v3.5, v3.4, v3.3, v3.2 <hr> v3.1, v3.0, v2.3          | R26 <hr> R25 <hr> R24 <hr> R23 |
-| NGINX Controller ADC v3.22, v3.22.1 | v3.8, v3.7, v3.6 <hr> v3.5, v3.4, v3.3, v3.2 <hr> v3.1, v3.0, v2.3 <hr> v2.1.1                  | R25 <hr> R24 <hr> R23 <hr> R22 |
-| NGINX Controller ADC v3.21          | v3.6 <hr> v3.5, v3.4, v3.3, v3.2 <hr> v3.1, v3.0, v2.3 <hr> v2.1.1                              | R25 <hr> R24 <hr> R23 <hr> R22 |
-| NGINX Controller ADC v3.20.1        | v3.6 <hr> v3.5, v3.4, v3.3, v3.2 <hr> v3.1, v3.0, v2.3 <hr> v2.1.1                              | R25 <hr> R24 <hr> R23 <hr> R22 |
-| NGINX Controller ADC v3.20          | v3.5, v3.4, v3.3, v3.2 <hr> v3.1, v3.0, v2.3 <hr> v2.1.1                                        | R24 <hr> R23 <hr> R22          |
-| NGINX Controller APIM v3.19.2       | v3.6 <hr> v3.5, v3.4                                                                            | R25 <hr> R24                   |
-| NGINX Controller APIM v3.19         | v3.5, v3.4                                                                                      | R24                            |
-| NGINX Controller v3.18              | v3.5, v3.2 <hr> v3.1, v3.0, v2.3 <hr> v2.1.1                                                    | R24 <hr> R23 <hr> R22          |
-| NGINX Controller v3.17              | v3.2 <hr> v3.1, v3.0, v2.3 <hr> v2.1.1                                                          | R24 <hr> R23 <hr> R22          |
-| NGINX Controller v3.16              | v3.1, v3.0, v2.3 <hr> v2.1.1                                                                    | R23 <hr> R22                   |
-| NGINX Controller v3.14, v3.15       | v3.0, v2.3 <hr> v2.1.1                                                                          | R23 <hr> R22                   |
-| NGINX Controller v3.13              | v2.3 <hr> v2.1.1                                                                                | R23 <hr> R22                   |
-| NGINX Controller v3.12              | v2.1.1                                                                                          | R22                            |
-
-{{< bootstrap-table >}}
-
+{{<include "controller/supported-nginx-app-protect-versions.md">}}
 
 &nbsp;
 
@@ -375,7 +327,7 @@ Configure NGINX Controller with the following firewall settings:
 | 8443 TCP | NGINX Controller | Incoming connections from NGINX Plus instances <br>You need to **open** port 8443 TCP if you're running **NGINX Controller v3.18.2 or earlier**|
 | 8883 TCP | NGINX Controller licensing | Incoming and outgoing connections used to validate the entitlements for your NGINX Controller license <br> Port 8883 TCP needs to be **opened** only if you're running **NGINX Controller v3.15 or earlier**|
 
-{{< bootstrap-table >}}
+{{< /bootstrap-table >}}
 
 If you have a firewall running on the NGINX Controller host, enable NAT (masquerade) and open the following ports. These ports are used for **internal traffic** only and don't need to be open to the outside:
 
@@ -389,7 +341,7 @@ If you have a firewall running on the NGINX Controller host, enable NAT (masquer
 |10252 TCP|NGINX Controller|Incoming requests to the Kubernetes kube-controller-manager; used for regulating the state of the system|
 |8472 UDP|NGINX Controller|Used for pod-to-pod communication in multi-node resilient clusters|
 
-{{< bootstrap-table >}}
+{{< /bootstrap-table >}}
 
 For more information about these ports, see the Kubernetes guide [Installing kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#check-required-ports).
 

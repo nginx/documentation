@@ -15,7 +15,7 @@ NGINX Controller supports the following [NGINX Plus](https://www.nginx.com/produ
 | R20        | 3.0 - 3.12       | Not supported        | Not supported         |
 | R19        | 2.6 - 3.5        | Not supported        | Not supported         |
 
-{{< bootstrap-table >}}
+{{< /bootstrap-table >}}
 
 <!-- Do not remove. Keep this code at the bottom of the include -->
 <!-- DOCS-325 -->

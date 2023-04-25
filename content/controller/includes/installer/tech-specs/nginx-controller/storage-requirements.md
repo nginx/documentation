@@ -9,7 +9,7 @@ We recommend using a local volume for the analytics and config databases for tri
 | Analytics database |  <code style="white-space:nowrap;">/opt/nginx-controller/clickhouse_data</code>  | &#8226;&nbsp;50&nbsp;GB <br> &#8226;&nbsp;150&nbsp;GB if App Security is enabled |
 | Config database | <code style="white-space:nowrap;">/opt/nginx-controller/postgres_data</code> | 10&nbsp;GB |
 | Logs  | &#8226;&nbsp;<code style="white-space:nowrap;">/var/log/nginx-controller</code> <br> &#8226;&nbsp;<code style="white-space:nowrap;">/var/log/journal</code> <br> &#8226;&nbsp;<code style="white-space:nowrap;">/var/log/pods</code> <br> &#8226;&nbsp;<code style="white-space:nowrap;">/var/lib/docker/containers</code> <br> &#8226;&nbsp;<code style="white-space:nowrap;">/var/lib/kubelet</code> <br> &#8226;&nbsp;<code style="white-space:nowrap;">/var/lib/kubernetes</code>| 15&nbsp;GB cumulative |
-{{< bootstrap-table >}}
+{{< /bootstrap-table >}}
 
 <!-- Do not remove. Keep this code at the bottom of the include -->
 <!-- DOCS-321 -->

@@ -9,7 +9,7 @@ Configure NGINX Controller with the following firewall settings:
 | 8443 TCP | NGINX Controller | Incoming connections from NGINX Plus instances <br>You need to **open** port 8443 TCP if you're running **NGINX Controller v3.18.2 or earlier**|
 | 8883 TCP | NGINX Controller licensing | Incoming and outgoing connections used to validate the entitlements for your NGINX Controller license <br> Port 8883 TCP needs to be **opened** only if you're running **NGINX Controller v3.15 or earlier**|
 
-{{< bootstrap-table >}}
+{{< /bootstrap-table >}}
 
 If you have a firewall running on the NGINX Controller host, enable NAT (masquerade) and open the following ports. These ports are used for **internal traffic** only and don't need to be open to the outside:
 
@@ -23,7 +23,7 @@ If you have a firewall running on the NGINX Controller host, enable NAT (masquer
 |10252 TCP|NGINX Controller|Incoming requests to the Kubernetes kube-controller-manager; used for regulating the state of the system|
 |8472 UDP|NGINX Controller|Used for pod-to-pod communication in multi-node resilient clusters|
 
-{{< bootstrap-table >}}
+{{< /bootstrap-table >}}
 
 For more information about these ports, see the Kubernetes guide [Installing kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#check-required-ports).
 
