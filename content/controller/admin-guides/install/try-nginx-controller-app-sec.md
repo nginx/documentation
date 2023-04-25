@@ -132,7 +132,7 @@ First, you need to sign up for a trial license for NGINX Controller. The trial i
 
 {{< note >}}If you already have an active NGINX Controller trial instance that you want to add App Security to, you can skip this section.{{< /note >}}
 
-{{< include "controller/installer/helper-script/prereqs.md" >}}
+{{< include "controller/helper-script-prereqs.md" >}}
 
 &nbsp;
 
@@ -312,7 +312,7 @@ The NGINX Controller Agent manages `nginx.conf` settings and will make the appro
 
 ## Add the NGINX App Protect Instance to NGINX Controller
 
-{{< include "controller/instances/add-existing-instance.md" >}}
+{{< include "controller/add-existing-instance.md" >}}
 
 &nbsp;
 

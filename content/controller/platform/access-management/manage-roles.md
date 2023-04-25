@@ -159,19 +159,68 @@ The `/platform/roles` endpoint in the [NGINX Controller REST API]({{< relref "ap
 
 {{< /note >}}
 
-{{< include "roles/add-roles.md" >}}
+Take the following steps to create a Role:
+
+1. Open the NGINX Controller user interface and log in.
+2. Select the NGINX Controller menu icon, then select **Platform**.
+3. On the **Platform** menu, select **Roles**.
+4. On the **Create Role** page, provide the name, description, and tags for the new Role.
+5. In the **Environment Name** list, select the Environment that the Role applies to.
+6. In the **Permission Level** list, select the desired permission level for the Role.
+7. Select **Create** to add the Role.
 
 ## View, Edit, or Delete a Role
 
-{{< include "roles/view-edit-delete-role.md" >}}
+Take the following steps to view, edit, or delete a Role:
+
+{{< note >}}
+
+The predefined Roles `admin`, `user`, and `guest` cannot be edited or deleted.
+
+{{< /note >}}
+
+1. Open the NGINX Controller user interface and log in.
+2. Select the NGINX Controller menu icon, then select **Platform**.
+3. On the **Platform** menu, select **Roles**.
+4. On the **Roles** menu, select **Roles Overview**.
+5. To view the permissions details for a Role, choose the Role from the list. This opens a side panel with the Role's permissions.
+6. To edit a Role, choose the Role from the list, then select **Edit** (pencil icon).
+7. To delete a Role, choose the Role from the list, then select **Delete** (trash icon).
 
 ## Create a Role Group
 
-{{< include "roles/add-role-groups.md" >}}
+Take the following steps to create a Role Group:
+
+1. Open the NGINX Controller user interface and log in.
+2. Select the NGINX Controller menu icon, then select **Platform**.
+3. On the **Platform** menu, select **Roles**.
+4. On the **Roles** menu, select **Create Role Group**.
+5. On the Roles *Create Group* page, provide the following settings:
+
+    1. Add a name for the Role Group.
+    2. (Optional) Add a display name.
+    3. (Optional) Add a description.
+    4. Select one or more of the available Roles to add to the Role Group, or select **Create New** to [create a new Role](#create-a-role) to add.
+
+6. Select **Save** to add the Role Group.
 
 ## View, Edit, or Delete a Role Group
 
-{{< include "roles/view-edit-delete-role-group.md" >}}
+Take the following steps to view, edit, or delete a Role Group:
+
+{{< note >}}
+
+The predefined Role Groups `admin_group`, `user_group`, and `guest_group` cannot be edited or deleted.
+
+{{< /note >}}
+
+1. Open the NGINX Controller user interface and log in.
+2. Select the NGINX Controller menu icon, then select **Platform**.
+3. On the **Platform** menu, select **Roles**.
+4. On the **Roles** menu, select **Role Groups Overview**.
+5. To view the details for a Role Group, including the assigned permissions, choose the Role Group from the list. This opens a side panel with the Role Group's details.
+6. To edit a Role Group, choose the Role Group from the list, then select **Edit** (pencil icon).
+7. To delete a Role Group, choose the Role Group from the list, then select **Delete** (trash icon).
 
 ## What's Next
 

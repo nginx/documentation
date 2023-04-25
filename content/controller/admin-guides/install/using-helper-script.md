@@ -48,7 +48,7 @@ You can use the NGINX Controller `helper.sh` script to update NGINX Controller i
 
 
 
-{{< include "controller/installer/helper-script/prereqs.md" >}}
+{{< include "controller/helper-script-prereqs.md" >}}
 
 
 
@@ -456,7 +456,7 @@ Take the following steps to create a support package:
 
 ### Support Package Details
 
-{{< include "controller/installer/helper-script/support-package-details.md" >}}
+{{< include "controller/helper-script-support-package-details.md" >}}
 
 
 

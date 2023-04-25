@@ -54,7 +54,7 @@ The NGINX Controller Agent attempts to detect and monitor all unique NGINX proce
 
 ## Supported Systems
 
-{{< include "controller/installer/tech-specs/nginx-controller/supported-distributions.md" >}}
+{{< include "controller/supported-distributions.md" >}}
 
 {{< see-also >}}
 See the [NGINX Controller Technical Specifications]({{< relref "/admin-guides/install/nginx-controller-tech-specs.md" >}}) for the complete list of system requirements for NGINX Controller and the NGINX Controller Agent.

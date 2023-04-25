@@ -48,7 +48,7 @@ The NGINX Controller Agent manages `nginx.conf` settings and will make the appro
 
 Take the steps below to add the NGINX App Protect instance by using the NGINX Controller user interface.
 
-{{< include "controller/instances/add-existing-instance.md" >}}
+{{< include "controller/add-existing-instance.md" >}}
 
 ## What's Next
 

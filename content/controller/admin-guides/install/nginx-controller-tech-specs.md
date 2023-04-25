@@ -38,7 +38,7 @@ This guide lists the technical recommendations for NGINX Controller v3 and NGINX
 
 ## Supported Distributions
 
-{{< include "controller/installer/tech-specs/nginx-controller/supported-distributions.md" >}}
+{{< include "controller/supported-distributions.md" >}}
 
 &nbsp;
 

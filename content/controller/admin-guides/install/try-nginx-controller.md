@@ -54,7 +54,7 @@ Make sure to review the [NGINX Controller Technical Specifications Guide]({{< re
 
 ### Supported Distributions
 
-{{< include "controller/installer/tech-specs/nginx-controller/supported-distributions.md" >}}
+{{< include "controller/supported-distributions.md" >}}
 
 ### Hardware Specs
 
@@ -106,7 +106,7 @@ First, you need to sign up for a trial license for NGINX Controller. The trial i
 
 ## Install NGINX Controller Prerequisites
 
-{{< include "controller/installer/helper-script/prereqs.md" >}}
+{{< include "controller/helper-script-prereqs.md" >}}
 
 &nbsp;
 
@@ -272,7 +272,7 @@ You need the NGINX Plus certificate and public key files (`nginx-repo.crt` and `
 
 ## Add an NGINX Plus Instance to NGINX Controller
 
-{{< include "controller/instances/add-existing-instance.md" >}}
+{{< include "controller/add-existing-instance.md" >}}
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

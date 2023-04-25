@@ -34,7 +34,18 @@ You can use the NGINX Controller command-line interface, web interface, and API 
 
 ## Use helper.sh to Look Up Version Info
 
-{{< include "installer/helper-script/look-up-version.md" >}}
+To look up the current version of NGINX Controller using the `helper.sh` script, run the following command:
+
+```bash
+/opt/nginx-controller/helper.sh version
+```
+
+The output looks similar to the following:
+
+``` bash
+Installed version: 3.14.0
+Running version: 3.14.0
+```
 
 ## Use the Web Interface to Look Up Version Info
 

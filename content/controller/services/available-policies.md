@@ -44,7 +44,13 @@ You can specify the way API clients present their credentials:
 - HTTP request header
 - Query string parameter
 
-{{< include "api-key-authn-njs-module.md" >}}
+When using API keys for authentication, the API key is written to the NGINX Plus config as cryptographically-protected hashes. 
+
+To use API key authentication for any element of NGINX Controller, you must install the `njs` module on all NGINX Plus instances.
+
+If you do not install the `njs` module and use API key authentication, whether for API Management or elsewhere, the system may experience errors that are not reported in the user interface.
+
+> See the [NGINX Admin Guide](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/nginscript/) for `njs` installation instructions.
 
 **JWT** authentication uses JSON Web Tokens to validate clients. JWT authentication is set up by providing a JSON Web Key (JWK) set. A JWK set is a JSON representation of one or more cryptographic signing keys, as used by JWTs. The signing keys allow NGINX Plus to validate the signature of a JWT. A detailed overview is available in [Authenticating API Clients with JWT and NGINX Plus](https://www.nginx.com/blog/authenticating-api-clients-jwt-nginx-plus).
 

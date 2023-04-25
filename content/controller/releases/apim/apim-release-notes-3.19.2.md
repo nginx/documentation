@@ -38,7 +38,7 @@ toc: true
 weight: 95
 ---
 
-{{< include "release-notes/apim-rn-preamble.md" >}}
+{{< include "controller/apim-rn-preamble.md" >}}
 
 &nbsp;
 

@@ -36,7 +36,7 @@ toc: true
 weight: 97
 ---
 
-{{< include "release-notes/adc-rn-preamble.md" >}}
+{{< include "controller/adc-rn-preamble.md" >}}
 
 &nbsp;
 

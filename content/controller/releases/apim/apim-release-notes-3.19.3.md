@@ -16,7 +16,7 @@ docs = "DOCS-887"
 
 +++
 
-{{< include "release-notes/apim-rn-preamble.md" >}}
+{{< include "controller/apim-rn-preamble.md" >}}
 
 &nbsp;
 

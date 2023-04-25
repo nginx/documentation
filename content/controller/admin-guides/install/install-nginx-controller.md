@@ -76,7 +76,7 @@ Things you'll need before installing NGINX Controller:
 
 ## Install NGINX Controller Prerequisites
 
-{{< include "controller/installer/helper-script/prereqs.md" >}}
+{{< include "controller/helper-script-prereqs.md" >}}
 
 &nbsp;
 
@@ -406,7 +406,7 @@ To uninstall NGINX Controller, run the uninstall script:
 
 Install the Controller Agent on each NGINX Plus instance that you want to manage and monitor.
 
-{{< include "controller/instances/add-existing-instance.md" >}}
+{{< include "controller/add-existing-instance.md" >}}
 
 &nbsp;
 
@@ -475,7 +475,7 @@ Take the following steps to create a support package:
 
 #### Support Package Details
 
-{{< include "controller/installer/helper-script/support-package-details.md" >}}
+{{< include "controller/helper-script-support-package-details.md" >}}
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

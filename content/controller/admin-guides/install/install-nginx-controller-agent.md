@@ -50,7 +50,7 @@ You can use the NGINX Controller Agent to monitor your systems with the NGINX Co
 
 {{< see-also >}} If you want to run the NGINX Controller Agent as a non-root user, follow the alternative instructions in the [Install NGINX Controller Agent for Non-root User]({{< relref "admin-guides/install/install-agent-non-root.md" >}}) guide instead of the steps provided in this section. {{< /see-also >}}
 
-{{< include "controller/instances/add-existing-instance.md" >}}
+{{< include "controller/add-existing-instance.md" >}}
 
 ## Update the NGINX Controller Agent
 
