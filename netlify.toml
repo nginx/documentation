@@ -27,6 +27,11 @@
   status = 200
 
 [[redirects]]
+  from = "/nginx-waf/"
+  to = "/modsec-waf/"
+  status = 200
+
+[[redirects]]
   from = "/*"
   to = "/404.html"
   status = 404

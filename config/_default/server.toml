@@ -1,0 +1,11 @@
+[server]
+[[redirects]]
+from = "/nginx-management-suite/*"
+to = "/nms/"
+status = 200
+
+[[redirects]]
+from = "/nginx-waf/*"
+to = "/modsec-waf/"
+status = 200
+
