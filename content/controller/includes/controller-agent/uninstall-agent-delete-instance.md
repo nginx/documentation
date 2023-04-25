@@ -62,7 +62,11 @@ Take the following steps to uninstall the Controller Agent and delete an instanc
 
     {{< note >}}When you delete an instance, any related alerts for that instance are not deleted automatically. You can delete the alerts manually, however.{{< /note >}}
 
-    {{< include "alerts/delete-alerts.md" >}}
+    1. Open the NGINX Controller user interface and log in.
+    1. On the Analytics menu, select **Alerts > Alert Rules**.
+    1. Select the alert rule that you want to delete.
+    1. Select the delete (trash can) icon to delete the alert rule.
+    1. Select **Delete** in the pop-up box to confirm that you want to proceed.
 
 <!-- Do not remove. Keep this code at the bottom of the include -->
 <!-- DOCS-518 -->

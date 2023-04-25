@@ -44,7 +44,18 @@ If you do not specify a specific media type in an API call, then the API default
 
 The NGINX Controller API -- as well as the user interface and the product documentation -- is organized into four top-level areas:
 
-{{< include "general/controller-ia.md" >}}
+- **Analytics**: Enables data visualization for NGINX Controller.
+- **Infrastructure**: Lets you manage your NGINX Plus instances and certain aspects of the host machines on which NGINX Controller and NGINX Plus instances run.
+- **Platform**: Lets you manage NGINX Controller options and configurations, including Users, Roles, Licenses, and Global Settings.
+- **Services**: Lets you manage your applications and APIs.
+
+The diagrams below demonstrate how the different objects at the Service level relate to each other:
+
+1. All Service objects are part of an Environment.
+1. Gateways and Certs can be defined at the Environment level --or-- at the Component Level. The diagram below shows an example of how traffic flows through a Gateway to an App.
+1. Components are child objects that represent the back-end server(s) that host your App or API.
+    {{<note>}}A Component can represent an application **or** an API. The same Component cannot be used for both App Delivery and API Management.{{</note>}}
+1. Certs can be added to a Gateway or to an individual Component.
 
 {{< img src="/ctlr/img/services-object-model-example.png" alt="Diagram showing the relationship of objects in an Environment within the Services area." >}}
 {{< img src="/ctlr/img/traffic-flow-example-1.png" alt="Example traffic flow through a gateway to app components that represent a back-end application. Certs can be configured at the gateway or at the app component level." >}}

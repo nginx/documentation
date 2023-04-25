@@ -38,11 +38,25 @@ You will also need to [Create an Integration]({{< relref "platform/integrations/
 
 ## Create a Forwarder
 
+Take the following steps to create a Forwarder for Splunk:
 
+1. Open the NGINX Controller user interface and log in.
+1. Select the NGINX Controller menu icon, then select **Platform**.
+1. On the **Platform** menu, select **Data Forwarders**.
+1. On the **Data Forwarders** menu, select the **Create Data Forwarder** quick action.
+1. Add a name.
+1. (Optional) Add a display name.
+1. (Optional) Add a description.
+1. Select your **Integration Reference** from the dropdown menu or select **Create New** to create a new Integration.
+1. In the **Collector Type** list, select `SYSLOG`.
+1. In the **Source** list, select the type of data to forward: `events`. NGINX Controller can forward only `EVENTS` data to syslog.
+1. In the **Output Format** list, select `SYSLOG`.
+1. The **Selector** field consists of the following query parameters (optional):
+  
+   - `filter`: The conditions to use to refine the metrics or events data.
+   - Example usage: `"filter=type='security violation' AND app='my-app'"`
 
-{{< include "forwarders/add-syslog-forwarder.md" >}}
-
-
+1. (Optional) Add additional **Streams** as required using the **Add Stream** button.
 
 ## What's Next
 

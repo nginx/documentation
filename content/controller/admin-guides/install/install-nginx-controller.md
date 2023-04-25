@@ -330,7 +330,58 @@ You can use the `helper.sh` script to start, stop, restart, and check the status
 
 ## Update NGINX Controller
 
-{{< include "installer/install-guide/update-controller.md" >}}
+To update the NGINX Controller software, take the steps below. When complete, you must also update the Controller Agent software on each monitored NGINX Plus instance.
+
+When updating NGINX Controller on a multi-node cluster, run the `update.sh` script on each node individually -- the order in which you update the nodes doesn't matter.
+
+{{< warning >}} Do not update the nodes in a multi-node cluster in parallel. Doing so may result in race conditions for certain jobs, such as database migrations, and may cause the cluster to become unavailable.{{< /warning >}}
+
+{{< caution >}}
+We strongly recommend that you make a backup of the following information before proceeding, to avoid potential data and/or configuration loss:
+
+- [Back up the NGINX Controller databases]({{< relref "admin-guides/backup-restore" >}}).
+- Back up the NGINX Controller cluster configuration and encryption keys. These are required if you need to restore the config database on top of a new installation of NGINX Controller.
+
+    ```bash
+    /opt/nginx-controller/helper.sh cluster-config save
+    ```
+
+- Back up the Controller Agent `agent.conf` file by copying it from its current location to a new location. This file is present on each NGINX Plus instance.
+
+    ```bash
+    cp /etc/controller-agent/agent.conf <temporary location>
+    ```
+
+{{< /caution >}}
+
+1. Download the installer package from the [MyF5 Customer Portal](https://my.f5.com/manage/s/downloads).
+
+1. Extract the installer package files:
+
+    ```bash
+    tar xzf controller-installer-<version>.tar.gz
+    ```
+
+1. Before updating, check the NGINX Controller status to confirm the installation is healthy.
+
+    ```bash
+    ./helper.sh controller status
+    ```
+
+    Resolve any degradations before updating.
+
+1. Run the update script:
+
+    ```bash
+    cd controller-installer
+    ./update.sh
+    ```
+
+    {{< note >}}If you're upgrading from an older version of NGINX Controller and you installed Controller as root user, use `--allow-with-root` flag when running an update script. {{< /note >}}
+
+1. If you are logged in to NGINX Controller using a web browser, sign out and log in again.
+
+    - To sign out, select your username in the upper right-hand corner, and then select "Sign Out". For optimal performance, also flush your browser cache.
 
 {{< important >}} After you upgrade NGINX Controller, you also need to [update the NGINX Controller Agent]({{< relref "admin-guides/install/install-nginx-controller-agent" >}}) to the latest version. {{< /important >}}
 
@@ -340,7 +391,11 @@ You can use the `helper.sh` script to start, stop, restart, and check the status
 
 ## Uninstall NGINX Controller
 
-{{< include "installer/install-guide/uninstall-controller.md" >}}
+To uninstall NGINX Controller, run the uninstall script:
+
+```bash
+/opt/nginx-controller/uninstall.sh
+```
 
 &nbsp;
 
@@ -363,13 +418,64 @@ If NGINX Controller isn't working how you expect, see the knowledge base article
 
 ### Create a Support Package
 
-{{< include "installer/helper-script/create-support-package.md" >}}
+You can create a support package for NGINX Controller that you can use to diagnose issues. 
+
+{{< note >}}
+You will need to provide a support package if you open a ticket with NGINX Support via the [MyF5 Customer Portal](https://account.f5.com/myf5).
+{{< /note >}}&nbsp;
+
+```bash
+/opt/nginx-controller/helper.sh supportpkg [-o|--output <file name>] [-s|--skip-db-dump] [-t|--timeseries-dump <hours>]
+```
+
+<style>
+table, th, td {
+  border: 1px solid #CCC;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+}
+th {
+  text-align: center;
+}
+</style>
+
+| Options  | Description |
+|----------|-------------|
+| `-o` \| `--output`  | Save the support package file to `<file name>`. |
+| `-s` \| `--skip-db-dump` | Don't include the database dump in the support package. |
+| `-t` \| `--timeseries-dump <hours>` | Include the last `<n hours>` of timeseries data in the support package (default 12 hours). |
+
+Take the following steps to create a support package:
+
+1. Open a secure shell (SSH) connection to the NGINX Controller host and log in as an administrator.
+
+1. Run the `helper.sh` utility with the `supportpkg` option:
+
+    ```bash
+    /opt/nginx-controller/helper.sh supportpkg
+    ```
+
+    The support package is saved to:
+
+    `/var/tmp/supportpkg-<timestamp>.tar.gz`
+
+    For example:
+
+    `/var/tmp/supportpkg-20200127T063000PST.tar.gz`
+
+1. Run the following command on the machine where you want to download the support package to:
+
+    ``` bash
+    scp <username>@<controller-host-ip>:/var/tmp/supportpkg-<timestamp>.tar.gz /local/path
+    ```
 
 &nbsp;
 
 #### Support Package Details
 
-{{< include "installer/helper-script/support-package-details.md" >}}
+{{< include "controller/installer/helper-script/support-package-details.md" >}}
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

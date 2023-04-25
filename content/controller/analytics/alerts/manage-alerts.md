@@ -54,7 +54,10 @@ To add an alert rule:
      - Select the desired address(es) from the list provided, or
      - Select **Manage Email Addresses** to add a new address, then take the steps below: 
 
-       {{< include "alerts/add-email-address-short.md" >}}
+       1. Select **Add Email Address**.
+       1. Provide the desired email address. 
+       1. Select the submit (plus sign) icon.
+       1. Select **Done** to close the Manage Email Addresses panel.
 
        {{<note>}}You will need to verify the email address before it can begin receiving alerts.{{</note>}}
 
@@ -101,7 +104,11 @@ To mute or unmute an alert:
 
 To delete an alert rule:
 
-{{< include "alerts/delete-alerts.md" >}}
+1. Open the NGINX Controller user interface and log in.
+1. On the Analytics menu, select **Alerts > Alert Rules**.
+1. Select the alert rule that you want to delete.
+1. Select the delete (trash can) icon to delete the alert rule.
+1. Select **Delete** in the pop-up box to confirm that you want to proceed.
 
 ## What's Next
 

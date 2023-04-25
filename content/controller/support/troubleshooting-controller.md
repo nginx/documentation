@@ -48,13 +48,62 @@ If NGINX isn't behaving how you expect, you can take the following steps to trou
 
 ## Create a Support Package
 
+You can create a support package for NGINX Controller that you can use to diagnose issues. 
 
+{{< note >}}
+You will need to provide a support package if you open a ticket with NGINX Support via the [MyF5 Customer Portal](https://account.f5.com/myf5).
+{{< /note >}}&nbsp;
 
-{{< include "installer/helper-script/create-support-package.md" >}}
+```bash
+/opt/nginx-controller/helper.sh supportpkg [-o|--output <file name>] [-s|--skip-db-dump] [-t|--timeseries-dump <hours>]
+```
+
+<style>
+table, th, td {
+  border: 1px solid #CCC;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+}
+th {
+  text-align: center;
+}
+</style>
+
+| Options  | Description |
+|----------|-------------|
+| `-o` \| `--output`  | Save the support package file to `<file name>`. |
+| `-s` \| `--skip-db-dump` | Don't include the database dump in the support package. |
+| `-t` \| `--timeseries-dump <hours>` | Include the last `<n hours>` of timeseries data in the support package (default 12 hours). |
+
+Take the following steps to create a support package:
+
+1. Open a secure shell (SSH) connection to the NGINX Controller host and log in as an administrator.
+
+1. Run the `helper.sh` utility with the `supportpkg` option:
+
+    ```bash
+    /opt/nginx-controller/helper.sh supportpkg
+    ```
+
+    The support package is saved to:
+
+    `/var/tmp/supportpkg-<timestamp>.tar.gz`
+
+    For example:
+
+    `/var/tmp/supportpkg-20200127T063000PST.tar.gz`
+
+1. Run the following command on the machine where you want to download the support package to:
+
+    ``` bash
+    scp <username>@<controller-host-ip>:/var/tmp/supportpkg-<timestamp>.tar.gz /local/path
+    ```
 
 ### Support Package Details
 
-{{< include "installer/helper-script/support-package-details.md" >}}
+{{< include "controller/installer/helper-script/support-package-details.md" >}}
 
 
 
@@ -115,12 +164,14 @@ sudo systemctl restart controller-agent
 
 ## Controller Agent Install Script Failed to Download
 
+When deploying an NGINX Plus instance, the deployment may fail because the Controller Agent install script doesn't download. When this happens, an error similar to the following is logged to `/var/log/agent_install.log`: "Failed to download the install script for the agent."
 
+Take the following steps to troubleshoot the issue:
 
-{{< include "support/failed-to-download-install-script-for-agent.md" >}}
-
-
-
+- Ensure that ports 443 and 8443 are open between NGINX Controller and the network where the NGINX Plus instance is being deployed.
+- Verify that you can communicate with NGINX Controller from the NGINX Plus instance using the NGINX Controller FQDN that you provided when you installed NGINX Controller.
+- If you're [deploying an NGINX Plus instance on Amazon Web Services]({{< relref "/infrastructure/instances/add-aws-instance.md" >}}) using a template, ensure that the Amazon Machine Image (AMI) referenced in the `instance_template` has a cURL version of 7.32 or newer.
+  
 &nbsp;
 
 ---

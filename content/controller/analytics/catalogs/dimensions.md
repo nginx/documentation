@@ -31,7 +31,7 @@ toc: false
 weight: 20
 ---
 
-{{< dimensions path="/static/catalogs/dimensions-catalog.json" >}}
+{{< dimensions path="/static/ctlr/catalogs/dimensions-catalog.json" >}}
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}
