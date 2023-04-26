@@ -46,7 +46,7 @@ DELETE access gives permission to remove an object and corresponds to the DELETE
 
 ## Features
 
-These are the features used by ADM for RBAC. Each feature contains one or more objects, and these objects must all be assigned a value before the RBAC system will grant access.
+These are the features used by App Delivery Manager for RBAC. Each feature contains one or more objects, which must all be assigned a value before the RBAC system will grant access.
 
 ### ENVIRONMENT-MANAGEMENT
 
@@ -109,39 +109,39 @@ The TCPUDP-COMPONENT-MANAGEMENT feature controls access to TCP/UDP components an
 **Getting-Started**.
 * Every feature needs values set for each object contained in the feature. So all permissions should explicitly contain values set for each object.
 
-* If a feature references a different object (e.g. APP-MANAGEMENT references environments), then the permissions for any object referenced should also be granted in the corresponding feature. So if a role is granted access to env1 as an environment within the APP-MANAGEMENT feature, then that role should also be granted access to env1 as an environment within the ENVIRONMENT-MANAGEMENT feature.
+* If a feature references a different object (for example, APP-MANAGEMENT references environments), the permissions for any object referenced should also be granted in the corresponding feature. So if a role is granted access to env1 as an environment within the APP-MANAGEMENT feature, then that role should also be granted access to env1 as an environment within the ENVIRONMENT-MANAGEMENT feature.
 
-* All permissions within a particular feature (e.g ENVIRONMENT-MANAGEMENT) should be granted the same CRUD level of access. So if a particular permission has READ and DELETE access for ENVIRONMENT-MANAGEMENT, than all permissions under ENVIRONMENT-MANAGEMENT should have the same READ and DELETE access.
+* All permissions within a particular feature (for example, ENVIRONMENT-MANAGEMENT) should be granted the same CRUD level of access. So if a particular permission has READ and DELETE access for ENVIRONMENT-MANAGEMENT, all permissions under ENVIRONMENT-MANAGEMENT should have the same READ and DELETE access.
 
 ## **Example Roles**
 
-It is recommended that roles be configured to limit permissions. An example scenario is detailed below. For more details on how to assign roles and the special considerations which need to be taken into account when using the user interface (UI) see [Setting up User Roles]({{< relref "/nms/adm/getting-started/roles.md" >}}) section of  **Getting-Started**.
+We recommend configuring roles to limit permissions. An example scenario is detailed below.  For more details on how to assign roles and the special considerations which need to be taken into account when using the user interface (UI) see [Setting up User Roles]({{< relref "adm/getting-started/roles.md" >}}) section of **Getting-Started**.
 
 ### Scenario
 
-Platform Ops wants to deliver a platform, which enables a self-service app delivery model that allows teams of developers to work independently so that they can quickly deliver the value of their apps and services to the customer.
+Platform Ops wants to deliver a platform, which enables a self-service app delivery model that allows developer teams to work independently to quickly deliver the value of their apps and services to the customer.
 
-They want to enable multiple developers/teams to work on the same nginx.conf file without interfering with each others work. This means:
+They want to enable multiple developers/teams to work on the same nginx.conf file without interfering with each other's work, which means:
 
-* Developers can only access the environments, apps, components that have been defined in their role.
+* Developers can only access the environments, apps, and components that have been defined in their role.
 
-* Developers can work independently to author different sections within a single nginx.conf file e.g. depending on how the role is configured server, locations, or upstream blocks.
+* Developers can work independently to author different sections within a single nginx.conf file, for example, depending on how the role is configured server, locations, or upstream blocks.
 
 ### Short Description of App Delivery Manager Objects
 
-An Environment is a logical container to group gateways and apps. This closely maps to customers organizational boundaries.
+An Environment is a logical container to group gateways and apps. This closely maps to customers' organizational boundaries.
 
-A Gateway represents an entry point for traffic for one or more Apps. Gateway allows user to define the top level FQDN’s under which other apps in the organization reside.
+A Gateway represents an entry point for traffic for one or more Apps. Gateway allows users to define the top-level FQDNs under which other apps in the organization reside.
 
-A App is a logical container for components.
+An App is a logical container for components.
 
-Web components allow users to define routing behavior for the URIs under the apps. Each component can define URIs (/sales, /sales-data etc...) and specify which FQDNs these need to attach to via gateway references. Components also allow specifying the backend and can control the configuration for load balancing traffic to the backend servers.
+Web components allow users to define routing behavior for the URIs under the apps. Each component can define URIs (/sales, /sales-data, etc...) and specify which FQDNs these need to attach to via gateway references. Components also allow specifying the backend and can control the configuration for load balancing traffic to the backend servers.
 
 ### Use Case Scenario
 
-The Platform Ops admin wants to enable teams and individual's to self-service their access to services and data so that they can work independently, complete their jobs quickly, while not interfering with the work of others or unintentionally accessing data they have not been explicitly granted to access.
+The Platform Ops admin wants to enable teams and individuals to self-service their access to services and data so that they can work independently, and complete their jobs quickly while not interfering with the work of others or unintentionally accessing data they have not been explicitly granted access to.
 
-The Enterprise has a single website, `https://www.example.com`. This website serves two apps at the paths/support and /sales, each of which are owned by different teams. Additionally, there is a dedicated Admin responsible for managing ingress (gateway) to apps and a Read-only role meant for auditing purposes.
+The Enterprise has a single website, `https://www.example.com`. This website serves two apps at the paths`/support` and `/sales`, each of which is owned by different teams. Additionally, there is a dedicated Admin responsible for managing ingress (gateway) to apps and a Read-only role meant for auditing purposes.
 
 ### Role Configurations
 
@@ -157,7 +157,7 @@ Details:
 
 #### Example-Admin Role
 
-This is a custom role and not the built-in Admin role. This role has full access to all objects. Used to manage the full lifecycle of of all objects and data.
+This is a custom role and not the built-in Admin role. This role has full access to all objects. It is used to manage the full lifecycle of all objects and data.
 
 Permissions:
 
@@ -197,7 +197,7 @@ This role has full access to manage gateway objects, but only Read access to app
 
 #### Support-App Role
 
-This role has access to the environment example-env and the gateway that serves as the ingress point for traffic to www.example.com. Additionally this role has full access rights to the Support app and any referenced component e.g. /support. Additionally this role has access to any traffic metrics for these specific objects. This role should not have access to any other app, components, or their data.
+This role has access to the environment example-env and the gateway that serves as the ingress point for traffic to www.example.com. Additionally, this role has full access rights to the Support app and any referenced component, for example, /support. This role also has access to any traffic metrics for these specific objects. This role should not have access to any other app or components or their data.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
@@ -216,7 +216,7 @@ This role has access to the environment example-env and the gateway that serves 
 
 #### Sales-App Role
 
-This role has access to the environment example-env and the gateway that serves as the ingress point for traffic to www.example.com. Additionally this role has full access rights to the Support app and any referenced component e.g. /sales. Additionally this role has access to any traffic metrics for these specific objects. This role should not have access to any other app, components, or their data.
+This role has access to the environment example-env and the gateway that serves as the ingress point for traffic to www.example.com. Additionally, this role has full access rights to the Support app and any referenced component, for example, /sales. Additionally, this role has access to any traffic metrics for these specific objects. This role should not have access to any other app or components or their data.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
@@ -271,43 +271,43 @@ This role has Read-only access to all objects and data related to example-env.
 
 ## Combination Rules
 
-The NMS system has several permission combination methods, which can be confusing if a user is not aware of them. This document is details how RBAC information is combined for this purpose.
+NGINX Management Suite has several permission combination methods, which can be confusing if a user is unaware of them. This document details how RBAC information is combined for this purpose.
 
-{{< note >}} These combination rules document the current behavior, but this behavior is not officially supported and is subject to change. It is recommended that the roles are set up according to the best practices, which will alleviate much of the confusion around these roles. {{< /note >}}
+{{< note >}} These combination rules document the current behavior, but this behavior is not officially supported and is subject to change. We recommend setting up the roles according to the best practices, which will alleviate much of the confusion around them. {{< /note >}}
 
 ### Multiple Permissions on the Same Object are Additive
 
 If a role has multiple permissions for the same feature, the resulting permissions is additive, i.e. the user will get access to all objects listed.
 
-In particular, if permissions with Objects: None is created along with another permission that sets objects, the resulting access will be all of the allowed objects.
+In particular, if permissions with "Objects: None" are created along with another permission that sets objects, the resulting access will be all of the allowed objects.
 
 ### There can be only one CRUD value for each feature
 
-For a given feature (e.g. ENVIRONMENT-MANAGEMENT), there can be only one CRUD level for that feature. In particular, the levels will be unioned together and so all allowed objects will get the CRUD levels for any object.
+For a given feature (for example, ENVIRONMENT-MANAGEMENT), there can be only one CRUD level. In particular, the levels will be merged together, so all allowed objects will get the CRUD levels for any object.
 
 #### Example 1
 
-A role gives READ access to env1 and READ, UPDATE, DELETE access to env2. The NMS system will combine these two permissions and it will result in READ, UPDATE, DELETE access to both env1 and env2.
+A role gives READ access to env1 and READ, UPDATE, DELETE access to env2. NGINX Management Suite will combine these two permissions, resulting in READ, UPDATE, DELETE access to both env1 and env2.
 
 #### Example 2
 
-A role gives READ access for the All environments object, and CREATE, READ, UPDATE, DELETE access to env1. The NMS system combines these permissions and will result in CREATE, READ, UPDATE, DELETE access to All environments (including env1).
+A role gives READ access for the All environments object, and CREATE, READ, UPDATE, DELETE access to env1. NGINX Management Suite combines these permissions, resulting in CREATE, READ, UPDATE, DELETE access to All environments (including env1).
 
 ### Assigning access to an object in a different feature, adds access to that object within the parent feature
 
-Several features have other objects as part of their permissions schema (e.g. the APP-MANAGEMENT permission contains the Environments object). When access is given to that object as part of another feature, the object is added to the relevant feature at the level of the existing permissions.
+Several features have other objects as part of their permissions schema (for example, the APP-MANAGEMENT permission contains the Environments object). When access is given to that object as part of another feature, the object is added to the relevant feature at the level of the existing permissions.
 
 #### Example 1
 
-A role gives READ access to env1 within the ENVIRONMENT-MANAGEMENT feature. The role also gives READ access to env2 within the APP-MANAGEMENT feature. NMS will combine the permissions and grant READ access in the ENVIRONMENT-MANAGEMENT feature to both env1 and env2.
+A role gives READ access to env1 within the ENVIRONMENT-MANAGEMENT feature. The role also gives READ access to env2 within the APP-MANAGEMENT feature. NGINX Management Suite will combine the permissions and grant READ access in the ENVIRONMENT-MANAGEMENT feature to both env1 and env2.
 
 #### Example 2
 
-A role gives READ and UPDATE access to env1 within the ENVIRONMENT-MANAGEMENT feature. The role also gives READ access to env2 within the APP-MANAGEMENT feature. NMS will combine the permissions and grant READ and UPDATE access within the ENVIRONMENT-MANAGEMENT feature to both env1 and env2. Note that the APP-MANAGEMENT feature will not be affected by the combination of permissions.
+A role gives READ and UPDATE access to env1 within the ENVIRONMENT-MANAGEMENT feature. The role also gives READ access to env2 within the APP-MANAGEMENT feature. NGINX Management Suite will combine the permissions and grant READ and UPDATE access within the ENVIRONMENT-MANAGEMENT feature to both env1 and env2. Note that the combination of permissions will not affect the APP-MANAGEMENT feature.
 
 #### Example 3
 
-A role gives READ access to env1 within the ENVIRONMENT-MANAGEMENT feature. The role also gives full CREATE, READ, UPDATE, DELETE access to env2 within the APP-MANAGEMENT feature. NMS will combine permissions and grant READ access in the ENVIRONMENT-MANAGEMENT feature to both env1 and env2. Note that this combination does not affect the APP-MANAGEMENT feature.
+A role gives READ access to env1 within the ENVIRONMENT-MANAGEMENT feature. The role also gives full CREATE, READ, UPDATE, DELETE access to env2 within the APP-MANAGEMENT feature. NGINX Management Suite will combine permissions and grant READ access in the ENVIRONMENT-MANAGEMENT feature to both env1 and env2. Note that this combination does not affect the APP-MANAGEMENT feature.
 
 ### Customer Cases
 
@@ -315,9 +315,9 @@ Here are a few examples of possible customer cases to demonstrate what is possib
 
 #### Case 1: Separate Prod and Dev roles
 
-**A customer has two environments Prod and Dev and wants to separate roles which are allowed to edit objects in each these environments. Can they do this?**
+**A customer has two environments, Prod and Dev, and wants to separate roles that are allowed to edit objects in each of these environments. Can they do this?**
 
-Yes. By selecting only the Prod environment object in each permission feature when creating the role for Prod users and selecting only the Dev environment in each permission feature when creating the role for the Dev users, the customer can get this separation of permissions. As long as users are only assigned the one Prod or Dev role, they will not have access to objects in both environments.
+Yes. By selecting only the Prod environment object in each permission feature when creating the role for Prod users and selecting only the Dev environment in each permission feature when creating the role for the Dev users, the customer can get this separation of permissions. As long as users are only assigned only one Prod or Dev role, they will not have access to objects in both environments.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
@@ -331,9 +331,9 @@ Yes. By selecting only the Prod environment object in each permission feature wh
 
 #### Case 2: Separate Prod role, Dev role with only read access to Prod
 
-**A customer has two environments Prod and Dev and wants separate roles which are allowed to edit objects in each of these environments. In addition, the customer wants to allow the users that can edit objects in the Dev environment to see (but not edit) objects in the Prod environment. Can they do this?**
+**A customer has two environments, Prod and Dev, and wants separate roles which are allowed to edit objects in each of these environments. In addition, the customer wants to allow the users that can edit objects in the Dev environment to see (but not edit) objects in the Prod environment. Can they do this?**
 
-This is currently not possible with the current RBAC implementation. Since giving edit access to the Dev environment objects would give at least UPDATE access to those features, the combination rules would give UPDATE access to those features within the Prod environment as well. So, the customer would need to decide between allowing the user to edit objects in the Prod environment or not allowing the user to see objects in the Prod environment.
+This is currently not possible with the current RBAC implementation. Since giving edit access to the Dev environment objects would give at least UPDATE access to those features, the combination rules would also give UPDATE access to those features within the Prod environment. So, the customer would need to decide between allowing the user to edit objects in the Prod environment or not allowing the user to see objects in the Prod environment.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
@@ -349,7 +349,7 @@ This is currently not possible with the current RBAC implementation. Since givin
 
 **Within the customer’s Dev environment, they want a role where a user can edit Apps and Web Components, but only read Gateways. Can they do this?**
 
-Yes, since combination only occurs between the same features, so the customer can assign READ and UPDATE to APP-MANAGEMENT and WEB-COMPONENT-MANAGEMENT and only READ access to GATEWAY-MANAGEMENT without any subsequent combination.
+Yes, since combination only occurs between the same features, the customer can assign READ and UPDATE to APP-MANAGEMENT and WEB-COMPONENT-MANAGEMENT and only READ access to GATEWAY-MANAGEMENT without any subsequent combination.
 
 ## FAQ
 
