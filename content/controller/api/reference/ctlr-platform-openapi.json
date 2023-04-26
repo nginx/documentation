@@ -5,6 +5,61 @@
         "version": "v1",
         "description": "Manage the NGINX Controller platform."
     },
+    "tags": [
+
+        {
+            "name": "Authentication Providers",
+            "description": "Use the Authentication Providers API to create, update, or remove authentication providers."
+        },
+        {
+            "name": "Login Providers",
+            "description": "Use the Login Providers API to retrieve a list of the available authentication providers."
+        },
+        {
+            "name": "Login",
+            "description": "Use the Login API to retrieve an authentication cookie. Include the session ID that's in the authentication cookie in the request header for all subsequent requests."
+        },
+        {
+            "name": "Reset Password",
+            "description": "Use the Reset Password API to manage NGINX Controller password recovery."
+        },
+        {
+            "name": "Verify Authorization",
+            "description": "Verifies the current session is authorized to access a list of resources."
+        },
+        {
+            "name": "Nodes",
+            "description": "Use the Nodes API to manage NGINX Controller control plane nodes."
+        },
+        {
+            "name": "Global Settings",
+            "description": "Use the Global Settings API to manage the system-wide configurations for NGINX Controller and Controller Agent."
+        },
+        {
+            "name": "Global Features",
+            "description": "Use the Features API to manage NGINX Controller features."
+        },
+        {
+            "name": "License",
+            "description": "Use the License API to manage the license(s) for NGINX Controller."
+        },
+        {
+            "name": "Integrations",
+            "description": "Use the Integrations API to manage integrated cloud provider or data collector accounts."
+        },
+        {
+            "name": "Users",
+            "description": "Use the Users API to manage NGINX Controller User accounts."
+        },
+        {
+            "name": "Roles",
+            "description": "Use the Roles API to manage NGINX Controller User Roles."
+        },
+        {
+            "name": "Groups",
+            "description": "Use the Groups API to manage NGINX Controller authentication groups."
+        }
+    ],
     "servers": [
         {
             "description": "NGINX Controller API",

@@ -10,11 +10,33 @@
             "description": "NGINX Controller API",
             "url": "https://{{CONTROLLER_FQDN}}/api/v1"
     }],
+    "tags": [
+        {
+            "name": "Alerts",
+            "description": "Use the Alerts API to manage the Alert Rule resources and retrieve information about the Alerts."
+        },
+        {
+            "name": "Catalogs",
+            "description": "Use the Catalogs API to find out about the Metrics and Dimensions that you can use to refine your Analytics data queries."
+        },
+        {
+            "name": "Events",
+            "description": "Use the Events API to retrieve information about system Events."
+        },
+        {
+            "name": "Forwarders",
+            "description": "Use the Forwarders API to forward data (metrics, events) to external services."
+        },
+        {
+            "name": "Metrics",
+            "description": "Use the Metrics API to retrieve system Metrics."
+        }
+    ],
     "paths": {
         "/analytics/alerts/rules": {
             "get": {
                 "tags": [
-                    "Alert Rules"
+                    "Alerts"
                 ],
                 "summary": "List all Alert Rules",
                 "operationId": "listAlertRules",
@@ -58,7 +80,7 @@
             },
             "post": {
                 "tags": [
-                    "Alert Rules"
+                    "Alerts"
                 ],
                 "summary": "Create an Alert Rule",
                 "description": "Creates a new Alert Rule resource.",
@@ -132,7 +154,7 @@
             ],
             "get": {
                 "tags": [
-                    "Alert Rules"
+                    "Alerts"
                 ],
                 "summary": "Get an Alert Rule",
                 "description": "Returns information for the specified Alert Rule.",
@@ -183,9 +205,9 @@
             },
             "put": {
                 "tags": [
-                    "Alert Rules"
+                    "Alerts"
                 ],
-                "summary": "Upsert a Alert Rule",
+                "summary": "Upsert an Alert Rule",
                 "description": "Creates a new Alert Rule or updates an existing Alert Rule resource.",
                 "operationId": "updateAlertRule",
                 "x-f5-experimental": true,
@@ -244,7 +266,7 @@
             },
             "delete": {
                 "tags": [
-                    "Alert Rules"
+                    "Alerts"
                 ],
                 "summary": "Delete an Alert Rule",
                 "description": "Deletes the specified Alert Rule resource.",
