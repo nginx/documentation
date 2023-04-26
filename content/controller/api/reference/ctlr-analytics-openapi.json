@@ -13,6 +13,9 @@
     "paths": {
         "/analytics/alerts/rules": {
             "get": {
+                "tags": [
+                    "Alert Rules"
+                ],
                 "summary": "List all Alert Rules",
                 "operationId": "listAlertRules",
                 "x-f5-experimental": true,
@@ -54,6 +57,9 @@
                 }
             },
             "post": {
+                "tags": [
+                    "Alert Rules"
+                ],
                 "summary": "Create an Alert Rule",
                 "description": "Creates a new Alert Rule resource.",
                 "operationId": "createAlertRule",
@@ -125,6 +131,9 @@
                 }
             ],
             "get": {
+                "tags": [
+                    "Alert Rules"
+                ],
                 "summary": "Get an Alert Rule",
                 "description": "Returns information for the specified Alert Rule.",
                 "operationId": "getAlertRule",
@@ -173,6 +182,9 @@
                 }
             },
             "put": {
+                "tags": [
+                    "Alert Rules"
+                ],
                 "summary": "Upsert a Alert Rule",
                 "description": "Creates a new Alert Rule or updates an existing Alert Rule resource.",
                 "operationId": "updateAlertRule",
@@ -231,6 +243,9 @@
                 }
             },
             "delete": {
+                "tags": [
+                    "Alert Rules"
+                ],
                 "summary": "Delete an Alert Rule",
                 "description": "Deletes the specified Alert Rule resource.",
                 "operationId": "deleteAlertRule",
@@ -285,6 +300,9 @@
                 }
             ],
             "get": {
+                "tags": [
+                    "Alerts"
+                ],
                 "summary": "Get ongoing Alerts",
                 "description": "Returns information about Alerts for the specified Alert Rule.",
                 "operationId": "getAlerts",
@@ -359,6 +377,9 @@
                 }
             ],
             "get": {
+                "tags": [
+                    "Alerts"
+                ],
                 "summary": "Get Alert",
                 "description": "Returns information about the requested Alert for the specified Alert Rule.",
                 "operationId": "getAlert",
@@ -408,6 +429,9 @@
         },
         "/analytics/catalogs/metrics": {
             "get": {
+                "tags": [
+                    "Catalogs"
+                ],
                 "summary": "List the Metrics Catalog",
                 "operationId": "listMetricsDescriptions",
                 "description": "Lists all of the Metric resources in the Catalog.\n\nThe Metrics Catalog contains the definitions for all of the available NGINX and NGINX Controller Agent metrics.\nYou can use the Catalogs API to find information about the available Metrics, then use those Metrics to refine your Analytics data queries.\n",
@@ -427,6 +451,9 @@
         },
         "/analytics/catalogs/metrics/{metricName}": {
             "get": {
+                "tags": [
+                    "Catalogs"
+                ],
                 "summary": "Get a Metric Description",
                 "operationId": "getMetricDescription",
                 "description": "Gets the description of the specified Metric.\n",
@@ -477,6 +504,9 @@
         },
         "/analytics/catalogs/dimensions": {
             "get": {
+                "tags": [
+                    "Catalogs"
+                ],
                 "summary": "List the Dimensions Catalog",
                 "operationId": "listDimensionsDescriptions",
                 "description": "Lists all of the Dimension resources in the Catalog.\n\nDimensions provide a means of refining the data returned by metrics and events queries.\nYou can use the List Dimensions Catalog endpoint to find out what Dimensions are available.\nThen, use the Get a Dimension endpoint to find out more about a specific dimension.\n",
@@ -496,6 +526,9 @@
         },
         "/analytics/catalogs/dimensions/{dimensionName}": {
             "get": {
+                "tags": [
+                    "Catalogs"
+                ],
                 "summary": "Get a Dimension Description",
                 "operationId": "getDimensionDescription",
                 "description": "Gets the description of the specified Dimension resource.\n",
@@ -546,6 +579,9 @@
         },
         "/analytics/events": {
             "get": {
+                "tags": [
+                    "Events"
+                ],
                 "summary": "Get Events",
                 "operationId": "queryEvents",
                 "description": "Returns a list of system Events.",
@@ -652,6 +688,9 @@
         },
         "/analytics/events/{id}": {
             "get": {
+                "tags": [
+                    "Events"
+                ],
                 "summary": "Get an Event",
                 "operationId": "queryEventsById",
                 "description": "Returns the specified Event.",
@@ -693,6 +732,9 @@
         },
         "/analytics/forwarders": {
             "post": {
+                "tags": [
+                    "Forwarders"
+                ],
                 "summary": "Create a Forwarder",
                 "description": "Creates a new Forwarder resource.",
                 "operationId": "createForwarder",
@@ -735,6 +777,9 @@
                 }
             },
             "get": {
+                "tags": [
+                    "Forwarders"
+                ],
                 "summary": "Get a list of Forwarders.",
                 "description": "Returns a list of all Forwarder resources.",
                 "operationId": "listForwarders",
@@ -763,6 +808,9 @@
         },
         "/analytics/forwarders/{forwarderName}": {
             "get": {
+                "tags": [
+                    "Forwarders"
+                ],
                 "summary": "Get a Forwarder",
                 "operationId": "getForwarder",
                 "description": "Gets information about an existing Forwarder resource.",
@@ -797,6 +845,9 @@
                 }
             },
             "put": {
+                "tags": [
+                    "Forwarders"
+                ],
                 "summary": "Create or update a Forwarder",
                 "description": "Creates new or updates an existing Forwarder resource.",
                 "operationId": "updateForwarder",
@@ -841,6 +892,9 @@
                 }
             },
             "delete": {
+                "tags": [
+                    "Forwarders"
+                ],
                 "summary": "Delete a Forwarder",
                 "operationId": "deleteForwarder",
                 "description": "Deletes a Forwarder resource.",
@@ -877,6 +931,9 @@
         },
         "/analytics/metrics": {
             "get": {
+                "tags": [
+                    "Metrics"
+                ],
                 "summary": "Get Metrics",
                 "operationId": "queryMetrics",
                 "description": "Returns system Metrics data based on the query parameters provided.\n\nSupports filtering based on name and/or timestamp; aggregation over a configurable time span; and grouping by dimension.\n",
@@ -990,6 +1047,13 @@
         }
     },
     "components": {
+        "securitySchemes": {
+            "cookieAuth": {
+                "type": "apiKey",
+                "in": "cookie",
+                "name": "session"
+            }
+        },
         "responses": {
             "BadRequest": {
                 "description": "Bad input parameter, or possibly a bad URI. Check the input for typos and try again.\n",
