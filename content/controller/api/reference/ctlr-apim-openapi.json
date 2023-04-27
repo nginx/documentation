@@ -4726,7 +4726,7 @@
         "/services/errorsets": {
             "get": {
                 "tags": [
-                    "ErrorSets"
+                    "Error Sets"
                 ],
                 "summary": "List all Error Sets.",
                 "description": "Returns a list of all the Error Sets.",
@@ -10809,6 +10809,47 @@
             "PolicyData": {
                 "type": "object",
                 "description": "Contains the policy to upload."
+            },
+            "Gateway": {
+                "type": "object",
+                "description": "A Gateway represents the initial network entry point of application and/or API traffic into an NGINX instance that is\nin the data path of this traffic. Gateway settings are combined with Component settings that reference the Gateway;\nthe resulting composite config is sent to the NGINX instances that the Gateway references.\n\nA Gateway can be referenced by either web components and/or TCP/UDP components. Web-only settings in the Gateway (for example, web URIs)\napply only to web components. TCP/UDP-only settings in the Gateway (for example, TCP/UDP URIs) apply only to TCP/UDP components.\nWeb and TCP/UDP common settings in the Gateway (for example, global TLS, socket) apply to both web and TCP/UDP components.\n\nExamples:\nGateway with web and TCP/UDP URIs, web-specific settings, common settings. Web URIs and web settings apply to web components.\nCommon settings apply to both component types. TCP/UDP URIs apply only to TCP/UDP components –- presently, there are no other TCP/UDP only settings.\n\nGateway web URIs (for example, https://www.xyz.com) combined with web component URIs (for example, /blog) define web URI config (https://www.xyz.com/blog).\nComponent TCP/UDP URIs define TCP/UDP URI config (for example, tcp+tls://192.168.1.1:200); Gateway TCP/UDP URIs can provide TLS info plus restrict\nwhich TCP/UDP URIs can be in the component. Alternatively, component URIs fully define the URI config if the Gateway has no URIs.\n\nIf only a single URI type is in the Gateway, the URI config for that type is determined by combining the Gateway URIs with\nthe URIs from components of that type; only component URIs are used for the URI config for the other type.\n\nFor HTTPS URIs, global Gateway TLS settings are used when more specific TLS info is not present in the Gateway URIs,\nor for component URIs that have an HTTPS protocol and hostnames with no specific URI or component global TLS settings defined.\n\nFor tcp+tls URIs, Gateway TLS settings are used when TLS info is not defined in a component URI or component global TLS.\nA Gateway URI’s TLS info is used if it encompasses the component URI. For example, tcp+tls://192.168.1.5:100-104 in the Gateway and\ncomponent URI of tcp+tls://192.168.1.5:100. Global Gateway TLS is used if no other TLS settings apply.\n",
+                "required": [
+                    "metadata",
+                    "desiredState"
+                ],
+                "properties": {
+                    "metadata": {
+                        "$ref": "#/components/schemas/ResourceMeta"
+                    },
+                    "desiredState": {
+                        "$ref": "#/components/schemas/GatewayDesiredState"
+                    },
+                    "currentStatus": {
+                        "$ref": "#/components/schemas/GatewayCurrentStatus"
+                    }
+                }
+            },
+            "GatewayCurrentStatus": {
+                "description": "The current snapshot of the gateway settings that are reflected in the configuration on NGINX instances referenced by this Gateway.\nThese settings should converge to those in Desired State as the new configuration is applied unless there are issues;\nthe State setting gives a summary of how the convergence is proceeding.\n",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/GatewayWebState"
+                    },
+                    {
+                        "$ref": "#/components/schemas/GatewayStateCommon"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "ingress": {
+                                "$ref": "#/components/schemas/GatewayIngress"
+                            },
+                            "state": {
+                                "$ref": "#/components/schemas/ConfigState"
+                            }
+                        }
+                    }
+                ]
             }
         },
         "responses": {
