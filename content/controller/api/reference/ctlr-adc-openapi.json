@@ -76,11 +76,11 @@
             "description": "Use the Services API to request a metadata list of a desired resource within a single environment or across all environments.\nSupported resources:\n  - published-apis\n"
         },
         {
-            "name": "Security Strategies",
+            "name": "Strategies",
             "description": "Manage Security Strategies for your Apps and APIs. The current supported strategy is an NGINX App Protect Strategy (beta)."
         },
         {
-            "name": "Security Policies",
+            "name": "Policies",
             "description": "Manage Security Policies for your Apps and APIs. The current supported policy is an NGINX App Protect Policy (beta)."
         }
     ],
@@ -4795,7 +4795,7 @@
         "/security/strategies": {
             "get": {
                 "tags": [
-                    "Security Strategies"
+                    "Strategies"
                 ],
                 "summary": "List all Strategies",
                 "description": "Returns a list of Strategy metadata objects for all of the Strategies.",
@@ -4835,7 +4835,7 @@
             },
             "post": {
                 "tags": [
-                    "Security Strategies"
+                    "Strategies"
                 ],
                 "summary": "Create a Strategy",
                 "operationId": "StrategyServicePost",
@@ -4896,7 +4896,7 @@
         "/security/strategies/{strategyName}": {
             "get": {
                 "tags": [
-                    "Security Strategies"
+                    "Strategies"
                 ],
                 "summary": "Get a Strategy",
                 "operationId": "StrategyServiceGet",
@@ -4936,7 +4936,7 @@
             },
             "put": {
                 "tags": [
-                    "Security Strategies"
+                    "Strategies"
                 ],
                 "summary": "Upsert a Strategy",
                 "operationId": "StrategyServicePut",
@@ -4995,7 +4995,7 @@
             },
             "delete": {
                 "tags": [
-                    "Security Strategies"
+                    "Strategies"
                 ],
                 "summary": "Delete a Strategy",
                 "operationId": "StrategyServiceDelete",
@@ -5041,7 +5041,7 @@
         "/security/policies": {
             "get": {
                 "tags": [
-                    "Security Policies"
+                    "Policies"
                 ],
                 "summary": "List all Policies",
                 "description": "Returns a list of Policy metadata objects for all of the Policies.",
@@ -5081,7 +5081,7 @@
             },
             "post": {
                 "tags": [
-                    "Security Policies"
+                    "Policies"
                 ],
                 "summary": "Create a Policy",
                 "operationId": "createPolicy",
@@ -5142,7 +5142,7 @@
         "/security/policies/{policyName}": {
             "get": {
                 "tags": [
-                    "Security Policies"
+                    "Policies"
                 ],
                 "summary": "Get a Policy",
                 "operationId": "getPolicy",
@@ -5182,7 +5182,7 @@
             },
             "put": {
                 "tags": [
-                    "Security Policies"
+                    "Policies"
                 ],
                 "summary": "Upsert a Policy",
                 "operationId": "updatePolicy",
@@ -5241,7 +5241,7 @@
             },
             "delete": {
                 "tags": [
-                    "Security Policies"
+                    "Policies"
                 ],
                 "summary": "Delete a Policy",
                 "operationId": "deletePolicy",
