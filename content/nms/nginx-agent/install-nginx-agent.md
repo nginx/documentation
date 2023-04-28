@@ -396,19 +396,13 @@ The NGINX Agent package includes the following SELinux files:
 - `/usr/share/selinux/devel/include/contrib/nginx_agent.if`
 - `/usr/share/selinux/packages/nginx_agent.pp`
 
-To install and load the policy, run the following commands:
+To load the NGINX Agent policy, run the following commands:
 
-```bash
-sudo semodule -n -i /usr/share/selinux/packages/nginx_agent.pp
-sudo /usr/sbin/load_policy
-sudo restorecon -R /usr/bin/nginx-agent;
-sudo restorecon -R /var/log/nginx-agent;
-sudo restorecon -R /etc/nginx-agent;
-```
+{{< include "installation/agent-selinux.md" >}}
 
 ### Adding Ports for NGINX Agent SELinux Context
 
-You can modify the NGINX Agent to comply with SELinux. You should add external ports to the firewall exception.
+You can configure the NGINX Agent to work with SELinux. Make sure you add external ports to the firewall exception list.
 
 The following example shows how to allow external ports outside the HTTPD context. You may need to enable NGINX to connect to these ports.
 

@@ -35,6 +35,19 @@ View the known issues and possible workarounds in the NGINX Management Suite mod
 ## NGINX Management Suite Platform
 
 <details>
+<summary>NGINX Management Suite returns "502 Upstream Unavailable" error after installation</summary>
+
+#### Description
+
+After installing NGINX Management Suite, when accessing the web interface, the system returns the error "502 Upstream Unavailable."
+
+#### Resolution
+
+If you have SELinux installed, you need to load the SELinux policy module that's included with NGINX Management Suite. For instructions, refer to the [Configure SELinux]({{< relref "admin-guides/configuration/configure-selinux.md" >}}) topic.
+
+</details>
+
+<details>
 <summary>NGINX proxy gateway warns "1024 worker_connections are not enough"</summary>
 
 #### Description
