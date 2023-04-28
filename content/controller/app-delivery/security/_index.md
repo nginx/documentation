@@ -1,7 +1,0 @@
----
-aliases:
-- services/apps/security/_index.md
-description: Secure your applications using NGINX Controller App Security
-title: App Security
-weight: 100
----
