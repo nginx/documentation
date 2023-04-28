@@ -23,6 +23,7 @@ public/*
 .hugo_build.lock
 *.orig
 
+.DS_Store
 # Local development artifacts
 .vscode/*
 .markdownlint.json
@@ -31,3 +32,6 @@ content/.idea/*
 
 # Local Netlify artifacts
 .netlify/plugins/*
+# Local Netlify artifacts
+.netlify/plugins/*
+

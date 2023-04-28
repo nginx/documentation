@@ -78,6 +78,8 @@ To run the backup and restore scripts, you need to set their permissions to make
     sudo chmod +x restore.sh
     sudo chmod +x backup-acm.sh
     sudo chmod +x restore-acm.sh
+    sudo chmod +x backup-adm.sh
+    sudo chmod +x restore-adm.sh
     ```
 
 ---
@@ -115,7 +117,7 @@ By default, the data for modules isn't included in backups for NGINX Management 
 1. Open a secure shell (SSH) connection to the NGINX Management Suite host and log in.
 2. Edit the `backup.sh` and `restore.sh` scripts and uncomment the commands in the relevant sections.
 
-    For example, to back up and restore data for API Connectivity Manager, uncomment the following lines, like so:
+    To back up and restore data for **API Connectivity Manager**, uncomment the following lines, like so:
 
     <details open>
     <summary>backup.sh: enable backups for API Connectivity Manager</summary>
@@ -139,13 +141,44 @@ By default, the data for modules isn't included in backups for NGINX Management 
 
     </details>
 
+
+
+    To back up and restore data for **App Delivery Manager**, uncomment the following lines, like so:
+    <details open>
+    <summary>backup.sh: enable backups for App Delivery Manager</summary>
+
+    ```text
+    ## Back up App Delivery Manager
+    # Uncomment the following line to back up App Delivery Manager.
+    ./backup-adm.sh
+    ```
+
+    </details>
+
+    <details open>
+    <summary>restore.sh: enable restore for App Delivery Manager</summary>
+
+    ```text
+    ## Restore the App Delivery Manager database.
+    # Uncomment the following line to restore App Delivery Manager.
+    ./restore-adm.sh
+    ```
+
+    </details>
+
+
 3. To create a backup, run the back up script:
+
+{{< important >}} Before starting a backup, ensure SQLite is installed and NGINX Management Suite service is running. {{< /important >}}
 
     ```bash
     sudo ./backup.sh
     ```
 
 4. To restore from a backup, run the restore script:
+
+{{< important >}} Before starting a restore, run `sudo rm -rf /var/lib/nms/dqlite/*` and make sure the NGINX Management Suite service is stopped. {{< /important >}}
+
 
     ```bash
     sudo ./restore.sh /tmp/nms-backup-<DATETIME>.tgz

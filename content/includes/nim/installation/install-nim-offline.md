@@ -15,9 +15,9 @@
 
    {{< instance-manager-password >}}
 
-3. (Optional) If you used a custom address, username, or password or enabled TLS when installing ClickHouse, follow the steps in the [Configure ClickHouse]({{< relref "admin-guides/getting-started/configure-clickhouse.md" >}}) guide to update the `nms.conf` file. If you don't do so, NGINX Management Suite won't be able to connect to ClickHouse.
+3. (Optional) If you used a custom address, username, or password or enabled TLS when installing ClickHouse, follow the steps in the [Configure ClickHouse]({{< relref "admin-guides/configuration/configure-clickhouse.md" >}}) guide to update the `nms.conf` file. If you don't do so, NGINX Management Suite won't be able to connect to ClickHouse.
 
-4. (Optional) If you use Vault, follow the steps in the [Configure Vault]({{< relref "admin-guides/getting-started/configure-vault.md" >}}) guide to update the `nms.conf` file. If you don't do so, NGINX Management Suite won't be able to connect to Vault.
+4. (Optional) If you use Vault, follow the steps in the [Configure Vault]({{< relref "admin-guides/configuration/configure-vault.md" >}}) guide to update the `nms.conf` file. If you don't do so, NGINX Management Suite won't be able to connect to Vault.
 
 {{%/tab%}}
 {{%tab name="Debian, Ubuntu, and Deb-Based"%}}
@@ -32,9 +32,9 @@
 
    {{< instance-manager-password >}}
 
-3. (Optional) If you used a custom address, username, or password or enabled TLS when installing ClickHouse, follow the steps in the [Configure ClickHouse]({{< relref "admin-guides/getting-started/configure-clickhouse.md" >}}) guide to update the `nms.conf` file. If you don't do so, NGINX Management Suite won't be able to connect to ClickHouse.
+3. (Optional) If you used a custom address, username, or password or enabled TLS when installing ClickHouse, follow the steps in the [Configure ClickHouse]({{< relref "admin-guides/configuration/configure-clickhouse.md" >}}) guide to update the `nms.conf` file. If you don't do so, NGINX Management Suite won't be able to connect to ClickHouse.
 
-4. (Optional) If you use Vault, follow the steps in the [Configure Vault]({{< relref "admin-guides/getting-started/configure-vault.md" >}}) guide to update the `nms.conf` file. If you don't do so, NGINX Management Suite won't be able to connect to Vault.
+4. (Optional) If you use Vault, follow the steps in the [Configure Vault]({{< relref "admin-guides/configuration/configure-vault.md" >}}) guide to update the `nms.conf` file. If you don't do so, NGINX Management Suite won't be able to connect to Vault.
 
 {{%/tab%}}
 {{</tabs>}}

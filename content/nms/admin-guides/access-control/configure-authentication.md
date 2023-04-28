@@ -40,7 +40,7 @@ NGINX Plus is provided and intended only to be used with Instance Manager as a f
 
 ## Prerequisites {#prerequisites}
 
-1. Install [NGINX Management Suite]({{<relref "/admin-guides/installation/on-prem/install-guide.md">}}).
+1. Install [NGINX Management Suite]({{<relref "installation/on-prem/_index.md">}}).
 2. Install [NGINX or NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/).
 3. Start and Enable Instance Manager and NGINX Plus (or NGINX).
 
@@ -84,7 +84,7 @@ To restrict user access with basic authentication, take the following steps:
 2. Add each user's username and password to the `/etc/nms/nginx/.htpasswd` file on the NGINX Management Suite server. See [Restricting Access with HTTP Basic Auth](https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/) for instructions on working with a password file.
 
     If desired, you can use separate `.htpasswd` files in different locations or restrict by IP addresses. Refer to the guide [Restricting Access with HTTP Basic Authentication](https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/) for more information.
-
+3. A convenience script for adding user passwords to `/etc/nms/nginx/.htpasswd` is provided at `/etc/nms/scripts/basic_passwords.sh`. The script requires the `openssl` package; we strongly recommend `openssl` version `1.1.1` or later.
 ---
 
 ## JWT Authentication {#jwt-auth}
@@ -186,7 +186,7 @@ You can enable OpenID Connect (OIDC) for Instance Manager for production environ
 
 To use OIDC with Instance Manager, you need to perform the following:
 
-- [Install Instance Manager]({{< relref "/admin-guides/installation/on-prem/install-guide.md" >}}) on [NGINX Plus R21 or later](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/). The server hosting NGINX Plus must have a FQDN (Fully Qualified Domain Name).
+- [Install Instance Manager]({{< relref "installation/on-prem/_index.md" >}}) on [NGINX Plus R21 or later](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/). The server hosting NGINX Plus must have a FQDN (Fully Qualified Domain Name).
 
 - Install the [NGINX JavaScript module](https://www.nginx.com/blog/introduction-nginscript/) (njs). This module is required for handling interactions between NGINX Plus and the identity provider.
 
@@ -267,7 +267,7 @@ The following information is needed to configure the service:
 
 ## gRPC Metadata {#grpc-metadata}
 
-You can use advanced NGINX Plus features such as [JWT and gRPC](https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-3-publishing-grpc-services/#Authenticating-Clients-with-gRPC-Metadata) by following the guides on the NGINX blog. Use the [encryption guide]({{< relref "/admin-guides/getting-started/secure-traffic.md" >}}) for setting up gRPC on Instance Manager.
+You can use advanced NGINX Plus features such as [JWT and gRPC](https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-3-publishing-grpc-services/#Authenticating-Clients-with-gRPC-Metadata) by following the guides on the NGINX blog. Use the [encryption guide]({{< relref "/admin-guides/configuration/secure-traffic.md" >}}) for setting up gRPC on Instance Manager.
 
 ---
 

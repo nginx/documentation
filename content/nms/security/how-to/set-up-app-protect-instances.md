@@ -50,7 +50,7 @@ Complete the following prerequisites before proceeding with the steps in this gu
    {{< include "tech-specs/security-data-plane-dependencies.md" >}}   
 
 1. Determine your use case: **Security Monitoring only** or **Security Monitoring and Configuration Management**.
-1. [Install the NGINX Management Suite Security Monitoring module]({{< relref "/admin-guides/installation/on-prem/install-guide#install-nms-modules" >}}) and [upload your license]({{< relref "/admin-guides/getting-started/add-license" >}}).  
+1. [Install the NGINX Management Suite Security Monitoring module]({{< relref "installation/on-prem/_index.md#install-nms-modules" >}}) and [upload your license]({{< relref "/installation/add-license.md" >}}).  
 
 
 ## Install NGINX Agent {#agent-config}
@@ -73,6 +73,11 @@ Repeat the steps in this section on each NGINX App Protect WAF data plane host t
    Add the lines below to the end of the file. This enables NGINX Agent to send NGINX App Protect messages to the NGINX Management Suite management plane.
 
    ```yaml
+   # Enable the extensions
+   extensions:
+     - nginx-app-protect
+     - nap-monitoring
+
    # Enable reporting NGINX App Protect details to the control plane.
    nginx_app_protect:
      # Report interval for NGINX App Protect details - the frequency at which NGINX Agent checks NGINX App Protect for changes.
@@ -129,6 +134,7 @@ Repeat the steps below on each NGINX App Protect WAF data plane instance.
    This defines the log format for the Security Monitoring module.
    
    This configuration sets the maximum accepted request payload to 2048 bytes and the maximum message size to 5k. The latter setting truncates messages larger than 5k.
+2. Add character escaping for the used separator `,` to be escaped with its standard URL encoding `%2C`.
 
    ``` json
    {
@@ -138,6 +144,12 @@ Repeat the steps below on each NGINX App Protect WAF data plane instance.
        "content": {
            "format": "user-defined",
            "format_string": "%blocking_exception_reason%,%dest_port%,%ip_client%,%is_truncated_bool%,%method%,%policy_name%,%protocol%,%request_status%,%response_code%,%severity%,%sig_cves%,%sig_set_names%,%src_port%,%sub_violations%,%support_id%,%threat_campaign_names%,%violation_rating%,%vs_name%,%x_forwarded_for_header_value%,%outcome%,%outcome_reason%,%violations%,%violation_details%,%bot_signature_name%,%bot_category%,%bot_anomalies%,%enforced_bot_anomalies%,%client_class%,%client_application%,%client_application_version%,%transport_protocol%,%uri%,%request%",
+           "escaping_characters": [
+               {
+                   "from": ",",
+                   "to": "%2C"
+               }
+           ],
            "max_request_size": "2048",
            "max_message_size": "5k",
            "list_delimiter": "::"

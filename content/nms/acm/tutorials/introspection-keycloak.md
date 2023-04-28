@@ -63,7 +63,7 @@ This section configures the hosts used in this tutorial. In the following table,
 
 ### Install NGINX Management Suite & API Connectivity Manager {#install-nsm-acm}
 
-1. Follow the steps in the [Installation Guide]({{< relref "/admin-guides/installation/on-prem/install-guide" >}}) to set up NGINX Management Suite and ACM. You do not need to configure a Developer Portal for this tutorial.
+1. Follow the steps in the [Installation Guide]({{< relref "installation/on-prem/_index.md" >}}) to set up NGINX Management Suite and ACM. You do not need to configure a Developer Portal for this tutorial.
 
 ### Install NGINX Agent on Data Plane Host {#install-agent}
 

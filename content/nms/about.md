@@ -54,6 +54,23 @@ The ACM module provides the following features:
 - [Apply policies to API proxies]({{< relref "acm/how-to/policies/manage-policies.md#configure-proxy-policies" >}}) to provide custom quality of service for individual applications
 - [Issue API keys]({{< relref "/acm/how-to/infrastructure/enable-sso-devportal" >}}) or basic authentication credentials for access to the API
 
+## App Delivery Manager (ADM):
+
+The [ADM]({{< relref "adm/">}}) module is built on top of the NGINX Management Suite (NMS) platform and sits alongside the Instance Manager (NIM) module. As such, uses many of the features that are included with NIM, such as [authentication]({{< relref "admin-guides/access-control/configure-authentication.md" >}}), [Role-Based Access Control (RBAC)]({{< relref "admin-guides/access-control/set-up-rbac.md" >}}), [instance groups]({{< relref "nim/how-to/nginx/manage-instance-groups.md" >}}), and [certificate management]({{< relref "nim/how-to/nginx/manage-certificates.md" >}}).
+
+### App Delivery Manager Key Features
+
+The ADM module provides an abstraction over the NGINX configuration, allowing individual teams to deploy their custom apps independently. ADM hides the complexities of the NGINX configuration through a simple high-level API abstraction of the NGINX contexts and common directives. We refer to this abstraction as the app-centric view of the configuration.
+
+This app-centric view addresses the following concerns:
+
+* **Complexity**: Managing, maintaining, validating, and applying large sets of individual configurations from different sources.
+* **Fragility:** Teams can validate and test configurations before placing them into production, making it easier to fail fast and ensuring that production user traffic keeps flowing.
+* **Safety:** Various business units can be given fine-grain ownership over configuration elements, when necessary.
+* **Self-Service:** By isolating app teams from one another, you can allow each team to independently deploy and update the configuration for their apps without requiring intervention. This removes artificial gates that previously prevented teams from quickly delivering their updated apps and allows for the integration of the CI/CD process into their development workflow.
+
+This is all done behind a simple API abstraction provided by ADM. For teams that need more control of the NGINX configuration or access to the rich set of directives and dynamic modules, the ADM service provides a template facility to expand the API and the resulting possibilities for the NGINX configuration.
+
 ## Security Monitoring
 
 The [Security Monitoring module]({{< relref "security/">}}) allows you to monitor NGINX App Protect WAF with analytics dashboards and security log details to get protection insights for analyzing possible threats or areas for tuning policies.
@@ -68,4 +85,4 @@ The Security Monitoring module provides the following features:
 ## What's Next?
 
 - [Review the Technical Specifications]({{< relref "/overview/tech-specs">}})
-- [Install NGINX Management Suite]({{< relref "/admin-guides/installation/on-prem/install-guide">}})
+- [Install NGINX Management Suite]({{< relref "installation/on-prem/_index.md">}})

@@ -3,6 +3,10 @@ To upgrade Instance Manager in an offline environment, take the following steps:
 {{<tabs name="install_nim_offline">}}
 {{%tab name="CentOS, RHEL, and RPM-Based"%}}
 
+{{< note >}}
+During the upgrade, a new file may be created with either an `.rpmnew` or `.rpmsave` extension for configuration files that have been modified. For files with an `.rpmnew` extension, the previous configuation has not been changed, and the configuration file that came with the new `rpm` package has been saved in the `.rpmnew` file. For files with an `.rpmsave` extension, the configuration has been updated, and the old configuration has been saved in the `.rpmsave` file.
+{{< /note >}}
+
 1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the Instance Manager package files, or use the package provided by your NGINX Sales Team.
 
 2. Upgrade the Instance Manager package:
@@ -13,6 +17,10 @@ To upgrade Instance Manager in an offline environment, take the following steps:
 
 {{%/tab%}}
 {{%tab name="Debian, Ubuntu, and Deb-Based"%}}
+
+{{< note >}}
+During the upgrade, for any configuration files that have been modified, the existing file will be left in place by default.
+{{< /note >}}
 
 1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the Instance Manager package files, or use the package provided by your NGINX Sales Team.
 

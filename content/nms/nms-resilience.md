@@ -17,7 +17,7 @@ personas: ["devops", "netops", "secops", "support"]
 
 ## Overview
 
-The NGINX Management Suite platform includes four services (described below) that work together to monitor NGINX data plane instances. These platform services feature self-monitoring capabilities, allowing them to detect unresolvable issues and shut down automatically. When you [install NGINX Management Suite on Kubernetes]({{< relref "admin-guides/installation/kubernetes/nms-helm.md">}}), you get the benefits of fault tolerance and automated recovery: when a platform service fails, Kubernetes will create new pods and restart the affected services without disruption to the data plane.
+The NGINX Management Suite platform includes four services (described below) that work together to monitor NGINX data plane instances. These platform services feature self-monitoring capabilities, allowing them to detect unresolvable issues and shut down automatically. When you [install NGINX Management Suite on Kubernetes]({{< relref "installation/kubernetes/nms-helm.md">}}), you get the benefits of fault tolerance and automated recovery: when a platform service fails, Kubernetes will create new pods and restart the affected services without disruption to the data plane.
 
 ---
 
@@ -86,7 +86,7 @@ Our tests showed the following recovery times:
 
 - NGINX Management Suite 2.9.0
 
-- ClickHouse pod as defined in the [NGINX Management Suite helm chart]({{< relref "admin-guides/installation/kubernetes/nms-helm.md">}})
+- ClickHouse pod as defined in the [NGINX Management Suite helm chart]({{< relref "installation/kubernetes/nms-helm.md">}})
 
 The time it took for the [Pod condition](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-conditions)
 to transition from `PodScheduled` to `Ready`:
@@ -133,4 +133,4 @@ NGINX Management Suite should be integrated into the customer's established Busi
 
 ## What's Next
 
-For resilient deployments, we recommend [installing NGINX Management Suite on Kubernetes using Helm](({{< relref "admin-guides/installation/kubernetes/nms-helm.md">}})). With Kubernetes, you'll get the benefits of persistent volumes and automated recovery for a reliable control plane.
+For resilient deployments, we recommend [installing NGINX Management Suite on Kubernetes using Helm](({{< relref "installation/kubernetes/nms-helm.md">}})). With Kubernetes, you'll get the benefits of persistent volumes and automated recovery for a reliable control plane.

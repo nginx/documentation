@@ -13,7 +13,148 @@ categories: ["known issues"]
 
 {{<rn-styles>}}
 
-{{< tip >}}We recommend you [upgrade to the latest version of Instance Manager](https://docs.nginx.com/nginx-management-suite/admin-guides/installation/upgrade-guide/) to take advantage of new features, improvements, and bug fixes.{{< /tip >}}
+{{< tip >}}We recommend you [upgrade to the latest version of Instance Manager](https://docs.nginx.com/nginx-management-suite/installation/upgrade-guide/) to take advantage of new features, improvements, and bug fixes.{{< /tip >}}
+
+---
+
+## 2.10.0
+
+### {{% icon-bug %}} The Metrics module is interrupted during installation on Red Hat 9 {#42219}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 42219 | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+When installing the Metrics module on Red Hat 9, the following error will prevent it from finishing:
+
+```text
+warning: Signature not supported. Hash algorithm SHA1 not available.
+error: /tmp/nginx_signing.key: key 1 import failed.
+
+Failed to import nginx signing key. exiting.
+```
+
+#### Workaround
+
+Before installation, run the following command:
+
+```text
+sudo update-crypto-policies --set DEFAULT:SHA1
+```
+
+After installation, we recommend you return the default to a more secure algorithm such as SHA256.
+
+---
+
+### {{% icon-bug %}} When publishing a new version of Threat Campaign, the last two versions in the list cannot be selected {#42217}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 42217 | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+The list of Threat Campaigns will disappear when scrolling down, preventing the selection of the oldest versions.
+<br>
+
+#### Workaround
+
+Threat Campaign versions can be published with the API using the route: `api/platform/v1/security/publish`
+
+---
+
+### {{% icon-bug %}} Duplicate Certificate and Key published for managed certificates {#42182}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 42182 | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+When deploying a configuration with a certificate and key handled by NGINX Management Suite to a custom file path, it may deploy a duplicate copy of the certificate and key to the default `/etc/nginx/` path. When deleting the certificate and key, it will only delete the certificate and key in the custom path, leaving the duplicate copy.
+<br>
+
+#### Workaround
+
+Manually delete the certificate and key from the `/etc/nginx/` path.
+
+---
+
+### {{% icon-bug %}} When upgrading to Instance Manager 2.10, there may be warnings from the Ingestion service {#42133}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 42133          | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+When upgrading to 2.10.0 you may see a warning like the below message for the NGINX Management Suite Ingestion service. It can be safely ignored.
+
+```text
+[WARN] #011/usr/bin/nms-ingestion   #011start/start.go:497  #011error checking migrations Mismatched migration version for ClickHouse, expected 39 migrations to be applied, currently have only 44 migrations applied.
+```
+
+---
+
+### {{% icon-bug %}} When upgrading to Instance Manager 2.10.0, the API does not return lastDeploymentDetails for existing configurations {#42119}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 42119 | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+When upgrading to Instance Manager 2.10.0, the API does not return `lastDeploymentDetails` for existing configuration blocks. This is then reflected as "Invalid Date" in the web interface (See [42108](#42108)).
+<br>
+
+#### Workaround
+
+Republish the configuration for the affected configuration blocks.
+
+---
+
+### {{% icon-bug %}} When upgrading to Instance Manager 2.10.0, the publish status on App Security pages shows "Invalid Date" {#42108}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 42108 | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+After upgrading to Instance Manager 2.10.0, the publish status on App Security pages of Policies, Attack Signatures, and Threat Campaign shows "Invalid Date" until new configurations are published to the instance or instance group. 
+
+---
+
+### {{% icon-bug %}} Configuration changes for NGINX Agent take longer than expected. {#41257}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 41257 | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+NGINX Agent introduced the `config_reload_monitoring_period` parameter under `nginx` to define the duration which Agent will monitor the logs for relevant errors and warnings after a configuration change. As a result, configuration changes will take at least one second to appear.
+<br>
+
+#### Workaround
+
+Adjust the `config_reload_monitoring_period` parameter to a value that suits your workflow. 
 
 ---
 
@@ -96,12 +237,12 @@ After upgrading to Instance Manager 2.9.0, the system may display a "URI malform
 
 ---
 
-### {{% icon-bug %}} Installing NGINX Agent on FreeBSD fails with "error 2051: not implemented" {#41157}
+### {{% icon-resolved %}} Installing NGINX Agent on FreeBSD fails with "error 2051: not implemented" {#41157}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 41157    | Open   |
+| Issue ID | Status          |
+|----------|-----------------|
+| 41157    | Fixed in 2.10.0 |
 {{</bootstrap-table>}}
 
 #### Description
@@ -129,7 +270,7 @@ If you are using FreeBSD, you can download the NGINX Agent from [https://github.
 Upgrading the NGINX Management Suite could result in the removal of your OIDC configuration, which would prevent users from being able to log in through OIDC.
 #### Workaround
 
-Prior to upgrading, we recommend that you back up your configuration files for NGINX Management Suite and the platform proxy. Refer to the [Upgrade Guide]({{< relref "admin-guides/installation/upgrade-guide.md" >}}) for further details on this and other pre-upgrade steps.
+Prior to upgrading, we recommend that you back up your configuration files for NGINX Management Suite and the platform proxy. Refer to the [Upgrade Guide]({{< relref "installation/upgrade-guide.md" >}}) for further details on this and other pre-upgrade steps.
 
 ---
 
@@ -219,24 +360,6 @@ This issue is related to [bug 39563](#39563) and has the same workaround.
 
 ---
 
-### {{% icon-resolved %}} App Protect: "Assign Policy and Signature Versions" webpage may not initially display newly added policies {#40085}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 40085    | Fixed in 2.9.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-If you've published new policies by updating the `nginx.config` file, using the Instance Manager REST API, or through the web interface, you may not see the policy when you initially select **Assign Policy and Signature Versions** on the Policy Detail page.
-
-#### Workaround
-
-To fix this issue, return to the Policy Detail page and select **Assign Policy and Signature Versions** again.
-
----
-
 ### {{% icon-bug %}} System reports "Attack Signature does not exist" when publishing default Attack Signature {#40020}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
@@ -255,53 +378,14 @@ The default Attack Signature (2019.07.16) is not being added to the Attack Signa
 
 ---
 
-### {{% icon-bug %}} The Type text on the Instances overview page may be partially covered by the Hostname text {#39760}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 39760    | Open   |
-{{</bootstrap-table>}}
-
-#### Description
-
-On the Instances overview page, long hostnames may overlap and interfere with the visibility of the text in the Type column that displays the NGINX type and version.
-
-#### Workaround
-
-Select the hostname to open the instance details page to view the full information.
-
----
-
-### {{% icon-resolved %}} To publish security policies with Instance Manager, set the "precompiled_publication" parameter to "true" in the `nginx-agent.conf` file {#39614}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 39614    | Fixed in 2.9.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-In order to publish App Protect policies from Instance Manager, you must add the following to your `nginx-agent.conf` file:
-
-```yaml
-nginx_app_protect: 
-precompiled_publication: true 
-```
-
-By default, `precompiled_publication` is `false`.
-
----
-
 ## 2.7.0
 
-### {{% icon-bug %}} SELinux errors encountered when starting NGINX Management Suite on RHEL9 with the SELinux policy installed {#41327}
+### {{% icon-resolved %}} SELinux errors encountered when starting NGINX Management Suite on RHEL9 with the SELinux policy installed {#41327}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 41327    | Open   |
+| Issue ID | Status          |
+|----------|-----------------|
+| 41327    | Fixed in 2.10.0 |
 {{</bootstrap-table>}}
 
 #### Description
@@ -352,28 +436,6 @@ If you encounter any of the errors mentioned above, you can attempt to rebuild a
 
 ---
 
-### {{% icon-resolved %}} Security Policy Snippet selector adds incorrect path reference for policy directive {#39492}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 39492    | Fixed in 2.8.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-The Security Policy Snippet selector adds `/etc/app_protect/${policy.name}` for the NGINX App Protect policy directive instead of the default path that Instance Manager expects, `/etc/nms/${policy.name}`.
-
-#### Workaround
-
-Before publishing the NGINX configuration (`nginx.conf`), add the correct path reference for the policy in the NGINX Agent configuration file.
-
-1. Edit the NGINX Agent configuration file `/etc/nginx-agent/nginx-agent.conf`.
-2. In the `config_dirs` section, locate the `app_protect_policy_file` setting and replace `/etc/app_protect/` with `/etc/nginx:/usr/local/etc/nginx:/usr/share/nginx/modules:/etc/nms`.
-3. Save the change and close the file.
-
----
-
 ### {{% icon-bug %}} "Public Key Not Available" error when upgrading Instance Manager on a Debian-based system {#39431}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
@@ -401,7 +463,7 @@ To manually update the public key, take the following steps:
    - Insecure:
 
        ```shell
-       curl --insecure https://<NMS_FQDN>/packages-repository/nginx-signing.key | gpg --dearmor | sudo tee /usr/share/keyrings/nginx-signing.gpg >/dev/null
+       curl -k https://<NMS_FQDN>/packages-repository/nginx-signing.key | gpg --dearmor | sudo tee /usr/share/keyrings/nginx-signing.gpg >/dev/null
        ```
 
 2. Update the `nginx-agent.list` file to reference the new key:
@@ -409,29 +471,6 @@ To manually update the public key, take the following steps:
     ```shell
     printf "deb [signed-by=/usr/share/keyrings/nginx-signing.gpg] https://<NMS_FQDN>/packages-repository/deb/ubuntu `lsb_release -cs` agent\n" | sudo tee /etc/apt/sources.list.d/nginx-agent.list
     ```
-
----
-
-### {{% icon-resolved %}} NGINX Management Suite services may lose connection to ClickHouse in a Kubernetes deployment {#39285}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 39285    | Fixed in 2.8.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-When deploying NMS services in Kubernetes, they must be able to establish a connection to ClickHouse in order to enter a healthy state. If ClickHouse becomes available at a later time, the services will not automatically attempt to reconnect to it.
-
-#### Workaround
-
-If you notice Core, DPM, or Ingestion POD logs indicating no connection to ClickHouse even though ClickHouse POD is running, restart Core, DPM, and Ingestion by scaling down and up with the following command,
-
-```bash
-kubectl -n nms scale --replicas=0 deployment.apps/core deployment.apps/dpm deployment.apps/ingestion
-kubectl -n nms scale --replicas=1 deployment.apps/core deployment.apps/dpm deployment.apps/ingestion
-```
 
 ---
 
@@ -446,24 +485,6 @@ kubectl -n nms scale --replicas=1 deployment.apps/core deployment.apps/dpm deplo
 #### Description
 
 You may see the error message "error from rows in bind" in the NGINX Management Suite logs while querying instance group objects. This may occur when there are more than 200 instance groups. As such, creating more than 200 instance groups is not recommended at this time.
-
----
-
-### {{% icon-resolved %}} Deploy NGINX App Protect policy is listed as "Not Deployed" on the Policy Version detail page {#38876}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 38876    | Fixed in 2.8.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-After using Instance Manager to publish an NGNIX App Protect policy version to an App Protect instance, the policy is shown as "Not Deployed" on the Policy Version detail page. This happens when the policy has not been fully deployed to the NGINX App Protect WAF instances.
-
-#### Workaround
-
-Wait for the policy to be fully deployed to the NGINX App Protect instances, then navigate away from and back to the Policy Version detail webpage. Reloading the page is not enough to resolve the issue.
 
 ---
 
@@ -534,88 +555,6 @@ Once the `attack-signatures` and/or `threat-campaigns` packages have been added 
 
 ---
 
-### {{% icon-resolved %}} NGINX App Protect status may not be displayed after publishing a configuration with a security policy and certificate reference {#39382}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 39382    | Fixed in 2.8.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-When publishing an instance configuration with a security policy and a certificate reference, the App Protect page in the web interface may not show that the security policy is registered with the instance.
-
-#### Workaround
-
-To resolve this issue, publish the config twice: once with only the security policy reference and a second time with both the security policy and certificate references.
-
----
-
-### {{% icon-resolved %}} After a version upgrade of NGINX Instance Manager, NMS Data Plane Manager crashes if you publish NGINX configuration with App Protect enablement directive (app_protect_enable) set to ON {#38904}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 38904    | Fixed in 2.7.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-After upgrading from a previous version of NGINX Instance Manager (2.5.0 or 2.5.1), the Data Plane Manager might crash. This happens when you publish NGINX configuration with App Protect enablement directive (app_protect_enable) set to ON. Also, status information for NGINX App Protect instances does not get updated.
-
----
-
-### {{% icon-resolved %}} When upgrading a multi-node NMS deployment with helm charts the ingestion pod may report a "Mismatched migration version" error {#38880}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 38880    | Fixed in 2.7.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-When using the NMS Instance Manager Helm upgrade command on a multi worker node Kubernetes cluster setup, the ingestion pod may report a "Mismatched migration version" error.
-
-#### Workaround
-
-Post upgrade, do the following steps:
-
-```shell
-kubectl -n nms scale --replicas=0 deployment.apps/dpm; kubectl -n nms scale --replicas=1 deployment.apps/dpm
-kubectl -n nms scale --replicas=0 deployment.apps/ingestion; kubectl -n nms scale --replicas=1 deployment.apps/ingestion
-```
-
----
-
-### {{% icon-resolved %}} The Policy API endpoint only allows NGINX App Protect policy upsert with content length up to 3.14MB. {#38839}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 38839    | Fixed in 2.8.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-The Policy API endpoint prevents App Protect creation or updates with content-length greater than 3.14 MB.
-
----
-### {{% icon-resolved %}} Large payloads can result in disk I/O error for database operations {#38827}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 38827    | Fixed in 2.8.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-When NGINX Management Suite stores an NGINX configuration that references large payloads, a "disk I/O error" may occur. This affects configuration payloads with sizes larger than 5M, such as the NGINX App Protect policy bundle.
-
----
-
 ### {{% icon-bug %}} App Protect Policies page fails when deployed via Helm chart {#38782}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
@@ -627,67 +566,6 @@ When NGINX Management Suite stores an NGINX configuration that references large 
 #### Description
 
 When installing NGINX Instance Manager on Kubernetes via Helm Chart, the App Protect page shows an error banner, and no default policies are displayed.
-
----
-
-### {{% icon-resolved %}} NGINX App Protect policy deployment status not reflecting removal of associated instance. {#38700}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 38700    | Fixed in 2.7.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-This error occurs when you use NGINX App Protect on the Instance Manager and then remove all NGINX App Protect references from the NGINX Config. As a result, it incorrectly shows some NAP policies as still being deployed on this Instance.
-
-#### Workaround
-
-1. Login to the instance.
-2. Remove `app_protect_metadata.json`:
-
-   ```shell
-    sudo rm /etc/nms/app_protect_metadata.json
-    ```
-
-3. Restart the NGINX Agent:
-
-    ```shell
-    sudo systemctl restart nginx-agent
-    ```
-
----
-
-### {{% icon-resolved %}} When upgrading Instance Manager from v2.4 to later versions of Instance Manager, certificate associations are no longer visible. {#38641}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 38641    | Fixed in 2.7.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-When upgrading Instance Manager from 2.4 or earlier to 2.5 or later, certificates associated with an instance will no longer reflect the association. This does not impact the functioning of the data plane instance or usage of the certificate and key.
-
-#### Workaround
-
-Re-associate any certificates that no longer reflect the association. 
-
----
-
-### {{% icon-resolved %}} Missing dimension data for Advanced Metrics with modules {#38634}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 38634    | Fixed in 2.8.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-If you are using the NGINX Management Suite platform with the API Connectivity Manager module enabled, you may notice that several of the collected metrics are missing dimension data for `http.hostname`, `http.request_method`, `http.response_code`, and `http.uri`.
 
 ---
 
@@ -755,44 +633,6 @@ Unreferenced policy files may be removed manually from /etc/nms.
 
 ---
 
-### {{% icon-resolved %}} Publishing to an Instance/instance-group will fail when the configuration references a JSON policy or a JSON log profile  {#38357}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 38357    | Fixed in 2.8.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-Publishing to an Instance/instance-group might fail if nginx.conf references a JSON policy or a JSON log profile. NGINX App Protect directives that reference a Security Policy or a Log Profile expect a bundle (.tgz), not a JSON file.
-
-For example, a configuration similar to the following will fail:
-
-```nginx
-            location / {    
-                app_protect_enable on;                       
-                app_protect_policy_file /<path-to-config-dir-on-the-instance>/policy-name.json; 
-                app_protect_security_log_enable on;
-                app_protect_security_log /<path-to-config-dir-on-the-instance>/log-profile-name.json; 
-```
-
----
-
-### {{% icon-resolved %}} Null data count is not correctly represented in the NGINX Plus usage graph. {#38206}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 38206    | Fixed in 2.7.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-When there is no NGINX Plus instance reporting to NGINX Management Suite, but there was some in the past, the graph in the UI assumes the last reported value for those times. The GUI and API both report the Min as the lowest reported number and do not factor in periods where no instances were reported. Similarly, the average value is calculated only using reported values and ignores time periods where no instances are reported.
-
----
-
 ### {{% icon-bug %}} HTTP version schema returns incorrect value in Advanced metrics module {#38041}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
@@ -846,54 +686,6 @@ For example, in the NGINX App Protect WAF JSON declarative policy, these referen
 ---
 
 ## 2.5.0
-
-### {{% icon-resolved %}} The API Connectivity Manager module won't load if the Security Monitoring module is enabled {#39943}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 39943    | Fixed in 2.8.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-If you have Instance Manager 2.7 or earlier installed and attempt to enable both the API Connectivity Manager (ACM) and Security Monitoring (SM) modules on the same NGINX Management Suite management plane, the ACM module will not load because of incompatibility issues with the SM module.
-
-#### Workaround
-
-Before enabling the ACM and SM modules, ensure that your Instance Manager is upgraded to version 2.8 or later. Be sure to read the release notes for each module carefully, as they may contain important information about version dependencies.
-
-To see which version of Instance Manager you have installed, run the following command:
-
-- CentOS, RHEL, RPM-based:
-
-   ```bash
-   yum info nms-instance-manager
-   ```
-
-- Debian, Ubuntu, Deb-based:
-
-   ```bash
-   dpkg -s nms-instance-manager
-   ```
-
----
-
-### {{% icon-resolved %}} Instance Manager reports the NGINX App Protect WAF build number as the version {#37510}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 37510    | Fixed in 2.6.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-After installing NGINX App Protect WAF 3.12 on the data plane and enabling NAP status reporting for the NGINX Agent, Instance Manager reports the App Protect version as build-3.1088.1 instead of 3.12.
-
-This version mismatch does not affect system operations.
-
----
 
 ### {{% icon-bug %}} Aux data fails to upload if the size is greater than 3145728 characters {#37498}
 
@@ -955,59 +747,6 @@ Remove the existing NATs working directory and restart the NMS Data Plane Manage
 rm -rf /var/lib/nms/streaming
 systemctl restart nms-dpm
 ```
-
----
-
-### {{% icon-resolved %}} Instance Manager returns a "Download failed" error when editing an NGINX config for instances compiled and installed from source {#35851}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 35851    | Fixed in 2.7.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-When an NGINX instance is compiled and installed from source without a prefix, if you edit the instance's config in Instance Manager, the system reports an error similar to the following example:
-
-<pre>Error getting the NGINX instance configuration: failed to download the configuration. Check /var/log/nms/nms.log and nginx-agent logs for errors.</pre>
-
-#### Workaround
-
-To resolve or avoid this issue, take the following steps to [compile and install NGINX](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/#compiling-and-installing-from-source) from source with a prefix and restart the NGINX Agent:
-
-1. Stop the NGINX instance:
-
-    ```bash
-    sudo stop nginx
-    ```
-
-2. Locate the source code for the NGINX instance.
-
-3. Add a prefix:
-
-    ```bash
-    ./auto/configure --prefix=</path/to/nginx> --without-http_rewrite_module
-    ```
-
-4. Compile and install NGINX:
-
-    ```bash
-    sudo make install
-    ```
-
-5. Start NGINX:
-
-    ``` bash
-    cd </path/to/nginx/sbin/>
-    ./nginx
-    ```
-
-6. Restart the NGINX Agent:
-
-    ```bash
-    service nginx-agent restart
-    ```
 
 ---
 
@@ -1153,45 +892,8 @@ sudo systemctl restart nginx-agent
 
 ---
 
-### {{% icon-resolved %}} After upgrading to NGINX Instance Manager 2.1.0, the web interface reports timeouts when NGINX Agent configs are published {#32349}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 32349    | Fixed in 2.9.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-After upgrading to NGINX Instance Manager 2.1.0 from a package installation, the web interface reports timeouts when publishing NGINX Agent configs, although the updates are successfully published.
-
-#### Workaround
-
-To resolve these errors, restart the following NGINX Management Suite services after upgrading NGINX Instance Manager:
-
-```bash
-sudo systemctl restart nms-core
-sudo systemctl restart nms-dpm
-sudo systemctl restart nms-ingestion
-```
-
----
-
 ## 2.0.0
 
-### {{% icon-resolved %}} Scan does not update an unmanaged instance to managed {#37544}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 37544    | Fixed in 2.9.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-Unmanaged instances are reported when scanning your network for NGINX instances. When you install the NGINX Agent on an unmanaged instance and scan again, the NGINX instance is still shown as unmanaged.
-
----
 ### {{% icon-bug %}} NGINX App Protect WAF blocks Instance Manager from publishing configurations {#32718}
 
 {{<bootstrap-table "table table-striped table-bordered">}}

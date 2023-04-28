@@ -20,7 +20,7 @@ RUN apt-get update && \
     procps \
 # NGINX is included in the dockerfile here, can be modified as needed, this adds the OSS image by default.
     nginx \
-  && curl -k https://$CONTROL_PLANE_IP/install/nginx-agent | sh \
+  && curl https://$CONTROL_PLANE_IP/install/nginx-agent | sh -s -- --skip-verify false \
 # Forward request and error logs to docker log collector \
   && ln -sf /dev/stdout /var/log/nginx/access.log \
   && ln -sf /dev/stderr /var/log/nginx/error.log 

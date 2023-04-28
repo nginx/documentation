@@ -89,6 +89,8 @@ The following sizing recommendations are the minimum sizing guidelines for Insta
 
 {{< include "tech-specs/acm-nim-dependencies.md" >}}
 
+{{< important >}} If you're [installing API Connectivity Manager in an offline environment]({{< relref "installation/on-prem/offline-install-guide.md#install-acm-offline" >}}) and the minimum required version of Instance Manager is not installed, the API Connectivity Manager installer will exit. You'll need to [install Instance Manager manually]({{< relref "installation/on-prem/offline-install-guide.md#install-nim-offline" >}}) before installing API Connectivity Manager.{{< /important >}}
+
 ### ACM Supported NGINX Versions {#acm-supported-nginx}
 
 {{< include "tech-specs/acm-supported-nginx.md" >}}
@@ -98,6 +100,14 @@ The following sizing recommendations are the minimum sizing guidelines for Insta
 {{< include "tech-specs/acm-dev-portal-supported-distros.md" >}}
 
 ---
+
+## App Delivery Manager
+
+### Dependencies with Instance Manager
+
+{{< include "tech-specs/adm-nim-dependencies.md" >}}
+
+{{< important >}} If you're [installing App Delivery Manager in an offline environment]({{< relref "installation/on-prem/offline-install-guide.md" >}}) and the minimum required version of Instance Manager is not installed, the App Delivery Manager installer will exit. You'll need to [install Instance Manager manually]({{< relref "installation/on-prem/offline-install-guide.md#install-nim-offline" >}}) before installing App Delivery Manager.{{< /important >}}
 
 ## Security Monitoring Module {#security-monitoring}
 

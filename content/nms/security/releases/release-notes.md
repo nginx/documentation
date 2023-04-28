@@ -29,6 +29,24 @@ doctypes: ["reference"]
 
 ---
 
+## 1.4.0 {#1-4-0}
+
+April 26, 2023
+
+### What's New {#1-4-0-whats-new}
+
+- {{% icon-feature %}} **View violation context for requests in Event logs**
+
+  You can now view the request entity and its associated details that triggered a WAF violation from the event logs.
+
+### Changes in Default Behavior {#1-4-0-change-in-behavior}
+
+- {{% icon-feature %}} **Update to the Signature context pie chart**
+
+  The Signature context pie chart now shows information related to signature-based violations in requests and URIs, in addition to the already available header, parameter, and cookie information.
+
+---
+
 ## 1.3.0 {#1-3-0}
 
 March 21, 2023
@@ -132,7 +150,7 @@ This release includes the following updates:
   - Informative dashboards that provide valuable protection insights
   - In-depth security log details to help with analyzing possible threats and making policy decisions
 
-  Refer to the [Installation Guide]({{< relref "/admin-guides/installation/on-prem/install-guide.md" >}}) to get started.
+  Refer to the [Installation Guide]({{< relref "installation/on-prem/_index.md" >}}) to get started.
 
 ### Known Issues
 

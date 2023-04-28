@@ -35,7 +35,7 @@ To create a support package:
 1. Run the support package script. The script requires root privileges to run.
 
     ``` bash
-    sudo /etc/nms/scripts/support-package.sh
+    sudo bash /etc/nms/scripts/support-package.sh
     ```
 
     The support package is saved in the same location from where the script was run (if no `-t` argument is passed).
@@ -43,7 +43,7 @@ To create a support package:
     (Optional) If you use a different Instance Manager config file than the default `/etc/nms/nms.conf` file, run the support package script with the `-c` flag and specify the path to your config file:
 
       ```bash
-      sudo /etc/nms/scripts/support-package.sh -c /your/config.conf
+      sudo bash /etc/nms/scripts/support-package.sh -c /your/config.conf
       ```
 
 2. To extract the package, use the `tar` command:

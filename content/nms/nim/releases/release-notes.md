@@ -20,6 +20,86 @@ aliases:
 
 ---
 
+## 2.10.0
+
+April 26, 2023
+
+### Upgrade Paths {#2-10-0-upgrade-paths}
+
+Instance Manager 2.10.0 supports upgrades from these previous versions:
+
+- 2.7.0–2.9.0
+
+If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.{{</see-also>}}
+
+### What's New {#2-10-0-whats-new}
+
+This release includes the following updates:
+
+- {{% icon-feature %}} **New "Category" Filter in the Events web interface**
+
+  You can now filter entries in the Events web interface using a new "Category" filter. Categories for event entries include "Certs," "Instance Groups," and "Templates."
+
+- {{% icon-feature %}} **New NGINX Agent install flag for NGINX App Protect WAF**
+
+  The NGINX Agent installation script now has a flag to enable the default configuration required for NGINX App Protect WAF. It is used to retrieve the deployment status and `precompiled_publication` mode, with an option for the NGINX App Protect WAF instance to use the mode for policies.
+
+- {{% icon-feature %}} **NGINX Management Suite version now visible in the web interface and API**
+
+  You can now look up the NGINX Management Suite and NGINX Instance Manager versions in the web interface and API. Other module versions are also visible, though older versions of API Connectivity Manager and Security Monitoring may appear as undefined.
+
+- {{% icon-feature %}} **NGINX Management Suite can now use NGINX Ingress Controller to manage routing**
+
+  The NGINX Management Suite Helm Chart can now generate an NGINX Ingress Controller VirtualServer definition, which can be used to expose NGINX Management Suite when running in your Kubernetes cluster.  
+  
+  More about the VirtualServer custom resource can be found here: https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/
+
+- {{% icon-feature %}} **Configuration Publication Status now visible in App Security pages**
+
+  The most recent publication date and status for an instance's configuration is now visible on App Security Pages. This reflects configuration for NGINX, NGINX App Protect policies, Attack Signatures, and Threat Campaigns.
+
+- {{% icon-feature %}} **Instance Manager can now automatically retrieve WAF compilers associated with NGINX App Protect instances**
+
+  Using a user-provided NGINX repository certificate and key after the first setup of the WAF compiler, Instance Manager can automatically retrieve WAF compilers associated with NGINX App Protect instances. These can be used to publish App Protect WAF configurations in `precompiled_publication` mode.
+
+- {{% icon-feature %}} **Add option to toggle ICMP scanning in the web interface**
+
+  You can now explicitly enable or disable ICMP scanning at the top of the "Scan" interface.
+
+- {{% icon-feature %}} **New NGINX Agent install flag for Security Monitoring**
+
+  The NGINX Agent installation script now has a flag to enable the default configuration required for the Security Monitoring module.
+
+### Changes in Default Behavior {#2-10-0-changes-default-behavior}
+
+Instance Manager 2.10.0 has the following changes in default behavior:
+
+- {{% icon-feature %}} **Improvements to Role Based Access Control for SSL Certificate and Key management**
+
+  Role Based Access Control for SSL Certificate and Key management can now use three different objects for precise controls: certificates, systems, and instance groups. Using certificates as an object controls the viewing and assigning of specific certificate and key pairs. Using systems or instance groups allows a user to see all certificates but restricts access for publishing.
+
+- {{% icon-feature %}} **By default, NGINX Management Suite is not exposed to the internet when installed with a Helm Chart**
+
+  When NGINX Management Suite is installed using a Helm Chart, it now defaults to a ClusterIP without an external IP address.
+
+
+### Resolved Issues {#2-10-0-resolved-issues}
+
+This release fixes the following issues. Select an issue's ID link to view its details.
+
+- {{% icon-resolved %}} Installing NGINX Agent on FreeBSD fails with "error 2051: not implemented" [(41157)]({{< relref "nim/releases/known-issues.md#41157" >}})
+
+- {{% icon-resolved %}} SELinux errors encountered when starting NGINX Management Suite on RHEL9 with the SELinux policy installed [(41327)]({{< relref "nim/releases/known-issues.md#41327" >}})
+
+
+### Support for NGINX App Protect WAF
+
+{{< include "tech-specs/nim-app-protect-support.md" >}}
+
+---
+
 ## 2.9.1
 
 April 6, 2023
@@ -32,7 +112,7 @@ Instance Manager 2.9.1 supports upgrades from these previous versions:
 
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/admin-guides/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.{{</see-also>}}
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.{{</see-also>}}
 
 ### Resolved Issues {#2-9-1-resolved}
 
@@ -54,7 +134,7 @@ Instance Manager 2.9.0 supports upgrades from these previous versions:
 
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/admin-guides/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.{{</see-also>}}
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.{{</see-also>}}
 
 ### What's New {#2-9-0-whats-new}
 
@@ -167,17 +247,17 @@ Instance Manager 2.9.0 has the following changes in default behavior:
 
 This release fixes the following issues. Select an issue's ID link to view its details.
 
-- {{% icon-resolved %}} After upgrading to NGINX Instance Manager 2.1.0, the web interface reports timeouts when NGINX Agent configs are published ([32349]({{< relref "nim/releases/known-issues.md#32349" >}}))
+- {{% icon-resolved %}} After upgrading to NGINX Instance Manager 2.1.0, the web interface reports timeouts when NGINX Agent configs are published (32349)
 
-- {{% icon-resolved %}} The Type text on the Instances overview page may be partially covered by the Hostname text ([39760]({{< relref "nim/releases/known-issues.md#39760" >}}))
+- {{% icon-resolved %}} The Type text on the Instances overview page may be partially covered by the Hostname text (39760)
 
-- {{% icon-resolved %}} Scan does not update an unmanaged instance to managed ([37544]({{< relref "nim/releases/known-issues.md#37544" >}}))
+- {{% icon-resolved %}} Scan does not update an unmanaged instance to managed (37544)
 
-- {{% icon-resolved %}} To publish security policies with Instance Manager, set the "precompiled_publication" parameter to "true" in the `nginx-agent.conf` file ([39614]({{< relref "nim/releases/known-issues.md#39614" >}}))
+- {{% icon-resolved %}} To publish security policies with Instance Manager, set the "precompiled_publication" parameter to "true" in the `nginx-agent.conf` file (39614)
 
-- {{% icon-resolved %}} App Protect: "Assign Policy and Signature Versions" webpage may not initially display newly added policies ([40085]({{< relref "nim/releases/known-issues.md#40085" >}}))
+- {{% icon-resolved %}} App Protect: "Assign Policy and Signature Versions" webpage may not initially display newly added policies (40085)
 
-- {{% icon-resolved %}} Upgrading NGINX Management Suite may remove the OIDC configuration for the platform ([41328]({{< relref "nim/releases/known-issues.md#41328" >}}))
+- {{% icon-resolved %}} Upgrading NGINX Management Suite may remove the OIDC configuration for the platform (41328)
 
 ### Known Issues {#2-9-0-known-issues}
 
@@ -211,7 +291,7 @@ Instance Manager 2.8.0 supports upgrades from these previous versions:
 
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/admin-guides/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 
 If you're running Instance Manager 1.0 or earlier, follow the steps in the [Migration Guide]({{< relref "/nim/migration-guide.md" >}}) to migrate your system to Instance Manager 2.0. Direct upgrades from Instance Manager 1.0 and earlier are not supported.{{< /see-also >}}
 
@@ -237,7 +317,7 @@ Instance Manager 2.8.0 has the following changes in default behavior:
 
 - {{% icon-feature %}} **Switching between storing secrets on disk and using Vault migrates secrets**
 
-  When transitioning between storing secrets on disk or using HashiCorp Vault, any existing secrets can be easily migrated to the new storage method. For instructions, refer to the guide [Configure Vault for Storing Secrets]({{< relref "admin-guides/getting-started/configure-vault.md" >}}).
+  When transitioning between storing secrets on disk or using HashiCorp Vault, any existing secrets can be easily migrated to the new storage method. For instructions, refer to the guide [Configure Vault for Storing Secrets]({{< relref "admin-guides/configuration/configure-vault.md" >}}).
 
 - {{% icon-feature %}} **Create roles using either an object name or UID**
 
@@ -304,7 +384,7 @@ Instance Manager 2.7.0 supports upgrades from the following versions:
 
 If you are using an older version of Instance Manager, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/admin-guides/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 ### What's New
@@ -365,7 +445,7 @@ Instance Manager 2.6.0 supports upgrades from the following versions:
 
 If you are using an older version of Instance Manager, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/admin-guides/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 ### What's New
@@ -442,7 +522,7 @@ Instance Manager 2.5.1 supports direct upgrades from the following versions:
 
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/admin-guides/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 
 If you're running Instance Manager 1.x or earlier, follow the steps in the [Migration Guide]({{< relref "/nim/migration-guide.md" >}}) to migrate your system to Instance Manager 2.x. Direct upgrades from Instance Manager 1.x and earlier are not supported.{{< /see-also >}}
 
@@ -470,7 +550,7 @@ Instance Manager 2.5.0 supports direct upgrades from the following versions:
 
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/admin-guides/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 
 If you're running Instance Manager 1.x or earlier, follow the steps in the [Migration Guide]({{< relref "/nim/migration-guide.md" >}}) to migrate your system to Instance Manager 2.x. Direct upgrades from Instance Manager 1.x and earlier are not supported.{{< /see-also >}}
 
@@ -484,7 +564,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **New helm charts for each release of Instance Manager**
 
-  Each release of Instance Manager now includes a Helm chart, which you can use to easily [install Instance Manager on Kubernetes]({{< relref "admin-guides/installation/kubernetes/nms-helm.md" >}}). You can download the helm charts from [MyF5](https://my.f5.com/manage/s/downloads).
+  Each release of Instance Manager now includes a Helm chart, which you can use to easily [install Instance Manager on Kubernetes]({{< relref "installation/kubernetes/nms-helm.md" >}}). You can download the helm charts from [MyF5](https://my.f5.com/manage/s/downloads).
 
 ### Resolved Issues
 
@@ -516,7 +596,7 @@ Instance Manager 2.4.0 supports direct upgrades from the following versions:
 
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/admin-guides/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 
 If you're running Instance Manager 1.x or earlier, follow the steps in the [Migration Guide]({{< relref "/nim/migration-guide.md" >}}) to migrate your system to Instance Manager 2.x. Direct upgrades from Instance Manager 1.x and earlier are not supported.{{< /see-also >}}
 
@@ -565,7 +645,7 @@ Instance Manager 2.3.1 supports direct upgrades from the following versions:
 
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/admin-guides/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 
 If you're running Instance Manager 1.x or earlier, follow the steps in the [Migration Guide]({{< relref "/nim/migration-guide.md" >}}) to migrate your system to Instance Manager 2.x. Direct upgrades from Instance Manager 1.x and earlier are not supported.{{< /see-also >}}
 
@@ -597,7 +677,7 @@ Instance Manager 2.3.0 supports direct upgrades from the following versions:
 
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/admin-guides/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 
 If you're running Instance Manager 1.x or earlier, follow the steps in the [Migration Guide]({{< relref "/nim/migration-guide.md" >}}) to migrate your system to Instance Manager 2.x. Direct upgrades from Instance Manager 1.x and earlier are not supported.{{< /see-also >}}
 
@@ -670,7 +750,7 @@ Instance Manager 2.2.0 supports direct upgrades from the following versions:
 
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/admin-guides/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 
 If you're running Instance Manager 1.x or earlier, follow the steps in the [Migration Guide]({{< relref "/nim/migration-guide.md" >}}) to migrate your system to Instance Manager 2.x. Direct upgrades from Instance Manager 1.x and earlier are not supported.{{< /see-also >}}
 
@@ -707,7 +787,7 @@ Instance Manager 2.2.0 has the following changes in default behavior:
 
 - {{% icon-feature %}} **Viewing events requires a valid license**
 
-  A valid license is needed to view events using the Instance Manager REST API or web interface. See [Add a License]({{< relref "/admin-guides/getting-started/add-license.md" >}}) for instructions on how to get and add a license.
+  A valid license is needed to view events using the Instance Manager REST API or web interface. See [Add a License]({{< relref "/installation/add-license.md" >}}) for instructions on how to get and add a license.
 
 ### Resolved Issues
 
@@ -737,7 +817,7 @@ Instance Manager 2.1.0 supports direct upgrades from the following versions:
 
 - 2.0.0–2.0.1
 
-{{< see-also >}}See the [Upgrade Guide]({{< relref "/admin-guides/installation/upgrade-guide.md" >}}) for important information and steps that you must review and follow when upgrading Instance Manager and the NGINX Agent.
+{{< see-also >}}See the [Upgrade Guide]({{< relref "installation/upgrade-guide.md" >}}) for important information and steps that you must review and follow when upgrading Instance Manager and the NGINX Agent.
 
 If you're running Instance Manager 1.x or earlier, follow the steps in the [Migration Guide]({{< relref "/nim/migration-guide.md" >}}) to migrate your system to Instance Manager 2.x. Direct upgrades from Instance Manager 1.x and earlier are not supported.{{< /see-also >}}
 
@@ -751,7 +831,7 @@ This release includes the following new features and enhancements:
 
   If you have multiple Docker containers on your data plane host, each container registers with Instance Manager as unique.
 
-  Refer to the [NGINX Agent Docker Support]({{< relref "/nginx-agent/nginx-agent-docker-support.md" >}}) guide for details.
+  Refer to the [NGINX Agent Docker Support]({{< relref "/nginx-agent/nginx-agent-in-container.md" >}}) guide for details.
 
   {{< note >}}Containerizing the NGINX Agent is supported only with Docker at the moment. Look for additional container support in future releases of Instance Manager.{{< /note >}}
 
@@ -767,7 +847,7 @@ This release includes the following new features and enhancements:
 
   Among the benefits of deploying from a helm chart, the chart includes the required services, which you can scale independently as needed; upgrades can be done with a single helm command; and there's no requirement for root privileges.
 
-  For instructions, see [Install from a Helm Chart]({{< relref "/admin-guides/installation/kubernetes/nms-helm.md" >}}).
+  For instructions, see [Install from a Helm Chart]({{< relref "installation/kubernetes/nms-helm.md" >}}).
 
 - {{% icon-feature %}} **Improved certificate handling**
 

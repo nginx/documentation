@@ -31,7 +31,7 @@ aliases:
 
 This section lists the prerequisites for installing and configuring NGINX Agent. Follow the steps below to complete the requirements:
 
-1. [Instance Manager is installed on a server]({{< relref "/admin-guides/installation/on-prem/install-guide.md" >}}).
+1. [Instance Manager is installed on a server]({{< relref "installation/on-prem/_index.md" >}}).
 
     {{<note>}} When installing and configuring Instance Manager, take note of the fully qualified domain name (FQDN) and gRPC port number. You'll need this information to properly configure the NGINX Agent to communicate with Instance Manager.
     {{</note>}}

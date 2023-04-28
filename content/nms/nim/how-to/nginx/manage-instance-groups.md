@@ -38,7 +38,7 @@ You can easily manage multiple NGINX instances as a single entity by creating an
 
 To complete the instructions in this guide, you need the following:
 
-- An installed version of [Instance Manager]({{< relref "/admin-guides/installation/on-prem/install-guide.md" >}})
+- An installed version of [Instance Manager]({{< relref "installation/on-prem/_index.md" >}})
 - One or more NGINX data plane instances
 
 ---

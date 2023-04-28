@@ -1,7 +1,7 @@
 ---
-title: NGINX Application Delivery Manager
-weight: 700
-draft: true
+title: App Delivery Manager
+weight: 650
+draft: false
 aliases:
   - /nginx-app-delivery-manager/
 ---

@@ -1,4 +1,4 @@
-The NGINX Management Suite gateway supports the following Linux distributions:
+NGINX Management Suite supports the following Linux distributions:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Distribution | Version                                                                                                   | Architecture                   | Instance Manager                                          | ACM                                                       | Notes                                                                                                                                           |

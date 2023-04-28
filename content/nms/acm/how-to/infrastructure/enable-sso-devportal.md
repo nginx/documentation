@@ -47,7 +47,7 @@ Single sign-on is enabled by applying an OpenID Connect (OIDC) policy on the Dev
 
 Complete the following prerequisites before proceeding with this guide:
 
-- ACM is installed, licensed, and running. See [ACM Install Guide]({{< relref "/admin-guides/installation/on-prem/install-guide.md" >}}).
+- ACM is installed, licensed, and running. See [ACM Install Guide]({{< relref "installation/on-prem/_index.md" >}}).
 - You have one or more Environments with [API Gateways]({{< relref "/acm/getting-started/add-api-gateway" >}}) or [Developer Portals]({{< relref "/acm/getting-started/add-devportal" >}}).
 
 ### Terminology

@@ -31,6 +31,7 @@ As we add new metrics, we'll let you know in the [ACM release notes]({{< relref 
 
 To complete the instructions in this guide, you need the following:
 
+- Install and configure the [Metrics Module]({{< relref "nginx-agent/install-nginx-plus-advanced-metrics.md" >}}) on each NGINX Plus instance.
 - Access to a virtual environment
 - Four virtual hosts with Linux installed — this guide uses [Ubuntu 20.04 LTS](https://releases.ubuntu.com/focal/).
 
@@ -40,8 +41,6 @@ To complete the instructions in this guide, you need the following:
    {{< include "tech-specs/nms-supported-distros.md" >}}
 
    </details>
-
- {{<comment>}}It looks like you have to install both Go and Echo Server. Are there minimum requirements for these? Do we need to explain why these extra apps are needed? Customers installing in Prod might wonder, and they might even need to get approval to install them.{{</comment>}}
 
 ---
 
@@ -59,7 +58,7 @@ This section configures the hosts used in this tutorial. In the following table,
 
 ### Install NGINX Management Suite & API Connectivity Manager {#install-nsm-acm}
 
-Follow the steps in the [Installation Guide]({{< relref "/admin-guides/installation/on-prem/install-guide" >}}) to set up NGINX Management Suite and ACM. You do not need to configure a Developer Portal for this tutorial.
+Follow the steps in the [Installation Guide]({{< relref "installation/on-prem/_index.md" >}}) to set up NGINX Management Suite and ACM. You do not need to configure a Developer Portal for this tutorial.
 
 ### Install NGINX Agent on Data Plane Host {#install-agent}
 
@@ -244,3 +243,28 @@ Response
 ```json
     1
 ```
+---
+
+## Disable Metrics
+
+To disable the metrics in the `nginx.conf`, follow these steps: 
+
+1. Open `/etc/nms/nginx/locations/nms-acm.conf` for editing.
+2. Locate and uncomment the following line, and a change the value to `false`:
+
+   ``` yaml
+   #enable_metrics = true
+   ```
+
+   For example:
+
+   ```yaml
+   enable_metrics = false
+   ```
+
+3. Save the changes.
+4. Restart API Connectivity Manager:
+
+   ```shell
+   sudo systemctl restart nms-acm
+   ```

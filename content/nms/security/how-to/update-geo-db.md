@@ -39,7 +39,7 @@ By completing the steps in this topic, you will be able to update the Security M
 
 Complete the following prerequisites before proceeding with this guide: 
 
-- NGINX Management Suite Security Monitoring is [installed]({{< relref "/admin-guides/installation/on-prem/install-guide#install-nms-modules" >}}) and running. 
+- NGINX Management Suite Security Monitoring is [installed]({{< relref "installation/on-prem/_index.md#install-nms-modules" >}}) and running. 
 - NGINX App Protect is configured, and the Security Monitoring dashboard is gathering security violations
 
 ## How to update Geolocation Database
