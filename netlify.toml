@@ -22,14 +22,34 @@
   publish = "public"
 
 [[redirects]]
+  from = "/nginx-app-protect-dos/"
+  to = "/nap-dos/"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/nginx-app-protect-waf/"
+  to = "/nap-waf/"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/nginx-controller/"
+  to = "/controller/"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/nginx-management-suite/"
   to = "/nms/"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/nginx-waf/"
   to = "/modsec-waf/"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/*"
