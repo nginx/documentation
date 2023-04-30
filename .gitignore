@@ -1,5 +1,5 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
+.DS_Store
 # dependencies
 
 # testing
@@ -17,3 +17,17 @@
 
 # watchdocs
 watchdocs.json
+
+# Local Hugo artifacts
+public/*
+.hugo_build.lock
+*.orig
+
+# Local development artifacts
+.vscode/*
+.markdownlint.json
+.idea/*
+content/.idea/*
+
+# Local Netlify artifacts
+.netlify/plugins/*

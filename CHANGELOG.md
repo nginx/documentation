@@ -1,6 +1,5 @@
 # Changelog
-<!-- markdownlint-disable -->
 
-## 1.0.0 (Month Date, Year)
+## 0.1.0 (Apr 30, 2023)
 
-Initial release of the NGINX template repository.
+This is the initial version of the NGINX documentation repo.
