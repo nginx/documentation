@@ -158,7 +158,7 @@ This section explains how to upgrade the Developer Portal using a Linux package 
 </details>
 
 <details>
-<summary>Upgrade DevPortal in an offline environment</summary>
+<summary>Upgrade Developer Portal in an offline environment</summary>
 
 #### Upgrade the Developer Portal Offline {#upgrade-acm-dev-portal-offline}
 

@@ -109,7 +109,7 @@ A valid license is required in order to use all of the features in Instance Mana
 
 ## Set Up the Data Plane
 
-To manage your data plane with NGINX Management Suite, complete the following tasks:
+Complete the following steps for each data plane instance you want to manage using Instance Manager:
 
 - [Install NGINX OSS or NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/) on your data plane instances.
 - [Install the NGINX Agent]({{< relref "nginx-agent/install-nginx-agent.md" >}}) on your data plane instances to register them with NGINX Management Suite.

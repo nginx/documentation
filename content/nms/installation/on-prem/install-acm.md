@@ -109,11 +109,11 @@ A valid license is required in order to use the API Connectivity Manager.
 
 API Connectivity Manager requires one or more data plane hosts for the API Gateway.
 
-On each data plane host, install the following requirements:
+Complete the following steps for each data plane instance you want to use with API Connectivity Manager:
 
-- [NGINX Plus R24 or later](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/)
-
-- [NGINX njs module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/nginscript/)
+1. [Install NGINX Plus R24 or later](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/)
+2. [Install NGINX njs module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/nginscript/)
+3. [Install the NGINX Agent]({{< relref "nginx-agent/install-nginx-agent.md" >}}) on your data plane instances to register them with NGINX Management Suite.
 
 <details open>
 <summary><i class="fa-solid fa-circle-info"></i> Supported Linux distributions</summary>
@@ -128,16 +128,14 @@ On each data plane host, install the following requirements:
 
 Follow the steps in this section to install the Developer Portal.
 
-### Prerequisites
-
-#### Platform Requirements {#acm-devportal-requirements}
+### Platform Requirements {#acm-devportal-requirements}
 
 {{<important>}}To run the Developer Portal, you need a **dedicated** Linux host specifically for this purpose. **Do not** install the Developer Portal on a host that is currently serving as a management or data plane.{{</important>}}
 
-On the Developer Portal host, install the following requirements:
+Complete the following steps to prepare the Developer Portal for use with API Connectivity Manager:
 
-- [NGINX Plus R24 or later](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/)
-- [NGINX njs module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/nginscript/)
+1. [Install NGINX Plus R24 or later](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/)
+2. [Install NGINX njs module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/nginscript/)
 
 <details open>
 <summary><i class="fa-solid fa-circle-info"></i> Supported Linux distributions</summary>
@@ -148,11 +146,11 @@ On the Developer Portal host, install the following requirements:
 
 <br>
 
-#### Add NGINX Management Suite Repository {#add-yum-apt}
+### Add NGINX Management Suite Repository {#add-yum-apt}
 
 {{< include "installation/add-nms-repo.md" >}}
 
-#### Install PostgreSQL or SQLite
+### Install PostgreSQL or SQLite
 
 The Developer Portal requires a PostgreSQL or SQLite database to store configuration settings and analytics information.
 
@@ -275,3 +273,7 @@ echo 'DB_PATH="/var/lib/nginx-devportal"' | sudo tee -a /etc/nginx-devportal/dev
 
 - [Install App Delivery Manager]({{< relref "installation/on-prem/install-adm.md" >}})
 - [Install Security Monitoring]({{< relref "installation/on-prem/install-security-monitoring.md" >}})
+
+### Get Started with API Connectivity Manager
+
+- [Create Workspaces and Environments for your API Infrastructure]({{< relref "acm/how-to/infrastructure/manage-api-infrastructure.md" >}})
