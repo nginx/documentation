@@ -1,0 +1,587 @@
+---
+title: "Manage WAF Security Policies"
+date: 2022-12-15T21:43:51-07:00
+# Change draft status to false to publish doc.
+draft: false
+# Description
+# Add a short description (150 chars) for the doc. Include keywords for SEO. 
+# The description text appears in search results and at the top of the doc.
+description: "Learn how to use NGINX Management Suite Instance Manager to manage NGINX App Protect WAF security policies."
+# Assign weights in increments of 100
+weight: 200
+toc: true
+tags: [ "docs" ]
+# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
+docs: "DOCS-1105"
+# Taxonomies
+# These are pre-populated with all available terms for your convenience.
+# Remove all terms that do not apply.
+categories: [ "security" ]
+doctypes: ["task"]
+
+---
+
+{{<custom-styles>}}
+
+## Overview
+
+With the Instance Manager browser interface or REST API, you can easily manage, update, and deploy security policies, attack signatures, and threat campaigns to your NGINX App Protect WAF instances.
+
+---
+
+## Before You Begin
+
+Complete the following prerequisites before proceeding with this guide:
+
+- [Set Up App Protect WAF Configuration Management]({{< relref "setup-waf-config-management" >}})
+- Verify that your user account has the [necessary permissions]({{< relref "admin-guides/access-control/set-up-rbac.md" >}}) to access the Instance Manager REST API:
+
+  - **Module**: Instance Manager
+  - **Feature**: Instance Management
+  - **Access**: `READ`
+  - **Feature**: Security Policies
+  - **Access**: `READ`, `CREATE`, `UPDATE`, `DELETE`
+
+### How to Access the Web Interface
+
+{{< include "nim/how-to-access-nim-ui.md" >}}
+
+### How to Access the REST API
+
+{{< include "nim/how-to-access-nim-api.md" >}}
+
+---
+
+
+## Create a Security Policy {#create-security-policy}
+
+{{<tabs name="create-security-policy">}}
+
+{{%tab name="web interface"%}}
+
+<br>
+
+To create a security policy using the Instance Manager web interface:
+
+1. Go to the FQDN for your NGINX Management Suite host in a web browser and log in. Then, from the Launchpad menu, select **Instance Manager**.
+2. On the left menu, select **App Protect**.
+3. On the *Security Policies* page, select **Create**.
+4. On the *Create Policy* page, fill out the necessary fields:
+
+   - **Name**: Provide a name for the policy.
+   - **Description**: (Optional) Add a short description for the policy.
+   - **Enter Policy**: Type or paste the policy in JSON format into the form provided. The editor will validate the JSON for accuracy.
+
+      For more information about creating custom policies, refer to the [NGINX App Protect WAF Declarative Policy](https://docs.nginx.com/nginx-app-protect/declarative-policy/policy/) guide and the [Policy Authoring and Tuning](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#policy-authoring-and-tuning) section of the config guide.
+
+5. Select **Save**.
+
+{{%/tab%}}
+
+{{%tab name="API"%}}
+
+To upload a new security policy, send an HTTP `POST` request to the Security Policies API endpoint.
+
+{{<important>}}Before sending a security policy to Instance Manager, you need to encode it using `base64`. Submitting a policy in its original JSON format will result in an error.{{</important>}}
+
+<br>
+
+{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+{{<bootstrap-table "table">}}
+| Method | Endpoint                             |
+|--------|--------------------------------------|
+| POST   | `/api/platform/v1/security/policies` |
+
+{{</bootstrap-table>}}
+{{< raw-html>}}</div>{{</raw-html>}}
+
+For example:
+
+``` shell
+curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/policies \
+    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz" \
+    -d @ignore-xss-example.json
+```
+
+<details open>
+<summary>JSON Request</summary>
+
+```json
+{
+  "metadata": {
+    "name": "ignore-cross-site-scripting",
+    "displayName": "Ignore cross-site scripting",
+    "description": "Ignore cross-site scripting is a security policy that intentionally ignores cross site scripting."
+  },
+  "content": "ewoJInBvbGljeSI6IHsKCQkibmFtZSI6ICJzaW1wbGUtYmxvY2tpbmctcG9saWN5IiwKCQkic2lnbmF0dXJlcyI6IFsKCQkJewoJCQkJInNpZ25hdHVyZUlkIjogMjAwMDAxODM0LAoJCQkJImVuYWJsZWQiOiBmYWxzZQoJCQl9CgkJXSwKCQkidGVtcGxhdGUiOiB7CgkJCSJuYW1lIjogIlBPTElDWV9URU1QTEFURV9OR0lOWF9CQVNFIgoJCX0sCgkJImFwcGxpY2F0aW9uTGFuZ3VhZ2UiOiAidXRmLTgiLAoJCSJlbmZvcmNlbWVudE1vZGUiOiAiYmxvY2tpbmciCgl9Cn0="
+}
+```
+
+</details>
+
+<details open>
+<summary>JSON Response</summary>
+
+```json
+{
+  "metadata": {
+    "created": "2022-04-10T23:19:58.502Z",
+    "description": "string",
+    "displayName": "Ignore cross-site scripting",
+    "modified": "2022-04-12T23:19:58.502Z",
+    "name": "ignore-cross-site-scripting",
+    "revisionTimestamp": "2022-04-12T23:19:58.502Z",
+    "uid": "21daa130-4ba4-442b-bc4e-ab294af123e5"
+  },
+  "selfLink": {
+    "rel": "/api/platform/v1/services/environments/prod"
+  }
+}
+```
+
+{{%/tab%}}
+
+{{</tabs>}}
+
+---
+## Update a Security Policy
+
+{{<tabs name="update-security-policy">}}
+
+{{%tab name="API"%}}
+
+To update a security policy, send an HTTP `POST` request to the Security Policies API endpoint, `/api/platform/v1/security/policies`.
+
+You can use the optional `isNewRevision` parameter to indicate whether the updated policy is a new version of an existing policy.
+
+{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+{{<bootstrap-table "table">}}
+| Method | Endpoint                                                |
+|--------|---------------------------------------------------------|
+| POST   | `/api/platform/v1/security/policies?isNewRevision=true` |
+| PUT    | `/api/platform/v1/security/policies/{system_id_string}` |
+
+{{</bootstrap-table>}}
+{{< raw-html>}}</div>{{</raw-html>}}
+
+For example:
+
+``` shell
+curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/policies?isNewRevision=true \
+    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz" \
+    -d @update-xss-policy.json
+```
+
+You can update a specific policy by sending an HTTP `PUT` request to the Security Policies API endpoint that includes the policy's unique identifier (UID). 
+
+To find the UID, send an HTTP `GET` request to the Security Policies API endpoint. This returns a list of all Security Policies that contains the unique identifier for each policy.
+
+Include the UID for the security policy in your `PUT` request to update the policy. Once the policy update is accepted, the WAF compiler will create a new, updated bundle.
+
+For example:
+
+``` shell
+curl -X PUT https://{{NMS_FQDN}}/api/platform/v1/security/policies/23139e0a-4ac8-49f9-b7a0-0577b42c70c7 \
+    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz" \
+    --Content-Type application/json -d @update-xss-policy.json
+```
+
+After you have pushed an updated security policy, you can [publish it](#publish-policy) to selected instances or instance groups.
+
+{{%/tab%}}
+
+{{</tabs>}}
+
+---
+
+## Delete a Security Policy
+
+{{<tabs name="delete-security-policy">}}
+
+{{%tab name="web interface"%}}
+
+<br>
+
+To delete a security policy using the Instance Manager web interface:
+
+1. Go to the FQDN for your NGINX Management Suite host in a web browser and log in. Then, from the Launchpad menu, select **Instance Manager**.
+2. On the left menu, select **App Protect**.
+3. On the *Security Policies* page, select the **Actions** menu (represented by an ellipsis, **...**) for the policy you want to delete. Select **Delete** to remove the policy.
+
+{{%/tab%}}
+
+{{%tab name="API"%}}
+
+To delete a security policy, send an HTTP `DELETE` request to the Security Policies API endpoint that includes the unique identifier for the policy that you want to delete.
+
+{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+{{<bootstrap-table "table">}}
+| Method | Endpoint                                                   |
+|--------|------------------------------------------------------------|
+| DELETE | `/api/platform/v1/security/policies/{security-policy-uid}` |
+{{</bootstrap-table>}}
+{{< raw-html>}}</div>{{</raw-html>}}
+
+For example:
+
+``` shell
+curl -X DELETE https://{{NMS_FQDN}}/api/platform/v1/security/policies/23139e0a-4ac8-49f9-b7a0-0577b42c70c7 \
+    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz
+```
+
+{{%/tab%}}
+
+{{</tabs>}}
+
+{{%comment%}}TO DO: Add sections for managing attack signatures and threat campaigns{{%/comment%}}
+
+---
+
+## Publish Updates to Instances {#publish-policy}
+
+{{<tabs name="publish-policy-updates">}}
+
+{{%tab name="API"%}}
+
+The Publish API lets you distribute security policies, attack signatures, and/or threat campaigns to instances and instance groups.
+
+{{<tip>}}Use this endpoint *after* you've added or updated security policies, attack signatures, and/or threat campaigns.{{</tip>}}
+
+{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+{{<bootstrap-table "table">}}
+| Method | Endpoint                            |
+|--------|-------------------------------------|
+| POST   | `/api/platform/v1/security/publish` |
+
+{{</bootstrap-table>}}
+{{< raw-html>}}</div>{{</raw-html>}}
+
+When making a request to the Publish API, make sure to include all the necessary information for your specific use case:
+
+- Instance and/or Instance Group UID(s) to push the bundle to
+- Threat Campaign version and UID
+- Attack Signature version and UID
+- Security Policy UID(s)
+
+For example:
+
+``` shell
+curl -X PUT https://{{NMS_FQDN}}/api/platform/v1/security/publish -H "Authorization: Bearer xxxxx.yyyyy.zzzzz"
+```
+
+<details open>
+<summary>JSON Request</summary>
+
+```json
+{
+  "publications": [
+    {
+      "attackSignatureLibrary": {
+        "uid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "versionDateTime": "2022.10.02"
+      },
+      "instanceGroups": [
+        "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+      ],
+      "instances": [
+        "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+      ],
+      "policyContent": {
+        "name": "default-enforcement",
+        "uid": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+      },
+      "threatCampaign": {
+        "uid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "versionDateTime": "2022.10.01"
+      }
+    }
+  ]
+}
+```
+
+</details>
+
+<details open>
+<summary>JSON Response</summary>
+
+```json
+{
+  "deployments": [
+    {
+      "deploymentUID": "ddc781ca-15d6-46c9-86ea-e7bdb91e8dec",
+      "links": {
+        "rel": "/api/platform/v1/security/deployments/ddc781ca-15d6-46c9-86ea-e7bdb91e8dec"
+      },
+      "result": "Publish security content request Accepted"
+    }
+  ]
+}
+```
+
+</details>
+
+{{%/tab%}}
+
+{{</tabs>}}
+
+---
+
+## Check Security Policy Publication Status
+When publishing an NGINX configuration that references a security policy, the Instance Manager REST APIs can provide further details about the status of the configuration publications. To access this information, use the Instance Manager API endpoints and method as indicated.
+
+To retrieve the details for the different configuration publication statuses for a particular security policy, send an HTTP `GET` request to the Security Deployments Associations API endpoint, providing the name of the security policy.
+
+| Method | Endpoint                                                                    |
+|--------|-----------------------------------------------------------------------------|
+| GET    | `/api/platform/v1/security/deployments/associations/{security-policy-name}` |
+
+You can locate the configuration publication status in the response within the field `lastDeploymentDetails` for instances and instance groups:
+
+- `lastDeploymentDetails` (for an instance): associations -> instance -> lastDeploymentDetails
+- `lastDeploymentDetails` (for an instance in an instance group): associations -> instanceGroup -> instances -> lastDeploymentDetails
+
+The example below shows a call to the `security deployments associations` endpoint and the corresponding JSON response containing successful deployments.
+
+``` shell
+curl -X GET "https://{NGINX-INSTANCE-MANAGER-FQDN}/api/platform/v1/security/deployments/associations/ignore-xss" -H "Authorization: Bearer xxxxx.yyyyy.zzzzz"
+```
+
+<details close>
+<summary>JSON Response</summary>
+
+```json
+{
+  "associations": [
+    {
+      "attackSignatureLibrary": {
+        "uid": "c69460cc-6b59-4813-8d9c-76e4a6c56b4b",
+        "versionDateTime": "2023.02.16"
+      },
+      "instance": {
+        "hostName": "ip-172-16-0-99",
+        "lastDeploymentDetails": {
+          "createTime": "2023-04-11T21:36:11.519174534Z",
+          "details": {
+            "failure": [],
+            "pending": [],
+            "success": [
+              {
+                "name": "ip-172-16-0-99"
+              }
+            ]
+          },
+          "id": "19cf5ed4-29d6-4139-b5f5-308c0d0ebb13",
+          "message": "Instance config successfully published to",
+          "status": "successful",
+          "updateTime": "2023-04-11T21:36:14.008108979Z"
+        },
+        "systemUid": "0435a5de-41c1-3754-b2e8-9d9fe946bafe",
+        "uid": "29d86fe8-612a-5c69-895a-04fc5b9849a6"
+      },
+      "instanceGroup": {
+        "displayName": "inst_group_1",
+        "instances": [
+          {
+            "hostName": "hostname1",
+            "systemUid": "49d143c2-f556-4cd7-8658-76fff54fb861",
+            "uid": "c8e15dcf-c504-4b7f-b52d-def7b8fd2f64",
+            "lastDeploymentDetails": {
+              "createTime": "2023-04-11T21:36:11.519174534Z",
+              "details": {
+                "failure": [],
+                "pending": [],
+                "success": [
+                  {
+                    "name": "ip-172-16-0-99"
+                  }
+                ]
+              },
+              "id": "19cf5ed4-29d6-4139-b5f5-308c0d0ebb13",
+              "message": "Instance config successfully published to",
+              "status": "successful",
+              "updateTime": "2023-04-11T21:36:14.008108979Z"
+            },
+          },
+          {
+            "hostName": "hostname2",
+            "systemUid": "88a99ab0-15bb-4719-9107-daf5007c33f7",
+            "uid": "ed7e9173-794f-41af-80d9-4ed37d593247",
+            "lastDeploymentDetails": {
+              "createTime": "2023-04-11T21:36:11.519174534Z",
+              "details": {
+                "failure": [],
+                "pending": [],
+                "success": [
+                  {
+                    "name": "ip-172-16-0-99"
+                  }
+                ]
+              },
+              "id": "19cf5ed4-29d6-4139-b5f5-308c0d0ebb13",
+              "message": "Instance config successfully published to",
+              "status": "successful",
+              "updateTime": "2023-04-11T21:36:14.008108979Z"
+            },
+          }
+        ],
+        "uid": "51f8addc-c0e9-438b-b0b6-3e4f1aa8202d"
+      },
+      "policyUid": "9991f237-d9c7-47b7-98aa-faa836838f38",
+      "policyVersionDateTime": "2023-04-11T21:18:19.183Z",
+      "threatCampaign": {
+        "uid": "eab683fe-c2f1-4910-a88c-8bfbc6363164",
+        "versionDateTime": "2023.02.15"
+      }
+    }
+  ]
+}
+```
+
+</details>
+
+To retrieve the configuration publication status details for a particular instance, send an HTTP `GET` request to the Instances API endpoint, providing the unique system and instance identifiers.
+
+| Method | Endpoint                                                        |
+|--------|-----------------------------------------------------------------|
+| GET    | `/api/platform/v1/systems/{system-uid}/instances/{instance-id}` |
+
+You can locate the configuration publication status in the the response within the `lastDeploymentDetails` field, which contains additional fields that provide more context around the status.
+
+The example below shows a call to the `instances` endpoint and the corresponding JSON response containing a compiler related error message.
+
+``` shell
+curl -X GET "https://{NGINX-INSTANCE-MANAGER-FQDN}/api/platform/v1/systems/b9df6377-2c4f-3266-a64a-e064b0371c73/instances/5663cf4e-a0c7-50c8-b93c-16fd11a0f00b" -H "Authorization: Bearer xxxxx.yyyyy.zzzzz"
+```
+
+<details close>
+<summary>JSON Response</summary>
+
+```json
+{
+  "build": {
+    "nginxPlus": true,
+    "release": "nginx-plus-r28",
+    "version": "1.23.2"
+  },
+  "configPath": "/etc/nginx/nginx.conf",
+  "configVersion": {
+    "instanceGroup": {
+      "createTime": "0001-01-01T00:00:00Z",
+      "uid": "",
+      "versionHash": ""
+    },
+    "versions": [
+      {
+        "createTime": "2023-01-14T10:48:46.319Z",
+        "uid": "5663cf4e-a0c7-50c8-b93c-16fd11a0f00b",
+        "versionHash": "922e9d40fa6d4dd3a4b721295b8ecd95f73402644cb8d234f9f4f862b8a56bfc"
+      }
+    ]
+  },
+  "displayName": "ip-192-0-2-27",
+  "links": [
+    {
+      "rel": "/api/platform/v1/systems/b9df6377-2c4f-3266-a64a-e064b0371c73",
+      "name": "system"
+    },
+    {
+      "rel": "/api/platform/v1/systems/b9df6377-2c4f-3266-a64a-e064b0371c73/instances/5663cf4e-a0c7-50c8-b93c-16fd11a0f00b",
+      "name": "self"
+    },
+    {
+      "rel": "/api/platform/v1/systems/instances/deployments/b31c6ab1-4a46-4c81-a065-204575145e8e",
+      "name": "deployment"
+    }
+  ],
+  "processPath": "/usr/sbin/nginx",
+  "registrationTime": "2023-01-14T10:12:31.000Z",
+  "startTime": "2023-01-14T10:09:43Z",
+  "status": {
+    "lastStatusReport": "2023-01-14T11:11:49.323495017Z",
+    "state": "online"
+  },
+  "uid": "5663cf4e-a0c7-50c8-b93c-16fd11a0f00b",
+  "version": "1.23.2",
+  "appProtect": {
+    "attackSignatureVersion": "Available after publishing Attack Signatures from Instance Manager",
+    "status": "active",
+    "threatCampaignVersion": "Available after publishing Threat Campaigns from Instance Manager",
+    "version": "4.2.0"
+  },
+  "configureArgs": [
+    ...
+  ],
+  "lastDeploymentDetails": {
+    "createTime": "2023-01-14T11:10:25.096812852Z",
+    "details": {
+      "error": "{\"instance:b9df6377-2c4f-3266-a64a-e064b0371c73\":\"failed building config payload: policy compilation failed for deployment b31c6ab1-4a46-4c81-a065-204575145e8e due to integrations service error: the specified compiler (4.2.0) is missing, please install it and try again.\"}",
+      "failure": [
+        {
+          "failMessage": "failed building config payload: policy compilation failed for deployment b31c6ab1-4a46-4c81-a065-204575145e8e due to integrations service error: the specified compiler (4.2.0) is missing, please install it and try again.",
+          "name": "ip-192-0-2-27"
+        }
+      ],
+      "pending": [],
+      "success": []
+    },
+    "id": "b31c6ab1-4a46-4c81-a065-204575145e8e",
+    "message": "Instance config failed to publish to",
+    "status": "failed",
+    "updateTime": "2023-01-14T11:10:25.175145693Z"
+  },
+  "loadableModules": [
+    ...
+  ],
+  "packages": [
+    ...
+  ],
+  "processId": "10345",
+  "ssl": {
+    "built": null,
+    "runtime": null
+  }
+}
+```
+
+</details>
+
+When you use the Publish API (`/security/publish`) to [publish a security policy](#publish-policy), Instance Manager creates a deployment ID for the request. To view the status of the update, or to check for any errors, use the endpoint and method shown below and reference the deployment ID.
+
+| Method | Endpoint                                                         |
+|--------|------------------------------------------------------------------|
+| GET    | `/api/platform/v1/systems/instances/deployments/{deployment-id}` |
+
+You can locate the configuration publication status in the the response within the `details` field, which contains additional fields that provide more context around the status.
+
+The example below shows a call to the `deployments` endpoint and the corresponding JSON response containing a compiler error message.
+
+``` shell
+curl -X GET --url "https://{NGINX-INSTANCE-MANAGER-FQDN}/api/platform/v1/systems/instances/deployments/d38a8e5d-2312-4046-a60f-a30a4aea1fbb" \
+    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz"
+```
+
+<details open>
+<summary>JSON Response</summary>
+
+```json
+{
+  "createTime": "2023-01-14T04:35:47.566082799Z",
+  "details": {
+    "error": "{\"instance:8a2092aa-5612-370d-bff0-5d7521e206d6\":\"failed building config payload: policy bundle compilation failed for d38a8e5d-2312-4046-a60f-a30a4aea1fbb, integrations service returned the following error: missing the specified compiler (4.2.0) please install it and try again\"}",
+    "failure": [
+      {
+        "failMessage": "failed building config payload: policy bundle compilation failed for d38a8e5d-2312-4046-a60f-a30a4aea1fbb, integrations service returned the following error: missing the specified compiler (4.2.0) please install it and try again",
+        "name": "ip-192-0-2-243"
+      }
+    ],
+    "pending": [],
+    "success": []
+  },
+  "id": "d38a8e5d-2312-4046-a60f-a30a4aea1fbb",
+  "message": "Instance config failed to publish to",
+  "status": "failed",
+  "updateTime": "2023-01-14T04:35:47.566082799Z"
+}
+```
+
+</details>
