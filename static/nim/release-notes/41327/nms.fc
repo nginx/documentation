@@ -1,0 +1,35 @@
+/usr/bin/nms-core		--	gen_context(system_u:object_r:nms_exec_t,s0)
+
+/usr/bin/nms-dpm		--	gen_context(system_u:object_r:nms_exec_t,s0)
+
+/usr/bin/nms-ingestion		--	gen_context(system_u:object_r:nms_exec_t,s0)
+
+/usr/bin/nms-integrations		--	gen_context(system_u:object_r:nms_exec_t,s0)
+
+/usr/lib/systemd/system/nms-core.service		--	gen_context(system_u:object_r:nms_unit_file_t,s0)
+
+/usr/lib/systemd/system/nms-dpm.service		--	gen_context(system_u:object_r:nms_unit_file_t,s0)
+
+/usr/lib/systemd/system/nms-ingestion.service		--	gen_context(system_u:object_r:nms_unit_file_t,s0)
+
+/usr/lib/systemd/system/nms-integrations.service		--	gen_context(system_u:object_r:nms_unit_file_t,s0)
+
+/usr/lib/systemd/system/nms.service		--	gen_context(system_u:object_r:nms_unit_file_t,s0)
+
+/var/lib/nms(/.*)?		gen_context(system_u:object_r:nms_var_lib_t,s0)
+
+/var/lib/nms/dqlite(/.*)?		gen_context(system_u:object_r:nms_var_lib_t,s0)
+
+/var/lib/nms/modules(/.*)?		gen_context(system_u:object_r:nms_var_lib_t,s0)
+
+/var/lib/nms/modules.json		--	gen_context(system_u:object_r:nms_var_lib_t,s0)
+
+/var/lib/nms/modules/manager.json		--	gen_context(system_u:object_r:nms_var_lib_t,s0)
+
+/var/lib/nms/streaming(/.*)?		gen_context(system_u:object_r:nms_var_lib_t,s0)
+
+/var/log/nms(/.*)?		gen_context(system_u:object_r:nms_log_t,s0)
+
+/var/run/nms(/.*)?		gen_context(system_u:object_r:nms_var_run_t,s0)
+
+
