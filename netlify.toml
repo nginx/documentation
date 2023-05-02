@@ -9,9 +9,9 @@
   command = "make all-staging"
   publish = "public"
 
-[context.development]
-  command = "make all-dev"
-  publish = "public"
+#[context.dev]
+#  command = "make all-dev"
+#  publish = "public"
 
 [context.deploy-preview]
   command = "make deploy-preview"
