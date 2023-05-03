@@ -3,7 +3,7 @@ title: "NGINX Management Suite Resiliency"
 date: 2023-03-13T08:29:53-07:00
 draft: false
 description: "NGINX Management Suite installed on Kubernetes provides control plane resilience through fault tolerance and automated recovery."
-weight: 200
+weight: 30
 toc: true
 tags: [ "docs" ]
 docs: "DOCS-1161"
