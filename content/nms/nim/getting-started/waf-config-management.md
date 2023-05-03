@@ -15,14 +15,14 @@ You can use NGINX Management Suite Instance Manager (NIM) to publish configurati
 
 1. Set up your NGINX Management Suite Instance Manager instance:
 
-   - [Install the WAF Compiler]({{< relref "/nim/how-to/app-protect/setup-waf-config-management#install-the-waf-compiler" >}})
+   - [Install the WAF Compiler]({{< relref "/nms/nim/how-to/app-protect/setup-waf-config-management#install-the-waf-compiler" >}})
 
-   - [Set up the Attack Signatures and Threat Campaigns]({{< relref "/nim/how-to/app-protect/setup-waf-config-management#set-up-attack-signatures-and-threat-campaigns" >}})
+   - [Set up the Attack Signatures and Threat Campaigns]({{< relref "/nms/nim/how-to/app-protect/setup-waf-config-management#set-up-attack-signatures-and-threat-campaigns" >}})
 
-2. In Instance Manager, [onboard the App Protect Instances]({{< relref "/nim/how-to/app-protect/setup-waf-config-management#onboard-nginx-app-protect-waf-instances" >}}) you want to publish policies to.
+2. In Instance Manager, [onboard the App Protect Instances]({{< relref "/nms/nim/how-to/app-protect/setup-waf-config-management#onboard-nginx-app-protect-waf-instances" >}}) you want to publish policies to.
 
-3. [Create the security policies]({{< relref "/nim/how-to/app-protect/manage-waf-security-policies#create-a-security-policy" >}}).
+3. [Create the security policies]({{< relref "/nms/nim/how-to/app-protect/manage-waf-security-policies#create-a-security-policy" >}}).
 
-4. [Add or edit a WAF Configuration]({{< relref "/nim/how-to/app-protect/setup-waf-config-management#add-waf-config" >}}) to your NGINX Instances, and publish using Instance Manager.
+4. [Add or edit a WAF Configuration]({{< relref "/nms/nim/how-to/app-protect/setup-waf-config-management#add-waf-config" >}}) to your NGINX Instances, and publish using Instance Manager.
 
    {{<note>}}Map the App Protect directives on NGINX configuration to `.tgz` file extensions (not `.json`).{{< /note >}}

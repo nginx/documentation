@@ -165,7 +165,7 @@ Select the tab for the NGINX Management Suite module that you want to install.
 
 ## Set Up Data Plane Instances for Security Monitoring
 
-Follow the steps in the [Setup Guide]({{< relref "security/how-to/set-up-app-protect-instances" >}}) to set up your NGINX App Protect WAF data plane instances for use with Security Monitoring.
+Follow the steps in the [Setup Guide]({{< relref "/nms/security/how-to/set-up-app-protect-instances" >}}) to set up your NGINX App Protect WAF data plane instances for use with Security Monitoring.
 
 {{%/tab%}}
 
@@ -175,7 +175,7 @@ Follow the steps in the [Setup Guide]({{< relref "security/how-to/set-up-app-pro
 
 ## Access the Web Interface {#web-interface}
 
-{{< include "nms/access-web-interface.md" >}}
+{{< include "installation/access-web-ui.md" >}}
 
 ---
 
@@ -193,6 +193,6 @@ Follow the steps in the [Setup Guide]({{< relref "security/how-to/set-up-app-pro
 
 ## What's Next
 
-- [Add a License]({{< relref "/admin-guides/getting-started/add-license.md" >}})
-- [Troubleshoot Issues]({{< relref "support/troubleshooting.md" >}})
-- [Configure Instance Manager with a Config File]({{< relref "admin-guides/getting-started/configure-with-config.md" >}})
+- [Add a License]({{< relref "/nms/admin-guides/getting-started/add-license.md" >}})
+- [Troubleshoot Issues]({{< relref "/nms/support/troubleshooting.md" >}})
+- [Configure Instance Manager with a Config File]({{< relref "/nms/admin-guides/getting-started/configure-with-config.md" >}})

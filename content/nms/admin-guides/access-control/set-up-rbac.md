@@ -78,7 +78,7 @@ The following table lists the features you can assign roles to:
 
 {{< include "admin-guides/access-control/create-role.md" >}}
 
-{{<see-also>}}If you use the Security Monitoring module, see the [Create Role for Security Monitoring]({{<relref "security/how-to/create-role-security-monitoring" >}}) topic for instructions on creating a role for accessing the module's dashboards and REST API.{{</see-also>}}
+{{<see-also>}}If you use the Security Monitoring module, see the [Create Role for Security Monitoring]({{<relref "/nms/security/how-to/create-role-security-monitoring" >}}) topic for instructions on creating a role for accessing the module's dashboards and REST API.{{</see-also>}}
 
 ---
 
@@ -93,13 +93,13 @@ API Connectivity Manager comes pre-configured with roles suitable for API Owners
 
 {{< include "acm/rbac/api-owner-role.md" >}}
 
-{{<see-also>}}The tutorial [Set Up RBAC for API Owners]({{< relref "/acm/tutorials/rbac-api-owners.md">}}) provides an example of how to configure RBAC for API owners.{{</see-also>}}
+{{<see-also>}}The tutorial [Set Up RBAC for API Owners]({{< relref "/nms/acm/tutorials/rbac-api-owners.md">}}) provides an example of how to configure RBAC for API owners.{{</see-also>}}
 
 ### ACM Infra Admin {#acm-infra-admin}
 
 {{< include "acm/rbac/infra-admin-role.md" >}}
 
-{{<see-also>}}The tutorial [Set Up RBAC for Infra Admins]({{< relref "/acm/tutorials/rbac-infra-admins.md">}}) provides an example of how to configure RBAC for Infrastructure Administrators.{{</see-also>}}
+{{<see-also>}}The tutorial [Set Up RBAC for Infra Admins]({{< relref "/nms/acm/tutorials/rbac-infra-admins.md">}}) provides an example of how to configure RBAC for Infrastructure Administrators.{{</see-also>}}
 
 ## Add Users {#add-users}
 
@@ -115,7 +115,7 @@ API Connectivity Manager comes pre-configured with roles suitable for API Owners
 
 ## Create a Group {#create-group}
 
-{{< important >}}**Groups are used only with external identity providers** configured to use OpenID Connect (OIDC) authentication, following the steps in the [Set Up Authentication Guide]({{< relref "admin-guides/access-control/configure-authentication.md#oidc-auth" >}}).{{< /important >}}
+{{< important >}}**Groups are used only with external identity providers** configured to use OpenID Connect (OIDC) authentication, following the steps in the [Set Up Authentication Guide]({{< relref "/nms/admin-guides/access-control/configure-authentication.md#oidc-auth" >}}).{{< /important >}}
 
 Users from an external identity provider can't be assigned roles directly in Instance Manager, but they inherit roles through group memberships.
 
@@ -136,11 +136,11 @@ To create a group, take the following steps:
 6. In the **Roles** list, select one or more roles to assign to the group.
 7. Select **Save** to create the group.
 
-{{< see-also >}}To automate creating users and groups using the [SCIM API](http://www.simplecloud.info), refer to the [Provision Users and Groups with SCIM]({{< relref "/admin-guides/access-control/scim-provisioning.md" >}}) topic for instructions. Requires Instance Manager 2.3 or later.{{< /see-also >}}
+{{< see-also >}}To automate creating users and groups using the [SCIM API](http://www.simplecloud.info), refer to the [Provision Users and Groups with SCIM]({{< relref "/nms/admin-guides/access-control/scim-provisioning.md" >}}) topic for instructions. Requires Instance Manager 2.3 or later.{{< /see-also >}}
 
 ---
 
 ## What's Next
 
-- [Set Up Authentication]({{< relref "/admin-guides/access-control/configure-authentication" >}})
-- [Set up Azure Active Directory as an OIDC Identity Provider]({{< relref "/admin-guides/access-control/oidc-azure.md" >}})
+- [Set Up Authentication]({{< relref "/nms/admin-guides/access-control/configure-authentication" >}})
+- [Set up Azure Active Directory as an OIDC Identity Provider]({{< relref "/nms/admin-guides/access-control/oidc-azure.md" >}})

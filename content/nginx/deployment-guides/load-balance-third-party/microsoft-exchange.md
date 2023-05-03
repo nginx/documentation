@@ -1105,7 +1105,7 @@ The quickest way to configure the module and the built‑in dashboard is to down
 
 When you reload the NGINX Plus configuration file, for example by running the <span style="white-space: nowrap;">`nginx -s reload`</span> command, the NGINX Plus dashboard is available immediately at <span style="white-space: nowrap;">**http://_nginx-plus-server-address_:8080**</span>.
 
-For more information about live activity monitoring, see the <span style="white-space: nowrap;">[NGINX Plus Admin Guide]({{< relref "/admin-guide/monitoring/live-activity-monitoring.md" >}})</span>.
+For more information about live activity monitoring, see the <span style="white-space: nowrap;">[NGINX Plus Admin Guide]({{< relref "/nginx/admin-guide/monitoring/live-activity-monitoring.md" >}})</span>.
 
 <span id="full-configuration-enhanced"></span>
 ### Full Configuration for Enhanced Load Balancing

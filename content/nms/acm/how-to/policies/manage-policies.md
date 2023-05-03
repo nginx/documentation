@@ -29,7 +29,7 @@ docs: "DOCS-925"
 Complete the following prerequisites before proceeding with this guide: 
 
 - API Connectivity Manager is installed, licensed, and running.
-- You have one or more Environments with [API Gateways]({{< relref "/acm/getting-started/add-api-gateway" >}}) or [Developer Portals]({{< relref "/acm/getting-started/add-devportal" >}}).
+- You have one or more Environments with [API Gateways]({{< relref "/nms/acm/getting-started/add-api-gateway" >}}) or [Developer Portals]({{< relref "/nms/acm/getting-started/add-devportal" >}}).
 
 ### How to Access the User Interface
 

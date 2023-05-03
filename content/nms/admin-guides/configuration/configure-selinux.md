@@ -38,7 +38,7 @@ To complete this tutorial, take the following preparatory steps:
 
 1. Enable SELinux on your system.
 2. Install the following tools: `load_policy`, `semodule`, and `restorecon`.  
-3. [Install NGINX Management Suite]({{< relref "installation/on-prem/_index.md" >}}) with SELinux module files in place.
+3. [Install NGINX Management Suite]({{< relref "/nms/installation/on-prem/_index.md" >}}) with SELinux module files in place.
 
 {{< important >}}SELinux can be configured to use `permissive` mode. In `permissive` mode, policy violations are logged instead of enforced. Make sure you know which mode your SELinux configuration uses.{{< /important >}}
 

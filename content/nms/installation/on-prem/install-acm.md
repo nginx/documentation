@@ -113,7 +113,7 @@ Complete the following steps for each data plane instance you want to use with A
 
 1. [Install NGINX Plus R24 or later](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/)
 2. [Install NGINX njs module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/nginscript/)
-3. [Install the NGINX Agent]({{< relref "nginx-agent/install-nginx-agent.md" >}}) on your data plane instances to register them with NGINX Management Suite.
+3. [Install the NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent.md" >}}) on your data plane instances to register them with NGINX Management Suite.
 
 <details open>
 <summary><i class="fa-solid fa-circle-info"></i> Supported Linux distributions</summary>
@@ -271,9 +271,9 @@ echo 'DB_PATH="/var/lib/nginx-devportal"' | sudo tee -a /etc/nginx-devportal/dev
 
 ### Install Other NGINX Management Suite Modules
 
-- [Install App Delivery Manager]({{< relref "installation/on-prem/install-adm.md" >}})
-- [Install Security Monitoring]({{< relref "installation/on-prem/install-security-monitoring.md" >}})
+- [Install App Delivery Manager]({{< relref "/nms/installation/on-prem/install-adm.md" >}})
+- [Install Security Monitoring]({{< relref "/nms/installation/on-prem/install-security-monitoring.md" >}})
 
 ### Get Started with API Connectivity Manager
 
-- [Create Workspaces and Environments for your API Infrastructure]({{< relref "acm/how-to/infrastructure/manage-api-infrastructure.md" >}})
+- [Create Workspaces and Environments for your API Infrastructure]({{< relref "/nms/acm/how-to/infrastructure/manage-api-infrastructure.md" >}})

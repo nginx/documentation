@@ -30,35 +30,35 @@ NGINX Management Suite is a family of management plane solutions that enable gov
 
 The documentation for NGINX Management Suite is divided into the following sections:
 
-### [Admin Guides]({{< relref "/admin-guides/" >}})
+### [Admin Guides]({{< relref "/nms/admin-guides/" >}})
 
 - Learn how to install NGINX Management Suite and configure user access.
 
-### [Tech Specs]({{< relref "/tech-specs" >}})
+### [Tech Specs]({{< relref "/nms/tech-specs" >}})
 
 - Learn about the requirements for NGINX Management Suite.
 
-### [NGINX Agent]({{< relref "/nginx-agent/" >}})
+### [NGINX Agent]({{< relref "/nms/nginx-agent/" >}})
 
 - Learn how to install and configure the NGINX Agent.
 
-### [Instance Manager]({{< relref "/nim/" >}})
+### [Instance Manager]({{< relref "/nms/nim/" >}})
 
 - Learn how to configure and use Instance Manager.
 
-### [API Connectivity Manager]({{< relref "/acm/" >}})
+### [API Connectivity Manager]({{< relref "/nms/acm/" >}})
 
 - Learn how to configure and use the API Connectivity Manager.
 
-### [App Delivery Manager]({{< relref "/adm/" >}})
+### [App Delivery Manager]({{< relref "/nms/adm/" >}})
 
 - Learn how to configure and use the App Delivery Manager.
 
-### [Security Monitoring]({{< relref "/security/" >}})
+### [Security Monitoring]({{< relref "/nms/security/" >}})
 
 - Learn how to configure and use the Security Monitoring module.
 
-### [Support]({{< relref "/support/" >}})
+### [Support]({{< relref "/nms/support/" >}})
 
 - Learn how to get support for NGINX Management Suite.
 
@@ -66,14 +66,14 @@ The documentation for NGINX Management Suite is divided into the following secti
 
 Check out some of our most consulted topics:
 
-### [Install Guide]({{< relref "installation/on-prem/_index.md" >}})
+### [Install Guide]({{< relref "/nms/installation/on-prem/_index.md" >}})
 
 - Complete the steps in this guide to install NGINX Management Suite.
 
-### [Upgrade Guide]({{< relref "installation/upgrade-guide/" >}})
+### [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}})
 
 - This guide explains how to upgrade NGINX Management Suite and NGINX Agent.
 
-### [Tech Specs]({{< relref "/tech-specs" >}})
+### [Tech Specs]({{< relref "/nms/tech-specs" >}})
 
 - This document lists the requirements for NGINX Management Suite, including supported platforms, hardware specs, sizing guidelines, supported browsers, and more.

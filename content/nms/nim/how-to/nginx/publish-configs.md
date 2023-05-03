@@ -150,7 +150,7 @@ To view a specific configuration with a version-controlled hash, send an HTTP `G
 ## Publishing Staged Configs
 
 {{<see-also>}}
-To learn how to add and make changes to staged configuration files, please refer to the [Stage Configuration Files]({{< relref "/nim/how-to/nginx/stage-configs.md" >}}) topic.
+To learn how to add and make changes to staged configuration files, please refer to the [Stage Configuration Files]({{< relref "/nms/nim/how-to/nginx/stage-configs.md" >}}) topic.
 {{</see-also>}}
 
 {{< include "nim/how-to/publish-staged-configs.md" >}}

@@ -19,7 +19,7 @@ The App team would like external access to their custom app which has two instan
 Several assumption have been made for this use case:
 
 1. The platform team has set up permissions to allow the app team to create any ADM-related resource.
-2. The platform team has created an instance group ([How to manage Instance Groups]({{< relref "/nim/how-to/nginx/manage-instance-groups.md" >}})) `acme-ig` for the NGINX instances that will be used to route the traffic to the team's app instances (`workloads` in ADM terminology, which typically map to `upstreams` in NGINX terminology).
+2. The platform team has created an instance group ([How to manage Instance Groups]({{< relref "/nms/nim/how-to/nginx/manage-instance-groups.md" >}})) `acme-ig` for the NGINX instances that will be used to route the traffic to the team's app instances (`workloads` in ADM terminology, which typically map to `upstreams` in NGINX terminology).
 
 ## Solution
 

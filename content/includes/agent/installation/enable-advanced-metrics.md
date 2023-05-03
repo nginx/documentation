@@ -17,4 +17,4 @@ advanced_metrics:
     priority_table_threshold: 1000
 ```
 
-{{<see-also>}}See the [NGINX Agent CLI Flags & Usage]({{< relref "/nginx-agent/install-nginx-agent.md#nginx-agent-cli-flags--usage" >}}) topic for a description of each of these flags.{{</see-also>}}
+{{<see-also>}}See the [NGINX Agent CLI Flags & Usage]({{< relref "/nms/nginx-agent/install-nginx-agent.md#nginx-agent-cli-flags--usage" >}}) topic for a description of each of these flags.{{</see-also>}}

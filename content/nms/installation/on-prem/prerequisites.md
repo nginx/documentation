@@ -127,7 +127,7 @@ To install and enable ClickHouse CentOS, RHEL, and RPM-Based distributions, take
 
     > <span style="color: #c20025;"><i class="fas fa-exclamation-triangle"></i> **IMPORTANT!**</span> When installing ClickHouse, you have the option to specify a password or leave the password blank (the default is an empty string). If you choose to specify a password for ClickHouse, you must also edit the `/etc/nms/nms.conf` file after installing NGINX Management Suite and enter your ClickHouse password; otherwise, NGINX Management Suite won't start.
     >
-    > For more information on customizing ClickHouse settings, refer to the [Configure ClickHouse]({{< relref "admin-guides/configuration/configure-clickhouse.md" >}}) topic.
+    > For more information on customizing ClickHouse settings, refer to the [Configure ClickHouse]({{< relref "/nms/admin-guides/configuration/configure-clickhouse.md" >}}) topic.
 
 1. Enable ClickHouse so that it starts automatically if the server is restarted:
 
@@ -174,7 +174,7 @@ To install and enable ClickHouse on Debian, Ubuntu, and Deb-Based distributions,
 
     > <span style="color: #c20025;"><i class="fas fa-exclamation-triangle"></i> **IMPORTANT!**</span> When installing ClickHouse, you have the option to specify a password or leave the password blank (the default is an empty string). If you choose to specify a password for ClickHouse, you must also edit the `/etc/nms/nms.conf` file after installing NGINX Management Suite and enter your ClickHouse password; otherwise, NGINX Management Suite won't start.
     >
-    > For more information on customizing ClickHouse settings, refer to the [Configure ClickHouse]({{< relref "admin-guides/configuration/configure-clickhouse.md" >}}) topic.
+    > For more information on customizing ClickHouse settings, refer to the [Configure ClickHouse]({{< relref "/nms/admin-guides/configuration/configure-clickhouse.md" >}}) topic.
 
 1. Enable ClickHouse so that it starts automatically if the server is restarted:
 
@@ -202,7 +202,7 @@ To install and enable ClickHouse on Debian, Ubuntu, and Deb-Based distributions,
 
 NGINX Management Suite uses the following default values for ClickHouse:
 
-{{<important>}}You can customize these settings. However, if you use custom settings, make sure to follow the [Configure ClickHouse]({{< relref "admin-guides/configuration/configure-clickhouse.md" >}}) instructions to update the `nms.conf` file after you've installed NMS; otherwise NMS won't be able to connect to ClickHouse.{{</important>}}
+{{<important>}}You can customize these settings. However, if you use custom settings, make sure to follow the [Configure ClickHouse]({{< relref "/nms/admin-guides/configuration/configure-clickhouse.md" >}}) instructions to update the `nms.conf` file after you've installed NMS; otherwise NMS won't be able to connect to ClickHouse.{{</important>}}
 
 {{< include "installation/clickhouse-defaults.md" >}}
 
@@ -216,7 +216,7 @@ To install and enable Vault, take the following steps:
 
 - Follow Vault's instructions to [install Vault 1.8.8 or later](https://www.vaultproject.io/docs/install) for your distribution.
 - Ensure you are running Vault in a [Production Hardened Environment](https://learn.hashicorp.com/tutorials/vault/production-hardening).
-- After [installing NGINX Management Suite](#install-nms-modules), follow the steps to [Configure Vault for Storing Secrets]({{< relref "admin-guides/configuration/configure-vault.md" >}}).
+- After [installing NGINX Management Suite](#install-nms-modules), follow the steps to [Configure Vault for Storing Secrets]({{< relref "/nms/admin-guides/configuration/configure-vault.md" >}}).
 
 ---
 
@@ -232,7 +232,7 @@ To install NGINX Management Suite, you need to add the official repository to pu
 
 ### Install NGINX Management Suite Modules
 
-- [Install Instance Manager]({{< relref "installation/on-prem/install-nim.md" >}})
-- [Install API Connectivity Manager]({{< relref "installation/on-prem/install-acm.md" >}})
-- [Install App Delivery Manager]({{< relref "installation/on-prem/install-adm.md" >}})
-- [Install Security Monitoring]({{< relref "installation/on-prem/install-security-monitoring.md" >}})
+- [Install Instance Manager]({{< relref "/nms/installation/on-prem/install-nim.md" >}})
+- [Install API Connectivity Manager]({{< relref "/nms/installation/on-prem/install-acm.md" >}})
+- [Install App Delivery Manager]({{< relref "/nms/installation/on-prem/install-adm.md" >}})
+- [Install Security Monitoring]({{< relref "/nms/installation/on-prem/install-security-monitoring.md" >}})

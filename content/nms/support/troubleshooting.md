@@ -25,10 +25,10 @@ aliases:
 
 View the known issues and possible workarounds in the NGINX Management Suite modules:
 
-- [Instance Manager]({{< relref "/nim/releases/known-issues.md" >}})
-- [API Connectivity Manager]({{< relref "/acm/releases/known-issues.md" >}})
-- [App Delivery Manager]({{< relref "/adm/releases/known-issues.md" >}})
-- [Security Monitoring]({{< relref "/security/releases/known-issues.md" >}})
+- [Instance Manager]({{< relref "/nms/nim/releases/known-issues.md" >}})
+- [API Connectivity Manager]({{< relref "/nms/acm/releases/known-issues.md" >}})
+- [App Delivery Manager]({{< relref "/nms/adm/releases/known-issues.md" >}})
+- [Security Monitoring]({{< relref "/nms/security/releases/known-issues.md" >}})
 
 ---
 
@@ -43,7 +43,7 @@ After installing NGINX Management Suite, when accessing the web interface, the s
 
 #### Resolution
 
-If you have SELinux installed, you need to load the SELinux policy module that's included with NGINX Management Suite. For instructions, refer to the [Configure SELinux]({{< relref "admin-guides/configuration/configure-selinux.md" >}}) topic.
+If you have SELinux installed, you need to load the SELinux policy module that's included with NGINX Management Suite. For instructions, refer to the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) topic.
 
 </details>
 
@@ -56,7 +56,7 @@ If the NGINX proxy gateway for NGINX Management Suite alerts you that there are 
 
 #### Resolution
 
-- For guidance on increasing the number of worker connections and file descriptors for the NGINX proxy gateway for NGINX Management Suite, refer to the guide [Optimize NGINX Proxy Gateway for Large Data Planes]({{< relref "admin-guides/configuration/configure-gateway.md" >}}).
+- For guidance on increasing the number of worker connections and file descriptors for the NGINX proxy gateway for NGINX Management Suite, refer to the guide [Optimize NGINX Proxy Gateway for Large Data Planes]({{< relref "/nms/admin-guides/configuration/configure-gateway.md" >}}).
 
 </details>
 
@@ -125,7 +125,7 @@ Ensure there isn't a process bound to port `80` or `443`.
 
 #### Description
 
-When [scanning for NGINX instances]({{< relref "/nim/how-to/nginx/scan-instances" >}}), the NGINX version is reported as `undefined` when NGINX App protect is installed.
+When [scanning for NGINX instances]({{< relref "/nms/nim/how-to/nginx/scan-instances" >}}), the NGINX version is reported as `undefined` when NGINX App protect is installed.
 
 #### Resolution
 
@@ -146,7 +146,7 @@ When Instance Manager is restarted, its internal API gateway may be assigned a n
 
 To update the NGINX Agent's configuration with the new Instance Manager IP address, run the NGINX Agent with the `--server-host` CLI parameter or edit the `nginx-agent.conf` file. Using the `--server-host` CLI parameter will ensure that the setting persists across restarts.
 
-To learn more, refer to the [NGINX Agent documentation]({{< relref "nginx-agent/install-nginx-agent.md#nginx-agent-cli-flags-usage" >}}).
+To learn more, refer to the [NGINX Agent documentation]({{< relref "/nms/nginx-agent/install-nginx-agent.md#nginx-agent-cli-flags-usage" >}}).
 
 </details>
 

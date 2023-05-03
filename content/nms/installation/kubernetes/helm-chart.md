@@ -460,7 +460,7 @@ You can access the Instance Manager web interface using the external IP address 
 
 ## Upgrade Instance Manager from a Helm Chart
 
-See the [Upgrade Guide]({{< relref "installation/upgrade-guide.md#upgrade-instance-manager" >}}) for instructions on upgrading Instance Manger from a Helm chart.
+See the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-instance-manager" >}}) for instructions on upgrading Instance Manger from a Helm chart.
 
 ---
 
@@ -476,8 +476,8 @@ helm uninstall --namespace nms nim
 
 ## What's Next
 
-- [License Instance Manager]({{< relref "/installation/add-license.md" >}})
-- [Install and Configure NGINX Agent]({{< relref "/nginx-agent/install-nginx-agent.md" >}})
-- [Set Up Authentication for Instance Manager]({{< relref "/admin-guides/access-control/configure-authentication.md" >}})
+- [License Instance Manager]({{< relref "/nms/installation/add-license.md" >}})
+- [Install and Configure NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent.md" >}})
+- [Set Up Authentication for Instance Manager]({{< relref "/nms/admin-guides/access-control/configure-authentication.md" >}})
 
 

@@ -38,7 +38,7 @@ You can easily manage RBAC permissions for multiple NGINX instances as a single 
 
 To complete the instructions in this guide, you need the following:
 
-- An installed version of [Instance Manager]({{< relref "/admin-guides/installation/on-prem/install-guide.md" >}})
+- An installed version of [Instance Manager]({{< relref "/nms/admin-guides/installation/on-prem/install-guide.md" >}})
 - One or more NGINX data plane instances
 - Knowledge of the Instance Set API
 
