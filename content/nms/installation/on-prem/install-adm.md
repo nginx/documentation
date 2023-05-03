@@ -1,12 +1,12 @@
 ---
-title: "Install App Delivery Manager"
+title: "Install or Upgrade App Delivery Manager"
 date: 2023-04-13T15:19:49-07:00
 # Change draft status to false to publish doc
 draft: false
 # Description
 # Add a short description (150 chars) for the doc. Include keywords for SEO. 
 # The description text appears in search results and at the top of the doc.
-description: "Follow the steps in this guide to install NGINX Management Suite App Delivery Manager."
+description: "Follow the steps in this guide to install or upgrade NGINX Management Suite App Delivery Manager."
 # Assign weights in increments of 100
 weight: 30
 toc: true

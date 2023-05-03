@@ -1,12 +1,12 @@
 ---
-title: "Install API Connectivity Manager"
+title: "Install or Upgrade API Connectivity Manager"
 date: 2023-04-06T11:59:50-07:00
 # Change draft status to false to publish doc
 draft: false
 # Description
 # Add a short description (150 chars) for the doc. Include keywords for SEO. 
 # The description text appears in search results and at the top of the doc.
-description: "Follow the steps in this guide to install NGINX Management Suite API Connectivity Manager."
+description: "Follow the steps in this guide to install or upgrade or upgrade or upgrade or upgrade NGINX Management Suite API Connectivity Manager."
 # Assign weights in increments of 100
 weight: 20
 toc: true

@@ -1,12 +1,12 @@
 ---
-title: "Install Security Monitoring"
+title: "Install or Upgrade Security Monitoring"
 date: 2023-04-06T12:00:00-07:00
 # Change draft status to false to publish doc
 draft: false
 # Description
 # Add a short description (150 chars) for the doc. Include keywords for SEO. 
 # The description text appears in search results and at the top of the doc.
-description: "Follow the steps in this guide to install the NGINX Management Suite Security Monitoring module."
+description: "Follow the steps in this guide to install or upgrade or upgrade the NGINX Management Suite Security Monitoring module."
 # Assign weights in increments of 100
 weight: 40
 toc: true
