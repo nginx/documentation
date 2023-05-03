@@ -1,4 +1,0 @@
-baseURL = "https://docs-dev.nginx.com/"
-title = "DEV -- docs-nginx-com"
-disableKinds = ["sitemap"]
-
