@@ -44,7 +44,7 @@ Instance Manager enforces RBAC for the SCIM APIs through the `USER-MANAGEMENT` f
 {{< see-also >}}
 A **feature** is a grouping of functionality in Instance Manager. A **role** definition is a collection of permissions for one or more features.
 
-For more information about features and roles, see the [Set Up RBAC]({{< relref "/admin-guides/access-control/set-up-rbac.md" >}}) topic.
+For more information about features and roles, see the [Set Up RBAC]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}) topic.
 {{< /see-also >}}
 
 ### SCIM Endpoints
@@ -172,7 +172,7 @@ In this request, `User` is assigned as a member.
 }
 ```
 
-{{< important >}}After creating a group with SCIM, you need to [assign roles to the group]({{< relref "/admin-guides/access-control/set-up-rbac#create-group" >}}) in Instance Manager so the group has permissions associated with it.{{< /important >}}
+{{< important >}}After creating a group with SCIM, you need to [assign roles to the group]({{< relref "/nms/admin-guides/access-control/set-up-rbac#create-group" >}}) in Instance Manager so the group has permissions associated with it.{{< /important >}}
 
 ## Update Users Created with SCIM
 

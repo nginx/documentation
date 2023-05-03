@@ -44,7 +44,7 @@ API Connectivity manager supports public API workflows. Public APIs are open for
 To complete the steps in this guide, you need to the following:
 
 - API Connectivity Manager is installed, licensed, and running.
-- You have one or more environments with [API Gateway]({{< relref "/acm/getting-started/add-api-gateway" >}}) or [Dev Portal]({{< relref "/acm/getting-started/add-devportal" >}}) clusters.
+- You have one or more environments with [API Gateway]({{< relref "/nms/acm/getting-started/add-api-gateway" >}}) or [Dev Portal]({{< relref "/nms/acm/getting-started/add-devportal" >}}) clusters.
 
 ### How to Access the User Interface
 
@@ -118,7 +118,7 @@ To enable the Credentials endpoint on the ACM host, take the following steps:
 
 ### Enable SSO on the Developer Portal
 
-1. Follow the instructions to [enable single sign-on (SSO) for the Developer Portal]({{< relref "/acm/how-to/infrastructure/enable-sso-devportal.md" >}}) with an OIDC policy.
+1. Follow the instructions to [enable single sign-on (SSO) for the Developer Portal]({{< relref "/nms/acm/how-to/infrastructure/enable-sso-devportal.md" >}}) with an OIDC policy.
 
 ### Publish and Secure the API Proxy
 

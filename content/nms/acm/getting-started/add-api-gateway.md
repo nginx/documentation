@@ -22,7 +22,7 @@ These clusters are managed under **Infrastructure Workspaces** and are part of *
 
 ### Before You Begin
 
-Before proceeding with this guide, you should familiarize yourself with the [API Overview]({{< relref "/acm/about/api-overview" >}}) and the [Get Started]({{< relref "/acm/getting-started/overview" >}}) section of this series.
+Before proceeding with this guide, you should familiarize yourself with the [API Overview]({{< relref "/nms/acm/about/api-overview" >}}) and the [Get Started]({{< relref "/nms/acm/getting-started/overview" >}}) section of this series.
 
 ## Add an Infrastructure Workspace
 

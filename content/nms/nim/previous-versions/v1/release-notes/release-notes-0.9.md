@@ -75,11 +75,11 @@ NGINX Instance Manager version 0.9.0 includes the following features:
 
 #### Support for NGINX Open Source
 
-Introduces support for NGINX Open Source. Non-standard configurations, compiled version, and more can be used with the [nginx-agent]({{<relref "/nim/previous-versions/v1/getting-started/agent.md">}}) included with NGINX Instance Manager. Best practices, such as multiple NGINX conf files, are supported as well.
+Introduces support for NGINX Open Source. Non-standard configurations, compiled version, and more can be used with the [nginx-agent]({{<relref "/nms/nim/previous-versions/v1/getting-started/agent.md">}}) included with NGINX Instance Manager. Best practices, such as multiple NGINX conf files, are supported as well.
 
 #### Scanning tool for existing web servers
 
-Includes a [scanning tool]({{<relref "/nim/previous-versions/v1/guides/scan-v1.md">}}) (optional) which helps identify web and proxy servers in your environment. It uses nmap stealth scan technology to inspect ports and subnet range as requested. The tool also calls out NGINX CVEs (common vulnerabilities and exposures) of older versions and suggests possible upgrades.
+Includes a [scanning tool]({{<relref "/nms/nim/previous-versions/v1/guides/scan-v1.md">}}) (optional) which helps identify web and proxy servers in your environment. It uses nmap stealth scan technology to inspect ports and subnet range as requested. The tool also calls out NGINX CVEs (common vulnerabilities and exposures) of older versions and suggests possible upgrades.
 
 #### Configuration Editor
 
@@ -91,7 +91,7 @@ The analyzer functionality is included with NGINX Instance Manager. Built upon t
 
 #### Advanced Authentication options
 
-Like all web applications with an API, we do what all web applications should: use NGINX! NGINX Plus is included to front-end NGINX Instance Manager and instantly gives you the ability to use [OpenID Connect]({{<relref "/nim/previous-versions/v1/getting-started/auth.md">}}) and other methods to secure your infrastructure. Support is also available for [mTLS]({{<relref "/nim/previous-versions/v1/getting-started/encrypt.md">}}) using the gRPC nginx-agent and other encryption methods. [SELinux]({{<relref "/nim/previous-versions/v1/getting-started/install.md">}}) modules for rpm-based distributions of the nginx-agent and nginx-manager are included as well.
+Like all web applications with an API, we do what all web applications should: use NGINX! NGINX Plus is included to front-end NGINX Instance Manager and instantly gives you the ability to use [OpenID Connect]({{<relref "/nms/nim/previous-versions/v1/getting-started/auth.md">}}) and other methods to secure your infrastructure. Support is also available for [mTLS]({{<relref "/nms/nim/previous-versions/v1/getting-started/encrypt.md">}}) using the gRPC nginx-agent and other encryption methods. [SELinux]({{<relref "/nms/nim/previous-versions/v1/getting-started/install.md">}}) modules for rpm-based distributions of the nginx-agent and nginx-manager are included as well.
 
 ### Known Issues
 
@@ -144,7 +144,7 @@ The following issues are known to be present in this release. Look for updates t
 
 - Analyzer Rule Exceptions (497):
 
-  NGINX Instance Manager has a built-in rule set for our Analyzer rules which we list and can be viewed on the [Metrics page]({{<relref "/nim/previous-versions/v1/guides/metrics.md">}}). Customization will be added in a future release, but for the current version, the rules are static.
+  NGINX Instance Manager has a built-in rule set for our Analyzer rules which we list and can be viewed on the [Metrics page]({{<relref "/nms/nim/previous-versions/v1/guides/metrics.md">}}). Customization will be added in a future release, but for the current version, the rules are static.
 
 - Configuration Editing outside standard conf files (523)
 

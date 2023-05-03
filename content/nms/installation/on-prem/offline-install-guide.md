@@ -115,7 +115,7 @@ Before installing NGINX Management Suite on an offline system, you must manually
 
 {{< include "nim/installation/install-nim-offline.md" >}}
 
-- See the [Access the Web Interface](#web-interface). After you log in, you can [add a license]({{< relref "/installation/add-license.md" >}}).
+- See the [Access the Web Interface](#web-interface). After you log in, you can [add a license]({{< relref "/nms/installation/add-license.md" >}}).
 
 ---
 
@@ -129,7 +129,7 @@ Before installing NGINX Management Suite on an offline system, you must manually
 
 {{< include "acm/installation/install-acm-offline.md" >}}
 
-- See the section on how to [access the NGINX Management Suite web interface](#web-interface). After you log in, you can [add a license]({{< relref "/installation/add-license.md" >}}).
+- See the section on how to [access the NGINX Management Suite web interface](#web-interface). After you log in, you can [add a license]({{< relref "/nms/installation/add-license.md" >}}).
 
 ### Install the Data Plane {#acm-offline-dependencies}
 
@@ -151,7 +151,7 @@ Before installing NGINX Management Suite on an offline system, you must manually
 
 {{< include "adm/installation/install-adm-offline.md" >}}
 
-{{< important >}} See the section on how to [access the NGINX Management Suite web interface](#web-interface). After you log in, you must add the ADM [license]({{< relref "/installation/add-license.md" >}}) in order to access the ADM features.
+{{< important >}} See the section on how to [access the NGINX Management Suite web interface](#web-interface). After you log in, you must add the ADM [license]({{< relref "/nms/installation/add-license.md" >}}) in order to access the ADM features.
  {{< /important >}}
 
 ### Install the Data Plane Dependencies {#adm-offline-dependencies}
@@ -180,7 +180,7 @@ Before installing NGINX Management Suite on an offline system, you must manually
 
 ## CVE Checking {#cve-check}
 
-Instance Manager connects to the internet to get a list of the current CVEs (Common Vulnerabilities and Exposures) to use with the [scan function]({{< relref "/nim/how-to/nginx/scan-instances.md" >}}). To manually update the CVE list, download and overwrite the `cve.xml` file in the `/usr/share/nms` directory.
+Instance Manager connects to the internet to get a list of the current CVEs (Common Vulnerabilities and Exposures) to use with the [scan function]({{< relref "/nms/nim/how-to/nginx/scan-instances.md" >}}). To manually update the CVE list, download and overwrite the `cve.xml` file in the `/usr/share/nms` directory.
 
 To download the CVE file, take the following steps:
 

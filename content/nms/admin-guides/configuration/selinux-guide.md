@@ -32,7 +32,7 @@ To complete this tutorial, take the following preparatory steps:
 
 1. Enable SELinux on your system.
 2. Install the following tools: `load_policy`, `semodule`, and `restorecon`.  
-3. [Install Instance Manager]({{< relref "installation/on-prem/_index.md" >}}) with SELinux module files in place.
+3. [Install Instance Manager]({{< relref "/nms/installation/on-prem/_index.md" >}}) with SELinux module files in place.
 
 {{< important >}}SELinux can be configured to use `permissive` mode. In `permissive` mode, policy violations are logged instead of enforced. Make sure you know which mode your SELinux configuration uses.{{< /important >}}
 
@@ -101,7 +101,7 @@ sudo semanage port -d -t nms_t 11000
 
 ## Enabling SELinux for App Delivery Manager {#selinux-adm}
 
-If you have [installed the App Delivery Manager]({{< relref "/installation/on-prem/install-adm.md" >}}) module, you can secure it using SELinux following these steps.
+If you have [installed the App Delivery Manager]({{< relref "/nms/installation/on-prem/install-adm.md" >}}) module, you can secure it using SELinux following these steps.
 
 The App Delivery Manager installer places the SELinux policy files in the following locations:
 

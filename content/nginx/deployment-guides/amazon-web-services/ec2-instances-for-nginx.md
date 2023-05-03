@@ -126,7 +126,7 @@ In addition, to install NGINX software by following the linked instructions, you
 
      <a href="https://www.nginx.com/wp-content/uploads/2018/03/aws-generic-instance-security-outbound.png"><img src="https://www.nginx.com/wp-content/uploads/2018/03/aws-generic-instance-security-outbound.png" width="1024" height="459" class="aligncenter size-full wp-image-56330" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
      
-14. To install NGINX software on the instance, [connect](#connect-to-instance) to it, and follow the instructions in the NGINX Plus Admin Guide for [NGINX Open Source]({{< relref "admin-guide/installing-nginx/installing-nginx-open-source#prebuilt" >}} and [NGINX Plus]({{< relref "admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
+14. To install NGINX software on the instance, [connect](#connect-to-instance) to it, and follow the instructions in the NGINX Plus Admin Guide for [NGINX Open Source]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-open-source#prebuilt" >}} and [NGINX Plus]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
 
 <span id="connect-to-instance"></span>
 ## Connecting to an EC2 Instance
@@ -146,7 +146,7 @@ To install and configure NGINX Open Source or NGINX Plus on an instance, you ne
 <span id="install-nginx"></span>   
 ## Installing NGINX Software
   
-Once you have established a connection with an instance, you can install the NGINX software on it. Follow the instructions in the NGINX Plus Admin Guide for <a href="../../../admin-guide/installing-nginx/installing-nginx-open-source/index.html#prebuilt">NGINX Open Source</a> and [NGINX Plus]({{< relref "../../admin-guide/installing-nginx/installing-nginx-plus.md" >}}). The [Admin Guide]({{< relref "/admin-guide/_index.md" >}}) also provides instructions for many maintenance tasks.
+Once you have established a connection with an instance, you can install the NGINX software on it. Follow the instructions in the NGINX Plus Admin Guide for <a href="../../../admin-guide/installing-nginx/installing-nginx-open-source/index.html#prebuilt">NGINX Open Source</a> and [NGINX Plus]({{< relref "../../admin-guide/installing-nginx/installing-nginx-plus.md" >}}). The [Admin Guide]({{< relref "/nginx/admin-guide/_index.md" >}}) also provides instructions for many maintenance tasks.
 
 <span id="automate"></span>
 ### Automating Installation with a Configuration Manager

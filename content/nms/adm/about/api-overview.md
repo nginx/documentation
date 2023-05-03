@@ -9,7 +9,7 @@ docs: "DOCS-1138"
 ---
 ## API Object Model
 
-The App Delivery Manager (ADM) API extends Instance Manager (NIM) [API]({{< relref "/nim/about/api-overview" >}}) to provide additional endpoints, which enables a user to manage NGINX configurations using an app-centric approach.
+The App Delivery Manager (ADM) API extends Instance Manager (NIM) [API]({{< relref "/nms/nim/about/api-overview" >}}) to provide additional endpoints, which enables a user to manage NGINX configurations using an app-centric approach.
 
 The following diagram shows a graphical view of the ADM API endpoints as well as the relationships between them:
 
@@ -36,7 +36,7 @@ Each of these objects adds additional dimension data to the metrics and events g
 
 ### **Environments**
 
-An environment is a logical container for grouping objects, such as apps, components, and gateways, according to organizational boundaries or deployment types (for example, development, test, or production). You can create customized templates for environments. If you don't specify any templates, the default built-in templates are used (see [Template Overview]({{< relref "/adm/about/template-overview.md" >}}) for more details).
+An environment is a logical container for grouping objects, such as apps, components, and gateways, according to organizational boundaries or deployment types (for example, development, test, or production). You can create customized templates for environments. If you don't specify any templates, the default built-in templates are used (see [Template Overview]({{< relref "/nms/adm/about/template-overview.md" >}}) for more details).
 
 Typically, the platform admin will create one or more environments for the app teams to access. The app teams will then assign roles and objects within the environment to establish adequate isolation.
 
@@ -66,7 +66,7 @@ For more information on the NGINX contexts affected by the components, see the f
 
 ### **Gateways**
 
-The gateway container controls the initial network entry point of the app traffic into the NGINX system (the ingress traffic as opposed to the component, which deals with the egress traffic). The gateway also specifies the NGINX instances that will participate in the routing of traffic using [instance groups]({{< relref "nim/how-to/nginx/manage-instance-groups.md" >}}). Each gateway can have one or more instance groups.
+The gateway container controls the initial network entry point of the app traffic into the NGINX system (the ingress traffic as opposed to the component, which deals with the egress traffic). The gateway also specifies the NGINX instances that will participate in the routing of traffic using [instance groups]({{< relref "/nms/nim/how-to/nginx/manage-instance-groups.md" >}}). Each gateway can have one or more instance groups.
 
 Additionally, for web components, the gateway is used for setting up the hostname and connections that will be used by the NGINX instances and the TLS certificates that should be used (the TCPUDP component object handles these directly for the stream protocols).
 

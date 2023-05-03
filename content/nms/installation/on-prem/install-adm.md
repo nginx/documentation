@@ -115,5 +115,5 @@ A valid license is required in order to use App Delivery Manager.
 
 ### Install Other NGINX Management Suite Modules
 
-- [Install API Connectivity Manager]({{< relref "installation/on-prem/install-acm.md" >}})
-- [Install Security Monitoring]({{< relref "installation/on-prem/install-security-monitoring.md" >}})
+- [Install API Connectivity Manager]({{< relref "/nms/installation/on-prem/install-acm.md" >}})
+- [Install Security Monitoring]({{< relref "/nms/installation/on-prem/install-security-monitoring.md" >}})
