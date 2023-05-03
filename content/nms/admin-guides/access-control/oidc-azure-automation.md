@@ -24,7 +24,7 @@ Complete the steps in this guide to secure NGINX Management Suite Instance Manag
 
 ## Before you begin
 
-First, secure Instance Manager with OpenID Connect (OIDC) using Azure Active Directory (AD) as the identity provider. To do so, complete the steps in the [Set up OIDC Authentication with Azure AD]({{< relref "/admin-guides/access-control/oidc-azure.md" >}}) guide. After following the steps in that guide, you'll have a registered application (named "Instance Manager" in the guide's example) in Azure AD and a client ID and secret that you can use to configure automation. 
+First, secure Instance Manager with OpenID Connect (OIDC) using Azure Active Directory (AD) as the identity provider. To do so, complete the steps in the [Set up OIDC Authentication with Azure AD]({{< relref "/nms/admin-guides/access-control/oidc-azure.md" >}}) guide. After following the steps in that guide, you'll have a registered application (named "Instance Manager" in the guide's example) in Azure AD and a client ID and secret that you can use to configure automation. 
 
 ## Configure Azure
 
@@ -57,7 +57,7 @@ First, secure Instance Manager with OpenID Connect (OIDC) using Azure Active Dir
 
 1. On the left navigation menu, in the **Manage** section, select **App roles**.
 1. Select **Create app role**.
-1. Complete the new role form. You should use the details from an existing NGINX Management Suite user group, such as the one created in the [Create User Groups in Instance Manager]({{< relref "/admin-guides/access-control/oidc-azure.md#create-user-groups-in-instance-manager" >}}) step. For example :
+1. Complete the new role form. You should use the details from an existing NGINX Management Suite user group, such as the one created in the [Create User Groups in Instance Manager]({{< relref "/nms/admin-guides/access-control/oidc-azure.md#create-user-groups-in-instance-manager" >}}) step. For example :
 
    - In the **Display name** box, type a name for the role. For example, "Admin".
    - In the **Allowed member types** section, select **Applications**.
@@ -79,7 +79,7 @@ First, secure Instance Manager with OpenID Connect (OIDC) using Azure Active Dir
 
 ## Configure NGINX OIDC to use Azure AD IdP
 
-Complete the steps in the [Set Up NGINX Plus to Interact with the Identity Provider]({{< relref "/admin-guides/access-control/oidc-azure.md#set-up-nginx-plus-to-interact-with-the-identity-provider" >}}) topic. Please note that you might have already completed these steps as part of the [Before you begin](#before-you-begin) section of this guide.
+Complete the steps in the [Set Up NGINX Plus to Interact with the Identity Provider]({{< relref "/nms/admin-guides/access-control/oidc-azure.md#set-up-nginx-plus-to-interact-with-the-identity-provider" >}}) topic. Please note that you might have already completed these steps as part of the [Before you begin](#before-you-begin) section of this guide.
 
 Additionally, you will need to complete the following steps:
 

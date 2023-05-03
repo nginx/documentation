@@ -32,7 +32,7 @@ authors: []
 
 ## Default Developer Portal Helm Settings {#default-devportal-helm-settings}
 
-This topic lists the default values that are used when [installing the Developer Portal from a Helm chart]({{< relref "admin-guides/installation/kubernetes/nms-helm.md" >}}). You can change these values to meet your specific needs.
+This topic lists the default values that are used when [installing the Developer Portal from a Helm chart]({{< relref "/nms/admin-guides/installation/kubernetes/nms-helm.md" >}}). You can change these values to meet your specific needs.
 
 {{< include "admin-guides/installation/helm/acm/dev-portal-helm-configurations/configuration-options.md" >}}
 

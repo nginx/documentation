@@ -45,7 +45,7 @@ The Instance Manager REST API allows you to manage NIM objects and the NMS platf
 
 Instance Manager supports authentication by using basic authentication or a JSON Web Token (JWT). You can get a JWT by logging in with an OpenID Connect (OIDC) Identity Provider. 
 
-For more information about the available authentication options for NGINX Management Suite, refer to [Set Up Authentication]({{< relref "/admin-guides/access-control/configure-authentication.md" >}}).
+For more information about the available authentication options for NGINX Management Suite, refer to [Set Up Authentication]({{< relref "/nms/admin-guides/access-control/configure-authentication.md" >}}).
 
 ### Basic Authentication
 

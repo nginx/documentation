@@ -28,7 +28,7 @@ API Connectivity Manager 1.5.0 supports upgrades from these previous versions:
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
+Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
 {{< /see-also >}}
 
 <br>
@@ -46,15 +46,15 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Runtime state sharing in an API gateway or Developer Portal**
 
-  Administrators can use [cluster-wide policies]({{< relref "acm/how-to/policies/cluster-wide-config.md" >}}) to configure uniform settings across all instances in the cluster, such as worker connections, hash table size, and keepalive settings, to optimize performance. Furthermore, using the [Cluster Zone Sync policy]({{< relref "acm/how-to/policies/cluster-zone-sync.md" >}}), the cluster can be configured to share the runtime state and sync data across all instances, allowing for cluster-wide rate limits and sticky sessions.
+  Administrators can use [cluster-wide policies]({{< relref "/nms/acm/how-to/policies/cluster-wide-config.md" >}}) to configure uniform settings across all instances in the cluster, such as worker connections, hash table size, and keepalive settings, to optimize performance. Furthermore, using the [Cluster Zone Sync policy]({{< relref "/nms/acm/how-to/policies/cluster-zone-sync.md" >}}), the cluster can be configured to share the runtime state and sync data across all instances, allowing for cluster-wide rate limits and sticky sessions.
 
 - {{% icon-feature %}} **Use role-based access control for enhanced security and governance**
 
-  With new [built-in RBAC roles for API Connectivity Manager]({{< relref "admin-guides/access-control/set-up-rbac.md#build-in-roles" >}}), administrators can grant or restrict user access to workspaces and features, empowering teams to manage their own workflows.
+  With new [built-in RBAC roles for API Connectivity Manager]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md#build-in-roles" >}}), administrators can grant or restrict user access to workspaces and features, empowering teams to manage their own workflows.
 
   {{<see-also>}}
-  - [Set Up RBAC for API Owners]({{< relref "acm/tutorials/rbac-api-owners.md" >}})
-  - [Set Up RBAC for Infra Admins]({{< relref "acm/tutorials/rbac-infra-admins.md" >}})
+  - [Set Up RBAC for API Owners]({{< relref "/nms/acm/tutorials/rbac-api-owners.md" >}})
+  - [Set Up RBAC for Infra Admins]({{< relref "/nms/acm/tutorials/rbac-infra-admins.md" >}})
   {{</see-also>}}
 
 - {{% icon-feature %}} **Secure handling of sensitive data**
@@ -71,7 +71,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Add a Health Check policy to your gRPC proxy to ensure optimal performance**
 
-  The [gRPC proxy can be enabled with a Health Check policy]({{< relref "acm/how-to/policies/grpc-policies.md#health-check" >}}), allowing it to check the health status of backend gRPC services and route requests accordingly.
+  The [gRPC proxy can be enabled with a Health Check policy]({{< relref "/nms/acm/how-to/policies/grpc-policies.md#health-check" >}}), allowing it to check the health status of backend gRPC services and route requests accordingly.
 
 - {{% icon-feature %}} **Performance improvements for the web interface**
 
@@ -97,13 +97,13 @@ API Connectivity Manager 1.5.0 has the following changes in default behavior:
 
 This release fixes the following issues. Select an issue's ID link to view its details.
 
-- {{% icon-resolved %}} Configurations aren't pushed to newly onboarded instances if another instance is offline [(40035)]({{< relref "acm/releases/known-issues.md#40035" >}})
+- {{% icon-resolved %}} Configurations aren't pushed to newly onboarded instances if another instance is offline [(40035)]({{< relref "/nms/acm/releases/known-issues.md#40035" >}})
 
-- {{% icon-resolved %}} The Proxy Cluster API isn't ready to be used [(40097)]({{< relref "acm/releases/known-issues.md#40097" >}})
+- {{% icon-resolved %}} The Proxy Cluster API isn't ready to be used [(40097)]({{< relref "/nms/acm/releases/known-issues.md#40097" >}})
 
 ### Known Issues {#1-5-0-known-issues}
 
-- You can find information about known issues with API Connectivity Manager in the [Known Issues]({{< relref "acm/releases/known-issues.md" >}}) topic.
+- You can find information about known issues with API Connectivity Manager in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -120,7 +120,7 @@ API Connectivity Manager 1.4.1 supports upgrades from these previous versions:
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
+Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
 {{< /see-also >}}
 
 <br>
@@ -143,14 +143,14 @@ This release includes the following updates:
 
 ### Resolved Issues
 
-This release fixes the following issue. To view the history for an issue, see the [Known Issues list]({{< relref "/acm/releases/known-issues.md" >}}).
+This release fixes the following issue. To view the history for an issue, see the [Known Issues list]({{< relref "/nms/acm/releases/known-issues.md" >}}).
 
 
 - {{% icon-resolved %}} Cluster and Environment deletion issues when Portal Docs are published (40163)
 
 ### Known Issues
 
-- You can find information about known issues with API Connectivity Manager in the [Known Issues]({{< relref "acm/releases/known-issues.md" >}}) topic.
+- You can find information about known issues with API Connectivity Manager in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -167,7 +167,7 @@ API Connectivity Manager 1.4.0 supports direct upgrades from these previous vers
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
+Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
 {{< /see-also >}}
 
 <br>
@@ -189,7 +189,7 @@ This release features the following updates:
 
 - {{% icon-feature %}} **Adds support for NGINX Plus R28**
 
-  API Connectivity Manager 1.4.0 is compatible with NGINX Plus R28. For requirements related to NGINX Management Suite and API Connectivity Manager, please refer to the [Technical Specifications]({{< relref "overview/tech-specs.md" >}}) guide.
+  API Connectivity Manager 1.4.0 is compatible with NGINX Plus R28. For requirements related to NGINX Management Suite and API Connectivity Manager, please refer to the [Technical Specifications]({{< relref "/nms/tech-specs.md" >}}) guide.
 
 - {{% icon-feature %}} **Allow or deny access to APIs for specified consumers**
 
@@ -197,7 +197,7 @@ This release features the following updates:
 
 ### Resolved Issues
 
-This release fixes the following issues. To view the history for an issue, see the [Known Issues list]({{< relref "/acm/releases/known-issues.md" >}}).
+This release fixes the following issues. To view the history for an issue, see the [Known Issues list]({{< relref "/nms/acm/releases/known-issues.md" >}}).
 
 - {{% icon-resolved %}} OIDC policy cannot be applied alongside a proxy authentication policy (39604)
 
@@ -205,7 +205,7 @@ This release fixes the following issues. To view the history for an issue, see t
 
 ### Known Issues
 
-- You can find information about known issues with API Connectivity Manager in the [Known Issues]({{< relref "acm/releases/known-issues.md" >}}) topic.
+- You can find information about known issues with API Connectivity Manager in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -229,7 +229,7 @@ If you are using an older version of API Connectivity Manager, you may need to u
 </details>
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
+Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
 {{< /see-also >}}
 
 <br>
@@ -250,7 +250,7 @@ This release fixes the following issues:
 
 ### Known Issues
 
-- You can find information about known issues with API Connectivity Manager in the [Known Issues]({{< relref "acm/releases/known-issues.md" >}}) topic.
+- You can find information about known issues with API Connectivity Manager in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -274,7 +274,7 @@ If you are using an older version of API Connectivity Manager, you may need to u
 </details>
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
+Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
 {{< /see-also >}}
 
 <br>
@@ -295,11 +295,11 @@ This release includes the following updates:
 
     Routing decisions can be made based on headers in the incoming requests. API owners can configure rules and conditions that must be matched before routing requests.
 
-  See [Configure Access Control Routing]({{< relref "acm/how-to/policies/access-control-routing.md" >}}) to learn how to restrict access to your application servers based on JWT claims or header values.
+  See [Configure Access Control Routing]({{< relref "/nms/acm/how-to/policies/access-control-routing.md" >}}) to learn how to restrict access to your application servers based on JWT claims or header values.
 
 - {{% icon-feature %}} **Use the web interface to publish and manage gRPC services**
 
-  With ACM 1.2, we introduced support for [publishing and managing gRPC services]({{< relref "acm/how-to/policies/grpc-policies.md" >}}). Now, in this release, we extend that capability to the web interface. 
+  With ACM 1.2, we introduced support for [publishing and managing gRPC services]({{< relref "/nms/acm/how-to/policies/grpc-policies.md" >}}). Now, in this release, we extend that capability to the web interface. 
 
   You can secure gRPC services with the following policies:
 
@@ -364,7 +364,7 @@ This release fixes the following issues:
 
 ### Known Issues
 
-- You can find information about known issues with API Connectivity Manager in the [Known Issues]({{< relref "acm/releases/known-issues.md" >}}) topic.
+- You can find information about known issues with API Connectivity Manager in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -379,7 +379,7 @@ API Connectivity Manager 1.2.0 supports upgrades from these previous versions:
 - 1.0.0 – 1.1.1
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
+Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
 {{< /see-also >}}
 
 <br>
@@ -395,23 +395,23 @@ Refer to the [Upgrade Guide]({{< relref "/admin-guides/installation/upgrade-guid
 
 - {{% icon-feature %}} **Secure API access with OAuth2 tokens**
 
-  API Owners can [restrict access to their APIs with OAuth2 tokens]({{< relref "/acm/how-to/policies/introspection.md" >}}) by swapping an opaque token for claims or a JWT token to be proxied to the backend service. The policy can be configured to grant access to APIs after having the tokens introspected. In addition, the claims in the token can be extracted and forwarded to the backend service.
+  API Owners can [restrict access to their APIs with OAuth2 tokens]({{< relref "/nms/acm/how-to/policies/introspection.md" >}}) by swapping an opaque token for claims or a JWT token to be proxied to the backend service. The policy can be configured to grant access to APIs after having the tokens introspected. In addition, the claims in the token can be extracted and forwarded to the backend service.
 
-  {{<tip>}}Learn how to [set up an OAuth2 Introspection policy with Keycloak]({{< relref "acm/tutorials/introspection-keycloak.md" >}}) as the authorization server.{{</tip>}}
+  {{<tip>}}Learn how to [set up an OAuth2 Introspection policy with Keycloak]({{< relref "/nms/acm/tutorials/introspection-keycloak.md" >}}) as the authorization server.{{</tip>}}
 
 - {{% icon-feature %}} **Restrict access to APIs based on IP address**
 
-  Using the [ACL-IP policy]({{< relref "/acm/how-to/policies/api-access-control-lists.md" >}}), API owners can now restrict access to APIs based on IP addresses. APIs can be protected by quickly blocking rogue requests from certain IPs or allowing access to only known IPs.
+  Using the [ACL-IP policy]({{< relref "/nms/acm/how-to/policies/api-access-control-lists.md" >}}), API owners can now restrict access to APIs based on IP addresses. APIs can be protected by quickly blocking rogue requests from certain IPs or allowing access to only known IPs.
   
 - {{% icon-feature %}} **Support for HTTP/2**
 
-  To improve the performance and efficiency of client-server interactions, HTTP/2 can be enabled on the [API proxies]({{< relref "/acm/getting-started/publish-api-proxy.md#set-up-api-proxy" >}}). With HTTP/2 enabled, API Proxies will continue to maintain backward compatibility with older browsers.
+  To improve the performance and efficiency of client-server interactions, HTTP/2 can be enabled on the [API proxies]({{< relref "/nms/acm/getting-started/publish-api-proxy.md#set-up-api-proxy" >}}). With HTTP/2 enabled, API Proxies will continue to maintain backward compatibility with older browsers.
 
 - {{% icon-feature %}} **Publish and manage gRPC services - preview release**
 
   {{<important>}}This is a **preview** feature for you to try out. You shouldn't use preview features for production purposes.{{</important>}}
   
-  To handle gRPC traffic, you can now [publish and manage gRPC proxies]({{< relref "/acm/getting-started/publish-grpc-proxy.md" >}}).
+  To handle gRPC traffic, you can now [publish and manage gRPC proxies]({{< relref "/nms/acm/getting-started/publish-grpc-proxy.md" >}}).
 
   Publish gRPC proxies and route gRPC traffic to support the following use cases:
 
@@ -455,7 +455,7 @@ Refer to the [Upgrade Guide]({{< relref "/admin-guides/installation/upgrade-guid
 
 - {{% icon-feature %}} **Database backup included in support packages**
 
-  The [Developer Portal support package]({{< relref "/support/support-package.md" >}}) now includes the option to back up the PostgreSQL database.
+  The [Developer Portal support package]({{< relref "/nms/support/support-package.md" >}}) now includes the option to back up the PostgreSQL database.
 
 - {{% icon-feature %}} **Improved visualizations for resource credentials**
 
@@ -463,7 +463,7 @@ Refer to the [Upgrade Guide]({{< relref "/admin-guides/installation/upgrade-guid
 
 ### Resolved Issues
 
-This release fixes the following issues. To view the history for an issue, see the [Known Issues list]({{< relref "/acm/releases/known-issues.md" >}}).
+This release fixes the following issues. To view the history for an issue, see the [Known Issues list]({{< relref "/nms/acm/releases/known-issues.md" >}}).
 
 - {{% icon-resolved %}} To see updates to the Listener's table, forced refresh of the cluster details page is required. (36540)
 
@@ -479,7 +479,7 @@ This release fixes the following issues. To view the history for an issue, see t
 
 ### Known Issues
 
-- You can find information about known issues with API Connectivity Manager in the [Known Issues]({{< relref "acm/releases/known-issues.md" >}}) topic.
+- You can find information about known issues with API Connectivity Manager in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -494,7 +494,7 @@ API Connectivity Manager 1.1.1 supports upgrades from these previous versions:
 - 1.0.0 – 1.1.0
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
+Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
 {{< /see-also >}}
 
 <br>
@@ -512,7 +512,7 @@ Refer to the [Upgrade Guide]({{< relref "/admin-guides/installation/upgrade-guid
 
 ### Resolved Issues
 
-This release fixes the following issues. To view the history for an issue, see the [Known Issues list]({{< relref "/acm/releases/known-issues.md" >}}).
+This release fixes the following issues. To view the history for an issue, see the [Known Issues list]({{< relref "/nms/acm/releases/known-issues.md" >}}).
 
 - {{% icon-resolved %}} Advanced routing ignores the Context Root setting for backend proxies (36775)
 
@@ -522,7 +522,7 @@ This release fixes the following issues. To view the history for an issue, see t
 
 ### Known Issues
 
-- You can find information about known issues with API Connectivity Manager in the [Known Issues]({{< relref "acm/releases/known-issues.md" >}}) topic.
+- You can find information about known issues with API Connectivity Manager in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -537,7 +537,7 @@ API Connectivity Manager 1.1.0 supports upgrades from these previous versions:
 - 1.0.0
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
+Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
 {{< /see-also >}}
 
 <br>
@@ -555,15 +555,15 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Advanced Cluster Management**
 
-  Including more than one proxy cluster with the same hostname in an environment replicates configuration across all clusters and assists with blue-green deployments. With advanced cluster management, you can use a load balancer in front of the clusters to slowly move to the newer version of the API gateway. For example, one cluster may belong to NGINX Plus version R26 and another to R27. See the [Technical Specifications]({{< relref "/overview/tech-specs.md#data-plane-dev-portal" >}}).
+  Including more than one proxy cluster with the same hostname in an environment replicates configuration across all clusters and assists with blue-green deployments. With advanced cluster management, you can use a load balancer in front of the clusters to slowly move to the newer version of the API gateway. For example, one cluster may belong to NGINX Plus version R26 and another to R27. See the [Technical Specifications]({{< relref "/nms/tech-specs.md#data-plane-dev-portal" >}}).
 
 - {{% icon-feature %}} **Advanced Routing feature is available now**
 
-  Advanced routing feature is available now. You can use it to publish an API Proxy and route specific URIs/endpoints precisely to a backend service. Advanced routing with OAS Specification allows you to import a specification file, parse all the URIs/endpoints in the file and publish API proxy by routing each URI/endpoint precisely to a backend service. To use the advanced routing feature without an OAS specification file, add the URI/endpoints while publishing the API proxy. See the [Advanced Configurations]({{< relref "/acm/how-to/services/publish-api.md#advanced-configurations" >}}) section.
+  Advanced routing feature is available now. You can use it to publish an API Proxy and route specific URIs/endpoints precisely to a backend service. Advanced routing with OAS Specification allows you to import a specification file, parse all the URIs/endpoints in the file and publish API proxy by routing each URI/endpoint precisely to a backend service. To use the advanced routing feature without an OAS specification file, add the URI/endpoints while publishing the API proxy. See the [Advanced Configurations]({{< relref "/nms/acm/how-to/services/publish-api.md#advanced-configurations" >}}) section.
 
 - {{% icon-feature %}} **SQLite is supported for Developer Portal**
 
-  SQLite is now supported as a database for [Developer Portal installations]({{< relref "/acm/getting-started/add-devportal.md" >}}).
+  SQLite is now supported as a database for [Developer Portal installations]({{< relref "/nms/acm/getting-started/add-devportal.md" >}}).
 
 - {{% icon-feature %}} **Support for NGINX Plus Release 27 (R27)**
 
@@ -571,7 +571,7 @@ This release includes the following updates:
 
 ### Resolved Issues
 
-This release fixes the following issues. To view the history for an issue, see the [Known Issues list]({{< relref "/acm/releases/known-issues.md" >}}).
+This release fixes the following issues. To view the history for an issue, see the [Known Issues list]({{< relref "/nms/acm/releases/known-issues.md" >}}).
 
 - {{% icon-resolved %}} JWT Assertion policy accepts an empty string value for tokenName property (35419)
 
@@ -585,7 +585,7 @@ This release fixes the following issues. To view the history for an issue, see t
 
 ### Known Issues
 
-- You can find information about known issues with API Connectivity Manager in the [Known Issues]({{< relref "acm/releases/known-issues.md" >}}) topic.
+- You can find information about known issues with API Connectivity Manager in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -612,4 +612,4 @@ This release introduces the following features:
 
 ### Known Issues
 
-- You can find information about known issues with API Connectivity Manager in the [Known Issues]({{< relref "acm/releases/known-issues.md" >}}) topic.
+- You can find information about known issues with API Connectivity Manager in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.

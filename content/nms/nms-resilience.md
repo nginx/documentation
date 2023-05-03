@@ -17,7 +17,7 @@ personas: ["devops", "netops", "secops", "support"]
 
 ## Overview
 
-The NGINX Management Suite platform includes four services (described below) that work together to monitor NGINX data plane instances. These platform services feature self-monitoring capabilities, allowing them to detect unresolvable issues and shut down automatically. When you [install NGINX Management Suite on Kubernetes]({{< relref "admin-guides/installation/kubernetes/nms-helm.md">}}), you get the benefits of fault tolerance and automated recovery: when a platform service fails, Kubernetes will create new pods and restart the affected services without disruption to the data plane.
+The NGINX Management Suite platform includes four services (described below) that work together to monitor NGINX data plane instances. These platform services feature self-monitoring capabilities, allowing them to detect unresolvable issues and shut down automatically. When you [install NGINX Management Suite on Kubernetes]({{< relref "/nms/admin-guides/installation/kubernetes/nms-helm.md">}}), you get the benefits of fault tolerance and automated recovery: when a platform service fails, Kubernetes will create new pods and restart the affected services without disruption to the data plane.
 
 ---
 
@@ -41,7 +41,7 @@ NGINX Management Suite includes the following four platform services that work t
 | Core                                   | The core service configures and sets up the management plane, as well as performs data analysis for metrics, events, and alerts.                                                                                                                     |
 | Data Plane Manager (DPM)               | The data plane manager (DPM) service is responsible for configuring NGINX instances on the data plane, monitoring the state of data plane resources, and generating reports and event messages.                                                      |
 | Ingestion                              | The ingestion service collects metrics, security violations, and events not sent to the data plane manager service by the NGINX Agent. This information can be forwarded to external data stores.                                                    |
-| Integrations                           | The integrations process includes features for interacting with external components, like configuring [NGINX App Protect WAF policies]({{< relref "nim/how-to/app-protect/setup-waf-config-management.md" >}}), managing threat campaigns, and more. |
+| Integrations                           | The integrations process includes features for interacting with external components, like configuring [NGINX App Protect WAF policies]({{< relref "/nms/nim/how-to/app-protect/setup-waf-config-management.md" >}}), managing threat campaigns, and more. |
 {{< /bootstrap-table >}}
 
 ### Databases
@@ -86,7 +86,7 @@ Our tests showed the following recovery times:
 
 - NGINX Management Suite 2.9.0
 
-- ClickHouse pod as defined in the [NGINX Management Suite helm chart]({{< relref "admin-guides/installation/kubernetes/nms-helm.md">}})
+- ClickHouse pod as defined in the [NGINX Management Suite helm chart]({{< relref "/nms/admin-guides/installation/kubernetes/nms-helm.md">}})
 
 The time it took for the [Pod condition](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-conditions)
 to transition from `PodScheduled` to `Ready`:
@@ -133,4 +133,4 @@ NGINX Management Suite should be integrated into the customer's established Busi
 
 ## What's Next
 
-For resilient deployments, we recommend [installing NGINX Management Suite on Kubernetes using Helm](({{< relref "admin-guides/installation/kubernetes/nms-helm.md">}})). With Kubernetes, you'll get the benefits of persistent volumes and automated recovery for a reliable control plane.
+For resilient deployments, we recommend [installing NGINX Management Suite on Kubernetes using Helm](({{< relref "/nms/admin-guides/installation/kubernetes/nms-helm.md">}})). With Kubernetes, you'll get the benefits of persistent volumes and automated recovery for a reliable control plane.

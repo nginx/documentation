@@ -23,7 +23,7 @@ Currently, only the following metric is available:
 
 - [Count of proxies in an environment](#count-proxies-in-env)
 
-As we add new metrics, we'll let you know in the [ACM release notes]({{< relref "acm/releases/release-notes.md" >}}) and update this topic accordingly.
+As we add new metrics, we'll let you know in the [ACM release notes]({{< relref "/nms/acm/releases/release-notes.md" >}}) and update this topic accordingly.
 
 ---
 
@@ -59,7 +59,7 @@ This section configures the hosts used in this tutorial. In the following table,
 
 ### Install NGINX Management Suite & API Connectivity Manager {#install-nsm-acm}
 
-Follow the steps in the [Installation Guide]({{< relref "/admin-guides/installation/on-prem/install-guide" >}}) to set up NGINX Management Suite and ACM. You do not need to configure a Developer Portal for this tutorial.
+Follow the steps in the [Installation Guide]({{< relref "/nms/admin-guides/installation/on-prem/install-guide" >}}) to set up NGINX Management Suite and ACM. You do not need to configure a Developer Portal for this tutorial.
 
 ### Install NGINX Agent on Data Plane Host {#install-agent}
 
