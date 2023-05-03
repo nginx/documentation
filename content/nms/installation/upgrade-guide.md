@@ -181,7 +181,6 @@ Upgrade App Delivery Manager from the NGINX Management Suite Repo:
 
 This section explains how to upgrade App Delivery Manager using a Linux package manager -- Yum or Apt -- to retrieve packages from a public repository. You'll need to have Internet access to complete these steps.
 
-{{< include "adm/installation/upgrade-adm.md" >}}
 
 </details>
 
