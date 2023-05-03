@@ -15,7 +15,7 @@ To install the latest version of the Instance Manager module, run the following 
 
 {{< instance-manager-password >}}
 
-To set up Instance Manager configuration management for NGINX App Protect WAF, refer to [Set Up App Protect WAF Configuration Management]({{< relref "/nim/how-to/app-protect/setup-waf-config-management" >}}).
+To set up Instance Manager configuration management for NGINX App Protect WAF, refer to [Set Up App Protect WAF Configuration Management]({{< relref "/nms/nim/how-to/app-protect/setup-waf-config-management" >}}).
 
 <!-- Do not remove. Keep this code at the bottom of the include -->
 <!-- DOCS-1045 -->

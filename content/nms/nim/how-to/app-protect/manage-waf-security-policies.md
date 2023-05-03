@@ -34,7 +34,7 @@ With the Instance Manager browser interface or REST API, you can easily manage, 
 Complete the following prerequisites before proceeding with this guide:
 
 - [Set Up App Protect WAF Configuration Management]({{< relref "setup-waf-config-management" >}})
-- Verify that your user account has the [necessary permissions]({{< relref "admin-guides/access-control/set-up-rbac.md" >}}) to access the Instance Manager REST API:
+- Verify that your user account has the [necessary permissions]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}) to access the Instance Manager REST API:
 
   - **Module**: Instance Manager
   - **Feature**: Instance Management

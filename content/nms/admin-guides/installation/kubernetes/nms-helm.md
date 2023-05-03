@@ -250,7 +250,7 @@ A Helm `values.yaml` file is a configuration file you can use to customize the i
 
 Choose from the following options to view frequently used configurations for the NGINX Management Suite. To apply one of these configurations, modify the `values.yaml` file accordingly.
 
-{{<see-also>}}Refer to the [Configurable Helm Settings]({{< relref "admin-guides/installation/kubernetes/nms-helm-config-options.md" >}}) reference guide for the complete list of configurable parameters and default values used by the NGINX Management Suite and modules when installing from a Helm chart. {{</see-also>}}
+{{<see-also>}}Refer to the [Configurable Helm Settings]({{< relref "/nms/admin-guides/installation/kubernetes/nms-helm-config-options.md" >}}) reference guide for the complete list of configurable parameters and default values used by the NGINX Management Suite and modules when installing from a Helm chart. {{</see-also>}}
 
 <details>
 <summary><i class="fa-solid fa-circle-info"></i> Use your own ClickHouse installation</summary>
@@ -494,7 +494,7 @@ When deploying NGINX Management Suite, you can enable the following modules at t
 
 Complete the following steps to enable the API Connectivity Manager as part of a **new installation** of NGINX Management Suite.
 
-{{<tip>}}<i class="far fa-lightbulb"></i> If you've already installed NGINX Management Suite and now, at a later time, you want to enable the API Connectivity Manager module, follow the steps in the [Enabling Modules for Existing Deployments]({{< relref "admin-guides/installation/kubernetes/enable-modules-for-existing-deployments.md" >}}) guide. In that case, you'll enable the module as an upgrade to your existing NGINX Management Suite.{{</tip>}}
+{{<tip>}}<i class="far fa-lightbulb"></i> If you've already installed NGINX Management Suite and now, at a later time, you want to enable the API Connectivity Manager module, follow the steps in the [Enabling Modules for Existing Deployments]({{< relref "/nms/admin-guides/installation/kubernetes/enable-modules-for-existing-deployments.md" >}}) guide. In that case, you'll enable the module as an upgrade to your existing NGINX Management Suite.{{</tip>}}
 
 ### Download API Connectivity Manager Docker Image
 
@@ -514,7 +514,7 @@ Complete the following steps to enable the API Connectivity Manager as part of a
 
 ### Customize Helm Settings for API Connectivity Manager {#configuration-options-acm}
 
-{{<see-also>}}Refer to the [Configurable Helm Settings]({{< relref "admin-guides/installation/kubernetes/nms-helm-config-options.md#acm-helm-settings" >}}) reference guide for the complete list of configurable parameters and default values used by the NGINX Management Suite and modules when installing from a Helm chart. {{</see-also>}}
+{{<see-also>}}Refer to the [Configurable Helm Settings]({{< relref "/nms/admin-guides/installation/kubernetes/nms-helm-config-options.md#acm-helm-settings" >}}) reference guide for the complete list of configurable parameters and default values used by the NGINX Management Suite and modules when installing from a Helm chart. {{</see-also>}}
 
 {{%/tab%}}
 
@@ -620,12 +620,12 @@ This helm command uninstalls the app named `nms` from the namespace `nms`. It de
 
 {{< include "support/troubleshooting-guide.md" >}}
 
-For guidance on how to create a support package containing system and service details to share with NGINX Customer Support, refer to the guide [Create a Support Package from a Helm Installation]({{< relref "support/k8s-support-package.md" >}}).
+For guidance on how to create a support package containing system and service details to share with NGINX Customer Support, refer to the guide [Create a Support Package from a Helm Installation]({{< relref "/nms/support/k8s-support-package.md" >}}).
 
 ---
 
 ## What's Next
 
-- [License Instance Manager]({{< relref "/admin-guides/getting-started/add-license.md" >}})
-- [Install and Configure NGINX Agent]({{< relref "/nginx-agent/install-nginx-agent.md" >}})
-- [Set Up Authentication for Instance Manager]({{< relref "/admin-guides/access-control/configure-authentication.md" >}})
+- [License Instance Manager]({{< relref "/nms/admin-guides/getting-started/add-license.md" >}})
+- [Install and Configure NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent.md" >}})
+- [Set Up Authentication for Instance Manager]({{< relref "/nms/admin-guides/access-control/configure-authentication.md" >}})

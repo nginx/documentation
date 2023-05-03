@@ -87,7 +87,7 @@ Take the steps below to add an Environment.
 
 ## Onboard an NGINX Instance {#register-nginx-instance}
 
-[Install the NGINX Agent]({{< relref "/nginx-agent/install-nginx-agent" >}}) on each host to register the instance with ACM as part of the cluster.
+[Install the NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent" >}}) on each host to register the instance with ACM as part of the cluster.
 
 Take the steps below to add an NGINX instance to an API Gateway.
 

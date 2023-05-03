@@ -112,7 +112,7 @@ A valid license is required in order to use all of the features in Instance Mana
 Complete the following steps for each data plane instance you want to manage using Instance Manager:
 
 - [Install NGINX OSS or NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/) on your data plane instances.
-- [Install the NGINX Agent]({{< relref "nginx-agent/install-nginx-agent.md" >}}) on your data plane instances to register them with NGINX Management Suite.
+- [Install the NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent.md" >}}) on your data plane instances to register them with NGINX Management Suite.
 
 ---
 
@@ -120,10 +120,10 @@ Complete the following steps for each data plane instance you want to manage usi
 
 ### Set up NGINX App Protect WAF
 
-- To set up Instance Manager to manage configurations for NGINX App Protect WAF, follow the steps in the [Set Up App Protect WAF Configuration Management]({{< relref "/nim/how-to/app-protect/setup-waf-config-management" >}}) guide.
+- To set up Instance Manager to manage configurations for NGINX App Protect WAF, follow the steps in the [Set Up App Protect WAF Configuration Management]({{< relref "/nms/nim/how-to/app-protect/setup-waf-config-management" >}}) guide.
 
 ### Install Other NGINX Management Suite Modules
 
-- [Install API Connectivity Manager]({{< relref "installation/on-prem/install-acm.md" >}})
-- [Install App Delivery Manager]({{< relref "installation/on-prem/install-adm.md" >}})
-- [Install Security Monitoring]({{< relref "installation/on-prem/install-security-monitoring.md" >}})
+- [Install API Connectivity Manager]({{< relref "/nms/installation/on-prem/install-acm.md" >}})
+- [Install App Delivery Manager]({{< relref "/nms/installation/on-prem/install-adm.md" >}})
+- [Install Security Monitoring]({{< relref "/nms/installation/on-prem/install-security-monitoring.md" >}})

@@ -101,7 +101,7 @@ The TCPUDP-COMPONENT-MANAGEMENT feature controls access to TCP/UDP components an
 
 ## **Examples**
 
-Some examples of roles are described below.  For more details on how to assign roles and the special considerations which need to be taken into account when using the user interface (UI) see [Setting up User Roles]({{< relref "adm/getting-started/roles.md" >}}) section of **Getting-Started**.
+Some examples of roles are described below.  For more details on how to assign roles and the special considerations which need to be taken into account when using the user interface (UI) see [Setting up User Roles]({{< relref "/nms/adm/getting-started/roles.md" >}}) section of **Getting-Started**.
 
 #### Local App Manager
 

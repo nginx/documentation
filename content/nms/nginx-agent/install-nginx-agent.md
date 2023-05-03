@@ -31,7 +31,7 @@ aliases:
 
 This section lists the prerequisites for installing and configuring NGINX Agent. Follow the steps below to complete the requirements:
 
-1. [NGINX Management Suite is installed on a server]({{< relref "installation/on-prem/_index.md" >}}).
+1. [NGINX Management Suite is installed on a server]({{< relref "/nms/installation/on-prem/_index.md" >}}).
 
     {{<note>}} When installing and configuring NGINX Management Suite, take note of the fully qualified domain name (FQDN) and gRPC port number. You'll need this information to properly configure the NGINX Agent to communicate with NGINX Management Suite.
     {{</note>}}
@@ -68,7 +68,7 @@ To see if `nginx_agent_selinux` is installed, run the following command:
     {{%/tab%}}
     {{</tabs>}}
 
-5. Review the [Technical Specifications]({{< relref "/tech-specs.md" >}}) guide for system requirements.
+5. Review the [Technical Specifications]({{< relref "/nms/tech-specs.md" >}}) guide for system requirements.
 
 ---
 
@@ -427,7 +427,7 @@ Additionally, you can use the agent installation script to add these fields:
 
 ### Enable NGINX Plus Advanced Metrics
 
-- To enable NGINX Plus advanced metrics, follow the steps in the [Install NGINX Plus Metrics Module]({{< relref "/nginx-agent/install-nginx-plus-advanced-metrics.md" >}}) guide.
+- To enable NGINX Plus advanced metrics, follow the steps in the [Install NGINX Plus Metrics Module]({{< relref "/nms/nginx-agent/install-nginx-plus-advanced-metrics.md" >}}) guide.
 
 ---
 
@@ -465,10 +465,10 @@ For additional information on using NGINX with SELinux, refer to the guide [Usin
 
 {{< important >}}By default, communication between the NGINX Agent and NGINX Management Suite is unsecured.{{< /important >}}
 
-For instructions on how configure mTLS to secure communication between the NGINX Agent and NGINX Management Suite, see [NGINX Agent TLS Settings]({{< relref "nginx-agent/encrypt-nginx-agent-comms.md" >}}).
+For instructions on how configure mTLS to secure communication between the NGINX Agent and NGINX Management Suite, see [NGINX Agent TLS Settings]({{< relref "/nms/nginx-agent/encrypt-nginx-agent-comms.md" >}}).
 
 ---
 
 ## NGINX Metrics
 
-After you register an NGINX instance with NGINX Management Suite, the NGINX Agent will collect and report metrics. For more information about the metrics that are reported, see [Overview: Instance Metrics]({{< relref "/nim/about/overview-metrics.md" >}}).
+After you register an NGINX instance with NGINX Management Suite, the NGINX Agent will collect and report metrics. For more information about the metrics that are reported, see [Overview: Instance Metrics]({{< relref "/nms/nim/about/overview-metrics.md" >}}).

@@ -62,7 +62,7 @@ To complete the steps in this guide, you need the following:
 - API Connectivity Manager is installed, licensed, and running.
 - The gRPC service you want to proxy to is up and running. Network communication is established between the proxy cluster and the backend gRPC service.
 
-Before proceeding with this guide, you should familiarize yourself with the [API Overview]({{< relref "/acm/about/api-overview" >}}) section of this series.
+Before proceeding with this guide, you should familiarize yourself with the [API Overview]({{< relref "/nms/acm/about/api-overview" >}}) section of this series.
 
 To demonstrate the gRPC capabilities, this guide uses a simple test environment that represents the key components of a gRPC proxy with a simple [helloworld](https://grpc.io/docs/languages/go/quickstart/) gRPC service.
 

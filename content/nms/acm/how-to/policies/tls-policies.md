@@ -30,7 +30,7 @@ The types of communication you can apply TLS policies to includes:
 Complete the following prerequisites before proceeding with this guide: 
 
 - ACM is installed, licensed, and running.
-- You have one or more Environments with [API Gateway]({{< relref "/acm/getting-started/add-api-gateway" >}}) or [Dev Portal]({{< relref "/acm/getting-started/add-devportal" >}}) clusters.
+- You have one or more Environments with [API Gateway]({{< relref "/nms/acm/getting-started/add-api-gateway" >}}) or [Dev Portal]({{< relref "/nms/acm/getting-started/add-devportal" >}}) clusters.
 
 ### How to Access the User Interface
 
