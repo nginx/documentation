@@ -1,0 +1,57 @@
+[build]
+  publish = "public"
+
+[context.production]
+  command = "make all"  
+  publish = "public"
+  
+[context.staging]
+  command = "make all-staging"
+  publish = "public"
+
+#[context.dev]
+#  command = "make all-dev"
+#  publish = "public"
+
+[context.deploy-preview]
+  command = "make deploy-preview"
+  publish = "public"
+
+[context.branch-deploy]
+  command = "make deploy-preview"
+  publish = "public"
+
+[[redirects]]
+  from = "/nginx-app-protect-dos/"
+  to = "/nap-dos/"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/nginx-app-protect-waf/"
+  to = "/nap-waf/"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/nginx-controller/"
+  to = "/controller/"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/nginx-management-suite/"
+  to = "/nms/"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/nginx-waf/"
+  to = "/modsec-waf/"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
