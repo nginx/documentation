@@ -5,6 +5,8 @@ description: |
     No further renewals are accepted as of April 1, 2023.   
 weight: 5000
 url: /nginx-waf/
+cascade:
+  logo: "NGINX-WAF-product-icon-RGB.svg"
 ---
 
 {{< important >}}
