@@ -19,7 +19,7 @@ The App team wants to provide external access to their custom app which has two 
 The environment has been set up as follows for this use case:
 
 - The Platform team has set up NGINX Management Suite permissions to allow the App team to create any App Delivery Manager related resource.
-- The Platform team has [created an instance group]({{< relref "/nim/how-to/nginx/manage-instance-groups.md" >}}), acme-ig, for the NGINX instances that will be used to route the traffic to the team's app instances (workloads, in App Delivery Manager terminology, which typically map to upstreams in NGINX terminology).
+- The Platform team has [created an instance group]({{< relref "/nim/how-to/nginx/manage-instance-groups.md" >}}), acme-ig, for the NGINX instances that will be used to route the traffic to the team's app instances (workloads, in ADM terminology, which typically map to upstreams in NGINX terminology).
 
 ## Solution
 
@@ -62,9 +62,9 @@ Follow these steps to create the app:
 
 The app we just created is a wrapper that can be composed of multiple components, each potentially referencing a unique microservice. For our tutorial, we are deploying a simple app with only one component. To create this component, take the following steps:
 
-1. If you are not on *App Overview* page already, select **Apps** on the sidebar. The list of existing apps will be displayed.
-1. Select **Acme App** in the list of apps. Select **View** in the panel that opens.
-1. The main display will now show basic metrics for the app. At the top of the page, select **Web Components**.
+1. If you are not on *Apps Overview* page already, select **Apps** on the sidebar. The list of existing apps will be displayed.
+1. On the *Overview* page, in the *Name* column, select the **Acme App** link in the list of apps.
+1. At the top of the page, select **Web Components**.
 1. On the *Web Components* page, select **Create Web Component**. 
 1. On the *Configuration* section of the *Create Web Component* drawer, type **Acme Component** in the **Name** field.
 1. In the **Gateway Refs field** list, select **Acme Gateway**. 
@@ -79,7 +79,7 @@ The app we just created is a wrapper that can be composed of multiple components
 
 ## Resulting NGINX Configuration
 
-After completing the steps above, ???? will transition into a Configured state. If you examine any of the instances that belong to the `acme-ig` instance group, you will see the following configuration:
+After completing the steps above, the web component will transition into a "Configured" state. If you examine any of the instances that belong to the `acme-ig` instance group, you will see a configuration similar to the following:
 
 ```nginx
 server {
