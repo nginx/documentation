@@ -113,7 +113,7 @@ A valid license is required in order to use the Security Monitoring module.
 
 ---
 
-## Upgrade Security Monitoring
+## Upgrade Security Monitoring {#upgrade-security-monitoring}
 
 {{<note>}}When upgrading Security Monitoring, you may need a newer version of NGINX Management Suite. The installation process will notify you of any version requirements before upgrading Security Monitoring and any dependent packages, including NGINX Management Suite. You may cancel the installation process if you want to [back up NGINX Management Suite]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md" >}}) before upgrading.{{</note>}}
 

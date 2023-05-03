@@ -107,7 +107,7 @@ A valid license is required in order to use all of the features in Instance Mana
 
 ---
 
-## Upgrade Instance Manager
+## Upgrade Instance Manager {#upgrade-nim}
 
 {{<tabs name="upgrade_nim">}}
 {{%tab name="CentOS, RHEL, RPM-Based"%}}

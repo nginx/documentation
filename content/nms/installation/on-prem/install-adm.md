@@ -103,7 +103,7 @@ A valid license is required in order to use App Delivery Manager.
 
 ---
 
-## Upgrade App Delivery Manager
+## Upgrade App Delivery Manager {#upgrade-adm}
 
 {{<note>}}When upgrading App Delivery Manager, you may need a newer version of NGINX Management Suite. The installation process will notify you of any version requirements before upgrading App Delivery Manager and any dependent packages, including NGINX Management Suite. You may cancel the installation process if you want to [back up NGINX Management Suite]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md" >}}) before upgrading.{{</note>}}
 

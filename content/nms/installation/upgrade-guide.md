@@ -86,123 +86,30 @@ We recommend upgrading NGINX Management Suite in a test environment before upgra
 
 ---
 
-## Upgrade Instance Manager {#upgrade-instance-manager}
+## Upgrade NGINX Management Suite Modules
 
-Select the upgrade procedure that's appropriate for your environment:
+### Instance Manager
 
-<details>
-<summary>Upgrade Instance Manager from the NGINX Management Suite repo</summary>
+- [Upgrade Instance Manager on-premises]({{< relref "/nms/installation/on-prem/install-nim.md#upgrade-nim" >}})
+- [Upgrade Instance Manager from a Helm Chart]({{< relref "/nms/installation/kubernetes/nms-helm.md#helm-upgrade-nms" >}})
 
-#### Upgrade Instance Manager from NGINX Management Suite Repo
+### API Connectivity Manager
 
-This section explains how to upgrade Instance Manager using a Linux package manager -- Yum or Apt -- to retrieve packages from a public repository. You'll need to have Internet access to complete these steps.
+- [Upgrade API Connectivity Manager on-premises]({{< relref "/nms/installation/on-prem/install-acm.md#upgrade-acm" >}})
+- [Upgrade API Connectivity Manager from a Helm Chart]({{< relref "/nms/installation/kubernetes/nms-helm.md#helm-upgrade-nms" >}})
 
-If you don't have access to the Internet, refer to the [Upgrade in an Offline Environment](#upgrade-nim-offline) section.
+### App Delivery Manager
 
-{{< include "nim/installation/upgrade-nim.md" >}}
-</details>
+- [Upgrade App Delivery Manager on-premises]({{< relref "/nms/installation/on-prem/install-adm.md#upgrade-adm" >}})
+- [Upgrade App Delivery Manager from a Helm Chart]({{< relref "/nms/installation/kubernetes/nms-helm.md#helm-upgrade-nms" >}})
 
-<details>
-<summary>Upgrade Instance Manager in an offline environment</summary>
+### Security Monitoring
 
-#### Upgrade Instance Manager Offline
-
-{{< include "nim/installation/upgrade-nim-offline.md" >}}
-
-</details>
-
-<details>
-<summary>Upgrade Instance Manager from a Helm chart</summary>
-
-- Follow the upgrade steps in the [Deploy NGINX Management Suite using Helm]({{<relref "/nms/installation/kubernetes/nms-helm.md#helm-upgrade-nms" >}}) guide.
-
-</details>
+- [Upgrade Security Monitoring on-premises]({{< relref "/nms/installation/on-prem/install-security-monitoring.md#upgrade-security-monitoring" >}})
 
 ---
 
-## Upgrade API Connectivity Manager {#upgrade-api-connectivity-manager}
-
-Select the upgrade procedure that's appropriate for your environment:
-
-<details>
-<summary>Upgrade API Connectivity Manager from the NGINX Management Suite repo</summary>
-
-#### Upgrade API Connectivity Manager from NGINX Management Suite Repo
-
-Upgrade API Connectivity Manager from the NGINX Management Suite Repo:
-
-This section explains how to upgrade API Connectivity Manager using a Linux package manager -- Yum or Apt -- to retrieve packages from a public repository. You'll need to have Internet access to complete these steps.
-
-{{< include "acm/installation/upgrade-acm.md" >}}
-
-</details>
-
-<details>
-<summary>Upgrade Developer Portal from the NGINX Management Suite repo</summary>
-
-#### Upgrade the Developer Portal from NGINX Management Suite Repo {#upgrade-acm-dev-portal}
-
-This section explains how to upgrade the Developer Portal using a Linux package manager -- Yum or Apt -- to retrieve packages from a public repository. You'll need to have Internet access to complete these steps.
-
-{{< include "acm/installation/upgrade-acm-dev-portal.md" >}}
-
-</details>
-
-<details>
-<summary>Upgrade API Connectivity Manager in an offline environment</summary>
-
-#### Upgrade API Connectivity Manager Offline {#upgrade-acm-offline}
-
-{{< include "acm/installation/upgrade-acm-offline.md" >}}
-
-</details>
-
-<details>
-<summary>Upgrade Developer Portal in an offline environment</summary>
-
-#### Upgrade the Developer Portal Offline {#upgrade-acm-dev-portal-offline}
-
-{{< include "acm/installation/upgrade-acm-dev-portal-offline.md" >}}
-
-</details>
-
----
-
-## Upgrade App Delivery Manager {#upgrade-app-delivery-manager}
-
-Select the upgrade procedure that's appropriate for your environment:
-
-<details>
-<summary>Upgrade App Delivery Manager from the NGINX Management Suite repo</summary>
-
-#### Upgrade App Delivery Manager from NGINX Management Suite Repo
-
-Upgrade App Delivery Manager from the NGINX Management Suite Repo:
-
-This section explains how to upgrade App Delivery Manager using a Linux package manager -- Yum or Apt -- to retrieve packages from a public repository. You'll need to have Internet access to complete these steps.
-
-
-</details>
-
-<details>
-<summary>Upgrade App Delivery Manager in an offline environment</summary>
-
-#### Upgrade App Delivery Manager Offline {#upgrade-adm-offline}
-
-{{< include "adm/installation/upgrade-adm-offline.md" >}}
-
-</details>
-
----
-
-## Upgrade the Security Monitoring module {#upgrade-security-monitoring}
-
-{{< important >}}Confirm that you have [updated Instance Manager](#upgrade-instance-manager) to the correct version before upgrading the Security Monitoring module.
-See the [Dependencies with Instance Manager]({{< relref "/nms/tech-specs.md#dependencies-with-instance-manager-1" >}}) topic for more information.{{< /important >}}
-
-{{< include "security/upgrade-security-module.md" >}}
-
-## Upgrade the NGINX Agent {#upgrade-nginx-agent}
+## Upgrade NGINX Agent {#upgrade-nginx-agent}
 
 {{< important >}}You should upgrade the NGINX Agent whenever you upgrade NGINX Management Suite in order to ensure compatibility between the two versions. Failing to do so could lead to potential issues.{{< /important >}}
 
