@@ -67,7 +67,7 @@ authors: []
 
 {{</tabs>}}
 
-2. Enable and start the platform services:
+2. Enable and start the NGINX Management Suite platform services:
 
     ```bash
     sudo systemctl enable nms nms-core nms-dpm nms-ingestion nms-integrations --now
@@ -81,7 +81,8 @@ authors: []
    sudo systemctl restart nginx
    ```
 
-</details>
+4. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Management suite.
+
 
 ### Post-Installation Steps
 
@@ -91,32 +92,72 @@ authors: []
 
 {{< include "installation/access-web-ui.md" >}}
 
----
 
-## Add License
+### Add License
 
 A valid license is required in order to use all of the features in Instance Manager.
 
-### Download License
+#### Download License
 
 {{< include "installation/download-license.md" >}}
 
-### Apply License
+#### Apply License
 
 {{< include "installation/add-license.md" >}}
 
 ---
 
-## Set Up the Data Plane
+## Upgrade Instance Manager
+
+{{<tabs name="upgrade_nim">}}
+{{%tab name="CentOS, RHEL, RPM-Based"%}}
+
+1. To upgrade to the latest version of the Instance Manger, run the following command:
+
+   ```bash
+   sudo yum update -y nms-instance-manager
+   ```
+
+{{%/tab%}}
+
+{{%tab name="Debian, Ubuntu, Deb-Based"%}}
+
+1. To upgrade to the latest version of the Instance Manager, run the following command:
+
+   ```bash
+   sudo apt-get update
+   sudo apt-get install -y --only-upgrade nms-instance-manager
+   ```
+
+{{%/tab%}}
+{{</tabs>}}
+
+2. Restart the NGINX Management Suite platform services:
+
+    ```bash
+    sudo systemctl restart nms
+    ```
+
+    NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
+
+3. Restart the NGINX web server:
+
+   ```bash
+   sudo systemctl restart nginx
+   ```
+
+4. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Management suite.
+
+---
+
+## What's Next
+
+### Set Up the Data Plane
 
 Complete the following steps for each data plane instance you want to manage using Instance Manager:
 
 - [Install NGINX OSS or NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/) on your data plane instances.
 - [Install the NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent.md" >}}) on your data plane instances to register them with NGINX Management Suite.
-
----
-
-## What's Next
 
 ### Set up NGINX App Protect WAF
 

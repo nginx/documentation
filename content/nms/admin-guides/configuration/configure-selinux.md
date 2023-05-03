@@ -54,7 +54,7 @@ The NGINX Management Suite installer places the SELinux policy files in the foll
 
 You can interact with these files to learn about the policy. See the following section for steps on how to load the policy.
 
-### Load Policy {#selinux-server}
+### Load Policy and Set Default Labels {#selinux-server}
 
 To use the SELinux policy that's included with NGINX Management Suite, take the following steps:
 
@@ -65,7 +65,7 @@ To use the SELinux policy that's included with NGINX Management Suite, take the 
     sudo /usr/sbin/load_policy
     ```
 
-1. Run the following commands to set the SELinux contexts for the following files and directories to their default values:
+1. Run the following commands to restore the default SELinux labels for the files and directories related to NGINX Management suite:
 
    ```bash
    sudo restorecon -F -R /usr/bin/nms-core
@@ -87,7 +87,7 @@ To use the SELinux policy that's included with NGINX Management Suite, take the 
    sudo restorecon -F -R /var/log/nms
    ```
 
-1. (API Connectivity Manager) If you installed API Connectivity Manager, run the following additional commands to set the SELinux contexts for the following files and directories to their default values:
+1. (API Connectivity Manager) If you installed API Connectivity Manager, run the following additional commands to restore the default SELinux labels for the following files and directories:
 
     ```bash
     sudo restorecon -F -R /usr/bin/nms-acm
@@ -95,7 +95,7 @@ To use the SELinux policy that's included with NGINX Management Suite, take the 
     sudo restorecon -F -R /var/lib/nms/modules/acm.json
     ```
 
-1. (App Delivery Manager) If you installed App Connectivity Manager, run the following additional commands to set the SELinux contexts for the following files and directories to their default values:
+1. (App Delivery Manager) If you installed App Connectivity Manager, run the following additional commands to restore the default SELinux labels for the following files and directories:
 
     ```bash
     sudo restorecon -F -R /usr/bin/nms-adm
@@ -108,6 +108,7 @@ To use the SELinux policy that's included with NGINX Management Suite, take the 
     ```bash
     sudo systemctl restart nms
     ```
+
 ### Add Ports to SELinux Context {#selinux-ports-add}
 
 NGINX Management Suite uses the `nms_t` context in the policy module. The following example shows how to add a new port to the context. You should add external ports to the firewall exception list. Note, as a system admin, you're responsible for any custom configurations that differ from the default policy.
