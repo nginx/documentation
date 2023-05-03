@@ -1,5 +1,5 @@
 ---
-title: "Install or Upgrade Developer Portal"
+title: "Install or Upgrade the Developer Portal"
 date: 2023-04-06T11:59:50-07:00
 # Change draft status to false to publish doc
 draft: false
@@ -28,11 +28,7 @@ authors: []
 
 ---
 
-## Install Developer Portal
-
-Follow the steps in this section to install the Developer Portal.
-
-### Platform Requirements {#acm-devportal-requirements}
+## Platform Requirements {#acm-devportal-requirements}
 
 {{<important>}}To run the Developer Portal, you need a **dedicated** Linux host specifically for this purpose. **Do not** install the Developer Portal on a host that is currently serving as a management or data plane.{{</important>}}
 
@@ -49,6 +45,10 @@ Complete the following steps to prepare the Developer Portal for use with API Co
 </details>
 
 <br>
+
+---
+
+## Installation Prerequisites
 
 ### Add NGINX Management Suite Repository {#add-yum-apt}
 
@@ -146,7 +146,9 @@ echo 'DB_PATH="/var/lib/nginx-devportal"' | sudo tee -a /etc/nginx-devportal/dev
 
 {{</tabs>}}
 
-### Install the Developer Portal
+---
+
+## Install the Developer Portal
 
 1. To install the Developer Portal, run the following command(s):
 
@@ -169,4 +171,41 @@ echo 'DB_PATH="/var/lib/nginx-devportal"' | sudo tee -a /etc/nginx-devportal/dev
     sudo systemctl start nginx-devportal
     ```
 
----
+ ---
+
+## Upgrade the Developer Portal
+
+{{<tabs name="upgrade_dev_portal">}}
+{{%tab name="CentOS, RHEL, RPM-Based"%}}
+
+1. To install the latest version of the Developer Portal, run the following command:
+
+   ```bash
+   sudo yum update -y nginx-devportal nginx-devportal-ui
+   ```
+
+{{%/tab%}}
+
+{{%tab name="Debian, Ubuntu, Deb-Based"%}}
+
+1. To install the latest version of the Developer Portal, run the following commands:
+
+   ```bash
+   sudo apt-get update
+   sudo apt-get upgrade -y nginx-devportal nginx-devportal-ui
+   ```
+
+{{%/tab%}}
+{{</tabs>}}
+
+2. Enable the Developer Portal service:
+
+   ```bash
+   sudo systemctl enable nginx-devportal.service
+   ```
+
+3. Restart the Developer Portal service:
+  
+   ```bash
+   sudo systemctl restart nginx-devportal.service
+   ```

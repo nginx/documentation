@@ -30,7 +30,7 @@ authors: []
 
 ## Before You Begin
 
-### Install Prerequisites
+### Installation Prerequisites
 
 {{< include "installation/nms-prerequisites.md" >}}
 
