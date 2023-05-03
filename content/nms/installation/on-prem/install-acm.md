@@ -112,7 +112,7 @@ A valid license is required in order to use the API Connectivity Manager.
 {{<tabs name="upgrade_adm">}}
 {{%tab name="CentOS, RHEL, RPM-Based"%}}
 
-1. To upgrade to the latest version of the Instance Manager, run the following command:
+1. To upgrade to the latest version of API Connectivity Manager, run the following command:
 
    ```bash
    sudo yum update -y nms-api-connectivity-manager
@@ -161,9 +161,13 @@ Complete the following steps for each data plane instance you want to use with A
 2. [Install NGINX njs module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/nginscript/)
 3. [Install the NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent.md" >}}) on your data plane instances to register them with NGINX Management Suite.
 
+### Install the Developer Portal
+
+- [Install the Developer Portal]({{< relref "/nms/acm/how-to/devportals/install-dev-portal.md" >}})
+
 ### Install Other NGINX Management Suite Modules
 
-- [Install API Connectivity Manager]({{< relref "/nms/installation/on-prem/install-adm.md" >}})
+- [Install App Delivery Manager]({{< relref "/nms/installation/on-prem/install-adm.md" >}})
 - [Install Security Monitoring]({{< relref "/nms/installation/on-prem/install-security-monitoring.md" >}})
 
 ### Get Started with API Connectivity Manager

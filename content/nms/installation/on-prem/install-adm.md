@@ -112,7 +112,7 @@ A valid license is required in order to use App Delivery Manager.
 {{<tabs name="upgrade_adm">}}
 {{%tab name="CentOS, RHEL, RPM-Based"%}}
 
-1. To upgrade to the latest version of the App Delivery Manager, run the following command:
+1. To upgrade to the latest version of App Delivery Manager, run the following command:
 
    ```bash
    sudo yum update -y nms-app-delivery-manager
@@ -122,7 +122,7 @@ A valid license is required in order to use App Delivery Manager.
 
 {{%tab name="Debian, Ubuntu, Deb-Based"%}}
 
-1. To upgrade to the latest version of the App Delivery Manager, run the following command:
+1. To upgrade to the latest version of App Delivery Manager, run the following command:
 
    ```bash
    sudo apt-get update
