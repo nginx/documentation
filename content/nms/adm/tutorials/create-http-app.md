@@ -1,6 +1,6 @@
 ---
 title: Configure HTTP Load Balancing
-description: Learn how to configure HTTP load balancing between several identical customer apps.
+description: Learn how to configure HTTP load balancing traffic to several instances of an app.
 weight: 100
 toc: true
 draft: false
