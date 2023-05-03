@@ -16,7 +16,7 @@ You can install the NGINX Agent using `curl`, `wget`, or any command-line tool f
   curl --insecure https://<NMS-FQDN>/install/nginx-agent | sudo sh
   ```
 
-  When installing the NGINX Agent with the install script, you can optionally set an [instance group]({{< relref "nim/how-to/nginx/manage-instance-groups.md" >}}) using the `--instance-group` flag.
+  When installing the NGINX Agent with the install script, you can optionally set an [instance group]({{< relref "/nms/nim/how-to/nginx/manage-instance-groups.md" >}}) using the `--instance-group` flag.
 
   The following example shows how to download and run the script with the optional flag:
 

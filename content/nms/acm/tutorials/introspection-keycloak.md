@@ -22,7 +22,7 @@ This tutorial walks through configuring an OAuth2 Introspection policy on an API
 
 {{<important>}}The configuration presented in this guide is for demonstration purposes only. The secure configuration of Environments and Proxies in ACM, or the secure configuration of Keycloak as the authorization server, is not in scope for this tutorial and should be given full attention when planning for production use.{{</important>}}
 
-{{<see-also>}}See the [OAuth2 Introspection Policy]({{< relref "/acm/how-to/policies/introspection.md" >}}) reference guide for a detailed overview of the policy.{{</see-also>}}
+{{<see-also>}}See the [OAuth2 Introspection Policy]({{< relref "/nms/acm/how-to/policies/introspection.md" >}}) reference guide for a detailed overview of the policy.{{</see-also>}}
 
 ---
 
@@ -63,7 +63,7 @@ This section configures the hosts used in this tutorial. In the following table,
 
 ### Install NGINX Management Suite & API Connectivity Manager {#install-nsm-acm}
 
-1. Follow the steps in the [Installation Guide]({{< relref "installation/on-prem/_index.md" >}}) to set up NGINX Management Suite and ACM. You do not need to configure a Developer Portal for this tutorial.
+1. Follow the steps in the [Installation Guide]({{< relref "/nms/installation/on-prem/_index.md" >}}) to set up NGINX Management Suite and ACM. You do not need to configure a Developer Portal for this tutorial.
 
 ### Install NGINX Agent on Data Plane Host {#install-agent}
 

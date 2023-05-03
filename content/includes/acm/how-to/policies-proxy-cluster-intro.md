@@ -2,7 +2,7 @@ In NGINX Management Suite API Connectivity Manager (ACM), you can apply cluster 
 
 If a proxy cluster is shared between environments, updating cluster policies will effect all the environments.
 
-See the [Learn about Policies]({{< relref "/acm/about/policies-overview.md">}}) topic for an overview of the different policy types and available policies.
+See the [Learn about Policies]({{< relref "/nms/acm/about/policies-overview.md">}}) topic for an overview of the different policy types and available policies.
 
 <!-- Do not remove. Keep this code at the bottom of the include -->
 <!-- DOCS-1159 -->

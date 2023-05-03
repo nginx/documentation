@@ -48,7 +48,7 @@ Instance Manager is part of the NGINX Management Suite.
 
 To view the count of your NGINX Plus inventory, you'll need to install Instance Manager.
 
-- Follow the instructions to [install Instance Manager]({{< relref "installation/on-prem/_index.md" >}}) on a dedicated host. You do not need a license for Instance Manager to view the count of your NGINX Plus instances.
+- Follow the instructions to [install Instance Manager]({{< relref "/nms/installation/on-prem/_index.md" >}}) on a dedicated host. You do not need a license for Instance Manager to view the count of your NGINX Plus instances.
 
      <details>
      <summary><i class="fa-solid fa-circle-info"></i> Supported NGINX versions</summary>
@@ -80,7 +80,7 @@ To view the count of your NGINX Plus inventory, you'll need to install Instance 
 
 For your NGINX Plus instances to communicate with Instance Manager, you need to install the NGINX Agent on each instance.
 
-- Follow the instructions to [install the NGINX Agent]({{< relref "/nginx-agent/install-nginx-agent.md" >}}) on each NGINX Plus instance that needs to be counted.
+- Follow the instructions to [install the NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent.md" >}}) on each NGINX Plus instance that needs to be counted.
 
      <details>
      <summary><i class="fa-solid fa-circle-info"></i> Sizing recommendations</summary>
@@ -119,20 +119,20 @@ The current count of NGINX Plus instances is shown on the **NGINX Plus Inventory
 
 ### Upgrading Instance Manager
 
-- After [upgrading Instance Manager]({{< relref "installation/upgrade-guide.md#upgrade-instance-manager" >}}), make sure to [upgrade the NGINX Agent](#upgarde-nginx-agent) on each NGINX instance.
+- After [upgrading Instance Manager]({{< relref "/nms/installation/upgrade-guide.md#upgrade-instance-manager" >}}), make sure to [upgrade the NGINX Agent](#upgarde-nginx-agent) on each NGINX instance.
 
 ### Upgrading the NGINX Agent {#upgrading-nginx-agent}
 
-- Follow the instructions to [upgrade the NGINX Agent on each NGINX instance]({{< relref "installation/upgrade-guide.md#upgrade-nginx-agent" >}}). We recommend updating to the latest version to ensure an accurate count of your NGINX Plus inventory.
+- Follow the instructions to [upgrade the NGINX Agent on each NGINX instance]({{< relref "/nms/installation/upgrade-guide.md#upgrade-nginx-agent" >}}). We recommend updating to the latest version to ensure an accurate count of your NGINX Plus inventory.
 
 ### Counting Instances without the NGINX Agent {#counting-without-nginx-agent}
 
 - The easiest and recommended way to count your NGINX Plus instances is by installing the NGINX Agent on each NGINX Plus instance to be counted.
 
-    If, for some reason, you cannot install the NGINX Agent on each NGINX Plus instance, you can track active NGINX Plus instances in Instance Manager using the [Scan]({{< relref "/nim/how-to/nginx/scan-instances" >}}) feature. However, this method may underreport the number of inactive NGINX Plus instances.
+    If, for some reason, you cannot install the NGINX Agent on each NGINX Plus instance, you can track active NGINX Plus instances in Instance Manager using the [Scan]({{< relref "/nms/nim/how-to/nginx/scan-instances" >}}) feature. However, this method may underreport the number of inactive NGINX Plus instances.
 
 ---
 
 ## Troubleshooting
 
-- If NGINX Plus reports non-compliance errors, you may need to [add the NGINX user to the `nginx_agent` group]({{< relref "/nginx-agent/configure-nginx-agent-group.md" >}}).
+- If NGINX Plus reports non-compliance errors, you may need to [add the NGINX user to the `nginx_agent` group]({{< relref "/nms/nginx-agent/configure-nginx-agent-group.md" >}}).

@@ -7,7 +7,7 @@ toc: true
 tags: ["docs"]
 docs: "DOCS-1136"
 ---
-Before using the App Delivery Manager (ADM) module, we recommend setting up [role-based access control](https://docs.nginx.com/nginx-management-suite/admin-guides/access-control/set-up-rbac) (RBAC) for the teams that will be using the product. All ADM API endpoints are backed by RBAC as well and bring unique considerations due to its object hierarchy. These are described in the [RBAC]({{< relref "adm/about/rbac-overview.md" >}}) section of **ADM Concepts**. By default, users (except the Admin) are denied access to any endpoints unless explicitly given permission.
+Before using the App Delivery Manager (ADM) module, we recommend setting up [role-based access control](https://docs.nginx.com/nginx-management-suite/admin-guides/access-control/set-up-rbac) (RBAC) for the teams that will be using the product. All ADM API endpoints are backed by RBAC as well and bring unique considerations due to its object hierarchy. These are described in the [RBAC]({{< relref "/nms/adm/about/rbac-overview.md" >}}) section of **ADM Concepts**. By default, users (except the Admin) are denied access to any endpoints unless explicitly given permission.
 
 ## Standard Roles
 
@@ -16,7 +16,7 @@ The ADM module allows you to create different types of users, each with its own 
 The platform ops team might want to have more control besides setting up the environments and may also want to manage the life cycle of the gateways that are used in each environment.
 
 {{< note >}}
-The NGINX Management Suite user interface (UI) makes background calls to related objects for each ADM endpoint as it generates the web pages. This is not always clear, so the guidelines below takes this into consideration. See the [ADM API Overview]({{< relref "adm/about/api-overview.md" >}}) to learn more about the relationship between the objects.{{< /note >}}
+The NGINX Management Suite user interface (UI) makes background calls to related objects for each ADM endpoint as it generates the web pages. This is not always clear, so the guidelines below takes this into consideration. See the [ADM API Overview]({{< relref "/nms/adm/about/api-overview.md" >}}) to learn more about the relationship between the objects.{{< /note >}}
 
 ### Minimum Role for Platform Ops Team
 

@@ -2,7 +2,7 @@ In NGINX Management Suite API Connectivity Manager (ACM), you can apply global p
 
 When you add policies at the environment level, they will apply to all proxies hosted within that environment.
 
-See the [Learn about Policies]({{< relref "/acm/about/policies-overview.md">}}) topic for an overview of the different policy types and available policies.
+See the [Learn about Policies]({{< relref "/nms/acm/about/policies-overview.md">}}) topic for an overview of the different policy types and available policies.
 
 <!-- Do not remove. Keep this code at the bottom of the include -->
 <!-- DOCS-1005 -->

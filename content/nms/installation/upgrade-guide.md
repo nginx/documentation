@@ -30,7 +30,7 @@ This guide explains how to upgrade the NGINX Management Suite modules, NGINX Age
 
 <br>
 
-{{<see-also>}}If you're upgrading from Instance Manager v1.x, follow the steps in the [migration guide]({{< relref "nim/migration-guide.md" >}}) to get started. It is not possible to upgrade directly from Instance Manager v1.x to v2.x.{{</see-also>}}
+{{<see-also>}}If you're upgrading from Instance Manager v1.x, follow the steps in the [migration guide]({{< relref "/nms/nim/migration-guide.md" >}}) to get started. It is not possible to upgrade directly from Instance Manager v1.x to v2.x.{{</see-also>}}
 
 ---
 
@@ -44,16 +44,16 @@ It's useful to have an upgrade plan before upgrading. Creating an upgrade plan c
 
 Read the release notes for information about the latest features and changes, resolved issues, known issues, and supported upgrade paths.
 
-- [Instance Manager Release Notes]({{< relref "/nim/releases/release-notes.md" >}})
-- [API Connectivity Manager Release Notes]({{< relref "/acm/releases/release-notes.md" >}})
-- [App Delivery Manager Release Notes]({{< relref "/adm/releases/release-notes.md" >}})
-- [Security Monitoring Module]({{< relref "/security/releases/release-notes.md" >}})
+- [Instance Manager Release Notes]({{< relref "/nms/nim/releases/release-notes.md" >}})
+- [API Connectivity Manager Release Notes]({{< relref "/nms/acm/releases/release-notes.md" >}})
+- [App Delivery Manager Release Notes]({{< relref "/nms/adm/releases/release-notes.md" >}})
+- [Security Monitoring Module]({{< relref "/nms/security/releases/release-notes.md" >}})
 
 #### Tech Specs {#tech-specs}
 
 Ensure your system meets the recommended requirements and settings NGINX Management Suite:
 
-- [Technical Specifications Guide]({{< relref "/tech-specs.md" >}})
+- [Technical Specifications Guide]({{< relref "/nms/tech-specs.md" >}})
 
 ### Verify the Upgrade Path {#verify-upgrade-path}
 
@@ -78,7 +78,7 @@ During an upgrade, you will need to stop the NGINX Agent. Stopping the NGINX Age
 
 ### Back Up System Files
 
-Follow the steps in the [Backup and Recovery Guide]({{< relref "/admin-guides/maintenance/backup-and-recovery.md" >}}) to back up essential system files for NGINX Management Suite.
+Follow the steps in the [Backup and Recovery Guide]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md" >}}) to back up essential system files for NGINX Management Suite.
 
 ### Upgrade a Test Server
 
@@ -114,7 +114,7 @@ If you don't have access to the Internet, refer to the [Upgrade in an Offline En
 <details>
 <summary>Upgrade Instance Manager from a Helm chart</summary>
 
-- Follow the upgrade steps in the [Deploy NGINX Management Suite using Helm]({{<relref "installation/kubernetes/nms-helm.md#helm-upgrade-nms" >}}) guide.
+- Follow the upgrade steps in the [Deploy NGINX Management Suite using Helm]({{<relref "/nms/installation/kubernetes/nms-helm.md#helm-upgrade-nms" >}}) guide.
 
 </details>
 
@@ -199,7 +199,7 @@ This section explains how to upgrade App Delivery Manager using a Linux package 
 ## Upgrade the Security Monitoring module {#upgrade-security-monitoring}
 
 {{< important >}}Confirm that you have [updated Instance Manager](#upgrade-instance-manager) to the correct version before upgrading the Security Monitoring module.
-See the [Dependencies with Instance Manager]({{< relref "/overview/tech-specs.md#dependencies-with-instance-manager-1" >}}) topic for more information.{{< /important >}}
+See the [Dependencies with Instance Manager]({{< relref "/nms/tech-specs.md#dependencies-with-instance-manager-1" >}}) topic for more information.{{< /important >}}
 
 {{< include "security/upgrade-security-module.md" >}}
 
@@ -229,5 +229,5 @@ We encourage you to upgrade NGINX Plus to take advantage of the latest improveme
 
 - {{< include "support/troubleshooting-guide.md" >}}
 
-- You can [create a support package]({{< relref "/support-package.md" >}}) if you have problems with the upgrade. The support package script packages system and service information into a tar archive for troubleshooting and debugging purposes. If you need to [contact NGINX Customer support]({{< relref "/support/contact-support.md" >}}), they may ask you to provide a support package file.
+- You can [create a support package]({{< relref "/nms/support/support-package.md" >}}) if you have problems with the upgrade. The support package script packages system and service information into a tar archive for troubleshooting and debugging purposes. If you need to [contact NGINX Customer support]({{< relref "/nms/support/contact-support.md" >}}), they may ask you to provide a support package file.
 - The [AskF5 knowledge base](https://support.f5.com/csp/home) is a helpful place to look for articles related to upgrade issues and solutions.

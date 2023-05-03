@@ -38,11 +38,11 @@ aliases:
 
 ## Prerequisites {#prerequisites}
 
-1. [Install Instance Manager]({{< relref "installation/on-prem/_index.md" >}}).
+1. [Install Instance Manager]({{< relref "/nms/installation/on-prem/_index.md" >}}).
 2. Start and enable Instance Manager.
 
 {{<note>}}
-To update the CVE list manually or offline, refer to the [Offline Installation]({{<relref "installation/on-prem/offline-install-guide.md#cve-check">}}) guide.
+To update the CVE list manually or offline, refer to the [Offline Installation]({{<relref "/nms/installation/on-prem/offline-install-guide.md#cve-check">}}) guide.
 {{</note>}}
 
 Host discovery, the first stage in instance discovery, is used to enumerate live hosts on a given network. However, in certain environments, Internet Control Message Protocol (ICMP) echo requests are disabled. The Instance Manager API provides a method for disabling host discovery in scanning.
@@ -302,7 +302,7 @@ The result looks similar to the following:
 
 #### Description
 
-- When [scanning for NGINX instances]({{< relref "/nim/how-to/nginx/scan-instances.md" >}}), the NGINX version is reported as `undefined` when NGINX App Protect is installed.
+- When [scanning for NGINX instances]({{< relref "/nms/nim/how-to/nginx/scan-instances.md" >}}), the NGINX version is reported as `undefined` when NGINX App Protect is installed.
 
 #### Resolution
 

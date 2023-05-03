@@ -119,7 +119,7 @@ A valid license is required in order to use the Security Monitoring module.
 
 To set up your NGINX App Protect WAF data plane instances for use with Security Monitoring, refer to the following instructions:
 
-- [Set Up App Protect Instances for Security Monitoring]({{< relref "security/how-to/set-up-app-protect-instances" >}})
+- [Set Up App Protect Instances for Security Monitoring]({{< relref "/nms/security/how-to/set-up-app-protect-instances" >}})
 
 ---
 
@@ -127,5 +127,5 @@ To set up your NGINX App Protect WAF data plane instances for use with Security 
 
 ### Install Other NGINX Management Suite Modules
 
-- [Install API Connectivity Manager]({{< relref "installation/on-prem/install-acm.md" >}})
-- [Install App Delivery Manager]({{< relref "installation/on-prem/install-adm.md" >}})
+- [Install API Connectivity Manager]({{< relref "/nms/installation/on-prem/install-acm.md" >}})
+- [Install App Delivery Manager]({{< relref "/nms/installation/on-prem/install-adm.md" >}})

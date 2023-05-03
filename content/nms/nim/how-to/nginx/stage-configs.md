@@ -31,7 +31,7 @@ authors: []
 
 With Instance Manager, you can easily pre-configure and stage NGINX configuration files, so you can quickly publish them to individual NGINX instances or instance groups whenever you're ready.
 
-{{<see-also>}}For instructions on creating and working with instance groups, refer to the topic [Working with instance groups]({{< relref "nim/how-to/nginx/manage-instance-groups.md" >}}).{{</see-also>}}
+{{<see-also>}}For instructions on creating and working with instance groups, refer to the topic [Working with instance groups]({{< relref "/nms/nim/how-to/nginx/manage-instance-groups.md" >}}).{{</see-also>}}
 
 ---
 
@@ -228,4 +228,4 @@ To view a staged config with a version-controlled hash, send an HTTP `GET` reque
 
 ## What's Next
 
-- [Publish Configuration Files]({{< relref "nim/how-to/nginx/publish-configs.md" >}})
+- [Publish Configuration Files]({{< relref "/nms/nim/how-to/nginx/publish-configs.md" >}})

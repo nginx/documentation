@@ -40,7 +40,7 @@ NGINX Plus is provided and intended only to be used with Instance Manager as a f
 
 ## Prerequisites {#prerequisites}
 
-1. Install [NGINX Management Suite]({{<relref "installation/on-prem/_index.md">}}).
+1. Install [NGINX Management Suite]({{<relref "/nms/installation/on-prem/_index.md">}}).
 2. Install [NGINX or NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/).
 3. Start and Enable Instance Manager and NGINX Plus (or NGINX).
 
@@ -74,13 +74,13 @@ The following table shows the authentication options for Instance Manager on NGI
 
 Basic authentication is enabled by default. When installing NGINX Management Suite, a default username of `admin` is created with a randomly generated password that's displayed in the installation output. You can change the default `admin` password by editing the `/etc/nms/nginx/.htpasswd` file, explained below.
 
-Initially, the `admin` user is the only user with a role assigned. To give other users access to NGINX Management Suite, you need to [add users and assign them roles]({{< relref "admin-guides/access-control/set-up-rbac.md#add-users" >}}).
+Initially, the `admin` user is the only user with a role assigned. To give other users access to NGINX Management Suite, you need to [add users and assign them roles]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md#add-users" >}}).
 
 Basic authentication uses a username and password that you can set locally in the `/etc/nms/nginx/.htpasswd` file.
 
 To restrict user access with basic authentication, take the following steps:
 
-1. [Add users]({{< relref "/admin-guides/access-control/set-up-rbac.md#add-users" >}}) using the NGINX Management Suite web interface. Note each user's username for step 2.
+1. [Add users]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md#add-users" >}}) using the NGINX Management Suite web interface. Note each user's username for step 2.
 2. Add each user's username and password to the `/etc/nms/nginx/.htpasswd` file on the NGINX Management Suite server. See [Restricting Access with HTTP Basic Auth](https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/) for instructions on working with a password file.
 
     If desired, you can use separate `.htpasswd` files in different locations or restrict by IP addresses. Refer to the guide [Restricting Access with HTTP Basic Authentication](https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/) for more information.
@@ -180,13 +180,13 @@ You can enable OpenID Connect (OIDC) for Instance Manager for production environ
 
 {{< warning >}}Before switching from Basic Auth to OIDC, make sure to add at least one admin user to your identity provider. A failure to do so may lock admin users out of Instance Manager when you enable OIDC. If that happens, you can revert to Basic Auth to restore access. {{< /warning >}}
 
-{{< see-also >}} Follow the steps in [Configure OIDC with Azure Active Directory]({{< relref "/admin-guides/access-control/oidc-azure.md" >}}) to secure Instance Manager with OpenID Connect (OIDC) using Azure Active Directory (AD) as the identity provider. {{< /see-also >}}
+{{< see-also >}} Follow the steps in [Configure OIDC with Azure Active Directory]({{< relref "/nms/admin-guides/access-control/oidc-azure.md" >}}) to secure Instance Manager with OpenID Connect (OIDC) using Azure Active Directory (AD) as the identity provider. {{< /see-also >}}
 
 ### Prerequisites
 
 To use OIDC with Instance Manager, you need to perform the following:
 
-- [Install Instance Manager]({{< relref "installation/on-prem/_index.md" >}}) on [NGINX Plus R21 or later](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/). The server hosting NGINX Plus must have a FQDN (Fully Qualified Domain Name).
+- [Install Instance Manager]({{< relref "/nms/installation/on-prem/_index.md" >}}) on [NGINX Plus R21 or later](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/). The server hosting NGINX Plus must have a FQDN (Fully Qualified Domain Name).
 
 - Install the [NGINX JavaScript module](https://www.nginx.com/blog/introduction-nginscript/) (njs). This module is required for handling interactions between NGINX Plus and the identity provider.
 
@@ -267,7 +267,7 @@ The following information is needed to configure the service:
 
 ## gRPC Metadata {#grpc-metadata}
 
-You can use advanced NGINX Plus features such as [JWT and gRPC](https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-3-publishing-grpc-services/#Authenticating-Clients-with-gRPC-Metadata) by following the guides on the NGINX blog. Use the [encryption guide]({{< relref "/admin-guides/configuration/secure-traffic.md" >}}) for setting up gRPC on Instance Manager.
+You can use advanced NGINX Plus features such as [JWT and gRPC](https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-3-publishing-grpc-services/#Authenticating-Clients-with-gRPC-Metadata) by following the guides on the NGINX blog. Use the [encryption guide]({{< relref "/nms/admin-guides/configuration/secure-traffic.md" >}}) for setting up gRPC on Instance Manager.
 
 ---
 
@@ -358,12 +358,12 @@ server {
 
 ## Role-Based Access Control {#rbac}
 
-For instruction on how to limit access to features using role-based access control, see the [Set Up RBAC]({{< relref "/admin-guides/access-control/set-up-rbac" >}}) tutorial.
+For instruction on how to limit access to features using role-based access control, see the [Set Up RBAC]({{< relref "/nms/admin-guides/access-control/set-up-rbac" >}}) tutorial.
 
 ---
 
 ## What's Next
 
-- [Add Users]({{< relref "/admin-guides/access-control/set-up-rbac.md#add-users" >}})
-- [Set up Azure Active Directory as an OIDC Identity Provider]({{< relref "/admin-guides/access-control/oidc-azure" >}})
-- [Set Up RBAC]({{< relref "/admin-guides/access-control/set-up-rbac" >}})
+- [Add Users]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md#add-users" >}})
+- [Set up Azure Active Directory as an OIDC Identity Provider]({{< relref "/nms/admin-guides/access-control/oidc-azure" >}})
+- [Set Up RBAC]({{< relref "/nms/admin-guides/access-control/set-up-rbac" >}})
