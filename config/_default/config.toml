@@ -1,7 +1,7 @@
 baseURL = "/"
 languageCode = "en-us"
 title = "NGINX Documentation"
-refLinksErrorLevel = "WARNING"
+refLinksErrorLevel = "ERROR"
 
 [caches]
   [caches.modules]

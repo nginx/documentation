@@ -77,7 +77,7 @@ This release includes the following security update:
 
 ### Known Issues {#1-3-0-known-issues}
 
-- To view the known issues in this release, see the [Known Issues]({{< relref "/security/releases/known-issues.md" >}}) topic.
+- To view the known issues in this release, see the [Known Issues]({{< relref "/nms/security/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -89,20 +89,20 @@ January 30, 2023
 
 - {{% icon-feature %}} **Get the latest Signature and Geolocation Databases**
 
-  [Update the Signature database]({{< relref "/security/how-to/update-signatures" >}}) to get the latest attack signature details.
+  [Update the Signature database]({{< relref "/nms/security/how-to/update-signatures" >}}) to get the latest attack signature details.
 
-  [Update the Geolocation Database]({{< relref "/security/how-to/update-geo-db" >}}) to get the most accurate mapping of IP address to Geolocation.
+  [Update the Geolocation Database]({{< relref "/nms/security/how-to/update-geo-db" >}}) to get the most accurate mapping of IP address to Geolocation.
 
 ### Resolved Issues
 
-This release fixes the following issue. To view the history for an issue, see the [Known Issues list]({{< relref "/security/releases/known-issues.md" >}}).
+This release fixes the following issue. To view the history for an issue, see the [Known Issues list]({{< relref "/nms/security/releases/known-issues.md" >}}).
 
 
 - {{% icon-resolved %}} The field retrieving URIs is incorrectly listed as URL (38377)
 
 ### Known Issues
 
-- To view the known issues in this release, see the [Known Issues]({{< relref "/security/releases/known-issues.md" >}}) topic.
+- To view the known issues in this release, see the [Known Issues]({{< relref "/nms/security/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -129,7 +129,7 @@ Security Monitoring 1.1.0 has the following changes in default behavior:
 
 ### Known Issues
 
-- To view the known issues in this release, see the [Known Issues]({{< relref "/security/releases/known-issues.md" >}}) topic.
+- To view the known issues in this release, see the [Known Issues]({{< relref "/nms/security/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -150,8 +150,8 @@ This release includes the following updates:
   - Informative dashboards that provide valuable protection insights
   - In-depth security log details to help with analyzing possible threats and making policy decisions
 
-  Refer to the [Installation Guide]({{< relref "/admin-guides/installation/on-prem/install-guide.md" >}}) to get started.
+  Refer to the [Installation Guide]({{< relref "/nms/admin-guides/installation/on-prem/install-guide.md" >}}) to get started.
 
 ### Known Issues
 
-- To view the known issues in this release, see the [Known Issues]({{< relref "/security/releases/known-issues.md" >}}) topic.
+- To view the known issues in this release, see the [Known Issues]({{< relref "/nms/security/releases/known-issues.md" >}}) topic.

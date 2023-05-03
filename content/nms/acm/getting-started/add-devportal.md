@@ -159,7 +159,7 @@ Next, open the Developer Portal in a browser window and make sure the portal loa
 In this step, you'll apply a set of customizations to the Developer Portal.
 Because these settings are applied at the Infrastructure level, they are considered "global", meaning they apply to each Dev Portal Proxy that you associate with the cluster.
 
-{{<see-also>}}Refer to [Customize the Developer Portal]({{< relref "/acm/how-to/infrastructure/customize-devportal.md" >}}) to learn more about the available customization options and how to customize a Dev Portal via the ACM user interface.{{</see-also>}}
+{{<see-also>}}Refer to [Customize the Developer Portal]({{< relref "/nms/acm/how-to/infrastructure/customize-devportal.md" >}}) to learn more about the available customization options and how to customize a Dev Portal via the ACM user interface.{{</see-also>}}
 
 {{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
 {{<bootstrap-table "table">}}

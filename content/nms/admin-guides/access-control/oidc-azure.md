@@ -42,7 +42,7 @@ There are five steps to configuring Instance Manager to use OIDC and Azure Activ
 To complete the instructions in this guide, you'll need to perform the following tasks:
 
 - Create an [Azure Active Directory developer account](https://azure.microsoft.com/en-us/free/).
-- [Install Instance Manager]({{< relref "/admin-guides/installation/on-prem/install-guide.md" >}}) on [NGINX Plus R25 or later](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
+- [Install Instance Manager]({{< relref "/nms/admin-guides/installation/on-prem/install-guide.md" >}}) on [NGINX Plus R25 or later](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
 - Install the [NGINX JavaScript module](https://www.nginx.com/blog/introduction-nginscript/) (njs). This module is required for handling interactions between NGINX Plus and the identity provider.  
 
 ---

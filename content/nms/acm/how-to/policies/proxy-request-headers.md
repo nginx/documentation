@@ -23,7 +23,7 @@ personas: ["API owners"]
 
 The Proxy Request Headers policy allows users to pass default and custom request headers to backend services.
 
-This policy is enabled by default when you [publish an API Proxy]({{< relref "/acm/getting-started/publish-api-proxy" >}}).
+This policy is enabled by default when you [publish an API Proxy]({{< relref "/nms/acm/getting-started/publish-api-proxy" >}}).
 
 #### Intended Audience
 
@@ -36,8 +36,8 @@ This policy is enabled by default when you [publish an API Proxy]({{< relref "/a
 To complete the steps in this guide, you need the following:
 
 - API Connectivity Manager is installed, licensed, and running.
-- An [API gateway environment]({{< relref "/acm/getting-started/add-api-gateway" >}})
-- A [published API Gateway]({{< relref "/acm/getting-started/publish-api-proxy" >}})
+- An [API gateway environment]({{< relref "/nms/acm/getting-started/add-api-gateway" >}})
+- A [published API Gateway]({{< relref "/nms/acm/getting-started/publish-api-proxy" >}})
 
 ---
 
@@ -81,9 +81,9 @@ The following table lists the configurable settings and their default values for
 |---------------|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `var`         | var.content_length   | Pass a [valid NGINX variable](http://nginx.org/en/docs/varindex.html).                                                                                                                         |
 | `header`      | header.referrer      | Pass a header from the client request.                                                                                                                                                         |
-| `client`      | client.IP            | Pass a value from the client if a [Basic Auth]({{< relref "/acm/how-to/policies/basic-authn" >}}) or [API Key]({{< relref "/acm/how-to/policies/apikey-authn" >}}) policy has been configured. |
+| `client`      | client.IP            | Pass a value from the client if a [Basic Auth]({{< relref "/nms/acm/how-to/policies/basic-authn" >}}) or [API Key]({{< relref "/nms/acm/how-to/policies/apikey-authn" >}}) policy has been configured. |
 | `stringValue` | stringValue.MyString | Pass a static string.                                                                                                                                                                          |
-| `token`       | token.sub            | Pass a value from the JSON Web Token (JWT) if the [OAuth2 JWT Assertion]({{< relref "/acm/how-to/policies/jwt-assertion" >}}) policy has been configured.                                      |
+| `token`       | token.sub            | Pass a value from the JSON Web Token (JWT) if the [OAuth2 JWT Assertion]({{< relref "/nms/acm/how-to/policies/jwt-assertion" >}}) policy has been configured.                                      |
 {{< /bootstrap-table >}}
 {{< raw-html>}}</div>{{</raw-html>}}
 

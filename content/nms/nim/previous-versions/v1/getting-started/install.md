@@ -247,7 +247,7 @@ You can also use `0.0.0.0` for the `bind_address` to enable all external ports (
 
 NGINX Instance Manager is designed as a web application with an API. NGINX Plus is our recommended solution for web applications requiring advanced authentication, proxy, and load balancing. A copy of NGINX Plus is included with the NGINX Instance Manager distribution as a frontend for NGINX Instance Manager. This is the only permitted use of the included NGINX Plus instance. For external uses and other systems, contact your sales team to purchase additional subscriptions.
 
-For installation options for using NGINX Plus or NGINX as a front-end for NGINX Instance Manager, refer to the [encryption]({{<relref "/nim/previous-versions/v1/getting-started/encrypt.md">}}) and [authentication]({{<relref "/nim/previous-versions/v1/getting-started/auth.md">}}) documents.
+For installation options for using NGINX Plus or NGINX as a front-end for NGINX Instance Manager, refer to the [encryption]({{<relref "/nms/nim/previous-versions/v1/getting-started/encrypt.md">}}) and [authentication]({{<relref "/nms/nim/previous-versions/v1/getting-started/auth.md">}}) documents.
 
 ### Installing NGINX Plus as the proxy server {#nginx-plus-install}
 

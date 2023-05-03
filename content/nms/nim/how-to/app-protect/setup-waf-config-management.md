@@ -28,9 +28,9 @@ Complete the following prerequisites before proceeding with this guide.
 
 - You have one or more instances of [NGINX App Protect WAF](https://docs.nginx.com/nginx-app-protect/admin-guide/install/) installed and running. See [Support for NGINX App Protect WAF]({{< relref "tech-specs#support-for-nginx-app-protect-waf" >}}) for a list of supported versions. 
 
-    {{<note>}}If you are using configuration management and the NGINX Management Suite Security Monitoring module, follow the instructions in the [setup guide]({{<relref "/security/how-to/set-up-app-protect-instances" >}}) to set up your NGINX App Protect instances before proceeding with this guide.{{</note>}}
+    {{<note>}}If you are using configuration management and the NGINX Management Suite Security Monitoring module, follow the instructions in the [setup guide]({{<relref "/nms/security/how-to/set-up-app-protect-instances" >}}) to set up your NGINX App Protect instances before proceeding with this guide.{{</note>}}
 
-- You have Instance Manager v2.6.0 or later [installed]({{< relref "/admin-guides/installation/on-prem/install-guide" >}}), licensed, and running. 
+- You have Instance Manager v2.6.0 or later [installed]({{< relref "/nms/admin-guides/installation/on-prem/install-guide" >}}), licensed, and running. 
   If you have a subscription to NGINX App Protect WAF, you can find your Instance Manager license in the subscription details section of [MyF5](https://my.f5.com).  
 
 ### Limitations
@@ -52,9 +52,9 @@ Be sure to download and install the correct WAF compiler version for your enviro
 
 - Each NGINX App Protect version has a corresponding WAF compiler version. You must install the WAF compiler that matches the version of NGINX App Protect that you have running.
 - If you have different NGINX App Protect versions running, install the correct WAF compiler package for each on the management plane host. Instance Manager will use the correct WAF compiler for each version to bundle the security configurations. 
-- You can create [instance groups]({{< relref "/nim/how-to/nginx/manage-instance-groups" >}}) to keep track of and manage all instances that have the same version installed. 
+- You can create [instance groups]({{< relref "/nms/nim/how-to/nginx/manage-instance-groups" >}}) to keep track of and manage all instances that have the same version installed. 
 
-For more information about the WAF compiler, refer to the [Security Bundle Compilation]({{< relref "/nim/about/app-protect-waf-cm-overview#security-bundle" >}}) section of the Policy Configuration overview topic.
+For more information about the WAF compiler, refer to the [Security Bundle Compilation]({{< relref "/nms/nim/about/app-protect-waf-cm-overview#security-bundle" >}}) section of the Policy Configuration overview topic.
 
 ### WAF Compiler and Supported App Protect Versions {#nap-waf-compiler-compatibility}
 
@@ -196,7 +196,7 @@ You will need to use your NGINX repo certificates to setup automatic retrieval o
    }
    ```
 
-1. Send an HTTP POST request to the [Instance Manager REST API]({{< relref "/nim/about/api-overview" >}}) to upload the repo certificate and key.
+1. Send an HTTP POST request to the [Instance Manager REST API]({{< relref "/nms/nim/about/api-overview" >}}) to upload the repo certificate and key.
 
     <details open>
     <summary>Example request</summary>
@@ -316,7 +316,7 @@ error when creating the nginx repo retriever - NGINX repo certificates not found
 
 #### Upload packages to Instance Manager
 
-You will need to use the [Instance Manager REST API]({{< relref "/nim/about/api-overview" >}}) to upload the bundled Attack Signatures and Threat Campaigns.
+You will need to use the [Instance Manager REST API]({{< relref "/nms/nim/about/api-overview" >}}) to upload the bundled Attack Signatures and Threat Campaigns.
 
 <details open>
 <summary>Attack Signatures Example</summary>
@@ -348,7 +348,7 @@ curl -X POST 'https://{{NMS_FQDN}}//api/platform/v1/security/threat-campaigns' \
 
 The Security Monitoring module's analytics dashboards make use of a Signature Database to provide more information on Attack Signatures that have triggered Security Violations, such as the Signature's name, accuracy, and risk level.
 
-To ensure that the dashboards show the most up-to-date information, you need to [update the Security Monitoring Signature Database]({{< relref "/security/how-to/update-signatures" >}})
+To ensure that the dashboards show the most up-to-date information, you need to [update the Security Monitoring Signature Database]({{< relref "/nms/security/how-to/update-signatures" >}})
 
 ---
 
@@ -751,13 +751,13 @@ server {
 }
 ```
 
-{{< note >}}If you're using the NGINX Management Suite [Security Monitoring module]({{< relref "/security/" >}}), you should already have the `app_protect_security_log` directive set to reference the `secops_dashboard.tgz` file as shown below. Do not change this setting.
+{{< note >}}If you're using the NGINX Management Suite [Security Monitoring module]({{< relref "/nms/security/" >}}), you should already have the `app_protect_security_log` directive set to reference the `secops_dashboard.tgz` file as shown below. Do not change this setting.
 
 ```nginx
 app_protect_security_log "/etc/nms/secops_dashboard.tgz" syslog:server=127.0.0.1:514
 ```
 
-Refer to the [Security Monitoring setup guide]({{< relref "/security/how-to/set-up-app-protect-instances" >}}) to learn more. {{</note>}}
+Refer to the [Security Monitoring setup guide]({{< relref "/nms/security/how-to/set-up-app-protect-instances" >}}) to learn more. {{</note>}}
 
 Additional example configurations tailored for NGINX features can be found in the [NGINX App Protect WAF Configuration Guide](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#interaction-with-nginx-features).
 
@@ -972,7 +972,7 @@ nap_monitoring:
 <details>
 <summary>Verify access to the NGINX packages repository</summary>
 
-To allow Instance Manager to automatically download the latest Attack Signatures and Threat Campaigns, you need to [upload the certificate and key files]({{< relref "/nim/how-to/app-protect/setup-waf-config-management.md#upload-nginx-app-protect-waf-certificate-and-key" >}}) included with your subscription to allow access to the package repository.
+To allow Instance Manager to automatically download the latest Attack Signatures and Threat Campaigns, you need to [upload the certificate and key files]({{< relref "/nms/nim/how-to/app-protect/setup-waf-config-management.md#upload-nginx-app-protect-waf-certificate-and-key" >}}) included with your subscription to allow access to the package repository.
 
 If you already uploaded your certificate and key files, use the command below to verify that they allow access to the package repo:
 

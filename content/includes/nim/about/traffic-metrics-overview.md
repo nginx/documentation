@@ -5,7 +5,7 @@ The data that Instance Manager collects can be divided into two categories:
 
 Metrics are collected every 15 seconds and are published at 60-second intervals.
 
-For the full list of metrics, see the [Metrics Catalog Reference]({{< relref "/reference/catalogs//metrics.md" >}})
+For the full list of metrics, see the [Metrics Catalog Reference]({{< relref "/nms/reference/catalogs//metrics.md" >}})
 
 <!-- Do not remove. Keep this code at the bottom of the include -->
 <!-- DOCS-808 -->

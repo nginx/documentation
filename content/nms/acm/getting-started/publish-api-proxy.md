@@ -217,6 +217,6 @@ The example below adds the Developer Portal to the same API Proxy that you creat
 Congratulations! You have reached the end of the Quick Start series.
 We recommend taking a deeper dive into the following topics:
 
-- [Manage TLS Policies]({{< relref "/acm/how-to/policies/tls-policies.md" >}}): Learn how to apply global policies to secure traffic to your Developer Portal; between your API Proxies and backend services; and between the management plane and Developer Portal hosts.
-- [Customize Developer Portals]({{< relref "/acm/how-to/infrastructure/customize-devportal.md" >}}): Learn how to customize Developer Portals using the ACM user interface.
-- [Policies Overview]({{< relref "/acm/about/policies-overview" >}}): Learn more about the policies you can use to enforce global security or customize your backend services.
+- [Manage TLS Policies]({{< relref "/nms/acm/how-to/policies/tls-policies.md" >}}): Learn how to apply global policies to secure traffic to your Developer Portal; between your API Proxies and backend services; and between the management plane and Developer Portal hosts.
+- [Customize Developer Portals]({{< relref "/nms/acm/how-to/infrastructure/customize-devportal.md" >}}): Learn how to customize Developer Portals using the ACM user interface.
+- [Policies Overview]({{< relref "/nms/acm/about/policies-overview" >}}): Learn more about the policies you can use to enforce global security or customize your backend services.
