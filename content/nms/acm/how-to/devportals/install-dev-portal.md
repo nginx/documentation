@@ -150,20 +150,28 @@ echo 'DB_PATH="/var/lib/nginx-devportal"' | sudo tee -a /etc/nginx-devportal/dev
 
 ## Install the Developer Portal
 
-1. To install the Developer Portal, run the following command(s):
+{{<tabs name="upgrade_dev_portal">}}
+{{%tab name="CentOS, RHEL, RPM-Based"%}}
 
-   - CentOS, RHEL, RPM-based:
+1. To install the Developer Portal, run the following command:
 
-      ```bash
-      sudo yum -y install nginx-devportal nginx-devportal-ui
-      ```
+    ```bash
+    sudo yum -y install nginx-devportal nginx-devportal-ui
+    ```
 
-   - Debian, Ubuntu, Deb-based:
+{{%/tab%}}
 
-      ```bash
-      sudo apt-get update
-      sudo apt-get -y install nginx-devportal nginx-devportal-ui
-      ```
+{{%tab name="Debian, Ubuntu, Deb-Based"%}}
+
+1. To install the Developer Portal, run the following commands:
+
+    ```bash
+    sudo apt-get update
+    sudo apt-get -y install nginx-devportal nginx-devportal-ui
+    ```
+
+{{%/tab%}}
+{{</tabs>}}
 
 2. Start the Developer Portal:
 
