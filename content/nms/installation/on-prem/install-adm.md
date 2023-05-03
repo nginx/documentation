@@ -89,30 +89,72 @@ authors: []
 
 {{< include "installation/access-web-ui.md" >}}
 
----
-
-## Add License
+### Add License
 
 A valid license is required in order to use App Delivery Manager.
 
-### Download License
+#### Download License
 
 {{< include "installation/download-license.md" >}}
 
-### Apply License
+#### Apply License
 
 {{< include "installation/add-license.md" >}}
 
 ---
 
-## Set Up the Data Plane
+## Upgrade App Delivery Manager
 
-{{< include "adm/installation/install-adm-dataplane-dependencies.md" >}}
+{{<note>}}When upgrading App Delivery Manager, you may need a newer version of NGINX Management Suite. The installation process will notify you of any version requirements before upgrading App Delivery Manager and any dependent packages, including NGINX Management Suite. You may cancel the installation process if you want to [back up NGINX Management Suite]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md" >}}) before upgrading.{{</note>}}
+
+<br>
+
+{{<tabs name="upgrade_nim">}}
+{{%tab name="CentOS, RHEL, RPM-Based"%}}
+
+1. To upgrade to the latest version of the Instance Manger, run the following command:
+
+   ```bash
+   sudo yum update -y nms-app-delivery-manager
+   ```
+
+{{%/tab%}}
+
+{{%tab name="Debian, Ubuntu, Deb-Based"%}}
+
+1. To upgrade to the latest version of the Instance Manager, run the following command:
+
+   ```bash
+   sudo apt-get update
+   sudo apt-get upgrade -y nms-app-delivery-manager
+   ```
+
+{{%/tab%}}
+{{</tabs>}}
+
+2. Restart the NGINX Management Suite platform services:
+
+    ```bash
+    sudo systemctl restart nms
+    ```
+
+    NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
+
+3. Restart the NGINX web server:
+
+   ```bash
+   sudo systemctl restart nginx
+   ```
+
+4. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Management suite.
 
 ---
 
 ## What's Next
 
+### Set Up the Data Plane
+
+{{< include "adm/installation/install-adm-dataplane-dependencies.md" >}}
 ### Install Other NGINX Management Suite Modules
 
 - [Install API Connectivity Manager]({{< relref "/nms/installation/on-prem/install-acm.md" >}})
