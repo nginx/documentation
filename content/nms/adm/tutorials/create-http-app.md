@@ -25,7 +25,7 @@ The environment has been set up as follows for this use case:
 
 ### How to Access the User Interface
 
-{{< include "adm/how-to/access-adm-ui" >}}
+{{< include "adm/tutorials/access-adm-ui" >}}
 
 ### Create an Environment
 
