@@ -116,7 +116,7 @@ You can then clone the configuration to the other instances. This saves the conf
 
 ## Using tags with access control {#tag-rbac}
 
-You can use tags to control or restrict access to tagged instances. This feature is currently in Tech Preview and is described in more detail on the [authentication]({{<relref "/nim/previous-versions/v1/getting-started/auth.md">}}) page.
+You can use tags to control or restrict access to tagged instances. This feature is currently in Tech Preview and is described in more detail on the [authentication]({{<relref "/nms/nim/previous-versions/v1/getting-started/auth.md">}}) page.
 
 ## Using tags with metrics {#tag-metric}
 

@@ -136,7 +136,7 @@ To install and configure NGINX Open Source or NGINX Plus on a VM, you need to o
 <span id="install-nginx"></span>
 ## Installing NGINX Software
   
-Once you have established a connection with an instance, you can install the NGINX software on it. Follow the instructions in the NGINX Plus Admin Guide for <a href="../../../admin-guide/installing-nginx/installing-nginx-open-source/index.html#prebuilt">NGINX Open Source</a> and [NGINX Plus]({{< relref "../../admin-guide/installing-nginx/installing-nginx-plus.md" >}}). The [Admin Guide]({{< relref "/admin-guide/" >}}) also provides instructions for many maintenance tasks.
+Once you have established a connection with an instance, you can install the NGINX software on it. Follow the instructions in the NGINX Plus Admin Guide for <a href="../../../admin-guide/installing-nginx/installing-nginx-open-source/index.html#prebuilt">NGINX Open Source</a> and [NGINX Plus]({{< relref "../../admin-guide/installing-nginx/installing-nginx-plus.md" >}}). The [Admin Guide]({{< relref "/nginx/admin-guide/" >}}) also provides instructions for many maintenance tasks.
 
 <span id="automate"></span>
 ### Automating Installation with a Configuration Manager

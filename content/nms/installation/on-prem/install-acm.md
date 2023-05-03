@@ -273,5 +273,5 @@ echo 'DB_PATH="/var/lib/nginx-devportal"' | sudo tee -a /etc/nginx-devportal/dev
 
 ### Install Other NGINX Management Suite Modules
 
-- [Install App Delivery Manager]({{< relref "installation/on-prem/install-adm.md" >}})
-- [Install Security Monitoring]({{< relref "installation/on-prem/install-security-monitoring.md" >}})
+- [Install App Delivery Manager]({{< relref "/nms/installation/on-prem/install-adm.md" >}})
+- [Install Security Monitoring]({{< relref "/nms/installation/on-prem/install-security-monitoring.md" >}})

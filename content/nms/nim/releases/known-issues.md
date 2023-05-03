@@ -270,7 +270,7 @@ If you are using FreeBSD, you can download the NGINX Agent from [https://github.
 Upgrading the NGINX Management Suite could result in the removal of your OIDC configuration, which would prevent users from being able to log in through OIDC.
 #### Workaround
 
-Prior to upgrading, we recommend that you back up your configuration files for NGINX Management Suite and the platform proxy. Refer to the [Upgrade Guide]({{< relref "installation/upgrade-guide.md" >}}) for further details on this and other pre-upgrade steps.
+Prior to upgrading, we recommend that you back up your configuration files for NGINX Management Suite and the platform proxy. Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for further details on this and other pre-upgrade steps.
 
 ---
 
@@ -374,7 +374,7 @@ The default Attack Signature (2019.07.16) is not being added to the Attack Signa
 
 #### Workaround
 
-[Download the latest version of the Attack Signature and publish it]({{< relref "nim/how-to/app-protect/setup-waf-config-management" >}}). Attack Signature 2019.07.16 should be removed from the list when you refresh the web interface.
+[Download the latest version of the Attack Signature and publish it]({{< relref "/nms/nim/how-to/app-protect/setup-waf-config-management" >}}). Attack Signature 2019.07.16 should be removed from the list when you refresh the web interface.
 
 ---
 
@@ -962,7 +962,7 @@ When installing on CentOS 7, RHEL 7, and Amazon Linux 2, the package manager doe
 
 #### Workaround
 
-Install a supported version of NGINX (v1.18 or later) or NGINX Plus (R22 or later). See the [Technical Specifications]({{< relref "/tech-specs.md" >}}) guide for details.
+Install a supported version of NGINX (v1.18 or later) or NGINX Plus (R22 or later). See the [Technical Specifications]({{< relref "/nms/tech-specs.md" >}}) guide for details.
 
 ---
 
@@ -984,4 +984,4 @@ Install a supported version of NGINX (v1.18 or later) or NGINX Plus (R22 or late
 
 #### Workaround
 
-Make sure your version of NGINX is v1.18 or later. See the [Technical Specifications]({{< relref "/tech-specs.md" >}}) guide for details.
+Make sure your version of NGINX is v1.18 or later. See the [Technical Specifications]({{< relref "/nms/tech-specs.md" >}}) guide for details.

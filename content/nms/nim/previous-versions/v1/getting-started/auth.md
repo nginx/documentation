@@ -576,7 +576,7 @@ server {
 
 ## gRPC Metadata {#grpc-metadata}
 
-You can use advanced NGINX Plus features such as [JWT and gRPC](https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-3-publishing-grpc-services/#Authenticating-Clients-with-gRPC-Metadata) by following the guides on the NGINX blog. Use the [encryption guide]({{< relref "/nim/previous-versions/v1/getting-started/encrypt.md#grpc" >}}) for setting up gRPC on NGINX Instance Manager.
+You can use advanced NGINX Plus features such as [JWT and gRPC](https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-3-publishing-grpc-services/#Authenticating-Clients-with-gRPC-Metadata) by following the guides on the NGINX blog. Use the [encryption guide]({{< relref "/nms/nim/previous-versions/v1/getting-started/encrypt.md#grpc" >}}) for setting up gRPC on NGINX Instance Manager.
 
 ## Rate-Limiting {#rate-limiting}
 

@@ -30,7 +30,7 @@ To view events in the Instance Manager user interface, take the following steps:
 
 ## Access Events data by using the REST API
 
-You can use the Events API to view Instance Manager events data. You can use basic authentication or JWT authentication to access the Instance Manager REST API, as described in the [Instance Manager API Overview]({{< relref "/nim/about/api-overview#authentication" >}}).
+You can use the Events API to view Instance Manager events data. You can use basic authentication or JWT authentication to access the Instance Manager REST API, as described in the [Instance Manager API Overview]({{< relref "/nms/nim/about/api-overview#authentication" >}}).
 
 The examples in this guide demonstrate using a "bearer" token for authentication. The token is sent using the "Authorization" request header field and "Bearer" schema.
 

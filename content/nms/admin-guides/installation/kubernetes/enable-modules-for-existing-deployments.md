@@ -31,7 +31,7 @@ authors: []
 
 ## Overview
 
-If you’ve already [deployed NGINX Management Suite using Helm]({{< relref "admin-guides/installation/kubernetes/nms-helm.md" >}}) and would now like to enable a module, simply follow the steps outlined below.
+If you’ve already [deployed NGINX Management Suite using Helm]({{< relref "/nms/admin-guides/installation/kubernetes/nms-helm.md" >}}) and would now like to enable a module, simply follow the steps outlined below.
 
 ---
 
@@ -63,7 +63,7 @@ Choose the tab for the module you want to activate and follow the provided instr
 
 ### Customize Helm Settings for API Connectivity Manager {#configuration-options-acm}
 
-{{<see-also>}}Refer to the [Configurable Helm Settings]({{< relref "admin-guides/installation/kubernetes/nms-helm-config-options.md#acm-helm-settings" >}}) reference guide for the complete list of configurable parameters and default values used by the NGINX Management Suite and modules when installing from a Helm chart. {{</see-also>}}
+{{<see-also>}}Refer to the [Configurable Helm Settings]({{< relref "/nms/admin-guides/installation/kubernetes/nms-helm-config-options.md#acm-helm-settings" >}}) reference guide for the complete list of configurable parameters and default values used by the NGINX Management Suite and modules when installing from a Helm chart. {{</see-also>}}
 
 {{%/tab%}}
 

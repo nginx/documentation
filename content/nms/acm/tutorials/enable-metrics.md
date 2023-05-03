@@ -23,7 +23,7 @@ Currently, only the following metric is available:
 
 - [Count of proxies in an environment](#count-proxies-in-env)
 
-As we add new metrics, we'll let you know in the [ACM release notes]({{< relref "acm/releases/release-notes.md" >}}) and update this topic accordingly.
+As we add new metrics, we'll let you know in the [ACM release notes]({{< relref "/nms/acm/releases/release-notes.md" >}}) and update this topic accordingly.
 
 ---
 
@@ -31,7 +31,7 @@ As we add new metrics, we'll let you know in the [ACM release notes]({{< relref 
 
 To complete the instructions in this guide, you need the following:
 
-- Install and configure the [Metrics Module]({{< relref "nginx-agent/install-nginx-plus-advanced-metrics.md" >}}) on each NGINX Plus instance.
+- Install and configure the [Metrics Module]({{< relref "/nms/nginx-agent/install-nginx-plus-advanced-metrics.md" >}}) on each NGINX Plus instance.
 - Access to a virtual environment
 - Four virtual hosts with Linux installed — this guide uses [Ubuntu 20.04 LTS](https://releases.ubuntu.com/focal/).
 
@@ -58,7 +58,7 @@ This section configures the hosts used in this tutorial. In the following table,
 
 ### Install NGINX Management Suite & API Connectivity Manager {#install-nsm-acm}
 
-Follow the steps in the [Installation Guide]({{< relref "installation/on-prem/_index.md" >}}) to set up NGINX Management Suite and ACM. You do not need to configure a Developer Portal for this tutorial.
+Follow the steps in the [Installation Guide]({{< relref "/nms/installation/on-prem/_index.md" >}}) to set up NGINX Management Suite and ACM. You do not need to configure a Developer Portal for this tutorial.
 
 ### Install NGINX Agent on Data Plane Host {#install-agent}
 
