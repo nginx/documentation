@@ -1,5 +1,5 @@
 ---
-title: "Deploy ACM Developer Portal Using Helm"
+title: "Deploy the Developer Portal from a Helm chart"
 date: 2022-12-14T16:34:44-08:00
 # Change draft status to false to publish doc
 draft: false
