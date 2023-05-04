@@ -18,8 +18,8 @@ The App team wants to provide external access to their custom app which has two 
 
 The environment has been set up as follows for this use case:
 
-- The Platform team has set up NGINX Management Suite permissions to allow the App team to create any ADM-related resource.
-- The Platform team has [created an instance group]({{< relref "/nim/how-to/nginx/manage-instance-groups.md" >}}), **example-ig**, for the NGINX instances that will be used to route the traffic to the team's app instances (workloads, in ADM terminology, which typically map to upstreams in NGINX terminology).
+- The Platform team has set up NGINX Management Suite permissions to allow the App team to create any App Delivery Manager related resource.
+- The Platform team has [created an instance group]({{< relref "/nim/how-to/nginx/manage-instance-groups.md" >}}), **example-ig**, for the NGINX instances that will be used to route the traffic to the team's app instances (workloads, in App Delivery Manager terminology, which typically map to upstreams in NGINX terminology).
 
 ## Solution
 
