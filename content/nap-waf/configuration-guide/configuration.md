@@ -92,7 +92,7 @@ The following file types are disallowed by default:
 
 Attack signatures are rules or patterns that identify attack sequences or classes of attacks on a web application and its components. You can apply attack signatures to both requests and responses. App Protect includes predefined attack signatures to protect your application against all attack types identified by the system.
 
-As new attack signatures are identified, they will become available for [download and installation]({{< ref "install.md#updating-app-protect-attack-signatures" >}}) so that your system will always have the most up-to-date protection. You can update the attack signatures without updating the App Protect release, and conversely, you can update App Protect without changing the attack signature package, unless you upgrade to a new NGINX Plus release.
+As new attack signatures are identified, they will become available for [download and installation]({{< ref "/nap-waf/admin-guide/install.md#updating-app-protect-attack-signatures" >}}) so that your system will always have the most up-to-date protection. You can update the attack signatures without updating the App Protect release, and conversely, you can update App Protect without changing the attack signature package, unless you upgrade to a new NGINX Plus release.
 
 
 ### Signature Settings
@@ -3434,7 +3434,7 @@ Apreload is a new configuration tool where the NGINX App Protect WAF can be conf
 
 ### Apreload Events
 
-Apreload events use the same format as the current operation log events written in the NGINX error log, namely: `configuration_load_success` or `configuration_load_failure` with the details in JSON format. Refer to the [Operation logs]({{< relref "/logging-overview/operation-logs.md" >}}) for more details.
+Apreload events use the same format as the current operation log events written in the NGINX error log, namely: `configuration_load_success` or `configuration_load_failure` with the details in JSON format. Refer to the [Operation logs]({{< relref "/nap-waf/logging-overview/operation-logs.md" >}}) for more details.
 
 {{< note >}}
 Note that if any of the configuration files are invalid, apreload will discover that and return the proper error message in the `configuration_load_failure` event. The Enforcer continues to run with the previous configuration.{{< /note >}}
@@ -4459,7 +4459,7 @@ The violation `VIOL_METHOD` (not to be confused with the above `VIOL_GRPC_METHOD
 ### gRPC Logging
 
 Security log for gRPC requests has unique fields: `uri`, `grpc_method`, and `grpc_service`. Also, since the content of gRPC requests is binary (Protocol Buffers), it is better transferred in Base64 encoding. Hence, it is recommended to use the `headers` and `request_body_base64` fields instead of the `request` field. A new predefined log format called `grpc` should be used in all gRPC locations that also use policies with gRPC Content Profiles.
-The `grpc` format also contains the above new gRPC fields (`grpc_service` and `grpc_method`). See [Available Security Log Attributes]({{< relref "/logging-overview/security-log#available-security-log-attributes" >}}).
+The `grpc` format also contains the above new gRPC fields (`grpc_service` and `grpc_method`). See [Available Security Log Attributes]({{< relref "/nap-waf/logging-overview/security-log#available-security-log-attributes" >}}).
 
 NGINX App Protect WAF provides three security log configuration files for gRPC: `log_grpc_all.json`, `log_grpc_illegal.json` and `log_grpc_blocked.json` using the `grpc` format with three filters: all requests, illegal requests, and blocked requests respectively. Unless you have special logging format requirements, the best practice is to use one of these files in all gRPC locations with the `app_protect_security_log` directive. These log configuration files are located in: `/opt/app_protect/share/defaults`.
 
@@ -4688,7 +4688,7 @@ In the GraphQL profile example below, we changed the "defenseAttributes" to cust
      ]
 ```
 
-{{< note >}}For GraphQL profile default values and GraphQL violations reference, see NGINX App Protect WAF [Declarative Policy guide.]({{< relref "declarative-policy/policy.md" >}}) {{< /note >}}
+{{< note >}}For GraphQL profile default values and GraphQL violations reference, see NGINX App Protect WAF [Declarative Policy guide.]({{< relref "/nap-waf/declarative-policy/policy.md" >}}) {{< /note >}}
 
 ### Define URL settings
 The second step to configure GraphQL is to define the URL settings. Set the values for "isAllowed": **true**, "name": **/graphql** in the URLs section, which means URLs with **/graphql** name are permitted. This path will be used for all GraphQL API requests.
@@ -5373,7 +5373,7 @@ Note that if the script is run without the required switches and their correspon
 
 The Attack Signature Report tool `/opt/app_protect/bin/get-signatures` scans the system for attack signatures and generates a JSON report file that includes information about these signatures.
 
-This tool can be deployed and used independently of the NGINX App Protect WAF deployment, by [installing the compiler package as a standalone]({{< relref "/admin-guide/install#converter-tool-docker-image" >}}), in order to generate a report about either the default signatures included in the package, or signatures included in a signature update package. The latter can be obtained by running the tool on a standalone compiler deployment, after installing a new signature update package on top of the compiler package. These reports can then be compared for greater clarity regarding signature updates.
+This tool can be deployed and used independently of the NGINX App Protect WAF deployment, by [installing the compiler package as a standalone]({{< relref "/nap-waf/admin-guide/install#converter-tool-docker-image" >}}), in order to generate a report about either the default signatures included in the package, or signatures included in a signature update package. The latter can be obtained by running the tool on a standalone compiler deployment, after installing a new signature update package on top of the compiler package. These reports can then be compared for greater clarity regarding signature updates.
 
 In addition, this report can be used for reporting or troubleshooting purposes or for auditing/tracking changes for signature updates on the NGINX App Protect WAF deployment itself.
 
@@ -5515,7 +5515,7 @@ Note that if the script is run without the required switches and their correspon
 
 ## Security Logs
 
-Refer to [Logging Overview]({{< relref "logging-overview/security-log.md" >}}) section for more details on Security Logs.
+Refer to [Logging Overview]({{< relref "/nap-waf/logging-overview/security-log.md" >}}) section for more details on Security Logs.
 
 ## NGINX App Protect WAF Terminology
 

@@ -25,11 +25,11 @@ July 21, 2020
 
 ### New Features
 
-- [RHEL 7.4+ Support]({{< relref "/admin-guide/install.md#rhel-7-4-installation" >}})
-- [RHEL UBI7 Support]({{< relref "/admin-guide/install.md#rhel-ubi7-docker-deployment-example" >}})
-- [SELinux Configuration]({{< relref "/admin-guide/install.md#selinux-configuration" >}})
-- [New Strict Security Policy]({{< relref "/configuration-guide/configuration.md#the-strict-policy" >}})
-- [Security Log Write To File]({{< relref "/configuration-guide/configuration.md#security-logs" >}})
+- [RHEL 7.4+ Support]({{< relref "/nap-waf/admin-guide/install.md#rhel-7-4-installation" >}})
+- [RHEL UBI7 Support]({{< relref "/nap-waf/admin-guide/install.md#rhel-ubi7-docker-deployment-example" >}})
+- [SELinux Configuration]({{< relref "/nap-waf/admin-guide/install.md#selinux-configuration" >}})
+- [New Strict Security Policy]({{< relref "/nap-waf/configuration-guide/configuration.md#the-strict-policy" >}})
+- [Security Log Write To File]({{< relref "/nap-waf/configuration-guide/configuration.md#security-logs" >}})
 
 
 ### Supported Packages

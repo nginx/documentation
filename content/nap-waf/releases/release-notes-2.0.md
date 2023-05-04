@@ -25,13 +25,13 @@ September 08, 2020
 
 ### New Features
 
-- [Ubuntu 18.04 Support]({{< relref "/admin-guide/install.md#ubuntu-18-04-installation" >}})
-- [OpenAPI Support]({{< relref "/configuration-guide/configuration.md#openapi-specification-file-reference" >}})
-- [JSON Schema Validation]({{< relref "/configuration-guide/configuration.md#applying-a-json-schema" >}})
-- [User-Defined Signatures]({{< relref "/configuration-guide/configuration.md#user-defined-signatures" >}})
-- [User-Defined URLs]({{< relref "/configuration-guide/configuration.md#user-defined-urls" >}})
-- [User-Defined Parameters]({{< relref "/configuration-guide/configuration.md#user-defined-parameters" >}})
-- [Offline Installation]({{< relref "/admin-guide/install.md#offline-installation" >}})
+- [Ubuntu 18.04 Support]({{< relref "/nap-waf/admin-guide/install.md#ubuntu-18-04-installation" >}})
+- [OpenAPI Support]({{< relref "/nap-waf/configuration-guide/configuration.md#openapi-specification-file-reference" >}})
+- [JSON Schema Validation]({{< relref "/nap-waf/configuration-guide/configuration.md#applying-a-json-schema" >}})
+- [User-Defined Signatures]({{< relref "/nap-waf/configuration-guide/configuration.md#user-defined-signatures" >}})
+- [User-Defined URLs]({{< relref "/nap-waf/configuration-guide/configuration.md#user-defined-urls" >}})
+- [User-Defined Parameters]({{< relref "/nap-waf/configuration-guide/configuration.md#user-defined-parameters" >}})
+- [Offline Installation]({{< relref "/nap-waf/admin-guide/install.md#offline-installation" >}})
 
 
 ### Supported Packages

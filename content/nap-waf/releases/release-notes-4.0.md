@@ -25,7 +25,7 @@ November 29, 2022
 
 In this release, NGINX App Protect WAF supports NGINX Plus R28.
 
-This release includes new signatures for [Anti Automation]({{< relref "/configuration-guide/configuration.md#anti-automation-bot-mitigation" >}}) (bot defense):
+This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/configuration-guide/configuration.md#anti-automation-bot-mitigation" >}}) (bot defense):
 
 - Added the following Spam Bot bot signatures: RealStresser, AraTurka, Ocarinabot, A Fake Google Certificates Bridge
 - Added the following Exploit Tool bot signatures: RealityCheats, Root S, Report Runner, Momentum, 103scUWU
@@ -39,9 +39,9 @@ This release includes new signatures for [Anti Automation]({{< relref "/configur
 
 ### New Features
 
-- [Debian 11 Support]({{< relref "/admin-guide/install.md#debian-11-installation" >}})
-- [gRPC Protection for Bidirectional Streaming]({{< relref "/configuration-guide/configuration.md#grpc-protection-for-bidirectional-streaming" >}})
-- [Product Release Info File]({{< relref "/troubleshooting-guide/troubleshooting.md#opening-a-support-ticket" >}})
+- [Debian 11 Support]({{< relref "/nap-waf/admin-guide/install.md#debian-11-installation" >}})
+- [gRPC Protection for Bidirectional Streaming]({{< relref "/nap-waf/configuration-guide/configuration.md#grpc-protection-for-bidirectional-streaming" >}})
+- [Product Release Info File]({{< relref "/nap-waf/troubleshooting-guide/troubleshooting.md#opening-a-support-ticket" >}})
 
 ### Supported Packages
 

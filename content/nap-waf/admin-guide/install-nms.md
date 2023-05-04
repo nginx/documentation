@@ -64,7 +64,7 @@ You should now be able to view data from your NGINX App Protect WAF instances in
 
 ## Configuration and Instance Management
 
-You can get familiar with the NGINX App Protect WAF features and how to use them in the [Configuration Guide]({{< relref "/configuration-guide/configuration" >}}).
+You can get familiar with the NGINX App Protect WAF features and how to use them in the [Configuration Guide]({{< relref "/nap-waf/configuration-guide/configuration" >}}).
 
 NGINX App Protect WAF's out-of-box default and strict policies are included in Instance Managers WAF Policy Configuration Management feature set. You can use a built-in policy to get up and running, then fine-tune the policy to meet your application's needs.
 

@@ -24,7 +24,7 @@ docs= "DOCS-646"
 
 ## Overview
 
-NGINX App Protect WAF provides web application firewall (WAF) security protection for your web applications, including OWASP Top 10; response inspection; Meta characters check; HTTP protocol compliance; evasion techniques; disallowed file types; JSON & XML well-formedness; sensitive parameters & Data Guard. Refer to [Supported Security Policy Features]({{< relref "/configuration-guide/configuration.md#supported-security-policy-features" >}}) section for a more detailed description.
+NGINX App Protect WAF provides web application firewall (WAF) security protection for your web applications, including OWASP Top 10; response inspection; Meta characters check; HTTP protocol compliance; evasion techniques; disallowed file types; JSON & XML well-formedness; sensitive parameters & Data Guard. Refer to [Supported Security Policy Features]({{< relref "/nap-waf/configuration-guide/configuration.md#supported-security-policy-features" >}}) section for a more detailed description.
 
 This guide explains how to deploy NGINX App Protect WAF as well as upgrade App Protect and the App Protect signature sets.<br>
 
@@ -212,7 +212,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo yum install app-protect-selinux
     ```
 
-    If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/troubleshooting-guide/troubleshooting#selinux" >}}).
+    If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/troubleshooting-guide/troubleshooting#selinux" >}}).
 
 14. Start the NGINX service:
 
@@ -336,7 +336,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo yum install app-protect-selinux
     ```
 
-    If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/troubleshooting-guide/troubleshooting#selinux" >}}).
+    If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/troubleshooting-guide/troubleshooting#selinux" >}}).
 
 15. Start the NGINX service:
 
@@ -448,7 +448,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo yum install app-protect-selinux
     ```
 
-    If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/troubleshooting-guide/troubleshooting#selinux" >}}).
+    If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/troubleshooting-guide/troubleshooting#selinux" >}}).
 
 15. Start the NGINX service:
 
@@ -560,7 +560,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo yum install app-protect-selinux
     ```
 
-    If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/troubleshooting-guide/troubleshooting#selinux" >}}).
+    If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/troubleshooting-guide/troubleshooting#selinux" >}}).
 
 15. Start the NGINX service:
 
@@ -660,7 +660,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo yum install app-protect-selinux
     ```
     
-    If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/troubleshooting-guide/troubleshooting#selinux" >}}).
+    If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/troubleshooting-guide/troubleshooting#selinux" >}}).
 
 14. Start the NGINX service:
 
@@ -2233,7 +2233,7 @@ CMD ["sh", "/root/entrypoint.sh"]
 ## Converter Tool Docker Image
 
 This section explains how to build a Docker image for the purpose of converting policy files from other F5 WAF products to NGINX App Protect WAF JSON declarative format.
-For more details regarding this feature refer to [Converter Tools]({{< relref "configuration.md#converter-tools" >}}).
+For more details regarding this feature refer to [Converter Tools]({{< relref "/nap-waf/configuration-guide/configuration.md#converter-tools" >}}).
 
 ### Converter Docker Deployment Instructions
 You need root permissions to execute the following steps.
@@ -2786,7 +2786,7 @@ You can run the following commands to ensure that NGINX App Protect WAF enforcem
 
     The number `471859200` should be enough for most use cases, you may need to use a bigger number if the number of profiles is large, or large json/xml schemas are used in the policy.
    
-5. If there are additional problems, refer to the [Troubleshooting Guide]({{< relref "/troubleshooting-guide/troubleshooting#app-protect-troubleshooting-overview" >}}).
+5. If there are additional problems, refer to the [Troubleshooting Guide]({{< relref "/nap-waf/troubleshooting-guide/troubleshooting#app-protect-troubleshooting-overview" >}}).
 
 
 ## Attack Signatures Dependency Change in NGINX App Protect WAF
@@ -3123,7 +3123,7 @@ After having updated the Threat Campaigns package you have to reload the configu
 
 ## Updating App Protect Threat Campaigns
 
-The Threat Campaigns feature is described [here]({{< relref "configuration.md#threat-campaigns" >}}).
+The Threat Campaigns feature is described [here]({{< relref "/nap-waf/configuration-guide/configuration.md#threat-campaigns" >}}).
 
 The Threat Campaigns package is named: app-protect-threat-campaigns-2022.07.21. The version number for this package reflects the date the package was released. The format is: _YYYY.MM.DD_ where:
 - YYYY is the 4-digit year
@@ -3566,4 +3566,4 @@ Review the syslog ports by entering the following command:
 semanage port -l | grep syslog
 ```
 
-If there are additional problems, refer to the [Troubleshooting Guide]({{< relref "/troubleshooting-guide/troubleshooting#selinux" >}}).
+If there are additional problems, refer to the [Troubleshooting Guide]({{< relref "/nap-waf/troubleshooting-guide/troubleshooting#selinux" >}}).

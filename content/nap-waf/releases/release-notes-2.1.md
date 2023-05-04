@@ -25,8 +25,8 @@ October 28, 2020
 
 ### New Features
 
-- [Bot Signatures & Bot Origin Validation Support]({{< relref "/configuration-guide/configuration.md#bot-signatures" >}})
-- [EPEL Repository Dependency Removal from RHEL]({{< relref "/admin-guide/install.md#rhel-7-4-installation" >}})
+- [Bot Signatures & Bot Origin Validation Support]({{< relref "/nap-waf/configuration-guide/configuration.md#bot-signatures" >}})
+- [EPEL Repository Dependency Removal from RHEL]({{< relref "/nap-waf/admin-guide/install.md#rhel-7-4-installation" >}})
 
 ### Supported Packages
 
@@ -48,7 +48,7 @@ October 28, 2020
 
 - 2357 Fixed - Decoding of unpadded base64 encoded strings fails as invalid base64 encoding.
 - 2354 Fixed - Positional parameter detected as illegal URL with open-api-files reference.
-- 2319 Fixed - [Users permissions for users other than `nginx`]({{< relref "/admin-guide/install.md#user-permissions" >}}).
+- 2319 Fixed - [Users permissions for users other than `nginx`]({{< relref "/nap-waf/admin-guide/install.md#user-permissions" >}}).
 - 2297 Fixed - `Set-Cookie` header discarded on 302 response code.
 - 2296 Fixed - Large number of configured locations in `nginx.conf` result in long startup and reload times.
 - 2163 Fixed - `app-protect-compiler` RPM requires `epel-release`.

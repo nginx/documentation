@@ -27,9 +27,9 @@ April 28, 2021
 
 In this release support for NGINX App Protect WAF is added to NGINX Plus R24, for which Debian 9 support has been deprecated.
 
-- [Multiple Security Logs Support]({{< relref "/configuration-guide/configuration.md#app-protect-security-log" >}})
-- [Default Policy Location Update]({{< relref "/configuration-guide/configuration.md#basic-configuration-and-the-default-policy" >}})
-- [Tighten Default Enforcer Cookie Settings]({{< relref "/configuration-guide/configuration.md#enforcer-cookie-settings" >}})
+- [Multiple Security Logs Support]({{< relref "/nap-waf/configuration-guide/configuration.md#app-protect-security-log" >}})
+- [Default Policy Location Update]({{< relref "/nap-waf/configuration-guide/configuration.md#basic-configuration-and-the-default-policy" >}})
+- [Tighten Default Enforcer Cookie Settings]({{< relref "/nap-waf/configuration-guide/configuration.md#enforcer-cookie-settings" >}})
 
 ### Supported Packages
 

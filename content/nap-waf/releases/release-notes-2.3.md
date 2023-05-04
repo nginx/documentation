@@ -25,11 +25,11 @@ December 30, 2020
 
 ### New Features
 
-- [Debian 10 Support]({{< relref "/admin-guide/install.md#debian-10-installation" >}})
-- [Alpine 3.10 Support]({{< relref "/admin-guide/install.md#alpine-3-10-installation" >}})
-- [User-defined HTTP Headers]({{< relref "/configuration-guide/configuration.md#user-defined-http-headers" >}})
-- [Converter Tools]({{< relref "/admin-guide/install.md#converter-tool-docker-image" >}})
-- [Attack Signature Report Tool]({{< relref "/configuration-guide/configuration.md#attack-signature-report-tool" >}})
+- [Debian 10 Support]({{< relref "/nap-waf/admin-guide/install.md#debian-10-installation" >}})
+- [Alpine 3.10 Support]({{< relref "/nap-waf/admin-guide/install.md#alpine-3-10-installation" >}})
+- [User-defined HTTP Headers]({{< relref "/nap-waf/configuration-guide/configuration.md#user-defined-http-headers" >}})
+- [Converter Tools]({{< relref "/nap-waf/admin-guide/install.md#converter-tool-docker-image" >}})
+- [Attack Signature Report Tool]({{< relref "/nap-waf/configuration-guide/configuration.md#attack-signature-report-tool" >}})
 
 ### Supported Packages
 

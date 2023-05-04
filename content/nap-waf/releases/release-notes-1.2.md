@@ -25,8 +25,8 @@ June 30, 2020
 
 ### New Features
 
-- [External References]({{< relref "/configuration-guide/configuration.md#external-references" >}})
-- [Threat Campaigns]({{< relref "/configuration-guide/configuration.md#threat-campaigns" >}})
+- [External References]({{< relref "/nap-waf/configuration-guide/configuration.md#external-references" >}})
+- [Threat Campaigns]({{< relref "/nap-waf/configuration-guide/configuration.md#threat-campaigns" >}})
 
 
 ### Supported Packages

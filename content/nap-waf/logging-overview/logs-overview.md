@@ -28,11 +28,11 @@ aliases = [
 ## App Protect Logging Overview
 
 There are 3 types of logs that App Protect on NGINX generates:
-- [Security log or Request log]({{< relref "/logging-overview/security-log" >}}): The HTTP requests and how App Protect processed them, including violations and signatures found.
-- [Operation logs]({{< relref "/logging-overview/operation-logs" >}}): Events such as startup, shutdown and reconfiguration.
-- [Debug logs]({{< relref "/logging-overview/debug-logs" >}}): technical messages at different levels of severity used to debug and resolve incidents and error behaviors.
+- [Security log or Request log]({{< relref "/nap-waf/logging-overview/security-log" >}}): The HTTP requests and how App Protect processed them, including violations and signatures found.
+- [Operation logs]({{< relref "/nap-waf/logging-overview/operation-logs" >}}): Events such as startup, shutdown and reconfiguration.
+- [Debug logs]({{< relref "/nap-waf/logging-overview/debug-logs" >}}): technical messages at different levels of severity used to debug and resolve incidents and error behaviors.
 
-In addition, NGINX App Protect WAF can be configured to add additional data to NGINX [Access log]({{< relref "/logging-overview/access-log" >}}).
+In addition, NGINX App Protect WAF can be configured to add additional data to NGINX [Access log]({{< relref "/nap-waf/logging-overview/access-log" >}}).
 
 Note that NGINX does not have audit logs in the sense of who did what. This can be done either from the orchestration system controlling NGINX (such as NGINX Controller) or by tracking the configuration files and the systemd invocations using Linux tools.
 

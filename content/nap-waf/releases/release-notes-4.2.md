@@ -23,7 +23,7 @@ docs = "DOCS-1172"
 
 March 29, 2023
 
-This release includes new signatures for [Anti Automation]({{< relref "/configuration-guide/configuration.md#anti-automation-bot-mitigation" >}}) (bot defense):
+This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/configuration-guide/configuration.md#anti-automation-bot-mitigation" >}}) (bot defense):
 
 - Added the following Site Monitor bot signatures: 404enemy, Munin Monitor
 - Added the following Spam Bot bot signatures: 01h4x, AIBOT 
@@ -37,7 +37,7 @@ This release includes new signatures for [Anti Automation]({{< relref "/configur
 
 ### New Features
 
-- [GraphQL Protection]({{< relref  "/configuration-guide/configuration.md#securing-graphql-apis-with-nginx-app-protect-waf" >}})
+- [GraphQL Protection]({{< relref  "/nap-waf/configuration-guide/configuration.md#securing-graphql-apis-with-nginx-app-protect-waf" >}})
 
 ### Supported Packages
 

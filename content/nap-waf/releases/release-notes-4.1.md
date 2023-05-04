@@ -23,7 +23,7 @@ docs = "DOCS-1116"
 
 January 31, 2023
 
-This release includes new signatures for [Anti Automation]({{< relref "/configuration-guide/configuration.md#anti-automation-bot-mitigation">}}) (bot defense):
+This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/configuration-guide/configuration.md#anti-automation-bot-mitigation">}}) (bot defense):
 
 - Added the following Site Monitor bot signatures: OhDear, Cloudflare Monitor, Google Uptime Monitor, NIXStatsbot
 - Added the following Service Agent bot signatures: semanticbot, Datafeedwatch, W3C_Unicorn
@@ -31,8 +31,8 @@ This release includes new signatures for [Anti Automation]({{< relref "/configur
 
 ### New Features
 
-- [Alpine 3.16 Support]({{< relref "/admin-guide/install.md#alpine-316-installation" >}})
-- [Apreload - NGINX App Protect WAF Standalone Configuration]({{< relref "/configuration-guide/configuration.md#nginx-app-protect-waf-standalone-configuration" >}})
+- [Alpine 3.16 Support]({{< relref "/nap-waf/admin-guide/install.md#alpine-316-installation" >}})
+- [Apreload - NGINX App Protect WAF Standalone Configuration]({{< relref "/nap-waf/configuration-guide/configuration.md#nginx-app-protect-waf-standalone-configuration" >}})
 
 ### Supported Packages
 
@@ -69,5 +69,5 @@ This release includes new signatures for [Anti Automation]({{< relref "/configur
 
 ### Resolved Issues
 
-- 7298 Fixed - [decodeValueAsBase64]({{< relref "/configuration-guide/configuration.md#detect-base64" >}}) feature is now disabled and the default value for `decodeValueAsBase64` is set to `disabled` to avoid high chance of false positive violations.
+- 7298 Fixed - [decodeValueAsBase64]({{< relref "/nap-waf/configuration-guide/configuration.md#detect-base64" >}}) feature is now disabled and the default value for `decodeValueAsBase64` is set to `disabled` to avoid high chance of false positive violations.
 - 7238 Fixed - Hyphen metacharacter is now allowed by default in JSON and XML Profiles.

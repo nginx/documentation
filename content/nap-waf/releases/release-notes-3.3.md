@@ -25,10 +25,10 @@ July 7, 2021
 
 ### New Features
 
-- [Amazon Linux 2 LTS Support]({{< relref "/admin-guide/install.md#amazon-linux-2-lts-installation" >}})
-- [Base64 auto-detection applies on JSON content type]({{< relref "/configuration-guide/configuration.md#xml-and-json-content-profiles" >}})
-- [Full security policy export includes the policy base template]({{< relref "/configuration-guide/configuration.md#policy-converter" >}})
-- [FQDNs are now permitted in syslog destinations]({{< relref "/configuration-guide/configuration.md#security-logs" >}})
+- [Amazon Linux 2 LTS Support]({{< relref "/nap-waf/admin-guide/install.md#amazon-linux-2-lts-installation" >}})
+- [Base64 auto-detection applies on JSON content type]({{< relref "/nap-waf/configuration-guide/configuration.md#xml-and-json-content-profiles" >}})
+- [Full security policy export includes the policy base template]({{< relref "/nap-waf/configuration-guide/configuration.md#policy-converter" >}})
+- [FQDNs are now permitted in syslog destinations]({{< relref "/nap-waf/configuration-guide/configuration.md#security-logs" >}})
 
 
 ### Supported Packages

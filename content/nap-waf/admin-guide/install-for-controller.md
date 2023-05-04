@@ -27,7 +27,7 @@ Take the steps in this guide to deploy NGINX App Protect WAF as a datapath insta
 
 ## Setup
 
-Before proceeding, you should review the [Prerequisites]({{< relref "/admin-guide/install#prerequisites" >}}), [Platform Security Considerations]({{< relref "/admin-guide/install#platform-security-considerations" >}}) and [User Permissions]({{< relref "/admin-guide/install#user-permissions" >}}) sections of the NGINX App Protect WAF Admin Guide.
+Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/admin-guide/install#prerequisites" >}}), [Platform Security Considerations]({{< relref "/nap-waf/admin-guide/install#platform-security-considerations" >}}) and [User Permissions]({{< relref "/nap-waf/admin-guide/install#user-permissions" >}}) sections of the NGINX App Protect WAF Admin Guide.
 
 
 ## Install NGINX App Protect WAF
@@ -101,7 +101,7 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/admin-guid
     sudo nginx -v
     ```
 
-12. Configure SELinux as appropriate per your organization’s security policies. NGINX App Protect WAF applies the prebuilt SELinux policy module during the installation. If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/troubleshooting-guide/troubleshooting#selinux" >}}).
+12. Configure SELinux as appropriate per your organization’s security policies. NGINX App Protect WAF applies the prebuilt SELinux policy module during the installation. If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/troubleshooting-guide/troubleshooting#selinux" >}}).
 
     {{< note >}}NGINX Controller has specific [requirements regarding SELinux configuration](http://docs.nginx.com/nginx-controller/admin-guides/install/nginx-controller-tech-specs/#supported-distributions).{{< /note >}}
 
@@ -132,7 +132,7 @@ If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller 
    ps -ef | grep bd_agent
    ```
 
-16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/admin-guide/install#centos-rhel-74-amazon-linux-2">}}).
+16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/admin-guide/install#centos-rhel-74-amazon-linux-2">}}).
 
 ### Red Hat Enterprise Linux 7.4+
 
@@ -227,7 +227,7 @@ If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller 
     sudo nginx -v
     ```
 
-11. Configure SELinux as appropriate per your organization’s security policies. NGINX App Protect WAF applies the prebuilt SELinux policy module during the installation. If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/troubleshooting-guide/troubleshooting#selinux" >}}).
+11. Configure SELinux as appropriate per your organization’s security policies. NGINX App Protect WAF applies the prebuilt SELinux policy module during the installation. If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/troubleshooting-guide/troubleshooting#selinux" >}}).
 
     {{< note >}}NGINX Controller has specific [requirements regarding SELinux configuration](http://docs.nginx.com/nginx-controller/admin-guides/install/nginx-controller-tech-specs/#supported-distributions).{{< /note >}}
 
@@ -258,7 +258,7 @@ If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller 
    ps -ef | grep bd_agent
    ```
 
-15. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/admin-guide/install#centos-rhel-74-amazon-linux-2" >}}).
+15. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/admin-guide/install#centos-rhel-74-amazon-linux-2" >}}).
 
 ### Debian 9
 
@@ -340,7 +340,7 @@ If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller 
     ps -ef | grep bd
     ```
 
-13. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/admin-guide/install#debian-9" >}}).
+13. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/admin-guide/install#debian-9" >}}).
 
 ### Debian 10
 
@@ -447,7 +447,7 @@ If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller 
    ps -ef | grep bd_agent
    ```
 
-16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/admin-guide/install#debian-10" >}}).
+16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/admin-guide/install#debian-10" >}}).
 
 ### Ubuntu 18.04
 
@@ -554,7 +554,7 @@ If you plan to use this instance with Controller Agent 3.20.1, you need to start
    ps -ef | grep bd_agent
    ```
 
-16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/admin-guide/install#ubuntu-18-04" >}}).
+16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/admin-guide/install#ubuntu-18-04" >}}).
 
 ### Ubuntu 20.04
 
@@ -661,7 +661,7 @@ If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller 
    ps -ef | grep bd_agent
    ```
 
-16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/admin-guide/install#ubuntu-20-04" >}}).
+16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/admin-guide/install#ubuntu-20-04" >}}).
 
 {{< note >}}Ubuntu 20.04 activates __AppArmor__ by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment. {{< /note >}}
 

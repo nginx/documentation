@@ -25,9 +25,9 @@ December 15, 2021
 
 ### New Features
 
-- [Protection of large requests]({{< relref "configuration.md#supported-security-policy-features" >}}) - To increase the protection of resources at both the NGINX Plus and upstream application tiers, NGINX App Protect WAF 3.7 contains a change in the default policy behavior that will block requests that are larger than 10 MB in size even if the Violation Rating is less than 4. In previous versions, requests greater than 10 MB would be allowed. When these requests are blocked, a `VIOL_REQUEST_MAX_LENGTH` violation will be logged.
+- [Protection of large requests]({{< relref "/nap-waf/configuration-guide/configuration.md#supported-security-policy-features" >}}) - To increase the protection of resources at both the NGINX Plus and upstream application tiers, NGINX App Protect WAF 3.7 contains a change in the default policy behavior that will block requests that are larger than 10 MB in size even if the Violation Rating is less than 4. In previous versions, requests greater than 10 MB would be allowed. When these requests are blocked, a `VIOL_REQUEST_MAX_LENGTH` violation will be logged.
 
-- [New http-protocols violation]({{< relref "declarative-policy#declarative-policy.md" >}}) -  **Check maximum number of cookies**. NGINX App Protect WAF policies can now configure and enforce the maximum cookies allowed in a request.
+- [New http-protocols violation]({{< relref "/nap-waf/declarative-policy#declarative-policy.md" >}}) -  **Check maximum number of cookies**. NGINX App Protect WAF policies can now configure and enforce the maximum cookies allowed in a request.
 
 
 ### Supported Packages
