@@ -30,7 +30,7 @@ authors: []
 
 ## Before You Begin
 
-## Security Considerations
+### Security Considerations
 
 {{< include "installation/secure-installation.md" >}}
 
