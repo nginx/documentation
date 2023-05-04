@@ -30,6 +30,10 @@ authors: []
 
 ## Before You Begin
 
+## Security Considerations
+
+{{< include "installation/secure-installation.md" >}}
+
 ### Installation Prerequisites
 
 {{< include "installation/nms-prerequisites.md" >}}
