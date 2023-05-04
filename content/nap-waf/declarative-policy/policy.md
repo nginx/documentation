@@ -25,4 +25,4 @@ docs= "DOCS-648"
 
 +++
 
-{{< readfile file="data/policy.html" >}}
+{{< readfile file="content/includes/policy.html" >}}
