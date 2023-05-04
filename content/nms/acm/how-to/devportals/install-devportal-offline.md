@@ -107,28 +107,11 @@ To download the external dependencies:
 
 ---
 
-## Install Instance Manager {#install-nim-offline}
 
 
-- See the [Access the Web Interface](#web-interface). After you log in, you can [add a license]({{< relref "/nms/installation/add-license.md" >}}).
 
----
 
-## Install API Connectivity Manager {#install-acm-offline}
 
-### Dependencies with Instance Manager
-
-{{< include "tech-specs/acm-nim-dependencies.md" >}}
-
-### Install the Management Plane {#install-acm-data-plane-offline}
-
-{{< include "acm/installation/install-acm-offline.md" >}}
-
-- See the section on how to [access the NGINX Management Suite web interface](#web-interface). After you log in, you can [add a license]({{< relref "/nms/installation/add-license.md" >}}).
-
-### Install the Data Plane {#acm-offline-dependencies}
-
-{{< include "acm/installation/install-acm-dataplane-dependencies.md" >}}
 
 ### Install the Developer Portal {#install-acm-devportal-offline}
 

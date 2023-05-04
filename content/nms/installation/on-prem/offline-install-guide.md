@@ -68,7 +68,7 @@ To download the external dependencies:
     sudo bash fetch-external-dependencies.sh <linux distribution>
     ```
 
-    Linux distributions:
+    Supported Linux distributions:
 
     - `ubuntu18.04`
     - `ubuntu20.04`
@@ -89,7 +89,7 @@ To download the external dependencies:
     sudo bash fetch-external-dependencies.sh ubuntu20.04
     ```
 
-    In this example, the script creates an archive called `nms-dependencies-ubuntu20.04.tar.gz` is created with the external dependencies.
+    In this example, the script creates an archive called `nms-dependencies-ubuntu20.04.tar.gz` with the external dependencies.
 
 3. After you copy and extract the bundle onto your target machine, take the following steps to install the packages:
 
@@ -120,6 +120,8 @@ To download the external dependencies:
 {{<tabs name="install_nim_offline">}}
 {{%tab name="CentOS, RHEL, and RPM-Based"%}}
 
+To install Instance Manager, take the following steps:
+
 1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the Instance Manager package files.
 
 2. Install the Instance Manager package:
@@ -133,12 +135,14 @@ To download the external dependencies:
 {{%/tab%}}
 {{%tab name="Debian, Ubuntu, and Deb-Based"%}}
 
+To install Instance Manager, take the following steps:
+
 1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the Instance Manager package files.
 
 2. Install the Instance Manager package:
 
    ```bash
-   sudo apt-get -y install -f /home/user/nms-instance-manager_<version>_amd64.deb
+   sudo apt-get -y install -f /home/<user>/nms-instance-manager_<version>_amd64.deb
    ```
 
     > <span style="color: #c20025;"><i class="fas fa-exclamation-triangle"></i> **IMPORTANT!**</span> The Instance Manager's administrator username (default is `admin`) and generated password are displayed in the terminal during installation. You should make a note of the password and store it securely.
@@ -173,34 +177,174 @@ See these topics below for instructions on how to access the web interface and a
 
 ## Install API Connectivity Manager {#install-acm-offline}
 
-### Dependencies with Instance Manager
+### Dependencies with Instance Manager {#acm-nim-dependencies}
+
+
 
 {{< include "tech-specs/acm-nim-dependencies.md" >}}
 
-### Install the Management Plane {#install-acm-data-plane-offline}
 
-{{< include "acm/installation/install-acm-offline.md" >}}
+- Review the Dependencies with Instance Manager table above to see which versions of Instance Manager are compatible with the version of API Connectivity Manager that you're installing.
+- Install Instance Manager.
 
-- See the section on how to [access the NGINX Management Suite web interface](#web-interface). After you log in, you can [add a license]({{< relref "/nms/installation/add-license.md" >}}).
+### Install API Connectivity Manager
 
-### Install the Data Plane {#acm-offline-dependencies}
+{{< important >}}API Connectivity Manager requires Instance Manager to be installed first. 
 
-{{< include "acm/installation/install-acm-dataplane-dependencies.md" >}}
+Before you begin:
+
+1. Review the [Dependencies with Instance Manager](#acm-nim-dependencies) table above.
+2. [Install a compatible version of Instance Manager](#install-nim-offline).
+{{< /important>}}
+
+{{<tabs name="install_acm_offline">}}
+{{%tab name="CentOS, RHEL, and RPM-Based"%}}
+
+
+
+To install API Connectivity Manager, take the following steps:
+
+1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the API Connectivity Manager package files, or use the package provided by your NGINX Sales Team.
+
+2. Install the API Connectivity Manager package:
+
+   ```bash
+   sudo yum --nogpgcheck install /home/<user>/nms-api-connectivity-manager_<version>.x86_64.rpm
+   ```
+
+{{%/tab%}}
+{{%tab name="Debian, Ubuntu, and Deb-Based"%}}
+
+To install API Connectivity Manager, take the following steps:
+
+1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the API Connectivity Manager package files, or use the package provided by your NGINX Sales Team.
+
+2. Install the API Connectivity Manager package:
+
+   ```bash
+   sudo apt-get install -f /home/<user>/nms-api-connectivity-manager_<version>_amd64.deb
+   ```
+
+
+{{%/tab%}}
+{{</tabs>}}
+
+3. Enable and start the NGINX Management Suite services:
+
+    ```bash
+    sudo systemctl enable nms nms-core nms-dpm nms-ingestion nms-integrations nms-acm --now
+    ```
+
+    NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
+
+4. Restart the NGINX web server:
+
+   ```bash
+   sudo systemctl restart nginx  
+   ```
+
+### Post-Installation Steps
+
+{{< include "installation/optional-installation-steps.md" >}}
+
+See these topics below for instructions on how to access the web interface and add your license:
+
+- [Access the web interface](#access-web-ui)
+- [Add a license](#add-license)
+
+### Set Up the Data Plane {#acm-offline-dependencies}
+
+The API Connectivity Manager data plane and Developer Portal hosts require PostgreSQL, NGINX Plus, and njs.
+
+1. You can install the PostgreSQL package from your distribution's repo at the same time you install the operating system. Refer to the the [PostgreSQL download guide](https://www.postgresql.org/download/) for instructions.
+
+
+2. Select the following link to download the `fetch-external-devportal-dependencies.sh` script. This script downloads the necessary NGINX Plus and njs packages to a `tar.gz` archive.
+
+    {{<fa "download">}} {{<link "/scripts/fetch-external-devportal-dependencies.sh" "Download fetch-external-devportal-dependencies.sh script">}}
+
+3. To download the NGINX Plus and njs dependencies, run the `fetch-external-devportal-dependencies.sh` script. Specify your Linux distribution for the packages.
+
+    ```bash
+    sudo bash fetch-external-devportal-dependencies.sh <linux distribution>
+    ```
+
+    Supported Linux distributions:
+
+    - `ubuntu18.04`
+    - `ubuntu20.04`
+    - `debian10`
+    - `debian11`
+    - `centos7`
+    - `centos8`
+    - `rhel7`
+    - `rhel8`
+    - `amzn2`
+
+    For example, to download external dependencies for Ubuntu 20.04:
+
+    ```bash
+    sudo bash fetch-external-devportal-dependencies.sh ubuntu20.04
+    ```
+
+    In this example, the script creates an archive called `devportal-dependencies-ubuntu20.04.tar.gz` with the external dependencies.
+
+
+3. After you copy and extract the bundle onto your target machine, take the following steps to install the packages:
+
+    {{< note >}}The bundled NGINX Plus package may conflict with installed versions of NGINX Plus. Delete the package from the bundle if you want to keep the existing version.{{< /note >}}
+
+    {{<tabs name="install_devportal-dependencies">}}
+    {{%tab name="CentOS, RHEL, and RPM-Based"%}}
+
+```bash
+tar -kzxvf devportal-dependencies-<linux-distribution>.tar.gz
+sudo yum localinstall *.rpm
+```
+
+    {{%/tab%}}
+    {{%tab name="Debian, Ubuntu, and Deb-Based"%}}
+
+```bash
+tar -kzxvf devportal-dependencies-<linux-distribution>.tar.gz
+sudo dpkg -i ./*.deb
+```
+
+{{%/tab%}}
+{{</tabs>}}
 
 ---
 
 ## Install App Delivery Manager {#install-adm-offline}
 
-### Dependencies with Instance Manager
+### Dependencies with Instance Manager {#adm-nim-dependencies}
 
 {{< include "tech-specs/adm-nim-dependencies.md" >}}
 
 ### Install the Management Plane {#install-adm-data-plane-offline}
 
+{{< important >}}App Delivery Manager requires Instance Manager to be installed first. 
+
+Before you begin:
+
+1. Review the [Dependencies with Instance Manager](#adm-nim-dependencies) table above.
+2. [Install a compatible version of Instance Manager](#install-nim-offline).
+{{< /important>}}
+
+
 {{< include "adm/installation/install-adm-offline.md" >}}
 
 {{< important >}} See the section on how to [access the NGINX Management Suite web interface](#web-interface). After you log in, you must add the ADM [license]({{< relref "/nms/installation/add-license.md" >}}) in order to access the ADM features.
  {{< /important >}}
+
+### Post-Installation Steps
+
+{{< include "installation/optional-installation-steps.md" >}}
+
+See these topics below for instructions on how to access the web interface and add your license:
+
+- [Access the web interface](#access-web-ui)
+- [Add a license](#add-license)
 
 ### Install the Data Plane Dependencies {#adm-offline-dependencies}
 
