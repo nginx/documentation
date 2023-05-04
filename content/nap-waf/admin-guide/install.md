@@ -78,13 +78,13 @@ fio --filename=/opt/tst --size=100MB --direct=1 --rw=randrw --bs=4k --ioengine=l
 The output fields relevant in this context are: `read: IOPS=` and `write: IOPS=`.  
 Below is a table showing how many seconds it takes a reload to complete, when NGINX Plus is reloaded with an updated policy of an average size, in environments of varying I/O performance, and comparable CPU/memory specs:
 
-{{% table %}} 
+{{<bootstrap-table "table table-striped table-bordered">}} 
 |Read IOPS | Write IOPS | Reload Time | 
 | ---| ---| --- | 
 |675 | 678 | 18 | 
 |1575 | 1575 | 12 | 
 |13400 | 13400 | 8 | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 ## Platform Security Considerations
 

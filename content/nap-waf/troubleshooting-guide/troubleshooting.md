@@ -35,15 +35,15 @@ Refer to the below table for any NGINX App Protect WAF installation or configura
 
 ### Installation
 
-{{% table %}}
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
 |Problem|Solution|
 |-------|--------|
 | Starting version 3.12, installation steps and Docker deployment examples were changed in the [Admin Guide]({{< relref "/nap-waf/admin-guide/install.md" >}}). You may encounter one of the following error messages:<br><br># example of yum installation error when the app-protect-security-updates repository is missing:<br><pre><code>`Error: Package: app-protect-compiler-1.234.0-1.el7.ngx.x86_64 (app-protect)`<br>`Requires: app-protect-attack-signatures`<br>`Error: Package: app-protect-compiler-1.234.0-1.el7.ngx.x86_64 (app-protect)`<br>`Requires: app-protect-threat-campaigns`</code></pre><br># example of apt installation error when the app-protect-security-updates repository is missing:<br><pre><code>`The following packages have unmet dependencies:`<br>`app-protect-compiler : Depends: app-protect-attack-signatures`<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `Depends: app-protect-threat-campaigns`<br>`Error: Unable to correct problems, you have held broken packages.`</pre></code>| Enable the [app-protect-security-updates repository]({{< relref "/nap-waf/admin-guide/install.md#updating-app-protect-attack-signatures" >}}). |
-{{% /table %}}
+{{</bootstrap-table>}}
 
 ### Configuration
 
-{{% table %}}
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
 |Problem|Solution|
 |-------|--------|
 | NGINX is not running (ps -aux)<br><br> Reloading NGINX fails| Check the error log at `/var/log/nginx/error.log`<br>Fix the problem and re-run NGINX. | 
@@ -51,7 +51,7 @@ Refer to the below table for any NGINX App Protect WAF installation or configura
 | `Too many open files` error message | Increase number of file descriptors. <br> For example: `worker_rlimit_nofile 65535;` in the main context of `nginx.conf` file. <br> Refer to [worker_rlimit_nofile directive](https://www.nginx.com/blog/using-nginx-plus-with-selinux/#Issue-4:-%3Ccode%3EToo-many-files-are-open%3C/code%3E-Error)|
 | `setrlimit ... failed (Permission denied)` error message | Increase the limit using the following command as the root user:<br> `setsebool -P httpd_setrlimit 1;` <br> Refer to [Issue 4: Too many files are open Error](https://www.nginx.com/blog/using-nginx-plus-with-selinux/#Issue-4:-%3Ccode%3EToo-many-files-are-open%3C/code%3E-Error) |
 | unknown directive `app_protect_xxx` error message  | App Protect module is not loaded. Add this line to the main (global) context of nginx.conf:<br>`load_module "/etc/nginx/modules/ngx_http_app_protect_module.so";`  |
-{{% /table %}}
+{{</bootstrap-table>}}
 
 ## ELK issues
 

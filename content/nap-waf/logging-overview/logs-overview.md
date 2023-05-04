@@ -38,13 +38,13 @@ Note that NGINX does not have audit logs in the sense of who did what. This can 
 
 App Protect uses its own logging mechanism for request logging rather than NGINX's access logging mechanism (which is NGINX's default logging mechanism).
 
-{{% table %}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
 |Type | Log Configuration | Configuration contexts | File Destination | Syslog Destination | 
 | ---| ---| ---| ---| --- | 
 |Security | `app_protect_security_log` directive referencing `security_log.json` file | `nginx.conf`: http, server, location | Yes, either `stderr`, or an absolute path to a local file are supported | Yes | 
 |Operation | `error_log` directive, part of core NGINX | `nginx.conf` - global | Yes, NGINX error log | Yes, NGINX error log | 
 |Debug | `/etc/app_protect/bd/logger.cfg.` Log file name is the redirection in the invocation of the bd command line in the start script | Global (not part of nginx.conf) | Yes. Log file is in `/var/log/app_protect` default debug directory.  No file rotation currently | No | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 ## Log Rotate
 

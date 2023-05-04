@@ -40,7 +40,7 @@ When configuring NGINX App Protect WAF, `app_protect_enable` should always be en
 The following security features are supported in NGINX App Protect WAF. We show what is enabled in the default policy and the changes that the user can do on top of this policy.
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
 |Protection Mechanism | Description | 
 | ---| --- | 
 |Attack Signatures | Default policy covers all the OWASP top 10 attack patterns enabling signature sets detailed in a section below. The user can disable any of them or add other sets. | 
@@ -61,7 +61,7 @@ The following security features are supported in NGINX App Protect WAF. We show 
 |Trust XFF header | Disabled by default. User can enable it and optionally add a list of custom XFF headers. | 
 |gRPC Content | gRPC content profile detects malformed content, parses well-formed content, and extracts the text fields for detecting attack signatures and disallowed meta-characters. In addition, it enforces size restrictions and prohibition of unknown fields. The Interface Definition Language (IDL) files for the gRPC API must be attached to the profile. | 
 |Large Request Blocking | To increase the protection of resources at both the NGINX Plus and upstream application tiers, NGINX App Protect WAF 3.7 contains a change in the default policy behavior that will block requests that are larger than 10 MB in size even if the Violation Rating is less than 4. In previous versions, requests greater than 10 MB would be allowed. When these requests are blocked, a `VIOL_REQUEST_MAX_LENGTH` violation will be logged.|
-{{% /table %}}
+{{</bootstrap-table>}}
 
 
 ### Disallowed File Types
@@ -77,7 +77,7 @@ The following file types are disallowed by default:
 ### Additional Policy Features
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
 |Feature | Description | 
 | ---| --- | 
 |Enforcement by Violation Rating | By default block requests that are declared as threats, that is, their Violation Rating is 4 or 5. It is possible to change this behavior: either disable enforcement by Violation Rating or block also request with Violation Rating 3 - needs examination. See section on [basic configuration](#policy-configuration) below. | 
@@ -85,7 +85,7 @@ The following file types are disallowed by default:
 |Malformed cookie | Requests with cookies that are not RFC compliant are blocked by default. This can be disabled. | 
 |Status code restriction | Illegal status code in the range of 4xx and 5xx. By default only these are allowed: 400, 401, 404, 407, 417, 503. The user can modify this list or disable the check altogether. | 
 |Blocking pages | The user can customize all blocking pages. By default the AJAX response pages are disabled, but the user can enable them. | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 
 ## Attack Signatures Overview
@@ -97,13 +97,13 @@ As new attack signatures are identified, they will become available for [downloa
 
 ### Signature Settings
 
-{{% table %}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
 |Setting | JSON Property in Policy | Support in NGINX App Protect WAF | Value in Default Profile | 
 | ---| ---| ---| --- | 
 |Signature Sets | signature-sets | All available sets. | See signature set list below | 
 |Signatures | signatures | "Enabled" flag can be modified. | All signatures in the included sets are enabled. | 
 |Auto-Added signature accuracy | minimumAccuracyForAutoAddedSignatures | Editable | Medium | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 
 ### Signature Sets in Default Policy
@@ -664,7 +664,7 @@ In this example, we override the action for a specific signature (python-request
 
 This is a list of the trusted bots that are currently part of the bot signatures. As the title suggests, these bot signatures belong to the `trusted-bot` class and currently all are search engines.
 
-{{% table %}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
 |Bot Name | Description | 
 | ---| --- | 
 |Ask | [Ask.com engine](https://www.ask.com) | 
@@ -680,7 +680,7 @@ This is a list of the trusted bots that are currently part of the bot signatures
 |Yahoo! Slurp | [Yahoo search engine](https://www.yahoo.com/) | 
 |Yandex | [Yandex search engine](https://yandex.com/) | 
 |YioopBot | [Yioop search engine](https://www.yioop.com/) | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 
 #### Header Anomalies
@@ -689,14 +689,14 @@ In addition to detecting Bot Signatures, by default NGINX App Protect WAF verifi
 Each request receives a score, is categorized by anomaly, and is enforced according to the default configured anomaly action:
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
 |Range | Anomaly | Action | Class | 
 | ---| ---| ---| --- | 
 |0-49 | None | None | Browser | 
 |50-99 | Suspicious HTTP Headers Presence or Order | Alarm | Suspicious Browser | 
 |100 and above | Invalid HTTP Headers Presence or Order | Block | Malicious Bot | 
 | Non Applicable | SEARCH_ENGINE_VERIFICATION_FAILED | Block | Malicious Bot | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 
 Notice that the default scores for each anomaly can be changed. In this example, we override the score and action of the default bot configuration:
@@ -975,7 +975,7 @@ In this example, we enable the attack signature violation, and enabled the **Apa
 The table below lists all the available Server Technologies. Some of them are built on top others on the stack and including them implies the inclusion of the latter. For example: ASP.NET implies both IIS and Microsoft Windows. This is indicated in the "implied technologies" column when applicable. We also denote the server technologies that currently have a signature system counterpart.
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
 |Server Technology Name | Description | Implied Technologies | Signature System? | 
 | ---| ---| ---| --- | 
 |Jenkins | Jenkins is an open source automation server written in Java. Jenkins helps to automate the non-human part of the software development process, with continuous integration and facilitating technical aspects of continuous delivery. It is a server-based system that runs in servlet containers such as Apache Tomcat. |  | Yes | 
@@ -1050,20 +1050,20 @@ The table below lists all the available Server Technologies. Some of them are bu
 |ASP | Active Server Pages (ASP), later known as Classic ASP or ASP Classic, is Microsoft's first server-side script engine for dynamically generated web pages. | IIS, Microsoft Windows | Yes | 
 |Java Servlets/JSP | A Java servlet is a Java program that extends the capabilities of a server. |  | Yes | 
 |jQuery | jQuery is a cross-platform JavaScript library designed to simplify the client-side scripting of HTML. |  | Yes | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 ##### Generic Signature Systems
 
 These signature systems are generic and do not represent a particular technology, therefore do not have a server technology counterpart. Yet, there are signatures associated with them. The `Generic Detection Signatures` factory signature set includes most of these signatures. You can define your own signature sets using one or more of those systems.
 
-{{% table %}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
 |System Name | Description | 
 | ---| --- | 
 |Other Web Server | Web Servers that are not covered by any of the specific server technologies | 
 |System Independent | Used to denote signatures that apply to any server technology | 
 |Various Systems | Server-side systems not covered by any of the existing server technologies or the other systems here | 
 |Generic Database | Database systems that are not covered by any of the specific server technologies | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 
 #### Threat Campaigns
@@ -2333,7 +2333,7 @@ Please note that:
 
 The following table specifies supported built-in (factory) browsers:
 
-{{% table %}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
 |Declarative Name | Description | 
 | ---| --- | 
 |android | The native Android browser. | 
@@ -2354,7 +2354,7 @@ The following table specifies supported built-in (factory) browsers:
 |puffin | Puffin Browser on Microsoft Windows. | 
 |puffin | Puffin Browser on Android devices. | 
 |puffin | Puffin Browser on iOS devices. | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 
 ##### User-Defined Browser Control Enforcement
@@ -3661,7 +3661,7 @@ File references refers to accessing local resources on the same machine, as oppo
 
 Here are some examples of the typical cases:
 
-{{% table %}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
 |Link URL Format (examples) | File Path | Comment | 
 | ---| ---| --- | 
 |<file:///foo.json> | /etc/app_protect/conf/foo.json | Default directory assumed | 
@@ -3669,7 +3669,7 @@ Here are some examples of the typical cases:
 |<file:///etc/app_protect/conf/foo.json> | /etc/app_protect/conf/foo.json | Full path, but still the default one | 
 |<file:///bar/foo.json> | /bar/foo.json | Non-default path | 
 |<file://etc/app_protect/conf/foo.json> | **Not accepted** | "etc" is interpreted as remote host name | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 
 ##### Example Configuration
@@ -4859,7 +4859,7 @@ When applied to a cluster, all cluster members will get the same globals as expe
 
 {{< note >}} Whether an incoming request is inspected by NGINX App Protect WAF may be determined by the URL in the request. This happens if you configure `app_protect_enable` and `app_protect_policy_file` directives in the `location` scope. In the case where the URL itself has violations such as *bad unescape* or *illegal metacharacter* then the request might be assigned to a location in which NGINX App Protect WAF is disabled or has a relaxed policy that does not detect these violations. Such malicious requests will be allowed without inspection. In order to avoid this, it is recommended to have a basic policy enabled at the `http` scope or at least at the `server` scope to process malicious requests in a more complete manner.{{< /note >}}
 
-{{% table %}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
 |Directive Name | Syntax | Description | Default | 
 | ---| ---| ---| --- | 
 |app_protect_physical_memory_util_thresholds | app_protect_physical_memory_util_thresholds high=<number_0-100> low=<number_0-100> | Sets the physical memory utilization thresholds for entering (high) and exiting (low) failure mode. When the high threshold is exceeded the system enters failure mode until memory drops below the low threshold. Setting the value of 100 disables this feature. | high=low=100 (disabled) | 
@@ -4870,14 +4870,14 @@ When applied to a cluster, all cluster members will get the same globals as expe
 |app_protect_request_buffer_overflow_action | app_protect_request_buffer_overflow_action pass &#124; drop | Determines how to handle requests in case the NGINX request buffer is full and requests cannot be buffered anymore. There are two values:<ul><li>**pass**: Pass the request without App Protect Enforcer inspection, a.k.a. "fail-open".</li><li>**drop**: Drop the request by resetting connection. No response page is returned, a.k.a. "fail-close".</li></ul> | pass | 
 |app_protect_user_defined_signatures | app_protect_user_defined_signatures <path> | Imports the user-defined tagged signature file with the respective tag name from the provided path. Multiple instances of this directive are supported. In order to import multiple signatures files, each file must have a different tag. | N/A | 
 |app_protect_reconnect_period_seconds| app_protect_reconnect_period_seconds <value> <br> **Value type**: number with decimal fraction <br> **Value Range**:  0-60. 0 is illegal | Determines the period of time between reconnect retries of the module to the web application firewall (WAF) engine. The time unit is seconds.| 5 |
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 
 ### App Protect Specific Directives
 
 This table summarizes the nginx.conf directives for NGINX App Protect WAF functionality.
 
-{{% table %}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
 |Directive Name | Syntax | Functionality | nginx.conf Contexts | Example | 
 | ---| ---| ---| ---| --- | 
 |load_module | load_module <library_file_path> | NGINX directive to load the App Protect module. It must be invoked with the App Protect library path | Global | load_module modules/ngx_http_app_protect_module.so | 
@@ -4885,7 +4885,7 @@ This table summarizes the nginx.conf directives for NGINX App Protect WAF functi
 |app_protect_policy_file | app_protect_policy_file <file_path> | Set a App Protect policy configuring behavior for the respective context. | HTTP, Server, Location | app_protect_policy_file /config/waf/strict_policy.json | 
 |app_protect_security_log_enable | app_protect_security_log_enable on &#124; off | Whether to enable the App Protect per-request log at the respective context. | HTTP, Server, Location | app_protect_security_log_enable on | 
 |app_protect_security_log | app_protect_security_log <file_path> <destination> | Specifies the per-request logging: what to log and where | HTTP, Server, Location | app_protect_security_log /config/waf/log_illegal.json syslog:localhost:522 | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 
 #### Horizontal Scaling
@@ -4970,7 +4970,7 @@ App Protect violations are rated by the App Protect algorithms to help distingui
 The following violations are supported and can be enabled by turning on the **alarm** and/or **block** flags.
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
 |Violation Name | Title | Enabled Flags in Default Template | Description | Comment | 
 | ---| ---| ---| ---| --- | 
 |VIOL_ASM_COOKIE_MODIFIED | Modified ASM cookie | Alarm & Block | The system checks that the request contains an ASM cookie that has not been modified or tampered with. Blocks modified requests. |  |
@@ -5031,7 +5031,7 @@ The following violations are supported and can be enabled by turning on the **al
 |VIOL_URL_METACHAR | Illegal meta character in URL | Alarm | The system checks that the incoming request includes a URL that contains only meta characters defined as allowed in the security policy. Enforces a desired set of acceptable characters. |  | 
 |VIOL_XML_FORMAT | XML data does not comply with format settings | Alarm | The system checks that the request contains XML data that complies with the various document limits within the defense configuration in the security policy's XML profile. Enforces proper XML requests and the data failed format/defense settings such as the maximum document length.<br>       This violation is generated when a problem in an XML document is detected (for example, an XML bomb), generally checking the message according to boundaries such as the message's size, maximum depth, and maximum number of children. | Controlled by the default XML profile | 
 |VIOL_XML_MALFORMED | Malformed XML data | Alarm & Block | The system checks that the request contains XML data that is well-formed, according to W3C standards. Enforces proper XML requests. |  | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 
 ### HTTP Compliance Sub-Violations
@@ -5039,7 +5039,7 @@ The following violations are supported and can be enabled by turning on the **al
 The following table specifies the HTTP Compliance sub-violation settings. All are supported in NGINX App Protect WAF, but not all are enabled in the default App Protect security template. The table specifies which. Some of the checks are enforced by NGINX Plus and App Protect only gets a notification. **Note:**  In this case, the request is **always** blocked regardless of the App Protect policy.
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
 |Sub-Violation | Default Template | Enforced by | Description | 
 | ---| ---| ---| --- | 
 |Unparsable request content | Enabled | NGINX | This violation is triggered when the system's parser cannot parse the message. | 
@@ -5064,14 +5064,14 @@ The following table specifies the HTTP Compliance sub-violation settings. All ar
 |Bad host header value | Enabled | NGINX | Detected non RFC compliant header value. | 
 | Check maximum number of cookies | Disabled | App Protect | The system compares the request cookies to the maximal configured
 number of cookies. When enabled, the default value for number of maximum cookies if unmodified is 50. |
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 
 ### Evasion Techniques Sub-Violations
 
 The following table specifies the Evasion Techniques sub-violation settings. All are supported in NGINX App Protect WAF.
 
-{{% table %}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
 |Sub-Violation | Default Template | Description | 
 | ---| ---| --- | 
 |%u decoding | Enabled | Performs Microsoft %u unicode decoding (%UXXXX where X is a hexadecimal digit). For example, the system turns a%u002fb to a/b. The system performs this action on URI and parameter input to evaluate if the request contains an attack. | 
@@ -5082,7 +5082,7 @@ The following table specifies the Evasion Techniques sub-violation settings. All
 |IIS backslashes | Enabled | Normalizes backslashes (\\) to slashes (/) for further processing. | 
 |IIS Unicode codepoints | Enabled | Handles the mapping of IIS specific non-ASCII codepoints. Indicates that, when a character is greater than '0x00FF', the system decodes %u according to an ANSI Latin 1 (Windows 1252) code page mapping. For example, the system turns a%u2044b to a/b. The system performs this action on URI and parameter input. | 
 |Multiple decoding | Enabled: 3 | The system decodes URI and parameter values multiple times according to the number specified before the request is considered an evasion. | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 
 ## Attack Types
@@ -5091,7 +5091,7 @@ Each signature, factory or user-defined, and violation has an **Attack Type**, t
 
 Following is the full list of Attack Types supported in App Protect. Use the **name** of the Attack Type to reference it within the signature or signature set filter.
 
-{{% table %}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
 |Attack Type Name | Description | 
 | ---| --- | 
 |Abuse of Functionality | Abuse of Functionality is an attack technique that uses a web site's own features and functionality to consume, defraud, or circumvent access controls mechanisms. | 
@@ -5130,7 +5130,7 @@ Following is the full list of Attack Types supported in App Protect. Use the **n
 |XML External Entities (XXE) | This is a type of attack against an application that parses XML input. This attack occurs when XML input containing a reference to an external entity is processed by a weakly configured XML parser. | 
 |XML Parser Attack | This attack targets the functionality of the XML parser in order to crash it or force the parser to work abnormally. | 
 |XPath Injection | XPath-Injection occurs when a web application does not sanitize user-supplied input but places it directly into the XML document query. Successful exploitation results in information gathering and system integrity compromise. | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 
 ## Converter Tools
@@ -5522,7 +5522,7 @@ Refer to [Logging Overview]({{< relref "/nap-waf/logging-overview/security-log.m
 This guide assumes that you have some familiarity with various Layer 7 (L7) Hypertext Transfer Protocol (HTTP) concepts, such as Uniform Resource Identifier (URI)/Uniform Resource Locator (URL), method, header, cookie, status code, request, response, and parameters.
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
 |Term | Definition | 
 | ---| --- | 
 |Alarm | If selected, the NGINX App Protect WAF system records requests that trigger the violation in the remote log (depending on the settings of the logging profile). | 
@@ -5543,7 +5543,7 @@ This guide assumes that you have some familiarity with various Layer 7 (L7) Hype
 |Tuning | Making manual changes to an existing security policy to reduce false positives and increase the policy’s security level. | 
 |URI/URL | The Uniform Resource Identifier (URI) specifies the name of a web object in a request. A Uniform Resource Locator (URL) specifies the location of an object on the Internet. For example, in the web address, `http://www.siterequest.com/index.html`, index.html is the URI, and the URL is `http://www.siterequest.com/index.html`. In NGINX App Protect WAF, the terms URI and URL are used interchangeably. | 
 |Violation | Violations occur when some aspect of a request or response does not comply with the security policy. You can configure the blocking settings for any violation in a security policy. When a violation occurs, the system can Alarm or Block a request (blocking is only available when the enforcement mode is set to Blocking). | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 
 ## Interaction with NGINX Features
