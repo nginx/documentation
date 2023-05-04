@@ -39,6 +39,10 @@ aliases:
 
 - Download the NGINX Management Suite package files from the [MyF5 Customer Portal](https://account.f5.com/myf5).
 
+### Security Considerations
+
+{{< include "installation/secure-installation.md" >}}
+
 ---
 
 ## Offline Dependencies
