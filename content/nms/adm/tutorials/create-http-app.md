@@ -9,17 +9,17 @@ docs: "DOCS-1158"
 ---
 ## Objective
 
-The App team wants to provide external access to their custom app which has two instances running on their internal network. External access will be provided from http://www.acme-app.com. The two instances of their app are available at the following internal IP addresses:
+The App team wants to provide external access to their custom app which has two instances running on their internal network. External access will be provided from http://www.example.com. The two instances of their app are available at the following internal IP addresses:
 
-- http://10.146.191.198:8080
-- http://10.146.191.198:8081
+- http://198.51.100.0:8080
+- http://198.51.100.0:8081
 
 ### Prerequisites
 
 The environment has been set up as follows for this use case:
 
-- The Platform team has set up NGINX Management Suite permissions to allow the App team to create any App Delivery Manager related resource.
-- The Platform team has [created an instance group]({{< relref "/nim/how-to/nginx/manage-instance-groups.md" >}}), acme-ig, for the NGINX instances that will be used to route the traffic to the team's app instances (workloads, in ADM terminology, which typically map to upstreams in NGINX terminology).
+- The Platform team has set up NGINX Management Suite permissions to allow the App team to create any ADM-related resource.
+- The Platform team has [created an instance group]({{< relref "/nim/how-to/nginx/manage-instance-groups.md" >}}), **example-ig**, for the NGINX instances that will be used to route the traffic to the team's app instances (workloads, in ADM terminology, which typically map to upstreams in NGINX terminology).
 
 ## Solution
 
@@ -40,12 +40,12 @@ If you haven't already, create an Environment resource by following these steps:
 The gateway will describe how traffic will be routed through NGINX instances to get to the actual app workloads.
 
 1. Select **Gateways** on the sidebar. The list of existing gateways will be displayed.
-1. Select **Create Gateway**. In the *Configuration* section of the *Create Gateway* drawer type **Acme Gateway** in the **Name** field.
+1. Select **Create Gateway**. In the *Configuration* section of the *Create Gateway* drawer type **Example Gateway** in the **Name** field.
 1. Select **Tutorial Environment** in the **Environment** list.
 1. Select **Next** to go to the *Placements* section.
-1. In the **Instance Group Refs** list, select **acme-ig** (Which was created by the Platform team as part of the prerequisites), then select **Done**.
+1. In the **Instance Group Refs** list, select **example-ig** (Which was created by the Platform team as part of the prerequisites), then select **Done**.
 1. Select **Next** to continue to the *Hostnames* page.
-1. Type `http://www.acme-app.com` in the **Hostname** field, and then Select **Done**.
+1. Type `http://www.example.com` in the **Hostname** field, and then Select **Done**.
 1. Select **Submit** to create the gateway (**Note:** To create a secure website, you would need to type an HTTPS address and specify the cert to use).
 
 ### Create an App
@@ -54,7 +54,7 @@ Follow these steps to create the app:
 
 1. Select **Apps** on the sidebar. The list of existing apps will be displayed.
 1. Select **Create App**.
-1. In the *Create App* drawer, type **Acme App** in the **Name** field. 
+1. In the *Create App* drawer, type **Example App** in the **Name** field. 
 1. Select **Tutorial Environment** in the **Environment** list. You can leave the default values for all the other fields.
 1. Select **Submit** to create the app.
 
@@ -63,32 +63,32 @@ Follow these steps to create the app:
 The app we just created is a wrapper that can be composed of multiple components, each potentially referencing a unique microservice. For our tutorial, we are deploying a simple app with only one component. To create this component, take the following steps:
 
 1. If you are not on *Apps Overview* page already, select **Apps** on the sidebar. The list of existing apps will be displayed.
-1. On the *Overview* page, in the *Name* column, select the **Acme App** link in the list of apps.
+1. On the *Overview* page, in the *Name* column, select the **Example App** link in the list of apps.
 1. At the top of the page, select **Web Components**.
 1. On the *Web Components* page, select **Create Web Component**. 
-1. On the *Configuration* section of the *Create Web Component* drawer, type **Acme Component** in the **Name** field.
-1. In the **Gateway Refs field** list, select **Acme Gateway**. 
+1. On the *Configuration* section of the *Create Web Component* drawer, type **Example Component** in the **Name** field.
+1. In the **Gateway Refs field** list, select **Example Gateway**. 
 1. Select **Next** to advance to the *URIs* page.
 1. Type **/** in the **URI** field (If you are not able to type a value, select the pencil icon to edit the URI).
 1. Select **Next** to continue to the *Workload Groups* page. 
 1. Type **wg1** in the **Workload Group Name** field.
-1. In the **Backend Workload URIs** section, type `http://10.146.191.198:8080` in the **URI** field. Select **Done**.
-1. Select **Add Backend Workload URI** to add another workload. Type `http://10.146.191.198:8081` in the **URI** field. Then select **Done**.
+1. In the **Backend Workload URIs** section, type `http://198.51.100.0:8080` in the **URI** field. Select **Done**.
+1. Select **Add Backend Workload URI** to add another workload. Type `http://198.51.100.0:8081` in the **URI** field. Then select **Done**.
 1. In the *Workload Groups* page, select **Done**.
 1. Select **Submit** to complete the component configuration.
 
 ## Resulting NGINX Configuration
 
-After completing the steps above, the web component will transition into a "Configured" state. If you examine any of the instances that belong to the `acme-ig` instance group, you will see a configuration similar to the following:
+After completing the steps above, the web component will transition into a "Configured" state. If you examine any of the instances that belong to the `example-ig` instance group, you will see a configuration similar to the following:
 
 ```nginx
 server {
-    server_name www.acme-app.com;
+    server_name www.example.com;
     listen 80 ssl;
     status_zone b57757a6-ef8b-3ef0-be2a-067d66360680;
     f5_metrics_marker environment ca6aa2ef-717f-48ab-96d9-fc1b79e3ec43;
     f5_metrics_marker gateway 4b727d89-b15d-45c1-8bf3-8b6a62fda9ac;
-    # Generated by web component Acme Component(e0410d7c-d6d4-442d-840f-6d7ad30b5445)
+    # Generated by web component Example Component(e0410d7c-d6d4-442d-840f-6d7ad30b5445)
     location / {
         proxy_set_header X-Forwarded-For $remote_addr;
         proxy_set_header Host $host
@@ -102,7 +102,7 @@ server {
 }
 upstream wg1_http_e0410d7c-d6d4-442d-840f-6d7ad30b5445 {
     zone wg1_e0410d7c-d6d4-442d-840f-6d7ad30b5445 1280K;
-    server 10.146.191.198:8080;
-    server 10.146.191.198:8081;
+    server 198.51.100.0:8080;
+    server 198.51.100.0:8081;
 }
 ```
