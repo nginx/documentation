@@ -162,7 +162,7 @@ Before installing NGINX Management Suite on an offline system, you must manually
 
 ## Access the Web Interface {#web-interface}
 
-{{< include "nms/access-web-interface.md" >}}
+{{< include "installation/access-web-ui.md" >}}
 
 ---
 

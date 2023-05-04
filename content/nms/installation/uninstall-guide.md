@@ -13,41 +13,28 @@ aliases:
 ---
 
 
-<style>
-  h2 {
-    margin-top: 30px;
-    margin-bottom: 10px;
-    }
-  h3 {
-    margin-top: 20px;
-    margin-bottom: 10px;
-    }
-  hr {
-    margin-top: 40px; 
-    margin-bottom: 40px;
-    }
-</style>
+{{< custom-styles >}}
 
-## Uninstall NGINX Management Suite {#uninstall-nms}
+## NGINX Management Suite {#uninstall-nms}
 
 {{<tabs name="uninstall_nms">}}
 {{%tab name="CentOS, RHEL, and RPM-Based"%}}
 
-To remove NGINX Management Suite and all of its modules, complete the following steps in the given order:
+To uninstall NGINX Management Suite and all of its modules, complete the following steps:
 
-1. Remove NGINX Management Suite:
+1. To uninstall NGINX Management Suite, run the following command:
 
    ```bash
    yum remove nms-*
    ```
 
-2. Stop the ClickHouse process:
+2. Stop the ClickHouse service:
 
    ```bash
    sudo systemctl stop clickhouse-server
    ```
 
-3. Uninstall ClickHouse:
+3. To uninstall ClickHouse, run the following command:
 
    ```bash
    yum remove clickhouse-server
@@ -56,82 +43,101 @@ To remove NGINX Management Suite and all of its modules, complete the following 
 {{%/tab%}}
 {{%tab name="Debian, Ubuntu, and Deb-Based"%}}
 
-To remove the NGINX Management suite and modules altogether, complete the following steps in the given order:
+To uninstall NGINX Management suite and all of its modules, complete the following steps:
 
-1. Remove NGINX Management Suite:
+1. To uninstall NGINX Management Suite, run the following command:
 
    ```bash
-   sudo apt-get purge nms-*
+   sudo apt-get remove nms-*
    ```
 
-2. Stop the ClickHouse process:
+2. Stop the ClickHouse service:
 
    ```bash
    sudo systemctl stop clickhouse-server
    ```
 
-3. Uninstall ClickHouse:
+3. To uninstall ClickHouse, run the following command:
 
    ```bash
-   sudo apt-get purge clickhouse-server
+   sudo apt-get remove clickhouse-server
    ```
+
+   > **Note:** The `apt-get remove <package>` command will remove the package from your system, while keeping the associated configuration files for possible future use. If you want to completely remove the package and all of its configuration files, you should use `apt-get purge <package>`.
+
 
 {{%/tab%}}
 {{</tabs>}}
 
 ---
 
-## Uninstall API Connectivity Manager {#uninstall-acm}
+## API Connectivity Manager {#uninstall-acm}
 
 {{<tabs name="uninstall_acm">}}
 {{%tab name="CentOS, RHEL, and RPM-Based"%}}
 
-1. To uninstall the API Connectivity Manager module, run the following command:
+1. To uninstall API Connectivity Manager, run the following command:
 
    ```bash
-   yum remove nms-api-connectivity-manager*
+   yum remove nms-api-connectivity-manager
+   ```
+
+2. To uninstall the Developer Portal, run the following command:
+
+   ```bash
+   yum remove nginx-devportal
    ```
 
 {{%/tab%}}
 {{%tab name="Debian, Ubuntu, and Deb-Based"%}}
 
-1. To uninstall the API Connectivity Manager module, run the following command:
+1. To uninstall API Connectivity Manager, run the following command:
 
    ```bash
-   sudo apt-get purge nms-api-connectivity-manager*
+   sudo apt-get remove nms-api-connectivity-manager
    ```
+
+2. To uninstall the Developer Portal, run the following command:
+
+   ```bash
+   sudo apt-get remove nginx-devportal
+   ```
+
+   > **Note:** The `apt-get remove <package>` command will remove the package from your system, while keeping the associated configuration files for possible future use. If you want to completely remove the package and all of its configuration files, you should use `apt-get purge <package>`.
 
 {{%/tab%}}
 {{</tabs>}}
 
 ---
 
-## Uninstall Developer Portal
+## App Delivery Manager {#uninstall-app-delivery-manager}
 
-{{<tabs name="uninstall_acm_dev_portal">}}
+{{<tabs name="uninstall_app_delivery_manager">}}
 {{%tab name="CentOS, RHEL, and RPM-Based"%}}
 
-1. To uninstall the Developer Portal, run the following command:
+1. To uninstall App Delivery Manager, run the following command:
 
    ```bash
-   yum remove nginx-devportal*
+   yum remove nms-adm
    ```
 
 {{%/tab%}}
 {{%tab name="Debian, Ubuntu, and Deb-Based"%}}
 
-1. To uninstall the Developer Portal, run the following command:
+1. To uninstall App Delivery Manager, run the following command:
 
    ```bash
-   sudo apt-get purge nginx-devportal*
+   sudo apt-get remove nms-adm
    ```
+
+   > **Note:** The `apt-get remove <package>` command will remove the package from your system, while keeping the associated configuration files for possible future use. If you want to completely remove the package and all of its configuration files, you should use `apt-get purge <package>`.
 
 {{%/tab%}}
 {{</tabs>}}
 
 ---
 
-## Uninstall Security Monitoring {#uninstall-security-monitoring}
+## Security Monitoring {#uninstall-security-monitoring}
 
 {{<tabs name="uninstall_security_monitoring">}}
 {{%tab name="CentOS, RHEL, and RPM-Based"%}}
@@ -145,18 +151,21 @@ To remove the NGINX Management suite and modules altogether, complete the follow
 {{%/tab%}}
 {{%tab name="Debian, Ubuntu, and Deb-Based"%}}
 
-1. To uninstall the Developer Portal, run the following command:
+
+1. To uninstall the Security Monitoring module, run the following command:
 
    ```bash
-   sudo apt-get purge nms-sm
+   sudo apt-get remove nms-sm
    ```
+
+   > **Note:** The `apt-get remove <package>` command will remove the package from your system, while keeping the associated configuration files for possible future use. If you want to completely remove the package and all of its configuration files, you should use `apt-get purge <package>`.
 
 {{%/tab%}}
 {{</tabs>}}
 
 ---
 
-## Uninstall NGINX Agent
+## NGINX Agent
 
 {{<tabs name="uninstall_agent">}}
 {{%tab name="CentOS, RHEL, and RPM-Based"%}}
@@ -169,7 +178,7 @@ Complete the following steps on each host where you've installed the NGINX Agent
    sudo systemctl stop nginx-agent
    ```
 
-2. Uninstall the NGINX Agent:
+2. To uninstall the NGINX Agent, run the following command:
 
    ```bash
    yum remove nginx-agent
@@ -186,11 +195,14 @@ Complete the following steps on each host where you've installed the NGINX Agent
    sudo systemctl stop nginx-agent
    ```
 
-2. Uninstall the NGINX Agent:
+2. To uninstall the NGINX Agent, run the following command:
 
    ```bash
-   sudo apt-get purge nginx-agent
+   sudo apt-get remove nginx-agent
    ```
+
+   > **Note:** The `apt-get remove <package>` command will remove the package from your system, while keeping the associated configuration files for possible future use. If you want to completely remove the package and all of its configuration files, you should use `apt-get purge <package>`.
 
 {{%/tab%}}
 {{</tabs>}}
+
