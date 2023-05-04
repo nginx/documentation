@@ -37,7 +37,7 @@ Complete the following steps to sign up for a license for NGINX Management Suite
 
 Before you begin:
 
-- Follow the steps to install [NGINX Management Suite]({{< relref "/admin-guides/installation/on-prem/install-guide.md" >}}).
+- Follow the steps to install [NGINX Management Suite]({{< relref "/nms/installation/on-prem/_index.md" >}}).
 - [Download your license file](#get-a-license).
 
 To add a license for an NGINX Management Suite module, take the following steps:
@@ -54,7 +54,7 @@ To add a license for an NGINX Management Suite module, take the following steps:
 
 The following tables show which features are available for the `admin` user when NGINX Management Suite is licensed or unlicensed.
 
-{{<see-also>}}A **feature** is a grouping of functionality in NGINX Management Suite. For more information about features and role-assignments, see [Set Up RBAC]({{< relref "/admin-guides/access-control/set-up-rbac.md" >}}).{{</see-also>}}
+{{<see-also>}}A **feature** is a grouping of functionality in NGINX Management Suite. For more information about features and role-assignments, see [Set Up RBAC]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}).{{</see-also>}}
 
 ### Unlicensed Mode
 
@@ -109,7 +109,7 @@ The following features are available when NGINX Management Suite is licensed.
 
 ### Can't Upload a License
 
-If you have issues uploading a license, make sure you're using the newest version of these [supported web browsers]({{< relref "/tech-specs.md#supported-browsers" >}}):
+If you have issues uploading a license, make sure you're using the newest version of these [supported web browsers]({{< relref "/nms/tech-specs.md#supported-browsers" >}}):
 
 - [Google Chrome](https://www.google.com/chrome/)
 - [Firefox](https://www.mozilla.org/en-US/firefox/new/)

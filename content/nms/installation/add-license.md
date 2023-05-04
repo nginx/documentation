@@ -31,7 +31,7 @@ aliases:
 The following tables show which features are available for the `admin` user when NGINX Management Suite is licensed or unlicensed.
 
 {{<see-also>}}
-A **feature** is a grouping of functionality in NGINX Management Suite. For more information about features and role-assignments, see [Set Up RBAC]({{< relref "/admin-guides/access-control/set-up-rbac.md" >}}).
+A **feature** is a grouping of functionality in NGINX Management Suite. For more information about features and role-assignments, see [Set Up RBAC]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}).
 {{</see-also>}}
 
 ### Unlicensed Mode
@@ -106,7 +106,7 @@ The features belonging to App Delivery Manager require that module to be install
 
 ### Can't Upload a License
 
-If you have issues uploading a license, make sure you're using the newest version of these [supported web browsers]({{< relref "/tech-specs.md#supported-browsers" >}}):
+If you have issues uploading a license, make sure you're using the newest version of these [supported web browsers]({{< relref "/nms/tech-specs.md#supported-browsers" >}}):
 
 - [Google Chrome](https://www.google.com/chrome/)
 - [Firefox](https://www.mozilla.org/en-US/firefox/new/)

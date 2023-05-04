@@ -38,7 +38,7 @@ You can easily manage multiple NGINX instances as a single entity by creating an
 
 To complete the instructions in this guide, you need the following:
 
-- An installed version of [Instance Manager]({{< relref "installation/on-prem/_index.md" >}})
+- An installed version of [Instance Manager]({{< relref "/nms/installation/on-prem/_index.md" >}})
 - One or more NGINX data plane instances
 
 ---
@@ -75,7 +75,7 @@ You can assign NGINX instances to instance groups in the following ways:
 
 ### Specify Instance Group in Agent-Dynamic.Conf
 
-You can easily add instances to a default instance group that you specify. To do so, [install the NGINX Agent on an instance]({{< relref "nginx-agent/install-nginx-agent.md" >}}), then edit the `/etc/nginx-agent/agent-dynamic.conf` file as described below.
+You can easily add instances to a default instance group that you specify. To do so, [install the NGINX Agent on an instance]({{< relref "/nms/nginx-agent/install-nginx-agent.md" >}}), then edit the `/etc/nginx-agent/agent-dynamic.conf` file as described below.
 
 {{< important >}}If the specified instance group doesn't already exist, the NGINX Agent installer will create it, using the current instance's config file as the group's config file. This means that all instances added to the group later will use this config as well. If you're using a script to add instances, you should consider carefully which instance to run the script on first.{{< /important >}}
 

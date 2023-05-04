@@ -24,9 +24,9 @@
 {{%/tab%}}
 {{</tabs>}}
 
-3. (Optional) If you used a custom address, username, or password or enabled TLS when installing ClickHouse, follow the steps in the [Configure ClickHouse]({{< relref "admin-guides/configuration/configure-clickhouse.md" >}}) guide to update the `nms.conf` file that is installed in the `/etc/nms` directory. If you don't do so, NGINX Management Suite won't be able to connect to ClickHouse.
+3. (Optional) If you used a custom address, username, or password or enabled TLS when installing ClickHouse, follow the steps in the [Configure ClickHouse]({{< relref "/nms/admin-guides/configuration/configure-clickhouse.md" >}}) guide to update the `nms.conf` file that is installed in the `/etc/nms` directory. If you don't do so, NGINX Management Suite won't be able to connect to ClickHouse.
 
-1. (Optional) If you use Vault, follow the steps in the [Configure Vault]({{< relref "admin-guides/configuration/configure-vault.md" >}}) guide to update the `nms.conf` file that is installed in the `/etc/nms` directory. If you don't do so, NGINX Management Suite won't be able to connect to Vault.
+1. (Optional) If you use Vault, follow the steps in the [Configure Vault]({{< relref "/nms/admin-guides/configuration/configure-vault.md" >}}) guide to update the `nms.conf` file that is installed in the `/etc/nms` directory. If you don't do so, NGINX Management Suite won't be able to connect to Vault.
 
 When installing App Delivery Manager, you may need a newer version of NGINX Management Suite. The installation process will notify you of any version requirements before installing App Delivery Manager and any dependent packages, including NGINX Management Suite. You may cancel the installation process if a backup of the NGINX Management Suite is needed before upgrading.
 

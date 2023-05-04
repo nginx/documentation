@@ -1,5 +1,5 @@
 ---
-title: "Deploy ACM Developer Portal Using Helm"
+title: "Deploy the Developer Portal from a Helm chart"
 date: 2022-12-14T16:34:44-08:00
 # Change draft status to false to publish doc
 draft: false
@@ -48,7 +48,7 @@ To complete the steps in this section, you need the following:
 
 - Take a few minutes to review the [Configurable Helm Settings](#configuration-options) at the end of this topic. You can change these settings to customize your installation to meet your needs.
 
-- Check out the [Deployment Patterns for Developer Portal]({{< relref "acm/how-to/infrastructure/configure-devportal-backend.md" >}}) topic if you're considering installing the Developer Portal on a single host or on a cluster for high availability.
+- Check out the [Deployment Patterns for Developer Portal]({{< relref "/nms/acm/how-to/infrastructure/configure-devportal-backend.md" >}}) topic if you're considering installing the Developer Portal on a single host or on a cluster for high availability.
 
 {{</see-also>}}
 

@@ -21,7 +21,7 @@ aliases:
 {{< shortversions "2.0.0" "latest" "nimvers" >}}
 
 {{< see-also >}}
-To perform a clean installation of NGINX Management Suite (NMS) and Instance Manager, refer to the [NMS installation guide]({{< relref "installation/on-prem/_index.md" >}}).
+To perform a clean installation of NGINX Management Suite (NMS) and Instance Manager, refer to the [NMS installation guide]({{< relref "/nms/installation/on-prem/_index.md" >}}).
 {{< /see-also>}}
 
 ## Prerequisites
@@ -30,7 +30,7 @@ To complete this tutorial, you need the following:
 
 - A host with Instance Manager v1 installed that's managing NGINX instances.
 
-  {{< note >}}You'll need to install Instance Manager v2 on this same host in coexistence with Instance Manager v1. This allows you to migrate the managed NGINX instances to the newer version Verify that the host meets the [technical requirements for Instance Manager v2]({{< relref "/tech-specs.md" >}}).
+  {{< note >}}You'll need to install Instance Manager v2 on this same host in coexistence with Instance Manager v1. This allows you to migrate the managed NGINX instances to the newer version Verify that the host meets the [technical requirements for Instance Manager v2]({{< relref "/nms/tech-specs.md" >}}).
   
   The package name for Instance Manager changed from `nginx-manager` to `nms-instance-manager`. You can run these packages in parallel.{{< /note >}}
 
@@ -38,7 +38,7 @@ To complete this tutorial, you need the following:
 
 Begin the migration process by installing Instance Manager v2.
 
-1. Follow the instructions for [Installing Instance Manager]({{< relref "installation/on-prem/_index.md" >}}). License Instance Manager according to the installation guide.
+1. Follow the instructions for [Installing Instance Manager]({{< relref "/nms/installation/on-prem/_index.md" >}}). License Instance Manager according to the installation guide.
 
 1. Enable the NGINX Management Suite services:
 
@@ -121,7 +121,7 @@ After you've updated the configuration, you can migrate the managed NGINX instan
 
 To upgrade the NGINX Agent from v1 to v2, take the following steps:
 
-1. Follow the instructions to [Install NGINX Agent v2]({{< ref "nginx-agent/install-nginx-agent.md" >}}).
+1. Follow the instructions to [Install NGINX Agent v2]({{< relref "/nms/nginx-agent/install-nginx-agent.md" >}}).
 
 2. After the installation finishes, restart the NGINX Agent:
 

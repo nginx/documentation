@@ -1,4 +1,4 @@
-The Security Monitoring module requires the following versions of [Instance Manager]({{< relref "/nim/_index.md" >}}) to be installed on the management plane:
+The Security Monitoring module requires the following versions of [Instance Manager]({{< relref "/nms/nim/_index.md" >}}) to be installed on the management plane:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Security Monitoring | Instance Manager |

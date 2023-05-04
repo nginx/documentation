@@ -434,7 +434,7 @@ http {
 }
 ```
 
-For more information about configuring Microsoft Exchange and NGINX Plus, see the [Load Balancing Microsoft Exchange Servers with NGINX Plus]({{< relref "deployment-guides/load-balance-third-party/microsoft-exchange.md" >}}) deployment guide.
+For more information about configuring Microsoft Exchange and NGINX Plus, see the [Load Balancing Microsoft Exchange Servers with NGINX Plus]({{< relref "/nginx/deployment-guides/load-balance-third-party/microsoft-exchange.md" >}}) deployment guide.
 
 
 <span id="dynamic"></span>

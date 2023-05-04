@@ -1,11 +1,11 @@
 ---
 date: 2022-07-13T13:11:00-06:00
-description: 'Learn how to use NGINX Management Suite API Connectivity Manager to manage your API infrastructure.'
+description: 'Learn how to use NGINX Management Suite API Connectivity Manager to create workspaces and environments for your API infrastructure.'
 doctypes:
 - task
 tags:
 - docs
-title: Manage API Infrastructure
+title: Create Workspaces and Envrionments
 toc: true
 categories: ["api management"]
 versions: []
@@ -87,7 +87,7 @@ Take the steps below to add an Environment.
 
 ## Onboard an NGINX Instance {#register-nginx-instance}
 
-[Install the NGINX Agent]({{< relref "/nginx-agent/install-nginx-agent" >}}) on each host to register the instance with ACM as part of the cluster.
+[Install the NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent" >}}) on each host to register the instance with ACM as part of the cluster.
 
 Take the steps below to add an NGINX instance to an API Gateway.
 

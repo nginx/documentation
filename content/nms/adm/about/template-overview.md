@@ -169,7 +169,7 @@ Adding the logic for the use case in the templates and enabling it in the Enviro
 2. UI uses the schema definitions under `customExtensions` to augment the UI with the use case fields. 
 
 {{< warning >}}
-The web interface has limited support for the JSON schema. Please refer to the [Web interface JSON schema support ]({{< relref "/adm/about/ui-schema-support.md" >}}) page.
+The web interface has limited support for the JSON schema. Please refer to the [Web interface JSON schema support ]({{< relref "/nms/adm/about/ui-schema-support.md" >}}) page.
 {{< /warning >}}
 
 ### Base template schema

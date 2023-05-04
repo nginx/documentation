@@ -34,7 +34,7 @@ All dependencies are included with the packages.
 
 ## CVE Checking {#cve-check}
 
-We do connect to the internet to get a list of the current CVEs to use with the [scan function]({{<relref "/nim/previous-versions/v1/guides/scan-v1.md">}}). To manually update this list, you can download and overwrite the `cve.xml` file in the `/usr/share/nginx-manager` directory.
+We do connect to the internet to get a list of the current CVEs to use with the [scan function]({{<relref "/nms/nim/previous-versions/v1/guides/scan-v1.md">}}). To manually update this list, you can download and overwrite the `cve.xml` file in the `/usr/share/nginx-manager` directory.
 
 Download the cve file
 
