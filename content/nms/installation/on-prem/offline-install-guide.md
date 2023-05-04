@@ -50,9 +50,9 @@ Local dependencies are common Linux packages like `curl` or `openssl`, which mos
 {{< note >}}**RedHat on AWS**: If you're using Amazon Web Services and, for security reasons, you can't attach remote or local RedHat package repositories, you can download the necessary packages on another RedHat machine and copy them to your machine. To do this, you can use the `yumdownloader` utility:
 https://access.redhat.com/solutions/10154.{{< / note >}}
 
-### Download External Dependencies
+### Download and Install External Dependencies
 
-External dependencies are packages that aren't available by default in regular Linux distributions.
+External dependencies are packages that aren't available by default in regular Linux distributions. For example, ClickHouse and NGINX Plus.
 
 Before installing NGINX Management Suite on an offline system, you must manually download the external dependencies and copy them to your machine.
 
@@ -62,10 +62,10 @@ To download the external dependencies:
 
     {{<fa "download">}} {{<link "/scripts/fetch-external-dependencies.sh" "Download fetch-external-dependencies.sh script">}}
 
-1. Run the `fetch-external-dependencies.sh` script to download the external dependencies. Specify your Linux distribution for the packages.
+2. Run the `fetch-external-dependencies.sh` script to download the external dependencies. Specify your Linux distribution for the packages.
 
     ```bash
-    ./fetch-external-dependencies <linux distribution>
+    sudo bash fetch-external-dependencies.sh <linux distribution>
     ```
 
     Linux distributions:
@@ -86,26 +86,32 @@ To download the external dependencies:
     For example, to download external dependencies for Ubuntu 20.04:
 
     ```bash
-    ./fetch-external-dependencies ubuntu20.04
+    sudo bash fetch-external-dependencies.sh ubuntu20.04
     ```
 
-1. After you copy and extract the bundle onto your target machine, take the following steps to install the packages:
+    In this example, the script creates an archive called `nms-dependencies-ubuntu20.04.tar.gz` is created with the external dependencies.
+
+3. After you copy and extract the bundle onto your target machine, take the following steps to install the packages:
 
     {{< note >}}The bundled NGINX server package may conflict with installed versions of NGINX or NGINX Plus. Delete the package from the bundle if you want to keep the existing version.{{< /note >}}
 
     - CentOS, RHEL, and RPM-Based distributions:
 
         ```bash
-        tar -kzxvf nms-dependencies-rhel7.tar.gz
+        tar -kzxvf nms-dependencies-<linux-distribution>.tar.gz
         sudo yum localinstall *.rpm
         ```
 
     - Debian, Ubuntu, and Deb-Based distributions
 
         ```bash
-        tar -kzxvf nms-dependencies-ubuntu18.04.tar.gz
+        tar -kzxvf nms-dependencies-<linux-distribution>.tar.gz
         sudo dpkg -i ./*.deb
         ```
+
+        > <span style="color: #c20025;"><i class="fas fa-exclamation-triangle"></i> **IMPORTANT!**</span> When installing ClickHouse, you have the option to specify a password or leave the password blank (the default is an empty string). If you choose to specify a password for ClickHouse, you must also edit the `/etc/nms/nms.conf` file after installing NGINX Management Suite and enter your ClickHouse password; otherwise, NGINX Management Suite won't start.
+        >
+        > For more information on customizing ClickHouse settings, refer to the [Configure ClickHouse]({{< relref "/nms/admin-guides/configuration/configure-clickhouse.md" >}}) topic.
 
 ---
 
@@ -158,6 +164,11 @@ To download the external dependencies:
 
 {{< include "installation/optional-installation-steps.md" >}}
 
+See these topics below for instructions on how to access the web interface and add your license:
+
+- [Access the web interface](#access-web-ui)
+- [Add a license](#add-license)
+
 ---
 
 ## Install API Connectivity Manager {#install-acm-offline}
@@ -197,12 +208,12 @@ To download the external dependencies:
 
 ---
 
-## Accessing the Web Interface
+## Accessing the Web Interface {#access-web-ui}
 
 {{< include "installation/access-web-ui.md" >}}
 
 ---
-## Add License
+## Add License {#add-license}
 
 A valid license is required in order to use all of the features in NGINX Management Suite.
 
