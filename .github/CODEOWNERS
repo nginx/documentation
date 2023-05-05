@@ -16,6 +16,6 @@
 # These owners will be the default owners for all NGINX App Protect content
 # in the repo:
 # Lior Moscovici (@liorm39), Doron Foa (@doronfoa), Reena Ranghar (@rranghar), Amit Shnek (@AmitShnek), Daniel Edgar (@aknot242)
-content/nap-waf/*       @liorm39 @doronfoa @rranghar @AmitShnek @aknot242
-content/nap-dos/*       @liorm39 @doronfoa @rranghar @AmitShnek @aknot242
-data/nap-waf/*          @liorm39 @doronfoa @rranghar @AmitShnek @aknot242
+content/nap-waf/*       @nginxinc/nap-docs-approvers
+content/nap-dos/*       @nginxinc/nap-docs-approvers
+data/nap-waf/*          @nginxinc/nap-docs-approvers
