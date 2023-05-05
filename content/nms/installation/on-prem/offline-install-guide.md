@@ -565,7 +565,7 @@ To download the CVE file, take the following steps:
     sudo chmod 644 /usr/share/nms/cve.xml
     ```
 
-4. Restart the dpm service to pick up the new CVE file:
+4. Restart the Data Plane Manager service to pick up the new CVE file:
 
     ```bash
     systemctl restart nms-dpm
