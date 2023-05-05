@@ -200,7 +200,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo semodule -i app-protect-dos.pp;
     ```
 
-    If you encounter any issues, refer to the [Troubleshooting Guide]({{< relref "/troubleshooting-guide/how-to-troubleshoot.md" >}}).
+    If you encounter any issues, refer to the [Troubleshooting Guide]({{< relref "/nap-dos/troubleshooting-guide/how-to-troubleshoot.md" >}}).
 
     {{< note >}}Additional SELinux configuration may be required to allow NGINX Plus to listen on specific network ports, connect to upstreams, and send syslog entries to remote systems. Refer to the practices outlined in the [Using NGINX and NGINX Plus with SELinux](https://www.nginx.com/blog/using-nginx-plus-with-selinux/) article for details.{{< /note >}}
 
@@ -378,7 +378,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo semodule -i app-protect-dos.pp;
     ```
 
-    If you encounter any issues, refer to the [Troubleshooting Guide]({{< relref "/troubleshooting-guide/how-to-troubleshoot.md" >}}).
+    If you encounter any issues, refer to the [Troubleshooting Guide]({{< relref "/nap-dos/troubleshooting-guide/how-to-troubleshoot.md" >}}).
 
     {{< note >}}Additional SELinux configuration may be required to allow NGINX Plus to listen on specific network ports, connect to upstreams, and send syslog entries to remote systems. Refer to the practices outlined in the [Using NGINX and NGINX Plus with SELinux](https://www.nginx.com/blog/using-nginx-plus-with-selinux/) article for details.{{< /note >}}
 
@@ -582,7 +582,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo semodule -i app-protect-dos-ebpf.pp;
     ```
 
-    If you encounter any issues, refer to the [Troubleshooting Guide]({{< relref "/troubleshooting-guide/how-to-troubleshoot.md" >}}).
+    If you encounter any issues, refer to the [Troubleshooting Guide]({{< relref "/nap-dos/troubleshooting-guide/how-to-troubleshoot.md" >}}).
 
     {{< note >}}Additional SELinux configuration may be required to allow NGINX Plus to listen on specific network ports, connect to upstreams, and send syslog entries to remote systems. Refer to the practices outlined in the [Using NGINX and NGINX Plus with SELinux](https://www.nginx.com/blog/using-nginx-plus-with-selinux/) article for details.{{< /note >}}
 

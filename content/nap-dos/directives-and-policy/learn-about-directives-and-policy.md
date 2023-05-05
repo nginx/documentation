@@ -34,7 +34,7 @@ When reloading NGINX after inserting the directives, pay attention to any errors
 ## Directives table
 This is a summary of all NGINX App Protect DoS directives. You can find the description of each below.
  
- {{% table %}}
+ {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
 | Directive syntax | Options  | Context  |  Description |  Mandatory |  Default |
 |------------------|----------|----------|--------------|------------|----------|
 | [app_protect_dos_enable](#enable-directive-app_protect_dos_enable)  | [on\|off]  | http, <br> server, <br> location  |  Enable/Disable DoS protection | Yes  |  off |
@@ -48,7 +48,7 @@ This is a summary of all NGINX App Protect DoS directives. You can find the desc
 | [app_protect_dos_arb_fqdn](#arbitrator-fqdn-directive-app_protect_dos_arb_fqdn)  | [FQDN\|IP address]  | http | Arbitrator FQDN/IP address  | No | `svc-appprotect-dos-arb` | 
 | [app_protect_dos_api](#api-directive-app_protect_dos_api)  | No arguments  | location | Monitoring via Rest API (also includes the dashboard)  | No | off | 
 | [app_protect_dos_accelerated_mitigation](#api-directive-app_protect_dos_api) | [on\|off] [syn_drop=on\|off]| http | Enable/Disable L4 accelerated mitigation. Second argument is optional | No | off syn_drop=off |
-{{% /table %}}
+{{</bootstrap-table>}}
 
 
 ## Directives Info
@@ -63,13 +63,13 @@ The derived blocks/contexts also inherit the directive.
 
 In case of multiple directives in different contexts, the derived overwrites the base's directive.
 
- {{% table %}}
+ {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
  | Config | Expected |
  |------- | -------- |
  | Http block: directive is **on** <br> Server block: none is written <br> Location-1 block: none is written <br> Location-2 block: none is written | VS1: the server block <br> VS2: location-1 block <br> VS3: location-2 block |
  | Server block: directive is **on** <br> Location-1 block: directive is **off** <br> Location-2 block: none is written | VS1: the server block <br> VS2: location-2 block |
  | Http block: directive is **on** <br> Server block: directive is **off** <br> Location-1 block: directive is **on** <br> Location-2 block: none is written | VS1: location-1 block |
- {{% /table %}}
+ {{</bootstrap-table>}}
 
  **Example:**
 
@@ -97,7 +97,7 @@ If the configuration file doesn't exist or its attributes are invalid, default v
 }
 ```
 
-{{% table %}}
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
 | Parameter name  | Values  | Default |Description |
 |:--------------- |:------- |:--------|:-----------|
 | mitigation_mode | standard / conservative / none | standard| **Standard** - module allowed to use global rate mitigation <br> **Conservative** - module is not allowed to use global rate but only Signatures/Bad Actors mitigation <br> **None** - module is not allowed to mitigate. Only to learn and report. |
@@ -105,15 +105,15 @@ If the configuration file doesn't exist or its attributes are invalid, default v
 | bad_actors  | [on\|off]  | on|  Enable mitigation by Bad Actors algorithm |
 | automation_tools_detection | [on\|off] | on |Enable the usage of automation tools detection (via cookies and redirect) |
 | tls_fingerprint| [on\|off] | on | Enable source identification using TLS fingerprinting|
-{{% /table %}}
+{{</bootstrap-table>}}
 
-{{% table %}}
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
 | Scenario  |  Result |
 |:--------- |:-------- |
 | Directive is not written  | Default path is used: "/etc/app_protect_dos/BADOSDefaultPolicy.json"  |
 | Directive is written  | Path from the directive is used  |
 | File not found / file syntax is invalid | Default values are used |
-{{% /table %}}
+{{</bootstrap-table>}}
 
 **Example:**
 
@@ -275,7 +275,7 @@ Second argument is the destination (the location which the events will be sent t
 - `stderr` (**default**)
 - `{absolute_file_path}`, i.e. `/shared/dos_sec_logger.log`
 
-Implemented according to: [NGINX App Protect DoS Security Log]({{< relref "monitoring/security-log.md" >}})
+Implemented according to: [NGINX App Protect DoS Security Log]({{< relref "/nap-dos/monitoring/security-log.md" >}})
 
    {{< note >}} 
 - When using stderr, make sure that the process `admd` is not redirecting the stderr output to file.
@@ -319,11 +319,11 @@ While `/etc/app_protect_dos/log-default.json` is:
 
 This directive has 3 arguments.
 
-{{% table %}}
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
 | First argument | Second argument | Third argument |
 | :-------------- | :--------------- | :-------------- |
 | [on\|off] <br> depending if this feature should be enabled or disabled.| URI <br> Syntax is: `uri:___` | Port <br> Syntax is: `port:____`|
-{{% /table %}}
+{{</bootstrap-table>}}
 
    {{< note >}} 
 Second and Third arguments are optional; if one or more is not written, the default will take place.
@@ -343,11 +343,11 @@ app_protect_dos_liveness on uri:/liveness port:8090;
 
 This directive has 3 arguments.
 
-{{% table %}}
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
 | First argument | Second argument | Third argument |
 | :-------------- | :--------------- | :-------------- |
 | [on\|off] <br> depending if this feature should be enabled or disabled.| URI <br> Syntax is: `uri:___`| Port <br> Syntax is: `port:____`|
-{{% /table %}}
+{{</bootstrap-table>}}
 
    {{< note >}} 
 Second and Third arguments are optional; if one or more is not written, the default will take place.
@@ -390,7 +390,7 @@ This directive is used to enable the App Protect DoS monitoring capability via R
 The REST API interface provides extended metrics information of the Protected Objects.
 It can be used by sending REST API requests manually or by using the App Protect DoS dashboard page.
 
-For more information refer to [NGINX App Protect DoS Live Activity Monitoring]({{< relref "/monitoring/live-activity-monitoring.md" >}})
+For more information refer to [NGINX App Protect DoS Live Activity Monitoring]({{< relref "/nap-dos/monitoring/live-activity-monitoring.md" >}})
 
 **Example:**
 

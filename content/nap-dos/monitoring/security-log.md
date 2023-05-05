@@ -31,7 +31,7 @@ There are several types of logs, each contains different information and publish
 
 The following table lists all the possible fields in the logs and their meaning.
 
-{{% table %}}
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
 | Field  |  Type  |  Meaning |
 |----------------|--------|-------------------------------|
 | `date_time`  |  string  |  the date and time of the event |
@@ -71,7 +71,7 @@ The following table lists all the possible fields in the logs and their meaning.
 | `source_ip` <br> `tls_fp` <br> `impact_rps`   | string <br> string <br> integer  |  ip address of the detected bad actor `1.1.1.1` <br> TLS Fingerprint of the bad actor <br> RPS created by bad actor in the time of the detection **(to be calculated as a max hitcount in AMT / 10)**  |
 |  `new_bad_actors_detected` <br> `bad_actors` |  integer  |  the number of newly detected bad actors <br> the number of bad actors |
 |  `signature` <br> `signature_id` <br>`signature_efficiency` <br> `signature_accuracy`| string <br> integer <br> float <br> float  |  signature string `http.request.method eq GET and http.uri_parameters eq 6` <br> unique signature ID per unit_host <br> estimated efficiency upon signature detection: percentage of bad traffic covered by the signature <br> estimated accuracy upon signature detection: percentage of learned good traffic NOT covered by the signature  |
-{{% /table %}}
+{{</bootstrap-table>}}
 
 ## Events
 
@@ -412,13 +412,13 @@ The file is in JSON format.
 <br>
 ### Filter <br>
 
-{{% table %}}
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
 | Element  |  Description | Type/Values| Default | 
 |----------|--------------| ---------- | -----------|
 |traffic-mitigation-stats| This filter element refers to [Traffic/Mitigation summary stats](#1b-trafficmitigation-summary-stats).| **Enumerated values:** <br> - **all** <br> - **none**| `all` | 
 |bad-actors| This filter element refers to [Bad actor detection/expiration](#2-bad-actor-detectionexpiration), every 10 seconds.| **Enumerated values:** <br> - **all** <br> - **none** <br> - **top N**|  `top 10` | 
 |attack-signatures| This filter element refers to [Attack Signatures](#3-attack-signatures), every 10 seconds.| **Enumerated values:** <br> - **all** <br> - **none** <br> - **top N**|  `top 10` | 
-{{% /table %}}
+{{</bootstrap-table>}}
 
 
 Example:

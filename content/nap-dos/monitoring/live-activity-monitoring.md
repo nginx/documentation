@@ -127,7 +127,7 @@ In the address bar of your browser, type in the address that corresponds to your
 The **DoS** tab provides live statistics, configuration, and traffic graph per Protected Object.<br>
 In case of deployment with arbitrator and multiple NGINX App Protect DoS instances, the statistics will be aggregated.
 
-{{% table %}}
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
 | Metric name  | Values  | Description |
 |:--------------- |:------- |:-----------|
 | Name  | - | The name of the Protected Object, as defined by the `app_protect_dos_name` directive (or auto-generated if not present)  |
@@ -144,7 +144,7 @@ In case of deployment with arbitrator and multiple NGINX App Protect DoS instanc
 | Bad Actors  | [on\|off]  | As defined by the `bad_actors` object in the JSON policy file from the `app_protect_dos_policy_file` directive  |
 | Automation Tools Detection | [on\|off] | As defined by the `automation_tools_detection` object in the JSON policy file from the `app_protect_dos_policy_file` directive |
 | TLS Fingerprint| [on\|off] | As defined by the `tls_fingerprint` object in the JSON policy file from the `app_protect_dos_policy_file` directive |
-{{% /table %}}
+{{</bootstrap-table>}}
 <br>
 
 The graph is a stacked graph which consists of two metrics - `Passthrough Requests` and `Mitigations`, both are per second.
@@ -194,13 +194,13 @@ curl -s 'http://192.168.1.23/api/dos/1/protected_objects' | json_pp
 ### APIs overview
 
 #### Endpoints
-{{% table %}}
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
 | Path  | Description |
 |:------ |:-----------|
 | /  | Return list of root endpoints  |
 | /protected_objects/  | Return statistics of all Protected Objects  |
 | /protected_objects/{protectedObjectName}  | Return statistics of a Protected Object  |
-{{% /table %}}
+{{</bootstrap-table>}}
 
 Example response for `/protected_objects` endpoint:
 ```json
