@@ -32,3 +32,8 @@ content/.idea/*
 
 # Local Netlify artifacts
 .netlify/plugins/*
+
+*.pyc
+build
+*.swp
+*.mo
