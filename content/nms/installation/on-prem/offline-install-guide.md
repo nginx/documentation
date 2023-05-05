@@ -95,23 +95,28 @@ To download the external dependencies:
 
     {{< note >}}The bundled NGINX server package may conflict with installed versions of NGINX or NGINX Plus. Delete the package from the bundle if you want to keep the existing version.{{< /note >}}
 
-    - CentOS, RHEL, and RPM-Based distributions:
+    {{<tabs name="install-acm-dataplane-dependencies">}}
+    {{%tab name="CentOS, RHEL, and RPM-Based"%}}
 
-        ```bash
-        tar -kzxvf nms-dependencies-<linux-distribution>.tar.gz
-        sudo yum localinstall *.rpm
-        ```
+  ```bash
+  tar -kzxvf nms-dependencies-<linux-distribution>.tar.gz
+  sudo yum localinstall *.rpm
+  ```
 
-    - Debian, Ubuntu, and Deb-Based distributions
+    {{%/tab%}}
+    {{%tab name="Debian, Ubuntu, and Deb-Based"%}}
 
-        ```bash
-        tar -kzxvf nms-dependencies-<linux-distribution>.tar.gz
-        sudo dpkg -i ./*.deb
-        ```
+```bash
+tar -kzxvf nms-dependencies-<linux-distribution>.tar.gz
+sudo dpkg -i ./*.deb
+```
 
-        > <span style="color: #c20025;"><i class="fas fa-exclamation-triangle"></i> **IMPORTANT!**</span> When installing ClickHouse, you have the option to specify a password or leave the password blank (the default is an empty string). If you choose to specify a password for ClickHouse, you must also edit the `/etc/nms/nms.conf` file after installing NGINX Management Suite and enter your ClickHouse password; otherwise, NGINX Management Suite won't start.
-        >
-        > For more information on customizing ClickHouse settings, refer to the [Configure ClickHouse]({{< relref "/nms/admin-guides/configuration/configure-clickhouse.md" >}}) topic.
+{{%/tab%}}
+{{</tabs>}}
+
+    > <span style="color: #c20025;"><i class="fas fa-exclamation-triangle"></i> **IMPORTANT!**</span> When installing ClickHouse, you have the option to specify a password or leave the password blank (the default is an empty string). If you choose to specify a password for ClickHouse, you must also edit the `/etc/nms/nms.conf` file after installing NGINX Management Suite and enter your ClickHouse password; otherwise, NGINX Management Suite won't start.
+    >
+    > For more information on customizing ClickHouse settings, refer to the [Configure ClickHouse]({{< relref "/nms/admin-guides/configuration/configure-clickhouse.md" >}}) topic.
 
 ---
 
@@ -179,17 +184,12 @@ See these topics below for instructions on how to access the web interface and a
 
 ### Dependencies with Instance Manager {#acm-nim-dependencies}
 
-
-
 {{< include "tech-specs/acm-nim-dependencies.md" >}}
-
-
-- Review the Dependencies with Instance Manager table above to see which versions of Instance Manager are compatible with the version of API Connectivity Manager that you're installing.
-- Install Instance Manager.
 
 ### Install API Connectivity Manager
 
-{{< important >}}API Connectivity Manager requires Instance Manager to be installed first. 
+{{< important >}}
+API Connectivity Manager requires Instance Manager to be installed first. 
 
 Before you begin:
 
@@ -197,9 +197,10 @@ Before you begin:
 2. [Install a compatible version of Instance Manager](#install-nim-offline).
 {{< /important>}}
 
+&nbsp;
+
 {{<tabs name="install_acm_offline">}}
 {{%tab name="CentOS, RHEL, and RPM-Based"%}}
-
 
 
 To install API Connectivity Manager, take the following steps:
@@ -254,19 +255,24 @@ See these topics below for instructions on how to access the web interface and a
 
 ### Set Up the Data Plane {#acm-offline-dependencies}
 
-The API Connectivity Manager data plane and Developer Portal hosts require PostgreSQL, NGINX Plus, and njs.
+The API Connectivity Manager data plane requires NGINX Plus R24 or later and njs.
 
-1. You can install the PostgreSQL package from your distribution's repo at the same time you install the operating system. Refer to the the [PostgreSQL download guide](https://www.postgresql.org/download/) for instructions.
+1. Log in to MyF5 and download your `nginx-repo.crt` and `nginx-repo.key` files.
+2. Copy the `nginx-repo.crt` and `nginx-repo.key` files to the `/etc/ssl/nginx/` directory:
 
+    ```bash 
+    sudo cp nginx-repo.crt /etc/ssl/nginx/
+    sudo cp nginx-repo.key /etc/ssl/nginx/
+    ```
 
-2. Select the following link to download the `fetch-external-devportal-dependencies.sh` script. This script downloads the necessary NGINX Plus and njs packages to a `tar.gz` archive.
+3. Select the following link to download the `fetch-external-acm-dataplane-dependencies.sh` script. This script downloads the necessary NGINX Plus and njs packages to a `tar.gz` archive.
 
-    {{<fa "download">}} {{<link "/scripts/fetch-external-devportal-dependencies.sh" "Download fetch-external-devportal-dependencies.sh script">}}
+    {{<fa "download">}} {{<link "/scripts/fetch-external-acm-dataplane-dependencies.sh" "Download fetch-external-acm-dataplane-dependencies.sh script">}}
 
-3. To download the NGINX Plus and njs dependencies, run the `fetch-external-devportal-dependencies.sh` script. Specify your Linux distribution for the packages.
+4. To download the NGINX Plus and njs dependencies, run the `fetch-external-acm-dataplane-dependencies.sh` script. As parameters, specify your Linux distribution and the location of your `nginx-repo.crt` and `nginx-repo.key` files.
 
     ```bash
-    sudo bash fetch-external-devportal-dependencies.sh <linux distribution>
+    sudo bash fetch-external-acm-dataplane-dependencies.sh <linux distribution> /etc/ssl/nginx/nginx-repo.crt /etc/ssl/nginx/nginx-repo.key
     ```
 
     Supported Linux distributions:
@@ -284,21 +290,20 @@ The API Connectivity Manager data plane and Developer Portal hosts require Postg
     For example, to download external dependencies for Ubuntu 20.04:
 
     ```bash
-    sudo bash fetch-external-devportal-dependencies.sh ubuntu20.04
+    sudo bash fetch-external-acm-dataplane-dependencies.sh ubuntu20.04 /etc/ssl/nginx/nginx-repo.crt /etc/ssl/nginx/nginx-repo.key
     ```
 
-    In this example, the script creates an archive called `devportal-dependencies-ubuntu20.04.tar.gz` with the external dependencies.
+    In this example, the script creates an archive called `acm-dataplane-dependencies-ubuntu20.04.tar.gz` with the external dependencies.
 
-
-3. After you copy and extract the bundle onto your target machine, take the following steps to install the packages:
+5. After you copy and extract the bundle onto your target machine, take the following steps to install the packages:
 
     {{< note >}}The bundled NGINX Plus package may conflict with installed versions of NGINX Plus. Delete the package from the bundle if you want to keep the existing version.{{< /note >}}
 
-    {{<tabs name="install_devportal-dependencies">}}
+    {{<tabs name="install-acm-dataplane-dependencies">}}
     {{%tab name="CentOS, RHEL, and RPM-Based"%}}
 
 ```bash
-tar -kzxvf devportal-dependencies-<linux-distribution>.tar.gz
+tar -kzxvf acm-dataplane-dependencies-<linux-distribution>.tar.gz
 sudo yum localinstall *.rpm
 ```
 
@@ -306,7 +311,7 @@ sudo yum localinstall *.rpm
     {{%tab name="Debian, Ubuntu, and Deb-Based"%}}
 
 ```bash
-tar -kzxvf devportal-dependencies-<linux-distribution>.tar.gz
+tar -kzxvf acm-dataplane-dependencies-<linux-distribution>.tar.gz
 sudo dpkg -i ./*.deb
 ```
 
@@ -323,7 +328,8 @@ sudo dpkg -i ./*.deb
 
 ### Install the Management Plane {#install-adm-data-plane-offline}
 
-{{< important >}}App Delivery Manager requires Instance Manager to be installed first. 
+{{< important >}}
+App Delivery Manager requires Instance Manager to be installed first. 
 
 Before you begin:
 
@@ -331,6 +337,7 @@ Before you begin:
 2. [Install a compatible version of Instance Manager](#install-nim-offline).
 {{< /important>}}
 
+&nbsp;
 
 {{< include "adm/installation/install-adm-offline.md" >}}
 

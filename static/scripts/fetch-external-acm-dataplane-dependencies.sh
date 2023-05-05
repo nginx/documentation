@@ -91,7 +91,7 @@ download_packages() {
         curl --cert ${nginx_repo_cert} --key ${nginx_repo_key} -fs $file_url --output $save_file
     done
 
-    bundle_file="${PACKAGE_PATH}/devportal-dependencies-${target_distribution}.tar.gz"
+    bundle_file="${PACKAGE_PATH}/acm-dataplane-dependencies-${target_distribution}.tar.gz"
     tar -zcf $bundle_file -C "${PACKAGE_PATH}/${target_distribution}" .
     echo "Bundle file saved as $bundle_file"
 
@@ -109,7 +109,7 @@ fi
 
 if [ -z $nginx_repo_cert ] || [ -z $nginx_repo_key ]; then
     echo "Usage: $0 target_distribution nginxrepo_cert nginxrepo_key"
-    echo "Missing nginxrepo_cert or nginxrepo_key parameters"
+    echo "Specify the location for your nginx-repo.crt and nginx-repo.key files as parameters"
     exit 1
 fi
 
