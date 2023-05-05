@@ -1,10 +1,12 @@
 ---
+description: Load balance Oracle E-Business Suite applications with the advanced features
+  in NGINX Plus, following our step-by-step setup instructions.
+docs: DOCS-454
+doctypes:
+- task
 title: Load Balancing Oracle E-Business Suite with NGINX Plus
-description: Load balance Oracle E-Business Suite applications with the advanced features in NGINX Plus, following our step-by-step setup instructions.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-454"
+weight: 100
 ---
 
 

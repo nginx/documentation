@@ -1,10 +1,12 @@
 ---
+description: Dynamically reconfigure the servers in an NGINX Plus upstream group using
+  the NGINX Plus API, without reloading configuration or restarting processes.
+docs: DOCS-415
+doctypes:
+- task
 title: Dynamic Configuration of Upstreams with the NGINX Plus API
-description: Dynamically reconfigure the servers in an NGINX Plus upstream group using the NGINX Plus API, without reloading configuration or restarting processes.
-weight: 700
-doctypes: ["task"]
 toc: true
-docs: "DOCS-415"
+weight: 700
 ---
 
 

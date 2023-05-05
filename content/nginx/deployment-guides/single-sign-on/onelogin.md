@@ -1,11 +1,14 @@
 ---
-title: "Single Sign-On with OneLogin"
-description: "Learn how to enable single sign-on (SSO) with [OneLogin](https://www.onelogin.com/) for applications proxied by NGINX Plus."
-weight: 100
-doctypes: ["tutorial"]
+description: Learn how to enable single sign-on (SSO) with [OneLogin](https://www.onelogin.com/)
+  for applications proxied by NGINX Plus.
+docs: DOCS-467
+doctypes:
+- tutorial
+tags:
+- docs
+title: Single Sign-On with OneLogin
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-467"
+weight: 100
 ---
 
 <hr>

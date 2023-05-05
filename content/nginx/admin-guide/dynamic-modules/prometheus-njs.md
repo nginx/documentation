@@ -1,10 +1,11 @@
 ---
-title: Prometheus-njs
 description: Expose Prometheus metrics endpoint directly from NGINX Plus.
-weight: 100
-doctypes: ["task"]
+docs: DOCS-398
+doctypes:
+- task
+title: Prometheus-njs
 toc: true
-docs: "DOCS-398"
+weight: 100
 ---
 
 

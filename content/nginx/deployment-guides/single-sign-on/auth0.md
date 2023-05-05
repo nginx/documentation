@@ -1,14 +1,15 @@
 ---
-title: "Single Sign-On With Auth0"
-date: 2022-04-29T14:31:21-06:00
-description: "Learn how to enable single sign-on (SSO) with [Auth0](https://auth0.com/) for applications proxied by NGINX Plus."
-# Assign weights in increments of 100
-weight: 100
-doctypes: ["tutorial"]
+date: "2022-04-29T14:31:21-06:00"
+description: Learn how to enable single sign-on (SSO) with [Auth0](https://auth0.com/)
+  for applications proxied by NGINX Plus.
+docs: DOCS-884
+doctypes:
+- tutorial
+tags:
+- docs
+title: Single Sign-On With Auth0
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-884"
-
+weight: 100
 ---
 
 <hr>

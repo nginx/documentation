@@ -1,10 +1,12 @@
 ---
+description: Monitor the health of TCP servers in an upstream group by sending periodic
+  health checks, including customizable active health checks in NGINX Plus.
+docs: DOCS-419
+doctypes:
+- task
 title: TCP Health Checks
-description: Monitor the health of TCP servers in an upstream group by sending periodic health checks, including customizable active health checks in NGINX Plus.
-weight: 400
-doctypes: ["task"]
 toc: true
-docs: "DOCS-419"
+weight: 400
 ---
 
 <span id="intro"></span>

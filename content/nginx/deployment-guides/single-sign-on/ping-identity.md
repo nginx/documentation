@@ -1,10 +1,12 @@
 ---
+description: Enable OpenID Connect-based single-sign for applications proxied by NGINX
+  Plus, using Ping Identity as the identity provider (IdP).
+docs: DOCS-468
+doctypes:
+- task
 title: Single Sign-On with Ping Identity
-description: Enable OpenID Connect-based single-sign for applications proxied by NGINX Plus, using Ping Identity as the identity provider (IdP).
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-468"
+weight: 100
 ---
 
 

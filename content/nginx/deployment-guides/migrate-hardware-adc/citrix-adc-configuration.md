@@ -1,10 +1,12 @@
 ---
+description: Migrate load-balancing configuration from Citrix ADC to NGINX Plus for
+  equal performance at lower cost, using our syntax conversion examples.
+docs: DOCS-459
+doctypes:
+- task
 title: Migrating Load Balancer Configuration from Citrix ADC to NGINX Plus
-description: Migrate load-balancing configuration from Citrix ADC to NGINX Plus for equal performance at lower cost, using our syntax conversion examples.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-459"
+weight: 100
 ---
 
 

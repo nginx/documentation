@@ -1,9 +1,11 @@
 ---
+description: Analyze your software performance by instrumenting, generating, collecting,
+  and exporting telemetry data.
+doctypes:
+- task
 title: OpenTelemetry
-description: Analyze your software performance by instrumenting, generating, collecting, and exporting telemetry data.
-weight: 100
-doctypes: ["task"]
 toc: true
+weight: 100
 ---
 
 

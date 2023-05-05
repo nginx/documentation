@@ -1,10 +1,12 @@
 ---
+description: Install and upgrade NGINX Plus with step-by-step instructions for the
+  base package and dynamic modules on all supported Linux distributions.
+docs: DOCS-414
+doctypes:
+- task
 title: Installing NGINX Plus
-description: Install and upgrade NGINX Plus with step-by-step instructions for the base package and dynamic modules on all supported Linux distributions.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-414"
+weight: 100
 ---
 
 

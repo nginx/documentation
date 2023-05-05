@@ -1,10 +1,12 @@
 ---
+description: Enable OpenID Connect-based single-sign for applications proxied by NGINX
+  Plus, using Keycloak as the identity provider (IdP).
+docs: DOCS-465
+doctypes:
+- task
 title: Single Sign-On with Keycloak
-description: Enable OpenID Connect-based single-sign for applications proxied by NGINX Plus, using Keycloak as the identity provider (IdP).
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-465"
+weight: 100
 ---
 
 

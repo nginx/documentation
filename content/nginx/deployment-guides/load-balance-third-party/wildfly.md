@@ -1,10 +1,13 @@
 ---
-title: Load Balancing Wildfly and JBoss Application Servers with NGINX Open Source and NGINX Plus
-description: Load balance Wildfly (JBoss) application servers with NGINX Open Source or the advanced features in NGINX Plus, following our step-by-step setup instructions.
-weight: 100
-doctypes: ["task"]
+description: Load balance Wildfly (JBoss) application servers with NGINX Open Source
+  or the advanced features in NGINX Plus, following our step-by-step setup instructions.
+docs: DOCS-456
+doctypes:
+- task
+title: Load Balancing Wildfly and JBoss Application Servers with NGINX Open Source
+  and NGINX Plus
 toc: true
-docs: "DOCS-456"
+weight: 100
 ---
 
 

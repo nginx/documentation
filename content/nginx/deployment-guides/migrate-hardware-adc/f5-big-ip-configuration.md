@@ -1,10 +1,12 @@
 ---
+description: Migrate load-balancing configuration from F5 BIG-IP LTM to NGINX Plus,
+  using our syntax conversion examples.
+docs: DOCS-460
+doctypes:
+- task
 title: Migrating Load Balancer Configuration from F5 BIG-IP LTM to NGINX Plus
-description: Migrate load-balancing configuration from F5 BIG-IP LTM to NGINX Plus, using our syntax conversion examples.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-460" 
+weight: 100
 ---
 
 

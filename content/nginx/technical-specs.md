@@ -1,10 +1,13 @@
 ---
+description: Platforms supported by NGINX Plus and dynamically loaded modules, supported
+  SSL/TLS versions, supported deployment environments, and list of modules built into
+  NGINX Plus.
+docs: DOCS-473
+doctypes:
+- concept
 title: Technical Specs
-description: Platforms supported by NGINX Plus and dynamically loaded modules, supported SSL/TLS versions, supported deployment environments, and list of modules built into NGINX Plus.
-weight: 400
-doctypes: ["concept"]
 toc: true
-docs: "DOCS-473"
+weight: 400
 ---
 
 

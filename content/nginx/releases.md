@@ -1,10 +1,12 @@
 ---
+description: Release information for NGINX Plus, a complete application delivery platform,
+  including new features and a list of supported platforms.
+docs: DOCS-472
+doctypes:
+- concept
 title: Releases
-description: Release information for NGINX Plus, a complete application delivery platform, including new features and a list of supported platforms.
-weight: 300
-doctypes: ["concept"]
 toc: true
-docs: "DOCS-472"
+weight: 300
 ---
 
 <span id="support"></span>

@@ -1,10 +1,11 @@
 ---
-title: Brotli
 description: Learn how to use the Brotli module with NGINX Plus
-weight: 100
-doctypes: ["task"]
+docs: DOCS-381
+doctypes:
+- task
+title: Brotli
 toc: true
-docs: "DOCS-381"
+weight: 100
 ---
 
 ## Overview

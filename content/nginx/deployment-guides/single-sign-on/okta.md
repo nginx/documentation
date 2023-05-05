@@ -1,10 +1,12 @@
 ---
+description: Learn how to enable single sign-on (SSO) with Okta for applications proxied
+  by NGINX Plus.
+docs: DOCS-466
+doctypes:
+- task
 title: Single Sign-On with Okta
-description: Learn how to enable single sign-on (SSO) with Okta for applications proxied by NGINX Plus. 
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-466"
+weight: 100
 ---
 
 <hr>

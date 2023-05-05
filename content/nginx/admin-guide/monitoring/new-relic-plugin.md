@@ -1,10 +1,12 @@
 ---
+description: Find what's new in version 2 of the NGINX and NGINX Plus plug‑in for
+  New Relic – more convenience, more metrics, richer visualization.
+docs: DOCS-427
+doctypes:
+- task
 title: Monitoring NGINX and NGINX Plus with the New Relic Plug-In
-description: Find what's new in version 2 of the NGINX and NGINX Plus plug‑in for New Relic – more convenience, more metrics, richer visualization.
-weight: 400
-doctypes: ["task"]
 toc: true
-docs: "DOCS-427"
+weight: 400
 ---
 
 

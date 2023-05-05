@@ -1,10 +1,12 @@
 ---
+description: Configure NGINX Open Source as a web server and NGINX Plus as a load
+  balancer, as required for the sample deployments in NGINX deployment guides.
+docs: DOCS-462
+doctypes:
+- task
 title: Setting Up an NGINX Demo Environment
-description: Configure NGINX Open Source as a web server and NGINX Plus as a load balancer, as required for the sample deployments in NGINX deployment guides.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-462"
+weight: 100
 ---
 
 The instructions in this guide explain how to set up a simple demo environment that uses NGINX Plus to load balance web servers that run NGINX Open Source and serve two distinct web applications. It is referenced by some of our deployment guides for implementing highly availability of NGINX Plus and NGINX Open Source in cloud environments.

@@ -1,10 +1,12 @@
 ---
-title: NGINX Plus FIPS Compliance 
-description: Verify that NGINX Plus is operating in conformance with the FIPS 140-2 Level 1 standard.
-weight: 600
-doctypes: ["concept"]
+description: Verify that NGINX Plus is operating in conformance with the FIPS 140-2
+  Level 1 standard.
+docs: DOCS-470
+doctypes:
+- concept
+title: NGINX Plus FIPS Compliance
 toc: true
-docs: "DOCS-470"
+weight: 600
 ---
 
 

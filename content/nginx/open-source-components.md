@@ -1,10 +1,12 @@
 ---
+description: License information for open source components included in the NGINX
+  Plus software.
+docs: DOCS-471
+doctypes:
+- reference
 title: Open Source Components
-description: License information for open source components included in the NGINX Plus software.
-weight: 500
-doctypes: ["reference"]
 toc: true
-docs: "DOCS-471"
+weight: 500
 ---
 
 

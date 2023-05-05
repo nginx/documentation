@@ -1,10 +1,12 @@
 ---
+description: Track the performance of NGINX Plus and your apps in real time, on the
+  built-in live activity monitoring dashboard or by feeding the JSON to other tools.
+docs: DOCS-425
+doctypes:
+- task
 title: Live Activity Monitoring
-description: Track the performance of NGINX Plus and your apps in real time, on the built-in live activity monitoring dashboard or by feeding the JSON to other tools.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-425"
+weight: 100
 ---
 
 

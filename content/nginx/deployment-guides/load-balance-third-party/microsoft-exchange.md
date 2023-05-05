@@ -1,10 +1,12 @@
 ---
+description: Load balance Microsoft Exchange servers with the advanced features in
+  NGINX Plus, following our step-by-step setup instructions.
+docs: DOCS-452
+doctypes:
+- task
 title: Load Balancing Microsoft Exchange Servers with NGINX Plus
-description: Load balance Microsoft Exchange servers with the advanced features in NGINX Plus, following our step-by-step setup instructions.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-452"
+weight: 100
 ---
 
 

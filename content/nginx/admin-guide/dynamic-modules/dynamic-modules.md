@@ -1,10 +1,12 @@
 ---
+description: Load modules dynamically into NGINX Plus at runtime to add specialized
+  functionality, including features authored by third parties.
+docs: DOCS-383
+doctypes:
+- task
 title: Dynamic Modules
-description: Load modules dynamically into NGINX Plus at runtime to add specialized functionality, including features authored by third parties.
-weight: 10
-doctypes: ["task"]
 toc: true
-docs: "DOCS-383"
+weight: 10
 ---
 
 

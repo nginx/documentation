@@ -1,10 +1,12 @@
 ---
+description: Install NGINX Open Source either as a prebuilt package or from source,
+  following step-by-step instructions for all supported Linux distributions.
+docs: DOCS-410
+doctypes:
+- task
 title: Installing NGINX Open Source
-description: Install NGINX Open Source either as a prebuilt package or from source, following step-by-step instructions for all supported Linux distributions.
-weight: 200
-doctypes: ["task"]
 toc: true
-docs: "DOCS-410"
+weight: 200
 ---
 
 This article explains how to install NGINX Open Source.
