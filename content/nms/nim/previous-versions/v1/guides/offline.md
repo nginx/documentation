@@ -28,7 +28,7 @@ NGINX Instance Manager is designed to run without internet access in most cases.
 
 ## Install from packages {#scan-ui}
 
-To install offline, you need to manually download the package and license files. Follow the installation instructions for the [server]({{<relref  "install.md">}}) and [agent]({{<relref "agent.md">}}).
+To install offline, you need to manually download the package and license files. Follow the installation instructions for the [server]({{<relref  "/nms/nim/previous-versions/v1/getting-started/install.md">}}) and [agent]({{<relref "/nms/nim/previous-versions/v1/getting-started/agent.md">}}).
 
 All dependencies are included with the packages.
 

@@ -1,12 +1,21 @@
 <!-- markdownlint-disable -->
 # These owners will be the default owners for everything in
 # the repo. Unless a later match takes precedence,
-# @global-owner1 and @global-owner2 will be requested for
+# @nginxinc/nginx-docs will be requested for
 # review when someone opens a pull request.
-*       @nginx-docs
+*       @nginxinc/nginx-docs
 
 # Order is important; the last matching pattern takes the most
 # precedence. When someone opens a pull request that only
 # modifies JS files, only @js-owner and not the global
 # owner(s) will be requested for a review.
 # *.js    @js-owner #This is an inline comment.
+# Lines starting with '#' are comments.
+# Each line is a file pattern followed by one or more owners.
+
+# These owners will be the default owners for all NGINX App Protect content
+# in the repo:
+# Lior Moscovici (@liorm39), Doron Foa (@doronfoa), Reena Ranghar (@rranghar), Amit Shnek (@AmitShnek), Daniel Edgar (@aknot242)
+content/nap-waf/*       @liorm39 @doronfoa @rranghar @AmitShnek @aknot242
+content/nap-dos/*       @liorm39 @doronfoa @rranghar @AmitShnek @aknot242
+data/nap-waf/*          @liorm39 @doronfoa @rranghar @AmitShnek @aknot242
