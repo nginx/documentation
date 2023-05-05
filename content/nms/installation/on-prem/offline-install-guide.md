@@ -120,12 +120,17 @@ sudo dpkg -i ./*.deb
 
 ---
 
-## Install Instance Manager {#install-nim-offline}
+## Install or Upgrade Instance Manager {#install-or-upgrade-nim-offline}
+
+### Install Instance Manager {#install-nim-offline}
+
+To install Instance Manager, take the following steps:
+
+&nbsp;
 
 {{<tabs name="install_nim_offline">}}
 {{%tab name="CentOS, RHEL, and RPM-Based"%}}
 
-To install Instance Manager, take the following steps:
 
 1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the Instance Manager package files.
 
@@ -169,7 +174,7 @@ To install Instance Manager, take the following steps:
    sudo systemctl restart nginx
    ```
 
-### Post-Installation Steps
+### Post-Installation Steps {#nim-post-install-steps}
 
 {{< include "installation/optional-installation-steps.md" >}}
 
@@ -178,15 +183,54 @@ See these topics below for instructions on how to access the web interface and a
 - [Access the web interface](#access-web-ui)
 - [Add a license](#add-license)
 
+### Upgrade Instance Manager {#upgrade-nim-offline}
+
+To upgrade Instance Manager to a newer version, take the following steps:
+
+<br>&nbsp;
+
+{{<tabs name="upgrade-nim-offline">}}
+{{%tab name="CentOS, RHEL, and RPM-Based"%}}
+
+1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the Instance Manager package files.
+
+2. Upgrade the Instance Manager package:
+
+   ```bash
+   sudo yum -y --nogpgcheck update /home/user/nms-instance-manager_<version>.x86_64.rpm
+   ```
+
+{{%/tab%}}
+{{%tab name="Debian, Ubuntu, and Deb-Based"%}}
+
+1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the Instance Manager package files.
+
+2. Upgrade the Instance Manager package:
+
+   ```bash
+   sudo apt-get -y install -f /home/user/nms-instance-manager_<version>_amd64.deb
+   ```
+
+{{%/tab%}}
+{{</tabs>}}
+
+1. Restart the NGINX web server:
+
+   ```bash
+   sudo systemctl restart nginx
+   ```
+
+2. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore SELinux contexts (`restorecon`) for the files and directories related to NGINX Management suite.
+
 ---
 
-## Install API Connectivity Manager {#install-acm-offline}
+## Install or Upgrade API Connectivity Manager {#install-or-upgrade-acm-offline}
 
 ### Dependencies with Instance Manager {#acm-nim-dependencies}
 
 {{< include "tech-specs/acm-nim-dependencies.md" >}}
 
-### Install API Connectivity Manager
+### Install API Connectivity Manager {#install-acm}
 
 {{< important >}}
 API Connectivity Manager requires Instance Manager to be installed first. 
@@ -244,7 +288,7 @@ To install API Connectivity Manager, take the following steps:
    sudo systemctl restart nginx  
    ```
 
-### Post-Installation Steps
+### Post-Installation Steps {#acm-post-install-steps}
 
 {{< include "installation/optional-installation-steps.md" >}}
 
@@ -252,6 +296,46 @@ See these topics below for instructions on how to access the web interface and a
 
 - [Access the web interface](#access-web-ui)
 - [Add a license](#add-license)
+
+### Upgrade API Connectivity Manager {#upgrade-acm-offline}
+
+To upgrade API Connectivity Manager to a newer version, take the following steps:
+
+<br>&nbsp;
+
+{{<tabs name="upgrade-acm-offline">}}
+{{%tab name="CentOS, RHEL, and RPM-Based"%}}
+
+1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the Instance Manager package files.
+
+2. Upgrade the Instance Manager package:
+
+   ```bash
+   sudo yum -y --nogpgcheck update /home/user/nms-api-connectivity-manager_<version>.x86_64.rpm
+   ```
+
+{{%/tab%}}
+{{%tab name="Debian, Ubuntu, and Deb-Based"%}}
+
+1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the Instance Manager package files.
+
+2. Upgrade the Instance Manager package:
+
+   ```bash
+   sudo apt-get -y install -f /home/user/nms-api-connectivity-manager_<version>_amd64.deb
+   ```
+
+{{%/tab%}}
+{{</tabs>}}
+
+1. Restart the NGINX web server:
+
+   ```bash
+   sudo systemctl restart nginx
+   ```
+
+2. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore SELinux contexts (`restorecon`) for the files and directories related to NGINX Management suite.
+
 
 ### Set Up the Data Plane {#acm-offline-dependencies}
 
@@ -320,7 +404,7 @@ sudo dpkg -i ./*.deb
 
 ---
 
-## Install App Delivery Manager {#install-adm-offline}
+## Install or Upgrade App Delivery Manager {#install-adm-offline}
 
 ### Dependencies with Instance Manager {#adm-nim-dependencies}
 
@@ -379,7 +463,7 @@ Before you begin:
    sudo systemctl restart nginx  
    ```
 
-### Post-Installation Steps
+### Post-Installation Steps {#adm-post-install-steps}
 
 {{< include "installation/optional-installation-steps.md" >}}
 
@@ -387,6 +471,46 @@ See these topics below for instructions on how to access the web interface and a
 
 - [Access the web interface](#access-web-ui)
 - [Add a license](#add-license)
+
+### Upgrade App Delivery Manager {#upgrade-adm-offline}
+
+To upgrade App Delivery Manager to a newer version, take the following steps:
+
+<br>&nbsp;
+
+{{<tabs name="upgrade-acm-offline">}}
+{{%tab name="CentOS, RHEL, and RPM-Based"%}}
+
+1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the Instance Manager package files.
+
+2. Upgrade the Instance Manager package:
+
+   ```bash
+   sudo yum -y --nogpgcheck update /home/user/nms-app-delivery-manager_<version>.x86_64.rpm
+   ```
+
+{{%/tab%}}
+{{%tab name="Debian, Ubuntu, and Deb-Based"%}}
+
+1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the Instance Manager package files.
+
+2. Upgrade the Instance Manager package:
+
+   ```bash
+   sudo apt-get -y install -f /home/user/nms-app-delivery-manager_<version>_amd64.deb
+   ```
+
+{{%/tab%}}
+{{</tabs>}}
+
+1. Restart the NGINX web server:
+
+   ```bash
+   sudo systemctl restart nginx
+   ```
+
+2. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore SELinux contexts (`restorecon`) for the files and directories related to NGINX Management suite.
+
 
 ### Set Up the Data Plane {#adm-data-plane}
 
