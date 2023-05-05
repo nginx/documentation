@@ -230,10 +230,10 @@ To install API Connectivity Manager, take the following steps:
 {{%/tab%}}
 {{</tabs>}}
 
-3. Enable and start the NGINX Management Suite services:
+3. Enable and start the API Connectivity Manager service:
 
     ```bash
-    sudo systemctl enable nms nms-core nms-dpm nms-ingestion nms-integrations nms-acm --now
+    sudo systemctl enable nms-acm --now
     ```
 
     NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
@@ -326,7 +326,7 @@ sudo dpkg -i ./*.deb
 
 {{< include "tech-specs/adm-nim-dependencies.md" >}}
 
-### Install the Management Plane {#install-adm-data-plane-offline}
+### Install App Delivery Manager {#install-adm-offline}
 
 {{< important >}}
 App Delivery Manager requires Instance Manager to be installed first. 
@@ -339,10 +339,45 @@ Before you begin:
 
 &nbsp;
 
-{{< include "adm/installation/install-adm-offline.md" >}}
+{{<tabs name="install_adm_offline">}}
+{{%tab name="CentOS, RHEL, and RPM-Based"%}}
 
-{{< important >}} See the section on how to [access the NGINX Management Suite web interface](#web-interface). After you log in, you must add the ADM [license]({{< relref "/nms/installation/add-license.md" >}}) in order to access the ADM features.
- {{< /important >}}
+1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the App Delivery Manager package files, or use the package provided by your NGINX Sales Team.
+
+2. Install the App Delivery Manager package:
+
+   ```bash
+   sudo yum --nogpgcheck install /home/user/nms-app-delivery-manager_<version>.x86_64.rpm
+   ```
+
+{{%/tab%}}
+{{%tab name="Debian, Ubuntu, and Deb-Based"%}}
+
+1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the App Delivery Manager package files, or use the package provided by your NGINX Sales Team.
+
+2. Install the App Delivery Manager package:
+
+   ```bash
+   sudo apt-get install -f /home/user/nms-app-delivery-manager_<version>_amd64.deb
+   ```
+
+{{%/tab%}}
+{{</tabs>}}
+
+3. Enable and start the App Delivery service:
+
+    ```bash
+    sudo systemctl enable nms-adm --now
+    ```
+
+    NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
+
+    
+4. Restart the NGINX web server:
+
+   ```bash
+   sudo systemctl restart nginx  
+   ```
 
 ### Post-Installation Steps
 
@@ -353,7 +388,7 @@ See these topics below for instructions on how to access the web interface and a
 - [Access the web interface](#access-web-ui)
 - [Add a license](#add-license)
 
-### Install the Data Plane Dependencies {#adm-offline-dependencies}
+### Set Up the Data Plane {#adm-data-plane}
 
 {{< include "adm/installation/install-adm-dataplane-dependencies.md" >}}
 
@@ -366,7 +401,7 @@ See these topics below for instructions on how to access the web interface and a
 ---
 ## Add License {#add-license}
 
-A valid license is required in order to use all of the features in NGINX Management Suite.
+A valid license is required to use all of the features of NGINX Management Suite.
 
 ### Download License
 
