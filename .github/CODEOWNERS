@@ -1,9 +1,9 @@
 <!-- markdownlint-disable -->
 # These owners will be the default owners for everything in
 # the repo. Unless a later match takes precedence,
-# @nginx-docs will be requested for
+# @nginxinc/nginx-docs will be requested for
 # review when someone opens a pull request.
-*       @nginx-docs
+*       @nginxinc/nginx-docs
 
 # Order is important; the last matching pattern takes the most
 # precedence. When someone opens a pull request that only
