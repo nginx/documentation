@@ -5,4 +5,5 @@ menu:
     parent: NGINX App Protect WAF Documentation.
 title: Configuration Guide
 weight: 100
+url: /nginx-app-protect-waf/configuration-guide/
 ---

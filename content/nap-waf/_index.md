@@ -7,4 +7,5 @@ linkTitle: NGINX App Protect WAF
 menu: docs
 title: NGINX App Protect WAF
 weight: 100
+url: /nginx-app-protect-waf/
 ---

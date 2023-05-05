@@ -3,6 +3,14 @@ languageCode = "en-us"
 title = "NGINX Documentation"
 refLinksErrorLevel = "ERROR"
 
+[permalinks]
+  controller = '/nginx-controller/:sections[1:]/:filename'
+  modsec-waf = '/nginx-waf/:sections[1:]/:filename'
+  nap-dos = '/nginx-app-protect-dos/:sections[1:]/:filename'
+  nap-waf = '/nginx-app-protect-waf/:sections[1:]/:filename'
+  nms = '/nginx-management-suite/:sections[1:]/:filename'
+
+
 [caches]
   [caches.modules]
     maxAge = -1
