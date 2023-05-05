@@ -7,6 +7,7 @@ refLinksErrorLevel = "ERROR"
   [caches.modules]
     maxAge = -1
 
+[module]
 [[module.imports]]
   path="github.com/nginxinc/nginx-hugo-theme"
 
