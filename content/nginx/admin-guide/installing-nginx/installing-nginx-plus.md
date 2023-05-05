@@ -86,7 +86,7 @@ NGINX Plus can be installed on Amazon Linux 2 LTS (x86_64, aarch64).
     nginx -v
     ```
 
-12. If [NGINX Instance Manager](https://docs.nginx.com/nginx-management-suite/admin-guides/installation/install-guide/) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent](https://docs.nginx.com/nginx-management-suite/nginx-agent/install-nginx-agent/) for details.
+12. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
 
 
 <span id="install_amazon2023"></span>
@@ -160,7 +160,7 @@ NGINX Plus can be installed on Amazon Linux 2023 (x86_64, aarch64).
     nginx -v
     ```
 
-13. If [NGINX Instance Manager](https://docs.nginx.com/nginx-management-suite/admin-guides/installation/install-guide/) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent](https://docs.nginx.com/nginx-management-suite/nginx-agent/install-nginx-agent/) for details.
+13. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
 
 
 <span id="install_amazon"></span>
@@ -216,7 +216,7 @@ Please note that only NGINX Plus Release 24 and earlier can be installed on Ama
     nginx -v
     ```
 
-10. If [NGINX Instance Manager](https://docs.nginx.com/nginx-management-suite/admin-guides/installation/install-guide/) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent](https://docs.nginx.com/nginx-management-suite/nginx-agent/install-nginx-agent/) for details.
+10. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
 
 
 <span id="install_rhel_centos"></span>
@@ -306,7 +306,7 @@ NGINX Plus can be installed on the following versions of CentOS/Oracle Linux/RH
     nginx -v
     ```
 
-15. If [NGINX Instance Manager](https://docs.nginx.com/nginx-management-suite/admin-guides/installation/install-guide/) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent](https://docs.nginx.com/nginx-management-suite/nginx-agent/install-nginx-agent/) for details.
+15. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
 
 
 <span id="install_rhel8"></span>
@@ -391,7 +391,7 @@ NGINX Plus can be installed on the following versions of CentOS/RHEL:
     nginx -v
     ```
 
-14. If [NGINX Instance Manager](https://docs.nginx.com/nginx-management-suite/admin-guides/installation/install-guide/) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent](https://docs.nginx.com/nginx-management-suite/nginx-agent/install-nginx-agent/) for details.
+14. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
 
 
 <span id="install_rhel9"></span>
@@ -476,7 +476,7 @@ NGINX Plus can be installed on the following versions of CentOS/RHEL:
     nginx -v
     ```
 
-14. If [NGINX Instance Manager](https://docs.nginx.com/nginx-management-suite/admin-guides/installation/install-guide/) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent](https://docs.nginx.com/nginx-management-suite/nginx-agent/install-nginx-agent/) for details.
+14. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
 
 
 <span id="install_debian_ubuntu"></span>
@@ -630,7 +630,7 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
     nginx -v
     ```
 
-18. If [NGINX Instance Manager](https://docs.nginx.com/nginx-management-suite/admin-guides/installation/install-guide/) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent](https://docs.nginx.com/nginx-management-suite/nginx-agent/install-nginx-agent/) for details.
+18. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
 
 
 <span id="install_freebsd"></span>
@@ -717,7 +717,7 @@ To install NGINX Plus on FreeBSD:
     nginx -v
     ```
 
-14. If [NGINX Instance Manager](https://docs.nginx.com/nginx-management-suite/admin-guides/installation/install-guide/) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent](https://docs.nginx.com/nginx-management-suite/nginx-agent/install-nginx-agent/) for details.
+14. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
 
 
 <span id="install_suse"></span>
@@ -743,7 +743,7 @@ To install NGINX Plus on SLES:
     sudo cp nginx-repo.key /etc/ssl/nginx/
     ```
 
-3.  Create a file bundle of the certificate and key:
+4.  Create a file bundle of the certificate and key:
 
     ```shell
     cat /etc/ssl/nginx/nginx-repo.crt /etc/ssl/nginx/nginx-repo.key > /etc/ssl/nginx/nginx-repo-bundle.crt
@@ -758,11 +758,13 @@ To install NGINX Plus on SLES:
 5.  Add the **nginx-plus** repo.
 
     For SLES 12:
+
     ```shell
     zypper addrepo -G -t yum -c 'https://pkgs.nginx.com/plus/sles/12?ssl_clientcert=/etc/ssl/nginx/nginx-repo-bundle.crt&ssl_verify=peer' nginx-plus
     ```
 
     For SLES 15:
+
     ```shell
     zypper addrepo -G -t yum -c 'https://pkgs.nginx.com/plus/sles/15?ssl_clientcert=/etc/ssl/nginx/nginx-repo-bundle.crt&ssl_verify=peer' nginx-plus
     ```
@@ -775,6 +777,7 @@ To install NGINX Plus on SLES:
     ```
 
     For SLES 15:
+
     ```shell
     zypper addrepo -G -t yum -c 'https://pkgs.nginx.com/modsecurity/sles/15?ssl_clientcert=/etc/ssl/nginx/nginx-repo-bundle.crt&ssl_verify=peer' nginx-modsecurity
     ```
@@ -799,13 +802,13 @@ To install NGINX Plus on SLES:
     zypper install nginx-plus-module-modsecurity
     ```
 
-10.  For experimental QUIC support, install NGINX Plus QUIC package:
+10. For experimental QUIC support, install NGINX Plus QUIC package:
 
     ```shell
     zypper install nginx-plus-quic
     ```
 
-11. If [NGINX Instance Manager](https://docs.nginx.com/nginx-management-suite/admin-guides/installation/install-guide/) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent](https://docs.nginx.com/nginx-management-suite/nginx-agent/install-nginx-agent/) for details.
+11. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
 
 
 <span id="install_alpine"></span>
@@ -891,7 +894,7 @@ To install NGINX Plus on Alpine Linux:
     nginx -v
     ```
 
-15. If [NGINX Instance Manager](https://docs.nginx.com/nginx-management-suite/admin-guides/installation/install-guide/) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent](https://docs.nginx.com/nginx-management-suite/nginx-agent/install-nginx-agent/) for details.
+15. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
 
 
 <span id="install_modules"></span>
