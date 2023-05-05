@@ -502,7 +502,7 @@ To enable the Swagger UI:
 
 2. Choose the version of the OpenAPI YAML file that matches your version of NGINX Plus, download the file, and put it to the folder containing the Swagger UI files:
 
-{{% table %}} 
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |OpenAPI YAML File/API Version | NGINX Plus Version | Changes |
 | ---| --- | --- |
 |[{{<fa "download">}}OpenAPI v2](../../yaml/v8/nginx_api.yaml) for API version 8 | NGINX Plus Releases [27](https://docs.nginx.com/nginx/releases/#nginxplusrelease-27-r27), [28](https://docs.nginx.com/nginx/releases/#nginxplusrelease-28-r28) | SSL statistics for each HTTP [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) and stream [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_upstream), SSL statistics for each HTTP [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_server_zone) and stream [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_server_zone), extended statistics for [SSL](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_ssl_object) endpoint
@@ -513,7 +513,7 @@ To enable the Swagger UI:
 |[{{<fa "download">}}OpenAPI v2](../../yaml/v3/nginx_api.yaml) for API version 3 | NGINX Plus Releases [15](https://docs.nginx.com/nginx/releases/#nginxplusrelease-15-r15), [16](https://docs.nginx.com/nginx/releases/#nginxplusrelease-16-r16), [17](https://docs.nginx.com/nginx/releases/#nginxplusrelease-17-r17) | The [`/stream/zone_sync/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#stream_zone_sync_) data were added |
 |[{{<fa "download">}}OpenAPI v2](../../yaml/v2/nginx_api.yaml) for API version 2 | [NGINX Plus Release 14](https://docs.nginx.com/nginx/releases/#nginxplusrelease-14-r14) | The [`drain`](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream_conf_server) parameter was added |
 |[{{<fa "download">}}OpenAPI v2](../../yaml/v1/nginx_api.yaml) for API version 1 | [NGINX Plus Release 13](https://docs.nginx.com/nginx/releases/#nginx-plus-release-13-r13) | The [`/stream/keyvals/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#stream_keyvals_) data were added |
-{{% /table %}}
+{{</bootstrap-table>}}
 
 3. Configure NGINX Plus to work with the Swagger UI. Create a [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location), for example, */swagger-ui*:
 

@@ -41,13 +41,13 @@ See [Source packages](https://nginx.org/en/linux_packages.html#sourcepackages) a
 NGINX, Inc. provides packages for the following CentOS, Oracle Linux, RHEL, AlmaLinux and Rocky Linux versions:
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |Version | Supported Platforms | 
 | ---| --- | 
 |7.4+ | x86_64, aarch64/arm64 |
 |8x | x86_64, aarch64/arm64, s390x |
 |9x | x86_64, aarch64/arm64, s390x |
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 The package can be installed from:
 
@@ -155,11 +155,11 @@ The package can be installed from:
 NGINX provides packages for the following Debian operating systems:
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |Version | Codename | Supported Platforms | 
 | ---| ---| --- | 
 |11.x | bullseye | x86_64, aarch64/arm64 |
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 The package can be installed from:
 
@@ -268,14 +268,14 @@ The package can be installed from:
 NGINX provides packages for the following Ubuntu operating systems:
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |Version | Codename | Supported Platforms | 
 | ---| ---| --- | 
 |18.04 | bionic | x86_64, aarch64/arm64 |
 |20.04 | focal | x86_64, aarch64/arm64, s390x |
 |22.04 | jammy | x86_64, aarch64/arm64, s390x |
 |22.10 | kinetic | x86_64, aarch64/arm64 |
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 The package can be installed from:
 
@@ -383,12 +383,12 @@ The package can be installed from:
 NGINX provides packages for SUSE Linux Enterprise Server:
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |Version | Supported Platforms | 
 | ---| --- | 
 |SLES 12 SP5+ | x86_64 |
 |SLES 15 SP2+ | x86_64 |
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 #### Installing a Prebuilt SUSE Package from the Official NGINX Repository
 
@@ -452,14 +452,14 @@ NGINX provides packages for SUSE Linux Enterprise Server:
 NGINX provides packages for the following Alpine Linux operating systems:
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |Version | Supported Platforms | 
 | ---| --- | 
 |3.14 | x86_64, aarch64/arm64 |
 |3.15 | x86_64, aarch64/arm64 |
 |3.16 | x86_64, aarch64/arm64 |
 |3.17 | x86_64, aarch64/arm64 |
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 The package can be installed from the official repo at **nginx.org**. You have to set up the  <span style="white-space: nowrap;">`apt-get`</span> repository the first time, but after that the provided package is always up to date.
 
@@ -710,7 +710,7 @@ The `configure` script allows you to set paths to NGINX binary and configuration
 
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |Parameter | Description | 
 | ---| --- | 
 |``--prefix=<PATH>`` | Directory for NGINX files, and the base location for all relative paths set by the other `configure` script options (excluding paths to libraries) and for the path to the **nginx.conf** configuration file. Default: **/usr/local/nginx**. | 
@@ -724,7 +724,7 @@ The `configure` script allows you to set paths to NGINX binary and configuration
 |``--with-pcre=<PATH>`` | Path to the source for the PCRE library, which is required for regular expressions support in the [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) directive and the [Rewrite](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module. | 
 |``--with-pcre-jit`` | Builds the PCRE library with “just-in-time compilation” support (the [pcre_jit](https://nginx.org/en/docs/ngx_core_module.html#pcre_jit) directive). | 
 |``--with-zlib=<PATH>`` | Path to the source for the `zlib` library, which is required by the [Gzip](https://nginx.org/en/docs/http/ngx_http_gzip_module.html) module. | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 
 <span id="configure_gcc"></span>
@@ -733,12 +733,12 @@ The `configure` script allows you to set paths to NGINX binary and configuration
 With the `configure` script you can also specify compiler‑related options.
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |Parameter | Description | 
 | ---| --- | 
 |``--with-cc-opt="<PARAMETERS>"`` | Additional parameters that are added to the ``CFLAGS`` variable. When using the system PCRE library under FreeBSD, the mandatory value is ``--with-cc-opt="-I /usr/local/include"``. If the number of files supported by ``select()`` needs to be increased, it can also specified here as in this example: ``--with-cc-opt="-D FD_SETSIZE=2048"``. | 
 |``--with-ld-opt="<PARAMETERS>"`` | Additional parameters that are used during linking. When using the system PCRE library under FreeBSD, the mandatory value is ``--with-ld-opt="-L /usr/local/lib"``. | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 
 <span id="configure_methods"></span>
@@ -747,12 +747,12 @@ With the `configure` script you can also specify compiler‑related options.
 With the `configure` script you can redefine the method for event‑based polling. For more information, see [Connection processing methods](https://nginx.org/en/docs/events.html) in the NGINX reference documentation.
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |Module Name | Description | 
 | ---| --- | 
 |``--with-select_module``, ``--without-select_module`` | Enables or disables building a module that enable NGINX to work with the ``select()`` method. The modules is built automatically if the platform does not appear to support more appropriate methods such as `kqueue`, `epoll`, or `/dev/poll`. | 
 |``--with-poll_module``, ``--without-poll_module`` | Enables or disables building a module that enables NGINX to work with the ``poll()`` method. The module is built automatically if the platform does not appear to support more appropriate methods such as `kqueue`, `epoll`, or `/dev/poll`. | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 
 
@@ -784,7 +784,7 @@ If you do not need a module that is built by default, you can disable it by nami
 
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |Module Name | Description | 
 | ---| --- | 
 |[http_access_module](https://nginx.org/en/docs/http/ngx_http_access_module.html) | Accepts or denies requests from specified client addresses. | 
@@ -813,7 +813,7 @@ If you do not need a module that is built by default, you can disable it by nami
 |[http_upstream_zone_module](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) | Enables shared memory zones. | 
 |[http_userid_module](https://nginx.org/en/docs/http/ngx_http_userid_module.html) | Sets cookies suitable for client identification. | 
 |[http_uwsgi_module](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html) | Passes requests to a uwsgi server. | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 
 <span id="modules_not_default"></span>
@@ -837,10 +837,10 @@ An example of the `configure` command that includes nondefault modules (should b
 --with-mail
 ```
 
-{{% table %}} 
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |Module Name | Description | 
 | ---| --- | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
    * - ``--with-cpp_test_module``
      - Tests the C++ compatibility of header files.
