@@ -1,24 +1,37 @@
-+++
-authors = []
-categories = ["administration guide"]
-date = "2021-04-14T13:32:41+00:00"
-description = "Learn how to get more from NGINX App Protect WAF with the NGINX Management Suite Security Monitoring and Instance Manager modules."
-doctypes = ["task"]
-draft = false
-journeys = ["researching", "getting started", "using", "self service"]
-personas = ["devops", "netops", "secops", "support"]
-roles = ["admin", "user"]
-title = "Using NGINX App Protect WAF with NGINX Management Suite"
-toc = true
-versions = ["4.3"]
-weight = 100
-docs= "DOCS-1126"
-
-[menu]
-  [menu.docs]
-    parent = "NGINX App Protect WAF"
-    weight = 45
-+++
+---
+authors: []
+categories:
+- administration guide
+date: "2021-04-14T13:32:41+00:00"
+description: Learn how to get more from NGINX App Protect WAF with the NGINX Management
+  Suite Security Monitoring and Instance Manager modules.
+docs: DOCS-1126
+doctypes:
+- task
+draft: false
+journeys:
+- researching
+- getting started
+- using
+- self service
+menu:
+  docs:
+    parent: NGINX App Protect WAF
+    weight: 45
+personas:
+- devops
+- netops
+- secops
+- support
+roles:
+- admin
+- user
+title: Using NGINX App Protect WAF with NGINX Management Suite
+toc: true
+versions:
+- "4.3"
+weight: 100
+---
 
 
 ## Overview

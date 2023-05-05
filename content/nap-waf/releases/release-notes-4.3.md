@@ -1,25 +1,36 @@
-+++
-authors = []
-categories = ["releases"]
-date = "2021-04-14T13:32:41+00:00"
-description = ""
-doctypes = ["concept"]
-draft = false
-journeys = ["researching", "getting started", "using", "self service"]
-personas = ["devops", "netops", "secops", "support"]
-roles = ["admin", "user"]
-title = "NGINX App Protect WAF Release 4.3"
-toc = true
-versions = ["4.3"]
-weight = 210
-docs = "DOCS-1202"
-
-[menu]
-  [menu.docs]
-    parent = "Releases"
-    weight = 45
-
-+++
+---
+authors: []
+categories:
+- releases
+date: "2021-04-14T13:32:41+00:00"
+description: ""
+docs: DOCS-1202
+doctypes:
+- concept
+draft: false
+journeys:
+- researching
+- getting started
+- using
+- self service
+menu:
+  docs:
+    parent: Releases
+    weight: 45
+personas:
+- devops
+- netops
+- secops
+- support
+roles:
+- admin
+- user
+title: NGINX App Protect WAF Release 4.3
+toc: true
+versions:
+- "4.3"
+weight: 210
+---
 
 May 2, 2023
 

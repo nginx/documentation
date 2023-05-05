@@ -1,24 +1,37 @@
-+++
-authors = []
-categories = ["controller guide"]
-date = "2021-04-14T13:32:41+00:00"
-description = "Take the steps in this guide to deploy NGINX App Protect WAF as a datapath instance for use with NGINX Controller."
-doctypes = ["task"]
-draft = false
-journeys = ["researching", "getting started", "using", "self service"]
-personas = ["devops", "netops", "secops", "support"]
-roles = ["admin", "user"]
-title = "Using NGINX App Protect WAF with NGINX Controller"
-toc = true
-versions = ["4.3"]
-weight = 500
-docs= "DOCS-645"
-
-[menu]
-  [menu.docs]
-    parent = "NGINX App Protect WAF"
-    weight = 45
-+++
+---
+authors: []
+categories:
+- controller guide
+date: "2021-04-14T13:32:41+00:00"
+description: Take the steps in this guide to deploy NGINX App Protect WAF as a datapath
+  instance for use with NGINX Controller.
+docs: DOCS-645
+doctypes:
+- task
+draft: false
+journeys:
+- researching
+- getting started
+- using
+- self service
+menu:
+  docs:
+    parent: NGINX App Protect WAF
+    weight: 45
+personas:
+- devops
+- netops
+- secops
+- support
+roles:
+- admin
+- user
+title: Using NGINX App Protect WAF with NGINX Controller
+toc: true
+versions:
+- "4.3"
+weight: 500
+---
 
 
 Take the steps in this guide to deploy NGINX App Protect WAF as a datapath instance for use with NGINX Controller.

@@ -1,29 +1,39 @@
-+++
-authors = []
-categories = ["configuration guide"]
-date = "2021-04-14T13:32:41+00:00"
-description = "This guide explains the NGINX App Protect WAF security features and how to use them."
-doctypes = ["task"]
-draft = false
-journeys = ["researching", "getting started", "using", "self service"]
-personas = ["devops", "netops", "secops", "support"]
-roles = ["admin", "user"]
-title = "NGINX App Protect WAF Configuration Guide"
-toc = true
-versions = ["4.3"]
-weight = 200
-docs= "DOCS-647"
-
-aliases = [
-  "/configuration/"
-]
-
-[menu]
-  [menu.docs]
-    parent = "NGINX App Protect WAF"
-    weight = 45
-
-+++
+---
+aliases:
+- /configuration/
+authors: []
+categories:
+- configuration guide
+date: "2021-04-14T13:32:41+00:00"
+description: This guide explains the NGINX App Protect WAF security features and how
+  to use them.
+docs: DOCS-647
+doctypes:
+- task
+draft: false
+journeys:
+- researching
+- getting started
+- using
+- self service
+menu:
+  docs:
+    parent: NGINX App Protect WAF
+    weight: 45
+personas:
+- devops
+- netops
+- secops
+- support
+roles:
+- admin
+- user
+title: NGINX App Protect WAF Configuration Guide
+toc: true
+versions:
+- "4.3"
+weight: 200
+---
 
 ## Overview
 

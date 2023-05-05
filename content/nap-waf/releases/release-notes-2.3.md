@@ -1,25 +1,36 @@
-+++
-authors = []
-categories = ["releases"]
-date = "2021-04-14T13:32:41+00:00"
-description = ""
-doctypes = ["concept"]
-draft = false
-journeys = ["researching", "getting started", "using", "self service"]
-personas = ["devops", "netops", "secops", "support"]
-roles = ["admin", "user"]
-title = "NGINX App Protect WAF Release 2.3"
-toc = true
-versions = ["2.3"]
-weight = 920
-docs= "DOCS-656"
-
-[menu]
-  [menu.docs]
-    parent = "Releases"
-    weight = 45
-
-+++
+---
+authors: []
+categories:
+- releases
+date: "2021-04-14T13:32:41+00:00"
+description: ""
+docs: DOCS-656
+doctypes:
+- concept
+draft: false
+journeys:
+- researching
+- getting started
+- using
+- self service
+menu:
+  docs:
+    parent: Releases
+    weight: 45
+personas:
+- devops
+- netops
+- secops
+- support
+roles:
+- admin
+- user
+title: NGINX App Protect WAF Release 2.3
+toc: true
+versions:
+- "2.3"
+weight: 920
+---
 
 December 30, 2020
 

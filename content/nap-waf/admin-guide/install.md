@@ -1,25 +1,37 @@
-+++
-authors = []
-categories = ["administration guide"]
-date = "2021-04-14T13:32:41+00:00"
-description = "This guide explains how to deploy NGINX App Protect WAF as well as upgrade App Protect and the App Protect signature sets."
-doctypes = ["task"]
-draft = false
-journeys = ["researching", "getting started", "using", "self service"]
-personas = ["devops", "netops", "secops", "support"]
-roles = ["admin", "user"]
-title = "NGINX App Protect WAF Administration Guide"
-toc = true
-versions = ["4.3"]
-weight = 100
-docs= "DOCS-646"
-
-[menu]
-  [menu.docs]
-    parent = "NGINX App Protect WAF"
-    weight = 45
-
-+++
+---
+authors: []
+categories:
+- administration guide
+date: "2021-04-14T13:32:41+00:00"
+description: This guide explains how to deploy NGINX App Protect WAF as well as upgrade
+  App Protect and the App Protect signature sets.
+docs: DOCS-646
+doctypes:
+- task
+draft: false
+journeys:
+- researching
+- getting started
+- using
+- self service
+menu:
+  docs:
+    parent: NGINX App Protect WAF
+    weight: 45
+personas:
+- devops
+- netops
+- secops
+- support
+roles:
+- admin
+- user
+title: NGINX App Protect WAF Administration Guide
+toc: true
+versions:
+- "4.3"
+weight: 100
+---
 
 
 ## Overview

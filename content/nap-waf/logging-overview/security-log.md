@@ -1,29 +1,38 @@
-+++
-authors = []
-categories = ["logs-overview"]
-date = "2021-04-14T13:32:41+00:00"
-description = "Learn about the NGINX App Protect WAF Security Log."
-doctypes = ["concept"]
-draft = false
-journeys = ["researching", "getting started", "using", "self service"]
-personas = ["devops", "netops", "secops", "support"]
-roles = ["admin", "user"]
-title = "NGINX App Protect WAF Security Log"
-toc = true
-versions = ["4.3"]
-weight = 520
-docs= "DOCS-915"
-
-aliases = [
-  "/troubleshooting/"
-]
-
-[menu]
-  [menu.docs]
-    parent = "NGINX App Protect WAF"
-    weight = 45
-
-+++
+---
+aliases:
+- /troubleshooting/
+authors: []
+categories:
+- logs-overview
+date: "2021-04-14T13:32:41+00:00"
+description: Learn about the NGINX App Protect WAF Security Log.
+docs: DOCS-915
+doctypes:
+- concept
+draft: false
+journeys:
+- researching
+- getting started
+- using
+- self service
+menu:
+  docs:
+    parent: NGINX App Protect WAF
+    weight: 45
+personas:
+- devops
+- netops
+- secops
+- support
+roles:
+- admin
+- user
+title: NGINX App Protect WAF Security Log
+toc: true
+versions:
+- "4.3"
+weight: 520
+---
 
 ## Security Logs
 

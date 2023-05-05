@@ -1,25 +1,36 @@
-+++
-authors = []
-categories = ["releases"]
-date = "2021-04-14T13:32:41+00:00"
-description = ""
-doctypes = ["concept"]
-draft = false
-journeys = ["researching", "getting started", "using", "self service"]
-personas = ["devops", "netops", "secops", "support"]
-roles = ["admin", "user"]
-title = "NGINX App Protect WAF Release 3.4"
-toc = true
-versions = ["3.4"]
-weight = 760
-docs= "DOCS-661"
-
-[menu]
-  [menu.docs]
-    parent = "Releases"
-    weight = 45
-
-+++
+---
+authors: []
+categories:
+- releases
+date: "2021-04-14T13:32:41+00:00"
+description: ""
+docs: DOCS-661
+doctypes:
+- concept
+draft: false
+journeys:
+- researching
+- getting started
+- using
+- self service
+menu:
+  docs:
+    parent: Releases
+    weight: 45
+personas:
+- devops
+- netops
+- secops
+- support
+roles:
+- admin
+- user
+title: NGINX App Protect WAF Release 3.4
+toc: true
+versions:
+- "3.4"
+weight: 760
+---
 
 August 10, 2021
 
