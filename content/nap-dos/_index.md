@@ -1,8 +1,5 @@
 ---
-title: "NGINX App Protect DoS"
-
-description: |
-  NGINX App Protect DoS provides behavioral DoS detection and mitigation.
-
-  Request your [free 30-day trial](https://www.nginx.com/free-trial-request/) today. 
+description: "NGINX App Protect DoS provides behavioral DoS detection and mitigation.\n\nRequest
+  your [free 30-day trial](https://www.nginx.com/free-trial-request/) today. \n"
+title: NGINX App Protect DoS
 ---

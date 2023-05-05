@@ -1,25 +1,38 @@
-+++
-authors = []
-categories = ["operation log"]
-date = "2021-04-14T13:32:41+00:00"
-description = "Learn about the NGINX App Protect DoS Operation Log."
-doctypes = ["task"]
-draft = false
-journeys = ["researching", "getting started", "using", "self service"]
-personas = ["devops", "netops", "secops", "support"]
-roles = ["admin", "user"]
-title = "NGINX App Protect DoS Operation Log"
-toc = true
-versions = ["4.1"]
-weight = 180
-docs= "DOCS-669"
-version = ["2.3" ]
-[menu]
-  [menu.docs]
-    parent = "monitoring"
-    weight = 45
-
-+++
+---
+authors: []
+categories:
+- operation log
+date: "2021-04-14T13:32:41+00:00"
+description: Learn about the NGINX App Protect DoS Operation Log.
+docs: DOCS-669
+doctypes:
+- task
+draft: false
+journeys:
+- researching
+- getting started
+- using
+- self service
+menu:
+  docs:
+    parent: monitoring
+    weight: 45
+personas:
+- devops
+- netops
+- secops
+- support
+roles:
+- admin
+- user
+title: NGINX App Protect DoS Operation Log
+toc: true
+version:
+- "2.3"
+versions:
+- "4.1"
+weight: 180
+---
 
 ## Overview
 

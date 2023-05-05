@@ -1,25 +1,38 @@
-+++
-authors = []
-categories = ["access log"]
-date = "2021-04-14T13:32:41+00:00"
-description = "Learn about the NGINX App Protect DoS Request Log Mechanism."
-doctypes = ["task"]
-draft = false
-journeys = ["researching", "getting started", "using", "self service"]
-personas = ["devops", "netops", "secops", "support"]
-roles = ["admin", "user"]
-title = "NGINX App Protect DoS Access Log Request Mechanism"
-toc = true
-versions = ["4.1"]
-weight = 160
-docs= "DOCS-668"
-version = ["2.3" ]
-[menu]
-  [menu.docs]
-    parent = "monitoring"
-    weight = 45
-
-+++
+---
+authors: []
+categories:
+- access log
+date: "2021-04-14T13:32:41+00:00"
+description: Learn about the NGINX App Protect DoS Request Log Mechanism.
+docs: DOCS-668
+doctypes:
+- task
+draft: false
+journeys:
+- researching
+- getting started
+- using
+- self service
+menu:
+  docs:
+    parent: monitoring
+    weight: 45
+personas:
+- devops
+- netops
+- secops
+- support
+roles:
+- admin
+- user
+title: NGINX App Protect DoS Access Log Request Mechanism
+toc: true
+version:
+- "2.3"
+versions:
+- "4.1"
+weight: 160
+---
 
 ## Access Logs
 Access Log is NGINX’s request log mechanism. It is controlled by the following two directives.<br>

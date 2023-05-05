@@ -1,25 +1,36 @@
-+++
-authors = []
-categories = ["live activity monitoring"]
-date = "2021-04-14T13:32:41+00:00"
-description = "Learn about the NGINX App Protect DoS Live Activity Monitoring."
-doctypes = ["task"]
-draft = false
-journeys = ["researching", "getting started", "using", "self service"]
-personas = ["devops", "netops", "secops", "support"]
-roles = ["admin", "user"]
-title = "NGINX App Protect DoS Live Activity Monitoring"
-toc = true
-versions = ["4.1"]
-weight = 140
-docs= "DOCS-670"
-
-[menu]
-  [menu.docs]
-    parent = "monitoring"
-    weight = 45
-
-+++
+---
+authors: []
+categories:
+- live activity monitoring
+date: "2021-04-14T13:32:41+00:00"
+description: Learn about the NGINX App Protect DoS Live Activity Monitoring.
+docs: DOCS-670
+doctypes:
+- task
+draft: false
+journeys:
+- researching
+- getting started
+- using
+- self service
+menu:
+  docs:
+    parent: monitoring
+    weight: 45
+personas:
+- devops
+- netops
+- secops
+- support
+roles:
+- admin
+- user
+title: NGINX App Protect DoS Live Activity Monitoring
+toc: true
+versions:
+- "4.1"
+weight: 140
+---
 
 {{< img src="/dashboard/dos-tab.png" alt="NGINX App Protect DoS Dashboard" >}}
 

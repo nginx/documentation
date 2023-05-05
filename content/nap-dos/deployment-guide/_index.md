@@ -1,11 +1,9 @@
-+++
-description = "Learn how to deploy NGINX App Protect DoS."
-title = "Deployment Guide"
-weight = 100
-
-[menu]
-  [menu.docs]
-    parent = "NGINX App Protect DoS Documentation."
-
-+++
+---
+description: Learn how to deploy NGINX App Protect DoS.
+menu:
+  docs:
+    parent: NGINX App Protect DoS Documentation.
+title: Deployment Guide
+weight: 100
+---
 

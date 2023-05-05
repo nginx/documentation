@@ -1,25 +1,36 @@
-+++
-authors = []
-categories = ["troubleshooting guide"]
-date = "2021-04-14T13:32:41+00:00"
-description = "Learn about the NGINX App Protect DoS Troubleshooting Guide."
-doctypes = ["task"]
-draft = false
-journeys = ["researching", "getting started", "using", "self service"]
-personas = ["devops", "netops", "secops", "support"]
-roles = ["admin", "user"]
-title = "NGINX App Protect DoS Troubleshooting Guide"
-toc = true
-versions = ["4.1"]
-weight = 200
-docs= "DOCS-675"
-
-[menu]
-  [menu.docs]
-    parent = "troubleshooting guide"
-    weight = 45
-
-+++
+---
+authors: []
+categories:
+- troubleshooting guide
+date: "2021-04-14T13:32:41+00:00"
+description: Learn about the NGINX App Protect DoS Troubleshooting Guide.
+docs: DOCS-675
+doctypes:
+- task
+draft: false
+journeys:
+- researching
+- getting started
+- using
+- self service
+menu:
+  docs:
+    parent: troubleshooting guide
+    weight: 45
+personas:
+- devops
+- netops
+- secops
+- support
+roles:
+- admin
+- user
+title: NGINX App Protect DoS Troubleshooting Guide
+toc: true
+versions:
+- "4.1"
+weight: 200
+---
 
 
 ## Overview
