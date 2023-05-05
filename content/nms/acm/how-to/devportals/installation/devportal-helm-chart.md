@@ -8,7 +8,7 @@ draft: false
 # The description text appears in search results and at the top of the doc.
 description: "Follow the steps in the guide to deploy the API Connectivity Manager Developer Portal to Kubernetes using a Helm chart."
 # Assign weights in increments of 100
-weight: 30
+weight: 20
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below

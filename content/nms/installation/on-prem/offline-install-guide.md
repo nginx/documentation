@@ -99,7 +99,7 @@ To download the external dependencies:
 
     {{< note >}}The bundled NGINX server package may conflict with installed versions of NGINX or NGINX Plus. Delete the package from the bundle if you want to keep the existing version.{{< /note >}}
 
-    {{<tabs name="install-acm-dataplane-dependencies">}}
+    {{<tabs name="install-nms-dependencies">}}
     {{%tab name="CentOS, RHEL, and RPM-Based"%}}
 
   ```bash
@@ -343,7 +343,7 @@ To upgrade API Connectivity Manager to a newer version, take the following steps
 
 ### Set Up the Data Plane {#acm-offline-dependencies}
 
-The API Connectivity Manager data plane requires NGINX Plus R24 or later and njs.
+The API Connectivity Manager data plane requires [NGINX Plus R24](https://docs.nginx.com/nginx/) or later and [njs](https://nginx.org/en/docs/njs/)..
 
 1. Log in to MyF5 and download your `nginx-repo.crt` and `nginx-repo.key` files.
 2. Copy the `nginx-repo.crt` and `nginx-repo.key` files to the `/etc/ssl/nginx/` directory:

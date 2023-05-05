@@ -12,7 +12,7 @@ weight: 10
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-000"
+docs: "DOCS-1214"
 # Taxonomies
 # These are pre-populated with all available terms for your convenience.
 # Remove all terms that do not apply.
@@ -48,7 +48,7 @@ Complete the following steps to prepare the Developer Portal for use with API Co
 
 ---
 
-## Installation Prerequisites
+## Prerequisites
 
 ### Add NGINX Management Suite Repository {#add-yum-apt}
 
@@ -150,7 +150,7 @@ echo 'DB_PATH="/var/lib/nginx-devportal"' | sudo tee -a /etc/nginx-devportal/dev
 
 ## Install the Developer Portal
 
-{{<tabs name="upgrade_dev_portal">}}
+{{<tabs name="install_dev_portal">}}
 {{%tab name="CentOS, RHEL, RPM-Based"%}}
 
 1. To install the Developer Portal, run the following command:
@@ -173,10 +173,16 @@ echo 'DB_PATH="/var/lib/nginx-devportal"' | sudo tee -a /etc/nginx-devportal/dev
 {{%/tab%}}
 {{</tabs>}}
 
-2. Start the Developer Portal:
+3. Enable the Developer Portal service:
+
+   ```bash
+   sudo systemctl enable nginx-devportal.service
+   ```
+
+2. Start the Developer Portal service:
 
     ```bash
-    sudo systemctl start nginx-devportal
+    sudo systemctl start nginx-devportal.service
     ```
 
  ---
