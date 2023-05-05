@@ -19,3 +19,7 @@ This is the initial version of the NGINX documentation repo.
 # 0.4.0 (May 5, 2023)
 
 [Merge NAP-WAF docs](https://github.com/nginxinc/docs/pull/86)
+
+# 0.5.0 (May 5, 2023) 
+
+[Merge NAP-DOS docs](https://github.com/nginxinc/docs/pull/89)
