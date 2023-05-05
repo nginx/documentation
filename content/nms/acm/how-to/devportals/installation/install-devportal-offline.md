@@ -30,7 +30,13 @@ docs: "DOCS-1215"
 
 ## Prerequisites
 
-The Developer Portal requires [NGINX Plus R24](https://docs.nginx.com/nginx/) or later and [njs](https://nginx.org/en/docs/njs/).
+The Developer Portal requires [PostgreSQL](https://www.postgresql.org), [NGINX Plus R24](https://docs.nginx.com/nginx/) or later, and [njs](https://nginx.org/en/docs/njs/).
+
+### PostgreSQL
+
+You can install the PostgreSQL package from your distribution’s repo at the same time you install the operating system. Refer to the the [PostgreSQL download guide](https://www.postgresql.org/download/) for instructions.
+
+### NGINX Plus and njs
 
 To install NGINX Plus and njs, take the following steps on the Developer Portal host:
 
