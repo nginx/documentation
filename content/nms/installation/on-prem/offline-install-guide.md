@@ -128,13 +128,10 @@ sudo dpkg -i ./*.deb
 
 ### Install Instance Manager {#install-nim-offline}
 
-To install Instance Manager, take the following steps:
-
-&nbsp;
-
 {{<tabs name="install_nim_offline">}}
 {{%tab name="CentOS, RHEL, and RPM-Based"%}}
 
+To install Instance Manager, take the following steps:
 
 1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the Instance Manager package files.
 
@@ -189,12 +186,10 @@ See these topics below for instructions on how to access the web interface and a
 
 ### Upgrade Instance Manager {#upgrade-nim-offline}
 
-To upgrade Instance Manager to a newer version, take the following steps:
-
-<br>&nbsp;
-
 {{<tabs name="upgrade-nim-offline">}}
 {{%tab name="CentOS, RHEL, and RPM-Based"%}}
+
+To upgrade Instance Manager to a newer version, take the following steps:
 
 1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the Instance Manager package files.
 
@@ -206,6 +201,8 @@ To upgrade Instance Manager to a newer version, take the following steps:
 
 {{%/tab%}}
 {{%tab name="Debian, Ubuntu, and Deb-Based"%}}
+
+To upgrade Instance Manager to a newer version, take the following steps:
 
 1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the Instance Manager package files.
 
@@ -249,7 +246,6 @@ Before you begin:
 
 {{<tabs name="install_acm_offline">}}
 {{%tab name="CentOS, RHEL, and RPM-Based"%}}
-
 
 To install API Connectivity Manager, take the following steps:
 
@@ -303,12 +299,10 @@ See these topics below for instructions on how to access the web interface and a
 
 ### Upgrade API Connectivity Manager {#upgrade-acm-offline}
 
-To upgrade API Connectivity Manager to a newer version, take the following steps:
-
-<br>&nbsp;
-
 {{<tabs name="upgrade-acm-offline">}}
 {{%tab name="CentOS, RHEL, and RPM-Based"%}}
+
+To upgrade API Connectivity Manager to a newer version, take the following steps:
 
 1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the API Connectivity Manager package file.
 
@@ -320,6 +314,8 @@ To upgrade API Connectivity Manager to a newer version, take the following steps
 
 {{%/tab%}}
 {{%tab name="Debian, Ubuntu, and Deb-Based"%}}
+
+To upgrade API Connectivity Manager to a newer version, take the following steps:
 
 1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the API Connectivity Manager package file.
 
@@ -430,6 +426,8 @@ Before you begin:
 {{<tabs name="install_adm_offline">}}
 {{%tab name="CentOS, RHEL, and RPM-Based"%}}
 
+To install App Delivery Manager, take the following steps:
+
 1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the App Delivery Manager package file.
 
 2. Install the App Delivery Manager package:
@@ -440,6 +438,8 @@ Before you begin:
 
 {{%/tab%}}
 {{%tab name="Debian, Ubuntu, and Deb-Based"%}}
+
+To install App Delivery Manager, take the following steps:
 
 1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the App Delivery Manager package file.
 
@@ -478,12 +478,12 @@ See these topics below for instructions on how to access the web interface and a
 
 ### Upgrade App Delivery Manager {#upgrade-adm-offline}
 
-To upgrade App Delivery Manager to a newer version, take the following steps:
-
 <br>&nbsp;
 
-{{<tabs name="upgrade-acm-offline">}}
+{{<tabs name="upgrade-adm-offline">}}
 {{%tab name="CentOS, RHEL, and RPM-Based"%}}
+
+To upgrade App Delivery Manager to a newer version, take the following steps:
 
 1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the App Delivery Manager package file.
 
@@ -495,6 +495,8 @@ To upgrade App Delivery Manager to a newer version, take the following steps:
 
 {{%/tab%}}
 {{%tab name="Debian, Ubuntu, and Deb-Based"%}}
+
+To upgrade App Delivery Manager to a newer version, take the following steps:
 
 1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the App Delivery Manager package file.
 
