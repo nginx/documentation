@@ -253,7 +253,7 @@ Before you begin:
 
 To install API Connectivity Manager, take the following steps:
 
-1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the API Connectivity Manager package files, or use the package provided by your NGINX Sales Team.
+1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the API Connectivity Manager package files.
 
 2. Install the API Connectivity Manager package:
 
@@ -266,7 +266,7 @@ To install API Connectivity Manager, take the following steps:
 
 To install API Connectivity Manager, take the following steps:
 
-1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the API Connectivity Manager package files, or use the package provided by your NGINX Sales Team.
+1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the API Connectivity Manager package files.
 
 2. Install the API Connectivity Manager package:
 
@@ -310,9 +310,9 @@ To upgrade API Connectivity Manager to a newer version, take the following steps
 {{<tabs name="upgrade-acm-offline">}}
 {{%tab name="CentOS, RHEL, and RPM-Based"%}}
 
-1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the Instance Manager package files.
+1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the API Connectivity Manager package file.
 
-2. Upgrade the Instance Manager package:
+2. Upgrade the API Connectivity Manager package:
 
    ```bash
    sudo yum -y --nogpgcheck update /home/user/nms-api-connectivity-manager_<version>.x86_64.rpm
@@ -321,9 +321,9 @@ To upgrade API Connectivity Manager to a newer version, take the following steps
 {{%/tab%}}
 {{%tab name="Debian, Ubuntu, and Deb-Based"%}}
 
-1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the Instance Manager package files.
+1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the API Connectivity Manager package file.
 
-2. Upgrade the Instance Manager package:
+2. Upgrade the API Connectivity Manager package:
 
    ```bash
    sudo apt-get -y install -f /home/user/nms-api-connectivity-manager_<version>_amd64.deb
@@ -430,7 +430,7 @@ Before you begin:
 {{<tabs name="install_adm_offline">}}
 {{%tab name="CentOS, RHEL, and RPM-Based"%}}
 
-1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the App Delivery Manager package files, or use the package provided by your NGINX Sales Team.
+1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the App Delivery Manager package file.
 
 2. Install the App Delivery Manager package:
 
@@ -441,7 +441,7 @@ Before you begin:
 {{%/tab%}}
 {{%tab name="Debian, Ubuntu, and Deb-Based"%}}
 
-1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the App Delivery Manager package files, or use the package provided by your NGINX Sales Team.
+1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the App Delivery Manager package file.
 
 2. Install the App Delivery Manager package:
 
@@ -485,9 +485,9 @@ To upgrade App Delivery Manager to a newer version, take the following steps:
 {{<tabs name="upgrade-acm-offline">}}
 {{%tab name="CentOS, RHEL, and RPM-Based"%}}
 
-1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the Instance Manager package files.
+1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the App Delivery Manager package file.
 
-2. Upgrade the Instance Manager package:
+2. Upgrade the App Delivery Manager package:
 
    ```bash
    sudo yum -y --nogpgcheck update /home/user/nms-app-delivery-manager_<version>.x86_64.rpm
@@ -496,9 +496,9 @@ To upgrade App Delivery Manager to a newer version, take the following steps:
 {{%/tab%}}
 {{%tab name="Debian, Ubuntu, and Deb-Based"%}}
 
-1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the Instance Manager package files.
+1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the App Delivery Manager package file.
 
-2. Upgrade the Instance Manager package:
+2. Upgrade the App Delivery Manager package:
 
    ```bash
    sudo apt-get -y install -f /home/user/nms-app-delivery-manager_<version>_amd64.deb
@@ -514,7 +514,6 @@ To upgrade App Delivery Manager to a newer version, take the following steps:
    ```
 
 2. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore SELinux contexts (`restorecon`) for the files and directories related to NGINX Management suite.
-
 
 ### Set Up the Data Plane {#adm-data-plane}
 
