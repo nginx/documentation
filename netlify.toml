@@ -2,7 +2,9 @@
   publish = "public"
 
 [context.production]
-  command = "make all"  
+  # keep while docs-dev is the production site
+  # this will change to make all when we go live on production site 
+  command = "make all-dev"  
   publish = "public"
   
 [context.staging]
