@@ -12,7 +12,7 @@ weight: 20
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-000"
+docs: "DOCS-1213"
 # Taxonomies
 # These are pre-populated with all available terms for your convenience.
 # Remove all terms that do not apply.
@@ -167,7 +167,7 @@ Complete the following steps for each data plane instance you want to use with A
 
 ### Install the Developer Portal
 
-- [Install the Developer Portal]({{< relref "/nms/acm/how-to/devportals/install-dev-portal.md" >}})
+- [Install the Developer Portal]({{< relref "/nms/acm/how-to/devportals/installation/install-dev-portal.md" >}})
 
 ### Install Other NGINX Management Suite Modules
 

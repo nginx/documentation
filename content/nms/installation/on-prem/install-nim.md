@@ -12,7 +12,7 @@ weight: 10
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-000"
+docs: "DOCS-1211"
 # Taxonomies
 # These are pre-populated with all available terms for your convenience.
 # Remove all terms that do not apply.
@@ -84,9 +84,6 @@ authors: []
    ```bash
    sudo systemctl restart nginx
    ```
-
-4. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Management suite.
-
 
 ### Post-Installation Steps
 
