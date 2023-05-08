@@ -1,18 +1,18 @@
 ---
-title: "Install Instance Manager"
+title: "Install or Upgrade Instance Manager"
 date: 2023-04-06T11:59:44-07:00
 # Change draft status to false to publish doc
 draft: false
 # Description
 # Add a short description (150 chars) for the doc. Include keywords for SEO. 
 # The description text appears in search results and at the top of the doc.
-description: "Follow the steps in this guide to install NGINX Management Suite Instance Manager."
+description: "Follow the steps in this guide to install or upgrade NGINX Management Suite Instance Manager."
 # Assign weights in increments of 100
 weight: 10
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-000"
+docs: "DOCS-1211"
 # Taxonomies
 # These are pre-populated with all available terms for your convenience.
 # Remove all terms that do not apply.
@@ -30,7 +30,11 @@ authors: []
 
 ## Before You Begin
 
-### Install Prerequisites
+### Security Considerations
+
+{{< include "installation/secure-installation.md" >}}
+
+### Installation Prerequisites
 
 {{< include "installation/nms-prerequisites.md" >}}
 
@@ -67,7 +71,7 @@ authors: []
 
 {{</tabs>}}
 
-2. Enable and start the platform services:
+2. Enable and start the NGINX Management Suite platform services:
 
     ```bash
     sudo systemctl enable nms nms-core nms-dpm nms-ingestion nms-integrations --now
@@ -81,8 +85,6 @@ authors: []
    sudo systemctl restart nginx
    ```
 
-</details>
-
 ### Post-Installation Steps
 
 {{< include "installation/optional-installation-steps.md" >}}
@@ -91,32 +93,72 @@ authors: []
 
 {{< include "installation/access-web-ui.md" >}}
 
----
 
-## Add License
+### Add License
 
 A valid license is required in order to use all of the features in Instance Manager.
 
-### Download License
+#### Download License
 
 {{< include "installation/download-license.md" >}}
 
-### Apply License
+#### Apply License
 
 {{< include "installation/add-license.md" >}}
 
 ---
 
-## Set Up the Data Plane
+## Upgrade Instance Manager {#upgrade-nim}
 
-To manage your data plane with NGINX Management Suite, complete the following tasks:
+{{<tabs name="upgrade_nim">}}
+{{%tab name="CentOS, RHEL, RPM-Based"%}}
 
-- [Install NGINX OSS or NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/) on your data plane instances.
-- [Install the NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent.md" >}}) on your data plane instances to register them with NGINX Management Suite.
+1. To upgrade to the latest version of the Instance Manger, run the following command:
+
+   ```bash
+   sudo yum update -y nms-instance-manager
+   ```
+
+{{%/tab%}}
+
+{{%tab name="Debian, Ubuntu, Deb-Based"%}}
+
+1. To upgrade to the latest version of the Instance Manager, run the following command:
+
+   ```bash
+   sudo apt-get update
+   sudo apt-get install -y --only-upgrade nms-instance-manager
+   ```
+
+{{%/tab%}}
+{{</tabs>}}
+
+2. Restart the NGINX Management Suite platform services:
+
+    ```bash
+    sudo systemctl restart nms
+    ```
+
+    NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
+
+3. Restart the NGINX web server:
+
+   ```bash
+   sudo systemctl restart nginx
+   ```
+
+4. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Management suite.
 
 ---
 
 ## What's Next
+
+### Set Up the Data Plane
+
+Complete the following steps for each data plane instance you want to manage using Instance Manager:
+
+- [Install NGINX OSS or NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/) on your data plane instances.
+- [Install the NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent.md" >}}) on your data plane instances to register them with NGINX Management Suite.
 
 ### Set up NGINX App Protect WAF
 

@@ -41,6 +41,10 @@ Helm charts are packages of pre-configured Kubernetes resources that can be depl
 
 ## Before You Begin
 
+### Security Considerations
+
+{{< include "installation/secure-installation.md" >}}
+
 ### Requirements for NGINX Management Suite
 
 To deploy NGINX Management Suite using a Helm chart, you need the following:
@@ -615,7 +619,7 @@ You can access the NGINX Management Suite web interface using the external IP ad
 
 ## Upgrade NGINX Management Suite {#helm-upgrade-nms}
 
-To upgrade NGINX Management Suite, take the following steps:
+To upgrade NGINX Management Suite from a Helm chart, take the following steps:
 
 1. Repeat the steps above to:
 

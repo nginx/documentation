@@ -2,14 +2,14 @@
 
 ---
 
-1. Install and load the policy:
+1. Load the NGINX Management Suite policy:
 
     ```bash
     sudo semodule -n -i /usr/share/selinux/packages/nms.pp
     sudo /usr/sbin/load_policy
     ```
 
-2. Label the necessary files according to their definitions:
+1. Run the following commands to set the SELinux contexts for the following files and directories to their default values:
 
    ```bash
    sudo restorecon -F -R /usr/bin/nms-core
@@ -31,7 +31,24 @@
    sudo restorecon -F -R /var/log/nms
    ```
 
-3. Restart the NGINX Management Suite services:
+1. (API Connectivity Manager) If you installed API Connectivity Manager, run the following additional commands to set the SELinux contexts for the following files and directories to their default values:
+
+    ```bash
+    sudo restorecon -F -R /usr/bin/nms-acm
+    sudo restorecon -F -R /usr/lib/systemd/system/nms-acm.service
+    sudo restorecon -F -R /var/lib/nms/modules/acm.json
+    ```
+
+1. (App Delivery Manager) If you installed App Connectivity Manager, run the following additional commands to set the SELinux contexts for the following files and directories to their default values:
+
+    ```bash
+    sudo restorecon -F -R /usr/bin/nms-adm
+    sudo restorecon -F -R /usr/lib/systemd/system/nms-adm.service
+    sudo restorecon -F -R /var/lib/nms/modules/adm.json
+    ```
+
+1. Restart the NGINX Management Suite services:
 
     ```bash
     sudo systemctl restart nms
+    ```

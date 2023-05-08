@@ -1,14 +1,14 @@
 ---
-title: "Configure Instance Manager with a Config File"
+title: "Configure NGINX Management Suite with nms.conf"
 date: 2022-12-14T09:01:18-08:00
 # Change draft status to false to publish doc.
 draft: false
 # Description
 # Add a short description (150 chars) for the doc. Include keywords for SEO. 
 # The description text appears in search results and at the top of the doc.
-description: "Follow the steps in this guide to configure NGINX Management Suite Instance Manager with a config file."
+description: "Follow the steps in this guide to configure NGINX Management Suite with a configuration file."
 # Assign weights in increments of 100
-weight: 300
+weight: 1
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
@@ -29,16 +29,19 @@ authors: []
 
 ## Overview
 
-You can set the configurable options for Instance Manager by editing the default configuration file, `/etc/nms/nms.conf`. You can use the `--config` flag to provide the path to your configuration file.
+The NGINX Management Suite includes several modules for managing your NGINX instances:
+
+- Instance Manager: This module allows you to manage multiple NGINX instances, whether they're running on-premises, in the cloud, or in containers. With Instance Manager, you can perform tasks such as installing, configuring, and upgrading NGINX instances, as well as monitoring their health and performance.
+- API Connectivity Manager: This module provides a centralized interface for managing APIs that are exposed by NGINX instances. With API Connectivity Manager, you can create, publish, and secure APIs, as well as monitor their usage and performance.
+- App Delivery Manager: This module enables you to manage the delivery of applications that are hosted on NGINX instances. With App Delivery Manager, you can perform tasks such as deploying applications, managing SSL certificates, and configuring load balancing and caching.
+
+To configure NGINX Management Suite, you can edit the default configuration file located at `/etc/nms/nms.conf`.
+
+The `nms.conf` file is a configuration file, written in YAML format, used by NGINX Management Suite. This file contains settings and options that determine how the software works. The options in the file include settings for the user and group that non-privileged processes should run as; the CA cert file used for TLS server; the URL for NGINX Management Suite; the choice of whether the software should run in development mode or daemon mode; the root directory for Dqlite data; as well as various settings pertaining to logging, modules, and services.
 
 ## Example nms.conf
 
-See the available flags and their uses in the example below:
-
-<details open>
-    <summary>Instance Manager flags, usage, and placement</summary>
-
-{{<note>}}In the following example `nms.conf` file, the default values for flags are given.{{</note>}}
+The following example `nms.conf` file displays the configurable options, including their usage, placement, and default values. 
 
 ```yaml
 # Sets non-privileged processes to run as a specified user.
@@ -50,7 +53,7 @@ group:
 # Sets CA cert file used for TLS server.
 ca_file:
 
-# Sets the NGINX Instance Manager URL.
+# Sets the NGINX Management Suite URL.
 fqdn: 127.0.0.1:443
 
 # Run service in development mode.
@@ -76,7 +79,7 @@ log:
   # Sets logging output encoding [console, json].
   encoding: console
 
-# To configure NMS Instance Manager in High Availability mode, set ha.
+# To configure NGINX Management Suite in High Availability mode, set ha.
 ha:
   # With HA, use this flag to set the cluster size.
   cluster_size: 3
@@ -92,13 +95,13 @@ modules:
 disable_context_sub_loggers: false
 
 core:
-  # Sets the log level for Core.
+  # Sets the log level for NGINX Management Suite Core service.
   log_level: 
 
-  # Sets the address for NGINX Instance Manager Core requests.
+  # Sets the address for NGINX Management Suite Core requests.
   address: unix:/var/run/nms/core.sock
 
-  # Sets the address for NGINX Instance Manager Core GRPC requests.
+  # Sets the address for NGINX Management Suite Core GRPC requests.
   grpc_addr: unix:/var/run/nms/coregrpc.sock
 
   # Sets the secrets directory path.
@@ -185,13 +188,13 @@ core:
 
 dpm:
 
-   # Sets the log level for DPM.
+   # Sets the log level for the NGINX Management Suite Data Plane Manager (DPM) service.
   log_level: 
 
-  # Sets the address for NGINX Instance Manager DPM requests.
+  # Sets the address for NGINX Management Suite DPM requests.
   address: unix:/var/run/nms/dpm.sock
 
-  # Sets the address for NGINX Instance Manager DPM GRPC requests.
+  # Sets the address for NGINX Management Suite DPM GRPC requests.
   grpc_addr: unix:/var/run/nms/am.sock
 
   # If enabled, keeps DPM deployments in list indefinitely.

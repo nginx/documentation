@@ -1,5 +1,5 @@
 ---
-title: "Deploy ACM Developer Portal Using Helm"
+title: "Deploy the Developer Portal from a Helm chart"
 date: 2022-12-14T16:34:44-08:00
 # Change draft status to false to publish doc
 draft: false
@@ -8,7 +8,7 @@ draft: false
 # The description text appears in search results and at the top of the doc.
 description: "Follow the steps in the guide to deploy the API Connectivity Manager Developer Portal to Kubernetes using a Helm chart."
 # Assign weights in increments of 100
-weight: 30
+weight: 20
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below

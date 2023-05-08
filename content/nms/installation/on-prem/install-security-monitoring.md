@@ -1,18 +1,18 @@
 ---
-title: "Install Security Monitoring"
+title: "Install or Upgrade Security Monitoring"
 date: 2023-04-06T12:00:00-07:00
 # Change draft status to false to publish doc
 draft: false
 # Description
 # Add a short description (150 chars) for the doc. Include keywords for SEO. 
 # The description text appears in search results and at the top of the doc.
-description: "Follow the steps in this guide to install the NGINX Management Suite Security Monitoring module."
+description: "Follow the steps in this guide to install or upgrade or upgrade the NGINX Management Suite Security Monitoring module."
 # Assign weights in increments of 100
 weight: 40
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-000"
+docs: "DOCS-1208"
 # Taxonomies
 # These are pre-populated with all available terms for your convenience.
 # Remove all terms that do not apply.
@@ -30,7 +30,11 @@ authors: []
 
 ## Before You Begin
 
-### Install Prerequisites
+### Security Considerations
+
+{{< include "installation/secure-installation.md" >}}
+
+### Installation Prerequisites
 
 {{< include "installation/nms-prerequisites.md" >}}
 
@@ -40,7 +44,7 @@ authors: []
 
 ---
 
-## Install Security Monitoring Module
+## Install Security Monitoring
 
 {{<tabs name="install-security-monitoring">}}
 
@@ -99,31 +103,74 @@ authors: []
 
 {{< include "installation/access-web-ui.md" >}}
 
----
-
-## Add License
+### Add License
 
 A valid license is required in order to use the Security Monitoring module.
 
-### Download License
+#### Download License
 
 {{< include "installation/download-license.md" >}}
 
-### Apply License
+#### Apply License
 
 {{< include "installation/add-license.md" >}}
 
 ---
 
-## Set Up Data Plane
+## Upgrade Security Monitoring {#upgrade-security-monitoring}
 
-To set up your NGINX App Protect WAF data plane instances for use with Security Monitoring, refer to the following instructions:
+{{<note>}}When upgrading Security Monitoring, you may need a newer version of NGINX Management Suite. The installation process will notify you of any version requirements before upgrading Security Monitoring and any dependent packages, including NGINX Management Suite. You may cancel the installation process if you want to [back up NGINX Management Suite]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md" >}}) before upgrading.{{</note>}}
 
-- [Set Up App Protect Instances for Security Monitoring]({{< relref "/nms/security/how-to/set-up-app-protect-instances" >}})
+<br>
+
+{{<tabs name="upgrade_adm">}}
+{{%tab name="CentOS, RHEL, RPM-Based"%}}
+
+1. To upgrade to the latest version of Security Monitoring, run the following command:
+
+   ```bash
+   sudo yum update -y nms-sm
+   ```
+
+{{%/tab%}}
+
+{{%tab name="Debian, Ubuntu, Deb-Based"%}}
+
+1. To upgrade to the latest version of the Security Monitoring, run the following command:
+
+   ```bash
+   sudo apt-get update
+   sudo apt-get upgrade -y nms-sm
+   ```
+
+{{%/tab%}}
+{{</tabs>}}
+
+2. Restart the NGINX Management Suite platform services:
+
+    ```bash
+    sudo systemctl restart nms
+    ```
+
+    NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
+
+3. Restart the NGINX web server:
+
+   ```bash
+   sudo systemctl restart nginx
+   ```
+
+4. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Management suite.
 
 ---
 
 ## What's Next
+
+### Set Up Data Plane
+
+To set up your NGINX App Protect WAF data plane instances for use with Security Monitoring, refer to the following instructions:
+
+- [Set Up App Protect Instances for Security Monitoring]({{< relref "/nms/security/how-to/set-up-app-protect-instances" >}})
 
 ### Install Other NGINX Management Suite Modules
 
