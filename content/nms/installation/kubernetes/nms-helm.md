@@ -41,6 +41,10 @@ Helm charts are packages of pre-configured Kubernetes resources that can be depl
 
 ## Before You Begin
 
+### Security Considerations
+
+{{< include "installation/secure-installation.md" >}}
+
 ### Requirements for NGINX Management Suite
 
 To deploy NGINX Management Suite using a Helm chart, you need the following:

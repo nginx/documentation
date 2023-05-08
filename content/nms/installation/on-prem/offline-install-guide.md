@@ -41,6 +41,10 @@ aliases:
 You must complete the following prerequisite steps before installing any of the NGINX Management Suite modules. Neglecting to do so could result in a module not installing correctly or not installing at all.
 {{</important>}}
 
+### Security Considerations
+
+{{< include "installation/secure-installation.md" >}}
+
 ### Download Package Files
 
 To complete the steps in this guide, you need the following:
