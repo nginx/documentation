@@ -14,17 +14,17 @@ doctypes: ["concept"]
 
 NGINX Management Suite is a family of management plane solutions that enable governance of the NGINX data plane to easily scale, secure, and monitor applications and APIs. It consists of several modules:
 
-## Instance Manager (NIM):
+## Instance Manager:
 
-The [NIM module]({{< relref "/nms/nim/">}}) allows you to configure, scale, and manage NGINX Open Source and NGINX Plus instances. 
+[Instance Manager]({{< relref "/nms/nim/">}}) allows you to configure, scale, and manage NGINX Open Source and NGINX Plus instances. 
 
-The NIM module was initially developed as a [REST API]({{< relref "/nms/nim/about/api-overview">}}) that uses standard authentication methods, HTTP response codes, and verbs. The NIM REST API allows you to access all of the NIM features, manage NIM objects and the NMS platform programmatically, view metrics, edit configurations, manage certificates, create users, and more. 
+The Instance Manager module was initially developed as a [REST API]({{< relref "/nms/nim/about/api-overview">}}) that uses standard authentication methods, HTTP response codes, and verbs. The Instance Manager REST API allows you to access all of the module's features, manage Instance Manager objects and the NGINX Management Suite platform programmatically, view metrics, edit configurations, manage certificates, create users, and more. 
 
-The NIM features available through NGINX Management System's web interface are built on top of this REST API.
+The Instance Manager features available through NGINX Management Suite's web interface are built on top of this REST API.
 
 ### Instance Manager Key Features
 
-The NIM module provides the following features:
+Instance Manager provides the following features:
 
 - [View metrics and information]({{< relref "/nms/nim/how-to/view-events-metrics">}}) about data plane host systems and NGINX instances
 - [View, edit, and publish NGINX configurations]({{< relref "/nms/nim/how-to/nginx/publish-configs">}})
@@ -34,17 +34,17 @@ The NIM module provides the following features:
 - [Manage certificates]({{< relref "/nms/nim/how-to/nginx/manage-certificates">}})
 - [Create users, roles, and role permissions]({{< relref "/nms/admin-guides/access-control/set-up-rbac">}}) for role-based access control
 
-## API Connectivity Manager (ACM): 
+## API Connectivity Manager: 
 
-The [ACM module]({{< relref "/nms/acm/">}}) enables self-service and automation of API delivery. ACM allows you to deploy, configure, secure, monitor, and govern API gateways at scale. 
+[API Connectivity Manager]({{< relref "/nms/acm/">}}) enables self-service and automation of API delivery. API Connectivity Manager allows you to deploy, configure, secure, monitor, and govern API gateways at scale. 
 
-The ACM module provides a [REST API]({{< relref "/nms/acm/about/api-overview">}}) that uses standard authentication methods, HTTP response codes, and verbs.
+The API Connectivity Manager module provides a [REST API]({{< relref "/nms/acm/about/api-overview">}}) that uses standard authentication methods, HTTP response codes, and verbs.
 
-You can use the API Connectivity Manager API to connect, secure, and govern your APIs. In addition, ACM lets you separate infrastructure lifecycle management from the API lifecycle, allowing your IT/Ops teams and application developers to work independently.
+You can use the API Connectivity Manager API to connect, secure, and govern your APIs. In addition, API Connectivity Manager lets you separate infrastructure lifecycle management from the API lifecycle, allowing your IT/Ops teams and application developers to work independently.
 
 ### API Connectivity Manager Key Features
 
-The ACM module provides the following features:
+The API Connectiviy Manager module provides the following features:
 
 - [Create and manage isolated workspaces]({{< relref "/nms/acm/how-to/infrastructure/manage-api-infrastructure.md#create-a-workspace">}})
 - [Create and manage API infrastructure]({{< relref "/nms/acm/how-to/infrastructure/manage-api-infrastructure.md#add-an-environment">}}) in isolated workspaces
@@ -54,13 +54,13 @@ The ACM module provides the following features:
 - [Apply policies to API proxies]({{< relref "/nms/acm/how-to/policies/manage-policies.md#configure-proxy-policies" >}}) to provide custom quality of service for individual applications
 - [Issue API keys]({{< relref "/nms/acm/how-to/infrastructure/enable-sso-devportal" >}}) or basic authentication credentials for access to the API
 
-## App Delivery Manager (ADM):
+## App Delivery Manager:
 
-The [ADM]({{< relref "/nms/adm/">}}) module is built on top of the NGINX Management Suite (NMS) platform and sits alongside the Instance Manager (NIM) module. As such, uses many of the features that are included with NIM, such as [authentication]({{< relref "/nms/admin-guides/access-control/configure-authentication.md" >}}), [Role-Based Access Control (RBAC)]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}), [instance groups]({{< relref "/nms/nim/how-to/nginx/manage-instance-groups.md" >}}), and [certificate management]({{< relref "/nms/nim/how-to/nginx/manage-certificates.md" >}}).
+[App Delivery Manager]({{< relref "/nms/adm/">}}) is built on top of the NGINX Management Suite platform and sits alongside the Instance Manager module. As such, uses many of the features that are included with the Instance Manager module, such as [authentication]({{< relref "/nms/admin-guides/access-control/configure-authentication.md" >}}), [Role-Based Access Control (RBAC)]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}), [instance groups]({{< relref "/nms/nim/how-to/nginx/manage-instance-groups.md" >}}), and [certificate management]({{< relref "/nms/nim/how-to/nginx/manage-certificates.md" >}}).
 
 ### App Delivery Manager Key Features
 
-The ADM module provides an abstraction over the NGINX configuration, allowing individual teams to deploy their custom apps independently. ADM hides the complexities of the NGINX configuration through a simple high-level API abstraction of the NGINX contexts and common directives. We refer to this abstraction as the app-centric view of the configuration.
+The App Delivery Manager module provides an abstraction over the NGINX configuration, allowing individual teams to deploy their custom apps independently. App Delivery Manager hides the complexities of the NGINX configuration through a simple high-level API abstraction of the NGINX contexts and common directives. We refer to this abstraction as the app-centric view of the configuration.
 
 This app-centric view addresses the following concerns:
 
@@ -69,11 +69,11 @@ This app-centric view addresses the following concerns:
 * **Safety:** Various business units can be given fine-grain ownership over configuration elements, when necessary.
 * **Self-Service:** By isolating app teams from one another, you can allow each team to independently deploy and update the configuration for their apps without requiring intervention. This removes artificial gates that previously prevented teams from quickly delivering their updated apps and allows for the integration of the CI/CD process into their development workflow.
 
-This is all done behind a simple API abstraction provided by ADM. For teams that need more control of the NGINX configuration or access to the rich set of directives and dynamic modules, the ADM service provides a template facility to expand the API and the resulting possibilities for the NGINX configuration.
+This is all done behind a simple API abstraction provided by App Delivery Manager. For teams that need more control of the NGINX configuration or access to the rich set of directives and dynamic modules, the App Delivery Manager service provides a template facility to expand the API and the resulting possibilities for the NGINX configuration.
 
 ## Security Monitoring
 
-The [Security Monitoring module]({{< relref "/nms/security/">}}) allows you to monitor NGINX App Protect WAF with analytics dashboards and security log details to get protection insights for analyzing possible threats or areas for tuning policies.
+[Security Monitoring]({{< relref "/nms/security/">}}) allows you to monitor NGINX App Protect WAF with analytics dashboards and security log details to get protection insights for analyzing possible threats or areas for tuning policies.
 
 ### Security Monitoring Key Features
 
