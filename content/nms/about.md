@@ -14,17 +14,17 @@ doctypes: ["concept"]
 
 NGINX Management Suite is a family of management plane solutions that enable governance of the NGINX data plane to easily scale, secure, and monitor applications and APIs. It consists of several modules:
 
-## NGINX Instance Manager:
+## Instance Manager:
 
-[NGINX Instance Manager]({{< relref "/nms/nim/">}}) allows you to configure, scale, and manage NGINX Open Source and NGINX Plus instances. 
+[Instance Manager]({{< relref "/nms/nim/">}}) allows you to configure, scale, and manage NGINX Open Source and NGINX Plus instances. 
 
 The Instance Manager module was initially developed as a [REST API]({{< relref "/nms/nim/about/api-overview">}}) that uses standard authentication methods, HTTP response codes, and verbs. The Instance Manager REST API allows you to access all of the module's features, manage Instance Manager objects and the NGINX Management Suite platform programmatically, view metrics, edit configurations, manage certificates, create users, and more. 
 
 The Instance Manager features available through NGINX Management Suite's web interface are built on top of this REST API.
 
-### NGINX Instance Manager Key Features
+### Instance Manager Key Features
 
-NGINX Instance Manager provides the following features:
+Instance Manager provides the following features:
 
 - [View metrics and information]({{< relref "/nms/nim/how-to/view-events-metrics">}}) about data plane host systems and NGINX instances
 - [View, edit, and publish NGINX configurations]({{< relref "/nms/nim/how-to/nginx/publish-configs">}})
@@ -34,15 +34,15 @@ NGINX Instance Manager provides the following features:
 - [Manage certificates]({{< relref "/nms/nim/how-to/nginx/manage-certificates">}})
 - [Create users, roles, and role permissions]({{< relref "/nms/admin-guides/access-control/set-up-rbac">}}) for role-based access control
 
-## NGINX API Connectivity Manager: 
+## API Connectivity Manager: 
 
-[NGINX API Connectivity Manager]({{< relref "/nms/acm/">}}) enables self-service and automation of API delivery. API Connectivity Manager allows you to deploy, configure, secure, monitor, and govern API gateways at scale. 
+[API Connectivity Manager]({{< relref "/nms/acm/">}}) enables self-service and automation of API delivery. API Connectivity Manager allows you to deploy, configure, secure, monitor, and govern API gateways at scale. 
 
 The API Connectivity Manager module provides a [REST API]({{< relref "/nms/acm/about/api-overview">}}) that uses standard authentication methods, HTTP response codes, and verbs.
 
 You can use the API Connectivity Manager API to connect, secure, and govern your APIs. In addition, API Connectivity Manager lets you separate infrastructure lifecycle management from the API lifecycle, allowing your IT/Ops teams and application developers to work independently.
 
-### NGINX API Connectivity Manager Key Features
+### API Connectivity Manager Key Features
 
 The API Connectiviy Manager module provides the following features:
 
@@ -54,11 +54,11 @@ The API Connectiviy Manager module provides the following features:
 - [Apply policies to API proxies]({{< relref "/nms/acm/how-to/policies/manage-policies.md#configure-proxy-policies" >}}) to provide custom quality of service for individual applications
 - [Issue API keys]({{< relref "/nms/acm/how-to/infrastructure/enable-sso-devportal" >}}) or basic authentication credentials for access to the API
 
-## NGINX App Delivery Manager:
+## App Delivery Manager:
 
-[NGINX App Delivery Manager]]({{< relref "/nms/adm/">}}) is built on top of the NGINX Management Suite platform and sits alongside the Instance Manager module. As such, uses many of the features that are included with the Instance Manager module, such as [authentication]({{< relref "/nms/admin-guides/access-control/configure-authentication.md" >}}), [Role-Based Access Control (RBAC)]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}), [instance groups]({{< relref "/nms/nim/how-to/nginx/manage-instance-groups.md" >}}), and [certificate management]({{< relref "/nms/nim/how-to/nginx/manage-certificates.md" >}}).
+[App Delivery Manager]({{< relref "/nms/adm/">}}) is built on top of the NGINX Management Suite platform and sits alongside the Instance Manager module. As such, uses many of the features that are included with the Instance Manager module, such as [authentication]({{< relref "/nms/admin-guides/access-control/configure-authentication.md" >}}), [Role-Based Access Control (RBAC)]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}), [instance groups]({{< relref "/nms/nim/how-to/nginx/manage-instance-groups.md" >}}), and [certificate management]({{< relref "/nms/nim/how-to/nginx/manage-certificates.md" >}}).
 
-### NGINX App Delivery Manager Key Features
+### App Delivery Manager Key Features
 
 The App Delivery Manager module provides an abstraction over the NGINX configuration, allowing individual teams to deploy their custom apps independently. App Delivery Manager hides the complexities of the NGINX configuration through a simple high-level API abstraction of the NGINX contexts and common directives. We refer to this abstraction as the app-centric view of the configuration.
 
