@@ -58,7 +58,7 @@ The following table lists the features you can assign roles to:
 | Instance Manager         | Certs               | Allows access to view and manage certs for NGINX instances                        |
 | Instance Manager         | Instance Groups     | Allows access to view and manage NGINX instance groups                            |
 | Instance Manager         | Instance Sets       | Allows access to view and manage NGINX instance sets                              |
-| Instance Manager         | Instance Management | Allows access to view and manage NGINX instances                                  |
+| Instance Manager         | Instance Management | Allows access to view and manage NGINX instances where granting write access (Create, Update) allows a user to read and publish any valid certificate stored in NGINX Management Suite by name                              |
 | Instance Manager         | Scan                | Allows access to scan for NGINX Instances                                         |
 | Instance Manager         | Staged Configs      | Allows access to view and manage staged NGINX configurations                      |
 | Security Monitoring      | Security Monitoring | Allows access to the Security Monitoring dashboard and APIs                       |
