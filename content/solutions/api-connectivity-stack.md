@@ -7,7 +7,7 @@ weight: 200
 toc: true
 tags: [ "docs" ]
 versions: []
-docs: "DOCS-929"
+docs: 
 ---
 
 ## Overview
@@ -19,10 +19,10 @@ The API Connectivity Stack by F5 NGINX includes access to the following products
 - [F5 NGINX Management Suite Security Monitoring]({{< ref "nms/security" >}})
 - [F5 NGINX Management Suite API Connectivity Manager](https://www.nginx.com/products/nginx-management-suite/api-connectivity-manager/)
 
-## Installation
+## Installation Guide
 
 ### Install the Instance Manager module
-NGINX Management Suite Instance Manager makes it easy to inventory, configure, monitor, and secure NGINX Open Source and NGINX Plus instances.
+NGINX Management Suite Instance Manager makes it easy to inventory, configure, monitor, and secure NGINX Open Source, NGINX Plus, and NGINX App Protect WAF instances.
 
 1. [Download the products and distributions](https://my.f5.com/manage/s/downloads) you need from MyF5.
 2. Choose your target deployment environment and follow the appropriate installation guide to setup NGINX Management Suite:
@@ -39,13 +39,13 @@ NGINX Management Suite Security Monitoring provides global visibility into your 
 
 {{< note >}}The Kubernetes Helm method does not support installation of the Security Monitoring module, and the module is not currently supported in Kubernetes.{{< /note >}}
 
-### Step 3 (Optional): Install the API Connectivity Manager module
+### (Optional) Install the API Connectivity Manager module
 NGINX Management Suite API Connectivity Manger makes it easy to manage, govern, and secure API gateways deployed across multi-cloud and hybrid environments. Install this module if you want to centrally manage your NGINX Plus API gateways.
 
 - [Install using Linux (virtual machines)]({{< ref "install-guide#install-nms-modules" >}})
 - [Install in Kubernetes using Helm]({{< ref "enable-modules-for-existing-deployments" >}})
 
-### Step 4 (Required): Install NGINX Plus as an API Gateway
+### Install NGINX Plus as an API Gateway
 NGINX Plus can be configured to act as an API gateway for monolithic applications and microservices. It is the data plane that transports application traffic and is operated by management plane tools like NGINX Management Suite API Connectivity Manager.
 
 1.	[Download your credentials from MyF5](https://my.f5.com/), including your NGINX Plus Certificate and public key (`nginx-repo.crt` and `nginx-repo.key`).
@@ -54,7 +54,7 @@ NGINX Plus can be configured to act as an API gateway for monolithic application
 
 If you plan to use API Connectivity Manager to manage NGINX Plus as an API Gateway, refer to the instructions about [how to set up an API gateway environment]({{< ref "add-api-gateway" >}}).
 
-### Step 5 (Optional): Install NGINX App Protect WAF
+### (Optional) Install NGINX App Protect WAF
 NGINX App Protect WAF is a lightweight, platform agnostic WAF that protects applications and APIs from layer 7 attacks. You can manage WAFs using the Instance Manager module and visualize them using the Security Monitoring module.
 
 1.	[Download your credentials from MyF5](https://my.f5.com/), including your NGINX Plus Certificate and public key (`nginx-repo.crt` and `nginx-repo.key`).
@@ -62,7 +62,7 @@ NGINX App Protect WAF is a lightweight, platform agnostic WAF that protects appl
 
 If you want to use NGINX App Protect WAF with the Security Monitoring and Instance Manager modules, you will need to complete a few additional steps. Refer to the [installation guide]({{< ref "nap-waf/admin-guide/install-nms" >}}) for using NGINX App Protect WAF with NGINX Management Suite.
 
-### Step 6 (Optional): Install NGINX App Protect DoS
+### (Optional) Install NGINX App Protect DoS
 NGINX App Protect DoS provides comprehensive protection against Layer 7 denial-of-service attacks on your apps and APIs. At this time, it is not integrated with Instance Manager or Security Monitoring modules.
 
 1.	[Download your credentials from MyF5](https://my.f5.com/), including your NGINX Plus Certificate and public key (`nginx-repo.crt` and `nginx-repo.key`).
