@@ -55,7 +55,7 @@ Choose the tab for the module you want to activate and follow the provided instr
 
 ### Push Image to Private Registry {#push-image-private-docker-repo}
 
-{{< include "installation/helm/acm/push-acm-docker-imate-private-repo.md" >}}
+{{< include "installation/helm/acm/push-acm-docker-image-private-repo.md" >}}
 
 ### Enable API Connectivity Manager
 
@@ -79,7 +79,7 @@ Choose the tab for the module you want to activate and follow the provided instr
 
 ### Push Image to Private Registry {#push-image-private-docker-repo}
 
-{{< include "installation/helm/adm/push-adm-docker-imate-private-repo.md" >}}
+{{< include "installation/helm/adm/push-adm-docker-image-private-repo.md" >}}
 
 ### Enable App Delivery Manager
 {{< include "installation/helm/adm/edit-values-yaml-to-enable-adm.md" >}}
