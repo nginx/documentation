@@ -6,7 +6,7 @@ draft: false
 # Description
 # Add a short description (150 chars) for the doc. Include keywords for SEO. 
 # The description text appears in search results and at the top of the doc.
-description: "Follow the steps in the guide to deploy Instance Manager to Kubernetes using a Helm chart."
+description: ""
 # Assign weights in increments of 100
 weight: 2
 toc: true
@@ -31,15 +31,19 @@ aliases:
 
 ## Overview
 
-This tutorial will walk you through setting up Instance Manager on a Kubernetes cluster. You will learn how to download and load the Docker images, customize the deployment, enable NGINX Management Suite modules, and install the Helm chart.
+This guide provides a step-by-step tutorial on how to set up Instance Manager on a Kubernetes cluster. Learn how to download and load Docker images, customize your deployment, and install the Helm chart.
+
+### About Instance Manager
+
+NGINX Instance Manager simplifies the deployment and management of NGINX and NGINX Plus instances at scale. Instance Manager provides a REST API and web-based graphical user interface (GUI) for managing NGINX instances across multiple servers, making it easier to configure, monitor, and troubleshoot NGINX deployments. Instance Manager can be used to manage instances running on-premises, in the cloud, or in hybrid environments, and it supports the deployment of NGINX instances on a variety of operating systems and container platforms. Instance Manager also includes advanced features like health checks, rolling updates, and configuration backups, which help to ensure the reliability and security of NGINX deployments.
 
 ### What Is a Helm Chart?
 
-Helm charts are packages of pre-configured Kubernetes resources that can be deployed with a single command. Helm charts provide a simple way to define, install, and upgrade complex Kubernetes applications. Each chart comprises a collection of files describing a related set of Kubernetes resources, such as deployments, services, and ingress. Helm charts can be deployed to any Kubernetes cluster, making them a powerful tool for creating, sharing, and managing applications on Kubernetes. Helm charts can also be used to define and manage dependencies between different applications, enabling the creation of complex, multi-tier applications.
+Helm charts are pre-configured packages of Kubernetes resources that can easily be deployed with a single command. These charts offer a straightforward way to define, install, and upgrade Kubernetes applications. They are composed of a set of files that describe a related group of Kubernetes resources, including deployments, services, and ingress. With the ability to deploy to any Kubernetes cluster, Helm charts are a versatile tool for creating, sharing, and managing applications on Kubernetes. Additionally, Helm charts can facilitate the definition and management of dependencies between various applications, allowing for the development of complex, multi-tier applications.
 
 ---
 
-### Requirements
+## Requirements
 
 To deploy Instance Manager using a Helm chart, you need the following:
 
@@ -61,42 +65,38 @@ To deploy Instance Manager using a Helm chart, you need the following:
 
 ## Add Helm Repository {#add-helm-repository}
 
+{{<note>}} To complete the steps in the section, you need to have [Helm 3.10.0](https://helm.sh/docs/intro/install/) or later installed.{{</note>}}
+
 {{< include "installation/helm/add-helm-repo.md" >}}
 
 ---
 
-## Get Helm Bundle {#get-helm-bundle}
+## Download Helm Package  {#download-nms-helm-package}
 
-### Download NGINX Management Suite Helm Bundle  {#download-nms-helm-bundle}
+Take the following steps to download and extract the Helm page on your host:
 
-Download the NGINX Management Suite Helm bundle to your virtual machine:
+1. Go to the [MyF5 website](https://my.f5.com/manage/s/downloads), then select **Resources > Downloads**.
+2. In the **Select Product Family** list, select **NGINX**.
+3. In the **Product Line** list, select **NGINX Instance Manager**.
+4. Select the following download options:
 
-1. On the [MyF5 website](https://my.f5.com/manage/s/downloads), select **Resources > Downloads**.
-1. In the **Product Family** list, select **NGINX**.
-1. In the **Product Line** list, select **NGINX Instance Manager**.
-1. Select the following download options:
+   - **Product version**: Select the version of Instance Manager that you want to install.
+   - **Linux distribution**: Select `helmchart`.
+   - **Distribution Version**: Defaults to the helmchart version determined by the **Product Version**.
+   - **Architecture**: Defaults to `k8s`.
 
-   - **Product version**: select the version of NGINX Management Suite that you want to install.
-   - **Linux distribution**: select `helmchart`.
-   - **Distribution Version**: defaults to the helmchart version corresponding to the **Product Version**.
-   - **Architecture**: defaults to `k8`.
+5. In the **Download Files** section, download the `nms-helm-<version>.tar.gz` file.
 
-1. In the **Download Files** section, locate and download the `nms-helm-<version>.tar.gz` file.
-
-### Extract Helm Bundle {#extract-helm-bundle}
-
-The `nms-helm-<version>.tar.gz` file includes several Docker container images and the Helm package tarball. To extract these files, take the following steps:
-
-1. Make a directory to extract the package into:
+6. Make a directory to extract the Helm package into:
 
    ``` shell
-   mkdir -p <directory name>
+   mkdir -p nms-helm
    ```
 
-2. Extract the package into the target directory:
+7. Extract the package into the target directory:
 
     ``` shell
-    tar -xzf nms-helm-<version>.tar.gz -C <directory name>
+    tar -xzf nms-helm-<version>.tar.gz -C nms-helm
     ```
 
     <br>
@@ -117,15 +117,17 @@ The `nms-helm-<version>.tar.gz` file includes several Docker container images an
 
 ### Load Docker Images {#load-nms-docker-images}
 
+{{< note >}} To complete the commands in this section, you need to have [Docker 20.10 or later](https://docs.docker.com/get-docker/) installed. {{< /note >}}
+
 1. Change to the directory where you [extracted the Docker images](#extract-helm-bundle):
 
    ``` shell
-   cd <directory name>
+   cd nms-helm
    ```
 
 1. Load the Docker images:
 
-   ``` shell
+   ``` bash
    docker load -i nms-apigw-<version>.tar.gz
    docker load -i nms-core-<version>.tar.gz
    docker load -i nms-ingestion-<version>.tar.gz
@@ -137,23 +139,23 @@ The `nms-helm-<version>.tar.gz` file includes several Docker container images an
 
    The output looks similar to the following:
 
-   ``` shell
+   ``` shell {linenos=table,hl_lines=[7]}
    $ docker load -i nms-apigw-<version>.tar.gz
    1b5933fe4b5: Loading layer [==================================================>]  5.796MB/5.796MB
    fbe0fc9bcf95: Loading layer [==================================================>]  17.86MB/17.86MB
    ...
    112ae1f604e0: Loading layer [==================================================>]   67.8MB/67.8MB
    4b6a693b90f4: Loading layer [==================================================>]  3.072kB/3.072kB
-   Loaded image: nms-apigw:2.6.0
+   Loaded image: nms-apigw:2.9.1
    ```
 
    {{<important>}}For the output of each `docker load` command, note the loaded image's name and tag. You'll need to reference these images and tags in the next section when pushing the images to your private registry.
 
-   For example, in the output directly above, `nms-apigw` is the image name and `2.6.0` is the tag.  The tag `2.6.0` could differ depending on the product version you [downloaded from MyF5](#download-nms-helm-bundle).{{</important>}}
+   For example, in the output directly above, `nms-apigw` is the image name and `2.9.1` is the tag.  The tag `2.9.1` could differ depending on the product version you [downloaded from MyF5](#download-nms-helm-bundle).{{</important>}}
 
 ### Push Images to Private Registry {#push-images-private-registry}
 
-{{<before-you-begin>}}To complete this step, you need an [externally-accessible private Docker registry](https://docs.docker.com/registry/deploying/) to push the container images to.{{</before-you-begin>}}
+{{<note>}}To complete the steps in this section, you need an [externally-accessible private Docker registry](https://docs.docker.com/registry/deploying/) to push the container images to.{{</note>}}
 
 1. Log in to your private registry:
 
@@ -243,6 +245,8 @@ A Helm `values.yaml` file is a configuration file you can use to customize the i
 ---
 
 ## Install Chart {#install-chart}
+
+To complete the steps in this section, you need to have [OpenSSL 1.1.1](https://www.openssl.org/source/) or later installed.
 
 Run the `helm install` command to install Instance Manager from the Helm chart:
 
