@@ -633,9 +633,9 @@ Prior to compiling NGINX Open Source from source, you need to install librarie
 * [PCRE](http://pcre.org/) – Supports regular expressions. Required by the NGINX [Core](https://nginx.org/en/docs/ngx_core_module.html) and [Rewrite](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) modules.
 
   ```shell
-  wget github.com/PCRE2Project/pcre2/releases/download/pcre2-10.40/pcre2-10.40.tar.gz
-  tar -zxf pcre2-10.40.tar.gz
-  cd pcre2-10.40
+  wget github.com/PCRE2Project/pcre2/releases/download/pcre2-10.42/pcre2-10.42.tar.gz
+  tar -zxf pcre2-10.42.tar.gz
+  cd pcre2-10.42
   ./configure
   make
   sudo make install
@@ -696,7 +696,7 @@ An example of options to the `configure` script (should be typed as a single lin
 --sbin-path=/usr/local/nginx/nginx
 --conf-path=/usr/local/nginx/nginx.conf
 --pid-path=/usr/local/nginx/nginx.pid
---with-pcre=../pcre2-10.40
+--with-pcre=../pcre2-10.42
 --with-zlib=../zlib-1.2.13
 --with-http_ssl_module
 --with-stream
@@ -779,7 +779,7 @@ If you do not need a module that is built by default, you can disable it by nami
 --pid-path=/usr/local/nginx/nginx.pid
 --with-http_ssl_module
 --with-stream
---with-pcre=../pcre2-10.40
+--with-pcre=../pcre2-10.42
 --with-zlib=../zlib-1.2.13
 --without-http_empty_gif_module
 ```
@@ -832,7 +832,7 @@ An example of the `configure` command that includes nondefault modules (should b
 --sbin-path=/usr/local/nginx/nginx
 --conf-path=/usr/local/nginx/nginx.conf
 --pid-path=/usr/local/nginx/nginx.pid
---with-pcre=../pcre2-10.40
+--with-pcre=../pcre2-10.42
 --with-zlib=../zlib-1.2.13
 --with-http_ssl_module
 --with-stream
