@@ -115,3 +115,6 @@ refLinksErrorLevel = "WARNING"
 sectionPagesMenu = "docs"
 
 ignoreFiles = [ "\\.sh$", "\\.DS_Store$", "\\.git.*$", "\\.txt$", "\\/config\\/.*", "README\\.*"]
+
+[markup.goldmark.renderer]
+unsafe= true
