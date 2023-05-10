@@ -113,7 +113,7 @@ The TCPUDP-COMPONENT-MANAGEMENT feature controls access to TCP/UDP components an
 
 * All permissions within a particular feature (for example, ENVIRONMENT-MANAGEMENT) should be granted the same CRUD level of access. So if a particular permission has READ and DELETE access for ENVIRONMENT-MANAGEMENT, all permissions under ENVIRONMENT-MANAGEMENT should have the same READ and DELETE access.
 
-## **Example Roles**
+## Example Roles
 
 We recommend configuring roles to limit permissions. An example scenario is detailed below.  For more details on how to assign roles and the special considerations which need to be taken into account when using the user interface (UI) see [Setting up User Roles]({{< relref "adm/getting-started/roles.md" >}}) section of **Getting-Started**.
 
@@ -148,7 +148,7 @@ The Enterprise has a single website, `https://www.example.com`. This website ser
 Details:
 
 * One environment - example-env
-* One gateway (server block) - www.example.com
+* One gateway (server block) - `www.example.com`
 * Two Apps (Support and Sales), each with one web component (location blocks) (/support and /sales)
 * The website uses HTTPS
 * There is one instance group (ig1)
@@ -176,6 +176,205 @@ Permissions:
 
 {{</bootstrap-table>}}
 
+<details>
+<summary>JSON Roles Request</summary>
+
+```json
+{
+  "metadata": {
+    "displayName": "Example Admin Role",
+    "name": "example-admin-role",
+    "description": ""
+  },
+  "roleDef": {
+    "permissions": [
+      {
+        "accessTypes": [
+          "CREATE",
+          "DELETE",
+          "READ",
+          "UPDATE"
+        ],
+        "feature": "ANALYTICS",
+        "objects": []
+      },
+      {
+        "accessTypes": [
+          "CREATE",
+          "DELETE",
+          "READ",
+          "UPDATE"
+        ],
+        "feature": "APP-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Apps",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "All"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "CREATE",
+          "DELETE",
+          "READ",
+          "UPDATE"
+        ],
+        "feature": "CERTS",
+        "objects": [
+          {
+            "resource": "Instance Groups",
+            "values": [
+              "00000000-0000-0000-0000-000000000000"
+            ]
+          },
+          {
+            "resource": "Systems",
+            "values": [
+              "00000000-0000-0000-0000-000000000000"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "CREATE",
+          "DELETE",
+          "READ",
+          "UPDATE"
+        ],
+        "feature": "ENVIRONMENT-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Environments",
+            "values": [
+              "All"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "CREATE",
+          "DELETE",
+          "READ",
+          "UPDATE"
+        ],
+        "feature": "GATEWAY-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Environments",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Gateways",
+            "values": [
+              "All"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "CREATE",
+          "DELETE",
+          "READ",
+          "UPDATE"
+        ],
+        "feature": "INSTANCE-GROUPS",
+        "objects": [
+          {
+            "resource": "Instance Groups",
+            "values": [
+              "00000000-0000-0000-0000-000000000000"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "CREATE",
+          "DELETE",
+          "READ",
+          "UPDATE"
+        ],
+        "feature": "SITE-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Sites",
+            "values": [
+              "All"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "CREATE",
+          "DELETE",
+          "READ",
+          "UPDATE"
+        ],
+        "feature": "WEB-COMPONENT-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Apps",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Web-Components",
+            "values": [
+              "All"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+</details>
+
+<details>
+<summary>UI Roles Setup</summary>
+
+{{< img src="adm/about/rbac-screenshots/ExampleAdminEnv.png" alt="Admin ENVIRONMENT-MANAGEMENT" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleAdminGateway.png" alt="Admin GATEWAY-MANAGEMENT" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleAdminApp.png" alt="Admin APP-MANAGEMENT" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleAdminWebcomp.png" alt="Admin WEB-COMPONENT-MANAGEMENT" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleAdminSite.png" alt="Admin SITE-MANAGEMENT" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleAdminInstanceManagement.png" alt="Admin INSTANCE-GROUPS" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleAdminCerts.png" alt="Admin CERTS" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleAdminAnalytics.png" alt="Admin ANALYTICS" width="75%">}}
+
+</details>
+
 #### Gateway-Admin Role
 
 This role has full access to manage gateway objects, but only Read access to apps and components that use it. Additionally, this role manages the certificates placed on gateways.
@@ -195,9 +394,190 @@ This role has full access to manage gateway objects, but only Read access to app
 
 {{</bootstrap-table>}}
 
+<details>
+<summary>JSON Roles Request</summary>
+
+```json
+{
+  "metadata": {
+    "displayName": "Example Gateway Admin",
+    "name": "example-gateway-admin",
+    "description": ""
+  },
+  "roleDef": {
+    "permissions": [
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "ANALYTICS",
+        "objects": []
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "APP-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Apps",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "CREATE",
+          "READ",
+          "UPDATE",
+          "DELETE"
+        ],
+        "feature": "CERTS",
+        "objects": [
+          {
+            "resource": "Systems",
+            "values": [
+              "00000000-0000-0000-0000-000000000000"
+            ]
+          },
+          {
+            "resource": "Instance Groups",
+            "values": [
+              "<igUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "ENVIRONMENT-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "CREATE",
+          "READ",
+          "UPDATE",
+          "DELETE"
+        ],
+        "feature": "GATEWAY-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Gateways",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "INSTANCE-GROUPS",
+        "objects": [
+          {
+            "resource": "Instance Groups",
+            "values": [
+              "<igUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "SITE-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Sites",
+            "values": [
+              "<siteUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "WEB-COMPONENT-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Apps",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Web-Components",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+</details>
+
+<details>
+<summary>UI Roles Setup</summary>
+
+{{< img src="adm/about/rbac-screenshots/ExampleEnvRead.png" alt="Gateway Admin ENVIRONMENT-MANAGEMENT" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleAdminGateway.png" alt="Gateway Admin GATEWAY-MANAGEMENT" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleAppRead.png" alt="Gateway Admin APP-MANAGEMENT" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleWebCompRead.png" alt="Gateway Admin WEB-COMPONENT-MANAGEMENT" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleSiteRead.png" alt="Gateway Admin SITE-MANAGEMENT" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleIGRead.png" alt="Gateway Admin INSTANCE-GROUPS" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleCertCRUD.png" alt="Gateway Admin CERTS" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleAnalyticsRead.png" alt="Gateway Admin ANALYTICS" width="75%">}}
+
+</details>
+
 #### Support-App Role
 
-This role has access to the environment example-env and the gateway that serves as the ingress point for traffic to www.example.com. Additionally, this role has full access rights to the Support app and any referenced component, for example, /support. This role also has access to any traffic metrics for these specific objects. This role should not have access to any other app or components or their data.
+This role has access to the environment example-env and the gateway that serves as the ingress point for traffic to `www.example.com`. Additionally, this role has full access rights to the Support app and any referenced component, for example, /support. This role also has access to any traffic metrics for these specific objects. This role should not have access to any other app or components or their data.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
@@ -214,9 +594,168 @@ This role has access to the environment example-env and the gateway that serves 
 
 {{</bootstrap-table>}}
 
+<details>
+<summary>JSON Roles Request</summary>
+
+```json
+{
+  "metadata": {
+    "displayName": "Support App Role",
+    "name": "support-app-role",
+    "description": ""
+  },
+  "roleDef": {
+    "permissions": [
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "ANALYTICS",
+        "objects": []
+      },
+      {
+        "accessTypes": [
+          "CREATE",
+          "READ",
+          "UPDATE",
+          "DELETE"
+        ],
+        "feature": "APP-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Apps",
+            "values": [
+              "<supportUID>"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "ENVIRONMENT-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "GATEWAY-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Gateways",
+            "values": [
+              "<examplecomUID>"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "INSTANCE-GROUPS",
+        "objects": [
+          {
+            "resource": "Instance Groups",
+            "values": [
+              "<igUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "SITE-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Sites",
+            "values": [
+              "<siteUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "CREATE",
+          "READ",
+          "UPDATE",
+          "DELETE"
+        ],
+        "feature": "WEB-COMPONENT-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Apps",
+            "values": [
+              "<supportUID>"
+            ]
+          },
+          {
+            "resource": "Web-Components",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+</details>
+
+<details>
+<summary>UI Roles Setup</summary>
+
+{{< img src="adm/about/rbac-screenshots/ExampleEnvRead.png" alt="Support ENVIRONMENT-MANAGEMENT" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleGatewayRead.png" alt="Support GATEWAY-MANAGEMENT" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleSupportAppCRUD.png" alt="Support APP-MANAGEMENT" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleSupportWebCompCRUD.png" alt="Support WEB-COMPONENT-MANAGEMENT" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleSiteRead.png" alt="Support SITE-MANAGEMENT" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleIGRead.png" alt="Support INSTANCE-GROUPS" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleAnalyticsRead.png" alt="Support ANALYTICS" width="75%">}}
+
+</details>
+
 #### Sales-App Role
 
-This role has access to the environment example-env and the gateway that serves as the ingress point for traffic to www.example.com. Additionally, this role has full access rights to the Support app and any referenced component, for example, /sales. Additionally, this role has access to any traffic metrics for these specific objects. This role should not have access to any other app or components or their data.
+This role has access to the environment example-env and the gateway that serves as the ingress point for traffic to `www.example.com`. Additionally, this role has full access rights to the Sales app and any referenced component, for example, /sales. Additionally, this role has access to any traffic metrics for these specific objects. This role should not have access to any other app or components or their data.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
@@ -232,6 +771,165 @@ This role has access to the environment example-env and the gateway that serves 
 | ANALYTICS                | READ               | N/A                       |
 
 {{</bootstrap-table>}}
+
+<details>
+<summary>JSON Roles Request</summary>
+
+```json
+{
+  "metadata": {
+    "displayName": "Sales App Role",
+    "name": "sales-app-role",
+    "description": ""
+  },
+  "roleDef": {
+    "permissions": [
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "ANALYTICS",
+        "objects": []
+      },
+      {
+        "accessTypes": [
+          "CREATE",
+          "READ",
+          "UPDATE",
+          "DELETE"
+        ],
+        "feature": "APP-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Apps",
+            "values": [
+              "<salesUID>"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "ENVIRONMENT-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "GATEWAY-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Gateways",
+            "values": [
+              "<examplecomUID>"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "INSTANCE-GROUPS",
+        "objects": [
+          {
+            "resource": "Instance Groups",
+            "values": [
+              "<igUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "SITE-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Sites",
+            "values": [
+              "<siteUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "CREATE",
+          "READ",
+          "UPDATE",
+          "DELETE"
+        ],
+        "feature": "WEB-COMPONENT-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Apps",
+            "values": [
+              "<salesUID>"
+            ]
+          },
+          {
+            "resource": "Web-Components",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+</details>
+
+<details>
+<summary>UI Roles Setup</summary>
+
+{{< img src="adm/about/rbac-screenshots/ExampleEnvRead.png" alt="Sales ENVIRONMENT-MANAGEMENT" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleGatewayRead.png" alt="Sales GATEWAY-MANAGEMENT" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleSalesAppCRUD.png" alt="Sales APP-MANAGEMENT" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleSalesWebCompCRUD.png" alt="Sales WEB-COMPONENT-MANAGEMENT" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleSiteRead.png" alt="Sales SITE-MANAGEMENT" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleIGRead.png" alt="Sales INSTANCE-GROUPS" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleAnalyticsRead.png" alt="Sales ANALYTICS" width="75%">}}
+
+</details>
 
 #### Read-Only
 
@@ -251,6 +949,181 @@ This role has Read-only access to all objects and data related to example-env.
 | ANALYTICS                | READ               | N/A                       |
 
 {{</bootstrap-table>}}
+
+<details>
+<summary>JSON Roles Request</summary>
+
+```json
+{
+  "metadata": {
+    "displayName": "Read Only Access",
+    "name": "read-only-access",
+    "description": ""
+  },
+  "roleDef": {
+    "permissions": [
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "ANALYTICS",
+        "objects": []
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "APP-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Apps",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "CERTS",
+        "objects": [
+          {
+            "resource": "Systems",
+            "values": [
+              "00000000-0000-0000-0000-000000000000"
+            ]
+          },
+          {
+            "resource": "Instance Groups",
+            "values": [
+              "<igUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "ENVIRONMENT-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "GATEWAY-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Gateways",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "INSTANCE-GROUPS",
+        "objects": [
+          {
+            "resource": "Instance Groups",
+            "values": [
+              "<igUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "SITE-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Sites",
+            "values": [
+              "<siteUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "WEB-COMPONENT-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Apps",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Web-Components",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+</details>
+
+<details>
+<summary>UI Roles Setup</summary>
+
+{{< img src="adm/about/rbac-screenshots/ExampleEnvRead.png" alt="Read Only ENVIRONMENT-MANAGEMENT" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleGatewayRead.png" alt="Read Only GATEWAY-MANAGEMENT" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleAppRead.png" alt="Read Only APP-MANAGEMENT" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleWebCompRead.png" alt="Read Only WEB-COMPONENT-MANAGEMENT" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleSiteRead.png" alt="Read Only SITE-MANAGEMENT" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleIGRead.png" alt="Read Only INSTANCE-GROUPS" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleCertsRead.png" alt="Read Only CERTS" width="75%">}}
+
+{{< img src="adm/about/rbac-screenshots/ExampleAnalyticsRead.png" alt="Read Only ANALYTICS" width="75%">}}
+
+</details>
 
 ### Full Access Table
 
@@ -277,7 +1150,7 @@ NGINX Management Suite has several permission combination methods, which can be 
 
 ### Multiple Permissions on the Same Object are Additive
 
-If a role has multiple permissions for the same feature, the resulting permissions is additive, i.e. the user will get access to all objects listed.
+If a role has multiple permissions for the same feature, the resulting permissions is additive; the user will get access to all objects listed.
 
 In particular, if permissions with "Objects: None" are created along with another permission that sets objects, the resulting access will be all of the allowed objects.
 
