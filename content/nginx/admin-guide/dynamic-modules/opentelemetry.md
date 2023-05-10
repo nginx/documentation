@@ -1,6 +1,7 @@
 ---
 description: Analyze your software performance by instrumenting, generating, collecting,
   and exporting telemetry data.
+docs: DOCS-1207
 doctypes:
 - task
 title: OpenTelemetry
