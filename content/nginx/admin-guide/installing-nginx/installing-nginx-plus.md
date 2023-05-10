@@ -367,7 +367,7 @@ NGINX Plus can be installed on the following versions of CentOS/RHEL:
     sudo yum install nginx-plus
     ```
 
-10. If you have NGINX ModSecurity subscription, install the ModSecurity package:
+10. If you have NGINX ModSecurity subscription, install the ModSecurity package:
 
     ```shell
     sudo yum install nginx-plus nginx-plus-module-modsecurity
@@ -1189,7 +1189,7 @@ To verify that the new NGINX Plus version is running, run:
 ```shell
 nginx -v
 ```
-```none
+```shell
 nginx version: nginx/1.23.4 (nginx-plus-r29)
 ```
 
