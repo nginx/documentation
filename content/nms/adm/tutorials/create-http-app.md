@@ -85,7 +85,7 @@ After completing the steps above, the web component will transition into a "Conf
 ```nginx
 server {
     server_name www.example.com;
-    listen 80 ssl;
+    listen 80 reuseport;
     status_zone b57757a6-ef8b-3ef0-be2a-067d66360680;
     f5_metrics_marker environment ca6aa2ef-717f-48ab-96d9-fc1b79e3ec43;
     f5_metrics_marker gateway 4b727d89-b15d-45c1-8bf3-8b6a62fda9ac;
