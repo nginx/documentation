@@ -71,6 +71,7 @@ The app we just created is a wrapper that can be composed of multiple components
 1. Select **Next** to advance to the *URIs* page.
 1. Type **/** in the **URI** field (If you are not able to type a value, select the pencil icon to edit the URI).
 1. Select **Next** to continue to the *Workload Groups* page. 
+1. Select the **Add Workload Group** button.
 1. Type **wg1** in the **Workload Group Name** field.
 1. In the **Backend Workload URIs** section, type `http://198.51.100.0:8080` in the **URI** field. Select **Done**.
 1. Select **Add Backend Workload URI** to add another workload. Type `http://198.51.100.0:8081` in the **URI** field. Then select **Done**.
