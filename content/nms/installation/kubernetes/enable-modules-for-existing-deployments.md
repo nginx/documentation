@@ -31,7 +31,7 @@ authors: []
 
 ## Overview
 
-If you’ve already [deployed NGINX Management Suite using Helm]({{< relref "/nms/installation/kubernetes/nms-helm.md" >}}) and would now like to enable a module, simply follow the steps outlined below.
+If you’ve already [deployed NGINX Management Suite using Helm]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md" >}}) and would now like to enable a module, simply follow the steps outlined below.
 
 ---
 

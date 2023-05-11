@@ -91,17 +91,17 @@ We recommend upgrading NGINX Management Suite in a test environment before upgra
 ### Instance Manager
 
 - [Upgrade Instance Manager on-premises]({{< relref "/nms/installation/on-prem/install-nim.md#upgrade-nim" >}})
-- [Upgrade Instance Manager from a Helm Chart]({{< relref "/nms/installation/kubernetes/nms-helm.md#helm-upgrade-nms" >}})
+- [Upgrade Instance Manager from a Helm Chart]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md#helm-upgrade-nms" >}})
 
 ### API Connectivity Manager
 
 - [Upgrade API Connectivity Manager on-premises]({{< relref "/nms/installation/on-prem/install-acm.md#upgrade-acm" >}})
-- [Upgrade API Connectivity Manager from a Helm Chart]({{< relref "/nms/installation/kubernetes/nms-helm.md#helm-upgrade-nms" >}})
+- [Upgrade API Connectivity Manager from a Helm Chart]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md#helm-upgrade-nms" >}})
 
 ### App Delivery Manager
 
 - [Upgrade App Delivery Manager on-premises]({{< relref "/nms/installation/on-prem/install-adm.md#upgrade-adm" >}})
-- [Upgrade App Delivery Manager from a Helm Chart]({{< relref "/nms/installation/kubernetes/nms-helm.md#helm-upgrade-nms" >}})
+- [Upgrade App Delivery Manager from a Helm Chart]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md#helm-upgrade-nms" >}})
 
 ### Security Monitoring
 

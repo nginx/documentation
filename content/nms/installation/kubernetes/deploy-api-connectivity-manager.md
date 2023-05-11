@@ -1,14 +1,14 @@
 ---
-title: "Deploy API Connectivity Manager"
+title: "Deploy API Connectivity Manager on Kubernetes"
 date: 2023-05-09T13:34:26-07:00
 # Change draft status to false to publish doc.
 draft: false
 # Description
 # Add a short description (150 chars) for the doc. Include keywords for SEO. 
 # The description text appears in search results and at the top of the doc.
-description: ""
+description: "The guide provides step-by-step instructions to deploy NGINX API Connectivity Manager on Kubernetes using a Helm chart."
 # Assign weights in increments of 100
-weight: 3
+weight: 2
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
@@ -25,30 +25,42 @@ authors: []
 
 ---
 
-Complete the following steps to enable the API Connectivity Manager as part of a **new installation** of NGINX Management Suite.
+{{< custom-styles >}}
 
-{{<tip>}}<i class="far fa-lightbulb"></i> If you've already installed NGINX Management Suite and now, at a later time, you want to enable the API Connectivity Manager module, follow the steps in the [Enabling Modules for Existing Deployments]({{< relref "/nms/installation/kubernetes/enable-modules-for-existing-deployments.md" >}}) guide. In that case, you'll enable the module as an upgrade to your existing NGINX Management Suite.{{</tip>}}
+## Requirements
 
-## Download API Connectivity Manager Docker Image
+Review the following requirements for API Connectivity Manager before continuing.
 
-1. On the [MyF5 website](https://my.f5.com/manage/s/downloads), select **Resources > NGINX Downloads**.
-1. In the **Product Family** list, select **NGINX**.
+### Install Instance Manager
+
+{{< important >}}To install API Connectivity Manager, you must first install Instance Manager. This is because API Connectivity Manager relies on features that are included with Instance Manager.{{< /important >}}
+
+- [Deploy Instance Manager on Kubernetes]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md" >}})
+
+### Dependencies with Instance Manager
+
+{{< include "installation/helm/acm/nms-chart-acm-nim.md" >}}
+
+
+---
+
+## Download Docker Image
+
+Follow these steps to download the Docker image for API Connectivity Manager:
+
+1. Go to the [MyF5 website](https://my.f5.com/manage/s/downloads), then select **Resources > Downloads**.
+1. In the **Select Product Family** list, select **NGINX**.
 1. In the **Product Line** list, select **NGINX API Connectivity Manager**.
 1. Select the following download options:
 
-   - **Product version**
-      <details open>
-      <summary><i class="fa-solid fa-circle-info"></i> Dependencies with Instance Manager</summary>
+   - **Product version** -- Select the version of API Connectivity Manager you want to install. Make sure this version is compatible with the version of Instance Manager you installed as a prerequisite. Refer to the [Dependencies with Instance Manager](#dependencies-with-instance-manager) section above.
+   - **Linux distribution** -- Select the Linux distribution you're deploying to. For example, **ubuntu**.
+   - **Distribution Version** -- Select the Linux distribution's version. For example, **20.04**.
+   - **Architecture** -- Select the architecture. For example, **amd64**.
 
-      {{< include "installation/helm/nim/module-compatibility-matrix.md" >}}
+1. In the **Download Files** section, download the `nms-acm-<version>-img.tar.gz` file.
 
-      </details>
-   - **Linux distribution** -- for example, **ubuntu**
-   - **Distribution Version** -- for example, **20.04**
-   - **Architecture** -- for example, **amd64**
-
-1. In the **Download Files** section, locate and download the `nms-acm-<version>-img.tar.gz` file.
-
+---
 
 ## Load Docker Image {#load-acm-docker-image}
 
@@ -82,43 +94,47 @@ Complete the following steps to enable the API Connectivity Manager as part of a
    In the example output above, `nms-acm` is the image name and `1.5.0` is the tag.  The image name or tag could be different depending on the product version you downloaded from MyF5.
    {{</important>}}
 
+---
+
 ## Push Image to Private Registry {#push-image-private-docker-repo}
 
-After loading the Docker image, you can now tag and push the image to your private Docker registry. Replace `<my-docker-registry>` in the examples below with the path to your private Docker registry.
+After loading the Docker image, you can now tag and push the image to your private Docker registry.
+
+- Replace `<my-docker-registry:port>` with your private Docker registry and port (if needed).
+
+- Replace `<version>` with the tag you noted when [loading the Docker image](#load-acm-docker-image) above.
 
 1. Log in to your private registry:
 
    ```shell
-   docker login <my-docker-registry>
+   docker login <my-docker-registry:port>
    ```
 
-   - Replace `<my-docker-registry>` with your private Docker registry.
-
-1. Tag the image with the values you noted when [loading the Docker image](#load-acm-docker-image) above.
+2. Tag the image with the image name and version you noted when [loading the Docker image](#load-acm-docker-image).
 
    ```shell
-   docker tag nms-acm:<version> <my-docker-registry>/nms-acm:<version>
+   docker tag nms-acm:<version> <my-docker-registry:port>/nms-acm:<version>
    ```
 
-   This command creates a new tag for an existing Docker image.
-
-   The first argument, `nms-acm:<version>`, specifies the existing Docker image that will be tagged. The second argument, `<my-docker-registry>/nms-acm:<version>`, specifies the new tag for the image. The new tag will be used to reference the image in the private Docker registry.
-
-   - Replace `<my-docker-registry>` with your private Docker registry.
-
-   - Replace `<version>` with the tag you noted when [loading the Docker image](#load-acm-docker-image) above.
-
-1. Push the image to your private registry:
+   For example:
 
    ```shell
-   docker push <my-docker-registry>/nms-acm:<version>
+   docker tag nms-acm:1.5 myregistryhost:5000/nms-acm:1.5
    ```
 
-   This command pushes the Docker image `nms-acm` to the specified private Docker registry (`my-docker-registry`). The image will be tagged with the specified version (`<version>`). 
+3. Push the image to your private registry:
 
-   - Replace `<my-docker-registry>` with your private Docker registry.
+   ```shell
+   docker push <my-docker-registry:port>/nms-acm:<version>
+   ```
 
-   - Replace `<version>` with the tag you noted when [loading the Docker image](#load-acm-docker-image) above.
+   For example:
+
+   ```shell
+   docker push nms-acm:1.5 myregistryhost:5000/nms-acm:1.5
+   ```
+
+---
 
 ## Enable API Connectivity Manager
 
@@ -138,21 +154,25 @@ To enable the API Connectivity Manager Module, take the following steps:
        - name: regcred
        acm:
            image:
-               repository: <my-docker-registry>/nms-acm 
+               repository: <my-docker-registry:port>/nms-acm 
                tag: <version>
    ```
 
    This `values.yaml` file enables the API Connectivity module and specifies the image pull secret, repository, and tag of the image to be used.
 
-   - Replace `<my-docker-registry>` with your private Docker registry.
+   - Replace `<my-docker-registry:port>` with your private Docker registry and port (if needed).
    - Replace `<version>` with the tag you noted when [loading the Docker image](#load-acm-docker-image) above.
    - In the `imagePullSecrets` section, add the credentials for your private Docker registry.
 
 1. Close and save the `values.yaml` file.
 
+---
+
 ## Customize Helm Settings for API Connectivity Manager {#configuration-options-acm}
 
 {{<see-also>}}Refer to the [Configurable Helm Settings]({{< relref "/nms/installation/kubernetes/nms-helm-config-options.md#acm-helm-settings" >}}) reference guide for the complete list of configurable parameters and default values used by the NGINX Management Suite and modules when installing from a Helm chart. {{</see-also>}}
+
+---
 
 ## Upgrade NGINX Management Suite Deployment
 

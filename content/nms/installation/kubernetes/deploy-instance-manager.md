@@ -1,14 +1,14 @@
 ---
-title: "Deploy Instance Manager"
+title: "Deploy Instance Manager on Kubernetes"
 date: 2022-12-14T16:28:20-08:00
 # Change draft status to false to publish doc
 draft: false
 # Description
 # Add a short description (150 chars) for the doc. Include keywords for SEO. 
 # The description text appears in search results and at the top of the doc.
-description: ""
+description: "The guide provides step-by-step instructions to deploy NGINX Instance Manager on Kubernetes using a Helm chart."
 # Assign weights in increments of 100
-weight: 2
+weight: 1
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
@@ -320,7 +320,9 @@ To upgrade Instance Manager, take the following steps:
 
 ## Uninstall Instance Manager {#helm-uninstall-nim}
 
-To uninstall Instance Manager from Kubernetes, run the following command:
+Uninstalling Instance Manager also uninstalls the entire NGINX Management Suite.
+
+To uninstall Instance Manager, run the following command:
 
 ```bash
 helm uninstall --namespace nms nms
