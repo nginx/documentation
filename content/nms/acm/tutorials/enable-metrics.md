@@ -59,7 +59,7 @@ This section configures the hosts used in this tutorial. In the following table,
 
 ### Install NGINX Management Suite & API Connectivity Manager {#install-nsm-acm}
 
-Follow the steps in the [Installation Guide]({{< relref "/admin-guides/installation/on-prem/install-guide" >}}) to set up NGINX Management Suite and API Connectivity Manager. You do not need to configure a Developer Portal for this tutorial.
+Follow the steps in the [Installation Guide]({{< relref "/nms/admin-guides/installation/on-prem/install-guide" >}}) to set up NGINX Management Suite and API Connectivity Manager. You do not need to configure a Developer Portal for this tutorial.
 
 ### Enable Metrics for API Connectivity Manager
 
@@ -86,7 +86,7 @@ curl --insecure https://192.0.2.2/install/nginx-agent > install.sh \
 && sudo systemctl start nginx-agent
 ```
 
-To ensure that the advanced metrics modules are installed across all data plane hosts, please follow the steps in the [Install NGINX Plus Metrics Module]({{< relref "/nginx-agent/install-nginx-plus-advanced-metrics.md" >}}) guide.
+To ensure that the advanced metrics modules are installed across all data plane hosts, please follow the steps in the [Install NGINX Plus Metrics Module]({{< relref "/nms/nginx-agent/install-nginx-plus-advanced-metrics.md" >}}) guide.
 
 ---
 

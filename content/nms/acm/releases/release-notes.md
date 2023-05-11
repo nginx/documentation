@@ -28,7 +28,7 @@ API Connectivity Manager 1.6.0 supports upgrades from these previous versions:
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
+Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
 {{< /see-also >}}
 
 <details closed>
@@ -59,13 +59,13 @@ This release includes the following updates:
 This release fixes the following issues. Select an issue's ID link to view its details.
 
 
-- {{% icon-resolved %}} CORS policy doesn't support proxying preflight requests to the backend when combined with an authentication policy [(34449)]({{< relref "acm/releases/known-issues.md#34449" >}})
+- {{% icon-resolved %}} CORS policy doesn't support proxying preflight requests to the backend when combined with an authentication policy [(34449)]({{< relref "/nms/acm/releases/known-issues.md#34449" >}})
 
-- {{% icon-resolved %}} TLS setting on listener is not reset when TLS policy is removed [(41426)]({{< relref "acm/releases/known-issues.md#41426" >}})
+- {{% icon-resolved %}} TLS setting on listener is not reset when TLS policy is removed [(41426)]({{< relref "/nms/acm/releases/known-issues.md#41426" >}})
 
-- {{% icon-resolved %}} Developer Portal: When typing the links to use for the footer, the text boxes keep losing focus [(41626)]({{< relref "acm/releases/known-issues.md#41626" >}})
+- {{% icon-resolved %}} Developer Portal: When typing the links to use for the footer, the text boxes keep losing focus [(41626)]({{< relref "/nms/acm/releases/known-issues.md#41626" >}})
 
-- {{% icon-resolved %}} Array values in token claims are treated as string values [(42388)]({{< relref "acm/releases/known-issues.md#42388" >}})
+- {{% icon-resolved %}} Array values in token claims are treated as string values [(42388)]({{< relref "/nms/acm/releases/known-issues.md#42388" >}})
 
 
 ---
