@@ -15,6 +15,61 @@ categories: ["release notes"]
 
 ---
 
+## 1.6.0
+
+5/11/2023
+
+### Upgrade Paths {#1-6-0-upgrade-paths}
+
+API Connectivity Manager 1.6.0 supports upgrades from these previous versions:
+
+- 1.3.0–1.5.0
+
+If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+{{< see-also >}}
+Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
+{{< /see-also >}}
+
+<details closed>
+<summary><i class="fa-solid fa-circle-exclamation"></i> Dependencies with Instance Manager</summary>
+
+{{< include "tech-specs/acm-nim-dependencies.md" >}}
+
+</details>
+
+### What's New {#1-6-0-whats-new}
+
+This release includes the following updates:
+
+- {{% icon-feature %}} **Create security policies using an OAS specification**
+
+  With the latest update, you can now create APIKey and Basic Auth security policies using an OAS specification. This enhancement streamlines the process for creating policies, reduces errors, and improves system security. API Connectivity Manager and NGINX can be integrated into the build pipeline where you generate OpenAPI specs.
+
+- {{% icon-feature %}} **New buffer settings were added to the HTTP Backend Configuration Proxy policy to enhance performance**
+
+  With the latest HTTP Backend Configuration Proxy policy update, you can now modify the size and location of buffer temporary files or turn off buffering altogether. This enhancement offers greater flexibility and control to API Connectivity Manager users, allowing them to optimize their system's performance and improve the overall end-user experience.
+
+- {{% icon-feature %}} **Gain deeper insights into your environments with enhanced analytics and metrics**
+
+  With this release, you can view more information about your environments. This includes the number of clusters and runtimes, the number of APIs available, and the total amount of data transmitted in and out of each cluster. Additionally, you can view graphs displaying crucial analytics, including traffic metrics, which can help you better understand your system's performance.
+
+### Resolved Issues {#1-6-0-resolved-issues}
+
+This release fixes the following issues. Select an issue's ID link to view its details.
+
+
+- {{% icon-resolved %}} CORS policy doesn't support proxying preflight requests to the backend when combined with an authentication policy [(34449)]({{< relref "/nms/acm/releases/known-issues.md#34449" >}})
+
+- {{% icon-resolved %}} TLS setting on listener is not reset when TLS policy is removed [(41426)]({{< relref "/nms/acm/releases/known-issues.md#41426" >}})
+
+- {{% icon-resolved %}} Developer Portal: When typing the links to use for the footer, the text boxes keep losing focus [(41626)]({{< relref "/nms/acm/releases/known-issues.md#41626" >}})
+
+- {{% icon-resolved %}} Array values in token claims are treated as string values [(42388)]({{< relref "/nms/acm/releases/known-issues.md#42388" >}})
+
+
+---
+
 ## 1.5.0
 
 3/28/2023

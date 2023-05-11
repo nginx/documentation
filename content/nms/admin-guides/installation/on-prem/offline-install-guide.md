@@ -165,13 +165,25 @@ Instance Manager connects to the internet to get a list of the current CVEs (Com
 
 To download the CVE file, take the following steps:
 
-1. Download the CVE file:
+1. Change permissions for the current CVE file:
 
     ```bash
-    curl -s http://hg.nginx.org/nginx.org/raw-file/tip/xml/en/security_advisories.xml > /usr/share/nms/cve.xml
+    sudo chmod 777 /usr/share/nms/cve.xml
     ```
 
-1. Restart the dpm service to pick up the new CVE file:
+2. Download the new CVE file:
+
+    ```bash
+    sudo curl -s http://hg.nginx.org/nginx.org/raw-file/tip/xml/en/security_advisories.xml > /usr/share/nms/cve.xml
+    ```
+
+3. Change permissions for the CVE file:
+
+    ```bash
+    sudo chmod 644 /usr/share/nms/cve.xml
+    ```
+
+4. Restart the Data Plane Manager service to pick up the new CVE file:
 
     ```bash
     systemctl restart nms-dpm

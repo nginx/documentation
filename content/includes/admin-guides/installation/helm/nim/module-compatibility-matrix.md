@@ -7,7 +7,8 @@ The following table shows the versions of Instance Manager and compatible module
 {{<bootstrap-table "table table-striped table-bordered">}}
 | NMS chart version | Instance Manager | API Connectivity Manager |
 |-------------------|------------------|--------------------------|
-| 1.5.0            | 2.10.0          | 1.5.0                    |
+| 1.5.1             | 2.10.0           | 1.6.0                    |
+| 1.5.0             | 2.10.0           | 1.5.0                    |
 | 1.4.0             | 2.9.1            | 1.5.0                    |
 | 1.3.1             | 2.9.0            | 1.5.0                    |
 | 1.3.0             | 2.9.0            | 1.4.1                    |
