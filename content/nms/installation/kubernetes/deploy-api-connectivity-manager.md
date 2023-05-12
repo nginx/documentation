@@ -39,7 +39,7 @@ Review the following requirements for API Connectivity Manager before continuing
 
 ### Dependencies with Instance Manager
 
-{{< include "installation/helm/acm/nms-chart-acm-nim.md" >}}
+{{< include "installation/helm/acm/nms-chart-module-versions.md" >}}
 
 
 ---

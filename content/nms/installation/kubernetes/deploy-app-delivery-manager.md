@@ -90,13 +90,13 @@ Follow these steps to download the Docker image for App Delivery Manager:
    ...
    112ae1f604e0: Loading layer [==================================================>]   67.8MB/67.8MB
    4b6a693b90f4: Loading layer [==================================================>]  3.072kB/3.072kB
-   Loaded image: nms-adm:4.0
+   Loaded image: nms-adm:4.0.0
    ```
 
    {{<important>}}
    Take note of the loaded image's name and tag.  You'll need to reference this information in the next section when pushing the image to your private registry.
 
-   In the example output above, `nms-adm` is the image name and `4.0` is the tag.  The image name or tag could be different depending on the product version you downloaded from MyF5.
+   In the example output above, `nms-adm` is the image name and `4.0.0` is the tag.  The image name or tag could be different depending on the product version you downloaded from MyF5.
    {{</important>}}
 
 ## Push Image to Private Registry {#push-image-private-docker-repo}
@@ -124,7 +124,7 @@ After loading the Docker image, you can now tag and push the image to your priva
    For example:
 
    ```shell
-   docker tag nms-adm:4.0 myregistryhost:5000/nms-adm:4.0
+   docker tag nms-adm:4.0.0 myregistryhost:5000/nms-adm:4.0.0
    ```
    
 

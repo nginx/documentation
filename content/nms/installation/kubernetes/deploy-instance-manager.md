@@ -50,7 +50,7 @@ To deploy Instance Manager using a Helm chart, you need the following:
 {{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
 {{< bootstrap-table "table table-striped table-bordered" >}}
 | Requirements                                                                        | Notes                                                                                                                                                                                                                                                                                                                                                                                                                   |
-|-------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Private&nbsp;Docker&nbsp;registry&nbsp;                                             | You need to have an externally-accessible [private Docker registry](https://docs.docker.com/registry/deploying/) to which you can push the container images.                                                                                                                                                                                                                                                            |
 | Docker 20.10 or later (linux/amd64)                                                 | https://docs.docker.com/get-docker/                                                                                                                                                                                                                                                                                                                                                                                     |
 | <span style=" white-space: nowrap;">Kubernetes 1.21.3 or later (linux/amd64)</span> | Ensure your client can [access the Kubernetes API server](https://kubernetes.io/docs/concepts/security/controlling-access/). Note: by default the Helm chart will enable persistent storage using the default storage class configured in your Kubernetes cluster. Documentation around this topic can be found here: [Dynamic Volume Provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/). |
@@ -71,7 +71,7 @@ To deploy Instance Manager using a Helm chart, you need the following:
 
 ---
 
-## Download Helm Package  {#download-nms-helm-package}
+## Download Helm Package {#download-helm-package}
 
 Take the following steps to download and extract the Helm page on your host:
 
@@ -90,13 +90,13 @@ Take the following steps to download and extract the Helm page on your host:
 6. Make a directory to extract the Helm package into:
 
    ``` shell
-   mkdir -p nms-helm
+   mkdir -p nms-docker-images
    ```
 
 7. Extract the package into the target directory:
 
     ``` shell
-    tar -xzf nms-helm-<version>.tar.gz -C nms-helm
+    tar -xzf nms-helm-<version>.tar.gz -C nms-docker-images
     ```
 
     <br>
@@ -113,16 +113,14 @@ Take the following steps to download and extract the Helm page on your host:
 
 ---
 
-## Prepare Docker Images
-
-### Load Docker Images {#load-nms-docker-images}
+## Load Docker Images {#load-docker-images}
 
 {{< note >}} To complete the commands in this section, you need to have [Docker 20.10 or later](https://docs.docker.com/get-docker/) installed. {{< /note >}}
 
 1. Change to the directory where you [extracted the Docker images](#extract-helm-bundle):
 
    ``` shell
-   cd nms-helm
+   cd nms-docker-images
    ```
 
 1. Load the Docker images:
@@ -153,57 +151,71 @@ Take the following steps to download and extract the Helm page on your host:
 
    For example, in the output directly above, `nms-apigw` is the image name and `2.9.1` is the tag.  The tag `2.9.1` could differ depending on the product version you [downloaded from MyF5](#download-nms-helm-bundle).{{</important>}}
 
-### Push Images to Private Registry {#push-images-private-registry}
+---
+
+## Push Images to Private Registry {#push-images-private-registry}
 
 {{<note>}}To complete the steps in this section, you need an [externally-accessible private Docker registry](https://docs.docker.com/registry/deploying/) to push the container images to.{{</note>}}
+
+To push the Docker images to your private registry, take the following steps:
+
+- Replace `<my-docker-registry:port>` with your private Docker registry and port (if needed).
+
+- Replace `<version>` with the tag you noted when [loading the Docker images](#load-nms-docker-images) above.
 
 1. Log in to your private registry:
 
     ```bash
-    docker login <my-docker-registry>
+    docker login <my-docker-registry:port>
     ```
-
-    - Replace `<my-docker-registry>` with your private Docker registry.
 
 1. Tag the images with the version you noted when [loading the Docker images](#load-nms-docker-images) above.
 
     ```bash
-    docker tag nms-apigw:<version> <my-docker-registry>/nms-apigw:<version>
-    docker tag nms-core:<version> <my-docker-registry>/nms-core:<version>
-    docker tag nms-dpm:<version> <my-docker-registry>/nms-dpm:<version>
-    docker tag nms-ingestion:<version> <my-docker-registry>/nms-ingestion:<version>
-    docker tag nms-integrations:<version> <my-docker-registry>/nms-integrations:<version>
+    docker tag nms-apigw:<version> <my-docker-registry:port>/nms-apigw:<version>
+    docker tag nms-core:<version> <my-docker-registry:port>/nms-core:<version>
+    docker tag nms-dpm:<version> <my-docker-registry:port>/nms-dpm:<version>
+    docker tag nms-ingestion:<version> <my-docker-registry:port>/nms-ingestion:<version>
+    docker tag nms-integrations:<version> <my-docker-registry:port>/nms-integrations:<version>
     ```
 
-    These commands create labels, known as tags, for each of the specified Docker images (such as `nms-apigw`), assigning them to the specified registry (`<my-docker-registry>`) with the specified version number (`<version>`). This allows them to be easily identified and retrieved from the registry in the future.
+    For example:
 
-   - Replace `<my-docker-registry>` with your private Docker registry.
-
-   - Replace `<version>` with the tag you noted when [loading the Docker images](#load-nms-docker-images) above.
+     ```bash
+    docker tag nms-apigw:2.9.1 myregistryhost:5000/nms-apigw:2.9.1
+    ...
+    ```   
 
 1. Push the images to your private registry:
 
     ```bash
-    docker push <my-docker-registry>/nms-apigw:<version>
-    docker push <my-docker-registry>/nms-core:<version>
-    docker push <my-docker-registry>/nms-dpm:<version>
-    docker push <my-docker-registry>/nms-ingestion:<version>
-    docker push <my-docker-registry>/nms-integrations:<version>
+    docker push <my-docker-registry:port>/nms-apigw:<version>
+    docker push <my-docker-registry:port>/nms-core:<version>
+    docker push <my-docker-registry:port>/nms-dpm:<version>
+    docker push <my-docker-registry:port>/nms-ingestion:<version>
+    docker push <my-docker-registry:port>/nms-integrations:<version>
     ```
 
-    This set of commands pushes Docker images for `nms-apigw`, `nms-core`, `nms-dpm`, `nms-ingestion` and `nms-integrations` to your private registry (`<my-docker-registry>`) with a specified version tag (`<version>`)
+    For example:
 
-    - Replace `<my-docker-registry>` with your private Docker registry.
-
-    - Replace `<version>` with the tag you noted when [loading the Docker images](#load-nms-docker-images) above.
+     ```bash
+    docker push myregistryhost:5000/nms-apigw:2.9.1
+    ...
+    ```   
 
 ---
 
-## Configure Chart {#configure-chart}
+## Create a Helm Deployment values.yaml File {#configure-chart}
 
 A Helm `values.yaml` file is a configuration file you can use to customize the installation of a [Helm chart](#what-is-a-helm-chart) without actually editing the chart itself, allowing for faster and more efficient deployments. Values can be used to specify different image repositories and tags, set environment variables, configure resource requests and limits, and more.
 
-1. Create a `values.yaml` file similar to the following example. This file is used to customize the configuration of the NGINX Management Suite chart located in the `nginx-stable` Helm repository that you [added above](#add-helm-repository).
+1. Create a `values.yaml` file similar to the following example:
+
+    - Replace `<my-docker-registry:port>` with your private Docker registry and port (if needed).
+    - Replace `<version>` with the tag you used when [pushing the images to your private registry](#push-images-private-registry).
+    - In the `imagePullSecrets` section, add the credentials for your private Docker registry.
+
+        {{<see-also>}}For instructions on creating a secret, see the Kubernetes topic [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/).{{</see-also>}}
 
     ```yaml
     # values.yaml
@@ -212,33 +224,31 @@ A Helm `values.yaml` file is a configuration file you can use to customize the i
             - name: regcred
         apigw:
             image:
-                repository: <my-docker-registry>/nms-apigw
+                repository: <my-docker-registry:port>/nms-apigw
                 tag: <version>
         core:
             image:
-                repository: <my-docker-registry>/nms-core
+                repository: <my-docker-registry:port>/nms-core
                 tag: <version>
         dpm:
             image:
-                repository: <my-docker-registry>/nms-dpm
+                repository: <my-docker-registry:port>/nms-dpm
                 tag: <version>
         ingestion:
             image:
-                repository: <my-docker-registry>/nms-ingestion
+                repository: <my-docker-registry:port>/nms-ingestion
                 tag: <version>
         integrations:
             image:
-                repository: <my-docker-registry>/nms-integrations
+                repository: <my-docker-registry:port>/nms-integrations
                 tag: <version>
     ```
 
-    - Replace `<my-docker-registry>` with your private Docker registry.
-    - Replace `<version>` with the tag you used when [pushing the images to your private registry](#push-images-private-registry).
-    - In the `imagePullSecrets` section, add the credentials for your private Docker registry.
 
-    This `values.yaml` file specifies the Docker images to be used for the `apigw`, `core`, `dpm`, `ingestion`, and `integrations` components, including the repository (`<my-docker-registry>`) and tag (`version`) of each image. It also specifies that a secret called `regcred` should be used for image pulls.
 
-    {{<see-also>}}For instructions on creating a secret, see the Kubernetes topic [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/).{{</see-also>}}
+    This `values.yaml` file specifies the Docker images to be used for the `apigw`, `core`, `dpm`, `ingestion`, and `integrations` components, including the repository (`<my-docker-registry:port>`) and tag (`version`) of each image. It also specifies that a secret called `regcred` should be used for image pulls.
+
+
 
 2. Save and close the `values.yaml` file.
 
@@ -246,22 +256,26 @@ A Helm `values.yaml` file is a configuration file you can use to customize the i
 
 ## Install Chart {#install-chart}
 
-To complete the steps in this section, you need to have [OpenSSL 1.1.1](https://www.openssl.org/source/) or later installed.
+{{<note>}}To complete the steps in this section, you need to have [OpenSSL 1.1.1](https://www.openssl.org/source/) or later installed.{{</note>}}
 
 Run the `helm install` command to install Instance Manager from the Helm chart:
 
+- Replace `<path-to-your-values.yaml>` with the path to the [values.yaml file you created](#configure-chart).
+- Replace `YourPassword123#` with a secure password that contains a combination of uppercase and lowercase letters, numbers, and special characters.
+
+    {{< important >}}Make sure to copy and save the password for future reference. Only the encrypted password is stored in Kubernetes. There's no way to recover or reset a lost password.{{< /important >}}
+
+- (Optional) Replace `<nms-chart-version>` with the desired version; see the table below for the available versions. Alternatively, you can omit this flag to install the latest version.
+
 ```bash
-helm install -n nms --set nms-hybrid.adminPasswordHash=$(openssl passwd -6 'YourPassword123#') nms nginx-stable/nms --create-namespace -f <path-to-your-values.yaml> [--version <desired-version>] --wait
+helm install -n nms --set nms-hybrid.adminPasswordHash=$(openssl passwd -6 'YourPassword123#') nms nginx-stable/nms --create-namespace -f <path-to-your-values.yaml> [--version <chart-version>] --wait
 ```
 
-- Replace `<path-to-your-values.yaml>` with the path to the [values.yaml file you created](#configure-chart).
-- Replace "YourPassword123#" with a secure password that contains a combination of uppercase and lowercase letters, numbers, and special characters.
-- When specifying a version parameter, replace `<desired-version>` with the version of the Instance Manager chart required.
+&nbsp;
 
-This command performs a Helm install of the `nginx-stable/nms` package into a namespace called `nms`, setting the `nms-hybrid.adminPasswordHash` to a hashed value of "YourPassword123#". The `values.yaml` file located at `<path-to-your-values.yaml>` is used to provide additional configuration parameters for the installation. The `--create-namespace` flag is used to ensure that the specified namespace (in this case `nms`) is created if it does not already exist.
+To help you choose the right NGINX Management Suite chart version, refer to the following table, which provides information about the compatible modules for each version.
 
-
-{{< important >}}Make sure to copy and save the password for future reference. Only the encrypted password is stored in Kubernetes. There's no way to recover or reset a lost password.{{< /important >}}
+{{< include "installation/helm/acm/nms-chart-module-versions.md" >}}
 
 ---
 
@@ -310,9 +324,10 @@ To upgrade Instance Manager, take the following steps:
 
 1. Repeat the steps above to:
 
-   - [Download and extract a newer version of NGINX Management Suite Helm Bundle](#download-nms-helm-bundle).
-   - [Load and push the Docker images to your private registry](#prepare-docker-images).
-   - [Configure the chart to pull from your private Docker registry](#configure-chart).
+   - [Download Helm Package](#download-helm-package)
+   - [Load Docker Images](#load-docker-images)
+   - [Push Images to Private Docker Registry](#push-images-private-registry)
+   - [Configure values.yaml file to pull from your private Docker registry](#configure-chart).
 
 2. {{< include "installation/helm/nim/helm-upgrade-nms.md" >}}
 
