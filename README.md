@@ -23,7 +23,6 @@ Docs are written in Markdown. We build the docs using [Hugo](https://gohugo.io) 
 
 For now, open an [issue](https://github.com/nginxinc/docs/issues).
 
-
 ## Local Docs Development
 
 To build the docs locally, run the desired `make` command from the docs directory:
@@ -129,4 +128,4 @@ A few more fun shortcodes:
 - `openapi`: loads an OpenAPI spec and renders as HTML using ReDoc
 - `raw-html`: makes it possible to include a block of raw HTML
 - `readfile`: includes the content of another file in the current file (intended to replace `include`)
-
+- `bootstrap-table`: formats a table using Bootstrap classes; accepts any bootstrap table classes as additional arguments, e.g. `{{< bootstrap-table "table-bordered table-hover" }}`

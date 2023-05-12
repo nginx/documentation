@@ -1,10 +1,12 @@
 ---
+description: Create a highly available active-passive deployment of NGINX Plus on
+  AWS with a solution combining keepalived and the AWS Elastic IP address feature.
+docs: DOCS-445
+doctypes:
+- task
 title: Active-Passive HA for NGINX Plus on AWS Using Elastic IP Addresses
-description: Create a highly available active-passive deployment of NGINX Plus on AWS with a solution combining keepalived and the AWS Elastic IP address feature.
-weight: 200
-doctypes: ["task"]
 toc: true
-docs: "DOCS-445"
+weight: 200
 ---
 
 

@@ -1,10 +1,12 @@
 ---
+description: Configure NGINX and NGINX Plus as a web server, with support for virtual
+  server multi-tenancy, URI and response rewriting, variables, and error handling.
+docs: DOCS-443
+doctypes:
+- task
 title: Configuring NGINX and NGINX Plus as a Web Server
-description: Configure NGINX and NGINX Plus as a web server, with support for virtual server multi-tenancy, URI and response rewriting, variables, and error handling.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-443"
+weight: 100
 ---
 
 

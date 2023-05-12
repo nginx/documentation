@@ -1,10 +1,12 @@
 ---
+description: Load balance HTTP traffic across web or application server groups, with
+  several algorithms and advanced features like slow-start and session persistence.
+docs: DOCS-418
+doctypes:
+- task
 title: HTTP Load Balancing
-description: Load balance HTTP traffic across web or application server groups, with several algorithms and advanced features like slow-start and session persistence.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-418"
+weight: 100
 ---
 
 

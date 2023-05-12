@@ -1,10 +1,12 @@
 ---
+description: Secure TCP traffic between NGINX or NGINX Plus and upstream servers,
+  using SSL/TLS encryption.
+docs: DOCS-436
+doctypes:
+- task
 title: Securing TCP Traffic to Upstream Servers
-description: Secure TCP traffic between NGINX or NGINX Plus and upstream servers, using SSL/TLS encryption.
-weight: 1000
-doctypes: ["task"]
 toc: true
-docs: "DOCS-436"
+weight: 1000
 ---
 
 

@@ -1,10 +1,12 @@
 ---
+description: Monitor the health of gRPC servers in an upstream group by sending periodic
+  health checks.
+docs: DOCS-416
+doctypes:
+- task
 title: gRPC Health Checks
-description: Monitor the health of gRPC servers in an upstream group by sending periodic health checks.
-weight: 600
-doctypes: ["task"]
 toc: true
-docs: "DOCS-416"
+weight: 600
 ---
 
 

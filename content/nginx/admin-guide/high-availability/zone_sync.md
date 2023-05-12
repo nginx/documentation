@@ -1,10 +1,13 @@
 ---
+description: This chapter describes how to use NGINX Plus to synchronize shared memory
+  zones across NGINX cluster nodes including sticky learn session persistence, requests
+  limiting, and key-value store data.
+docs: DOCS-407
+doctypes:
+- task
 title: Runtime State Sharing in a Cluster
-description: This chapter describes how to use NGINX Plus to synchronize shared memory zones across NGINX cluster nodes including sticky learn session persistence, requests limiting, and key-value store data.
-weight: 400
-doctypes: ["task"]
 toc: true
-docs: "DOCS-407"
+weight: 400
 ---
 
 <span id="intro"></span>

@@ -1,10 +1,11 @@
 ---
-title: Uninstalling a dynamic module
 description: This section describes how to uninstall an NGINX Plus dynamic module.
-weight: 100
-doctypes: ["task"]
+docs: DOCS-402
+doctypes:
+- task
+title: Uninstalling a dynamic module
 toc: true
-docs: "DOCS-402"
+weight: 100
 ---
 
 

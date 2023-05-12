@@ -1,10 +1,12 @@
 ---
+description: Compress server responses, or decompress them for clients that don't
+  support compression, to improve delivery speed and reduce overhead on the server.
+docs: DOCS-440
+doctypes:
+- task
 title: Compression and Decompression
-description: Compress server responses, or decompress them for clients that don't support compression, to improve delivery speed and reduce overhead on the server.
-weight: 400
-doctypes: ["task"]
 toc: true
-docs: "DOCS-440"
+weight: 400
 ---
 
 

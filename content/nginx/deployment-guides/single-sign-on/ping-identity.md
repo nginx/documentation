@@ -1,10 +1,12 @@
 ---
+description: Enable OpenID Connect-based single-sign for applications proxied by NGINX
+  Plus, using Ping Identity as the identity provider (IdP).
+docs: DOCS-468
+doctypes:
+- task
 title: Single Sign-On with Ping Identity
-description: Enable OpenID Connect-based single-sign for applications proxied by NGINX Plus, using Ping Identity as the identity provider (IdP).
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-468"
+weight: 100
 ---
 
 
@@ -13,7 +15,7 @@ This guide explains how to enable single sign-on (SSO) for applications being pr
 
 The instructions in this document apply to both Ping Identity's on‑premises and cloud products, PingFederate and PingOne for Enterprise. 
 
-{{< see-also >}}{{< include "nginx-openid-repo-note.txt" >}}{{< /see-also >}}
+{{< see-also >}}{{< readfile file="includes/nginx-openid-repo-note.txt" markdown="true" >}}{{< /see-also >}}
 
 <span id="prereqs"></span>
 ## Prerequisites

@@ -1,10 +1,12 @@
 ---
+description: Load balance Oracle E-Business Suite applications with the advanced features
+  in NGINX Plus, following our step-by-step setup instructions.
+docs: DOCS-454
+doctypes:
+- task
 title: Load Balancing Oracle E-Business Suite with NGINX Plus
-description: Load balance Oracle E-Business Suite applications with the advanced features in NGINX Plus, following our step-by-step setup instructions.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-454"
+weight: 100
 ---
 
 
@@ -91,7 +93,7 @@ For improved security, the NGINX Plus load balancer might be located in a DMZ. 
 Review the network configuration requirements in the table and make appropriate changes to your firewalls before proceeding with the configuration.
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |**Purpose** | **Port** | **Source** | **Destination** |
 | ---| ---| ---| --- | 
 |Admin access, file transfer | 22 | Administrative network | NGINX Plus load balancer | 
@@ -100,7 +102,7 @@ Review the network configuration requirements in the table and make appropriate 
 |Production HTTPS traffic | 443 | Any | NGINX Plus | 
 |Access to backend application | 8000* | NGINX Plus | Backend application servers | 
 |Access to load‑balanced application from application servers | 443 | Backend application servers | NGINX Plus load balancer | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 
 **\*** Replace port 8000 with the actual application port as appropriate.
@@ -248,7 +250,7 @@ Use the AutoConfig Context Editor to set the configuration values in the applica
 Here are examples of appropriate values:
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |Load Balancer Entry Point | store.company.com | 
 |Application Server 1 | apps-tier1.company.com | 
 |Application Server 2 | apps-tier2.company.com | 
@@ -256,7 +258,7 @@ Here are examples of appropriate values:
 |Application Tier Web Protocol | http | 
 |Application Tier Web Port | 8000 | 
 |Active Web Port | 443 | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 
 <span id="nginx-plus-configure"></span>
@@ -952,7 +954,7 @@ http {
 This configuration is for two Web Entry Points with the following settings:
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 | | **Web Entry Point 1** | **Web Entry Point 2** |
 | ---| ---| --- | 
 |Domain name | **oracle-one.company.com** | **oracle-two.company.com** | 
@@ -962,7 +964,7 @@ This configuration is for two Web Entry Points with the following settings:
 |Upstream name | **oracle_one** | **oracle_two** |
 |EBS servers | 172.31.11.210 & 172.31.0.146 | 172.31.11.211 & 172.31.0.147 | 
 |Backup (DR) EBS servers | 172.33.111.210 & 172.33.100.146 | 172.33.111.211 & 172.33.100.147 | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 
 ```nginx

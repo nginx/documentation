@@ -1,10 +1,14 @@
 ---
+description: This dynamic module provides encryption and decryption support for NGINX
+  variables based on AES-256 with MAC. It is usually used with the [Set-Misc](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/set-misc/)
+  dynamic module and the NGINX [`rewrite`](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html)
+  module.
+docs: DOCS-384
+doctypes:
+- task
 title: Encrypted-Session
-description: This dynamic module provides encryption and decryption support for NGINX variables based on AES-256 with MAC. It is usually used with the [Set-Misc](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/set-misc/) dynamic module and the NGINX [`rewrite`](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-384"
+weight: 100
 ---
 
 

@@ -1,10 +1,12 @@
 ---
+description: Capture information from the client IP address in variables, using the
+  MaxMind GeoIP databases, with the GeoIP dynamic module supported by NGINX, Inc.
+docs: DOCS-386
+doctypes:
+- task
 title: GeoIP
-description: Capture information from the client IP address in variables, using the MaxMind GeoIP databases, with the GeoIP dynamic module supported by NGINX, Inc.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-386"
+weight: 100
 ---
 
 > **Note** MaxMind GeoLite Legacy databases are currently [discontinued](https://blog.maxmind.com/2018/01/discontinuation-of-the-geolite-legacy-databases), MaxMind GeoIP2 or Geolite2 databases and NGINX Plus [GeoIP2 module]({{< relref "geoip2.md" >}}) should be used instead.

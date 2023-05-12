@@ -1,10 +1,12 @@
 ---
+description: Control access to your site or apps from specific client IP addresses,
+  using dynamic denylists built with the NGINX Plus key-value store and API.
+docs: DOCS-434
+doctypes:
+- task
 title: Dynamic Denylisting of IP Addresses
-description: Control access to your site or apps from specific client IP addresses, using dynamic denylists built with the NGINX Plus key-value store and API.
-weight: 1100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-434"
+weight: 1100
 ---
 
 

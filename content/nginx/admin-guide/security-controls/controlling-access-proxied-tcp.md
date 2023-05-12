@@ -1,10 +1,12 @@
 ---
+description: Protect your upstream TCP application servers by limiting connections
+  or bandwidth, based on client IP address or other variables.
+docs: DOCS-433
+doctypes:
+- task
 title: Restricting Access to Proxied TCP Resources
-description: Protect your upstream TCP application servers by limiting connections or bandwidth, based on client IP address or other variables.
-weight: 700
-doctypes: ["task"]
 toc: true
-docs: "DOCS-433"
+weight: 700
 ---
 
 

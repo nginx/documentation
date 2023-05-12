@@ -1,10 +1,12 @@
 ---
+description: Deploy global server load balancing (GSLB) for domains registered with
+  DNS services provider NS1 and proxied by NGINX Plus.
+docs: DOCS-449
+doctypes:
+- task
 title: Global Server Load Balancing with NS1 and NGINX Plus
-description: Deploy global server load balancing (GSLB) for domains registered with DNS services provider NS1 and proxied by NGINX Plus.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-449"
+weight: 100
 ---
 
 

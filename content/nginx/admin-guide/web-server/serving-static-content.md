@@ -1,10 +1,12 @@
 ---
+description: Configure NGINX and NGINX Plus to serve static content, with type-specific
+  root directories, checks for file existence, and performance optimizations.
+docs: DOCS-442
+doctypes:
+- task
 title: Serving Static Content
-description: Configure NGINX and NGINX Plus to serve static content, with type-specific root directories, checks for file existence, and performance optimizations.
-weight: 200
-doctypes: ["task"]
 toc: true
-docs: "DOCS-442"
+weight: 200
 ---
 
 

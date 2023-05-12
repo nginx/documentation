@@ -1,10 +1,13 @@
 ---
+description: Deploy and administer applications written in Node.js, Python, and Ruby
+  with the Passenger Open Source dynamic module from Phusion, supported by NGINX,
+  Inc.
+docs: DOCS-396
+doctypes:
+- task
 title: Phusion Passenger Open Source
-description: Deploy and administer applications written in Node.js, Python, and Ruby with the Passenger Open Source dynamic module from Phusion, supported by NGINX, Inc.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-396"
+weight: 100
 ---
 
 

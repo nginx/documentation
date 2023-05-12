@@ -1,17 +1,19 @@
 ---
+description: Enable OpenID Connect-based single-sign for applications proxied by NGINX
+  Plus, using Amazon Cognito as the identity provider (IdP).
+docs: DOCS-464
+doctypes:
+- task
 title: Single Sign-On with Amazon Cognito
-description: Enable OpenID Connect-based single-sign for applications proxied by NGINX Plus, using Amazon Cognito as the identity provider (IdP).
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-464"
+weight: 100
 ---
 
 
 
 This guide explains how to enable single sign‑on (SSO) for applications being proxied by NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [Amazon Cognito](https://aws.amazon.com/cognito/) as the identity provider (IdP), and NGINX Plus as the relying party.
 
-{{< see-also >}}{{< include "nginx-openid-repo-note.txt" >}}{{< /see-also >}}
+{{< see-also >}}{{< readfile file="includes/nginx-openid-repo-note.txt" markdown="true" >}}{{< /see-also >}}
 
 
 <span id="prereqs"></span>

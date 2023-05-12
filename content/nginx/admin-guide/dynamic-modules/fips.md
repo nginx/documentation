@@ -1,10 +1,12 @@
 ---
+description: Verify compliance with [FIPS 140-2](https://csrc.nist.gov/publications/detail/fips/140/2/final)
+  security requirements for cryptographic modules.
+docs: DOCS-385
+doctypes:
+- task
 title: FIPS Status Check
-description: Verify compliance with [FIPS 140-2](https://csrc.nist.gov/publications/detail/fips/140/2/final) security requirements for cryptographic modules.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-385"
+weight: 100
 ---
 
 

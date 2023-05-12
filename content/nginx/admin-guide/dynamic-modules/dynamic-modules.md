@@ -1,10 +1,12 @@
 ---
+description: Load modules dynamically into NGINX Plus at runtime to add specialized
+  functionality, including features authored by third parties.
+docs: DOCS-383
+doctypes:
+- task
 title: Dynamic Modules
-description: Load modules dynamically into NGINX Plus at runtime to add specialized functionality, including features authored by third parties.
-weight: 10
-doctypes: ["task"]
 toc: true
-docs: "DOCS-383"
+weight: 10
 ---
 
 
@@ -53,6 +55,7 @@ For module‑specific instructions, see the list of modules in the same section 
 * [njs Scripting Language]({{< relref "nginscript.md" >}})
 * [NGINX ModSecurity WAF]({{< relref "nginx-waf.md" >}})
 * [NGINX Developer Kit]({{< relref "ndk.md" >}})
+* [OpenTelemetry]({{< relref "opentelemetry.md" >}})
 * [OpenTracing]({{< relref "opentracing.md" >}})
 * [Phusion Passenger Open Source]({{< relref "passenger-open-source.md" >}})
 * [Perl]({{< relref "perl.md" >}})

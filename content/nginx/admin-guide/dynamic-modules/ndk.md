@@ -1,10 +1,12 @@
 ---
+description: The NDK module makes it easier for module developers to develop NGINX
+  modules.
+docs: DOCS-392
+doctypes:
+- task
 title: NGINX Developer Kit
-description: The NDK module makes it easier for module developers to develop NGINX modules.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-392"
+weight: 100
 ---
 
 

@@ -1,10 +1,12 @@
 ---
+description: Install NGINX Open Source either as a prebuilt package or from source,
+  following step-by-step instructions for all supported Linux distributions.
+docs: DOCS-410
+doctypes:
+- task
 title: Installing NGINX Open Source
-description: Install NGINX Open Source either as a prebuilt package or from source, following step-by-step instructions for all supported Linux distributions.
-weight: 200
-doctypes: ["task"]
 toc: true
-docs: "DOCS-410"
+weight: 200
 ---
 
 This article explains how to install NGINX Open Source.
@@ -41,13 +43,13 @@ See [Source packages](https://nginx.org/en/linux_packages.html#sourcepackages) a
 NGINX, Inc. provides packages for the following CentOS, Oracle Linux, RHEL, AlmaLinux and Rocky Linux versions:
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |Version | Supported Platforms | 
 | ---| --- | 
 |7.4+ | x86_64, aarch64/arm64 |
 |8x | x86_64, aarch64/arm64, s390x |
 |9x | x86_64, aarch64/arm64, s390x |
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 The package can be installed from:
 
@@ -78,7 +80,6 @@ The package can be installed from:
 
     ```shell
     sudo nginx -v
-    nginx version: nginx/1.6.3
     ```
 
 #### Installing a Prebuilt RHEL/CentOS/Oracle Linux/AlmaLinux/Rocky Linux Package from the Official NGINX Repository
@@ -147,7 +148,7 @@ The package can be installed from:
     ```shell
     curl -I 127.0.0.1
     HTTP/1.1 200 OK
-    Server: nginx/1.23.2
+    Server: nginx/1.23.4
     ```
 
 <span id="prebuilt_debian"></span>
@@ -156,11 +157,11 @@ The package can be installed from:
 NGINX provides packages for the following Debian operating systems:
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |Version | Codename | Supported Platforms | 
 | ---| ---| --- | 
 |11.x | bullseye | x86_64, aarch64/arm64 |
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 The package can be installed from:
 
@@ -186,7 +187,6 @@ The package can be installed from:
 
     ```shell
     sudo nginx -v
-    nginx version: nginx/1.6.2
     ```
 
 #### Installing a Prebuilt Debian Package from the Official NGINX Repository
@@ -261,7 +261,7 @@ The package can be installed from:
     ```shell
     curl -I 127.0.0.1
     HTTP/1.1 200 OK
-    Server: nginx/1.23.2
+    Server: nginx/1.23.4
     ```
 
 <span id="prebuilt_ubuntu"></span>
@@ -270,14 +270,14 @@ The package can be installed from:
 NGINX provides packages for the following Ubuntu operating systems:
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |Version | Codename | Supported Platforms | 
 | ---| ---| --- | 
 |18.04 | bionic | x86_64, aarch64/arm64 |
 |20.04 | focal | x86_64, aarch64/arm64, s390x |
 |22.04 | jammy | x86_64, aarch64/arm64, s390x |
 |22.10 | kinetic | x86_64, aarch64/arm64 |
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 The package can be installed from:
 
@@ -302,7 +302,6 @@ The package can be installed from:
 
     ```shell
     sudo nginx -v
-    nginx version: nginx/1.4.6 (Ubuntu)
     ```
 
 #### Installing a Prebuilt Ubuntu Package from the Official NGINX Repository
@@ -377,7 +376,7 @@ The package can be installed from:
     ```shell
     curl -I 127.0.0.1
     HTTP/1.1 200 OK
-    Server: nginx/1.23.2
+    Server: nginx/1.23.4
     ```
 
 <span id="prebuilt_suse"></span>
@@ -386,12 +385,12 @@ The package can be installed from:
 NGINX provides packages for SUSE Linux Enterprise Server:
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |Version | Supported Platforms | 
 | ---| --- | 
 |SLES 12 SP5+ | x86_64 |
 |SLES 15 SP2+ | x86_64 |
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 #### Installing a Prebuilt SUSE Package from the Official NGINX Repository
 
@@ -455,14 +454,14 @@ NGINX provides packages for SUSE Linux Enterprise Server:
 NGINX provides packages for the following Alpine Linux operating systems:
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |Version | Supported Platforms | 
 | ---| --- | 
 |3.14 | x86_64, aarch64/arm64 |
 |3.15 | x86_64, aarch64/arm64 |
 |3.16 | x86_64, aarch64/arm64 |
 |3.17 | x86_64, aarch64/arm64 |
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 The package can be installed from the official repo at **nginx.org**. You have to set up the  <span style="white-space: nowrap;">`apt-get`</span> repository the first time, but after that the provided package is always up to date.
 
@@ -552,9 +551,11 @@ The package can be installed from the official repo at **nginx.org**. You have t
     ```
 
 <span id="prebuilt_amazon"></span>
-### Installing Prebuilt Amazon Linux 2 Packages
+### Installing Prebuilt Amazon Linux Packages
 
-NGINX provides packages for Amazon Linux 2 (LTS) x86_64, aarch64/arm64 operating system.
+NGINX provides packages for
+* Amazon Linux 2 (LTS) x86_64, aarch64/arm64
+* Amazon Linux 2023 x86_64, aarch64/arm64
 
 #### Installing a Prebuilt Alpine Linux Package from the Official NGINX Repository
 
@@ -564,7 +565,7 @@ NGINX provides packages for Amazon Linux 2 (LTS) x86_64, aarch64/arm64 operating
     sudo yum install yum-utils
     ```
 
-2.  To set up the `yum` repository, create the file named `/etc/yum.repos.d/nginx.repo` with the following contents:
+2.  To set up the `yum` repository for Amazon Linux 2, create the file named `/etc/yum.repos.d/nginx.repo` with the following contents:
 
     ```none
     [nginx-stable]
@@ -578,6 +579,26 @@ NGINX provides packages for Amazon Linux 2 (LTS) x86_64, aarch64/arm64 operating
     [nginx-mainline]
     name=nginx mainline repo
     baseurl=http://nginx.org/packages/mainline/amzn2/$releasever/$basearch/
+    gpgcheck=1
+    enabled=0
+    gpgkey=https://nginx.org/keys/nginx_signing.key
+    module_hotfixes=true
+    ```
+
+    To set up the `yum` repository for Amazon Linux 2023, create the file named `/etc/yum.repos.d/nginx.repo` with the following contents:
+
+    ```none
+    [nginx-stable]
+    name=nginx stable repo
+    baseurl=http://nginx.org/packages/amzn/2023/$basearch/
+    gpgcheck=1
+    enabled=1
+    gpgkey=https://nginx.org/keys/nginx_signing.key
+    module_hotfixes=true
+
+    [nginx-mainline]
+    name=nginx mainline repo
+    baseurl=http://nginx.org/packages/mainline/amzn/2023/$basearch/
     gpgcheck=1
     enabled=0
     gpgkey=https://nginx.org/keys/nginx_signing.key
@@ -612,9 +633,9 @@ Prior to compiling NGINX Open Source from source, you need to install librarie
 * [PCRE](http://pcre.org/) – Supports regular expressions. Required by the NGINX [Core](https://nginx.org/en/docs/ngx_core_module.html) and [Rewrite](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) modules.
 
   ```shell
-  wget github.com/PCRE2Project/pcre2/releases/download/pcre2-10.40/pcre2-10.40.tar.gz
-  tar -zxf pcre2-10.40.tar.gz
-  cd pcre2-10.40
+  wget github.com/PCRE2Project/pcre2/releases/download/pcre2-10.42/pcre2-10.42.tar.gz
+  tar -zxf pcre2-10.42.tar.gz
+  cd pcre2-10.42
   ./configure
   make
   sudo make install
@@ -634,9 +655,9 @@ Prior to compiling NGINX Open Source from source, you need to install librarie
 * [OpenSSL](https://www.openssl.org/) – Supports the HTTPS protocol. Required by the NGINX [SSL](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) module and others.
 
   ```shell
-  wget http://www.openssl.org/source/openssl-1.1.1p.tar.gz
-  tar -zxf openssl-1.1.1p.tar.gz
-  cd openssl-1.1.1p
+  wget http://www.openssl.org/source/openssl-1.1.1t.tar.gz
+  tar -zxf openssl-1.1.1t.tar.gz
+  cd openssl-1.1.1t
   ./Configure darwin64-x86_64-cc --prefix=/usr
   make
   sudo make install
@@ -650,17 +671,17 @@ Download the source files for both the stable and mainline versions from [**ngin
 To download and unpack the source for the latest _mainline_ version, run:
 
 ```shell
-wget https://nginx.org/download/nginx-1.23.2.tar.gz
-tar zxf nginx-1.23.2.tar.gz
-cd nginx-1.23.2
+wget https://nginx.org/download/nginx-1.23.4.tar.gz
+tar zxf nginx-1.23.4.tar.gz
+cd nginx-1.23.4
 ```
 
 To download and unpack source files for the latest _stable_ version, run:  
 
 ```shell
-wget https://nginx.org/download/nginx-1.22.1.tar.gz
-tar zxf nginx-1.22.1.tar.gz
-cd nginx-1.22.1
+wget https://nginx.org/download/nginx-1.24.0.tar.gz
+tar zxf nginx-1.24.0.tar.gz
+cd nginx-1.24.0
 ```
 
 <span id="configure"></span>
@@ -675,7 +696,7 @@ An example of options to the `configure` script (should be typed as a single lin
 --sbin-path=/usr/local/nginx/nginx
 --conf-path=/usr/local/nginx/nginx.conf
 --pid-path=/usr/local/nginx/nginx.pid
---with-pcre=../pcre2-10.40
+--with-pcre=../pcre2-10.42
 --with-zlib=../zlib-1.2.13
 --with-http_ssl_module
 --with-stream
@@ -691,7 +712,7 @@ The `configure` script allows you to set paths to NGINX binary and configuration
 
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |Parameter | Description | 
 | ---| --- | 
 |``--prefix=<PATH>`` | Directory for NGINX files, and the base location for all relative paths set by the other `configure` script options (excluding paths to libraries) and for the path to the **nginx.conf** configuration file. Default: **/usr/local/nginx**. | 
@@ -705,7 +726,7 @@ The `configure` script allows you to set paths to NGINX binary and configuration
 |``--with-pcre=<PATH>`` | Path to the source for the PCRE library, which is required for regular expressions support in the [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) directive and the [Rewrite](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module. | 
 |``--with-pcre-jit`` | Builds the PCRE library with “just-in-time compilation” support (the [pcre_jit](https://nginx.org/en/docs/ngx_core_module.html#pcre_jit) directive). | 
 |``--with-zlib=<PATH>`` | Path to the source for the `zlib` library, which is required by the [Gzip](https://nginx.org/en/docs/http/ngx_http_gzip_module.html) module. | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 
 <span id="configure_gcc"></span>
@@ -714,12 +735,12 @@ The `configure` script allows you to set paths to NGINX binary and configuration
 With the `configure` script you can also specify compiler‑related options.
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |Parameter | Description | 
 | ---| --- | 
 |``--with-cc-opt="<PARAMETERS>"`` | Additional parameters that are added to the ``CFLAGS`` variable. When using the system PCRE library under FreeBSD, the mandatory value is ``--with-cc-opt="-I /usr/local/include"``. If the number of files supported by ``select()`` needs to be increased, it can also specified here as in this example: ``--with-cc-opt="-D FD_SETSIZE=2048"``. | 
 |``--with-ld-opt="<PARAMETERS>"`` | Additional parameters that are used during linking. When using the system PCRE library under FreeBSD, the mandatory value is ``--with-ld-opt="-L /usr/local/lib"``. | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 
 <span id="configure_methods"></span>
@@ -728,12 +749,12 @@ With the `configure` script you can also specify compiler‑related options.
 With the `configure` script you can redefine the method for event‑based polling. For more information, see [Connection processing methods](https://nginx.org/en/docs/events.html) in the NGINX reference documentation.
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |Module Name | Description | 
 | ---| --- | 
 |``--with-select_module``, ``--without-select_module`` | Enables or disables building a module that enable NGINX to work with the ``select()`` method. The modules is built automatically if the platform does not appear to support more appropriate methods such as `kqueue`, `epoll`, or `/dev/poll`. | 
 |``--with-poll_module``, ``--without-poll_module`` | Enables or disables building a module that enables NGINX to work with the ``poll()`` method. The module is built automatically if the platform does not appear to support more appropriate methods such as `kqueue`, `epoll`, or `/dev/poll`. | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 
 
@@ -758,14 +779,14 @@ If you do not need a module that is built by default, you can disable it by nami
 --pid-path=/usr/local/nginx/nginx.pid
 --with-http_ssl_module
 --with-stream
---with-pcre=../pcre2-10.40
+--with-pcre=../pcre2-10.42
 --with-zlib=../zlib-1.2.13
 --without-http_empty_gif_module
 ```
 
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |Module Name | Description | 
 | ---| --- | 
 |[http_access_module](https://nginx.org/en/docs/http/ngx_http_access_module.html) | Accepts or denies requests from specified client addresses. | 
@@ -794,7 +815,7 @@ If you do not need a module that is built by default, you can disable it by nami
 |[http_upstream_zone_module](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) | Enables shared memory zones. | 
 |[http_userid_module](https://nginx.org/en/docs/http/ngx_http_userid_module.html) | Sets cookies suitable for client identification. | 
 |[http_uwsgi_module](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html) | Passes requests to a uwsgi server. | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 
 <span id="modules_not_default"></span>
@@ -811,17 +832,17 @@ An example of the `configure` command that includes nondefault modules (should b
 --sbin-path=/usr/local/nginx/nginx
 --conf-path=/usr/local/nginx/nginx.conf
 --pid-path=/usr/local/nginx/nginx.pid
---with-pcre=../pcre2-10.40
+--with-pcre=../pcre2-10.42
 --with-zlib=../zlib-1.2.13
 --with-http_ssl_module
 --with-stream
 --with-mail
 ```
 
-{{% table %}} 
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |Module Name | Description | 
 | ---| --- | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
    * - ``--with-cpp_test_module``
      - Tests the C++ compatibility of header files.
@@ -908,8 +929,6 @@ An example of the `configure` command that includes nondefault modules (should b
 
    * - ``--with-threads``
      - Enables NGINX to use thread pools. For details, see [Thread Pools in NGINX Boost Performance 9x!](https://www.nginx.com/blog/thread-pools-boost-performance-9x/) on the NGINX blog.
-
-```
 
 #### Including Third-Party Modules
 

@@ -1,10 +1,12 @@
 ---
+description: Control access using HTTP Basic authentication, and optionally in combination
+  with IP address-based access control.
+docs: DOCS-428
+doctypes:
+- task
 title: Restricting Access with HTTP Basic Authentication
-description: Control access using HTTP Basic authentication, and optionally in combination with IP address-based access control.
-weight: 300
-doctypes: ["task"]
 toc: true
-docs: "DOCS-428"
+weight: 300
 ---
 
 <span id="intro"></span>

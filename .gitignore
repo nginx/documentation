@@ -21,6 +21,7 @@ watchdocs.json
 # Local Hugo artifacts
 public/*
 .hugo_build.lock
+resources/
 *.orig
 
 # Local development artifacts
@@ -31,3 +32,8 @@ content/.idea/*
 
 # Local Netlify artifacts
 .netlify/plugins/*
+
+*.pyc
+build
+*.swp
+*.mo

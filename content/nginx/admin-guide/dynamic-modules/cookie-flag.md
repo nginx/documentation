@@ -1,10 +1,13 @@
 ---
+description: Set `HttpOnly`, `SameSite`, and `secure` flags on cookies in `Set-Cookie`
+  upstream response headers with the **Cookie-Flag** dynamic module, community-authored
+  and supported by NGINX, Inc.
+docs: DOCS-382
+doctypes:
+- task
 title: Cookie-Flag
-description: Set `HttpOnly`, `SameSite`, and `secure` flags on cookies in `Set-Cookie` upstream response headers with the **Cookie-Flag** dynamic module, community-authored and supported by NGINX, Inc.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-382"
+weight: 100
 ---
 
 

@@ -257,23 +257,6 @@ If you are using FreeBSD, you can download the NGINX Agent from [https://github.
 
 ## 2.8.0
 
-### {{% icon-resolved %}} Upgrading NGINX Management Suite may remove the OIDC configuration for the platform {#41328}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 41328    | Fixed in 2.9.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-Upgrading the NGINX Management Suite could result in the removal of your OIDC configuration, which would prevent users from being able to log in through OIDC.
-#### Workaround
-
-Prior to upgrading, we recommend that you back up your configuration files for NGINX Management Suite and the platform proxy. Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for further details on this and other pre-upgrade steps.
-
----
-
 ### {{% icon-bug %}} Precompiled Publication setting is reverted to false after error publishing NGINX App Protect policy  {#40484}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
@@ -747,30 +730,6 @@ Remove the existing NATs working directory and restart the NMS Data Plane Manage
 rm -rf /var/lib/nms/streaming
 systemctl restart nms-dpm
 ```
-
----
-
-## 2.4.0
-
-### {{% icon-bug %}} Publishing an instance group config with an aux file outside the allowed directory fails {#36410}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 36410    | Open   |
-{{</bootstrap-table>}}
-
-#### Description
-
-If an instance group's configuration references an aux file (for example, an SSL certificate) that is not in the expected allowed directory, publishing the config will fail. The system returns an error similar to the following:
-
-```text
-Config apply failed (write): the file <filename> is outside the allowed directory list.
-```
-
-#### Workaround
-
-Move the aux file to the allowed directory and update the configuration; for example, use `/etc/nginx/` for certificates.
 
 ---
 

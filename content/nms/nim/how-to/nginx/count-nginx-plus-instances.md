@@ -119,7 +119,7 @@ The current count of NGINX Plus instances is shown on the **NGINX Plus Inventory
 
 ### Upgrading Instance Manager
 
-- After [upgrading Instance Manager]({{< relref "/nms/installation/upgrade-guide.md#upgrade-instance-manager" >}}), make sure to [upgrade the NGINX Agent](#upgarde-nginx-agent) on each NGINX instance.
+- After [upgrading Instance Manager]({{< relref "/nms/installation/upgrade-guide.md#upgrade-instance-manager" >}}), make sure to [upgrade the NGINX Agent](#upgrade-nginx-agent) on each NGINX instance.
 
 ### Upgrading the NGINX Agent {#upgrading-nginx-agent}
 

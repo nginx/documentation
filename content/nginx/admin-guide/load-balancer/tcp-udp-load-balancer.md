@@ -1,10 +1,12 @@
 ---
+description: This chapter describes how to use NGINX Plus and NGINX Open Source to
+  proxy and load balance TCP and UDP traffic.
+docs: DOCS-420
+doctypes:
+- task
 title: TCP and UDP Load Balancing
-description: This chapter describes how to use NGINX Plus and NGINX Open Source to proxy and load balance TCP and UDP traffic.
-weight: 200
-doctypes: ["task"]
 toc: true
-docs: "DOCS-420"
+weight: 200
 ---
 
 

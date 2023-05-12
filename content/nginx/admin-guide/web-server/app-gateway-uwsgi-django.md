@@ -1,10 +1,12 @@
 ---
+description: Configure NGINX and NGINX Plus as an application gateway for uWSGI and
+  Django.
+docs: DOCS-439
+doctypes:
+- task
 title: Using NGINX and NGINX Plus as an Application Gateway with uWSGI and Django
-description: Configure NGINX and NGINX Plus as an application gateway for uWSGI and Django.
-weight: 500
-doctypes: ["task"]
 toc: true
-docs: "DOCS-439"
+weight: 500
 ---
 
 

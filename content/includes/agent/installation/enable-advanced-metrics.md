@@ -3,9 +3,6 @@ NGINX Plus advanced metrics are application-centric metrics collected by the NGI
 To enable advanced metrics, edit the `/etc/nginx-agent/nginx-agent.conf` file and add the following directives:
 
 ```yaml
-extensions:
-  - advanced-metrics
-
 advanced_metrics:
   socket_path: /var/run/nginx-agent/advanced-metrics.sock
   aggregation_period: 1s

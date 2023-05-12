@@ -1,10 +1,12 @@
 ---
+description: Capture detailed information about errors and request processing in log
+  files, either locally or via syslog.
+docs: DOCS-426
+doctypes:
+- task
 title: Configuring Logging
-description: Capture detailed information about errors and request processing in log files, either locally or via syslog.
-weight: 200
-doctypes: ["task"]
 toc: true
-docs: "DOCS-426"
+weight: 200
 ---
 
 

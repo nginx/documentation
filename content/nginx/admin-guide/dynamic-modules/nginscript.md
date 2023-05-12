@@ -1,10 +1,13 @@
 ---
+description: Integrate [JavaScript-like](https://nginx.org/en/docs/njs/) code into
+  the NGINX event-processing model for HTTP or TDP/UDP, with the NGINX njs module,
+  supported by NGINX, Inc.
+docs: DOCS-393
+doctypes:
+- task
 title: njs Scripting Language
-description: Integrate [JavaScript-like](https://nginx.org/en/docs/njs/) code into the NGINX event-processing model for HTTP or TDP/UDP, with the NGINX njs module, supported by NGINX, Inc.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-393"
+weight: 100
 ---
 
 

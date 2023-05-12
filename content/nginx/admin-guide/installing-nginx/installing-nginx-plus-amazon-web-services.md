@@ -1,10 +1,12 @@
 ---
+description: Install NGINX Plus on Amazon Web Services (AWS), to provide sophisticated
+  Layer 7 load balancing for your apps running on Amazon Linux, RHEL, and Ubuntu.
+docs: DOCS-411
+doctypes:
+- task
 title: Installing NGINX Plus AMIs on Amazon EC2
-description: Install NGINX Plus on Amazon Web Services (AWS), to provide sophisticated Layer 7 load balancing for your apps running on Amazon Linux, RHEL, and Ubuntu.
-weight: 300
-doctypes: ["task"]
 toc: true
-docs: "DOCS-411"
+weight: 300
 ---
 
 

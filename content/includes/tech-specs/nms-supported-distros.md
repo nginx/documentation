@@ -2,7 +2,7 @@
 docs: "DOCS-1071"
 ---
 
-NGINX Management Suite supports the following Linux distributions:
+The NGINX Management Suite gateway supports the following Linux distributions:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Distribution | Version                                                                                               | Architecture               | Instance&nbsp;Manager                                 | API&nbsp;Connectivity&nbsp;Manager                    | App&nbsp;Delivery&nbsp;Manager                        | Notes                                                                                                                                               |
@@ -14,3 +14,4 @@ NGINX Management Suite supports the following Linux distributions:
 | RHEL         | 7.4 and later in the 7.x family<hr>8.x and later in the 8.x family<hr>9.x and later in the 9.x family | x86_64<hr>x86_64<hr>x86_64 | 2.0.0 and later<hr>2.0.0 and later<hr>2.6.0 and later | 1.0.0 and later<hr>1.0.0 and later<hr>1.3.0 and later | 4.0.0 and later<hr>4.0.0 and later<hr>4.0.0 and later |                                                                                                                                                     |
 | Ubuntu       | 18.04<hr>20.04<hr>22.04                                                                               | x86_64<hr>x86_64<hr>x86_64 | 2.0.0 and later<hr>2.0.0 and later<hr>2.3.0 and later | 1.0.0 and later<hr>1.0.0 and later<hr>1.0.0 and later | 4.0.0 and later<hr>4.0.0 and later<hr>4.0.0 and later | [Configuration Management for App Protect WAF]({{< relref "/nms/nim/about/app-protect-waf-cm-overview.md" >}}) is not compatible with Ubuntu 22.04. |
 {{</bootstrap-table>}}
+

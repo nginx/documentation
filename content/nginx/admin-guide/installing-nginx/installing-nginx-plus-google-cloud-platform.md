@@ -1,10 +1,12 @@
 ---
+description: Install NGINX Plus on the Google Cloud Platform, to provide sophisticated
+  Layer 7 load balancing for your apps running on Google Compute Engine.
+docs: DOCS-412
+doctypes:
+- task
 title: Installing NGINX Plus on the Google Cloud Platform
-description: Install NGINX Plus on the Google Cloud Platform, to provide sophisticated Layer 7 load balancing for your apps running on Google Compute Engine.
-weight: 400
-doctypes: ["task"]
 toc: true
-docs: "DOCS-412"
+weight: 400
 ---
 
 
