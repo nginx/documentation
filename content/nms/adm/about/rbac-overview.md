@@ -357,20 +357,30 @@ Permissions:
 <details>
 <summary>UI Roles Setup</summary>
 
+Here is a step by step tutorial for setting up the Example Admin role.
+
+First give CRUD access to ALL environments in ENVIRONMENT-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleAdminEnv.png" alt="Admin ENVIRONMENT-MANAGEMENT" width="75%">}}
 
+Next, give CRUD access to ALL gateways under ALL environments in GATEWAY-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleAdminGateway.png" alt="Admin GATEWAY-MANAGEMENT" width="75%">}}
 
+Next, give CRUD access to ALL apps under ALL environments in APP-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleAdminApp.png" alt="Admin APP-MANAGEMENT" width="75%">}}
 
+Next, give CRUD access to ALL web-components under ALL apps and environments in WEB-COMPONENT-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleAdminWebcomp.png" alt="Admin WEB-COMPONENT-MANAGEMENT" width="75%">}}
 
+Next, give CRUD access to ALL sites in SITE-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleAdminSite.png" alt="Admin SITE-MANAGEMENT" width="75%">}}
 
+Next, give CRUD access to ALL instance groups in INSTANCE-GROUPS.
 {{< img src="adm/about/rbac-screenshots/ExampleAdminInstanceManagement.png" alt="Admin INSTANCE-GROUPS" width="75%">}}
 
+Next, give CRUD access to ALL systems and instance groups within CERTS.
 {{< img src="adm/about/rbac-screenshots/ExampleAdminCerts.png" alt="Admin CERTS" width="75%">}}
 
+Finally, give CRUD access to ANALYTICS.
 {{< img src="adm/about/rbac-screenshots/ExampleAdminAnalytics.png" alt="Admin ANALYTICS" width="75%">}}
 
 </details>
@@ -557,20 +567,31 @@ This role has full access to manage gateway objects, but only Read access to app
 <details>
 <summary>UI Roles Setup</summary>
 
+Here is a step by step tutorial for setting up the Example Admin role.
+
+First give READ access to the example-env environment in ENVIRONMENT-MANAGEMENT.
+
 {{< img src="adm/about/rbac-screenshots/ExampleEnvRead.png" alt="Gateway Admin ENVIRONMENT-MANAGEMENT" width="75%">}}
 
+Next, give CRUD access to ALL gateways under the example-env environment in GATEWAY-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleAdminGateway.png" alt="Gateway Admin GATEWAY-MANAGEMENT" width="75%">}}
 
+Next, give READ access to ALL apps under the example-env environment in APP-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleAppRead.png" alt="Gateway Admin APP-MANAGEMENT" width="75%">}}
 
+Next, give READ access to ALL web-components within ALL apps under the example-env environment.
 {{< img src="adm/about/rbac-screenshots/ExampleWebCompRead.png" alt="Gateway Admin WEB-COMPONENT-MANAGEMENT" width="75%">}}
 
+Next, give READ access to site1 within SITE-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleSiteRead.png" alt="Gateway Admin SITE-MANAGEMENT" width="75%">}}
 
+Next, give READ access to the ig1 instance group within INSTANCE-GROUPS.
 {{< img src="adm/about/rbac-screenshots/ExampleIGRead.png" alt="Gateway Admin INSTANCE-GROUPS" width="75%">}}
 
+Next, give CRUD access to ALL systems and the ig1 instance group within CERTS.
 {{< img src="adm/about/rbac-screenshots/ExampleCertCRUD.png" alt="Gateway Admin CERTS" width="75%">}}
 
+Finally, give READ access to ANALYTICS.
 {{< img src="adm/about/rbac-screenshots/ExampleAnalyticsRead.png" alt="Gateway Admin ANALYTICS" width="75%">}}
 
 </details>
@@ -737,18 +758,27 @@ This role has access to the environment example-env and the gateway that serves 
 <details>
 <summary>UI Roles Setup</summary>
 
+Here is a step by step tutorial for setting up the Support App role.
+
+First give READ access to the example-env environment in ENVIRONMENT-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleEnvRead.png" alt="Support ENVIRONMENT-MANAGEMENT" width="75%">}}
 
+Next, give READ access to the example-com gateway under the example-env environment in GATEWAY-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleGatewayRead.png" alt="Support GATEWAY-MANAGEMENT" width="75%">}}
 
+Next, give CRUD access to the Support app within the example-env environment in APP-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleSupportAppCRUD.png" alt="Support APP-MANAGEMENT" width="75%">}}
 
+Next, give CRUD access to ALL web-components within the Support app under the example-env environment in WEB-COMPONENT-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleSupportWebCompCRUD.png" alt="Support WEB-COMPONENT-MANAGEMENT" width="75%">}}
 
+Next, give READ access to site1 within SITE-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleSiteRead.png" alt="Support SITE-MANAGEMENT" width="75%">}}
 
+Next, give READ access to the ig1 instance group within INSTANCE-GROUPS.
 {{< img src="adm/about/rbac-screenshots/ExampleIGRead.png" alt="Support INSTANCE-GROUPS" width="75%">}}
 
+Finally, give READ access to ANALYTICS.
 {{< img src="adm/about/rbac-screenshots/ExampleAnalyticsRead.png" alt="Support ANALYTICS" width="75%">}}
 
 </details>
@@ -915,18 +945,27 @@ This role has access to the environment example-env and the gateway that serves 
 <details>
 <summary>UI Roles Setup</summary>
 
+Here is a step by step tutorial for setting up the Sales App role.
+
+First give READ access to the example-env environment in ENVIRONMENT-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleEnvRead.png" alt="Sales ENVIRONMENT-MANAGEMENT" width="75%">}}
 
+Next, give READ access to the example-com gateway under the example-env environment in GATEWAY-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleGatewayRead.png" alt="Sales GATEWAY-MANAGEMENT" width="75%">}}
 
+Next, give CRUD access to the Sales app within the example-env environment in APP-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleSalesAppCRUD.png" alt="Sales APP-MANAGEMENT" width="75%">}}
 
+Next, give CRUD access to ALL web-components within the Sales app under the example-env environment in WEB-COMPONENT-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleSalesWebCompCRUD.png" alt="Sales WEB-COMPONENT-MANAGEMENT" width="75%">}}
 
+Next, give READ access to site1 within SITE-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleSiteRead.png" alt="Sales SITE-MANAGEMENT" width="75%">}}
 
+Next, give READ access to the ig1 instance group within INSTANCE-GROUPS.
 {{< img src="adm/about/rbac-screenshots/ExampleIGRead.png" alt="Sales INSTANCE-GROUPS" width="75%">}}
 
+Finally, give READ access to ANALYTICS.
 {{< img src="adm/about/rbac-screenshots/ExampleAnalyticsRead.png" alt="Sales ANALYTICS" width="75%">}}
 
 </details>
@@ -1107,20 +1146,30 @@ This role has Read-only access to all objects and data related to example-env.
 <details>
 <summary>UI Roles Setup</summary>
 
+Here is a step by step tutorial for setting up the Read Only role.
+
+First give READ access to the example-env environment in ENVIRONMENT-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleEnvRead.png" alt="Read Only ENVIRONMENT-MANAGEMENT" width="75%">}}
 
+Next, give READ access to ALL gateways under the example-env environment in GATEWAY-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleGatewayRead.png" alt="Read Only GATEWAY-MANAGEMENT" width="75%">}}
 
+Next, give READ access to ALL apps within the example-env environment in APP-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleAppRead.png" alt="Read Only APP-MANAGEMENT" width="75%">}}
 
+Next, give READ access to ALL web-components within ALL apps under the example-env environment.
 {{< img src="adm/about/rbac-screenshots/ExampleWebCompRead.png" alt="Read Only WEB-COMPONENT-MANAGEMENT" width="75%">}}
 
+Next, give READ access to site1 within SITE-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleSiteRead.png" alt="Read Only SITE-MANAGEMENT" width="75%">}}
 
+Next, give READ access to the ig1 instance group within INSTANCE-GROUPS.
 {{< img src="adm/about/rbac-screenshots/ExampleIGRead.png" alt="Read Only INSTANCE-GROUPS" width="75%">}}
 
+Next, give READ access to ALL systems and the ig1 instance group within CERTS.
 {{< img src="adm/about/rbac-screenshots/ExampleCertsRead.png" alt="Read Only CERTS" width="75%">}}
 
+Finally, give READ access to ANALYTICS.
 {{< img src="adm/about/rbac-screenshots/ExampleAnalyticsRead.png" alt="Read Only ANALYTICS" width="75%">}}
 
 </details>
