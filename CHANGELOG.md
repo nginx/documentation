@@ -36,3 +36,7 @@ Update list page layout to allow weight-based ranking across pages and sections
 ## 0.7.0 (May 14, 2023)
 
 [Production readiness: permalinks and url management](https://github.com/nginxinc/docs/pull/95)
+
+## 0.7.1 (May 14, 2023)
+
+[Production readiness: set up staging deploys](https://github.com/nginxinc/docs/pull/112)
