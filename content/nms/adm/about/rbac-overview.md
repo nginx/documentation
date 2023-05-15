@@ -115,7 +115,7 @@ The TCPUDP-COMPONENT-MANAGEMENT feature controls access to TCP/UDP components an
 
 ## Example Roles
 
-We recommend configuring roles to limit permissions. An example scenario is detailed below.  For more details on how to assign roles and the special considerations which need to be taken into account when using the user interface (UI) see [Setting up User Roles]({{< relref "adm/getting-started/roles.md" >}}) section of **Getting-Started**.
+We recommend configuring roles to limit permissions. An example scenario is detailed below.  For more details on how to assign roles and the special considerations which need to be taken into account when using the user interface (UI) see [Setting up User Roles]({{< relref "/nms/adm/getting-started/roles.md" >}}) section of **Getting-Started**.
 
 ### Scenario
 
