@@ -37,36 +37,38 @@ NGINX Management Suite Security Monitoring provides global visibility into your 
 
 - [Install on virtual machine or bare metal]({{< ref "install-guide#install-nms-modules" >}})
 
-{{< note >}}The Kubernetes Helm method does not support installation of the Security Monitoring module, and the module is not currently supported in Kubernetes.{{< /note >}}
+{{< important >}}The Security Monitoring module is not supported in Kubernetes. The Kubernetes Helm chart does not support installing the Security Monitoring module.{{< /important >}}
 
 ### (Optional) Install the API Connectivity Manager module
-NGINX Management Suite API Connectivity Manger makes it easy to manage, govern, and secure API gateways deployed across multi-cloud and hybrid environments. Install this module if you want to centrally manage your NGINX Plus API gateways.
+NGINX Management Suite API Connectivity Manger makes it easy to manage, govern, and secure API gateways deployed across multi-cloud and hybrid environments. Install this module if you want  centralized management for your NGINX Plus API gateways.
 
 - [Install on virtual machine or bare metal]({{< ref "install-guide#install-nms-modules" >}})
 - [Install in Kubernetes using Helm]({{< ref "enable-modules-for-existing-deployments" >}})
 
 ### Install NGINX Plus as an API Gateway
-NGINX Plus can be configured to act as an API gateway for monolithic applications and microservices. It is the data plane that transports application traffic and is operated by management plane tools like NGINX Management Suite API Connectivity Manager.
+NGINX Plus can act as an API gateway for monolithic applications and microservices. It is the data plane that transports application traffic. Management plane tools like NGINX Management Suite API Connectivity Manager apply configurations to NGINX Plus instances.
 
 1.	[Download your credentials from MyF5](https://my.f5.com/), including your NGINX Plus Certificate and public key (`nginx-repo.crt` and `nginx-repo.key`).
-2.	Follow the [NGINX Plus installation guide]({{< ref "installing-nginx-plus" >}}) to install it on a [supported operating system]({{< ref "nginx/technical-specs" >}})
+2.	Follow the instructions in the [NGINX Plus installation guide]({{< ref "installing-nginx-plus" >}}) to install it on a [supported operating system]({{< ref "nginx/technical-specs" >}})
 3.	[Install and configure NGINX Agent]({{< ref "install-nginx-agent" >}}) on your NGINX Plus instance. 
 
 If you plan to use API Connectivity Manager to manage NGINX Plus as an API Gateway, refer to the instructions about [how to set up an API gateway environment]({{< ref "add-api-gateway" >}}).
 
 ### (Optional) Install NGINX App Protect WAF
-NGINX App Protect WAF is a lightweight, platform agnostic WAF that protects applications and APIs from layer 7 attacks. You can manage WAFs using the Instance Manager module and visualize them using the Security Monitoring module.
+NGINX App Protect WAF is a lightweight, platform-agnostic WAF that protects applications and APIs from layer 7 attacks. You can manage WAFs using the Instance Manager module and visualize them using the Security Monitoring module.
 
 1.	[Download your credentials from MyF5](https://my.f5.com/), including your NGINX Plus Certificate and public key (`nginx-repo.crt` and `nginx-repo.key`).
-2.	Follow the [NGINX App Protect WAF installation guide]({{< ref "nap-waf/admin-guide/install" >}}) for your Linux distribution
+2.	Follow the instructions in the [NGINX App Protect WAF installation guide]({{< ref "nap-waf/admin-guide/install" >}}) for your Linux distribution.
 
 If you want to use NGINX App Protect WAF with the Security Monitoring and Instance Manager modules, you will need to complete a few additional steps. Refer to the [installation guide]({{< ref "nap-waf/admin-guide/install-nms" >}}) for using NGINX App Protect WAF with NGINX Management Suite.
 
 ### (Optional) Install NGINX App Protect DoS
-NGINX App Protect DoS provides comprehensive protection against Layer 7 denial-of-service attacks on your apps and APIs. At this time, it is not integrated with Instance Manager or Security Monitoring modules.
+NGINX App Protect DoS provides comprehensive protection against Layer 7 denial-of-service attacks on your apps and APIs. 
+
+{{<note>}}The Instance Manager and Security Monitoring modules do not support App Protect DoS.{{</note>}}
 
 1.	[Download your credentials from MyF5](https://my.f5.com/), including your NGINX Plus Certificate and public key (`nginx-repo.crt` and `nginx-repo.key`).
-2.	Follow the [NGINX App Protect DoS installation guide]({{< ref "nap-dos/deployment-guide/learn-about-deployment" >}}) for your Linux distribution
+2.	Follow the instructions in the [NGINX App Protect DoS installation guide]({{< ref "nap-dos/deployment-guide/learn-about-deployment" >}}) for your Linux distribution
 
 ## Next steps
 Now that you’ve successfully deployed the API Connectivity Stack, use this free eBook to learn more about [deploying NGINX as an API gateway](https://www.nginx.com/resources/library/nginx-api-gateway-deployment/).
