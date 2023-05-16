@@ -42,7 +42,7 @@ Allow external systems access by opening network firewalls. NGINX Management Sui
 
 The following diagram shows the steps required to install NGINX Management Suite. This page will guide you through the process of installing the prerequisites.
 
-{{< img src="/nms/installation/on-prem/nms-installation.png" alt="Steps for installing NGINX Management Suite" >}}
+{{< img src="/nms/installation/vm-bare-metal/nms-installation.png" alt="Steps for installing NGINX Management Suite" >}}
 
 ---
 
@@ -232,7 +232,7 @@ To install NGINX Management Suite, you need to add the official repository to pu
 
 ### Install NGINX Management Suite Modules
 
-- [Install Instance Manager]({{< relref "/nms/installation/on-prem/install-nim.md" >}})
-- [Install API Connectivity Manager]({{< relref "/nms/installation/on-prem/install-acm.md" >}})
-- [Install App Delivery Manager]({{< relref "/nms/installation/on-prem/install-adm.md" >}})
-- [Install Security Monitoring]({{< relref "/nms/installation/on-prem/install-security-monitoring.md" >}})
+- [Install Instance Manager]({{< relref "/nms/installation/vm-bare-metal/install-nim.md" >}})
+- [Install API Connectivity Manager]({{< relref "/nms/installation/vm-bare-metal/install-acm.md" >}})
+- [Install App Delivery Manager]({{< relref "/nms/installation/vm-bare-metal/install-adm.md" >}})
+- [Install Security Monitoring]({{< relref "/nms/installation/vm-bare-metal/install-security-monitoring.md" >}})

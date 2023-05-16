@@ -85,4 +85,4 @@ The Security Monitoring module provides the following features:
 ## What's Next?
 
 - [Review the Technical Specifications]({{< relref "/nms/tech-specs.md">}})
-- [Install NGINX Management Suite]({{< relref "/nms/installation/on-prem/_index.md">}})
+- [Install NGINX Management Suite]({{< relref "/nms/installation/vm-bare-metal/_index.md">}})

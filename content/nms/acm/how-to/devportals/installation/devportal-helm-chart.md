@@ -240,38 +240,31 @@ This command removes all of the Kubernetes components associated with the Develo
 
 <br>
 
-### Common Deployment Configurations
+## Common Deployment Configurations
 
 Select from the following options to view some of the commonly used configurations for the Developer Portal. To apply these configurations, edit the `values.yaml` file as needed.
 
-<details closed >
-<summary><i class="fa-solid fa-circle-info"></i> Deploy Developer Portal with an SQLite database</summary>
+### Deploy Developer Portal with an SQLite database
+
 {{< note >}}
 This configuration is recommended for proof of concept installations and not for production deployments.
 {{</ note >}}
+
 {{< include "installation/helm/acm/dev-portal-helm-configurations/configure-helm-devportal-sqlite.md" >}}
 
-</details>
+### Deploy Developer Portal with an embedded PostgreSQL database
 
-<details closed >
-<summary><i class="fa-solid fa-circle-info"></i> Deploy Developer Portal with an embedded PostgreSQL database</summary>
 {{< note >}}
 This configuration is recommended for proof of concept installations and not for production deployments.
 {{</ note >}}
+
 {{< include "installation/helm/acm/dev-portal-helm-configurations/configure-devportal-helm-embedded-postgres.md" >}}
 
-</details>
-
-<details closed >
-<summary><i class="fa-solid fa-circle-info"></i> Deploy Developer Portal with an external PostgreSQL database</summary>
+### Deploy Developer Portal with an external PostgreSQL database
 
 {{< include "installation/helm/acm/dev-portal-helm-configurations/configure-devportal-helm-external-postgres.md" >}}
 
-</details>
-
-<details closed >
-<summary><i class="fa-solid fa-circle-info"></i> Deploy Developer Portal using TLS for the backend API service</summary>
+### Deploy Developer Portal using TLS for the backend API service
 
 {{< include "installation/helm/acm/dev-portal-helm-configurations/configure-devportal-helm-api-mtls.md" >}}
 
-</details>

@@ -8,7 +8,7 @@ draft: false
 # The description text appears in search results and at the top of the doc.
 description: "This reference guide lists the configurable Helm chart parameters and default settings for the NGINX Management Suite platform and modules."
 # Assign weights in increments of 100
-weight: 1000
+weight: 90
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
@@ -32,26 +32,14 @@ authors: []
 
 {{< include "installation/helm/nim/configuration-options.md" >}}
 
-<br>
-
 ---
 
 ## API Connectivity Manager Helm Chart Settings {#acm-helm-settings}
 
 {{< include "installation/helm/acm/configuration-options.md" >}}
 
-<br>
-
----
-
-## Developer Portal Helm Chart Settings {#dev-portal-helm-settings}
-
-{{< include "installation/helm/acm/dev-portal-helm-configurations/configuration-options.md" >}}
-
 ---
 
 ## App Delivery Manager Helm Chart Settings {#adm-helm-settings}
 
 {{< include "installation/helm/adm/configuration-options.md" >}}
-
-<br>

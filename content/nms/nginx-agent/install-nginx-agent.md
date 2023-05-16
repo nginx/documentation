@@ -31,7 +31,7 @@ aliases:
 
 This section lists the prerequisites for installing and configuring NGINX Agent. Follow the steps below to complete the requirements:
 
-1. [NGINX Management Suite is installed on a server]({{< relref "/nms/installation/on-prem/_index.md" >}}).
+1. [NGINX Management Suite is installed on a server]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}).
 
     {{<note>}} When installing and configuring NGINX Management Suite, take note of the fully qualified domain name (FQDN) and gRPC port number. You'll need this information to properly configure the NGINX Agent to communicate with NGINX Management Suite.
     {{</note>}}

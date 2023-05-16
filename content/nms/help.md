@@ -66,7 +66,7 @@ The documentation for NGINX Management Suite is divided into the following secti
 
 Check out some of our most consulted topics:
 
-### [Install Guide]({{< relref "/nms/installation/on-prem/_index.md" >}})
+### [Install Guide]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}})
 
 - Complete the steps in this guide to install NGINX Management Suite.
 

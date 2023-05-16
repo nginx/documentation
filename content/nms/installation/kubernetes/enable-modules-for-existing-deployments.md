@@ -2,7 +2,7 @@
 title: "Enabling Modules for Existing Deployments"
 date: 2023-01-17T11:55:53-08:00
 # Change draft status to false to publish doc.
-draft: false
+draft: true
 # Description
 # Add a short description (150 chars) for the doc. Include keywords for SEO. 
 # The description text appears in search results and at the top of the doc.
@@ -31,7 +31,7 @@ authors: []
 
 ## Overview
 
-If you’ve already [deployed NGINX Management Suite using Helm]({{< relref "/nms/installation/kubernetes/nms-helm.md" >}}) and would now like to enable a module, simply follow the steps outlined below.
+If you’ve already [deployed NGINX Management Suite using Helm]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md" >}}) and would now like to enable a module, simply follow the steps outlined below.
 
 ---
 
@@ -55,7 +55,7 @@ Choose the tab for the module you want to activate and follow the provided instr
 
 ### Push Image to Private Registry {#push-image-private-docker-repo}
 
-{{< include "installation/helm/acm/push-acm-docker-imate-private-repo.md" >}}
+{{< include "installation/helm/acm/push-acm-docker-image-private-repo.md" >}}
 
 ### Enable API Connectivity Manager
 
@@ -79,7 +79,7 @@ Choose the tab for the module you want to activate and follow the provided instr
 
 ### Push Image to Private Registry {#push-image-private-docker-repo}
 
-{{< include "installation/helm/adm/push-adm-docker-imate-private-repo.md" >}}
+{{< include "installation/helm/adm/push-adm-docker-image-private-repo.md" >}}
 
 ### Enable App Delivery Manager
 {{< include "installation/helm/adm/edit-values-yaml-to-enable-adm.md" >}}

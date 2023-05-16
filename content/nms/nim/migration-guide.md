@@ -21,7 +21,7 @@ aliases:
 {{< shortversions "2.0.0" "latest" "nimvers" >}}
 
 {{< see-also >}}
-To perform a clean installation of NGINX Management Suite (NMS) and Instance Manager, refer to the [NMS installation guide]({{< relref "/nms/installation/on-prem/_index.md" >}}).
+To perform a clean installation of NGINX Management Suite (NMS) and Instance Manager, refer to the [NMS installation guide]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}).
 {{< /see-also>}}
 
 ## Prerequisites
@@ -38,7 +38,7 @@ To complete this tutorial, you need the following:
 
 Begin the migration process by installing Instance Manager v2.
 
-1. Follow the instructions for [Installing Instance Manager]({{< relref "/nms/installation/on-prem/_index.md" >}}). License Instance Manager according to the installation guide.
+1. Follow the instructions for [Installing Instance Manager]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}). License Instance Manager according to the installation guide.
 
 1. Enable the NGINX Management Suite services:
 
