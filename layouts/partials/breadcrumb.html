@@ -5,7 +5,7 @@
             
             {{ with .Parent }}
                 {{ template "breadcrumb" . }}
-                <li><a href="{{ .RelPermalink }}">{{ .Title }}</a><i class="fas fa-chevron-right"></i></li>
+                <li><a href="{{ .RelPermalink }}">{{if .IsHome}}Home{{else}}{{ .Title }}{{end}}</a><i class="fas fa-chevron-right"></i></li>
                 {{ end }}
             {{ end }}
             
