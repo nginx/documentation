@@ -3,4 +3,5 @@ description: "The guides in this section feature end-to-end examples that will h
 title: Tutorials
 weight: 600
 draft: false
+url: /nginx-management-suite/acm/tutorials/
 ---
