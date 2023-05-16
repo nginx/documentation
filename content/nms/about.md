@@ -7,7 +7,7 @@ draft: false
 title: About
 description: Learn about NGINX Management Suite.
 toc: true
-weight: 50
+weight: 10
 docs: "DOCS-905"
 doctypes: ["concept"]
 ---
