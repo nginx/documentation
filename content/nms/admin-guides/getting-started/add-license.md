@@ -37,7 +37,7 @@ Complete the following steps to sign up for a license for NGINX Management Suite
 
 Before you begin:
 
-- Follow the steps to install [NGINX Management Suite]({{< relref "/nms/installation/on-prem/_index.md" >}}).
+- Follow the steps to install [NGINX Management Suite]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}).
 - [Download your license file](#get-a-license).
 
 To add a license for an NGINX Management Suite module, take the following steps:

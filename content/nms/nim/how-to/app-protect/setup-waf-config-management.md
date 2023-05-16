@@ -30,7 +30,7 @@ Complete the following prerequisites before proceeding with this guide.
 
     {{<note>}}If you are using configuration management and the NGINX Management Suite Security Monitoring module, follow the instructions in the [setup guide]({{<relref "/nms/security/how-to/set-up-app-protect-instances" >}}) to set up your NGINX App Protect instances before proceeding with this guide.{{</note>}}
 
-- You have Instance Manager v2.6.0 or later [installed]({{< relref "/nms/installation/on-prem/_index.md" >}}), licensed, and running. 
+- You have Instance Manager v2.6.0 or later [installed]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}), licensed, and running. 
   If you have a subscription to NGINX App Protect WAF, you can find your Instance Manager license in the subscription details section of [MyF5](https://my.f5.com).  
 
 ### Limitations

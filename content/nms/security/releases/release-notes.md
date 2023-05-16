@@ -150,7 +150,7 @@ This release includes the following updates:
   - Informative dashboards that provide valuable protection insights
   - In-depth security log details to help with analyzing possible threats and making policy decisions
 
-  Refer to the [Installation Guide]({{< relref "/nms/installation/on-prem/_index.md" >}}) to get started.
+  Refer to the [Installation Guide]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}) to get started.
 
 ### Known Issues
 

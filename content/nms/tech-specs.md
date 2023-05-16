@@ -89,7 +89,7 @@ The following sizing recommendations are the minimum sizing guidelines for Insta
 
 {{< include "tech-specs/acm-nim-dependencies.md" >}}
 
-{{< important >}} If you're [installing API Connectivity Manager in an offline environment]({{< relref "/nms/installation/on-prem/offline-install-guide.md#install-acm-offline" >}}) and the minimum required version of Instance Manager is not installed, the API Connectivity Manager installer will exit. You'll need to [install Instance Manager manually]({{< relref "/nms/installation/on-prem/offline-install-guide.md#install-nim-offline" >}}) before installing API Connectivity Manager.{{< /important >}}
+{{< important >}} If you're [installing API Connectivity Manager in an offline environment]({{< relref "/nms/installation/vm-bare-metal/offline-install-guide.md#install-acm-offline" >}}) and the minimum required version of Instance Manager is not installed, the API Connectivity Manager installer will exit. You'll need to [install Instance Manager manually]({{< relref "/nms/installation/vm-bare-metal/offline-install-guide.md#install-nim-offline" >}}) before installing API Connectivity Manager.{{< /important >}}
 
 ### API Connectivity Manager Supported NGINX Versions {#acm-supported-nginx}
 
@@ -107,7 +107,7 @@ The following sizing recommendations are the minimum sizing guidelines for Insta
 
 {{< include "tech-specs/adm-nim-dependencies.md" >}}
 
-{{< important >}} If you're [installing App Delivery Manager in an offline environment]({{< relref "/nms/installation/on-prem/offline-install-guide.md" >}}) and the minimum required version of Instance Manager is not installed, the App Delivery Manager installer will exit. You'll need to [install Instance Manager manually]({{< relref "/nms/installation/on-prem/offline-install-guide.md#install-nim-offline" >}}) before installing App Delivery Manager.{{< /important >}}
+{{< important >}} If you're [installing App Delivery Manager in an offline environment]({{< relref "/nms/installation/vm-bare-metal/offline-install-guide.md" >}}) and the minimum required version of Instance Manager is not installed, the App Delivery Manager installer will exit. You'll need to [install Instance Manager manually]({{< relref "/nms/installation/vm-bare-metal/offline-install-guide.md#install-nim-offline" >}}) before installing App Delivery Manager.{{< /important >}}
 
 ---
 

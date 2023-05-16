@@ -171,8 +171,8 @@ Complete the following steps for each data plane instance you want to use with A
 
 ### Install Other NGINX Management Suite Modules
 
-- [Install App Delivery Manager]({{< relref "/nms/installation/on-prem/install-adm.md" >}})
-- [Install Security Monitoring]({{< relref "/nms/installation/on-prem/install-security-monitoring.md" >}})
+- [Install App Delivery Manager]({{< relref "/nms/installation/vm-bare-metal/install-adm.md" >}})
+- [Install Security Monitoring]({{< relref "/nms/installation/vm-bare-metal/install-security-monitoring.md" >}})
 
 ### Get Started with API Connectivity Manager
 

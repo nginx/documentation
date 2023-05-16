@@ -40,7 +40,7 @@ NGINX Plus is provided and intended only to be used with Instance Manager as a f
 
 ## Prerequisites {#prerequisites}
 
-1. Install [NGINX Management Suite]({{<relref "/nms/installation/on-prem/_index.md">}}).
+1. Install [NGINX Management Suite]({{<relref "/nms/installation/vm-bare-metal/_index.md">}}).
 2. Install [NGINX or NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/).
 3. Start and Enable Instance Manager and NGINX Plus (or NGINX).
 
@@ -186,7 +186,7 @@ You can enable OpenID Connect (OIDC) for Instance Manager for production environ
 
 To use OIDC with Instance Manager, you need to perform the following:
 
-- [Install Instance Manager]({{< relref "/nms/installation/on-prem/_index.md" >}}) on [NGINX Plus R21 or later](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/). The server hosting NGINX Plus must have a FQDN (Fully Qualified Domain Name).
+- [Install Instance Manager]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}) on [NGINX Plus R21 or later](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/). The server hosting NGINX Plus must have a FQDN (Fully Qualified Domain Name).
 
 - Install the [NGINX JavaScript module](https://www.nginx.com/blog/introduction-nginscript/) (njs). This module is required for handling interactions between NGINX Plus and the identity provider.
 

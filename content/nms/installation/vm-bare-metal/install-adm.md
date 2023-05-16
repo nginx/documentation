@@ -1,18 +1,18 @@
 ---
-title: "Install or Upgrade Instance Manager"
-date: 2023-04-06T11:59:44-07:00
+title: "Install or Upgrade App Delivery Manager"
+date: 2023-04-13T15:19:49-07:00
 # Change draft status to false to publish doc
 draft: false
 # Description
 # Add a short description (150 chars) for the doc. Include keywords for SEO. 
 # The description text appears in search results and at the top of the doc.
-description: "Follow the steps in this guide to install or upgrade NGINX Management Suite Instance Manager."
+description: "Follow the steps in this guide to install or upgrade NGINX Management Suite App Delivery Manager."
 # Assign weights in increments of 100
-weight: 10
+weight: 30
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1211"
+docs: "DOCS-1210"
 # Taxonomies
 # These are pre-populated with all available terms for your convenience.
 # Remove all terms that do not apply.
@@ -38,43 +38,43 @@ authors: []
 
 {{< include "installation/nms-prerequisites.md" >}}
 
+### Dependencies with Instance Manager
+
+{{< include "tech-specs/adm-nim-dependencies.md" >}}
+
 ---
 
-## Install Instance Manager
+## Install App Delivery Manager
 
-{{<tabs name="install-nim">}}
+{{<tabs name="install-adm">}}
 
 {{%tab name="CentOS, RHEL, RPM-Based"%}}
 
-1. To install the latest version of Instance Manager, run the following command:
+1. To install the latest version of App Delivery Manager, run the following command:
 
     ```bash
-    sudo yum install -y nms-instance-manager
+    sudo yum install -y nms-app-delivery-manager
     ```
-
-    > <span style="color: #c20025;"><i class="fas fa-exclamation-triangle"></i> **IMPORTANT!**</span> The Instance Manager's administrator username (default is `admin`) and generated password are displayed in the terminal during installation. You should make a note of the password and store it securely.
 
 {{%/tab%}}
 
 {{%tab name="Debian, Ubuntu, Deb-Based"%}}
 
-1. To install the latest version of Instance Manager, run the following commands:
+1. To install the latest version of App Delivery Manager, run the following commands:
 
     ```bash
     sudo apt-get update
-    sudo apt-get install -y nms-instance-manager
+    sudo apt-get install nms-app-delivery-manager
     ```
-
-    > <span style="color: #c20025;"><i class="fas fa-exclamation-triangle"></i> **IMPORTANT!**</span> The Instance Manager's administrator username (default is `admin`) and generated password are displayed in the terminal during installation. You should make a note of the password and store it securely.
 
 {{%/tab%}}
 
 {{</tabs>}}
 
-2. Enable and start the NGINX Management Suite platform services:
+2. Enable and start the NGINX Management Suite services:
 
     ```bash
-    sudo systemctl enable nms nms-core nms-dpm nms-ingestion nms-integrations --now
+    sudo systemctl enable nms nms-core nms-dpm nms-ingestion nms-integrations nms-adm --now
     ```
 
     NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
@@ -93,10 +93,9 @@ authors: []
 
 {{< include "installation/access-web-ui.md" >}}
 
-
 ### Add License
 
-A valid license is required in order to use all of the features in Instance Manager.
+A valid license is required in order to use App Delivery Manager.
 
 #### Download License
 
@@ -108,26 +107,30 @@ A valid license is required in order to use all of the features in Instance Mana
 
 ---
 
-## Upgrade Instance Manager {#upgrade-nim}
+## Upgrade App Delivery Manager {#upgrade-adm}
 
-{{<tabs name="upgrade_nim">}}
+{{<note>}}When upgrading App Delivery Manager, you may need a newer version of NGINX Management Suite. The installation process will notify you of any version requirements before upgrading App Delivery Manager and any dependent packages, including NGINX Management Suite. You may cancel the installation process if you want to [back up NGINX Management Suite]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md" >}}) before upgrading.{{</note>}}
+
+<br>
+
+{{<tabs name="upgrade_adm">}}
 {{%tab name="CentOS, RHEL, RPM-Based"%}}
 
-1. To upgrade to the latest version of the Instance Manger, run the following command:
+1. To upgrade to the latest version of App Delivery Manager, run the following command:
 
    ```bash
-   sudo yum update -y nms-instance-manager
+   sudo yum update -y nms-app-delivery-manager
    ```
 
 {{%/tab%}}
 
 {{%tab name="Debian, Ubuntu, Deb-Based"%}}
 
-1. To upgrade to the latest version of the Instance Manager, run the following command:
+1. To upgrade to the latest version of App Delivery Manager, run the following command:
 
    ```bash
    sudo apt-get update
-   sudo apt-get install -y --only-upgrade nms-instance-manager
+   sudo apt-get upgrade -y nms-app-delivery-manager
    ```
 
 {{%/tab%}}
@@ -155,17 +158,9 @@ A valid license is required in order to use all of the features in Instance Mana
 
 ### Set Up the Data Plane
 
-Complete the following steps for each data plane instance you want to manage using Instance Manager:
-
-- [Install NGINX OSS or NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/) on your data plane instances.
-- [Install the NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent.md" >}}) on your data plane instances to register them with NGINX Management Suite.
-
-### Set up NGINX App Protect WAF
-
-- To set up Instance Manager to manage configurations for NGINX App Protect WAF, follow the steps in the [Set Up App Protect WAF Configuration Management]({{< relref "/nms/nim/how-to/app-protect/setup-waf-config-management" >}}) guide.
+{{< include "adm/installation/install-adm-dataplane-dependencies.md" >}}
 
 ### Install Other NGINX Management Suite Modules
 
-- [Install API Connectivity Manager]({{< relref "/nms/installation/on-prem/install-acm.md" >}})
-- [Install App Delivery Manager]({{< relref "/nms/installation/on-prem/install-adm.md" >}})
-- [Install Security Monitoring]({{< relref "/nms/installation/on-prem/install-security-monitoring.md" >}})
+- [Install API Connectivity Manager]({{< relref "/nms/installation/vm-bare-metal/install-acm.md" >}})
+- [Install Security Monitoring]({{< relref "/nms/installation/vm-bare-metal/install-security-monitoring.md" >}})
