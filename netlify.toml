@@ -4,12 +4,12 @@
 [context.production]
   # keep while docs-dev is the production site
   # this will change to make all when we go live on production site 
-  command = "make all-dev"  
+  command = "./build.sh"  
   publish = "public"
   
-[context.staging]
-  command = "make all-staging"
-  publish = "public"
+#[context.staging]
+#  command = "make all-staging"
+#  publish = "public"
 
 #[context.dev]
 #  command = "make all-dev"
