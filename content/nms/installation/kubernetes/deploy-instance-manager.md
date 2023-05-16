@@ -329,7 +329,7 @@ To upgrade Instance Manager, take the following steps:
    - [Push Images to Private Docker Registry](#push-images-private-registry)
    - [Configure values.yaml file to pull from your private Docker registry](#configure-chart).
 
-2. {{< include "installation/helm/nim/helm-upgrade-nms.md" >}}
+2. {{< include "installation/helm/helm-upgrade-nms.md" >}}
 
 ---
 

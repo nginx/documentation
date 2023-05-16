@@ -176,9 +176,7 @@ To enable the App Delivery Manager Module, take the following steps:
 
 {{<note>}}To complete the steps in this section, you need to have [OpenSSL 1.1.1](https://www.openssl.org/source/) or later installed.{{</note>}}
 
-&nbsp;
-
-{{< include "installation/helm/nim/helm-upgrade-nms.md" >}}
+{{< include "installation/helm/helm-upgrade-nms.md" >}}
 
 ---
 ## Configurable Helm Settings
