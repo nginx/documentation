@@ -1,10 +1,11 @@
 ---
-title: Deploying NGINX and NGINX Plus on Docker
 description: Deploy NGINX and NGINX Plus as the Docker container.
-weight: 600
-doctypes: ["task"]
+docs: DOCS-409
+doctypes:
+- task
+title: Deploying NGINX and NGINX Plus on Docker
 toc: true
-docs: "DOCS-409"
+weight: 600
 ---
 
 

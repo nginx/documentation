@@ -1,10 +1,12 @@
 ---
+description: Terminate HTTPS traffic from clients, relieving your upstream web and
+  application servers of the computational load of SSL/TLS encryption.
+docs: DOCS-437
+doctypes:
+- task
 title: NGINX SSL Termination
-description: Terminate HTTPS traffic from clients, relieving your upstream web and application servers of the computational load of SSL/TLS encryption.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-437"
+weight: 100
 ---
 
 

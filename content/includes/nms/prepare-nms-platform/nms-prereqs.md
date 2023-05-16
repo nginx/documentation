@@ -7,3 +7,5 @@ To install the NGINX Management Suite, you need the following:
 - An installed version of NGINX Plus or NGINX OSS.
 
 - Ensure any network firewall is open for access from external systems. NGINX Management Suite uses port `443` for both the gRPC and API/web interfaces.
+
+- An [OpenSSL](https://www.openssl.org) installation. We strongly recommend OpenSSL 1.1.1 or later.

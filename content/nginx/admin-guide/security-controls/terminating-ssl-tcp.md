@@ -1,10 +1,12 @@
 ---
+description: Terminate SSL/TLS-encrypted traffic from clients, relieving your upstream
+  TCP servers of the computational load.
+docs: DOCS-438
+doctypes:
+- task
 title: SSL Termination for TCP Upstream Servers
-description: Terminate SSL/TLS-encrypted traffic from clients, relieving your upstream TCP servers of the computational load.
-weight: 200
-doctypes: ["task"]
 toc: true
-docs: "DOCS-438"
+weight: 200
 ---
 
 

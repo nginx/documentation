@@ -1,10 +1,12 @@
 ---
+description: Sychronize configuration across a cluster of NGINX Plus instances. Though
+  designed for high-availability deployments, the solution works for any cluster.
+docs: DOCS-404
+doctypes:
+- task
 title: Synchronizing NGINX Configuration in a Cluster
-description: Sychronize configuration across a cluster of NGINX Plus instances. Though designed for high-availability deployments, the solution works for any cluster.
-weight: 300
-doctypes: ["task"]
 toc: true
-docs: "DOCS-404"
+weight: 300
 ---
 
 <span id="overview"></span>

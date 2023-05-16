@@ -1,10 +1,12 @@
 ---
+description: Load balance Microsoft Exchange servers with the advanced features in
+  NGINX Plus, following our step-by-step setup instructions.
+docs: DOCS-452
+doctypes:
+- task
 title: Load Balancing Microsoft Exchange Servers with NGINX Plus
-description: Load balance Microsoft Exchange servers with the advanced features in NGINX Plus, following our step-by-step setup instructions.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-452"
+weight: 100
 ---
 
 
@@ -189,7 +191,7 @@ Repeat these commands on each CAS in your deployment:
 If there is a firewall between the NGINX Plus server and other applications in your Exchange deployment, configure it to pass through traffic on the ports specified in the table. The columns represent the three types of applications that communicate with the NGINX Plus server – email clients, the NGINX Plus live activity monitoring dashboard on your administrative network, and CASs – and the **x** indicates that the port must be open.
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |**Port** | **Protocol** | **Email clients** | **Admin network** | **CASs** |
 | ---| ---| ---| ---| --- | 
 |25 | SMTP | x | x | x | 
@@ -197,7 +199,7 @@ If there is a firewall between the NGINX Plus server and other applications in 
 |443 | HTTPS | x | x |  | 
 |993 | IMAPS | x | x |  | 
 |8080 | HTTP (NGINX Plus dashboard) | x |  |  | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 
 <span id="tls-certificate"></span>
@@ -793,7 +795,7 @@ This section describes the configuration for enhanced load balancing of Exchange
 Exchange CASs interact with various applications used by clients on different types of devices. The clients access virtual directories and URIs specific to their application. To improve the performance of applications and of NGINX Plus, configure a separate `location` block for each application to enable the features listed in the table.
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |**Application** | **Virtual Directory or URI** | **Enhanced Features** |
 | ---| ---| --- | 
 |ActiveSync | **/Microsoft-Server-ActiveSync** | Exchange Control Panel | 
@@ -801,7 +803,7 @@ Exchange CASs interact with various applications used by clients on different ty
 |MAPI over HTTP | **/mapi** | Health checks | 
 |OWA | **/owa** | Health checks | 
 |RPC Over HTTP | **/rpc/rpcproxy.dll** | Unbuffered upload and download; session persistence |
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
    
 

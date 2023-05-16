@@ -1,10 +1,13 @@
 ---
-title: Using NGINX or NGINX Plus as the Ingress Controller for Amazon Elastic Kubernetes Services
-description: Use NGINX or NGINX Plus as the Ingress Controller for Amazon Elastic Kubernetes Services.
-weight: 400
-doctypes: ["task"]
+description: Use NGINX or NGINX Plus as the Ingress Controller for Amazon Elastic
+  Kubernetes Services.
+docs: DOCS-447
+doctypes:
+- task
+title: Using NGINX or NGINX Plus as the Ingress Controller for Amazon Elastic Kubernetes
+  Services
 toc: true
-docs: "DOCS-447"
+weight: 400
 ---
 
 

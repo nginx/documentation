@@ -1,10 +1,12 @@
 ---
+description: Create Microsoft Azure virtual machines for running NGINX Open Source
+  and NGINX Plus.
+docs: DOCS-458
+doctypes:
+- task
 title: Creating Microsoft Azure Virtual Machines for NGINX Open Source and NGINX Plus
-description: Create Microsoft Azure virtual machines for running NGINX Open Source and NGINX Plus.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-458"
+weight: 100
 ---
 
 

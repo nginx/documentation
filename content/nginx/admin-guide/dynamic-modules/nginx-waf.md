@@ -1,13 +1,17 @@
 ---
+description: Protect against Layer 7 attacks such as SQLi, XSS, CSRF, LFI, and RFI,
+  with the NGINX ModSecurity WAF dynamic module, supported by NGINX.
+docs: DOCS-394
+doctypes:
+- task
 title: NGINX ModSecurity WAF
-description: Protect against Layer 7 attacks such as SQLi, XSS, CSRF, LFI, and RFI, with the NGINX ModSecurity WAF dynamic module, supported by NGINX.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-394"
+weight: 100
 ---
 
 The NGINX ModSecurity web application firewall (WAF) is built on ModSecurity 3.0.
+
+ > **Note:** The ModSecurity WAF module is deprecated since NGINX Plus Release 29.
 
 
 <span id="install"></span>
@@ -21,7 +25,7 @@ The NGINX ModSecurity web application firewall (WAF) is built on ModSecurity 3.0
    $ yum install nginx-plus-module-modsecurity
    ```
 
-   > **Note:**: ppc64le is currently not supported for Amazon Linux, CentOS, Oracle Linux, and RHEL.
+   > **Note:** ppc64le is currently not supported for Amazon Linux, CentOS, Oracle Linux, and RHEL.
 
    For Debian and Ubuntu:
    
@@ -29,7 +33,7 @@ The NGINX ModSecurity web application firewall (WAF) is built on ModSecurity 3.0
    $ apt-get install nginx-plus-module-modsecurity
    ```
 
-   Note: aarch64 and ppc64le is currently not supported for Ubuntu.
+   > **Note:** aarch64 and ppc64le is currently not supported for Ubuntu.
 
    For SLES:
    

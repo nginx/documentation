@@ -2,7 +2,7 @@
 title: Administration Guide
 ---
 
-{{% eol-notice %}}  
+{{% modsec-eol-notice %}}  
    
 
    

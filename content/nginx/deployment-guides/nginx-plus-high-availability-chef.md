@@ -1,11 +1,13 @@
 ---
-title: NGINX Plus High Availability Chef
-description: Step-by-step instructions for using Chef to automate the setup and maintenance of an active-passive high availability cluster of NGINX Plus instances.
-weight: 100
-doctypes: ["task"]
-toc: true
+description: Step-by-step instructions for using Chef to automate the setup and maintenance
+  of an active-passive high availability cluster of NGINX Plus instances.
+docs: DOCS-461
+doctypes:
+- task
 draft: true
-docs: "DOCS-461"
+title: NGINX Plus High Availability Chef
+toc: true
+weight: 100
 ---
 
 

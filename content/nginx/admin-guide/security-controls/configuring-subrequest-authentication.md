@@ -1,10 +1,12 @@
 ---
+description: Authenticate clients during request processing by making a subrequest
+  to an external authentication service, such as LDAP or OAuth.
+docs: DOCS-430
+doctypes:
+- task
 title: Authentication Based on Subrequest Result
-description: Authenticate clients during request processing by making a subrequest to an external authentication service, such as LDAP or OAuth.
-weight: 400
-doctypes: ["task"]
 toc: true
-docs: "DOCS-430"
+weight: 400
 ---
 
 

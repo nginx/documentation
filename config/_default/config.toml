@@ -1,14 +1,20 @@
 baseURL = "/"
 languageCode = "en-us"
 title = "NGINX Documentation"
-refLinksErrorLevel = "WARNING"
+refLinksErrorLevel = "ERROR"
 
 [caches]
   [caches.modules]
     maxAge = -1
 
+[module]
 [[module.imports]]
   path="github.com/nginxinc/nginx-hugo-theme"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
 
 [params]
   useSectionPageLists = "false"

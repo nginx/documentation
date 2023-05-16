@@ -1,10 +1,12 @@
 ---
+description: Configure highly available NGINX Plus load balancing of application instances,
+  in an all-active deployment on the Google Cloud Platform.
+docs: DOCS-450
+doctypes:
+- task
 title: All-Active HA for NGINX Plus on the Google Cloud Platform
-description: Configure highly available NGINX Plus load balancing of application instances, in an all-active deployment on the Google Cloud Platform.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-450"
+weight: 100
 ---
 
 

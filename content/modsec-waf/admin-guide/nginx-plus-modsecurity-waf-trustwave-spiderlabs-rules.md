@@ -5,7 +5,9 @@ toc: true
 docs: "DOCS-728"
 ---
 
-{{% eol-notice %}}
+{{< important >}}
+{{% modsec-eol-notice %}}
+{{< /important >}}
 
 This chapter explains how to configure the Commercial ModSecurity Rules from Trustwave SpiderLabs for use with the NGINX ModSecurity web application firewall (WAF)).
 

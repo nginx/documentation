@@ -1,11 +1,19 @@
 ---
+description: Instrument NGINX with OpenTracing-compliant requests for a range of distributed
+  tracing services, such as Zipkin, Jaeger and Datadog. Note that the opentracing
+  module provides the framework for recording traces; you will also need to install
+  a service-specific tracing module.  This module (“tracer”) pushes traces to the
+  collector and analyser provided by that service.
+docs: DOCS-395
+doctypes:
+- task
 title: OpenTracing
-description: Instrument NGINX with OpenTracing-compliant requests for a range of distributed tracing services, such as Zipkin, Jaeger and Datadog. Note that the opentracing module provides the framework for recording traces; you will also need to install a service-specific tracing module.  This module (“tracer”) pushes traces to the collector and analyser provided by that service.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-395"
+weight: 100
 ---
+
+
+> **Note**: Since NGINX Plus <a href="../../../releases/#r29">Release 29</a>, the [OpenTelemetry]({{< relref "opentelemetry.md" >}}) module is available that incorporates the features of the OpenTracing module.
 
 
 <span id="install"></span>
@@ -18,7 +26,7 @@ docs: "DOCS-395"
    ```shell
    $ yum install nginx-plus-module-opentracing
    ```
-   > **Note:**: the OpenTracing module cannot be installed on CentOS 6, Oracle Linux 6, and RHEL 6.
+   > **Note:** the OpenTracing module cannot be installed on CentOS 6, Oracle Linux 6, and RHEL 6.
 
    For Debian and Ubuntu:
    

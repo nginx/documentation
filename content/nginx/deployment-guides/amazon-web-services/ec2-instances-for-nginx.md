@@ -1,10 +1,12 @@
 ---
+description: Create Amazon Elastic Compute Cloud (EC2) instances for running NGINX
+  Open Source and NGINX Plus.
+docs: DOCS-444
+doctypes:
+- task
 title: Creating Amazon EC2 Instances for NGINX Open Source and NGINX Plus
-description: Create Amazon Elastic Compute Cloud (EC2) instances for running NGINX Open Source and NGINX Plus.
-weight: 600
-doctypes: ["task"]
 toc: true
-docs: "DOCS-444"
+weight: 600
 ---
 
 

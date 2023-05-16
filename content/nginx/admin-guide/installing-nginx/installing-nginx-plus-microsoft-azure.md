@@ -1,10 +1,12 @@
 ---
+description: Install NGINX Plus as a virtual machine image on Microsoft Azure, to
+  provide sophisticated Layer 7 load balancing for your apps.
+docs: DOCS-413
+doctypes:
+- task
 title: Installing NGINX Plus on Microsoft Azure
-description: Install NGINX Plus as a virtual machine image on Microsoft Azure, to provide sophisticated Layer 7 load balancing for your apps.
-weight: 500
-doctypes: ["task"]
 toc: true
-docs: "DOCS-413"
+weight: 500
 ---
 
 

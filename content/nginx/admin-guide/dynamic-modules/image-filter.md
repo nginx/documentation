@@ -1,10 +1,12 @@
 ---
+description: Crop, resize, rotate, and perform other transformations on GIF, JPEG,
+  and PNG images, with the Image-Filter dynamic module supported by NGINX, Inc.
+docs: DOCS-390
+doctypes:
+- task
 title: Image-Filter
-description: Crop, resize, rotate, and perform other transformations on GIF, JPEG, and PNG images, with the Image-Filter dynamic module supported by NGINX, Inc.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-390"
+weight: 100
 ---
 
 

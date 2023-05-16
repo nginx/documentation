@@ -1,10 +1,12 @@
 ---
+description: Understand the basic elements in an NGINX or NGINX Plus configuration
+  file, including directives and contexts.
+docs: DOCS-378
+doctypes:
+- task
 title: Creating NGINX Plus and NGINX Configuration Files
-description: Understand the basic elements in an NGINX or NGINX Plus configuration file, including directives and contexts.
-weight: 200
-doctypes: ["task"]
 toc: true
-docs: "DOCS-378"
+weight: 200
 ---
 
 

@@ -1,10 +1,12 @@
 ---
+description: Load balance Apache Tomcat application servers with NGINX Open Source
+  or the advanced features in NGINX Plus, following our step-by-step setup instructions.
+docs: DOCS-451
+doctypes:
+- task
 title: Load Balancing Apache Tomcat Servers with NGINX Open Source and NGINX Plus
-description: Load balance Apache Tomcat application servers with NGINX Open Source or the advanced features in NGINX Plus, following our step-by-step setup instructions.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-451"
+weight: 100
 ---
 
 This deployment guide explains how to use NGINX Open Source and NGINX Plus to load balance HTTP and HTTPS traffic across a pool of Apache Tomcat<sup>TM</sup> application servers. The detailed instructions in this guide apply to both cloud‑based and on‑premises deployments of Tomcat.

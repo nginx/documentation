@@ -1,10 +1,13 @@
 ---
+description: Platforms supported by NGINX Plus and dynamically loaded modules, supported
+  SSL/TLS versions, supported deployment environments, and list of modules built into
+  NGINX Plus.
+docs: DOCS-473
+doctypes:
+- concept
 title: Technical Specs
-description: Platforms supported by NGINX Plus and dynamically loaded modules, supported SSL/TLS versions, supported deployment environments, and list of modules built into NGINX Plus.
-weight: 400
-doctypes: ["concept"]
 toc: true
-docs: "DOCS-473"
+weight: 400
 ---
 
 
@@ -18,11 +21,13 @@ NGINX Plus is available in binary form only; it is not available in source form
 - 9 (x86_64, aarch64)
 
 ### Alpine Linux
-- 3.13 (x86_64, aarch64)
 - 3.14 (x86_64, aarch64)
 - 3.15 (x86_64, aarch64)
 - 3.16 (x86_64, aarch64)
 - 3.17 (x86_64, aarch64)
+
+### Amazon Linux
+- 2023 (x86_64, aarch64)
 
 ### Amazon Linux 2
 - LTS (x86_64, aarch64)
@@ -67,12 +72,22 @@ NGINX Plus is available in binary form only; it is not available in source form
 ## Dynamic Modules
 Except as specified below, dynamic modules are supported on the [same distributions as NGINX Plus](#supported-distributions).
 
+### AppProtect
+- FreeBSD: Not supported
+- Oracle/AlmaLinux/Rocky Linux: Not supported
+- RHEL 9: Not supported
+- RHEL 7, RHEL 8,: x86_64 only
+- Debian, Ubuntu: x86_64 only
+- Amazon Linux 2: x86_64 only
+- Amazon Linux 2023: Not supported
+
 ### Brotli
 - SLES 12: Not supported
 
 ### GeoIP
 - RHEL/Oracle Linux/AlmaLinux/Rocky Linux 8.0+, 9: Not supported
 - FreeBSD: Not supported
+- Amazon Linux 2023: Not supported
 
 ### GeoIP2
 - SLES: Not supported
@@ -93,7 +108,16 @@ Except as specified below, dynamic modules are supported on the [same distributi
 - FreeBSD: Not supported
 - Alpine Linux: Not supported
 
+### OpenTelemetry
+- RHEL/Oracle Linux/AlmaLinux/Rocky Linux 7: Not supported
+- Ubuntu 18.04: Not supported
+- Amazon Linux 2: Not supported
+
 ### OpenTracing
+- SLES 12: Not supported
+
+### QUIC
+- RHEL/Oracle Linux/AlmaLinux/Rocky Linux 7: Not supported
 - SLES 12: Not supported
 
 ## Supported SSL/TLS Versions
@@ -102,7 +126,7 @@ NGINX Plus supports SSLv2, SSLv3, TLSv1, TLSv1.1, TLSv1.2, and TLSv1.3. Configu
 
 TLSv1.2 and earlier is supported on all the operating systems listed in [Supported Distributions](#supported-distributions). 
 
-NGINX Plus R17 and later support TLSv1.3. However, not all operating systems supported by NGINX Plus ship with OpenSSL 1.1.1 as required to support TLSv1.3. To determine if an operating system supports TLSv1.3, consult the vendor documentation.
+NGINX Plus R17 and later support TLSv1.3, and since NGINX Plus R29 it is enabled by default.  However, not all operating systems supported by NGINX Plus ship with OpenSSL 1.1.1 as required to support TLSv1.3. To determine if an operating system supports TLSv1.3, consult the vendor documentation.
 
 ## Supported Deployment Environments
 - Bare metal
@@ -132,6 +156,7 @@ See [Sizing Guide for Deploying NGINX Plus on Bare Metal Servers](https://www.ng
 *   [Gzip Static](https://nginx.org/en/docs/http/ngx_http_gzip_static_module.html) – Serve pre-compressed files from disk
 *   [Headers](https://nginx.org/en/docs/http/ngx_http_headers_module.html) – Add fields to HTTP response headers, including `Cache-Control` and `Expires`
 *   [Index](https://nginx.org/en/docs/http/ngx_http_index_module.html) – Specify index files used in directory requests
+*   [Internal Redirect](https://nginx.org/en/docs/http/ngx_http_internal_redirect_module.html) – Allow internal redirects after checking request or connection processing limits, and access limits
 *   [Random Index](https://nginx.org/en/docs/http/ngx_http_random_index_module.html) – Select random index file for directory request
 *   [Real IP](https://nginx.org/en/docs/http/ngx_http_realip_module.html) – Determine true origin IP address for proxied traffic
 *   [SSI](https://nginx.org/en/docs/http/ngx_http_ssi_module.html) – Process Server Side Includes (SSI) commands
@@ -199,18 +224,20 @@ See [Sizing Guide for Deploying NGINX Plus on Bare Metal Servers](https://www.ng
 *   [NGINX Plus API](https://nginx.org/en/docs/http/ngx_http_api_module.html) – Provide REST API for accessing metrics, configuring upstream server groups dynamically, and managing key-value pairs, without the need to reload NGINX configuration
 *   [Key-Value Store](https://nginx.org/en/docs/http/ngx_http_keyval_module.html) – Create variables with values taken from key-value pairs managed by the [NGINX Plus API](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_keyvals_)
 
-### TCP and UDP Load Balancing
+### TCP and UDP Proxying and Load Balancing
 *   [Stream](https://nginx.org/en/docs/stream/ngx_stream_module.html) – Process TCP and UDP traffic
 *   [Access](https://nginx.org/en/docs/stream/ngx_stream_access_module.html) – Support IP-based access control lists (ACLs)
 *   [Geo](https://nginx.org/en/docs/stream/ngx_stream_geo_module.html) – Create variables based on client IP address
 *   [Limit Conn](https://nginx.org/en/docs/stream/ngx_stream_limit_conn_module.html) – Limit concurrent connections by key
 *   [Log](https://nginx.org/en/docs/stream/ngx_stream_log_module.html) – Log TCP and UDP transactions
 *   [Map](https://nginx.org/en/docs/stream/ngx_stream_map_module.html) – Create variables based on other variables in requests
+*   [MQTT Preread](https://nginx.org/en/docs/stream/ngx_stream_mqtt_preread_module.html) – Forward MQTT traffic without processing	 it
+*   [MQTT Filter](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html) – Process Message Queuing Telemetry Transport protocol (MQTT) protocol
 *   [Proxy](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html) – Proxy requests to TCP and UDP servers
 *   [Real IP](https://nginx.org/en/docs/stream/ngx_stream_realip_module.html) – Determine true origin IP address for proxied traffic
 *   [Return](https://nginx.org/en/docs/stream/ngx_stream_return_module.html) – Return specified value to client and close connection
 *   [Split Clients](https://nginx.org/en/docs/stream/ngx_stream_split_clients_module.html) – Partition clients for A/B testing
 *   [SSL/TLS](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html) – Process TCP traffic secured with SSL/TLS
 *   [SSL/TLS Preread](https://nginx.org/en/docs/stream/ngx_stream_ssl_preread_module.html) – Forward TCP traffic secured with SSL/TLS without decrypting it
-*   [Upstream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html) – Proxy and cache requests to load-balanced pool of servers
+*   [Upstream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html) – Proxy and cache traffic to load-balanced pool of servers
 *   [Upstream Health Checks](https://nginx.org/en/docs/stream/ngx_stream_upstream_hc_module.html) – Verify servers in load-balanced pool are operational

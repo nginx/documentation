@@ -1,10 +1,11 @@
 ---
+description: null
+docs: DOCS-422
+doctypes:
+- task
 title: Accepting the PROXY Protocol
-description: 
-weight: 800
-doctypes: ["task"]
 toc: true
-docs: "DOCS-422"
+weight: 800
 ---
 
 

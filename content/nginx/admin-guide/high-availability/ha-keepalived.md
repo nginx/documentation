@@ -1,10 +1,12 @@
 ---
+description: Enable high availability of NGINX Plus instances in on-premises deployments,
+  configuring an active-passive pair in a solution based on keepalived and VRRP.
+docs: DOCS-406
+doctypes:
+- task
 title: High Availability Support for NGINX Plus in On-Premises Deployments
-description: Enable high availability of NGINX Plus instances in on-premises deployments, configuring an active-passive pair in a solution based on keepalived and VRRP.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-406"
+weight: 100
 ---
 
 

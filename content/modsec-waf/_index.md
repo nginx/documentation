@@ -1,8 +1,11 @@
 ---
 title: NGINX ModSecurity WAF Documentation
 description: |
-  The NGINX ModSecurity WAF is a web application firewall (WAF) based on ModSecurity 3.0.
+    F5 NGINX ModSecurity WAF reached End of Sale (EoS) effective April 1, 2022.
+    No further renewals are accepted as of April 1, 2023.   
 weight: 5000
 ---
 
-{{% eol-notice %}}
+{{< important >}}
+{{% modsec-eol-notice %}}
+{{< /important >}}

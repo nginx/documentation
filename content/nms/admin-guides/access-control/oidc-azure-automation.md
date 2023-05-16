@@ -168,7 +168,6 @@ Additionally, you will need to complete the following steps:
         "uti": "EmqiFiTC-kACZqN5vrKd8AQ" ,
     }
     ```
-    {{< note >}}By default, tokens expire after 60 minutes. To configure the expiration please see the Azure AD [Configurable token lifetimes in the Microsoft identity platform](https://learn.microsoft.com/en-us/azure/active-directory/develop/Active-directory-configurable-token-lifetimes#configurable-token-lifetime-properties) documentation.{{< /note >}}
 
     {{< note >}}The `roles` claim contains the role ID of the role you created in the [Create an App Role](#create-an-app-role) steps. (In the example, it was named "Admin").{{< /note >}}
 

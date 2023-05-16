@@ -1,10 +1,11 @@
 ---
-title: Prometheus-njs
 description: Expose Prometheus metrics endpoint directly from NGINX Plus.
-weight: 100
-doctypes: ["task"]
+docs: DOCS-398
+doctypes:
+- task
+title: Prometheus-njs
 toc: true
-docs: "DOCS-398"
+weight: 100
 ---
 
 
@@ -42,7 +43,7 @@ The following NGINX Plus status metrics are exported to Prometheus:
 > **Note:** The `state` metric values in [`/http/upstreams/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) and [`/stream/upstreams/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_upstream) are converted using the following rule:
 
 
-{{% table %}} 
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |NGINX | Prometheus | 
 | ---| --- | 
 |"up" | `1` | 
@@ -51,7 +52,7 @@ The following NGINX Plus status metrics are exported to Prometheus:
 |"unavail" | `4` | 
 |"checking" | `5` | 
 |"unhealthy" | `6` | 
-{{% /table %}} 
+{{</bootstrap-table>}} 
 
 
 <span id="install"></span>

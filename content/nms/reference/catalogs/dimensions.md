@@ -1,4 +1,6 @@
 ---
+aliases:
+- /analytics/dimensions/reference/catalog/
 authors: []
 categories:
 - analytics
@@ -28,7 +30,6 @@ weight: 20
 docs: "DOCS-812"
 catalog: true
 aliases:
-- /analytics/dimensions/reference/catalog/
 - /nginx-instance-manager/reference/catalogs/dimensions/
 - /nginx-management-suite/nim/reference/catalogs/dimensions/
 ---

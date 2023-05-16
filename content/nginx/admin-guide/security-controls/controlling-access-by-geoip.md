@@ -1,10 +1,12 @@
 ---
+description: Control access or forward traffic to different upstream servers based
+  on the client's geographical location, using the GeoIP2 dynamic module.
+docs: DOCS-431
+doctypes:
+- task
 title: Restricting Access by Geographical Location
-description: Control access or forward traffic to different upstream servers based on the client's geographical location, using the GeoIP2 dynamic module.
-weight: 800
-doctypes: ["task"]
 toc: true
-docs: "DOCS-431"
+weight: 800
 ---
 
 <span id="intro"></span>
