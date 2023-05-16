@@ -179,6 +179,26 @@ To enable the App Delivery Manager Module, take the following steps:
 {{< include "installation/helm/helm-upgrade-nms.md" >}}
 
 ---
+
+## Access Web Interface
+
+{{< include "installation/helm/access-webui-helm.md" >}}
+
+---
+
+## Add License
+
+A valid license is required in order to use App Delivery Manager.
+
+### Download License
+
+{{< include "installation/download-license.md" >}}
+
+### Apply License
+
+{{< include "installation/add-license.md" >}}
+
+---
 ## Configurable Helm Settings
 
 {{< include "installation/helm/adm/configuration-options.md" >}}

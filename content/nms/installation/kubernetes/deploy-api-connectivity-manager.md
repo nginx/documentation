@@ -181,6 +181,26 @@ To enable the API Connectivity Manager Module, take the following steps:
 
 ---
 
+## Access Web Interface
+
+{{< include "installation/helm/access-webui-helm.md" >}}
+
+---
+
+## Add License
+
+A valid license is required in order to use API Connectivity Manager.
+
+### Download License
+
+{{< include "installation/download-license.md" >}}
+
+### Apply License
+
+{{< include "installation/add-license.md" >}}
+
+---
+
 ## Configurable Helm Settings
 
 {{< include "installation/helm/acm/configuration-options.md" >}}

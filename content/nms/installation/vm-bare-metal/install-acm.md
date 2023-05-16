@@ -95,7 +95,7 @@ authors: []
 
 ### Add License
 
-A valid license is required in order to use the API Connectivity Manager.
+A valid license is required in order to use API Connectivity Manager.
 
 #### Download License
 
