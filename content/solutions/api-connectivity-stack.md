@@ -28,9 +28,6 @@ NGINX Management Suite Instance Manager makes it easy to inventory, configure, m
 2. Choose your target deployment environment and follow the appropriate installation guide to setup NGINX Management Suite:
     - [Install on virtual machine or bare metal]({{< ref "install-guide" >}})
     - [Install in Kubernetes using Helm]({{< ref "nms-helm" >}})
-3. Follow instructions to install the [Instance Manager module]({{< ref "install-guide#install-instance-manager" >}})
- 
- {{< note >}}Skip step 3 if you’re using a Kubernetes installation (Instance Manager is included by default with the NGINX Management Suite Helm chart){{< /note >}}
 
 ### (Optional) Install the Security Monitoring module
 NGINX Management Suite Security Monitoring provides global visibility into your fleet of NGINX App Protect WAF instances, including protection insights and the ability to analyze threats. Install this module if you plan to install NGINX App Protect WAF.
