@@ -29,26 +29,21 @@ authors: []
 
 ## Requirements
 
-{{< important >}}To install App Delivery Manager, you must first install Instance Manager. This is because App Delivery Manager relies on features that are included with Instance Manager.{{< /important >}}
+Review the following requirements for App Delivery Manager before continuing.
 
-- [Deploy Instance Manager on Kubernetes]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md" >}})
-
-
----
-
-{{< custom-styles >}}
-
-## Requirements
+### Install Instance Manager
 
 {{< important >}}To install App Delivery Manager, you must first install Instance Manager. This is because App Delivery Manager relies on features that are included with Instance Manager.{{< /important >}}
 
 - [Deploy Instance Manager on Kubernetes]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md" >}})
 
+### Dependencies with Instance Manager
+
+Refer to the following table to see the module compatibility for each NGINX Management Suite chart.
+
+{{< include "installation/helm/nms-chart-supported-module-versions.md" >}}
 
 ---
-
-
-Complete the following steps to enable the App Delivery Manager as part of a **new installation** of NGINX Management Suite.
 
 ## Download Docker Image
 
@@ -66,8 +61,12 @@ Follow these steps to download the Docker image for App Delivery Manager:
 
 1. In the **Download Files** section, download the `nms-adm-<version>-img.tar.gz` file.
 
+---
 
-## Load Docker Image {#load-acm-docker-image}
+## Load Docker Image {#load-adm-docker-image}
+
+{{< note >}} To complete the commands in this section, you need to have [Docker 20.10 or later](https://docs.docker.com/get-docker/) installed. {{< /note >}}
+
 
 1. Change to the directory where you downloaded the Docker image:
 
@@ -99,9 +98,17 @@ Follow these steps to download the Docker image for App Delivery Manager:
    In the example output above, `nms-adm` is the image name and `4.0.0` is the tag.  The image name or tag could be different depending on the product version you downloaded from MyF5.
    {{</important>}}
 
+---
+
 ## Push Image to Private Registry {#push-image-private-docker-repo}
 
-After loading the Docker image, you can now tag and push the image to your private Docker registry. Replace `<my-docker-registry:port>` in the examples below with the path to your private Docker registry.
+{{<note>}}To complete the steps in this section, you need an [externally-accessible private Docker registry](https://docs.docker.com/registry/deploying/) to push the container images to.{{</note>}}
+
+To push the Docker images to your private registry, take the following steps:
+
+- Replace `<my-docker-registry:port>` with your private Docker registry and port (if needed).
+
+- Replace `<version>` with the tag you noted when [loading the Docker image](#load-adm-docker-image) above.
 
 1. Log in to your private registry:
 
@@ -109,36 +116,31 @@ After loading the Docker image, you can now tag and push the image to your priva
    docker login <my-docker-registry:port>
    ```
 
-   - Replace `<my-docker-registry:port>` with your private Docker registry.
-
-1. Tag the image with the values you noted when [loading the Docker image](#load-acm-docker-image) above.
+2. Tag the image with the image name and version you noted when [loading the Docker image](#load-adm-docker-image).
 
    ```shell
    docker tag nms-adm:<version> <my-docker-registry:port>/nms-adm:<version>
    ```
 
-   - Replace `<my-docker-registry:port>` with your private Docker registry hostname and port (if needed).
-
-   - Replace `<version>` with the tag you noted when [loading the Docker image](#load-acm-docker-image) above.
-
    For example:
 
    ```shell
-   docker tag nms-adm:4.0.0 myregistryhost:5000/nms-adm:4.0.0
+   docker tag nms-adm:1.5 myregistryhost:5000/nms-adm:1.5
    ```
-   
 
-2. Push the image to your private registry:
+3. Push the image to your private registry:
 
    ```shell
    docker push <my-docker-registry:port>/nms-adm:<version>
    ```
 
-   This command pushes the Docker image `nms-adm` to the specified private Docker registry (`my-docker-registry`). The image will be tagged with the specified version (`<version>`). 
+   For example:
 
-   - Replace `<my-docker-registry:port>` with your private Docker registry.
+   ```shell
+   docker push nms-adm:1.5 myregistryhost:5000/nms-adm:1.5
+   ```
 
-   - Replace `<version>` with the tag you noted when [loading the Docker image](#load-acm-docker-image) above.
+---
 
 ## Enable App Delivery Manager
 
@@ -146,6 +148,10 @@ To enable the App Delivery Manager Module, take the following steps:
 
 1. Open the `values.yaml` file for editing.
 1. Add the following snippet to the `values.yaml` file:
+
+   - Replace `<my-docker-registry:port>` with your private Docker registry and port (if needed).
+   - Replace `<version>` with the tag you noted when [loading the Docker image](#load-adm-docker-image) above.
+   - In the `imagePullSecrets` section, add the credentials for your private Docker registry.
 
    ```yaml
    # values.yaml
@@ -156,24 +162,33 @@ To enable the App Delivery Manager Module, take the following steps:
    nms-adm:
        imagePullSecrets:
        - name: regcred
-       acm:
+       adm:
            image:
                repository: <my-docker-registry:port>/nms-adm 
                tag: <version>
    ```
 
-   This `values.yaml` file enables the API Connectivity module and specifies the image pull secret, repository, and tag of the image to be used.
-
-   - Replace `<my-docker-registry:port>` with your private Docker registry.
-   - Replace `<version>` with the tag you noted when [loading the Docker image](#load-acm-docker-image) above.
-   - In the `imagePullSecrets` section, add the credentials for your private Docker registry.
-
 1. Close and save the `values.yaml` file.
 
-## Customize Helm Settings for App Delivery Manager {#configuration-options-acm}
-
-{{<see-also>}}Refer to the [Configurable Helm Settings]({{< relref "/nms/installation/kubernetes/nms-helm-config-options.md#acm-helm-settings" >}}) reference guide for the complete list of configurable parameters and default values used by the NGINX Management Suite and modules when installing from a Helm chart. {{</see-also>}}
+---
 
 ## Upgrade NGINX Management Suite Deployment
 
+{{<note>}}To complete the steps in this section, you need to have [OpenSSL 1.1.1](https://www.openssl.org/source/) or later installed.{{</note>}}
+
+&nbsp;
+
 {{< include "installation/helm/nim/helm-upgrade-nms.md" >}}
+
+---
+## Configurable Helm Settings
+
+{{< include "installation/helm/adm/configuration-options.md" >}}
+
+---
+
+## Troubleshooting
+
+{{< include "support/troubleshooting-guide.md" >}}
+
+For guidance on how to create a support package containing system and service details to share with NGINX Customer Support, refer to the guide [Create a Support Package from a Helm Installation]({{< relref "/nms/support/k8s-support-package.md" >}}).

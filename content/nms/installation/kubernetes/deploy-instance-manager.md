@@ -275,7 +275,7 @@ helm install -n nms --set nms-hybrid.adminPasswordHash=$(openssl passwd -6 'Your
 
 To help you choose the right NGINX Management Suite chart version, refer to the following table, which provides information about the compatible modules for each version.
 
-{{< include "installation/helm/acm/nms-chart-module-versions.md" >}}
+{{< include "installation/helm/nms-chart-supported-module-versions.md" >}}
 
 ---
 
@@ -344,6 +344,12 @@ helm uninstall --namespace nms nms
 ```
 
 This helm command uninstalls the app named `nms` from the namespace `nms`. It deletes all of the Kubernetes resources associated with the app, including any deployments, pods, services, and configmaps.
+
+---
+
+## Configurable Helm Settings
+
+{{< include "installation/helm/nim/configuration-options.md" >}}
 
 ---
 

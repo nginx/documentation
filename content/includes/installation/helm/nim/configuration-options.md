@@ -105,7 +105,7 @@ To modify a configuration for an existing release, run the `helm upgrade` comman
 {{</bootstrap-table>}}
 {{% /table %}}
 
-##### NIM Dqlite storage configuration
+##### Instance Manager Dqlite Storage Configuration
 
 ```yaml
   - name: dqlite
@@ -114,7 +114,7 @@ To modify a configuration for an existing release, run the `helm upgrade` comman
     accessMode: ReadWriteOnce
 ```
 
-##### NIM Secrets storage configuration
+##### Instance Manager Secrets Storage Configuration
 
 ```yaml
   - name: secrets
@@ -123,7 +123,7 @@ To modify a configuration for an existing release, run the `helm upgrade` comman
     accessMode: ReadWriteOnce
 ```
 
-##### NIM NATS storage configuration
+##### Instance Manager NATS Storage Configuration
 
 ```yaml
   - name: nats-streaming
@@ -132,7 +132,7 @@ To modify a configuration for an existing release, run the `helm upgrade` comman
     accessMode: ReadWriteOnce
 ```
 
-##### Kubernetes Taints And Tolerations
+##### Kubernetes Taints and Tolerations
 
 The following example snippet shows a toleration on an Instance Manager APIGW deployment. In this example, Kubernetes will tolerate the "NoExecute" effect for 60 seconds before evicting the pod from the tainted node.
 

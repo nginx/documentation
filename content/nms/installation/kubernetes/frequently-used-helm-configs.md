@@ -1,5 +1,5 @@
 ---
-title: "Common Helm Chart Configurations"
+title: "Frequently Used Helm Configurations"
 date: 2023-05-09T13:10:32-07:00
 # Change draft status to false to publish doc.
 draft: false
@@ -8,7 +8,7 @@ draft: false
 # The description text appears in search results and at the top of the doc.
 description: ""
 # Assign weights in increments of 100
-weight: 3
+weight: 100
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
@@ -29,11 +29,13 @@ authors: []
 
 ## Overview
 
-Choose from the following options to view frequently used configurations for the NGINX Management Suite. To apply one of these configurations, modify the `values.yaml` file accordingly.
+Choose from the following options to view frequently used configurations for the NGINX Management Suite. To apply any of these configurations, modify the `values.yaml` file accordingly.
 
 {{<see-also>}}Refer to the [Configurable Helm Settings]({{< relref "/nms/installation/kubernetes/nms-helm-config-options.md" >}}) reference guide for the complete list of configurable parameters and default values used by the NGINX Management Suite and modules when installing from a Helm chart. {{</see-also>}}
 
-## Use your own ClickHouse installation
+---
+
+## Use Your Own ClickHouse Installation
 
 The NGINX Management Suite requires a [ClickHouse](https://clickhouse.com) database server for storing metrics data. ClickHouse is an open-source, column-based, high-performance analytics database that allows real-time queries on large amounts of data.
 
@@ -46,8 +48,13 @@ To use your own ClickHouse installation, take the following steps:
 
    {{< note >}}`nms-hybrid.externalClickhouse` is required when `nms-hybrid.nmsClickhouse` is disabled.{{</note>}}
 
+---
 
-## Use your own certificates -- recommended for production deployments
+## Use Your Own Certificates
+
+{{< production >}}
+The content in this section is recommended for production deployments.
+{{< /production>}}
 
 
 NGINX Management Suite generates a certificate authority and self-signs its certificates by default.
@@ -78,14 +85,16 @@ If you'd like to use your own certificates, take the following steps:
          LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURDVENDQWZHZ0F3SUJBZ0lRVFVEVTlNY3puWUZObHJwMDdrSGtWREFOQmdrcWhraUc5dzBCQVFzRkFEQU8KTVF3d0NnWURWUVFERXdOdWJYTXdJQmNOTWpJd05ERXlNakV4TkRFeldoZ1BNakV5TWpBMk1qY3lNVEUwTVROYQpNQTR4RERBS0JnTlZCQU1UQTI1dGN6Q0NBU0l3RFFZSktvWklodmNOQVFFQkJRQURnZ0VQQURDQ0FRb0NnZ0VCCkFNQWdUVUlvZjZTUnpMTmg2SnlUTTJEazU4VzJvT0dyQUtJS0dHcnJaaWZMSno4V21WNk1jb0RMNU9jdSs1YlIKdk9HMHlOdWdxaWQ0YmhuVHlNWnhlR3p1T09TZ2VSTzA3bE9SNUJCczFDRUFidEtuSUh2d1J2aDRGUXBnbmQvTAo1ek1ZN1FFN0N4TjBXSFRBYWR1Q1M0NEZSVkFkdzVXRzQ5YVFVd3VCajlqRlNlbCtVemxQdkExWGFBTWRrSkF0CktmTDRUY3FuK1JDR2FrYWI3aUg3b25zMHFZdDFTSlJuOENzdFFvbGJ2aXduM2VKTzRtVTFnY1hxRnV6N2ZLZGUKMjk4V3FNaG94NHJib2hTWFlUSXBYTWtMOHhBNU1TeE5WZ1NIM09heDN5ZWpzYy9NZnpjMHA0bEYxVDBLamZJWgpEcjUwL1Z2QXNZc2lUbWF5UktUeU13MENBd0VBQWFOaE1GOHdEZ1lEVlIwUEFRSC9CQVFEQWdLa01CMEdBMVVkCkpRUVdNQlFHQ0NzR0FRVUZCd01CQmdnckJnRUZCUWNEQWpBUEJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWQKRGdRV0JCUmVoLys2Mng4Qk9jNG5UU0VHZlVjd3M4OUJRakFOQmdrcWhraUc5dzBCQVFzRkFBT0NBUUVBRmZ5VgpKakptTHcxYzR2ejg2ME12UXpiejZFK0p6NnhmbW5VZHlleEZnQ1Q4Nm1YbCticlNZRjRodS9uOFRicXEzTFRuClFKZlR2a2JUamoydmhyUHdERnVtbXBXQmt1WVVKN2tmN2tpa24rYlkzQnh2OUIyR2x2UDJSWEhhd3pzejdMM1kKVHRRSlExS01IVFpIa0xYRWNDRVdES2dtNEVVK2JRNlBydm5meGk5VlVicHpBc051SU9MMklsUVl0RUxCOEJOYwpsREtLQjBJYVk0TTdmTTkrMjhXVkkyRVJjblJETTAycjVZMXkxaUNvTDZ3TVVuL0FHRjluVU1tZTREcWpLUEVXCnRveGliYmZRUHdaUy9sWmVCV1lpRlo0MVNINGZaeURUVHJVY3lsVk9DU3AzdVAyYlpYM3N0MVl2VGlKS2hxL0MKMUlETWhuWDBiMWhYY1Z5YnhnPT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
    ```
 
+---
 
-### Adjust storage settings or disable persistent storage
+## Adjust storage settings or disable persistent storage
 
 
 Review the deployment's default resource and storage settings by editing the `values.yaml` file in the helm package you downloaded. Adjust the values to meet your data needs.
 
 Persistent volumes are enabled by default for the ClickHouse database server and `nms-hybrid.core` and `nms-hybrid.dpm` services. To disable persistent storage for a configuration, set `nms-hybrid.persistence.enable` = `false`.
 
+---
 
 ## Use NGINX Plus for API Gateway
 

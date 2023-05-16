@@ -39,7 +39,9 @@ Review the following requirements for API Connectivity Manager before continuing
 
 ### Dependencies with Instance Manager
 
-{{< include "installation/helm/acm/nms-chart-module-versions.md" >}}
+Refer to the following table to see the module compatibility for each NGINX Management Suite chart.
+
+{{< include "installation/helm/nms-chart-supported-module-versions.md" >}}
 
 
 ---
@@ -63,6 +65,9 @@ Follow these steps to download the Docker image for API Connectivity Manager:
 ---
 
 ## Load Docker Image {#load-acm-docker-image}
+
+{{< note >}} To complete the commands in this section, you need to have [Docker 20.10 or later](https://docs.docker.com/get-docker/) installed. {{< /note >}}
+
 
 1. Change to the directory where you downloaded the Docker image:
 
@@ -98,7 +103,9 @@ Follow these steps to download the Docker image for API Connectivity Manager:
 
 ## Push Image to Private Registry {#push-image-private-docker-repo}
 
-After loading the Docker image, you can now tag and push the image to your private Docker registry.
+{{<note>}}To complete the steps in this section, you need an [externally-accessible private Docker registry](https://docs.docker.com/registry/deploying/) to push the container images to.{{</note>}}
+
+To push the Docker images to your private registry, take the following steps:
 
 - Replace `<my-docker-registry:port>` with your private Docker registry and port (if needed).
 
@@ -143,6 +150,10 @@ To enable the API Connectivity Manager Module, take the following steps:
 1. Open the `values.yaml` file for editing.
 1. Add the following snippet to the `values.yaml` file:
 
+   - Replace `<my-docker-registry:port>` with your private Docker registry and port (if needed).
+   - Replace `<version>` with the tag you noted when [loading the Docker image](#load-acm-docker-image) above.
+   - In the `imagePullSecrets` section, add the credentials for your private Docker registry.
+
    ```yaml
    # values.yaml
    global:
@@ -158,22 +169,28 @@ To enable the API Connectivity Manager Module, take the following steps:
                tag: <version>
    ```
 
-   This `values.yaml` file enables the API Connectivity module and specifies the image pull secret, repository, and tag of the image to be used.
-
-   - Replace `<my-docker-registry:port>` with your private Docker registry and port (if needed).
-   - Replace `<version>` with the tag you noted when [loading the Docker image](#load-acm-docker-image) above.
-   - In the `imagePullSecrets` section, add the credentials for your private Docker registry.
-
 1. Close and save the `values.yaml` file.
-
----
-
-## Customize Helm Settings for API Connectivity Manager {#configuration-options-acm}
-
-{{<see-also>}}Refer to the [Configurable Helm Settings]({{< relref "/nms/installation/kubernetes/nms-helm-config-options.md#acm-helm-settings" >}}) reference guide for the complete list of configurable parameters and default values used by the NGINX Management Suite and modules when installing from a Helm chart. {{</see-also>}}
 
 ---
 
 ## Upgrade NGINX Management Suite Deployment
 
+{{<note>}}To complete the steps in this section, you need to have [OpenSSL 1.1.1](https://www.openssl.org/source/) or later installed.{{</note>}}
+
+&nbsp;
+
 {{< include "installation/helm/nim/helm-upgrade-nms.md" >}}
+
+---
+
+## Configurable Helm Settings
+
+{{< include "installation/helm/acm/configuration-options.md" >}}
+
+---
+
+## Troubleshooting
+
+{{< include "support/troubleshooting-guide.md" >}}
+
+For guidance on how to create a support package containing system and service details to share with NGINX Customer Support, refer to the guide [Create a Support Package from a Helm Installation]({{< relref "/nms/support/k8s-support-package.md" >}}).
