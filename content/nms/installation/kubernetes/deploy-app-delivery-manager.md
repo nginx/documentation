@@ -191,6 +191,8 @@ To enable the App Delivery Manager Module, take the following steps:
 
 For guidance on how to create a support package containing system and service details to share with NGINX Customer Support, refer to the guide [Create a Support Package from a Helm Installation]({{< relref "/nms/support/k8s-support-package.md" >}}).
 
+---
+
 ## What's Next
 
 ### Deploy Other NGINX Management Suite Modules

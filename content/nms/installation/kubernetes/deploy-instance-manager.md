@@ -318,6 +318,20 @@ You can access the Instance Manager web interface using the external IP address 
 
 ---
 
+## Add License
+
+A valid license is required in order to use all of the features in Instance Manager.
+
+### Download License
+
+{{< include "installation/download-license.md" >}}
+
+### Apply License
+
+{{< include "installation/add-license.md" >}}
+
+---
+
 ## Upgrade Instance Manager {#helm-upgrade-nim}
 
 To upgrade Instance Manager, take the following steps:
