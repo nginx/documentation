@@ -11,6 +11,11 @@ refLinksErrorLevel = "ERROR"
 [[module.imports]]
   path="github.com/nginxinc/nginx-hugo-theme"
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
 [params]
   useSectionPageLists = "false"
   buildtype = "webdocs"
