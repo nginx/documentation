@@ -1,4 +1,5 @@
 ---
 title: Policies
-weight: 400
+weight: 1000
+url: /nginx-management-suite/acm/how-to/policies/
 ---

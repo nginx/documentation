@@ -2,47 +2,108 @@
 
 The following is a set of guidelines for contributing to this project. We really appreciate that you are considering contributing!
 
-#### Table Of Contents
-
-[Getting Started](#getting-started)
-
-[Contributing](#contributing)
-
-[Code Guidelines](#code-guidelines)
-
-[Code of Conduct](https://github.com/nginxinc/docs/blob/main/CODE_OF_CONDUCT.md)
 
 ## Getting Started
 
 Follow our [Getting Started Guide](https://github.com/nginxinc/docs/blob/main/README.md#Getting-Started) to get this project up and running.
 
-<!-- ### Project Structure (OPTIONAL) -->
+## Local Docs Development
 
-## Contributing
+To build the docs locally, run the desired `make` command from the docs directory:
 
-### Report a Bug
+```text
+make docs           -   runs a local hugo server so you can view docs in your browser while you work
+make hugo-mod       -   cleans the Hugo module cache and fetches the latest version of the theme module
+make docs-drafts    -   runs the local hugo server and includes all docs marked with `draft: true`
+make clean          -   removes the local `public` directory, which is the default output path used by Hugo
+```
 
-To report a bug, open an issue on GitHub with the label `bug` using the available bug report issue template. Please ensure the bug has not already been reported. **If the bug is a potential security vulnerability, please report it using our [security policy](https://github.com/nginxinc/docs/blob/main/SECURITY.md).**
+## Add new docs
 
-### Suggest a Feature or Enhancement
+### Generate a new doc file using Hugo
 
-To suggest a feature or enhancement, please create an issue on GitHub with the label `enhancement` using the available [feature request template](https://github.com/nginxinc/docs/blob/main/.github/feature_request_template.md). Please ensure the feature or enhancement has not already been suggested.
+To create a new doc file that contains all of the pre-configured Hugo front-matter and the docs task template, run the following command:
 
-### Open a Pull Request
+`hugo new <SECTIONNAME>/<FILENAME>.<FORMAT>`
 
-- Fork the repo, create a branch, implement your changes, add any relevant tests, submit a PR when your changes are **tested** and ready for review.
-- Fill in [our pull request template](https://github.com/nginxinc/docs/blob/main/.github/pull_request_template.md).
+e.g.,
 
-Note: if you'd like to request or contribute new content, please consider creating a [feature request issue](https://github.com/nginxinc/docs/blob/main/.github/feature_request_template.md) first to start a discussion about the proposed content.
+`hugo new getting-started/install.md`
 
-### Git Guidelines
+The default template -- task -- should be used for most docs. To create docs using the other content templates, you can use the `--kind` flag:
 
-- Keep a clean, concise and meaningful git commit history on your branch (within reason), rebasing locally and squashing before submitting a PR.
-- If possible and/or relevant, use the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) format when writing a commit message, so that changelogs can be automatically generated
-- Follow the guidelines of writing a good commit message as described here <https://chris.beams.io/posts/git-commit/> and summarised in the next few points:
-  - In the subject line, use the present tense ("Add feature" not "Added feature").
-  - In the subject line, use the imperative mood ("Move cursor to..." not "Moves cursor to...").
-  - Limit the subject line to 72 characters or less.
-  - Reference issues and pull requests liberally after the subject line.
-  - Add more detailed description in the body of the git message (`git commit -a` to give you more space and time in your text editor to write a good message instead of `git commit -am`).
-  
+`hugo new tutorials/deploy.md --kind tutorial`
+
+The available content types (`kind`) are:
+
+- concept: Helps a customer learn about a specific feature or feature set.
+- tutorial: Walks a customer through an example use case scenario; results in a functional PoC environment.
+- reference: Describes an API, command line tool, config options, etc.; should be generated automatically from source code. 
+- troubleshooting: Helps a customer solve a specific problem.
+- openapi: Contains front-matter and shortcode for rendering an openapi.yaml spec.
+
+## How to format docs
+
+### How to format internal links
+
+Format links as [Hugo refs](https://gohugo.io/content-management/cross-references/). 
+
+- File extensions are optional.
+- You can use relative paths or just the filename. (**Paths without a leading / are first resolved relative to the current page, then to the remainder of the site.**)
+- Anchors are supported.
+
+For example:
+
+```md
+To install <product>, refer to the [installation instructions]({{< ref "install" >}}).
+```
+
+### How to use Hugo shortcodes
+
+You can use [Hugo shortcodes](/docs/themes/f5-hugo/layouts/shortcodes/) to do things like format callouts, add images, and reuse content across different docs. 
+
+For example, to use the note callout:
+
+```md
+{{< note >}}Provide the text of the note here. {{< /note >}}
+```
+
+The callout shortcodes also support multi-line blocks:
+
+```md
+{{< caution >}}
+You should probably never do this specific thing in a production environment. 
+
+If you do, and things break, don't say we didn't warn you.
+{{< /caution >}}
+```
+
+Supported callouts:
+
+- `caution`
+- `important`
+- `note`
+- `see-also`
+- `tip`
+- `warning`
+
+A few more fun shortcodes:
+
+- `fa`: inserts a Font Awesome icon
+- `img`: include an image and define things like alt text and dimensions
+- `include`: include the content of a file in another file (requires the included file to be in the content/includes directory; will be deprecated in favor of readfile)
+- `link`: makes it possible to link to a file and prepend the path with the Hugo baseUrl
+- `openapi`: loads an OpenAPI spec and renders as HTML using ReDoc
+- `raw-html`: makes it possible to include a block of raw HTML
+- `readfile`: includes the content of another file in the current file (intended to replace `include`)
+- `bootstrap-table`: formats a table using Bootstrap classes; accepts any bootstrap table classes as additional arguments, e.g. `{{< bootstrap-table "table-bordered table-hover" }}`
+
+## Linting
+
+To run the markdownlint check, run the following command from the docs directory:
+
+  ```bash
+  markdownlint -c docs/mdlint_conf.json content
+  ```
+
+> Note: You can run this tool on an entire directory or on an individual file.

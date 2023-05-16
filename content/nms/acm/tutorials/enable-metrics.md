@@ -13,11 +13,9 @@ docs: "DOCS-1055"
 
 ## Overview
 
-This guide walks through setting up and using metrics in NGINX Management Suite API Connectivity Manager (ACM).
+This guide walks through setting up and using metrics in NGINX Management Suite API Connectivity Manager.
 
-{{<important>}}The configuration presented in this guide is for demonstration purposes only. Securely configuring environments and proxies in ACM is not in scope for this tutorial but should be given full attention when planning for production use.{{</important>}}
-
-<br>
+{{<important>}}The configuration presented in this guide is for demonstration purposes only. Securely configuring environments and proxies in API Connectivity Manager is not in scope for this tutorial but should be given full attention when planning for production use.{{</important>}}
 
 Currently, only the following metric is available:
 
@@ -57,9 +55,26 @@ This section configures the hosts used in this tutorial. In the following table,
 | Echo Server                 | 1 vCPU        | 1GB    | 10GB    | `192.0.2.4` | `echo-host` |
 {{</bootstrap-table>}}
 
+<br>
+
 ### Install NGINX Management Suite & API Connectivity Manager {#install-nsm-acm}
 
-Follow the steps in the [Installation Guide]({{< relref "/nms/admin-guides/installation/on-prem/install-guide" >}}) to set up NGINX Management Suite and ACM. You do not need to configure a Developer Portal for this tutorial.
+Follow the steps in the [Installation Guide]({{< relref "/nms/admin-guides/installation/on-prem/install-guide" >}}) to set up NGINX Management Suite and API Connectivity Manager. You do not need to configure a Developer Portal for this tutorial.
+
+### Enable Metrics for API Connectivity Manager
+
+In `/etc/nms/acm.conf`, uncomment and set the `enable_metrics` property to `true`.
+
+``` bash
+# set to true to enable metrics markers from the acm code
+enable_metrics = true
+```
+
+Run the following command to restart the API Connectivity Manager service:
+
+```bash
+sudo systemctl restart nms-acm
+```
 
 ### Install NGINX Agent on Data Plane Host {#install-agent}
 
@@ -71,7 +86,12 @@ curl --insecure https://192.0.2.2/install/nginx-agent > install.sh \
 && sudo systemctl start nginx-agent
 ```
 
+To ensure that the advanced metrics modules are installed across all data plane hosts, please follow the steps in the [Install NGINX Plus Metrics Module]({{< relref "/nms/nginx-agent/install-nginx-plus-advanced-metrics.md" >}}) guide.
+
+---
+
 ### Install Echo Server {#install-echo-server}
+
 {{< note >}} The server is designed for testing HTTP proxies and clients. It echoes information about HTTP request headers and bodies back to the client. {{</ note >}}
 
 1. [Download and install the latest version of Go](https://go.dev/doc/install) by following the instructions on the official Go website.
@@ -87,7 +107,7 @@ curl --insecure https://192.0.2.2/install/nginx-agent > install.sh \
 
 ## Configure API Connectivity Manager {#amc-config}
 
-In this section, we use the ACM REST API to set up a proxy in ACM. You need to pass the NGINX Management Suite user credentials in the Basic Authentication header for each REST request.
+In this section, we use the API Connectivity Manager REST API to set up a proxy in API Connectivity Manager. You need to pass the NGINX Management Suite user credentials in the Basic Authentication header for each REST request.
 
 ### Create Workspaces & Environment {#create-workspace-environment}
 
@@ -208,7 +228,7 @@ In this section, we use the ACM REST API to set up a proxy in ACM. You need to p
 
    **Verification**
 
-   If everything is configured correctly in ACM and the Echo Server, the response should be similar to the following example:
+   If everything is configured correctly in API Connectivity Manager and the Echo Server, the response should be similar to the following example:
 
    ```bash
    Request served by echo-host
@@ -239,8 +259,31 @@ GET https://192.0.2.2/api/acm/v1/infrastructure/workspaces/infra-ws/environments
 
 If you've successfully configured a proxy the following count is returned.
 
-Response
+**Response**
 
 ```json
     1
 ```
+
+---
+
+## View Environment Metrics {#view-env-metrics}
+
+1. On the left menu, select **Infrastructure**.
+2. Select a workspace from the table.
+3. Select the Actions menu (represented by an ellipsis, `...`) next to your environment on the **Actions** column.
+4. Select **Metrics**.
+5. Update the start and end time of the metrics with the **time range selection** on the dashboard overview.
+6. To view metrics broken down by cluster in the environment, select the **API Gateway Clusters** tab.
+
+---
+
+## View Proxy Metrics {#view-proxy-metrics}
+
+1. On the left menu, select **Services**.
+2. Select a workspace from the table. 
+3. Select the Actions menu (represented by an ellipsis, `...`) next to your environment on the **Actions** column.
+4. Select **Metrics**.
+5. Update the start and end time of the metrics with the **time range selection** on the dashboard overview.
+6. Filter by advanced routes with the **advanced route selection** on the dashboard overview.
+7. To view metrics broken down by status code in the proxy, select the **API Gateway Clusters** tab.

@@ -169,6 +169,24 @@ To manually update the public key, take the following steps:
 
 </details>
 
+<details>
+<summary>Publishing to an instance or instance group returns error "outside the allowed directory list"</summary>
+
+#### Description
+
+If an instance or instance group's configuration references an aux file (for example, an SSL certificate) that is not in the expected allowed directory, publishing the config will fail. The same can happen when a certificate is assigned a file path outside the allowed directory. In both cases, the system returns an error similar to the following:
+
+```text
+Config apply failed (write): the file <filename> is outside the allowed directory list.
+```
+
+#### Resolution
+
+For a failure when publishing of a configuration, move the aux file to the allowed directory and update the configuration; for example, use `/etc/nginx/` for certificates.
+
+For a failure when publishing a certificate to an instance or instance group, ensure the assigned file paths are set to the allowed directory; for example, use `/etc/nginx`.
+
+</details>
 
 ---
 

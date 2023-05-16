@@ -733,30 +733,6 @@ systemctl restart nms-dpm
 
 ---
 
-## 2.4.0
-
-### {{% icon-bug %}} Publishing an instance group config with an aux file outside the allowed directory fails {#36410}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 36410    | Open   |
-{{</bootstrap-table>}}
-
-#### Description
-
-If an instance group's configuration references an aux file (for example, an SSL certificate) that is not in the expected allowed directory, publishing the config will fail. The system returns an error similar to the following:
-
-```text
-Config apply failed (write): the file <filename> is outside the allowed directory list.
-```
-
-#### Workaround
-
-Move the aux file to the allowed directory and update the configuration; for example, use `/etc/nginx/` for certificates.
-
----
-
 ## 2.3.0
 
 ### {{% icon-bug %}} Scan misidentifies some NGINX OSS instances as NGINX Plus {#35172}
