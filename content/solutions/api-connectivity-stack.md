@@ -26,7 +26,7 @@ NGINX Management Suite Instance Manager makes it easy to inventory, configure, m
 
 1. [Download the products and distributions](https://my.f5.com/manage/s/downloads) you need from MyF5.
 2. Choose your target deployment environment and follow the appropriate installation guide to setup NGINX Management Suite:
-    - [Install using Linux (virtual machines)]({{< ref "install-guide" >}})
+    - [Install on virtual machine or bare metal]({{< ref "install-guide" >}})
     - [Install in Kubernetes using Helm]({{< ref "nms-helm" >}})
 3. Follow instructions to install the [Instance Manager module]({{< ref "install-guide#install-instance-manager" >}})
  
@@ -35,14 +35,14 @@ NGINX Management Suite Instance Manager makes it easy to inventory, configure, m
 ### (Optional) Install the Security Monitoring module
 NGINX Management Suite Security Monitoring provides global visibility into your fleet of NGINX App Protect WAF instances, including protection insights and the ability to analyze threats. Install this module if you plan to install NGINX App Protect WAF.
 
-- [Install using Linux (virtual machines)]({{< ref "install-guide#install-nms-modules" >}})
+- [Install on virtual machine or bare metal]({{< ref "install-guide#install-nms-modules" >}})
 
 {{< note >}}The Kubernetes Helm method does not support installation of the Security Monitoring module, and the module is not currently supported in Kubernetes.{{< /note >}}
 
 ### (Optional) Install the API Connectivity Manager module
 NGINX Management Suite API Connectivity Manger makes it easy to manage, govern, and secure API gateways deployed across multi-cloud and hybrid environments. Install this module if you want to centrally manage your NGINX Plus API gateways.
 
-- [Install using Linux (virtual machines)]({{< ref "install-guide#install-nms-modules" >}})
+- [Install on virtual machine or bare metal]({{< ref "install-guide#install-nms-modules" >}})
 - [Install in Kubernetes using Helm]({{< ref "enable-modules-for-existing-deployments" >}})
 
 ### Install NGINX Plus as an API Gateway
