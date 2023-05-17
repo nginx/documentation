@@ -30,21 +30,6 @@ Select the tab matching your Linux distribution, then follow the instructions to
     sudo rpmkeys --import /tmp/nginx_signing.key
     ```
 
-1. (Optional) Alternatively, create a file called `/etc/yum.repos.d/nms.repo` and paste in the following configuration:
-
-   ```text
-   [nms]
-   name=NGINX Management Suite
-   baseurl=https://pkgs.nginx.com/nms/centos/$releasever/$basearch/
-   sslclientcert=/etc/ssl/nginx/nginx-repo.crt
-   sslclientkey=/etc/ssl/nginx/nginx-repo.key
-   enabled=1
-   ```
-
-   - Amazon Linux 2:
-
-      If you're installing on Amazon Linux 2, the `baseurl` should be: `baseurl=https://pkgs.nginx.com/nms/amzn2/$releasever/$basearch/`.
-
 {{%/tab%}}
 
 {{%tab name="Debian, Ubuntu, Deb-Based"%}}
@@ -71,15 +56,6 @@ Select the tab matching your Linux distribution, then follow the instructions to
     wget -O /tmp/nginx_signing.key https://cs.nginx.com/static/keys/nginx_signing.key
     sudo apt-key add /tmp/nginx_signing.key
     ```
-
-1. (Optional) As an alternative to downloading the `90pkgs-nginx` file from our website, you can upload the file's contents using any other means. The content of the file should match the following:
-
-   ```bash
-   Acquire::https::pkgs.nginx.com::Verify-Peer "true";
-   Acquire::https::pkgs.nginx.com::Verify-Host "true";
-   Acquire::https::pkgs.nginx.com::SslCert "/etc/ssl/nginx/nginx-repo.crt";
-   Acquire::https::pkgs.nginx.com::SslKey "/etc/ssl/nginx/nginx-repo.key";
-   ```
 
 {{%/tab%}}
 {{</tabs>}}
