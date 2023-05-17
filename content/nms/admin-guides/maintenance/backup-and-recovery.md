@@ -222,7 +222,7 @@ To back up and restore NGINX Management Suite in a Kubernetes cluster, you need 
 
 ### Back Up
 
-To back up NGINX Management Suite  deployed in a Kubernetes cluster, follow these steps:
+To back up NGINX Management Suite deployed in a Kubernetes cluster, follow these steps:
 
 1. Download the NGINX Management Suite Helm chart for your version of NGINX Management Suite:
 
