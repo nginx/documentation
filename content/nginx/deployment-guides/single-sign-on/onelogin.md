@@ -1,11 +1,14 @@
 ---
-title: "Single Sign-On with OneLogin"
-description: "Learn how to enable single sign-on (SSO) with [OneLogin](https://www.onelogin.com/) for applications proxied by NGINX Plus."
-weight: 100
-doctypes: ["tutorial"]
+description: Learn how to enable single sign-on (SSO) with [OneLogin](https://www.onelogin.com/)
+  for applications proxied by NGINX Plus.
+docs: DOCS-467
+doctypes:
+- tutorial
+tags:
+- docs
+title: Single Sign-On with OneLogin
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-467"
+weight: 100
 ---
 
 <hr>
@@ -15,7 +18,7 @@ This documentation applies to NGINX Plus R15 and later.
 
 You can use NGINX Plus with [OneLogin](https://www.onelogin.com/) and the OpenID Connect protocol to enable single sign-on (SSO) for your proxied applications. By following the steps in this guide, you will learn how to set up SSO using OpenID Connect as the authentication mechanism, with OneLogin as the identity provider (IdP) and NGINX Plus as the relying party.
 
-{{< see-also >}}{{< include "nginx-openid-repo-note.txt" >}}{{< /see-also >}}
+{{< see-also >}}{{< readfile file="includes/nginx-openid-repo-note.txt" markdown="true" >}}{{< /see-also >}}
 
 ## Prerequisites
 

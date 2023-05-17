@@ -1,10 +1,12 @@
 ---
+description: Configure NGINX as a reverse proxy for HTTP and other protocols, with
+  support for modifying request headers and fine-tuned buffering of responses.
+docs: DOCS-441
+doctypes:
+- task
 title: NGINX Reverse Proxy
-description: Configure NGINX as a reverse proxy for HTTP and other protocols, with support for modifying request headers and fine-tuned buffering of responses.
-weight: 300
-doctypes: ["task"]
 toc: true
-docs: "DOCS-441"
+weight: 300
 ---
 
 

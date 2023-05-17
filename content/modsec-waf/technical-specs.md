@@ -5,7 +5,9 @@ toc: true
 docs: "DOCS-729"
 ---
 
-{{% eol-notice %}}
+{{< important >}}
+{{% modsec-eol-notice %}}
+{{< /important >}}
 
 NGINX ModSecurity WAF is a module for NGINX Plus. 
 

@@ -57,12 +57,13 @@ The following table lists the features you can assign roles to:
 | Instance Manager         | Analytics           | Allows access to the analytics endpoints, including metrics, catalogs, and events |
 | Instance Manager         | Certs               | Allows access to view and manage certs for NGINX instances                        |
 | Instance Manager         | Instance Groups     | Allows access to view and manage NGINX instance groups                            |
-| Instance Manager         | Instance Management | Allows access to view and manage NGINX instances                                  |
+| Instance Manager         | Instance Sets       | Allows access to view and manage NGINX instance sets                              |
+| Instance Manager         | Instance Management | Allows access to view and manage NGINX instances where granting write access (Create, Update) allows a user to read and publish any valid certificate stored in NGINX Management Suite by name                              |
 | Instance Manager         | Scan                | Allows access to scan for NGINX Instances                                         |
 | Instance Manager         | Staged Configs      | Allows access to view and manage staged NGINX configurations                      |
 | Security Monitoring      | Security Monitoring | Allows access to the Security Monitoring dashboard and APIs                       |
 | API Connectivity Manager | API Docs            | Allows access to view and manage API Docs to be published to Dev Portal           |
-| API Connectivity Manager | Devportal Setup     | Allows access to view and manage Dev Portals                                      |
+| API Connectivity Manager | Dev Portal Setup    | Allows access to view and manage Dev Portals                                      |
 | API Connectivity Manager | Environments        | Allows access to view and manage environments                                     |
 | API Connectivity Manager | Hostname            | Allows access to view and manage hostnames for deploying proxies to               |
 | API Connectivity Manager | Infra Workspace     | Allows access to view and manage Infrastructure workspaces                        |

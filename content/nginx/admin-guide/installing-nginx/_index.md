@@ -1,8 +1,9 @@
 ---
-title: Installing NGINX and NGINX Plus
-description: Documentation explaining how to install NGINX and NGINX Plus on premises and in public clouds.
-weight: 100
+description: Documentation explaining how to install NGINX and NGINX Plus on premises
+  and in public clouds.
 menu:
   docs:
     parent: NGINX Plus
+title: Installing NGINX and NGINX Plus
+weight: 100
 ---

@@ -18,7 +18,7 @@ tags:
 title: Add, Delete, or Replace Certificates
 toc: true
 versions: []
-weight: 600
+weight: 650
 docs: "DOCS-821"
 aliases:
 - /nginx-instance-manager/tutorials/certificates/

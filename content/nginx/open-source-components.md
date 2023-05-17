@@ -1,23 +1,25 @@
 ---
+description: License information for open source components included in the NGINX
+  Plus software.
+docs: DOCS-471
+doctypes:
+- reference
 title: Open Source Components
-description: License information for open source components included in the NGINX Plus software.
-weight: 500
-doctypes: ["reference"]
 toc: true
-docs: "DOCS-471"
+weight: 500
 ---
 
 
 Open source components included in the NGINX Plus (package name is `nginx-plus`) are:
 
 
-- nginx/OSS 1.21.5, distributed under 2-clause BSD license.
+- nginx/OSS 1.23.4, distributed under 2-clause BSD license.
 
   Homepage: http://nginx.org
 
   Copyright © 2002-2021 Igor Sysoev
   
-  Copyright © 2011-2022 NGINX, Inc.
+  Copyright © 2011-2023 NGINX, Inc.
 
   All rights reserved.
 

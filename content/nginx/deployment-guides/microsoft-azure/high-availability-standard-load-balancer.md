@@ -1,10 +1,13 @@
 ---
-title: Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard Load Balancer
-description: Create a highly available active-active deployment of NGINX Plus on Microsoft Azure in combination with the Azure Standard Load Balancer.
-weight: 100
-doctypes: ["task"]
+description: Create a highly available active-active deployment of NGINX Plus on Microsoft
+  Azure in combination with the Azure Standard Load Balancer.
+docs: DOCS-457
+doctypes:
+- task
+title: Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard
+  Load Balancer
 toc: true
-docs: "DOCS-457"
+weight: 100
 ---
 
 

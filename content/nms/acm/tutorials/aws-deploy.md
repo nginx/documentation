@@ -207,7 +207,7 @@ Take the steps below to obtain the public IP so you can access the instance thro
 
 ## NGINX Management Suite Host Installation
 
-Follow the [NMS Installation Guide]({{< relref "/nms/installation/on-prem/_index.md" >}}) to install both the **Instance Manager Module** and the **API Connectivity Manager Module**. The **Security Module** is not required for this demo.
+Follow the [NMS Installation Guide]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}) to install both the **Instance Manager Module** and the **API Connectivity Manager Module**. The **Security Module** is not required for this demo.
 
 ## NGINX Data Plane host
 

@@ -1,10 +1,12 @@
 ---
+description: Release information for NGINX Plus, a complete application delivery platform,
+  including new features and a list of supported platforms.
+docs: DOCS-472
+doctypes:
+- concept
 title: Releases
-description: Release information for NGINX Plus, a complete application delivery platform, including new features and a list of supported platforms.
-weight: 300
-doctypes: ["concept"]
 toc: true
-docs: "DOCS-472"
+weight: 300
 ---
 
 <span id="support"></span>
@@ -23,13 +25,13 @@ _Based on NGINX Open Source 1.23.4_
 
 NGINX Plus R29 is a feature release:
 
-* [HTTP/3](http://pp.nginx.com/yar/libxslt/en/docs/http/ngx_http_v3_module.html) and [QUIC](http://pp.nginx.com/yar/libxslt/en/docs/stream/ngx_stream_quic_module.html) support
+* MQTT messaging protocol support with the [MQTT Preread](https://nginx.org/en/docs/stream/ngx_stream_mqtt_preread_module.html) and [MQTT Filter](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html) modules
 
-* [MQTT Preread](pp.nginx.com/yar/libxslt/en/docs/stream/ngx_stream_mqtt_preread_module.html) and [MQTT Filter](http://pp.nginx.com/yar/libxslt/en/docs/stream/ngx_stream_mqtt_filter_module.html) modules that add MQTT support
+* [SAML Authentication reference implementation](https://github.com/nginxinc/nginx-saml) based on native njs [XML support](http://nginx.org/en/docs/njs/reference.html#xml)
 
-* [OpenTelemetry](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/otel/) dynamic module that adds OpenTelemetry distributed tracing support
+* OpenTelemetry Distributed Tracing [module](https://nginx.org/en/docs/ngx_otel_module.html), distributed in NGINX Plus packages (package name is `nginx-plus-module-otel`) and is available as a [dynamic module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/opentelemetry/)
 
-* SAML Authentication based on native njs [XML support](http://nginx.org/en/docs/njs/reference.html#xml)
+* Experimental support for [HTTP/3 and QUIC](https://nginx.org/en/docs/http/ngx_http_v3_module.html), distributed in NGINX Plus packages (package name is `nginx-plus-quic`)
 
 * TLS 1.3 is enabled by default (the `TLSv1.3` parameter of the [ssl_protocols](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols) directive)
 
@@ -37,9 +39,9 @@ NGINX Plus R29 is a feature release:
 
 * New feature in [OpenID Connect reference implementation](https://github.com/nginxinc/nginx-openid-connect): support for access token
 
-* The [Prometheus-njs module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/prometheus-njs/) now supports version [`8`](https://nginx.org/en/docs/http/ngx_http_api_module.html#compatibility) of the [API], including SSL extended statistics for each HTTP [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) and stream [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_upstream), SSL extended statistics for each HTTP [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_server_zone) and stream [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_server_zone), and extended statistics for [SSL](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_ssl_object)
+* The [Prometheus-njs module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/prometheus-njs/) now supports version [`8`](https://nginx.org/en/docs/http/ngx_http_api_module.html#compatibility) of the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html), including SSL extended statistics for each HTTP [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) and stream [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_upstream), SSL extended statistics for each HTTP [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_server_zone) and stream [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_server_zone), and extended statistics for [SSL](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_ssl_object)
 
-
+* The NGINX JavaScript ([njs](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/nginscript/)) module for NGINX Plus was updated to version [0.7.12](http://nginx.org/en/docs/njs/changes.html#njs0.7.12), featuring extended [Fetch API](https://nginx.org/en/docs/njs/reference.html#ngx_fetch) and [WebCrypto API](http://nginx.org/en/docs/njs/reference.html#builtin_crypto), [XML module](https://nginx.org/en/docs/njs/reference.html#xml_node) to parse and modify XML documents, [Zlib module](https://nginx.org/en/docs/njs/reference.html#zlib) to support compression
 
 NGINX Plus R29 is supported on:
 
@@ -61,8 +63,10 @@ NGINX Plus R29 is supported on:
 * Alpine Linux 3.14 is deprecated
 * Ubuntu 18.04 is deprecated
 * Alpine Linux 3.13 is removed
+* The ModSecurity dynamic module (package name is `nginx-plus-module-modsecurity`) is no longer supported
 
 More information: [Announcing NGINX Plus R29](https://www.nginx.com/blog/nginx-plus-r29-released/)
+
 
 <span id="r28"></span>
 ## NGINX Plus Release 28 (R28)

@@ -1,10 +1,12 @@
 ---
+description: Stream video in multiple formats, including  Real-Time Messaging Protocol
+  (RTMP), HLS, and DASH, with the RTMP dynamic module, supported by NGINX, Inc.
+docs: DOCS-399
+doctypes:
+- task
 title: RTMP
-description: Stream video in multiple formats, including  Real-Time Messaging Protocol (RTMP), HLS, and DASH, with the RTMP dynamic module, supported by NGINX, Inc.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-399"
+weight: 100
 ---
 
 

@@ -18,12 +18,26 @@ doctypes: ["reference"]
 
 ## 1.5.0
 
-### {{% icon-bug %}} Developer Portal: When typing the links to use for the footer, the text boxes keep losing focus {#41626}
+### {{% icon-resolved %}} Array values in token claims are treated as string values {#42388}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 41626    | Open   |
+| Issue ID | Status         |
+|----------|----------------|
+| 42388    | Fixed in 1.6.0 |
+{{</bootstrap-table>}}
+
+#### Description
+
+When an Access Control Routing match rule targeted a token value that contained an array, the array was collapsed into a comma-separated string. However, the expected behavior is for rules targeting arrays to pass if any value within the array matches the condition, rather than requiring the entire array to match.
+
+---
+
+### {{% icon-resolved %}} Developer Portal: When typing the links to use for the footer, the text boxes keep losing focus {#41626}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status         |
+|----------|----------------|
+| 41626    | Fixed in 1.6.0 |
 {{</bootstrap-table>}}
 
 #### Description
@@ -36,12 +50,12 @@ You may need to click back into the boxes several times while typing to regain f
 
 ---
 
-### {{% icon-bug %}} TLS setting on listener is not reset when TLS policy is removed {#41426}
+### {{% icon-resolved %}} TLS setting on listener is not reset when TLS policy is removed {#41426}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 41426    | Open   |
+| Issue ID | Status         |
+|----------|----------------|
+| 41426    | Fixed in 1.6.0 |
 {{</bootstrap-table>}}
 
 #### Description
@@ -685,12 +699,12 @@ Use a single hostname per proxy cluster.
 
 ---
 
-### {{% icon-bug %}} CORS policy doesn't support proxying preflight requests to the backend when combined with an authentication policy {#34449}
+### {{% icon-resolved %}} CORS policy doesn't support proxying preflight requests to the backend when combined with an authentication policy {#34449}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 34449    | Open   |
+| Issue ID | Status         |
+|----------|----------------|
+| 34449    | Fixed in 1.6.0 |
 {{</bootstrap-table>}}
 
 #### Description

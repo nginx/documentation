@@ -1,8 +1,9 @@
 ---
-title: Load Balancing Third-Party Servers
-description: Deployment guides for configuring NGINX Plus to load balance or interoperate with third-party technologies.
-weight: 100
+description: Deployment guides for configuring NGINX Plus to load balance or interoperate
+  with third-party technologies.
 menu:
   docs:
     parent: NGINX Plus
+title: Load Balancing Third-Party Servers
+weight: 100
 ---

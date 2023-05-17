@@ -1,10 +1,12 @@
 ---
+description: This module adds [SPNEGO](https://tools.ietf.org/html/rfc4178) support
+  to NGINX Plus. Currently, only Kerberos authentication via GSSAPI is supported.
+docs: DOCS-401
+doctypes:
+- task
 title: SPNEGO
-description: This module adds [SPNEGO](https://tools.ietf.org/html/rfc4178) support to NGINX Plus. Currently, only Kerberos authentication via GSSAPI is supported.
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-401"
+weight: 100
 ---
 
 

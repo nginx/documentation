@@ -50,7 +50,7 @@ Complete the following prerequisites before proceeding with the steps in this gu
    {{< include "tech-specs/security-data-plane-dependencies.md" >}}   
 
 1. Determine your use case: **Security Monitoring only** or **Security Monitoring and Configuration Management**.
-1. [Install the NGINX Management Suite Security Monitoring module]({{< relref "/nms/installation/on-prem/_index.md#install-nms-modules" >}}) and [upload your license]({{< relref "/nms/installation/add-license.md" >}}).  
+1. [Install the NGINX Management Suite Security Monitoring module]({{< relref "/nms/installation/vm-bare-metal/_index.md#install-nms-modules" >}}) and [upload your license]({{< relref "/nms/installation/add-license.md" >}}).  
 
 
 ## Install NGINX Agent {#agent-config}
@@ -73,11 +73,6 @@ Repeat the steps in this section on each NGINX App Protect WAF data plane host t
    Add the lines below to the end of the file. This enables NGINX Agent to send NGINX App Protect messages to the NGINX Management Suite management plane.
 
    ```yaml
-   # Enable the extensions
-   extensions:
-     - nginx-app-protect
-     - nap-monitoring
-
    # Enable reporting NGINX App Protect details to the control plane.
    nginx_app_protect:
      # Report interval for NGINX App Protect details - the frequency at which NGINX Agent checks NGINX App Protect for changes.

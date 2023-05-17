@@ -1,10 +1,12 @@
 ---
+description: Monitor the health of HTTP servers in an upstream group by sending periodic
+  health checks, including customizable active health checks in NGINX Plus.
+docs: DOCS-417
+doctypes:
+- task
 title: HTTP Health Checks
-description: Monitor the health of HTTP servers in an upstream group by sending periodic health checks, including customizable active health checks in NGINX Plus.
-weight: 300
-doctypes: ["task"]
 toc: true
-docs: "DOCS-417"
+weight: 300
 ---
 
 <span id="intro"></span>

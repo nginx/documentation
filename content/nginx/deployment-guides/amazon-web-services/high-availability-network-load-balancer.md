@@ -1,10 +1,12 @@
 ---
+description: Create a highly available active-active deployment of NGINX Plus on AWS
+  in combination with AWS Network Load Balancer (NLB).
+docs: DOCS-446
+doctypes:
+- task
 title: Active-Active HA for NGINX Plus on AWS Using AWS Network Load Balancer
-description: Create a highly available active-active deployment of NGINX Plus on AWS in combination with AWS Network Load Balancer (NLB).
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-446"
+weight: 100
 ---
 
 

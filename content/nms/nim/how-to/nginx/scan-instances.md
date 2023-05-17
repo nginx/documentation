@@ -38,11 +38,11 @@ aliases:
 
 ## Prerequisites {#prerequisites}
 
-1. [Install Instance Manager]({{< relref "/nms/installation/on-prem/_index.md" >}}).
+1. [Install Instance Manager]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}).
 2. Start and enable Instance Manager.
 
 {{<note>}}
-To update the CVE list manually or offline, refer to the [Offline Installation]({{<relref "/nms/installation/on-prem/offline-install-guide.md#cve-check">}}) guide.
+To update the CVE list manually or offline, refer to the [Offline Installation]({{<relref "/nms/installation/vm-bare-metal/offline-install-guide.md#cve-check">}}) guide.
 {{</note>}}
 
 Host discovery, the first stage in instance discovery, is used to enumerate live hosts on a given network. However, in certain environments, Internet Control Message Protocol (ICMP) echo requests are disabled. The Instance Manager API provides a method for disabling host discovery in scanning.

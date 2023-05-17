@@ -1,10 +1,12 @@
 ---
+description: Simplify your email service and improve its performance with NGINX or
+  NGINX Plus as a proxy for the IMAP, POP3, and SMTP protocols
+docs: DOCS-423
+doctypes:
+- task
 title: Configuring NGINX as a Mail Proxy Server
-description: Simplify your email service and improve its performance with NGINX or NGINX Plus as a proxy for the IMAP, POP3, and SMTP protocols
-weight: 100
-doctypes: ["task"]
 toc: true
-docs: "DOCS-423"
+weight: 100
 ---
 
 

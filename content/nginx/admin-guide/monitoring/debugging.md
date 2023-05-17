@@ -1,10 +1,12 @@
 ---
+description: Troubleshoot problems and track down bugs in an NGINX or NGINX Plus deployment,
+  with the debugging binary, debug logging, and core dumps.
+docs: DOCS-424
+doctypes:
+- task
 title: Debugging NGINX
-description: Troubleshoot problems and track down bugs in an NGINX or NGINX Plus deployment, with the debugging binary, debug logging, and core dumps.
-weight: 300
-doctypes: ["task"]
 toc: true
-docs: "DOCS-424"
+weight: 300
 ---
 
 ## Introduction

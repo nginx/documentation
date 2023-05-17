@@ -564,7 +564,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **New helm charts for each release of Instance Manager**
 
-  Each release of Instance Manager now includes a Helm chart, which you can use to easily [install Instance Manager on Kubernetes]({{< relref "/nms/installation/kubernetes/nms-helm.md" >}}). You can download the helm charts from [MyF5](https://my.f5.com/manage/s/downloads).
+  Each release of Instance Manager now includes a Helm chart, which you can use to easily [install Instance Manager on Kubernetes]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md" >}}). You can download the helm charts from [MyF5](https://my.f5.com/manage/s/downloads).
 
 ### Resolved Issues
 
@@ -847,7 +847,7 @@ This release includes the following new features and enhancements:
 
   Among the benefits of deploying from a helm chart, the chart includes the required services, which you can scale independently as needed; upgrades can be done with a single helm command; and there's no requirement for root privileges.
 
-  For instructions, see [Install from a Helm Chart]({{< relref "/nms/installation/kubernetes/nms-helm.md" >}}).
+  For instructions, see [Install from a Helm Chart]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md" >}}).
 
 - {{% icon-feature %}} **Improved certificate handling**
 
