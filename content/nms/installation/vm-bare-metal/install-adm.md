@@ -50,58 +50,15 @@ authors: []
 
 {{%tab name="CentOS, RHEL, RPM-Based"%}}
 
-1. Set up the repository:
-
-    ```bash
-    add command here
-    ```
-
 1. To install the latest version of App Delivery Manager, run the following command:
 
     ```bash
     sudo yum install -y nms-app-delivery-manager
     ```
 
-1. Enable and start the NGINX Management Suite services:
-
-    ```bash
-    sudo systemctl enable nms nms-core nms-dpm nms-ingestion nms-integrations nms-adm --now
-    ```
-
-    NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
-
-1. Restart the NGINX web server:
-
-   ```bash
-   sudo systemctl restart nginx
-   ```
-
 {{%/tab%}}
 
 {{%tab name="Debian, Ubuntu, Deb-Based"%}}
-
-1. Set up the repository:
-
-   - Debian:
-
-      ```bash
-      printf "deb https://pkgs.nginx.com/nms/debian `lsb_release -cs` nginx-plus\n deb https://pkgs.nginx.com/adm/debian `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nms.list
-      sudo wget -q -O /etc/apt/apt.conf.d/90pkgs-nginx https://cs.nginx.com/static/files/90pkgs-nginx
-      ```
-
-   - Ubuntu:
-
-      ```bash
-      printf "deb https://pkgs.nginx.com/nms/ubuntu `lsb_release -cs` nginx-plus\n deb https://pkgs.nginx.com/adm/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nms.list
-      sudo wget -q -O /etc/apt/apt.conf.d/90pkgs-nginx https://cs.nginx.com/static/files/90pkgs-nginx
-      ```
-
-1. Add the [NGINX Signing Key](https://nginx.org/keys/nginx_signing.key) to Apt repository:
-
-    ```bash
-    wget -O /tmp/nginx_signing.key https://cs.nginx.com/static/keys/nginx_signing.key
-    sudo apt-key add /tmp/nginx_signing.key
-    ```
 
 1. To install the latest version of App Delivery Manager, run the following commands:
 
@@ -110,7 +67,11 @@ authors: []
     sudo apt-get install nms-app-delivery-manager
     ```
 
-1. Enable and start the NGINX Management Suite services:
+{{%/tab%}}
+
+{{</tabs>}}
+
+2. Enable and start the NGINX Management Suite services:
 
     ```bash
     sudo systemctl enable nms nms-core nms-dpm nms-ingestion nms-integrations nms-adm --now
@@ -118,16 +79,11 @@ authors: []
 
     NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
 
-1. Restart the NGINX web server:
+3. Restart the NGINX web server:
 
    ```bash
    sudo systemctl restart nginx
    ```
-
-{{%/tab%}}
-
-{{</tabs>}}
-
 
 ### Post-Installation Steps
 
