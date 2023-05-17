@@ -21,8 +21,50 @@ May 18, 2023
 
 ### What's New
 
-This is the initial release of the Application Delivery Manager (ADM).  It is designed to replace the ADC Controller 3.X series. This version introduces the following features:
+This release introduces the following features:
 
-- Streamlined APIs
-- Templates to control the generation of the NGINX configuration.
-- Template use cases that can enhance the APIs and are fully customizerable.  Common use cases, such as caching, health monitoring, and programmability, will be shipped with the initial release of the product.
+- Provides an easy-to-use graphical user interface for Application Delivery.
+
+- Introduces App Delivery Manager abstractions for the configuration and use of NGINX Plus directives:
+
+    - Create and manage production and non-production environments for classes of applications, business units, and development teams. **Environments** are logical containers used to group Applications, and Gateways into a domain associated with common goals, resource needs, usage constraints, and access controls. Environments typically map closely to organizational boundaries. “Dev” and “prod”.
+    - Create and manage **gateways**, which correspond to server blocks in nginx.conf file, which represents the initial network entry point of application and/or API traffic into an NGINX instance in the traffic data path. You can share the same gateway for both application and API traffic. 
+    - Create and manage **apps** that are logical containers for components.
+    - Create and manage **components** that support HTTP and TCP/UDP protocols. Web components correspond to location blocks in nginx.conf. Web i.e. HTTP components allow users to define routing behavior for the URIs under the Apps. Each component can define URIs and specify which FQDNs these need to attach to via Gateway references. Components also allow specifying the Backend and can control the configuration for load balancing traffic to the backend servers. TcpUdp components define stream server blocks. Similar to web components can attach to one or more Gateways.
+    - Create and manage **sites** that allow the grouping of instance-groups by a physical location. Sites provide the ability to load balance to backend servers that are geographically close to the data plane.
+
+- Control the lifecycle of applications across groups of NGINX Plus instances.
+
+- Apply role-based access controls across all App Delivery Manager features to enable users and teams to self-service app delivery needs.
+
+- Monitor HTTP system and traffic metrics at the instance level and view aggregated and near-real time insights into system and app traffic:
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| System Metrics                  | App Metrics                                         | HTTP                                            |
+| ------------------------------- | --------------------------------------------------- | ----------------------------------------------- |
+| Average CPU<br> Average Memory  | Network <br> - Bytes In <br> - Bytes Out            | Total Requests<br> HTTP 5xx Errors<br> HTTP 4xx Errors |
+{{</bootstrap-table>}}
+
+- Deploy app services for load balancing HTTP and TCP/UDP applications and select appropriate method:
+
+    - Round Robin
+    - Least Connections
+    - IP Hash
+    - Hash
+    - Least Time
+    - Random
+
+- Unlock the full capability of NGINX using templates. The following template use cases come prebuilt:
+
+    - Enabling cache by configuring proxy_cache_path, split_clients, and map  to improve app performance
+    - Add DNS for service discovery
+    - Health monitoring of upstreams with health_check and match block
+    - Extending listen options for HTTP/2, fastopen, sndbuf, and rcvbuf
+    - Modifying headers and configuring rewrites and redirects
+    - Configure advanced TLS settings to enable ciphers and protocols for requests to the proxied server
+
+- Ability to create custom templates to use any NGINX Plus directive.
+
+### Known Issues
+
+- You can find information about known issues with API Connectivity Manager in the [Known Issues]({{< relref "/nms/adm/releases/known-issues.md" >}}) topic.

@@ -17,18 +17,110 @@ doctypes: ["reference"]
 
 ## 4.0.0
 
-###  {{% icon-bug %}} ADM and ACM  Interoperability - Cannot share Instance Groups {#00001}
+###  {{% icon-bug %}} Modules that share the same Instance Group can create config conflicts {#38638}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID               | Status          |
 | ---------------------- | --------------- |
-| 00001                  | Open            |
+| 38638                  | Open            |
 {{</bootstrap-table>}}
 
 #### Description
 
-The Application Delivery Manager (ADM) and API Connectivity Manager (ACM) cannot share the same instance groups.  If both managers reference the same instance groups, incorrect configurations may be generated.
+When multiple modules are deployed on the same NGINX Management Suite instance, modules may configure the same server block, and only one config will be applied.
 
 #### Workaround
 
-None.  Each manager should deploy only to instance groups created specifically for that manager.
+Use [Role-based Account Control]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}) to prevent sharing of instance groups between App Delivery Manager and API Connectivity Manager.
+
+###  {{% icon-bug %}} System Metrics not available without elevated access rights {#40945}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID               | Status          |
+| ---------------------- | --------------- |
+| 40945                  | Open            |
+{{</bootstrap-table>}}
+
+#### Description
+
+System metrics, as seen in the Overview page, are not displayed for users with roles without elevated access rights, e.g., a Read-only role with no rights to perform other operations like Create, Update, or Delete.
+
+###  {{% icon-bug %}} Config push failure when Agent and NGINX Plus with the metrics module are deployed in a container {#41868}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID               | Status          |
+| ---------------------- | --------------- |
+| 41868                  | Open            |
+{{</bootstrap-table>}}
+
+#### Description
+
+When the NGINX Agent and NGINX Plus are installed in a container, and the metrics module is also installed on that NGINX Plus instance, any config push to an instance group with that instance will fail.
+
+###  {{% icon-bug %}} API Documention is not displaying some description fields for schemas containing references to other objects. {#42146}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID               | Status          |
+| ---------------------- | --------------- |
+| 42146                  | Open            |
+{{</bootstrap-table>}}
+
+#### Description
+
+API Documentation for Sites, Web Components, and TcpUdp Components displays the `environmentRef` parameter as part of the response in metadata. `environmentRef` is not a part of the response of those endpoints.
+
+###  {{% icon-bug %}} Certificate file is not updated automatically under certain conditions {#42425}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID               | Status          |
+| ---------------------- | --------------- |
+| 42425                  | Open            |
+{{</bootstrap-table>}}
+
+#### Description
+
+Certificate file is not updated automatically when a config change is pushed to an offline instance after it comes back online.
+
+###  {{% icon-bug %}} Certificates to allow for multiples to share the same serial number {#42429}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID               | Status          |
+| ---------------------- | --------------- |
+| 42429                  | Open            |
+{{</bootstrap-table>}}
+
+#### Description
+
+Previously, it was possible to update an existing certificate's serial number to one already in use. This incorrectly changed the cert (matching the serial number) details to a new name. Currently, if a serial number is already in use by another cert, the update will return an appropriate error message: "A certificate with serial number already exists under different name".
+
+###  {{% icon-bug %}} Duplicate Certificate and Key published for managed certificates {#42517}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID               | Status          |
+| ---------------------- | --------------- |
+| 42517                  | Open            |
+{{</bootstrap-table>}}
+
+#### Description
+
+When deploying a configuration with a certificate and key handled by NGINX Management Suite to a custom file path, it may deploy a duplicate copy of the certificate and key to the default /etc/nginx/ path. When deleting the certificate and key, it will only delete the certificate and key in the custom path, leaving the duplicate copy.
+
+#### Workaround
+
+Manually delete the certificate and key from the /etc/nginx/ path.
+
+###  {{% icon-bug %}} Cannot remove ADM object if deletion results in an error {#42520}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID               | Status          |
+| ---------------------- | --------------- |
+| 42520                  | Open            |
+{{</bootstrap-table>}}
+
+#### Description
+
+If a system error on the nginx instance prevents a new configuration from being applied, it can result in App Delivery Manager objects going into an error state when deleted. This prevents the object from being removed from an environment. Multiple attempts to delete the object will also fail.
+
+#### Workaround
+
+To remove the object, the instance groups that the object is referencing (direct if a gateway object; indirectly if a component) must temporarily have the instances removed from the instance group.
