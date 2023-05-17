@@ -5,4 +5,5 @@ menu:
     parent: NGINX App Protect WAF
 title: Releases
 weight: 500
+url: /nginx-app-protect-waf/releases/
 ---

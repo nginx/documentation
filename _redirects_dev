@@ -33,5 +33,3 @@
 /nginx-service-mesh/* https://development--mesh-public-docs.netlify.app/nginx-service-mesh/:splat 200!
 # /nginx-waf/* https://development--nginx-waf-docs.netlify.app/nginx-waf/:splat 200!
 
-# Keep at the bottom, otherwise the backend site redirects will break
-/* /404.html 404
