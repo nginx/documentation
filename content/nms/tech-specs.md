@@ -5,7 +5,7 @@ draft: false
 title: Technical Specifications
 description: This document outlines the requirements for the NGINX Management Suite and NGINX Agent, such as compatible platforms, hardware specifications, sizing advice, compatible web browsers, and more.
 toc: true
-weight: 100
+weight: 20
 docs: "DOCS-805"
 aliases:
 - /nginx-instance-manager/getting-started/technical-specifications/

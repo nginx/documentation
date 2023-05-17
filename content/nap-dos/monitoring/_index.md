@@ -6,4 +6,5 @@ menu:
     parent: NGINX App Protect DoS Documentation.
 title: Monitoring
 weight: 130
+url: /nginx-app-protect-dos/monitoring/
 ---

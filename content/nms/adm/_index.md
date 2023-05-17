@@ -1,7 +1,6 @@
 ---
-title: App Delivery Manager
-weight: 650
+title: NGINX Application Delivery Manager
+weight: 700
 draft: false
-aliases:
-  - /nginx-app-delivery-manager/
+url: /nginx-management-suite/adm/
 ---

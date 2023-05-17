@@ -5,4 +5,6 @@ linkTitle: NGINX Plus
 menu: docs
 title: NGINX Plus
 weight: 100
+cascade:
+  logo: "NGINX-Plus-product-icon-RGB.svg"
 ---

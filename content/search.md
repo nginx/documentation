@@ -5,5 +5,4 @@ _build:
   render: always
   list: never
 url: 'search.html'
-display_breadcrumb: false
 ---

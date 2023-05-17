@@ -8,7 +8,7 @@ draft: false
 # The description text appears in search results and at the top of the doc.
 description: "NGINX Management Suite relies on and benefits from open-source software projects. Credits are given to these projects."
 # Assign weights in increments of 100
-weight: 1000
+weight: 5000
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
