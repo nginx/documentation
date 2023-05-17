@@ -34,7 +34,7 @@ authors: []
 
 This topic lists the default values that are used when [installing the Developer Portal from a Helm chart]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md" >}}). You can change these values to meet your specific needs.
 
-{{< include "admin-guides/installation/helm/acm/dev-portal-helm-configurations/configuration-options.md" >}}
+{{< include "installation/helm/acm/dev-portal-helm-configurations/configuration-options.md" >}}
 
 ---
 
@@ -42,16 +42,16 @@ This topic lists the default values that are used when [installing the Developer
 
 ### Deploy Developer Portal with an SQLite database
 
-{{< include "admin-guides/installation/helm/acm/dev-portal-helm-configurations/configure-helm-devportal-sqlite.md" >}}
+{{< include "installation/helm/acm/dev-portal-helm-configurations/configure-helm-devportal-sqlite.md" >}}
 
 ### Deploy Developer Portal with an embedded PostgreSQL database
 
-{{< include "admin-guides/installation/helm/acm/dev-portal-helm-configurations/configure-devportal-helm-embedded-postgres.md" >}}
+{{< include "installation/helm/acm/dev-portal-helm-configurations/configure-devportal-helm-embedded-postgres.md" >}}
 
 ### Deploy Developer Portal with an external PostgreSQL database
 
-{{< include "admin-guides/installation/helm/acm/dev-portal-helm-configurations/configure-devportal-helm-external-postgres.md" >}}
+{{< include "installation/helm/acm/dev-portal-helm-configurations/configure-devportal-helm-external-postgres.md" >}}
 
 ### Deploy Developer Portal using TLS for the backend API service
 
-{{< include "admin-guides/installation/helm/acm/dev-portal-helm-configurations/configure-devportal-helm-api-mtls.md" >}}
+{{< include "installation/helm/acm/dev-portal-helm-configurations/configure-devportal-helm-api-mtls.md" >}}
