@@ -1,6 +1,6 @@
 ---
 title: NGINX Application Delivery Manager
 weight: 700
-draft: true
+draft: false
 url: /nginx-management-suite/adm/
 ---
