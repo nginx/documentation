@@ -2,7 +2,7 @@
 title: "Set up some Advanced Routes"
 date: 2023-05-02T13:09:51-08:00
 # Change draft status to false to publish doc
-draft: true
+draft: false
 # Description
 # Add a short description (150 chars) for the doc. Include keywords for SEO. 
 # The description text appears in search results and at the top of the doc.
