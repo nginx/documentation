@@ -30,7 +30,7 @@ authors: []
 
 For efficiency reasons, NGINX Management Suite uses a 8 MB buffer for inter-service message communication. However, for very large App Delivery Manager deployments, this buffer may not be large enough to accommodate the NGINX configuration for a particular instance group. If this happens, configuration updates will fail with an error message indicating the NATS max buffer size is too small.
 
-### Workaround
+#### Workaround
 
 To fix this issue:
 
@@ -41,13 +41,16 @@ To fix this issue:
    sudo systemctl restart nms
    ```
 
-### General Guidance
+#### General Guidance
 
 App Delivery Manager 4.0.0 can handle a maximum of approximately 5,000 App Delivery Manager objects, including Gateways, Web Components, and TCP/UPD Components. This sum is derived from the total number of these objects within a single Instance Group. The specific arrangement of objects, such as having 1 Gateway with 4,999 Web Components or 2,500 Gateways with 1 Web Component each, does not significantly affect the message size. However, the configuration of each object plays a role, depending on the enabled use cases. Other factors influencing the object limit are the average number of workloads and URIs used by each object.
 
 ---
 
-## What's Next
+## How to Get Support
 
-- [Create a Support Package]({{< relref "/nms/support/support-package.md" >}})
+If you need additional assistance, refer to the following topics for guidance on how to contact Support and create a Support Package:
+
 - [Contact Support]({{< relref "/nms/support/contact-support.md" >}})
+- [Create a Support Package]({{< relref "/nms/support/support-package.md" >}})
+
