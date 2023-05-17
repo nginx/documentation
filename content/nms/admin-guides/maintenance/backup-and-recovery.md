@@ -43,6 +43,7 @@ To complete the instructions in this guide, you need the following:
 
 - An installed version of Instance Manager
 - (optional) An installed version of API Connectivity Manager
+- (optional) An installed version of App Delivery Manager
 - An installed version of SQLite.
 
     To install SQLite, run the following command(s):
@@ -59,6 +60,12 @@ To complete the instructions in this guide, you need the following:
         sudo apt-get update
         sudo apt-get install -y sqlite3
         ```
+
+- The NGINX Management Suite services are running:
+
+    ```bash
+    sudo systemctl start nms
+    ```
 
 ### Make Scripts Executable
 
@@ -169,16 +176,21 @@ By default, the data for modules isn't included in backups for NGINX Management 
 
 3. To create a backup, run the back up script:
 
-    {{< important >}} Before starting a backup, ensure SQLite is installed and NGINX Management Suite service is running. {{< /important >}}
-
     ```bash
     sudo ./backup.sh
     ```
 
-4. To restore from a backup, run the restore script:
+4. To restore from a backup:
 
-    {{< important >}} Before starting a restore, run `sudo rm -rf /var/lib/nms/dqlite/*` and make sure the NGINX Management Suite service is stopped. {{< /important >}}
+    - Run `sudo rm -rf /var/lib/nms/dqlite/*` to remove the existing database files.
+  
+    - Make sure the NGINX Management Suite service is stopped
+    
+    ```bash
+    sudo systemctl stop nms
+    ```
 
+    - Run the restore script:
 
     ```bash
     sudo ./restore.sh /tmp/nms-backup-<DATETIME>.tgz
@@ -186,7 +198,7 @@ By default, the data for modules isn't included in backups for NGINX Management 
 
 ---
 
-## Back Up and Restore App Delivery Manager deployed in a Kubernetes Cluster
+## Back Up and Restore NGINX Management Suite and modules deployed in a Kubernetes Cluster
 
 ### Back up App Delivery Manager deployed in a Kubernetes Cluster
 
