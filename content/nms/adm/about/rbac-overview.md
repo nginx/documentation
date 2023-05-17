@@ -109,13 +109,13 @@ The TCPUDP-COMPONENT-MANAGEMENT feature controls access to TCP/UDP components an
 **Getting-Started**.
 * Every feature needs values set for each object contained in the feature. So all permissions should explicitly contain values set for each object.
 
-* If a feature references a different object (for example, APP-MANAGEMENT references environments), the permissions for any object referenced should also be granted in the corresponding feature. So if a role is granted access to env1 as an environment within the APP-MANAGEMENT feature, then that role should also be granted access to env1 as an environment within the ENVIRONMENT-MANAGEMENT feature.
+-  If a feature references a different object (for example, APP-MANAGEMENT references environments), the permissions for any object referenced should also be granted in the corresponding feature. So, if a role is granted access to env1 as an environment within the APP-MANAGEMENT feature, then that role should also be granted access to env1 as an environment within the ENVIRONMENT-MANAGEMENT feature.
 
-* All permissions within a particular feature (for example, ENVIRONMENT-MANAGEMENT) should be granted the same CRUD level of access. So if a particular permission has READ and DELETE access for ENVIRONMENT-MANAGEMENT, all permissions under ENVIRONMENT-MANAGEMENT should have the same READ and DELETE access.
+- All permissions within a particular feature (for example, ENVIRONMENT-MANAGEMENT) should be granted the same CRUD level of access. So, if a particular permission has READ and DELETE access for ENVIRONMENT-MANAGEMENT, all permissions under ENVIRONMENT-MANAGEMENT should have the same READ and DELETE access.
 
 ## Example Roles
 
-We recommend configuring roles to limit permissions. An example scenario is detailed below.  For more details on how to assign roles and the special considerations which need to be taken into account when using the user interface (UI) see [Setting up User Roles]({{< relref "/nms/adm/getting-started/roles.md" >}}) section of **Getting-Started**.
+We recommend configuring roles to limit permissions. An example scenario is detailed below.  For more details on how to assign roles and the special considerations which need to be taken into account when using the user interface, see [Setting up User Roles]({{< relref "/nms/adm/getting-started/roles.md" >}}) section of **Getting-Started**.
 
 ### Scenario
 
@@ -123,9 +123,9 @@ Platform Ops wants to deliver a platform, which enables a self-service app deliv
 
 They want to enable multiple developers/teams to work on the same nginx.conf file without interfering with each other's work, which means:
 
-* Developers can only access the environments, apps, and components that have been defined in their role.
+- Developers can only access the environments, apps, and components that have been defined in their role.
 
-* Developers can work independently to author different sections within a single nginx.conf file, for example, depending on how the role is configured server, locations, or upstream blocks.
+- Developers can work independently to author different sections within a single nginx.conf file, for example, depending on how the role is configured server, locations, or upstream blocks.
 
 ### Short Description of App Delivery Manager Objects
 
@@ -147,17 +147,17 @@ The Enterprise has a single website, `https://www.example.com`. This website ser
 
 Details:
 
-* One environment - example-env
-* One gateway (server block) - `www.example.com`
-* Two Apps (Support and Sales), each with one web component (location blocks) (/support and /sales)
-* The website uses HTTPS
-* There is one instance group (ig1)
-* There is one site (site1)
+- One environment - example-env
+- One gateway (server block) - `www.example.com`
+- Two Apps (Support and Sales), each with one web component (location blocks) (/support and /sales)
+- The website uses HTTPS
+- There is one instance group (ig1)
+- There is one site (site1)
 * Web components report analytics
 
 #### Example-Admin Role
 
-This is a custom role and not the built-in Admin role. This role has full access to all objects. It is used to manage the full lifecycle of all objects and data.
+The Example-Admin role is a custom role and not the built-in Admin role. This role has full access to all objects. It is used to manage the full lifecycle of all objects and data.
 
 Permissions:
 
@@ -355,9 +355,9 @@ Permissions:
 </details>
 
 <details>
-<summary>UI Roles Setup</summary>
+<summary>User Interface Roles Setup</summary>
 
-Here is a step by step tutorial for setting up the Example Admin role.
+To set up the Example Admin role, follow this step-by-step tutorial:
 
 First give CRUD access to ALL environments in ENVIRONMENT-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleAdminEnv.png" alt="Admin ENVIRONMENT-MANAGEMENT" width="75%">}}
@@ -387,7 +387,7 @@ Finally, give CRUD access to ANALYTICS.
 
 #### Gateway-Admin Role
 
-This role has full access to manage gateway objects, but only Read access to apps and components that use it. Additionally, this role manages the certificates placed on gateways.
+The Gateway-Admin role has full access to manage gateway objects, but only Read access to apps and components that use it. Additionally, this role manages the certificates placed on gateways.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
@@ -565,9 +565,9 @@ This role has full access to manage gateway objects, but only Read access to app
 </details>
 
 <details>
-<summary>UI Roles Setup</summary>
+<summary>User Interface Roles Setup</summary>
 
-Here is a step by step tutorial for setting up the Example Admin role.
+Follow this step-by-step tutorial to set up the Example Admin role:
 
 First give READ access to the example-env environment in ENVIRONMENT-MANAGEMENT.
 
@@ -756,9 +756,9 @@ This role has access to the environment example-env and the gateway that serves 
 </details>
 
 <details>
-<summary>UI Roles Setup</summary>
+<summary>User Interface Roles Setup</summary>
 
-Here is a step by step tutorial for setting up the Support App role.
+Follow this step-by-step tutorial to set up the Support App role.
 
 First give READ access to the example-env environment in ENVIRONMENT-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleEnvRead.png" alt="Support ENVIRONMENT-MANAGEMENT" width="75%">}}
@@ -785,7 +785,7 @@ Finally, give READ access to ANALYTICS.
 
 #### Sales-App Role
 
-This role has access to the environment example-env and the gateway that serves as the ingress point for traffic to `www.example.com`. Additionally, this role has full access rights to the Sales app and any referenced component, for example, /sales. Additionally, this role has access to any traffic metrics for these specific objects. This role should not have access to any other app or components or their data.
+The Sales-App role has access to the environment example-env and the gateway that serves as the ingress point for traffic to `www.example.com`. Additionally, this role has full access rights to the Sales app and any referenced component, for example, /sales. Additionally, this role has access to any traffic metrics for these specific objects. This role should not have access to any other app or components or their data.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
@@ -943,9 +943,9 @@ This role has access to the environment example-env and the gateway that serves 
 </details>
 
 <details>
-<summary>UI Roles Setup</summary>
+<summary>User Interface Roles Setup</summary>
 
-Here is a step by step tutorial for setting up the Sales App role.
+Follow this step-by-step tutorial to set up the Sales App role.
 
 First give READ access to the example-env environment in ENVIRONMENT-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleEnvRead.png" alt="Sales ENVIRONMENT-MANAGEMENT" width="75%">}}
@@ -972,7 +972,7 @@ Finally, give READ access to ANALYTICS.
 
 #### Read-Only
 
-This role has Read-only access to all objects and data related to example-env.
+The Read-Only user has Read-only access to all objects and data related to example-env.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
@@ -1144,9 +1144,9 @@ This role has Read-only access to all objects and data related to example-env.
 </details>
 
 <details>
-<summary>UI Roles Setup</summary>
+<summary>User Interface Roles Setup</summary>
 
-Here is a step by step tutorial for setting up the Read Only role.
+Follow this step-by-step tutorial to set up the Read Only role.
 
 First give READ access to the example-env environment in ENVIRONMENT-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleEnvRead.png" alt="Read Only ENVIRONMENT-MANAGEMENT" width="75%">}}
@@ -1215,7 +1215,7 @@ A role gives READ access to env1 and READ, UPDATE, DELETE access to env2. NGINX 
 
 A role gives READ access for the All environments object, and CREATE, READ, UPDATE, DELETE access to env1. NGINX Management Suite combines these permissions, resulting in CREATE, READ, UPDATE, DELETE access to All environments (including env1).
 
-### Assigning access to an object in a different feature, adds access to that object within the parent feature
+### Assigning access to an object in a different feature adds access to that object within the parent feature
 
 Several features have other objects as part of their permissions schema (for example, the APP-MANAGEMENT permission contains the Environments object). When access is given to that object as part of another feature, the object is added to the relevant feature at the level of the existing permissions.
 
@@ -1269,7 +1269,7 @@ This is currently not possible with the current RBAC implementation. Since givin
 
 #### Case 3: Dev role, user can edit Apps and Web Components, but only read Gateways
 
-**Within the customer’s Dev environment, they want a role where a user can edit Apps and Web Components, but only read Gateways. Can they do this?**
+**Within the customer's Dev environment, they want a role where a user can edit Apps and Web Components, but only read Gateways. Can they do this?**
 
 Yes, since combination only occurs between the same features, the customer can assign READ and UPDATE to APP-MANAGEMENT and WEB-COMPONENT-MANAGEMENT and only READ access to GATEWAY-MANAGEMENT without any subsequent combination.
 
