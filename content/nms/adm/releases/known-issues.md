@@ -81,7 +81,7 @@ API Documentation for Sites, Web Components, and TcpUdp Components displays the 
 
 Certificate file is not updated automatically when a config change is pushed to an offline instance after it comes back online.
 
-###  {{% icon-bug %}} Certificates to allow for multiples to share the same serial number {#42429}
+###  {{% icon-bug %}} Certificate updates allow for multiples certs to share the same serial number {#42429}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID               | Status          |
@@ -91,7 +91,7 @@ Certificate file is not updated automatically when a config change is pushed to 
 
 #### Description
 
-Previously, it was possible to update an existing certificate's serial number to one already in use. This incorrectly changed the cert (matching the serial number) details to a new name. Currently, if a serial number is already in use by another cert, the update will return an appropriate error message: "A certificate with serial number already exists under different name".
+It is possible to update an existing certificate's serial number to one already in use. This incorrectly changes the cert (matching the serial number) details to a new name.
 
 ###  {{% icon-bug %}} Duplicate Certificate and Key published for managed certificates {#42517}
 
