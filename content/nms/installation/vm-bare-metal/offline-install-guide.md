@@ -108,7 +108,7 @@ To download the external dependencies:
 
   ```bash
   tar -kzxvf nms-dependencies-<linux-distribution>.tar.gz
-  sudo yum localinstall *.rpm
+  sudo rpm -ivh *.rpm
   ```
 
     {{%/tab%}}
@@ -142,7 +142,7 @@ To install Instance Manager, take the following steps:
 2. Install the Instance Manager package:
 
    ```bash
-   sudo yum -y --nogpgcheck install /home/<user>/nms-instance-manager_<version>.x86_64.rpm
+   sudo rpm -ivh --nosignature /home/<user>/nms-instance-manager_<version>.x86_64.rpm
    ```
 
     > <span style="color: #c20025;"><i class="fas fa-exclamation-triangle"></i> **IMPORTANT!**</span> The Instance Manager's administrator username (default is `admin`) and generated password are displayed in the terminal during installation. You should make a note of the password and store it securely.
@@ -173,7 +173,7 @@ To install Instance Manager, take the following steps:
 
     NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
 
-3. Restart the NGINX web server:
+4. Restart the NGINX web server:
 
    ```bash
    sudo systemctl restart nginx
@@ -200,7 +200,7 @@ To upgrade Instance Manager to a newer version, take the following steps:
 2. Upgrade the Instance Manager package:
 
    ```bash
-   sudo yum -y --nogpgcheck update /home/user/nms-instance-manager_<version>.x86_64.rpm
+   sudo rpm -Uvh --nosignature /home/user/nms-instance-manager_<version>.x86_64.rpm
    ```
 
 {{%/tab%}}
@@ -258,7 +258,7 @@ To install API Connectivity Manager, take the following steps:
 2. Install the API Connectivity Manager package:
 
    ```bash
-   sudo yum --nogpgcheck install /home/<user>/nms-api-connectivity-manager_<version>.x86_64.rpm
+   sudo rpm -ivh --nosignature /home/<user>/nms-api-connectivity-manager_<version>.x86_64.rpm
    ```
 
 {{%/tab%}}
@@ -313,7 +313,7 @@ To upgrade API Connectivity Manager to a newer version, take the following steps
 2. Upgrade the API Connectivity Manager package:
 
    ```bash
-   sudo yum -y --nogpgcheck update /home/user/nms-api-connectivity-manager_<version>.x86_64.rpm
+   sudo rpm -Uvh --nosignature /home/user/nms-api-connectivity-manager_<version>.x86_64.rpm
    ```
 
 {{%/tab%}}
@@ -392,7 +392,7 @@ The API Connectivity Manager data plane requires [NGINX Plus R24](https://docs.n
 
 ```bash
 tar -kzxvf acm-dataplane-dependencies-<linux-distribution>.tar.gz
-sudo yum localinstall *.rpm
+sudo rpm -ivh *.rpm
 ```
 
     {{%/tab%}}
