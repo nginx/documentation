@@ -107,7 +107,8 @@ The TCPUDP-COMPONENT-MANAGEMENT feature controls access to TCP/UDP components an
 ## Best Practices
 
 **Getting-Started**.
-* Every feature needs values set for each object contained in the feature. So all permissions should explicitly contain values set for each object.
+
+- Every feature need values set for each object contained in the feature. So, all permissions should explicitly contain values set for each object.
 
 -  If a feature references a different object (for example, APP-MANAGEMENT references environments), the permissions for any object referenced should also be granted in the corresponding feature. So, if a role is granted access to env1 as an environment within the APP-MANAGEMENT feature, then that role should also be granted access to env1 as an environment within the ENVIRONMENT-MANAGEMENT feature.
 
