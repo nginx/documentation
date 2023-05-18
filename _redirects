@@ -10,6 +10,7 @@
 /nginxaas/azure/quickstart/overview/ /nginxaas/azure/overview/overview/ 301
 /nginxaas/azure/management/nginx-configuration/ /nginxaas/azure/getting-started/configuration/nginx-configuration/ 301
 /nginxaas/azure/management/ssl-tls-certificates/ /nginxaas/azure/getting-started/configuration/ssl-tls-certificates/ 301
+/nginx-controller/api/reference/ctlr-v1 /nginx-controller/api/reference/
 /nginx-instance-manager/* /nginx-management-suite/:splat 301!
 /nginx-management-suite/acm/how-to/manage-api-infrastructure/ /nginx-management-suite/acm/how-to/infrastructure/manage-api-infrastructure/
 /nginx-management-suite/acm/how-to/publish-api/ /nginx-management-suite/acm/how-to/services/publish-api/
@@ -19,9 +20,6 @@
 /nginx-management-suite/acm/how-to/policies/configure-proxy-buffers/ /nginx-management-suite/acm/how-to/policies/http-backend-configuration/#buffers
 /nginx-management-suite/acm/how-to/publish-developer-portal/ /nginx-management-suite/acm/how-to/devportals/publish-to-devportal/
 /nginx-management-suite/acm/how-to/enable-sso-devportal/ /nginx-management-suite/acm/how-to/infrastructure/enable-sso-devportal/
-
-# Redirect for Controller API docs
-/nginx-controller/api/reference/ctlr-v1/* /nginx-controller/api/reference/ctlr-v1/ 200
 
 # Redirects to the backend netlify sites for each product
 /nginxaas/azure/* https://n4a-public-docs.netlify.app/nginxaas/azure/:splat 200!
