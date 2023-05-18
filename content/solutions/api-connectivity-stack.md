@@ -32,15 +32,15 @@ NGINX Management Suite Instance Manager makes it easy to inventory, configure, m
 ### (Optional) Install the Security Monitoring module
 NGINX Management Suite Security Monitoring provides global visibility into your fleet of NGINX App Protect WAF instances, including protection insights and the ability to analyze threats. Install this module if you plan to install NGINX App Protect WAF.
 
-- [Install on virtual machine or bare metal]({{< ref "/nms/installation/vm-bare-metal/_index.md" >}})
+- [Install on virtual machine or bare metal]({{< ref "/nms/installation/vm-bare-metal/install-security-monitoring" >}})
 
 {{< important >}}The Security Monitoring module is not supported in Kubernetes. The Kubernetes Helm chart does not support installing the Security Monitoring module.{{< /important >}}
 
 ### (Optional) Install the API Connectivity Manager module
 NGINX Management Suite API Connectivity Manger makes it easy to manage, govern, and secure API gateways deployed across multi-cloud and hybrid environments. Install this module if you want  centralized management for your NGINX Plus API gateways.
 
-- [Install on virtual machine or bare metal]({{< ref "/nms/installation/vm-bare-metal/_index.md" >}})
-- [Install in Kubernetes using Helm]({{< ref "/nms/installation/kubernetes/_index.md" >}})
+- [Install on virtual machine or bare metal]({{< ref "/nms/installation/vm-bare-metal/install-acm" >}})
+- [Install in Kubernetes using Helm]({{< ref "/nms/installation/kubernetes/deploy-api-connectivity-manager" >}})
 
 ### Install NGINX Plus as an API Gateway
 NGINX Plus can act as an API gateway for monolithic applications and microservices. It is the data plane that transports application traffic. Management plane tools like NGINX Management Suite API Connectivity Manager apply configurations to NGINX Plus instances.
