@@ -100,6 +100,8 @@ We recommend upgrading NGINX Management Suite in a test environment before upgra
 
 ### App Delivery Manager
 
+{{< beta-badge >}}
+
 - [Upgrade App Delivery Manager on a virtual machine or bare metal]({{< relref "/nms/installation/vm-bare-metal/install-adm.md#upgrade-adm" >}})
 - [Upgrade App Delivery Manager from a Helm Chart]({{< relref "/nms/installation/kubernetes/deploy-app-delivery-manager.md#upgrade-adm-helm" >}})
 
