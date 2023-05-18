@@ -5,5 +5,6 @@ menu:
     parent: NGINX Controller
 title: Support
 weight: 500
+url: /nginx-controller/support/
 ---
 

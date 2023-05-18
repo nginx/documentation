@@ -5,6 +5,7 @@ menu:
     parent: NGINX Controller
 title: Releases
 weight: 1000
+url: /nginx-controller/releases/
 ---
 
 To learn more about the different NGINX Controller offerings, see the following product pages:

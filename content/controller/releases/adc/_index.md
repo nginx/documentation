@@ -6,4 +6,5 @@ menu:
     parent: NGINX Controller
 title: NGINX Controller Application Delivery Module
 weight: 50
+url: /nginx-controller/releases/adc/
 ---

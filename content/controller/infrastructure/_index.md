@@ -5,4 +5,5 @@ menu:
     parent: NGINX Controller
 title: Infrastructure
 weight: 130
+url: /nginx-controller/infrastructure/
 ---

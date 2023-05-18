@@ -5,4 +5,5 @@ menu:
     parent: NGINX Controller
 title: API Management
 weight: 155
+url: /nginx-controller/api-management/
 ---

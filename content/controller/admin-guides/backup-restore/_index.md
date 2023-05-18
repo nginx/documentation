@@ -7,4 +7,5 @@ menu:
     weight: 50
 title: Back Up & Restore
 weight: 300
+url: /nginx-controller/admin-guides/backup-restore/
 ---

@@ -6,4 +6,5 @@ menu:
     parent: NGINX Controller
 title: Services
 weight: 150
+url: /nginx-controller/services/
 ---

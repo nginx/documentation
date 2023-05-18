@@ -6,4 +6,5 @@ menu:
     weight: 40
 title: Data Explorer
 weight: 120
+url: /nginx-controller/analytics/data-explorer/
 ---

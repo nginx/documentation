@@ -5,4 +5,5 @@ menu:
     parent: Platform
 title: Integrations
 weight: 200
+url: /nginx-controller/platform/integrations/
 ---

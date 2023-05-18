@@ -6,4 +6,5 @@ menu:
     weight: 30
 title: Events
 weight: 140
+url: /nginx-controller/analytics/events/
 ---

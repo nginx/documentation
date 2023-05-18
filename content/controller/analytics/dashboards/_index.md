@@ -6,4 +6,5 @@ menu:
     weight: 40
 title: Dashboards
 weight: 120
+url: /nginx-controller/analytics/dashboards/
 ---

@@ -6,4 +6,5 @@ menu:
     title: Analytics
 title: Analytics
 weight: 120
+url: /nginx-controller/analytics/
 ---

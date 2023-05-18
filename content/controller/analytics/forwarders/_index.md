@@ -6,4 +6,5 @@ menu:
     weight: 40
 title: Data Forwarders
 weight: 130
+url: /nginx-controller/analytics/forwarders/
 ---

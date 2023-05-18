@@ -6,4 +6,5 @@ menu:
     weight: 50
 title: Metrics
 weight: 150
+url: /nginx-controller/analytics/metrics/
 ---

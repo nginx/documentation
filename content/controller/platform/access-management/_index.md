@@ -5,4 +5,5 @@ menu:
     parent: Platform
 title: Access Management
 weight: 140
+url: /nginx-controller/platform/access-management/
 ---

@@ -5,4 +5,5 @@ menu:
     parent: NGINX Controller
 title: Platform
 weight: 140
+url: /nginx-controller/platform/
 ---

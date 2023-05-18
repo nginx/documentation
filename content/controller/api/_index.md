@@ -5,4 +5,5 @@ menu:
     parent: NGINX Controller
 title: API Reference
 weight: 210
+url: /nginx-controller/api/reference/
 ---

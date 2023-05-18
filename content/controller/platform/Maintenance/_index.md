@@ -5,4 +5,5 @@ menu:
     parent: Platform
 title: Maintenance
 weight: 250
+url: /nginx-controller/platform/maintenance/
 ---

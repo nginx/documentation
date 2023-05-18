@@ -9,4 +9,5 @@ menu:
 title: Installation
 weight: 100
 aliases: /admin-guides/installation/
+url: /nginx-controller/admin-guides/install/
 ---

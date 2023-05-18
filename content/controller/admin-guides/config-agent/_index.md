@@ -8,4 +8,5 @@ menu:
     weight: 30
 title: Configure NGINX Controller Agent
 weight: 200
+url: /nginx-controller/admin-guides/config-agent/
 ---

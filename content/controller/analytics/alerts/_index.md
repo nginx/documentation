@@ -6,4 +6,5 @@ menu:
     weight: 10
 title: Alerts
 weight: 100
+url: /nginx-controller/analytics/alerts/
 ---

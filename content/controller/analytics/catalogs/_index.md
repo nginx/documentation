@@ -9,4 +9,5 @@ menu:
     weight: 20
 title: Catalogs Reference
 weight: 210
+url: /nginx-controller/analytics/catalogs/
 ---

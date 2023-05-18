@@ -6,4 +6,5 @@ menu:
     parent: NGINX Controller
 title: Admin Guides
 weight: 100
+url: /nginx-controller/admin-guides/
 ---
