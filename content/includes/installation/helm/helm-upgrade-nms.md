@@ -1,6 +1,6 @@
 Run the following command to upgrade the NGINX Management Suite deployment:
 
-- Replace `<path-to-your-values.yaml>` with the path to the [values.yaml file you created](#configure-chart).
+- Replace `<path-to-your-values.yaml>` with the path to the [values.yaml file you created]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md#configure-chart" >}}).
 - Replace `YourPassword123#` with a secure password that contains a combination of uppercase and lowercase letters, numbers, and special characters.
 
     {{< important >}}Make sure to copy and save the password for future reference. Only the encrypted password is stored in Kubernetes. There's no way to recover or reset a lost password.{{< /important >}}
