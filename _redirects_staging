@@ -21,17 +21,9 @@
 /nginx-management-suite/acm/how-to/enable-sso-devportal/ /nginx-management-suite/acm/how-to/infrastructure/enable-sso-devportal/
 
 # Redirects to the backend netlify sites for each product
-# /nginx/*     https://staging--n-plus-public-docs.netlify.app/nginx/:splat 200!
 /nginxaas/azure/* https://staging--n4a-public-docs.netlify.app/nginxaas/azure/:splat 200!
 /nginx-agent/* https://staging--agent-public-docs.netlify.app/nginx-agent/:splat 200!
 /nginx-amplify/* https://staging--amplify-public-docs.netlify.app/nginx-amplify/:splat 200!
-# /nginx-app-protect-dos/* https://staging--nap-dos-public-docs.netlify.app/nginx-app-protect-dos/:splat 200!
-# /nginx-app-protect-waf/* https://staging--nap-public-docs.netlify.app/nginx-app-protect-waf/:splat 200!
 /nginx-controller/* https://staging--ctlr-public-docs.netlify.app/nginx-controller/:splat 200!
 /nginx-ingress-controller/* https://staging--nginx-kubernetes-ingress.netlify.app/nginx-ingress-controller/:splat 200!
-# /nginx-management-suite/* https://staging--nms-public-docs.netlify.app/nginx-management-suite/:splat 200!
 /nginx-service-mesh/*   https://staging--mesh-public-docs.netlify.app/nginx-service-mesh/:splat 200!
-# /nginx-waf/* https://staging--nginx-waf-docs.netlify.app/nginx-waf/:splat 200!
-
-# Keep at the bottom, otherwise the backend site redirects will break
-/* /404.html 404
