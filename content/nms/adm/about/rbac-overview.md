@@ -46,6 +46,8 @@ DELETE access gives permission to remove an object and corresponds to the DELETE
 
 ## Features
 
+These are the features used by App Delivery Manager for RBAC. Each feature contains one or more objects, which must all be assigned a value before the RBAC system will grant access.
+
 ### ENVIRONMENT-MANAGEMENT
 
 The ENVIRONMENT-MANAGEMENT feature controls access to environments and the `/environments` endpoint. Environments are a base object with no parent. Environment permissions are of the form `<envName>|<envUID>`.
@@ -102,70 +104,1175 @@ The TCPUDP-COMPONENT-MANAGEMENT feature controls access to TCP/UDP components an
 
 {{< note >}} If a feature does not have an object listed, there is currently no enforcement or RBAC control over features based on that object, eg: Web components cannot be filtered based on the gateways they reference.{{< /note >}}
 
-## Examples
+## Best Practices
 
-Some examples of roles are described below.  For more details on how to assign roles and the special considerations which need to be taken into account when using the user interface (UI) see [Setting up User Roles]({{< relref "/nms/adm/getting-started/roles.md" >}}) section of **Getting-Started**.
+**Getting-Started**.
 
-#### Local App Manager
+- Every feature need values set for each object contained in the feature. So, all permissions should explicitly contain values set for each object.
 
-An app manager will often be given an environment under which they manage all resources. The permissions to configure this permission are of this form, where the environment is given the name `env1` and has UID `f114ff25-0708-46f5-8f7c-efe8d564ec25`.
+-  If a feature references a different object (for example, APP-MANAGEMENT references environments), the permissions for any object referenced should also be granted in the corresponding feature. So, if a role is granted access to env1 as an environment within the APP-MANAGEMENT feature, then that role should also be granted access to env1 as an environment within the ENVIRONMENT-MANAGEMENT feature.
 
-* ENVIRONMENT-MANAGEMENT - READ
-  * Environments - `env1|f114ff25-0708-46f5-8f7c-efe8d564ec25`
-* APP-MANAGEMENT - CREATE, READ, UPDATE, DELETE
-  * Environments - `env1|f114ff25-0708-46f5-8f7c-efe8d564ec25`
-  * Apps - `All`
-* GATEWAY-MANAGEMENT - CREATE, READ, UPDATE, DELETE
-  * Environments - `env1|f114ff25-0708-46f5-8f7c-efe8d564ec25`
-  * Gateways - `All`
-* WEB-COMPONENT-MANAGEMENT - CREATE, READ, UPDATE, DELETE
-  * Environments - `env1|f114ff25-0708-46f5-8f7c-efe8d564ec25`
-  * Apps - `All`
-  * Web-Components - `All`
-* TCP-COMPONENT-MANAGEMENT - CREATE, READ, UPDATE, DELETE
-  * Environments - `env1|f114ff25-0708-46f5-8f7c-efe8d564ec25`
-  * Apps - `All`
-  * TCP-Components - `All`
+- All permissions within a particular feature (for example, ENVIRONMENT-MANAGEMENT) should be granted the same CRUD level of access. So, if a particular permission has READ and DELETE access for ENVIRONMENT-MANAGEMENT, all permissions under ENVIRONMENT-MANAGEMENT should have the same READ and DELETE access.
 
-This permission allows a user to manage all ADM resources under the given environment `env1`
+## Example Roles
 
-#### Guest User
+We recommend configuring roles to limit permissions. An example scenario is detailed below.  For more details on how to assign roles and the special considerations which need to be taken into account when using the user interface, see [Setting up User Roles]({{< relref "/nms/adm/getting-started/roles.md" >}}) section of **Getting-Started**.
 
-A guest user may only need to read a few specific resources. For example, the guest user may need to read a specific app (`app1` with UID `3dd1eae2-11b4-47b2-be90-e421160601b6`), gateway (`gateway1` with UID `3b3b9ab3-b6c4-441c-b1ad-26ea7b6875ac`), and three web components (`webcomp1` with UID `f7039d7a-085e-46fe-aa5e-1125c13e1fd8`, `webcomp2` with UID `619370ab-b814-452f-8b3f-6bd3434aae9d`, `webcomp3` with UID `41b94747-585c-41ec-a4e2-f301dd658889`), where all resources are under `env1` and the web-components are under `app1`. The following permission would allow only read access to these resources.
+### Scenario
 
-* ENVIRONMENT-MANAGEMENT - READ
-  * Environments - `env1|f114ff25-0708-46f5-8f7c-efe8d564ec25`
-* APP-MANAGEMENT - READ
-  * Environments - `env1|f114ff25-0708-46f5-8f7c-efe8d564ec25`
-  * Apps - `env1ǀapp1|3dd1eae2-11b4-47b2-be90-e421160601b6`
-* GATEWAY-MANAGEMENT - READ
-  * Environments - `env1|f114ff25-0708-46f5-8f7c-efe8d564ec25`
-  * Gateways - `env1ǀgateway1|3b3b9ab3-b6c4-441c-b1ad-26ea7b6875ac`
-* WEB-COMPONENT-MANAGEMENT - READ
-  * Environments - `env1|f114ff25-0708-46f5-8f7c-efe8d564ec25`
-  * Apps - `env1ǀapp1|3dd1eae2-11b4-47b2-be90-e421160601b6`
-  * Web-Components - `env1ǀapp1ǀwebcomp1|f7039d7a-085e-46fe-aa5e-1125c13e1fd8`, `env1ǀapp1ǀwebcomp2|619370ab-b814-452f-8b3f-6bd3434aae9d`, `env1ǀapp1ǀwebcomp3|41b94747-585c-41ec-a4e2-f301dd658889`
+Platform Ops wants to deliver a platform, which enables a self-service app delivery model that allows developer teams to work independently to quickly deliver the value of their apps and services to the customer.
 
-When adding these permissions, this gives READ access to just the resources listed.
+They want to enable multiple developers/teams to work on the same nginx.conf file without interfering with each other's work, which means:
 
-#### App Developer
+- Developers can only access the environments, apps, and components that have been defined in their role.
 
-An app developer may need edit access over a few resources in order to deploy their apps, but should not have access to anything else. For example, they should have the ability to edit a specific app (`app1` with UID `3dd1eae2-11b4-47b2-be90-e421160601b6`) and two web-components (`webcomp1` with UID `f7039d7a-085e-46fe-aa5e-1125c13e1fd8`, `webcomp2` with UID `619370ab-b814-452f-8b3f-6bd3434aae9d`) as well as reading a specific gateway (`gateway1` with UID `3b3b9ab3-b6c4-441c-b1ad-26ea7b6875ac`). The following permissions would allow this
+- Developers can work independently to author different sections within a single nginx.conf file, for example, depending on how the role is configured server, locations, or upstream blocks.
 
-* ENVIRONMENT-MANAGEMENT - READ
-  * Environments - `env1|f114ff25-0708-46f5-8f7c-efe8d564ec25`
-* APP-MANAGEMENT - READ, UPDATE
-  * Environments - `env1|f114ff25-0708-46f5-8f7c-efe8d564ec25`
-  * Apps - `env1ǀapp1|3dd1eae2-11b4-47b2-be90-e421160601b6`
-* GATEWAY-MANAGEMENT - READ
-  * Environments - `env1|f114ff25-0708-46f5-8f7c-efe8d564ec25`
-  * Gateways - `env1ǀgateway1|3b3b9ab3-b6c4-441c-b1ad-26ea7b6875ac`
-* WEB-COMPONENT-MANAGEMENT - READ, UPDATE
-  * Environments - `env1|f114ff25-0708-46f5-8f7c-efe8d564ec25`
-  * Apps - `env1ǀapp1|3dd1eae2-11b4-47b2-be90-e421160601b6`
-  * Web-Components - `env1ǀapp1ǀwebcomp1|f7039d7a-085e-46fe-aa5e-1125c13e1fd8`, `env1ǀapp1ǀwebcomp2|619370ab-b814-452f-8b3f-6bd3434aae9d`
+### Short Description of App Delivery Manager Objects
 
-For more details on  xxxxx to be continued!
+An Environment is a logical container to group gateways and apps. This closely maps to customers' organizational boundaries.
+
+A Gateway represents an entry point for traffic for one or more Apps. Gateway allows users to define the top-level FQDNs under which other apps in the organization reside.
+
+An App is a logical container for components.
+
+Web components allow users to define routing behavior for the URIs under the apps. Each component can define URIs (/sales, /sales-data, etc...) and specify which FQDNs these need to attach to via gateway references. Components also allow specifying the backend and can control the configuration for load balancing traffic to the backend servers.
+
+### Use Case Scenario
+
+The Platform Ops admin wants to enable teams and individuals to self-service their access to services and data so that they can work independently, and complete their jobs quickly while not interfering with the work of others or unintentionally accessing data they have not been explicitly granted access to.
+
+The Enterprise has a single website, `https://www.example.com`. This website serves two apps at the paths`/support` and `/sales`, each of which is owned by different teams. Additionally, there is a dedicated Admin responsible for managing ingress (gateway) to apps and a Read-only role meant for auditing purposes.
+
+### Role Configurations
+
+Details:
+
+- One environment - example-env
+- One gateway (server block) - `www.example.com`
+- Two Apps (Support and Sales), each with one web component (location blocks) (/support and /sales)
+- The website uses HTTPS
+- There is one instance group (ig1)
+- There is one site (site1)
+* Web components report analytics
+
+#### Example-Admin Role
+
+The Example-Admin role is a custom role and not the built-in Admin role. This role has full access to all objects. It is used to manage the full lifecycle of all objects and data.
+
+Permissions:
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Feature                  | CRUD Level         | Objects                   |
+| ------------------------ | ------------------ | ------------------------- |
+| ENVIRONMENT-MANAGEMENT   | CRUD               | Environments: ALL         |
+| GATEWAY-MANAGEMENT       | CRUD               | Environments: ALL <br /> Gateways: ALL |
+| APP-MANAGEMENT           | CRUD               | Environments: ALL <br /> Apps: ALL |
+| WEB-COMPONENT-MANAGEMENT | CRUD               | Environments: ALL <br /> Apps: ALL <br /> Web Components: ALL |
+| SITE-MANAGEMENT          | CRUD               | Sites: ALL                |
+| INSTANCE-GROUPS          | CRUD               | Instance Groups: ALL      |
+| CERTS                    | CRUD               | Instance Groups: ALL <br /> Systems: ALL |
+| ANALYTICS                | CRUD               | N/A                       |
+
+{{</bootstrap-table>}}
+
+<details>
+<summary>JSON Roles Request</summary>
+
+```json
+{
+  "metadata": {
+    "displayName": "Example Admin Role",
+    "name": "example-admin-role",
+    "description": ""
+  },
+  "roleDef": {
+    "permissions": [
+      {
+        "accessTypes": [
+          "CREATE",
+          "DELETE",
+          "READ",
+          "UPDATE"
+        ],
+        "feature": "ANALYTICS",
+        "objects": []
+      },
+      {
+        "accessTypes": [
+          "CREATE",
+          "DELETE",
+          "READ",
+          "UPDATE"
+        ],
+        "feature": "APP-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Apps",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "All"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "CREATE",
+          "DELETE",
+          "READ",
+          "UPDATE"
+        ],
+        "feature": "CERTS",
+        "objects": [
+          {
+            "resource": "Instance Groups",
+            "values": [
+              "00000000-0000-0000-0000-000000000000"
+            ]
+          },
+          {
+            "resource": "Systems",
+            "values": [
+              "00000000-0000-0000-0000-000000000000"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "CREATE",
+          "DELETE",
+          "READ",
+          "UPDATE"
+        ],
+        "feature": "ENVIRONMENT-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Environments",
+            "values": [
+              "All"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "CREATE",
+          "DELETE",
+          "READ",
+          "UPDATE"
+        ],
+        "feature": "GATEWAY-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Environments",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Gateways",
+            "values": [
+              "All"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "CREATE",
+          "DELETE",
+          "READ",
+          "UPDATE"
+        ],
+        "feature": "INSTANCE-GROUPS",
+        "objects": [
+          {
+            "resource": "Instance Groups",
+            "values": [
+              "00000000-0000-0000-0000-000000000000"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "CREATE",
+          "DELETE",
+          "READ",
+          "UPDATE"
+        ],
+        "feature": "SITE-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Sites",
+            "values": [
+              "All"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "CREATE",
+          "DELETE",
+          "READ",
+          "UPDATE"
+        ],
+        "feature": "WEB-COMPONENT-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Apps",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Web-Components",
+            "values": [
+              "All"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+</details>
+
+<details>
+<summary>User Interface Roles Setup</summary>
+
+To set up the Example Admin role, follow this step-by-step tutorial:
+
+First give CRUD access to ALL environments in ENVIRONMENT-MANAGEMENT.
+{{< img src="adm/about/rbac-screenshots/ExampleAdminEnv.png" alt="Admin ENVIRONMENT-MANAGEMENT" width="75%">}}
+
+Next, give CRUD access to ALL gateways under ALL environments in GATEWAY-MANAGEMENT.
+{{< img src="adm/about/rbac-screenshots/ExampleAdminGateway.png" alt="Admin GATEWAY-MANAGEMENT" width="75%">}}
+
+Next, give CRUD access to ALL apps under ALL environments in APP-MANAGEMENT.
+{{< img src="adm/about/rbac-screenshots/ExampleAdminApp.png" alt="Admin APP-MANAGEMENT" width="75%">}}
+
+Next, give CRUD access to ALL web-components under ALL apps and environments in WEB-COMPONENT-MANAGEMENT.
+{{< img src="adm/about/rbac-screenshots/ExampleAdminWebcomp.png" alt="Admin WEB-COMPONENT-MANAGEMENT" width="75%">}}
+
+Next, give CRUD access to ALL sites in SITE-MANAGEMENT.
+{{< img src="adm/about/rbac-screenshots/ExampleAdminSite.png" alt="Admin SITE-MANAGEMENT" width="75%">}}
+
+Next, give CRUD access to ALL instance groups in INSTANCE-GROUPS.
+{{< img src="adm/about/rbac-screenshots/ExampleAdminInstanceManagement.png" alt="Admin INSTANCE-GROUPS" width="75%">}}
+
+Next, give CRUD access to ALL systems and instance groups within CERTS.
+{{< img src="adm/about/rbac-screenshots/ExampleAdminCerts.png" alt="Admin CERTS" width="75%">}}
+
+Finally, give CRUD access to ANALYTICS.
+{{< img src="adm/about/rbac-screenshots/ExampleAdminAnalytics.png" alt="Admin ANALYTICS" width="75%">}}
+
+</details>
+
+#### Gateway-Admin Role
+
+The Gateway-Admin role has full access to manage gateway objects, but only Read access to apps and components that use it. Additionally, this role manages the certificates placed on gateways.
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Feature                  | CRUD Level         | Objects                   |
+| ------------------------ | ------------------ | ------------------------- |
+| ENVIRONMENT-MANAGEMENT   | READ               | Environments: example-env |
+| GATEWAY-MANAGEMENT       | CRUD               | Environments: example-env  <br /> Gateways: ALL |
+| APP-MANAGEMENT           | READ               | Environments: example-env <br /> Apps: ALL |
+| WEB-COMPONENT-MANAGEMENT | READ               | Environments: example-env <br /> Apps: ALL <br /> Web Components: All |
+| SITE-MANAGEMENT          | READ               | Sites: site1              |
+| INSTANCE-GROUPS          | READ               | Instance Groups: ig1      |
+| CERTS                    | CRUD               | Instance Groups: ig1 <br /> Systems: ALL |
+| ANALYTICS                | READ               | N/A                       |
+
+{{</bootstrap-table>}}
+
+<details>
+<summary>JSON Roles Request</summary>
+
+```json
+{
+  "metadata": {
+    "displayName": "Example Gateway Admin",
+    "name": "example-gateway-admin",
+    "description": ""
+  },
+  "roleDef": {
+    "permissions": [
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "ANALYTICS",
+        "objects": []
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "APP-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Apps",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "CREATE",
+          "READ",
+          "UPDATE",
+          "DELETE"
+        ],
+        "feature": "CERTS",
+        "objects": [
+          {
+            "resource": "Systems",
+            "values": [
+              "00000000-0000-0000-0000-000000000000"
+            ]
+          },
+          {
+            "resource": "Instance Groups",
+            "values": [
+              "<igUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "ENVIRONMENT-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "CREATE",
+          "READ",
+          "UPDATE",
+          "DELETE"
+        ],
+        "feature": "GATEWAY-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Gateways",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "INSTANCE-GROUPS",
+        "objects": [
+          {
+            "resource": "Instance Groups",
+            "values": [
+              "<igUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "SITE-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Sites",
+            "values": [
+              "<siteUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "WEB-COMPONENT-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Apps",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Web-Components",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+</details>
+
+<details>
+<summary>User Interface Roles Setup</summary>
+
+Follow this step-by-step tutorial to set up the Example Admin role:
+
+First give READ access to the example-env environment in ENVIRONMENT-MANAGEMENT.
+
+{{< img src="adm/about/rbac-screenshots/ExampleEnvRead.png" alt="Gateway Admin ENVIRONMENT-MANAGEMENT" width="75%">}}
+
+Next, give CRUD access to ALL gateways under the example-env environment in GATEWAY-MANAGEMENT.
+{{< img src="adm/about/rbac-screenshots/ExampleAdminGateway.png" alt="Gateway Admin GATEWAY-MANAGEMENT" width="75%">}}
+
+Next, give READ access to ALL apps under the example-env environment in APP-MANAGEMENT.
+{{< img src="adm/about/rbac-screenshots/ExampleAppRead.png" alt="Gateway Admin APP-MANAGEMENT" width="75%">}}
+
+Next, give READ access to ALL web-components within ALL apps under the example-env environment.
+{{< img src="adm/about/rbac-screenshots/ExampleWebCompRead.png" alt="Gateway Admin WEB-COMPONENT-MANAGEMENT" width="75%">}}
+
+Next, give READ access to site1 within SITE-MANAGEMENT.
+{{< img src="adm/about/rbac-screenshots/ExampleSiteRead.png" alt="Gateway Admin SITE-MANAGEMENT" width="75%">}}
+
+Next, give READ access to the ig1 instance group within INSTANCE-GROUPS.
+{{< img src="adm/about/rbac-screenshots/ExampleIGRead.png" alt="Gateway Admin INSTANCE-GROUPS" width="75%">}}
+
+Next, give CRUD access to ALL systems and the ig1 instance group within CERTS.
+{{< img src="adm/about/rbac-screenshots/ExampleCertCRUD.png" alt="Gateway Admin CERTS" width="75%">}}
+
+Finally, give READ access to ANALYTICS.
+{{< img src="adm/about/rbac-screenshots/ExampleAnalyticsRead.png" alt="Gateway Admin ANALYTICS" width="75%">}}
+
+</details>
+
+#### Support-App Role
+
+This role has access to the environment example-env and the gateway that serves as the ingress point for traffic to `www.example.com`. Additionally, this role has full access rights to the Support app and any referenced component, for example, /support. This role also has access to any traffic metrics for these specific objects. This role should not have access to any other app or components or their data.
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Feature                  | CRUD Level         | Objects                   |
+| ------------------------ | ------------------ | ------------------------- |
+| ENVIRONMENT-MANAGEMENT   | READ               | Environments: example-env |
+| GATEWAY-MANAGEMENT       | READ               | Environments: example-env  <br /> Gateways: example.com |
+| APP-MANAGEMENT           | CRUD               | Environments: example-env <br /> Apps: Support |
+| WEB-COMPONENT-MANAGEMENT | CRUD               | Environments: example-env <br /> Apps: Support <br /> Web Components: All |
+| SITE-MANAGEMENT          | READ               | Sites: site1              |
+| INSTANCE-GROUPS          | READ               | Instance Groups: ig1      |
+| CERTS                    | None               | None                      |
+| ANALYTICS                | READ               | N/A                       |
+
+{{</bootstrap-table>}}
+
+<details>
+<summary>JSON Roles Request</summary>
+
+```json
+{
+  "metadata": {
+    "displayName": "Support App Role",
+    "name": "support-app-role",
+    "description": ""
+  },
+  "roleDef": {
+    "permissions": [
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "ANALYTICS",
+        "objects": []
+      },
+      {
+        "accessTypes": [
+          "CREATE",
+          "READ",
+          "UPDATE",
+          "DELETE"
+        ],
+        "feature": "APP-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Apps",
+            "values": [
+              "<supportUID>"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "ENVIRONMENT-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "GATEWAY-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Gateways",
+            "values": [
+              "<examplecomUID>"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "INSTANCE-GROUPS",
+        "objects": [
+          {
+            "resource": "Instance Groups",
+            "values": [
+              "<igUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "SITE-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Sites",
+            "values": [
+              "<siteUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "CREATE",
+          "READ",
+          "UPDATE",
+          "DELETE"
+        ],
+        "feature": "WEB-COMPONENT-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Apps",
+            "values": [
+              "<supportUID>"
+            ]
+          },
+          {
+            "resource": "Web-Components",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+</details>
+
+<details>
+<summary>User Interface Roles Setup</summary>
+
+Follow this step-by-step tutorial to set up the Support App role.
+
+First give READ access to the example-env environment in ENVIRONMENT-MANAGEMENT.
+{{< img src="adm/about/rbac-screenshots/ExampleEnvRead.png" alt="Support ENVIRONMENT-MANAGEMENT" width="75%">}}
+
+Next, give READ access to the example-com gateway under the example-env environment in GATEWAY-MANAGEMENT.
+{{< img src="adm/about/rbac-screenshots/ExampleGatewayRead.png" alt="Support GATEWAY-MANAGEMENT" width="75%">}}
+
+Next, give CRUD access to the Support app within the example-env environment in APP-MANAGEMENT.
+{{< img src="adm/about/rbac-screenshots/ExampleSupportAppCRUD.png" alt="Support APP-MANAGEMENT" width="75%">}}
+
+Next, give CRUD access to ALL web-components within the Support app under the example-env environment in WEB-COMPONENT-MANAGEMENT.
+{{< img src="adm/about/rbac-screenshots/ExampleSupportWebCompCRUD.png" alt="Support WEB-COMPONENT-MANAGEMENT" width="75%">}}
+
+Next, give READ access to site1 within SITE-MANAGEMENT.
+{{< img src="adm/about/rbac-screenshots/ExampleSiteRead.png" alt="Support SITE-MANAGEMENT" width="75%">}}
+
+Next, give READ access to the ig1 instance group within INSTANCE-GROUPS.
+{{< img src="adm/about/rbac-screenshots/ExampleIGRead.png" alt="Support INSTANCE-GROUPS" width="75%">}}
+
+Finally, give READ access to ANALYTICS.
+{{< img src="adm/about/rbac-screenshots/ExampleAnalyticsRead.png" alt="Support ANALYTICS" width="75%">}}
+
+</details>
+
+#### Sales-App Role
+
+The Sales-App role has access to the environment example-env and the gateway that serves as the ingress point for traffic to `www.example.com`. Additionally, this role has full access rights to the Sales app and any referenced component, for example, /sales. Additionally, this role has access to any traffic metrics for these specific objects. This role should not have access to any other app or components or their data.
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Feature                  | CRUD Level         | Objects                   |
+| ------------------------ | ------------------ | ------------------------- |
+| ENVIRONMENT-MANAGEMENT   | READ               | Environments: example-env |
+| GATEWAY-MANAGEMENT       | READ               | Environments: example-env  <br /> Gateways: example.com |
+| APP-MANAGEMENT           | CRUD               | Environments: example-env <br /> Apps: Sales |
+| WEB-COMPONENT-MANAGEMENT | CRUD               | Environments: example-env <br /> Apps: Sales <br /> Web Components: All |
+| SITE-MANAGEMENT          | READ               | Sites: site1              |
+| INSTANCE-GROUPS          | READ               | Instance Groups: ig1      |
+| CERTS                    | None               | None                      |
+| ANALYTICS                | READ               | N/A                       |
+
+{{</bootstrap-table>}}
+
+<details>
+<summary>JSON Roles Request</summary>
+
+```json
+{
+  "metadata": {
+    "displayName": "Sales App Role",
+    "name": "sales-app-role",
+    "description": ""
+  },
+  "roleDef": {
+    "permissions": [
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "ANALYTICS",
+        "objects": []
+      },
+      {
+        "accessTypes": [
+          "CREATE",
+          "READ",
+          "UPDATE",
+          "DELETE"
+        ],
+        "feature": "APP-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Apps",
+            "values": [
+              "<salesUID>"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "ENVIRONMENT-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "GATEWAY-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Gateways",
+            "values": [
+              "<examplecomUID>"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "INSTANCE-GROUPS",
+        "objects": [
+          {
+            "resource": "Instance Groups",
+            "values": [
+              "<igUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "SITE-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Sites",
+            "values": [
+              "<siteUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "CREATE",
+          "READ",
+          "UPDATE",
+          "DELETE"
+        ],
+        "feature": "WEB-COMPONENT-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Apps",
+            "values": [
+              "<salesUID>"
+            ]
+          },
+          {
+            "resource": "Web-Components",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+</details>
+
+<details>
+<summary>User Interface Roles Setup</summary>
+
+Follow this step-by-step tutorial to set up the Sales App role.
+
+First give READ access to the example-env environment in ENVIRONMENT-MANAGEMENT.
+{{< img src="adm/about/rbac-screenshots/ExampleEnvRead.png" alt="Sales ENVIRONMENT-MANAGEMENT" width="75%">}}
+
+Next, give READ access to the example-com gateway under the example-env environment in GATEWAY-MANAGEMENT.
+{{< img src="adm/about/rbac-screenshots/ExampleGatewayRead.png" alt="Sales GATEWAY-MANAGEMENT" width="75%">}}
+
+Next, give CRUD access to the Sales app within the example-env environment in APP-MANAGEMENT.
+{{< img src="adm/about/rbac-screenshots/ExampleSalesAppCRUD.png" alt="Sales APP-MANAGEMENT" width="75%">}}
+
+Next, give CRUD access to ALL web-components within the Sales app under the example-env environment in WEB-COMPONENT-MANAGEMENT.
+{{< img src="adm/about/rbac-screenshots/ExampleSalesWebCompCRUD.png" alt="Sales WEB-COMPONENT-MANAGEMENT" width="75%">}}
+
+Next, give READ access to site1 within SITE-MANAGEMENT.
+{{< img src="adm/about/rbac-screenshots/ExampleSiteRead.png" alt="Sales SITE-MANAGEMENT" width="75%">}}
+
+Next, give READ access to the ig1 instance group within INSTANCE-GROUPS.
+{{< img src="adm/about/rbac-screenshots/ExampleIGRead.png" alt="Sales INSTANCE-GROUPS" width="75%">}}
+
+Finally, give READ access to ANALYTICS.
+{{< img src="adm/about/rbac-screenshots/ExampleAnalyticsRead.png" alt="Sales ANALYTICS" width="75%">}}
+
+</details>
+
+#### Read-Only
+
+The Read-Only user has Read-only access to all objects and data related to example-env.
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Feature                  | CRUD Level         | Objects                   |
+| ------------------------ | ------------------ | ------------------------- |
+| ENVIRONMENT-MANAGEMENT   | READ               | Environments: example-env |
+| GATEWAY-MANAGEMENT       | READ               | Environments: example-env  <br /> Gateways: ALL |
+| APP-MANAGEMENT           | READ               | Environments: example-env <br /> Apps: ALL |
+| WEB-COMPONENT-MANAGEMENT | READ               | Environments: example-env <br /> Apps: ALL <br /> Web Components: All |
+| SITE-MANAGEMENT          | READ               | Sites: site1              |
+| INSTANCE-GROUPS          | READ               | Instance Groups: ig1      |
+| CERTS                    | READ               | Instance Groups: ig1 <br /> Systems: ALL |
+| ANALYTICS                | READ               | N/A                       |
+
+{{</bootstrap-table>}}
+
+<details>
+<summary>JSON Roles Request</summary>
+
+```json
+{
+  "metadata": {
+    "displayName": "Read Only Access",
+    "name": "read-only-access",
+    "description": ""
+  },
+  "roleDef": {
+    "permissions": [
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "ANALYTICS",
+        "objects": []
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "APP-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Apps",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "CERTS",
+        "objects": [
+          {
+            "resource": "Systems",
+            "values": [
+              "00000000-0000-0000-0000-000000000000"
+            ]
+          },
+          {
+            "resource": "Instance Groups",
+            "values": [
+              "<igUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "ENVIRONMENT-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "GATEWAY-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Gateways",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "INSTANCE-GROUPS",
+        "objects": [
+          {
+            "resource": "Instance Groups",
+            "values": [
+              "<igUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "SITE-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Sites",
+            "values": [
+              "<siteUID>"
+            ]
+          }
+        ]
+      },
+      {
+        "accessTypes": [
+          "READ"
+        ],
+        "feature": "WEB-COMPONENT-MANAGEMENT",
+        "objects": [
+          {
+            "resource": "Apps",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Web-Components",
+            "values": [
+              "All"
+            ]
+          },
+          {
+            "resource": "Environments",
+            "values": [
+              "<envUID>"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+</details>
+
+<details>
+<summary>User Interface Roles Setup</summary>
+
+Follow this step-by-step tutorial to set up the Read Only role.
+
+First give READ access to the example-env environment in ENVIRONMENT-MANAGEMENT.
+{{< img src="adm/about/rbac-screenshots/ExampleEnvRead.png" alt="Read Only ENVIRONMENT-MANAGEMENT" width="75%">}}
+
+Next, give READ access to ALL gateways under the example-env environment in GATEWAY-MANAGEMENT.
+{{< img src="adm/about/rbac-screenshots/ExampleGatewayRead.png" alt="Read Only GATEWAY-MANAGEMENT" width="75%">}}
+
+Next, give READ access to ALL apps within the example-env environment in APP-MANAGEMENT.
+{{< img src="adm/about/rbac-screenshots/ExampleAppRead.png" alt="Read Only APP-MANAGEMENT" width="75%">}}
+
+Next, give READ access to ALL web-components within ALL apps under the example-env environment.
+{{< img src="adm/about/rbac-screenshots/ExampleWebCompRead.png" alt="Read Only WEB-COMPONENT-MANAGEMENT" width="75%">}}
+
+Next, give READ access to site1 within SITE-MANAGEMENT.
+{{< img src="adm/about/rbac-screenshots/ExampleSiteRead.png" alt="Read Only SITE-MANAGEMENT" width="75%">}}
+
+Next, give READ access to the ig1 instance group within INSTANCE-GROUPS.
+{{< img src="adm/about/rbac-screenshots/ExampleIGRead.png" alt="Read Only INSTANCE-GROUPS" width="75%">}}
+
+Next, give READ access to ALL systems and the ig1 instance group within CERTS.
+{{< img src="adm/about/rbac-screenshots/ExampleCertsRead.png" alt="Read Only CERTS" width="75%">}}
+
+Finally, give READ access to ANALYTICS.
+{{< img src="adm/about/rbac-screenshots/ExampleAnalyticsRead.png" alt="Read Only ANALYTICS" width="75%">}}
+
+</details>
+
+### Full Access Table
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+|Product | Feature                  | Example Admin      | Gateway-Admin     | Support-App    | Sales-App       | Read-Only        |
+| ------ | ------------------------ | ------------------ | ----------------- | -------------- | --------------- | ---------------- |
+| ADM    | ENVIRONMENT-MANAGEMENT   | CRUD <br /> Environments: ALL | READ <br /> Environments: example-env | READ <br /> Environments: example-env | READ <br /> Environments: example-env | READ <br /> Environments: example-env |
+| ADM    | GATEWAY-MANAGEMENT       | CRUD <br /> Environments: ALL <br /> Gateways: ALL | CRUD <br /> Environments: example-env <br /> Gateways: ALL | READ <br /> Environments: example-env <br /> Gateways: example.com | READ <br /> Environments: example-env <br /> Gateways: example.com | READ <br /> Environments: example-env <br /> Gateways: ALL |
+| ADM    | APP-MANAGEMENT           | CRUD <br /> Environments: ALL  <br /> Apps: ALL | READ <br /> Environments: example-env  <br /> Apps: ALL | CRUD <br /> Environments: example-env  <br /> Apps: Support | CRUD <br /> Environments: example-env  <br /> Apps: Sales | READ <br /> Environments: example-env  <br /> Apps: ALL |
+| ADM    | WEB-COMPONENT-MANAGEMENT | CRUD <br /> Environments: ALL  <br /> Apps: ALL <br /> Web Components: ALL | READ <br /> Environments: example-env  <br /> Apps: ALL <br /> Web Components: ALL | CRUD <br /> Environments: example-env  <br /> Apps: Support <br /> Web Components: ALL | CRUD <br /> Environments: example-env  <br /> Apps: Sales <br /> Web Components: ALL | READ <br /> Environments: example-env  <br /> Apps: ALL <br /> Web Components: ALL |
+| ADM    | SITE-MANAGEMENT          | CRUD <br /> Sites: ALL | READ <br /> Sites: site1 | READ <br /> Sites: site1 | READ <br /> Sites: site1 | READ <br /> Sites: site1 |
+| IM     | INSTANCE-GROUPS          | CRUD <br /> Instance Groups: ALL | READ <br /> Instance Groups: ig1 | READ <br /> Instance Groups: ig1 | READ <br /> Instance Groups: ig1 | READ <br /> Instance Groups: ig1 |
+| IM     | CERTS                    | CRUD <br /> Instance Groups: ALL <br /> Systems: ALL | CRUD <br /> Instance Groups: ig1 <br /> Systems: ALL | None | None | READ <br /> Instance Groups: ig1 <br /> Systems: ALL |
+| IM     | ANALYTICS                | CRUD | READ | READ | READ | READ |
+
+{{</bootstrap-table>}}
+
+## Combination Rules
+
+NGINX Management Suite has several permission combination methods, which can be confusing if a user is unaware of them. This document details how RBAC information is combined for this purpose.
+
+{{< note >}} These combination rules document the current behavior, but this behavior is not officially supported and is subject to change. We recommend setting up the roles according to the best practices, which will alleviate much of the confusion around them. {{< /note >}}
+
+### Multiple Permissions on the Same Object are Additive
+
+If a role has multiple permissions for the same feature, the resulting permissions is additive; the user will get access to all objects listed.
+
+In particular, if permissions with "Objects: None" are created along with another permission that sets objects, the resulting access will be all of the allowed objects.
+
+### There can be only one CRUD value for each feature
+
+For a given feature (for example, ENVIRONMENT-MANAGEMENT), there can be only one CRUD level. In particular, the levels will be merged together, so all allowed objects will get the CRUD levels for any object.
+
+#### Example 1
+
+A role gives READ access to env1 and READ, UPDATE, DELETE access to env2. NGINX Management Suite will combine these two permissions, resulting in READ, UPDATE, DELETE access to both env1 and env2.
+
+#### Example 2
+
+A role gives READ access for the All environments object, and CREATE, READ, UPDATE, DELETE access to env1. NGINX Management Suite combines these permissions, resulting in CREATE, READ, UPDATE, DELETE access to All environments (including env1).
+
+### Assigning access to an object in a different feature adds access to that object within the parent feature
+
+Several features have other objects as part of their permissions schema (for example, the APP-MANAGEMENT permission contains the Environments object). When access is given to that object as part of another feature, the object is added to the relevant feature at the level of the existing permissions.
+
+#### Example 1
+
+A role gives READ access to env1 within the ENVIRONMENT-MANAGEMENT feature. The role also gives READ access to env2 within the APP-MANAGEMENT feature. NGINX Management Suite will combine the permissions and grant READ access in the ENVIRONMENT-MANAGEMENT feature to both env1 and env2.
+
+#### Example 2
+
+A role gives READ and UPDATE access to env1 within the ENVIRONMENT-MANAGEMENT feature. The role also gives READ access to env2 within the APP-MANAGEMENT feature. NGINX Management Suite will combine the permissions and grant READ and UPDATE access within the ENVIRONMENT-MANAGEMENT feature to both env1 and env2. Note that the combination of permissions will not affect the APP-MANAGEMENT feature.
+
+#### Example 3
+
+A role gives READ access to env1 within the ENVIRONMENT-MANAGEMENT feature. The role also gives full CREATE, READ, UPDATE, DELETE access to env2 within the APP-MANAGEMENT feature. NGINX Management Suite will combine permissions and grant READ access in the ENVIRONMENT-MANAGEMENT feature to both env1 and env2. Note that this combination does not affect the APP-MANAGEMENT feature.
+
+### Customer Cases
+
+Here are a few examples of possible customer cases to demonstrate what is possible and what is not possible with this RBAC system
+
+#### Case 1: Separate Prod and Dev roles
+
+**A customer has two environments, Prod and Dev, and wants to separate roles that are allowed to edit objects in each of these environments. Can they do this?**
+
+Yes. By selecting only the Prod environment object in each permission feature when creating the role for Prod users and selecting only the Dev environment in each permission feature when creating the role for the Dev users, the customer can get this separation of permissions. As long as users are only assigned only one Prod or Dev role, they will not have access to objects in both environments.
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Users Role       | Access to Prod environments | Access to Dev environments |
+| ---------------- | --------------------------- | ------------------- |
+| Prod role        | READ, UPDATE                | None                |
+| Dev role         | None                        | READ, UPDATE              |
+| Both Prod and Dev roles | READ, UPDATE         | READ, UPDATE |
+
+{{</bootstrap-table>}}
+
+#### Case 2: Separate Prod role, Dev role with only read access to Prod
+
+**A customer has two environments, Prod and Dev, and wants separate roles which are allowed to edit objects in each of these environments. In addition, the customer wants to allow the users that can edit objects in the Dev environment to see (but not edit) objects in the Prod environment. Can they do this?**
+
+This is currently not possible with the current RBAC implementation. Since giving edit access to the Dev environment objects would give at least UPDATE access to those features, the combination rules would also give UPDATE access to those features within the Prod environment. So, the customer would need to decide between allowing the user to edit objects in the Prod environment or not allowing the user to see objects in the Prod environment.
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Users Role          | Access to Prod environments | Access to Dev environments |
+| ------------------- | --------------------------- | -------------------------- |
+| Prod Read-Only role | READ                        | None                       |
+| Dev role            | None                        | READ, UPDATE               |
+| Both Prod Read-Only and Dev roles | READ, UPDATE  | READ, UPDATE               |
+
+{{</bootstrap-table>}}
+
+#### Case 3: Dev role, user can edit Apps and Web Components, but only read Gateways
+
+**Within the customer's Dev environment, they want a role where a user can edit Apps and Web Components, but only read Gateways. Can they do this?**
+
+Yes, since combination only occurs between the same features, the customer can assign READ and UPDATE to APP-MANAGEMENT and WEB-COMPONENT-MANAGEMENT and only READ access to GATEWAY-MANAGEMENT without any subsequent combination.
 
 ## FAQ
 
