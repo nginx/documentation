@@ -7,6 +7,8 @@ tags: ["docs"]
 docs: "DOCS-000"
 ---
 
+{{< custom-styles >}}
+
 ## Usecase-1: Add load_module directive.
 
 {{< note >}}

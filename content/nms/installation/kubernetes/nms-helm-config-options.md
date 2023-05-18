@@ -42,4 +42,6 @@ authors: []
 
 ## App Delivery Manager Helm Chart Settings {#adm-helm-settings}
 
+{{< beta-badge >}}
+
 {{< include "installation/helm/adm/configuration-options.md" >}}

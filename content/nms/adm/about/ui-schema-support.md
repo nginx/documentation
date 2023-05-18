@@ -8,6 +8,8 @@ tags: ["docs"]
 docs: "DOCS-000"
 ---
 
+{{< custom-styles>}}
+
 ## Overview
 
 The web interface has limited support for [JSON schema](https://json-schema.org/understanding-json-schema/reference/). This document describes what is supported. The web interface will not render properly if JSON schema features outside this document are used. 

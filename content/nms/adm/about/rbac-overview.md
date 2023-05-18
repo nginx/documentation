@@ -7,6 +7,9 @@ draft: false
 tags: ["docs"]
 docs: "DOCS-000"
 ---
+
+{{< custom-styles>}}
+
 ## Permission Structure
 
 The permission structure for Nginx Management Suite (NMS) uses a flat permission structure based on features, where permissions are assigned for each feature. Permissions are configured for a role, and then the role is assigned to users. A user can be assigned more than one role and the permissions for each role will be agglomerated together.
@@ -41,7 +44,7 @@ UPDATE access gives permission to modify the details and specifications of an ob
 
 DELETE access gives permission to remove an object and corresponds to the DELETE method. DELETE access targets a specific object and hence only makes sense for a call with a specific object referenced.
 
-## **Features**
+## Features
 
 ### ENVIRONMENT-MANAGEMENT
 
@@ -99,7 +102,7 @@ The TCPUDP-COMPONENT-MANAGEMENT feature controls access to TCP/UDP components an
 
 {{< note >}} If a feature does not have an object listed, there is currently no enforcement or RBAC control over features based on that object, eg: Web components cannot be filtered based on the gateways they reference.{{< /note >}}
 
-## **Examples**
+## Examples
 
 Some examples of roles are described below.  For more details on how to assign roles and the special considerations which need to be taken into account when using the user interface (UI) see [Setting up User Roles]({{< relref "/nms/adm/getting-started/roles.md" >}}) section of **Getting-Started**.
 

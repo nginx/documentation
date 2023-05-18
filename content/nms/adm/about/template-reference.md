@@ -7,6 +7,9 @@ draft: false
 tags: ["docs"]
 docs: "DOCS-1150"
 ---
+
+{{< custom-styles>}}
+
 ## Template Reference Documentation
 
 The App Delivery Manager (ADM) implementation of [GO Templates](https://pkg.go.dev/text/template) includes a set of utility functions and variables to assist template writers in extending or enhancing the built-in templates that ship with the product. These enhancements are described below.
@@ -34,7 +37,7 @@ The ADM service makes available several variables for use in the templates. Thes
 The template rendering is performed on a per-instance group basis. For example, if a gateway has three instance groups defined, then the rendering of the NGINX configuration will happen three times, once for each instance group.
 {{</note>}}
 
-### **InstanceGroup Template Variables**
+### InstanceGroup Template Variables
 
 {{< note >}}
 These variables are used in the `instance-group` template.
@@ -58,7 +61,7 @@ These variables are used in the `instance-group` template.
 The Instance Group object definitions can be found in the [Common Template Variables and Objects](#instancegroup) section.
 {{</note>}}
 
-#### **Config Variables**
+#### Config Variables
 
 The configuration objects mentioned above all share the same definition as shown below:
 
@@ -72,7 +75,7 @@ The configuration objects mentioned above all share the same definition as shown
 
 {{</bootstrap-table>}}
 
-### **Gateway Template Variables**
+### Gateway Template Variables
 
 {{< note >}}
 These variables are used in the `gateway` template.
@@ -91,7 +94,7 @@ These variables are used in the `gateway` template.
 
 {{</bootstrap-table>}}
 
-#### **Gateway Server Variables**
+#### Gateway Server Variables
 
 Server block variables defined by the gateway (for HTTP server blocks).
 
@@ -108,7 +111,7 @@ Server block variables defined by the gateway (for HTTP server blocks).
 
 {{</bootstrap-table>}}
 
-#### **WebComponentLocation**
+#### WebComponentLocation
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
@@ -120,7 +123,7 @@ Server block variables defined by the gateway (for HTTP server blocks).
 
 {{</bootstrap-table>}}
 
-### **TCPUDP Component Template Variables**
+### TCPUDP Component Template Variables
 
 {{< note >}}
 These variables are used by the `tcpudp-component` templates.
@@ -141,7 +144,7 @@ These variables are used by the `tcpudp-component` templates.
 
 {{</bootstrap-table>}}
 
-#### **TCPUDP Component Server Variables**
+#### TCPUDP Component Server Variables
 
 Server block variables defined by the TCPUDP components (for stream server blocks).
 
@@ -158,7 +161,7 @@ Server block variables defined by the TCPUDP components (for stream server block
 
 {{</bootstrap-table>}}
 
-### **Web Component Template Variables**
+### Web Component Template Variables
 
 {{< note >}}
 These variables are used by the `web-component`, `web-component-locations` templates.
@@ -179,7 +182,7 @@ These variables are used by the `web-component`, `web-component-locations` templ
 
 {{</bootstrap-table>}}
 
-#### **HTTPLocation Variables**
+#### HTTPLocation Variables
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
@@ -192,9 +195,9 @@ These variables are used by the `web-component`, `web-component-locations` templ
 
 {{</bootstrap-table>}}
 
-### **Common Template Variables and Objects**
+### Common Template Variables and Objects
 
-#### **Environment**
+#### Environment
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
@@ -205,7 +208,7 @@ These variables are used by the `web-component`, `web-component-locations` templ
 
 {{</bootstrap-table>}}
 
-#### **App**
+#### App
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
@@ -217,7 +220,7 @@ These variables are used by the `web-component`, `web-component-locations` templ
 
 {{</bootstrap-table>}}
 
-#### **InstanceGroup**
+#### InstanceGroup
 
 The Instance Group object is set to the instance group that is currently being rendered.
 
@@ -232,7 +235,7 @@ The Instance Group object is set to the instance group that is currently being r
 
 {{</bootstrap-table>}}
 
-#### **Site**
+#### Site
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
@@ -243,7 +246,7 @@ The Instance Group object is set to the instance group that is currently being r
 
 {{</bootstrap-table>}}
 
-#### **SSL**
+#### SSL
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
@@ -255,7 +258,7 @@ The Instance Group object is set to the instance group that is currently being r
 
 {{</bootstrap-table>}}
 
-#### **Listens**
+#### Listens
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
@@ -268,7 +271,7 @@ The Instance Group object is set to the instance group that is currently being r
 
 {{</bootstrap-table>}}
 
-#### **Upstreams**
+#### Upstreams
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
@@ -284,7 +287,7 @@ The Instance Group object is set to the instance group that is currently being r
 {{</bootstrap-table>}}
 
 
-#### **Servers**
+#### Servers
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
@@ -303,7 +306,7 @@ The Instance Group object is set to the instance group that is currently being r
 {{</bootstrap-table>}}
 
 
-#### **TLSOptions**
+#### TLSOptions
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
