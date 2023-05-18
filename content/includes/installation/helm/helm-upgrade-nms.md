@@ -7,7 +7,7 @@ Run the following command to upgrade the NGINX Management Suite deployment:
 
 - (Optional) Replace `<nms-chart-version>` with the desired version; see the table below for the available versions. Alternatively, you can omit this flag to install the latest version.
 
-```shell
+```bash
 helm upgrade -n nms --set nms-hybrid.adminPasswordHash=$(openssl passwd -6 'YourPassword123#') nms nginx-stable/nms -f <path-to-your-values.yaml> [--version <nms-chart-version>] --wait
 ```
 
