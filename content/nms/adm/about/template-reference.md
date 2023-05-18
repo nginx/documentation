@@ -2,7 +2,7 @@
 title: Template API Reference
 description: Template reference for the App Delivery Manager Module.
 weight: 400
-toc: false
+toc: true
 draft: false
 tags: ["docs"]
 docs: "DOCS-1150"
@@ -10,9 +10,11 @@ docs: "DOCS-1150"
 
 {{< custom-styles>}}
 
-## Template Reference Documentation
+## Overview
 
 The App Delivery Manager (ADM) implementation of [GO Templates](https://pkg.go.dev/text/template) includes a set of utility functions and variables to assist template writers in extending or enhancing the built-in templates that ship with the product. These enhancements are described below.
+
+---
 
 ## Template Functions
 
@@ -29,6 +31,7 @@ Additional NGINX custom functions are also built into the ADM GO template engine
 * ***IsNGINXIpPort(string) bool*** - returns TRUE if the input string specifies an IPv4 or IPv6 address (with an optional port). This is useful for analyzing workload IPs.
 * ***MD5(string) string*** - generates the md5 hash for a given input string.
 
+---
 ## Template Variables
 
 The ADM service makes available several variables for use in the templates. These variables are set during the rendering of the API request as it is being converted into the NGINX format and can also be used when customizing a template.
