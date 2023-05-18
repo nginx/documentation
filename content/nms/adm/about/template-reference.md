@@ -2,7 +2,7 @@
 title: Template API Reference
 description: Template reference for the App Delivery Manager Module.
 weight: 400
-toc: false
+toc: true
 draft: false
 tags: ["docs"]
 docs: "DOCS-1150"
