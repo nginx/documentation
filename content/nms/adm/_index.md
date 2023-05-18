@@ -1,7 +1,8 @@
 ---
 title: App Delivery Manager
-weight: 650
+weight: 600
 draft: false
-aliases:
-  - /nginx-app-delivery-manager/
+url: /nginx-management-suite/adm/
+cascade:
+    doctypes: ["beta"]
 ---

@@ -7,4 +7,7 @@ linkTitle: NGINX App Protect WAF
 menu: docs
 title: NGINX App Protect WAF
 weight: 100
+url: /nginx-app-protect-waf/
+cascade:
+  logo: "NGINX-App-Protect-WAF-product-icon.svg"
 ---

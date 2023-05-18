@@ -5,4 +5,5 @@ menu:
     parent: NGINX App Protect DoS Documentation.
 title: Releases
 weight: 220
+url: /nginx-app-protect-dos/releases/
 ---

@@ -3,6 +3,14 @@ languageCode = "en-us"
 title = "NGINX Documentation"
 refLinksErrorLevel = "ERROR"
 
+[permalinks]
+  controller = '/nginx-controller/:sections[1:]/:filename'
+  modsec-waf = '/nginx-waf/:sections[1:]/:filename'
+  nap-dos = '/nginx-app-protect-dos/:sections[1:]/:filename'
+  nap-waf = '/nginx-app-protect-waf/:sections[1:]/:filename'
+  nms = '/nginx-management-suite/:sections[1:]/:filename'
+
+
 [caches]
   [caches.modules]
     maxAge = -1
@@ -23,14 +31,13 @@ refLinksErrorLevel = "ERROR"
   author = "NGINX Inc." # add your company name
   github = "nginxinc" # add your github profile name
   twitter = "@nginx" # add your twitter profile
-  #email = ""
   noindex_kinds = [
     "taxonomy",
     "taxonomyTerm"
   ]
   taxonomiesExcludedFromSitemap = ["tags", "categories", "doctypes"]
   
-  #logo = "NGINX-Management-Suite-product-icon.svg"
+  #logo = ""
 
   # Version lists; used by the versions shortcode
   nimvers = [ # list of NIM versions for the versions shortcode
@@ -46,7 +53,7 @@ refLinksErrorLevel = "ERROR"
     "2.6.0",
     "2.7.0",
     "2.8.0",
-    "2.9.0",
+    "2.9.0"
   ]
   acmvers = [ # list of ACM versions for the shortcode
     "1.0.0",

@@ -1,11 +1,13 @@
 ---
-title: Creating custom usecase templates.
+title: Creating Custom Usecase Templates
 weight: 100
 toc: true
 draft: false
 tags: ["docs"]
 docs: "DOCS-000"
 ---
+
+{{< custom-styles >}}
 
 ## Usecase-1: Add load_module directive.
 

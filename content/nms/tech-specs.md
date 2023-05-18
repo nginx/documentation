@@ -5,7 +5,7 @@ draft: false
 title: Technical Specifications
 description: This document outlines the requirements for the NGINX Management Suite and NGINX Agent, such as compatible platforms, hardware specifications, sizing advice, compatible web browsers, and more.
 toc: true
-weight: 100
+weight: 20
 docs: "DOCS-805"
 aliases:
 - /nginx-instance-manager/getting-started/technical-specifications/
@@ -102,6 +102,8 @@ The following sizing recommendations are the minimum sizing guidelines for Insta
 ---
 
 ## App Delivery Manager
+
+{{< beta-badge >}}
 
 ### Dependencies with Instance Manager
 

@@ -40,3 +40,4 @@ docs:
 
 deploy-preview: hugo-mod
 	hugo --gc -b ${NETLIFY_DEPLOY_URL}
+	cp _redirects_dev public/_redirects

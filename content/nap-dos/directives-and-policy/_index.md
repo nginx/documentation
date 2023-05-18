@@ -6,4 +6,5 @@ menu:
     parent: NGINX App Protect DoS Documentation.
 title: Directives and Policy
 weight: 120
+url: /nginx-app-protect-dos/directives-and-policy/
 ---
