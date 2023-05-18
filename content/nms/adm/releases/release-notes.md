@@ -50,6 +50,17 @@ Add the NGINX Management Suite and App Delivery Manager repositories to your sys
 
 After completing the steps in the the [prerequisites]({{< relref "/nms/installation/vm-bare-metal/prerequisites.md" >}}) section, follow the steps in the [Install or Upgrade App Delivery Manager]({{< relref "/nms/installation/vm-bare-metal/install-adm.md" >}}) guide.
 
+### Licensing
+
+{{< important >}}
+You must not use the trial license file available from MyF5. Please use the trial file provided by your sales team instead. 
+{{< /important >}}
+### Limitations
+
+Trials cannot be "stacked"; for example, you cannot use a trial for Instance Manager and then add a trial for App Delivery Manager
+
+After a trial expires, trials cannot be reused on the same instance
+
 
 ### What's New
 
