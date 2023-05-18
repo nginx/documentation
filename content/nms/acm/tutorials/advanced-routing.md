@@ -75,10 +75,6 @@ API Connectivity Manager comes pre-configured with an "ACM API Owner" role suita
 
 - **API Owner**: The individuals or teams who are responsible for designing, creating, and maintaining APIs.
 
-### ACM API Owner {#acm-api-owner}
-
-{{< include "nms/acm/rbac/api-owner-role.md" >}}
-
 ---
 
 ## Example: Create An Advanced Route
