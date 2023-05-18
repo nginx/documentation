@@ -96,12 +96,12 @@ We recommend upgrading NGINX Management Suite in a test environment before upgra
 ### API Connectivity Manager
 
 - [Upgrade API Connectivity Manager on a virtual machine or bare metal]({{< relref "/nms/installation/vm-bare-metal/install-acm.md#upgrade-acm" >}})
-- [Upgrade API Connectivity Manager from a Helm Chart]({{< relref "/nms/installation/kubernetes/deploy-api-connectivity-manager.md#helm-upgrade-acm" >}})
+- [Upgrade API Connectivity Manager from a Helm Chart]({{< relref "/nms/installation/kubernetes/deploy-api-connectivity-manager.md#upgrade-acm-helm" >}})
 
 ### App Delivery Manager
 
 - [Upgrade App Delivery Manager on a virtual machine or bare metal]({{< relref "/nms/installation/vm-bare-metal/install-adm.md#upgrade-adm" >}})
-- [Upgrade App Delivery Manager from a Helm Chart]({{< relref "/nms/installation/kubernetes/deploy-app-delivery-manager.md#helm-upgrade-adm" >}})
+- [Upgrade App Delivery Manager from a Helm Chart]({{< relref "/nms/installation/kubernetes/deploy-app-delivery-manager.md#upgrade-adm-helm" >}})
 
 ### Security Monitoring
 

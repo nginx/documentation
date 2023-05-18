@@ -173,23 +173,23 @@ To enable the API Connectivity Manager Module, take the following steps:
 
 ---
 
-## Upgrade NGINX Management Suite Deployment {#helm-upgrade-acm}
+## Upgrade NGINX Management Suite Deployment {#upgrade-nms}
 
 {{<note>}}To complete the steps in this section, you need to have [OpenSSL 1.1.1](https://www.openssl.org/source/) or later installed.{{</note>}}
 
 {{< include "installation/helm/helm-upgrade-nms.md" >}}
 
-### Upgrading Existing API Connectivity Manager Deployment {#upgrade-acm-helm}
+### Upgrade Existing API Connectivity Manager Deployment {#upgrade-acm-helm}
 
 If you've already deployed API Connectivity Manager and would like to upgrade to a newer version, take the following steps:
 
 1. Repeat the steps above to:
 
-   - [Download Docker Image](#download-docker-image)
+   - [Download Newer Docker Image](#download-docker-image)
    - [Load Docker Image](#load-docker-image)
    - [Push Image to Private Docker Registry](#push-docker-image)
 
-2. Run the `helm upgrade` command above to [upgrade the NGINX Management Suite deployment](#helm-upgrade-acm).
+2. Run the `helm upgrade` command above to [upgrade the NGINX Management Suite deployment](#upgrade-nms).
 
 ---
 
