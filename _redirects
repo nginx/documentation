@@ -10,7 +10,6 @@
 /nginxaas/azure/quickstart/overview/ /nginxaas/azure/overview/overview/ 301
 /nginxaas/azure/management/nginx-configuration/ /nginxaas/azure/getting-started/configuration/nginx-configuration/ 301
 /nginxaas/azure/management/ssl-tls-certificates/ /nginxaas/azure/getting-started/configuration/ssl-tls-certificates/ 301
-/nginx-controller/api/reference/ctlr-v1 /nginx-controller/api/reference/
 /nginx-instance-manager/* /nginx-management-suite/:splat 301!
 /nginx-management-suite/acm/how-to/manage-api-infrastructure/ /nginx-management-suite/acm/how-to/infrastructure/manage-api-infrastructure/
 /nginx-management-suite/acm/how-to/publish-api/ /nginx-management-suite/acm/how-to/services/publish-api/
