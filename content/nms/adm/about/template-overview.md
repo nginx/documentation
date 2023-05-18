@@ -8,6 +8,8 @@ tags: ["docs"]
 docs: "DOCS-1137"
 ---
 
+{{< custom-styles>}}
+
 ## Overview
 
 The App Delivery Manager (ADM) module uses templates for each of the main NGINX blocks to control the exact format of the generated NGINX configuration. ADM uses a set of default built-in templates whenever a new environment is created. These templates provide basic features needed by all app developers when deploying their apps.
