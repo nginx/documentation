@@ -410,6 +410,8 @@ sudo dpkg -i ./*.deb
 
 ## Install or Upgrade App Delivery Manager {#install-adm-offline}
 
+{{< beta-badge >}}
+
 ### Dependencies with Instance Manager {#adm-nim-dependencies}
 
 {{< include "tech-specs/adm-nim-dependencies.md" >}}
