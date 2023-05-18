@@ -64,7 +64,7 @@ When the NGINX Agent and NGINX Plus are installed in a container, and the metric
 
 ---
 
-###  {{% icon-bug %}} API Documention is not displaying some description fields for schemas containing references to other objects. {#42146}
+###  {{% icon-bug %}} API Documentation is not displaying some description fields for schemas containing references to other objects. {#42146}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID               | Status          |
