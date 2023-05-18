@@ -1,7 +1,7 @@
 ---
 title: Kubernetes
 weight: 200
-url: /nginx-management-suite/admin-guides/installation/kubernetes/
+url: /nginx-management-suite/installation/kubernetes/
 ---
 
 
