@@ -26,7 +26,7 @@
 /nginx-amplify/* https://amplify-public-docs.netlify.app/nginx-amplify/:splat 200!
 # /nginx-app-protect-dos/* https://nap-dos-public-docs.netlify.app/nginx-app-protect-dos/:splat 200!
 # /nginx-app-protect-waf/* https://nap-public-docs.netlify.app/nginx-app-protect-waf/:splat 200!
-/nginx-controller/* https://ctlr-public-docs.netlify.app/nginx-controller/:splat 200!
+# /nginx-controller/* https://ctlr-public-docs.netlify.app/nginx-controller/:splat 200!
 /nginx-ingress-controller/* https://nginx-kubernetes-ingress.netlify.app/nginx-ingress-controller/:splat 200!
 # /nginx-management-suite/* https://nms-public-docs.netlify.app/nginx-management-suite/:splat 200!
 /nginx-service-mesh/*   https://mesh-public-docs.netlify.app/nginx-service-mesh/:splat 200!
