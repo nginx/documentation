@@ -1,5 +1,5 @@
 ---
-title: Creating custom usecase templates.
+title: Creating Custom Usecase Templates
 weight: 100
 toc: true
 draft: false

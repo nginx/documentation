@@ -17,7 +17,7 @@ docs: "DOCS-1210"
 # These are pre-populated with all available terms for your convenience.
 # Remove all terms that do not apply.
 categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["tutorial"]
+doctypes: ["beta", "tutorial"]
 journeys: ["researching", "getting started", "using", "renewing", "self service"]
 personas: ["devops", "netops", "secops", "support"]
 versions: []

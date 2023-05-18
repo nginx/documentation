@@ -26,6 +26,8 @@ authors: []
 
 {{< custom-styles >}}
 
+{{< beta-badge >}}
+
 ## Payload Size Exceeds Internal Data Plane Manager (dpm) Max Message Size
 
 For efficiency reasons, NGINX Management Suite uses a 8 MB buffer for inter-service message communication. However, for very large App Delivery Manager deployments, this buffer may not be large enough to accommodate the NGINX configuration for a particular instance group. If this happens, configuration updates will fail with an error message indicating the NATS max buffer size is too small.

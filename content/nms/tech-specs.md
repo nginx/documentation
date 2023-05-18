@@ -103,6 +103,8 @@ The following sizing recommendations are the minimum sizing guidelines for Insta
 
 ## App Delivery Manager
 
+{{< beta-badge >}}
+
 ### Dependencies with Instance Manager
 
 {{< include "tech-specs/adm-nim-dependencies.md" >}}

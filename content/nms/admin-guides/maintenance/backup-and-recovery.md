@@ -148,9 +148,12 @@ By default, the data for modules isn't included in backups for NGINX Management 
 
     </details>
 
-
+    <br>
 
     To back up and restore data for **App Delivery Manager**, uncomment the following lines, like so:
+
+    {{< beta-badge >}}
+    
     <details open>
     <summary>backup.sh: enable backups for App Delivery Manager</summary>
 
