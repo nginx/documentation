@@ -57,7 +57,7 @@ You must not use the trial license file available from MyF5. Please use the tria
 {{< /important >}}
 ### Limitations
 
-Trials cannot be "stacked"; for example, you cannot use a trial for Instance Manager and then add a trial for App Delivery Manager
+Trials cannot be combined; for example, you cannot use a trial for Instance Manager and then add a trial for App Delivery Manager
 
 After a trial expires, trials cannot be reused on the same instance
 
