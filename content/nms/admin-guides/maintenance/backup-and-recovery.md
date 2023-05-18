@@ -20,15 +20,16 @@ docs: "DOCS-1098"
 
 ## Overview
 
-- NGINX Management Suite includes `backup.sh` and `restore.sh` scripts in `/etc/nms/scripts`, which you can run to back up and restore the configuration files, secrets, and databases used by the NGINX Management Suite platform.
+- NGINX Management Suite includes several scripts, which you can run to back up and restore the configuration files, secrets, and databases used by the NGINX Management Suite platform.
 
-- Additionally, to back up and restore data for specific modules, such as API Connectivity Manager, you can edit the `backup.sh` and `restore.sh` scripts and uncomment the commands in the relevant sections.
+- Additionally, to back up and restore data for specific modules, such as API Connectivity Manager, you can edit the provided scripts and uncomment the commands in the relevant sections.
 
 {{<important>}}The backup and recovery scripts are provided for reference and may need to be adapted to suit the requirements of your deployment.{{</important>}}
 
 ---
 
-## Before You Begin
+## NGINX Management Suite and modules deployed in a Virtual Machine or Bare Metal
+### Before You Begin
 
 To complete the instructions in this guide, you need the following:
 
@@ -58,7 +59,7 @@ To complete the instructions in this guide, you need the following:
     sudo systemctl start nms
     ```
 
-### Make Scripts Executable
+**Make Scripts Executable**
 
 To run the backup and restore scripts, you need to set their permissions to make them executable.
 
@@ -82,7 +83,7 @@ To run the backup and restore scripts, you need to set their permissions to make
 
 ---
 
-## Back Up and Restore NGINX Management Suite
+### Back Up and Restore NGINX Management Suite
 
 To back up the NGINX Management Suite configuration files, secrets, and databases:
 
@@ -108,7 +109,7 @@ To restore NGINX Management Suite:
 
 ---
 
-## Back Up and Restore Individual Modules
+### Back Up and Restore Individual Modules
 
 By default, the data for modules isn't included in backups for NGINX Management Suite. If you'd like to back up the module data, follow these steps:
 
@@ -192,19 +193,47 @@ By default, the data for modules isn't included in backups for NGINX Management 
 
 ---
 
-## Back Up and Restore NGINX Management Suite and modules deployed in a Kubernetes Cluster
+## NGINX Management Suite and modules deployed in a Kubernetes Cluster
 
 ### Prerequisites
 
+To complete the instructions in this guide, you need the following:
+
+- An installed version of NGINX Management Suite and Instance Manager
+- (optional) An installed version of API Connectivity Manager
+- (optional) An installed version of App Delivery Manager
+- An installed version of SQLite.
+
+    To install SQLite, run the following command(s):
+
+    - CentOS, RHEL, RPM-Based distributions:
+
+        ```bash
+        sudo yum install -y sqlite
+        ```
+
+    - Debian, Ubuntu, Deb-Based distributions:
+
+        ```bash
+        sudo apt-get update
+        sudo apt-get install -y sqlite3
+        ```
+
+- The NGINX Management Suite services must be running:
+
+    ```bash
+    sudo systemctl start nms
+    ```
+
 **Root Access**
 
-The Kubernetes backup and restore scripts for NGINX Management Suite are executed using `sudo` and use the Kubernetes command `kubectl` internally to access the Kubernetes API. It is necessary to ensure the the target Kubernetes cluster is accessible to the root user. 
+The Kubernetes backup and restore scripts for NGINX Management Suite are executed using `sudo` and use the Kubernetes command `kubectl` internally to access the Kubernetes API. It is necessary to ensure the target Kubernetes cluster is accessible to the root user. 
 
 To confirm that the root user has access to the Kubernetes API, execute the following command:
    ```bash
    sudo kubectl -n nms get pods
    ```
-If the result is error-free and the output is the list of currently running pods the root user has the required access.
+If the result is error-free and the output is the list of currently running pods/nodes the root user has the required access.
 
 If the root user does not have the required access, you will need to configure the root user to have Kubernetes API access, or provide the script with the location of the Kubernetes configuration via the environment variable `KUBECONFIG`. For example:
    
@@ -219,7 +248,7 @@ If the root user does not have the required access, you will need to configure t
       sudo KUBECONFIG=/etc/kubernetes/admin.conf ./k8s-restore.sh -i <path to backup file> -r
       ```
    
-In the examples above, `/etc/kubernetes/admin.conf` is the default configuration location of a Kubernetes cluster. If the configuration location is different for the target Kubernetes cluster, update the commands above instead as required.
+In the examples above, `/etc/kubernetes/admin.conf` is the default configuration location of a Kubernetes cluster. If the configuration location is different for the target Kubernetes cluster, update the commands above accordingly.
 
 {{< beta-badge >}}
 
