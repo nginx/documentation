@@ -108,4 +108,4 @@ This release introduces the following features:
 
 ### Known Issues
 
-- You can find information about known issues with API Connectivity Manager in the [Known Issues]({{< relref "/nms/adm/releases/known-issues.md" >}}) topic.
+- You can find information about known issues with App Delivery Manager in the [Known Issues]({{< relref "/nms/adm/releases/known-issues.md" >}}) topic.
