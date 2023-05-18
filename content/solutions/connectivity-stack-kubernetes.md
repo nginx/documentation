@@ -42,7 +42,7 @@ NGINX App Protect WAF is a strong, lightweight WAF that protects against the OWA
 
 - Follow the instructions to [install NGINX Ingress Controller with NGINX App Protect WAF](https://docs.nginx.com/nginx-ingress-controller/app-protect-waf/installation/)
 
-### Install Install NGINX Ingress Controller with NGINX App Protect DoS
+### Install NGINX Ingress Controller with NGINX App Protect DoS
 NGINX App Protect DoS provides behavioral DoS detection and mitigation with consistent and adaptive protection across clouds and architectures.
 
 - Follow the instructions to [install NGINX Ingress Controller with NGINX App Protect DoS](https://docs.nginx.com/nginx-ingress-controller/app-protect-dos/installation/)
