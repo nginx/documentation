@@ -208,8 +208,16 @@ If the result is error-free and the output is the list of currently running pods
 
 If the root user does not have the required access, you will need to configure the root user to have Kubernetes API access, or provide the script with the location of the Kubernetes configuration via the environment variable `KUBECONFIG`. For example:
    
-   - To back up NGINX Management Suite: `sudo KUBECONFIG=/etc/kubernetes/admin.conf ./k8s-backup.sh`
-   - To restore NGINX Management Suite: `sudo KUBECONFIG=/etc/kubernetes/admin.conf ./k8s-restore.sh -i <path to backup file> -r` 
+   - To back up NGINX Management Suite:
+      
+      ```bash
+      sudo KUBECONFIG=/etc/kubernetes/admin.conf ./k8s-backup.sh
+      ```
+   
+   - To restore NGINX Management Suite: 
+      ```bash
+      sudo KUBECONFIG=/etc/kubernetes/admin.conf ./k8s-restore.sh -i <path to backup file> -r
+      ```
    
 In the examples above, `/etc/kubernetes/admin.conf` is the default configuration location of a Kubernetes cluster. If the configuration location is different for the target Kubernetes cluster, update the commands above instead as required.
 
