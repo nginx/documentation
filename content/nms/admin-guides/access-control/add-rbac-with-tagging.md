@@ -2,7 +2,7 @@
 title: "(Deprecated) Set Up RBAC with Tagging"
 description: "Deprecated in Instance Manager 2.1.0. This topic explains how to set up role-based access control with tags in Instance Manager."
 date: 2021-12-21T12:00:00-07:00
-draft: false
+draft: true
 weight: 1000
 doctypes: task
 toc: true
