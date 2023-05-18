@@ -112,6 +112,8 @@ To uninstall NGINX Management suite and all of its modules, complete the followi
 
 ## App Delivery Manager {#uninstall-app-delivery-manager}
 
+{{< beta-badge >}}
+
 {{<tabs name="uninstall_app_delivery_manager">}}
 {{%tab name="CentOS, RHEL, and RPM-Based"%}}
 
