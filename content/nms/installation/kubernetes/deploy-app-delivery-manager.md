@@ -45,7 +45,7 @@ Refer to the following table to see the module compatibility for each NGINX Mana
 
 ---
 
-## Download Docker Image
+## Download Docker Image {#download-docker-image}
 
 Follow these steps to download the Docker image for App Delivery Manager:
 
@@ -63,7 +63,7 @@ Follow these steps to download the Docker image for App Delivery Manager:
 
 ---
 
-## Load Docker Image {#load-adm-docker-image}
+## Load Docker Image {#load-docker-image}
 
 {{< note >}} To complete the commands in this section, you need to have [Docker 20.10 or later](https://docs.docker.com/get-docker/) installed. {{< /note >}}
 
@@ -100,7 +100,7 @@ Follow these steps to download the Docker image for App Delivery Manager:
 
 ---
 
-## Push Image to Private Registry {#push-image-private-docker-repo}
+## Push Image to Private Registry {#push-docker-image}
 
 {{<note>}}To complete the steps in this section, you need an [externally-accessible private Docker registry](https://docs.docker.com/registry/deploying/) to push the container images to.{{</note>}}
 
@@ -172,14 +172,28 @@ To enable the App Delivery Manager Module, take the following steps:
 
 ---
 
-## Upgrade NGINX Management Suite Deployment
+## Upgrade NGINX Management Suite Deployment {#helm-upgrade-adm}
 
 {{<note>}}To complete the steps in this section, you need to have [OpenSSL 1.1.1](https://www.openssl.org/source/) or later installed.{{</note>}}
 
 {{< include "installation/helm/helm-upgrade-nms.md" >}}
 
+### Upgrading Existing App Delivery Manager Deployment {#upgrade-adm-helm}
+
+
+If you've already deployed API Connectivity Manager and would like to upgrade to a newer version, take the following steps:
+
+1. Repeat the steps above to:
+
+   - [Download Docker Image](#download-docker-image)
+   - [Load Docker Image](#load-docker-image)
+   - [Push Image to Private Docker Registry](#push-docker-image)
+
+2. Run the `helm upgrade` command above to [upgrade the NGINX Management Suite deployment](#helm-upgrade-adm).
+
 ---
-## Configurable Helm Settings
+
+## Configurable Helm Settings {#configure-chart}
 
 {{< include "installation/helm/adm/configuration-options.md" >}}
 
