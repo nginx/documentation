@@ -33,6 +33,8 @@ When multiple modules are deployed on the same NGINX Management Suite instance, 
 
 Use [Role-based Account Control]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}) to prevent sharing of instance groups between App Delivery Manager and API Connectivity Manager.
 
+---
+
 ###  {{% icon-bug %}} System Metrics not available without elevated access rights {#40945}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
@@ -44,6 +46,8 @@ Use [Role-based Account Control]({{< relref "/nms/admin-guides/access-control/se
 #### Description
 
 System metrics, as seen in the Overview page, are not displayed for users with roles without elevated access rights, e.g., a Read-only role with no rights to perform other operations like Create, Update, or Delete.
+
+---
 
 ###  {{% icon-bug %}} Config push failure when Agent and NGINX Plus with the metrics module are deployed in a container {#41868}
 
@@ -57,6 +61,8 @@ System metrics, as seen in the Overview page, are not displayed for users with r
 
 When the NGINX Agent and NGINX Plus are installed in a container, and the metrics module is also installed on that NGINX Plus instance, any config push to an instance group with that instance will fail.
 
+---
+
 ###  {{% icon-bug %}} API Documention is not displaying some description fields for schemas containing references to other objects. {#42146}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
@@ -68,6 +74,8 @@ When the NGINX Agent and NGINX Plus are installed in a container, and the metric
 #### Description
 
 API Documentation for Sites, Web Components, and TcpUdp Components displays the `environmentRef` parameter as part of the response in metadata. `environmentRef` is not a part of the response of those endpoints.
+
+---
 
 ###  {{% icon-bug %}} Certificate file is not updated automatically under certain conditions {#42425}
 
@@ -81,6 +89,8 @@ API Documentation for Sites, Web Components, and TcpUdp Components displays the 
 
 Certificate file is not updated automatically when a config change is pushed to an offline instance after it comes back online.
 
+---
+
 ###  {{% icon-bug %}} Certificate updates allow for multiples certs to share the same serial number {#42429}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
@@ -92,6 +102,8 @@ Certificate file is not updated automatically when a config change is pushed to 
 #### Description
 
 It is possible to update an existing certificate's serial number to one already in use. This incorrectly changes the cert (matching the serial number) details to a new name.
+
+---
 
 ###  {{% icon-bug %}} Duplicate Certificate and Key published for managed certificates {#42517}
 
@@ -108,6 +120,8 @@ When deploying a configuration with a certificate and key handled by NGINX Manag
 #### Workaround
 
 Manually delete the certificate and key from the /etc/nginx/ path.
+
+---
 
 ###  {{% icon-bug %}} Cannot remove ADM object if deletion results in an error {#42520}
 

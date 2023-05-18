@@ -25,27 +25,25 @@ This release introduces the following features:
 
 - Provides an easy-to-use graphical user interface for Application Delivery.
 
-- Introduces App Delivery Manager abstractions for the configuration and use of NGINX Plus directives:
+- Introduces [App Delivery Manager abstractions]({{< relref "/nms/adm/about/api-overview.md" >}}) for the configuration and use of NGINX Plus directives:
 
-    - Create and manage production and non-production environments for classes of applications, business units, and development teams. **Environments** are logical containers used to group Applications, and Gateways into a domain associated with common goals, resource needs, usage constraints, and access controls. Environments typically map closely to organizational boundaries. “Dev” and “prod”.
-    - Create and manage **gateways**, which correspond to server blocks in nginx.conf file, which represents the initial network entry point of application and/or API traffic into an NGINX instance in the traffic data path. You can share the same gateway for both application and API traffic. 
-    - Create and manage **apps** that are logical containers for components.
-    - Create and manage **components** that support HTTP and TCP/UDP protocols. Web components correspond to location blocks in nginx.conf. Web i.e. HTTP components allow users to define routing behavior for the URIs under the Apps. Each component can define URIs and specify which FQDNs these need to attach to via Gateway references. Components also allow specifying the Backend and can control the configuration for load balancing traffic to the backend servers. TcpUdp components define stream server blocks. Similar to web components can attach to one or more Gateways.
-    - Create and manage **sites** that allow the grouping of instance-groups by a physical location. Sites provide the ability to load balance to backend servers that are geographically close to the data plane.
+    - Create and manage production and non-production environments for classes of applications, business units, and development teams. [**Environments**]({{< relref "/nms/adm/about/api-overview.md#environments" >}}) are logical containers used to group Applications, and Gateways into a domain associated with common goals, resource needs, usage constraints, and access controls. Environments typically map closely to organizational boundaries. “Dev” and “prod”.
+    - Create and manage [**gateways**]({{< relref "/nms/adm/about/api-overview.md#gateways" >}}), which correspond to server blocks in nginx.conf file, which represents the initial network entry point of application and/or API traffic into an NGINX instance in the traffic data path. You can share the same gateway for both application and API traffic. 
+    - Create and manage [**apps**]({{< relref "/nms/adm/about/api-overview.md#apps" >}}) that are logical containers for components.
+    - Create and manage [**components**]({{< relref "/nms/adm/about/api-overview.md#components" >}}) that support HTTP and TCP/UDP protocols. Web components correspond to location blocks in nginx.conf. Web i.e. HTTP components allow users to define routing behavior for the URIs under the Apps. Each component can define URIs and specify which FQDNs these need to attach to via Gateway references. Components also allow specifying the Backend and can control the configuration for load balancing traffic to the backend servers. TcpUdp components define stream server blocks. Similar to web components can attach to one or more Gateways.
+    - Create and manage [**sites**]({{< relref "/nms/adm/about/api-overview.md#sites" >}}) that allow the grouping of instance-groups by a physical location. Sites provide the ability to load balance to backend servers that are geographically close to the data plane.
 
 - Control the lifecycle of applications across groups of NGINX Plus instances.
 
-- Apply role-based access controls across all App Delivery Manager features to enable users and teams to self-service app delivery needs.
+- [Apply role-based access controls]({{< relref "/nms/adm/about/rbac-overview.md" >}}) across all App Delivery Manager features to enable users and teams to self-service app delivery needs.
 
 - Monitor HTTP system and traffic metrics at the instance level and view aggregated and near-real time insights into system and app traffic:
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| System Metrics                  | App Metrics                                         | HTTP                                            |
-| ------------------------------- | --------------------------------------------------- | ----------------------------------------------- |
-| Average CPU<br> Average Memory  | Network <br> - Bytes In <br> - Bytes Out            | Total Requests<br> HTTP 5xx Errors<br> HTTP 4xx Errors |
-{{</bootstrap-table>}}
-
-- Deploy app services for load balancing HTTP and TCP/UDP applications and select appropriate method:
+   
+   - System Metrics: Average CPU and Average Memory
+   - App Metrics: Network Bytes In and Network Bytes Out
+   - HTTP Metrics: Total Requests, HTTP 5xx Errors, and HTTP 4xx Errors
+   
+- Deploy app services for [load balancing HTTP and TCP/UDP applications]({{< relref "/nms/adm/tutorials/create-http-app.md" >}}) and select appropriate method:
 
     - Round Robin
     - Least Connections
@@ -54,7 +52,7 @@ This release introduces the following features:
     - Least Time
     - Random
 
-- Unlock the full capability of NGINX using templates. The following template use cases come prebuilt:
+- Unlock the full capability of NGINX [using templates]({{< relref "/nms/adm/about/template-overview.md" >}}). The following template use cases come prebuilt:
 
     - Enabling cache by configuring proxy_cache_path, split_clients, and map  to improve app performance
     - Add DNS for service discovery
@@ -63,7 +61,7 @@ This release introduces the following features:
     - Modifying headers and configuring rewrites and redirects
     - Configure advanced TLS settings to enable ciphers and protocols for requests to the proxied server
 
-- Ability to create custom templates to use any NGINX Plus directive.
+- Ability to [create custom templates]({{< relref "/nms/adm/tutorials/usecase-templates.md" >}}) to use any NGINX Plus directive.
 
 ### Known Issues
 
