@@ -19,6 +19,16 @@
 /nginx-management-suite/acm/how-to/policies/configure-proxy-buffers/ /nginx-management-suite/acm/how-to/policies/http-backend-configuration/#buffers
 /nginx-management-suite/acm/how-to/publish-developer-portal/ /nginx-management-suite/acm/how-to/devportals/publish-to-devportal/
 /nginx-management-suite/acm/how-to/enable-sso-devportal/ /nginx-management-suite/acm/how-to/infrastructure/enable-sso-devportal/
+/nginx-management-suite/admin-guides/installation/on-prem/install-guide/ /nginx-management-suite/installation/vm-bare-metal/ 301
+/nginx-management-suite//admin-guides/installation/on-prem/offline-install-guide/ /nginx-management-suite/installation/vm-bare-metal/offline-install-guide/ 301
+/nginx-management-suite/admin-guides/installation/kubernetes/enable-modules-for-existing-deployments/ /nginx-management-suite/installation/kubernetes/ 301
+/nginx-management-suite/admin-guides/installation/kubernetes/nms-helm/ /nginx-management-suite/installation/kubernetes/ 301
+/nginx-management-suite/admin-guides/installation/kubernetes/nms-helm-config-options/ /nginx-management-suite/installation/kubernetes/nms-helm-config-options/ 301
+/nginx-management-suite/admin-guides/getting-started/configure-devportal-helm-options/ /nginx-management-suite/acm/how-to/devportals/installation/configure-devportal-helm-options.md
+/nginx-management-suite/admin-guides/getting-started/selinux-guide/ /nginx-management-suite/admin-guides/configuration/configure-selinux/ 301
+/nginx-management-suite/admin-guides/getting-started/add-license/ /nginx-management-suite/installation/add-license/ 301
+/nginx-management-suite/admin-guides/installation/kubernetes/* nginx-management-suite/installation/kubernetes/:splat 301
+/nginx-management-suite/admin-guides/getting-started/* /nginx-management-suite/admin-guides/configuration/:splat 301
 
 # Redirects to the backend netlify sites for each product
 /nginxaas/azure/* https://staging--n4a-public-docs.netlify.app/nginxaas/azure/:splat 200!
