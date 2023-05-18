@@ -1,4 +1,4 @@
-The following sizing guidelines are for Instance Manager deployments with data plane instances that have standard configurations; that is, up to **40** upstream servers with associated location and server blocks.
+The following sizing guidelines are for Instance Manager deployments with data plane instances that have standard configurations; that is, up to **40** upstream servers with associated location and server blocks and up to 350 associated certificates.
 
 We recommend using solid-state drives (SSDs) for better storage performance.
 

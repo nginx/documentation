@@ -13,7 +13,7 @@ categories: ["known issues"]
 
 {{<rn-styles>}}
 
-{{< tip >}}We recommend you [upgrade to the latest version of Instance Manager](https://docs.nginx.com/nginx-management-suite/admin-guides/installation/upgrade-guide/) to take advantage of new features, improvements, and bug fixes.{{< /tip >}}
+{{< tip >}}We recommend you [upgrade to the latest version of Instance Manager](https://docs.nginx.com/nginx-management-suite/installation/upgrade-guide/) to take advantage of new features, improvements, and bug fixes.{{< /tip >}}
 
 ---
 
