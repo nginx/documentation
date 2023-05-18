@@ -32,8 +32,8 @@ authors: []
 
 To install NGINX Management Suite, you need the following:
 
-- A trial or paid subscription for NGINX Management Suite. Sign up for [NGINX Management Suite at MyF5](https://account.f5.com/myf5)
-- A Linux instance for hosting the NGINX Management Suite platform and modules
+- A trial or paid subscription for NGINX Management Suite. [Sign up for NGINX Management Suite at MyF5](https://account.f5.com/myf5).
+- A Linux instance to host the NGINX Management Suite platform and modules
 - [NGINX Plus or NGINX OSS](#install-nginx) installed on the instance hosting NGINX Management Suite
 
 Allow external systems access by opening network firewalls. NGINX Management Suite uses port `443` for both gRPC and API/web interfaces.
