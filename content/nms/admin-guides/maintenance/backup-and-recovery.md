@@ -196,6 +196,8 @@ By default, the data for modules isn't included in backups for NGINX Management 
 
 ### Prerequisites
 
+**Root access**
+
 The Kubernetes backup and restore scripts for NGINX Management Suite are executed using `sudo` and use the Kubernetes command `kubectl` internally to access the Kubernetes API. It is necessary to ensure the the target Kubernetes cluster is accessible to the root user. 
 
 To confirm that the root user has access to the Kubernetes API, execute the following command:
@@ -212,6 +214,8 @@ If the root user does not have the required access, you will need to configure t
 In the examples above, `/etc/kubernetes/admin.conf` is the default configuration location of a Kubernetes cluster. If the configuration location is different for the target Kubernetes cluster, update the commands above instead as required.
 
 {{< beta-badge >}}
+
+**Utility pod**
 
 To back up and restore NGINX Management Suite in a Kubernetes cluster, you need to install the `utility` pod in your Kubernetes cluster. For each module you want to back up and restore, you need to configure the `utility` pod accordingly:
 
