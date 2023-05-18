@@ -59,7 +59,7 @@ You must not use the trial license file available from MyF5. Please use the tria
 
 Trials cannot be combined; for example, you cannot use a trial for Instance Manager and then add a trial for App Delivery Manager
 
-After a trial expires, trials cannot be reused on the same instance
+After a trial expires, trials cannot be reused on the same instance.
 
 
 ### What's New
