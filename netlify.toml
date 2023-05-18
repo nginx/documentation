@@ -2,18 +2,11 @@
   publish = "public"
 
 [context.production]
-  # keep while docs-dev is the production site
-  # this will change to make all when we go live on production site 
+  # The production command runs the build.sh script
+  # This ensures the build uses the correct baseURL
+  # for the site being built
   command = "./build.sh"  
   publish = "public"
-  
-#[context.staging]
-#  command = "make all-staging"
-#  publish = "public"
-
-#[context.dev]
-#  command = "make all-dev"
-#  publish = "public"
 
 [context.deploy-preview]
   command = "make deploy-preview"
@@ -22,37 +15,6 @@
 [context.branch-deploy]
   command = "make deploy-preview"
   publish = "public"
-
-# Product path rewrites
-#[[redirects]]
-#  from = "/nginx-app-protect-dos/*"
-#  to = "/nap-dos/:splat"
-#  force = true
-#  status = 200
-
-#[[redirects]]
-#  from = "/nginx-app-protect-waf/*"
-#  to = "/nap-waf/:splat" 
-#  force = true
-#  status = 200
-
-#[[redirects]]
-#  from = "/nginx-controller/*"
-#  to = "/controller/:splat"
-#  force = true
-#  status = 200
-
-#[[redirects]]
-#  from = "/nginx-management-suite/*"
-#  to = "/nms/:splat"
-#  force = true
-#  status = 200
-
-#[[redirects]]
-#  from = "/nginx-waf/*"
-#  to = "/modsec-waf/:splat"
-#  force = true
-#  status = 200
 
 # Keep the 404 redirect defined here
 # Netlify processes the _redirects file first
