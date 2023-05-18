@@ -80,13 +80,13 @@ This release introduces the following features:
 
 - [Apply role-based access controls]({{< relref "/nms/adm/about/rbac-overview.md" >}}) across all App Delivery Manager features to enable users and teams to self-service app delivery needs.
 
-- Monitor HTTP system and traffic metrics at the instance level and view aggregated and near-real time insights into system and app traffic:
+- Monitor HTTP system and traffic metrics at the instance level and view aggregated and near-real-time insights into system and app traffic:
    
    - System Metrics: Average CPU and Average Memory
    - App Metrics: Network Bytes In and Network Bytes Out
    - HTTP Metrics: Total Requests, HTTP 5xx Errors, and HTTP 4xx Errors
    
-- Deploy app services for [load balancing HTTP and TCP/UDP applications]({{< relref "/nms/adm/tutorials/create-http-app.md" >}}) and select appropriate method:
+- Deploy app services for [load balancing HTTP and TCP/UDP applications]({{< relref "/nms/adm/tutorials/create-http-app.md" >}}) and select the appropriate method:
 
     - Round Robin
     - Least Connections
