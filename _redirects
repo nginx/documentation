@@ -22,7 +22,6 @@
 /nginx-management-suite/admin-guides/installation/on-prem/offline-install-guide/ /nginx-management-suite/installation/vm-bare-metal/offline-install-guide/ 301
 /nginx-management-suite/admin-guides/installation/kubernetes/enable-modules-for-existing-deployments/ /nginx-management-suite/installation/kubernetes/ 301
 /nginx-management-suite/admin-guides/installation/kubernetes/nms-helm/ /nginx-management-suite/installation/kubernetes/ 301
-/nginx-management-suite/admin-guides/installation/kubernetes/nms-helm-config-options/ /nginx-management-suite/installation/kubernetes/nms-helm-config-options/ 301
 /nginx-management-suite/admin-guides/getting-started/configure-devportal-helm-options/ /nginx-management-suite/acm/how-to/devportals/installation/configure-devportal-helm-options/ 301
 /nginx-management-suite/admin-guides/getting-started/selinux-guide/ /nginx-management-suite/admin-guides/configuration/configure-selinux/ 301
 /nginx-management-suite/admin-guides/getting-started/add-license/ /nginx-management-suite/installation/add-license/ 301
