@@ -195,7 +195,7 @@ By default, the data for modules isn't included in backups for NGINX Management 
 
 ## NGINX Management Suite and modules deployed in a Kubernetes Cluster
 
-### Prerequisites
+### Before You Begin
 
 To complete the instructions in this guide, you need the following:
 
