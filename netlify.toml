@@ -2,18 +2,11 @@
   publish = "public"
 
 [context.production]
-  # keep while docs-dev is the production site
-  # this will change to make all when we go live on production site 
+  # The production command runs the build.sh script
+  # This ensures the build uses the correct baseURL
+  # for the site being built
   command = "./build.sh"  
   publish = "public"
-  
-#[context.staging]
-#  command = "make all-staging"
-#  publish = "public"
-
-#[context.dev]
-#  command = "make all-dev"
-#  publish = "public"
 
 [context.deploy-preview]
   command = "make deploy-preview"
