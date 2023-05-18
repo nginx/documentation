@@ -28,7 +28,7 @@ API Connectivity Manager 1.6.0 supports upgrades from these previous versions:
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
 {{< /see-also >}}
 
 <details closed>
@@ -83,7 +83,7 @@ API Connectivity Manager 1.5.0 supports upgrades from these previous versions:
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
 {{< /see-also >}}
 
 <br>
@@ -175,7 +175,7 @@ API Connectivity Manager 1.4.1 supports upgrades from these previous versions:
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
 {{< /see-also >}}
 
 <br>
@@ -222,7 +222,7 @@ API Connectivity Manager 1.4.0 supports direct upgrades from these previous vers
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
 {{< /see-also >}}
 
 <br>
@@ -284,7 +284,7 @@ If you are using an older version of API Connectivity Manager, you may need to u
 </details>
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
 {{< /see-also >}}
 
 <br>
@@ -329,7 +329,7 @@ If you are using an older version of API Connectivity Manager, you may need to u
 </details>
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
 {{< /see-also >}}
 
 <br>
@@ -434,7 +434,7 @@ API Connectivity Manager 1.2.0 supports upgrades from these previous versions:
 - 1.0.0 – 1.1.1
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
 {{< /see-also >}}
 
 <br>
@@ -549,7 +549,7 @@ API Connectivity Manager 1.1.1 supports upgrades from these previous versions:
 - 1.0.0 – 1.1.0
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
 {{< /see-also >}}
 
 <br>
@@ -592,7 +592,7 @@ API Connectivity Manager 1.1.0 supports upgrades from these previous versions:
 - 1.0.0
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
 {{< /see-also >}}
 
 <br>

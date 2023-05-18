@@ -31,9 +31,9 @@ aliases:
 
 This section lists the prerequisites for installing and configuring NGINX Agent. Follow the steps below to complete the requirements:
 
-1. [Instance Manager is installed on a server]({{< relref "/nms/admin-guides/installation/on-prem/install-guide.md" >}}).
+1. [NGINX Management Suite is installed on a server]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}).
 
-    {{<note>}} When installing and configuring Instance Manager, take note of the fully qualified domain name (FQDN) and gRPC port number. You'll need this information to properly configure the NGINX Agent to communicate with Instance Manager.
+    {{<note>}} When installing and configuring NGINX Management Suite, take note of the fully qualified domain name (FQDN) and gRPC port number. You'll need this information to properly configure the NGINX Agent to communicate with NGINX Management Suite.
     {{</note>}}
 
 2. Make sure NGINX is running on your instance:
@@ -76,7 +76,7 @@ To see if `nginx_agent_selinux` is installed, run the following command:
 
 You can choose one of the following two methods to install the NGINX Agent on your data plane host:
 
-- Install via the Instance Manager API Gateway
+- Install via the NGINX Management Suite API Gateway
 - Install from packages downloaded from [MyF5 Customer Portal](https://account.f5.com/myf5) or from your NGINX/F5 sales team.
 
 ### Install using the API
@@ -89,15 +89,62 @@ You can choose one of the following two methods to install the NGINX Agent on yo
 
 ---
 
-## Start and Enable NGINX Agent
+## Enable and Start NGINX Agent
 
-{{< include "agent/installation/start-enable-agent.md" >}}
+Run the following command to enable and start the NGINX Agent service:
+
+```bash
+sudo systemctl enable nginx-agent --now
+```
 
 ---
 
 ## Verifying NGINX Agent is Running and Registered
 
-{{< include "agent/installation/verify-agent-installation.md" >}}
+Run the following command on your data plane to verify that the NGINX Agent process is running:
+
+```bash
+ps aux | grep nginx-agent
+```
+
+You should see output that looks similar to the following example:
+
+```text
+root      293850  109  1.1 1240056 23536 ?       Ssl  22:00   0:07 /usr/local/bin/nginx-agent
+vagrant   293866  0.0  0.0   8160   736 pts/0    S+   22:00   0:00 grep --color=auto nginx-agent
+```
+
+Once you've verified the NGINX Agent is running on your data plane, you should confirm it's registered with NGINX Management Suite. You can do this two ways:
+
+{{<tabs name="verify-nginx">}}
+
+{{%tab name="API"%}}
+
+Send an API request similar to the following example to get the inventory list. Your instance should be listed.
+
+  ```bash
+  curl -u <user>:<password> https://<NMS-FQDN>/api/platform/v1/systems | jq
+  ```
+
+{{%/tab%}}
+
+{{%tab name="WEBUI"%}}
+
+Open the NGINX Management Suite web interface and log in. The registered instance is shown in the **Instances** list.
+
+  {{< img src="/getting-started/install/registered-instance.png" alt="Registered instances" >}}
+
+{{%/tab%}}
+
+{{</tabs>}}
+
+<br>
+
+Once you've verified the NGINX Agent instance is registered with NGINX Management Suite, no additional action is required for monitoring the instance.
+
+{{<note>}}
+If you need to remove the instance, ensure that the NGINX Agent service is stopped first. Then you can remove the instance from the inventory.
+{{</note>}}
 
 ---
 
@@ -396,19 +443,13 @@ The NGINX Agent package includes the following SELinux files:
 - `/usr/share/selinux/devel/include/contrib/nginx_agent.if`
 - `/usr/share/selinux/packages/nginx_agent.pp`
 
-To install and load the policy, run the following commands:
+To load the NGINX Agent policy, run the following commands:
 
-```bash
-sudo semodule -n -i /usr/share/selinux/packages/nginx_agent.pp
-sudo /usr/sbin/load_policy
-sudo restorecon -R /usr/bin/nginx-agent;
-sudo restorecon -R /var/log/nginx-agent;
-sudo restorecon -R /etc/nginx-agent;
-```
+{{< include "installation/agent-selinux.md" >}}
 
 ### Adding Ports for NGINX Agent SELinux Context
 
-You can modify the NGINX Agent to comply with SELinux. You should add external ports to the firewall exception.
+You can configure the NGINX Agent to work with SELinux. Make sure you add external ports to the firewall exception list.
 
 The following example shows how to allow external ports outside the HTTPD context. You may need to enable NGINX to connect to these ports.
 
@@ -422,12 +463,12 @@ For additional information on using NGINX with SELinux, refer to the guide [Usin
 
 ## Secure the NGINX Agent with mTLS
 
-{{< important >}}By default, communication between the NGINX Agent and Instance Manager is unsecured.{{< /important >}}
+{{< important >}}By default, communication between the NGINX Agent and NGINX Management Suite is unsecured.{{< /important >}}
 
-For instructions on how configure mTLS to secure communication between the NGINX Agent and Instance Manager, see [NGINX Agent TLS Settings]({{< relref "/nms/nginx-agent/encrypt-nginx-agent-comms.md" >}}).
+For instructions on how configure mTLS to secure communication between the NGINX Agent and NGINX Management Suite, see [NGINX Agent TLS Settings]({{< relref "/nms/nginx-agent/encrypt-nginx-agent-comms.md" >}}).
 
 ---
 
 ## NGINX Metrics
 
-After you register an NGINX instance with Instance Manager, the NGINX Agent will collect and report metrics. For more information about the metrics that are reported, see [Overview: Instance Metrics]({{< relref "/nms/nim/about/overview-metrics.md" >}}).
+After you register an NGINX instance with NGINX Management Suite, the NGINX Agent will collect and report metrics. For more information about the metrics that are reported, see [Overview: Instance Metrics]({{< relref "/nms/nim/about/overview-metrics.md" >}}).

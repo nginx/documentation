@@ -21,7 +21,7 @@ aliases:
 {{< shortversions "2.0.0" "latest" "nimvers" >}}
 
 {{< see-also >}}
-To perform a clean installation of NGINX Management Suite (NMS) and Instance Manager, refer to the [NMS installation guide]({{< relref "/nms/admin-guides/installation/on-prem/install-guide.md" >}}).
+To perform a clean installation of NGINX Management Suite (NMS) and Instance Manager, refer to the [NMS installation guide]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}).
 {{< /see-also>}}
 
 ## Prerequisites
@@ -38,7 +38,7 @@ To complete this tutorial, you need the following:
 
 Begin the migration process by installing Instance Manager v2.
 
-1. Follow the instructions for [Installing Instance Manager]({{< ref "/nms/admin-guides/installation/on-prem/install-guide.md" >}}). License Instance Manager according to the installation guide.
+1. Follow the instructions for [Installing Instance Manager]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}). License Instance Manager according to the installation guide.
 
 1. Enable the NGINX Management Suite services:
 
@@ -121,7 +121,7 @@ After you've updated the configuration, you can migrate the managed NGINX instan
 
 To upgrade the NGINX Agent from v1 to v2, take the following steps:
 
-1. Follow the instructions to [Install NGINX Agent v2]({{< ref "/nms/nginx-agent/install-nginx-agent.md" >}}).
+1. Follow the instructions to [Install NGINX Agent v2]({{< relref "/nms/nginx-agent/install-nginx-agent.md" >}}).
 
 2. After the installation finishes, restart the NGINX Agent:
 
