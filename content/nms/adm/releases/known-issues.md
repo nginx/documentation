@@ -10,7 +10,7 @@ tags: [ "docs" ]
 url: /nginx-management-suite/adm/releases/known-issues/
 docs: "DOCS-000"
 categories: ["known issues"]
-doctypes: ["reference"]
+
 ---
 {{<rn-styles>}}
 
