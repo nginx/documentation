@@ -7,6 +7,7 @@ description: "This document is a summary of the known issues in NGINX Management
 weight: 100000
 toc: true
 tags: [ "docs" ]
+url: /nginx-management-suite/adm/releases/known-issues/
 docs: "DOCS-000"
 categories: ["known issues"]
 doctypes: ["reference"]

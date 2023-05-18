@@ -5,6 +5,7 @@ draft: false
 description: "These release notes list and describe the new features, enhancements, and resolved issues in NGINX Management Suite App Delivery Manager."
 # Assign weights in increments of 100
 weight: 1
+url: /nginx-management-suite/adm/releases/release-notes/
 toc: true
 tags: [ "docs" ]
 docs: "DOCS-000"
