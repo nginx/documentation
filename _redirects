@@ -26,7 +26,7 @@
 /nginx-management-suite/admin-guides/getting-started/configure-devportal-helm-options/ /nginx-management-suite/acm/how-to/devportals/installation/configure-devportal-helm-options.md
 /nginx-management-suite/admin-guides/getting-started/selinux-guide/ /nginx-management-suite/admin-guides/configuration/configure-selinux/ 301
 /nginx-management-suite/admin-guides/getting-started/add-license/ /nginx-management-suite/installation/add-license/ 301
-/nginx-management-suite/admin-guides/installation/kubernetes/* nginx-management-suite/installation/kubernetes/:splat 301
+/nginx-management-suite/admin-guides/installation/kubernetes/* /nginx-management-suite/installation/kubernetes/:splat 301
 /nginx-management-suite/admin-guides/getting-started/* /nginx-management-suite/admin-guides/configuration/:splat 301
 
 # Redirects to the backend netlify sites for each product
