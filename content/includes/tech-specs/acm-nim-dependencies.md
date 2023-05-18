@@ -3,7 +3,7 @@ API Connectivity Manager depends on the platform capabilities of Instance Manage
 {{<bootstrap-table "table table-striped table-bordered">}}
 | API Connectivity Manager | Instance Manager Dependency |
 |--------------------------|-----------------------------|
-| ACM 1.6.0                | NIM 2.10.0                  |
+| ACM 1.6.0                | NIM 2.10.0–2.10.1           |
 | ACM 1.5.0                | NIM 2.9.0 and later         |
 | ACM 1.4.0–1.4.1          | NIM 2.7.0 and later         |
 | ACM 1.3.0–1.3.1          | NIM 2.6.0 and later         |
