@@ -18,7 +18,8 @@ The following table lists the configurable parameters and default values used by
 | `nms-adm.adm.persistence.claims`              | An array of persistent volume claims, can be modified to use an existing PVC. | See [Dqlite](#adm-dqlite-configuration)(#dqlite-configuration) and [Templates](#adm-templates-configuration)(#templates-configuration)|
 {{</bootstrap-table>}}
 
-##### ADM Dqlite configuration
+##### App Delivery Manager Dqlite Configuration
+
 ```yaml
   - name: dqlite
     existingClaim:
@@ -26,8 +27,9 @@ The following table lists the configurable parameters and default values used by
     accessMode: ReadWriteOnce
 ```
 
-##### ADM Templates configuration
-The following volume persists the ADM templates' directories and preserves the new files a user may add to the templates directory.
+##### App Delivery Manager Templates Configuration
+The following volume persists the App Delivery Manager templates' directories and preserves the new files a user may add to the templates directory.
+
 ```yaml
   - name: templates
     existingClaim:

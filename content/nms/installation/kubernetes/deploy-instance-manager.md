@@ -295,26 +295,21 @@ The status should be `STATUS: deployed` if the deployment was successful.
 
 ## Access Web Interface
 
-You can access the Instance Manager web interface using the external IP address for the API Gateway.
+{{< include "installation/helm/access-webui-helm.md" >}}
 
-1. To look up the external IP address for the API Gateway, run the following command:
+---
 
-   ```bash
-   kubectl -n nms get svc apigw
-   ```
+## Add License
 
-   This `kubectl` command retrieves the service named `apigw` from the namespace `nms`. It outputs the details of the service, such as its type, port, cluster and external IP addresses.
+A valid license is required in order to use all of the features in Instance Manager.
 
-   The output looks similar to the following example. Note the value in the `EXTERNAL-IP` column.
+### Download License
 
-   ```text
-   NAME    TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)         AGE
-   apigw   LoadBalancer   10.100.153.15   localhost     443:30414/TCP   2m1s
-   ```
+{{< include "installation/download-license.md" >}}
 
-1. Using the value from the previous step, go to `https://<apigw-EXTERNAL-IP>:443/ui`.
+### Apply License
 
-   For example, `https://localhost:443/ui`.
+{{< include "installation/add-license.md" >}}
 
 ---
 

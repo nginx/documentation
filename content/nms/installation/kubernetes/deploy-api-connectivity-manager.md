@@ -193,7 +193,27 @@ If you've already deployed API Connectivity Manager and would like to upgrade to
 
 ---
 
-## Configurable Helm Settings {#configure-chart}
+## Access Web Interface
+
+{{< include "installation/helm/access-webui-helm.md" >}}
+
+---
+
+## Add License
+
+A valid license is required in order to use API Connectivity Manager.
+
+### Download License
+
+{{< include "installation/download-license.md" >}}
+
+### Apply License
+
+{{< include "installation/add-license.md" >}}
+
+---
+
+## Configurable Helm Settings
 
 {{< include "installation/helm/acm/configuration-options.md" >}}
 
@@ -204,6 +224,8 @@ If you've already deployed API Connectivity Manager and would like to upgrade to
 {{< include "support/troubleshooting-guide.md" >}}
 
 For guidance on how to create a support package containing system and service details to share with NGINX Customer Support, refer to the guide [Create a Support Package from a Helm Installation]({{< relref "/nms/support/k8s-support-package.md" >}}).
+
+---
 
 ## What's Next
 
