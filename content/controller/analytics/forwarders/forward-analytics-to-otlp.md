@@ -32,7 +32,7 @@ Follow the steps in this guide to set up an NGINX Controller integration that fo
 
 This guide assumes that you already have a working instance of any OpenTelemetry Collector.
 
-You will also need to [Create an Integration]({{< relref "platform/integrations/otlp-integration.md" >}}) for your OpenTelemetry Collector forwarder.
+You will also need to [Create an Integration]({{< relref "/controller/platform/integrations/otlp-integration.md" >}}) for your OpenTelemetry Collector forwarder.
 
 ## Create a Forwarder
 
@@ -60,7 +60,7 @@ Take the following steps to create a forwarder for OpenTelemetry Collector:
 
 {{< important >}}
 
-Each metric is prefixed with a common namespace -- for example,  "nginx-controller" -- before it's sent to OpenTelemetry Collector. This prefix is used only by OpenTelemetry Collector and is not applied to any internal NGINX Controller metrics. Refer to the [metrics catalog]({{< relref "/analytics/catalogs/metrics.md" >}}) for the full list of valid metric names.
+Each metric is prefixed with a common namespace -- for example,  "nginx-controller" -- before it's sent to OpenTelemetry Collector. This prefix is used only by OpenTelemetry Collector and is not applied to any internal NGINX Controller metrics. Refer to the [metrics catalog]({{< relref "/controller/analytics/catalogs/metrics.md" >}}) for the full list of valid metric names.
 
 We have tested compatability with OTLP collector v0.33.0.  We will most likely support versions higher than this, assuming backwards compatability from OTLP.
 
@@ -68,13 +68,13 @@ We have tested compatability with OTLP collector v0.33.0.  We will most likely s
 
 {{< see-also >}}
 
-See the [NGINX Controller Metrics]({{< relref "/analytics/metrics/_index.md" >}}) docs for more information.
+See the [NGINX Controller Metrics]({{< relref "/controller/analytics/metrics/_index.md" >}}) docs for more information.
 
 {{< /see-also >}}
 
 ## What's Next
 
-- Refer to [Troubleshooting Forwaders]({{< relref "support/troubleshooting-forwarders.md" >}}) for tips on resolving common issues.
+- Refer to [Troubleshooting Forwaders]({{< relref "/controller/support/troubleshooting-forwarders.md" >}}) for tips on resolving common issues.
 
 {{< versions "3.16" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

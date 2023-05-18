@@ -31,7 +31,7 @@ weight: 310
 
 ## Overview
 
-In order to receive email notifications for [Alerts]({{< relref "analytics/alerts/about-alerts.md" >}}), you need to provide a valid email address and complete the verification process. 
+In order to receive email notifications for [Alerts]({{< relref "/controller/analytics/alerts/about-alerts.md" >}}), you need to provide a valid email address and complete the verification process. 
 
 {{< important >}}
 You will not receive any alert notifications via email until you verify your email address. Any alert notification emails that were triggered by alert rules prior to the email address being verified will not be re-sent.
@@ -46,7 +46,7 @@ To find the list of registered email addresses:
 1. On the **Alert Rules Overview** page, select **Manage Email Addresses**.
 1. All registered email addresses are displayed in the Manage Email Addresses panel. To close the panel, select **Done**.
 
-{{<important>}}The **Manage Email Addresses** button is not displayed if you don't have any Alerts configured. If this is the case, you can add a new email address when you [create an alert rule]({{< relref "analytics/alerts/manage-alerts.md#add-an-alert-rule" >}}).{{</important>}}
+{{<important>}}The **Manage Email Addresses** button is not displayed if you don't have any Alerts configured. If this is the case, you can add a new email address when you [create an alert rule]({{< relref "/controller/analytics/alerts/manage-alerts.md#add-an-alert-rule" >}}).{{</important>}}
   
 ## Add a New Email Address
 

@@ -32,7 +32,7 @@ weight: 50
 
 ## Overview
 
-You can use the NGINX Controller Analytics module to monitor your NGINX instances and evaluate your applications' performance. The [Metrics API]({{< relref "api/_index.md" >}}) query parameters let you fine-tune your system data based on parameters such as time window, aggregation, time resolution, and filter.
+You can use the NGINX Controller Analytics module to monitor your NGINX instances and evaluate your applications' performance. The [Metrics API]({{< relref "/controller/api/_index.md" >}}) query parameters let you fine-tune your system data based on parameters such as time window, aggregation, time resolution, and filter.
 
 By using different combinations of these query parameters, you can gather information that lets you:
 
@@ -43,7 +43,7 @@ By using different combinations of these query parameters, you can gather inform
 
 ## Usage
 
-You can use the NGINX Controller [Metrics API]({{< relref "api/_index.md" >}}) to query for desired metric names and fine-tune the data returned based on the following parameters:
+You can use the NGINX Controller [Metrics API]({{< relref "/controller/api/_index.md" >}}) to query for desired metric names and fine-tune the data returned based on the following parameters:
 
 - time window (`startTime` and `endTime`)
 - `filter`
@@ -59,7 +59,7 @@ Because NGINX Controller is constantly evolving, these example metrics and dimen
 
 ### Understanding the Metrics API Response
 
-The [Metrics API]({{< relref "api/_index.md" >}}) response consists of query metadata and an array of `metrics` -- one array element for each queried metric.
+The [Metrics API]({{< relref "/controller/api/_index.md" >}}) response consists of query metadata and an array of `metrics` -- one array element for each queried metric.
 
 - The **metric** object includes the queried metric name and an array of data series associated with the metric.
 - The **series** object groups metrics data according to dimension values. The series consists of dimensions (key-value map), timestamps, and the timestamps' metric values.
@@ -123,7 +123,7 @@ Likewise, you can get a full list of the available dimensions by querying the Ca
 curl -X GET --cookie "session=<session cookie>" --url "{controller-IP}/api/v1/analytics/catalogs/dimensions"
 ```
 
-This information is also provided in the [Catalogs Reference]({{< relref "analytics/catalogs/_index.md" >}})).
+This information is also provided in the [Catalogs Reference]({{< relref "/controller/analytics/catalogs/_index.md" >}})).
 
 ### Querying the Metrics API
 
@@ -133,7 +133,7 @@ The examples progress from basic usage to more advanced API queries.
 
 #### Names
 
-The `names` parameter is the only required parameter in the [Metrics API]({{< relref "api/_index.md" >}}).
+The `names` parameter is the only required parameter in the [Metrics API]({{< relref "/controller/api/_index.md" >}}).
 
 The following example query returns a response with the last recorded value for the queried metric: `http.request.count`:
 
@@ -199,7 +199,7 @@ You must define a `startTime` when using aggregate functions.
 {{< /note >}}
 
 {{< see-also >}}
-The list of supported aggregate functions for any particular metric is available in the [Metrics Catalog]({{< relref "analytics/catalogs/metrics.md" >}})).
+The list of supported aggregate functions for any particular metric is available in the [Metrics Catalog]({{< relref "/controller/analytics/catalogs/metrics.md" >}})).
 {{< /see-also >}}
 
 For example, the following query returns a single value (per dimension set), which is the sum of the metric values for the last three hours. To get proper values, ensure that the `endTime` is greater than the `startTime`.
@@ -208,7 +208,7 @@ For example, the following query returns a single value (per dimension set), whi
 curl -X GET --cookie "session=<session cookie>" --url "{controller-IP}/api/v1/analytics/metrics?names=SUM(http.request.count)&startTime=now-3h"
 ```
 
-It is possible to use aggregated and non-aggregated metrics in a single query. For this query, the [Metrics API]({{< relref "api/_index.md" >}}) returns a single value per dimension set. That value is the sum of all of the metric's values for the last three hours.
+It is possible to use aggregated and non-aggregated metrics in a single query. For this query, the [Metrics API]({{< relref "/controller/api/_index.md" >}}) returns a single value per dimension set. That value is the sum of all of the metric's values for the last three hours.
 
 For example:
 
@@ -217,7 +217,7 @@ curl -X GET --cookie "session=<session cookie>" --url "{controller-IP}/api/v1/an
 ```
 
 {{< important >}}
-Using AVG aggregation with traffic metrics with the `.total` suffix may cause confusion because traffic metrics are already aggregated. To learn more, refer to the [Overview: Traffic Metrics]({{< relref "analytics/metrics/overview-traffic-metrics.md" >}})) topics.
+Using AVG aggregation with traffic metrics with the `.total` suffix may cause confusion because traffic metrics are already aggregated. To learn more, refer to the [Overview: Traffic Metrics]({{< relref "/controller/analytics/metrics/overview-traffic-metrics.md" >}})) topics.
 {{< /important >}}
 
 #### Resolution
@@ -491,9 +491,9 @@ You cannot use `dimensions` with the `seriesLimit` parameter.
 
 ## What's Next
 
-- [Metrics Reference]({{< relref "analytics/catalogs/metrics.md" >}}))
-- [Dimensions Reference]({{< relref "analytics/catalogs/dimensions.md" >}}))
-- [Create Custom Dashboards]({{< relref "analytics/dashboards/custom-dashboards.md" >}}))
+- [Metrics Reference]({{< relref "/controller/analytics/catalogs/metrics.md" >}}))
+- [Dimensions Reference]({{< relref "/controller/analytics/catalogs/dimensions.md" >}}))
+- [Create Custom Dashboards]({{< relref "/controller/analytics/dashboards/custom-dashboards.md" >}}))
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

@@ -52,9 +52,9 @@ Take the steps below to add the NGINX App Protect instance by using the NGINX Co
 
 ## What's Next
 
-- [Set up NGINX Controller Agent to emit Security Events]({{< relref "/admin-guides/config-agent/configure-the-agent.md#enable-security-events" >}})
-- [Learn about App Security]({{< relref "/app-delivery/security/concepts/what-is-waf.md" >}})
-- [Manage App Security]({{< relref "/app-delivery/security/tutorials/add-app-security-with-waf.md" >}})
+- [Set up NGINX Controller Agent to emit Security Events]({{< relref "/controller/admin-guides/config-agent/configure-the-agent.md#enable-security-events" >}})
+- [Learn about App Security]({{< relref "/controller/app-delivery/security/concepts/what-is-waf.md" >}})
+- [Manage App Security]({{< relref "/controller/app-delivery/security/tutorials/add-app-security-with-waf.md" >}})
 
 {{< versions "3.11" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

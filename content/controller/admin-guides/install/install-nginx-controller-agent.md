@@ -48,13 +48,13 @@ You can use the NGINX Controller Agent to monitor your systems with the NGINX Co
 
 ## Install the NGINX Controller Agent
 
-{{< see-also >}} If you want to run the NGINX Controller Agent as a non-root user, follow the alternative instructions in the [Install NGINX Controller Agent for Non-root User]({{< relref "admin-guides/install/install-agent-non-root.md" >}}) guide instead of the steps provided in this section. {{< /see-also >}}
+{{< see-also >}} If you want to run the NGINX Controller Agent as a non-root user, follow the alternative instructions in the [Install NGINX Controller Agent for Non-root User]({{< relref "/controller/admin-guides/install/install-agent-non-root.md" >}}) guide instead of the steps provided in this section. {{< /see-also >}}
 
 {{< include "controller/add-existing-instance.md" >}}
 
 ## Update the NGINX Controller Agent
 
-When you [update NGINX Controller]({{< relref "admin-guides/install/install-nginx-controller.md#update-nginx-controller" >}}), you also need to update the NGINX Controller Agent software on each monitored NGINX Plus instance.
+When you [update NGINX Controller]({{< relref "/controller/admin-guides/install/install-nginx-controller.md#update-nginx-controller" >}}), you also need to update the NGINX Controller Agent software on each monitored NGINX Plus instance.
 
 To update the NGINX Controller Agent, take the following steps:
 
@@ -73,7 +73,7 @@ NGINX Controller 3.6 and earlier require Python 2.6 or 2.7. You'll be prompted t
 
 ## Uninstall the Analytics, Visibility, and Reporting Daemon (AVRD)
 
-NGINX Controller uses an [Analytics, Visibility, and Reporting daemon (AVRD)]({{< relref "analytics/metrics/overview-metrics-metadata.md" >}}) to aggregate and report app-centric metrics. You can use these metrics to monitor your apps' performance and health.
+NGINX Controller uses an [Analytics, Visibility, and Reporting daemon (AVRD)]({{< relref "/controller/analytics/metrics/overview-metrics-metadata.md" >}}) to aggregate and report app-centric metrics. You can use these metrics to monitor your apps' performance and health.
 
 To uninstall AVRD and the supporting modules, run the following command on each dataplane instance:
 
@@ -165,10 +165,10 @@ Take the following steps to uninstall the Controller Agent and delete an instanc
 
 ## What's Next
 
-* [Customize how the NGINX Controller Agent collects metrics]({{< relref "/admin-guides/config-agent/configure-the-agent.md" >}})
-* [Start or Stop the Agent Service]({{< relref "/admin-guides/install/agent-restart.md" >}})
-* [Manage your NGINX Instances]({{< relref "/infrastructure/instances/manage-instances.md" >}})
-* [Manage Locations for your Instances]({{< relref "/infrastructure/locations/manage-locations.md" >}})
+* [Customize how the NGINX Controller Agent collects metrics]({{< relref "/controller/admin-guides/config-agent/configure-the-agent.md" >}})
+* [Start or Stop the Agent Service]({{< relref "/controller/admin-guides/install/agent-restart.md" >}})
+* [Manage your NGINX Instances]({{< relref "/controller/infrastructure/instances/manage-instances.md" >}})
+* [Manage Locations for your Instances]({{< relref "/controller/infrastructure/locations/manage-locations.md" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

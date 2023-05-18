@@ -121,9 +121,9 @@ The following minimum hardware specifications are required for each node running
 
 - RAM: 8 GB RAM
 - CPU: 8-Core CPU @ 2.40 GHz or similar
-- Disk space: 155–255 GB free disk space. 255 GB of free space is recommended if NGINX Controller App Security is enabled. See the [Storage Requirements]({{< relref "admin-guides/install/nginx-controller-tech-specs.md#storage-requirements" >}}) section for a categorized list of the storage requirements.
+- Disk space: 155–255 GB free disk space. 255 GB of free space is recommended if NGINX Controller App Security is enabled. See the [Storage Requirements]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#storage-requirements" >}}) section for a categorized list of the storage requirements.
 
-The NGINX Controller Agent consumes as little memory and CPU as possible. CPU usage should be under 10%, and RSS memory consumption should be just a few dozen MBs. If you notice the NGINX Controller Agent consuming resources at a higher rate, you should [contact NGINX Support]({{< relref "support/contact-support.md" >}}) for assistance.
+The NGINX Controller Agent consumes as little memory and CPU as possible. CPU usage should be under 10%, and RSS memory consumption should be just a few dozen MBs. If you notice the NGINX Controller Agent consuming resources at a higher rate, you should [contact NGINX Support]({{< relref "/controller/support/contact-support.md" >}}) for assistance.
 
 &nbsp;
 
@@ -146,7 +146,7 @@ We recommend using a local volume for the analytics and config databases for tri
 When using local storage for the analytics and/or config database, we recommend the following specs:
 
 - 100 IOPS
-- 155–255 GB free disk space. 255 GB of free space is recommended if NGINX Controller App Security is enabled. See the [Storage Requirements]({{< relref "admin-guides/install/nginx-controller-tech-specs.md#storage-requirements" >}}) section for a categorized list of the storage requirements.
+- 155–255 GB free disk space. 255 GB of free space is recommended if NGINX Controller App Security is enabled. See the [Storage Requirements]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#storage-requirements" >}}) section for a categorized list of the storage requirements.
 
 {{< tip >}}
 To conserve IO and/or disk space, you can use a separate disk for the local storage directory `/opt/nginx-controller/clickhouse_data`.
@@ -176,7 +176,7 @@ If you are installing NGINX Controller on [AWS EC2 instances](https://aws.amazon
 
 You will need add an IAM role like that shown below.
 
-- IAM Role for [Single-Node Installation]({{< relref "admin-guides/install/install-nginx-controller.md" >}})
+- IAM Role for [Single-Node Installation]({{< relref "/controller/admin-guides/install/install-nginx-controller.md" >}})
 
   ```json
   {
@@ -219,7 +219,7 @@ You will need add an IAM role like that shown below.
   }
   ```
 
-- IAM Role for [Multi-Node Installation]({{< relref "admin-guides/install/resilient-cluster-aws.md" >}})
+- IAM Role for [Multi-Node Installation]({{< relref "/controller/admin-guides/install/resilient-cluster-aws.md" >}})
 
   ```json 
   {

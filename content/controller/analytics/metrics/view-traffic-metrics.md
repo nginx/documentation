@@ -30,11 +30,11 @@ weight: 150
 
 ## Overview
 
-This topic explains how to use the [NGINX Controller REST API]({{< relref "api/_index.md" >}})
+This topic explains how to use the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}})
  to view traffic metrics.
 
 {{< see-also >}}
-Refer to [Overview: Traffic Metrics]({{< relref "analytics/metrics/overview-traffic-metrics.md" >}}) to learn how NGINX Controller collects, aggregates, and reports traffic metrics.
+Refer to [Overview: Traffic Metrics]({{< relref "/controller/analytics/metrics/overview-traffic-metrics.md" >}}) to learn how NGINX Controller collects, aggregates, and reports traffic metrics.
 {{< /see-also >}}
 
 ## Before You Begin
@@ -43,11 +43,11 @@ To view traffic metrics, first confirm that you've correctly configured NGINX Co
 
 The following resources should have the status `Configured`:
 
-- [Environment]({{< relref "/services/manage-environments.md" >}})
-- [Gateway]({{< relref "/services/manage-gateways.md" >}})
-- [App and Component]({{< relref "/app-delivery/manage-apps.md" >}})
+- [Environment]({{< relref "/controller/services/manage-environments.md" >}})
+- [Gateway]({{< relref "/controller/services/manage-gateways.md" >}})
+- [App and Component]({{< relref "/controller/app-delivery/manage-apps.md" >}})
 
-Initially, the graphs will display `No data yet`, and querying the Metrics API for traffic metrics will result in an empty response. As soon as the Component starts to receive traffic, the traffic-related data will be displayed in the graphs and the [Dashboards]({{< relref "analytics/dashboards/overview-dashboard.md" >}}) in the NGINX Controller user interface and will be returned in API responses.
+Initially, the graphs will display `No data yet`, and querying the Metrics API for traffic metrics will result in an empty response. As soon as the Component starts to receive traffic, the traffic-related data will be displayed in the graphs and the [Dashboards]({{< relref "/controller/analytics/dashboards/overview-dashboard.md" >}}) in the NGINX Controller user interface and will be returned in API responses.
 
 {{< note >}}
 If traffic stops flowing to a resource (for example, an Application or Component), then no traffic metrics will be available for the resource.
@@ -74,7 +74,7 @@ If traffic stops flowing to a resource (for example, an Application or Component
     ```
 
 {{< see-also >}}
-Refer to the [Catalogs Reference]({{< relref "analytics/catalogs/_index.md" >}}) for information about all of the dimensions and metrics collected by NGINX Controller.
+Refer to the [Catalogs Reference]({{< relref "/controller/analytics/catalogs/_index.md" >}}) for information about all of the dimensions and metrics collected by NGINX Controller.
 {{< /see-also >}}
 
 ## Example REST API Queries for Traffic Metrics

@@ -48,7 +48,7 @@ To get started, download and run the installer. The installer will:
 
 ### Open Source Software Dependencies
 
-NGINX Controller uses a number of open source software packages in the product. You can find information about these dependencies in the [NGINX Controller Technical Specifications]({{< relref "/admin-guides/install/nginx-controller-tech-specs.md" >}}).
+NGINX Controller uses a number of open source software packages in the product. You can find information about these dependencies in the [NGINX Controller Technical Specifications]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md" >}}).
 
 &nbsp;
 
@@ -68,7 +68,7 @@ Things you'll need before installing NGINX Controller:
 
 * A license file for NGINX Controller, accessible via the [MyF5 Customer Portal](https://account.f5.com/myf5);
 
-* A dedicated environment (bare metal, VM, or cloud-hosted instance) on which to install NGINX Controller. For the supported Operating Systems and recommended specifications, see the [NGINX Controller Technical Specifications]({{< relref "admin-guides/install/nginx-controller-tech-specs" >}}) guide;
+* A dedicated environment (bare metal, VM, or cloud-hosted instance) on which to install NGINX Controller. For the supported Operating Systems and recommended specifications, see the [NGINX Controller Technical Specifications]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs" >}}) guide;
 
 &nbsp;
 
@@ -212,7 +212,7 @@ Install NGINX Controller on a dedicated node that **does not** already have Kube
 
 {{< important >}}Before installing NGINX Controller, you must **disable swap on the host**; this is required by Kubernetes in order for the kubelet to work properly. Refer to your Linux distribution documentation for specific instructions for disabling swap for your system. For more information about this requirement, see the AskF5 knowledge base article [K82655201](https://support.f5.com/csp/article/K82655201) and the [kubeadm installation guide](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#before-you-begin) in the Kubernetes documentation.{{< /important >}}
 
-{{< caution >}}**For RHEL 8 deployments**, complete the additional prerequisite steps in the [Installing NGINX on RHEL 8]({{< relref "/admin-guides/install/install-nginx-controller-rhel-8.md" >}}) guide before installing NGINX Controller. RHEL 8 support is a **beta** feature.{{< /caution >}}
+{{< caution >}}**For RHEL 8 deployments**, complete the additional prerequisite steps in the [Installing NGINX on RHEL 8]({{< relref "/controller/admin-guides/install/install-nginx-controller-rhel-8.md" >}}) guide before installing NGINX Controller. RHEL 8 support is a **beta** feature.{{< /caution >}}
 
 To install NGINX Controller, take the following steps:
 
@@ -240,7 +240,7 @@ To install NGINX Controller, take the following steps:
     - **Config database configuration**. Specify whether to use an embedded, self-hosted PostgreSQL database for the config database, or if you want to provide your own external PostgreSQL database. If you choose to provide your own database, make sure you've reviewed the [PostgreSQL prerequisites](#postgresql-optional).
     - **Config database volume type**: Specify the type of volume to use to store the config database: local, NFS, or AWS. We recommend choosing `local` only for demo and trial purposes.
 
-      {{< see-also >}}Refer to the [NGINX Controller Technical Specifications Guide]({{< relref "admin-guides/install/nginx-controller-tech-specs.md#local-or-external-storage" >}}) for more information about the volume options and requirements.{{< /see-also >}}
+      {{< see-also >}}Refer to the [NGINX Controller Technical Specifications Guide]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#local-or-external-storage" >}}) for more information about the volume options and requirements.{{< /see-also >}}
 
     - **Analytics database volume type**: Specify the type of volume to use to store the analytics database: local, NFS, or AWS. We recommend choosing `local` for demo and trial purposes.
     - **EULA**: Read the end-user license agreement. Type either `y` to accept or `n` to exit.
@@ -283,7 +283,7 @@ To add a license to NGINX Controller, take the following steps:
 1. Select **Save license**.
 
 {{< see-also >}}
-To add a license using the [NGINX Controller REST API]({{< relref "api/_index.md" >}}), send a PUT request to the `/platform/license` endpoint. Provide your CAT or NGINX Controller license as a base64-encoded string in the JSON request body.
+To add a license using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}), send a PUT request to the `/platform/license` endpoint. Provide your CAT or NGINX Controller license as a base64-encoded string in the JSON request body.
 {{< /see-also >}}
 
 
@@ -339,7 +339,7 @@ When updating NGINX Controller on a multi-node cluster, run the `update.sh` scri
 {{< caution >}}
 We strongly recommend that you make a backup of the following information before proceeding, to avoid potential data and/or configuration loss:
 
-- [Back up the NGINX Controller databases]({{< relref "admin-guides/backup-restore" >}}).
+- [Back up the NGINX Controller databases]({{< relref "/controller/admin-guides/backup-restore" >}}).
 - Back up the NGINX Controller cluster configuration and encryption keys. These are required if you need to restore the config database on top of a new installation of NGINX Controller.
 
     ```bash
@@ -383,7 +383,7 @@ We strongly recommend that you make a backup of the following information before
 
     - To sign out, select your username in the upper right-hand corner, and then select "Sign Out". For optimal performance, also flush your browser cache.
 
-{{< important >}} After you upgrade NGINX Controller, you also need to [update the NGINX Controller Agent]({{< relref "admin-guides/install/install-nginx-controller-agent" >}}) to the latest version. {{< /important >}}
+{{< important >}} After you upgrade NGINX Controller, you also need to [update the NGINX Controller Agent]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent" >}}) to the latest version. {{< /important >}}
 
 &nbsp;
 
@@ -402,7 +402,7 @@ To uninstall NGINX Controller, run the uninstall script:
 ---
 
 ## Install NGINX Controller Agent
-{{< see-also >}} If you want to run the NGINX Controller Agent as a non-root user, follow the alternative instructions in the [Install NGINX Controller Agent for Non-root User]({{< relref "/admin-guides/install/install-agent-non-root.md" >}}) guide instead of the steps provided in this section. {{< /see-also >}}
+{{< see-also >}} If you want to run the NGINX Controller Agent as a non-root user, follow the alternative instructions in the [Install NGINX Controller Agent for Non-root User]({{< relref "/controller/admin-guides/install/install-agent-non-root.md" >}}) guide instead of the steps provided in this section. {{< /see-also >}}
 
 Install the Controller Agent on each NGINX Plus instance that you want to manage and monitor.
 

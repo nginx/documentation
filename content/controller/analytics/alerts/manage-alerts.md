@@ -30,9 +30,9 @@ weight: 200
 
 ## Overview
 
-[Alerts]({{< relref "analytics/alerts/about-alerts.md" >}}) are notifications about the NGINX Controller system and your applications' performance. 
+[Alerts]({{< relref "/controller/analytics/alerts/about-alerts.md" >}}) are notifications about the NGINX Controller system and your applications' performance. 
 
-[Alert rules]({{< relref "analytics/alerts/about-alerts.md#alert-rules" >}}) let you specify what you want to be alerted about. This includes which metrics you want to monitor; the trigger conditions and threshold to meet; the instance(s) to monitor; and the email address(es) to use for notifications.
+[Alert rules]({{< relref "/controller/analytics/alerts/about-alerts.md#alert-rules" >}}) let you specify what you want to be alerted about. This includes which metrics you want to monitor; the trigger conditions and threshold to meet; the instance(s) to monitor; and the email address(es) to use for notifications.
 
 ## Add an Alert Rule
 
@@ -112,10 +112,10 @@ To delete an alert rule:
 
 ## What's Next
 
-- Learn more [About Alerts]({{< relref "analytics/alerts/about-alerts.md" >}})
-- Learn more about [Metrics and Metadata]({{< relref "analytics/metrics/overview-metrics-metadata.md" >}})
-- Learn more about [Traffic Metrics]({{< relref "analytics/metrics/overview-traffic-metrics.md" >}})
-- [Manage Registered Emails]({{< relref "analytics/alerts/manage-registered-emails.md" >}})
+- Learn more [About Alerts]({{< relref "/controller/analytics/alerts/about-alerts.md" >}})
+- Learn more about [Metrics and Metadata]({{< relref "/controller/analytics/metrics/overview-metrics-metadata.md" >}})
+- Learn more about [Traffic Metrics]({{< relref "/controller/analytics/metrics/overview-traffic-metrics.md" >}})
+- [Manage Registered Emails]({{< relref "/controller/analytics/alerts/manage-registered-emails.md" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

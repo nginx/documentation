@@ -10892,6 +10892,20 @@
                         }
                     }
                 }
+            },
+            "NotAllowed": {
+                "description": "The request is not allowed on the specified resource.",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ErrorModel"
+                    },
+                    "example": {
+                      "code": 120322,
+                      "message": "Error deleting the location: the name 'unspecified' is reserved. Specify a different name for the location, then try again."
+                    }
+                  }
+                }
             }
         },
         "examples": {

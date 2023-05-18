@@ -102,7 +102,7 @@ Take note of the following considerations when upgrading to this version of the 
 
 - **OIDC Authentication with Azure AD as the IDP**
 
-  NGINX Controller ADC Release 3.22 includes [support for OpenID Connect (OIDC) authentication]({{< relref "/platform/access-management/manage-active-directory-auth-provider.md" >}}) when the Identity Provider is Azure Active Directory.
+  NGINX Controller ADC Release 3.22 includes [support for OpenID Connect (OIDC) authentication]({{< relref "/controller/platform/access-management/manage-active-directory-auth-provider.md" >}}) when the Identity Provider is Azure Active Directory.
 
 - **Support for SELinux**
 
@@ -110,7 +110,7 @@ Take note of the following considerations when upgrading to this version of the 
 
 - **Added Technology Preview of RHEL 8 Support for Controller Hosts**
 
-  Support for RHEL 8 is a technology preview. Installing NGINX Controller and agent on RHEL 8 seems to work well in low-scale deployments for testing and proof of concept purposes. Installing NGINX Controller on RHEL 8 for large-scale deployments has not been tested. Possibility of performance or stability issues exist. Therefore, we strongly recommend testing Controller on RHEL 8 for scale in a test environment before deploying to production. See the [Install NGINX Controller on RHEL 8]({{< relref "admin-guides/install/install-nginx-controller-rhel-8.md" >}}) document to prepare your RHEL 8 system to install NGINX Controller and the NGINX Controller Agent.
+  Support for RHEL 8 is a technology preview. Installing NGINX Controller and agent on RHEL 8 seems to work well in low-scale deployments for testing and proof of concept purposes. Installing NGINX Controller on RHEL 8 for large-scale deployments has not been tested. Possibility of performance or stability issues exist. Therefore, we strongly recommend testing Controller on RHEL 8 for scale in a test environment before deploying to production. See the [Install NGINX Controller on RHEL 8]({{< relref "/controller/admin-guides/install/install-nginx-controller-rhel-8.md" >}}) document to prepare your RHEL 8 system to install NGINX Controller and the NGINX Controller Agent.
 
 - **Adds support for NGINX App Protect v3.7**
 
@@ -411,4 +411,4 @@ The following issues are known to be present in this release. Look for updates t
 
 ## Supported NGINX Plus Versions
 
-Check the [NGINX Controller Tech Specs guide]({{< relref "/admin-guides/install/nginx-controller-tech-specs.md#nginx-plus-instances" >}}) to learn about the NGINX Plus versions supported by this release.
+Check the [NGINX Controller Tech Specs guide]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-plus-instances" >}}) to learn about the NGINX Plus versions supported by this release.

@@ -145,7 +145,7 @@ Managing the `keepalived.conf` file through third-party configuration management
 
 ## Create a High-Availability Gateway
 
-Follow the instructions to [Create a Gateway]({{< relref "/services/manage-gateways.md#create-a-gateway" >}}).
+Follow the instructions to [Create a Gateway]({{< relref "/controller/services/manage-gateways.md#create-a-gateway" >}}).
 
 1. Open the NGINX Controller user interface and log in.
 1. Select the NGINX Controller menu icon, then select **Services** > **Gateways**.
@@ -161,7 +161,7 @@ Follow the instructions to [Create a Gateway]({{< relref "/services/manage-gatew
 
 In particular, on the **Gateways > Create Gateways > Placements** page, take the steps below:
 
-[Gateways]({{< relref "/services/manage-gateways.md#overview" >}}) include placements that reference NGINX instances or instance groups. Gateway placements can be for multiple instances or instance groups, allowing a gateway to deliver services in multiple data centers and/or clouds. Placements define the physical machines that are used to manifest a particular path associated with an [application component]({{< relref "/app-delivery/about-app-delivery.md#components" >}}).
+[Gateways]({{< relref "/controller/services/manage-gateways.md#overview" >}}) include placements that reference NGINX instances or instance groups. Gateway placements can be for multiple instances or instance groups, allowing a gateway to deliver services in multiple data centers and/or clouds. Placements define the physical machines that are used to manifest a particular path associated with an [application component]({{< relref "/controller/app-delivery/about-app-delivery.md#components" >}}).
 
 On the **Gateways > Create Gateway > Placements** page:
 
@@ -173,7 +173,7 @@ On the **Gateways > Create Gateway > Placements** page:
 1. In the **Instance Refs/Instance Groups Refs** box, select the NGINX instance(s) or instance group(s) on which you want to deploy the gateway.
 
    {{< note >}}
-   If you're enabling **High Availability Mode**, select the [high-availability instances that you prepared]({{< relref "/infrastructure/instances/ha-data-plane.md#prepare-the-high-availability-instances" >}}). NGINX Controller supports up to two high-availability instances.
+   If you're enabling **High Availability Mode**, select the [high-availability instances that you prepared]({{< relref "/controller/infrastructure/instances/ha-data-plane.md#prepare-the-high-availability-instances" >}}). NGINX Controller supports up to two high-availability instances.
    {{< /note >}}
 
 1. In the **Listen IPs** box, add the IP address(es) on which the server listens for and accepts requests. If you're creating a placement for a BIG-IP Integration, add the virtual IP (VIP) address for the BIG-IP cluster.

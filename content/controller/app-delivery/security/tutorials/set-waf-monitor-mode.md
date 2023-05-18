@@ -30,7 +30,7 @@ weight: 200
 
 ## Overview
 
-You can use the [NGINX Controller REST API]({{< relref "api/_index.md" >}}) to enable or disable monitor-only mode for the App Security WAF policy.
+You can use the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}) to enable or disable monitor-only mode for the App Security WAF policy.
 
 ## Enable Monitor-Only Mode for App Security WAF
 
@@ -60,9 +60,9 @@ To enable monitor-only mode for App Security WAF, send a POST or PUT request to 
 
 ## Block Traffic Violations with App Security WAF
 
-When monitor-only mode is disabled, traffic is blocked based on the [Violation Rating]({{< relref "/app-delivery/security/concepts/app-sec-default-policy-original.md#use-of-violation-ratings-in-default-policy" >}}) score for the default policy.
+When monitor-only mode is disabled, traffic is blocked based on the [Violation Rating]({{< relref "/controller/app-delivery/security/concepts/app-sec-default-policy-original.md#use-of-violation-ratings-in-default-policy" >}}) score for the default policy.
 
-To block traffic violations with App Security WAF, send a POST or PUT request to the `/services/apps/components` [REST API]({{< relref "api/_index.md" >}}) endpoint, with a JSON object similar to the following:
+To block traffic violations with App Security WAF, send a POST or PUT request to the `/services/apps/components` [REST API]({{< relref "/controller/api/_index.md" >}}) endpoint, with a JSON object similar to the following:
 
 ```json
 {

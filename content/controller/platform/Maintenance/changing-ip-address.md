@@ -35,7 +35,7 @@ This topic explains how to safely update the management IP of NGINX Controller.
 {{< see-also >}}
 For instructions on how to deploy NGINX Controller as a multi-node resilient cluster, refer to the following deployment guide:
 
-- [Deploy NGINX Controller as a Resilient Cluster on a Private Cloud]({{< relref "/admin-guides/install/resilient-cluster-private-cloud.md" >}})
+- [Deploy NGINX Controller as a Resilient Cluster on a Private Cloud]({{< relref "/controller/admin-guides/install/resilient-cluster-private-cloud.md" >}})
 
 {{< /see-also >}}
 
@@ -64,7 +64,7 @@ Deleting nodes makes NGINX Controller momentarily unavailable while the cluster 
    5. Select **Delete** to confirm.
 
    {{< see-also >}}
- To delete nodes from your cluster using the [NGINX Controller REST API]({{< relref "api/_index.md" >}}), send a DELETE request to the `/platform/nodes` endpoint.
+ To delete nodes from your cluster using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}), send a DELETE request to the `/platform/nodes` endpoint.
    {{< /see-also >}}
 
 
@@ -97,7 +97,7 @@ Refer to your Linux distribution documentation for specific instructions.
        ```
 
    1. Upload and extract the `controller-installer-<version>.tar.gz` tarball.
-   1. Run the `install.sh` command with the join-key copied in the previous step. If the join-key has expired, you can get a new one by following the steps in this topic to add a node using the web interface or the [NGINX Controller REST API]({{< relref "api/_index.md" >}}).
+   1. Run the `install.sh` command with the join-key copied in the previous step. If the join-key has expired, you can get a new one by following the steps in this topic to add a node using the web interface or the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}).
 
        ```bash
        cd controller-installer
@@ -107,12 +107,12 @@ Refer to your Linux distribution documentation for specific instructions.
    1. After the installation is complete, the node status in the web interface changes to `Configured`.
 
    {{< see-also >}}
-To add nodes to your cluster using the [NGINX Controller REST API]({{< relref "api/_index.md" >}}), send a POST request to the `/platform/nodes` endpoint.
+To add nodes to your cluster using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}), send a POST request to the `/platform/nodes` endpoint.
    {{< /see-also >}}
 
 ### 5. <a name="fqdn"></a>Change the FQDN
 
-[Change the FQDN]({{< relref "/platform/manage-cluster.md#update-the-fqdn">}}) if it has been affected by the IP change.
+[Change the FQDN]({{< relref "/controller/platform/manage-cluster.md#update-the-fqdn">}}) if it has been affected by the IP change.
 
 {{< important >}}
 Repeat the steps for each node in the cluster.
@@ -132,7 +132,7 @@ To change the IP of a single node:
    opt/nginx-controller/helper.sh configsmtp <smtp_host> <smtp_port> false <do-not-reply-email>
    ```
 
-1. [Change the FQDN]({{< relref "/platform/manage-cluster.md#update-the-fqdn">}}) if it has been affected by the IP change.
+1. [Change the FQDN]({{< relref "/controller/platform/manage-cluster.md#update-the-fqdn">}}) if it has been affected by the IP change.
 
 {{< versions "3.12" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

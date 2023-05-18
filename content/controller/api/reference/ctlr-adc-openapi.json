@@ -5418,6 +5418,180 @@
             }
         },
         "schemas": {
+            "ResourceName": {
+                "type": "string",
+                "description": "The name of a resource.",
+                "example": "production"
+            },
+            "LocationState": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/OtherLocation"
+                  },
+                  {
+                    "$ref": "#/components/schemas/AWSLocation"
+                  },
+                  {
+                    "$ref": "#/components/schemas/AzureLocation"
+                  },
+                  {
+                    "$ref": "#/components/schemas/VSphereLocation"
+                  }
+                ],
+                "discriminator": {
+                  "propertyName": "type",
+                  "mapping": {
+                    "OTHER_LOCATION": "#/components/schemas/OtherLocation",
+                    "AWS_LOCATION": "#/components/schemas/AWSLocation",
+                    "AZURE_LOCATION": "#/components/schemas/AzureLocation",
+                    "VSPHERE_LOCATION": "#/components/schemas/VSphereLocation"
+                  }
+                }
+            },
+            "OtherLocation": {
+                "type": "object",
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "description": "The location type. Select the environment where you want to create the location. \nTo create a location that’s not specific to any cloud environment, select OTHER_LOCATION.\n",
+                    "enum": [
+                      "OTHER_LOCATION"
+                    ]
+                  }
+                }
+            },
+            "AWSLocation": {
+                "type": "object",
+                "required": [
+                  "vpcID",
+                  "region",
+                  "integrationRef",
+                  "type"
+                ],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "description": "The location type. Select the environment where you want to create the location. \nTo create a location that’s specific to the AWS cloud environment, select AWS_LOCATION.\n",
+                    "enum": [
+                      "AWS_LOCATION"
+                    ]
+                  },
+                  "region": {
+                    "description": "The AWS region.\n",
+                    "type": "string"
+                  },
+                  "vpcID": {
+                    "type": "string",
+                    "description": "The vpcID of the AWS Virtual Private Cloud (VPC) where new Instances created under this location should reside.\nThe VPC must be in the specified AWS region.\n"
+                  },
+                  "integrationRef": {
+                    "$ref": "#/components/schemas/ResourceRef"
+                  }
+                }
+            },
+            "AzureLocation": {
+                "type": "object",
+                "required": [
+                  "type",
+                  "region",
+                  "resourceGroup",
+                  "subscriptionID",
+                  "integrationRef"
+                ],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "description": "The location type.",
+                    "enum": [
+                      "AZURE_LOCATION"
+                    ]
+                  },
+                  "region": {
+                    "description": "The Azure region.",
+                    "type": "string"
+                  },
+                  "resourceGroup": {
+                    "type": "string",
+                    "description": "The name of the resourceGroup."
+                  },
+                  "subscriptionID": {
+                    "type": "string",
+                    "description": "The unique alphanumeric string that identifies the Azure subscription."
+                  },
+                  "integrationRef": {
+                    "description": "Integration ref.",
+                    "$ref": "#/components/schemas/ResourceRef"
+                  }
+                }
+            },
+            "VSphereLocation": {
+                "type": "object",
+                "required": [
+                  "type",
+                  "datacenter",
+                  "integrationRef"
+                ],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "description": "The location type.",
+                    "enum": [
+                      "VSPHERE_LOCATION"
+                    ]
+                  },
+                  "datacenter": {
+                    "description": "A VSphere data center.",
+                    "type": "string"
+                  },
+                  "folder": {
+                    "type": "string",
+                    "description": "The name of the VM folder that you want to add your instance to. If no name is provided, the instance will be created in the folder containing the VM template your instance is cloned from."
+                  },
+                  "integrationRef": {
+                    "description": "Integration ref.",
+                    "$ref": "#/components/schemas/ResourceRef"
+                  }
+                }
+            },
+            "Location": {
+                "required": [
+                  "metadata",
+                  "desiredState"
+                ],
+                "type": "object",
+                "properties": {
+                  "metadata": {
+                    "$ref": "#/components/schemas/ResourceMeta"
+                  },
+                  "desiredState": {
+                    "$ref": "#/components/schemas/LocationState"
+                  },
+                  "currentStatus": {
+                    "$ref": "#/components/schemas/LocationState"
+                  }
+                }
+            },
+            "GetLocationResponse": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Location"
+                  }
+                ]
+            },
+            "ListLocationResponse": {
+                "type": "object",
+                "properties": {
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Location"
+                    }
+                  }
+                }
+            },
             "AppList": {
                 "type": "object",
                 "properties": {
@@ -13170,6 +13344,20 @@
                             "$ref": "#/components/schemas/ErrorModel"
                         }
                     }
+                }
+            },
+            "NotAllowed": {
+                "description": "The request is not allowed on the specified resource.",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ErrorModel"
+                    },
+                    "example": {
+                      "code": 120322,
+                      "message": "Error deleting the location: the name 'unspecified' is reserved. Specify a different name for the location, then try again."
+                    }
+                  }
                 }
             }
         }

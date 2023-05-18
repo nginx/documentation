@@ -46,4 +46,4 @@ This release fixes the following issues. To view the history for an issue, searc
 
 ## Supported NGINX Plus Versions
 
-Refer to the [NGINX Controller Technical Specifications Guide]({{< relref "/admin-guides/install/nginx-controller-tech-specs#nginx-plus-instances" >}}) to learn about the NGINX Plus versions supported by this release.
+Refer to the [NGINX Controller Technical Specifications Guide]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs#nginx-plus-instances" >}}) to learn about the NGINX Plus versions supported by this release.

@@ -24,7 +24,7 @@ NGINX Controller, the NGINX Controller Agent, and the NGINX Controller Applicati
 
 #### Analytics, Visibility, and Reporting Daemon (AVRD)
 
-NGINX Controller v3.1 and later use an Analytics, Visibility, and Reporting daemon (AVRD) to aggregate and report app-centric metrics, which you can use to track and check the health of your apps. To learn more about these metrics, see the [NGINX Metrics Catalog]({{< relref "analytics/catalogs/metrics.md" >}}) topic.
+NGINX Controller v3.1 and later use an Analytics, Visibility, and Reporting daemon (AVRD) to aggregate and report app-centric metrics, which you can use to track and check the health of your apps. To learn more about these metrics, see the [NGINX Metrics Catalog]({{< relref "/controller/analytics/catalogs/metrics.md" >}}) topic.
 
 <!-- Do not remove. Keep this code at the bottom of the include -->
 <!-- DOCS-323 -->

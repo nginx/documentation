@@ -46,8 +46,8 @@ You can use the NGINX Controller **Graphs** viewer to view key metrics for all o
 
 ## Before You Begin
 
-- [Install the NGINX Controller Agent on instances that you want to monitor]({{< relref "/admin-guides/install/install-nginx-controller-agent.md" >}})
-- [Configure Metrics collection on your NGINX instances]({{< relref "/admin-guides/config-agent/configure-metrics-collection.md" >}})
+- [Install the NGINX Controller Agent on instances that you want to monitor]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}})
+- [Configure Metrics collection on your NGINX instances]({{< relref "/controller/admin-guides/config-agent/configure-metrics-collection.md" >}})
 
 ## How to View Systems Graphs
 
@@ -90,12 +90,12 @@ Above the graphs, you will find the following:
 
 You can also copy a predefined graph to a custom dashboard by selecting the graph and clicking the up arrow that appears in the top-right corner of the graph.
 
-See the [Metrics and Metadata]({{< relref "/analytics/metrics/overview-metrics-metadata.md" >}}) topic to learn more about the displayed metrics.
+See the [Metrics and Metadata]({{< relref "/controller/analytics/metrics/overview-metrics-metadata.md" >}}) topic to learn more about the displayed metrics.
 
 ## What's Next
 
-- [Overview of Metrics and Metadata]({{< relref "/analytics/metrics/overview-metrics-metadata.md" >}})
-- [Metrics Reference]({{< relref "/analytics/catalogs/metrics.md" >}})
+- [Overview of Metrics and Metadata]({{< relref "/controller/analytics/metrics/overview-metrics-metadata.md" >}})
+- [Metrics Reference]({{< relref "/controller/analytics/catalogs/metrics.md" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

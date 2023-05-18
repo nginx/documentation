@@ -72,7 +72,7 @@ To view data for a resource, select the resource's name from the resource list.
 
 ## Metrics
 
-The [list of metrics]({{< relref "analytics/catalogs/metrics.md" >}}) is sorted alphabetically, and you can use the search feature to filter the list. As previously mentioned, the list of metrics depends on the context you've selected for the Data Explorer. For example, if you've chosen Instances for the context, then the list of metrics will be for instances.
+The [list of metrics]({{< relref "/controller/analytics/catalogs/metrics.md" >}}) is sorted alphabetically, and you can use the search feature to filter the list. As previously mentioned, the list of metrics depends on the context you've selected for the Data Explorer. For example, if you've chosen Instances for the context, then the list of metrics will be for instances.
 
 ![Select a metric](../images/data-explorer_metric.png)
 
@@ -80,13 +80,13 @@ When the selected metric changes, the **Aggregation** and **Group By** selectors
 
 ## Aggregation Mode
 
-Use the Aggregation selector -- the &Sigma; symbol with possible values of `AVG`, `MAX`, `MIN`, `RATE`, and `SUM` -- to [aggregate the data]({{< relref "analytics/metrics/metrics-api.md#aggregations" >}}). The list of possible aggregation values depends on the metrics that's selected.
+Use the Aggregation selector -- the &Sigma; symbol with possible values of `AVG`, `MAX`, `MIN`, `RATE`, and `SUM` -- to [aggregate the data]({{< relref "/controller/analytics/metrics/metrics-api.md#aggregations" >}}). The list of possible aggregation values depends on the metrics that's selected.
 
 ![Select an aggregation value](../images/data-explorer_aggregation.png)
 
 ## Group by Dimension
 
-Use the **Group By** selector to [group the data by a chosen dimension]({{< relref "analytics/metrics/metrics-api.md#groupby" >}}).
+Use the **Group By** selector to [group the data by a chosen dimension]({{< relref "/controller/analytics/metrics/metrics-api.md#groupby" >}}).
 
 In the following example image, the data for the `bytes_rcvd` metric is grouped by the dimension `http.request_method`, which displays a data series for the HTTP methods `DELETE`, `GET`, `LINK`, and so on.
 
@@ -127,7 +127,7 @@ On the Data Explorer details page, you can select the **Show Query** button (eye
 The query updates whenever the selection options change. The query doesn't include requests for comparison data.
 
 {{< see-also >}}
-For instructions on how to understand the Metrics API response, refer to the topic [Using the Metrics API]({{< relref "analytics/metrics/metrics-api#understanding-the-metrics-api-response" >}}).
+For instructions on how to understand the Metrics API response, refer to the topic [Using the Metrics API]({{< relref "/controller/analytics/metrics/metrics-api#understanding-the-metrics-api-response" >}}).
 {{< /see-also >}}
 
 &nbsp;

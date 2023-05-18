@@ -107,11 +107,11 @@ By default, the AHS and other metrics on the **Overview** page are calculated fo
 
 ## What's Next
 
-- [Overview of metrics and metadata]({{< relref "analytics/metrics/overview-metrics-metadata.md" >}})
-- [Set up Metrics Collection]({{< relref "admin-guides/config-agent/configure-metrics-collection.md" >}})
-- [Metrics Catalog Reference]({{< relref "analytics/catalogs/metrics.md" >}})
-- [Dimensions Catalog Reference]({{< relref "analytics/catalogs/dimensions.md" >}})
-- [Custom Dashboards]({{< relref "analytics/dashboards/custom-dashboards.md" >}})
+- [Overview of metrics and metadata]({{< relref "/controller/analytics/metrics/overview-metrics-metadata.md" >}})
+- [Set up Metrics Collection]({{< relref "/controller/admin-guides/config-agent/configure-metrics-collection.md" >}})
+- [Metrics Catalog Reference]({{< relref "/controller/analytics/catalogs/metrics.md" >}})
+- [Dimensions Catalog Reference]({{< relref "/controller/analytics/catalogs/dimensions.md" >}})
+- [Custom Dashboards]({{< relref "/controller/analytics/dashboards/custom-dashboards.md" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}
