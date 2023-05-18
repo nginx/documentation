@@ -80,9 +80,9 @@ Do not push configuration changes to the impacted instance, or any instance grou
 
 ### Install from NGINX Management Suite Package Repository (Recommended)
 
-{{< include "nms/prepare-nms-platform/add-nms-repo.md" >}}
+{{< include "installation/add-nms-repo.md" >}}
 
-3. Install the NGINX Plus metrics module using the appropriate command for your OS:
+4. Install the NGINX Plus metrics module using the appropriate command for your OS:
 
     - CentOS, RHEL, RPM-Based
 
