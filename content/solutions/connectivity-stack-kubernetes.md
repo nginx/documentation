@@ -18,6 +18,14 @@ The Connectivity Stack for Kubernetes by F5 NGINX includes access to the followi
 
 ## Installation
 
+NGINX Ingress Controller can be installed from pre-built images for three common installation patterns:
+
+- [NGINX Ingress Controller]({{< ref "connectivity-stack-kubernetes/#install-nginx-ingress-controller" >}})
+- [NGINX Ingress Controller with NGINX App Protect WAF]({{< ref "connectivity-stack-kubernetes/#install-install-nginx-ingress-controller-with-nginx-app-protect-waf" >}})
+- [NGINX Ingress Controller with NGINX App Protect DoS]({{< ref "connectivity-stack-kubernetes/#install-install-nginx-ingress-controller-with-nginx-app-protect-dos" >}})
+
+Deploying NGINX Ingress Controller is the same for all three patterns, but requires different pre-built images. Alternatively, you can choose to [build the Ingress Controller image](https://docs.nginx.com/nginx-ingress-controller/installation/building-ingress-controller-image/) using the source code.
+
 ### Install NGINX Ingress Controller
 NGINX Ingress Controller manages app connectivity at the edge of a Kubernetes cluster with API gateway, identity, and observability features.
 
@@ -29,12 +37,12 @@ NGINX Ingress Controller manages app connectivity at the edge of a Kubernetes cl
     - [Using NGINX Ingress Controller in AWS Marketplace](https://docs.nginx.com/nginx-ingress-controller/installation/using-aws-marketplace-image/)
 3. For additional installation options, including building custom container images, refer to the [documentation for NGINX Ingress Controller](https://docs.nginx.com/nginx-ingress-controller/installation/)
 
-### (Optional) Install NGINX App Protect WAF
+### Install Install NGINX Ingress Controller with NGINX App Protect WAF
 NGINX App Protect WAF is a strong, lightweight WAF that protects against the OWASP Top 10 and provides PCI DDS compliance.
 
 - Follow the instructions to [install NGINX Ingress Controller with NGINX App Protect WAF](https://docs.nginx.com/nginx-ingress-controller/app-protect-waf/installation/)
 
-### (Optional) Install NGINX App Protect DoS
+### Install Install NGINX Ingress Controller with NGINX App Protect DoS
 NGINX App Protect DoS provides behavioral DoS detection and mitigation with consistent and adaptive protection across clouds and architectures.
 
 - Follow the instructions to [install NGINX Ingress Controller with NGINX App Protect DoS](https://docs.nginx.com/nginx-ingress-controller/app-protect-dos/installation/)
