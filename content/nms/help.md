@@ -20,9 +20,9 @@ NGINX Management Suite is a family of management plane solutions that enable gov
 
 - **Instance Manager:** Configure, scale, and manage NGINX Open Source, NGINX Plus, and NGINX App Protect WAF instances.
 
-{{<comment>}}- **Application Delivery Manager:** Enable self-service and automation of application delivery by DevOps teams. Deploy, configure, monitor, secure, and govern ADCs at scale.
-{{</comment>}}
 - **API Connectivity Manager:** Enable self-service and automation of API delivery. Deploy, configure, secure, monitor, and govern API gateways at scale.
+
+- **App Delivery Manager:** Enable self-service and automation of applications by Platform Ops and App teams. Deploy, configure, monitor, secure, and govern applications at scale.
 
 - **Security Monitoring:** Monitor NGINX App Protect WAF instances,  analyze possible threats and identify opportunities for tuning your security policies.
 
@@ -48,12 +48,11 @@ The documentation for NGINX Management Suite is divided into the following secti
 
 ### [API Connectivity Manager]({{< relref "/nms/acm/" >}})
 
-- Learn how to configure and use API Connectivity Manager.
+- Learn how to configure and use the API Connectivity Manager.
 
-{{<comment>}}### [NGINX Application Delivery Manager]()
+### [App Delivery Manager]({{< relref "/nms/adm/" >}})
 
-- Learn how to configure and use NGINX Application Delivery Manager.
-{{</comment>}}
+- Learn how to configure and use the App Delivery Manager.
 
 ### [Security Monitoring]({{< relref "/nms/security/" >}})
 
@@ -67,11 +66,11 @@ The documentation for NGINX Management Suite is divided into the following secti
 
 Check out some of our most consulted topics:
 
-### [Install Guide]({{< relref "/nms/admin-guides/installation/on-prem/install-guide.md" >}})
+### [Install Guide]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}})
 
 - Complete the steps in this guide to install NGINX Management Suite.
 
-### [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md" >}})
+### [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}})
 
 - This guide explains how to upgrade NGINX Management Suite and NGINX Agent.
 
