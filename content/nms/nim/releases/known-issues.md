@@ -19,7 +19,7 @@ categories: ["known issues"]
 
 ## 2.10.0
 
-### {{% icon-bug %}} Valid licenses incorrectly identified as invalid {#42598}
+### {{% icon-resolved %}} Valid licenses incorrectly identified as invalid {#42598}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID | Status          |
