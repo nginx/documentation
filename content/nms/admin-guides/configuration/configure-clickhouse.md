@@ -39,14 +39,7 @@ Unless specified differently in the `/etc/nms/nms.conf` file, NGINX Management S
 
 If your ClickHouse installation has a different address, username, or password than the default values, you need to configure NGINX Management Suite to connect to ClickHouse.
 
-<details closed>
-<summary><i class="fa-solid fa-circle-info"></i> Default ClickHouse values</summary>
-
-{{< include "installation/clickhouse-defaults.md" >}}
-
-</details>
-
-After installing Instance manager, take the following steps to set custom values for the ClickHouse address, username, and password:
+To set custom values for the ClickHouse address, username, and password:
 
 1. On the NGINX Management Suite server, open the `/etc/nms/nms.conf` file for editing.
 2. Change the following settings to match your ClickHouse configuration:
@@ -68,9 +61,6 @@ If you configured ClickHouse to work with TLS, take the following steps to updat
 
 1. On the NGINX Management Suite server, open the `/etc/nms/nms.conf` file for editing.
 2. Configure the `clickhouse` TSL settings to suit your environment:
-
-    <details open>
-    <summary>Example ClickHouse config</summary>
 
     ```yaml
     clickhouse:
@@ -109,7 +99,5 @@ If you configured ClickHouse to work with TLS, take the following steps to updat
       
       migrations_path: /test/migrations
     ```
-
-    </details>
 
 3. Save the changes and close the file.

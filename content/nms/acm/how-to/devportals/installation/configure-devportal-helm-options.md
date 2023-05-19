@@ -7,7 +7,7 @@ date: 2022-12-01T16:42:57-08:00
 # The description text appears in search results and at the top of the doc.
 description: "This guide lists and describes the parameters you can set when deploying the Developer Portal from a Helm chart. "
 # Assign weights in increments of 100
-weight: 500
+weight: 25
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
