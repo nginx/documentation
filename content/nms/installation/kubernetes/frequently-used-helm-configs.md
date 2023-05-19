@@ -102,15 +102,17 @@ To use NGINX Plus for the API Gateway, take the following steps:
 
 1. Build your own Docker image for NGINX Plus API Gateway by providing your `nginx-repo.crt` and `nginx-repo.key`. Download the certificate (nginx-repo.crt) and key (nginx-repo.key) from the [MyF5 website](https://my.f5.com) and add them to your build context.
 
-   You can use the following example Docker image and the instructions within it. In this example, we use `apigw:<version>` as the base image, obtained when we completed the [Extract Helm Bundle](#extract-helm-bundle) steps above, which we've extended to use NGINX Plus instead of NGINX OSS.
+    You can use the following example Docker image and the instructions within it. In this example, we use `apigw:<version>` as the base image, obtained when we completed the [Downloaded and extracted the Helm package]({{< relref " /nms/installation/kubernetes/deploy-instance-manager.md#download-helm-package" >}}), which we've extended to use NGINX Plus instead of NGINX OSS.
 
-    Example Docker image
+    <br>
 
-   ```shell
-   # syntax=docker/dockerfile:1
+    **Example Docker image**
 
-   # NGINX PLUS API-GW
-   # NOTE:
+    ```shell
+    # syntax=docker/dockerfile:1
+
+    # NGINX PLUS API-GW
+    # NOTE:
      # NMS does not publish this Docker image and are only instructions on how to build API-GW with NGINX-PLUS
      # This docker build should be performed by customer using their own nginx-repo.crt and nginx-repo.key
      # API-GW with NGINX-PLUS to enable OIDC.
@@ -119,29 +121,29 @@ To use NGINX Plus for the API Gateway, take the following steps:
      # Replace "apigw:<version>" with a known release tag.
      # For example: apigw:2.6.0
 
-   FROM apigw:<version> as apigw-plus
+    FROM apigw:<version> as apigw-plus
 
-   ARG REPO_PATH=.
+    ARG REPO_PATH=.
 
-   # Define NGINX versions for NGINX Plus and NGINX Plus modules
-   # Uncomment this block and the versioned nginxPackages in the main RUN
-   # instruction to install a specific release
-   # ENV NGINX_VERSION 21
-   # ENV NJS_VERSION   0.3.9
-   # ENV PKG_RELEASE   1
+    # Define NGINX versions for NGINX Plus and NGINX Plus modules
+    # Uncomment this block and the versioned nginxPackages in the main RUN
+    # instruction to install a specific release
+    # ENV NGINX_VERSION 21
+    # ENV NJS_VERSION   0.3.9
+    # ENV PKG_RELEASE   1
 
-   # Remove any previous version of nginx
-   RUN apk del nginx*
+    # Remove any previous version of nginx
+    RUN apk del nginx*
 
-   # Download certificate and key from the customer portal (https://cs.nginx.com)
-   # and copy to the build context
-   COPY ${REPO_PATH}/nginx-repo.crt /etc/apk/cert.pem
-   COPY ${REPO_PATH}/nginx-repo.key /etc/apk/cert.key
+    # Download certificate and key from the customer portal (https://cs.nginx.com)
+    # and copy to the build context
+    COPY ${REPO_PATH}/nginx-repo.crt /etc/apk/cert.pem
+    COPY ${REPO_PATH}/nginx-repo.key /etc/apk/cert.key
 
-   RUN set -x \
-   # Install the latest release of NGINX Plus and/or NGINX Plus modules
-   # Uncomment individual modules if necessary
-   # Use versioned packages over defaults to specify a release
+    RUN set -x \
+    # Install the latest release of NGINX Plus and/or NGINX Plus modules
+    # Uncomment individual modules if necessary
+    # Use versioned packages over defaults to specify a release
        && nginxPackages=" \
            nginx-plus \
            # nginx-plus=${NGINX_VERSION}-${PKG_RELEASE} \
@@ -172,10 +174,10 @@ To use NGINX Plus for the API Gateway, take the following steps:
        && apk add -X "https://plus-pkgs.nginx.com/alpine/v$(egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release)/main" --no-cache $nginxPackages \
        && if [ -n "/etc/apk/keys/nginx_signing.rsa.pub" ]; then rm -f /etc/apk/keys/nginx_signing.rsa.pub; fi \
        && if [ -n "/etc/apk/cert.key" && -n "/etc/apk/cert.pem"]; then rm -f /etc/apk/cert.key /etc/apk/cert.pem; fi \
-   # Bring in gettext so we can get `envsubst`, then throw
-   # the rest away. To do this, we need to install `gettext`
-   # then move `envsubst` out of the way so `gettext` can
-   # be deleted completely, then move `envsubst` back.
+    # Bring in gettext so we can get `envsubst`, then throw
+    # the rest away. To do this, we need to install `gettext`
+    # then move `envsubst` out of the way so `gettext` can
+    # be deleted completely, then move `envsubst` back.
        && apk add --no-cache --virtual .gettext gettext \
        && mv /usr/bin/envsubst /tmp/ \
        \
@@ -189,46 +191,42 @@ To use NGINX Plus for the API Gateway, take the following steps:
        && apk add --no-cache $runDeps \
        && apk del .gettext \
        && mv /tmp/envsubst /usr/local/bin/ \
-   # Bring in tzdata so users could set the timezones through the environment
-   # variables
+    # Bring in tzdata so users could set the timezones through the environment
+    # variables
        && apk add --no-cache tzdata \
-   # Bring in curl and ca-certificates to make registering on DNS SD easier
+    # Bring in curl and ca-certificates to make registering on DNS SD easier
        && apk add --no-cache curl ca-certificates \
-   # Forward request and error logs to Docker log collector
+    # Forward request and error logs to Docker log collector
        && ln -sf /dev/stdout /var/log/nginx/access.log \
        && ln -sf /dev/stderr /var/log/nginx/error.log
 
-   CMD ["nginx", "-g", "daemon off;"]
+    CMD ["nginx", "-g", "daemon off;"]
 
-   # vim:syntax=Dockerfile
-   ```
+    # vim:syntax=Dockerfile
+    ```
 
 
-1. Tag the Docker image with the values you noted in the [Load Docker Images](#load-docker-images) step above.
+2. Tag the Docker image:
 
    ```shell
    docker tag apigw-plus <my-docker-registry>/nms-apigw-plus:<version>
    ```
 
-   This command tags the existing Docker image, `apigw-plus`, with a new image name, `<my-docker-registry>/nms-apigw-plus:<version>` and assigns it a specific version number.
-
    - Replace `<my-docker-registry>` with your private Docker registry.
 
-   - Replace `<version>` with the tag you noted when [loading the Docker images](#load-nms-docker-images) above.
+   - Replace `<version>` with the tag you noted when following the steps to [Load the Docker Images]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md#load-docker-images" >}}).
 
-2. Push the image to your private registry:
+3. Push the image to your private registry:
 
    ```shell
    docker push <my-docker-registry>/nms-apigw-plus:<version>
    ```
 
-   This command pushes the `nms-agipw-plus` Docker image with the specified version to your private Docker registry (`<my-docker-registry>`). The Docker image will be stored in the registry and can be used for future deployments.
-
    - Replace `<my-docker-registry>` with your private Docker registry.
 
-   - Replace `<version>` with the tag you noted when [loading the Docker images](#load-nms-docker-images) above.
+   - Replace `<version>` with the tag you noted when following the steps to [Load the Docker Images]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md#load-docker-images" >}}).
 
-3. Edit the `values.yaml` file to configure the Helm chart to pull the `apigw` image from your private Docker registry:
+4. Edit the `values.yaml` file to configure the Helm chart to pull the `apigw` image from your private Docker registry:
 
    For NGINX Plus, edit the `values.yaml` file and add the following settings:
 
