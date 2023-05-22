@@ -28,7 +28,7 @@ This document will guide you through the process of publishing API documentation
 
 To complete the steps in this guide, you need the following:
 
-- [ACM is installed]({{< relref "/nms/admin-guides/installation/_index.md" >}}) and running
+- [ACM is installed]({{< relref "/nms/installation/_index.md" >}}) and running
 - One or more environments with a [configured Developer Portal]({{< relref "/nms/acm/getting-started/add-devportal.md" >}})
 - (Optional) [Customize the Developer Portal]({{< relref "/nms/acm/how-to/infrastructure/customize-devportal.md" >}})
 

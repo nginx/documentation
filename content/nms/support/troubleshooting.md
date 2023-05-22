@@ -27,11 +27,25 @@ View the known issues and possible workarounds in the NGINX Management Suite mod
 
 - [Instance Manager]({{< relref "/nms/nim/releases/known-issues.md" >}})
 - [API Connectivity Manager]({{< relref "/nms/acm/releases/known-issues.md" >}})
+- [App Delivery Manager]({{< relref "/nms/adm/releases/known-issues.md" >}})
 - [Security Monitoring]({{< relref "/nms/security/releases/known-issues.md" >}})
 
 ---
 
 ## NGINX Management Suite Platform
+
+<details>
+<summary>NGINX Management Suite returns "502 Upstream Unavailable" error after installation</summary>
+
+#### Description
+
+After installing NGINX Management Suite, when accessing the web interface, the system returns the error "502 Upstream Unavailable."
+
+#### Resolution
+
+If you have SELinux installed, you need to load the SELinux policy module that's included with NGINX Management Suite. For instructions, refer to the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) topic.
+
+</details>
 
 <details>
 <summary>NGINX proxy gateway warns "1024 worker_connections are not enough"</summary>
@@ -42,7 +56,7 @@ If the NGINX proxy gateway for NGINX Management Suite alerts you that there are 
 
 #### Resolution
 
-- For guidance on increasing the number of worker connections and file descriptors for the NGINX proxy gateway for NGINX Management Suite, refer to the guide [Optimize NGINX Proxy Gateway for Large Data Planes]({{< relref "/nms/admin-guides/getting-started/configure-gateway.md" >}}).
+- For guidance on increasing the number of worker connections and file descriptors for the NGINX proxy gateway for NGINX Management Suite, refer to the guide [Optimize NGINX Proxy Gateway for Large Data Planes]({{< relref "/nms/admin-guides/configuration/configure-gateway.md" >}}).
 
 </details>
 
@@ -245,6 +259,40 @@ Try restarting the NGINX Agent after upgrading NGINX.
   ``` bash
   sudo systemctl restart nginx-agent
   ```
+
+</details>
+
+## Security Monitoring {#troubleshoot-sm}
+
+<details>
+<summary>Security Event log backup with Security Monitoring</summary>
+
+#### Description
+
+If a Security Violation event is not received by the Security Monitoring module, the data representing the attack is lost.
+
+#### Resolution
+
+NGINX App Protect supports logging to multiple destinations, enabling the user to send a log to NGINX agent and a copy to be stored as a backup. In the event of a failure to receive Security Events in Security Monitoring, the backup log can be checked to verify attack details. Change the settings below to enable backup logging:
+
+1. Instance with Security Monitoring only
+
+```nginx
+app_protect_policy_file "/etc/app_protect/conf/NginxDefaultPolicy.json";
+app_protect_security_log_enable on;
+app_protect_security_log "/etc/app_protect/conf/log_sm.json" syslog:server=127.0.0.1:514;
+app_protect_security_log "/etc/app_protect/conf/log_sm.json" <Path to store log file>;
+# Example: app_protect_security_log "/etc/app_protect/conf/log_sm.json" /var/log/app_protect/security.log;
+```
+1. Instance with Security Monitoring and Instance Manager
+
+```nginx
+app_protect_policy_file "/etc/nms/NginxDefaultPolicy.tgz";
+app_protect_security_log_enable on;
+app_protect_security_log "/etc/nms/secops_dashboard.tgz" syslog:server=127.0.0.1:514;
+app_protect_security_log "/etc/nms/secops_dashboard.tgz" <Path to store log file>;
+# Example: app_protect_security_log "/etc/nms/secops_dashboard.tgz" /var/log/app_protect/security.log;
+```
 
 </details>
 

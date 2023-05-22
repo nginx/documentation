@@ -32,7 +32,7 @@ Instance Manager 2.10.0 supports upgrades from these previous versions:
 
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.{{</see-also>}}
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.{{</see-also>}}
 
 ### What's New {#2-10-0-whats-new}
 
@@ -112,7 +112,7 @@ Instance Manager 2.9.1 supports upgrades from these previous versions:
 
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.{{</see-also>}}
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.{{</see-also>}}
 
 ### Resolved Issues {#2-9-1-resolved}
 
@@ -134,7 +134,7 @@ Instance Manager 2.9.0 supports upgrades from these previous versions:
 
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.{{</see-also>}}
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.{{</see-also>}}
 
 ### What's New {#2-9-0-whats-new}
 
@@ -291,7 +291,7 @@ Instance Manager 2.8.0 supports upgrades from these previous versions:
 
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 
 If you're running Instance Manager 1.0 or earlier, follow the steps in the [Migration Guide]({{< relref "/nms/nim/migration-guide.md" >}}) to migrate your system to Instance Manager 2.0. Direct upgrades from Instance Manager 1.0 and earlier are not supported.{{< /see-also >}}
 
@@ -317,7 +317,7 @@ Instance Manager 2.8.0 has the following changes in default behavior:
 
 - {{% icon-feature %}} **Switching between storing secrets on disk and using Vault migrates secrets**
 
-  When transitioning between storing secrets on disk or using HashiCorp Vault, any existing secrets can be easily migrated to the new storage method. For instructions, refer to the guide [Configure Vault for Storing Secrets]({{< relref "/nms/admin-guides/getting-started/configure-vault.md" >}}).
+  When transitioning between storing secrets on disk or using HashiCorp Vault, any existing secrets can be easily migrated to the new storage method. For instructions, refer to the guide [Configure Vault for Storing Secrets]({{< relref "/nms/admin-guides/configuration/configure-vault.md" >}}).
 
 - {{% icon-feature %}} **Create roles using either an object name or UID**
 
@@ -384,7 +384,7 @@ Instance Manager 2.7.0 supports upgrades from the following versions:
 
 If you are using an older version of Instance Manager, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 ### What's New
@@ -445,7 +445,7 @@ Instance Manager 2.6.0 supports upgrades from the following versions:
 
 If you are using an older version of Instance Manager, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 ### What's New
@@ -522,7 +522,7 @@ Instance Manager 2.5.1 supports direct upgrades from the following versions:
 
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 
 If you're running Instance Manager 1.x or earlier, follow the steps in the [Migration Guide]({{< relref "/nms/nim/migration-guide.md" >}}) to migrate your system to Instance Manager 2.x. Direct upgrades from Instance Manager 1.x and earlier are not supported.{{< /see-also >}}
 
@@ -550,7 +550,7 @@ Instance Manager 2.5.0 supports direct upgrades from the following versions:
 
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 
 If you're running Instance Manager 1.x or earlier, follow the steps in the [Migration Guide]({{< relref "/nms/nim/migration-guide.md" >}}) to migrate your system to Instance Manager 2.x. Direct upgrades from Instance Manager 1.x and earlier are not supported.{{< /see-also >}}
 
@@ -564,7 +564,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **New helm charts for each release of Instance Manager**
 
-  Each release of Instance Manager now includes a Helm chart, which you can use to easily [install Instance Manager on Kubernetes]({{< relref "/nms/admin-guides/installation/kubernetes/nms-helm.md" >}}). You can download the helm charts from [MyF5](https://my.f5.com/manage/s/downloads).
+  Each release of Instance Manager now includes a Helm chart, which you can use to easily [install Instance Manager on Kubernetes]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md" >}}). You can download the helm charts from [MyF5](https://my.f5.com/manage/s/downloads).
 
 ### Resolved Issues
 
@@ -596,7 +596,7 @@ Instance Manager 2.4.0 supports direct upgrades from the following versions:
 
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 
 If you're running Instance Manager 1.x or earlier, follow the steps in the [Migration Guide]({{< relref "/nms/nim/migration-guide.md" >}}) to migrate your system to Instance Manager 2.x. Direct upgrades from Instance Manager 1.x and earlier are not supported.{{< /see-also >}}
 
@@ -645,7 +645,7 @@ Instance Manager 2.3.1 supports direct upgrades from the following versions:
 
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 
 If you're running Instance Manager 1.x or earlier, follow the steps in the [Migration Guide]({{< relref "/nms/nim/migration-guide.md" >}}) to migrate your system to Instance Manager 2.x. Direct upgrades from Instance Manager 1.x and earlier are not supported.{{< /see-also >}}
 
@@ -677,7 +677,7 @@ Instance Manager 2.3.0 supports direct upgrades from the following versions:
 
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 
 If you're running Instance Manager 1.x or earlier, follow the steps in the [Migration Guide]({{< relref "/nms/nim/migration-guide.md" >}}) to migrate your system to Instance Manager 2.x. Direct upgrades from Instance Manager 1.x and earlier are not supported.{{< /see-also >}}
 
@@ -750,7 +750,7 @@ Instance Manager 2.2.0 supports direct upgrades from the following versions:
 
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 
 If you're running Instance Manager 1.x or earlier, follow the steps in the [Migration Guide]({{< relref "/nms/nim/migration-guide.md" >}}) to migrate your system to Instance Manager 2.x. Direct upgrades from Instance Manager 1.x and earlier are not supported.{{< /see-also >}}
 
@@ -787,7 +787,7 @@ Instance Manager 2.2.0 has the following changes in default behavior:
 
 - {{% icon-feature %}} **Viewing events requires a valid license**
 
-  A valid license is needed to view events using the Instance Manager REST API or web interface. See [Add a License]({{< relref "/nms/admin-guides/getting-started/add-license.md" >}}) for instructions on how to get and add a license.
+  A valid license is needed to view events using the Instance Manager REST API or web interface. See [Add a License]({{< relref "/nms/installation/add-license.md" >}}) for instructions on how to get and add a license.
 
 ### Resolved Issues
 
@@ -817,7 +817,7 @@ Instance Manager 2.1.0 supports direct upgrades from the following versions:
 
 - 2.0.0–2.0.1
 
-{{< see-also >}}See the [Upgrade Guide]({{< relref "/nms/admin-guides/installation/upgrade-guide.md" >}}) for important information and steps that you must review and follow when upgrading Instance Manager and the NGINX Agent.
+{{< see-also >}}See the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps that you must review and follow when upgrading Instance Manager and the NGINX Agent.
 
 If you're running Instance Manager 1.x or earlier, follow the steps in the [Migration Guide]({{< relref "/nms/nim/migration-guide.md" >}}) to migrate your system to Instance Manager 2.x. Direct upgrades from Instance Manager 1.x and earlier are not supported.{{< /see-also >}}
 
@@ -847,7 +847,7 @@ This release includes the following new features and enhancements:
 
   Among the benefits of deploying from a helm chart, the chart includes the required services, which you can scale independently as needed; upgrades can be done with a single helm command; and there's no requirement for root privileges.
 
-  For instructions, see [Install from a Helm Chart]({{< relref "/nms/admin-guides/installation/kubernetes/nms-helm.md" >}}).
+  For instructions, see [Install from a Helm Chart]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md" >}}).
 
 - {{% icon-feature %}} **Improved certificate handling**
 

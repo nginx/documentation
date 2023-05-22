@@ -1,6 +1,6 @@
 ---
 title: Security Monitoring
-weight: 600
+weight: 700
 url: /nginx-management-suite/security/
 ---
 
