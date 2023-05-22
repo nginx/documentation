@@ -11,7 +11,7 @@ The following table lists the minimum versions of Instance Manager required by A
 {{<bootstrap-table "table table-striped table-bordered">}}
 | App Delivery Manager       | Instance Manager Dependency |
 |----------------------------|-----------------------------|
-| App Delivery Manager 4.0.0 | NIM 2.10.0 and later        |
+| App Delivery Manager 4.0.0 | NIM 2.10.0 and later /* does this need to be updated for 2.10.1? */        |
 {{</bootstrap-table>}}
 
 
