@@ -42,7 +42,7 @@ Allow external systems access by opening network firewalls. NGINX Management Sui
 
 The following diagram shows the steps required to install NGINX Management Suite. This page will guide you through the process of installing the prerequisites.
 
-{{< img src="/nms/installation/vm-bare-metal/nms-installation.png" alt="Steps for installing NGINX Management Suite" >}}
+![NGINX Management Suite installation workflow](/install/nms-installation.png)
 
 ---
 
