@@ -3,7 +3,7 @@ The Security Monitoring module requires the following versions of [Instance Mana
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Security Monitoring | Instance Manager |
 |---------------------|------------------|
-| 1.4.0               | 2.10.0   /* does this need to be updated for 2.10.1? */         |
+| 1.4.0               | 2.10.0 and later |
 | 1.3.0               | 2.9.0            |
 | 1.2.0               | 2.8.0            |
 | 1.1.0               | 2.7.0            |
