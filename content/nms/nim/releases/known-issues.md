@@ -19,12 +19,26 @@ categories: ["known issues"]
 
 ## 2.10.0
 
+### {{% icon-resolved %}} Valid licenses incorrectly identified as invalid {#42598}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status          |
+|----------|-----------------|
+| 42598    | Fixed in 2.10.1 |
+{{</bootstrap-table>}}
+
+#### Description
+
+Sometimes, valid licenses for NGINX Management Suite are incorrectly identified as invalid when uploaded. As a result, you may not be able to access features that require a valid license.
+
+---
+
 ### {{% icon-bug %}} The Metrics module is interrupted during installation on Red Hat 9 {#42219}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 42219 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 42219    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
@@ -53,9 +67,9 @@ After installation, we recommend you return the default to a more secure algorit
 ### {{% icon-bug %}} When publishing a new version of Threat Campaign, the last two versions in the list cannot be selected {#42217}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 42217 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 42217    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
@@ -72,9 +86,9 @@ Threat Campaign versions can be published with the API using the route: `api/pla
 ### {{% icon-bug %}} Duplicate Certificate and Key published for managed certificates {#42182}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 42182 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 42182    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
@@ -91,9 +105,9 @@ Manually delete the certificate and key from the `/etc/nginx/` path.
 ### {{% icon-bug %}} When upgrading to Instance Manager 2.10, there may be warnings from the Ingestion service {#42133}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 42133          | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 42133    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
@@ -109,9 +123,9 @@ When upgrading to 2.10.0 you may see a warning like the below message for the NG
 ### {{% icon-bug %}} When upgrading to Instance Manager 2.10.0, the API does not return lastDeploymentDetails for existing configurations {#42119}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 42119 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 42119    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
@@ -128,9 +142,9 @@ Republish the configuration for the affected configuration blocks.
 ### {{% icon-bug %}} When upgrading to Instance Manager 2.10.0, the publish status on App Security pages shows "Invalid Date" {#42108}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 42108 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 42108    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
@@ -142,9 +156,9 @@ After upgrading to Instance Manager 2.10.0, the publish status on App Security p
 ### {{% icon-bug %}} Configuration changes for NGINX Agent take longer than expected. {#41257}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 41257 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 41257    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
