@@ -35,7 +35,7 @@ Complete the following prerequisites before proceeding with this guide.
 
 ### Limitations
 
-{{<important>}}App Protect WAF Config management is not yet supported when Instance Manager is [deployed on Kubernetes](https://docs.nginx.com/nginx-management-suite/installation/kubernetes/deploy-instance-manager/).{{</important>}}
+{{<important>}}App Protect WAF Config management is not yet supported when Instance Manager is [deployed on Kubernetes]({{<relref "nms/installation/kubernetes/deploy-instance-manager.md" >}}).{{</important>}}
 
 Instance Manager does not support the following NGINX App Protect features:
 
