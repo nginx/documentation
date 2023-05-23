@@ -26,14 +26,16 @@ Instance Manager helps you manage your NGINX App Protect WAF configurations, mak
 
 Complete the following prerequisites before proceeding with this guide.
 
-- You have one or more instances of [NGINX App Protect WAF](https://docs.nginx.com/nginx-app-protect/admin-guide/install/) installed and running. See [Support for NGINX App Protect WAF]({{< relref "tech-specs#support-for-nginx-app-protect-waf" >}}) for a list of supported versions. 
+- You have one or more instances of [NGINX App Protect WAF](https://docs.nginx.com/nginx-app-protect/admin-guide/install/) installed and running. See [Support for NGINX App Protect WAF]({{< relref "tech-specs#support-for-nginx-app-protect-waf" >}}) for a list of supported versions.
 
     {{<note>}}If you are using configuration management and the NGINX Management Suite Security Monitoring module, follow the instructions in the [setup guide]({{<relref "/nms/security/how-to/set-up-app-protect-instances" >}}) to set up your NGINX App Protect instances before proceeding with this guide.{{</note>}}
 
-- You have Instance Manager v2.6.0 or later [installed]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}), licensed, and running. 
-  If you have a subscription to NGINX App Protect WAF, you can find your Instance Manager license in the subscription details section of [MyF5](https://my.f5.com).  
+- You have Instance Manager v2.6.0 or later [installed]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}), licensed, and running.
+  If you have a subscription to NGINX App Protect WAF, you can find your Instance Manager license in the subscription details section of [MyF5](https://my.f5.com).
 
 ### Limitations
+
+{{<important>}}App Protect WAF Config management is not yet supported when Instance Manager is [deployed on Kubernetes](https://docs.nginx.com/nginx-management-suite/installation/kubernetes/deploy-instance-manager/).{{</important>}}
 
 Instance Manager does not support the following NGINX App Protect features:
 
@@ -51,8 +53,8 @@ Instance Manager can use the NGINX App Protect WAF compiler to "pre-compile" sec
 Be sure to download and install the correct WAF compiler version for your environment:
 
 - Each NGINX App Protect version has a corresponding WAF compiler version. You must install the WAF compiler that matches the version of NGINX App Protect that you have running.
-- If you have different NGINX App Protect versions running, install the correct WAF compiler package for each on the management plane host. Instance Manager will use the correct WAF compiler for each version to bundle the security configurations. 
-- You can create [instance groups]({{< relref "/nms/nim/how-to/nginx/manage-instance-groups" >}}) to keep track of and manage all instances that have the same version installed. 
+- If you have different NGINX App Protect versions running, install the correct WAF compiler package for each on the management plane host. Instance Manager will use the correct WAF compiler for each version to bundle the security configurations.
+- You can create [instance groups]({{< relref "/nms/nim/how-to/nginx/manage-instance-groups" >}}) to keep track of and manage all instances that have the same version installed.
 
 For more information about the WAF compiler, refer to the [Security Bundle Compilation]({{< relref "/nms/nim/about/app-protect-waf-cm-overview#security-bundle" >}}) section of the Policy Configuration overview topic.
 
@@ -72,9 +74,9 @@ The following table shows the NGINX App Protect WAF Release version and its corr
 <br>
 
 {{<note>}}
-- The install commands in this guide use an example version to show the correct command format. 
+- The install commands in this guide use an example version to show the correct command format.
 
-  Be sure to replace the version string in the example with the correct version to suit your needs. 
+  Be sure to replace the version string in the example with the correct version to suit your needs.
   You can find the package versions in the [NGINX App Protect WAF Release Notes](https://docs.nginx.com/nginx-app-protect/releases/).
 
 - The WAF compiler installs to the `/opt` directory. Set the permission level for the directory as appropriate to allow write access by the owner (for example, `0755`).
@@ -82,12 +84,12 @@ The following table shows the NGINX App Protect WAF Release version and its corr
 {{</note>}}
 
 ### Debian or Ubuntu
-  
+
 Install the WAF compiler, then restart the `nms-integrations` service:
-    
+
 ```bash
 sudo apt-get install nms-nap-compiler-v4.218.0
-``` 
+```
 
 {{<note>}}
 - If you want to have more than one version of the `nms-nap-compiler` installed on your system at once, you'll need to append `-o Dpkg::Options::="--force-overwrite"` to the `nms-nap-compiler` installation commands after your initial `nms-nap-compiler` installation. For example, the installation command would look like this:
@@ -127,7 +129,7 @@ sudo yum install nms-nap-compiler-v4.218.0
 
 ### Download from MyF5
 
-If you are not able to access the public NGINX repository, you can download all of the required packages from [MyF5](https://my.f5.com/). 
+If you are not able to access the public NGINX repository, you can download all of the required packages from [MyF5](https://my.f5.com/).
 
 Take the steps below to download the WAF compiler,  Attack Signatures, and Threat Campaigns packages from MyF5.
 
@@ -135,13 +137,13 @@ Take the steps below to download the WAF compiler,  Attack Signatures, and Threa
 1. Go to **Resources** > **Downloads**.
 1. Select **Group/Product Family**: **NGINX**.
 1. Select **Product Line**: **NGINX App Protect**.
-1. Select a **Product version**. 
+1. Select a **Product version**.
 1. Select the **Linux distribution**, **distribution version**, and **Architecture**.
 1. Download the WAF compiler package and transfer it to the NGINX Management Suite host.
-1. Run the appropriate command on the host to install the WAF compiler package from the file. 
+1. Run the appropriate command on the host to install the WAF compiler package from the file.
 
     - Debian or Ubuntu:
-    
+
     ``` bash
     sudo apt-get install -f /path/to/nms-nap-compiler-<version>_focal_amd64.deb
     ```
@@ -168,7 +170,7 @@ NGINX App Protect provides predefined [Attack Signatures](https://docs.nginx.com
 
 [Threat Campaigns](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#threat-campaigns) is a threat intelligence feature included in an NGINX App Protect WAF subscription. The feature includes frequent update feeds containing contextual information about active attack campaigns currently being observed by F5 Threat Labs that NGINX App Protect WAF can provide protection against. Just like Attack Signatures, the Threat Campaign patterns are updated regularly. Unlike Attack Signatures, the NGINX App Protect WAF installation does not include any Threat Campaigns and you need to install them in order for the protection to take effect. Due to the highly dynamic nature of those campaigns the updates are issued far more frequently than the Attack Signatures. You need to install those updates close to the time they are issued in order to get the most effective protection.
 
-In order to take advantage of new Attack Signature and Threat Campaign packages, you need to upload these packages to NGINX Management Suite. 
+In order to take advantage of new Attack Signature and Threat Campaign packages, you need to upload these packages to NGINX Management Suite.
 
 You can either configure Instance Manager to download new versions automatically, or manage the files manually by downloading the packages from MyF5 and then uploading them to Instance Manager by using the REST API.
 
@@ -179,11 +181,11 @@ You can either configure Instance Manager to download new versions automatically
 You will need to use your NGINX repo certificates to setup automatic retrieval of Attack Signatures and Threat Campaigns packages. When you upload your NGINX App Protect WAF certificate and key to NGINX Instance Manager, you are letting NGINX Instance Manager access the NGINX repo to get Attack Signature and Threat Campaign files on your behalf.
 
 1. Log in to [MyF5](https://account.f5.com/myf5) and go to **My Products and Plans > Subscriptions** to download the SSL certificate (*nginx-repo.crt*) and private key (*nginx-repo.key*) for your NGINX App Protect subscription.
-1. Create a JSON file, similar to the example below, that contains the text from your crt and key files. 
+1. Create a JSON file, similar to the example below, that contains the text from your crt and key files.
    You will need to replace all of the newlines in the crt and key output with `\n`.
 
    ```json
-   {   
+   {
        "name": "nginx-repo",
        "nginxResourceType": "NginxRepo",
        "certPEMDetails": {
@@ -354,34 +356,34 @@ To ensure that the dashboards show the most up-to-date information, you need to 
 
 ## Onboard NGINX App Protect WAF Instances
 
-To onboard your NGINX App Protect WAF instances to Instance Manager, you need to install and configure NGINX Agent. 
+To onboard your NGINX App Protect WAF instances to Instance Manager, you need to install and configure NGINX Agent.
 
 ### Install NGINX Agent
 
-1. Use SSH to connect to the NGINX App Protect WAF instance. Take the steps below for each instance to download and install NGINX Agent from the management plane host. 
+1. Use SSH to connect to the NGINX App Protect WAF instance. Take the steps below for each instance to download and install NGINX Agent from the management plane host.
 
-1. Download the NGINX Agent package from the NGINX Management Suite host and run the agent install script. 
+1. Download the NGINX Agent package from the NGINX Management Suite host and run the agent install script.
 
    {{< tip >}}You can add instances with the same version of NGINX App Protect installed to an instance group by running the agent install command on each instance with the optional `--instance-group`` flag.{{< /tip>}}
    {{< include "agent/installation/install-agent-api.md" >}}
 
 ### Configure NGINX Agent
 
-1. Edit the NGINX Agent configuration file (`/etc/nginx-agent/nginx-agent.conf`) to allow access to the `/etc/app-protect` directory and enable reporting. 
+1. Edit the NGINX Agent configuration file (`/etc/nginx-agent/nginx-agent.conf`) to allow access to the `/etc/app-protect` directory and enable reporting.
 
-    - The agent needs access to any directories where NGINX App Protect configuration files are stored on the data plane host. 
-    - The `report_interval` is the length of time the agent waits between checks for changes to NGINX App Protect WAF configurations. 
+    - The agent needs access to any directories where NGINX App Protect configuration files are stored on the data plane host.
+    - The `report_interval` is the length of time the agent waits between checks for changes to NGINX App Protect WAF configurations.
     - `precompiled_publication` enables the publication of precompiled NGINX App Protect security policies and log profiles.
 
    ```yaml
    ...
-   config_dirs: "/etc/nginx:/usr/local/etc/nginx:/etc/nms;" 
+   config_dirs: "/etc/nginx:/usr/local/etc/nginx:/etc/nms;"
    nginx_app_protect:
-      report_interval: 15s              
+      report_interval: 15s
       precompiled_publication: true
    ...
    ```
-   
+
     {{<note>}}You can use the NGINX Agent installation script to add these fields:
 
 ```bash
@@ -391,7 +393,7 @@ curl https://<NMS-FQDN>/install/nginx-agent > install.sh
 # Specify the -m | --nginx-app-protect-mode flag to set up management of NGINX App Protect on
 # the instance. In the example below we specify 'precompiled-publication' for the flag value
 # which will make the config field 'precompiled_publication' set to 'true', if you would like to
-# set the config field 'precompiled_publication' to 'false' you can specify 'none' as the flag value. 
+# set the config field 'precompiled_publication' to 'false' you can specify 'none' as the flag value.
 sudo sh ./install.sh --nginx-app-protect-mode precompiled-publication
 ```
 
@@ -409,7 +411,7 @@ sudo sh ./install.sh --nginx-app-protect-mode precompiled-publication
 
 {{%tab name="UI"%}}
 
-You should now be able to view your NGINX App Protect WAF instances in the Instance Manager user interface. Take the steps below to verify that NGINX Agent is installed and reporting data to Instance Manager. 
+You should now be able to view your NGINX App Protect WAF instances in the Instance Manager user interface. Take the steps below to verify that NGINX Agent is installed and reporting data to Instance Manager.
 
 1. {{< include "nim/webui-nim-login.md" >}}
 1. Select **Instances**.
@@ -487,14 +489,14 @@ You can query the Instance Manager REST API to verify the following information:
 
 ---
 
-## Onboard Security Policies 
+## Onboard Security Policies
 
 Instance Manager provides the same [default security policies](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#policy-configuration) as NGINX App Protect WAF:
 
 - **NGINX Default Policy**: provides [OWASP Top 10](https://owasp.org/www-project-top-ten/) and Bot security protection.
 - **NGINX Strict Policy**: contains more restrictive criteria for blocking traffic than the default policy.
 
-If you want to use the out-of-the-box policies, you can proceed to the next section: [Add WAF configuration to NGINX Instances](#add-waf-config). 
+If you want to use the out-of-the-box policies, you can proceed to the next section: [Add WAF configuration to NGINX Instances](#add-waf-config).
 
 Continue in this section if you have custom security policies that you want to upload to Instance Manager.
 
@@ -506,7 +508,7 @@ To do so, take the steps below for each policy:
 
 1. Use `base64` to encode the JSON policy.
 
-    For example: 
+    For example:
 
     ``` bash
     base64 -i ./ignore-xss-policy-example.json
@@ -598,7 +600,7 @@ To do so, take the steps below for each policy:
 
     </details>
 
-1. Create a JSON request body that contains the encoded policy. 
+1. Create a JSON request body that contains the encoded policy.
 
     For example:
 
@@ -609,7 +611,7 @@ To do so, take the steps below for each policy:
         "displayName": "Ignore Cross Site Scripting example",
         "description": "Security policy that intentionally ignores cross site scripting"
     },
-    "content": 
+    "content":
         "ewogICAgInBvbGljeSI6IHsKICAgICAgICAibmFtZSI6ICJpZ25vcmUteHNzIiwKICAgICAgICAidGVtcGxhdGUiOiB7CiAgICAgICAgICAgICJuYW1lIjogIlBPTElDWV9URU1QTEFURV9OR0lOWF9CQVNFIgogICAgICAgIH0sCiAgICAgICAgImFwcGxpY2F0aW9uTGFuZ3VhZ2UiOiAidXRmLTgiLAogICAgICAgICJlbmZvcmNlbWVudE1vZGUiOiAiYmxvY2tpbmciLAogICAgICAgICJzaWduYXR1cmVzIjogWwogICAgICAgICAgICB7CiAgICAgICAgICAgICAgICAic2lnbmF0dXJlSWQiOiAyMDAwMDE0NzUsCiAgICAgICAgICAgICAgICAiZW5hYmxlZCI6IGZhbHNlCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAgICJzaWduYXR1cmVJZCI6IDIwMDAwMDA5OCwKICAgICAgICAgICAgICAgICJlbmFibGVkIjogZmFsc2UKICAgICAgICAgICAgfSwKICAgICAgICAgICAgewogICAgICAgICAgICAgICAgInNpZ25hdHVyZUlkIjogMjAwMDAxMTQ4LAogICAgICAgICAgICAgICAgImVuYWJsZWQiOiBmYWxzZQogICAgICAgICAgICB9LAogICAgICAgICAgICB7CiAgICAgICAgICAgICAgICAic2lnbmF0dXJlSWQiOiAyMDAwMDE0ODAsCiAgICAgICAgICAgICAgICAiZW5hYmxlZCI6IGZhbHNlCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAgICJzaWduYXR1cmVJZCI6IDIwMDAwMTA4OCwKICAgICAgICAgICAgICAgICJlbmFibGVkIjogZmFsc2UKICAgICAgICAgICAgfQogICAgICAgIF0sCiAgICAgICAgImJvdC1kZWZlbnNlIjogewogICAgICAgICAgICAic2V0dGluZ3MiOiB7CiAgICAgICAgICAgICAgICAiaXNFbmFibGVkIjogZmFsc2UKICAgICAgICAgICAgfQogICAgICAgIH0sCiAgICAgICAgImhlYWRlcnMiOiBbCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAgICJuYW1lIjogIioiLAogICAgICAgICAgICAgICAgInR5cGUiOiAid2lsZGNhcmQiLAogICAgICAgICAgICAgICAgImRlY29kZVZhbHVlQXNCYXNlNjQiOiAiZGlzYWJsZWQiCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAgICJuYW1lIjogIiotYmluIiwKICAgICAgICAgICAgICAgICJ0eXBlIjogIndpbGRjYXJkIiwKICAgICAgICAgICAgICAgICJkZWNvZGVWYWx1ZUFzQmFzZTY0IjogInJlcXVpcmVkIgogICAgICAgICAgICB9LAogICAgICAgICAgICB7CiAgICAgICAgICAgICAgICAibmFtZSI6ICJSZWZlcmVyIiwKICAgICAgICAgICAgICAgICJ0eXBlIjogImV4cGxpY2l0IiwKICAgICAgICAgICAgICAgICJkZWNvZGVWYWx1ZUFzQmFzZTY0IjogImRpc2FibGVkIgogICAgICAgICAgICB9LAogICAgICAgICAgICB7CiAgICAgICAgICAgICAgICAibmFtZSI6ICJBdXRob3JpemF0aW9uIiwKICAgICAgICAgICAgICAgICJ0eXBlIjogImV4cGxpY2l0IiwKICAgICAgICAgICAgICAgICJkZWNvZGVWYWx1ZUFzQmFzZTY0IjogImRpc2FibGVkIgogICAgICAgICAgICB9LAogICAgICAgICAgICB7CiAgICAgICAgICAgICAgICAibmFtZSI6ICJUcmFuc2Zlci1FbmNvZGluZyIsCiAgICAgICAgICAgICAgICAidHlwZSI6ICJleHBsaWNpdCIsCiAgICAgICAgICAgICAgICAiZGVjb2RlVmFsdWVBc0Jhc2U2NCI6ICJkaXNhYmxlZCIKICAgICAgICAgICAgfQogICAgICAgIF0sCiAgICAgICAgImNvb2tpZXMiOiBbCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAgICJuYW1lIjogIioiLAogICAgICAgICAgICAgICAgInR5cGUiOiAid2lsZGNhcmQiLAogICAgICAgICAgICAgICAgImRlY29kZVZhbHVlQXNCYXNlNjQiOiAiZGlzYWJsZWQiCiAgICAgICAgICAgIH0KICAgICAgICBdLAogICAgICAgICJwYXJhbWV0ZXJzIjogWwogICAgICAgICAgICB7CiAgICAgICAgICAgICAgICAibmFtZSI6ICIqIiwKICAgICAgICAgICAgICAgICJ0eXBlIjogIndpbGRjYXJkIiwKICAgICAgICAgICAgICAgICJkZWNvZGVWYWx1ZUFzQmFzZTY0IjogImRpc2FibGVkIgogICAgICAgICAgICB9CiAgICAgICAgXQogICAgfQp9CiAgICAgICAgCg=="
       }
     ```
@@ -709,19 +711,19 @@ To do so, take the steps below for each policy:
 The [NGINX App Protect WAF Configuration Guide](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#policy-configuration-overview) provides information about how and where to add the directives that allow you to add security to your instances. Instance Manager ships with the same reference policies as NGINX App Protect WAF:
 
 - NGINX Default Policy (`NginxDefaultPolicy.tgz`): Provides OWASP Top 10 and Bot security protection out of the box.
-- NGINX Strict Policy (`NginxStrictPolicy.tgz`): Contains more restrictive criteria for blocking traffic than the default policy, with a higher risk of false positives. 
+- NGINX Strict Policy (`NginxStrictPolicy.tgz`): Contains more restrictive criteria for blocking traffic than the default policy, with a higher risk of false positives.
 
 You can use either of these policies as-is. Many users treat the reference policy as starting point and customize it to suit the needs of their applications. The Security Monitoring dashboards provide insights that can help you fine-tune your security policies.
 
 When using Instance Manager to manage your WAF configuration, keep the following in mind:
 
 - Instance Manager can compile JSON security policies into a `.tgz` bundle.
-- You can reference custom policy files using the `app_protect_policy_file` directive. 
+- You can reference custom policy files using the `app_protect_policy_file` directive.
 
   {{<important>}}If you already have JSON security policies referenced in your NGINX configuration, you can keep them as-is if precompiled publication is not enabled in the NGINX Agent. However, you'll need to change the file extension for the referenced files from `.json` to `.tgz` if precompiled publication is enabled. The file name for the compiled bundle will be the same as the original file. Instance Manager does not support both `.json` and `.tgz` files within a single NGINX configuration{{</important>}}
 
-- If you are using custom policies, be sure NGINX Agent has permission to access the location(s) where the policies are stored on the data plane. To do so, edit the NGINX Agent configuration file on the data plane host and add the custom file path to the `config_dirs` setting. 
-  
+- If you are using custom policies, be sure NGINX Agent has permission to access the location(s) where the policies are stored on the data plane. To do so, edit the NGINX Agent configuration file on the data plane host and add the custom file path to the `config_dirs` setting.
+
 - Instance Manager uses the NGINX App Protect WAF [default log profiles](https://docs.nginx.com/nginx-app-protect/logging-overview/security-log/#default-logging-content). You can specify the desired log profile by using the `app_protect_security_log` directive.
 Instance Manager does not support the use of custom log profiles.
 
@@ -729,7 +731,7 @@ The examples in this guide use the default path for NGINX App Protect configurat
 
 ### Edit the NGINX configuration {#update-nginx-conf}
 
-By using the Instance Manager web interface or REST API, add the NGINX App Protect WAF configurations to the appropriate context in your NGINX configuration. 
+By using the Instance Manager web interface or REST API, add the NGINX App Protect WAF configurations to the appropriate context in your NGINX configuration.
 
 The example below shows the directives added to a `location` block:
 
@@ -737,16 +739,16 @@ The example below shows the directives added to a `location` block:
 ...
 server {
   ...
-  
+
   location / {
-  ##Enable NGINX App Protect  
-  app_protect_enable on; 
+  ##Enable NGINX App Protect
+  app_protect_enable on;
   ## Reference to a custom security policy bundle
-  app_protect_policy_file /etc/nms/ignore-xss.tgz; 
+  app_protect_policy_file /etc/nms/ignore-xss.tgz;
   ## enable logging
   app_protect_security_log_enable on;
   ## Reference to the log profile bundle
-  app_protect_security_log /etc/nms/log-default.tgz; 
+  app_protect_security_log /etc/nms/log-default.tgz;
   ...
 }
 ```
@@ -860,7 +862,7 @@ Additional example configurations tailored for NGINX features can be found in th
 
 ### Verify Configuration
 
-Once you have added the NGINX App Protect WAF directives to your NGINX configuration, you should see the NGINX App Protect WAF status reported as "Active". Take the steps below to verify the configuration in the Instance Manager web interface. 
+Once you have added the NGINX App Protect WAF directives to your NGINX configuration, you should see the NGINX App Protect WAF status reported as "Active". Take the steps below to verify the configuration in the Instance Manager web interface.
 
 1. {{< include "nim/webui-nim-login.md" >}}
 1. Select **Instances**.
@@ -931,7 +933,7 @@ Examples:
     /opt/nms-nap-compiler/app_protect-4.2.0/bin/apcompile -g myglobalsettings.json --global-state-outfile /path/to/myglobalstate.tgz
     /opt/nms-nap-compiler/app_protect-4.2.0/bin/apcompile -b /path/to/policy_bundle.tgz --dump
     /opt/nms-nap-compiler/app_protect-4.2.0/bin/apcompile -l logprofA.json -o /path/to/logprofA_bundle.tgz
-...  
+...
 ```
 
 <br>
@@ -987,9 +989,9 @@ The output looks similar to the following example:
 ``` text
 ...
 <repositories>
-<repository distro="centos" version="6" arch="x86_64" prefix="centos/6/x86_64/"> 
+<repository distro="centos" version="6" arch="x86_64" prefix="centos/6/x86_64/">
 </repository>
-<repository distro="centos" version="7" arch="x86_64" prefix="centos/7/x86_64/"> 
+<repository distro="centos" version="7" arch="x86_64" prefix="centos/7/x86_64/">
 <package type="rpm">
   <name>app-protect-attack-signatures</name>
   <arch>x86_64</arch>
@@ -1001,7 +1003,7 @@ The output looks similar to the following example:
   <arch>x86_64</arch>
   <version epoch="0" ver="2020.04.30" rel="1.el7.ngx"/>
 <location href="RPMS/app-protect-attack-signatures-2020.04.30-1.el7.ngx.x86_64.rpm"/>
-</package> 
+</package>
 ...
 ```
 
