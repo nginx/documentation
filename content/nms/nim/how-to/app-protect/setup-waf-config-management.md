@@ -376,6 +376,8 @@ To onboard your NGINX App Protect WAF instances to Instance Manager, you need to
    ```yaml
    ...
    config_dirs: "/etc/nginx:/usr/local/etc/nginx:/etc/nms;" 
+   extensions:
+     - nginx-app-protect
    nginx_app_protect:
       report_interval: 15s              
       precompiled_publication: true
