@@ -26,9 +26,9 @@ aliases:
 View the troubleshooting guides for the NGINX Management Suite platform and modules:
 
 - [NGINX Management Suite Platform]({{< relref "/nms/admin-guides/troubleshooting.md" >}})
-- [Instance Manager]({{< relref "/nms/nim/troubleshooting.md" >}})
 - [API Connectivity Manager]({{< relref "/nms/acm/troubleshooting.md" >}})
 - [App Delivery Manager]({{< relref "/nms/adm/troubleshooting.md" >}})
+- [Instance Manager]({{< relref "/nms/nim/troubleshooting.md" >}})
 - [Security Monitoring]({{< relref "/nms/security/troubleshooting.md" >}})
 
 ---
@@ -37,9 +37,9 @@ View the troubleshooting guides for the NGINX Management Suite platform and modu
 
 View the known issues and possible workarounds in the NGINX Management Suite modules:
 
-- [Instance Manager]({{< relref "/nms/nim/releases/known-issues.md" >}})
 - [API Connectivity Manager]({{< relref "/nms/acm/releases/known-issues.md" >}})
 - [App Delivery Manager]({{< relref "/nms/adm/releases/known-issues.md" >}})
+- [Instance Manager]({{< relref "/nms/nim/releases/known-issues.md" >}})
 - [Security Monitoring]({{< relref "/nms/security/releases/known-issues.md" >}})
 
 ---
