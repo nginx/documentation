@@ -28,7 +28,11 @@ doctypes: ["reference"]
 
 #### Description
 
-Creating a policy with metadata of "targetPolicyName" set to anything but default can cause issues with secrets being duplicated if more than one policy is created. Setting this value to anything but the default value will also cause the policy to not be applied.
+Creating a policy with metadata of "targetPolicyName" set to anything but default can cause issues with secrets being duplicated if more than one policy is created. Setting this value to anything but the default value will also cause the policy to not be applied. The policy may be shown as applied in the UI when it is not.
+
+#### Workaround
+
+Do not modify the "targetPolicyName" to be anything but the default value.
 
 ---
 
