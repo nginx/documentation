@@ -34,6 +34,9 @@
 /nginx-management-suite/admin-guides/installation/kubernetes/* /nginx-management-suite/installation/kubernetes/:splat 301
 /nginx-management-suite/admin-guides/getting-started/* /nginx-management-suite/admin-guides/configuration/:splat 301
 
+# Redirect NGINX Directives Index to the right .org page
+/nginx/directives/ http://nginx.org/en/docs/dirindex.html 200!
+
 # Redirects to the backend netlify sites for each product
 # /nginx/*     https://n-plus-public-docs.netlify.app/nginx/:splat 200!
 /nginxaas/azure/* https://n4a-public-docs.netlify.app/nginxaas/azure/:splat 200!
