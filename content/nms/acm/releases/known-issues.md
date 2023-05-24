@@ -18,8 +18,6 @@ doctypes: ["reference"]
 
 ## 1.5.0
 
----
-
 ### {{% icon-bug %}} Using policies with targetPolicyName set to anything other than the default value can cause unexpected results.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
