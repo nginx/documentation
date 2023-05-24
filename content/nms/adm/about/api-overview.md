@@ -12,7 +12,7 @@ docs: "DOCS-1138"
 
 ## API Object Model
 
-The App Delivery Manager (ADM) API extends Instance Manager (NIM) [API]({{< relref "/nms/nim/about/api-overview" >}}) to provide additional endpoints, which enables a user to manage NGINX configurations using an app-centric approach.
+The App Delivery Manager API extends the Instance Manager [API]({{< relref "/nms/nim/about/api-overview" >}}) to provide additional endpoints, which enables a user to manage NGINX configurations using an app-centric approach.
 
 The following diagram shows a graphical view of the ADM API endpoints as well as the relationships between them:
 
@@ -26,7 +26,7 @@ Summary of the Objects:
 | API Object         | Affected NGINX Contexts            | Description                                                                                         |
 | ------------------ | ---------------------------------- | --------------------------------------------------------------------------------------------------- |
 | Environments       | -                                  | Logical separation of objects by organizations or deployment types.                                 |
-| Gateways           | server (http)                      | Definition of network entry point (ingress for NGINX+) for the app(s).                              |
+| Gateways           | server (http)                      | Definition of network entry point (ingress for NGINX Plus) for the app(s).                              |
 | Apps               | -                                  | Logical grouping of components that define an individual app.                                       |
 | Web components     | upstream (http), location          | Definition of a microservice or part of a microservice that implements a HTTP or HTTPS app.         |
 | TCP/UDP components | server (stream), upstream (stream) | Definition of a microservice or part of a microservice that implements a TCP, TC+TLS, or UDP app.   |
