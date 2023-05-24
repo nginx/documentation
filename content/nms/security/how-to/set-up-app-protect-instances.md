@@ -73,6 +73,9 @@ Repeat the steps in this section on each NGINX App Protect WAF data plane host t
    Add the lines below to the end of the file. This enables NGINX Agent to send NGINX App Protect messages to the NGINX Management Suite management plane.
 
    ```yaml
+   extensions:
+     - nginx-app-protect
+     - nap-monitoring
    # Enable reporting NGINX App Protect details to the control plane.
    nginx_app_protect:
      # Report interval for NGINX App Protect details - the frequency at which NGINX Agent checks NGINX App Protect for changes.
