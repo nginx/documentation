@@ -97,6 +97,10 @@ Repeat the steps in this section on each NGINX App Protect WAF data plane host t
    config_dirs: "/etc/nginx:/usr/local/etc/nginx:/usr/share/nginx/modules:/etc/nms"
 
    # Enable reporting NGINX App Protect details to the management plane.
+   extensions:
+     - nginx-app-protect
+     - nap-monitoring
+   # Enable reporting NGINX App Protect details to the control plane.
    nginx_app_protect:
    # Report interval for NGINX App Protect details - the frequency the NGINX Agent checks NGINX App Protect for changes.
    report_interval: 15s
