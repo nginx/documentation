@@ -37,7 +37,7 @@ To complete the instructions in this guide, you'll need the following:
 ---
 ## Create User Groups in Instance Manager {#create-user-groups}
 
-Create user groups in Instance Manager. These User Groups will be mapped from Keycloak *Realm Roles* by name. 
+Create user groups in Instance Manager. These User Groups will be mapped from Keycloak **Realm Roles** by name. 
 
 1. Log in to Instance Manager as `admin` using a Basic Auth account.
 1. Select the **Settings** gear icon.
@@ -67,7 +67,7 @@ After the client has been created, add the following configuration:
 1. On the **Settings** tab, in the **Access Type** drop-down list, select **confidential**.
 1. On the **Mapper** tab, select **Add Builtin**, select **groups**, and then select **Add Selected**. This will export the user's Keycloak Realm Role information for NGINX Management Suite to use.
 
-NGINX Management Suite User Groups will be mapped from Keycloak *Realm Roles*; Keycloack Client Roles are *not* mapped. Make sure to use Keycloack top level roles (Realm Roles).
+NGINX Management Suite User Groups will be mapped from Keycloak **Realm Roles**; Keycloack Client Roles are **not** mapped. Make sure to use Keycloack top level roles (Realm Roles).
 
 1. On the **Realm Roles** tab, select **Create Role**.
 1. In the **Role Name** box, type the name of the first group you created in Instance Manager, for example "nms-admins".
