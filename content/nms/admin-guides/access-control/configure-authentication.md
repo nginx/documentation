@@ -85,7 +85,7 @@ Initially, only the `admin` user has a role assigned. To grant access to additio
 
 ### Set or Change User Passwords {#change-basic-password}
 
-To set or modify a basic authentication user's password, follow these steps:
+You can use the `basic_passwords.sh` script to add a user's encrypted password to the `/etc/nms/nginx/.htpasswd` file on the NGINX Management Suite server. The steps are as follows:
 
 1. Open an SSH connection to your NGINX Management Suite host and log in.
 2. Run the `basic_passwords.sh` script, providing the username you want to update and the desired password. Make sure to enclose the password in single quotation marks.
