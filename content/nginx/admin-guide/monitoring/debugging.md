@@ -24,8 +24,8 @@ First, you will need to enable debugging in NGINX binary. NGINX Plus already pr
 
 Starting from [Release 8]({{< relref "../../releases.md" >}}), NGINX Plus ships the _nginx-debug_ binary together with the standard binary. To enable debugging in NGINX Plus, you will need to switch from _nginx_ to _nginx-debug_ binary. Open terminal and run the command:
 
-```none
-$ service nginx stop && service nginx-debug start
+```shell
+service nginx stop && service nginx-debug start
 ```
 
 When finished, [enable](#error_log) the debugging log in the configuration file.
@@ -40,21 +40,21 @@ To compile NGINX Open Source with the debug support:
 1.  Download and unpack NGINX source files, go to the directory with the source files. See [Downloading the Sources]({{< relref "../installing-nginx/installing-nginx-open-source.md" >}}).
 2.  Get the list of NGINX configure arguments. Run the command:
 
-    ```none
-    $ nginx -V 2>&1 | grep arguments
+    ```shell
+    nginx -V 2>&1 | grep arguments
     ```
 
 3.  Add the `--with-debug` option to the list of configure commands and run the configure script:
 
-    ```none
-    $ ./configure --with-debug <other configure arguments>
+    ```shell
+    ./configure --with-debug <other configure arguments>
     ```
 
 4.  Compile and install NGINX:
 
-    ```none
-    $ sudo make
-    $ sudo make install
+    ```shell
+    sudo make
+    sudo make install
     ```
 
 5.  Restart NGINX.
@@ -73,8 +73,8 @@ The exact set of compiler flags depends on the compiler. For example, for the GC
 *   include debugging symbols with the “_-g_” flag
 *   make the debugger output easier to understand by disabling compiler optimization with the “_-O0_” flag:
 
-    ```none
-    $ ./configure --with-debug --with-cc-opt='-O0 -g' ...
+    ```shell
+    ./configure --with-debug --with-cc-opt='-O0 -g' ...
     ```
 
 <span id="error_log"></span>
@@ -93,19 +93,19 @@ To enable writing the debugging log to a file:
 
 1.  Make sure your NGINX is configured with the `--with-debug` configuration option. Run the command and check if the output contains the `--with-debug` line:
 
-    ```none
-    $ nginx -V 2>&1 | grep -- '--with-debug'
+    ```shell
+    nginx -V 2>&1 | grep -- '--with-debug'
     ```
 
 2.  Open NGINX configuration file:
 
-    ```none
-    $ sudo vi /etc/nginx/nginx.conf
+    ```shell
+    sudo vi /etc/nginx/nginx.conf
     ```
 
 3.  Find the [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive which is by default located in the `main` context, and change the logging level to `debug`. If necessary, change the path to the log file:
 
-    ```none
+    ```shell
     error_log  /var/log/nginx/error.log debug;
     ```
 
@@ -120,8 +120,8 @@ To enable writing the debug log to memory:
 
 1.  Make sure your NGINX is configured with the `--with-debug` configuration option. Run the command and check if the output contains the `--with-debug` line:
 
-    ```none
-    $ nginx -V 2>&1 | grep -- '--with-debug'
+    ```shell
+    nginx -V 2>&1 | grep -- '--with-debug'
     ```
 
 2.  In NGINX configuration file, enable a memory buffer for debug logging with the [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive specified in the `main` context:
@@ -142,14 +142,14 @@ To extract the debugging log from memory:
 
 1.  Obtain the PID of NGINX worker process:
 
-    ```none
-    $ ps axu |grep nginx
+    ```shell
+    ps axu |grep nginx
     ```
 
 2.  Launch the GDB debugger:
 
-    ```none
-    $ sudo gdb -p <nginx PID obtained at the previous step>
+    ```shell
+    sudo gdb -p <nginx PID obtained at the previous step>
     ```
 
 3.  Copy the script, paste it to GDB and press “Enter”. The script will save the log in the _debug_log.txt_ file located in the current directory:
@@ -166,8 +166,8 @@ To extract the debugging log from memory:
 4.  Quit GDB by pressing CTRL+D.
 5.  Open the file “_debug_log.txt_” located in the current directory:
 
-    ```none
-    $ sudo less debug_log.txt
+    ```shell
+    sudo less debug_log.txt
     ```
 
 <span id="error_log_ip"></span>
@@ -220,12 +220,9 @@ http {
 <span id="coredump"></span>
 ## Enabling Core Dumps
 
-A core dump file helps identify and fix a problem that lead to NGINX crash. Note that a core dump file may contain sensitive information such as passwords and private keys, so ensure that they are treated in a secure manner.
+A core dump file can help identify and fix problems that are causing NGINX to crash. A core dump file may contain sensitive information such as passwords and private keys, so ensure that they are treated securely. 
 
-Core dumps can be enabled in two different ways:
-
-*   in the operating system
-*   in the NGINX configuration file
+In order to create a core dump file, they must be enabled in both the operating system and the NGINX configuration file.
 
 <span id="coredump_os"></span>
 ### Enabling Core Dumps in the Operating System
@@ -234,57 +231,55 @@ Perform the following steps in your operating system:
 
 1.  Specify a working directory in which a core dump file will be saved, for example, “_/tmp/cores_”:
 
-    ```none
-    $ mkdir /tmp/cores
+    ```shell
+    mkdir /tmp/cores
     ```
 
 2.  Make sure the directory is writable by NGINX worker process:
 
-    ```none
-    $ sudo chown root:root /tmp/cores
-    $ sudo chmod 1777 /tmp/cores
+    ```shell
+    sudo chown root:root /tmp/cores
+    sudo chmod 1777 /tmp/cores
     ```
 
 3.  Disable the limit for the maximum size of a core dump file:
 
-    ```none
-    $ ulimit -c unlimited
+    ```shell
+    ulimit -c unlimited
     ```
 
     If the operation ends up with “Cannot modify limit: operation not permitted”, run the command:
 
-    ```none
-    $ sudo sh -c "ulimit -c unlimited && exec su $LOGNAME"
+    ```shell
+    sudo sh -c "ulimit -c unlimited && exec su $LOGNAME"
     ```
 
 4.  Enable core dumps for the _setuid_ and _setgid_ processes.
 
     For CentOS 7.0, Debian 8.2, Ubuntu 14.04, run the commands:
 
-    ```none
-    $ echo "/tmp/cores/core.%e.%p" | sudo tee /proc/sys/kernel/core_pattern
-    $ sudo sysctl -w fs.suid_dumpable=2
-    $ sysctl -p
+    ```shell
+    echo "/tmp/cores/core.%e.%p" | sudo tee /proc/sys/kernel/core_pattern
+    sudo sysctl -w fs.suid_dumpable=2
+    sysctl -p
     ```
 
     For FreeBSD, run the commands:
 
-    ```none
-    $ sudo sysctl kern.sugid_coredump=1
-    $ sudo sysctl kern.corefile=/tmp/cores/%N.core.%P
+    ```shell
+    sudo sysctl kern.sugid_coredump=1
+    sudo sysctl kern.corefile=/tmp/cores/%N.core.%P
     ```
 
 <span id="coredump_nginx"></span>
 ### Enabling Core Dumps in NGINX Configuration
 
-Skip these steps if you have already configured creation of a core dump file in your operating system.
-
-To enable core dumps in NGINX configuration file:
+To enable core dumps in the NGINX configuration file:
 
 1.  Open the NGINX configuration file:
 
-    ```none
-    $ sudo vi  /usr/local/etc/nginx/nginx.conf
+    ```shell
+    sudo vi /usr/local/etc/nginx/nginx.conf
     ```
 
 2.  Define a directory that will keep core dump files with the [working_directory](https://nginx.org/en/docs/ngx_core_module.html#working_directory) directive. The directive is specified on the _main_ configuration level:
@@ -295,9 +290,9 @@ To enable core dumps in NGINX configuration file:
 
 3.  Make sure the directory exists and is writable by NGINX worker process. Open terminal and run the commands:
 
-    ```none
-    $ sudo chown root:root /tmp/cores
-    $ sudo chmod 1777 /tmp/cores
+    ```shell
+    sudo chown root:root /tmp/cores
+    sudo chmod 1777 /tmp/cores
     ```
 
 4.  Specify the maximum possible size of the core dump file with the [worker_rlimit_core](https://nginx.org/en/docs/ngx_core_module.html#worker_rlimit_core) directive. The directive is also specified on the `main` configuration level. If the core dump file size exceeds the value, the core dump file will not be created.
@@ -334,8 +329,8 @@ To get a backtrace from a core dump file:
 
 1.  Open a core dump file with the GDB debugger using the pattern:
 
-    ```none
-    $ sudo gdb <nginx_executable_path> <coredump_file_path>
+    ```shell
+    sudo gdb <nginx_executable_path> <coredump_file_path>
     ```
 
 2.  Type-in the “_backtrace_ command to get a stack trace from the time of the crash:
@@ -358,20 +353,20 @@ The configuration dump can be obtained with a GDB script provided that your NGIN
 
 1.  Make sure your NGINX is built with the debug support (the `--with-debug` configure option in the list of the configure arguments). Run the command and check if the output contains the `--with-debug` line:
 
-    ```none
-    $  nginx -V 2>&1 | grep -- '--with-debug'
+    ```shell
+    nginx -V 2>&1 | grep -- '--with-debug'
     ```
 
 2.  Obtain the PID of NGINX worker process:  
 
-    ```none
-    $ ps axu | grep nginx
+    ```shell
+    ps axu | grep nginx
     ```
 
 3.  Launch the GDB debugger:
 
-    ```none
-    $ sudo gdb -p <nginx PID obtained at the previous step>
+    ```shell
+    sudo gdb -p <nginx PID obtained at the previous step>
     ```
 
 4.  Copy and paste the script to GDB and press “Enter”. The script will save the configuration in the _nginx_conf.txt_ file in the current directory:
@@ -391,8 +386,8 @@ The configuration dump can be obtained with a GDB script provided that your NGIN
 5.  Quit GDB by pressing _CTRL+D_.
 6.  Open the file _nginx_conf.txt_ located in the current directory:
 
-    ```none
-    $ sudo vi nginx.conf.txt
+    ```shell
+    sudo vi nginx.conf.txt
     ```
 
 ## Asking for help
@@ -401,8 +396,8 @@ When asking for help with debugging, please provide the following information:
 
 1.  NGINX version, compiler version, and configure parameters. Run the command:
 
-    ```none
-    $ nginx -V
+    ```shell
+    nginx -V
     ```
 
 2.  Current full NGINX configuration. See [Dumping NGINX Configuration From a Running Process](#configdump)
