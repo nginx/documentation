@@ -82,7 +82,7 @@ Repeat the steps in this section on each NGINX App Protect WAF data plane host t
       # report interval for data plane status - the maximum duration to wait before syncing dataplane information if no updates have being observed
       report_interval: 24h
    events:
-      # report data plane events back to the control plane
+      # report data plane events back to the management plane
       enable: true
    metrics:
    # specify the size of a buffer to build before sending metrics
@@ -96,7 +96,7 @@ Repeat the steps in this section on each NGINX App Protect WAF data plane host t
    # path to aux file dirs can also be added
    config_dirs: "/etc/nginx:/usr/local/etc/nginx:/usr/share/nginx/modules:/etc/nms"
 
-   # Enable reporting NGINX App Protect details to the control plane.
+   # Enable reporting NGINX App Protect details to the management plane.
    nginx_app_protect:
    # Report interval for NGINX App Protect details - the frequency the NGINX Agent checks NGINX App Protect for changes.
    report_interval: 15s
