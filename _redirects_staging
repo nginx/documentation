@@ -34,6 +34,8 @@
 /nginx-management-suite/admin-guides/configuration/configure-devportal-helm-options/ /nginx-management-suite/acm/how-to/devportals/installation/configure-devportal-helm-options/ 301
 /nginx-management-suite/admin-guides/installation/kubernetes/* /nginx-management-suite/installation/kubernetes/:splat 301
 /nginx-management-suite/admin-guides/getting-started/* /nginx-management-suite/admin-guides/configuration/:splat 301
+/nginx-management-suite/admin-guides/installation/uninstall-guide/ /nginx-management-suite/installation/uninstall-guide/ 301
+/nginx-management-suite/admin-guides/installation/upgrade-guide/ /nginx-management-suite/installation/upgrade-guide/ 301
 
 # Redirect NGINX Directives Index to the right .org page
 /nginx/directives/ https://nginx.org/en/docs/dirindex.html 301!
