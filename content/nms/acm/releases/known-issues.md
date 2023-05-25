@@ -18,6 +18,24 @@ doctypes: ["reference"]
 
 ## 1.5.0
 
+### {{% icon-bug %}} Using policies with targetPolicyName set to anything other than the default value can cause unexpected results.
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status |
+|----------|----------------|
+| 42682 | OPEN |
+{{</bootstrap-table>}}
+
+#### Description
+
+Creating a policy with metadata of "targetPolicyName" set to anything but default can cause issues with secrets being duplicated if more than one policy is created. Setting this value to anything but the default value will also cause the policy to not be applied. The policy may be shown as applied in the UI when it is not.
+
+#### Workaround
+
+Do not modify the "targetPolicyName" to be anything but the default value.
+
+---
+
 ### {{% icon-resolved %}} Array values in token claims are treated as string values {#42388}
 
 {{<bootstrap-table "table table-striped table-bordered">}}

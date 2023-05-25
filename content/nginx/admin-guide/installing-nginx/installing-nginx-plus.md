@@ -111,7 +111,7 @@ NGINX Plus can be installed on Amazon Linux 2023 (x86_64, aarch64).
     sudo yum install ca-certificates
     ```
 
-5.  Copy the **nginx-repo.crt** and **nginx-repo.key** files tothe Amazon Linux server in the **/etc/ssl/nginx/** directory:
+5.  Copy the **nginx-repo.crt** and **nginx-repo.key** files to the Amazon Linux server in the **/etc/ssl/nginx/** directory:
 
     ```shell
     sudo cp nginx-repo.crt /etc/ssl/nginx/
@@ -452,7 +452,7 @@ NGINX Plus can be installed on the following versions of CentOS/RHEL:
     sudo yum install nginx-plus
     ```
 
-10.  If you have NGINX ModSecurity subscription, install the ModSecurity package:
+10. If you have NGINX ModSecurity subscription, install the ModSecurity package:
 
     ```shell
     sudo yum install nginx-plus nginx-plus-module-modsecurity
@@ -749,13 +749,13 @@ To install NGINX Plus on SLES:
     cat /etc/ssl/nginx/nginx-repo.crt /etc/ssl/nginx/nginx-repo.key > /etc/ssl/nginx/nginx-repo-bundle.crt
     ```
 
-4.  Install the required **ca-certificates** dependency:
+5.  Install the required **ca-certificates** dependency:
 
     ```shell
     zypper install ca-certificates
     ```
 
-5.  Add the **nginx-plus** repo.
+6.  Add the **nginx-plus** repo.
 
     For SLES 12:
     ```shell
@@ -767,7 +767,7 @@ To install NGINX Plus on SLES:
     zypper addrepo -G -t yum -c 'https://pkgs.nginx.com/plus/sles/15?ssl_clientcert=/etc/ssl/nginx/nginx-repo-bundle.crt&ssl_verify=peer' nginx-plus
     ```
 
-6.  If you have NGINX ModSecurity subscription, add the ModSecurity repo.
+7.  If you have NGINX ModSecurity subscription, add the ModSecurity repo.
 
     For SLES 12:
     ```shell
@@ -779,7 +779,7 @@ To install NGINX Plus on SLES:
     zypper addrepo -G -t yum -c 'https://pkgs.nginx.com/modsecurity/sles/15?ssl_clientcert=/etc/ssl/nginx/nginx-repo-bundle.crt&ssl_verify=peer' nginx-modsecurity
     ```
 
-7.  If you would like to enable experimental QUIC support, add NGINX Plus QUIC repository.
+8.  If you would like to enable experimental QUIC support, add NGINX Plus QUIC repository.
 
     For SLES 15:
 
@@ -787,25 +787,25 @@ To install NGINX Plus on SLES:
     zypper addrepo -G -t yum -c 'https://pkgs.nginx.com/plus-quic/sles/15?ssl_clientcert=/etc/ssl/nginx/nginx-repo-bundle.crt&ssl_verify=peer' nginx-plus
     ```
 
-8.  Install the **nginx-plus** package. Any older NGINX Plus package is automatically replaced.
+9.  Install the **nginx-plus** package. Any older NGINX Plus package is automatically replaced.
 
     ```shell
     zypper install nginx-plus
     ```
 
-9.  If you have NGINX ModSecurity subscription, install the ModSecurity package:
+10. If you have NGINX ModSecurity subscription, install the ModSecurity package:
 
     ```shell
     zypper install nginx-plus-module-modsecurity
     ```
 
-10. For experimental QUIC support, install NGINX Plus QUIC package:
+11. For experimental QUIC support, install NGINX Plus QUIC package:
 
     ```shell
     zypper install nginx-plus-quic
     ```
 
-11. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
+12. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
 
 
 <span id="install_alpine"></span>
