@@ -220,7 +220,7 @@ http {
 <span id="coredump"></span>
 ## Enabling Core Dumps
 
-A core dump file can be used to help identify and fix problems that are causing NGINX to crash. A core dump file may contain sensitive information such as passwords and private keys, so ensure that they are treated in a secure manner. 
+A core dump file can help identify and fix problems that are causing NGINX to crash. A core dump file may contain sensitive information such as passwords and private keys, so ensure that they are treated securely. 
 
 In order to create a core dump file, they must be enabled in both the operating system and the NGINX configuration file.
 
