@@ -68,13 +68,15 @@ The following terminology is used in this topic:
 
 ### Supported OIDC Identity Providers
 
-API Connectivity Manager supports the following identity providers:
+API Connectivity Manager supports all of the same identity providers as NGINX Plus. The following guides describe how to configure NGINX Plus for these identity providers, and outline where to find the information you'll need to configure them for OIDC.
 
-- Keycloak
-- Okta
-- Azure AD
-
-Refer to the NGINX Plus [Single Sign-On](https://docs.nginx.com/nginx/deployment-guides/single-sign-on/) deployment guides to learn how to configure NGINX Plus for use with these identity providers. The guides describe where to find the information from the identity provider that you will need to provide when setting up OIDC in ACM.
+* [Auth0](/nginx/deployment-guides/single-sign-on/auth0/)
+* [Amazon Cognito](/nginx/deployment-guides/single-sign-on/cognito)
+* [Keycloak](/nginx/deployment-guides/single-sign-on/keycloak)
+* [Microsoft Active Directory FS](/nginx/deployment-guides/single-sign-on/active-directory-federation-services)
+* [Okta](/nginx/deployment-guides/single-sign-on/okta)
+* [OneLogin](/nginx/deployment-guides/single-sign-on/onelogin)
+* [Ping Identity](/nginx/deployment-guides/single-sign-on/ping-identity)
 
 ## Set up OIDC Policy
 
