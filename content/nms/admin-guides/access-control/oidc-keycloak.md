@@ -118,7 +118,12 @@ On the Keycloak user interface:
 On your NGINX Management Suite instance, 
 
 1. Set the following environment variable: `export KEYCLOAK_SECRET=<secret>`
-1. Create a copy of the NGINX Management Suite OIDC configuration and update it with the appropriate values:
+1. Update the NGINX Management Suite OIDC configuration and with the appropriate values:
+
+--- 
+
+NOTE: Testenv steps below. This needs to be updated for customer steps
+
     ```bash
     scp -F /tmp/ssh-config-${NMS_STACK_ID} ubuntu@${CTRL_IP}:/etc/nms/nginx/oidc/openid_configuration.conf /tmp/openid_configuration.conf.${NMS_RANDOM_ID}
     gsed -i'.bak' \
@@ -138,9 +143,12 @@ On your NGINX Management Suite instance,
     ssh -F /tmp/ssh-config-${NMS_STACK_ID} ubuntu@${CTRL_IP} 'cp /etc/nginx/conf.d/nms-http.conf ~/nms-http.conf.orig'
     scp -F /tmp/ssh-config-${NMS_STACK_ID} /tmp/openid_configuration.conf.${NMS_RANDOM_ID} ubuntu@${CTRL_IP}:/etc/nms/nginx/oidc/openid_configuration.conf
     scp -F /tmp/ssh-config-${NMS_STACK_ID} ~/OIDC/nms-http.conf ubuntu@${CTRL_IP}:/etc/nginx/conf.d/nms-http.conf
+
+---
+
 1. Restart NGINX
     ```bash
-    ssh -F /tmp/ssh-config-${NMS_STACK_ID} ubuntu@${CTRL_IP} sudo nginx -s reload
+    sudo nginx -s reload
     ```
 
 ---
