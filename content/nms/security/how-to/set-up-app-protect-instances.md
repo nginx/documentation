@@ -73,25 +73,66 @@ Repeat the steps in this section on each NGINX App Protect WAF data plane host t
    Add the lines below to the end of the file. This enables NGINX Agent to send NGINX App Protect messages to the NGINX Management Suite management plane.
 
    ```yaml
-   extensions:
-     - nginx-app-protect
-     - nap-monitoring
-   # Enable reporting NGINX App Protect details to the control plane.
+   dataplane:
+   sync:
+      enable: true
+   status:
+      # poll interval for data plane status - the frequency the NGINX Agent will query the data plane for changes
+      poll_interval: 30s
+      # report interval for data plane status - the maximum duration to wait before syncing data plane information if no updates have been observed
+      report_interval: 24h
+   events:
+      # report data plane events back to the management plane
+      enable: true
+   metrics:
+   # specify the size of a buffer to build before sending metrics
+   bulk_size: 20
+   # specify metrics poll interval
+   report_interval: 1m
+   collection_interval: 15s
+   mode: aggregated
+
+   # OSS NGINX default config path
+   # path to aux file dirs can also be added
+   config_dirs: "/etc/nginx:/usr/local/etc/nginx:/usr/share/nginx/modules:/etc/nms"
+
+   # Enable reporting NGINX App Protect details to the management plane.
    nginx_app_protect:
-     # Report interval for NGINX App Protect details - the frequency at which NGINX Agent checks NGINX App Protect for changes.
-     report_interval: 15s
-     # Enable precompiled publication from the NGINX Management Suite (true) or perform compilation on the data plane host (false).
-     precompiled_publication: true
+   # Report interval for NGINX App Protect details - the frequency the NGINX Agent checks NGINX App Protect for changes.
+   report_interval: 15s
+
    # NGINX App Protect Monitoring config
    nap_monitoring:
-     # Buffer size for collector. Will contain log lines and parsed log lines
-     collector_buffer_size: 50000
-     # Buffer size for processor. Will contain log lines and parsed log lines
-     processor_buffer_size: 50000
-     # Syslog server IP address the collector will be listening to
-     syslog_ip: "127.0.0.1"
-     # Syslog server port the collector will be listening to
-     syslog_port: 514
+   # Buffer size for collector. Will contain log lines and parsed log lines
+   collector_buffer_size: 50000
+   # Buffer size for processor. Will contain log lines and parsed log lines
+   processor_buffer_size: 50000
+   # Syslog server IP address the collector will be listening to
+   syslog_ip: "127.0.0.1"
+   # Syslog server port the collector will be listening to
+   syslog_port: 514
+   
+   extensions:
+   - nginx_app_protect
+   - nap_monitoring
+   ```
+
+1. If the `location /api` directive has not been set up in the `nginx.conf` file, follow the example below to add it:
+
+   ```nginx
+   server{
+              location /api {
+              api write=on;
+              allow 127.0.0.1;
+              deny all;
+              }
+   }
+   ```
+
+   After adding the directive, restart NGINX to apply the changes:
+
+   ```bash
+   sudo systemctl restart nginx
    ```
 
    {{<important>}}You can change the values of `syslog_ip` and `syslog_port` to meet your needs. 
