@@ -77,7 +77,7 @@ Repeat the steps in this section on each NGINX App Protect WAF data plane host t
    sync:
       enable: true
    status:
-      # poll interval for data plane status - the frequency the agent will query the dataplane for changes
+      # poll interval for data plane status - the frequency the NGINX Agent will query the data plane for changes
       poll_interval: 30s
       # report interval for data plane status - the maximum duration to wait before syncing dataplane information if no updates have being observed
       report_interval: 24h
