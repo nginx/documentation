@@ -21,7 +21,7 @@ This guide explains how to enable single sign-on (SSO) for applications being pr
 
 The instructions assume you have the following:
 
-* A running Keycloak server. See the Keycloak documentation for [installation](https://www.keycloak.org/guides#getting-started) and [configuration](https://www.keycloak.org/server/configuration) instructions.
+* A running Keycloak server. See the Keycloak documentation for [Getting Started](https://www.keycloak.org/guides#getting-started) and [Server](https://www.keycloak.org/guides#server) configuration instructions.
 * An NGINX Plus subscription and <span style="white-space: nowrap;">NGINX Plus R15</span> or later. For installation instructions, see the [NGINX Plus Admin Guide](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
 * The [NGINX JavaScript module](https://www.nginx.com/blog/introduction-nginscript/) (njs), required for handling the interaction between NGINX Plus and the IdP. After installing NGINX Plus, install the module with the command for your operating system.
 
