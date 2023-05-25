@@ -87,7 +87,7 @@ Initially, only the `admin` user has a role assigned. To grant access to additio
 
 You can use the `basic_passwords.sh` script to add a user's encrypted password to the `/etc/nms/nginx/.htpasswd` file on the NGINX Management Suite server. 
 
-{{<note>}}The `basic_passwords.sh` script requires the OpenSSL package. We strongly recommend OpenSSL version 1.1.1 or later.{{</note>}}
+{{<note>}}The `basic_passwords.sh` script requires the [OpenSSL](https://www.openssl.org) package. We strongly recommend OpenSSL version 1.1.1 or later.{{</note>}}
 
 The steps are as follows:
 
