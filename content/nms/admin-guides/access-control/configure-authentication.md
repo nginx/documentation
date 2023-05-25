@@ -29,10 +29,12 @@ aliases:
 
 ---
 
+{{<custom-styles>}}
+
 {{< shortversions "2.0.0" "latest" "nimvers" >}}
+
 <!-- Editor's Note: This guide should be combined with the add-users doc into a guide for User Management. -->
 
-{{<custom-styles>}}
 
 {{<note>}}
 NGINX Plus is provided and intended only to be used with Instance Manager as a frontend. You should not use NGINX Plus for other web applications or instances. Contact your sales team to purchase additional subscriptions for external uses and other systems.
@@ -70,21 +72,34 @@ The following table shows the authentication options for Instance Manager on NGI
 
 ## Basic Authentication {#basic-auth}
 
-{{< warning >}}Basic authentication is not secure and should not be used for production environments. Use [OpenID Connect (OIDC)](#oidc-auth) or another secure authentication method for production.{{< /warning >}}
+{{< warning >}}Basic authentication is not considered secure and should not be used in production environments. Instead, we recommend using [OpenID Connect (OIDC)](#oidc-auth) or another secure authentication method for production purposes.{{< /warning >}}
 
-Basic authentication is enabled by default. When installing NGINX Management Suite, a default username of `admin` is created with a randomly generated password that's displayed in the installation output. You can change the default `admin` password by editing the `/etc/nms/nginx/.htpasswd` file, explained below.
+By default, NGINX Management Suite has basic authentication enabled. During the installation process, a default username called `admin` is created with a randomly generated password, which is displayed in the installation output. To change the default password for the `admin` user, you can use the `basic_passwords.sh script` provided with NGINX Management Suite; refer to [the steps below](#change-basic-password).
 
-Initially, the `admin` user is the only user with a role assigned. To give other users access to NGINX Management Suite, you need to [add users and assign them roles]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md#add-users" >}}).
+Initially, only the `admin` user has a role assigned. To grant access to additional users in NGINX Management Suite, you need to add them and assign appropriate roles.
 
-Basic authentication uses a username and password that you can set locally in the `/etc/nms/nginx/.htpasswd` file.
 
-To restrict user access with basic authentication, take the following steps:
+### Create New Users {#create-users}
 
-1. [Add users]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md#add-users" >}}) using the NGINX Management Suite web interface. Note each user's username for step 2.
-2. Add each user's username and password to the `/etc/nms/nginx/.htpasswd` file on the NGINX Management Suite server. See [Restricting Access with HTTP Basic Auth](https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/) for instructions on working with a password file.
+{{< include "admin-guides/access-control/add-users.md" >}}
 
-    If desired, you can use separate `.htpasswd` files in different locations or restrict by IP addresses. Refer to the guide [Restricting Access with HTTP Basic Authentication](https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/) for more information.
-3. A convenience script for adding user passwords to `/etc/nms/nginx/.htpasswd` is provided at `/etc/nms/scripts/basic_passwords.sh`. The script requires the `openssl` package; we strongly recommend `openssl` version `1.1.1` or later.
+### Set or Change User Passwords {#change-basic-password}
+
+To set or modify a basic authentication user's password, follow these steps:
+
+1. Open an SSH connection to your NGINX Management Suite host and log in.
+2. Run the `basic_passwords.sh` script, providing the username you want to update and the desired password. Make sure to enclose the password in single quotation marks.
+
+    ```bash
+    sudo bash /etc/nms/scripts/basic_passwords.sh <username> '<desired password>'
+    ```
+
+    For example:
+
+    ```bash
+    sudo bash /etc/nms/scripts/basic_passwords.sh johndoe 'jelly22fi$h'
+    ```
+
 ---
 
 ## JWT Authentication {#jwt-auth}

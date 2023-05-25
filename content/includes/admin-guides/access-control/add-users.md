@@ -1,10 +1,10 @@
 To add users and assign roles, take the following steps:
 
-1. Open the NGINX Management Suite web interface and log in.
+1. Go to the FQDN for your NGINX Management Suite host in a web browser and log in.
 2. Select the **Settings** (gear) icon in the upper-right corner.
-3. On the left navigation menu, select **Users**.
+3. On the left menu, select **Users**.
 4. Select **Create**.
-5. On the **Create User** form, enter information for the user:
+5. On the **Create User** form, enter the details for the user:
 
    - **Username**: A unique username to identify the user.
    - **Email**: The user's email address.
