@@ -168,7 +168,7 @@ The following sections explain how to configure the NGINX Agent using configurat
 
 ### Configure with Config Files
 
-The configuration files for the NGINX Agent are `/etc/nginx-agent/nginx-agent.conf` and `/var/lib/nginx-agent/agent-dynamic.conf`. These files have comments at the top indicating their purpose.
+The configuration files for the NGINX Agent are `/etc/nginx-agent/nginx-agent.conf` and `/etc/nginx-agent/agent-dynamic.conf`. These files have comments at the top indicating their purpose.
 
 Examples of the configuration files are provided below:
 
@@ -187,7 +187,7 @@ In the following example `nginx-agent.conf` file, you can change the `server.hos
 #
 # This file tracks agent configuration values that are meant to be statically set. There  
 # are additional agent configuration values that are set via the API and agent install script
-# which can be found in /var/lib/nginx-agent/agent-dynamic.conf. 
+# which can be found in /etc/nginx-agent/agent-dynamic.conf. 
 
 # specify the server grpc port to connect to
 server:
@@ -241,11 +241,11 @@ nginx_app_protect:
 
 
 <details open>
-    <summary>example agent-dynamic.conf</summary>
+    <summary>example dynamic-agent.conf</summary>
 
 ```yaml
 #
-# /var/lib/nginx-agent/agent-dynamic.conf
+# /etc/nginx-agent/dynamic-agent.conf
 #
 # Dynamic configuration file for NGINX Agent.
 #
