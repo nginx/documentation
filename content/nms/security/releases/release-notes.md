@@ -29,6 +29,29 @@ doctypes: ["reference"]
 
 ---
 
+## 1.5.0
+
+June 7, 2023
+
+### Upgrade Paths
+
+Security Monitoring 1.5.0 supports upgrades from these previous versions:
+
+- 1.2.0–1.4.0
+
+If your Security Monitoring version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading NGINX Security Monitoring and the NGINX Agent.{{< /see-also >}}
+
+### What's New
+
+This release includes the following updates:
+
+- {{% icon-feature %}} **Improved security monitoring with violation and signature details**
+
+  This release adds violation and signature details to Security Monitoring. This information allows you to identify false positives and gain a more comprehensive understanding of violations, allowing you to fine-tune your security policies and optimize your threat detection.
+
+---
 ## 1.4.0 {#1-4-0}
 
 April 26, 2023

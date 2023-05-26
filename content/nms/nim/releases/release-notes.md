@@ -20,7 +20,7 @@ aliases:
 
 ## 2.11.0
 
-TBD
+June 7, 2023
 
 ### Upgrade Paths {#2-11-0-upgrade-paths}
 
