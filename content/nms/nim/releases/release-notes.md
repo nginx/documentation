@@ -18,6 +18,97 @@ aliases:
 
 {{<rn-styles>}}
 
+## 2.11.0
+
+TBD
+
+### Upgrade Paths {#2-11-0-upgrade-paths}
+
+Instance Manager 2.11.0 supports upgrades from these previous versions:
+
+- 2.8.0–2.10.1
+
+If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.{{</see-also>}}
+
+### What's New {#2-11-0-whats-new}
+
+This release includes the following updates:
+
+- {{% icon-feature %}} **The config editor now lets you see auxiliary files**
+
+  Auxiliary files, such as certificate files and other non-config files on managed instances or instance groups, are now visible in the file tree of the config editor view. This improvement makes it easier to reference these files within a configuration.
+
+- {{% icon-feature %}} **Introducing new predefined log profiles for NGINX App Protect WAF**
+
+  Now, managing your NGINX App Protect WAF configuration is even easier with new predefined log profiles. In addition to the existing log_all, log_blocked, log_illegal, and log_secops log profiles, the following new predefined log profiles are now available:
+
+  - log_f5_arcsight
+  - log_f5_splunk
+  - log_grpc_all
+  - log_grpc_blocked
+  - log_grpc_illegal
+
+These new log profiles make it even easier to integrate NGINX App Protect WAF with other logging systems, such as Splunk, ArcSight, and gRPC.
+
+- {{% icon-feature %}} **You can now install Advanced Metrics automatically when you install NGINX Agent**
+
+  When using the NGINX Agent install command from NGINX Management Suite, you have the option to include the `-a` or `--advanced-metrics` flag. By including this flag, the installation process will automatically install the Advanced Metrics module along with the NGINX Agent. This module provides additional metrics and insights that can enhance the monitoring and analysis capabilities of NGINX Management Suite.
+
+- {{% icon-feature %}} **NGINX Management Suite can send telemetry data to F5 NGINX**
+
+  To improve product development and support the success of our users with NGINX Management Suite, the platform provides the option to send limited telemetry data to F5 NGINX. This data helps us gain valuable insights into software usage and adoption. By default, telemetry is enabled, but you can disable it through the web interface or API. Detailed information about the data that is transmitted can be found in our documentation.
+
+
+### Changes in Default Behavior {#2-11-0-changes-default-behavior}
+
+Instance Manager 2.11.0 has the following changes in default behavior:
+
+
+- {{% icon-feature %}} **The location of agent-dynamic.conf has changed**
+
+  In this release, the `agent-dynamic.conf` file has been moved from `/etc/nginx-agent/` to `/var/lib/nginx-agent/`. To assign an instance group and tags to an instance, you will now need to edit the file located in `/var/lib/nginx-agent/`. 
+
+- {{% icon-feature %}} **Some file permissions have been lowered for security reasons**
+
+  To enhance the security of configuration details, certain file permissions have been modified. The following files now have lowered permissions, allowing Owner Read/Write and Group Read access (also known as `0640` or `rw-r-----`):
+
+  - /etc/nms/nginx.conf
+  - /etc/nginx/conf.d/nms-http.conf
+  - /etc/nms/nginx/oidc/openid_configuration.conf
+  - /etc/nms/nginx/oidc/openid_connect.conf
+
+  Additionally, the following file permissions have been adjusted to Owner Read/Write and Group Read access (also known as `0660` or `rw-rw-----`):
+
+  - /logrotate.d/nms.conf
+  - /var/log/nms/nms.log
+
+  These changes aim to improve the overall security of the system by restricting access to sensitive configuration files while maintaining necessary privileges for authorized users.
+
+
+### Resolved Issues {#2-11-0-resolved-issues}
+
+This release fixes the following issues. Select an issue's ID link to view its details.
+
+
+- {{% icon-resolved %}} Count of NGINX Plus graph has a delay in being populated [(37705)]({{< relref "/nms/nim/releases/known-issues.md#37705" >}})
+
+- {{% icon-resolved %}} Duplicate Certificate and Key published for managed certificates [(42182)]({{< relref "/nms/nim/releases/known-issues.md#42182" >}})
+
+- {{% icon-resolved %}} The Metrics module is interrupted during installation on Red Hat 9 [(42219)]({{< relref "/nms/nim/releases/known-issues.md#42219" >}})
+
+- {{% icon-resolved %}} Certificate file is not updated automatically under certain conditions [(42425)]({{< relref "/nms/nim/releases/known-issues.md#42425" >}})
+
+- {{% icon-resolved %}} Certificate updates allow for multiples certs to share the same serial number [(42429)]({{< relref "/nms/nim/releases/known-issues.md#42429" >}})
+
+
+### Support for NGINX App Protect WAF
+
+{{< include "tech-specs/nim-app-protect-support.md" >}}
+
+---
+
 ## 2.10.1
 
 5/22/2023

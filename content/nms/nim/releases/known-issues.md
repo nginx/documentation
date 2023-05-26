@@ -33,12 +33,40 @@ Sometimes, valid licenses for NGINX Management Suite are incorrectly identified 
 
 ---
 
-### {{% icon-bug %}} The Metrics module is interrupted during installation on Red Hat 9 {#42219}
+###  {{% icon-resolved %}} Certificate updates allow for multiples certs to share the same serial number {#42429}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 42219    | Open   |
+| Issue ID | Status          |
+|----------|-----------------|
+| 42429    | Fixed in 2.11.0 |
+{{</bootstrap-table>}}
+
+#### Description
+
+It is possible to update an existing certificate's serial number to one already in use. This incorrectly changes the cert (matching the serial number) details to a new name.
+
+---
+
+###  {{% icon-resolved %}} Certificate file is not updated automatically under certain conditions {#42425}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status          |
+|----------|-----------------|
+| 42425    | Fixed in 2.11.0 |
+{{</bootstrap-table>}}
+
+#### Description
+
+Certificate file is not updated automatically when a config change is pushed to an offline instance after it comes back online.
+
+---
+
+### {{% icon-resolved %}} The Metrics module is interrupted during installation on Red Hat 9 {#42219}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status          |
+|----------|-----------------|
+| 42219    | Fixed in 2.11.0 |
 {{</bootstrap-table>}}
 
 #### Description
@@ -83,12 +111,12 @@ Threat Campaign versions can be published with the API using the route: `api/pla
 
 ---
 
-### {{% icon-bug %}} Duplicate Certificate and Key published for managed certificates {#42182}
+### {{% icon-resolved %}} Duplicate Certificate and Key published for managed certificates {#42182}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 42182    | Open   |
+| Issue ID | Status          |
+|----------|-----------------|
+| 42182    | Fixed in 2.11.0 |
 {{</bootstrap-table>}}
 
 #### Description
@@ -644,12 +672,12 @@ The values currently populated for http.version_schema are incorrect. The respon
 
 ---
 
-### {{% icon-bug %}} Count of NGINX Plus graph has a delay in being populated {#37705}
+### {{% icon-resolved %}} Count of NGINX Plus graph has a delay in being populated {#37705}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 37705    | Open   |
+| Issue ID | Status          |
+|----------|-----------------|
+| 37705    | Fixed in 2.11.0 |
 {{</bootstrap-table>}}
 
 #### Description
