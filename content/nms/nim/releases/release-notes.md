@@ -50,7 +50,7 @@ This release includes the following updates:
   - log_grpc_blocked
   - log_grpc_illegal
 
-These new log profiles make it even easier to integrate NGINX App Protect WAF with other logging systems, such as Splunk, ArcSight, and gRPC.
+  These new log profiles make it even easier to integrate NGINX App Protect WAF with other logging systems, such as Splunk, ArcSight, and gRPC.
 
 - {{% icon-feature %}} **You can now install Advanced Metrics automatically when you install NGINX Agent**
 
