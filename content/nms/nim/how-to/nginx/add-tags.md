@@ -36,18 +36,18 @@ Tags allow you to label and group NGINX instances in Instance Manager.
 
 There are two ways you can add tags:
 
-- Add tags to the `agent-dynamic.conf` file.
+- Add tags to the `nginx-agent.conf` file.
 - Add tags using the Instance Manager web interface.
 
 ### Add Tags with a Configuration File {#add-tag-config}
 
-You can edit the `agent-dynamic.conf` file to add a tag to an instance.
+You can edit the `nginx-agent.conf` file to add a tag to an instance.
 
 These tags show up during registration and can't be removed from the web interface -- if you try to remove these tags in the web interface, the NGINX Agent adds them back when restarting.
 
 To add tags to the configuration file, take the following steps:
 
-1. Edit the `/var/lib/nginx-agent/agent-dynamic.conf` file and add the tags in a list under the key `tags:` <!-- get new nginx-agent.conf example -->
+1. Edit the `/etc/nginx-agent/nginx-agent.conf` file and add the tags in a list under the key `tags:` <!-- get new nginx-agent.conf example -->
 
 2. Restart the NGINX Agent service:
 
