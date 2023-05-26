@@ -75,12 +75,12 @@ You can assign NGINX instances to instance groups in the following ways:
 
 ### Specify Instance Group in Agent-Dynamic.Conf
 
-You can easily add instances to a default instance group that you specify. To do so, [install the NGINX Agent on an instance]({{< relref "/nms/nginx-agent/install-nginx-agent.md" >}}), then edit the `/var/lib/nginx-agent/agent-dynamic.conf` file as described below.
+You can easily add instances to a default instance group that you specify. To do so, [install the NGINX Agent on an instance]({{< relref "/nms/nginx-agent/install-nginx-agent.md" >}}), then edit the `/etc/nginx-agent/agent-dynamic.conf` file as described below.
 
 {{< important >}}If the specified instance group doesn't already exist, the NGINX Agent installer will create it, using the current instance's config file as the group's config file. This means that all instances added to the group later will use this config as well. If you're using a script to add instances, you should consider carefully which instance to run the script on first.{{< /important >}}
 
 1. Open a secure shell (SSH) connection to the NGINX instance and log in.
-2. Open the `/var/lib/nginx-agent/agent-dynamic.conf` for editing.
+2. Open the `/etc/nginx-agent/agent-dynamic.conf` for editing.
 3. Add a value for `instance_group: <group name>`, similar to the following example:
 
     Example:
@@ -175,14 +175,14 @@ To delete an instance group in the web interface, perform the following:
 If the instance group you deleted was specified in the `agent-dynamic.conf` file of an instance, you'll need to remove the reference. Otherwise, upon restarting the NGINX Agent, the instance group will be recreated.
 
 1. Open a secure shell (SSH) connection to the NGINX instance and log in.
-2. Open the `/var/lib/nginx-agent/agent-dynamic.conf` for editing.
+2. Open the `/etc/nginx-agent/agent-dynamic.conf` for editing.
 3. Locate and remove or comment out the `instance_group: <group name>` setting, similar to the following example:
 
     Example:
 
     ```yaml
     #
-    # /var/lib/nginx-agent/agent-dynamic.conf
+    # /etc/nginx-agent/dynamic-agent.conf
     #
     # Dynamic configuration file for NGINX Agent.
     #
