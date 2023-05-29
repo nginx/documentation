@@ -30,31 +30,27 @@ Complete the steps in this guide to secure Instance Manager with OpenID Connect 
 
 To complete the instructions in this guide, you'll need the following:
 
-- A running Keycloak server. See the Keycloak documentation for [Getting Started](https://www.keycloak.org/guides#getting-started) and [Server](https://www.keycloak.org/guides#server) configuration instructions.
+- A running Keycloak server. See the Keycloak documentation for [Getting Started](https://www.keycloak.org/guides#getting-started) and [Server](https://www.keycloak.org/guides#server) configuration instructions. You will need to [create a Realm](https://www.keycloak.org/docs/latest/server_admin/#configuring-realms) with an OpenID Endpoint Configuration enabled.
 - [Install Instance Manager]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}) on [NGINX Plus R25 or later](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
 - Install the [NGINX JavaScript module](https://www.nginx.com/blog/introduction-nginscript/) (njs). This module is required for handling interactions between NGINX Plus and the identity provider.  
 
 ---
-## Create User Groups in Instance Manager {#create-user-groups}
+## Create Roles and User Groups in Instance Manager {#create-roles-user-groups}
 
-Create user groups in Instance Manager. These User Groups will be mapped from Keycloak **Realm Roles** by name. 
+By default there is only one role in Instance Manager, `admin`. You might need to create **aditional roles** for the different User Groups, for example, "user" and "nap-user".
 
-1. Log in to Instance Manager as `admin` using a Basic Auth account.
-1. Select the **Settings** gear icon.
-1. In the **Settings** menu, select **User Groups**.
-1. Select **Create**.
-1. On the **Create Group** form, in the **Group Name** box, type the group name.
-1. In the **Display Name** box, type the group name.
-1. Select **Save**.
-1. Repeat steps 5–6 until you've recreated all the groups you want to provide access to, for example "nms-admins", "nms-users", and "nms-nap-users".
+{{< include "admin-guides/access-control/create-role.md" >}}
 
+Create **user groups** in Instance Manager, for example, "nms-admins", "nms-users", and "nms-nap-users".  These User Groups will be mapped from Keycloak **Realm Roles** by name. 
+
+{{< include "admin-guides/access-control/create-group.md" >}}
 
 ## Set up Keycloak {#configure-keycloak}
 
 Follow these steps to configure Keycloak.
 
 1. Log in to Keycloak as an administrator.
-1. Select the **Clients** tab.
+1. On the navigation menu, select **Clients**.
 1. Select **Create**.
 1. On the **Add Client** form, in the **Client ID** box, type "nms" as name for the client.
 1. On the **Client Protocol** drop-down list, select **openid-connect**.
@@ -63,95 +59,142 @@ Follow these steps to configure Keycloak.
 
 After the client has been created, add the following configuration:
 
-
 1. On the **Settings** tab, in the **Access Type** drop-down list, select **confidential**.
-1. On the **Mapper** tab, select **Add Builtin**, select **groups**, and then select **Add Selected**. This will export the user's Keycloak Realm Role information for NGINX Management Suite to use.
+1. On the **Mappers** tab, select **Add Builtin**, and check **groups**. This will export the user's Keycloak Realm Role information for NGINX Management Suite to use.
 
 NGINX Management Suite User Groups will be mapped from Keycloak **Realm Roles**; Keycloack Client Roles are **not** mapped. Make sure to use Keycloack top level roles (Realm Roles).
 
-1. On the **Realm Roles** tab, select **Create Role**.
+1. On the navigation menu, select **Realm Roles**  (or select **Roles** and then the **Realm Roles** tab, if you are in an older version of Keycloak).
+1. Select **Create Role**.
 1. In the **Role Name** box, type the name of the first group you created in Instance Manager, for example "nms-admins".
 1. Select **Save**.
 1. Repeat steps 1–3 until you've recreated all the groups you want to provide access to, for example "nms-users" and "nms-nap-users".
 
 Create the users that will be allowed to log in to Instance Manager.
 
-1. On the **Users** tab, select **Add User**.
+1. On the navigation bar, select **Users**. 
+1. Select **Add User**.
 1. In the **Username** box, type the user name.
 1. In the **Email** box, type the user's email address. NGINX Management Suite will use this email address as the user's identifier when setting its headers.
-1. In the **Password** box, type the user's password.
-1. Under **Role Mappings** > **Available Roles**, select the groups you want to provide access to, for example "nms-admins", "nms-users", or "nms-nap-users".
-1. Select **Add selected**.
 1. Select **Save**.
+1. After creating the user, select the **Credentials** tab.
+1. Provide a **Password**, confirm it, and select **Set Password**.
+1. On the **Role Mappings** tab, select the desired roles from the list, for example, "nms-admins", "nms-users", or "nms-nap-users".
+1. Select **Add selected**.
+
 
 Enable the Service Account for the client.
 
-1. On the **Clients** tab, select the **nms** client.
+1. On the navigation bar, select **Clients**.
+1. Select "Confidential" from the **Access Type** drop-down list.
+1. Select the "nms" client.
 1. On the **Service Account** tab, select **On**.
-1. On the **Service Account Roles** tab, select **Add Roles**.
-1. In the **Available Roles** list, select the NGINX Management Suite user group that you have created in Instance Manager, for example "nms-users".
+1. Select **Save**.
+1. On the **Service Account Roles** tab, in the **Available Roles** list, select the NGINX Management Suite user group that you have created in Instance Manager, for example "nms-users".
 1. Select **Add selected**.
 1. Select **Save**.
-
-To get the access token, send a POST request to `https://<keycloak-ip>:<port>/auth/realms/<realms-name>/protocol/openid-connect/token` with the following urlencoded args:
-
-- client_id = name of the client created
-- client_secret = secret value
-- grant_type = client_credentials
-
-
-Use the access the resulting token as Bearer token in the Authorization header before sending any NGINX Management Suite or App Delivery Manager API calls for authentication.
-
-</br>
 
 ---
 
 ## Configure NGINX Management Suite to use Keycloak {#configure-nms}
 
-Obtain the secret from Keycloak and set it as an environment variable on your NGINX Management Suite instance.
+- Obtain the secret from Keycloak and set it as an environment variable on your NGINX Management Suite instance.
 
-On the Keycloak user interface:
+    On the Keycloak user interface:
 
-1. Select the **Clients** tab, and then select the **nms** client.
-1. On the **Credentials** tab, copy the **Secret** value.
+    1. Select the **Clients** tab, and then select the **nms** client.
+    1. On the **Credentials** tab, copy the **Secret** value.
 
-On your NGINX Management Suite instance, 
+    On your NGINX Management Suite instance, 
 
-1. Set the following environment variable: `export KEYCLOAK_SECRET=<secret>`
-1. Update the NGINX Management Suite OIDC configuration and with the appropriate values:
+    1. Set the following environment variable: `export KEYCLOAK_SECRET=<secret>`
+    1. Update the NGINX Management Suite OIDC configuration and with the appropriate values:
 
---- 
+- To get the access token, send a POST request with `Content-Type` = `application/x-www-form-urlencoded` to `https://<keycloak-ip>:<port>/auth/realms/<realms-name>/protocol/openid-connect/token` with the following urlencoded args:
 
-NOTE: Testenv steps below. This needs to be updated for customer steps
+    - client_id = name of the client created
+    - client_secret = "Secret" value obtained from the Keycloak user interface.
+    - grant_type = client_credentials
+
+
+    Use the access the resulting token as Bearer token in the Authorization header before sending any NGINX Management Suite or App Delivery Manager API calls for authentication.
+
+Connect to your NGINX Management Suite instance and run the following commands:
+
+- Export the environment varibles:
 
     ```bash
-    scp -F /tmp/ssh-config-${NMS_STACK_ID} ubuntu@${CTRL_IP}:/etc/nms/nginx/oidc/openid_configuration.conf /tmp/openid_configuration.conf.${NMS_RANDOM_ID}
-    gsed -i'.bak' \
-    -e "s%OIDC_CLIENT_ID%nms%"  \
-    -e "s%SERVER_FQDN%${CTRL_IP}%"  \
+    # Either the FQDN or the IP address is suitable for these environment variables.
+    export KEYCLOAK_IP="<insert-keycloak-IP>"
+    export NMS_IP="<insert-NMS-IP>"
+
+    export KEYCLOAK_CLIENT_ID="<insert-keycloak-client-id>"
+    export KEYCLOAK_CLIENT_SECRET="<insert-kecloak-client-secret>"
+
+    # Choose an appropriate HMAC
+    export HMAC_KEY="<insert-HMAC>"
+
+    export KEYCLOAK_AUTH_ENDPOINT=$(curl -k "https://$KEYCLOAK_IP:8443/auth/realms/nginx/.well-known/openid-configuration" | jq -r ".authorization_endpoint")
+    export KEYCLOAK_TOKEN_ENDPOINT=$(curl -k "https://$KEYCLOAK_IP:8443/auth/realms/nginx/.well-known/openid-configuration" | jq -r ".token_endpoint")
+    export KEYCLOAK_KEYS_ENDPOINT=$(curl -k "https://$KEYCLOAK_IP:8443/auth/realms/nginx/.well-known/openid-configuration" | jq -r ".jwks_uri")
+    ``` 
+
+- Back up the original configuration files. 
+
+    ```bash
+    sudo cp /etc/nms/nginx/oidc/openid_configuration.conf ~/openid_configuration.conf.orig
+    sudo cp /etc/nginx/conf.d/nms-http.conf ~/nms-http.conf.orig
+    ``` 
+
+- Copy the OpenID configuration for NGINX to `/tmp` so we can replace the necessary values.
+
+    ```bash
+    sudo cp /etc/nms/nginx/oidc/openid_configuration.conf /tmp/openid_configuration.conf
+    
+    sudo sed -i'.bak' \
+    -e "s%OIDC_CLIENT_ID%${KEYCLOAK_CLIENT_ID}%"  \
+    -e "s%SERVER_FQDN%${NMS_IP}%"  \
     -e "s%OIDC_AUTH_ENDPOINT%${KEYCLOAK_AUTH_ENDPOINT}%"  \
     -e "s%OIDC_TOKEN_ENDPOINT%${KEYCLOAK_TOKEN_ENDPOINT}%" \
     -e "s%OIDC_KEYS_ENDPOINT%${KEYCLOAK_KEYS_ENDPOINT}%"  \
     -e "s%OIDC_CLIENT_SECRET%${KEYCLOAK_CLIENT_SECRET}%" \
-    -e "s%OIDC_HMAC_KEY%somerandomstring%" \
-    /tmp/openid_configuration.conf.${NMS_RANDOM_ID}
+    -e "s%OIDC_HMAC_KEY%${HMAC_KEY}%" \
+    /tmp/openid_configuration.conf
     ```
-    {{<note>}}the `gsed` command used above is GNU sed, which is installed on the NGINX Management Suite instance. If you are using a different version of sed, you may need to adjust the command accordingly.{{</note>}}
-1. Update NGINX Management Suite and enable OIDC. Copy a version of `nms-http.conf` to `~/OIDC` where the OIDC configurations have been uncommented and the Basic Auth parts have been commented out.
+
+- Uncomment the section of `/tmp/openid_configuration.conf` required for Keycloak. The correct section to uncomment is documented in the configuration file itself. Open the configuration file with your favorite text editor and uncomment the Keycloak section.
+
+- Copy the nms-http.conf file to `/tmp` so we can replace the necessary values.
+
     ```bash
-    ssh -F /tmp/ssh-config-${NMS_STACK_ID} ubuntu@${CTRL_IP} 'cp /etc/nms/nginx/oidc/openid_configuration.conf ~/openid_configuration.conf.orig'
-    ssh -F /tmp/ssh-config-${NMS_STACK_ID} ubuntu@${CTRL_IP} 'cp /etc/nginx/conf.d/nms-http.conf ~/nms-http.conf.orig'
-    scp -F /tmp/ssh-config-${NMS_STACK_ID} /tmp/openid_configuration.conf.${NMS_RANDOM_ID} ubuntu@${CTRL_IP}:/etc/nms/nginx/oidc/openid_configuration.conf
-    scp -F /tmp/ssh-config-${NMS_STACK_ID} ~/OIDC/nms-http.conf ubuntu@${CTRL_IP}:/etc/nginx/conf.d/nms-http.conf
+    sudo cp /etc/nginx/conf.d/nms-http.conf /tmp/nms-http.conf
+    ```
 
----
+- Uncomment the OIDC sections in `nms-http.conf` and comment out Basic Auth sections. Both sections are clearly documented in the configuration file itself.
 
-1. Restart NGINX
+- Copy the modified configuration files back to their original locations.
+
+    ```bash
+    sudo cp /tmp/nms-http.conf /etc/nginx/conf.d/nms-http.conf
+    sudo cp /tmp/openid_configuration.conf /etc/nms/nginx/oidc/openid_configuration.conf
+    ```
+- Reload NGINX.
+
     ```bash
     sudo nginx -s reload
     ```
 
----
+
+## Troubleshooting
+
+You can revert to Basic Auth to troubleshoot authentication issues by running the following commands:
+
+```bash
+sudo cp ~/openid_configuration.conf.orig etc/nms/nginx/oidc/openid_configuration.conf
+sudo cp ~/nms-http.conf.orig /etc/nginx/conf.d/nms-http.conf
+
+sudo nginx -s reload
+```
 
 ## Try It Out
 
