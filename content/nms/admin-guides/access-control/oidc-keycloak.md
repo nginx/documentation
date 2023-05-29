@@ -162,7 +162,20 @@ Connect to your NGINX Management Suite instance and run the following commands:
     /tmp/openid_configuration.conf
     ```
 
-- Uncomment the section of `/tmp/openid_configuration.conf` required for Keycloak. The correct section to uncomment is documented in the configuration file itself. Open the configuration file with your favorite text editor and uncomment the Keycloak section.
+- Uncomment the section of `/tmp/openid_configuration.conf` required for Keycloak as in the following example:
+
+    ```text
+    # Enable when using OIDC with keycloak
+    map $http_authorization $groups_claim {
+        default $jwt_claim_groups;
+    }
+    
+    
+    map $http_authorization $user_email {
+        "~^Bearer.*" '$jwt_clientId@$oidc_domain';
+        default $jwt_claim_email;
+    }
+    ```
 
 - Copy the nms-http.conf file to `/tmp` so we can replace the necessary values.
 
@@ -170,7 +183,57 @@ Connect to your NGINX Management Suite instance and run the following commands:
     sudo cp /etc/nginx/conf.d/nms-http.conf /tmp/nms-http.conf
     ```
 
-- Uncomment the OIDC sections in `nms-http.conf` and comment out Basic Auth sections. Both sections are clearly documented in the configuration file itself.
+- Uncomment the OIDC sections in `nms-http.conf` as in the following examples:
+
+    ```text
+    # Enable when using OIDC
+     log_format oidc_jwt '$remote_addr - $jwt_claim_sub [$time_local] "$request" '
+                         '$status $body_bytes_sent "$http_referer" "$http_user_agent" '
+                         '"$http_x_forwarded_for"';
+    ```
+
+    ```text
+    # OIDC -- client configuration uncomment include to enable
+    include /etc/nms/nginx/oidc/openid_configuration.conf;
+    ```
+
+    ```text
+    ## For OIDC Authentication: authorization code flow and Relying Party processing
+    # OIDC - remove comment from following directives to enable
+    add_header Nginx-Management-Suite-Auth "OIDC";
+    include /etc/nms/nginx/oidc/openid_connect.conf;
+    ```
+
+    ```text
+    # OIDC: use email as a unique identifier
+    # NOTE: the username is dependent upon claims provided by your IdP
+    proxy_set_header Nginx-Management-Suite-Auth "OIDC";
+    proxy_set_header Nginx-Management-Suite-User $user_email;
+    proxy_set_header Nginx-Management-Suite-Groups $groups_claim;
+    proxy_set_header Nginx-Management-Suite-ExternalId $jwt_claim_sub;
+    ```
+
+    Also uncomment all the sections starting with `# OIDC authentication (uncomment to enable)`.
+
+- Comment out all the Basic Auth sections in `nms-http.conf` as in the following examples:
+
+    ```text
+    ## For use with basic auth
+    #auth_basic_user_file /etc/nms/nginx/.htpasswd;
+    ## auth type indication to the client
+    #add_header Nginx-Management-Suite-Auth "Basic";
+    ```
+
+    ```text
+    # HTTP Basic:
+    #proxy_set_header Nginx-Management-Suite-User $remote_user;
+    #proxy_set_header Nginx-Management-Suite-Groups "";
+    #proxy_set_header Nginx-Management-Suite-ExternalId "";
+    ```
+
+    Also comment out all the sections starting with `# HTTP Basic authentication (comment if using OIDC auth)` or `# HTTP Basic authentication (disable if using OIDC)`.
+
+
 
 - Copy the modified configuration files back to their original locations.
 
@@ -178,11 +241,10 @@ Connect to your NGINX Management Suite instance and run the following commands:
     sudo cp /tmp/nms-http.conf /etc/nginx/conf.d/nms-http.conf
     sudo cp /tmp/openid_configuration.conf /etc/nms/nginx/oidc/openid_configuration.conf
     ```
-- Reload NGINX.
 
-    ```bash
-    sudo nginx -s reload
-    ```
+- Run `sudo nginx -t` to verify the config has no errors.
+
+- Reload NGINX running `sudo nginx -s reload`.
 
 
 ## Troubleshooting
