@@ -45,7 +45,7 @@ Follow the steps on the [Publish an HTTP API]({{< relref "/nms/acm/how-to/servic
 
 Jane Smith has started a new job as an API developer for the Product-Search team in a hardware manufacturing company.
 Jane needs to change the current catch-all route to more granular routes to support the new API endpoints she has added to the product.
-These endpoints will take a mixture of `Query` parameters, `Path` parameters and `Header` parameters. Jane would like to interact with different backend services based on the routes and parameters provided.
+These endpoints will take a mixture of `Query`, `Path`,  and `Header` parameters. Jane would like to interact with different backend services based on the routes and parameters provided.
 
 ### Workflow
 
@@ -68,7 +68,7 @@ To complete the instructions in this guide, you need the following:
 
 ## Built-In Role
 
-API Connectivity Manager comes pre-configured with an "ACM API Owner" role suitable for API Owners.
+API Connectivity Manager comes pre-configured with an [ACM API Owner]({{< relref "/acm/tutorials/rbac-api-owners.md" >}}) role suitable for API Owners.
 
 - **API Owner**: The individuals or teams who are responsible for designing, creating, and maintaining APIs.
 
@@ -76,17 +76,17 @@ API Connectivity Manager comes pre-configured with an "ACM API Owner" role suita
 
 ## Example: Create An Advanced Route
 
-In our Proxy configuration form (found via a Proxy Create or a Proxy Edit), we will select the `Ingress` section in the left menu bar to see the options available to configure our proxy ingress.
+In our Proxy configuration form (found via a Proxy Create or a Proxy Edit), we will select the `Ingress` section in the left menu to see the options available to configure our proxy ingress.
 
 On the next screen, we have the options related to `basepath` and `version`. At the bottom of this section, there is an expandable panel to add an `Advanced Route`; select the `Add Route` link to continue.
 
 This section shows several configuration options. For the purpose of this example, we will focus on `Match URI`, `HTTP Method`, and `Parameters`.
 
-We are going to create a route that can take 2 `integer` ID's in the path, for example, `/customer/123/order/1234`; we are going to do this by adding the following parameters:
+We are going to create a route that can take two`integer` IDs in the path; for example, `/customer/123/order/1234`. We are going to do this by adding the following parameters:
 
-In the `Match URI` field add the following value: `/customer/{customerID}/order/{orderID}`; this configures our URI with placeholders for the path parameters `customerID` and `orderID`.
+In the `Match URI` field add the following value: `/customer/{customerID}/order/{orderID}`. This configures our URI with placeholders for the path parameters `customerID` and `orderID`.
 
-Expand the `HTTP Method` menu, and select `GET` for this config. The `HTTP Method` parameter allows us to configure which HTTP Method this route will match for, so in this case, a `POST` to `/customer/123/order/1234` will not match and will return a `404` (or a `405` depending on your config).
+Expand the `HTTP Method` menu, and select `GET` for this config. The `HTTP Method` parameter allows us to configure which HTTP Method this route will match for. So in this case, a `POST` to `/customer/123/order/1234` will not match and will return a `404` (or a `405` depending on your config).
 You can route to different backend services for the same URI but different HTTP methods using the `TargetBackendServiceLabel` parameter, which will associate the config to a specific backend service and the `HTTP Method` parameter combination.
 
 In the `Parameters` section, select the `Add Parameter` button to see some new config options:
