@@ -1,5 +1,5 @@
 ---
-title: "Set up some Advanced Routes"
+title: "Set Up Advanced Routing"
 date: 2023-05-02T13:09:51-08:00
 # Change draft status to false to publish doc
 draft: false
