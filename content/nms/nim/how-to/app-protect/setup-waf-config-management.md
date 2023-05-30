@@ -411,7 +411,7 @@ To onboard your NGINX App Protect WAF instances to Instance Manager, you need to
 
 ```bash
 # Download install script via API
-curl https://<NMS-FQDN>/install/nginx-agent > install.sh
+curl https://<NMS_FQDN>/install/nginx-agent > install.sh
 
 # Specify the -m | --nginx-app-protect-mode flag to set up management of NGINX App Protect on
 # the instance. In the example below we specify 'precompiled-publication' for the flag value

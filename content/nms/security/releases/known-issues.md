@@ -29,11 +29,11 @@ categories: ["known issues"]
 
 #### Description
 
-If you have Instance Manager 2.7 or earlier installed and attempt to enable both the API Connectivity Manager (ACM) and Security Monitoring (SM) modules on the same NGINX Management Suite management plane, the ACM module will not load because of incompatibility issues with the SM module.
+If you have Instance Manager 2.7 or earlier installed and attempt to enable both the API Connectivity Manager and Security Monitoring modules on the same NGINX Management Suite management plane, the API Connectivity Manager module will not load because of incompatibility issues with the Security Monitoring module.
 
 #### Workaround
 
-Before enabling the ACM and SM modules, ensure that your Instance Manager is upgraded to version 2.8 or later. Be sure to read the release notes for each module carefully, as they may contain important information about version dependencies.
+Before enabling the API Connectivity Manager and Security Monitoring modules, ensure that your Instance Manager is upgraded to version 2.8 or later. Be sure to read the release notes for each module carefully, as they may contain important information about version dependencies.
 
 To see which version of Instance Manager you have installed, run the following command:
 

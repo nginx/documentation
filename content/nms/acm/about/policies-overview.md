@@ -21,7 +21,7 @@ docs: "DOCS-932"
 
 ## Overview
 
-This page gives an overview of the available policies in API Connectivity Manager (ACM). Policies allow you to protect and secure your services and their data.
+This page gives an overview of the available policies in API Connectivity Manager. Policies allow you to protect and secure your services and their data.
 
 ---
 

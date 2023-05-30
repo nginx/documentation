@@ -79,7 +79,7 @@ API Connectivity Manager comes pre-configured with an "ACM API Owner" role suita
 
 ## Create Custom Roles
 
-In addition to the built-in ACM RBAC roles, you can create custom roles to give users tailored levels of access to workspaces and features.
+In addition to the built-in API Connectivity Manager RBAC roles, you can create custom roles to give users tailored levels of access to workspaces and features.
 
 ### Example: Create a workspace role
 

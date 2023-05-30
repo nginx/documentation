@@ -35,7 +35,7 @@ This document is intended to help utilize Visual Studio Code ("VS Code") and Ins
 
 Currently we are using basic authentication which is not a very secure way to protect your Instance Manager environment.  It is highly recommended you block external access and only use this internally (your connection from Visual Studio Code to nginx-manager should be internal).
 
-The plugin for NIM can be found in the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=F5DevCentral.vscode-nim).
+The plugin for Instance Manager can be found in the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=F5DevCentral.vscode-nim).
 
 ## Description {#description}
 
@@ -49,7 +49,7 @@ The VS Code plugin is based off the F5 VS Code plugin that enables AS3 language 
 
 ## Install the VS Code Plugin {#install-plugin}
 
-Assuming you already have Visual Studio Code installed and running.  Simply navigate to the [marketplace](https://marketplace.visualstudio.com/items?itemName=F5DevCentral.vscode-nim) and install or search for F5 NIM in the extensions search panel.
+Assuming you already have Visual Studio Code installed and running.  Simply navigate to the [marketplace](https://marketplace.visualstudio.com/items?itemName=F5DevCentral.vscode-nim) and install or search for F5 Instance Manager in the extensions search panel.
 
 ![Visual Studio Code Marketplace](marketplace.png)
 

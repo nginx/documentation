@@ -17,7 +17,7 @@ docs: "DOCS-924"
 
 ## Overview
 
-NGINX Management Suite API Connectivity Manager (ACM) lets you manage your API infrastructure by using a set of hierarchical resources. The top-level resource, called a **Workspace**, provides a logical grouping for resources called **Environments**. Environments contain **Clusters** that allocate NGINX instances for use as API Gateways and Developer Portals.
+API Connectivity Manager lets you manage your API infrastructure by using a set of hierarchical resources. The top-level resource, called a **Workspace**, provides a logical grouping for resources called **Environments**. Environments contain **Clusters** that allocate NGINX instances for use as API Gateways and Developer Portals.
 
 You can use Workspaces to create isolated work areas for business units or teams. You can use Environments to allocate infrastructure resources for use within a team's Workspace.   
 This guide provides instructions for using  API Connectivity Manager Workspaces and Environments to manage your API infrastructure.
@@ -26,8 +26,8 @@ This guide provides instructions for using  API Connectivity Manager Workspaces 
 
 Complete the following prerequisites before proceeding with this guide: 
 
-- ACM is installed, running, and licensed.
-- You have SSH access to the host where ACM is running and can use the `sudo` command.
+- API Connectivity Manager is installed, running, and licensed.
+- You have SSH access to the host where API Connectivity Manager is running and can use the `sudo` command.
 - You have installed a [supported version]({{< ref "tech-specs" >}}) of NGINX Plus on each host that you want to add to a Cluster.
 - You know the IP address or FQDN for each host that you want to add to a cluster.
 - You have SSH access to each of the hosts that you want to allocate to a cluster and can use the `sudo` command.
@@ -41,7 +41,7 @@ Complete the following prerequisites before proceeding with this guide:
 
 Take the steps below to create a new Workspace.
 
-1. From the ACM **Infrastructure** landing page, select **Create Workspace**. 
+1. From the API Connectivity Manager **Infrastructure** landing page, select **Create Workspace**. 
 1. In the **Create Workspace** drawer, provide a **Name** and **Description**.
    
    - **Name**: (required) A name can be any combination of lowercase letters, hyphens, numbers, or underscores. Spaces and capital letters are not allowed.
@@ -87,19 +87,19 @@ Take the steps below to add an Environment.
 
 ## Onboard an NGINX Instance {#register-nginx-instance}
 
-[Install the NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent" >}}) on each host to register the instance with ACM as part of the cluster.
+[Install the NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent" >}}) on each host to register the instance with API Connectivity Manager as part of the cluster.
 
 Take the steps below to add an NGINX instance to an API Gateway.
 
 1. Use SSH to log in to the host machine.
 1. Run the `cURL` or `wget` install command that was displayed in the **Environment Created** confirmation drawer. 
-1. When the installation is complete, the instance will appear in the **Instances** list for the cluster in the ACM user interface. 
+1. When the installation is complete, the instance will appear in the **Instances** list for the cluster in the API Connectivity Manager user interface. 
 
 > {{< fa "fa-solid fa-circle-question" >}} **Lost your install command?**
 > 
 > Don't worry! You can take the steps below to recover it:
 >
-> 1. In the ACM user interface, go to **Infrastructure > Environments > \<your environment\>**.
+> 1. In the API Connectivity Manager user interface, go to **Infrastructure > Environments > \<your environment\>**.
 > 1. Click anywhere in the row of the Cluster that you want to add an instance to.
 > 1. The **Onboarding Commands** will be shown in the cluster details drawer. 
 

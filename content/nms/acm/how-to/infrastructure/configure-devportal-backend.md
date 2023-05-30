@@ -30,7 +30,7 @@ The following deployment patterns are supported:
 
 Complete the following prerequisites before proceeding with this guide: 
 
-- ACM is installed, licensed, and running.
+- API Connectivity Manager is installed, licensed, and running.
 - You have one or more Environments with a [Developer Portal]({{< relref "/nms/acm/getting-started/add-devportal" >}}) cluster.
 - You have verified that you can access the Developer Portal using the configured hostname.
 
@@ -62,7 +62,7 @@ The Developer Portal backend API service can be scaled for high availability by 
 
 When creating a Developer Portal in an environment, you can set multiple `serviceTargets` to match any of the deployment patterns above.  
 
-1. In the ACM user interface, go select **Workspaces > Environments > \<your environment\>**, where "your environment" is the Environment that contains the Developer Portal.
+1. In the API Connectivity Manager user interface, go select **Workspaces > Environments > \<your environment\>**, where "your environment" is the Environment that contains the Developer Portal.
 1. Select **Edit Advanced Config** from the **Actions** menu for the desired Developer Portal.
 1. On the **Backend** tab, select the default backend service, then select **Edit Backend** from the **Actions** menu.
 1. Add/Update desired service target.
