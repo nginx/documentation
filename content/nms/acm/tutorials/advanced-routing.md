@@ -86,23 +86,24 @@ We are going to create a route that can take 2 `integer` ID's in the path, for e
 
 In the `Match URI` field add the following value: `/customer/{customerID}/order/{orderID}`; this configures our URI with placeholders for the path parameters `customerID` and `orderID`.
 
-In `HTTP Method` we will choose `GET` for this config. The `HTTP Method` parameter allows us to configure which HTTP Method this route will match for, so in this case a `POST` to `/customer/123/order/1234` will not match and will return a `404` (or a `405` depending on your config).
-It is also possible to route to different backend services for the same URI but with different HTTP methods. This is accomplished using the `TargetBackendServiceLabel` parameter, which will associate the config to a specific backend service and the `HTTP Method` parameter combination.
+Expand the `HTTP Method` menu, and select `GET` for this config. The `HTTP Method` parameter allows us to configure which HTTP Method this route will match for, so in this case, a `POST` to `/customer/123/order/1234` will not match and will return a `404` (or a `405` depending on your config).
+You can route to different backend services for the same URI but different HTTP methods using the `TargetBackendServiceLabel` parameter, which will associate the config to a specific backend service and the `HTTP Method` parameter combination.
 
-In the `Parameters` section, click the `Add Parameter` button to see some new config options:
-The `Name` field is the name of the parameter in the URI, this must match the placeholder value provided in `Match URI` (in the UI the validation will show an error if there is a mismatch).
-Here we need to add one entry for `customerID` and a new one for `orderID` (click the add parameter button).
-The `In` field denotes where the parameter will be passed, the options are: `PATH`, `QUERY`, and `HEADER`.
-`QUERY` indicates that the parameter will be passed as a query parameter, e.g. `/customer?customerID=123` and `HEADER` indicates that it will be passed as a header with the `Name` field as the header key.
+In the `Parameters` section, select the `Add Parameter` button to see some new config options:
+The `Name` field is the name of the parameter in the URI; this must match the placeholder value provided in `Match URI` (in the web interface, the validation will show an error if there is a mismatch).
+We need to add one entry for `customerID` and another for `orderID` by selecting the `Add Parameter` button again.
+The `In` field indicates where the parameter will be passed; the options are `PATH`, `QUERY`, and `HEADER`.
+`QUERY` indicates that the parameter will be passed as a query parameter, for example, `/customer?customerID=123`. 
+`HEADER` indicates that it will be passed as a header with the `Name` field as the header key.
 
-For this example we will be using `PATH` parameters and we should choose that option.
+For this example, we will use `PATH` parameters.
 
-`Schema Type` is used to define the type of parameter that will be passed, i.e. `STRING`, `INTEGER`, etc.
-For this example we will be using `PATH`.
+`Schema Type` defines the type of parameter that will be passed, for example, `STRING`, `INTEGER`,  and others.
+For this example, we will be using `INTEGER`.
 
-The `Enums` option allows for setting a limited number of options to be allowed to match on and if anything else is passed, it doesn't match.
+The `Enums` option lets you limit the number of options to be allowed to match on; if anything else is passed, it doesn't match.
 We won't be using `Enums` for this example.
 
-Now that we have added our route we can hit add `Add` and then on the next page `Save and Publish` and our changes will be deployed and we should now be able to resolve our new endpoint!
+Now that we have added our route, we can select `Add` and `Save and Publish` on the next page. Our changes will be deployed, and we should now be able to resolve our new endpoint!
 
 ---
