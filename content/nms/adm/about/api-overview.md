@@ -1,6 +1,6 @@
 ---
 title: API Design
-description: Overview of the App Delivery Manager Module.
+description: Overview of the NGINX Management Suite App Delivery Manager module.
 weight: 100
 toc: true
 draft: false
@@ -45,7 +45,7 @@ Typically, the platform admin will create one or more environments for the app t
 
 ### Apps
 
-The App Delivery Manager Module organizes apps as individual objects, allowing teams to keep their own app distinct from the apps of other teams.
+The App Delivery Manager module organizes apps as individual objects, allowing teams to keep their own app distinct from the apps of other teams.
 
 Depending on its complexity, an app may be composed of one or more components. For example, an app with various microservices may have each microservice represented by a component. The app object allows the controller to add special tags to the NGINX configuration file, which enables the collection of NGINX metrics that can subsequently be filtered by the specific app.
 

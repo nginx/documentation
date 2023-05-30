@@ -1,6 +1,6 @@
 ---
 title: Setting up User Roles
-description: Learn how to set up basic roles for managing the App Delivery Manager module.
+description: Learn how to set up basic roles for managing the NGINX Management Suite App Delivery Manager module.
 weight: 200
 draft: false
 toc: true

@@ -1,6 +1,6 @@
 ---
 title: Template API Reference
-description: Template reference for the App Delivery Manager Module.
+description: Template reference for the NGINX Management Suite App Delivery Manager module.
 weight: 400
 toc: true
 draft: false

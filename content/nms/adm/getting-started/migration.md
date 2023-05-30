@@ -1,6 +1,6 @@
 ---
 title: Migration From NGINX Controller ADC 3.x
-description: Learn how to migrate from Application Delivery Controller 3.x to the App Delivery Manager Module.
+description: Learn how to migrate from Application Delivery Controller 3.x to the NGINX Management Suite App Delivery Manager module.
 weight: 200
 draft: true
 toc: false
