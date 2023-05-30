@@ -22,7 +22,7 @@ aliases:
 
 ## Introduction
 
-The F5 Instance Manager module is part of the NGINX Management Suite. The Instance Manager module provides a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API that uses standard authentication methods, HTTP response codes, and verbs.   
+NGINX Management Suite Instance Manager provides a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API that uses standard authentication methods, HTTP response codes, and verbs.   
 
 ## Object Model
 
