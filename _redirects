@@ -4,8 +4,8 @@
 /nginx-app-protect/* /nginx-app-protect-waf/:splat 301
 
 # NGINXaaS for Azure redirects
-/nginxaas/azure/management/manual-scale/ https://docs.nginx.com/nginxaas/azure/management/scaling/ 301
 /nginx-for-azure/* /nginxaas/azure/:splat 301
+/nginxaas/azure/management/manual-scale/ https://docs.nginx.com/nginxaas/azure/management/scaling/ 301
 /nginxaas/azure/quickstart/overview/ /nginxaas/azure/overview/overview/ 301
 /nginxaas/azure/management/nginx-configuration/ /nginxaas/azure/getting-started/configuration/nginx-configuration/ 301
 /nginxaas/azure/management/ssl-tls-certificates/ /nginxaas/azure/getting-started/configuration/ssl-tls-certificates/ 301
