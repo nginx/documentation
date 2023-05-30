@@ -37,7 +37,7 @@ This guide is meant for NGINX Management Suite users who can add/modify Proxy de
 
 ### How do I publish a Proxy with Advanced Routing?
 
-Publish one or more [Proxies]({{< relref "/nms/acm/how-to/services/publish-api.md" >}})
+Follow the steps on the [Publish an HTTP API]({{< relref "/nms/acm/how-to/services/publish-api.md" >}}) section to publish a proxy.
 
 ---
 
