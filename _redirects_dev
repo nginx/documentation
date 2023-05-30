@@ -1,16 +1,19 @@
 # Redirects for specific pages or sections
 /nginx-ingress-controller/intro/nginx-ingress-controllers/ https://www.nginx.com/blog/guide-to-choosing-ingress-controller-part-4-nginx-ingress-controller-options/ 301!
-/nginx-management-suite/admin-guides/getting-started/prerequisites/configure-clickhouse/ https://docs.nginx.com/nginx-management-suite/admin-guides/getting-started/configure-clickhouse/ 301
-/nginxaas/azure/management/manual-scale/ https://docs.nginx.com/nginxaas/azure/management/scaling/ 301
 /nginx-agent/changelog/ https://github.com/nginx/agent/releases 301
-/install-community-modules https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/#installing-nginx-community-modules 301
-/nginx-management-suite/nginx-instance-manager/* /nginx-management-suite/nim/:splat 301!
 /nginx-app-protect/* /nginx-app-protect-waf/:splat 301
+
+# NGINXaaS for Azure redirects
+/nginxaas/azure/management/manual-scale/ https://docs.nginx.com/nginxaas/azure/management/scaling/ 301
 /nginx-for-azure/* /nginxaas/azure/:splat 301
 /nginxaas/azure/quickstart/overview/ /nginxaas/azure/overview/overview/ 301
 /nginxaas/azure/management/nginx-configuration/ /nginxaas/azure/getting-started/configuration/nginx-configuration/ 301
 /nginxaas/azure/management/ssl-tls-certificates/ /nginxaas/azure/getting-started/configuration/ssl-tls-certificates/ 301
+
+# NGINX Management Suite redirects
+/nginx-management-suite/nginx-instance-manager/* /nginx-management-suite/nim/:splat 301!
 /nginx-instance-manager/* /nginx-management-suite/:splat 301!
+/nginx-management-suite/admin-guides/getting-started/prerequisites/configure-clickhouse/ https://docs.nginx.com/nginx-management-suite/admin-guides/getting-started/configure-clickhouse/ 301
 /nginx-management-suite/acm/how-to/manage-api-infrastructure/ /nginx-management-suite/acm/how-to/infrastructure/manage-api-infrastructure/
 /nginx-management-suite/acm/how-to/publish-api/ /nginx-management-suite/acm/how-to/services/publish-api/
 /nginx-management-suite/acm/how-to/publish-api/#publish-api-proxy /nginx-management-suite/acm/how-to/services/publish-api/#publish-api-proxy
@@ -37,7 +40,12 @@
 /nginx-management-suite/admin-guides/installation/uninstall-guide/ /nginx-management-suite/installation/uninstall-guide/ 301
 /nginx-management-suite/admin-guides/installation/upgrade-guide/ /nginx-management-suite/installation/upgrade-guide/ 301
 
-# Redirect NGINX Directives Index to the right .org page
+# NGINX Plus redirects
+/install-community-modules /nginx/admin-guide/installing-nginx/installing-nginx-plus/#installing-nginx-community-modules 301
+/nginx/deployment-guides/aws-high-availability-network-load-balancer/ /nginx/deployment-guides/amazon-web-services/high-availability-network-load-balancer/ 301
+/nginx/deployment-guides/aws-high-availability-keepalived/ /nginx/deployment-guides/amazon-web-services/high-availability-keepalived/ 301
+/nginx/deployment-guides/amazon-route-53-global-server-load-balancing/ /nginx/deployment-guides/amazon-web-services/route-53-global-server-load-balancing/ 301
+/nginx/deployment-guides/gcp-high-availability-all-active/ /nginx/deployment-guides/google-cloud-platform/high-availability-all-active/ 301
 /nginx/directives/ https://nginx.org/en/docs/dirindex.html 301!
 
 # Redirects to the backend netlify sites for each product
