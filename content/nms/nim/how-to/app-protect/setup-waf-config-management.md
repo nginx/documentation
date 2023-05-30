@@ -90,7 +90,7 @@ Install the WAF compiler, then restart the `nms-integrations` service:
 
 ```bash
 sudo apt-get install nms-nap-compiler-v4.279.0
-``` 
+```
 
 {{<note>}}
 - If you want to have more than one version of the `nms-nap-compiler` installed on your system at once, you'll need to append `-o Dpkg::Options::="--force-overwrite"` to the `nms-nap-compiler` installation commands after your initial `nms-nap-compiler` installation. For example, the installation command would look like this:
@@ -938,7 +938,7 @@ Check if the WAF compiler has been installed and is working properly by viewing 
 sudo /opt/nms-nap-compiler/app_protect-<version>/bin/apcompile -h
 ```
 
-For example, to view the help for WAF compiler 4.279.0, run the following command:
+For example, to view the help description for WAF compiler 4.279.0, run the following command:
 
 ``` bash
 sudo /opt/nms-nap-compiler/app_protect-4.279.0/bin/apcompile -h
@@ -956,7 +956,7 @@ Examples:
     /opt/nms-nap-compiler/app_protect-4.279.0/bin/apcompile -g myglobalsettings.json --global-state-outfile /path/to/myglobalstate.tgz
     /opt/nms-nap-compiler/app_protect-4.279.0/bin/apcompile -b /path/to/policy_bundle.tgz --dump
     /opt/nms-nap-compiler/app_protect-4.279.0/bin/apcompile -l logprofA.json -o /path/to/logprofA_bundle.tgz
-...  
+...
 ```
 
 <br>
