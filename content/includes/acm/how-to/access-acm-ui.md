@@ -1,5 +1,5 @@
 
-This guide provides instructions for completing tasks using the NGINX Management Suite API Connectivity Manager user interface (UI).
+This guide provides instructions for completing tasks using the API Connectivity Manager user interface (UI).
 
 To access the UI, go to the FQDN of your NGINX Management Suite host and log in. On the Launchpad menu, select "API Connectivity Manager."
 

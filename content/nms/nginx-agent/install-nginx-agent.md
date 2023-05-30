@@ -123,7 +123,7 @@ Once you've verified the NGINX Agent is running on your data plane, you should c
 Send an API request similar to the following example to get the inventory list. Your instance should be listed.
 
   ```bash
-  curl -u <user>:<password> https://<NMS-FQDN>/api/platform/v1/systems | jq
+  curl -u <user>:<password> https://<NMS_FQDN>/api/platform/v1/systems | jq
   ```
 
 {{%/tab%}}
@@ -192,7 +192,7 @@ In the following example `nginx-agent.conf` file, you can change the `server.hos
 # specify the server grpc port to connect to
 server:
   # host of the control plane
-  host: <NMS-FQDN>
+  host: <NMS_FQDN>
   grpcPort: 443
 # tls options
 tls:
@@ -414,7 +414,7 @@ nginx_app_protect:
 Additionally, you can use the agent installation script to add these fields:
   ```bash
   # Download install script via API
-  curl https://<NMS-FQDN>/install/nginx-agent > install.sh
+  curl https://<NMS_FQDN>/install/nginx-agent > install.sh
 
   # Specify the -m | --nginx-app-protect-mode flag to set up management of NGINX App Protect on
   # the instance. In the example below we specify 'precompiled-publication' for the flag value

@@ -17,7 +17,7 @@ personas: ["secops"]
 
 ## Overview
 
-NGINX Management Suite API Connectivity Manager (ACM) API Owners can restrict access to their APIs with OAuth2 tokens by swapping an opaque token for claims or JWT token to be proxied to the backend service. The policy can be configured to grant access to APIs after having the tokens introspected. In addition, the claims in the token can be extracted and forwarded to the backend service.
+API Connectivity Manager API Owners can restrict access to their APIs with OAuth2 tokens by swapping an opaque token for claims or JWT token to be proxied to the backend service. The policy can be configured to grant access to APIs after having the tokens introspected. In addition, the claims in the token can be extracted and forwarded to the backend service.
 
 ---
 
@@ -35,7 +35,7 @@ OAuth2 system:
 - **Authorization Server**: The server that issues access tokens to the client after successfully authenticating the resource owner and
   obtaining authorization. The authorization server exposes two endpoints: the Token endpoint, which is involved in a machine-to-machine interaction for issuing access tokens, and the Introspection endpoint, which is used by the Resource Server to validate client access tokens.
 - **Resource Server**: The server protecting the user resources capable of accepting and responding to protected resource requests using
-  access tokens. In this guide, NGINX running within the ACM API-Proxy is the Resource Server.
+  access tokens. In this guide, NGINX running within the API Connectivity Manager API-Proxy is the Resource Server.
 
 ### Token Introspection
 
@@ -116,21 +116,21 @@ introspection server (HTTP 403): Forbidden
 
 In this example, the end user also gets a `403 Forbidden` response from the data plane proxy. If `action.cacheIntrospectionResponse` is enabled and `action.proxyTLSName` is changed from a correct value to an incorrect value, the cached access token is valid until it expires. When the cached access token expires, end users will see their requests to the data plane proxy return with `403 Forbidden` responses.
 
-The NGINX OAuth2 Introspection configuration used by ACM does not cache tokens if the introspection request status code is anything other than `200 Success`. Any introspection requests with user access tokens returning `4xx` or `5xx` response codes will work once the policy introspection configuration is corrected and the Authorization Server responds with status code `200`.
+The NGINX OAuth2 Introspection configuration used by API Connectivity Manager does not cache tokens if the introspection request status code is anything other than `200 Success`. Any introspection requests with user access tokens returning `4xx` or `5xx` response codes will work once the policy introspection configuration is corrected and the Authorization Server responds with status code `200`.
 
 ## Policy Interoperability Considerations
 
-It is only possible to configure one OAuth2 Introspection Policy per Proxy in ACM. Only one set of `clientAppId` credentials can be
+It is only possible to configure one OAuth2 Introspection Policy per Proxy in API Connectivity Manager. Only one set of `clientAppId` credentials can be
 configured per OAuth2 Introspection Policy.
 
-While an OAuth2 Introspection policy is configured for a Proxy in ACM it is not possible to configure any of the following policies on
+While an OAuth2 Introspection policy is configured for a Proxy in API Connectivity Manager it is not possible to configure any of the following policies on
 the same Proxy:
 
 1. API Key Authentication
 2. Basic Authentication
 3. JWT Assertion
 
-Similarly, if any of the above three policies are configured for a Proxy in ACM, it is not possible to additionally configure an OAuth
+Similarly, if any of the above three policies are configured for a Proxy in API Connectivity Manager, it is not possible to additionally configure an OAuth
 2.0 Introspection Policy.
 
 ## Security Considerations
@@ -152,7 +152,7 @@ The introspection response type `application/jwt`, configured through `action.in
 specification finalised at the time of development and writing it remains in **DRAFT** state. The draft specification _JWT Response for_
 _OAuth Token Introspection_ can be found [here](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response).
 
-While in this state the specification is likely to change at any time, and how we implement it in ACM may change to meet the requirements of
+While in this state the specification is likely to change at any time, and how we implement it in API Connectivity Manager may change to meet the requirements of
 the specification. We recommend that the default OAuth2 Introspection response type `application/json` is used for all production
 scenarios.
 

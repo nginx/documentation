@@ -1,4 +1,4 @@
-In NGINX Management Suite API Connectivity Manager (ACM), you can apply global policies to API Gateways and Developer Portals to ensure your organization's security requirements are enforced.
+In API Connectivity Manager, you can apply global policies to API Gateways and Developer Portals to ensure your organization's security requirements are enforced.
 
 When you add policies at the environment level, they will apply to all proxies hosted within that environment.
 

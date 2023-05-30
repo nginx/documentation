@@ -122,7 +122,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Improved certificate handling**
 
-  API Connectivity Manager will not generate new certificates if any have already been specified in the TLS policy; instead, ACM will reference the existing certificates. In this way, wildcard certificates may be employed.
+  API Connectivity Manager will not generate new certificates if any have already been specified in the TLS policy; instead, API Connectivity Manager will reference the existing certificates. In this way, wildcard certificates may be employed.
 
 - {{% icon-feature %}} **Add a Health Check policy to your gRPC proxy to ensure optimal performance**
 
@@ -354,7 +354,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Use the web interface to publish and manage gRPC services**
 
-  With ACM 1.2, we introduced support for [publishing and managing gRPC services]({{< relref "/nms/acm/how-to/policies/grpc-policies.md" >}}). Now, in this release, we extend that capability to the web interface. 
+  With API Connectivity Manager 1.2, we introduced support for [publishing and managing gRPC services]({{< relref "/nms/acm/how-to/policies/grpc-policies.md" >}}). Now, in this release, we extend that capability to the web interface. 
 
   You can secure gRPC services with the following policies:
 
@@ -379,11 +379,11 @@ This release includes the following updates:
     - Proxy Request Headers
     - Rate Limit
 
-- {{% icon-feature %}} **Secure communication between ACM and Developer Portal with mTLS**
+- {{% icon-feature %}} **Secure communication between API Connectivity Manager and Developer Portal with mTLS**
 
-  ACM communicates with the Developer Portal host to publish API docs and create API credentials. Now, PlatformOps can secure this communication channel by enabling mTLS between the hosts.
+  API Connectivity Manager communicates with the Developer Portal host to publish API docs and create API credentials. Now, PlatformOps can secure this communication channel by enabling mTLS between the hosts.
 
-  Previously, mTLS required a TLS backend policy on the internal portal proxy cluster. ACM 1.3 removes that restriction. The TLS inbound policy on the internal portal allows providing a client certificate for ACM when mTLS is enabled. ACM presents this client certificate when connecting to the Developer Portal, identifying itself as a trusted client.
+  Previously, mTLS required a TLS backend policy on the internal portal proxy cluster. API Connectivity Manager 1.3 removes that restriction. The TLS inbound policy on the internal portal allows providing a client certificate for API Connectivity Manager when mTLS is enabled. API Connectivity Manager presents this client certificate when connecting to the Developer Portal, identifying itself as a trusted client.
 
 - {{% icon-feature %}} **Other Enhancements**
 

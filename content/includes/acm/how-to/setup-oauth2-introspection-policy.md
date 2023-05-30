@@ -5,7 +5,7 @@ You can set up OAuth2 Introspection policy by using either the web interface or 
 {{<tabs name="setup_introspection_policy">}}
  {{%tab name="Web Interface"%}}
 
-1. In the ACM user interface, select **Services > API Proxies**click the **...** icon in the **Actions** column for the API proxy that you want to enable the OAuth2 Introspection policy for, select **Edit Proxy**.
+1. In the API Connectivity Manager user interface, select **Services > API Proxies**click the **...** icon in the **Actions** column for the API proxy that you want to enable the OAuth2 Introspection policy for, select **Edit Proxy**.
 2. Under the **Advanced** section select **Policies**.
 3. Under the **API Proxy** tab, locate the **OAuth2 Introspection** policy and click the **...** icon, select **Add Policy**.
 4. Update **Client Request** settings.

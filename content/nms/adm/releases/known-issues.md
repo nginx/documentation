@@ -124,7 +124,7 @@ Manually delete the certificate and key from the /etc/nginx/ path.
 
 ---
 
-###  {{% icon-bug %}} Cannot remove ADM object if deletion results in an error {#42520}
+###  {{% icon-bug %}} Cannot remove App Delivery Manager object if deletion results in an error {#42520}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID               | Status          |

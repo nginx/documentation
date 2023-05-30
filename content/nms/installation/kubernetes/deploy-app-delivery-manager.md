@@ -144,7 +144,7 @@ To push the Docker images to your private registry, take the following steps:
 
 ## Enable App Delivery Manager
 
-To enable the App Delivery Manager Module, take the following steps:
+To enable the App Delivery Manager module, take the following steps:
 
 1. Open the `values.yaml` file for editing.
 1. Add the following snippet to the `values.yaml` file:

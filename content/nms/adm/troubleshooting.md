@@ -6,7 +6,7 @@ draft: false
 # Description
 # Add a short description (150 chars) for the doc. Include keywords for SEO. 
 # The description text appears in search results and at the top of the doc.
-description: "This topic describes possible issues users might encounter when using App Delivery Manager. When possible, suggested workarounds are provided."
+description: "This topic describes possible issues users might encounter when using NGINX Management Suite App Delivery Manager. When possible, suggested workarounds are provided."
 # Assign weights in increments of 100
 weight: 
 toc: true

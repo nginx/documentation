@@ -15,13 +15,13 @@ docs: "DOCS-929"
 
 ## Introduction
 
-NGINX Management Suite API Connectivity Manager (ACM) provides a [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) API that uses standard authentication methods, HTTP response codes, and verbs.
+API Connectivity Manager provides a [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) API that uses standard authentication methods, HTTP response codes, and verbs.
 
 ## Object Model
 
-You can use the API Connectivity Manager API to connect, secure, and govern your APIs. In addition, ACM lets you separate infrastructure lifecycle management from the API lifecycle, giving your IT/Ops teams and application developers the ability to work independently.
+You can use the API Connectivity Manager API to connect, secure, and govern your APIs. In addition, API Connectivity Manager lets you separate infrastructure lifecycle management from the API lifecycle, giving your IT/Ops teams and application developers the ability to work independently.
 
-The ACM API provides the following features:
+The API Connectivity Manager API provides the following features:
 
 - Create and manage isolated Workspaces for business units, development teams, and so on, so each team can develop and deploy at its own pace without affecting other teams.
 - Create and manage API infrastructure in isolated workspaces.
@@ -36,16 +36,16 @@ The ACM API provides the following features:
 
 ## API Reference Documentation 
 
-You can view the ACM API Reference documentation in the NGINX Management Suite (NMS) user interface. 
+You can view the API Connectivity Manager API Reference documentation in the NGINX Management Suite user interface. 
 To access the API Docs, take the steps below:
 
-1. Log in to the NMS user interface.
+1. Log in to the NGINX Management Suite user interface.
 2. From the Launchpad, select the **Docs** card.
-3. Select **API Connectivity Manager** from the **Docs** list in the sidebar. The ACM API Reference documentation will then display.
+3. Select **API Connectivity Manager** from the **Docs** list in the sidebar. The API Connectivity Manager API Reference documentation will then display.
 
 ## Authentication
 
-ACM supports authentication by using basic authentication or a JSON Web Token (JWT). You can get a JWT by logging in with an OpenID Connect (OIDC) Identity Provider. 
+API Connectivity Manager supports authentication by using basic authentication or a JSON Web Token (JWT). You can get a JWT by logging in with an OpenID Connect (OIDC) Identity Provider. 
 
 For more information about the available authentication options for NGINX Management Suite, refer to [Set Up Authentication]({{< relref "/nms/admin-guides/access-control/configure-authentication.md" >}}).
 
@@ -80,14 +80,14 @@ curl -X GET "https://<NMS_FQDN>/api/acm/<API_VERSION>/workspaces/infrastructure"
 
 ### Command-line
 
-You can use tools such as `curl` or [Postman](https://www.postman.com) to interact with the ACM REST API. 
+You can use tools such as `curl` or [Postman](https://www.postman.com) to interact with the API Connectivity Manager REST API. 
 The API URL follows the format `https://<NMS_FQDN>/api/acm/<API_VERSION>`. 
 
 {{<note>}}When making API calls by using `curl`, Postman, or any other tool, you will need to provide your authentication information with each call. {{</note>}}
 
 ### User Interface
 
-You can also use the "Try it Out" function in the API Reference docs to send a call to the ACM API. You do not have to provide a means of authentication when sending API calls via the API Documentation UI because you are already logged in to the NMS platform.
+You can also use the "Try it Out" function in the API Reference docs to send a call to the API Connectivity Manager API. You do not have to provide a means of authentication when sending API calls via the API Documentation UI because you are already logged in to the NGINX Management Suite platform.
 
 To do so, take the steps below:
 
@@ -99,7 +99,7 @@ To do so, take the steps below:
 
 ## Errors and Response Codes
 
-ACM uses standard HTTP response codes to indicate whether an API request succeeds or fails. Codes in the `2xx` range mean the request succeeded. Codes in the `400` range mean the request failed due to the reason(s) indicated in the response message. Common reasons for `4xx` responses are: 
+API Connectivity Manager uses standard HTTP response codes to indicate whether an API request succeeds or fails. Codes in the `2xx` range mean the request succeeded. Codes in the `400` range mean the request failed due to the reason(s) indicated in the response message. Common reasons for `4xx` responses are: 
 
 - requests where required information is missing; 
 - lack of or incorrect authentication credentials; and 
@@ -122,12 +122,12 @@ ACM uses standard HTTP response codes to indicate whether an API request succeed
 
 ## Encoding
 
-All ACM API endpoints expect and return JSON-formatted data by default.
+All API Connectivity Manager API endpoints expect and return JSON-formatted data by default.
 All JSON-formatted data is expected to be encoded using UTF-8. If you do not specify a media type when sending an API call, then the API defaults to `application/json`.
 
 ## Pagination
 
-Top-level ACM API endpoints support fetching information about multiple resources ("lists"). Such requests may return large data sets (for example, `GET /services/workspaces/{workspaceName}/proxies` and `GET /services/workspaces/{workspaceName}/proxies/{proxyName}/jobs`). For these endpoints, you can define the size of the data set returned for each call and navigate amongst the pages of data when sending subsequent calls. 
+Top-level API Connectivity Manager API endpoints support fetching information about multiple resources ("lists"). Such requests may return large data sets (for example, `GET /services/workspaces/{workspaceName}/proxies` and `GET /services/workspaces/{workspaceName}/proxies/{proxyName}/jobs`). For these endpoints, you can define the size of the data set returned for each call and navigate amongst the pages of data when sending subsequent calls. 
 
 ### Parameters
 
@@ -142,8 +142,8 @@ Top-level ACM API endpoints support fetching information about multiple resource
 
 ## Versioning
 
-Each major version of the ACM API is backward-compatible with the previous releases in that version. 
-The introduction of backward-incompatible changes to the ACM API constitutes a major version change. 
+Each major version of the API Connectivity Manager API is backward-compatible with the previous releases in that version. 
+The introduction of backward-incompatible changes to the API Connectivity Manager API constitutes a major version change. 
 This will be represented in the `<API_VERSION>` section of the API URI. 
 
 For example, to use a v2 API, you would send requests to `https://<NMS_FQDN>/api/acm/v2`.

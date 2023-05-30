@@ -21,7 +21,7 @@ aliases:
 {{< shortversions "2.0.0" "latest" "nimvers" >}}
 
 {{< see-also >}}
-To perform a clean installation of NGINX Management Suite (NMS) and Instance Manager, refer to the [NMS installation guide]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}).
+To perform a clean installation of NGINX Management Suite and Instance Manager, refer to the [NGINX Management Suite installation guide]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}).
 {{< /see-also>}}
 
 ## Prerequisites
