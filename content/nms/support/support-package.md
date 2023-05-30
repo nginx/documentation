@@ -22,20 +22,20 @@ aliases:
 {{< shortversions "2.0.0" "latest" "nimvers" >}}
 ## Overview
 
-Use the support package script to collect information about your system for troubleshooting and debugging issues.
+The support package script can be used to collect information about your system for troubleshooting and debugging issues.
 
 The script collects system and service information and then packages the data into a tar archive, which you can share with [NGINX Customer Support]({{< relref "/nms/support/contact-support.md" >}}).
 
 ## Usage
 
-The Instance Manager installer copies the `support-package.sh` script to the following location: `/etc/nms/scripts/support-package.sh`.
+The NGINX Instance Manager installer copies the `support-package.sh` script to the following location: `/etc/nms/scripts/support-package.sh`.
 
 To create a support package:
 
 1. Run the support package script. The script requires root privileges to run.
 
     ``` bash
-    sudo /etc/nms/scripts/support-package.sh
+    sudo bash /etc/nms/scripts/support-package.sh
     ```
 
     The support package is saved in the same location from where the script was run (if no `-t` argument is passed).
@@ -43,7 +43,7 @@ To create a support package:
     (Optional) If you use a different Instance Manager config file than the default `/etc/nms/nms.conf` file, run the support package script with the `-c` flag and specify the path to your config file:
 
       ```bash
-      sudo /etc/nms/scripts/support-package.sh -c /your/config.conf
+      sudo bash /etc/nms/scripts/support-package.sh -c /your/config.conf
       ```
 
 2. To extract the package, use the `tar` command:
@@ -61,20 +61,23 @@ The supported shell is `bash`.
 The following table lists the arguments you can use with the support package script.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-
-| Short | Long                 | Description                                                         | Example                | Default             |
-| ----- | -------------------- | ------------------------------------------------------------------- | ---------------------- | ------------------- |
-| `-c`  | `--nms_config_path`  | The path to the Instance Manager config file.                 | `-c /etc/nms/nms.conf` | `/etc/nms/nms.conf` |
-| `-h`  | `--help`             | Prints information about the script arguments to stdout.            | `--help`               | N/A                 |
-| `-m`  | `--manager_log_path` | The directory where the Instance Manager log file is located. | `-m /var/log/nms`      | `/var/log/nms`      |
-| `-n`  | `--nginx_log_path`   | The directory where the NGINX log files are located.                | `-n /var/log/nginx`    | `/var/log/nginx`    |
-| `-o`  | `--ouput_dir`        | The output directory where the tar archive is saved.                | `-o ~/output`          | `$(pwd)`            |
-| `-t`  | `--target_host`      | The Instance Manager address (host:port).                     | `-t 127.0.0.1:443`     | `127.0.0.1:443`     |
+| Short | Long                   | Description                                                         | Example                | Default             |
+| ----- | ---------------------- | ------------------------------------------------------------------- | ---------------------- | ------------------- |
+| `-h`  | `--help`               | Prints information about the script arguments to stdout.            | `--help`               | N/A                 |
+| `-o`  | `--output_dir`         | The output directory where the tar archive is saved.                | `-o ~/output`          | `$(pwd)`            |
+| `-n`  | `--nginx_log_path`     | The directory where the NGINX log files are located.                | `-n /var/log/nginx`    | `/var/log/nginx`    |
+| `-c`  | `--nms_config_path`    | The path to the Instance Manager config file.                       | `-c /etc/nms/nms.conf` | `/etc/nms/nms.conf` |
+| `-m`  | `--manager_log_path`   | The directory where the Instance Manager log file is located.       | `-m /var/log/nms`      | `/var/log/nms`      |
+| `-t`  | `--target_host`        | The Instance Manager address (host:port).                           | `-t 127.0.0.1:443`     | `127.0.0.1:443`     |
+| `-xd` | `--exclude_databases`  | Excludes database data from the support package.                    | `--exclude_databases`  | N/A                 |
+| `-xt `| `--exclude_timeseries` | Excludes timeseries data from the support package.                  | `--exclude_timeseries` | N/A                 |
 {{</bootstrap-table>}}
 
 ## Package Contents
 
 The support package includes several directories containing information about the system, service, and database state.
+
+The information included is based on the NGINX products installed and configured.
 
 ### nginx-logs
 
@@ -134,7 +137,9 @@ If the Instance Manager configuration file does not specify addresses for the `c
 
 The support package script uses a small Go executable file called `dqlite-backup` (located in `/etc/nms/scripts/`) to connect to the databases and generate data dumps.
 
-The collected data is saved to the directories `dqlite/core`, `dqlite/dpm`, and `dqlite/acm` (if you have API Connectivity Manager installed).
+The collected data is saved to the directories `dqlite/core`, `dqlite/dpm`. 
+
+Additional directories may be created if other products are installed: `dqlite/acm` for NGINX API Connectivity Manager and `dqlite/adc` for NGINX Application Delivery Manager, respectively.
 
 ### timeseries
 

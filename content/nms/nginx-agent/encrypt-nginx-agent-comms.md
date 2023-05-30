@@ -29,7 +29,7 @@ aliases:
 {{< shortversions "2.0.0" "latest" "nimvers" >}}
 ## Before You Begin
 
-To enable mTLS, you must have TLS enabled and supply a key, cert, and a CA cert on both the client and server. See the [Secure Traffic with Certificates]({{< relref "/nms/admin-guides/getting-started/secure-traffic.md" >}}) topic for instructions on how to generate keys and set them in the specific values in the NGINX Agent configuration.
+To enable mTLS, you must have TLS enabled and supply a key, cert, and a CA cert on both the client and server. See the [Secure Traffic with Certificates]({{< relref "/nms/admin-guides/configuration/secure-traffic.md" >}}) topic for instructions on how to generate keys and set them in the specific values in the NGINX Agent configuration.
 
 ## Enabling mTLS
 

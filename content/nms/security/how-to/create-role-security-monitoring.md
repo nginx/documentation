@@ -41,7 +41,7 @@ By completing the steps in this topic, you will create a role that gives users a
 
 Complete the following prerequisites before proceeding with this guide: 
 
-- NGINX Management Suite Security Monitoring is [installed]({{< relref "/nms/admin-guides/installation/on-prem/install-guide#install-nms-modules" >}}) and running. 
+- NGINX Management Suite Security Monitoring is [installed]({{< relref "/nms/installation/vm-bare-metal/_index.md#install-nms-modules" >}}) and running. 
 - Your user account needs to be able to access the User Management settings in NGINX Management Suite. 
   The minimum required role permissions are:
 

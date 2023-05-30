@@ -70,6 +70,12 @@ The following table lists the features you can assign roles to:
 | API Connectivity Manager | Job History         | Allows access to view and manage job history                                      |
 | API Connectivity Manager | Proxy Config        | Allows access to view and manage Proxies                                          |
 | API Connectivity Manager | Service Workspace   | Allows access to view and manage Service workspaces                               |
+| App Delivery Manager     | Environments        | Allows access to view and manage Environments |
+| App Delivery Manager     | Apps                | Allows access to view and manage Apps |
+| App Delivery Manager     | Gateways            | Allows access to view and manage Gateways |
+| App Delivery Manager     | Web Components      | Allows access to view and manage Web Components |
+| App Delivery Manager     | TCP-UDP Components  | Allows access to view and manage TCP-UDP Components |
+| App Delivery Manager     | Sites               | Allows access to view and manage Sites |
 
 {{</bootstrap-table>}}
 

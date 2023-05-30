@@ -758,13 +758,11 @@ To install NGINX Plus on SLES:
 5.  Add the **nginx-plus** repo.
 
     For SLES 12:
-
     ```shell
     zypper addrepo -G -t yum -c 'https://pkgs.nginx.com/plus/sles/12?ssl_clientcert=/etc/ssl/nginx/nginx-repo-bundle.crt&ssl_verify=peer' nginx-plus
     ```
 
     For SLES 15:
-
     ```shell
     zypper addrepo -G -t yum -c 'https://pkgs.nginx.com/plus/sles/15?ssl_clientcert=/etc/ssl/nginx/nginx-repo-bundle.crt&ssl_verify=peer' nginx-plus
     ```
@@ -777,7 +775,6 @@ To install NGINX Plus on SLES:
     ```
 
     For SLES 15:
-
     ```shell
     zypper addrepo -G -t yum -c 'https://pkgs.nginx.com/modsecurity/sles/15?ssl_clientcert=/etc/ssl/nginx/nginx-repo-bundle.crt&ssl_verify=peer' nginx-modsecurity
     ```
