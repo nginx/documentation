@@ -12,7 +12,7 @@ docs: "DOCS-000"
 ## Usecase-1: Add load_module directive.
 
 {{< note >}}
-builtin-load-modules-v1-example use case implements this use case and is available with App Delivery Manager installation.
+The `builtin-load-modules-v1-example` use case that implements this use case is included in the NGINX Management Suite App Delivery Manager package.
 {{< /note >}}
 
 The goal of the use case is to add `load_module` directive for a module statically to all instance-groups. The simplest way would be to modify the `builtin-v1-instance-group.tmpl` and add the directive there. But we recommend **not** modifying the base templates. Here is how this can be done using use case templates.
