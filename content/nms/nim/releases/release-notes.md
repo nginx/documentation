@@ -65,7 +65,7 @@ This release includes the following updates:
 
 Instance Manager 2.11.0 has the following changes in default behavior:
 
-- {{% icon-feature %}} **Action required: Update OIDC configurations for management plane after upgrading to Instance Manager 2.11.0**
+- **<span style="color: #c20025;"><i class="fas fa-exclamation-triangle"></i> **Action Required:**</span> Update OIDC configurations for management plane after upgrading to Instance Manager 2.11.0**
 
   In Instance Manager 2.11.0, we added support for telemetry to the OIDC configuration files. Existing OIDC configurations will continue to work, but certain telemetry events, such as login, may not be captured.
   
@@ -79,11 +79,6 @@ Instance Manager 2.11.0 has the following changes in default behavior:
   2. During the upgrade process, you will be prompted to replace the two files. Select the option to replace them.
 
   3. After completing the upgrade, update the two files using the OIDC settings from the backup copies you created in step 1.
-
-
-- {{% icon-feature %}} **The location of agent-dynamic.conf has changed**
-
-  In this release, the `agent-dynamic.conf` file has been moved from `/etc/nginx-agent/` to `/var/lib/nginx-agent/`. To assign an instance group and tags to an instance, you will now need to edit the file located in `/var/lib/nginx-agent/`. 
 
 - {{% icon-feature %}} **Configuration file permissions have been lowered to strengthen security**
 
@@ -100,6 +95,10 @@ Instance Manager 2.11.0 has the following changes in default behavior:
   - /var/log/nms/nms.log
 
   These changes aim to improve the overall security of the system by restricting access to sensitive configuration files while maintaining necessary privileges for authorized users.
+
+- {{% icon-feature %}} **The location of agent-dynamic.conf has changed**
+
+  In this release, the agent-dynamic.conf file has been moved from /etc/nginx-agent/ to /var/lib/nginx-agent/. To assign an instance group and tags to an instance, you will now need to edit the file located in /var/lib/nginx-agent/. 
 
 ### Resolved Issues {#2-11-0-resolved-issues}
 
