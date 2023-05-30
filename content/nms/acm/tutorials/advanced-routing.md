@@ -45,8 +45,7 @@ Publish one or more [Proxies]({{< relref "/nms/acm/how-to/services/publish-api.m
 
 Jane Smith has started a new job as an API developer for the Product-Search team in a hardware manufacturing company.
 Jane needs to change the current catch-all route to more granular routes to support the new API endpoints she has added to the product.
-These endpoints will take a mixture of `Query` parameters, `Path` parameters and `Header` parameters and Jane would like to route to different backend services
-based on the routes and also the provided parameters.
+These endpoints will take a mixture of `Query` parameters, `Path` parameters and `Header` parameters. Jane would like to interact with different backend services based on the routes and parameters provided.
 
 ### Workflow
 
