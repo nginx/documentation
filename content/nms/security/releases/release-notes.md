@@ -49,7 +49,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Improved security monitoring with violation and signature details**
 
-  This release adds violation and signature details to Security Monitoring. This information allows you to identify false positives and gain a more comprehensive understanding of violations, allowing you to fine-tune your security policies and optimize your threat detection.
+  This release adds violation and signature details to Security Monitoring. This information helps you identify false positives and gain a more comprehensive understanding of violations, allowing you to fine-tune your security policies and optimize your threat detection.
 
 ---
 ## 1.4.0 {#1-4-0}
