@@ -12,7 +12,7 @@ docs: "DOCS-1150"
 
 ## Overview
 
-The App Delivery Manager (ADM) implementation of [GO Templates](https://pkg.go.dev/text/template) includes a set of utility functions and variables to assist template writers in extending or enhancing the built-in templates that ship with the product. These enhancements are described below.
+The App Delivery Manager implementation of [GO Templates](https://pkg.go.dev/text/template) includes a set of utility functions and variables to assist template writers in extending or enhancing the built-in templates that ship with the product. These enhancements are described below.
 
 ---
 
@@ -20,13 +20,13 @@ The App Delivery Manager (ADM) implementation of [GO Templates](https://pkg.go.d
 
 ### Third-Party Template Functions
 
-To help with string manipulations, encodings, conversions, file paths, and math operations, the Sprig library has been built into the ADM GO template engine. More details on these functions can be obtained using the link below.
+To help with string manipulations, encodings, conversions, file paths, and math operations, the Sprig library has been built into the App Delivery Manager GO template engine. More details on these functions can be obtained using the link below.
 
 * [Sprig GoLang template functions](https://masterminds.github.io/sprig/)
 
 ### NGINX Template Functions
 
-Additional NGINX custom functions are also built into the ADM GO template engine. These are unique to ADM and are described below.
+Additional NGINX custom functions are also built into the App Delivery Manager GO template engine. These are unique to App Delivery Manager and are described below.
 
 * ***IsNGINXIpPort(string) bool*** - returns TRUE if the input string specifies an IPv4 or IPv6 address (with an optional port). This is useful for analyzing workload IPs.
 * ***MD5(string) string*** - generates the md5 hash for a given input string.
@@ -34,7 +34,7 @@ Additional NGINX custom functions are also built into the ADM GO template engine
 ---
 ## Template Variables
 
-The ADM service makes available several variables for use in the templates. These variables are set during the rendering of the API request as it is being converted into the NGINX format and can also be used when customizing a template.
+The App Delivery Manager service makes available several variables for use in the templates. These variables are set during the rendering of the API request as it is being converted into the NGINX format and can also be used when customizing a template.
 
 {{< note >}}
 The template rendering is performed on a per-instance group basis. For example, if a gateway has three instance groups defined, then the rendering of the NGINX configuration will happen three times, once for each instance group.
@@ -234,7 +234,7 @@ The Instance Group object is set to the instance group that is currently being r
 | uid                      | UUID of the instance group.                                                 |
 | name                     | Name of the instance group.                                                 |
 | site                     | Site variables associated with the instance group.                          |
-| isMetricsModuleInstalled | Indicates the ADM metric modules are installed on the NGINX instance group. |
+| isMetricsModuleInstalled | Indicates the App Delivery Manager metric modules are installed on the NGINX instance group. |
 
 {{</bootstrap-table>}}
 

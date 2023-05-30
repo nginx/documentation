@@ -1,4 +1,4 @@
-In NGINX Management Suite API Connectivity Manager, you can apply policies to an API Gateway to further enhance their configuration to meet your requirements.
+In API Connectivity Manager, you can apply policies to an API Gateway to further enhance their configuration to meet your requirements.
 
 Policies added at the proxy level are applied to all routes within that proxy.
 

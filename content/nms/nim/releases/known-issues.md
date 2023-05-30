@@ -583,12 +583,12 @@ This can also be diagnosed with log entries in `/var/log/nginx-agent/agent.log`,
 
 #### Workaround
 
-- Add the referenced cert to NMS as managed certificate and publish the config again.
+- Add the referenced cert to NGINX Management Suite as managed certificate and publish the config again.
 - Move the referenced remote certificate to a directory that's not in the allowed directory list.
 
 ---
 
-### {{% icon-bug %}} When upgrading a multi-node NMS deployment with helm charts the core, dpm, or integrations pods may fail to start {#38589}
+### {{% icon-bug %}} When upgrading a multi-node NGINX Management Suite deployment with helm charts the core, dpm, or integrations pods may fail to start {#38589}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID | Status |
@@ -598,7 +598,7 @@ This can also be diagnosed with log entries in `/var/log/nginx-agent/agent.log`,
 
 #### Description
 
-When using the NMS Instance Manager Helm upgrade command on a multi worker node Kubernetes cluster setup, the core, dpm and integrations deployments may fail to upgrade.
+When using the NGINX Management Suite Instance Manager Helm upgrade command on a multi worker node Kubernetes cluster setup, the core, dpm and integrations deployments may fail to upgrade.
 
 #### Workaround
 
@@ -736,7 +736,7 @@ Occasionally, when publishing an NGINX config to a NATS server, the system retur
 
 #### Workaround
 
-Remove the existing NATs working directory and restart the NMS Data Plane Manager (`nms-dpm`) service as root.
+Remove the existing NATs working directory and restart the NGINX Management Suite Data Plane Manager (`nms-dpm`) service as root.
 
 {{<caution>}}Restarting the `nms-dpm` service is disruptive and may result in the loss of event data. You should schedule a maintenance window for restarting the service.{{</caution>}}
 

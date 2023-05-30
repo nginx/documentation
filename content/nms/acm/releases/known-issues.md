@@ -176,7 +176,7 @@ When configuring a TLS backend policy in the web interface, the new `enableSNI` 
 
 #### Workaround
 
-Use the NGINX Management Suite API Connectivity Manager REST API to send a PUT request to the following endpoint, providing the correct values for `enableSNI` and `proxyServerName`. Both values must match.
+Use the API Connectivity Manager REST API to send a PUT request to the following endpoint, providing the correct values for `enableSNI` and `proxyServerName`. Both values must match.
 
 {{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
 {{<bootstrap-table "table">}}
@@ -250,7 +250,7 @@ The Developer Portal backend information may be inadvertently updated in the fol
 
 - Workaround for scenario #1
 
-  Use the NGINX Management Suite API Connectivity Manager REST API to send a PUT request to the following endpoint with the correct backend settings for each Developer Portal cluster:
+  Use the API Connectivity Manager REST API to send a PUT request to the following endpoint with the correct backend settings for each Developer Portal cluster:
 
   {{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
   {{<bootstrap-table "table">}}
@@ -264,7 +264,7 @@ The Developer Portal backend information may be inadvertently updated in the fol
 
   If you have just one Developer Portal, you can use the web interface to update the backend settings for the cluster if you're not using the default settings.
 
-  If you have more than one Developer Portal cluster, use the NGINX Management Suite API Connectivity Manager REST API to send a PUT request to the following endpoint with the correct backend settings for each developer portal cluster:
+  If you have more than one Developer Portal cluster, use the API Connectivity Manager REST API to send a PUT request to the following endpoint with the correct backend settings for each developer portal cluster:
 
   {{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
   {{<bootstrap-table "table">}}
@@ -444,11 +444,11 @@ Enums cannot be set for path or query parameters while applying advanced routing
 
 #### Description
 
-If you have Instance Manager 2.7 or earlier installed and attempt to enable both the API Connectivity Manager (ACM) and Security Monitoring (SM) modules on the same NGINX Management Suite management plane, the ACM module will not load because of incompatibility issues with the SM module.
+If you have Instance Manager 2.7 or earlier installed and attempt to enable both the API Connectivity Manager and Security Monitoring modules on the same NGINX Management Suite management plane, the API Connectivity Manager module will not load because of incompatibility issues with the Security Monitoring module.
 
 #### Workaround
 
-Before enabling the ACM and SM modules, ensure that your Instance Manager is upgraded to version 2.8 or later. Be sure to read the release notes for each module carefully, as they may contain important information about version dependencies.
+Before enabling the API Connectivity Manager and Security Monitoring modules, ensure that your Instance Manager is upgraded to version 2.8 or later. Be sure to read the release notes for each module carefully, as they may contain important information about version dependencies.
 
 To see which version of Instance Manager you have installed, run the following command:
 
@@ -494,13 +494,13 @@ Use `PUT` instead for API proxies.
 
 #### Description
 
-For security reasons, the Credentials endpoint is disabled by default. To use the Developer Portal credentials workflow, you need to make configuration changes on the ACM host to enable the Credentials endpoint. Optionally, communication between ACM and the Developer Portal can be secured by providing certificates.
+For security reasons, the Credentials endpoint is disabled by default. To use the Developer Portal credentials workflow, you need to make configuration changes on the API Connectivity Manager host to enable the Credentials endpoint. Optionally, communication between API Connectivity Manager and the Developer Portal can be secured by providing certificates.
 
 #### Workaround
 
-To enable the Credentials endpoint on the ACM host:
+To enable the Credentials endpoint on the API Connectivity Manager host:
 
-1. Open an SSH connection into the ACM host and log in.
+1. Open an SSH connection into the API Connectivity Manager host and log in.
 
 2. Enable the Credentials endpoint:
 
@@ -525,7 +525,7 @@ To enable the Credentials endpoint on the ACM host:
   
 3. Save the changes.
   
-4. Reload NGINX on the ACM host:
+4. Reload NGINX on the API Connectivity Manager host:
 
     ```bash
     nginx -s reload
@@ -550,7 +550,7 @@ In the web interface, after deleting all of the proxy clusters is an environment
 Add back the deleted proxy clusters using the web interface. The environment will transition to a `Fail` state. At this point, you can use the API to delete the proxy by sending a `DELETE` request to:
 
 ``` text
-https://<NMS-FQDN>/api/acm/v1/infrastructure/workspaces/<infra-workspace-name>/environments/<environmentname>
+https://<NMS_FQDN>/api/acm/v1/infrastructure/workspaces/<infra-workspace-name>/environments/<environmentname>
 ```
 
 ---
@@ -560,7 +560,7 @@ https://<NMS-FQDN>/api/acm/v1/infrastructure/workspaces/<infra-workspace-name>/e
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID | Status             |
 |----------|--------------------|
-| 35339    | Fixed in ACM 1.3.0 |
+| 35339    | Fixed in API Connectivity Manager 1.3.0 |
 {{</bootstrap-table>}}
 
 #### Description

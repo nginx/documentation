@@ -22,11 +22,11 @@ aliases:
 
 ## Introduction
 
-The F5 Instance Manager (NIM) module is part of the NGINX Management Suite (NMS). The NIM module provides a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API that uses standard authentication methods, HTTP response codes, and verbs.   
+The F5 Instance Manager module is part of the NGINX Management Suite. The Instance Manager module provides a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API that uses standard authentication methods, HTTP response codes, and verbs.   
 
 ## Object Model
 
-The Instance Manager REST API allows you to manage NIM objects and the NMS platform programmatically. The NIM API provides the following features:
+The Instance Manager REST API allows you to manage Instance Manager objects and the NGINX Management Suite platform programmatically. The Instance Manager API provides the following features:
 
 - View metrics and information about data plane host systems and NGINX instances.
 - View and edit NGINX configurations.
@@ -76,7 +76,7 @@ The API URL follows the format `https://<NMS_FQDN>/api/platform/<API_VERSION>`.
 
 {{<note>}}When making API calls by using `curl`, Postman, or any other tool, you will need to provide your authentication information with each call. {{</note>}}
 
-You can also use the "Try it Out" function in the API Reference docs to send a call to the NIM API. You do not have to provide a means of authentication when sending API calls via the API Documentation UI because you are already logged in to the NMS platform.
+You can also use the "Try it Out" function in the API Reference docs to send a call to the Instance Manager API. You do not have to provide a means of authentication when sending API calls via the API Documentation UI because you are already logged in to the NGINX Management Suite platform.
 
 To do so, take the steps below:
 
@@ -132,7 +132,7 @@ Top-level Instance Manager API endpoints support fetching information about mult
 ## Versioning
 
 Each major version of the Instance Manager API is backward-compatible with the previous releases in that version. 
-The introduction of backward-incompatible changes to the NIM API constitutes a major version change. 
+The introduction of backward-incompatible changes to the Instance Manager API constitutes a major version change. 
 This will be represented in the `<version>` section of the API URI. 
 
 For example, to use a v2 API, you would send requests to `https://<NMS_FQDN>/api/platform/v2`.

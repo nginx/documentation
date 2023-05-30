@@ -30,7 +30,7 @@ authors: []
 
 ## Overview
 
-Follow the steps in this section to install, upgrade, or uninstall the ACM Developer Portal on Kubernetes using Helm.
+Follow the steps in this section to install, upgrade, or uninstall the API Connectivity Manager Developer Portal on Kubernetes using Helm.
 
 ---
 
@@ -111,7 +111,7 @@ To complete the steps in this section, you need the following:
 
    ### (Optional) Build the API Gateway Container Image {#build-apigw-docker-image}
    {{< note >}}
-   This is step is only required for versions of ACM Developer Portal prior to `1.5.0` or if you require a specific release of NGINX Plus that is not provided on MyF5.
+   This is step is only required for versions of API Connectivity Manager Developer Portal prior to `1.5.0` or if you require a specific release of NGINX Plus that is not provided on MyF5.
    {{< /note >}}
    <details closed>
    <summary><i class="fa-solid fa-circle-info"></i> Build the API Gateway Container Image</summary>

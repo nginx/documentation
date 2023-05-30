@@ -41,7 +41,7 @@ The VS Code plug-in is based on the F5 VS Code plug-in that enables AS3 language
 
 ## Install the vscode plug-in {#install-plugin}
 
-Assuming you already have Visual Studio Code installed and running. Simply navigate to the [marketplace](https://marketplace.visualstudio.com/items?itemName=F5DevCentral.vscode-nim) and install or search for F5 NIM in the extensions search panel.
+Assuming you already have Visual Studio Code installed and running. Simply navigate to the [marketplace](https://marketplace.visualstudio.com/items?itemName=F5DevCentral.vscode-nim) and install or search for F5 Instance Manager in the extensions search panel.
 
 ## Configure vscode plug {#configure-plugin}
 

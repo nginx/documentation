@@ -1,5 +1,5 @@
 ---
-title: "About NIM"
+title: "About Instance Manager"
 date: 2022-06-02T16:02:48-07:00
 draft: true
 description: ""

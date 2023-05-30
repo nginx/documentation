@@ -21,11 +21,11 @@ personas: ["secops"]
 
 ## OAuth2 JWT Assertion
 
-Authentication & authorization policies allow a user to restrict access to their APIs by determining the caller's identity and access level. There are several API Gateway authentication/authorization policy types supported by API Connectivity Manager (ACM): API key authentication, basic authentication, OAuth2 JWT assertion, and OAuth2 token introspection. This guide focuses specifically on OAuth2 JWT Assertion.
+Authentication & authorization policies allow a user to restrict access to their APIs by determining the caller's identity and access level. There are several API Gateway authentication/authorization policy types supported by API Connectivity Manager: API key authentication, basic authentication, OAuth2 JWT assertion, and OAuth2 token introspection. This guide focuses specifically on OAuth2 JWT Assertion.
 
 [JSON Web Tokens](https://datatracker.ietf.org/doc/html/rfc7519) (JWTs, pronounced “jots”) are a compact and highly portable means of exchanging identity information. JWTs can be used for client authorization and are a better way to control access to web‑based APIs than traditional API keys. Using JWTs as API keys provides a high‑performance alternative to traditional API keys, combining best‑practice authorization technology with a standards‑based schema for exchanging identity attributes.
 
-ACM API owners can restrict access to their APIs with JWTs. The API Proxy Policy can be configured to grant access to APIs only after validating a client's JWT.
+API Connectivity Manager API owners can restrict access to their APIs with JWTs. The API Proxy Policy can be configured to grant access to APIs only after validating a client's JWT.
 
 {{<img src="/acm/jwt-validation-flow.png" alt="OAuth2 JWT Assertion Flow." >}}
 
@@ -152,7 +152,7 @@ Send a `POST` request to add the OAuth2 JWT Assertion policy to the API Proxy.
 {{%/tab%}}
 {{%tab name="UI"%}}
 
-1. In the ACM user interface, go to **Services > \{your workspace}**, where "your workspace" is the workspace that contains the API Proxy.
+1. In the API Connectivity Manager user interface, go to **Services > \{your workspace}**, where "your workspace" is the workspace that contains the API Proxy.
 2. Select **Edit Proxy** from the **Actions** menu for the desired API Proxy.
 3. On the **Policies** tab, select **Add Policy** from the **Actions** menu for **JSON Web Token Assertion**.
 4. Choose the **JSON Web Key Set (JWKS) source**, for remote JWKS select **Enter a URI**, for local JWKS select **Enter a JWKS**.

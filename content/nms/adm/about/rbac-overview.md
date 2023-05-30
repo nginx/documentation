@@ -1,6 +1,6 @@
 ---
 title: RBAC
-description: Learn how role-based access control (RBAC) is applied to the App Delivery Manager (ADM).
+description: Learn how role-based access control (RBAC) is applied to the App Delivery Manager.
 weight: 600
 toc: true
 draft: false
@@ -12,9 +12,9 @@ docs: "DOCS-000"
 
 ## Permission Structure
 
-The permission structure for Nginx Management Suite (NMS) uses a flat permission structure based on features, where permissions are assigned for each feature. Permissions are configured for a role, and then the role is assigned to users. A user can be assigned more than one role and the permissions for each role will be agglomerated together.
+The permission structure for Nginx Management Suite (NGINX Management Suite) uses a flat permission structure based on features, where permissions are assigned for each feature. Permissions are configured for a role, and then the role is assigned to users. A user can be assigned more than one role and the permissions for each role will be agglomerated together.
 
-{{< note >}}if two or more roles specify permissions for the same feature, NMS will try to provide the least restrictive use for that feature when combining those permissions.  However, having multiple permission definitions for a particular feature is not recommended.{{< /note >}}
+{{< note >}}if two or more roles specify permissions for the same feature, NGINX Management Suite will try to provide the least restrictive use for that feature when combining those permissions.  However, having multiple permission definitions for a particular feature is not recommended.{{< /note >}}
 
 Each object has a corresponding feature that is used to set permissions for accessing that object. The permissions roughly correspond to the endpoints for an object. Endpoints can be referenced as the base endpoint `/<object>` or with a specific object referenced `/<object>/<uid>`. Some objects may have parent objects that they must be nested under and for these parent objects, there will be permissions for setting access within these parent objects, e.g. for apps which are nested under environments, the admin will be able to specify which environments a particular role will be able to access the apps under. This is accomplished by specifying the environment object within the app feature.
 
@@ -1181,11 +1181,11 @@ Finally, give READ access to ANALYTICS.
 
 |Product | Feature                  | Example Admin      | Gateway-Admin     | Support-App    | Sales-App       | Read-Only        |
 | ------ | ------------------------ | ------------------ | ----------------- | -------------- | --------------- | ---------------- |
-| ADM    | ENVIRONMENT-MANAGEMENT   | CRUD <br /> Environments: ALL | READ <br /> Environments: example-env | READ <br /> Environments: example-env | READ <br /> Environments: example-env | READ <br /> Environments: example-env |
-| ADM    | GATEWAY-MANAGEMENT       | CRUD <br /> Environments: ALL <br /> Gateways: ALL | CRUD <br /> Environments: example-env <br /> Gateways: ALL | READ <br /> Environments: example-env <br /> Gateways: example.com | READ <br /> Environments: example-env <br /> Gateways: example.com | READ <br /> Environments: example-env <br /> Gateways: ALL |
-| ADM    | APP-MANAGEMENT           | CRUD <br /> Environments: ALL  <br /> Apps: ALL | READ <br /> Environments: example-env  <br /> Apps: ALL | CRUD <br /> Environments: example-env  <br /> Apps: Support | CRUD <br /> Environments: example-env  <br /> Apps: Sales | READ <br /> Environments: example-env  <br /> Apps: ALL |
-| ADM    | WEB-COMPONENT-MANAGEMENT | CRUD <br /> Environments: ALL  <br /> Apps: ALL <br /> Web Components: ALL | READ <br /> Environments: example-env  <br /> Apps: ALL <br /> Web Components: ALL | CRUD <br /> Environments: example-env  <br /> Apps: Support <br /> Web Components: ALL | CRUD <br /> Environments: example-env  <br /> Apps: Sales <br /> Web Components: ALL | READ <br /> Environments: example-env  <br /> Apps: ALL <br /> Web Components: ALL |
-| ADM    | SITE-MANAGEMENT          | CRUD <br /> Sites: ALL | READ <br /> Sites: site1 | READ <br /> Sites: site1 | READ <br /> Sites: site1 | READ <br /> Sites: site1 |
+| App Delivery Manager    | ENVIRONMENT-MANAGEMENT   | CRUD <br /> Environments: ALL | READ <br /> Environments: example-env | READ <br /> Environments: example-env | READ <br /> Environments: example-env | READ <br /> Environments: example-env |
+| App Delivery Manager    | GATEWAY-MANAGEMENT       | CRUD <br /> Environments: ALL <br /> Gateways: ALL | CRUD <br /> Environments: example-env <br /> Gateways: ALL | READ <br /> Environments: example-env <br /> Gateways: example.com | READ <br /> Environments: example-env <br /> Gateways: example.com | READ <br /> Environments: example-env <br /> Gateways: ALL |
+| App Delivery Manager    | APP-MANAGEMENT           | CRUD <br /> Environments: ALL  <br /> Apps: ALL | READ <br /> Environments: example-env  <br /> Apps: ALL | CRUD <br /> Environments: example-env  <br /> Apps: Support | CRUD <br /> Environments: example-env  <br /> Apps: Sales | READ <br /> Environments: example-env  <br /> Apps: ALL |
+| App Delivery Manager    | WEB-COMPONENT-MANAGEMENT | CRUD <br /> Environments: ALL  <br /> Apps: ALL <br /> Web Components: ALL | READ <br /> Environments: example-env  <br /> Apps: ALL <br /> Web Components: ALL | CRUD <br /> Environments: example-env  <br /> Apps: Support <br /> Web Components: ALL | CRUD <br /> Environments: example-env  <br /> Apps: Sales <br /> Web Components: ALL | READ <br /> Environments: example-env  <br /> Apps: ALL <br /> Web Components: ALL |
+| App Delivery Manager    | SITE-MANAGEMENT          | CRUD <br /> Sites: ALL | READ <br /> Sites: site1 | READ <br /> Sites: site1 | READ <br /> Sites: site1 | READ <br /> Sites: site1 |
 | IM     | INSTANCE-GROUPS          | CRUD <br /> Instance Groups: ALL | READ <br /> Instance Groups: ig1 | READ <br /> Instance Groups: ig1 | READ <br /> Instance Groups: ig1 | READ <br /> Instance Groups: ig1 |
 | IM     | CERTS                    | CRUD <br /> Instance Groups: ALL <br /> Systems: ALL | CRUD <br /> Instance Groups: ig1 <br /> Systems: ALL | None | None | READ <br /> Instance Groups: ig1 <br /> Systems: ALL |
 | IM     | ANALYTICS                | CRUD | READ | READ | READ | READ |
@@ -1277,9 +1277,9 @@ Yes, since combination only occurs between the same features, the customer can a
 ## FAQ
 
 1. I set the object permissions, but whenever the user tries to access the object, they get a 403 error code. What should I do?
-   1. First, check that appropriate permissions exist for all parent objects (e.g. environments). A common mistake is to just set permissions for the object itself without giving permissions for the parent object. Also, if the permissions were changed recently, you may need to wait up to ten minutes or restart the ADM service in order for the permission cache to update and reflect the new permissions.
+   1. First, check that appropriate permissions exist for all parent objects (e.g. environments). A common mistake is to just set permissions for the object itself without giving permissions for the parent object. Also, if the permissions were changed recently, you may need to wait up to ten minutes or restart the App Delivery Manager service in order for the permission cache to update and reflect the new permissions.
 2. I changed the name of an object, but the permissions don’t seem to be updating to reflect the name change. Is this a problem?
-   1. No, permissions are based on the UID of the object, so the permissions will correctly handle the object regardless of how the name changes. However, if there is a need to make the permissions update to match the name, edit the adc.conf to set `send_rbac_data=true` then restart the ADM module and this will resend all permissions and update the values. (It is recommended to set the `send_rbac_data=false` parameter back to false after completing this step).
+   1. No, permissions are based on the UID of the object, so the permissions will correctly handle the object regardless of how the name changes. However, if there is a need to make the permissions update to match the name, edit the adc.conf to set `send_rbac_data=true` then restart the App Delivery Manager module and this will resend all permissions and update the values. (It is recommended to set the `send_rbac_data=false` parameter back to false after completing this step).
 3. A user has CREATE permissions for a specific object (e.g. CREATE permissions for `env1|f114ff25-0708-46f5-8f7c-efe8d564ec25`). Why aren’t they able to create objects?
    1. Permissions for specific objects are only relevant for targeting objects with that specific UID. So setting CREATE permission for a specific object would only allow the user to create an object with that specific UID, which is not valid. In order to allow a user to successfully create, they must have `ALL` permission for that object. It is recommended that permissions on parent objects be restricted if it is desired for a user to create objects while not having full access.
 4. Why does a GET request sometimes return 200 when a user does not have permissions, when all other requests return a 403?

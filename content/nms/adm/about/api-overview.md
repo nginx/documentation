@@ -14,11 +14,11 @@ docs: "DOCS-1138"
 
 The App Delivery Manager API extends the Instance Manager [API]({{< relref "/nms/nim/about/api-overview" >}}) to provide additional endpoints, which enables a user to manage NGINX configurations using an app-centric approach.
 
-The following diagram shows a graphical view of the ADM API endpoints as well as the relationships between them:
+The following diagram shows a graphical view of the App Delivery Manager API endpoints as well as the relationships between them:
 
 {{< img src="adm/about/adm-objects.jpg" alt="App Delivery Manager Objects" width="75%">}}
 
-{{< note >}}Solid lines indicate references to other endpoint objects in the overall system (ADM, NIM), whereas dotted lines indicate parent/child container relationships within ADM. {{< /note >}}
+{{< note >}}Solid lines indicate references to other endpoint objects in the overall system (App Delivery Manager, Instance Manager), whereas dotted lines indicate parent/child container relationships within App Delivery Manager. {{< /note >}}
 
 Summary of the Objects:
 
@@ -45,7 +45,7 @@ Typically, the platform admin will create one or more environments for the app t
 
 ### Apps
 
-The ADM Module organizes apps as individual objects, allowing teams to keep their own app distinct from the apps of other teams.
+The App Delivery Manager Module organizes apps as individual objects, allowing teams to keep their own app distinct from the apps of other teams.
 
 Depending on its complexity, an app may be composed of one or more components. For example, an app with various microservices may have each microservice represented by a component. The app object allows the controller to add special tags to the NGINX configuration file, which enables the collection of NGINX metrics that can subsequently be filtered by the specific app.
 
@@ -58,7 +58,7 @@ There are two types of components associated with the HTTP and stream contexts:
 - The web component is for servicing HTTP and HTTPS traffic that needs to use [level 7](https://www.nginx.com/resources/glossary/layer-7-load-balancing/) features provided by the [NGINX http core module](https://nginx.org/en/docs/http/ngx_http_core_module.html).
 - The TCP/UDP component is for servicing TCP (including TLS) and UDP traffic at level 4 and uses the [NGINX stream core module](https://nginx.org/en/docs/stream/ngx_stream_core_module.html).
 
-The component objects describe the desired traffic-shaping behavior for the app. In the simplest case, all the traffic for a given path is sent to the same group of servers (called an upstream in NGINX terminology or a workload in ADM terminology). The component also controls more advanced shaping features like header manipulation, URL rewriting, backend load‑balancing behaviors, cookie handling, and other settings.
+The component objects describe the desired traffic-shaping behavior for the app. In the simplest case, all the traffic for a given path is sent to the same group of servers (called an upstream in NGINX terminology or a workload in App Delivery Manager terminology). The component also controls more advanced shaping features like header manipulation, URL rewriting, backend load‑balancing behaviors, cookie handling, and other settings.
 
 For more information on the NGINX contexts affected by the components, see the following:
 
