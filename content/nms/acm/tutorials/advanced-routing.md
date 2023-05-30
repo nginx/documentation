@@ -82,9 +82,9 @@ On the next screen, we have the options related to `basepath` and `version`. At 
 
 This section shows several configuration options. For the purpose of this example, we will focus on `Match URI`, `HTTP Method`, and `Parameters`.
 
-In this example we will try to create a route that can take 2 `integer` ID's in the path, e.g. `/customer/123/order/1234`, we will accomplish this by filling in a few parameters as follows:
+We are going to create a route that can take 2 `integer` ID's in the path, for example, `/customer/123/order/1234`; we are going to do this by adding the following parameters:
 
-In `Match URI` we will add the following: `/customer/{customerID}/order/{orderID}`, this sets out our URI with placeholders for the path parameters `customerID` and `orderID`.
+In the `Match URI` field add the following value: `/customer/{customerID}/order/{orderID}`; this configures our URI with placeholders for the path parameters `customerID` and `orderID`.
 
 In `HTTP Method` we will choose `GET` for this config. The `HTTP Method` parameter allows us to configure which HTTP Method this route will match for, so in this case a `POST` to `/customer/123/order/1234` will not match and will return a `404` (or a `405` depending on your config).
 It is also possible to route to different backend services for the same URI but with different HTTP methods. This is accomplished using the `TargetBackendServiceLabel` parameter, which will associate the config to a specific backend service and the `HTTP Method` parameter combination.
