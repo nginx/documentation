@@ -54,16 +54,31 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **You can now install Advanced Metrics automatically when you install NGINX Agent**
 
-  When using the NGINX Agent install command from NGINX Management Suite, you have the option to include the `-a` or `--advanced-metrics` flag. By including this flag, the installation process will automatically install the Advanced Metrics module along with the NGINX Agent. This module provides additional metrics and insights that can enhance the monitoring and analysis capabilities of NGINX Management Suite.
+  When installing the NGINX Agent with NGINX Management Suite, you can include the `-a` or `--advanced-metrics` flag. Including this option installs the Advanced Metrics module along with the NGINX Agent. With this module, you gain access to extra metrics and insights that enrich the monitoring and analysis capabilities of the NGINX Management Suite, empowering you to make more informed decisions.
 
 - {{% icon-feature %}} **NGINX Management Suite can send telemetry data to F5 NGINX**
 
-  To improve product development and support the success of our users with NGINX Management Suite, the platform provides the option to send limited telemetry data to F5 NGINX. This data helps us gain valuable insights into software usage and adoption. By default, telemetry is enabled, but you can disable it through the web interface or API. Detailed information about the data that is transmitted can be found in our documentation.
+  In order to enhance product development and support the success of our users with NGINX Management Suite, we offer the option to send limited telemetry data to F5 NGINX. This data provides valuable insights into software usage and adoption. By default, telemetry is enabled, but you have the flexibility to disable it through the web interface or API. For detailed information about the transmitted data, please refer to our documentation.
 
 
 ### Changes in Default Behavior {#2-11-0-changes-default-behavior}
 
 Instance Manager 2.11.0 has the following changes in default behavior:
+
+- {{% icon-feature %}} **Action required: Update OIDC configurations for management plane after upgrading to Instance Manager 2.11.0**
+
+  In Instance Manager 2.11.0, we added support for telemetry to the OIDC configuration files. Existing OIDC configurations will continue to work, but certain telemetry events, such as login, may not be captured.
+  
+  To ensure the capture of login telemetry events, please take the following steps:
+
+  1. Before upgrading, create copies of the following two files:
+
+     - /etc/nms/nginx/oidc/openid_configuration.conf
+     - /etc/nginx/conf.d/nginx.conf
+
+  2. During the upgrade process, you will be prompted to replace the two files. Select the option to replace them.
+
+  3. After completing the upgrade, update the two files using the OIDC settings from the backup copies you created in step 1.
 
 
 - {{% icon-feature %}} **The location of agent-dynamic.conf has changed**
@@ -85,7 +100,6 @@ Instance Manager 2.11.0 has the following changes in default behavior:
   - /var/log/nms/nms.log
 
   These changes aim to improve the overall security of the system by restricting access to sensitive configuration files while maintaining necessary privileges for authorized users.
-
 
 ### Resolved Issues {#2-11-0-resolved-issues}
 
