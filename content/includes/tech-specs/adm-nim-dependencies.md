@@ -9,9 +9,9 @@ When installing App Delivery Manager, you may need a newer version of NGINX Mana
 The following table lists the minimum versions of Instance Manager required by App Delivery Manager:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| App Delivery Manager       | Instance Manager Dependency |
-|----------------------------|-----------------------------|
-| App Delivery Manager 4.0.0 | NIM 2.10.0 and later        |
+| App Delivery Manager | Instance Manager Dependency |
+|----------------------|-----------------------------|
+| 4.0.0                | 2.10.1                      |
 {{</bootstrap-table>}}
 
 

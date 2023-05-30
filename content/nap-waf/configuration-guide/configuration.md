@@ -685,7 +685,7 @@ This is a list of the trusted bots that are currently part of the bot signatures
 |Daum | [Daum search engine](https://www.daum.net/) | 
 |DuckDuckGo Bot | [DuckDuckGo search engine](https://duckduckgo.com/) | 
 |fastbot | [fastbot search engine](https://www.fastbot.de/) | 
-|Google | [Google search engine](https://www/google.com/) | 
+|Google | [Google search engine](https://www.google.com/) | 
 |MojeekBot | [Mojeek search engine](https://www.mojeek.com/) | 
 |Yahoo! Slurp | [Yahoo search engine](https://www.yahoo.com/) | 
 |Yandex | [Yandex search engine](https://yandex.com/) | 

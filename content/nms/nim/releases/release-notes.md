@@ -18,6 +18,33 @@ aliases:
 
 {{<rn-styles>}}
 
+## 2.10.1
+
+5/22/2023
+
+### Upgrade Paths {#2-10-1-upgrade-paths}
+
+Instance Manager 2.10.1 supports upgrades from these previous versions:
+
+- 2.7.0–2.10.0
+
+If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent. {{</see-also>}}
+
+
+### Resolved Issues {#2-10-1-resolved-issues}
+
+This release fixes the following issues. Select an issue's ID link to view its details.
+
+
+- {{% icon-resolved %}} Valid licenses incorrectly identified as invalid [(42598)]({{< relref "/nms/nim/releases/known-issues.md#42598" >}})
+
+
+### Support for NGINX App Protect WAF
+
+{{< include "tech-specs/nim-app-protect-support.md" >}}
+
 ---
 
 ## 2.10.0

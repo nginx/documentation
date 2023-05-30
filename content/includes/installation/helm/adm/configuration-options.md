@@ -15,10 +15,10 @@ The following table lists the configurable parameters and default values used by
 | `nms-adm.adm.resources.requests.cpu`          | CPU resource limits to allow for the `adm` pods. | `500m` |
 | `nms-adm.adm.resources.requests.memory`       | Memory resource limits to allow for the `api` pods. | `512Mi` |
 | `nms-adm.adm.persistence.enabled`             | Optionally disable persistent storage, used for database data. | `true` |
-| `nms-adm.adm.persistence.claims`              | An array of persistent volume claims, can be modified to use an existing PVC. | See [Dqlite](#adm-dqlite-configuration)(#dqlite-configuration) and [Templates](#adm-templates-configuration)(#templates-configuration)|
+| `nms-adm.adm.persistence.claims`              | An array of persistent volume claims, can be modified to use an existing PVC. | See [Dqlite](#adm-dqlite-configuration) and [Templates](#adm-templates-configuration).|
 {{</bootstrap-table>}}
 
-##### App Delivery Manager Dqlite Configuration
+##### App Delivery Manager Dqlite Configuration {#adm-dqlite-configuration}
 
 ```yaml
   - name: dqlite
@@ -27,7 +27,7 @@ The following table lists the configurable parameters and default values used by
     accessMode: ReadWriteOnce
 ```
 
-##### App Delivery Manager Templates Configuration
+##### App Delivery Manager Templates Configuration {#adm-templates-configuration}
 The following volume persists the App Delivery Manager templates' directories and preserves the new files a user may add to the templates directory.
 
 ```yaml

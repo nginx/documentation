@@ -21,7 +21,7 @@ To quickly set up an NGINX Plus environment on the Google Cloud Platform, perfo
 
 1.  Access the [NGINX Plus page](https://console.cloud.google.com/marketplace/details/nginx-public/nginx-plus) in Google Marketplace and click the **LAUNCH ON COMPUTE ENGINE** button.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2018/10/gcp-nginx-plus-page-oct2018.png" alt="screenshot NGINX Plus on Google Marketingplace" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="https://www.nginx.com/wp-content/uploads/2018/10/gcp-nginx-plus-page-oct2018.png" alt="screenshot NGINX Plus on Google Marketplace" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 2.  The **Select or create a project** window opens. Enter a project name and select a value from the **Organization** drop‑down, then click the **Create** button.
 
