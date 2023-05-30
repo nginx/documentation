@@ -135,8 +135,8 @@ Production mode sets the following default configuration:
    {{< important >}} Do not use the example `admin/password` combination in any scenario. Replace the username and password with strong alternatives. {{< /important >}}
 
    ```shell
-   export KEYCLOAK_App Delivery ManagerIN=admin
-   export KEYCLOAK_App Delivery ManagerIN_PASSWORD=password
+    export KEYCLOAK_ADMIN=admin
+    export KEYCLOAK_ADMIN_PASSWORD=password
    ```
 
 4. Start Keycloak in **Development Mode**:

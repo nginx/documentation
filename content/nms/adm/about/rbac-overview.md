@@ -12,7 +12,7 @@ docs: "DOCS-000"
 
 ## Permission Structure
 
-The permission structure for Nginx Management Suite (NGINX Management Suite) uses a flat permission structure based on features, where permissions are assigned for each feature. Permissions are configured for a role, and then the role is assigned to users. A user can be assigned more than one role and the permissions for each role will be agglomerated together.
+The permission structure for NGINX Management Suite uses a flat permission structure based on features, where permissions are assigned for each feature. Permissions are configured for a role, and then the role is assigned to users. A user can be assigned more than one role and the permissions for each role will be agglomerated together.
 
 {{< note >}}if two or more roles specify permissions for the same feature, NGINX Management Suite will try to provide the least restrictive use for that feature when combining those permissions.  However, having multiple permission definitions for a particular feature is not recommended.{{< /note >}}
 
