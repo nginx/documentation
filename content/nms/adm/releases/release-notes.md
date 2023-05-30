@@ -59,7 +59,7 @@ You must not use the trial license file available from MyF5. Please use the tria
 
 Trials cannot be combined; for example, you cannot use a trial for Instance Manager and then add a trial for App Delivery Manager
 
-After a trial expires, trials cannot be reused on the same instance.
+After a trial expires, it cannot be reused on the same instance.
 
 
 ### What's New
@@ -70,7 +70,7 @@ This release introduces the following features:
 
 - Introduces [App Delivery Manager abstractions]({{< relref "/nms/adm/about/api-overview.md" >}}) for the configuration and use of NGINX Plus directives:
 
-    - Create and manage production and non-production environments for classes of applications, business units, and development teams. [**Environments**]({{< relref "/nms/adm/about/api-overview.md#environments" >}}) are logical containers used to group Applications, and Gateways into a domain associated with common goals, resource needs, usage constraints, and access controls. Environments typically map closely to organizational boundaries. “Dev” and “prod”.
+    - Create and manage production and non-production environments for classes of applications, business units, and development teams. [**Environments**]({{< relref "/nms/adm/about/api-overview.md#environments" >}}) are logical containers used to group Applications, and Gateways into a domain associated with common goals, resource needs, usage constraints, and access controls. Environments typically map closely to organizational boundaries such as “dev” and “prod”.
     - Create and manage [**gateways**]({{< relref "/nms/adm/about/api-overview.md#gateways" >}}), which correspond to server blocks in nginx.conf file, which represents the initial network entry point of application and/or API traffic into an NGINX instance in the traffic data path. You can share the same gateway for both application and API traffic. 
     - Create and manage [**apps**]({{< relref "/nms/adm/about/api-overview.md#apps" >}}) that are logical containers for components.
     - Create and manage [**components**]({{< relref "/nms/adm/about/api-overview.md#components" >}}) that support HTTP and TCP/UDP protocols. Web components correspond to location blocks in nginx.conf. Web i.e. HTTP components allow users to define routing behavior for the URIs under the Apps. Each component can define URIs and specify which FQDNs these need to attach to via Gateway references. Components also allow specifying the Backend and can control the configuration for load balancing traffic to the backend servers. TcpUdp components define stream server blocks. Similar to web components can attach to one or more Gateways.
