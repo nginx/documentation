@@ -32,7 +32,7 @@ Make NGINX even simpler to configure, scale, and maintain.
 
 ## Audience {#audience}
 
-Instance Manager is designed for anyone who uses NGINX and has seen an nginx.conf file before.
+NGINX Instance Manager is designed for anyone who uses NGINX and has seen an nginx.conf file before.
 
 ## Why Instance Manager? {#why}
 
