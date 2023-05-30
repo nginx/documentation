@@ -78,7 +78,7 @@ API Connectivity Manager comes pre-configured with an "ACM API Owner" role suita
 
 In our Proxy configuration form (found via a Proxy Create or a Proxy Edit), we will select the `Ingress` section in the left menu bar to see the options available to configure our proxy ingress.
 
-On that screen we will be presented with options around `basepath` and `version` and at the bottom of the screen there is an expandable panel to add an `Advanced Route`, let's click the `Add Route` link to continue.
+On the next screen, we have the options related to `basepath` and `version`. At the bottom of this section, there is an expandable panel to add an `Advanced Route`; select the `Add Route` link to continue.
 
 Now, on this screen we can see config options for `Match URI`, `HTTP Method`, `Parameters` and a few others. For the purpose of this example the previous three will be the most pertinent.
 
