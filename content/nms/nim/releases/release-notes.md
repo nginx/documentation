@@ -85,16 +85,16 @@ Instance Manager 2.11.0 has the following changes in default behavior:
 
   In this release, the `agent-dynamic.conf` file has been moved from `/etc/nginx-agent/` to `/var/lib/nginx-agent/`. To assign an instance group and tags to an instance, you will now need to edit the file located in `/var/lib/nginx-agent/`. 
 
-- {{% icon-feature %}} **Some file permissions have been lowered for security reasons**
+- {{% icon-feature %}} **Configuration file permissions have been lowered to strengthen security**
 
-  To enhance the security of configuration details, certain file permissions have been modified. The following files now have lowered permissions, allowing Owner Read/Write and Group Read access (also known as `0640` or `rw-r-----`):
+  To strengthen the security of configuration details, certain file permissions have been modified. Specifically, the following configuration files now have lowered permissions, granting Owner Read/Write access and Group Read access (also referred to as `0640` or `rw-r-----`):
 
   - /etc/nms/nginx.conf
   - /etc/nginx/conf.d/nms-http.conf
   - /etc/nms/nginx/oidc/openid_configuration.conf
   - /etc/nms/nginx/oidc/openid_connect.conf
 
-  Additionally, the following file permissions have been adjusted to Owner Read/Write and Group Read access (also known as `0660` or `rw-rw-----`):
+  Additionally, the following file permissions have been lowered to Owner Read/Write and Group Read/Write access (also known as `0660` or `rw-rw-----`):
 
   - /logrotate.d/nms.conf
   - /var/log/nms/nms.log
