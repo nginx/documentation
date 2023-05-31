@@ -142,7 +142,7 @@ Repeat the steps in this section on each NGINX App Protect WAF data plane host t
 
 ```bash
 # Download install script via API
-curl https://<NMS-FQDN>/install/nginx-agent > install.sh
+curl https://<NMS_FQDN>/install/nginx-agent > install.sh
 
 # Use the flag --nap-monitoring to set the child fields for the field 'nap_monitoring', the
 # child field values will be set to the values in the example configuration from above. Specify

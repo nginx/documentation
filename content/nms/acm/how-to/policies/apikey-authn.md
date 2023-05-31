@@ -23,11 +23,11 @@ personas: ["secops"]
 
 {{< warning >}} API key authentication is recommended for test environments only. For production environments, consider a more robust authentication method. {{< /warning >}}
 
-Authentication & authorization policies allow a user to restrict access to their APIs by determining the caller's identity and access level. There are several API Gateway authentication/authorization policy types supported by API Connectivity Manager (ACM): API key authentication, basic authentication, OAuth2 JWT assertion, and OAuth2 token introspection. This guide focuses specifically on API key authentication.
+Authentication & authorization policies allow a user to restrict access to their APIs by determining the caller's identity and access level. There are several API Gateway authentication/authorization policy types supported by API Connectivity Manager: API key authentication, basic authentication, OAuth2 JWT assertion, and OAuth2 token introspection. This guide focuses specifically on API key authentication.
 
 An API key is usually a long, pseudo-random string included in the request header or request URL. It is a shared secret between the API client and the API gateway. The server allows the client to access data only after the client authenticates the API key.
 
-ACM API owners can restrict access to their APIs with API keys. The API Proxy Policy can be configured to grant access to APIs only after verifying that the API Key is valid.
+API Connectivity Manager API owners can restrict access to their APIs with API keys. The API Proxy Policy can be configured to grant access to APIs only after verifying that the API Key is valid.
 
 ---
 
@@ -118,7 +118,7 @@ Send a POST request to add the API key authentication policy to the API Proxy.
 {{%/tab%}}
 {{%tab name="UI"%}}
 
-1. In the ACM user interface, go to **Services > \{your workspace}**, where "your workspace" is the workspace that contains the API Proxy.
+1. In the API Connectivity Manager user interface, go to **Services > \{your workspace}**, where "your workspace" is the workspace that contains the API Proxy.
 2. Select **Edit Proxy** from the **Actions** menu for the desired API Proxy.
 3. On the **Policies** tab, select **Add Policy** from the **Actions** menu for **API Key Authentication**.
 4. Provide the **API Key name** if different from the default value `apikey` and if the key should be provided in the request **Header** or as a **Query** parameter.

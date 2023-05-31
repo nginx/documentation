@@ -29,7 +29,7 @@ The types of communication you can apply TLS policies to includes:
 
 Complete the following prerequisites before proceeding with this guide: 
 
-- ACM is installed, licensed, and running.
+- API Connectivity Manager is installed, licensed, and running.
 - You have one or more Environments with [API Gateway]({{< relref "/nms/acm/getting-started/add-api-gateway" >}}) or [Dev Portal]({{< relref "/nms/acm/getting-started/add-devportal" >}}) clusters.
 
 ### How to Access the User Interface
@@ -51,7 +51,7 @@ Take the steps in this section to secure the traffic coming into your API Proxie
 {{<tabs name="add_tls_listener">}}
     {{%tab name="UI"%}}
 
-1. In the ACM user interface, go to **Workspaces > Environments > \<your environment\>**, where "your environment" is the Environment that contains the Developer Portal.
+1. In the API Connectivity Manager user interface, go to **Workspaces > Environments > \<your environment\>**, where "your environment" is the Environment that contains the Developer Portal.
 1. Select **Edit Advanced Config** from the **Actions** menu for the desired Developer Portal.
 1. On the **Listeners** tab, select **Add Listener**. 
 1. Provide the desired **Protocol** and **Port** (for example, `443`) and select the **TLS** checkbox. 
@@ -136,7 +136,7 @@ Take the steps in this section to secure the communications between your Proxies
 {{<tabs name="tls-backend">}}
 {{%tab name="UI"%}}
 
-1. In the ACM user interface, go to **Workspaces > Environments > \<your environment\>**, where "your environment" is the Environment that contains the API Gateway to be updated.
+1. In the API Connectivity Manager user interface, go to **Workspaces > Environments > \<your environment\>**, where "your environment" is the Environment that contains the API Gateway to be updated.
 1. Select **Edit Advanced Config** from the **Actions** menu for the desired API Gateway.
 1. Select the **Global Policies** tab, then select **Add Policy** from the **Actions** menu for the **TLS Backend** policy.
 1. On the **TLS Backend** policy page, provide the requested information. 
@@ -187,16 +187,16 @@ Once the Environment configuration has been submitted and applied, the **Job Sta
 
 --- 
 
-## Secure Communications Between ACM and Dev Portal Hosts
+## Secure Communications Between API Connectivity Manager and Dev Portal Hosts
 
-Take the steps in this section to secure communications between the ACM management plane and Dev Portal hosts. 
+Take the steps in this section to secure communications between the API Connectivity Manager management plane and Dev Portal hosts. 
 
 ### Add TLS Policies to External Developer Portal {#tls-external-cluster}
 
 {{<tabs name="tls-external">}}
 {{%tab name="UI"%}}
 
-1. In the ACM user interface, go to **Workspaces > Environments > \<your environment\>**, where "your environment" is the Environment that contains the Developer Portal.
+1. In the API Connectivity Manager user interface, go to **Workspaces > Environments > \<your environment\>**, where "your environment" is the Environment that contains the Developer Portal.
 1. Add the [TLS Inbound](#add-tls-inbound) and [TLS Backend](#add-tls-backend) policies to your Developer Portal.
 1. Save and submit your changes.
 
@@ -282,12 +282,12 @@ Take the steps in this section to secure communications between the ACM manageme
 {{%/tab%}}
 {{</tabs>}}
 
-### Secure Communication between Portal and ACM using TLS Policies {#tls-internal-cluster}
+### Secure Communication between Portal and API Connectivity Manager using TLS Policies {#tls-internal-cluster}
 
 {{<tabs name="tls-internal">}}
 {{%tab name="UI"%}}
 
-1. Select **Edit Portal <-> ACM Connectivity** from the **Actions** menu for your desired developer portal.
+1. Select **Edit Portal <-> API Connectivity Manager Connectivity** from the **Actions** menu for your desired developer portal.
 1. [Add TLS Listener(s)](#add-a-tls-listener).
 1. Add the [TLS Inbound](#add-tls-inbound) policy.
     
@@ -427,12 +427,12 @@ Take the steps below to update the settings for the Developer Portal backend ser
 
 ### Update the `nms-http` Config File
 
-Take the steps below to ensure ACM can verify the client certificates provided by the Dev Portal's backend service.
+Take the steps below to ensure API Connectivity Manager can verify the client certificates provided by the Dev Portal's backend service.
 
 1. Edit the NGINX Management Suite configuration file located at `/etc/nginx/conf.d/nms-http.conf`.
 2. Add the location of the CA PEM file to the `ssl_client_certificate` directive, as shown in the example below:
 
-    {{<note>}}This should be the same CA PEM file that was used to generate the client certificates for the tls-backend policy used to secure Portal <-> ACM communication.{{</note>}}
+    {{<note>}}This should be the same CA PEM file that was used to generate the client certificates for the tls-backend policy used to secure Portal <-> API Connectivity Manager communication.{{</note>}}
 
     ``` yaml
     ssl_certificate         /etc/nms/certs/manager-server.pem;

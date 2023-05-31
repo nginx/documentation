@@ -3,7 +3,7 @@ categories:
 - installation
 - security
 date: "2021-12-21T12:00:00-07:00"
-description: 'This document explains how to secure client connections to the NGINX Management Suite (NMS) and the traffic between the NMS management plane and NGINX data planes.'
+description: 'This document provides guidance on securing client connections to NGINX Management Suite as well as securing the traffic between the NGINX Management Suite management plane and NGINX data planes. '
 doctypes:
 - tutorial
 draft: false
@@ -68,7 +68,7 @@ server {
 
 ## Mutual Client Certificate Auth Setup (mTLS)
 
-Using client certificates unique to each endpoint allows you to secure and authorize NGINX instances with NGINX Management Suite (NMS). You can run NGINX as a proxy to offload client cert handling.
+Using client certificates unique to each endpoint allows you to secure and authorize NGINX instances with NGINX Management Suite. You can run NGINX as a proxy to offload client cert handling.
 
 Use PKI methods to secure your enterprise. Refer to the following instructions for guidance.
 
@@ -391,7 +391,7 @@ Modify the following example according to your needs. There are many ways to gen
     sudo cp server.key /etc/nms/certs/
     ```
 
-8. Add a new server to the NGINX proxy for gRPC in the NMS config with the newly generated certs, then reload the service. The `server_name` should match the `server.metrics` value and the `server.command` values in the `nginx-agent.conf`. You can remove the  `MetricsService` and `Commander` locations from the existing server.
+8. Add a new server to the NGINX proxy for gRPC in the NGINX Management Suite config with the newly generated certs, then reload the service. The `server_name` should match the `server.metrics` value and the `server.command` values in the `nginx-agent.conf`. You can remove the  `MetricsService` and `Commander` locations from the existing server.
 The new server will enforce mTLS communication between the NGINX Agent and NGINX Management Suite. The previous server can continue to serve static content for the web interface and API without the requirements of mTLS.
 When `tls.skip_verify` is set to `false`, the NGINX Agent verifies the server's certificate chain and hostname. The `server_name` in the config must match the generated cert's Common Name (CN) or Subject Alt Name (SAN).
 

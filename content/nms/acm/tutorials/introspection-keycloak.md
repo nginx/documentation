@@ -18,9 +18,9 @@ personas: ["secops"]
 
 ## Overview
 
-This tutorial walks through configuring an OAuth2 Introspection policy on an API Proxy in NGINX Management Suite API Connectivity Manager (ACM) with Keycloak as the authorization server. 
+This tutorial walks through configuring an OAuth2 Introspection policy on an API Proxy in API Connectivity Manager with Keycloak as the authorization server. 
 
-{{<important>}}The configuration presented in this guide is for demonstration purposes only. The secure configuration of Environments and Proxies in ACM, or the secure configuration of Keycloak as the authorization server, is not in scope for this tutorial and should be given full attention when planning for production use.{{</important>}}
+{{<important>}}The configuration presented in this guide is for demonstration purposes only. The secure configuration of Environments and Proxies in API Connectivity Manager, or the secure configuration of Keycloak as the authorization server, is not in scope for this tutorial and should be given full attention when planning for production use.{{</important>}}
 
 {{<see-also>}}See the [OAuth2 Introspection Policy]({{< relref "/nms/acm/how-to/policies/introspection.md" >}}) reference guide for a detailed overview of the policy.{{</see-also>}}
 
@@ -63,7 +63,7 @@ This section configures the hosts used in this tutorial. In the following table,
 
 ### Install NGINX Management Suite & API Connectivity Manager {#install-nsm-acm}
 
-1. Follow the steps in the [Installation Guide]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}) to set up NGINX Management Suite and ACM. You do not need to configure a Developer Portal for this tutorial.
+1. Follow the steps in the [Installation Guide]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}) to set up NGINX Management Suite and API Connectivity Manager. You do not need to configure a Developer Portal for this tutorial.
 
 ### Install NGINX Agent on Data Plane Host {#install-agent}
 
@@ -135,8 +135,8 @@ Production mode sets the following default configuration:
    {{< important >}} Do not use the example `admin/password` combination in any scenario. Replace the username and password with strong alternatives. {{< /important >}}
 
    ```shell
-   export KEYCLOAK_ADMIN=admin
-   export KEYCLOAK_ADMIN_PASSWORD=password
+    export KEYCLOAK_ADMIN=admin
+    export KEYCLOAK_ADMIN_PASSWORD=password
    ```
 
 4. Start Keycloak in **Development Mode**:
@@ -214,7 +214,7 @@ Follow the steps in this section to test the OAuth functionality of Keycloak, to
 
 ### Get the Keycloak Token Introspection Endpoints {#get-keycloak-introspection-endpoints}
 
-An introspection endpoint is needed to configure the Introspection policy in ACM. Additionally, a token endpoint is required for users to authenticate and access tokens for introspection. You can retrieve these endpoints using a REST API call to Keycloak.
+An introspection endpoint is needed to configure the Introspection policy in API Connectivity Manager. Additionally, a token endpoint is required for users to authenticate and access tokens for introspection. You can retrieve these endpoints using a REST API call to Keycloak.
 
 ##### Structure
 
@@ -305,7 +305,7 @@ Keycloak will respond with a JSON object containing an `access_token` for the us
 }
 ```
 
-Typically, the `access_token` is passed in requests to a **Resource Server** (API Proxy) as a `Bearer` token in the `Authorization` header. This is the default OAuth2 Introspection policy behavior in ACM.
+Typically, the `access_token` is passed in requests to a **Resource Server** (API Proxy) as a `Bearer` token in the `Authorization` header. This is the default OAuth2 Introspection policy behavior in API Connectivity Manager.
 
 <br>
 
@@ -390,7 +390,7 @@ At this checkpoint in the tutorial, Keycloak is sufficiently configured for toke
 
 ## Configure API Connectivity Manager {#amc-config}
 
-In this section, we will use the ACM Rest API to set up a proxy in ACM. You'll need to pass the NGINX Management Suite user credentials in the Basic Authentication header for each REST request.
+In this section, we will use the API Connectivity Manager Rest API to set up a proxy in API Connectivity Manager. You'll need to pass the NGINX Management Suite user credentials in the Basic Authentication header for each REST request.
 
 ### Creating Workspaces & Environment {#create-workspace-environment}
 
@@ -501,7 +501,7 @@ In this section, we will use the ACM Rest API to set up a proxy in ACM. You'll n
 
    ##### Expected Result
 
-   If everything is configured correctly in ACM and the echo server, the response should be similar to the following example:
+   If everything is configured correctly in API Connectivity Manager and the echo server, the response should be similar to the following example:
 
    ```bash
    Request served by echo-host
@@ -1068,7 +1068,7 @@ When a user access token is introspected with an OAuth server, the token introsp
 | `jti` | OPTIONAL | String identifier for the token. |
 {{</bootstrap-table>}}
 
-With the ACM OAuth2 Introspection policy, extracting any claim from an IdP token introspection request and forwarding the claim to the backend service as a request header is possible. By default, the Introspection policy forwards the `exp`, `scope`, and `username` claims to the backend. When a token claim is extracted and sent to a backend service, it follows the naming pattern `X-Token-<Claim>`.
+With the API Connectivity Manager OAuth2 Introspection policy, extracting any claim from an IdP token introspection request and forwarding the claim to the backend service as a request header is possible. By default, the Introspection policy forwards the `exp`, `scope`, and `username` claims to the backend. When a token claim is extracted and sent to a backend service, it follows the naming pattern `X-Token-<Claim>`.
 
 You'll need to consult your OAuth server's documentation to determine which claims you can forward to the backend. For this Keycloak example, you can examine the response from the [Introspecting a User Access Token](#introspect-token-test) test you completed above.
 
@@ -1165,7 +1165,7 @@ You'll need to consult your OAuth server's documentation to determine which clai
 
 ### Verifying Introspected Token Claim Values {#verifying-token-claims}
 
-From ACM 1.4.0, API admins can configure Introspection token claim verification whereby NGINX will assert the value of an introspected token claim against values provided by the API admin. If these values match, the request proceeds to the backend, if not the request is denied and `403 Forbidden` is returned.
+From API Connectivity Manager 1.4.0, API admins can configure Introspection token claim verification whereby NGINX will assert the value of an introspected token claim against values provided by the API admin. If these values match, the request proceeds to the backend, if not the request is denied and `403 Forbidden` is returned.
 
 It is possible to verify string, integer, boolean, and array of strings data-types. Delimited strings, commonly encountered in the scope claim, are also supported. To access nested JSON object values, link the path to the value with full-stop [`.`] characters; for example, `resource_access.account.roles`. Both reserved and custom claims are supported, the only requirement is they are string data type.
 
@@ -1370,7 +1370,7 @@ The introspection response, as specified in OAuth 2.0 Token Introspection [RFC76
 
 An example is a resource server using verified personal data to create certificates, which are then used to create qualified electronic signatures. In such use cases, it may be helpful or even required to return a signed [JSON Web token (JWT) [RFC7519]](https://www.rfc-editor.org/rfc/rfc7519) as the introspection response.
 
-{{<important>}}The introspection response type `application/jwt`, configured using `action.introspectionResponse`, has not finalized its security protocol specification at the time of writing, and it remains in **DRAFT** status. While in **DRAFT** status, the specification may change at any time, and ACM may change to meet the requirements of the specification. We recommend using the default OAuth2 Introspection response type `application/json` for all **production** scenarios.
+{{<important>}}The introspection response type `application/jwt`, configured using `action.introspectionResponse`, has not finalized its security protocol specification at the time of writing, and it remains in **DRAFT** status. While in **DRAFT** status, the specification may change at any time, and API Connectivity Manager may change to meet the requirements of the specification. We recommend using the default OAuth2 Introspection response type `application/json` for all **production** scenarios.
 
 For reference, see [JWT Response for OAuth Token Introspection](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response).
 {{</important>}}
@@ -1525,7 +1525,7 @@ For reference, see [JWT Response for OAuth Token Introspection](https://datatrac
 
 An opaque token, also known as a phantom token, is a random, unique string of characters issued by an OAuth2 server token service as an alternative to JWT access tokens. Opaque tokens are pass-by-reference tokens, meaning they do not carry information and can only be further processed by the token service that issued them. Standard JWT access tokens can be decoded to view any included information. Opaque tokens offer an extra level of security for in-flight requests.
 
-Opaque tokens are supported out-of-the-box with the ACM OAuth2 Introspection policy. Just pass the opaque token in place of the standard access token when a user sends a request to an API proxy with token introspection configured.
+Opaque tokens are supported out-of-the-box with the API Connectivity Manager OAuth2 Introspection policy. Just pass the opaque token in place of the standard access token when a user sends a request to an API proxy with token introspection configured.
 
 {{< note >}} Not all OAuth2 Servers support opaque tokens; Keycloak, for example, does not. Check your OAuth2 server documentation to verify support for this token format. {{< /note >}}
 

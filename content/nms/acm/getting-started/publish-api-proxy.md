@@ -18,7 +18,7 @@ docs: "DOCS-923"
 
 ## Overview
 
-In NGINX Management Suite API Connectivity Manager (ACM), **Services** represent your Backend APIs. 
+In API Connectivity Manager, **Services** represent your Backend APIs. 
 **Proxies** represent the NGINX reverse proxy that routes traffic to your backend service and to the Developer Portal.
 This guide provides instructions and examples for publishing an API and a Developer Portal by using the REST API. 
 
@@ -138,7 +138,7 @@ Take the steps below to add an API Proxy with an OpenAPI spec.
     }
     ```
 
-1. Send a POST request to the `proxies` endpoint to create a new API Proxy. In this example, `specRef` contains the name that ACM assigned to the API Docs object: `petstore-1`.
+1. Send a POST request to the `proxies` endpoint to create a new API Proxy. In this example, `specRef` contains the name that API Connectivity Manager assigned to the API Docs object: `petstore-1`.
 
     ```json
     {
@@ -171,7 +171,7 @@ Take the steps below to add an API Proxy with an OpenAPI spec.
 
 Next, you can add a Dev Portal Proxy to publish your API and documentation to the Developer Portal.  
 
-ACM uses the `portalConfig.hostname` setting to connect your Dev Portal Proxy to the Developer Portal. 
+API Connectivity Manager uses the `portalConfig.hostname` setting to connect your Dev Portal Proxy to the Developer Portal. 
 You should define this field using the hostname that you assigned to the Developer Portal in the [Set Up a Developer Portal]({{< relref "add-devportal" >}}) guide.
 
 {{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
@@ -218,5 +218,5 @@ Congratulations! You have reached the end of the Quick Start series.
 We recommend taking a deeper dive into the following topics:
 
 - [Manage TLS Policies]({{< relref "/nms/acm/how-to/policies/tls-policies.md" >}}): Learn how to apply global policies to secure traffic to your Developer Portal; between your API Proxies and backend services; and between the management plane and Developer Portal hosts.
-- [Customize Developer Portals]({{< relref "/nms/acm/how-to/infrastructure/customize-devportal.md" >}}): Learn how to customize Developer Portals using the ACM user interface.
+- [Customize Developer Portals]({{< relref "/nms/acm/how-to/infrastructure/customize-devportal.md" >}}): Learn how to customize Developer Portals using the API Connectivity Manager user interface.
 - [Policies Overview]({{< relref "/nms/acm/about/policies-overview" >}}): Learn more about the policies you can use to enforce global security or customize your backend services.

@@ -18,7 +18,7 @@ docs: "DOCS-922"
 
 ## Overview
 
-In NGINX Management Suite API Connectivity Manager (ACM), a Developer Portal (or, "Dev Portal") is a cluster of NGINX Plus data plane instances.
+In API Connectivity Manager, a Developer Portal (or, "Dev Portal") is a cluster of NGINX Plus data plane instances.
 These clusters are managed under **Infrastructure Workspaces** and are part of **Environments**.
 
 ### Before You Begin
@@ -31,12 +31,12 @@ You should complete the following Quick Start Guide(s) before proceeding with th
 
 Complete the steps in this guide to add a Developer Portal to the Environment you created in the [previous guide]({{< relref "add-api-gateway" >}}).
 
-When a Developer Portal environment is created, the API Connectivity Manager(ACM) configures 
-a virtual server through which the developer portal service and ACM communicate. By default, the hostname for this server is the 
+When a Developer Portal environment is created, the API Connectivity Manager configures 
+a virtual server through which the developer portal service and API Connectivity Manager communicate. By default, the hostname for this server is the 
 hostname that you provided for the Developer Portal cluster, prefixed with `acm.`. For example: `acm.dev-portal.io`. This virtual server listens on port 81.
 
 You will need to update your DNS resolver settings to ensure this hostname is resolvable.
-The hostname and port for this server can be updated by selecting the **Edit Portal <-> ACM Connectivity** from the **Actions** menu for your desired developer portal.
+The hostname and port for this server can be updated by selecting the **Edit Portal <-> API Connectivity Manager Connectivity** from the **Actions** menu for your desired developer portal.
 
 {{<important>}}
 
@@ -159,7 +159,7 @@ Next, open the Developer Portal in a browser window and make sure the portal loa
 In this step, you'll apply a set of customizations to the Developer Portal.
 Because these settings are applied at the Infrastructure level, they are considered "global", meaning they apply to each Dev Portal Proxy that you associate with the cluster.
 
-{{<see-also>}}Refer to [Customize the Developer Portal]({{< relref "/nms/acm/how-to/infrastructure/customize-devportal.md" >}}) to learn more about the available customization options and how to customize a Dev Portal via the ACM user interface.{{</see-also>}}
+{{<see-also>}}Refer to [Customize the Developer Portal]({{< relref "/nms/acm/how-to/infrastructure/customize-devportal.md" >}}) to learn more about the available customization options and how to customize a Dev Portal via the API Connectivity Manager user interface.{{</see-also>}}
 
 {{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
 {{<bootstrap-table "table">}}
