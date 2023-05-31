@@ -29,24 +29,17 @@ Resilience refers to a system's ability to bounce back from failures or disrupti
 
 ## How is NGINX Management Suite Resilient?
 
-As the control plane for NGINX Open Source and NGINX Plus instances, the NGINX Management Suite is designed for resilience. Although NGINX Management Suite does not provide the same high-availability guarantees as the data plane, it is capable of quickly recovering from problems if they arise.
+As the control plane for NGINX Open Source and NGINX Plus instances, the NGINX Management Suite is designed for resilience. Although NGINX Management Suite does not provide the same [high-availability guarantees as the data plane](https://www.nginx.com/products/nginx/high-availability/), it is capable of quickly recovering from problems if they arise.
 
 ### Platform Services
 
-NGINX Management Suite includes the following four platform services that work together to monitor and manage NGINX data plane instances through APIs and web dashboards. Within a Kubernetes deployment, the NGINX Management Suite platform services are deployed as [Kubernetes Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) and are monitored by the [Kubernetes control plane](https://kubernetes.io/docs/concepts/overview/components/#control-plane-components) to ensure their reliable operation.
+NGINX Management Suite includes the following four platform services that work together to monitor and manage NGINX data plane instances through APIs and web dashboards. When you [install NGINX Management Suite on Kubernetes]({{< relref "content/nms/installation/kubernetes/deploy-instance-manager.md" >}}), these platform services are deployed as [Kubernetes Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) and are monitored by the [Kubernetes control plane](https://kubernetes.io/docs/concepts/overview/components/#control-plane-components) to ensure consistent and reliable operation.
 
-{{<bootstrap-table "table table-striped table-bordered">}}
-| <div style="width:200px">Service</div> | Description                                                                                                                                                                                                                                          |
-|----------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Core                                   | The core service configures and sets up the management plane, as well as performs data analysis for metrics, events, and alerts.                                                                                                                     |
-| Data Plane Manager (DPM)               | The data plane manager (DPM) service is responsible for configuring NGINX instances on the data plane, monitoring the state of data plane resources, and generating reports and event messages.                                                      |
-| Ingestion                              | The ingestion service collects metrics, security violations, and events not sent to the data plane manager service by the NGINX Agent. This information can be forwarded to external data stores.                                                    |
-| Integrations                           | The integrations process includes features for interacting with external components, like configuring [NGINX App Protect WAF policies]({{< relref "/nms/nim/how-to/app-protect/setup-waf-config-management.md" >}}), managing threat campaigns, and more. |
-{{< /bootstrap-table >}}
+{{< include "nms/services/platform-services.md" >}}
 
 ### Databases
 
-NGINX Management Suite utilizes [Dqlite](https://dqlite.io/) and [ClickHouse](https://clickhouse.com/) databases, with [NATS streaming](https://nats.io) for process coordination and event propagation. Each of these components requires persistent data storage.
+NGINX Management Suite uses [Dqlite](https://dqlite.io/) and [ClickHouse](https://clickhouse.com/) databases, along with [NATS streaming](https://nats.io), for process coordination and event propagation. Each of these components requires persistent data storage to operate effectively.
 
 #### Dqlite
 
