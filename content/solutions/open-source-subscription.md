@@ -67,5 +67,3 @@ NGINX App Protect DoS provides comprehensive protection against Layer 7 denial-o
 
 Note that NGINX App Protect WAF can only be deployed on NGINX Plus.
 
-## Next steps
-
