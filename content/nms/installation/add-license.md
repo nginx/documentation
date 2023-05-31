@@ -42,28 +42,14 @@ The following features are available when NGINX Management Suite is unlicensed:
 | User  | Feature             | Area     | Description                                                          | Access&nbsp;Type                                                      |
 |-------|---------------------|----------|----------------------------------------------------------------------|-----------------------------------------------------------------------|
 | admin | Licensing           | Core     | Allows access to view and manage licenses.                           | [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) |
-| admin | NGINX Plus Counting | Core     | Allows access to view the number of registered NGINX Plus instances. | READ                                                                  |
+| admin | NGINX Plus Counting | Core     | Allows access to view the number of registered NGINX Plus instances and track Kubernetes usage. | READ                                              |
 | admin | Scan                | Platform | Allows access to scan for NGINX Instances.                           | CRUD                                                                  |
 | admin | User Management     | Core     | Allows access to view and manage roles, users, and user groups.      | CRUD                                                                  |
 {{</bootstrap-table>}}
 
 ### Licensed Mode
 
-The following features are available when NGINX Management Suite is licensed.
-
-#### Instance Manager
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| User  | Feature             | Area     | Description                                                          | Access&nbsp;Type                                                      |
-|-------|---------------------|----------|----------------------------------------------------------------------|-----------------------------------------------------------------------|
-| admin | Instance Groups     | Platform | Allows access to view and manage NGINX instance groups.              | [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) |
-| admin | Instance Management | Platform | Allows access to view and manage NGINX instances.                    | CRUD                                                                  |
-| admin | Licensing           | Core     | Allows access to view and manage licenses.                           | CRUD                                                                  |
-| admin | NGINX Plus Counting | Core     | Allows access to view the number of registered NGINX Plus instances. | READ                                                                  |
-| admin | Scan                | Platform | Allows access to scan for NGINX Instances.                           | CRUD                                                                  |
-| admin | Staged Configs      | Platform | Allows access to view and manage staged NGINX configurations.        | CRUD                                                                  |
-| admin | User Management     | Core     | Allows access to view and manage roles, users, and user groups.      | CRUD                                                                  |
-{{</bootstrap-table>}}
+When NGINX Management Suite is licensed the full list of features are available, including those listed under Unlicensed Mode.
 
 #### API Connectivity Manager
 
