@@ -51,8 +51,6 @@ NGINX Management Suite also uses a [ClickHouse](https://clickhouse.com) database
 
 It's also possible to run ClickHouse as a pod alongside the NGINX Management Suite pods, using a persistent volume for storage. Additionally, if preferred, NGINX Management Suite can be configured to connect to an externally-managed [ClickHouse cluster](https://aws.amazon.com/solutions/implementations/clickhouse-cluster/) hosted on Amazon Web Services (AWS). This allows you to take advantage of custom high-availability architectures to meet your specific needs.
 
-which can take advantage of custom high-availability architectures.
-
 ## Architecture
 
 The following diagram shows the architecture of NGINX Management Suite deployed on Kubernetes.
