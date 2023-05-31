@@ -130,4 +130,4 @@ When integrating NGINX Management Suite into your existing Business Continuity a
 
 ### Install NGINX Management Suite on Kubernetes
 
-For resilient deployments, we recommend [installing NGINX Management Suite on Kubernetes](({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md">}})). With Kubernetes, you'll get the benefits of persistent volumes and automated recovery for a reliable control plane.
+For resilient deployments, we recommend [installing NGINX Management Suite on Kubernetes]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md" >}}). With Kubernetes, you'll get the benefits of persistent volumes and automated recovery for a reliable control plane.
