@@ -1,6 +1,6 @@
 ---
 title: Template Overview
-description: Template overview of the App Delivery Manager Module.
+description: Template overview of the NGINX Management Suite App Delivery Manager module.
 weight: 300
 toc: true
 draft: false

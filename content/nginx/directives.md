@@ -3,7 +3,7 @@ _build:
   list: always
 docs: DOCS-469
 title: NGINX Directives Index
-url: /directives
+url: /nginx/directives
 weight: 700
 ---
 

@@ -18,6 +18,33 @@ aliases:
 
 {{<rn-styles>}}
 
+## 2.10.1
+
+5/22/2023
+
+### Upgrade Paths {#2-10-1-upgrade-paths}
+
+Instance Manager 2.10.1 supports upgrades from these previous versions:
+
+- 2.7.0–2.10.0
+
+If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent. {{</see-also>}}
+
+
+### Resolved Issues {#2-10-1-resolved-issues}
+
+This release fixes the following issues. Select an issue's ID link to view its details.
+
+
+- {{% icon-resolved %}} Valid licenses incorrectly identified as invalid [(42598)]({{< relref "/nms/nim/releases/known-issues.md#42598" >}})
+
+
+### Support for NGINX App Protect WAF
+
+{{< include "tech-specs/nim-app-protect-support.md" >}}
+
 ---
 
 ## 2.10.0
@@ -419,9 +446,9 @@ This release fixes the following issues:
 
 - {{% icon-resolved %}} NGINX App Protect policy deployment status not reflecting removal of associated instance. (38700)
 
-- {{% icon-resolved %}} When upgrading a multi-node NMS deployment with helm charts the ingestion pod may report a "Mismatched migration version" error (38880)
+- {{% icon-resolved %}} When upgrading a multi-node NGINX Management Suite deployment with helm charts the ingestion pod may report a "Mismatched migration version" error (38880)
 
-- {{% icon-resolved %}} After a version upgrade of NGINX Instance Manager, NMS Data Plane Manager crashes if you publish NGINX configuration with App Protect enablement directive (app_protect_enable) set to ON (38904)
+- {{% icon-resolved %}} After a version upgrade of NGINX Instance Manager, NGINX Management Suite Data Plane Manager crashes if you publish NGINX configuration with App Protect enablement directive (app_protect_enable) set to ON (38904)
 
 ### Known Issues
 
@@ -618,7 +645,7 @@ Instance Manager 2.4.0 has the following changes in default behavior:
 
 - {{% icon-feature %}} **You no longer need to associate a certificate with an instance using the web interface**
 
-  NGINX Management Suite will automatically deploy a certificate to an NGINX instance if the instance's config references the certificate on the NMS platform.
+  NGINX Management Suite will automatically deploy a certificate to an NGINX instance if the instance's config references the certificate on the NGINX Management Suite platform.
 
 - {{% icon-feature %}} **Adds nms-integrations service**
 

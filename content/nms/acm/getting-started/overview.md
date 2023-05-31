@@ -37,7 +37,7 @@ docs: "DOCS-939"
 
 ## Objectives
 
-By completing the guides in this Quick Start series, you can easily get up and running with NGINX Management Suite API Connectivity Manager (ACM).
+By completing the guides in this Quick Start series, you can easily get up and running with API Connectivity Manager.
 
 This series covers the following topics:
 
@@ -55,7 +55,7 @@ To complete the instructions in this series, you must meet the following require
 2. [Install a supported version of NGINX Plus]({{< relref "tech-specs.md" >}}) on one or more hosts to serve as the API Gateway.
 3. [Install the `njs` module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/nginscript/) on your NGINX data plane and Dev Portal hosts.
 4. You have SSH access and `sudo` permissions for the NGINX data plane host(s).
-5. You have an ACM user account with permission to READ, CREATE, UPDATE, and DELETE on the following ACM features:
+5. You have an API Connectivity Manager user account with permission to READ, CREATE, UPDATE, and DELETE on the following API Connectivity Manager features:
 
     - Infrastructure
     - Services

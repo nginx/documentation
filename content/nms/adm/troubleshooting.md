@@ -6,13 +6,13 @@ draft: false
 # Description
 # Add a short description (150 chars) for the doc. Include keywords for SEO. 
 # The description text appears in search results and at the top of the doc.
-description: "The topic describes potential issues that platform and app developers may encounter when using the App Delivery Manager module. Suggested workarounds are suggested when possible."
+description: "This topic describes possible issues users might encounter when using NGINX Management Suite App Delivery Manager. When possible, suggested workarounds are provided."
 # Assign weights in increments of 100
 weight: 
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1138"
+docs: "DOCS-1223"
 # Taxonomies
 # These are pre-populated with all available terms for your convenience.
 # Remove all terms that do not apply.
@@ -51,8 +51,6 @@ App Delivery Manager 4.0.0 can handle a maximum of approximately 5,000 App Deliv
 
 ## How to Get Support
 
-If you need additional assistance, refer to the following topics for guidance on how to contact Support and create a Support Package:
+{{< include "support/how-to-get-support.md" >}}
 
-- [Contact Support]({{< relref "/nms/support/contact-support.md" >}})
-- [Create a Support Package]({{< relref "/nms/support/support-package.md" >}})
 

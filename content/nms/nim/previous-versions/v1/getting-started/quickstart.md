@@ -80,13 +80,13 @@ sudo mv nginx-*.crt /etc/ssl/nginx/nginx-repo.crt
 sudo mv nginx-*.key /etc/ssl/nginx/nginx-repo.key
 ```
 
-4. Copy the NIM license file to the `/etc/nginx-manager/` directory.
+4. Copy the Instance Manager license file to the `/etc/nginx-manager/` directory.
 
 ```bash
 sudo mv nginx-instance-manager.lic /etc/nginx-manager/nginx-manager.lic
 ```
 
-5. Install Prerequisites and Install NIM.
+5. Install Prerequisites and Install Instance Manager.
 
 ```bash
 # Install the required certificate authority dependencies
@@ -161,7 +161,7 @@ license: /etc/nginx-manager/nginx-manager.lic
 ```
 </details>
 
-## Install NGINX as a proxy server for NIM {#install-proxy}
+## Install NGINX as a proxy server for Instance Manager {#install-proxy}
 
 NGINX Instance Manager is designed as a web application with an API. NGINX Plus is our recommended solution for web applications requiring advanced authentication, proxy, and load balancing. A copy of NGINX Plus is included with the NGINX Instance Manager distribution as a frontend for NGINX Instance Manager. This is the only permitted use of the included NGINX Plus instance. For external uses and other systems, contact your sales team to purchase additional subscriptions.
 
@@ -179,7 +179,7 @@ The repository certificate and key (`nginx-repo.crt` and `nginx-repo.key`) can b
 sudo yum install -y nginx-plus
 ```
 
-**Troubleshooting Note**: If you can't access or download nginx-plus you can either use nginx OSS for now or download a trial of nginx-plus and use that rpm. If you're simply testing NIM, the OSS nginx install will be sufficient and can be installed with:
+**Troubleshooting Note**: If you can't access or download nginx-plus you can either use nginx OSS for now or download a trial of nginx-plus and use that rpm. If you're simply testing Instance Manager, the OSS nginx install will be sufficient and can be installed with:
 
 ```bash
 sudo yum install -y nginx
