@@ -65,8 +65,8 @@ NGINX App Protect DoS provides comprehensive protection against Layer 7 denial-o
 
 {{<note>}}The Instance Manager and Security Monitoring modules do not support App Protect DoS.{{</note>}}
 
-1.	[Download your credentials from MyF5](https://my.f5.com/), including your NGINX Plus Certificate and public key (`nginx-repo.crt` and `nginx-repo.key`).
-2.	Follow the instructions in the [NGINX App Protect DoS installation guide]({{< ref "nap-dos/deployment-guide/learn-about-deployment" >}}) for your Linux distribution
+1. [Download your credentials from MyF5](https://my.f5.com/), including your NGINX Plus Certificate and public key (`nginx-repo.crt` and `nginx-repo.key`).
+2. Follow the instructions in the [NGINX App Protect DoS installation guide]({{< relref "/nap-dos/deployment-guide/learn-about-deployment.md" >}}) for your Linux distribution.
 
 Note that NGINX App Protect WAF can only be deployed on NGINX Plus.
 
