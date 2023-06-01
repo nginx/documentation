@@ -11,7 +11,7 @@ docs:
 ---
 
 ## Overview
-The Open Source Subscription bundle by F5 NGINX provides 
+The Open Source Subscription bundle by F5 NGINX provides the following:
 
 Entitlement To:
 - [NGINX Plus](https://www.nginx.com/products/nginx/)
