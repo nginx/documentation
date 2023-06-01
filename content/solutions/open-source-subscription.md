@@ -11,35 +11,33 @@ docs:
 ---
 
 ## Overview
-The Open Source Subscription bundle by F5 NGINX provides the following:
+The Open Source Subscription bundle by F5 NGINX provides access to the following products:
 
-Entitlement To:
 - [NGINX Plus](https://www.nginx.com/products/nginx/)
 - [NGINX Management Suite Instance Manager](https://www.nginx.com/products/nginx-management-suite/instance-manager/)
-- [NGINX App Protect WAF and DoS](https://www.nginx.com/products/nginx-app-protect/).(Available as an add-on module).
+- [NGINX App Protect WAF and DoS](https://www.nginx.com/products/nginx-app-protect/)
 
-Commercial Support for:
+It also includes commercial support for:
 - [NGINX Open Source](https://www.nginx.org)
 - [NGINX Plus](https://www.nginx.com/products/nginx/)
 - [NGINX Management Suite Instance Manager](https://www.nginx.com/products/nginx-management-suite/instance-manager/)
-- [NGINX App Protect WAF and DoS](https://www.nginx.com/products/nginx-app-protect/).(Available as an add-on module).
+- [NGINX App Protect WAF and DoS](https://www.nginx.com/products/nginx-app-protect/)
 
 ## Installation Guide
 
 ### Install NGINX Open Source
-NGINX Plus is the only all-in-one software web server, load balancer, reverse proxy, content cache, and API gateway.
+NGINX is the only all-in-one software web server, load balancer, reverse proxy, content cache, and API gateway.
 
-- Download the NGINX packages for one of the supported operating systems from [NGINX Linux Packages](https://nginx.org/en/linux_packages.html). 
-- Follow the instructions at [NGINX Open Source]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-open-source.md" >}}) to install NGINX open source.
-- Alternatively, if you prefer to build NGINX from source, see [Build NGINX from source]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-open-source.md#compiling-and-installing-from-source" >}})
+- Download the NGINX open source packages for one of the supported operating systems from [NGINX Linux Packages](https://nginx.org/en/linux_packages.html). 
+- Follow the instructions to [install NGINX open source]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-open-source.md" >}}).
+- Alternatively, if you prefer to build NGINX from source, see [Build NGINX from source]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-open-source.md#compiling-and-installing-from-source" >}}).
 
 ### Install NGINX Plus
 NGINX Plus is built on top of NGINX open source and adds enterprise‑grade features like high availability, active health checks, DNS system discovery, session persistence, and a RESTful API.
 
 1. [Download your credentials from MyF5](https://my.f5.com/), including your NGINX Plus Certificate and public key (`nginx-repo.crt` and `nginx-repo.key`).
-2. Follow the instructions in the [NGINX Plus installation guide]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) to install it on a [supported operating system]({{< relref "/nginx/technical-specs.md" >}})
+2. Follow the instructions in the [NGINX Plus installation guide]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) to install it on a [supported operating system]({{< relref "/nginx/technical-specs.md" >}}).
 3. [Install and configure NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent.md" >}}) on your NGINX Plus instance. 
-
 
 ### Install the Instance Manager module
 NGINX Management Suite Instance Manager makes it easy to inventory, configure, monitor, and secure NGINX Open Source, NGINX Plus, and NGINX App Protect WAF instances.
@@ -49,7 +47,6 @@ NGINX Management Suite Instance Manager makes it easy to inventory, configure, m
     - [Install on virtual machine or bare metal]({{< relref "/nms/installation/vm-bare-metal/" >}})
     - [Install in Kubernetes using Helm]({{< relref "/nms/installation/kubernetes/" >}})
 
-
 ### (Optional) Install NGINX App Protect WAF
 NGINX App Protect WAF is a lightweight, platform-agnostic WAF that protects applications and APIs from layer 7 attacks. You can manage WAFs using the Instance Manager module and visualize them using the Security Monitoring module. 
 
@@ -57,8 +54,7 @@ NGINX App Protect WAF is a lightweight, platform-agnostic WAF that protects appl
 2. Follow the instructions in the [NGINX App Protect WAF installation guide]({{< relref "/nap-waf/admin-guide/install.md" >}}) for your Linux distribution.
 3. Follow the instructions in the [Security Monitoring installation guide]({{< relref "/nms/security/how-to/set-up-app-protect-instances.md">}}) to use App Protect WAF with NGINX Management Suite.
 
-{{<note>}}NGINX App Protect WAF can only be deployed on NGINX Plus.{{</note>}}
-
+{{<note>}}NGINX App Protect WAF can only be deployed on NGINX Plus.{{</note>}}.
 
 ### (Optional) Install NGINX App Protect DoS
 NGINX App Protect DoS provides comprehensive protection against Layer 7 denial-of-service attacks on your apps and APIs. 
