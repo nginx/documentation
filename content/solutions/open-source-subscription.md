@@ -29,7 +29,7 @@ Commercial Support for:
 ### Install NGINX Open Source
 NGINX Plus is the only all-in-one software web server, load balancer, reverse proxy, content cache, and API gateway.
 
-- Download the NGINX packages from [NGINX Linux Packages](https://nginx.org/en/linux_packages.html) for one of the supported operating systems. 
+- Download the NGINX packages for one of the supported operating systems from [NGINX Linux Packages](https://nginx.org/en/linux_packages.html). 
 - Follow the instructions at [NGINX Open Source](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/) to install NGINX open source.
 - Alternatively, if you prefer to build NGINX from source, refer [Build NGINX from source](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/#compiling-and-installing-from-source)
 
