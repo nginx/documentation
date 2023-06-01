@@ -37,7 +37,7 @@ NGINX Plus is the only all-in-one software web server, load balancer, reverse pr
 NGINX Plus is built on top of NGINX open source and adds enterprise‑grade features like high availability, active health checks, DNS system discovery, session persistence, and a RESTful API.
 
 1.	[Download your credentials from MyF5](https://my.f5.com/), including your NGINX Plus Certificate and public key (`nginx-repo.crt` and `nginx-repo.key`).
-2.	Follow the instructions in the [NGINX Plus installation guide]({{< ref "installing-nginx-plus" >}}) to install it on a [supported operating system]({{< ref "nginx/technical-specs" >}})
+2. Follow the instructions in the [NGINX Plus installation guide]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) to install it on a [supported operating system]({{< relref "/nginx/technical-specs.md" >}})
 3.	[Install and configure NGINX Agent]({{< ref "install-nginx-agent" >}}) on your NGINX Plus instance. 
 
 
