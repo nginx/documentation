@@ -22,7 +22,7 @@ aliases:
 
 ## Overview
 
-Complete the steps in this guide to secure Instance Manager with OpenID Connect (OIDC) using the authorization code flow method and Keycloak as the identity provider. As an administrator, when you integrate OpenID authentication with Instance Manager, you can use role-based access control (RBAC) to limit user access to NGINX instances.
+Complete the steps in this guide to secure Instance Manager with OpenID Connect (OIDC) using the authorization code flow method and [Keycloak](https://www.keycloak.org) as the identity provider. As an administrator, when you integrate OpenID authentication with Instance Manager, you can use role-based access control (RBAC) to limit user access to NGINX instances.
 
 ---
 
@@ -37,11 +37,11 @@ To complete the instructions in this guide, you'll need the following:
 ---
 ## Create Roles and User Groups in Instance Manager {#create-roles-user-groups}
 
-By default there is only one role in Instance Manager, `admin`. You might need to create **aditional roles** for the different User Groups, for example, "user" and "nap-user".
+By default, Instance Manager includes a single role called `admin`. Depending on your requirements, you might need to create **additional roles** for the different User Groups, such as "user" and "nap-user".
 
 {{< include "admin-guides/access-control/create-role.md" >}}
 
-Create **user groups** in Instance Manager, for example, "nms-admins", "nms-users", and "nms-nap-users".  These User Groups will be mapped from Keycloak **Realm Roles** by name. 
+Create user groups in Instance Manager, for example, "nms-admins", "nms-users", and "nms-nap-users".  These User Groups will be mapped from Keycloak Realm Roles by name. 
 
 {{< include "admin-guides/access-control/create-group.md" >}}
 
@@ -53,18 +53,18 @@ Follow these steps to configure Keycloak.
 1. On the navigation menu, select **Clients**.
 1. Select **Create**.
 1. On the **Add Client** form, in the **Client ID** box, type "nms" as name for the client.
-1. On the **Client Protocol** drop-down list, select **openid-connect**.
+1. On the **Client Protocol** list, select **openid-connect**.
 1. Set the **Root URL** to the URL of the NGINX Management Suite instance, for example, `https://<your instance IP>:443/_codexch`.
 1. Select **Save**.
 
 After the client has been created, add the following configuration:
 
-1. On the **Settings** tab, in the **Access Type** drop-down list, select **confidential**.
-1. On the **Mappers** tab, select **Add Builtin**, and check **groups**. This will export the user's Keycloak Realm Role information for NGINX Management Suite to use.
+1. On the **Settings** tab, in the **Access Type** list, select **confidential**.
+1. On the **Mappers** tab, select **Add Builtin**, and select **groups**. This will export the user's Keycloak Realm Role information for NGINX Management Suite to use.
 
-NGINX Management Suite User Groups will be mapped from Keycloak **Realm Roles**; Keycloack Client Roles are **not** mapped. Make sure to use Keycloack top level roles (Realm Roles).
+NGINX Management Suite User Groups will be mapped from Keycloak **Realm Roles**; Keycloack Client Roles are **not** mapped. Make sure to use Keycloack top-level roles (Realm Roles).
 
-1. On the navigation menu, select **Realm Roles**  (or select **Roles** and then the **Realm Roles** tab, if you are in an older version of Keycloak).
+1. On the navigation menu, select **Realm Roles**  (or select **Roles** and then the **Realm Roles** tab if you are in an older version of Keycloak).
 1. Select **Create Role**.
 1. In the **Role Name** box, type the name of the first group you created in Instance Manager, for example "nms-admins".
 1. Select **Save**.
@@ -86,7 +86,7 @@ Create the users that will be allowed to log in to Instance Manager.
 Enable the Service Account for the client.
 
 1. On the navigation bar, select **Clients**.
-1. Select "Confidential" from the **Access Type** drop-down list.
+1. Select "Confidential" from the **Access Type** list.
 1. Select the "nms" client.
 1. On the **Service Account** tab, select **On**.
 1. Select **Save**.
@@ -98,7 +98,7 @@ Enable the Service Account for the client.
 
 ## Configure NGINX Management Suite to use Keycloak {#configure-nms}
 
-- Obtain the secret from Keycloak and set it as an environment variable on your NGINX Management Suite instance.
+- Copy the secret from Keycloak and set it as an environment variable on your NGINX Management Suite instance.
 
     On the Keycloak user interface:
 
@@ -137,7 +137,7 @@ Connect to your NGINX Management Suite instance and run the following commands:
     sudo cp /etc/nginx/conf.d/nms-http.conf ~/nms-http.conf.orig
     ``` 
 
-- Copy the OpenID configuration for NGINX to `/tmp` so we can replace the necessary values.
+- Copy the OpenID configuration for NGINX to `/tmp` so you can replace the necessary values.
 
     ```bash
     sudo cp /etc/nms/nginx/oidc/openid_configuration.conf /tmp/openid_configuration.conf
@@ -168,7 +168,7 @@ Connect to your NGINX Management Suite instance and run the following commands:
     }
     ```
 
-- Copy the nms-http.conf file to `/tmp` so we can replace the necessary values.
+- Copy the nms-http.conf file to `/tmp` so you can replace the necessary values.
 
     ```bash
     sudo cp /etc/nginx/conf.d/nms-http.conf /tmp/nms-http.conf

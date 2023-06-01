@@ -2,7 +2,7 @@ The default `admin` user or any user with `CREATE` permission for the **User Man
 
 To create a group, take the following steps:
 
-1. Open the NGINX Management Suite web interface and log in.
+1. Go to the FQDN for your NGINX Management Suite host in a web browser and log in.
 1. Select the **Settings** (gear) icon in the upper-right corner.
 
 1. On the left navigation menu, select **User Groups**.
