@@ -71,4 +71,4 @@ NGINX App Protect DoS provides comprehensive protection against Layer 7 denial-o
 Note that NGINX App Protect WAF can only be deployed on NGINX Plus.
 
 ### Next Steps
-
+Now that you've successfully installed NGINX, use [The Complete NGINX Cookbook] to find sample NGINX configurations for load balancing, cloud deployment, automation, containers, microservices, security, and more.
