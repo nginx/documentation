@@ -57,7 +57,7 @@ NGINX App Protect WAF is a lightweight, platform-agnostic WAF that protects appl
 2.	Follow the instructions in the [NGINX App Protect WAF installation guide]({{< ref "nap-waf/admin-guide/install" >}}) for your Linux distribution.
 3.  Follow the instructions in the [Security Monitoring installation guide]({{< ref "set-up-app-protect-instances">}}) to use App Protect WAF with NGINX Management Suite.
 
-Note that NGINX App Protect WAF can only be deployed on NGINX Plus.
+{{<note>}}NGINX App Protect WAF can only be deployed on NGINX Plus.{{</note>}}
 
 
 ### (Optional) Install NGINX App Protect DoS
