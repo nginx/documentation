@@ -38,7 +38,7 @@ NGINX Plus is built on top of NGINX open source and adds enterprise‑grade feat
 
 1. [Download your credentials from MyF5](https://my.f5.com/), including your NGINX Plus Certificate and public key (`nginx-repo.crt` and `nginx-repo.key`).
 2. Follow the instructions in the [NGINX Plus installation guide]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) to install it on a [supported operating system]({{< relref "/nginx/technical-specs.md" >}})
-3. [Install and configure NGINX Agent]({{< relref "/nginx-management-suite/nginx-agent/install-nginx-agent.md" >}}) on your NGINX Plus instance. 
+3. [Install and configure NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent.md" >}}) on your NGINX Plus instance. 
 
 
 ### Install the Instance Manager module
