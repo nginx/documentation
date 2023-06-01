@@ -22,7 +22,7 @@ aliases:
 
 ## Overview
 
-Complete the steps in this guide to secure Instance Manager with OpenID Connect (OIDC) using Keycloak as the identity provider. As an administrator, when you integrate OpenID authentication with Instance Manager, you can use role-based access control (RBAC) to limit user access to NGINX instances.
+Complete the steps in this guide to secure Instance Manager with OpenID Connect (OIDC) using the authorization code flow method and Keycloak as the identity provider. As an administrator, when you integrate OpenID authentication with Instance Manager, you can use role-based access control (RBAC) to limit user access to NGINX instances.
 
 ---
 
@@ -109,15 +109,6 @@ Enable the Service Account for the client.
 
     1. Set the following environment variable: `export KEYCLOAK_SECRET=<secret>`
     1. Update the NGINX Management Suite OIDC configuration and with the appropriate values:
-
-- To get the access token, send a POST request with `Content-Type` = `application/x-www-form-urlencoded` to `https://<keycloak-ip>:<port>/auth/realms/<realms-name>/protocol/openid-connect/token` with the following urlencoded args:
-
-    - client_id = name of the client created
-    - client_secret = "Secret" value obtained from the Keycloak user interface.
-    - grant_type = client_credentials
-
-
-    Use the access the resulting token as Bearer token in the Authorization header before sending any NGINX Management Suite or App Delivery Manager API calls for authentication.
 
 Connect to your NGINX Management Suite instance and run the following commands:
 
