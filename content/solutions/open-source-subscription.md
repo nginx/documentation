@@ -46,8 +46,8 @@ NGINX Management Suite Instance Manager makes it easy to inventory, configure, m
 
 1. [Download the products and distributions](https://my.f5.com/manage/s/downloads) you need from MyF5.
 2. Choose your target deployment environment and follow the appropriate installation guide to setup NGINX Management Suite:
-    - [Install on virtual machine or bare metal]({{< ref "/nms/installation/vm-bare-metal/_index.md" >}})
-    - [Install in Kubernetes using Helm]({{< ref "/nms/installation/kubernetes/_index.md" >}})
+    - [Install on virtual machine or bare metal]({{< relref "/nms/installation/vm-bare-metal/" >}})
+    - [Install in Kubernetes using Helm]({{< relref "/nms/installation/kubernetes/" >}})
 
 
 ### (Optional) Install NGINX App Protect WAF
