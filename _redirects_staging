@@ -40,6 +40,7 @@
 /nginx-management-suite/admin-guides/installation/uninstall-guide/ /nginx-management-suite/installation/uninstall-guide/ 301
 /nginx-management-suite/admin-guides/installation/upgrade-guide/ /nginx-management-suite/installation/upgrade-guide/ 301
 /nginx-management-suite/nim/how-to/nginx/count-nginx-plus-instances/ /nginx-management-suite/nim/how-to/usage-tracking/count-nginx-plus-instances/ 301
+/nginx-management-suite/admin-guides/installation/offline-install-guide/ /nginx-management-suite/installation/vm-bare-metal/offline-install-guide/ 301
 
 # NGINX Plus redirects
 /install-community-modules /nginx/admin-guide/installing-nginx/installing-nginx-plus/#installing-nginx-community-modules 301
@@ -53,6 +54,5 @@
 /nginxaas/azure/* https://staging--n4a-public-docs.netlify.app/nginxaas/azure/:splat 200!
 /nginx-agent/* https://staging--agent-public-docs.netlify.app/nginx-agent/:splat 200!
 /nginx-amplify/* https://staging--amplify-public-docs.netlify.app/nginx-amplify/:splat 200!
-/nginx-controller/* https://staging--ctlr-public-docs.netlify.app/nginx-controller/:splat 200!
 /nginx-ingress-controller/* https://staging--nginx-kubernetes-ingress.netlify.app/nginx-ingress-controller/:splat 200!
 /nginx-service-mesh/*   https://staging--mesh-public-docs.netlify.app/nginx-service-mesh/:splat 200!
