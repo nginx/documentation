@@ -28,12 +28,7 @@ The App Delivery Manager module or its pre-configured roles aren't shown after u
 
 #### Workaround
 
-- In a Kubernetes environment, delete the App Delivery Manager pod (which will result in a new pod starting) to resolve this.
-- In a non-Kubernetes environment, restarting the `nms-adm` service will solve this issue:
-
-  ```shell
-  sudo systemctl restart nms-adm
-  ```
+Use [Role-based Account Control]({{< relref "/nms/admin-guides/rbac/set-up-rbac.md" >}}) to prevent sharing of instance groups between App Delivery Manager and API Connectivity Manager.
 
 ---
 
@@ -224,7 +219,7 @@ When multiple modules are deployed on the same NGINX Management Suite instance, 
 
 #### Workaround
 
-Use [Role-based Account Control]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}) to prevent sharing of instance groups between App Delivery Manager and API Connectivity Manager.
+Use [Role-based Account Control]({{< relref "/nms/admin-guides/rbac/rbac-getting-started.md" >}}) to prevent sharing of instance groups between App Delivery Manager and API Connectivity Manager.
 
 ---
 

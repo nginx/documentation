@@ -55,6 +55,7 @@
 /nginx-management-suite/overview/ /nginx-management-suite/about/ 301
 /nginx-management-suite/admin-guides/installation/ /nginx-management-suite/installation/ 301
 /nginx-management-suite/adm/tutorials/usecase-templates/ /nginx-management-suite/adm/about/template-overview/ 301
+/nginx-management-suite/admin-guides/access-control/set-up-rbac/ /nginx-management-suite/nms/admin-guides/rbac/rbac-getting-started/ 301
 
 # NGINX Plus redirects
 /install-community-modules /nginx/admin-guide/installing-nginx/installing-nginx-plus/#installing-nginx-community-modules 301

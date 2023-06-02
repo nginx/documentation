@@ -8,7 +8,7 @@ draft: false
 # The description text appears in search results and at the top of the doc.
 description: "This topic explains what SCIM support is available for automating the management of user identity lifecycles."
 # Assign weights in increments of 100
-weight: 999
+weight: 500
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
@@ -25,10 +25,13 @@ authors: ["Patrick Phrem"]
 
 ---
 
+{{< custom-styles >}}
+
 <style>
-h2 {padding-top: 40px;}
-h3 {font-size: 1.75em; padding-top: 20px;}
-h4 {font-weight: bold; padding-top: 20px;}
+h2 {
+  border-top: 1px solid #ccc;
+  padding-top:20px;
+}
 </style>
 
 {{< shortversions "2.3.0" "latest" "nimvers" >}}
@@ -44,7 +47,7 @@ Instance Manager enforces RBAC for the SCIM APIs through the `USER-MANAGEMENT` f
 {{< see-also >}}
 A **feature** is a grouping of functionality in Instance Manager. A **role** definition is a collection of permissions for one or more features.
 
-For more information about features and roles, see the [Set Up RBAC]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}) topic.
+For more information about features and roles, see the [Set Up RBAC]({{< relref "/nms/admin-guides/rbac/rbac-getting-started.md" >}}) topic.
 {{< /see-also >}}
 
 ### SCIM Endpoints
@@ -172,7 +175,7 @@ In this request, `User` is assigned as a member.
 }
 ```
 
-{{< important >}}After creating a group with SCIM, you need to [assign roles to the group]({{< relref "/nms/admin-guides/access-control/set-up-rbac#create-group" >}}) in Instance Manager so the group has permissions associated with it.{{< /important >}}
+{{< important >}}After creating a group with SCIM, you need to [assign roles to the group]({{< relref "/nms/admin-guides/rbac/rbac-getting-started#create-group" >}}) in Instance Manager so the group has permissions associated with it.{{< /important >}}
 
 ## Update Users Created with SCIM
 

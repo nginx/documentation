@@ -869,7 +869,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Support for provisioning users and user groups with SCIM**
 
-  Now, you can [use SCIM to provision, update, or deprovision users and user groups]({{< relref "/nms/admin-guides/access-control/scim-provisioning.md" >}}) for your Identity Provider to Instance Manager. SCIM, short for "[System for Cross-domain Identity Management](http://www.simplecloud.info)," is an open API for managing identities.
+  Now, you can [use SCIM to provision, update, or deprovision users and user groups]({{< relref "/nms/admin-guides/authentication/oidc/scim-provisioning.md" >}}) for your Identity Provider to Instance Manager. SCIM, short for "[System for Cross-domain Identity Management](http://www.simplecloud.info)," is an open API for managing identities.
 
 - {{% icon-feature %}} **Instance Manager provides information about your NGINX App Protect WAF installations**
 
@@ -943,7 +943,7 @@ If you're running Instance Manager 1.x or earlier, follow the steps in the [Migr
 
 - {{% icon-feature %}} **Role-based access control added to Events and Metrics pages**
 
-  A warning message is shown when users try to view the Events and Metrics pages in the web interface if they don't have permission to access the Analytics feature. For instructions on assigning access to features using role-based access control (RBAC), see [Set Up RBAC]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}).
+  A warning message is shown when users try to view the Events and Metrics pages in the web interface if they don't have permission to access the Analytics feature. For instructions on assigning access to features using role-based access control (RBAC), see [Set Up RBAC]({{< relref "/nms/admin-guides/rbac/rbac-getting-started.md" >}}).
 
 - {{% icon-feature %}} **Filter events and metrics with custom time ranges**
 
@@ -1007,7 +1007,7 @@ This release includes the following new features and enhancements:
 
   RBAC has been updated and improved. Add users to roles -- or add users to user groups if you're using an external identity provider -- to limit access to Instance Manager features.
 
-  For more information, see the tutorial [Set Up RBAC]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}).
+  For more information, see the tutorial [Set Up RBAC]({{< relref "/nms/admin-guides/rbac/rbac-getting-started.md" >}}).
 
 - {{% icon-feature %}} **Deploy Instance Manager on Kubernetes using a helm chart**
 
@@ -1121,7 +1121,7 @@ This release includes the following new features and enhancements:
 
 - {{% icon-feature %}} **Improved user access control**
 
-  Instance Manager 2.x. allows you to create user access controls with tags. Administrators can grant users read or write access to perform instance management tasks. And admins can grant or restrict access to the Settings options, such as managing licenses and creating users and roles. See the [Set up Authentication]({{< relref "/nms/admin-guides/access-control/configure-authentication.md#rbac" >}}) guide for more details.
+  Instance Manager 2.x. allows you to create user access controls with tags. Administrators can grant users read or write access to perform instance management tasks. And admins can grant or restrict access to the Settings options, such as managing licenses and creating users and roles. See the [Set up Authentication]({{< relref "/nms/admin-guides/authentication/basic-authentication.md#rbac" >}}) guide for more details.
 
 - {{% icon-feature %}} **More metrics and instance dashboards**
 

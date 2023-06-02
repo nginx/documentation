@@ -18,10 +18,10 @@ aliases:
 
 ## Overview
 
-{{< deprecated >}}Adding tags to set up RBAC is deprecated in Instance Manager 2.1.0. To use the new RBAC, refer to the [Set Up RBAC]({{< relref "/nms/admin-guides/access-control/set-up-rbac" >}}) guide.
+{{< deprecated >}}Adding tags to set up RBAC is deprecated in Instance Manager 2.1.0. To use the new RBAC, refer to the [Set Up RBAC]({{< relref "/nms/admin-guides/rbac/rbac-getting-started" >}}) guide.
 {{< /deprecated >}}
 
-When [defining a role]({{< relref "/nms/admin-guides/access-control/configure-authentication.md#roles" >}}) in Instance Manager, you can use [tags]({{< relref "/nms/nim/how-to/nginx/add-tags.md" >}}) to restrict a role's permissions for groups of instances.
+When [defining a role]({{< relref "/nms/admin-guides/authentication/basic-authentication.md#roles" >}}) in Instance Manager, you can use [tags]({{< relref "/nms/nim/how-to/nginx/add-tags.md" >}}) to restrict a role's permissions for groups of instances.
 
 To access an instance with an assigned tag, a role must have `Instance Management` permission, and the permission needs to have a tag matching the instance's.
 
