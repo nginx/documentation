@@ -115,10 +115,6 @@ Repeat the steps in this section on each NGINX App Protect WAF data plane host t
    syslog_ip: "127.0.0.1"
    # Syslog server port the collector will be listening to
    syslog_port: 514
-   
-   extensions:
-   - nginx_app_protect
-   - nap_monitoring
    ```
 
 1. If the `location /api` directive has not been set up in the `nginx.conf` file, follow the example below to add it:
