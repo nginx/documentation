@@ -75,7 +75,7 @@ $ sudo apt install make
 ### Install a Container Engine
 A container engine will enable you to build images and run containers. NGINX Agent supports the [`Docker`](https://www.docker.com/) and [`Podman`](https://podman.io/) container engines. You will need to install the container engine that you plan to use. Most examples in this document are provided using the `Docker` container engine, with the exception of example under the [Rootless Containers](#rootless-containers) section.
 
-To install the Docker engine:
+To install the Docker engine run the following command:
 ```bash
 $ sudo apt get install docker.io
 ```
