@@ -98,7 +98,7 @@ The following command will produce an Ubuntu base image:
 $ PACKAGE_NAME=[PATH-TO-PACKAGE] make oss-image 
 ```
 
-To build the image using a different base image, substitute values for `OS_RELEASE` and `OS_VERSION` from the following table: 
+To build the image using a different base image, replace the values for `OS_RELEASE` and `OS_VERSION` with the options from the following table: 
 
 | OS_RELEASE       | OS_VERSION                 | 
 | ---------------- | -------------------------- | 
