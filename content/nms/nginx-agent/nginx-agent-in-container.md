@@ -119,7 +119,7 @@ Optional: Rather than specifying `PACKAGE_NAME` or `OS_RELEASE` on the command l
 ### Build Images with NGINX Agent and NGINX Plus
 Building an NGINX Agent bundled with NGINX Plus image requires an NGINX Plus license. NGINX Plus licenses are provided as `.crt` and `.key` files and must be renamed to `nginx-repo.crt` and `nginx-repo.key`, respectively. Begin by creating the `build` directory under the NGINX Agent source root directory (`[PATH_TO_NGINX_AGENT_SRC_ROOT]/build`).
 
-In the NGINX Agent source root, execute:
+In the NGINX Agent source root, run the following command:
 ```
 $ mkdir build
 ```
