@@ -80,7 +80,7 @@ To install the Docker engine run the following command:
 $ sudo apt get install docker.io
 ```
 
-To install the Podman engine:
+To install the Podman engine run the following command:
 ```bash
 $ sudo apt get install podman
 ```
