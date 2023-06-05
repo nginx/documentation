@@ -86,7 +86,7 @@ $ sudo apt get install podman
 ```
 
 ## Build Container Images
-[Dockerfiles](https://github.com/nginx/agent/tree/main/scripts/docker) defining container images are located in [NGINX Agent Github](https://github.com/nginx/agent) repository. Note that `docker build` commands must be run from the repository's root directory. The NGINX Agent repository provides Makefile targets simplifying the image building process. On some Operating Systems, `make` commands must be executed with root privileges (ie. via `sudo`).
+[Dockerfiles](https://github.com/nginx/agent/tree/main/scripts/docker) defining container images are located in the [NGINX Agent Github](https://github.com/nginx/agent) repository. Note that `docker build` commands must be run from the repository's root directory. The NGINX Agent repository provides Makefile targets simplifying the image-building process. On some Operating Systems, `make` commands must be executed with root privileges (running them with `sudo`).
 
 ### Build Images with NGINX Agent and NGINX Open Source
 Prior to building an NGINX Agent bundled with NGINX Open Source image, an NGINX Agent binary must be built or downloaded.
