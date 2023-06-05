@@ -59,7 +59,7 @@ $ cd agent
 ```
 
 ## Prepare your Environment
-In order to build container images using scripts available in the NGINX Agent repository, you will need to install several packages. Steps outlined in this document provide installation instructions for distributions that use the `apt` package manager (eg. Debain, Ubuntu, etc...). For installations on other operating systems, please refer to documentation within each prerequisite package. In some cases, it may help to update package source lists in your operating system before proceeding.
+To build container images using scripts available in the NGINX Agent repository, you will need to install several packages. The steps outlined in this document provide installation instructions for distributions that use the `apt` package manager (for example, for Debian, Ubuntu, etc.). For installations on other operating systems, please refer to the documentation within each prerequisite package. In some cases, it may help to update package source lists in your operating system before proceeding.
 
 ```bash
 $ sudo apt update
