@@ -83,17 +83,6 @@ Create the users that will be allowed to log in to Instance Manager.
 1. Select **Add selected**.
 
 
-Enable the Service Account for the client.
-
-1. On the navigation bar, select **Clients**.
-1. Select "Confidential" from the **Access Type** list.
-1. Select the "nms" client.
-1. On the **Service Account** tab, select **On**.
-1. Select **Save**.
-1. On the **Service Account Roles** tab, in the **Available Roles** list, select the NGINX Management Suite user group that you have created in Instance Manager, for example "nms-users".
-1. Select **Add selected**.
-1. Select **Save**.
-
 ---
 
 ## Configure NGINX Management Suite to use Keycloak {#configure-nms}
