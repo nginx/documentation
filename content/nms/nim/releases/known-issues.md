@@ -17,7 +17,54 @@ categories: ["known issues"]
 
 ---
 
+## 2.11.0
+
+
+
+### {{% icon-bug %}} Updating Attack Signatures or Threat Campaigns on multiple instances simultaneously updates only one instance {#42838}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status |
+|----------|--------|
+| 42838    | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+When updating Attack Signatures or Threat Campaign packages on multiple instances simultaneously, only one instance may be successfully updated. An error similar to the following is logged: `security policy bundle object with given ID was not found.`
+
+#### Workaround
+
+Update the Attack Signatures or Threat Campaigns package one instance at a time.
+
+---
+
 ## 2.10.0
+
+### {{% icon-bug %}} Unable to publish configurations referencing the log bundle for Security Monitor {#42932}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status |
+|----------|--------|
+| 42932    | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+Configuration deployments that reference the log bundle for Security Monitoring (app_protect_security_log "/etc/nms/secops_dashboard.tgz" syslog:server=127.0.0.1:514;), may fail with an error message similar to the following:
+
+<instance>: error while retrieving NGINX App Protect profile bundle secops_dashboard info for NAP version 4.279.0: Not Found. Please create it first.
+<br>
+
+#### Workaround
+
+On the NGINX Management Suite host, restart platform services:
+
+```bash
+sudo systemctl restart nms
+```
+
+---
 
 ### {{% icon-resolved %}} Valid licenses incorrectly identified as invalid {#42598}
 
