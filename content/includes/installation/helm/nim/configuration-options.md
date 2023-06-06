@@ -36,6 +36,7 @@ To modify a configuration for an existing release, run the `helm upgrade` comman
 | `nms-hybrid.apigw.image.pullPolicy`                   | Image pull policy. | `IfNotPresent` |
 | `nms-hybrid.apigw.container.port.https`               | Container HTTPS port. | `443` |
 | `nms-hybrid.apigw.service.name`                       | Service name. | `apigw` |
+| `nms-hybrid.apigw.service.type`                       | Service type. Options: `ClusterIp`, `LoadBalancer`, `NodePort` | `ClusterIp` |
 | `nms-hybrid.apigw.service.httpsPort`                  | Service HTTPS port. | `443` |
 | `nms-hybrid.apigw.resources.requests.cpu`             | Minimum required CPU on a node to run `core`. | `250m` |
 | `nms-hybrid.apigw.resources.requests.memory`          | Minimum required memory on a node to run `core`. | `256Mi` |
