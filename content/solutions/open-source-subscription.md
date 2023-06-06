@@ -28,12 +28,12 @@ It also includes commercial support for:
 ### Install NGINX Open Source
 NGINX is the only all-in-one software web server, load balancer, reverse proxy, content cache, and API gateway.
 
-- Download the NGINX open source packages for one of the supported operating systems from [NGINX Linux Packages](https://nginx.org/en/linux_packages.html). 
-- Follow the instructions to [install NGINX open source]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-open-source.md" >}}).
+- Download the NGINX Open Source packages for one of the supported operating systems from [NGINX Linux Packages](https://nginx.org/en/linux_packages.html). 
+- Follow the instructions to [install NGINX Open Source]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-open-source.md" >}}).
 - Alternatively, if you prefer to build NGINX from source, see [Build NGINX from source]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-open-source.md#compiling-and-installing-from-source" >}}).
 
 ### Install NGINX Plus
-NGINX Plus is built on top of NGINX open source and adds enterprise‑grade features like high availability, active health checks, DNS system discovery, session persistence, and a RESTful API.
+NGINX Plus is built on top of NGINX open source and adds enterprise‑grade features such as high availability, active health checks, DNS system discovery, session persistence, a RESTful API, and many more.
 
 1. [Download your credentials from MyF5](https://my.f5.com/), including your NGINX Plus Certificate and public key (`nginx-repo.crt` and `nginx-repo.key`).
 2. Follow the instructions in the [NGINX Plus installation guide]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) to install it on a [supported operating system]({{< relref "/nginx/technical-specs.md" >}}).
@@ -67,4 +67,4 @@ NGINX App Protect DoS provides comprehensive protection against Layer 7 denial-o
 Note that NGINX App Protect WAF can only be deployed on NGINX Plus.
 
 ### Next Steps
-Now that you've successfully installed NGINX, use [The Complete NGINX Cookbook] to find sample NGINX configurations for load balancing, cloud deployment, automation, containers, microservices, security, and more.
+Now that you've successfully installed NGINX, use [The Complete NGINX Cookbook](https://www.nginx.com/resources/library/complete-nginx-cookbook) to find sample NGINX configurations for load balancing, cloud deployment, automation, containers, microservices, security, and more.
