@@ -31,7 +31,7 @@ doctypes: ["reference"]
 
 ## 1.5.0
 
-June 8, 2023
+June 12, 2023
 
 ### Upgrade Paths
 
