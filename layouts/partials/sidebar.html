@@ -11,7 +11,7 @@
     
     <ul>
     <!-- Use FirstSection here to keep the current product as the top level of the nav -->
-    {{ range .FirstSection.Pages.ByWeight }}
+    {{ range .FirstSection.Pages.ByWeight }}<!-- Level 1 Regular Pages -->
         <!-- Create a regular list item for pages -->
         {{if eq .Kind "page"}}
         <li class="nginx-toc-link l1">
@@ -94,23 +94,43 @@
                                                                                 <ul>
                                                                             </div>
 
-                                                                            <div id="{{.Section | urlize}}--{{.Parent.Parent.File.ContentBaseName}}--{{.Parent.File.ContentBaseName}}--{{.Title | urlize}}" class="accordion-body collapse leaf">
+                                                                            <div id="{{.Section | urlize}}--{{.Parent.File.ContentBaseName}}--{{.Title | urlize}}" class="accordion-body collapse leaf">
                                                                                 <div class="accordion-inner">
-                                                                                {{ range .Pages }}
-                                                                                <ul class="sidebar-l2-padding">
-                                                                                    <li class="nginx-toc-link l3 sidebar-il-border ">
-                                                                                        <a data-menu-id="{{.RelPermalink}}"
-                                                                                            href="{{ .Permalink }}">{{ .Title }}</a>
-                                                                                    </li>
-                                                                                </ul>
-                                                                                {{ end }}
+                                                                                    {{ range .Sections }}
+                                                                                    <div class="accordion" id="Accordion5">
+                                                                                        <div class="sidebar-l2-padding">
+                                                                                            <div class="accordion-group sidebar-il-border">
+                                                                                                <div class="accordion-heading">
+                                                                                                    <ul>
+                                                                                                        <li class="nginx-toc-link l2">
+                                                                                                            <a data-menu-id="{{.RelPermalink}}" class="accordion-toggle"
+                                                                                                                aria-expanded="false" data-toggle="collapse"
+                                                                                                                href="#{{.Section | urlize}}--{{.Parent.File.ContentBaseName}}--{{.Title | urlize}}">
+                                                                                                                <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                                                                                                    class="fa fa-2xs fa-fw fa-chevron-down"></i>{{ .Title }}</a>
+                                                                                                        </li>
+                                                                                                    <ul>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    {{ end }}
+                                                                                    {{ range .RegularPages }}<!-- Level 5 Regular Pages -->
+                                                                                    <ul class="sidebar-l2-padding">
+                                                                                        <li class="nginx-toc-link l3 sidebar-il-border ">
+                                                                                            <a data-menu-id="{{.RelPermalink}}"
+                                                                                                href="{{ .Permalink }}">{{ .Title }}</a>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                    {{ end }}
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
+
                                                                 {{ end }}
-                                                                {{ range .RegularPages }}
+                                                                {{ range .RegularPages }}<!-- Level 4 Regular Pages -->
                                                                 <ul class="sidebar-l2-padding">
                                                                     <li class="nginx-toc-link l3 sidebar-il-border ">
                                                                         <a data-menu-id="{{.RelPermalink}}"
@@ -124,7 +144,7 @@
                                                 </div>
                                             </div>
                                             {{ end }}
-                                            {{ range .RegularPages }}
+                                            {{ range .RegularPages }}<!-- Level 3 Regular Pages -->
                                             <ul class="sidebar-l2-padding">
                                                 <li class="nginx-toc-link l3 sidebar-il-border ">
                                                     <a data-menu-id="{{.RelPermalink}}"
@@ -138,7 +158,7 @@
                             </div>
                         </div>
                         {{ end }}
-                        {{ range .RegularPages }}
+                        {{ range .RegularPages }} <!-- Level 2 Regular Pages -->
                         <ul class="sidebar-reg-padding">
                             <div class="accordion" id="accordion2">
                                 <div class="accordion-group sidebar-il-border">
