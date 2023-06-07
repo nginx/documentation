@@ -30,7 +30,7 @@ The table below shows the captured data points, the trigger conditions, and thei
 {{<bootstrap-table "table table-striped table-bordered">}}
 | <div style="width:250px">Data Point</div>            | Triggering Event                            | Purpose |
 |--------------------------|------------------------------------|-------|
-| Installation | The first time NGINX Management Suite processes are started. | To gauge the ease of installation and how long it takes for users to see value from NGINX Management Suite. |
+| Installation | The first time NGINX Management Suite processes are started. | To measure the difficulty of the installation and how long it takes for users to see value from NGINX Management Suite. |
 | Login | When a user logs in to NGINX Management Suite. No data about the user is sent; only the fact that a user successfully authenticated and the timestamp of the login event. | To understand how often users or systems access NGINX Management Suite. |
 | Start/Stop NGINX Management Suite processes | When any of the NGINX Management Suite processes are started or stopped. | To understand how often users are upgrading or troubleshooting issues with NGINX Management suite. This information assists F5 Support in diagnosing issues. |
 | Adding Data Plane(s)      | When NGINX Agent registers with NGINX Management Suite for the first time. No data about the data plane is sent, just that an NGINX Agent registered with the platform. | To understand how often and how many data planes are added to NGINX Management Suite. This information helps inform our scale and performance targets and assists F5 Support in diagnosing issues. |
