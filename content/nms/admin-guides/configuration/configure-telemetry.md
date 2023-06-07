@@ -40,7 +40,7 @@ The table below shows the captured data points, the trigger conditions, and thei
 
 Once you've successfully applied a valid license to NGINX Management Suite, the platform will automatically try to send the specified data points to F5. It may also include data points captured shortly before the license was applied. For instance, if you install NGINX Management Suite and immediately apply the license, the Installation data point will be sent.
 
-You can disable telemetry sharing at any time. Simply access the NGINX Management Suite web interface and select **Settings > License**. Additionally, you can disable the feature using the `/license` API endpoint. If you change your mind, you can re-enable telemetry from the same locations.
+You can disable telemetry sharing at any time: Access the NGINX Management Suite web interface and select **Settings > License**. Additionally, you can disable the feature using the `/license` API endpoint. You can re-enable telemetry from the same locations if you change your mind.
 
 ## Firewall Settings
 
