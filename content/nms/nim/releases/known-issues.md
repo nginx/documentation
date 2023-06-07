@@ -19,7 +19,25 @@ categories: ["known issues"]
 
 ## 2.11.0
 
+### {{% icon-bug %}} Error: "Failed to create secret sh.helm.release.v1.(release-name).v1" when reinstalling or upgrading NGINX Management Suite in Kubernetes {#42967}
 
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status |
+|----------|--------|
+| 42967    | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+When deploying NGINX Management Suite in Kubernetes, if you have previously run the support package script and the output is still in the default location, you may encounter an error message similar to the following when reinstalling or upgrading NGINX Management Suite:
+
+`Failed to create: Secret "sh.helm.release.v1.(release-name).v1"`
+
+#### Workaround
+
+Delete or move the support package output files: `nms-hybrid/support-package/k8s-support-pkg-*.tgz`.
+
+---
 
 ### {{% icon-bug %}} Updating Attack Signatures or Threat Campaigns on multiple instances simultaneously updates only one instance {#42838}
 
