@@ -29,7 +29,7 @@ categories: ["known issues"]
 
 #### Description
 
-When deploying NGINX Management Suite in Kubernetes, if you have previously run the support package script and the output is still in the default location, you may encounter an error message similar to the following when reinstalling or upgrading NGINX Management Suite:
+When deploying NGINX Management Suite in Kubernetes, if you have previously run the support package script and the output is still in the default location, you may encounter an error message similar to the following example when reinstalling or upgrading NGINX Management Suite:
 
 `Failed to create: Secret "sh.helm.release.v1.(release-name).v1"`
 
