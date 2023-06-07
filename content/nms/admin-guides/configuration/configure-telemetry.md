@@ -23,7 +23,7 @@ authors: []
 
 NGINX Management Suite sends a limited set of data points to F5 for analysis. This telemetry data is associated only with the subscription ID from the applied license and does not include any other identifiable information about the management plane, data plane, users, or other details.
 
-The purpose of collecting this telemetry data is twofold. Firstly, it helps drive and validate product development decisions, ensuring optimal outcomes for our users. Secondly, it assists our Customer Success and Support teams in ensuring that our users successfully achieve their goals.
+The purpose of collecting this telemetry data is twofold. Firstly, it helps drive and validate product development decisions, ensuring optimal outcomes for our users. Secondly, it assists our Customer Success and Support teams ensure that our users successfully achieve their goals.
 
 The table below shows the captured data points, the trigger conditions, and their respective purposes. We may add additional data points in the future.
 
