@@ -114,9 +114,9 @@ Connect to your NGINX Management Suite instance and run the following commands:
     # Choose an appropriate Hash-Based Message Authentication Code (HMAC)
     export HMAC_KEY="<insert-HMAC>"
 
-    export KEYCLOAK_AUTH_ENDPOINT=$(curl -k "https://$KEYCLOAK_IP:8443/auth/realms/nginx/.well-known/openid-configuration" | jq -r ".authorization_endpoint")
-    export KEYCLOAK_TOKEN_ENDPOINT=$(curl -k "https://$KEYCLOAK_IP:8443/auth/realms/nginx/.well-known/openid-configuration" | jq -r ".token_endpoint")
-    export KEYCLOAK_KEYS_ENDPOINT=$(curl -k "https://$KEYCLOAK_IP:8443/auth/realms/nginx/.well-known/openid-configuration" | jq -r ".jwks_uri")
+    export KEYCLOAK_AUTH_ENDPOINT=$(curl -k "https://$KEYCLOAK_IP:8443/auth/realms/<realm-name>/.well-known/openid-configuration" | jq -r ".authorization_endpoint")
+    export KEYCLOAK_TOKEN_ENDPOINT=$(curl -k "https://$KEYCLOAK_IP:8443/auth/realms/<realm-name>/.well-known/openid-configuration" | jq -r ".token_endpoint")
+    export KEYCLOAK_KEYS_ENDPOINT=$(curl -k "https://$KEYCLOAK_IP:8443/auth/realms/<realm-name>/.well-known/openid-configuration" | jq -r ".jwks_uri")
     ``` 
 
 - Back up the original configuration files. 
