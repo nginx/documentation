@@ -7,8 +7,11 @@
 /nginx-for-azure/* /nginxaas/azure/:splat 301
 /nginxaas/azure/management/manual-scale/ https://docs.nginx.com/nginxaas/azure/management/scaling/ 301
 /nginxaas/azure/quickstart/overview/ /nginxaas/azure/overview/overview/ 301
-/nginxaas/azure/management/nginx-configuration/ /nginxaas/azure/getting-started/configuration/nginx-configuration/ 301
-/nginxaas/azure/management/ssl-tls-certificates/ /nginxaas/azure/getting-started/configuration/ssl-tls-certificates/ 301
+/nginxaas/azure/management/nginx-configuration/ /nginxaas/azure/getting-started/nginx-configuration/ 301
+/nginxaas/azure/management/ssl-tls-certificates/ /nginxaas/azure/getting-started/ssl-tls-certificates/ 301
+/nginxaas/azure/getting-started/configuration/managed-identity/ /nginxaas/azure/getting-started/managed-identity/ 301
+/nginxaas/azure/getting-started/configuration/nginx-configuration/ /nginxaas/azure/getting-started/nginx-configuration/ 301
+/nginxaas/azure/getting-started/configuration/ssl-tls-certificates/ /nginxaas/azure/getting-started/ssl-tls-certificates/ 301
 
 # NGINX Management Suite redirects
 /nginx-management-suite/nginx-instance-manager/* /nginx-management-suite/nim/:splat 301!
