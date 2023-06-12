@@ -19,7 +19,87 @@ categories: ["known issues"]
 
 ## 2.11.0
 
-### {{% icon-bug %}} Error: "Failed to create secret sh.helm.release.v1.(release-name).v1" when reinstalling or upgrading NGINX Management Suite in Kubernetes {#42967}
+
+### {{% icon-bug %}} Querying API endpoints for Security deployments associations may return empty UIDs for Attack-Signatures and Threat-Campaigns {#43034}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status |
+|----------|--------|
+| 43034    | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+When querying the following API endpoints for Security deployment associations, you may encounter results where the UID value for Attack-Signatures and Threat-Campaigns is empty. 
+
+- /api/platform/v1/security/deployments/attack-signatures/associations
+- /api/platform/v1/security/deployments/threat-campaigns/associations
+- /api/platform/v1/security/deployments/associations/NginxDefaultPolicy
+
+#### Workaround
+
+To obtain the UID value for Attack-Signatures and Threat-Campaigns, you can query the following API endpoints:
+
+- /api/platform/v1/security/attack-signatures
+- /api/platform/v1/security/threat-campaigns
+
+---
+
+### {{% icon-bug %}} Publication status of instance groups may be shown as 'not available' after restarting NGINX Management Suite {#43016}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status |
+|----------|--------|
+| 43016    | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+After restarting the NGINX Management Suite services, the publication status of instance groups for deployments that include a security policy may show as 'not available'.
+
+#### Workaround
+
+Redeploy a new version of the security policy or an updated 'nginx.conf'.
+
+---
+
+### {{% icon-bug %}} When adding a Certs RBAC permission, the "Applies to" field may display as "nginx-repo" {#43012}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status |
+|----------|--------|
+| 43012    | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+In certain situations, when you update a certificate or key using the NGINX Management Suite web interface, and subsequently add or edit a Certificate permission for Role-Based Access Control (RBAC) in **Settings > Roles**, you may notice that the "Applies to" name appears as "nginx-repo".
+
+#### Workaround
+
+Use the unique identifier to assign specific permissions to a particular certificate and key pair.
+
+---
+
+### {{% icon-bug %}} Agent 2.26 has issues when deployed in RHEL9 with SELinux {#43010}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status |
+|----------|--------|
+| 43010    | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+NGINX Agent 2.26, which is packaged with Instance Manager 2.11, may fail to start on RHEL 9 systems with SELinux enabled. An error similar to the following is logged: "Unable to read dynamic config".
+
+#### Workaround
+
+Use an earlier version of the NGINX Agent. You can install the NGINX Agent from [GitHub](https://github.com/nginx/agent) or the [NGINX Plus repository]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
+
+---
+
+### {{% icon-bug %}} Error: "Failed to create secret" when reinstalling or upgrading NGINX Management Suite in Kubernetes {#42967}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID | Status |
@@ -262,6 +342,26 @@ NGINX Agent introduced the `config_reload_monitoring_period` parameter under `ng
 #### Workaround
 
 Adjust the `config_reload_monitoring_period` parameter to a value that suits your workflow. 
+
+---
+
+## 2.9.1
+
+### {{% icon-bug %}} OIDC-authenticated users can't view the Users list using the API or web interface {#43031}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status |
+|----------|--------|
+| 43031    | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+When you use OIDC-based authentication in NGINX Management Suite, if the identity provider (IdP) sends an email address with an invalid format, users will be unable to access the list of Users through the web interface or API.
+
+#### Workaround
+
+To resolve this issue, please update the email addresses in your identity provider and ensure that all addresses are properly formatted. Once the email addresses are correctly formatted, users will be able to view the list of Users in the NGINX Management Suite.
 
 ---
 
