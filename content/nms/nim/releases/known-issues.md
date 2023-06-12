@@ -345,6 +345,26 @@ Adjust the `config_reload_monitoring_period` parameter to a value that suits you
 
 ---
 
+## 2.9.1
+
+### {{% icon-bug %}} OIDC-authenticated users can't view the Users list using the API or web interface {#43031}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status |
+|----------|--------|
+| 43031    | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+When you use OIDC-based authentication in NGINX Management Suite, if the identity provider (IdP) sends an email address with an invalid format, users will be unable to access the list of Users through the web interface or API.
+
+#### Workaround
+
+To resolve this issue, please update the email addresses in your identity provider and ensure that all addresses are properly formatted. Once the email addresses are correctly formatted, users will be able to view the list of Users in the NGINX Management Suite.
+
+---
+
 ## 2.9.0
 
 #### <span style="color: #c20025;"><i class="fas fa-exclamation-triangle"></i> BREAKING CHANGE!</span> OIDC configurations for the management plane must be updated after upgrading to Instance Manager 2.9.0
