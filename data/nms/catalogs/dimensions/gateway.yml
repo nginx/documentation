@@ -6,7 +6,7 @@
 # form or by any means, electronic or mechanical, for any purpose,
 # without express written permission of F5, Inc.
 #
-description: "The name of gateway. The gateway can be shared across applications."
+description: "The UUID of the gateway."
 name: gateway
 db_column_name: gateway
 type: string
