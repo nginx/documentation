@@ -6,7 +6,7 @@
 # form or by any means, electronic or mechanical, for any purpose,
 # without express written permission of F5, Inc.
 #
-description: "The name of an application component."
+description: "The UUID of the component."
 name: component
 db_column_name: component
 type: string

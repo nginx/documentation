@@ -17,7 +17,152 @@ categories: ["known issues"]
 
 ---
 
+## 2.11.0
+
+
+### {{% icon-bug %}} Querying API endpoints for Security deployments associations may return empty UIDs for Attack-Signatures and Threat-Campaigns {#43034}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status |
+|----------|--------|
+| 43034    | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+When querying the following API endpoints for Security deployment associations, you may encounter results where the UID value for Attack-Signatures and Threat-Campaigns is empty. 
+
+- /api/platform/v1/security/deployments/attack-signatures/associations
+- /api/platform/v1/security/deployments/threat-campaigns/associations
+- /api/platform/v1/security/deployments/associations/NginxDefaultPolicy
+
+#### Workaround
+
+To obtain the UID value for Attack-Signatures and Threat-Campaigns, you can query the following API endpoints:
+
+- /api/platform/v1/security/attack-signatures
+- /api/platform/v1/security/threat-campaigns
+
+---
+
+### {{% icon-bug %}} Publication status of instance groups may be shown as 'not available' after restarting NGINX Management Suite {#43016}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status |
+|----------|--------|
+| 43016    | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+After restarting the NGINX Management Suite services, the publication status of instance groups for deployments that include a security policy may show as 'not available'.
+
+#### Workaround
+
+Redeploy a new version of the security policy or an updated 'nginx.conf'.
+
+---
+
+### {{% icon-bug %}} When adding a Certs RBAC permission, the "Applies to" field may display as "nginx-repo" {#43012}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status |
+|----------|--------|
+| 43012    | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+In certain situations, when you update a certificate or key using the NGINX Management Suite web interface, and subsequently add or edit a Certificate permission for Role-Based Access Control (RBAC) in **Settings > Roles**, you may notice that the "Applies to" name appears as "nginx-repo".
+
+#### Workaround
+
+Use the unique identifier to assign specific permissions to a particular certificate and key pair.
+
+---
+
+### {{% icon-bug %}} Agent 2.26 has issues when deployed in RHEL9 with SELinux {#43010}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status |
+|----------|--------|
+| 43010    | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+NGINX Agent 2.26, which is packaged with Instance Manager 2.11, may fail to start on RHEL 9 systems with SELinux enabled. An error similar to the following is logged: "Unable to read dynamic config".
+
+#### Workaround
+
+Use an earlier version of the NGINX Agent. You can install the NGINX Agent from [GitHub](https://github.com/nginx/agent) or the [NGINX Plus repository]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
+
+---
+
+### {{% icon-bug %}} Error: "Failed to create secret" when reinstalling or upgrading NGINX Management Suite in Kubernetes {#42967}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status |
+|----------|--------|
+| 42967    | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+When deploying NGINX Management Suite in Kubernetes, if you have previously run the support package script and the output is still in the default location, you may encounter an error message similar to the following example when reinstalling or upgrading NGINX Management Suite:
+
+`Failed to create: Secret "sh.helm.release.v1.(release-name).v1"`
+
+#### Workaround
+
+Delete or move the support package output files: `nms-hybrid/support-package/k8s-support-pkg-*.tgz`.
+
+---
+
+### {{% icon-bug %}} Updating Attack Signatures or Threat Campaigns on multiple instances simultaneously updates only one instance {#42838}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status |
+|----------|--------|
+| 42838    | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+When updating Attack Signatures or Threat Campaign packages on multiple instances simultaneously, only one instance may be successfully updated. An error similar to the following is logged: `security policy bundle object with given ID was not found.`
+
+#### Workaround
+
+Update the Attack Signatures or Threat Campaigns package one instance at a time.
+
+---
+
 ## 2.10.0
+
+### {{% icon-bug %}} Unable to publish configurations referencing the log bundle for Security Monitor {#42932}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status |
+|----------|--------|
+| 42932    | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+Configuration deployments that reference the log bundle for Security Monitoring (app_protect_security_log "/etc/nms/secops_dashboard.tgz" syslog:server=127.0.0.1:514;), may fail with an error message similar to the following:
+
+<instance>: error while retrieving NGINX App Protect profile bundle secops_dashboard info for NAP version 4.279.0: Not Found. Please create it first.
+<br>
+
+#### Workaround
+
+On the NGINX Management Suite host, restart platform services:
+
+```bash
+sudo systemctl restart nms
+```
+
+---
 
 ### {{% icon-resolved %}} Valid licenses incorrectly identified as invalid {#42598}
 
@@ -33,12 +178,40 @@ Sometimes, valid licenses for NGINX Management Suite are incorrectly identified 
 
 ---
 
-### {{% icon-bug %}} The Metrics module is interrupted during installation on Red Hat 9 {#42219}
+###  {{% icon-resolved %}} Certificate updates allow for multiples certs to share the same serial number {#42429}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 42219    | Open   |
+| Issue ID | Status          |
+|----------|-----------------|
+| 42429    | Fixed in 2.11.0 |
+{{</bootstrap-table>}}
+
+#### Description
+
+It is possible to update an existing certificate's serial number to one already in use. This incorrectly changes the cert (matching the serial number) details to a new name.
+
+---
+
+###  {{% icon-resolved %}} Certificate file is not updated automatically under certain conditions {#42425}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status          |
+|----------|-----------------|
+| 42425    | Fixed in 2.11.0 |
+{{</bootstrap-table>}}
+
+#### Description
+
+Certificate file is not updated automatically when a config change is pushed to an offline instance after it comes back online.
+
+---
+
+### {{% icon-resolved %}} The Metrics module is interrupted during installation on Red Hat 9 {#42219}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status          |
+|----------|-----------------|
+| 42219    | Fixed in 2.11.0 |
 {{</bootstrap-table>}}
 
 #### Description
@@ -83,12 +256,12 @@ Threat Campaign versions can be published with the API using the route: `api/pla
 
 ---
 
-### {{% icon-bug %}} Duplicate Certificate and Key published for managed certificates {#42182}
+### {{% icon-resolved %}} Duplicate Certificate and Key published for managed certificates {#42182}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 42182    | Open   |
+| Issue ID | Status          |
+|----------|-----------------|
+| 42182    | Fixed in 2.11.0 |
 {{</bootstrap-table>}}
 
 #### Description
@@ -169,6 +342,26 @@ NGINX Agent introduced the `config_reload_monitoring_period` parameter under `ng
 #### Workaround
 
 Adjust the `config_reload_monitoring_period` parameter to a value that suits your workflow. 
+
+---
+
+## 2.9.1
+
+### {{% icon-bug %}} OIDC-authenticated users can't view the Users list using the API or web interface {#43031}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status |
+|----------|--------|
+| 43031    | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+When you use OIDC-based authentication in NGINX Management Suite, if the identity provider (IdP) sends an email address with an invalid format, users will be unable to access the list of Users through the web interface or API.
+
+#### Workaround
+
+To resolve this issue, please update the email addresses in your identity provider and ensure that all addresses are properly formatted. Once the email addresses are correctly formatted, users will be able to view the list of Users in the NGINX Management Suite.
 
 ---
 
@@ -644,12 +837,12 @@ The values currently populated for http.version_schema are incorrect. The respon
 
 ---
 
-### {{% icon-bug %}} Count of NGINX Plus graph has a delay in being populated {#37705}
+### {{% icon-resolved %}} Count of NGINX Plus graph has a delay in being populated {#37705}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 37705    | Open   |
+| Issue ID | Status          |
+|----------|-----------------|
+| 37705    | Fixed in 2.11.0 |
 {{</bootstrap-table>}}
 
 #### Description
