@@ -10,7 +10,7 @@
 ---
 name: system.disk.in_use
 categories:
-- system
+  - system
 description: System disk usage statistics, percentage.
 type: gauge
 counted: true
@@ -19,19 +19,19 @@ unit: percent
 visible: true
 compound_payload: "false"
 modules:
-- platform
+  - platform
 aggregations:
-- MIN
-- MAX
-- SUM
-- AVG
-- COUNT
-- RATE
+  - MIN
+  - MAX
+  - SUM
+  - AVG
+  - COUNT
+  - RATE
 dimensions:
-- system_id
-- hostname
-- display_name
-- nginx_id
-- file_path
-- instance_group
-- system.tags
+  - system_id
+  - hostname
+  - display_name
+  - nginx_id
+  - mount_point
+  - instance_group
+  - system.tags
