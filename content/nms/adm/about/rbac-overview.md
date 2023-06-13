@@ -142,7 +142,7 @@ Web components allow users to define routing behavior for the URIs under the app
 
 The Platform Ops admin wants to enable teams and individuals to self-service their access to services and data so that they can work independently, and complete their jobs quickly while not interfering with the work of others or unintentionally accessing data they have not been explicitly granted access to.
 
-The Enterprise has a single website, `https://www.example.com`. This website serves two apps at the paths`/support` and `/sales`, each of which is owned by different teams. Additionally, there is a dedicated Admin responsible for managing ingress (gateway) to apps and a Read-only role meant for auditing purposes.
+The Enterprise has a single website, `https://www.example.com`. This website serves two apps at the paths`/marketing` and `/sales`, each of which is owned by different teams. Additionally, there is a dedicated Admin responsible for managing ingress (gateway) to apps and a Read-only role meant for auditing purposes.
 
 ### Role Configurations
 
@@ -150,11 +150,11 @@ Details:
 
 - One environment - example-env
 - One gateway (server block) - `www.example.com`
-- Two Apps (Support and Sales), each with one web component (location blocks) (/support and /sales)
+- Two Apps (Marketing and Sales), each with one web component (location blocks) (/marketing and /sales)
 - The website uses HTTPS
 - There is one instance group (ig1)
 - There is one site (site1)
-* Web components report analytics
+- Web components report analytics
 
 #### Example-Admin Role
 
@@ -597,9 +597,9 @@ Finally, give READ access to ANALYTICS.
 
 </details>
 
-#### Support-App Role
+#### Marketing-App Role
 
-This role has access to the environment example-env and the gateway that serves as the ingress point for traffic to `www.example.com`. Additionally, this role has full access rights to the Support app and any referenced component, for example, /support. This role also has access to any traffic metrics for these specific objects. This role should not have access to any other app or components or their data.
+This role has access to the environment example-env and the gateway that serves as the ingress point for traffic to `www.example.com`. Additionally, this role has full access rights to the Marketing app and any referenced component, for example, /marketing. This role also has access to any traffic metrics for these specific objects. This role should not have access to any other app or components or their data.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
@@ -607,8 +607,8 @@ This role has access to the environment example-env and the gateway that serves 
 | ------------------------ | ------------------ | ------------------------- |
 | ENVIRONMENT-MANAGEMENT   | READ               | Environments: example-env |
 | GATEWAY-MANAGEMENT       | READ               | Environments: example-env  <br /> Gateways: example.com |
-| APP-MANAGEMENT           | CRUD               | Environments: example-env <br /> Apps: Support |
-| WEB-COMPONENT-MANAGEMENT | CRUD               | Environments: example-env <br /> Apps: Support <br /> Web Components: All |
+| APP-MANAGEMENT           | RU                 | Environments: example-env <br /> Apps: Marketing |
+| WEB-COMPONENT-MANAGEMENT | CRUD               | Environments: example-env <br /> Apps: Marketing <br /> Web Components: All |
 | SITE-MANAGEMENT          | READ               | Sites: site1              |
 | INSTANCE-GROUPS          | READ               | Instance Groups: ig1      |
 | CERTS                    | None               | None                      |
@@ -622,8 +622,8 @@ This role has access to the environment example-env and the gateway that serves 
 ```json
 {
   "metadata": {
-    "displayName": "Support App Role",
-    "name": "support-app-role",
+    "displayName": "Marketing App Role",
+    "name": "marketing-app-role",
     "description": ""
   },
   "roleDef": {
@@ -637,17 +637,15 @@ This role has access to the environment example-env and the gateway that serves 
       },
       {
         "accessTypes": [
-          "CREATE",
           "READ",
-          "UPDATE",
-          "DELETE"
+          "UPDATE"
         ],
         "feature": "APP-MANAGEMENT",
         "objects": [
           {
             "resource": "Apps",
             "values": [
-              "<supportUID>"
+              "<marketingUID>"
             ]
           },
           {
@@ -732,7 +730,7 @@ This role has access to the environment example-env and the gateway that serves 
           {
             "resource": "Apps",
             "values": [
-              "<supportUID>"
+              "<marketingUID>"
             ]
           },
           {
@@ -759,28 +757,28 @@ This role has access to the environment example-env and the gateway that serves 
 <details>
 <summary>User Interface Roles Setup</summary>
 
-Follow this step-by-step tutorial to set up the Support App role.
+Follow this step-by-step tutorial to set up the Marketing App role.
 
 First give READ access to the example-env environment in ENVIRONMENT-MANAGEMENT.
-{{< img src="adm/about/rbac-screenshots/ExampleEnvRead.png" alt="Support ENVIRONMENT-MANAGEMENT" width="75%">}}
+{{< img src="adm/about/rbac-screenshots/ExampleEnvRead.png" alt="Marketing ENVIRONMENT-MANAGEMENT" width="75%">}}
 
 Next, give READ access to the example-com gateway under the example-env environment in GATEWAY-MANAGEMENT.
-{{< img src="adm/about/rbac-screenshots/ExampleGatewayRead.png" alt="Support GATEWAY-MANAGEMENT" width="75%">}}
+{{< img src="adm/about/rbac-screenshots/ExampleGatewayRead.png" alt="Marketing GATEWAY-MANAGEMENT" width="75%">}}
 
-Next, give CRUD access to the Support app within the example-env environment in APP-MANAGEMENT.
-{{< img src="adm/about/rbac-screenshots/ExampleSupportAppCRUD.png" alt="Support APP-MANAGEMENT" width="75%">}}
+Next, give RU access to the Marketing app within the example-env environment in APP-MANAGEMENT.
+{{< img src="adm/about/rbac-screenshots/ExampleMarketingAppCRUD.png" alt="Marketing APP-MANAGEMENT" width="75%">}}
 
-Next, give CRUD access to ALL web-components within the Support app under the example-env environment in WEB-COMPONENT-MANAGEMENT.
-{{< img src="adm/about/rbac-screenshots/ExampleSupportWebCompCRUD.png" alt="Support WEB-COMPONENT-MANAGEMENT" width="75%">}}
+Next, give CRUD access to ALL web-components within the Marketing app under the example-env environment in WEB-COMPONENT-MANAGEMENT.
+{{< img src="adm/about/rbac-screenshots/ExampleMarketingWebCompCRUD.png" alt="Marketing WEB-COMPONENT-MANAGEMENT" width="75%">}}
 
 Next, give READ access to site1 within SITE-MANAGEMENT.
-{{< img src="adm/about/rbac-screenshots/ExampleSiteRead.png" alt="Support SITE-MANAGEMENT" width="75%">}}
+{{< img src="adm/about/rbac-screenshots/ExampleSiteRead.png" alt="Marketing SITE-MANAGEMENT" width="75%">}}
 
 Next, give READ access to the ig1 instance group within INSTANCE-GROUPS.
-{{< img src="adm/about/rbac-screenshots/ExampleIGRead.png" alt="Support INSTANCE-GROUPS" width="75%">}}
+{{< img src="adm/about/rbac-screenshots/ExampleIGRead.png" alt="Marketing INSTANCE-GROUPS" width="75%">}}
 
 Finally, give READ access to ANALYTICS.
-{{< img src="adm/about/rbac-screenshots/ExampleAnalyticsRead.png" alt="Support ANALYTICS" width="75%">}}
+{{< img src="adm/about/rbac-screenshots/ExampleAnalyticsRead.png" alt="Marketing ANALYTICS" width="75%">}}
 
 </details>
 
@@ -824,10 +822,8 @@ The Sales-App role has access to the environment example-env and the gateway tha
       },
       {
         "accessTypes": [
-          "CREATE",
           "READ",
-          "UPDATE",
-          "DELETE"
+          "UPDATE"
         ],
         "feature": "APP-MANAGEMENT",
         "objects": [
@@ -954,7 +950,7 @@ First give READ access to the example-env environment in ENVIRONMENT-MANAGEMENT.
 Next, give READ access to the example-com gateway under the example-env environment in GATEWAY-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleGatewayRead.png" alt="Sales GATEWAY-MANAGEMENT" width="75%">}}
 
-Next, give CRUD access to the Sales app within the example-env environment in APP-MANAGEMENT.
+Next, give RU access to the Sales app within the example-env environment in APP-MANAGEMENT.
 {{< img src="adm/about/rbac-screenshots/ExampleSalesAppCRUD.png" alt="Sales APP-MANAGEMENT" width="75%">}}
 
 Next, give CRUD access to ALL web-components within the Sales app under the example-env environment in WEB-COMPONENT-MANAGEMENT.
@@ -1179,12 +1175,12 @@ Finally, give READ access to ANALYTICS.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-|Product | Feature                  | Example Admin      | Gateway-Admin     | Support-App    | Sales-App       | Read-Only        |
+|Product | Feature                  | Example Admin      | Gateway-Admin     | Marketing-App    | Sales-App       | Read-Only        |
 | ------ | ------------------------ | ------------------ | ----------------- | -------------- | --------------- | ---------------- |
 | App Delivery Manager    | ENVIRONMENT-MANAGEMENT   | CRUD <br /> Environments: ALL | READ <br /> Environments: example-env | READ <br /> Environments: example-env | READ <br /> Environments: example-env | READ <br /> Environments: example-env |
 | App Delivery Manager    | GATEWAY-MANAGEMENT       | CRUD <br /> Environments: ALL <br /> Gateways: ALL | CRUD <br /> Environments: example-env <br /> Gateways: ALL | READ <br /> Environments: example-env <br /> Gateways: example.com | READ <br /> Environments: example-env <br /> Gateways: example.com | READ <br /> Environments: example-env <br /> Gateways: ALL |
-| App Delivery Manager    | APP-MANAGEMENT           | CRUD <br /> Environments: ALL  <br /> Apps: ALL | READ <br /> Environments: example-env  <br /> Apps: ALL | CRUD <br /> Environments: example-env  <br /> Apps: Support | CRUD <br /> Environments: example-env  <br /> Apps: Sales | READ <br /> Environments: example-env  <br /> Apps: ALL |
-| App Delivery Manager    | WEB-COMPONENT-MANAGEMENT | CRUD <br /> Environments: ALL  <br /> Apps: ALL <br /> Web Components: ALL | READ <br /> Environments: example-env  <br /> Apps: ALL <br /> Web Components: ALL | CRUD <br /> Environments: example-env  <br /> Apps: Support <br /> Web Components: ALL | CRUD <br /> Environments: example-env  <br /> Apps: Sales <br /> Web Components: ALL | READ <br /> Environments: example-env  <br /> Apps: ALL <br /> Web Components: ALL |
+| App Delivery Manager    | APP-MANAGEMENT           | CRUD <br /> Environments: ALL  <br /> Apps: ALL | READ <br /> Environments: example-env  <br /> Apps: ALL | RU <br /> Environments: example-env  <br /> Apps: Marketing | RU <br /> Environments: example-env  <br /> Apps: Sales | READ <br /> Environments: example-env  <br /> Apps: ALL |
+| App Delivery Manager    | WEB-COMPONENT-MANAGEMENT | CRUD <br /> Environments: ALL  <br /> Apps: ALL <br /> Web Components: ALL | READ <br /> Environments: example-env  <br /> Apps: ALL <br /> Web Components: ALL | CRUD <br /> Environments: example-env  <br /> Apps: Marketing <br /> Web Components: ALL | CRUD <br /> Environments: example-env  <br /> Apps: Sales <br /> Web Components: ALL | READ <br /> Environments: example-env  <br /> Apps: ALL <br /> Web Components: ALL |
 | App Delivery Manager    | SITE-MANAGEMENT          | CRUD <br /> Sites: ALL | READ <br /> Sites: site1 | READ <br /> Sites: site1 | READ <br /> Sites: site1 | READ <br /> Sites: site1 |
 | IM     | INSTANCE-GROUPS          | CRUD <br /> Instance Groups: ALL | READ <br /> Instance Groups: ig1 | READ <br /> Instance Groups: ig1 | READ <br /> Instance Groups: ig1 | READ <br /> Instance Groups: ig1 |
 | IM     | CERTS                    | CRUD <br /> Instance Groups: ALL <br /> Systems: ALL | CRUD <br /> Instance Groups: ig1 <br /> Systems: ALL | None | None | READ <br /> Instance Groups: ig1 <br /> Systems: ALL |
