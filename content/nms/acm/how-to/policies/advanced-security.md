@@ -55,7 +55,7 @@ As of this current release, `1.7.0`, all events created by policy rule violation
 
 There are two methods available to allow adding an *Advanced Security* policy to your *Environment*:
 
-1. Through the API by adding the following JSON to our environment via a `PUT` or `POST`:
+#### 1. Through the API by adding the following JSON to our environment via a `PUT` or `POST`:
 <details open>
 <summary>JSON request</summary>
 
@@ -74,7 +74,7 @@ There are two methods available to allow adding an *Advanced Security* policy to
 ```
 </details>
 
-2. Through the UI:
+#### 2. Through the UI:
 
 To create an *Advanced Security* policy using the web interface:
 
