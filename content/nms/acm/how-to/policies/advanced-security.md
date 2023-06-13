@@ -55,7 +55,23 @@ As of this current release, `1.7.0`, all events created by policy rule violation
 
 There are two methods available to allow adding an *Advanced Security* policy to your *Environment*:
 
-#### 1. Through the API by adding the following JSON to our environment via a `PUT` or `POST`:
+{{<tabs name="add_advanced_security_policy">}}
+
+{{%tab name="API"%}}
+
+{{<see-also>}}{{< include "acm/how-to/access-acm-api.md" >}}{{</see-also>}}
+
+To create an *Allowed HTTP Methods* policy using the REST API, send an HTTP `POST` request to the Proxies endpoint.
+
+{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+{{<bootstrap-table "table">}}
+| Method | Endpoint                                           |
+|--------|----------------------------------------------------|
+| `POST` | `/infrastructure/workspaces/{infra-workspace}/environments` |
+| `PUT` | `/infrastructure/workspaces/{infra-workspace}/environments/{environment-name}` |
+{{</bootstrap-table>}}
+{{< raw-html>}}</div>{{</raw-html>}}
+
 <details open>
 <summary>JSON request</summary>
 
@@ -74,7 +90,9 @@ There are two methods available to allow adding an *Advanced Security* policy to
 ```
 </details>
 
-#### 2. Through the UI:
+{{%/tab%}}
+
+{{%tab name="UI"%}}
 
 To create an *Advanced Security* policy using the web interface:
 
@@ -87,7 +105,12 @@ To create an *Advanced Security* policy using the web interface:
 7. On the *Advanced > Global Policies* page, locate **Advanced Security Policy**. Select the **Actions** menu (represented by an ellipsis, `...`), then select **Add Policy**.
 8. On the *Advanced Security Policy* form, complete the necessary fields:
 
-    - **Choose a NAP Policy Reference**: Specify the name of the policy you want to apply from the dropdown.
+   - **Choose a NAP Policy Reference**: Specify the name of the policy you want to apply from the dropdown.
 
 9. Select **Add**/**Save** to apply the policy to the Environment.
 10. Select **Save and Submit** to deploy the configuration to the Environment.
+
+{{%/tab%}}
+
+{{</tabs>}}
+
