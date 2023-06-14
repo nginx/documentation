@@ -5,7 +5,6 @@ description: Learn how to add an NGINX App Protect (NAP) WAF policy to your Envi
 weight: 350
 toc: true
 tags: [ "docs" ]
-docs: "<TBD>"
 doctypes: ["API Connectivity Manager", "api management", "concept"]
 journeys: ["getting started", "using"]
 personas: ["devops"]
@@ -21,7 +20,7 @@ personas: ["devops"]
 
 ## About Advanced Security Policy
 
-Use the *Advanced Security* policy to add a pre-defined NGINX App Protect to your deployment. Doing so will apply the rules specified in the policy, to your APIs.
+Use the *Advanced Security* policy to add a pre-defined NGINX App Protect to your deployment. Doing so will apply the rules specified in the policy to your APIs.
 This will allow enforcement of rules to *Block* or *Monitor* security events triggering those violations set out in the policy.
 
 #### Intended Audience
@@ -44,14 +43,13 @@ To complete the steps in this guide, you need the following:
 
 ## Policy Settings
 
-For the current MVP release, the only setting that can be configured is the policy that will be applied. In future release more configuration options will be made available.
-As of this current release, `1.7.0`, all events created by policy rule violations will be forwarded to the `Security Monitoring` dashboard in NMS.
+The applied policy is configurable, and all events created by rule volations will go to the `Security Monitoring` dashboard in NGINX Management Suite.
 
 ---
 
 ## Applying the Policy
 
-*Please note that for this MVP release Advanced Security policies can currently only be applied to Environments*
+{{< note >}} Advanced Security policies can currently only be applied to Environments.{{< /note >}}
 
 There are two methods available to allow adding an *Advanced Security* policy to your *Environment*:
 
@@ -97,20 +95,19 @@ To create an *Allowed HTTP Methods* policy using the REST API, send an HTTP `POS
 To create an *Advanced Security* policy using the web interface:
 
 1. {{< include "acm/webui-acm-login.md" >}}
-2. On the left menu, select **Infrastructure**.
-3. Select a workspace in the list that contains the Environment you want to update.
-4. On the workspace overview page, on the **Environments** tab, locate the Environment you want to update and select it.
-5. On the Environment overview page, locate the **API Gateway** you want to update and select it.
-6. On the **API Gateway** overview page, find and select the **Manage** button and select it
-7. On the *Advanced > Global Policies* page, locate **Advanced Security Policy**. Select the **Actions** menu (represented by an ellipsis, `...`), then select **Add Policy**.
-8. On the *Advanced Security Policy* form, complete the necessary fields:
+1. On the left menu, select **Infrastructure**.
+1. Select a workspace in the list that contains the Environment you want to update.
+1. On the workspace overview page, on the **Environments** tab, locate the Environment you want to update and select it.
+1. On the Environment Overview page, locate the **API Gateway** you want to update and select it.
+1. On the **API Gateway** overview page, find and select the **Manage** button and select it.
+1. On the *Advanced > Global Policies* page, locate **Advanced Security Policy**. Select the **Actions** menu (represented by an ellipsis, `...`), then select **Add Policy**.
+1. On the *Advanced Security Policy* form, complete the necessary fields:
 
    - **Choose a NAP Policy Reference**: Specify the name of the policy you want to apply from the dropdown.
 
-9. Select **Add**/**Save** to apply the policy to the Environment.
-10. Select **Save and Submit** to deploy the configuration to the Environment.
+1. Select **Add**/**Save** to apply the policy to the Environment.
+1. Select **Save and Submit** to deploy the configuration to the Environment.
 
 {{%/tab%}}
 
 {{</tabs>}}
-
