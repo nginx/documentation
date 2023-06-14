@@ -68,7 +68,7 @@ To complete the instructions in this guide, you need the following:
 
 ## Built-In Role
 
-API Connectivity Manager comes pre-configured with an [ACM API Owner]({{< relref "/acm/tutorials/rbac-api-owners.md" >}}) role suitable for API Owners.
+API Connectivity Manager comes pre-configured with an [ACM API Owner]({{< relref "/nms/acm/tutorials/rbac-api-owners.md" >}}) role suitable for API Owners.
 
 - **API Owner**: The individuals or teams who are responsible for designing, creating, and maintaining APIs.
 
@@ -80,7 +80,10 @@ In our Proxy configuration form (found via a Proxy Create or a Proxy Edit), we w
 
 On the next screen, we have the options related to `basepath` and `version`. At the bottom of this section, there is an expandable panel to add an `Advanced Route`; select the `Add Route` link to continue.
 
-This section shows several configuration options. For the purpose of this example, we will focus on `Match URI`, `HTTP Method`, and `Parameters`.
+This section shows several configuration options. For the purpose of this example, we will focus on the following:
+* `Match URI` 
+* `HTTP Method`
+* `Parameters`
 
 We are going to create a route that can take two`integer` IDs in the path; for example, `/customer/123/order/1234`. We are going to do this by adding the following parameters:
 
@@ -90,15 +93,17 @@ Expand the `HTTP Method` menu, and select `GET` for this config. The `HTTP Metho
 You can route to different backend services for the same URI but different HTTP methods using the `TargetBackendServiceLabel` parameter, which will associate the config to a specific backend service and the `HTTP Method` parameter combination.
 
 In the `Parameters` section, select the `Add Parameter` button to see some new config options:
-The `Name` field is the name of the parameter in the URI; this must match the placeholder value provided in `Match URI` (in the web interface, the validation will show an error if there is a mismatch).
+* `Name` is the name of the parameter in the URI; this must match the placeholder value provided in `Match URI` (in the web interface, the validation will show an error if there is a mismatch).
 We need to add one entry for `customerID` and another for `orderID` by selecting the `Add Parameter` button again.
+
 The `In` field indicates where the parameter will be passed; the options are `PATH`, `QUERY`, and `HEADER`.
-`QUERY` indicates that the parameter will be passed as a query parameter, for example, `/customer?customerID=123`. 
-`HEADER` indicates that it will be passed as a header with the `Name` field as the header key.
+* `PATH` indicates that the parameter will be passed as a path parameter, for example, `/customer/{id}}`. 
+* `QUERY` indicates that the parameter will be passed as a query parameter, for example, `/customer?customerID=123`. 
+* `HEADER` indicates that it will be passed as a header with the `Name` field as the header key.
 
 For this example, we will use `PATH` parameters.
 
-`Schema Type` defines the type of parameter that will be passed, for example, `STRING`, `INTEGER`,  and others.
+`Schema Type` defines the type of parameter that will be passed, for example, `STRING`, `INTEGER`,  and others which are supplied in a dropdown through the UI or in the API documentation if using the API.
 For this example, we will be using `INTEGER`.
 
 The `Enums` option lets you limit the number of options to be allowed to match on; if anything else is passed, it doesn't match.
