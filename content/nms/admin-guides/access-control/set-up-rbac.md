@@ -126,22 +126,7 @@ API Connectivity Manager comes pre-configured with roles suitable for API Owners
 
 Users from an external identity provider can't be assigned roles directly in Instance Manager, but they inherit roles through group memberships.
 
-The default `admin` user or any user with `CREATE` permission for the **User Management** feature can create a role.
-
-To create a group, take the following steps:
-
-1. Open the NGINX Management Suite web interface and log in.
-2. Select the **Settings** (gear) icon in the upper-right corner.
-3. On the left navigation menu, select **User Groups**.
-4. Select **Create**.
-5. On the **Create Group** form, enter information for the group:
-
-   - **Group Name**: Required. The name for the group must match the group name in the external identity provider. A group can reference only a single identity provider.
-   - **Display Name**: A friendly display name for the group.
-   - **Description**: A brief summary of the group.
-
-6. In the **Roles** list, select one or more roles to assign to the group.
-7. Select **Save** to create the group.
+{{< include "admin-guides/access-control/create-group.md" >}}
 
 {{< see-also >}}To automate creating users and groups using the [SCIM API](http://www.simplecloud.info), refer to the [Provision Users and Groups with SCIM]({{< relref "/nms/admin-guides/access-control/scim-provisioning.md" >}}) topic for instructions. Requires Instance Manager 2.3 or later.{{< /see-also >}}
 

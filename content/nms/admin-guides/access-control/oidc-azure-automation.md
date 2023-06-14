@@ -20,7 +20,7 @@ aliases:
 
 ## Overview
 
-Complete the steps in this guide to secure NGINX Management Suite Instance Manager with OpenID Connect (OIDC) using Azure Active Directory (AD) as the identity provider for use with automation, such as in CI/CD pipelines. 
+Complete the steps in this guide to secure Instance Manager with OpenID Connect (OIDC) using the client credential code flow method and Azure Active Directory (AD) as the identity provider for use with automation, such as in CI/CD pipelines. 
 
 ## Before you begin
 
