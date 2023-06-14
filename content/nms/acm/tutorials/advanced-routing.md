@@ -85,7 +85,7 @@ This section shows several configuration options. For the purpose of this exampl
 * `HTTP Method`
 * `Parameters`
 
-We are going to create a route that can take two`integer` IDs in the path; for example, `/customer/123/order/1234`. We are going to do this by adding the following parameters:
+We are going to create a route that can take two `integer` IDs in the path; for example, `/customer/123/order/1234`. We are going to do this by adding the following parameters:
 
 In the `Match URI` field add the following value: `/customer/{customerID}/order/{orderID}`. This configures our URI with placeholders for the path parameters `customerID` and `orderID`.
 
