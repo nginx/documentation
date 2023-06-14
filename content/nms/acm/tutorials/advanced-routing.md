@@ -79,9 +79,10 @@ In our Proxy configuration form (found via a Proxy Create or a Proxy Edit), we w
 Select the **Next** button. On the next screen, we have the options related to `basepath` and `version`. At the bottom of this section, there is an expandable panel to add an `Advanced Route`; select the `Add Route` link to continue.
 
 This section shows several configuration options. For the purpose of this example, we will focus on the following:
-* `Match URI` 
-* `HTTP Method`
-* `Parameters`
+
+- `Match URI` 
+- `HTTP Method`
+- `Parameters`
 
 We are going to create a route that can take two `integer` IDs in the path; for example, `/customer/123/order/1234`. We are going to do this by adding the following parameters:
 
