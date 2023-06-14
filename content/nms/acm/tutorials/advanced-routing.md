@@ -68,7 +68,7 @@ To complete the instructions in this guide, you need the following:
 
 ## Built-In Role
 
-API Connectivity Manager comes pre-configured with an [ACM API Owner]({{< relref "/acm/tutorials/rbac-api-owners.md" >}}) role suitable for API Owners.
+API Connectivity Manager comes pre-configured with an [ACM API Owner]({{< relref "/nms/acm/tutorials/rbac-api-owners.md" >}}) role suitable for API Owners.
 
 - **API Owner**: The individuals or teams who are responsible for designing, creating, and maintaining APIs.
 
