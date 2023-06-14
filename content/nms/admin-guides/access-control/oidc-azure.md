@@ -107,7 +107,7 @@ Azure Active Directory can provide the user's group membership information to th
 
 ### Assign Group to Application
 
-By assigning a group to the application you can grant all members of that group the same access to the NMS application.
+By assigning a group to the application you can grant all members of that group the same access to the NGINX Management Suite application.
 
 1. On the left navigation menu, in the **Manage** section, select **Overview**.
 1. In the **Essentials** section, select the link to the right of **Managed application in local directory**.

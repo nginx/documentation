@@ -23,11 +23,11 @@ personas: ["secops"]
 
 {{< warning >}} Basic authentication is recommended for test environments only. For production environments, consider a more robust authentication method. {{< /warning >}}
 
-Authentication & authorization policies allow a user to restrict access to their APIs by determining the caller's identity and access level. There are several API Gateway authentication/authorization policy types supported by API Connectivity Manager (ACM): API key authentication, basic authentication, OAuth2 JWT assertion, and OAuth2 token introspection. This guide focuses specifically on basic authentication.
+Authentication & authorization policies allow a user to restrict access to their APIs by determining the caller's identity and access level. There are several API Gateway authentication/authorization policy types supported by API Connectivity Manager: API key authentication, basic authentication, OAuth2 JWT assertion, and OAuth2 token introspection. This guide focuses specifically on basic authentication.
 
 Basic authentication is a method for HTTP users to provide a username and password when making an API request. In basic HTTP authentication, a request contains a header field in the form of `Authorization: Basic <credentials>`, where credentials is the Base64 encoding of username and password joined by a single colon.
 
-ACM API owners can restrict access to their APIs with usernames and passwords. The API Proxy Policy can be configured to grant access to APIs only after verifying that the username and password are valid.
+API Connectivity Manager API owners can restrict access to their APIs with usernames and passwords. The API Proxy Policy can be configured to grant access to APIs only after verifying that the username and password are valid.
 
 ---
 
@@ -109,7 +109,7 @@ Send a `POST` request to add the basic authentication policy to the API Proxy.
 {{%/tab%}}
 {{%tab name="UI"%}}
 
-1. In the ACM user interface, go to **Services > \{your workspace}**, where "your workspace" is the workspace that contains the API Proxy.
+1. In the API Connectivity Manager user interface, go to **Services > \{your workspace}**, where "your workspace" is the workspace that contains the API Proxy.
 2. Select **Edit Proxy** from the **Actions** menu for the desired API Proxy.
 3. On the **Policies** tab, select **Add Policy** from the **Actions** menu for **Basic Authentication**.
 4. By default, NGINX will strip the basic authentication credentials from the request headers before forwarding the request to the backend service. To preserve the credentials, enable the toggle for **Forward credential**.

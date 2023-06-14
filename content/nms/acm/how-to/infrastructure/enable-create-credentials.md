@@ -69,13 +69,13 @@ Afterward, the API consumer can create credentials on the Developer Portal by pe
 
 ### Enable Create Credentials Endpoint
 
-For security reasons, the Credentials endpoint is disabled by default. To use the Developer Portal credentials workflow, you must enable the Credentials endpoint on the API Connectivity Manager (ACM) host.
+For security reasons, the Credentials endpoint is disabled by default. To use the Developer Portal credentials workflow, you must enable the Credentials endpoint on the API Connectivity Manager host.
 
-{{<important>}}We recommend using mTLS to secure communication between ACM and the Developer Portal.{{</important>}}
+{{<important>}}We recommend using mTLS to secure communication between API Connectivity Manager and the Developer Portal.{{</important>}}
 
-To enable the Credentials endpoint on the ACM host, take the following steps:
+To enable the Credentials endpoint on the API Connectivity Manager host, take the following steps:
 
-1. Open an SSH connection into the ACM host and log in.
+1. Open an SSH connection into the API Connectivity Manager host and log in.
 
 2. Enable the Credentials endpoint:
 
@@ -98,7 +98,7 @@ To enable the Credentials endpoint on the ACM host, take the following steps:
     }
     ```
 
-    {{<note>}}If you've secured the communication between ACM and the Developer Portal using mTLS, you can uncomment these lines as well:
+    {{<note>}}If you've secured the communication between API Connectivity Manager and the Developer Portal using mTLS, you can uncomment these lines as well:
 
   ``` yaml
     if ($ssl_client_verify != SUCCESS) {
@@ -110,7 +110,7 @@ To enable the Credentials endpoint on the ACM host, take the following steps:
   
 3. Save the changes.
   
-4. Reload NGINX on the ACM host:
+4. Reload NGINX on the API Connectivity Manager host:
 
     ```bash
     sudo nginx -s reload

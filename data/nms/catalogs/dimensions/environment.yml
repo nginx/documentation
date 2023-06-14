@@ -6,7 +6,7 @@
 # form or by any means, electronic or mechanical, for any purpose,
 # without express written permission of F5, Inc.
 #
-description: "The environment of the application."
+description: "The UUID of the environment."
 name: environment
 db_column_name: environment
 type: string

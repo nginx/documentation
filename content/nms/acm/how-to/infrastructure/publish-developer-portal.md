@@ -23,15 +23,15 @@ docs: "DOCS-901"
 
 ## Overview
 
-You can use NGINX Management Suite API Connectivity Manager (ACM) to create and publish Developer Portals (or, "Dev Portals") to host your APIs and documentation. API Connectivity Manager Dev Portals provide a [framework for customization]({{< relref "/nms/acm/how-to/infrastructure/customize-devportal.md" >}})  that lets you match your Dev Portal to your brand's or business' requirements.
+You can use API Connectivity Manager to create and publish Developer Portals (or, "Dev Portals") to host your APIs and documentation. API Connectivity Manager Dev Portals provide a [framework for customization]({{< relref "/nms/acm/how-to/infrastructure/customize-devportal.md" >}})  that lets you match your Dev Portal to your brand's or business' requirements.
 
-You can also modify and delete your Developer Portals using ACM.
+You can also modify and delete your Developer Portals using API Connectivity Manager.
 
 ### Before You Begin
 
 Complete the following prerequisites before proceeding with this guide: 
 
-- ACM is installed, licensed, and running.
+- API Connectivity Manager is installed, licensed, and running.
 - Your [Infrastructure]({{< relref "/nms/acm/how-to/infrastructure/manage-api-infrastructure.md" >}}) has one or more Environments with a [Developer Portal]({{< relref "/nms/acm/getting-started/add-devportal" >}}) cluster.
 - You have verified that you can access the Developer Portal using the configured hostname.
 

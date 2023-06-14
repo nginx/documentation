@@ -12,13 +12,15 @@ You can access the NGINX Management Suite web interface using the external IP ad
 
    This `kubectl` command retrieves the service named `apigw` from the namespace `nms`. It outputs the details of the service, such as its type, port, cluster and external IP addresses.
 
-   The output looks similar to the following example. Note the value in the `EXTERNAL-IP` column.
+   The default service type is `ClusterIP` and the output looks similar to the following example:
 
    ```text
-   NAME    TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)         AGE
-   apigw   LoadBalancer   10.100.153.15   localhost     443:30414/TCP   2m1s
+   NAME    TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+   apigw   ClusterIP   10.108.57.167   <none>        443/TCP   32s
    ```
 
-1. Using the value from the previous step, go to `https://<apigw-EXTERNAL-IP>:443/ui`.
+   Using the `CLUSTER-IP` value, go to `https://<CLUSTER-IP>:443/ui`.
 
-   For example, `https://localhost:443/ui`.
+   For example, `https://10.108.57.167/ui`.
+
+   This IP address might not be reachable, depending on how the Kubernetes cluster networking was configured. If so, the `apigw` service type can be changed to a more suitable option, such as `LoadBalancer`, by changing the [Configurable Helm Setting]({{< relref "/nms/installation/kubernetes/nms-helm-config-options.md" >}}) value for `nms-hybrid.apigw.service.type` .

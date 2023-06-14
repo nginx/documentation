@@ -173,12 +173,12 @@ Additionally, you will need to complete the following steps:
 
 By default, tokens expire after 60 minutes. To configure the expiration please see the Azure AD [Configurable token lifetimes in the Microsoft identity platform](https://learn.microsoft.com/en-us/azure/active-directory/develop/Active-directory-configurable-token-lifetimes#configurable-token-lifetime-properties) documentation.
 
-## Access NMS API Using the Access Token
+## Access NGINX Management Suite API Using the Access Token
 
-To access the NMS API using the access token, you must send the access token in the `Authorization` header of the request as a Bearer token. For example, using `curl`:
+To access the NGINX Management Suite API using the access token, you must send the access token in the `Authorization` header of the request as a Bearer token. For example, using `curl`:
 
 ```bash
 curl -v -k --header "Authorization: Bearer <access token>" https://<nms-ip>/api/platform/v1/userinfo
 ```
 
-Replacing `<access token>` with the access token you obtained in the [Get an Access Token from Azure AD](#get-an-access-token-from-azure-ad) steps and `<nms-ip>` with the IP address of your NMS instance.
+Replacing `<access token>` with the access token you obtained in the [Get an Access Token from Azure AD](#get-an-access-token-from-azure-ad) steps and `<nms-ip>` with the IP address of your NGINX Management Suite instance.

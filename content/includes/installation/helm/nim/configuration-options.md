@@ -36,6 +36,7 @@ To modify a configuration for an existing release, run the `helm upgrade` comman
 | `nms-hybrid.apigw.image.pullPolicy`                   | Image pull policy. | `IfNotPresent` |
 | `nms-hybrid.apigw.container.port.https`               | Container HTTPS port. | `443` |
 | `nms-hybrid.apigw.service.name`                       | Service name. | `apigw` |
+| `nms-hybrid.apigw.service.type`                       | Service type. Options: `ClusterIp`, `LoadBalancer`, `NodePort` | `ClusterIp` |
 | `nms-hybrid.apigw.service.httpsPort`                  | Service HTTPS port. | `443` |
 | `nms-hybrid.apigw.resources.requests.cpu`             | Minimum required CPU on a node to run `core`. | `250m` |
 | `nms-hybrid.apigw.resources.requests.memory`          | Minimum required memory on a node to run `core`. | `256Mi` |
@@ -101,6 +102,10 @@ To modify a configuration for an existing release, run the `helm upgrade` comman
 | `nms-hybrid.integrations.persistence.storageClass`    | Storage Class to use for creating a `integrations` PVC |  |
 | `nms-hybrid.integrations.persistence.volumeName`      | Name to use a `integrations` PVC volume |  |
 | `nms-hybrid.integrations.tolerations`                 | List your Kubernetes tolerations, if any | See [Kubernetes Taints And Tolerations](#kubernetes-taints-and-tolerations) |
+| `nms-hybrid.utility.name`                             | Name used for `utility`. | `utility` |
+| `nms-hybrid.utility.image.repository`                 | Repository name and path for the `utility` image. | `utility` |
+| `nms-hybrid.utility.image.tag`                        | Tag used for pulling images from registry. | `latest` |
+| `nms-hybrid.utility.image.pullPolicy`                 | Image pull policy. | `IfNotPresent` |
 | `nms-hybrid.nic`                                      | To enable NGINX Ingress Controller Virtual Server | See [NGINX Ingress Controller Virtual Server](#nginx-ingress-controller-virtual-server) for details |
 {{</bootstrap-table>}}
 {{% /table %}}

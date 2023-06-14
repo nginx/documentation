@@ -21,6 +21,7 @@ visible: true
 compound_payload: "false"
 modules:
 - platform
+- adm
 aggregations:
 - MIN
 - MAX
@@ -36,3 +37,6 @@ dimensions:
 - instance_group
 - system.tags
 - cache_zone
+- app
+- environment
+- component

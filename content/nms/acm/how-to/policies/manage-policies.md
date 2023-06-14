@@ -47,7 +47,7 @@ Global Policies are configured at the environment level and apply to all cluster
 
 To manage Global Policies, take the steps below:
 
-1. In the ACM user interface, go to **Infrastructure > Workspaces > Environments**.
+1. In the API Connectivity Manager user interface, go to **Infrastructure > Workspaces > Environments**.
 2. Select the Environment that holds the cluster that you want to configure, then select the **Cluster** name.
 3. Select the **Manage** icon for the cluster that you want to configure.
 4. Select the **Global Policies** tab.
@@ -92,7 +92,7 @@ You can also configure any of the optional policies at the proxy level.
 
 To manage Proxy Policies, take the steps below.
 
-1. In the ACM user interface, go to **Services > Workspaces > Proxies**.
+1. In the API Connectivity Manager user interface, go to **Services > Workspaces > Proxies**.
 1. Select **Edit Proxy** from the **Actions** menu for the Proxy that you want to configure.
 1. Select the **Policies** tab.
 1. [**Add**](#add-proxy-policy), [**Edit**](#edit-proxy-policy), or [**Remove**](#remove-proxy-policy) as desired. 
@@ -135,7 +135,7 @@ Cluster Policies are applied to all the proxies belongnig to the desired cluster
 
 To manage Cluster Policies, take the steps below:
 
-1. In the ACM user interface, go to **Infrastructure > Workspaces > Environments**.
+1. In the API Connectivity Manager user interface, go to **Infrastructure > Workspaces > Environments**.
 2. Select the Environment that holds the cluster that you want to configure, then select the **Cluster** name.
 3. Select the **Manage** icon for the cluster that you want to configure.
 4. Select the **Cluster Policies** tab.

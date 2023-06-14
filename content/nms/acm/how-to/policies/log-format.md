@@ -62,7 +62,7 @@ The following table lists the configurable settings and their default values for
 
 ## Applying the Policy
 
-In API Connectivity Manager (ACM), when an Infrastructure Administrator creates an environment, the following log format policy is applied by default:
+In API Connectivity Manager, when an Infrastructure Administrator creates an environment, the following log format policy is applied by default:
 
 - Logs are in JSON format
 - Logs are written to file

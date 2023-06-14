@@ -1,7 +1,7 @@
 The Developer Portal supports the following Linux distributions:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Distribution | Version                                  | Platform           | ACM Developer Portal                 |
+| Distribution | Version                                  | Platform           | API Connectivity Manager Developer Portal                 |
 |--------------|------------------------------------------|--------------------|--------------------------------------|
 | Amazon Linux | 2 LTS                                    | x86_64             | 1.0.0 and later                      |
 | CentOS       | 7.4 and later in the 7.x family          | x86_64             | 1.0.0 and later                      |

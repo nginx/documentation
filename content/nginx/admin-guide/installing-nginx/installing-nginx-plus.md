@@ -21,6 +21,81 @@ This article explains how to install NGINX Plus on Amazon Linux, AlmaLinux, Ce
 * Your credentials to the [MyF5 Customer Portal](https://account.f5.com/myf5), provided by email from F5, Inc.
 * Your NGINX Plus certificate and public key (<span style="white-space: nowrap;">**nginx-repo.crt**</span> and <span style="white-space: nowrap;">**nginx-repo.key**</span> files), provided by email from F5, Inc.
 
+
+<span id="install_amazon2023"></span>
+## Installing NGINX Plus on Amazon Linux 2023
+
+NGINX Plus can be installed on Amazon Linux 2023 (x86_64, aarch64).
+
+1.  If you have older NGINX Plus package installed, it is recommended backing up the configuration and log files. See "[Upgrading NGINX Plus](#upgrade)" for details.
+
+2.  Create the **/etc/ssl/nginx** directory:
+
+    ```shell
+    sudo mkdir -p /etc/ssl/nginx
+    cd /etc/ssl/nginx
+    ```
+
+3.  Log in to [MyF5 Customer Portal](https://account.f5.com/myf5/) and download your **nginx-repo.crt** and **nginx-repo.key** files.
+
+4.  Install the required **ca-certificates** dependency:
+
+    ```shell
+    sudo yum install ca-certificates
+    ```
+
+5.  Copy the **nginx-repo.crt** and **nginx-repo.key** files to the Amazon Linux server in the **/etc/ssl/nginx/** directory:
+
+    ```shell
+    sudo cp nginx-repo.crt /etc/ssl/nginx/
+    sudo cp nginx-repo.key /etc/ssl/nginx/
+    ```
+
+6.  Add NGINX Plus repository by downloading the [plus-amazonlinux2023.repo](https://cs.nginx.com/static/files/plus-amazonlinux2023.repo) file to **/etc/yum.repos.d**:
+
+    ```shell
+    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-amazonlinux2023.repo
+    ```
+
+7.  If you have NGINX ModSecurity subscription, add ModSecurity repository by downloading the [modsecurity-amazonlinux2023.repo](https://cs.nginx.com/static/files/modsecurity-amazonlinux2023.repo) file to **/etc/yum.repos.d**:
+
+    ```shell
+    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/modsecurity-amazonlinux2023.repo
+    ```
+
+8.  If you would like to enable experimental QUIC support, add NGINX Plus QUIC repository by downloading the [plus-quic-amazonlinux2023.repo](https://cs.nginx.com/static/files/plus-quic-amazonlinux2023.repo) file to **/etc/yum.repos.d**:
+
+    ```shell
+    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-quic-amazonlinux2023.repo
+    ```
+
+9.  Install the **nginx-plus** package. Any older NGINX Plus package is automatically replaced.
+
+    ```shell
+    sudo yum install nginx-plus
+    ```
+
+10. If you have NGINX ModSecurity subscription, install the ModSecurity package:
+
+    ```shell
+    sudo yum install nginx-plus nginx-plus-module-modsecurity
+    ```
+
+11. For experimental QUIC support, install NGINX Plus QUIC package:
+
+    ```shell
+    sudo yum install nginx-plus-quic
+    ```
+
+12. Check the `nginx` binary version to ensure that you have NGINX Plus installed correctly:
+
+    ```shell
+    nginx -v
+    ```
+
+13. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
+
+
 <span id="install_amazon2"></span>
 ## Installing NGINX Plus on Amazon Linux 2
 
@@ -87,136 +162,6 @@ NGINX Plus can be installed on Amazon Linux 2 LTS (x86_64, aarch64).
     ```
 
 12. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
-
-
-<span id="install_amazon2023"></span>
-## Installing NGINX Plus on Amazon Linux 2023
-
-NGINX Plus can be installed on Amazon Linux 2023 (x86_64, aarch64).
-
-1.  If you have older NGINX Plus package installed, it is recommended backing up the configuration and log files. See "[Upgrading NGINX Plus](#upgrade)" for details.
-
-2.  Create the **/etc/ssl/nginx** directory:
-
-    ```shell
-    sudo mkdir -p /etc/ssl/nginx
-    cd /etc/ssl/nginx
-    ```
-
-3.  Log in to [MyF5 Customer Portal](https://account.f5.com/myf5/) and download your **nginx-repo.crt** and **nginx-repo.key** files.
-
-4.  Install the required **ca-certificates** dependency:
-
-    ```shell
-    sudo yum install ca-certificates
-    ```
-
-5.  Copy the **nginx-repo.crt** and **nginx-repo.key** files tothe Amazon Linux server in the **/etc/ssl/nginx/** directory:
-
-    ```shell
-    sudo cp nginx-repo.crt /etc/ssl/nginx/
-    sudo cp nginx-repo.key /etc/ssl/nginx/
-    ```
-
-6.  Add NGINX Plus repository by downloading the [plus-amazonlinux2023.repo](https://cs.nginx.com/static/files/plus-amazonlinux2023.repo) file to **/etc/yum.repos.d**:
-
-    ```shell
-    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-amazonlinux2023.repo
-    ```
-
-7.  If you have NGINX ModSecurity subscription, add ModSecurity repository by downloading the [modsecurity-amazonlinux2023.repo](https://cs.nginx.com/static/files/modsecurity-amazonlinux2023.repo) file to **/etc/yum.repos.d**:
-
-    ```shell
-    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/modsecurity-amazonlinux2023.repo
-    ```
-
-8.  If you would like to enable experimental QUIC support, add NGINX Plus QUIC repository by downloading the [plus-quic-amazonlinux2023.repo](https://cs.nginx.com/static/files/plus-quic-amazonlinux2023.repo) file to **/etc/yum.repos.d**:
-
-    ```shell
-    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-quic-amazonlinux2023.repo
-    ```
-
-9.  Install the **nginx-plus** package. Any older NGINX Plus package is automatically replaced.
-
-    ```shell
-    sudo yum install nginx-plus
-    ```
-
-10. If you have NGINX ModSecurity subscription, install the ModSecurity package:
-
-    ```shell
-    sudo yum install nginx-plus nginx-plus-module-modsecurity
-    ```
-
-11. For experimental QUIC support, install NGINX Plus QUIC package:
-
-    ```shell
-    sudo yum install nginx-plus-quic
-    ```
-
-12. Check the `nginx` binary version to ensure that you have NGINX Plus installed correctly:
-
-    ```shell
-    nginx -v
-    ```
-
-13. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
-
-
-<span id="install_amazon"></span>
-## Installing NGINX Plus on Amazon Linux
-
-Please note that only NGINX Plus Release 24 and earlier can be installed on Amazon Linux 2018.03+ (x86_64).
-
-1.  If you have older NGINX Plus package installed, it is recommended backing up the configuration and log files. See "[Upgrading NGINX Plus](#upgrade)" for details.
-
-2.  Create the **/etc/ssl/nginx** directory:
-
-    ```shell
-    sudo mkdir -p /etc/ssl/nginx
-    cd /etc/ssl/nginx
-    ```
-
-3.  Log in to [MyF5 Customer Portal](https://account.f5.com/myf5/) and download your **nginx-repo.crt** and **nginx-repo.key** files.
-
-4.  Install the required **ca-certificates** dependency:
-
-    ```shell
-    sudo yum install ca-certificates
-    ```
-
-5.  Copy the **nginx-repo.crt** and **nginx-repo.key** files to the **/etc/ssl/nginx/** directory:
-
-    ```shell
-    sudo cp nginx-repo.crt /etc/ssl/nginx/
-    sudo cp nginx-repo.key /etc/ssl/nginx/
-    ```
-
-6.  Add NGINX Plus repository by downloading the [nginx-plus-amazon.repo](https://cs.nginx.com/static/files/nginx-plus-amazon.repo) file to **/etc/yum.repos.d**:
-
-    ```shell
-    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-amazon.repo
-    ```
-
-7.  Install the **nginx-plus** package. Any older NGINX Plus package is automatically replaced.
-
-    ```shell
-    sudo yum install nginx-plus
-    ```
-
-8.  If you have NGINX ModSecurity subscription, install the ModSecurity package:
-
-    ```shell
-    sudo yum install nginx-plus nginx-plus-module-modsecurity
-    ```
-
-9.  Check the `nginx` binary version to ensure that you have NGINX Plus installed correctly:
-
-    ```shell
-    nginx -v
-    ```
-
-10. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
 
 
 <span id="install_rhel_centos"></span>
@@ -452,7 +397,7 @@ NGINX Plus can be installed on the following versions of CentOS/RHEL:
     sudo yum install nginx-plus
     ```
 
-10.  If you have NGINX ModSecurity subscription, install the ModSecurity package:
+10. If you have NGINX ModSecurity subscription, install the ModSecurity package:
 
     ```shell
     sudo yum install nginx-plus nginx-plus-module-modsecurity
@@ -749,13 +694,13 @@ To install NGINX Plus on SLES:
     cat /etc/ssl/nginx/nginx-repo.crt /etc/ssl/nginx/nginx-repo.key > /etc/ssl/nginx/nginx-repo-bundle.crt
     ```
 
-4.  Install the required **ca-certificates** dependency:
+5.  Install the required **ca-certificates** dependency:
 
     ```shell
     zypper install ca-certificates
     ```
 
-5.  Add the **nginx-plus** repo.
+6.  Add the **nginx-plus** repo.
 
     For SLES 12:
     ```shell
@@ -767,7 +712,7 @@ To install NGINX Plus on SLES:
     zypper addrepo -G -t yum -c 'https://pkgs.nginx.com/plus/sles/15?ssl_clientcert=/etc/ssl/nginx/nginx-repo-bundle.crt&ssl_verify=peer' nginx-plus
     ```
 
-6.  If you have NGINX ModSecurity subscription, add the ModSecurity repo.
+7.  If you have NGINX ModSecurity subscription, add the ModSecurity repo.
 
     For SLES 12:
     ```shell
@@ -779,7 +724,7 @@ To install NGINX Plus on SLES:
     zypper addrepo -G -t yum -c 'https://pkgs.nginx.com/modsecurity/sles/15?ssl_clientcert=/etc/ssl/nginx/nginx-repo-bundle.crt&ssl_verify=peer' nginx-modsecurity
     ```
 
-7.  If you would like to enable experimental QUIC support, add NGINX Plus QUIC repository.
+8.  If you would like to enable experimental QUIC support, add NGINX Plus QUIC repository.
 
     For SLES 15:
 
@@ -787,25 +732,25 @@ To install NGINX Plus on SLES:
     zypper addrepo -G -t yum -c 'https://pkgs.nginx.com/plus-quic/sles/15?ssl_clientcert=/etc/ssl/nginx/nginx-repo-bundle.crt&ssl_verify=peer' nginx-plus
     ```
 
-8.  Install the **nginx-plus** package. Any older NGINX Plus package is automatically replaced.
+9.  Install the **nginx-plus** package. Any older NGINX Plus package is automatically replaced.
 
     ```shell
     zypper install nginx-plus
     ```
 
-9.  If you have NGINX ModSecurity subscription, install the ModSecurity package:
+10. If you have NGINX ModSecurity subscription, install the ModSecurity package:
 
     ```shell
     zypper install nginx-plus-module-modsecurity
     ```
 
-10. For experimental QUIC support, install NGINX Plus QUIC package:
+11. For experimental QUIC support, install NGINX Plus QUIC package:
 
     ```shell
     zypper install nginx-plus-quic
     ```
 
-11. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
+12. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
 
 
 <span id="install_alpine"></span>

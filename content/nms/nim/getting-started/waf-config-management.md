@@ -9,7 +9,7 @@ docs: "DOCS-1114"
 
 ## Overview
 
-You can use NGINX Management Suite Instance Manager (NIM) to publish configurations to your NGINX App Protect WAF data plane instances.
+You can use NGINX Management Suite Instance Manager to publish configurations to your NGINX App Protect WAF data plane instances.
 
 ## Publish WAF Configurations
 

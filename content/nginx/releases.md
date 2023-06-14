@@ -95,6 +95,12 @@ NGINX Plus R28 is a feature release:
 
 * Looking up of IPv4 addresses while resolving now can be disabled with the `ipv4=off` parameter of the [`resolver`](http://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive.
 
+* Changes in handling multiple headers with identical names.
+
+  * Most of the known duplicate upstream response headers are now ignored with a warning.
+
+  * Duplicate `Content-Length` and `Transfer-Encoding` headers are now rejected as well as the responses with invalid `Content-Length` or `Transfer-Encoding` headers, or if both `Content-Length` and `Transfer-Encoding` are present in the response.
+
 NGINX Plus R28 is supported on:
 
 * AlmaLinux 8, 9
