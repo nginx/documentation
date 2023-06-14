@@ -96,9 +96,10 @@ In the `Parameters` section, select the `Add Parameter` button to see some new c
 We need to add one entry for `customerID` and another for `orderID` by selecting the `Add Parameter` button again.
 
 The `In` field indicates where the parameter will be passed; the options are `PATH`, `QUERY`, and `HEADER`.
-* `PATH` indicates that the parameter will be passed as a path parameter, for example, `/customer/{id}}`. 
-* `QUERY` indicates that the parameter will be passed as a query parameter, for example, `/customer?customerID=123`. 
-* `HEADER` indicates that it will be passed as a header with the `Name` field as the header key.
+
+- `PATH` indicates that the parameter will be passed as a path parameter, for example, `/customer/{id}}`. 
+- `QUERY` indicates that the parameter will be passed as a query parameter, for example, `/customer?customerID=123`. 
+- `HEADER` indicates that it will be passed as a header with the `Name` field as the header key.
 
 For this example, we will use `PATH` parameters.
 
