@@ -91,7 +91,8 @@ Expand the `HTTP Method` menu, and select `GET` for this config. The `HTTP Metho
 You can route to different backend services for the same URI but different HTTP methods using the `TargetBackendServiceLabel` parameter, which will associate the config to a specific backend service and the `HTTP Method` parameter combination.
 
 In the `Parameters` section, select the `Add Parameter` button to see some new config options:
-* `Name` is the name of the parameter in the URI; this must match the placeholder value provided in `Match URI` (in the web interface, the validation will show an error if there is a mismatch).
+
+- `Name` is the name of the parameter in the URI; this must match the placeholder value provided in `Match URI` (in the web interface, the validation will show an error if there is a mismatch).
 We need to add one entry for `customerID` and another for `orderID` by selecting the `Add Parameter` button again.
 
 The `In` field indicates where the parameter will be passed; the options are `PATH`, `QUERY`, and `HEADER`.
