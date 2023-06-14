@@ -54,7 +54,7 @@ Take the steps in this section if you would like to restrict access to Advanced 
 {{<tabs name="add_tls_listener">}}
     {{%tab name="UI"%}}
 
-1. In the ACM user interface, go to **Services > \<your workspace\>**, where "your workspace" is the workspace that contains the API Gateway or Dev Portal.
+1. In the API Connectivity Manager user interface, go to **Services > \<your workspace\>**, where "your workspace" is the workspace that contains the API Gateway or Dev Portal.
 1. Select **Edit Advanced Config** from the **Actions** menu for the desired API Gateway or Dev Portal.
 1. On the **Policies** tab, select **Add Policy** from the **Actions** menu.
 1. Select **Add route** to configure a rule. Select one or more keys and approved values which will be checked before allowing the end user access to the API. Optionally select an Advanced Route or list of HTTP methods which will restrict the Access Control check to requests which match that configuration.

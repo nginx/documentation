@@ -11,7 +11,7 @@ docs: "DOCS-896"
 
 ## Overview
 
-This guide walks you through the steps needed to set up the necessary infrastructure in Amazon Web Services (AWS) for a proof of concept environment for NGINX Management Suite API Connectivity Manager (ACM). The options presented in this guide for creating AWS Instances keep cost in mind and prefer the minimum requirements for running a fully functional API Connectivity Manager environment.
+This guide walks you through the steps needed to set up the necessary infrastructure in Amazon Web Services (AWS) for a proof of concept environment for API Connectivity Manager. The options presented in this guide for creating AWS Instances keep cost in mind and prefer the minimum requirements for running a fully functional API Connectivity Manager environment.
 Keep in mind that production environments may require larger instance sizes and incur greater costs. 
 
 ### Before You Begin
@@ -207,7 +207,7 @@ Take the steps below to obtain the public IP so you can access the instance thro
 
 ## NGINX Management Suite Host Installation
 
-Follow the [NMS Installation Guide]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}) to install both the **Instance Manager Module** and the **API Connectivity Manager Module**. The **Security Module** is not required for this demo.
+Follow the [NGINX Management Suite Installation Guide]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}) to install both the **Instance Manager Module** and the **API Connectivity Manager Module**. The **Security Module** is not required for this demo.
 
 ## NGINX Data Plane host
 

@@ -21,9 +21,9 @@ docs: "DOCS-992"
   
 ## Overview
 
-NGINX Management Suite Instance Manager (NIM) provides configuration management for [NGINX App Protect WAF](https://www.nginx.com/products/nginx-app-protect/web-application-firewall/). 
+NGINX Management Suite Instance Manager provides configuration management for [NGINX App Protect WAF](https://www.nginx.com/products/nginx-app-protect/web-application-firewall/). 
 
-You can use NGINX App Protect WAF with NIM to inspect incoming traffic, identify potential threats, and block malicious traffic. With Configuration Management for App Protect WAF, you can configure WAF security policies in a single location and push your configurations out to one, some, or all of your NGINX App Protect WAF instances.
+You can use NGINX App Protect WAF with Instance Manager to inspect incoming traffic, identify potential threats, and block malicious traffic. With Configuration Management for App Protect WAF, you can configure WAF security policies in a single location and push your configurations out to one, some, or all of your NGINX App Protect WAF instances.
 
 ### Features
 
@@ -62,14 +62,14 @@ Instance Manager and Security Monitoring both use NGINX App Protect log profiles
 
 ## Security Management APIs
 
-By using the Instance Manager REST API, you can automate configuration updates to be pushed out to all of your NGINX App Protect WAF instances. You can use the NIM API to manage and deploy the following security configurations:
+By using the Instance Manager REST API, you can automate configuration updates to be pushed out to all of your NGINX App Protect WAF instances. You can use the Instance Manager API to manage and deploy the following security configurations:
 
 - security policies,
 - log profiles,
 - attack signatures, and
 - threat campaigns.
 
-Just as with changes made via the user interface, the NIM compiler bundles all of the config updates into a single binary package that you can push out to your instances. Figure 2 shows an overview of the API endpoints available to support security policy configuration and publishing. 
+Just as with changes made via the user interface, the Instance Manager compiler bundles all of the config updates into a single binary package that you can push out to your instances. Figure 2 shows an overview of the API endpoints available to support security policy configuration and publishing. 
 
 {{< img src="nim/app-sec-api-overview.png" caption="Figure 2. NGINX Management Suite with NGINX App Protect WAF Architecture Overview" alt="A diagram showing the architecture of the NGINX Management Suite with NGINX App Protect solution">}}
 

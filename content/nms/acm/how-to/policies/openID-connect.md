@@ -397,7 +397,7 @@ This JSON defines an OpenID Connect (OIDC) authorization policy. It specifies th
 1. From the list of clusters, locate the cluster you want to add the policy to. On the **Actions** menu (represented by an ellipsis, `...`), select **Edit Advanced Config**.
 1. On the left menu, select **Global Policies**.
 1. Locate the **OpenID Connect Relying Party** policy in the list of policies. On the **Actions** menu (represented by an ellipsis, `...`), select **Add Policy**.
-1. In the ACM user interface, go to **Infrastructure > Workspaces > Environments** and select the **Edit Advanced Config** from the **Actions** menu for the cluster you want to set up.
+1. In the API Connectivity Manager user interface, go to **Infrastructure > Workspaces > Environments** and select the **Edit Advanced Config** from the **Actions** menu for the cluster you want to set up.
 1. Select the **Global Policies** tab.
 1. For **OpenID Connect Relying Party** select **Add Policy** from the policy's **Actions** menu. 
 1. Update **Application Settings**.

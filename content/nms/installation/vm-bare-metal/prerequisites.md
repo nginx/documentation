@@ -202,7 +202,7 @@ To install and enable ClickHouse on Debian, Ubuntu, and Deb-Based distributions,
 
 NGINX Management Suite uses the following default values for ClickHouse:
 
-{{<important>}}You can customize these settings. However, if you use custom settings, make sure to follow the [Configure ClickHouse]({{< relref "/nms/admin-guides/configuration/configure-clickhouse.md" >}}) instructions to update the `nms.conf` file after you've installed NMS; otherwise NMS won't be able to connect to ClickHouse.{{</important>}}
+{{<important>}}You can customize these settings. However, if you use custom settings, make sure to follow the [Configure ClickHouse]({{< relref "/nms/admin-guides/configuration/configure-clickhouse.md" >}}) instructions to update the `nms.conf` file after you've installed NGINX Management Suite; otherwise NGINX Management Suite won't be able to connect to ClickHouse.{{</important>}}
 
 {{< include "installation/clickhouse-defaults.md" >}}
 

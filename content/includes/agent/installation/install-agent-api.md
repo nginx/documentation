@@ -7,13 +7,13 @@ You can install the NGINX Agent using `curl`, `wget`, or any command-line tool f
 - Secure:
 
   ```bash
-  curl https://<NMS-FQDN>/install/nginx-agent | sudo sh
+  curl https://<NMS_FQDN>/install/nginx-agent | sudo sh
   ```
 
 - Insecure:
 
   ```bash
-  curl --insecure https://<NMS-FQDN>/install/nginx-agent | sudo sh
+  curl --insecure https://<NMS_FQDN>/install/nginx-agent | sudo sh
   ```
 
   When installing the NGINX Agent with the install script, you can optionally set an [instance group]({{< relref "/nms/nim/how-to/nginx/manage-instance-groups.md" >}}) using the `--instance-group` flag.
@@ -21,7 +21,7 @@ You can install the NGINX Agent using `curl`, `wget`, or any command-line tool f
   The following example shows how to download and run the script with the optional flag:
 
   ```bash
-  curl https://<NMS-FQDN>/install/nginx-agent > install.sh
+  curl https://<NMS_FQDN>/install/nginx-agent > install.sh
   sudo sh ./install.sh --instance-group my-instance-group
   ```
 
@@ -36,7 +36,7 @@ You can install the NGINX Agent using `curl`, `wget`, or any command-line tool f
   The following example shows how to download and run the script with an enforced secure connection:
 
   ```bash
-  curl https://<NMS-FQDN>/install/nginx-agent > install.sh
+  curl https://<NMS_FQDN>/install/nginx-agent > install.sh
   sudo sh ./install.sh --skip-verify false
   ```
 
@@ -47,13 +47,13 @@ You can install the NGINX Agent using `curl`, `wget`, or any command-line tool f
 - Secure:
 
   ```bash
-  wget https://<NMS-FQDN>/install/nginx-agent -O - | sudo sh -s --skip-verify false
+  wget https://<NMS_FQDN>/install/nginx-agent -O - | sudo sh -s --skip-verify false
   ```
 
 - Insecure:
 
   ```bash
-  wget --no-check-certificate https://<NMS-FQDN>/install/nginx-agent -O - | sudo sh
+  wget --no-check-certificate https://<NMS_FQDN>/install/nginx-agent -O - | sudo sh
   ```
 
 {{%/tab%}}

@@ -6,11 +6,11 @@ To install from package files, take the following steps:
 2. Run the following command to install OR update NGINX Agent:
 
     ```bash
-    sudo PACKAGE_HOST=<NMS-FQDN> ./agent-install.sh 
+    sudo PACKAGE_HOST=<NMS_FQDN> ./agent-install.sh 
     ```
 
    {{<note>}}
-   In the example above, `<NMS-FQDN>` is the the fully qualified domain name or IP address for the Instance Manager API gateway.
+   In the example above, `<NMS_FQDN>` is the the fully qualified domain name or IP address for the Instance Manager API gateway.
    {{</note>}}
 
 <!-- Do not remove. Keep this code at the bottom of the include -->

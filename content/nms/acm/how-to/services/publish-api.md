@@ -15,7 +15,7 @@ doctypes: ["task"]
 
 ## Overview
 
-NGINX Management Suite API Connectivity Manager (ACM) lets you manage your API infrastructure by using a set of hierarchical resources. The top-level resource, called a **Workspace**, provides a logical grouping for resources called **Environments**. Environments contain **Clusters** that assign NGINX instances for use as API Gateways and Developer Portals.
+API Connectivity Manager lets you manage your API infrastructure by using a set of hierarchical resources. The top-level resource, called a **Workspace**, provides a logical grouping for resources called **Environments**. Environments contain **Clusters** that assign NGINX instances for use as API Gateways and Developer Portals.
 
 This topic describes how to publish an API config to a cluster.
 
@@ -33,7 +33,7 @@ Complete the following prerequisites before proceeding with this guide:
 ## Create a Service Workspace
 
 {{<note>}}
-The ACM admin must verify that the user (API Onwer) has [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) [RBAC](https://en.wikipedia.org/wiki/Role-based_access_control) permissions for the services feature.
+The API Connectivity Manager admin must verify that the user (API Onwer) has [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) [RBAC](https://en.wikipedia.org/wiki/Role-based_access_control) permissions for the services feature.
 {{</note>}}
 
 Service Workspaces let you group API configurations. Publishing an API requires at least one Service Workspace.

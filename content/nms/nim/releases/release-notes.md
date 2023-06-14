@@ -18,6 +18,110 @@ aliases:
 
 {{<rn-styles>}}
 
+## 2.11.0
+
+June 12, 2023
+
+### Upgrade Paths {#2-11-0-upgrade-paths}
+
+Instance Manager 2.11.0 supports upgrades from these previous versions:
+
+- 2.8.0–2.10.1
+
+If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.{{</see-also>}}
+
+### What's New {#2-11-0-whats-new}
+
+This release includes the following updates:
+
+- {{% icon-feature %}} **The config editor now lets you see auxiliary files**
+
+  Auxiliary files, such as certificate files and other non-config files on managed instances or instance groups, are now visible in the file tree of the config editor view. This improvement makes it easier to reference these files within a configuration.
+
+- {{% icon-feature %}} **Introducing new predefined log profiles for NGINX App Protect WAF**
+
+  Now, managing your NGINX App Protect WAF configuration is even easier with new predefined log profiles. In addition to the existing log_all, log_blocked, log_illegal, and log_secops log profiles, the following new predefined log profiles are now available:
+
+  - log_f5_arcsight
+  - log_f5_splunk
+  - log_grpc_all
+  - log_grpc_blocked
+  - log_grpc_illegal
+
+  These new log profiles make it even easier to integrate NGINX App Protect WAF with other logging systems, such as Splunk, ArcSight, and gRPC.
+
+- {{% icon-feature %}} **You can now install Advanced Metrics automatically when you install NGINX Agent**
+
+  When installing the NGINX Agent with NGINX Management Suite, you can include the `-a` or `--advanced-metrics` flag. Including this option installs the Advanced Metrics module along with the NGINX Agent. With this module, you gain access to extra metrics and insights that enrich the monitoring and analysis capabilities of the NGINX Management Suite, empowering you to make more informed decisions.
+
+- {{% icon-feature %}} **NGINX Management Suite can send telemetry data to F5 NGINX**
+
+  In order to enhance product development and support the success of our users with NGINX Management Suite, we offer the option to send limited telemetry data to F5 NGINX. This data provides valuable insights into software usage and adoption. By default, telemetry is enabled, but you have the flexibility to disable it through the web interface or API. For detailed information about the transmitted data, please refer to our documentation.
+
+
+### Changes in Default Behavior {#2-11-0-changes-default-behavior}
+
+Instance Manager 2.11.0 has the following changes in default behavior:
+
+- **<span style="color: #c20025;"><i class="fas fa-exclamation-triangle"></i> **Action Required:**</span> Update OIDC configurations for management plane after upgrading to Instance Manager 2.11.0**
+
+  In Instance Manager 2.11.0, we added support for telemetry to the OIDC configuration files. Existing OIDC configurations will continue to work, but certain telemetry events, such as login, may not be captured.
+  
+  To ensure the capture of login telemetry events, please take the following steps:
+
+  1. Before upgrading, create copies of the following two files:
+
+     - /etc/nms/nginx/oidc/openid_configuration.conf
+     - /etc/nginx/conf.d/nginx.conf
+
+  2. During the upgrade process, you will be prompted to replace the two files. Select the option to replace them.
+
+  3. After completing the upgrade, update the two files using the OIDC settings from the backup copies you created in step 1.
+
+- {{% icon-feature %}} **Configuration file permissions have been lowered to strengthen security**
+
+  To strengthen the security of configuration details, certain file permissions have been modified. Specifically, the following configuration files now have lowered permissions, granting Owner Read/Write access and Group Read access (also referred to as `0640` or `rw-r-----`):
+
+  - /etc/nms/nginx.conf
+  - /etc/nginx/conf.d/nms-http.conf
+  - /etc/nms/nginx/oidc/openid_configuration.conf
+  - /etc/nms/nginx/oidc/openid_connect.conf
+
+  Additionally, the following file permissions have been lowered to Owner Read/Write and Group Read/Write access (also known as `0660` or `rw-rw-----`):
+
+  - /logrotate.d/nms.conf
+  - /var/log/nms/nms.log
+
+  These changes aim to improve the overall security of the system by restricting access to sensitive configuration files while maintaining necessary privileges for authorized users.
+
+- {{% icon-feature %}} **The location of agent-dynamic.conf has changed**
+
+  In this release, the agent-dynamic.conf file has been moved from /etc/nginx-agent/ to /var/lib/nginx-agent/. To assign an instance group and tags to an instance, you will now need to edit the file located in /var/lib/nginx-agent/. 
+
+### Resolved Issues {#2-11-0-resolved-issues}
+
+This release fixes the following issues. Select an issue's ID link to view its details.
+
+
+- {{% icon-resolved %}} Count of NGINX Plus graph has a delay in being populated [(37705)]({{< relref "/nms/nim/releases/known-issues.md#37705" >}})
+
+- {{% icon-resolved %}} Duplicate Certificate and Key published for managed certificates [(42182)]({{< relref "/nms/nim/releases/known-issues.md#42182" >}})
+
+- {{% icon-resolved %}} The Metrics module is interrupted during installation on Red Hat 9 [(42219)]({{< relref "/nms/nim/releases/known-issues.md#42219" >}})
+
+- {{% icon-resolved %}} Certificate file is not updated automatically under certain conditions [(42425)]({{< relref "/nms/nim/releases/known-issues.md#42425" >}})
+
+- {{% icon-resolved %}} Certificate updates allow for multiples certs to share the same serial number [(42429)]({{< relref "/nms/nim/releases/known-issues.md#42429" >}})
+
+
+### Support for NGINX App Protect WAF
+
+{{< include "tech-specs/nim-app-protect-support.md" >}}
+
+---
+
 ## 2.10.1
 
 5/22/2023
@@ -446,9 +550,9 @@ This release fixes the following issues:
 
 - {{% icon-resolved %}} NGINX App Protect policy deployment status not reflecting removal of associated instance. (38700)
 
-- {{% icon-resolved %}} When upgrading a multi-node NMS deployment with helm charts the ingestion pod may report a "Mismatched migration version" error (38880)
+- {{% icon-resolved %}} When upgrading a multi-node NGINX Management Suite deployment with helm charts the ingestion pod may report a "Mismatched migration version" error (38880)
 
-- {{% icon-resolved %}} After a version upgrade of NGINX Instance Manager, NMS Data Plane Manager crashes if you publish NGINX configuration with App Protect enablement directive (app_protect_enable) set to ON (38904)
+- {{% icon-resolved %}} After a version upgrade of NGINX Instance Manager, NGINX Management Suite Data Plane Manager crashes if you publish NGINX configuration with App Protect enablement directive (app_protect_enable) set to ON (38904)
 
 ### Known Issues
 
@@ -587,7 +691,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Track NGINX Plus usage over time**
 
-  When viewing your NGINX Plus instances in the Instance Manager web interface, you can set a date and time filter to review the [NGINX Plus instance count]({{< relref "/nms/nim/how-to/nginx/count-nginx-plus-instances" >}}) for a specific period. Also, you can use the Instance Manager REST API to view the lowest, highest, and average number of NGINX Plus instances over time.
+  When viewing your NGINX Plus instances in the Instance Manager web interface, you can set a date and time filter to review the [NGINX Plus instance count]({{< relref "/nms/nim/how-to/usage-tracking/count-nginx-plus-instances" >}}) for a specific period. Also, you can use the Instance Manager REST API to view the lowest, highest, and average number of NGINX Plus instances over time.
 
 - {{% icon-feature %}} **New helm charts for each release of Instance Manager**
 
@@ -637,7 +741,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **See which of your NGINX Plus instances have NGINX App Protect installed**
 
-  Now, when you [view your NGINX Plus inventory]({{< relref "/nms/nim/how-to/nginx/count-nginx-plus-instances.md" >}}), you can see which instances have [NGINX App Protect](https://www.nginx.com/products/nginx-app-protect/) installed. NGINX App Protect is a modern app‑security solution that works seamlessly in DevOps environments as a robust WAF or app‑level DoS defense, helping you deliver secure apps from code to customer.
+  Now, when you [view your NGINX Plus inventory]({{< relref "/nms/nim/how-to/usage-tracking/count-nginx-plus-instances.md" >}}), you can see which instances have [NGINX App Protect](https://www.nginx.com/products/nginx-app-protect/) installed. NGINX App Protect is a modern app‑security solution that works seamlessly in DevOps environments as a robust WAF or app‑level DoS defense, helping you deliver secure apps from code to customer.
 
 ### Changes in Default Behavior
 
@@ -645,7 +749,7 @@ Instance Manager 2.4.0 has the following changes in default behavior:
 
 - {{% icon-feature %}} **You no longer need to associate a certificate with an instance using the web interface**
 
-  NGINX Management Suite will automatically deploy a certificate to an NGINX instance if the instance's config references the certificate on the NMS platform.
+  NGINX Management Suite will automatically deploy a certificate to an NGINX instance if the instance's config references the certificate on the NGINX Management Suite platform.
 
 - {{% icon-feature %}} **Adds nms-integrations service**
 
@@ -720,7 +824,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Track the details for your NGINX Plus instances**
 
-  Easily track your NGINX Plus instances from the new NGINX Plus inventory list page. [View the current count for all your NGINX Plus instances]({{< relref "/nms/nim/how-to/nginx/count-nginx-plus-instances.md" >}}), as well as each instance's hostname, UID, version, and the last time each instance was reported to Instance Manager. Select the `Export` button to export the list of NGINX Plus instances to a `.csv` file.
+  Easily track your NGINX Plus instances from the new NGINX Plus inventory list page. [View the current count for all your NGINX Plus instances]({{< relref "/nms/nim/how-to/usage-tracking/count-nginx-plus-instances.md" >}}), as well as each instance's hostname, UID, version, and the last time each instance was reported to Instance Manager. Select the `Export` button to export the list of NGINX Plus instances to a `.csv` file.
 
 - {{% icon-feature %}} **Explore events in Instance Manager with the Events Catalogs API**
 

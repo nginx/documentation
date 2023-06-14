@@ -97,6 +97,10 @@ Repeat the steps in this section on each NGINX App Protect WAF data plane host t
    config_dirs: "/etc/nginx:/usr/local/etc/nginx:/usr/share/nginx/modules:/etc/nms"
 
    # Enable reporting NGINX App Protect details to the management plane.
+   extensions:
+     - nginx-app-protect
+     - nap-monitoring
+   # Enable reporting NGINX App Protect details to the control plane.
    nginx_app_protect:
    # Report interval for NGINX App Protect details - the frequency the NGINX Agent checks NGINX App Protect for changes.
    report_interval: 15s
@@ -111,10 +115,6 @@ Repeat the steps in this section on each NGINX App Protect WAF data plane host t
    syslog_ip: "127.0.0.1"
    # Syslog server port the collector will be listening to
    syslog_port: 514
-   
-   extensions:
-   - nginx_app_protect
-   - nap_monitoring
    ```
 
 1. If the `location /api` directive has not been set up in the `nginx.conf` file, follow the example below to add it:
@@ -142,7 +142,7 @@ Repeat the steps in this section on each NGINX App Protect WAF data plane host t
 
 ```bash
 # Download install script via API
-curl https://<NMS-FQDN>/install/nginx-agent > install.sh
+curl https://<NMS_FQDN>/install/nginx-agent > install.sh
 
 # Use the flag --nap-monitoring to set the child fields for the field 'nap_monitoring', the
 # child field values will be set to the values in the example configuration from above. Specify

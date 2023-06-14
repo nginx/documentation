@@ -161,7 +161,7 @@ We will use Debian (buster-slim) as an example, but other supported distribution
       -t nginx-agent --build-arg CONTROL_PLANE_IP .
     ```
 
-5. Run the container. In this example, we mount a local version of `nginx-agent.conf`, which can be used in place of the one in the image, and export port 1080 to the container's port 80. We specify the NMS host IP address, port and instance group name. See [NGINX Agent Environment Variables]({{< relref "/nms/nginx-agent/install-nginx-agent#nginx-agent-environment-variables" >}}) for details on these. We also make the container a daemon and name it `nginx-agent-1`. Finally, we specify we want to restart the container on failure.
+5. Run the container. In this example, we mount a local version of `nginx-agent.conf`, which can be used in place of the one in the image, and export port 1080 to the container's port 80. We specify the NGINX Management Suite host IP address, port and instance group name. See [NGINX Agent Environment Variables]({{< relref "/nms/nginx-agent/install-nginx-agent#nginx-agent-environment-variables" >}}) for details on these. We also make the container a daemon and name it `nginx-agent-1`. Finally, we specify we want to restart the container on failure.
 
     ```bash
     docker run \

@@ -52,3 +52,5 @@ dimensions:
   - acm_environments_type
   - acm_infra_workspaces_name
   - acm_service_workspaces_name
+  - family
+  - proxied_protocol

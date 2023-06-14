@@ -13,7 +13,7 @@ docs: "DOCS-1055"
 
 ## Overview
 
-This guide walks through setting up and using metrics in NGINX Management Suite API Connectivity Manager.
+This guide walks through setting up and using metrics in API Connectivity Manager.
 
 {{<important>}}The configuration presented in this guide is for demonstration purposes only. Securely configuring environments and proxies in API Connectivity Manager is not in scope for this tutorial but should be given full attention when planning for production use.{{</important>}}
 
@@ -21,7 +21,7 @@ Currently, only the following metric is available:
 
 - [Count of proxies in an environment](#count-proxies-in-env)
 
-As we add new metrics, we'll let you know in the [ACM release notes]({{< relref "/nms/acm/releases/release-notes.md" >}}) and update this topic accordingly.
+As we add new metrics, we'll let you know in the [API Connectivity Manager release notes]({{< relref "/nms/acm/releases/release-notes.md" >}}) and update this topic accordingly.
 
 ---
 

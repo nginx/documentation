@@ -20,7 +20,7 @@ docs: "DOCS-997"
 
 ## Overview
 
-gRPC has emerged as an alternative approach to building distributed applications, particularly microservice applications. API Connectivity Manager (ACM) supports publishing gRPC services. 
+gRPC has emerged as an alternative approach to building distributed applications, particularly microservice applications. API Connectivity Manager supports publishing gRPC services. 
 
 ### Preview Release
 
@@ -163,7 +163,7 @@ To do so, you need to interact directly with the NGINX Plus data plane hosts.
 1. Open an SSH connection to each NGINX Plus data plane host you want to add to the API Gateway cluster and log in.
 2. Run the onboarding command as `root` using cURL to download, install, configure, and start the NGINX Agent package. 
 
-   - Replace `{{nms-fqdn}}` in the example command with the FQDN or IP address of your ACM management plane host.
+   - Replace `{{nms-fqdn}}` in the example command with the FQDN or IP address of your API Connectivity Manager management plane host.
    - Make sure `-g {{clusterName}}` uses the name of your API Gateway cluster.
 
     ```bash

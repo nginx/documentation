@@ -1,6 +1,6 @@
 ---
 title: Web Interface JSON schema support 
-description: Overview of what parts of JSON schema are supported by the web interface
+description: Overview of what parts of JSON schema are supported by the NGIXN Management Suite App Delivery Manager web interface.
 weight: 500
 toc: true
 draft: false

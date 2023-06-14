@@ -14,14 +14,14 @@ docs: DOCS-900
 
 ## Overview
 
-You can use NGINX Management Suite API Connectivity Manager (ACM) to create and manage Developer Portals (or, "Dev Portals") to host your APIs and documentation. API Connectivity Manager Dev Portals provide a framework for customization that lets you match your Dev Portal to your brand's or business' requirements. 
+You can use API Connectivity Manager to create and manage Developer Portals (or, "Dev Portals") to host your APIs and documentation. API Connectivity Manager Dev Portals provide a framework for customization that lets you match your Dev Portal to your brand's or business' requirements. 
 You can customize the Dev Portal website's landing page, All APIs page, and Docs page(s), as well as the site's header and footer.
 
 ### Before You Begin
 
 Complete the following prerequisites before proceeding with this guide: 
 
-- ACM is installed, licensed, and running.
+- API Connectivity Manager is installed, licensed, and running.
 - You have one or more Environments with a [Developer Portal]({{< relref "/nms/acm/getting-started/add-devportal" >}}) cluster.
 - You have verified that you can access the Developer Portal using the configured hostname.
 
@@ -31,11 +31,11 @@ Complete the following prerequisites before proceeding with this guide:
 
 ## Customize a Developer Portal {#create-dev-portal}
 
-ACM uses a Dev Portal framework to define the look and feel of Developer Portals. These settings are applied at the Cluster level and apply to all Developer Portals hosted by the Cluster.
+API Connectivity Manager uses a Dev Portal framework to define the look and feel of Developer Portals. These settings are applied at the Cluster level and apply to all Developer Portals hosted by the Cluster.
 
 Take the steps below to customize your Dev Portal by defining a custom Dev Portal framework. 
 
-1. In the ACM user interface, go to **Environments > \<your environment\>**, where "your environment" is the Environment that contains a Developer Portal.
+1. In the API Connectivity Manager user interface, go to **Environments > \<your environment\>**, where "your environment" is the Environment that contains a Developer Portal.
 1. Select **Edit Portal Theme** from the **Actions** menu for the desired Developer Portal. You can then edit any of the options provided.
 
     - [Brand](#brand-options)

@@ -48,7 +48,7 @@ The NGINX Agent bundled with NGINX Plus Dockerfiles is available for the followi
 - SUSE (sles12sp5, sle15)
 - Ubuntu (18.04, 20.04, 22.04)
 
-## Cloning the NGINX Agent Repository
+## Clone the NGINX Agent Repository
 Using your preferred method, clone the NGINX Agent repository into your development directory. See [Cloning a GitHub Repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) for additional help.
 
 Use the following command to clone the repository using the HTTPS method.
@@ -58,42 +58,76 @@ $ git clone https://github.com/nginx/agent.git
 $ cd agent
 ```
 
-## Build Container Images
+## Prepare your Environment
+To build container images using scripts available in the NGINX Agent repository, you will need to install several packages. The steps outlined in this document provide installation instructions for distributions that use the `apt` package manager (for example, for Debian, Ubuntu, etc.). For installations on other operating systems, please refer to the documentation within each prerequisite package. In some cases, it may help to update package source lists in your operating system before proceeding.
 
-[Dockerfiles](https://github.com/nginx/agent/tree/main/scripts/docker) defining container images are located in [NGINX Agent Github](https://github.com/nginx/agent) repository. Note that `docker build` commands must be run from the repository's root directory. The NGINX Agent repository provides Makefile targets simplifying the image building process.
+```bash
+$ sudo apt update
+```
+
+### Install `make` Package
+Start by installing the [`make`](https://www.gnu.org/software/make/) package, which will enable you to execute build targets within the `Makefile` included in the NGINX Agent source code repository.
+
+```bash
+$ sudo apt install make
+```
+
+### Install a Container Engine
+A container engine will enable you to build images and run containers. NGINX Agent supports the [`Docker`](https://www.docker.com/) and [`Podman`](https://podman.io/) container engines. You will need to install the container engine that you plan to use. Most examples in this document are provided using the `Docker` container engine, with the exception of example under the [Rootless Containers](#rootless-containers) section.
+
+To install the Docker engine run the following command:
+```bash
+$ sudo apt get install docker.io
+```
+
+To install the Podman engine run the following command:
+```bash
+$ sudo apt get install podman
+```
+
+## Build Container Images
+[Dockerfiles](https://github.com/nginx/agent/tree/main/scripts/docker) defining container images are located in the [NGINX Agent Github](https://github.com/nginx/agent) repository. Note that `docker build` commands must be run from the repository's root directory. The NGINX Agent repository provides Makefile targets simplifying the image-building process. On some Operating Systems, `make` commands must be executed with root privileges (running them with `sudo`).
 
 ### Build Images with NGINX Agent and NGINX Open Source
+Prior to building an NGINX Agent bundled with NGINX Open Source image, an NGINX Agent binary must be built or downloaded.
 
-Prior to building an NGINX Agent bundled with NGINX Open Source image, an appropriate NGINX Agent binary must be built or downloaded. Convenient Makefile targets are available to build local images for supported Operating Systems.
+You can download an appropriate binary from the [NGINX Agent Releases](https://github.com/nginx/agent/releases) section on GitHub. Note the location and name of the downloaded package, which will be referred to as [PATH-TO-PACKAGE] below.
 
-For Ubuntu base images, run the following commands from the NGINX Agent source root directory
+The following command will produce an Ubuntu base image:
 ```bash
-$ make local-deb-package
-```
-Note the name of the package built using the above command. You will need to insert it into the next command.
-
-```bash
-$ PACKAGE_NAME=[./build/NAME-OF-PACKAGE] make oss-image 
+$ PACKAGE_NAME=[PATH-TO-PACKAGE] make oss-image 
 ```
 
-For Rocky Linux base images, run the following commands from the NGINX Agent source root directory
-```bash
-$ make local-rpm-package
-```
-Note the name of the package built using the above command. You will need to insert it into the next command. Replace `OS_VERSION=9` with the desired version tag. See [Supported Tags](https://hub.docker.com/_/rockylinux) for version options.
+To build the image using a different base image, replace the values for `OS_RELEASE` and `OS_VERSION` with the options from the following table: 
 
+| OS_RELEASE       | OS_VERSION                 | 
+| ---------------- | -------------------------- | 
+| almalinux        | 8, 9                       | 
+| alpine           | 3.14, 3.15, 3.16, 3.17     | 
+| amazonlinux      | 2                          | 
+| oraclelinux      | 7, 8, 9                    | 
+| rockylinux       | 8, 9                       | 
+| ubuntu           | 18.04, 20.04, 22.04        | 
+
+For example, to build an image for RockyLinux 9, use the following command. Replace `OS_VERSION=9` with the desired version tag. See [Supported Tags](https://hub.docker.com/_/rockylinux) for version options.
 ```bash
-$ PACKAGE_NAME=[./build/NAME-OF-PACKAGE] OS_RELEASE=rockylinux OS_VERSION=9 make oss-image 
+$ PACKAGE_NAME=[PATH-TO-PACKAGE] OS_RELEASE=rockylinux OS_VERSION=9 make oss-image 
 ```
 
 Optional: Rather than specifying `PACKAGE_NAME` or `OS_RELEASE` on the command line, you may set these environment variables directly by editing the Makefile.
 
 ### Build Images with NGINX Agent and NGINX Plus
-Building an NGINX Agent bundled with NGINX Plus image requires an NGINX Plus license. NGINX Plus licenses are provided in the form of `.crt` and `.key` files and must be renamed to `nginx-repo.crt` and `nginx-repo.key` respectively. Begin by copying both files into the `[PATH_TO_NGINX_AGENT_SRC_ROOT]/build` directory. Create the directory if it doesn't exist.
+Building an NGINX Agent bundled with NGINX Plus image requires an NGINX Plus license. NGINX Plus licenses are provided as `.crt` and `.key` files and must be renamed to `nginx-repo.crt` and `nginx-repo.key`, respectively. Begin by creating the `build` directory under the NGINX Agent source root directory (`[PATH_TO_NGINX_AGENT_SRC_ROOT]/build`).
+
+In the NGINX Agent source root, run the following command:
+```
+$ mkdir build
+```
+Copy the license and key files into the `[PATH_TO_NGINX_AGENT_SRC_ROOT]/build` directory.
 
 ```bash
-$ cp [PATH_TO_LICENSE_CRT] [PATH_TO_NGINX_AGENT_SRC_ROOT]/build/nginx-repo.crt
-$ cp [PATH_TO_LICENSE_KEY] [PATH_TO_NGINX_AGENT_SRC_ROOT]/build/nginx-repo.key
+$ cp [PATH_TO_LICENSE_CRT] build/nginx-repo.crt
+$ cp [PATH_TO_LICENSE_KEY] build/nginx-repo.key
 ```
 
 From the NGINX Agent source root directory, run the following command to build the image with an Ubuntu 22.04 LTS base

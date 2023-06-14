@@ -17,7 +17,7 @@ docs: "DOCS-921"
 
 ## Overview
 
-In NGINX Management Suite API Connectivity Manager (ACM), an API Gateway is a proxy cluster that contains one or more NGINX data plane instances.
+In API Connectivity Manager, an API Gateway is a proxy cluster that contains one or more NGINX data plane instances.
 These clusters are managed under **Infrastructure Workspaces** and are part of **Environments**.
 
 ### Before You Begin
@@ -199,7 +199,7 @@ To do so, you need to interact directly with the NGINX Plus data plane hosts.
 1. Use SSH to connect and log in to each of the NGINX Plus data plane hosts that you want to add to the API Gateway cluster.
 1. Run the onboarding command as root using cURL to download, install, configure, and start the NGINX Agent package. 
 
-   - Replace `{{nms-fqdn}}` in the example command with the FQDN or IP address of your ACM management plane host.
+   - Replace `{{nms-fqdn}}` in the example command with the FQDN or IP address of your API Connectivity Manager management plane host.
    - Make sure `-g {{clusterName}}` uses the name of your API Gateway cluster.
 
    ```bash
