@@ -25,7 +25,7 @@ aliases:
 
 ## Overview
 
-Complete the steps in this guide to secure Instance Manager with OpenID Connect (OIDC) using Azure Active Directory (AD) as the identity provider. As an administrator, when you integrate OpenID authentication with Instance Manager, you can use role-based access control (RBAC) to limit user access to NGINX instances.
+Complete the steps in this guide to secure Instance Manager with OpenID Connect (OIDC) using the authorization code flow method and Azure Active Directory (AD) as the identity provider. As an administrator, when you integrate OpenID authentication with Instance Manager, you can use role-based access control (RBAC) to limit user access to NGINX instances.
 
 There are five steps to configuring Instance Manager to use OIDC and Azure Active Directory:
 
