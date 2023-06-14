@@ -369,6 +369,7 @@ sudo apt install nginx-plus-module-njs
        "~^/api/platform/v1/inventory"     core-api-service;
        "~^/api/platform/v1/modules"       core-api-service;
        "~^/api/platform/v1/dimensionmapping" core-api-service;
+       "~^/api/platform/v1/resource-groups"  core-api-service;
    
        # SCIM related mappings
        "~^/api/scim/v2/users"  core-api-service;
