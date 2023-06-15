@@ -185,7 +185,7 @@ To install and enable ClickHouse on Debian, Ubuntu, and Deb-Based distributions,
 1. Start the ClickHouse server:
 
     ``` bash
-    sudo service clickhouse-server start
+    sudo systemctl start clickhouse-server
     ```
 
 1. Verify ClickHouse is running:
