@@ -58,6 +58,11 @@ To create an instance group:
 
 5. Select **Save**.
 
+{{<note>}}
+When an Instance Group is initially created via the UI/API, its NGINX config will be empty. Adding an Instance to the Instance Group will populated
+the Instance Group NGINX nginx with the first member's NGINX nginx.
+{{</note>}}
+
 ---
 
 ## Add Instances to Instance Groups
@@ -146,11 +151,12 @@ To add an instance to an instance group when installing the NGINX Agent:
     ```
 
 {{< important >}}
-If the specified instance group doesn't already exist, the NGINX Agent installer will create it, using the current instance's config file as the group's config file. This means that all instances added to the group later will use this config as well. If you're using a script to add instances, you should consider carefully which instance to run the script on first.
+If the specified instance group doesn't already exist, the NGINX Agent installer will create it, using the current instance's NGINX config as the group's config file. This means that all instances added to the group later will use this config as well. If you're using a script to add instances, you should consider carefully which instance to run the script on first.
 {{< /important >}}
 
 {{%/tab%}}
 {{</tabs>}}
+
 
 ---
 
@@ -209,6 +215,14 @@ If the instance group you deleted was specified in the `agent-dynamic.conf` file
 
 ---
 
+## Permission for Instance Groups
+
+See [Set Up RBAC]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}), for detail information on setting up role-based access control (RBAC) for Instance Groups.
+
+{{<note>}}
+Members of Instance Group automatically inherits role-based access control (RBAC) permissions from their parent.  
+{{</note>}}
+
 ## Publishing to Instance Groups
 
 ### Publish Config Changes to Instance Groups
@@ -219,3 +233,21 @@ If the instance group you deleted was specified in the `agent-dynamic.conf` file
 
 {{< include "nim/how-to/version-control/instance-group-hash-version-config.md" >}}
 
+## Additional Information Regarding Instance Groups
+
+When updating Instance Group NGINX config using the UI or API, only the currently "online" members of Instance Group will be affected. Newly registered Instance or
+reconnected Instance should get NGINX config updated automatically to the last "successful" published NGINX config.
+
+A NGINX config update to Instance Group is considered "successful" with one of the following conditions:
+- Instance Group does not have an member Instance online
+- Any of Instance Group member reported "successful" to the NGINX config update
+
+{{<note>}}
+Check the Instance details page for the last NGINX config publish status.
+{{</note>}}
+
+### Common Usage of Instance Groups
+
+Instance Group can be used for the following workflows:
+- Preset NGINX config for new Instances, i.e. containerized Instances
+- Group permissions for a set of Instances that shared the same NGINX config
