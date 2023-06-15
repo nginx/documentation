@@ -30,7 +30,7 @@ aliases:
 
 ## Overview
 
-You can easily manage RBAC permissions for multiple resources as a single entity by creating a Resource Group in Instance Manager and adding them. While Instance Groups are similar to a cluster, as all instances must share the same config, the same is not true with Resource Groups. Resource Groups are exclusively an RBAC tool to allow managing a large number of resources as a single item.
+Resource Groups allow you to manage RBAC permissions for multiple resources in Instance Manager as a single entity. While Instance Groups are similar to a cluster, as all instances must share the same config, the same is not true with Resource Groups. Resource Groups are exclusively an RBAC tool to allow managing a large number of resources as a single item.
 
 ---
 
