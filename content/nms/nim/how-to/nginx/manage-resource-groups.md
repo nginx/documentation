@@ -94,7 +94,7 @@ To create a Resource Group using the REST API, send an HTTP `POST` request to th
 
 You can assign resources (e.g. Systems) to Resource Groups in the following ways:
 
-- (Preferred) Directly add the System to the Resource Group with the Direct Add API.
+- (Preferred) Directly add the system to the Resource Group with the Direct Add API.
 - Alternatively, you can use the Update Resource Group API `PUT /api/platform/v1/resource-groups/{resourceGroupUid}`, but this method requires passing all systems that belong in the set with the call.
 
 <br>
