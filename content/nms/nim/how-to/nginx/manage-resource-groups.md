@@ -52,7 +52,7 @@ To complete the instructions in this guide, you need the following:
 
 ## Default Systems Set
 
-All systems get added to a default Resource Group when registered. You can use this to set base-level permissions for all new systems that get added to Instance Manager before you add the system to a more specific set.
+When systems are registered with Instance Manager, they are automatically included in a default Resource Group.  You can use this default group to set base-level permissions for new systems until they are added to a more specific group.
 
 ---
 
