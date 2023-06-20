@@ -60,7 +60,7 @@ To create an instance group:
 
 {{<note>}}
 When an Instance Group is initially created via the UI/API, its NGINX config will be empty. Adding an Instance to the Instance Group will populated
-the Instance Group NGINX nginx with the first member's NGINX nginx.
+the Instance Group NGINX nginx with the first member's NGINX config.
 {{</note>}}
 
 ---
@@ -220,7 +220,7 @@ If the instance group you deleted was specified in the `agent-dynamic.conf` file
 See [Set Up RBAC]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}), for detail information on setting up role-based access control (RBAC) for Instance Groups.
 
 {{<note>}}
-Members of Instance Group automatically inherits role-based access control (RBAC) permissions from their parent.  
+Members of Instance Group automatically inherit role-based access control (RBAC) permissions from their parent.  
 {{</note>}}
 
 ## Publishing to Instance Groups
@@ -239,8 +239,8 @@ When updating Instance Group NGINX config using the UI or API, only the currentl
 reconnected Instance should get NGINX config updated automatically to the last "successful" published NGINX config.
 
 A NGINX config update to Instance Group is considered "successful" with one of the following conditions:
-- Instance Group does not have an member Instance online
-- Any of Instance Group member reported "successful" to the NGINX config update
+- Instance Group does not have a member Instance online
+- Any Instance Group member reported "successful" to the NGINX config update
 
 {{<note>}}
 Check the Instance details page for the last NGINX config publish status.
@@ -248,6 +248,6 @@ Check the Instance details page for the last NGINX config publish status.
 
 ### Common Usage of Instance Groups
 
-Instance Group can be used for the following workflows:
+Instance Groups can be used for the following workflows:
 - Preset NGINX config for new Instances, i.e. containerized Instances
-- Group permissions for a set of Instances that shared the same NGINX config
+- Group permissions for a set of Instances that share the same NGINX config
