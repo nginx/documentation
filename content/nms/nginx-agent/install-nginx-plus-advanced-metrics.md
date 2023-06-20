@@ -82,23 +82,25 @@ Do not push configuration changes to the impacted instance, or any instance grou
 
 {{< include "installation/add-nms-repo.md" >}}
 
-4. Install the NGINX Plus metrics module using the appropriate command for your OS:
+3. Install the NGINX Plus metrics module using the appropriate command for your OS:
 
     - CentOS, RHEL, RPM-Based
 
         ```bash
-        yum install nginx-plus-module-metrics
+        sudo yum update
+        sudo yum install nginx-plus-module-metrics
         ```
 
     - Debian, Ubuntu, Deb-Based
 
         ```bash
-        apt install nginx-plus-module-metrics
+        sudo apt update
+        sudo apt install nginx-plus-module-metrics
         ```
 
 ### Install from NGINX Management Suite
 
-To install the NGINX Plus metrics module from NGINX Management Suite, use a comman-line tool like `curl` or `wget`. 
+To install the NGINX Plus metrics module from NGINX Management Suite, use a command-line tool like `curl` or `wget`. 
 
 We highly recommend that you encrypt all traffic between NGINX Agent and NGINX Management Suite. You can find instructions in the [Encrypt Agent Communications]({{< relref "encrypt-nginx-agent-comms" >}}) guide. 
 
@@ -119,7 +121,7 @@ In the secure example, the `--skip-verify false` flag tells NGINX Agent to verif
     curl --insecure https://<NMS_FQDN>/install/nginx-plus-module-metrics | sudo sh
     ```
 
-## Congfigure NGINX Agent to use Advanced Metrics
+## Configure NGINX Agent to use Advanced Metrics
 
 {{< include "agent/installation/enable-advanced-metrics.md" >}}
 
