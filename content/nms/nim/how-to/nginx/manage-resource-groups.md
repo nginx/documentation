@@ -11,7 +11,6 @@ weight: 610
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1200"
 # Taxonomies
 # These are pre-populated with all available terms for your convenience.
 # Remove all terms that do not apply.
@@ -30,7 +29,7 @@ aliases:
 
 ## Overview
 
-You can easily manage RBAC permissions for multiple resources as a single entity by creating a Resource Group in Instance Manager and adding them. While Instance Groups are similar to a cluster, as all instances must share the same config, the same is not true with Resource Groups. Resource Groups are exclusively an RBAC tool to allow managing a large number of resources as a single item.
+Resource Groups allow you to manage RBAC permissions for multiple resources in Instance Manager as a single entity. While Instance Groups are similar to a cluster, as all instances must share the same config, the same is not true with Resource Groups. Resource Groups are exclusively an RBAC tool to allow managing a large number of resources as a single item.
 
 > **Note**
 > Resource Groups replaces Instance Sets (obsoleted).
@@ -55,7 +54,7 @@ To complete the instructions in this guide, you need the following:
 
 ## Default Systems Set
 
-All systems get added to a default Resource Group when registered. You can use this to set base-level permissions for all new systems that get added to Instance Manager before you add the system to a more specific set.
+When systems are registered with Instance Manager, they are automatically included in a default Resource Group.  You can use this default group to set base-level permissions for new systems until they are added to a more specific group.
 
 ---
 
@@ -95,9 +94,9 @@ To create a Resource Group using the REST API, send an HTTP `POST` request to th
 
 ## Add Resources to Resource Groups
 
-You can assign resources (e.g. Systems) to Resource Groups in the following ways:
+You can assign resources (for example, systems) to Resource Groups in the following ways:
 
-- (Preferred) Directly add the System to the Resource Group with the Direct Add API.
+- (Preferred) Directly add the system to the Resource Group with the Direct Add API.
 - Alternatively, you can use the Update Resource Group API `PUT /api/platform/v1/resource-groups/{resourceGroupUid}`, but this method requires passing all systems that belong in the set with the call.
 
 <br>
