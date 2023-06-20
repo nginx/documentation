@@ -21,9 +21,9 @@ categories: ["known issues"]
 ###  {{% icon-bug %}} Modules that share the same Instance Group can create config conflicts {#38638}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID               | Status          |
-| ---------------------- | --------------- |
-| 38638                  | Open            |
+| Issue ID | Status |
+|----------|--------|
+| 38638    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
@@ -39,9 +39,9 @@ Use [Role-based Account Control]({{< relref "/nms/admin-guides/access-control/se
 ###  {{% icon-bug %}} System Metrics not available without elevated access rights {#40945}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID               | Status          |
-| ---------------------- | --------------- |
-| 40945                  | Open            |
+| Issue ID | Status |
+|----------|--------|
+| 40945    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
@@ -53,9 +53,9 @@ System metrics, as seen in the Overview page, are not displayed for users with r
 ###  {{% icon-bug %}} Config push failure when Agent and NGINX Plus with the metrics module are deployed in a container {#41868}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID               | Status          |
-| ---------------------- | --------------- |
-| 41868                  | Open            |
+| Issue ID | Status |
+|----------|--------|
+| 41868    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
@@ -67,9 +67,9 @@ When the NGINX Agent and NGINX Plus are installed in a container, and the metric
 ###  {{% icon-bug %}} API Documentation is not displaying some description fields for schemas containing references to other objects. {#42146}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID               | Status          |
-| ---------------------- | --------------- |
-| 42146                  | Open            |
+| Issue ID | Status |
+|----------|--------|
+| 42146    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
@@ -78,12 +78,12 @@ API Documentation for Sites, Web Components, and TcpUdp Components displays the 
 
 ---
 
-###  {{% icon-bug %}} Certificate file is not updated automatically under certain conditions {#42425}
+###  {{% icon-resolved %}} Certificate file is not updated automatically under certain conditions {#42425}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID               | Status          |
-| ---------------------- | --------------- |
-| 42425                  | Open            |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 42425    | Fixed in Instance Manager 2.11.0 |
 {{</bootstrap-table>}}
 
 #### Description
@@ -92,12 +92,12 @@ Certificate file is not updated automatically when a config change is pushed to 
 
 ---
 
-###  {{% icon-bug %}} Certificate updates allow for multiples certs to share the same serial number {#42429}
+###  {{% icon-resolved %}} Certificate updates allow for multiples certs to share the same serial number {#42429}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID               | Status          |
-| ---------------------- | --------------- |
-| 42429                  | Open            |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 42429    | Fixed in Instance Manager 2.11.0 |
 {{</bootstrap-table>}}
 
 #### Description
@@ -109,9 +109,9 @@ It is possible to update an existing certificate's serial number to one already 
 ###  {{% icon-bug %}} Duplicate Certificate and Key published for managed certificates {#42517}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID               | Status          |
-| ---------------------- | --------------- |
-| 42517                  | Open            |
+| Issue ID | Status |
+|----------|--------|
+| 42517    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
@@ -127,9 +127,9 @@ Manually delete the certificate and key from the /etc/nginx/ path.
 ###  {{% icon-bug %}} Cannot remove App Delivery Manager object if deletion results in an error {#42520}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID               | Status          |
-| ---------------------- | --------------- |
-| 42520                  | Open            |
+| Issue ID | Status |
+|----------|--------|
+| 42520    | Open   |
 {{</bootstrap-table>}}
 
 #### Description

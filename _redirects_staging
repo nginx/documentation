@@ -39,8 +39,8 @@
 /nginx-management-suite/admin-guides/getting-started/* /nginx-management-suite/admin-guides/configuration/:splat 301
 /nginx-management-suite/admin-guides/installation/uninstall-guide/ /nginx-management-suite/installation/uninstall-guide/ 301
 /nginx-management-suite/admin-guides/installation/upgrade-guide/ /nginx-management-suite/installation/upgrade-guide/ 301
+/nginx-management-suite/nim/how-to/nginx/count-nginx-plus-instances/ /nginx-management-suite/nim/how-to/usage-tracking/count-nginx-plus-instances/ 301
 /nginx-management-suite/admin-guides/installation/offline-install-guide/ /nginx-management-suite/installation/vm-bare-metal/offline-install-guide/ 301
-
 
 # NGINX Plus redirects
 /install-community-modules /nginx/admin-guide/installing-nginx/installing-nginx-plus/#installing-nginx-community-modules 301

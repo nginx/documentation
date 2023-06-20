@@ -1,5 +1,5 @@
 #
-# Copyright (C) F5 2022
+# Copyright (C) F5 2023
 # All rights reserved.
 #
 # No part of the software may be reproduced or transmitted in any
@@ -8,14 +8,14 @@
 #
 
 ---
-name: http.request.connection_duration
+name: stream.bytes_rcvd
 categories:
   - advanced-metrics
-description: The connection duration of a HTTP Request.
-type: gauge
+description: The total number of bytes received from clients.
+type: counter
 source: advanced-metrics-module
-unit: milliseconds
-rate: double
+unit: bytes
+rate: net_io_rate
 visible: true
 compound_payload: "false"
 modules:
@@ -29,22 +29,19 @@ aggregations:
   - COUNT
   - RATE
 dimensions:
+  - system_id
+  - hostname
+  - system.tags
+  - instance_group
+  - display_name
+  - nginx_id
+  - http.upstream_addr
+  - family
+  - proxied_protocol
   - app
   - environment
   - component
   - gateway
-  - http.hostname
-  - http.request_method
-  - http.response_code
-  - http.upstream_addr
-  - http.uri
-  - http.version_schema
-  - system_id
-  - hostname
-  - display_name
-  - nginx_id
-  - instance_group
-  - system.tags
   - acm_api_proxy_hostname
   - acm_api_proxy_name
   - acm_api_proxy_version

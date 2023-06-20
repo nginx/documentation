@@ -349,7 +349,7 @@ To restore NGINX Management Suite and the installed modules deployed in the same
 4. Run the restore script:
 
     ```bash
-    sudo ./k8s-restore.sh k8s-backup-<timestamp>.tar.gz
+    sudo ./k8s-restore.sh -r -i k8s-backup-<timestamp>.tar.gz
     ```
     {{< note >}}The restore script [needs root access]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md#prerequisites" >}}) to Kubernetes for the restore operation.{{< /note >}}
 
