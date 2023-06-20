@@ -38,7 +38,7 @@ authors: []
 
 {{< include "installation/nms-prerequisites.md" >}}
 
-### Dependencies with API Connectivity Manager
+### Dependencies with Instance Manager
 
 {{< include "tech-specs/acm-nim-dependencies.md" >}}
 
