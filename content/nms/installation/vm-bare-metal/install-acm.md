@@ -109,7 +109,7 @@ A valid license is required in order to use API Connectivity Manager.
 
 ## Upgrade API Connectivity Manager {#upgrade-acm}
 
-{{<note>}}When upgrading API Connectivity Manager, you may need a newer version of NGINX Management Suite. The installation process will notify you of any version requirements before upgrading API Connectivity Manager and any dependent packages, including NGINX Management Suite. You may cancel the installation process if you want to [back up NGINX Management Suite]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md" >}}) before upgrading.{{</note>}}
+{{<note>}}When upgrading API Connectivity Manager, you may need a newer version of Instance Manager. The installation process will notify you of any version requirements before upgrading API Connectivity Manager and any dependent packages, including NGINX Management Suite modules. You may cancel the installation process if you want to [back up NGINX Management Suite]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md" >}}) before upgrading.{{</note>}}
 
 <br>
 
