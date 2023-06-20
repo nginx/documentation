@@ -2433,15 +2433,15 @@
 <td><p><code>condition</code></p></td>
 <td><p>string</p></td>
 <td><p>Specifies the condition under which the override rule should be applied.</p>
-<p>Example: "condition": "clientIp != '10.0.0.5' and userAgent.lower().contains('WebRobot')"</p>
+<p>Example: "clientIp != '10.0.0.5' and userAgent.lower().contains('WebRobot')"</p>
 <p>Condition Syntax:</p>
 <blockquote>
 <ul>
 <li>The condition consists of one or more clauses separated by <em>and</em>.</li>
 <li>Each clause can optionally start with <em>not</em>.</li>
-<li>A clause can be a simple comparison between two value expressions or a boolean function applied to a literal value.</li>
+<li>A clause can be a simple comparison between two value expressions, or a boolean function applied to a literal value.</li>
 <li>Value expressions can be a request attribute, literal value, or a value function.</li>
-<li>Literals <strong>must</strong> be enclosed in single quotes or can be the keyword <em>null</em>.</li>
+<li>A literal can be a string value enclosed in single quotes, or can be the keyword "null" without quotes.</li>
 <li>Supported comparison operators are <em>==</em> and <em>!=</em>.</li>
 <li>Supported boolean functions are <em>matches</em>, <em>startsWith</em>, and <em>contains</em>.</li>
 <li>The only supported value function is <em>lower</em>. Any boolean function applied on the resulting string will be <strong>case insensitive</strong>.</li>
@@ -2464,7 +2464,7 @@
 <tr class="even">
 <td><code>extendsPolicy</code></td>
 <td>boolean</td>
-<td>If <em>true</em> - the override policy inherits the containing policy settings. The default is <em>true</em>.</td>
+<td>If <em>true</em> - the override policy inherits the containing policy settings, allowing only the required settings to be overridden. If <em>false</em> - the override policy must be a valid declarative policy that includes a name, template and all necessary settings. The default is <em>true</em>.</td>
 <td></td>
 </tr>
 <tr class="odd">
@@ -2476,7 +2476,7 @@
 <tr class="even">
 <td><code>override</code></td>
 <td>string</td>
-<td>The overriding security policy definition. If the <em>extendsPolicy</em> is <em>false</em> - you must provide the name of the policy.</td>
+<td>The overriding security policy definition.</td>
 <td></td>
 </tr>
 </tbody>
