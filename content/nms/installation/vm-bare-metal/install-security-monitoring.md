@@ -140,7 +140,7 @@ A valid license is required in order to use the Security Monitoring module.
 
    ```bash
    sudo apt-get update
-   sudo apt-get upgrade -y nms-sm
+   sudo apt-get install -y --only-upgrade nms-sm
    ```
 
 {{%/tab%}}

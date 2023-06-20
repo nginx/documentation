@@ -130,7 +130,7 @@ A valid license is required in order to use API Connectivity Manager.
 
    ```bash
    sudo apt-get update
-   sudo apt-get upgrade -y nms-api-connectivity-manager
+   sudo apt-get install -y --only-upgrade nms-api-connectivity-manager
    ```
 
 {{%/tab%}}

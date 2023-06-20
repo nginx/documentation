@@ -130,7 +130,7 @@ A valid license is required in order to use App Delivery Manager.
 
    ```bash
    sudo apt-get update
-   sudo apt-get upgrade -y nms-app-delivery-manager
+   sudo apt-get install -y --only-upgrade nms-app-delivery-manager
    ```
 
 {{%/tab%}}
