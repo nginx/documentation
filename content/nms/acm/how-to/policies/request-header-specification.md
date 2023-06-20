@@ -1,5 +1,5 @@
 ---
-title: "Request Correlation ID"
+title: "Request Header Specification"
 draft: false
 description: Learn how to use API Connectivity Manager's Request Header Specification policy to configure how headers with invalid characters are processed.
 weight: 1300
