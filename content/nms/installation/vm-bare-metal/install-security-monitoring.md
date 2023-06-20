@@ -119,7 +119,7 @@ A valid license is required in order to use the Security Monitoring module.
 
 ## Upgrade Security Monitoring {#upgrade-security-monitoring}
 
-{{<important>}}The upgrade process for Security Monitoring does not automatically upgrade Instance Manager, which is a package dependency. To ensure compatibility with Security Monitoring, you will need to manually upgrade Instance Manager to a version supported by Security Monitoring. For specific version dependencies between Security Monitoring and Instance Manager, refer to the [Security Monitoring release notes]({{< relref "/nms/security/releases/release-notes.md" >}}).{{</important>}}
+{{<important>}}The upgrade process for Security Monitoring does not automatically upgrade Instance Manager, which is a package dependency. To ensure compatibility with Security Monitoring, you will need to manually [upgrade Instance Manager]({{< relref "/nms/installation/vm-bare-metal/install-nim.md#upgrade-nim" >}}) to a version supported by Security Monitoring. For specific version dependencies between Security Monitoring and Instance Manager, refer to the [Security Monitoring release notes]({{< relref "/nms/security/releases/release-notes.md" >}}).{{</important>}}
 
 <br>
 
