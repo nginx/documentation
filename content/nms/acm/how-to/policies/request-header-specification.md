@@ -5,7 +5,6 @@ description: Learn how to use API Connectivity Manager's Request Header Specific
 weight: 1300
 toc: true
 tags: [ "docs" ]
-docs: "DOCS-1120"
 doctypes: ["API Connectivity Manager", "api management", "task"]
 journeys: ["getting started", "using"]
 personas: ["Platform Ops", "Infra Admins"]
