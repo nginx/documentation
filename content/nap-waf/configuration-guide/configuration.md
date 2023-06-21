@@ -2397,16 +2397,16 @@ In the following example, the policy is configured with these items:
             {
                 "name": "FunkyBrowserV3",
                 "matchString": "FunkyBrowser/1.3.1",
-                "description": "Funky Browser is what you should browse with!"
             },
             {
                 "name": "SmartBrowser4",
                 "matchRegex": "smartbrowser/([\\d.]+)",
-                "description": "This browser is really smart!"
             }
         ],
         "bot-defense": {
-            "isEnabled": true,
+            "settings" : {
+                "isEnabled": true
+            },
             "mitigations": {
                 "classes": [
                     {
@@ -2462,16 +2462,16 @@ In the next example, the policy is configured with the following items:
             {
                 "name": "FunkyBrowserV3",
                 "matchString": "FunkyBrowser/1.3.1",
-                "description": "Funky Browser is what you should browse with!"
             },
             {
                 "name": "SmartBrowser4",
                 "matchRegex": "smartbrowser/([\\d.]+)",
-                "description": "This browser is really smart!"
             }
         ],
         "bot-defense": {
-            "isEnabled": true,
+            "settings" : {
+                "isEnabled": true
+            },   
             "mitigations": {
                 "classes": [
                     {
@@ -5069,11 +5069,10 @@ The following table specifies the HTTP Compliance sub-violation settings. All ar
 |Unescaped space in URL | Enabled | App Protect | The system checks that there is no unescaped space within the URL in the request line. Such spaces split URLs introducing ambiguity on picking the actual one. when enabled, the default value for number of unescaped space in URL is 50.| 
 |Body in GET or HEAD requests | Disabled | App Protect | Examines GET and HEAD requests which have a body. | 
 |Bad multipart/form-data request parsing | Enabled | App Protect | When the content type of a request header contains the substring "Multipart/form-data", the system checks whether each multipart request chunk contains the strings "Content-Disposition" and "Name". If they do not, the system issues a violation. | 
-|Bad multipart parameters parsing | Enabled | App Protect | The system checks the following:<ol><li>A boundary follows immediately after request headers.</li><li>The parameter value matches the format: 'name="param_key";\\r\\n.</li><li>A chunked body contains at least one CRLF.</li><li>A chunked body ends with CRLF.</li><li>Final boundary was found on multipart request.</li><li>There is no payload after final boundary.</li></ol><br><br>       If one of these is false, the system issues a violation. | 
+|Bad multipart parameters parsing | Enabled | App Protect | The system checks the following:<ol><li>A boundary follows immediately after request headers.</li><li>The parameter value matches the format: 'name="param_key";\\r\\n.</li><li>A chunked body contains at least one CRLF.</li><li>A chunked body ends with CRLF.</li><li>Final boundary was found on multipart request.</li><li>There is no payload after final boundary.</li></ol><br><br> If one of these is false, the system issues a violation. | 
 |Bad HTTP version | Enabled | NGINX | Enforces legal HTTP version number (only 0.9 or higher allowed). | 
 |Bad host header value | Enabled | NGINX | Detected non RFC compliant header value. | 
-| Check maximum number of cookies | Disabled | App Protect | The system compares the request cookies to the maximal configured
-number of cookies. When enabled, the default value for number of maximum cookies if unmodified is 50. |
+| Check maximum number of cookies | Enabled | App Protect | The system compares the request cookies to the maximal configured number of cookies. When enabled, the default value for number of maximum cookies if unmodified is 100. |
 {{</bootstrap-table>}} 
 
 
