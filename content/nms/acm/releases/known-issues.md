@@ -60,7 +60,7 @@ There is no impact to functionality.
 
 #### Description
 
-The routes filter under the proxy metrics page won’t work with params currently.
+The routes filter under the proxy metrics page doesn't work with params.
 
 e.g. /api/v1/shops/{shopID}
 
