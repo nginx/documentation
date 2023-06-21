@@ -11,6 +11,7 @@ To modify a configuration for an existing release, run the `helm upgrade` comman
 | `nms-acm.acm.image.pullPolicy`                | Image pull policy. | `IfNotPresent` |
 | `nms-acm.acm.container.port.http`             | TCP port for the pod to listen on. | `8037` |
 | `nms-acm.acm.container.port.db`               | Port to use for Dqlite. | `9300` |
+| `nms-acm.acm.metrics.enabled`                 | Enable metrics. | `false` |
 | `nms-acm.acm.service.httpPort`                | TCP port for the service to listen on. | `8037` |
 | `nms-acm.acm.resources.requests.cpu`          | CPU resource limits to allow for the `acm` pods. | `500m` |
 | `nms-acm.acm.resources.requests.memory`       | Memory resource limits to allow for the `api` pods. | `512Mi` |
