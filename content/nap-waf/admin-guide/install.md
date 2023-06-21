@@ -100,11 +100,12 @@ Below is a table showing how many seconds it takes a reload to complete, when NG
 
 ## Platform Security Considerations
 
-When deploying App Protect on NGINX Plus take the following precautions to secure the platform.  This avoids the risk of causing a Denial of Service condition or compromising the platform security.
+When deploying App Protect on NGINX Plus take the following precautions to secure the platform. This avoids the risk of causing a Denial of Service condition or compromising the platform security.
 
 - Restrict permissions to the files on the NGINX App Protect WAF platform to user **nginx** and group **nginx**, especially for the sensitive areas containing the configuration.
 - Remove unnecessary remote access services on the platform.
 - Configure a Syslog destination on the same machine as App Protect and proxy to an external destination. This avoids eavesdropping and [man-in-the-middle](https://en.wikipedia.org/wiki/Man-in-the-middle_attack) attacks on the Syslog channel.
+- Regularly update the Operating System (OS) to avoid known OS vulnerabilities which may impact the service.
 
 
 ## User Permissions
