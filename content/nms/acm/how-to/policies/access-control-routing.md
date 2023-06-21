@@ -77,9 +77,19 @@ Take the steps in this section if you would like to restrict access to Advanced 
                             "when": [
                                 {
                                     "key": "token.role",
+                                    "matchType": "STRING",
                                     "matchOneOf": {
                                         "values": [
                                             "admin"
+                                        ]
+                                    }
+                                },
+                                {
+                                    "key": "token.sub",
+                                    "matchType": "REGEX",
+                                    "matchOneOf": {
+                                        "values": [
+                                            "^.*test.com"
                                         ]
                                     }
                                 }
@@ -98,6 +108,11 @@ Take the steps in this section if you would like to restrict access to Advanced 
 - Adding multiple match conditions in a rule requires that all conditions are matched in order to access the API.
 - Adding the same configuration of route and HTTP method to multiple rules will be treated as an OR condition.
 - Any requests which match multiple rules will be checked from most to least specific.
+- If `matchType` is not specified, `STRING` will be used.
+- If the token claim is an array value, `STRING` and `REGEX` behave differently.
+  - `STRING` will match if any of the values contained in the array match one of the values.
+  - `REGEX` will check against the array converted to a comma-separated string. For example, `[ "first", "second", "third" ]` will become `first,second,third` when the regular expression is checked against it.
+
 {{< /note >}}
 
 ## Verification
