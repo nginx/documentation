@@ -44,7 +44,7 @@ By default, NGINX server will drop all headers that contain (.) and (_) characte
   
 - {{% icon-feature %}} **Regex support added to access control routing claims**
 
-  Access control routing claims can be arrays. For example roles and groups are typically represented as an array. Users can now use a regular expression to match against claims embedded in arrays.
+  Access control routing claims can be arrays. For example, roles and groups are typically represented as an array. You can now use a regular expression to match against claims embedded in arrays.
   
 - {{% icon-feature %}} **Ingress routing rules now allow using regular expressions**
 
