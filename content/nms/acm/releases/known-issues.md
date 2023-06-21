@@ -43,7 +43,7 @@ It is not possible to remove resources from API Connectivity Manager which have 
 
 #### Description
 
-Multiple entries are selected when gateway proxy hostnames are the same
+Multiple entries are selected when gateway proxy hostnames are the same.
 #### Workaround
 
 There is no impact to functionality
