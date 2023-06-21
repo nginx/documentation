@@ -15,6 +15,58 @@ doctypes: ["reference"]
 {{<rn-styles>}}
 
 ---
+## 1.7.0
+
+### {{% icon-bug %}} Resources deployed to a Developer Portal which has had its database reset cannot be updated or removed {#43140}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 43140 | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+It is not possible to remove resources from API Connectivity Manager which have been published to a Developer Portal if the Developer Portal database is cleared.
+
+---
+
+## 1.6.0
+
+### {{% icon-resolved %}} Multiple entries selected when gateway proxy hostnames are the same {#42515}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 42515 | Fixed in 1.7.0   |
+{{</bootstrap-table>}}
+
+#### Description
+
+Multiple entries are selected when gateway proxy hostnames are the same.
+#### Workaround
+
+There is no impact to functionality.
+
+---
+
+### {{% icon-resolved %}} The routes filter under the proxy metrics page won’t work with params {#42471}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 42471 | Fixed in 1.7.0   |
+{{</bootstrap-table>}}
+
+#### Description
+
+The routes filter under the proxy metrics page doesn't work with params.
+
+e.g. `/api/v1/shops/{shopID}`
+
+The API won’t match on the above route.
+
+---
 
 ## 1.5.0
 
