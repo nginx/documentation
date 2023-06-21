@@ -18,10 +18,6 @@ aliases:
 
 {{< include "installation/download-license.md" >}}
 
-{{<call-out "note" "How to license App Delivery Manager">}}
-{{< include "adm/installation/license-adm.md" >}}
-{{</call-out>}}
-
 ---
 
 ## Apply License {#apply-license}
