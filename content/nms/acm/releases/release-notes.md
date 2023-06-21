@@ -22,7 +22,7 @@ June 21, 2023
 
 API Connectivity Manager  supports upgrades from these previous versions:
 
-- 1.4.0 - 1.6.0
+- 1.5.0 - 1.6.0
 
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
