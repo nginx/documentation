@@ -38,7 +38,7 @@ authors: []
 
 {{< include "installation/nms-prerequisites.md" >}}
 
-### Dependencies with API Connectivity Manager
+### Dependencies with Instance Manager
 
 {{< include "tech-specs/acm-nim-dependencies.md" >}}
 
@@ -109,7 +109,7 @@ A valid license is required in order to use API Connectivity Manager.
 
 ## Upgrade API Connectivity Manager {#upgrade-acm}
 
-{{<note>}}When upgrading API Connectivity Manager, you may need a newer version of NGINX Management Suite. The installation process will notify you of any version requirements before upgrading API Connectivity Manager and any dependent packages, including NGINX Management Suite. You may cancel the installation process if you want to [back up NGINX Management Suite]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md" >}}) before upgrading.{{</note>}}
+{{<note>}}When you confirm the upgrade, the upgrade process will automatically upgrade dependent packages as needed, including Instance Manager. If you prefer to [back up NGINX Management Suite]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md" >}}) before upgrading, you can cancel the upgrade when prompted.{{</note>}}
 
 <br>
 
@@ -130,7 +130,7 @@ A valid license is required in order to use API Connectivity Manager.
 
    ```bash
    sudo apt-get update
-   sudo apt-get upgrade -y nms-api-connectivity-manager
+   sudo apt-get install -y --only-upgrade nms-api-connectivity-manager
    ```
 
 {{%/tab%}}
