@@ -20,7 +20,7 @@ personas: ["Platform Ops", "Infra Admins"]
 
 ## About the Policy
 
-Use the Request Header Specification policy to allow headers which would normally be considered invalid. This can be used to treat underscores as valid, or allow all special header characters.
+Use the Request Header Specification policy to allow headers that would normally be considered invalid. This can be used to treat underscores as valid or allow all special header characters.
 
 ### Intended Audience
 
