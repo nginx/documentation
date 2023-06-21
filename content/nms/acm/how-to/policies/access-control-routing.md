@@ -45,7 +45,7 @@ Complete the following prerequisites before proceeding with this guide:
 
 ### How to Access the REST API
 
-{{< include "acm/how-to/access-acm-api" >}}
+{{<see-also>}}{{< include "acm/how-to/access-acm-api.md" >}}{{</see-also>}}
 
 ## Create Access Control Routing Policy
 
