@@ -35,7 +35,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Advanced Security Policy**
 
-  The new [Advanced Security policy]({{< relref "/nms/acm/how-to/policies/advanced-security.md" >}}) can be used to add a pre-defined NGINX App Protect to your deployment.  Doing so will apply the rules specified in the policy to your APIs.
+  The new [Advanced Security policy]({{< relref "/nms/acm/how-to/policies/advanced-security.md" >}}) can be used to add a pre-defined NGINX App Protect configuration to your deployment.  Doing so will apply the rules specified in the policy to your APIs.
   
 - {{% icon-feature %}} **Option added to allow API proxy to ignore invalid headers**
 
