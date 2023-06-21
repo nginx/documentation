@@ -85,8 +85,8 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 - 8133 Fixed - Fixed the issue where NGINX App Protect was unable to retrieve compilation status. 
 - 8302 Fixed - Fixed remote logging destinations when IPv6 is disabled system-wide.
 - 7819 Fixed - Fixed iOS clients login issue when using AJAX Response Page. This problem specifically occurs on iOS devices when NGINX's `proxy_buffering` is disabled.
-- 8250 Fixed - 
-- 8261 Fixed - 
+- 8250 Fixed - this is actually fixed in attack signatures and not in app-protect itself. So it is not a 4.4. RN fix
+- 8261 Fixed - We've updated the Go version and some Go modules to where vulnerabilities were fixed. I am not sure if we want to document this - check with Ohad/Beni\
 - 8716 Fixed - not sure if we want to add it
 - 8131 Fixed - Check with ohad if we need to add it, as it is a customer case
 
