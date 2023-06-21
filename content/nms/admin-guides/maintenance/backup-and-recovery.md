@@ -261,10 +261,10 @@ To complete the instructions in this guide, you need the following:
             nmsModules :
                 nsm—acm:
                     enabled: true
-                    addClaimsToUtiIity: true
+                    addClaimsToUtility: true
                 nms—adm :
                     enabled: true
-                    addClaimsToUtiIity: true        
+                    addClaimsToUtility: true        
         ```
 
     2. [Upgrade your NGINX Management Suite deployment]({{< relref "/nms/installation/kubernetes/deploy-instance-manager#helm-upgrade-nim" >}}) to apply the changes.
