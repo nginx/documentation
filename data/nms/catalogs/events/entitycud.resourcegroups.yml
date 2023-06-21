@@ -6,8 +6,8 @@
 # form or by any means, electronic or mechanical, for any purpose,
 # without express written permission of F5, Inc.
 #
-name: entitycud.instance sets
-description: "Instance Sets CUD events"
+name: entitycud.resource groups
+description: "Resource Groups CUD events"
 modules:
   - platform
 dimensions:
