@@ -37,7 +37,7 @@ This release includes the following updates:
 
   The new [Advanced Security policy]({{< relref "/nms/acm/how-to/policies/advanced-security.md" >}}) can be used to add a pre-defined NGINX App Protect to your deployment.  Doing so will apply the rules specified in the policy to your APIs.
   
-- {{% icon-feature %}} **Option added to allow api proxy to ignore invalid headers**
+- {{% icon-feature %}} **Option added to allow API proxy to ignore invalid headers**
 
   The [Request Header Specification policy]({{< relref "/nms/acm/how-to/policies/request-header-specification.md" >}}) allows headers with (.) and (_) characters to be proxied to backend services. 
 By default, NGINX server will drop all headers that contain (.) and (_) characters in the header name. Though not common, it is a legal character in headers. This feature will allow users to instruct NGINX to allow such headers to be proxied.
