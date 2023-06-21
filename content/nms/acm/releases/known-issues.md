@@ -62,7 +62,7 @@ There is no impact to functionality.
 
 The routes filter under the proxy metrics page doesn't work with params.
 
-e.g. /api/v1/shops/{shopID}
+e.g. `/api/v1/shops/{shopID}`
 
 The API won’t match on the above route.
 
