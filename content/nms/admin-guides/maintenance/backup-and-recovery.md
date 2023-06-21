@@ -219,12 +219,6 @@ To complete the instructions in this guide, you need the following:
         sudo apt-get install -y sqlite3
         ```
 
-- The NGINX Management Suite services must be running:
-
-    ```bash
-    sudo systemctl start nms
-    ```
-
 - Root Access
 
     The Kubernetes backup and restore scripts for NGINX Management Suite are executed using `sudo` and use the Kubernetes command `kubectl` internally to access the Kubernetes API. It is necessary to ensure the target Kubernetes cluster is accessible to the root user. 
