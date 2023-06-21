@@ -99,7 +99,7 @@ A valid license is required in order to use App Delivery Manager.
 
 #### Download License
 
-{{< include "installation/download-license.md" >}}
+{{< include "adm/installation/license-adm.md" >}}
 
 #### Apply License
 
