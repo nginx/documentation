@@ -82,9 +82,14 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 
 ### Resolved Issues
 
-- 7987 Fixed - Fixed Violation Rating calculation for trusted bots, untrusted bots and malicious bots. 
-- 8010 Fixed - Handling of response headers.
+- 8133 Fixed - Fixed the issue where NGINX App Protect was unable to retrieve compilation status. 
+- 8302 Fixed - Fixed remote logging destinations when IPv6 is disabled system-wide.
+- 7819 Fixed - Fixed iOS clients login issue when using AJAX Response Page. This problem specifically occurs on iOS devices when NGINX's `proxy_buffering` is disabled.
+- 8250 Fixed - 
+- 8261 Fixed - 
+- 8716 Fixed - not sure if we want to add it
+- 8131 Fixed - Check with ohad if we need to add it, as it is a customer case
 
 ### **Important Note**
  
-There is a limitation when using [Policy Override Rules]({{< relref "/nap-waf/configuration-guide/configuration.md#policy-override-rules" >}}) with gRPC. The Policy Override Rules do not provide support for gRPC traffic. If policy override rules are configured to match gRPC traffic, it may result in the blocking of such traffic.
+There is a limitation when using [Policy Override Rules]({{< relref "/nap-waf/configuration-guide/configuration.md#policy-override-rules" >}}) with gRPC. The Policy Override Rules do not provide support for gRPC traffic. If policy override rules are configured to match gRPC traffic, it will result in blocking of such traffic.
