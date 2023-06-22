@@ -12,7 +12,7 @@ Before creating a PR, run through this checklist and mark each as complete.
 
 Before merging a PR, run through this checklist and mark each as complete.
 
-- [ ] If you moved or renamed a publicly-accessible document file, add a redirect entry to each of the [_redirects](https://github.com/nginxinc/docs/blob/main/_redirects), [_redirect_dev](https://github.com/nginxinc/docs/blob/main/_redirects_dev), and [_redirects_staging](https://github.com/nginxinc/docs/blob/main/_redirects_staging) files.
+- [ ] If you moved or renamed a publicly-accessible doc file, add the corresponding redirect to the [_redirects](https://github.com/nginxinc/docs/blob/main/_redirects), [_redirect_dev](https://github.com/nginxinc/docs/blob/main/_redirects_dev), and [_redirects_staging](https://github.com/nginxinc/docs/blob/main/_redirects_staging) files.
 - [ ] Review the doc for spelling errors.
 - [ ] Verify that all links in the doc work.
 - [ ] Verify that the doc follows the appropriate content template.
