@@ -95,7 +95,7 @@ To use the SELinux policy that's included with NGINX Management Suite, take the 
     sudo restorecon -F -R /var/lib/nms/modules/acm.json
     ```
 
-1. (App Delivery Manager) If you installed App Connectivity Manager, run the following additional commands to restore the default SELinux labels for the following files and directories:
+1. (App Delivery Manager) If you installed App Delivery Manager, run the following additional commands to restore the default SELinux labels for the following files and directories:
 
     {{< beta-badge >}}
 
