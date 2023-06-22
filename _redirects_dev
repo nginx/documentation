@@ -42,6 +42,7 @@
 /nginx-management-suite/nim/how-to/nginx/count-nginx-plus-instances/ /nginx-management-suite/nim/how-to/usage-tracking/count-nginx-plus-instances/ 301
 /nginx-management-suite/admin-guides/installation/offline-install-guide/ /nginx-management-suite/installation/vm-bare-metal/offline-install-guide/ 301
 /nms/installation/vm-bare-metal/ /nginx-management-suite/installation/vm-bare-metal/ 301
+/nginx-management-suite/overview/ /nginx-management-suite/about/ 301
 
 
 # NGINX Plus redirects
