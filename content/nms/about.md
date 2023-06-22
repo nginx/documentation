@@ -5,16 +5,20 @@ doctypes:
 - troubleshooting
 draft: false
 title: About
-description: Learn about NGINX Management Suite.
+description: NGINX Management Suite brings together advanced features into a single platform, making it easy for organizations to configure, monitor, and troubleshoot NGINX instances; manage and govern APIs; optimize load balancing for apps; and enhance overall security.
 toc: true
 weight: 10
 docs: "DOCS-905"
 doctypes: ["concept"]
 ---
 
-NGINX Management Suite is a family of management plane solutions that enable governance of the NGINX data plane to easily scale, secure, and monitor applications and APIs. It consists of several modules:
+{{<custom-styles>}}
 
-## Instance Manager:
+Explore the topics below to find out what the NGINX Management Suite modules have to offer.
+
+---
+
+## Instance Manager
 
 [Instance Manager]({{< relref "/nms/nim/">}}) allows you to configure, scale, and manage NGINX Open Source and NGINX Plus instances. 
 
@@ -34,7 +38,9 @@ Instance Manager provides the following features:
 - [Manage certificates]({{< relref "/nms/nim/how-to/nginx/manage-certificates">}})
 - [Create users, roles, and role permissions]({{< relref "/nms/admin-guides/access-control/set-up-rbac">}}) for role-based access control
 
-## API Connectivity Manager: 
+---
+
+## API Connectivity Manager
 
 [API Connectivity Manager]({{< relref "/nms/acm/">}}) enables self-service and automation of API delivery. API Connectivity Manager allows you to deploy, configure, secure, monitor, and govern API gateways at scale. 
 
@@ -54,7 +60,9 @@ The API Connectiviy Manager module provides the following features:
 - [Apply policies to API proxies]({{< relref "/nms/acm/how-to/policies/manage-policies.md#configure-proxy-policies" >}}) to provide custom quality of service for individual applications
 - [Issue API keys]({{< relref "/nms/acm/how-to/infrastructure/enable-sso-devportal" >}}) or basic authentication credentials for access to the API
 
-## App Delivery Manager:
+---
+
+## App Delivery Manager
 
 [App Delivery Manager]({{< relref "/nms/adm/">}}) is built on top of the NGINX Management Suite platform and sits alongside the Instance Manager module. As such, uses many of the features that are included with the Instance Manager module, such as [authentication]({{< relref "/nms/admin-guides/access-control/configure-authentication.md" >}}), [Role-Based Access Control (RBAC)]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}), [instance groups]({{< relref "/nms/nim/how-to/nginx/manage-instance-groups.md" >}}), and [certificate management]({{< relref "/nms/nim/how-to/nginx/manage-certificates.md" >}}).
 
@@ -71,6 +79,8 @@ This app-centric view addresses the following concerns:
 
 This is all done behind a simple API abstraction provided by App Delivery Manager. For teams that need more control of the NGINX configuration or access to the rich set of directives and dynamic modules, the App Delivery Manager service provides a template facility to expand the API and the resulting possibilities for the NGINX configuration.
 
+---
+
 ## Security Monitoring
 
 [Security Monitoring]({{< relref "/nms/security/">}}) allows you to monitor NGINX App Protect WAF with analytics dashboards and security log details to get protection insights for analyzing possible threats or areas for tuning policies.
@@ -82,6 +92,7 @@ The Security Monitoring module provides the following features:
 - Informative dashboards that provide valuable protection insights
 - In-depth security log details to help with analyzing possible threats and making policy decisions
 
+---
 ## What's Next?
 
 - [Review the Technical Specifications]({{< relref "/nms/tech-specs.md">}})
