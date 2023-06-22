@@ -39,8 +39,9 @@ This release includes the following updates:
   
 - {{% icon-feature %}} **Option added to allow API proxy to ignore invalid headers**
 
-  The [Request Header Specification policy]({{< relref "/nms/acm/how-to/policies/request-header-specification.md" >}}) allows headers with (.) and (_) characters to be proxied to backend services. 
-By default, the NGINX server will drop all headers that contain (.) and (_) characters in the header name. Though not common, it is a legal character in headers. This feature instructs NGINX to allow such headers to be proxied.
+  The [Request Header Specification policy]({{< relref "/nms/acm/how-to/policies/request-header-specification.md" >}}) allows headers with (.) and (_) characters to be proxied to backend services.
+
+  By default, the NGINX server will drop all headers that contain (.) and (_) characters in the header name. Though not common, it is a legal character in headers. This feature instructs NGINX to allow such headers to be proxied.
   
 - {{% icon-feature %}} **Regex support added to access control routing claims**
 
