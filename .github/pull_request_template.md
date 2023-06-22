@@ -9,3 +9,9 @@ Before creating a PR, run through this checklist and mark each as complete.
 - [ ] I have read the [`CONTRIBUTING`](https://github.com/nginxinc/docs/blob/main/CONTRIBUTING.md) document
 - [ ] I have viewed my changes in the deploy-preview
 - [ ] I have updated any relevant supporting documentation ([`README.md`](https://github.com/nginxinc/docs/blob/main/README.md) and the [`CHANGELOG.md`](https://github.com/nginxinc/docs/blob/main/CHANGELOG.md))
+
+Before merging a PR, run through this checklist and mark each as complete.
+
+- [ ] If you moved or renamed a publicly-facing doc file, add an appropriate entry to each of the [_redirects](_redirects), [_redirect_dev](_redirects_dev), and [_redirects_staging](_redirects_staging) files.
+- [ ] Review the doc for spelling errors.
+- [ ] Verify that all links in the doc work.
