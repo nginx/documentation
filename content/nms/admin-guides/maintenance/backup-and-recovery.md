@@ -219,6 +219,7 @@ To complete the instructions in this guide, you need the following:
         sudo apt-get install -y sqlite3
         ```
 
+<a name="root-access"></a>
 - Root Access
 
     The Kubernetes backup and restore scripts for NGINX Management Suite are executed using `sudo` and use the Kubernetes command `kubectl` internally to access the Kubernetes API. It is necessary to ensure the target Kubernetes cluster is accessible to the root user. 
@@ -345,7 +346,7 @@ To restore NGINX Management Suite and the installed modules deployed in the same
     ```bash
     sudo ./k8s-restore.sh -r -i k8s-backup-<timestamp>.tar.gz
     ```
-    {{< note >}}The restore script [needs root access]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md#prerequisites" >}}) to Kubernetes for the restore operation.{{< /note >}}
+    {{< note >}}The restore script [needs root access]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md#root-access" >}}) to Kubernetes for the restore operation.{{< /note >}}
 
 5. The script will ask for the NGINX Management Suite namespace. Once the namespace has been provided, the script will consume the specified backup archive. 
 
@@ -380,7 +381,7 @@ To restore NGINX Management Suite and the installed modules into a different Kub
     ```bash
     sudo ./k8s-restore.sh -r -i k8s-backup-<timestamp>.tar.gz -d
     ```
-    {{< note >}}The restore script [needs root access]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md#prerequisites" >}}) to Kubernetes for the restore operation.{{< /note >}}
+    {{< note >}}The restore script [needs root access]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md#root-access" >}}) to Kubernetes for the restore operation.{{< /note >}}
 
 5. The script will ask for the NGINX Management Suite namespace. Once the namespace has been provided, the script will consume the specified backup archive. 
 
