@@ -95,15 +95,17 @@ authors: []
 
 ### Add License
 
-A valid license is required in order to use App Delivery Manager.
+A valid license is required to make full use of all the features in App Delivery Manager.
 
 #### Download License
 
+{{<call-out "important" "Licensing App Delivery Manager">}}
 {{< include "adm/installation/license-adm.md" >}}
+{{</call-out>}}
 
 #### Apply License
 
-{{< include "installation/add-license.md" >}}
+Refer to the [Add a License]({{< relref "/nms/installation/add-license.md#apply-license" >}}) topic for instructions on how to apply a trial license, subscription license, or Flexible Consumption Program license.
 
 ---
 

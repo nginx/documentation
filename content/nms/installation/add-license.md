@@ -62,6 +62,9 @@ Alternatively, you can use an S/MIME license in cases when NGINX Management Suit
 
 ### How to Apply an S/MIME License {#apply-smime-license}
 
+{{< include "installation/add-smime-license.md" >}}
+
+
 ---
 
 ## License Comparison {#license-comparison}
