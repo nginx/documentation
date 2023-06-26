@@ -77,56 +77,54 @@ A **feature** is a grouping of functionality in NGINX Management Suite. For more
 
 ### Unlicensed Mode
 
-The following features are available when NGINX Management Suite is unlicensed:
+Without a license, you can still use the following features of NGINX Management Suite:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| User  | Feature             | Area     | Description                                                          | Access&nbsp;Type                                                      |
-|-------|---------------------|----------|----------------------------------------------------------------------|-----------------------------------------------------------------------|
-| admin | Licensing           | Core     | Allows access to view and manage licenses.                           | [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) |
-| admin | NGINX Plus Counting | Core     | Allows access to view the number of registered NGINX Plus instances and track Kubernetes usage. | READ                                              |
-| admin | Scan                | Platform | Allows access to scan for NGINX Instances.                           | CRUD                                                                  |
-| admin | User Management     | Core     | Allows access to view and manage roles, users, and user groups.      | CRUD                                                                  |
+| User  | Feature             | Area     | Description                                                                                     | Access&nbsp;Type |
+|-------|---------------------|----------|-------------------------------------------------------------------------------------------------|------------------|
+| admin | Licensing           | Core     | Allows access to view and manage licenses.                                                      | CRUD             |
+| admin | NGINX Plus Counting | Core     | Allows access to view the number of registered NGINX Plus instances and track Kubernetes usage. | Read             |
+| admin | Scan                | Platform | Allows access to scan for NGINX Instances.                                                      | CRUD             |
+| admin | User Management     | Core     | Allows access to view and manage roles, users, and user groups.                                 | CRUD             |
 {{</bootstrap-table>}}
 
 ### Licensed Mode
 
-When NGINX Management Suite is licensed the full list of features are available, including those listed under Unlicensed Mode.
+When NGINX Management Suite is licensed, you gain access to the complete list of features in Instance Management, Security Monitoring, and Settings, including those that are available in Unlicensed Mode.
 
 #### API Connectivity Manager
 
 {{< note >}}
-The features belonging to API Connectivity Manager require that module to be installed.
+You need to install API Connectivity Manager in order to access its features.
 {{< /note >}}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| User  | Feature           | Area                     | Description                                                              | Access&nbsp;Type                                                      |
-|-------|-------------------|--------------------------|--------------------------------------------------------------------------|-----------------------------------------------------------------------|
-| admin | API Docs          | API Connectivity Manager | Allows access to view and manage API Docs to be published to Dev Portal. | [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) |
-| admin | Dev Portal Setup  | API Connectivity Manager | Allows access to view and manage Dev Portals.                            | CRUD                                                                  |
-| admin | Infra Workspace   | API Connectivity Manager | Allows access to view and manage Infrastructure Workspaces.              | CRUD                                                                  |
-| admin | Environments      | API Connectivity Manager | Allows access to view and manage Environments.                           | CRUD                                                                  |
-| admin | Proxy Config      | API Connectivity Manager | Allows access to view and manage Proxies.                                | CRUD                                                                  |
-| admin | Service Workspace | API Connectivity Manager | Allows access to view and manage Service Workspaces.                     | CRUD                                                                  |
-| admin | Job History       | API Connectivity Manager | Allows access to view and manage Job History.                            | CRUD                                                                  |
+| User  | Feature           | Area                     | Description                                                              | Access&nbsp;Type |
+|-------|-------------------|--------------------------|--------------------------------------------------------------------------|------------------|
+| admin | API Docs          | API Connectivity Manager | Allows access to view and manage API Docs to be published to Dev Portal. | CRUD             |
+| admin | Dev Portal Setup  | API Connectivity Manager | Allows access to view and manage Dev Portals.                            | CRUD             |
+| admin | Infra Workspace   | API Connectivity Manager | Allows access to view and manage Infrastructure Workspaces.              | CRUD             |
+| admin | Environments      | API Connectivity Manager | Allows access to view and manage Environments.                           | CRUD             |
+| admin | Proxy Config      | API Connectivity Manager | Allows access to view and manage Proxies.                                | CRUD             |
+| admin | Service Workspace | API Connectivity Manager | Allows access to view and manage Service Workspaces.                     | CRUD             |
+| admin | Job History       | API Connectivity Manager | Allows access to view and manage Job History.                            | CRUD             |
 {{</bootstrap-table>}}
 
 ---
 
 ### App Delivery Manager
 
-{{< note >}}
-The features belonging to App Delivery Manager require that module to be installed.
-{{< /note >}}
+You need to install App Delivery Manager in order to access its features.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| User  | Feature             | Area              | Description                                                          | Access&nbsp;Type                                                      |
-|-------|---------------------|-------------------|----------------------------------------------------------------------|-----------------------------------------------------------------------|
-| admin | Environments        | App Delivery Manager      | Allows access to view and manage environments.                      | [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) |
-| admin | Apps        | App Delivery Manager      | Allows access to view and manage apps.                      | [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) |
-| admin | Gateways        | App Delivery Manager      | Allows access to view and manage gateways.                      | [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) |
-| admin | Web components        | App Delivery Manager      | Allows access to view and manage web components.                      | [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) |
-| admin | TCP/UDP components        | App Delivery Manager      | Allows access to view and manage TCP/UDP components.                      | [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) |
-| admin | Sites        | App Delivery Manager      | Allows access to view and manage sites.                      | [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) |
+| User  | Feature            | Area                 | Description                                          | Access&nbsp;Type |
+|-------|--------------------|----------------------|------------------------------------------------------|------------------|
+| admin | Environments       | App Delivery Manager | Allows access to view and manage environments.       | CRUD             |
+| admin | Apps               | App Delivery Manager | Allows access to view and manage apps.               | CRUD             |
+| admin | Gateways           | App Delivery Manager | Allows access to view and manage gateways.           | CRUD             |
+| admin | Web components     | App Delivery Manager | Allows access to view and manage web components.     | CRUD             |
+| admin | TCP/UDP components | App Delivery Manager | Allows access to view and manage TCP/UDP components. | CRUD             |
+| admin | Sites              | App Delivery Manager | Allows access to view and manage sites.              | CRUD             |
 
 
 ## Troubleshooting

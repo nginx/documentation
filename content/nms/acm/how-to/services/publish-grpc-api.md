@@ -33,7 +33,7 @@ Complete the following prerequisites before proceeding with this guide:
 ## Create a Service Workspace
 
 {{<note>}}
-The API Connectivity Manager admin must to verify that the user (API Owner) has [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) [RBAC](https://en.wikipedia.org/wiki/Role-based_access_control) permissions for the services feature.
+The API Connectivity Manager admin must to verify that the user (API Owner) has CRUD [RBAC](https://en.wikipedia.org/wiki/Role-based_access_control) permissions for the services feature.
 {{</note>}}
 
 Service Workspaces let you group API configurations. Publishing an API requires at least one Service Workspace.
