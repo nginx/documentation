@@ -14,6 +14,34 @@ aliases:
 
 {{< custom-styles >}}
 
+## Overview
+
+NGINX Management Suite offers several features that do not require a license; however, most features require a valid license to use. The License Comparison section below provides more details about the included features and their license requirements. 
+
+For current customers, trial licenses, subscription licenses, and licenses under the Flexible Consumption Program (FCP) are available through [MyF5](https://my.f5.com).
+
+There are two types of license files available for the NGINX Management Suite: JSON Web Token (JWT) and S/MIME. We recommend utilizing the JSON Web Token (JWT) for most use cases.
+
+### JWT License
+
+When licensing the NGINX Management Suite, we recommend using the provided JSON Web Token (JWT) license. A JSON Web Token (JWT) is a secure and self-contained data format used to transmit information between parties as a JSON object. JWTs are commonly employed for authentication and authorization in web applications.
+
+The JWT license offers the following advantages:
+
+- Automatic Updates: With the JWT, entitlements can be automatically updated without the need to apply a separate license; for example, when renewing a license, extending the expiration date, or amending a license to increase capacity or add new modules.
+
+- Reporting for Flexible Consumption Program customers: FCP customers can conveniently fulfill their reporting requirements by directly submitting usage reports to F5 from NGINX Management Suite.
+
+NGINX Management Suite must be able to communicate with the F5 licensing servers for initial licensing, updates, and reporting.
+
+### S/MIME License
+
+When NGINX Management Suite cannot connect to the F5 licensing servers, you can use the S/MIME license file as an alternative. There are, however, some limitations with using the S/MIME license:
+
+- Limited Updates: Updates to your subscription, such as renewals and amendments, will require applying a new S/MIME license file to ensure that the changes are reflected in the product.
+
+---
+
 ## Download License {#download-license}
 
 {{< include "installation/download-license.md" >}}
