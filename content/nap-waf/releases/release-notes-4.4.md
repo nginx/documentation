@@ -37,10 +37,10 @@ July 5, 2023
 This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/configuration-guide/configuration.md#anti-automation-bot-mitigation" >}}) (bot defense):
 
 
-- Added the following Crawler bot signatures: IAS Crawler, Bing Crawler, DIS Group Crawler, WebBot Scrapper, AddSearch Bot, WPWS bot, iSec_Bot, Newstral Crawler, layoftheland.online Crawler, Quantcastbot, Spiceworks Crawlers, CYRATING Crawler, Jooblebot, YouBot, MetaJobBot, ScooperBot, WebwikiBot, JusProg - Domain Crawler, TinEye-Web 
+- Added the following Crawler bot signatures: IAS Crawler, Bing Crawler, DIS Group Crawler, WebBot Scrapper, AddSearch Bot, WPWS bot, iSec_Bot, Newstral Crawler, layoftheland.online Crawler, Quantcastbot, Spiceworks Crawlers, CYRATING Crawler, Jooblebot, YouBot, MetaJobBot, ScooperBot, WebwikiBot, JusProg - Domain Crawler, TinEye-Web, PEER39 Crawler, AMPPARIT Crawler, RuxitSynthetic
 - Added the following HTTP Library bot signatures: Atoka Logo Fetcher, Zend Http Client Class, Home Assistant API, Probe Image Size, Webpage.rs, Okta Open ID Connect Library, MetadataScraper, node-openid-client, Embed PHP Library, PHP-SOAP
 - Added the following Service Agent bot signatures: OpenSearch Service, Plesk screenshot bot, EasyBib+AutoCite
-- Added the following Site Monitor bot signatures: Nx Witness Monitor, Newslitbot
+- Added the following Site Monitor bot signatures: Nx Witness Monitor, Newslitbot, Mattermost Bot
 - Added the following RSS Reader bot signatures: RSStT, w1NewsBot-RSS, RSS Guard, FeedViewer
 - Added the following Spam Bot bot signatures: Ixquick.com
 - Added the following Search Bot bot signatures: Xpanse Search Bot
@@ -56,44 +56,39 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 
 ##### Debian 11
 
-- app-protect_29+4.377.0-1~bullseye_amd64.deb
+- app-protect_29+4.402.0-1~bullseye_amd64.deb
 
 ##### Ubuntu 18.04
 
-- app-protect_29+4.377.0-1~bionic_amd64.deb
+- app-protect_29+4.402.0-1~bionic_amd64.deb
 
 ##### Ubuntu 20.04
 
-- app-protect_29+4.377.0-1~focal_amd64.deb
+- app-protect_29+4.402.0-1~focal_amd64.deb
 
 ##### CentOS 7.4+ / RHEL 7.4+ / Amazon Linux 2
 
-- app-protect-29+4.377.0-1.el7.ngx.x86_64.rpm
+- app-protect-29+4.402.0-1.el7.ngx.x86_64.rpm
 
 ##### RHEL 8.1+
 
-- app-protect-29+4.377.0-1.el8.ngx.x86_64.rpm
+- app-protect-29+4.402.0-1.el8.ngx.x86_64.rpm
 
 ##### Alpine 3.16
 
-- app-protect-29.4.377.0-r1.apk
+- app-protect-29.4.402.0-r1.apk
 
 ##### Oracle Linux 8.1+
 
-- app-protect-29+4.377.0-1.el8.ngx.x86_64.rpm
-
+- app-protect-29+4.402.0-1.el8.ngx.x86_64.rpm
 
 
 ### Resolved Issues
 
-- 8133 Fixed - Fixed the issue where NGINX App Protect was unable to retrieve compilation status. 
-- 8302 Fixed - Fixed remote logging destinations when IPv6 is disabled system-wide.
-- 7819 Fixed - Fixed iOS clients login issue when using AJAX Response Page. This problem specifically occurs on iOS devices when NGINX's `proxy_buffering` is disabled.
-- 8250 Fixed - this is actually fixed in attack signatures and not in app-protect itself. So it is not a 4.4. RN fix
-- 8261 Fixed - We've updated the Go version and some Go modules to where vulnerabilities were fixed. I am not sure if we want to document this - check with Ohad/Beni\
-- 8716 Fixed - not sure if we want to add it
-- 8131 Fixed - Check with ohad if we need to add it, as it is a customer case
+- 8302 Fixed - Remote logging destinations when IPv6 is disabled system-wide.
+- 7819 Fixed - The login issue encountered on the iOS client when using the AJAX Response Page has been resolved. This problem specifically occurs on iOS devices when NGINX's `proxy_buffering` is disabled.
+- 8261 Fixed - The `Go` packages have been upgraded by updating the Go version and certain Go modules to address and resolve identified vulnerabilities.
 
 ### **Important Note**
  
-There is a limitation when using [Policy Override Rules]({{< relref "/nap-waf/configuration-guide/configuration.md#policy-override-rules" >}}) with gRPC. The Policy Override Rules do not provide support for gRPC traffic. If policy override rules are configured to match gRPC traffic, it will result in blocking of such traffic.
+There is a limitation when using [Policy Override Rules]({{< relref "/nap-waf/configuration-guide/configuration.md#policy-override-rules" >}}) with gRPC. The Policy Override Rules do not provide support for gRPC traffic. If policy override rules are configured to match gRPC traffic, it will result in the blocking of such traffic.
