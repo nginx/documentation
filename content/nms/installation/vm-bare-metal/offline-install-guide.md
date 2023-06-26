@@ -203,6 +203,10 @@ To upgrade Instance Manager to a newer version, take the following steps:
    sudo rpm -Uvh --nosignature /home/user/nms-instance-manager_<version>.x86_64.rpm
    ```
 
+   ```bash
+   sudo systemctl restart nms
+   ```
+
 {{%/tab%}}
 {{%tab name="Debian, Ubuntu, and Deb-Based"%}}
 
@@ -214,6 +218,10 @@ To upgrade Instance Manager to a newer version, take the following steps:
 
    ```bash
    sudo apt-get -y install -f /home/user/nms-instance-manager_<version>_amd64.deb
+   ```
+
+   ```bash
+   sudo systemctl restart nms
    ```
 
 {{%/tab%}}

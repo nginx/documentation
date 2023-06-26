@@ -15,6 +15,54 @@ categories: ["release notes"]
 
 ---
 
+## 1.7.0
+June 21, 2023
+
+### Upgrade Paths {#1-7-0-upgrade-paths}
+
+API Connectivity Manager  supports upgrades from these previous versions:
+
+- 1.5.0 - 1.6.0
+
+If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+{{< see-also >}}
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
+{{< /see-also >}}
+
+### What's New
+This release includes the following updates:
+
+- {{% icon-feature %}} **Advanced Security Policy**
+
+  The new [Advanced Security policy]({{< relref "/nms/acm/how-to/policies/advanced-security.md" >}}) can be used to add a pre-defined NGINX App Protect configuration to your deployment.  Doing so will apply the rules specified in the policy to your APIs.
+  
+- {{% icon-feature %}} **Option added to allow API proxy to ignore invalid headers**
+
+  The [Request Header Specification policy]({{< relref "/nms/acm/how-to/policies/request-header-specification.md" >}}) allows headers with (.) and (_) characters to be proxied to backend services.
+
+  By default, the NGINX server will drop all headers that contain (.) and (_) characters in the header name. Though not common, it is a legal character in headers. This feature instructs NGINX to allow such headers to be proxied.
+  
+- {{% icon-feature %}} **Regex support added to access control routing claims**
+
+  Access control routing claims can be arrays. For example, roles and groups are typically represented as an array. You can now use a regular expression to match against claims embedded in arrays.
+  
+- {{% icon-feature %}} **Ingress routing rules now allow using regular expressions**
+
+  Regular expressions are now supported in routing rules. This will enable routing of requests that match against strings like "?wsdl".
+  
+
+### Resolved Issues
+This release fixes the following issues. Select an issue's ID link to view its details.
+
+- {{% icon-resolved %}} **The routes filter under the proxy metrics page won’t work with params (2471)**
+- {{% icon-resolved %}} **Multiple entries selected when gateway proxy hostnames are the same (2515)**
+
+### Known Issues
+You can find information about known issues in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
+
+---
+
 ## 1.6.0
 
 5/11/2023

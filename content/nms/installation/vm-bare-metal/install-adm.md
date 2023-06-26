@@ -99,7 +99,7 @@ A valid license is required in order to use App Delivery Manager.
 
 #### Download License
 
-{{< include "installation/download-license.md" >}}
+{{< include "adm/installation/license-adm.md" >}}
 
 #### Apply License
 
@@ -109,7 +109,7 @@ A valid license is required in order to use App Delivery Manager.
 
 ## Upgrade App Delivery Manager {#upgrade-adm}
 
-{{<note>}}When upgrading App Delivery Manager, you may need a newer version of NGINX Management Suite. The installation process will notify you of any version requirements before upgrading App Delivery Manager and any dependent packages, including NGINX Management Suite. You may cancel the installation process if you want to [back up NGINX Management Suite]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md" >}}) before upgrading.{{</note>}}
+{{<note>}}When you confirm the upgrade, the upgrade process will automatically upgrade dependent packages as needed, including Instance Manager. If you prefer to [back up NGINX Management Suite]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md" >}}) before upgrading, you can cancel the upgrade when prompted.{{</note>}}
 
 <br>
 
@@ -130,7 +130,7 @@ A valid license is required in order to use App Delivery Manager.
 
    ```bash
    sudo apt-get update
-   sudo apt-get upgrade -y nms-app-delivery-manager
+   sudo apt-get install -y --only-upgrade nms-app-delivery-manager
    ```
 
 {{%/tab%}}

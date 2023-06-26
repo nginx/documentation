@@ -58,17 +58,14 @@ Follow these steps to download the certificate and private key for NGINX Managem
 
 2. Download the NGINX Management Suite `.crt` and `.key` files from [MyF5](https://account.f5.com/myf5) or follow the download link in your  trial activation email.
 
-   - `nginx-mgmt-suite-trial.crt`
-   - `nginx-mgmt-suite-trial.key`
-
-   The filenames might be different, depending on your subscription type.
-
 3. Move and rename the `.crt` and `.key` files:
 
    ```bash
-   sudo mv nginx-mgmt-suite-trial.crt /etc/ssl/nginx/nginx-repo.crt
-   sudo mv nginx-mgmt-suite-trial.key /etc/ssl/nginx/nginx-repo.key
+   sudo mv <nginx-mgmt-suite-trial.crt> /etc/ssl/nginx/nginx-repo.crt
+   sudo mv <nginx-mgmt-suite-trial.key> /etc/ssl/nginx/nginx-repo.key
    ```
+
+   {{<note>}}The downloaded filenames may vary depending on your subscription type. Modify the commands above accordingly to match the actual filenames.{{</note>}}
 
 ---
 
