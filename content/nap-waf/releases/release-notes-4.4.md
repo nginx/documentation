@@ -91,4 +91,6 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 
 ### **Important Note**
  
-There is a limitation when using [Policy Override Rules]({{< relref "/nap-waf/configuration-guide/configuration.md#policy-override-rules" >}}) with gRPC. The Policy Override Rules do not provide support for gRPC traffic. If policy override rules are configured to match gRPC traffic, it will result in the blocking of such traffic.
+- There is a limitation when using [Policy Override Rules]({{< relref "/nap-waf/configuration-guide/configuration.md#policy-override-rules" >}}) with gRPC. The Policy Override Rules do not provide support for gRPC traffic. If policy override rules are configured to match gRPC traffic, it will result in the blocking of such traffic.
+ 
+- Starting with the upcoming release version R30 of NGINX Plus, Ubuntu 18.04 will no longer be supported and will be deprecated.
