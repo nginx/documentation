@@ -1,1 +1,1 @@
-Go to the FQDN for your NGINX Management Suite host in a web browser and log in. Then, from the Launchpad menu, select **Instance Manager**.
+In a web browser, go to the FQDN for your NGINX Management Suite host and log in. Then, select **Instance Manager** from the Launchpad menu.

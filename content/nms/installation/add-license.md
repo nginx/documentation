@@ -56,7 +56,11 @@ Alternatively, you can use an S/MIME license in cases when NGINX Management Suit
 
 ## Apply License {#apply-license}
 
-{{< include "installation/add-license.md" >}}
+### How to Apply a JWT License {#apply-jwt-license}
+
+{{< include "installation/add-jwt-license.md" >}}
+
+### How to Apply an S/MIME License {#apply-smime-license}
 
 ---
 
