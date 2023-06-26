@@ -13,7 +13,7 @@
 # NGINX Management Suite redirects
 /nginx-management-suite/nginx-instance-manager/* /nginx-management-suite/nim/:splat 301!
 /nginx-instance-manager/* /nginx-management-suite/:splat 301!
-/nginx-management-suite/admin-guides/getting-started/prerequisites/configure-clickhouse/ https://docs.nginx.com/nginx-management-suite/admin-guides/getting-started/configure-clickhouse/ 301
+/nginx-management-suite/admin-guides/getting-started/prerequisites/configure-clickhouse/ /nginx-management-suite/admin-guides/getting-started/configure-clickhouse/ 301
 /nginx-management-suite/acm/how-to/manage-api-infrastructure/ /nginx-management-suite/acm/how-to/infrastructure/manage-api-infrastructure/
 /nginx-management-suite/acm/how-to/publish-api/ /nginx-management-suite/acm/how-to/services/publish-api/
 /nginx-management-suite/acm/how-to/publish-api/#publish-api-proxy /nginx-management-suite/acm/how-to/services/publish-api/#publish-api-proxy
@@ -41,6 +41,8 @@
 /nginx-management-suite/admin-guides/installation/upgrade-guide/ /nginx-management-suite/installation/upgrade-guide/ 301
 /nginx-management-suite/nim/how-to/nginx/count-nginx-plus-instances/ /nginx-management-suite/nim/how-to/usage-tracking/count-nginx-plus-instances/ 301
 /nginx-management-suite/admin-guides/installation/offline-install-guide/ /nginx-management-suite/installation/vm-bare-metal/offline-install-guide/ 301
+/nms/installation/vm-bare-metal/ /nginx-management-suite/installation/vm-bare-metal/ 301
+/nginx-management-suite/overview/ /nginx-management-suite/about/ 301
 
 # NGINX Plus redirects
 /install-community-modules /nginx/admin-guide/installing-nginx/installing-nginx-plus/#installing-nginx-community-modules 301
