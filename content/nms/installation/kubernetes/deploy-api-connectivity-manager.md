@@ -205,7 +205,7 @@ A valid license is required in order to use API Connectivity Manager.
 
 ### Download License
 
-{{< include "installation/download-license.md" >}}
+{{< include "installation/download-trial-license.md" >}}
 
 ### Apply License
 

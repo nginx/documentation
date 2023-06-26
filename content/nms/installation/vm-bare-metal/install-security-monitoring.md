@@ -109,7 +109,7 @@ A valid license is required in order to use the Security Monitoring module.
 
 #### Download License
 
-{{< include "installation/download-license.md" >}}
+{{< include "installation/download-trial-license.md" >}}
 
 #### Apply License
 

@@ -305,7 +305,7 @@ A valid license is required in order to use all of the features in Instance Mana
 
 ### Download License
 
-{{< include "installation/download-license.md" >}}
+{{< include "installation/download-trial-license.md" >}}
 
 ### Apply License
 

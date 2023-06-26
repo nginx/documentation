@@ -548,7 +548,7 @@ A valid license is required to use all of the features of NGINX Management Suite
 
 ### Download License
 
-{{< include "installation/download-license.md" >}}
+{{< include "installation/download-trial-license.md" >}}
 
 ### Apply License
 
