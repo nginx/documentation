@@ -90,8 +90,6 @@ Instance Manager **should not** be used to manage the same configurations as API
 
 {{< include "admin-guides/access-control/create-role.md" >}}
 
-{{<see-also>}}If you use the Security Monitoring module, see the [Create Role for Security Monitoring]({{<relref "/nms/security/how-to/create-role-security-monitoring" >}}) topic for instructions on creating a role for accessing the module's dashboards and REST API.{{</see-also>}}
-
 ---
 
 ## Assign Roles {#assign-roles}
@@ -121,11 +119,8 @@ API Connectivity Manager comes pre-configured with roles suitable for API Owners
 
 ---
 
-## Create a Group {#create-group}
+## Create a User Group {#create-group}
 
-{{< call-out "important" "Groups require an OIDC Identity Provider" >}}Groups are exclusively used with external identity providers configured for OpenID Connect (OIDC) authentication, as described in the [Set Up Authentication Guide]({{< relref "/nms/admin-guides/access-control/configure-authentication.md#oidc-auth" >}}).{{< /call-out >}}
-
-Users from an external identity provider can't be assigned roles directly in Instance Manager, but they inherit roles through group memberships.
 
 {{< include "admin-guides/access-control/create-group.md" >}}
 

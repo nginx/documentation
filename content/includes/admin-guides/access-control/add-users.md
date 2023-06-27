@@ -2,9 +2,11 @@
 docs: DOCS-1024
 ---
 
-To add users and assign roles, take the following steps:
+The default `admin` user or any user with `CREATE` permission for the **User Management** feature can create a role.
 
-1. Go to the FQDN for your NGINX Management Suite host in a web browser and log in.
+To add users, take the following steps:
+
+1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in.
 2. Select the **Settings** (gear) icon in the upper-right corner.
 3. On the left menu, select **Users**.
 4. Select **Create**.
