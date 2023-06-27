@@ -1,5 +1,4 @@
 # Redirects for specific pages or sections
-/nginx-ingress-controller/intro/nginx-ingress-controllers/ https://www.nginx.com/blog/guide-to-choosing-ingress-controller-part-4-nginx-ingress-controller-options/ 301!
 /nginx-agent/changelog/ https://github.com/nginx/agent/releases 301
 /nginx-app-protect/* /nginx-app-protect-waf/:splat 301
 
@@ -7,8 +6,18 @@
 /nginx-for-azure/* /nginxaas/azure/:splat 301
 /nginxaas/azure/management/manual-scale/ https://docs.nginx.com/nginxaas/azure/management/scaling/ 301
 /nginxaas/azure/quickstart/overview/ /nginxaas/azure/overview/overview/ 301
-/nginxaas/azure/management/nginx-configuration/ /nginxaas/azure/getting-started/configuration/nginx-configuration/ 301
-/nginxaas/azure/management/ssl-tls-certificates/ /nginxaas/azure/getting-started/configuration/ssl-tls-certificates/ 301
+/nginxaas/azure/management/nginx-configuration/ /nginxaas/azure/getting-started/nginx-configuration/ 301
+/nginxaas/azure/management/ssl-tls-certificates/ /nginxaas/azure/getting-started/ssl-tls-certificates/ 301
+/nginxaas/azure/getting-started/configuration/managed-identity/ /nginxaas/azure/getting-started/managed-identity/ 301
+/nginxaas/azure/getting-started/configuration/nginx-configuration/ /nginxaas/azure/getting-started/nginx-configuration/ 301
+/nginxaas/azure/getting-started/configuration/ssl-tls-certificates/ /nginxaas/azure/getting-started/ssl-tls-certificates/ 301
+
+# NGINX Ingress Controller redirects
+/nginx-ingress-controller/intro/nginx-ingress-controllers/ https://www.nginx.com/blog/guide-to-choosing-ingress-controller-part-4-nginx-ingress-controller-options/ 301!
+/nginx-ingress-controller/troubleshooting/troubleshoot-ingress-controller /nginx-ingress-controller/troubleshooting/troubleshooting-common 301
+/nginx-ingress-controller/troubleshooting/virtualserver-virtualserverroute /nginx-ingress-controller/troubleshooting/virtualserver 301
+/nginx-ingress-controller/troubleshooting/troubleshooting-with-app-protect-dos /nginx-ingress-controller/troubleshooting/troubleshooting-app-protect-dos 301
+/nginx-ingress-controller/troubleshooting/troubleshooting-with-app-protect /nginx-ingress-controller/troubleshooting/troubleshooting-app-protect-waf 301
 
 # NGINX Management Suite redirects
 /nginx-management-suite/nginx-instance-manager/* /nginx-management-suite/nim/:splat 301!
