@@ -14,5 +14,5 @@ To upload and apply a JWT license for NGINX Management Suite:
 
 Your NGINX entitlements will now be visible on the Licenses page, along with information about your product usage relative to your entitled capacity.
 
-If needed, you can return to this page at any time to cancel the license by removing the `.jwt` file, revoking your entitlements, and notifying F5 that the license has been terminated.
+If needed, you can return to this page at any time to cancel the license by removing the `.jwt` file and revoking your entitlements. This action will notify F5 that the license has been terminated.
 
