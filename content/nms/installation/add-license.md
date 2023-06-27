@@ -20,7 +20,7 @@ NGINX Management Suite offers several features that do not require a license; ho
 
 Trial licenses, subscription licenses, and licenses under the Flexible Consumption Program (FCP) are available through [MyF5](https://my.f5.com).
 
-There are two types of license files available for the NGINX Management Suite: JSON Web Token (JWT) and S/MIME. We recommend utilizing the JSON Web Token (JWT) for most use cases.
+There are two types of license files available for the NGINX Management Suite: JSON Web Token (JWT) and S/MIME. We recommend using the JSON Web Token (JWT) for most use cases.
 
 ### JWT License {#jwt-license}
 
