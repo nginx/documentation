@@ -16,9 +16,9 @@ You can install the NGINX Agent using `curl`, `wget`, or any command-line tool f
   curl --insecure https://<NMS_FQDN>/install/nginx-agent | sudo sh
   ```
 
-  When installing the NGINX Agent with the install script, you can optionally set an [instance group]({{< relref "/nms/nim/how-to/nginx/manage-instance-groups.md" >}}) using the `--instance-group` flag.
+  Modules including App Delivery Manager and API Connectivity Manager take advantage of the [instance group]({{< relref "/nms/nim/how-to/nginx/manage-instance-groups.md" >}}) feature for managing NGINX Agents.  You can add your the NGINX Agent to an existing instance group or one will be added dynamically using the `--instance-group` or `-g` flag.  
 
-  The following example shows how to download and run the script with the optional flag:
+  The following example shows how to download and run the script with the optional `--instance-group` flag adding the NGINX agent to **my-instance-group**:
 
   ```bash
   curl https://<NMS_FQDN>/install/nginx-agent > install.sh
@@ -36,13 +36,14 @@ You can install the NGINX Agent using `curl`, `wget`, or any command-line tool f
   The following example shows how to download and run the script with an enforced secure connection:
 
   ```bash
-  curl https://<NMS_FQDN>/install/nginx-agent > install.sh
+  curl https://<NMS_FQDN>/install/nginx-agent > install.sh chmod u+x install.sh; chmod u+x install.sh
   sudo sh ./install.sh --skip-verify false
   ```
 
 {{%/tab%}}
 
 {{%tab name="wget"%}}
+
 
 - Secure:
 
@@ -55,6 +56,16 @@ You can install the NGINX Agent using `curl`, `wget`, or any command-line tool f
   ```bash
   wget --no-check-certificate https://<NMS_FQDN>/install/nginx-agent -O - | sudo sh
   ```
+
+   Modules including App Delivery Manager and API Connectivity Manager take advantage of the [instance group]({{< relref "/nms/nim/how-to/nginx/manage-instance-groups.md" >}}) feature for managing NGINX Agents.  You can add your NGINX Agent to an existing instance group or one will be added dynamically using the `--instance-group` or `-g` flag. 
+
+   The following example shows how to download and run the script with the optional `--instance-group` flag adding the NGINX agent to **my-instance-group**:
+
+   ```bash
+   wget https://gnms1.npi.f5net.com/install/nginx-agent -O install.sh ; chmod u+x install.sh
+   sudo ./install.sh --instance-group my-instance-group
+   ```
+
 
 {{%/tab%}}
 {{</tabs>}}
