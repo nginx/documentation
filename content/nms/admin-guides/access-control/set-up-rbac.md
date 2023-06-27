@@ -44,34 +44,7 @@ Here are some key concepts related to RBAC:
 
 The following table lists the features you can assign roles to:
 
-{{<bootstrap-table "table table-striped table-bordered">}}
-| <div style="width:250px">Module</div>                   | <div style="width:200px">Feature</div>             | Description                                        |
-|--------------------------|---------------------|-----------------------------------------------------------------------------------|
-| NGINX Management Suite Settings                | Licensing                    | Allows access to view and manage licenses          |
-| NGINX Management Suite Settings                | User Management              | Allows access to view and manage roles, users, and user groups |
-| Instance Manager         | Analytics           | Allows access to the analytics endpoints, including metrics, catalogs, and events |
-| Instance Manager         | Certs               | Allows access to view and manage certs for NGINX instances                        |
-| Instance Manager         | Instance Groups     | Allows access to view and manage NGINX instance groups                            |
-| Instance Manager         | Resource Groups     | Allows access to view and manage resource groups                                  |
-| Instance Manager         | Instance Management | Allows access to view and manage NGINX instances. Granting write access (Create, Update) allows a user to read and publish any valid certificate stored in NGINX Management Suite by name. |
-| Instance Manager         | Scan                | Allows access to scan for NGINX Instances                                         |
-| Instance Manager         | Staged Configs      | Allows access to view and manage staged NGINX configurations                      |
-| API Connectivity Manager | API Docs            | Allows access to view and manage API Docs to be published to Dev Portal           |
-| API Connectivity Manager | Dev Portal Setup    | Allows access to view and manage Dev Portals                                      |
-| API Connectivity Manager | Environments        | Allows access to view and manage environments                                     |
-| API Connectivity Manager | Hostname            | Allows access to view and manage hostnames for deploying proxies to               |
-| API Connectivity Manager | Infra Workspace     | Allows access to view and manage Infrastructure workspaces                        |
-| API Connectivity Manager | Job History         | Allows access to view and manage job history                                      |
-| API Connectivity Manager | Proxy Config        | Allows access to view and manage Proxies                                          |
-| API Connectivity Manager | Service Workspace   | Allows access to view and manage Service workspaces                               |
-| App Delivery Manager     | Environments        | Allows access to view and manage Environments |
-| App Delivery Manager     | Apps                | Allows access to view and manage Apps |
-| App Delivery Manager     | Gateways            | Allows access to view and manage Gateways |
-| App Delivery Manager     | Web Components      | Allows access to view and manage Web Components |
-| App Delivery Manager     | TCP-UDP Components  | Allows access to view and manage TCP-UDP Components |
-| App Delivery Manager     | Sites               | Allows access to view and manage Sites |
-| Security Monitoring      | Security Monitoring | Allows access to the Security Monitoring dashboard and APIs                       |
-{{</bootstrap-table>}}
+{{< include "admin-guides/access-control/rbac-features.md" >}}
 
 <br>
 
