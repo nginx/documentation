@@ -1,6 +1,6 @@
 ---
 title: "Add a License"
-description: "This topic explains how to add licenses for NGINX Management Suite modules, including Instance Manager and API Connectivity Manager." 
+description: "Learn how to license NGINX Management Suite using a JWT or S/MIME license, explore the features accessible in licensed and unlicensed modes, and troubleshoot common issues associated with license upload and entitlement retrieval." 
 date: 2021-12-21T12:00:00-07:00
 draft: false
 weight: 400
@@ -16,13 +16,13 @@ aliases:
 
 ## Overview
 
-NGINX Management Suite offers several features that do not require a license; however, most features require a valid license to use. The License Comparison section below provides more details about the included features and their license requirements. 
+NGINX Management Suite offers several features that do not require a license; however, most features require a valid license to use. The [License Comparison](#license-comparison) section below provides more details about the included features and their license requirements. 
 
-For current customers, trial licenses, subscription licenses, and licenses under the Flexible Consumption Program (FCP) are available through [MyF5](https://my.f5.com).
+Trial licenses, subscription licenses, and licenses under the Flexible Consumption Program (FCP) are available through [MyF5](https://my.f5.com).
 
 There are two types of license files available for the NGINX Management Suite: JSON Web Token (JWT) and S/MIME. We recommend utilizing the JSON Web Token (JWT) for most use cases.
 
-### JWT License
+### JWT License {#jwt-license}
 
 When licensing NGINX Management Suite, we recommend using the JSON Web Token (JWT) license that's provided. A JSON Web Token (JWT) is a secure and self-contained data format used to transmit information between parties as a JSON object. JWTs are commonly employed for authentication and authorization in web applications.
 
@@ -34,7 +34,7 @@ The JWT license offers the following advantages:
 
 NGINX Management Suite must be able to communicate with the F5 licensing servers for initial licensing, updates, and reporting.
 
-### S/MIME License
+### S/MIME License {#smime-license}
 
 Alternatively, you can use an S/MIME license in cases when NGINX Management Suite cannot connect to the F5 licensing servers. There are, however, some limitations with using the S/MIME license:
 
