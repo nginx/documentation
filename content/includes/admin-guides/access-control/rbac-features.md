@@ -1,5 +1,5 @@
 ---
-docs:
+docs: DOCS-1245
 ---
 
 {{<bootstrap-table "table table-striped table-bordered">}}
