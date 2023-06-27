@@ -31,12 +31,12 @@ aliases:
 
 With role-based access control, or RBAC, you can define permissions for users and control which resources and areas they have access to.
 
-Terminology:
+Here are some key concepts related to RBAC:
 
 - **Roles**: Roles represent a collection of permissions associated with one or more features. Each role determines the actions that can be performed for each feature, such as create, read, update, or delete. The pre-defined `admin` role provides full access to all features.
 - **Users**: Users are individual accounts identified by a username and credentials. You have the flexibility to create users directly within NGINX Management Suite or integrate an external identity provider.
 - **Groups**: Groups are collections of users. Groups are exclusively used in conjunction with external identity providers. Users from external identity providers cannot be directly assigned roles within NGINX Management Suite. However, they inherit roles through their group memberships.
-- **Feature**: Features in NGINX Management Suite are specific functional components or capabilities that allow users to perform various tasks and access related resources. 
+- **Features**: Features in NGINX Management Suite are specific functional components or capabilities that allow users to perform various tasks and access related resources. 
 
 Users can have multiple roles simultaneously. In such cases, the permissions granted by each role are combined, providing an additive effect. For instance, a user with two roles, one granting read access to all NGINX instances and the other allowing create, update, and delete access to a specific instance, will be able to read all instances while having the ability to create, update, or delete only the designated instance for which they have permission.
 
@@ -103,6 +103,8 @@ API Connectivity Manager comes pre-configured with roles suitable for API Owners
 {{< include "acm/rbac/infra-admin-role.md" >}}
 
 {{<see-also>}}The tutorial [Set Up RBAC for Infra Admins]({{< relref "/nms/acm/tutorials/rbac-infra-admins.md">}}) provides an example of how to configure RBAC for Infrastructure Administrators.{{</see-also>}}
+
+---
 
 ## Add Users {#add-users}
 
