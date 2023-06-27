@@ -5,7 +5,7 @@ docs: DOCS-1233
 Complete the following steps for each data plane instance you want to use with App Delivery Manager:
 
    {{< important >}}
-   ADM expects that even individual data plane instances are added as part of an [Instance Group]({{< relref "/public/nginx-management-suite/nim/how-to/nginx/manage-instance-groups" >}}).
+   ADM expects that even individual data plane instances are added as part of an [Instance Group]("https://docs.nginx.com/nginx-management-suite/nim/how-to/nginx/manage-instance-groups/").
     {{< /important >}}
 
 1. [Install NGINX Plus R24 or later](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/)
