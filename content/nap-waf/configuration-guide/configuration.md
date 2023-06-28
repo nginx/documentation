@@ -4865,7 +4865,7 @@ For example:
 
 The **Override Rules** feature allows overriding of the **default policy** settings. Each override rule consists of a condition followed by changes to the original policy applied to requests that meet the respective condition. This feature provides the ability to include the override rules within a declarative policy such that all incoming requests are verified against those rules.
 
-With this enhancement, users now have more control over how a unique policy setting is applied to incoming requests with a specific method, header or URI value through one or multiple unique override rules. Each override rule possesses a unique name and specific conditions that are matched against incoming traffic from a specific client side. The structure of these override rules adheres to the JSON schema defined by the declarative policy.
+With this enhancement, users now have more control over how a unique policy setting is applied to incoming requests with a specific method, source IP address, header or URI value through one or multiple unique override rules. Each override rule possesses a unique name and specific conditions that are matched against incoming traffic from a specific client side. The structure of these override rules adheres to the JSON schema defined by the declarative policy.
 
 Here is an example of a declarative policy using an override rules entity:
 
@@ -4936,8 +4936,8 @@ These three rules demonstrate how the override rules feature allows for customiz
 
 
 {{< note >}}
-- By default, the extendsPolicy field is configured to True.
-- When extendsPolicy is set to either True or False, it is possible to reference inline or external policies.
+- By default, the extendsPolicy field is configured to true.
+- External references are supported regardless of whether the extendsPolicy field is set to true or false.
 {{< /note >}}
 
 ### First Match Principle 
@@ -4984,13 +4984,13 @@ Here are some key points to remember regarding the Override Rules feature:
 - To ensure efficient compilation time and optimal resource allocation for policies, there are limitations in place. Currently, policies have a maximum limit of 10 rules and a maximum of 5 clauses in a condition. These limitations help maintain better performance and manageability. A compilation error will not occur if a policy file contains more than 5 clauses or 10 overrides.
 - The replacement policy should not include any override rules. Override rules should be used to extend or switch to a different policy, rather than being part of the replacement policy itself.
 - Each override rule will be compiled as a separate policy, whether extending the main policy or switching to a new one. The enforcer will switch to the policy that corresponds to the matched rule, but the main policy name will be reported along with the override rule property.
-- The URI, host, and user-agent strings in the request will be treated as plain ASCII characters and won't undergo language decoding. If any of these strings contain non-ASCII characters, they may be misinterpreted and may not comply with rules that expect specific values in the conditions
+- The URI, host, and user-agent strings in the request will be treated as plain ASCII characters and won't undergo language decoding. If any of these strings contain non-ASCII characters, they may be misinterpreted and may not comply with rules that expect specific values in the conditions.
 
 ### Override Rules Logging & Reporting
 
 If a request matches an override rule, the `json_log` field will include a new block named 'overrideRule'. However, if no rules match the request, the log will not contain any related information. When the 'extendsPolicy' flag is set to false, the 'originalPolicyName' field in the log will reflect the name of the original policy name (the one that contains override rules), and the `policy_name` field will reflect the policy that was enforced.
 
-For example:
+For example, if the matching override rule is called "login_page":
 
 ```shell
 
@@ -5004,7 +5004,7 @@ json_log will have:
     ...
     "overrideRule": {
         "name": "login_page",
-        "originalPolicyName": "override_rule_example" # if the action was to extend the policy, then originalPolicyName must equal the actual policyName
+        "originalPolicyName": "override_rule_example" 
 }
     ...
  
@@ -5219,7 +5219,7 @@ The following violations are supported and can be enabled by turning on the **al
 |VIOL_PARAMETER_STATIC_VALUE | Illegal static parameter value | Alarm | The system checks that the request contains a static parameter whose value is defined in the security policy. Prevents static parameter change. NGINX App Protect WAF can be configured to block parameter values that are not in a predefined list. Parameters can be defined on each of the following levels: file type, URL, and flow. Each parameter can be one of the following types: explicit or wildcard. |  | 
 |VIOL_PARAMETER_VALUE_BASE64 | Illegal Base64 value | Alarm | The system checks that the value is a valid Base64 string. If the value is indeed Base64, the system decodes this value and continues with its security checks. |  | 
 |VIOL_PARAMETER_VALUE_LENGTH | Illegal parameter value length | Alarm | The system checks that the request contains a parameter whose value length (in bytes) matches the value length defined in the security policy. |  | 
-|VIOL_PARAMETER_VALUE_METACHAR | Illegal meta character in value | Alarm | The system checks that all parameter values, XML element/attribute values, or JSON values within the request only contain meta characters defined as allowed in the security policy. Enforces proper input values. In case of a violation, the reported value represents the decimal ASCII value of the violating character. |  | 
+|VIOL_PARAMETER_VALUE_METACHAR | Illegal meta character in value | Alarm | The system checks that all parameter values, XML element/attribute values, or JSON values within the request only contain meta characters defined as allowed in the security policy. Enforces proper input values. In case of a violation, the reported value represents the decimal ASCII value of the violating character (metachar_index). |  | 
 |VIOL_PARAMETER_VALUE_REGEXP | Parameter value does not comply with regular expression | Alarm | The system checks that the request contains an alphanumeric parameter value that matches the expected pattern specified by the regular-expression field for that parameter. Prevents HTTP requests which do not comply with a defined pattern. NGINX App Protect WAF lets you set up a regular expression to block requests where a parameter value does not match the regular expression. |  | 
 |VIOL_POST_DATA_LENGTH | Illegal POST data length | Alarm | The system checks that the request contains POST data whose length does not exceed the acceptable length specified in the security policy. | In * file type entity. This check is disabled by default. | 
 |VIOL_QUERY_STRING_LENGTH | Illegal query string length | Alarm | The system checks that the request contains a query string whose length does not exceed the acceptable length specified in the security policy. | In * file type entity. Actual size is 2 KB. | 
