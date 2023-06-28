@@ -48,7 +48,7 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 
 ### New Features
 
-- [Policy Override Rules]({{< relref  "/nap-waf/configuration-guide/configuration.md#policy-override-rules" >}}) 
+- [Override Rules]({{< relref  "/nap-waf/configuration-guide/configuration.md#override-rules" >}}) 
 
 ### Supported Packages
 
