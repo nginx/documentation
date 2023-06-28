@@ -4859,15 +4859,15 @@ For example:
     ]
 ```
 
-## Policy Override Rules
+## Override Rules
 
-### Policy Override Rules Overview
+### Override Rules Overview
 
-The Policy Override Rules feature allows overriding of the original or parent policy settings. Each override rule consists of a condition followed by changes to the original policy applied to requests that meet the respective condition. This feature provides the ability to include the override rules within a declarative policy such that all incoming requests are verified against those rules.
+The **Override Rules** feature allows overriding of the **default policy** settings. Each override rule consists of a condition followed by changes to the original policy applied to requests that meet the respective condition. This feature provides the ability to include the override rules within a declarative policy such that all incoming requests are verified against those rules.
 
 With this enhancement, users now have more control over how a unique policy setting is applied to incoming requests with a specific method, header or URI value through one or multiple unique override rules. Each override rule possesses a unique name and specific conditions that are matched against incoming traffic from a specific client side. The structure of these override rules adheres to the JSON schema defined by the declarative policy.
 
-Here is an example of a declarative policy using an Override Rules entity:
+Here is an example of a declarative policy using an override rules entity:
 
 ```shell
 {
@@ -4979,7 +4979,7 @@ For example:
 
 ### Important Things to Remember About Override Rules
 
-Key points to remember about the Policy Override Rules feature are as follows:
+Here are some key points to remember regarding the Override Rules feature:
 
 - To ensure efficient compilation time and optimal resource allocation for policies, there are limitations in place. Currently, policies have a maximum limit of 10 rules and a maximum of 5 clauses in a condition. These limitations help maintain better performance and manageability. A compilation error will not occur if a policy file contains more than 5 clauses or 10 overrides.
 - The replacement policy should not include any override rules. Override rules should be used to extend or switch to a different policy, rather than being part of the replacement policy itself.
