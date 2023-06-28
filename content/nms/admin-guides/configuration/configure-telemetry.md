@@ -55,4 +55,4 @@ You can disable telemetry sharing at any time by going to the NGINX Management S
 
 ## Firewall Settings
 
-To ensure successful transmission of telemetry data to NGINX F5, make sure NGINX Management Suite can establish outbound connections to the IP address range 159.60.126.0/25 on port 443 to the IP address range 159.60.126.0/25. The Product Usage data point requires both inbound and outbound connections on port 443.
+To ensure successful transmission of telemetry data to NGINX F5, make sure NGINX Management Suite can establish outbound connections to the IP address range 159.60.126.0/25 on port 443. The Product Usage data point requires both inbound and outbound connections on port 443.

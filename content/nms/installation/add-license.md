@@ -145,4 +145,5 @@ If you have issues uploading a license, make sure you're using the newest versio
 
 ### Unable to retrieve entitlements
 
-If you're using a JWT license file, make sure NGINX Management Suite has Internet connectivity port 443.
+If you're using a JWT license file, make sure NGINX Management Suite can establish inbound and outbound connections on port 443.
+
