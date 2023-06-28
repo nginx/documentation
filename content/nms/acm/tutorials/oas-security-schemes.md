@@ -1,25 +1,17 @@
 ---
 title: "OAS Security Schemes"
 date: 2023-06-22T18:20:41+01:00
-# Change draft status to false to publish doc.
 draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
 description: "Learn how to configure security schemes in OAS for NGINX Management Suite API Connectivity Manager."
-# Assign weights in increments of 100
 weight: 200
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
 docs: "DOCS-000"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["task"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
+categories: ["api management"]
+doctypes: ["tutorial"]
+journeys: ["using", "self service"]
+personas: [ "secops"]
 versions: []
 authors: []
 
@@ -58,6 +50,91 @@ To complete the instructions in this guide, you need the following:
 1. API Connectivity Manager is installed, licensed, and running
 2. One or more Infra and Service workspaces
 3. One or more Environments
+
+## Basic Authentication Security Scheme
+Basic Authentication is a security scheme that is commonly used to authenticate HTTP requests. The request contains a header field in the form of Authorization: Basic <credentials>, where credentials is the Base64 encoding of username and password joined by a single colon.
+
+ACM API owners can restrict access to their APIs with usernames and passwords. This scheme can be configured to grant access to APIs only after verifying that the username and password are valid.
+
+To mitigate any security risks, it is recommended to use Basic Authentication only over encrypted channels such as HTTPS.
+
+Security Scheme Definition
+
+{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+{{< bootstrap-table "table table-striped table-bordered" >}}
+| Field                                           | Type | Required      | Valid Value(s)                                                                                                                                                                           | Description | Default |
+|-------------------------------------------------|----------|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|---------|
+| `type`                  | `string`  | True   | `http` | The type of the security scheme.       | `N/A`  |
+| `description`         | `string`   | False | Of type `string` | A short description for security scheme. CommonMark syntax MAY be used for rich text representation.      | `N/A`    |
+| `scheme`       | `string`   | True  | `basic` | The name of the HTTP Authorization scheme to be used in the Authorization header as defined in RFC7235. | `N/A` |
+| `x-credentialForward`| `bool` | False | one of `[true, false]` | This field defines whether the basic auth credential is going to be proxy forwarded to backend service in the HTTP request Authorization header. | `false` |
+| `x-errorReturnConditions.notSupplied.returnCode` | `int` | False | In range `400-599` | The error code that needs to be used by the NGINX data plane when `basicAuth` is not supplied. | `401` |
+| `x-errorReturnConditions.noMatch.returnCode` | `int` | False | In range `400-599` | The error code that needs to be used by the NGINX data plane when invalid `basicAuth` is supplied . | `403` |
+| `x-labels.targetPolicyName` | `string` | False | Of type `string` | The required target policy name set in policy `metadata.labels.targetPolicyName`. | `default` |
+
+
+{{< /bootstrap-table >}}
+{{< raw-html>}}</div>{{</raw-html>}}
+
+## Steps to configure Basic security scheme
+
+Step - 1: Create an apispec with the basic security scheme configured. In the following apispec example check the `component securitySchemes` section `ExampleBasicAuth` is configured.
+
+```shell
+POST https://{{controller_ip}}/api/acm/v1/services/workspaces/{{proxyworkspacename}}/api-docs
+```
+
+<details Basic auth apispec>
+   <summary> Basic auth apispec JSON request</summary>
+
+{{< include "acm/tutorials/security-scheme-json-blobs/basic-security-apispec.md" >}}
+
+   </details>
+
+
+Step - 2: Creating a proxy referencing the OAS scheme above. When a http basic security scheme is provided in an OAS that is referenced in a proxy POST/PUT request if the user wants to set up valid basic auth credentials they need to provide these in the proxy POST/PUT request body.
+
+```shell
+POST https://{{controller_ip}}/api/acm/v1/services/workspaces/{{proxyworkspacename}}/proxies
+```
+
+<details JSON Request with basic auth referencing the oas>
+   <summary> JSON Request with basic auth referencing the oas</summary>
+
+{{< include "acm/tutorials/security-scheme-json-blobs/basic-auth-post-proxy.md" >}}
+
+   </details>
+
+Verify the GET request for the proxy, you should see the output with basic auth policy in the proxy config.
+
+```shell
+GET https://{{controller_ip}}/api/acm/v1/services/workspaces/{{proxyworkspacename}}/proxies/petstore-proxy?hostname={{environmentHostname}}&version=v1&includes=sensitivedata
+```
+
+<details GET Proxy details with basic auth referncing the oas with basic auth security scheme>
+   <summary> GET Proxy details with basic auth referncing the oas with basic auth security scheme</summary>
+
+{{< include "acm/tutorials/security-scheme-json-blobs/basic-auth-get-proxy.md" >}}
+
+   </details>
+
+Step - 3: Passing traffic to the endpoints. Below is the cURL example of request to proxy with basic auth to the Pet Store server
+It would result in a successful operation with the 200 status
+
+```shell
+
+curl -X GET -u user1:secret -H "Content-Type: application/json"  http://54.188.248.124/api/v3/pet/4
+
+{"id":4,"category":{"id":1,"name":"{{$$randomFirstName}}"},"name":"Steve","photoUrls":["http://placeimg.com/640/480/cats"],"tags":[{"id":0,"name":"string"}],"status":"available"}
+```
+```shell
+curl -X GET -H "Content-Type: application/json" http://54.188.248.124/v1/pet
+
+{
+    "message": "Unauthorized",
+    "status": "401"
+}
+```
 
 ## API Key Authentication Security Scheme
 
@@ -136,93 +213,3 @@ curl -X GET -H "Content-Type: application/json" http://54.188.248.124/v1/pet
     "status": "401"
 }
 ```
-
-## Basic Authentication Security Scheme
-Basic Authentication is a security scheme that is commonly used to authenticate HTTP requests. The request contains a header field in the form of Authorization: Basic <credentials>, where credentials is the Base64 encoding of username and password joined by a single colon.
-
-ACM API owners can restrict access to their APIs with usernames and passwords. This scheme can be configured to grant access to APIs only after verifying that the username and password are valid.
-
-To mitigate any security risks, it is recommended to use Basic Authentication only over encrypted channels such as HTTPS.
-
-Security Scheme Definition
-
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
-{{< bootstrap-table "table table-striped table-bordered" >}}
-| Field                                           | Type | Required      | Valid Value(s)                                                                                                                                                                           | Description | Default |
-|-------------------------------------------------|----------|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|---------|
-| `type`                  | `string`  | True   | `http` | The type of the security scheme.       | `N/A`  |
-| `description`         | `string`   | False | Of type `string` | A short description for security scheme. CommonMark syntax MAY be used for rich text representation.      | `N/A`    |
-| `scheme`       | `string`   | True  | `basic` | The name of the HTTP Authorization scheme to be used in the Authorization header as defined in RFC7235. | `N/A` |
-| `x-credentialForward`| `bool` | False | one of `[true, false]` | This field defines whether the basic auth credential is going to be proxy forwarded to backend service in the HTTP request Authorization header. | `false` |
-| `x-errorReturnConditions.notSupplied.returnCode` | `int` | False | In range `400-599` | The error code that needs to be used by the NGINX data plane when `basicAuth` is not supplied. | `401` |
-| `x-errorReturnConditions.noMatch.returnCode` | `int` | False | In range `400-599` | The error code that needs to be used by the NGINX data plane when invalid `basicAuth` is supplied . | `403` |
-| `x-labels.targetPolicyName` | `string` | False | Of type `string` | The required target policy name set in policy `metadata.labels.targetPolicyName`. | `default` |
-
-
-{{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
-
-## Steps to configure Basic security scheme 
-
-Step - 1: Create an apispec with the basic security scheme configured. In the following apispec example check the `component securitySchemes` section `ExampleBasicAuth` is configured.
-
-```shell
-POST https://{{controller_ip}}/api/acm/v1/services/workspaces/{{proxyworkspacename}}/api-docs
-```
-
-<details Basic auth apispec>
-   <summary> Basic auth apispec JSON request</summary>
-
-{{< include "acm/tutorials/security-scheme-json-blobs/basic-security-apispec.md" >}}
-
-   </details>
-
-
-Step - 2: Creating a proxy referencing the OAS scheme above. When a http basic security scheme is provided in an OAS that is referenced in a proxy POST/PUT request if the user wants to set up valid basic auth credentials they need to provide these in the proxy POST/PUT request body.
-
-```shell
-POST https://{{controller_ip}}/api/acm/v1/services/workspaces/{{proxyworkspacename}}/proxies
-```
-
-<details JSON Request with basic auth referencing the oas>
-   <summary> JSON Request with basic auth referencing the oas</summary>
-
-{{< include "acm/tutorials/security-scheme-json-blobs/basic-auth-post-proxy.md" >}}
-
-   </details>
-
-Verify the GET request for the proxy, you should see the output with basic auth policy in the proxy config.
-
-```shell
-GET https://{{controller_ip}}/api/acm/v1/services/workspaces/{{proxyworkspacename}}/proxies/petstore-proxy?hostname={{environmentHostname}}&version=v1&includes=sensitivedata
-```
-
-<details GET Proxy details with basic auth referncing the oas with basic auth security scheme>
-   <summary> GET Proxy details with basic auth referncing the oas with basic auth security scheme</summary>
-
-{{< include "acm/tutorials/security-scheme-json-blobs/basic-auth-get-proxy.md" >}}
-
-   </details>
-
-Step - 3: Passing traffic to the endpoints. Below is the cURL example of request to proxy with basic auth to the Pet Store server
-It would result in a successful operation with the 200 status
-
-```shell
-
-curl -X GET -u user1:secret -H "Content-Type: application/json"  http://54.188.248.124/api/v3/pet/4
-
-{"id":4,"category":{"id":1,"name":"{{$$randomFirstName}}"},"name":"Steve","photoUrls":["http://placeimg.com/640/480/cats"],"tags":[{"id":0,"name":"string"}],"status":"available"}
-```
-```shell
-curl -X GET -H "Content-Type: application/json" http://54.188.248.124/v1/pet
-
-{
-    "message": "Unauthorized",
-    "status": "401"
-}
-```
-
-
-
-
-
