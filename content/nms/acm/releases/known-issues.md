@@ -34,7 +34,7 @@ If you add a Developer Portal cluster to an environment that has WAF enabled, th
 
 On the Developer Portal:
 
-1. Open an SSH connection and log in.
+1. Open an SSH connection to the Developer Portal and log in.
 2. [Install NGINX App Protect](https://docs.nginx.com/nginx-app-protect-waf/admin-guide/install/).
 3. Stop the NGINX Agent:
 
