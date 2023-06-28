@@ -46,11 +46,28 @@ Alternatively, you can use an S/MIME license in cases when NGINX Management Suit
 
 ### Trial License
 
-{{< include "installation/download-trial-license.md" >}}
+{{<call-out "note" "License period">}}JWT trial licenses expire 30 days after being applied to NGINX Management Suite.{{</call-out>}}
+
+To download a trial license for NGINX Management Suite:
+
+1. Sign in to the [MyF5 Customer Portal](https://account.f5.com/myf5).
+2. From the top menu, select **My Products & Plans > Trials**.
+3. In the **My Trials** list, select your NGINX Management Suite trial.
+4. Select the **Downloads and Licenses** link.
+5. On the **Downloads and licenses** panel, select **Download License**. The license file is saved to your system.
+
 
 ### Subscription and Flexible Consumption Program
 
-{{< include "installation/download-subscription-license.md">}}
+{{<call-out "note" "License period">}}S/MIME trial licenses expire 30 days after they are issued.{{</call-out>}}
+
+To download a subscription or Flexible Consumption Program license for NGINX Management Suite:
+
+1. Sign in to the [MyF5 Customer Portal](https://account.f5.com/myf5).
+2. From the top menu, select **My Products & Plans > Subscriptions**.
+3. In the **Subscriptions** list, select your subscription that includes NGINX Management Suite.
+4. On the Subscriptions Details form, select the **License** link for NGINX Management Suite. The license file is saved to your system.
+
 
 ---
 
@@ -58,12 +75,30 @@ Alternatively, you can use an S/MIME license in cases when NGINX Management Suit
 
 ### How to Apply a JWT License {#apply-jwt-license}
 
-{{< include "installation/add-jwt-license.md" >}}
+To upload and apply a JWT license for NGINX Management Suite:
+
+1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in.
+2. Select the **Settings** gear icon.
+3. On the **Settings** menu, select **Licenses**.
+4. Select **Get Started**.
+5. Locate the `.jwt` file you [downloaded from MyF5]({{< relref "/nms/installation/add-license.md#download-license" >}}), then select **Upload**. NGINX Management Suite will automatically retrieve your product entitlements from F5's licensing servers.
+6. Select **Review Entitlements** and confirm the correct product entitlements are listed.
+7. Select **Submit**.
+8. (Optional) To send telemetry data to F5 NGINX, select the **Enable Telemetry** option. For detailed information about the data being transmitted and its purpose, refer to the topic [Configure Telemetry]({{< relref "/nms/admin-guides/configuration/configure-telemetry.md" >}}).
+
+Your NGINX entitlements will now be visible on the Licenses page, along with information about your product usage relative to your entitled capacity.
+
+If needed, you can return to this page at any time to cancel the license by removing the `.jwt` file and revoking your entitlements. This action will notify F5 that the license has been terminated.
 
 ### How to Apply an S/MIME License {#apply-smime-license}
 
-{{< include "installation/add-smime-license.md" >}}
+To upload and apply an S/MIME license for NGINX Management Suite:
 
+1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in.
+1. Select the **Settings** gear icon.
+1. On the **Settings** menu, select **Licenses**.
+1. Select **Get Started**.
+1. Locate the `.lic` file that you [downloaded from MyF5]({{< relref "/nms/installation/add-license.md#download-license" >}}), then select **Upload**.
 
 ---
 
