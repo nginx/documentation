@@ -17,12 +17,55 @@ doctypes: ["reference"]
 ---
 ## 1.7.0
 
+### {{% icon-bug %}} Environments with WAF enabled may transition to a Failed status when a Developer Portal cluster is added. {#43231}
+
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status |
+|----------|--------|
+| 43231    | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+If you add a Developer Portal cluster to an environment that has WAF enabled, the environment may transition to a `Failed` status. If this happens, follow the steps in the workaround.
+
+#### Workaround
+
+On the Developer Portal:
+
+1. Open an SSH connection and log in.
+2. [Install NGINX App Protect](https://docs.nginx.com/nginx-app-protect-waf/admin-guide/install/).
+3. Stop the NGINX Agent:
+
+    ```bash
+    sudo systemctl stop nginx-agent
+    ```
+
+4. Run the onboarding command to add the Developer Cluster:
+
+    ```bash
+    curl -k https://<NMS-FQDN>/install/nginx-agent > install.sh && sudo sh install.sh -g <cluster> -m precompiled-publication --nap-monitoring true && sudo systemctl start nginx-agent
+    ```
+
+    Replace `<NMS-FQDN>` with the fully qualified domain name of your NGINX Management Suite, and `<cluster>` with the name of the Developer Cluster.
+
+
+5. Confirm the NGINX Agent is started and restart if necessary: 
+
+    ```bash
+    sudo systemctl status nginx-agent
+    sudo systemctl start nginx-agent
+    ``` 
+
+---
+
 ### {{% icon-bug %}} Resources deployed to a Developer Portal which has had its database reset cannot be updated or removed {#43140}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 43140 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 43140    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
@@ -36,9 +79,9 @@ It is not possible to remove resources from API Connectivity Manager which have 
 ### {{% icon-resolved %}} Multiple entries selected when gateway proxy hostnames are the same {#42515}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 42515 | Fixed in 1.7.0   |
+| Issue ID | Status         |
+|----------|----------------|
+| 42515    | Fixed in 1.7.0 |
 {{</bootstrap-table>}}
 
 #### Description
@@ -53,9 +96,9 @@ There is no impact to functionality.
 ### {{% icon-resolved %}} The routes filter under the proxy metrics page won’t work with params {#42471}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 42471 | Fixed in 1.7.0   |
+| Issue ID | Status         |
+|----------|----------------|
+| 42471    | Fixed in 1.7.0 |
 {{</bootstrap-table>}}
 
 #### Description
@@ -74,8 +117,8 @@ The API won’t match on the above route.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID | Status |
-|----------|----------------|
-| 42682 | OPEN |
+|----------|--------|
+| 42682    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
@@ -214,54 +257,6 @@ It is not possible to use both an OpenID Connect (OIDC) policy and a proxy authe
 
 ---
 
-### {{% icon-resolved %}} The web interface doesn't pass the `enableSNI` property for the TLS backend policy {#39445}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 39445    | Fixed in 1.3.1 |
-{{</bootstrap-table>}}
-
-#### Description
-
-When configuring a TLS backend policy in the web interface, the new `enableSNI` property does not match the value of the deprecated `proxyServerName` property, resulting in an API error. The `enableSNI` value must be the same as `proxyServerName` value. 
-
-#### Workaround
-
-Use the API Connectivity Manager REST API to send a PUT request to the following endpoint, providing the correct values for `enableSNI` and `proxyServerName`. Both values must match.
-
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
-{{<bootstrap-table "table">}}
-| Method | Endpoint                                                                             |
-|--------|--------------------------------------------------------------------------------------|
-| PUT    | `/infrastructure/workspaces/{{infraWorkspaceName}}/environments/{{environmentName}}` |
-{{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
-
----
-
-### {{% icon-resolved %}} The Inbound TLS policy breaks when upgrading from API Connectivity Manager 1.2.0 to 1.3.0. {#39426}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 39426    | Fixed in 1.3.1 |
-{{</bootstrap-table>}}
-
-#### Description
-
-The Inbound TLS policy for gateways may break and cause an internal server error following an upgrade from API Connectivity Manager 1.2.0 to 1.3.0. Errors similar to the following example are logged:
-
-```text
-cannot unmarshal string into Go struct field RuntimePolicies.Proxies.policies.tls-inbound of type runtime_policies.CACert.
-```
-
-#### Workaround
-
-Upgrade API Connectivity Manager to 1.3.1 to resolve this issue. 
-
----
-
 ### {{% icon-resolved %}} A JWT token present in a query parameter is not proxied to the backend for advanced routes  {#39328}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
@@ -281,88 +276,6 @@ Pass the JWT token as a header instead of providing the JWT token as a query par
 ---
 
 ## 1.2.0
-
-### {{% icon-resolved %}} Developer Portal backend information is unintentionally updated when editing clusters within an environment {#39409}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 39409    | Fixed in 1.3.1 |
-{{</bootstrap-table>}}
-
-#### Description
-
-The Developer Portal backend information may be inadvertently updated in the following circumstances:
-
-1. If you have multiple Developer Portal clusters and update the backend information (for example, enable TLS or change the host or port, etc. ) for any of those clusters, the update is applied to all of the clusters.
-
-2. If you have one or more Developer Portal clusters and update any other cluster in the environment (for example, the API Gateway or Developer Portal Internal cluster), the backend settings for the Developer Clusters are reset to their defaults (127.0.0.1/8080/no TSL).
-
-#### Workaround
-
-- Workaround for scenario #1
-
-  Use the API Connectivity Manager REST API to send a PUT request to the following endpoint with the correct backend settings for each Developer Portal cluster:
-
-  {{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
-  {{<bootstrap-table "table">}}
-  | Method | Endpoint                                                                             |
-  |--------|--------------------------------------------------------------------------------------|
-  | PUT    | `/infrastructure/workspaces/{{infraWorkspaceName}}/environments/{{environmentName}}` |
-  {{</bootstrap-table>}}
-  {{< raw-html>}}</div>{{</raw-html>}}
-
-- Workaround for scenario #2
-
-  If you have just one Developer Portal, you can use the web interface to update the backend settings for the cluster if you're not using the default settings.
-
-  If you have more than one Developer Portal cluster, use the API Connectivity Manager REST API to send a PUT request to the following endpoint with the correct backend settings for each developer portal cluster:
-
-  {{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
-  {{<bootstrap-table "table">}}
-  | Method | Endpoint                                                                             |
-  |--------|--------------------------------------------------------------------------------------|
-  | PUT    | `/infrastructure/workspaces/{{infraWorkspaceName}}/environments/{{environmentName}}` |
-  {{</bootstrap-table>}}
-  {{< raw-html>}}</div>{{</raw-html>}}
-
----
-
-### {{% icon-resolved %}} The user interface is erroneously including irrelevant information on the TLS inbound policy workflow {#38046}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 38046    | Fixed in 1.3.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-On the TLS inbound policy, toggling `Enable Client Verification` On/Off results in the user interface adding irrelevant information that causes the publish to fail due to validation error.
-
-#### Workaround
-
-Dismiss the policy without saving and restart the UI workflow to add the TLS inbound policy.
-
----
-
-### {{% icon-resolved %}} Portals secured with TLS policy require additional environment configuration prior to publishing API docs {#38028}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 38028    | Fixed in 1.3.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-When the `tls-backend` policy is applied on a developer portal, the communication between the portal UI and portal backend service is secured. By default, when the portal is created, and the backend is not explicitly specified in the payload, it defaults to HTTP.   Adding the tls-backend policy does not automatically upgrade the protocol to HTTPS. If the protocol is not set to HTTPS, publishing API docs to the portal will fail. The user has to explicitly change the backend protocol to HTTPS.
-
-#### Workaround
-
-In the user interface, navigate to Workspace > Environment > Developer Portals > Edit Advanced Config. Select "edit the Backend" and toggle the Enable TLS switch to enabled.
-
----
 
 ### {{% icon-bug %}} A proxy deployed with a `specRef` field (OAS) and `basePathVersionAPpedRule` set to other than `NONE` may cause versions to appear twice in the deployed location block {#36666}
 
@@ -400,89 +313,7 @@ If you are using an API doc with a proxy:
 
 ---
 
-### {{% icon-resolved %}} New users are unable to see pages even though they have been given access. {#36607}
 
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 36607    | Fixed in 1.3.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-A newly created role needs a minimum of READ access on the LICENSING feature. Without this, the users will not have access to the pages even though they have been granted permission. They will see 403 errors surfacing as license errors while accessing the pages.
-
-#### Workaround
-
-Assign a minimum of READ access on the LICENSING feature to all new roles.
-
----
-
-## 1.1.0
-
-### {{% icon-resolved %}} To see updates to the Listener's table, forced refresh of the cluster details page is required {#36540}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 36540    | Fixed in 1.2.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-When trying to update the Advance Config for Environment cluster, changes are not reflected on the cluster details page after saving and submitting successfully.
-
-#### Workaround
-
-Refresh or reload the browser page to see changes on the cluster details page.
-
----
-
-### {{% icon-resolved %}} Using labels to specify the backend is partially available {#36317}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 36317    | Fixed in 1.2.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-`targetBackendServiceLabel` label cannot be updated using the web interface. It is not configurable at the URI level in the spec.
-
-#### Workaround
-
-`targetBackendServiceLabel` label can be updated by sending a PUT command to the API.
-
----
-
-### {{% icon-resolved %}} Rate limit policy cannot be applied with OAuth2 JWT Assertion policy {#36095}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 36095    | Fixed in 1.2.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-Rate limit policy cannot be applied with the OAuth2 JWT assertion policy.
-
----
-
-### {{% icon-resolved %}} Enums are not supported in Advanced Routing {#34854}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 34854    | Fixed in 1.2.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-Enums cannot be set for path or query parameters while applying advanced routing. A list of specific values cannot be specified for their advanced routing parameters.
-
----
 
 ## 1.0.0
 
@@ -533,145 +364,6 @@ The `PATCH` method for API proxies is listed in the API spec; however, this meth
 #### Workaround
 
 Use `PUT` instead for API proxies.
-
----
-
-### {{% icon-resolved %}} Credentials endpoint is disabled by default {#35630}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 35630    | Fixed in 1.2.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-For security reasons, the Credentials endpoint is disabled by default. To use the Developer Portal credentials workflow, you need to make configuration changes on the API Connectivity Manager host to enable the Credentials endpoint. Optionally, communication between API Connectivity Manager and the Developer Portal can be secured by providing certificates.
-
-#### Workaround
-
-To enable the Credentials endpoint on the API Connectivity Manager host:
-
-1. Open an SSH connection into the API Connectivity Manager host and log in.
-
-2. Enable the Credentials endpoint:
-
-   In `/etc/nms/nginx/locations/nms-acm.conf`, uncomment the location block.
-
-    ``` yaml
-    # Deployment of resource credentials from the devportal
-    # Uncomment this block when using devportal. Authentication is disabled
-    # for this location. This location block will mutually
-    # verify the client trying to access the credentials API.
-    location = /api/v1/devportal/credentials {
-            # OIDC authentication (uncomment to disable)
-            #auth_jwt off;
-            auth_basic off;
-            error_page 401 /401_certs.json;
-            if ($ssl_client_verify != SUCCESS) {
-              return 401;
-            }
-            proxy_pass http://apim-service/api/v1/devportal/credentials;
-    }
-    ```
-  
-3. Save the changes.
-  
-4. Reload NGINX on the API Connectivity Manager host:
-
-    ```bash
-    nginx -s reload
-    ```
-
----
-
-### {{% icon-resolved %}} Unable to delete an environment that is stuck in a Configuring state {#35546}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 35546    | Fixed in 1.2.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-In the web interface, after deleting all of the proxy clusters is an environment that's in a `FAIL` state, the environment may transition to a `CONFIGURING` state and cannot be deleted.
-
-#### Workaround
-
-Add back the deleted proxy clusters using the web interface. The environment will transition to a `Fail` state. At this point, you can use the API to delete the proxy by sending a `DELETE` request to:
-
-``` text
-https://<NMS_FQDN>/api/acm/v1/infrastructure/workspaces/<infra-workspace-name>/environments/<environmentname>
-```
-
----
-
-### {{% icon-resolved %}} Installing NGINX Agent on Ubuntu 22.04 LTS fails with `404 Not Found` error {#35339}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status             |
-|----------|--------------------|
-| 35339    | Fixed in API Connectivity Manager 1.3.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-When installing the NGINX Agent on Ubuntu 22.04 LTS, the installation script fails with a `404 Not Found` error similar to the following:
-
-```text
-404 Not found [IP: <IP address>]
-Reading package lists...
-E: The repository 'https://192.0.2.0/packages-repository/deb/ubuntu jammy Release' does not have a Release file.
-E: The repository 'https://pkgs.nginx.com/app-protect/ubuntu jammy Release' does not have a Release file.
-E: The repository 'https://pkgs.nginx.com/app-protect-security-updates/ubuntu jammy Release' does not have a Release file.
-```
-
-#### Workaround
-
-Edit the NGINX Agent install script to use the codename `focal` for Ubuntu 20.04.
-
-1. Download the installation script:
-
-    ```bash
-    curl --insecure https://<NGINX-INSTANCE-MANAGER-FQDN>/install/nginx-agent > install.sh
-    ```
-
-2. Open the `install.sh` file for editing.
-3. Make the following changes:
-
-    On **lines 256-258**, change the following:
-
-    ```text
-    codename=$(cat /etc/*-release | grep '^DISTRIB_CODENAME' | 
-    sed 's/^[^=]*=\([^=]*\)/\1/' | 
-    tr '[:upper:]' '[:lower:]')
-    ```
-
-    to:
-
-    ```text
-    codename=focal
-    ```
-
-    <br>
-
-    **—OR—**
-
-    Alternatively, on **line 454**, change the following:
-
-    ```text
-    deb ${PACKAGES_URL}/deb/${os}/ ${codename} agent
-    ```
-
-    to:
-
-    ```text
-    deb ${PACKAGES_URL}/deb/${os}/ focal agent
-    ```
-
-4. Save the changes.
-5. Run the `install.sh` script.
 
 ---
 
@@ -730,24 +422,6 @@ duplicate location \"/_oidc_err_85de2f20_default_411\
 #### Workaround
 
 Use the default error codes included in the OIDC policy.
-
----
-
-### {{% icon-resolved %}} No validation when conflicting policies are added {#34531}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 34531    | Fixed in 1.3.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-When securing the API Proxy with policies like basic authentication or APIKey authentication, the user is not warned if a duplicate or conflicting policy is already added. Conflicting policies are not validated.
-
-#### Workaround
-
-Secure the API proxy with only one policy.
 
 ---
 
