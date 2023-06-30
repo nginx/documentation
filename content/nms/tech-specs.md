@@ -13,12 +13,6 @@ aliases:
 
 ---
 
-<styles>
-body {
-  overflow-x: hidden; /* Show horizontal scrollbar */
-}
-</styles>
-
 {{< custom-styles >}}
 
 ## Overview
