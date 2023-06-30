@@ -36,23 +36,7 @@ To complete the instructions in this guide, you need the following:
 - An installed version of Instance Manager
 - (optional) An installed version of API Connectivity Manager
 - (optional) An installed version of App Delivery Manager
-- An installed version of SQLite.
-
-    To install SQLite, run the following command(s):
-
-    - CentOS, RHEL, RPM-Based distributions:
-
-        ```bash
-        sudo yum install -y sqlite
-        ```
-
-    - Debian, Ubuntu, Deb-Based distributions:
-
-        ```bash
-        sudo apt-get update
-        sudo apt-get install -y sqlite3
-        ```
-
+- An installed version of SQLite. Installation instructions can be found [here]({{< relref "/nms/admin-guides/maintenance/sqlite-installation.md#" >}}).
 - The NGINX Management Suite services must be running:
 
     ```bash
@@ -202,22 +186,8 @@ To complete the instructions in this guide, you need the following:
 - An installed version of NGINX Management Suite and Instance Manager
 - (optional) An installed version of API Connectivity Manager
 - (optional) An installed version of App Delivery Manager
-- An installed version of SQLite.
+- An installed version of SQLite. Installation instructions can be found [here]({{< relref "/nms/admin-guides/maintenance/sqlite-installation.md#" >}}).
 
-    To install SQLite, run the following command(s):
-
-    - CentOS, RHEL, RPM-Based distributions:
-
-        ```bash
-        sudo yum install -y sqlite
-        ```
-
-    - Debian, Ubuntu, Deb-Based distributions:
-
-        ```bash
-        sudo apt-get update
-        sudo apt-get install -y sqlite3
-        ```
 
 <a name="root-access"></a>
 - Root Access
