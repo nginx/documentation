@@ -5014,8 +5014,8 @@ json_log will have:
 
 #### Missing Policy Name
 
-In case of extendsPolicy is set to false, if the policy 'name' is not provided in the override section, an error message will be displayed indicating the missing policy 'name' within that specific override rule. For instance, in the override rule below, the policy name is not specified.
-It is advised to place the external or inline reference policy file inside the policy {} block even though it is not a required field for the original policy. By doing this, you can prevent any errors that may occur during the import process due to missing policy name.
+Every policy must have a name, including a policy used for overriding in case extendsPolicy is false. If the policy 'name' is not provided in the override section, an error message will be displayed indicating the missing policy 'name' within that specific override rule. For instance, in the override rule below, the policy name is not specified.
+
 
 Example of Missing policy 'name':
 
