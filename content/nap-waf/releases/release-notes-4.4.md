@@ -45,7 +45,7 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 - Added the following Search Bot bot signatures: Xpanse Search Bot
 
 
-### New Features
+### New Feature
 
 - [Override Rules]({{< relref  "/nap-waf/configuration-guide/configuration.md#override-rules" >}}) 
 
