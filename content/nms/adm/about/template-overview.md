@@ -49,7 +49,7 @@ Built-in templates are installed under the `/etc/nms/adm/templates` directory.  
 
 ## Base templates
 
-Base templates contain the logic for generating the core part of the NGINX config, like server blocks, location blocks, and upstream blocks. These are in the `/etc/nms/adm/templates/base` directory. Every API resource (Gateways, Web components, and TCPUDP components) that generates NGINX config is associated with a template for config generation.
+Base templates contain the logic for generating the core part of the NGINX config, like server blocks, location blocks, and upstream blocks. These are in the `/etc/nms/modules/adm/templates/base` directory. Every API resource (Gateways, Web components, and TCPUDP components) that generates NGINX config is associated with a template for config generation.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | API resource       | Template                                                           |

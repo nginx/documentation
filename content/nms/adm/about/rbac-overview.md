@@ -92,15 +92,15 @@ The WEB-COMPONENT-MANAGEMENT feature controls access to web components and the `
 * Apps
 * Web-Components
 
-### TCPUDP-COMPONENT-MANAGEMENT
+### TCP-UDP-COMPONENT-MANAGEMENT
 
-The TCPUDP-COMPONENT-MANAGEMENT feature controls access to TCP/UDP components and the `/environments/<envUID>/apps/<appUID>/tcpudp-components` endpoint. TCP/UDP components have environments and apps as parent objects, so access to the environments and apps objects within the TCP-COMPONENT-MANAGEMENT feature must be granted to allow access.
+The TCP-UDP-COMPONENT-MANAGEMENT feature controls access to TCP/UDP components and the `/environments/<envUID>/apps/<appUID>/tcpudp-components` endpoint. TCP/UDP components have environments and apps as parent objects, so access to the environments and apps objects within the TCP-UDP-COMPONENT-MANAGEMENT feature must be granted to allow access.
 
 #### Objects:
 
 * Environments
 * Apps
-* TCP-Components
+* TCPUDP-Components
 
 {{< note >}} If a feature does not have an object listed, there is currently no enforcement or RBAC control over features based on that object, eg: Web components cannot be filtered based on the gateways they reference.{{< /note >}}
 
@@ -792,7 +792,7 @@ The Sales-App role has access to the environment example-env and the gateway tha
 | ------------------------ | ------------------ | ------------------------- |
 | ENVIRONMENT-MANAGEMENT   | READ               | Environments: example-env |
 | GATEWAY-MANAGEMENT       | READ               | Environments: example-env  <br /> Gateways: example.com |
-| APP-MANAGEMENT           | CRUD               | Environments: example-env <br /> Apps: Sales |
+| APP-MANAGEMENT           | RU                 | Environments: example-env <br /> Apps: Sales |
 | WEB-COMPONENT-MANAGEMENT | CRUD               | Environments: example-env <br /> Apps: Sales <br /> Web Components: All |
 | SITE-MANAGEMENT          | READ               | Sites: site1              |
 | INSTANCE-GROUPS          | READ               | Instance Groups: ig1      |
