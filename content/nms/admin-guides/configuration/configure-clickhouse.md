@@ -76,8 +76,6 @@ If you configured ClickHouse to work with TLS, take the following steps to updat
       # Edit your password
       password: test-2
 
-      debug_mode: true
-
       # tls_mode will be deprecated. Use tls section below.
       tls_mode: true
 
