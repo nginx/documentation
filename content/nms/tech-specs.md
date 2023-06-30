@@ -13,6 +13,12 @@ aliases:
 
 ---
 
+<styles>
+body {
+  overflow-x: hidden; /* Show horizontal scrollbar */
+}
+</styles>
+
 {{< custom-styles >}}
 
 ## Overview
@@ -42,7 +48,10 @@ If you are using an older version of a module, you might need to upgrade to an i
 
 {{< include "tech-specs/nms-supported-distros.md" >}}
 
-{{< note >}}If you're installing the API Connectivity Manager module, make sure to review the [supported distributions for the Developer Portal host](#dev-portal-supported-distributions). That list varies slightly from this one.{{< /note >}}
+<br>
+
+{{< call-out "note" "API Connectivity Manager" >}}Make sure you review the [supported distributions for the Developer Portal](#dev-portal-supported-distributions) host before installing the API Connectivity Manager module. There is a slight difference between the supported distributions in that list and this one.
+{{< /call-out >}}
 
 ### Supported Deployment Environments {#supported-environments}
 
