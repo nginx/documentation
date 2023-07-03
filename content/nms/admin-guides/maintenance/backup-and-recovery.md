@@ -8,7 +8,7 @@ draft: false
 # The description text appears in search results and at the top of the doc.
 description: "Follow the steps in this guide to back up and restore the essential system files for the NGINX Management Suite platform and modules."
 # Assign weights in increments of 100
-weight: 
+weight: 1
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
@@ -29,6 +29,7 @@ docs: "DOCS-1098"
 ---
 
 ## NGINX Management Suite and modules deployed in a Virtual Machine or Bare Metal
+
 ### Before You Begin
 
 To complete the instructions in this guide, you need the following:
@@ -36,23 +37,7 @@ To complete the instructions in this guide, you need the following:
 - An installed version of Instance Manager
 - (optional) An installed version of API Connectivity Manager
 - (optional) An installed version of App Delivery Manager
-- An installed version of SQLite.
-
-    To install SQLite, run the following command(s):
-
-    - CentOS, RHEL, RPM-Based distributions:
-
-        ```bash
-        sudo yum install -y sqlite
-        ```
-
-    - Debian, Ubuntu, Deb-Based distributions:
-
-        ```bash
-        sudo apt-get update
-        sudo apt-get install -y sqlite3
-        ```
-
+- An installed version of SQLite. Refer to the [Install SQLite]({{< relref "/nms/admin-guides/maintenance/sqlite-installation.md" >}}) guide for installation instructions.
 - The NGINX Management Suite services must be running:
 
     ```bash
@@ -202,22 +187,8 @@ To complete the instructions in this guide, you need the following:
 - An installed version of NGINX Management Suite and Instance Manager
 - (optional) An installed version of API Connectivity Manager
 - (optional) An installed version of App Delivery Manager
-- An installed version of SQLite.
+- An installed version of SQLite. Refer to the [Install SQLite]({{< relref "/nms/admin-guides/maintenance/sqlite-installation.md" >}}) guide for installation instructions.
 
-    To install SQLite, run the following command(s):
-
-    - CentOS, RHEL, RPM-Based distributions:
-
-        ```bash
-        sudo yum install -y sqlite
-        ```
-
-    - Debian, Ubuntu, Deb-Based distributions:
-
-        ```bash
-        sudo apt-get update
-        sudo apt-get install -y sqlite3
-        ```
 
 <a name="root-access"></a>
 - Root Access
