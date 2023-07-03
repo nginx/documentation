@@ -87,6 +87,7 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 - 8302 Fixed - Remote logging destinations when IPv6 is disabled system-wide.
 - 7819 Fixed - The login issue encountered on the iOS client when using the AJAX Response Page has been resolved. This problem specifically occurs on iOS devices when NGINX's `proxy_buffering` is disabled.
 - 8261 Fixed - Binaries have been upgraded with module and version updates to address and resolve identified vulnerabilities.
+- 8477 Fixed - TCP connections in the CLOSE_WAIT state for specific types of requests.
 
 ### **Important Notes**
  
