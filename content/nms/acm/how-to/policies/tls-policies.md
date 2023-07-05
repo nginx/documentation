@@ -245,10 +245,7 @@ Take the steps in this section to secure communications between the API Connecti
                         },
                         "metadata": {
                             "appliedOn": "inbound",
-                            "context": "global",
-                            "labels": [
-                                "default"
-                            ]
+                            "context": "global"
                         }
                     }
                 ],

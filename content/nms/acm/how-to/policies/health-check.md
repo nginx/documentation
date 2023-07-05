@@ -260,11 +260,6 @@ To create a gRPC health check policy, send an HTTP `POST` to the Proxies endpoin
   "policies": {
     "grpc-backend-health-check": [
       {
-        "metadata": {
-          "label": {
-            "name": "default"
-          }
-        },
         "action": {
           "mandatory": true,
           "persistent": true,
