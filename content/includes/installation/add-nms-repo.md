@@ -25,8 +25,6 @@ Add the NGINX Management Suite repository:
     sudo yum module enable nginx:1.20
     ```
 
-
-
 - **Amazon Linux 2**
 
    ```bash
@@ -36,7 +34,6 @@ Add the NGINX Management Suite repository:
 {{%/tab%}}
 
 {{%tab name="Debian, Ubuntu, Deb-Based"%}}
-
 
 Add the NGINX Management Suite repository:
 
@@ -57,7 +54,6 @@ Add the NGINX Management Suite repository:
   printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/adm/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee -a /etc/apt/sources.list.d/nms.list
   sudo wget -q -O /etc/apt/apt.conf.d/90pkgs-nginx https://cs.nginx.com/static/files/90pkgs-nginx
   ```
-
 
 {{%/tab%}}
 {{</tabs>}}
