@@ -46,8 +46,10 @@ The gateway will describe how traffic will be routed through NGINX instances to 
 1. Select **Create Gateway**. In the *Configuration* section of the *Create Gateway* drawer type **Example Gateway** in the **Name** field.
 1. Select **Tutorial Environment** in the **Environment** list.
 1. Select **Next** to go to the *Placements* section.
+1. Select **Add Placement**
 1. In the **Instance Group Refs** list, select **example-ig** (Which was created by the Platform team as part of the prerequisites), then select **Done**.
 1. Select **Next** to continue to the *Hostnames* page.
+1. Select **Add Hostname**
 1. Type `http://www.example.com` in the **Hostname** field, and then Select **Done**.
 1. Select **Submit** to create the gateway (**Note:** To create a secure website, you would need to type an HTTPS address and specify the cert to use).
 

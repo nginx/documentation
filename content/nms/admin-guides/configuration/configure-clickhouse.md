@@ -65,38 +65,41 @@ If you configured ClickHouse to work with TLS, take the following steps to updat
     ```yaml
     clickhouse:
       
-      # set the log level
+      # Sets the log level for ClickHouse processes within NMS.
       log_level: debug
 
+      # Sets the address that will be used to connect to ClickHouse.
       address: 127.0.0.1:9001
 
-      # Edit your username
-      username: test-1
+      ## Note: Username and password should only be set, if you have custom defined username and password for ClickHouse.
+      ## Ensure that any configured username or password is wrapped in single quotes.
+      # Sets the username that will be used to connect to ClickHouse. 
+      username: 'test-1'
 
-      # Edit your password
-      password: test-2
+      # Sets the password that will be used to connect to ClickHouse.
+      password: 'test-2'
 
-      debug_mode: true
-
-      # tls_mode will be deprecated. Use tls section below.
+      # Activates or deactivates TLS for connecting to ClickHouse. 
+      # Note: `tls_mode` will be deprecated in the future, use the `tls` key to enable TLS connection for ClickHouse.
       tls_mode: true
-
-      # Enable tls to run clickhouse in TLS mode
+    
       tls:
-        # set the IP address and port Clickhouse listens on
+        # Sets the address (form <ip-address:port>)used to connect to ClickHouse with a TLS connection.
         address: 127.0.0.1:9441
 
+        # Activates or deactivates TLS verification of ClickHouse connection.
         skip_verify: false
 
-        # set the path to TLS private cert
+        # Sets the path of the certificate used for TLS connections in PEM encoded format.
         cert_path: /etc/certs
 
-        # set the path to TLS private key
+        # Sets the path of the client key used for TLS connections in PEM encoded format.
         key_path: /etc/key
 
-        # set the path to certificate authority for certificate validation
+        # Sets the path of the Certificate Authority installed on the system for verifying certificates.
         cert_ca: /etc/ca
-      
+    
+      # Sets directory containing ClickHouse migration files.
       migrations_path: /test/migrations
     ```
 
