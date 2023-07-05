@@ -16,6 +16,67 @@ categories: ["release notes"]
 
 ---
 
+## 4.0.0-EA2
+July 06, 2023
+
+### What's New
+This release includes the following updates:
+
+- {{% icon-feature %}} **Added initial support for NGINX App Protect**
+
+  We have added the ability to enable NGINX  App Protect per location, use the default policy that provides OWASP Top 10 and Bot security protection, and a strict policy containing more restrictive criteria for blocking traffic. 
+  
+- {{% icon-feature %}} **Added support for rate limiting**
+
+  We have added the ability to enable rate limiting per component to limit network traffic, prevent users from exhausting system resources, and make it harder for malicious actors to overburden components and cause attacks like Denial of Service.
+  
+- {{% icon-feature %}} **Added support for configuring OpenID Connect**
+
+  We have added the ability to configure OIDC integration for NGINX Plus to communicate directly with an Identity Provider to perform authentication.
+  
+- {{% icon-feature %}} **Improved usability of caching template**
+
+  The `proxy_cache_valid` setting in the built-in `caching` template has been updated to an array so that the directive can be easily used to specify different timeouts per response code. For example:
+
+  ```nginx
+  "proxyCacheValids": [
+    {
+     "responseCodes": "200",
+     "time": "10m"
+    },
+   {   
+     "responseCodes": "300,302",
+     "time": "1m"
+   }
+  ]
+  ```
+  
+- {{% icon-feature %}} **Added new traffic setting template**
+
+  We have added a new template, traffic-settings, that enables the configuration of `underscores_in_headers` and `ignore_invalid_headers` directives per URI. Users can now control whether header fields with invalid names should be ignored and if header fields whose names contain underscores are marked as invalid.
+  
+
+### Changes in Behavior
+This release has the following changes in default behavior:
+
+- {{% icon-feature %}} **Updated the API to better support automation**
+
+  We have added the option to use arrays to make App Delivery Manager APIs easier to use and automate. Replaces map data structures. 
+  
+
+
+### Resolved Issues
+This release fixes the following issues. Select an issue's ID link to view its details.
+
+- {{% icon-resolved %}} Duplicate Certificate and Key published for managed certificates [(42517)]({{< relref "/nms/adm/releases/known-issues.md#42517" >}})
+
+### Known Issues
+
+You can find information about known issues in the [Known Issues]({{< relref "/nms/adm/releases/known-issues.md" >}}) topic.
+
+---
+
+
 ## 4.0.0
 
 May 18, 2023
