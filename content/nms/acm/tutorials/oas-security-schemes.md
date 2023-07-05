@@ -6,8 +6,7 @@ description: "NGINX Management Suite API Connectivity Manager lets you secure AP
 weight: 200
 toc: true
 tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-000"
+docs: "DOCS-1246"
 categories: ["api management"]
 doctypes: ["tutorial"]
 journeys: ["using", "self service"]
