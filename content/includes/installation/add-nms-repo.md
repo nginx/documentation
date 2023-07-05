@@ -45,29 +45,31 @@ Select the tab matching your Linux distribution, then follow the instructions to
 
 {{%tab name="Debian, Ubuntu, Deb-Based"%}}
 
+
 1. Add the NGINX Management Suite repository:
 
    - **Debian**
 
       ```bash
-      printf "deb https://pkgs.nginx.com/nms/debian `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nms.list
-      printf "deb https://pkgs.nginx.com/adm/debian `lsb_release -cs` nginx-plus\n" | sudo tee -a /etc/apt/sources.list.d/nms.list
+      printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/nms/debian `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nms.list
+      printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/adm/debian `lsb_release -cs` nginx-plus\n" | sudo tee -a /etc/apt/sources.list.d/nms.list
       sudo wget -q -O /etc/apt/apt.conf.d/90pkgs-nginx https://cs.nginx.com/static/files/90pkgs-nginx
       ```
 
    - **Ubuntu**
 
       ```bash
-      printf "deb https://pkgs.nginx.com/nms/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nms.list
-      printf "deb https://pkgs.nginx.com/adm/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee -a /etc/apt/sources.list.d/nms.list
+      printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/nms/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nms.list
+      printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/adm/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee -a /etc/apt/sources.list.d/nms.list
       sudo wget -q -O /etc/apt/apt.conf.d/90pkgs-nginx https://cs.nginx.com/static/files/90pkgs-nginx
       ```
 
-2. Add the [NGINX Signing Key](https://nginx.org/keys/nginx_signing.key):
+2. Add the [NGINX Signing Key](https://cs.nginx.com/static/keys/nginx_signing.key) required packages, and update the local system index files:
 
     ```bash
-    wget -O /tmp/nginx_signing.key https://cs.nginx.com/static/keys/nginx_signing.key
-    sudo apt-key add /tmp/nginx_signing.key
+    sudo apt install lsb-release wget gnupg2 ubuntu-keyring
+    wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+    sudo apt update
     ```
 
 {{%/tab%}}

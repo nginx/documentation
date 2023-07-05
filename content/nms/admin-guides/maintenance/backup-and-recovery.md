@@ -8,7 +8,7 @@ draft: false
 # The description text appears in search results and at the top of the doc.
 description: "Follow the steps in this guide to back up and restore the essential system files for the NGINX Management Suite platform and modules."
 # Assign weights in increments of 100
-weight: 
+weight: 1
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
@@ -29,6 +29,7 @@ docs: "DOCS-1098"
 ---
 
 ## NGINX Management Suite and modules deployed in a Virtual Machine or Bare Metal
+
 ### Before You Begin
 
 To complete the instructions in this guide, you need the following:
@@ -36,23 +37,7 @@ To complete the instructions in this guide, you need the following:
 - An installed version of Instance Manager
 - (optional) An installed version of API Connectivity Manager
 - (optional) An installed version of App Delivery Manager
-- An installed version of SQLite.
-
-    To install SQLite, run the following command(s):
-
-    - CentOS, RHEL, RPM-Based distributions:
-
-        ```bash
-        sudo yum install -y sqlite
-        ```
-
-    - Debian, Ubuntu, Deb-Based distributions:
-
-        ```bash
-        sudo apt-get update
-        sudo apt-get install -y sqlite3
-        ```
-
+- An installed version of SQLite. Refer to the [Install SQLite]({{< relref "/nms/admin-guides/maintenance/sqlite-installation.md" >}}) guide for installation instructions.
 - The NGINX Management Suite services must be running:
 
     ```bash
@@ -202,23 +187,10 @@ To complete the instructions in this guide, you need the following:
 - An installed version of NGINX Management Suite and Instance Manager
 - (optional) An installed version of API Connectivity Manager
 - (optional) An installed version of App Delivery Manager
-- An installed version of SQLite.
+- An installed version of SQLite. Refer to the [Install SQLite]({{< relref "/nms/admin-guides/maintenance/sqlite-installation.md" >}}) guide for installation instructions.
 
-    To install SQLite, run the following command(s):
 
-    - CentOS, RHEL, RPM-Based distributions:
-
-        ```bash
-        sudo yum install -y sqlite
-        ```
-
-    - Debian, Ubuntu, Deb-Based distributions:
-
-        ```bash
-        sudo apt-get update
-        sudo apt-get install -y sqlite3
-        ```
-
+<a name="root-access"></a>
 - Root Access
 
     The Kubernetes backup and restore scripts for NGINX Management Suite are executed using `sudo` and use the Kubernetes command `kubectl` internally to access the Kubernetes API. It is necessary to ensure the target Kubernetes cluster is accessible to the root user. 
@@ -345,7 +317,7 @@ To restore NGINX Management Suite and the installed modules deployed in the same
     ```bash
     sudo ./k8s-restore.sh -r -i k8s-backup-<timestamp>.tar.gz
     ```
-    {{< note >}}The restore script [needs root access]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md#prerequisites" >}}) to Kubernetes for the restore operation.{{< /note >}}
+    {{< note >}}The restore script [needs root access]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md#root-access" >}}) to Kubernetes for the restore operation.{{< /note >}}
 
 5. The script will ask for the NGINX Management Suite namespace. Once the namespace has been provided, the script will consume the specified backup archive. 
 
@@ -380,7 +352,7 @@ To restore NGINX Management Suite and the installed modules into a different Kub
     ```bash
     sudo ./k8s-restore.sh -r -i k8s-backup-<timestamp>.tar.gz -d
     ```
-    {{< note >}}The restore script [needs root access]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md#prerequisites" >}}) to Kubernetes for the restore operation.{{< /note >}}
+    {{< note >}}The restore script [needs root access]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md#root-access" >}}) to Kubernetes for the restore operation.{{< /note >}}
 
 5. The script will ask for the NGINX Management Suite namespace. Once the namespace has been provided, the script will consume the specified backup archive. 
 

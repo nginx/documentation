@@ -242,13 +242,6 @@ Take the steps in this section to secure communications between the API Connecti
                                     "cert": {{tlsServerCert}}
                                 }
                             ]
-                        },
-                        "metadata": {
-                            "appliedOn": "inbound",
-                            "context": "global",
-                            "labels": [
-                                "default"
-                            ]
                         }
                     }
                 ],
@@ -360,13 +353,6 @@ Take the steps in this section to secure communications between the API Connecti
                                   "clientId": "client-1",
                                   "cert": {{caCert}},
                                }
-                            ]
-                        },
-                        "metadata": {
-                            "appliedOn": "inbound",
-                            "context": "global",
-                            "labels": [
-                                "default"
                             ]
                         }
                     }
