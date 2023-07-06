@@ -49,19 +49,21 @@ This release includes the following updates:
   
 - {{% icon-feature %}} **Ingress routing rules now allow using regular expressions**
 
-  Regular expressions are now supported in routing rules. This will enable routing of requests that match against strings like "?wsdl".
+  Regular expressions are now supported in routing rules. This will enable routing of requests that match against strings like '?wsdl'.
   
+
 
 ### Resolved Issues
 This release fixes the following issues. Select an issue's ID link to view its details.
 
-- {{% icon-resolved %}} **The routes filter under the proxy metrics page won’t work with params (2471)**
-- {{% icon-resolved %}} **Multiple entries selected when gateway proxy hostnames are the same (2515)**
+- {{% icon-resolved %}} The routes filter under the proxy metrics page won’t work with params [(42471)]({{< relref "/nms/acm/releases/known-issues.md#42471" >}})
+- {{% icon-resolved %}} Multiple entries selected when gateway proxy hostnames are the same [(42515)]({{< relref "/nms/acm/releases/known-issues.md#42515" >}})
 
 ### Known Issues
-You can find information about known issues in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
 
+You can find information about known issues in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
 ---
+
 
 ## 1.6.0
 

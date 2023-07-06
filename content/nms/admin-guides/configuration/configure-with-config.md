@@ -337,9 +337,6 @@ clickhouse:
   # Sets the password that will be used to connect to ClickHouse.
   password:
 
-  # Enables debug mode for ClickHouse.
-  debug_mode: true
-
   # Activates or deactivates TLS for connecting to ClickHouse. 
   # Note: `tls_mode` will be deprecated in the future, use `tls` key to enable TLS connection for ClickHouse.
   tls_mode: true

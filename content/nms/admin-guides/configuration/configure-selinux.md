@@ -100,6 +100,8 @@ To use the SELinux policy that's included with NGINX Management Suite, take the 
     {{< beta-badge >}}
 
     ```bash
+    sudo semodule -n -i /usr/share/selinux/packages/nms-adm.pp
+    sudo /usr/sbin/load_policy
     sudo restorecon -F -R /usr/bin/nms-adm
     sudo restorecon -F -R /usr/lib/systemd/system/nms-adm.service
     sudo restorecon -F -R /var/lib/nms/modules/adm.json

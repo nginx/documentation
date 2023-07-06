@@ -31,6 +31,7 @@
       "policy" : {
          "properties" : {
             "applicationLanguage" : {
+               "default" : "utf-8",
                "description" : "The character encoding for the application. The character encoding determines how the policy processes the character sets. The default is utf-8.",
                "enum" : [
                   "big5",
@@ -92,10 +93,12 @@
                                     "type" : "string"
                                  },
                                  "enabled" : {
+                                    "default" : false,
                                     "description" : "Defines if sub-violation is enforced - alarmed or blocked, according to the 'Evasion technique detected' (VIOL_EVASION) violation blocking settings.",
                                     "type" : "boolean"
                                  },
                                  "maxDecodingPasses" : {
+                                    "default" : 2,
                                     "description" : "Defines how many times the system decodes URI and parameter values before the request is considered an evasion.\nRelevant only for the 'Multiple decoding' sub-violation.",
                                     "maximum" : 5,
                                     "minimum" : 2,
@@ -141,21 +144,25 @@
                                     "type" : "string"
                                  },
                                  "enabled" : {
+                                    "default" : false,
                                     "description" : "Defines if sub-violation is enforced - alarmed or blocked, according to the 'HTTP protocol compliance failed' (VIOL_HTTP_PROTOCOL) violation blocking settings",
                                     "type" : "boolean"
                                  },
                                  "maxCookies" : {
+                                    "default" : 50,
                                     "maximum" : 100,
                                     "minimum" : 1,
                                     "type" : "integer"
                                  },
                                  "maxHeaders" : {
+                                    "default" : 20,
                                     "description" : "Defines maximum allowed number of headers in request.\nRelevant only for the 'Check maximum number of headers' sub-violation",
                                     "maximum" : 150,
                                     "minimum" : 1,
                                     "type" : "integer"
                                  },
                                  "maxParams" : {
+                                    "default" : 500,
                                     "description" : "Defines maximum allowed number of parameters in request.\nRelevant only for the 'Check maximum number of parameters' sub-violation",
                                     "maximum" : 5000,
                                     "minimum" : 1,
@@ -180,9 +187,11 @@
                            "items" : {
                               "properties" : {
                                  "alarm" : {
+                                    "default" : false,
                                     "type" : "boolean"
                                  },
                                  "block" : {
+                                    "default" : false,
                                     "type" : "boolean"
                                  },
                                  "description" : {
@@ -253,6 +262,9 @@
                                     "type" : "string"
                                  }
                               },
+                              "required" : [
+                                 "name"
+                              ],
                               "type" : "object"
                            },
                            "type" : "array"
@@ -283,6 +295,7 @@
                                           "type" : "string"
                                        },
                                        "action" : {
+                                          "default" : "default",
                                           "enum" : [
                                              "alarm",
                                              "block",
@@ -296,6 +309,7 @@
                                           "type" : "string"
                                        },
                                        "scoreThreshold" : {
+                                          "default" : "default",
                                           "oneOf" : [
                                              {
                                                 "maximum" : 150,
@@ -315,6 +329,9 @@
                                           ]
                                        }
                                     },
+                                    "required" : [
+                                       "name"
+                                    ],
                                     "type" : "object"
                                  },
                                  "type" : "array"
@@ -336,6 +353,7 @@
                                           "type" : "string"
                                        },
                                        "action" : {
+                                          "default" : "detect",
                                           "enum" : [
                                              "alarm",
                                              "block",
@@ -376,6 +394,7 @@
                                     "description" : "List of classes and their actions.",
                                     "properties" : {
                                        "action" : {
+                                          "default" : "detect",
                                           "description" : "The action we set for this class.\n\n- **ignore**: The system will not detect or report bots from this class.\n- **detect**: The system will detect and report the bot, but violation won't be reported.\n- **alarm**: The system will detect and report requests made by bots from this class as illegal, but will not block them.\n- **block**: The system will detect and report requests made by bots from this class as illegal, and block them.",
                                           "enum" : [
                                              "alarm",
@@ -386,6 +405,7 @@
                                           "type" : "string"
                                        },
                                        "name" : {
+                                          "default" : "trusted-bot",
                                           "description" : "The class we set the action to.",
                                           "enum" : [
                                              "browser",
@@ -437,6 +457,9 @@
                                           "type" : "string"
                                        }
                                     },
+                                    "required" : [
+                                       "name"
+                                    ],
                                     "type" : "object"
                                  },
                                  "type" : "array"
@@ -455,10 +478,12 @@
                            "description" : "This section contains all bot defense settings.",
                            "properties" : {
                               "caseSensitiveHttpHeaders" : {
+                                 "default" : true,
                                  "description" : "If *false* the system will not check header name with case sensitivity for both relevant anomalies: Invalid HTTP Headers, Suspicious HTTP Headers.",
                                  "type" : "boolean"
                               },
                               "isEnabled" : {
+                                 "default" : true,
                                  "description" : "If *true* the system detects bots.",
                                  "type" : "boolean"
                               }
@@ -510,6 +535,7 @@
                ]
             },
             "caseInsensitive" : {
+               "default" : false,
                "description" : "Specifies whether the security policy treats microservice URLs, file types, URLs, and parameters as case sensitive or not. When this setting is enabled, the system stores these security policy elements in lowercase in the security policy configuration.",
                "type" : "boolean"
             },
@@ -565,6 +591,7 @@
                      "description" : "The maximum length of a cookie header name and value that the system processes. The system calculates and enforces a cookie header length based on the sum of the length of the cookie header name and value.",
                      "properties" : {
                         "maximumCookieHeaderLength" : {
+                           "default" : "any",
                            "description" : "Maximum Cookie Header Length must be greater than 0 and less than 65536 bytes (64K). Note: if 0 or *any* are set, then no restriction on the cookie header length is applied.",
                            "oneOf" : [
                               {
@@ -605,14 +632,17 @@
                               "type" : "string"
                            },
                            "accessibleOnlyThroughTheHttpProtocol" : {
+                              "default" : false,
                               "description" : "Specifies, when true, that the system adds the HttpOnly attribute to the domain cookie's response header.\nThis is done to expose the cookie to only HTTP and HTTPS entities.\nThis prevents the cookie from being modified, or intercepted even if it is not modified,\nby unwanted third parties that run scripts on the web page.\n\n**Notes**:\n- The system does not validate that the cookie has not been modified or intercepted.\n- The feature covers all security policy cookies, both enforced and allowed, explicit and wildcard.",
                               "type" : "boolean"
                            },
                            "attackSignaturesCheck" : {
+                              "default" : true,
                               "description" : "Specifies, when true, that you want attack signatures and threat campaigns to be detected on this cookie\nand possibly override the security policy settings of an attack signature or threat campaign specifically for this cookie.\nAfter you enable this setting, the system displays a list of attack signatures and threat campaigns.",
                               "type" : "boolean"
                            },
                            "decodeValueAsBase64" : {
+                              "default" : "enabled",
                               "description" : "Specifies whether the the system should detect or require values to be Base64 encoded:\n\n - **disabled**: the value will not be decoded as Base64 content.\n - **enabled**: the value will be checked whether it can be decoded as Base64 and, if so, security checks will be performed on the decoded value.\n - **required**: the value must be decoded as Base64, and security checks will be performed on the decoded value.\n\n **Note**: This setting is only relevant if the Cookie Enforcement Type is set to Allowed.",
                               "enum" : [
                                  "disabled",
@@ -622,6 +652,7 @@
                               "type" : "string"
                            },
                            "enforcementType" : {
+                              "default" : "allow",
                               "description" : "Specifies how the system treats this cookie.\n\n- **enforced**: Specifies that according to the security policy, this cookie may not be changed by the client.\n- **allowed**: Specifies that according to the security policy, this cookie may be changed by the client. The system ignores this cookie.",
                               "enum" : [
                                  "allow",
@@ -630,6 +661,7 @@
                               "type" : "string"
                            },
                            "insertSameSiteAttribute" : {
+                              "default" : "none",
                               "description" : "The introduction of the SameSite http attribute (defined in [RFC6265bis](https://tools.ietf.org/html/draft-ietf-httpbis-cookie-same-site-00))\nallows you to declare if your cookie should be restricted to a first-party or same-site context.\nIntroducing the SameSite attribute on a cookie provides three different ways of controlling same-site vs. cross-site cookie sending:\n\n- **strict**: Cookie will only be sent in a first-party context. In user terms, the cookie will only be sent if the site for the cookie matches the site currently shown in the browser's URL bar.\n- **lax**: Cookies will be sent with top level navigation\n- **none-value**: Cookies will be sent in a third-party context.",
                               "enum" : [
                                  "lax",
@@ -640,6 +672,7 @@
                               "type" : "string"
                            },
                            "maskValueInLogs" : {
+                              "default" : false,
                               "description" : "Specifies, when true, that the cookie's value will be masked in the request log.",
                               "type" : "boolean"
                            },
@@ -648,6 +681,7 @@
                               "type" : "string"
                            },
                            "securedOverHttpsConnection" : {
+                              "default" : false,
                               "description" : "Specifies, when true, that the system adds the Secure attribute to the domain cookie's response header.\nThis is done to ensure that the cookies are returned to the server only over SSL (by using the HTTPS protocol).\nThis prevents the cookie from being intercepted, but does not guarantee its integrity.\n\n**Notes**:\n- The system does not validate that the cookie was received over SSL.\n- The feature covers all security policy cookies, both enforced and allowed, explicit and wildcard.",
                               "type" : "boolean"
                            },
@@ -677,6 +711,7 @@
                               "type" : "array"
                            },
                            "type" : {
+                              "default" : "explicit",
                               "description" : "Determines the type of the **name** attribute.\nOnly when setting the type to wildcard will the special wildcard characters in the name be interpreted as such.",
                               "enum" : [
                                  "explicit",
@@ -706,9 +741,11 @@
                   {
                      "properties" : {
                         "enabled" : {
+                           "default" : false,
                            "type" : "boolean"
                         },
                         "expirationTimeInSeconds" : {
+                           "default" : "disabled",
                            "oneOf" : [
                               {
                                  "type" : "integer"
@@ -726,6 +763,7 @@
                            ]
                         },
                         "sslOnly" : {
+                           "default" : false,
                            "type" : "boolean"
                         }
                      },
@@ -755,6 +793,7 @@
                               "type" : "string"
                            },
                            "method" : {
+                              "default" : "POST",
                               "enum" : [
                                  "GET",
                                  "POST",
@@ -766,6 +805,7 @@
                               "type" : "string"
                            },
                            "wildcardOrder" : {
+                              "default" : 0,
                               "type" : "integer"
                            }
                         },
@@ -787,14 +827,17 @@
                      "description" : "Data Guard feature can prevent responses from exposing sensitive information by masking the data.",
                      "properties" : {
                         "creditCardNumbers" : {
+                           "default" : false,
                            "description" : "If *true* the system considers credit card numbers as sensitive data.",
                            "type" : "boolean"
                         },
                         "enabled" : {
+                           "default" : false,
                            "description" : "If *true* the system protects sensitive data.",
                            "type" : "boolean"
                         },
                         "enforcementMode" : {
+                           "default" : "ignore-urls-in-list",
                            "description" : "Specifies the URLs for which the system enforces data guard protection.\n\n- **ignore-urls-in-list**: Specifies that the system enforces data guard protection for all URLs except for those URLs in the Enforcement Mode list.\n- **enforce-urls-in-list**: Specifies that the system enforces data guard protection only for those URLs in the Enforcement Mode list",
                            "enum" : [
                               "enforce-urls-in-list",
@@ -803,6 +846,7 @@
                            "type" : "string"
                         },
                         "enforcementUrls" : {
+                           "default" : [],
                            "description" : "List of URLS to be enforced based on enforcement mode of data guard protection.",
                            "items" : {
                               "type" : "string"
@@ -810,10 +854,12 @@
                            "type" : "array"
                         },
                         "maskData" : {
+                           "default" : false,
                            "description" : "If *true* the system intercepts the returned responses to mask sensitive data.",
                            "type" : "boolean"
                         },
                         "usSocialSecurityNumbers" : {
+                           "default" : false,
                            "description" : "If *true* the system considers U.S Social Security numbers as sensitive data.",
                            "type" : "boolean"
                         }
@@ -830,6 +876,7 @@
                "type" : "string"
             },
             "enforcementMode" : {
+               "default" : "transparent",
                "description" : "How the system processes a request that triggers a security policy violation.\n- **Blocking:** When the enforcement mode is set to blocking, traffic is blocked if it causes a violation (configured for blocking).\n- **Transparent:** When the enforcement mode is set to transparent, traffic is not blocked even if a violation is triggered.",
                "enum" : [
                   "blocking",
@@ -846,10 +893,12 @@
                            "description" : "This section defines the properties of the enforcer state cookies.",
                            "properties" : {
                               "httpOnlyAttribute" : {
+                                 "default" : false,
                                  "description" : "Specifies, when true, that the system adds the state cookie HttpOnly attribute.",
                                  "type" : "boolean"
                               },
                               "sameSiteAttribute" : {
+                                 "default" : "none",
                                  "description" : "The value for the state cookie SameSite attribute:\n\n- **none**: The SameSite attribute is never added to the state cookie.\n- **strict**: Cookie will only be sent in a first-party context. In user terms, the cookie will only be sent if the site for the cookie matches the site currently shown in the browser's URL bar.\n- **lax**: Cookies will be sent with top level navigation\n- **none-value**: Cookies will be sent in a third-party context.",
                                  "enum" : [
                                     "lax",
@@ -860,6 +909,7 @@
                                  "type" : "string"
                               },
                               "secureAttribute" : {
+                                 "default" : "never",
                                  "description" : "The value for the state cookie Secure attribute:\n\n- **always**: Always add the Secure attribute to the state cookie.\n- **never**: The Secure attribute is never added to the state cookie.",
                                  "enum" : [
                                     "always",
@@ -891,22 +941,27 @@
                               "type" : "string"
                            },
                            "allowed" : {
+                              "default" : true,
                               "description" : "Determines whether the file type is allowed or disallowed. In either of these cases the VIOL_FILETYPE violation is issued (if enabled) for an incoming request-\n1. No allowed file type matched the file type of the request.\n2. The file type of the request matched a disallowed file type.",
                               "type" : "boolean"
                            },
                            "checkPostDataLength" : {
+                              "default" : true,
                               "description" : "Determines whether to enforce maximum length restriction for the body, a.k.a. \"POST data\" part of the requests that match the respective file type. The maximum length is determined by *postDataLength* attribute.\nAlthough named \"POST data\", this applies to any content type and not restricted to POST requests, e.g. PUT requests are also checked.\nThis attribute is relevant only to *allowed* file types.",
                               "type" : "boolean"
                            },
                            "checkQueryStringLength" : {
+                              "default" : true,
                               "description" : "Determines whether to enforce maximum length restriction for the query string of the requests that match the respective file type. The maximum length is determined by *queryStringLength* attribute.\nThis attribute is relevant only to *allowed* file types.",
                               "type" : "boolean"
                            },
                            "checkRequestLength" : {
+                              "default" : true,
                               "description" : "Determines whether to enforce maximum length restriction for the total length of requests that match the respective file type. The maximum length is determined by *requestLength* attribute.\nThis attribute is relevant only to *allowed* file types.",
                               "type" : "boolean"
                            },
                            "checkUrlLength" : {
+                              "default" : true,
                               "description" : "Determines whether to enforce maximum length restriction for the URL of the requests that match the respective file type. The URL does *not* include the query string, past the &. The maximum length is determined by *urlLength* attribute.\nThis attribute is relevant only to *allowed* file types.",
                               "type" : "boolean"
                            },
@@ -915,25 +970,30 @@
                               "type" : "string"
                            },
                            "postDataLength" : {
+                              "default" : 1000,
                               "description" : "The maximum length in bytes of the body (POST data) of the request matching the file type. Enforced only if checkPostDataLength is set to *true*.\nIf the value is exceeded then VIOL_POST_DATA_LENGTH violation is issued.\nThis attribute is relevant only to *allowed* file types.",
                               "minimum" : 0,
                               "type" : "integer"
                            },
                            "queryStringLength" : {
+                              "default" : 1000,
                               "description" : "The maximum length in bytes of the query string of the request matching the file type. Enforced only if checkQueryStringLength is set to *true*.\nIf the value is exceeded then VIOL_QUERY_STRING_LENGTH violation is issued.\nThis attribute is relevant only to *allowed* file types.",
                               "minimum" : 0,
                               "type" : "integer"
                            },
                            "requestLength" : {
+                              "default" : 5000,
                               "description" : "The maximum total length in bytes of the request matching the file type. Enforced only if checkRequestLength is set to *true*.\nIf the value is exceeded then VIOL_REQUEST_LENGTH violation is issued.\nThis attribute is relevant only to *allowed* file types.",
                               "minimum" : 0,
                               "type" : "integer"
                            },
                            "responseCheck" : {
+                              "default" : false,
                               "description" : "Determines whether the responses to requests that match the respective file types are inspected for attack signature detection.\nThis attribute is relevant only to *allowed* file types.",
                               "type" : "boolean"
                            },
                            "type" : {
+                              "default" : "explicit",
                               "description" : "Determines the type of the **name** attribute. Only when setting the type to wildcard will the special wildcard characters in the name be interpreted as such.",
                               "enum" : [
                                  "explicit",
@@ -942,6 +1002,7 @@
                               "type" : "string"
                            },
                            "urlLength" : {
+                              "default" : 100,
                               "description" : "The maximum length in bytes of the URL of the request matching the file type, excluding the query string. Enforced only if checkUrlLength is set to *true*.\nIf the value is exceeded then VIOL_URL_LENGTH violation is issued.\nThis attribute is relevant only to *allowed* file types.",
                               "minimum" : 0,
                               "type" : "integer"
@@ -972,6 +1033,14 @@
                      "description" : "This section includes several advanced policy configuration settings.",
                      "properties" : {
                         "allowedResponseCodes" : {
+                           "default" : [
+                              400,
+                              401,
+                              404,
+                              407,
+                              417,
+                              503
+                           ],
                            "description" : "You can specify which responses a security policy permits.\nBy default, the system accepts all response codes from 100 to 399 as valid responses.\nResponse codes from 400 to 599 are considered invalid unless added to the Allowed Response Status Codes list.\nBy default, 400, 401, 404, 407, 417, and 503 are on the list as allowed HTTP response status codes.",
                            "items" : {
                               "type" : "integer"
@@ -979,6 +1048,7 @@
                            "type" : "array"
                         },
                         "customXffHeaders" : {
+                           "default" : [],
                            "description" : "If you require the system to trust a server further than one hop toward the client (the last proxy traversed), you can use the Custom XFF Headers setting to define a specific header that is inserted closer to, or at the client, that the system will trust.\nAdditionally, if you require the system to trust a proxy server that uses a different header name than the X-Forwarded-For header name, you can add the desired header name to the Custom XFF Headers setting.\nWhen adding a custom header, the X-Forwarded-For header is not trusted anymore. In case the X-Forwarded-For header is to be trusted along with other headers, you must add it to the custom headers list.",
                            "items" : {
                               "type" : "string"
@@ -986,6 +1056,7 @@
                            "type" : "array"
                         },
                         "maskCreditCardNumbersInRequest" : {
+                           "default" : true,
                            "description" : "When enabled, the security policy masks credit card numbers that appear in any part of requests. The system does not mask the information in the actual requests, but rather in various logs:\n* Credit card numbers appearing in entity names are masked in the requests of the Requests log.\n* Credit card numbers appearing in entity values are masked wherever requests can be viewed: the Requests log, and violation details within that log.\nThis setting is enabled by default, and exists in addition to masking parameters defined as containing sensitive information.",
                            "type" : "boolean"
                         },
@@ -1013,14 +1084,17 @@
                               "type" : "string"
                            },
                            "attackSignaturesCheck" : {
+                              "default" : true,
                               "type" : "boolean"
                            },
                            "defenseAttributes" : {
                               "properties" : {
                                  "allowIntrospectionQueries" : {
+                                    "default" : false,
                                     "type" : "boolean"
                                  },
                                  "maximumBatchedQueries" : {
+                                    "default" : "10",
                                     "oneOf" : [
                                        {
                                           "maximum" : 2147483647,
@@ -1040,6 +1114,7 @@
                                     ]
                                  },
                                  "maximumQueryCost" : {
+                                    "default" : "any",
                                     "oneOf" : [
                                        {
                                           "maximum" : 2147483647,
@@ -1059,6 +1134,7 @@
                                     ]
                                  },
                                  "maximumStructureDepth" : {
+                                    "default" : "10",
                                     "oneOf" : [
                                        {
                                           "maximum" : 2147483647,
@@ -1078,6 +1154,7 @@
                                     ]
                                  },
                                  "maximumTotalLength" : {
+                                    "default" : "100000",
                                     "oneOf" : [
                                        {
                                           "maximum" : 2147483647,
@@ -1097,6 +1174,7 @@
                                     ]
                                  },
                                  "maximumValueLength" : {
+                                    "default" : "10000",
                                     "oneOf" : [
                                        {
                                           "maximum" : 2147483647,
@@ -1116,6 +1194,7 @@
                                     ]
                                  },
                                  "tolerateParsingWarnings" : {
+                                    "default" : true,
                                     "type" : "boolean"
                                  }
                               },
@@ -1131,8 +1210,22 @@
                               "items" : {
                                  "properties" : {
                                     "idlFile" : {
-                                       "$ref" : "#/properties/policy/properties/idl-files/oneOf/0/items",
-                                       "type" : "object"
+                                       "oneOf" : [
+                                          {
+                                             "$ref" : "#/properties/policy/properties/idl-files/oneOf/0/items"
+                                          },
+                                          {
+                                             "properties" : {
+                                                "id" : {
+                                                   "type" : "string"
+                                                }
+                                             },
+                                             "required" : [
+                                                "id"
+                                             ],
+                                             "type" : "object"
+                                          }
+                                       ]
                                     },
                                     "isPrimary" : {
                                        "type" : "boolean"
@@ -1146,6 +1239,7 @@
                               "type" : "array"
                            },
                            "metacharElementCheck" : {
+                              "default" : true,
                               "type" : "boolean"
                            },
                            "metacharOverrides" : {
@@ -1171,9 +1265,13 @@
                            "responseEnforcement" : {
                               "properties" : {
                                  "blockDisallowedPatterns" : {
+                                    "default" : false,
                                     "type" : "boolean"
                                  },
                                  "disallowedPatterns" : {
+                                    "default" : [
+                                       "{\\s*\"errors\":\\s*\\[\\s*{\\s*\"message\":"
+                                    ],
                                     "items" : {
                                        "type" : "string"
                                     },
@@ -1241,12 +1339,15 @@
                               "type" : "string"
                            },
                            "associateUrls" : {
+                              "default" : true,
                               "type" : "boolean"
                            },
                            "attackSignaturesCheck" : {
+                              "default" : true,
                               "type" : "boolean"
                            },
                            "decodeStringValuesAsBase64" : {
+                              "default" : "disabled",
                               "enum" : [
                                  "disabled",
                                  "enabled"
@@ -1256,9 +1357,11 @@
                            "defenseAttributes" : {
                               "properties" : {
                                  "allowUnknownFields" : {
+                                    "default" : true,
                                     "type" : "boolean"
                                  },
                                  "maximumDataLength" : {
+                                    "default" : "4194304",
                                     "oneOf" : [
                                        {
                                           "maximum" : 2147483647,
@@ -1290,8 +1393,22 @@
                               "items" : {
                                  "properties" : {
                                     "idlFile" : {
-                                       "$ref" : "#/properties/policy/properties/idl-files/oneOf/0/items",
-                                       "type" : "object"
+                                       "oneOf" : [
+                                          {
+                                             "$ref" : "#/properties/policy/properties/idl-files/oneOf/0/items"
+                                          },
+                                          {
+                                             "properties" : {
+                                                "id" : {
+                                                   "type" : "string"
+                                                }
+                                             },
+                                             "required" : [
+                                                "id"
+                                             ],
+                                             "type" : "object"
+                                          }
+                                       ]
                                     },
                                     "importUrl" : {
                                        "type" : "string"
@@ -1311,6 +1428,7 @@
                               "type" : "array"
                            },
                            "metacharElementCheck" : {
+                              "default" : true,
                               "type" : "boolean"
                            },
                            "name" : {
@@ -1355,6 +1473,7 @@
                      "description" : "The maximum length of an HTTP header name and value that the system processes. The system calculates and enforces the HTTP header length based on the sum of the length of the HTTP header name and value.",
                      "properties" : {
                         "maximumHttpHeaderLength" : {
+                           "default" : "any",
                            "description" : "Maximum HTTP Header Length must be greater than 0 and less than 65536 bytes (64K). Note: if 0 or *any* are set, then no restriction on the HTTP header length is applied.",
                            "oneOf" : [
                               {
@@ -1395,12 +1514,15 @@
                               "type" : "string"
                            },
                            "allowRepeatedOccurrences" : {
+                              "default" : true,
                               "type" : "boolean"
                            },
                            "checkSignatures" : {
+                              "default" : true,
                               "type" : "boolean"
                            },
                            "decodeValueAsBase64" : {
+                              "default" : "enabled",
                               "description" : "Specifies whether the the system should detect or require values to be Base64 encoded:\n\n - **disabled**: the value will not be decoded as Base64 content.\n - **enabled**: the value will be checked whether it can be decoded as Base64 and, if so, security checks will be performed on the decoded value.\n - **required**: the value must be decoded as Base64, and security checks will be performed on the decoded value.",
                               "enum" : [
                                  "disabled",
@@ -1410,12 +1532,15 @@
                               "type" : "string"
                            },
                            "htmlNormalization" : {
+                              "default" : false,
                               "type" : "boolean"
                            },
                            "mandatory" : {
+                              "default" : false,
                               "type" : "boolean"
                            },
                            "maskValueInLogs" : {
+                              "default" : false,
                               "description" : "Specifies, when true, that the headers's value will be masked in the request log.",
                               "type" : "boolean"
                            },
@@ -1424,9 +1549,11 @@
                               "type" : "string"
                            },
                            "normalizationViolations" : {
+                              "default" : false,
                               "type" : "boolean"
                            },
                            "percentDecoding" : {
+                              "default" : false,
                               "type" : "boolean"
                            },
                            "signatureOverrides" : {
@@ -1455,6 +1582,7 @@
                               "type" : "array"
                            },
                            "type" : {
+                              "default" : "explicit",
                               "description" : "Determines the type of the **name** attribute.\nOnly when setting the type to wildcard will the special wildcard characters in the name be interpreted as such.",
                               "enum" : [
                                  "explicit",
@@ -1463,9 +1591,11 @@
                               "type" : "string"
                            },
                            "urlNormalization" : {
+                              "default" : false,
                               "type" : "boolean"
                            },
                            "wildcardOrder" : {
+                              "default" : 0,
                               "description" : "Specifies the order index for wildcard header matching.\nWildcard headers with lower wildcard order will get checked for a match prior to headers with higher wildcard order.",
                               "type" : "integer"
                            }
@@ -1494,6 +1624,7 @@
                               "type" : "string"
                            },
                            "includeSubdomains" : {
+                              "default" : false,
                               "type" : "boolean"
                            },
                            "name" : {
@@ -1519,18 +1650,19 @@
                         "oneOf" : [
                            {
                               "required" : [
-                                 "id"
+                                 "contents",
+                                 "fileName"
                               ]
                            },
                            {
                               "required" : [
-                                 "id",
+                                 "fileName",
                                  "$ref"
                               ]
                            },
                            {
                               "required" : [
-                                 "id",
+                                 "fileName",
                                  "link"
                               ]
                            }
@@ -1581,11 +1713,13 @@
                               "type" : "string"
                            },
                            "attackSignaturesCheck" : {
+                              "default" : true,
                               "type" : "boolean"
                            },
                            "defenseAttributes" : {
                               "properties" : {
                                  "maximumArrayLength" : {
+                                    "default" : "1000",
                                     "oneOf" : [
                                        {
                                           "maximum" : 2147483647,
@@ -1605,6 +1739,7 @@
                                     ]
                                  },
                                  "maximumStructureDepth" : {
+                                    "default" : "10",
                                     "oneOf" : [
                                        {
                                           "maximum" : 2147483647,
@@ -1624,6 +1759,7 @@
                                     ]
                                  },
                                  "maximumTotalLengthOfJSONData" : {
+                                    "default" : "10000",
                                     "oneOf" : [
                                        {
                                           "maximum" : 2147483647,
@@ -1643,6 +1779,7 @@
                                     ]
                                  },
                                  "maximumValueLength" : {
+                                    "default" : "100",
                                     "oneOf" : [
                                        {
                                           "maximum" : 2147483647,
@@ -1662,6 +1799,7 @@
                                     ]
                                  },
                                  "tolerateJSONParsingWarnings" : {
+                                    "default" : false,
                                     "type" : "boolean"
                                  }
                               },
@@ -1671,12 +1809,14 @@
                               "type" : "string"
                            },
                            "handleJsonValuesAsParameters" : {
+                              "default" : true,
                               "type" : "boolean"
                            },
                            "hasValidationFiles" : {
                               "type" : "boolean"
                            },
                            "metacharElementCheck" : {
+                              "default" : true,
                               "type" : "boolean"
                            },
                            "metacharOverrides" : {
@@ -1729,8 +1869,22 @@
                                        "type" : "boolean"
                                     },
                                     "jsonValidationFile" : {
-                                       "$ref" : "#/properties/policy/properties/json-validation-files/oneOf/0/items",
-                                       "type" : "object"
+                                       "oneOf" : [
+                                          {
+                                             "$ref" : "#/properties/policy/properties/json-validation-files/oneOf/0/items"
+                                          },
+                                          {
+                                             "properties" : {
+                                                "id" : {
+                                                   "type" : "string"
+                                                }
+                                             },
+                                             "required" : [
+                                                "id"
+                                             ],
+                                             "type" : "object"
+                                          }
+                                       ]
                                     }
                                  },
                                  "required" : [
@@ -1760,18 +1914,19 @@
                         "oneOf" : [
                            {
                               "required" : [
-                                 "id"
+                                 "fileName",
+                                 "contents"
                               ]
                            },
                            {
                               "required" : [
-                                 "id",
+                                 "fileName",
                                  "$ref"
                               ]
                            },
                            {
                               "required" : [
-                                 "id",
+                                 "fileName",
                                  "link"
                               ]
                            }
@@ -1874,6 +2029,48 @@
                },
                "type" : "array"
             },
+            "override-rules" : {
+               "oneOf" : [
+                  {
+                     "items" : {
+                        "description" : "This section defines policy override rules.",
+                        "properties" : {
+                           "$action" : {
+                              "enum" : [
+                                 "delete"
+                              ],
+                              "type" : "string"
+                           },
+                           "condition" : {
+                              "description" : "Specifies the condition under which the override rule should be applied.\n\nExample: \"clientIp != '10.0.0.5' and userAgent.lower().contains('WebRobot')\"\n\nCondition Syntax:\n\n- The condition consists of one or more clauses separated by **and**.\n\n  Example: \"clientIp == '10.0.0.5' and host.startsWith('internal')\"\n\n- Each clause can optionally start with **not** - to negate the expression.\n\n  Example: \"not clientIp == '127.0.0.1'\"\n\n- A clause can be a simple comparison between two value expressions, or a boolean function applied to a literal value.\n\n- Supported comparison operators:\n\n  - **==** - Checks for equality between two value expressions.\n  - **!=** - Checks for inequality between two value expressions.\n\n  Example: \"clientIp != '10.0.0.5'\" (equivalent to \"not clientIp == '10.0.0.5'\")\n\n- Supported boolean functions:\n\n  - **matches**: Performs an exact match of a value expression, equivalent to **==**.\n  - **startsWith**: Checks if a value expression starts with a specific substring.\n  - **contains**: Checks if a value expression contains a specific substring.\n\n  Example: \"uri.startsWith('/api')\"\n\n**Note**: Regular expressions are not supported.\n\n- Value expressions can be a request attribute, literal value, or a value function.\n- A literal can be a string value enclosed in single quotes, or can be the keyword \"null\" without quotes.\n\n  Example: \"userAgent == null\"\n\n- The only supported value function is **lower**. Any boolean function applied on the resulting string will be **case insensitive**.\n\n  Example: \"uri.lower().contains('BaR')\" will match the URI \"/Foo/bAr\"\n\nRequest Attributes:\n\n- **clientIp**: Client IP address in canonical IPv4 or IPv6 format. Use CIDR notation for subnet definition. Example: *192.168.1.2* or *fd00:1::/48*. If *trustXff* (X-Forwarded-For) is enabled in the containing policy, then the value is taken from the configured header (XFF or other). The only supported boolean function for the clientIP attribute is *matches*.\n- **host**: The value of the Host header\n- **method**: The HTTP method in the request\n- **uri**: The URI (path part) of the request\n- **userAgent**: The value of the User-Agent header, or *null* (without quotes) if not present",
+                              "type" : "string"
+                           },
+                           "extendsPolicy" : {
+                              "default" : true,
+                              "description" : "If *true* - the override policy inherits the containing policy settings, allowing only the required settings to be overridden.\nIf *false* - the override policy must be a valid declarative policy that includes a name, template and all necessary settings.\nThe default is *true*.",
+                              "type" : "boolean"
+                           },
+                           "name" : {
+                              "description" : "The unique name of the override rule. Cannot contain spaces or special characters.",
+                              "type" : "string"
+                           },
+                           "override" : {
+                              "description" : "The overriding security policy definition.",
+                              "type" : "string"
+                           }
+                        },
+                        "required" : [
+                           "name"
+                        ],
+                        "type" : "object"
+                     },
+                     "type" : "array"
+                  },
+                  {
+                     "$ref" : "#/definitions/reference"
+                  }
+               ]
+            },
             "parameters" : {
                "oneOf" : [
                   {
@@ -1887,14 +2084,17 @@
                               "type" : "string"
                            },
                            "allowEmptyValue" : {
+                              "default" : true,
                               "description" : "Determines whether an empty value is allowed for a parameter.",
                               "type" : "boolean"
                            },
                            "allowRepeatedParameterName" : {
+                              "default" : false,
                               "description" : "Determines whether multiple parameter instances with the same name are allowed in one request.",
                               "type" : "boolean"
                            },
                            "arraySerializationFormat" : {
+                              "default" : "csv",
                               "description" : "Specifies type of serialization for array of primitives parameter.\nSerialization defines how multiple values are delimited - format that can be transmitted and reconstructed later:\n - **pipe**: pipe-separated values. Array color=[\"blue\",\"black\"] -> color=blue|black.\n - **form**: ampersand-separated values. Array color=[\"blue\",\"black\"] -> color=blue,black.\n - **matrix**: semicolon-prefixed values. Array color=[\"blue\",\"black\"] -> ;color=blue,black.\n - **tsv**: tab-separated values. Aarray color=[\"blue\",\"black\"] -> color=blue\\tblack.\n - **csv**: comma-separated values. Array color=[\"blue\",\"black\"] -> color=blue,black.\n - **label**: dot-prefixed values. Array color=[\"blue\",\"black\"] -> .blue.black.\n - **multi**: multiple parameter instances rather than multiple values. Array color=[\"blue\",\"black\"] -> color=blue&color=black.\n - **ssv**: space-separated values. Array color=[\"blue\",\"black\"] -> color=blue black.\n - **multipart**: defines array of files.\n\n**Notes**:\n - This attribute is relevant only for parameters with **array** *valueType*.\n - **multi** and **form** serializations can be defined for parameter with *query*, *form-data* or *cookie* locations only.\n - **multipart** serialization can be defined for parameter with *form-data* location only.\n - **matrix** and **label** serializations can be defined for parameter with *path* location only.",
                               "enum" : [
                                  "csv",
@@ -1910,42 +2110,52 @@
                               "type" : "string"
                            },
                            "arrayUniqueItemsCheck" : {
+                              "default" : false,
                               "description" : "Determines whether items in an array parameter must be unique.\nThis attribute is relevant only for parameters with **array** *valueType*.",
                               "type" : "boolean"
                            },
                            "attackSignaturesCheck" : {
+                              "default" : true,
                               "description" : "Determines whether attack signatures and threat campaigns must be detected in a parameter's value.\nThis attribute is relevant only for parameters with **alpha-numeric** or **binary** *dataType*.",
                               "type" : "boolean"
                            },
                            "checkMaxItemsInArray" : {
+                              "default" : false,
                               "description" : "Determines whether an array parameter has a restricted maximum number of items.\nThis attribute is relevant only for parameters with **array** *valueType*.",
                               "type" : "boolean"
                            },
                            "checkMaxValue" : {
+                              "default" : false,
                               "description" : "Determines whether the parameter has a restricted maximum value.\nThis attribute is relevant only for parameters with **integer** or **decimal** *dataType*.",
                               "type" : "boolean"
                            },
                            "checkMaxValueLength" : {
+                              "default" : false,
                               "description" : "Determines whether a parameter has a restricted maximum length for value.",
                               "type" : "boolean"
                            },
                            "checkMetachars" : {
+                              "default" : true,
                               "description" : "Determines whether disallowed metacharacters must be detected in a parameter's name.\nThis attribute is relevant only for **wildcard** parameters with **alpha-numeric** *dataType*.",
                               "type" : "boolean"
                            },
                            "checkMinItemsInArray" : {
+                              "default" : false,
                               "description" : "Determines whether an array parameter has a restricted minimum number of items.\nThis attribute is relevant only for parameters with **array** *valueType*.",
                               "type" : "boolean"
                            },
                            "checkMinValue" : {
+                              "default" : false,
                               "description" : "Determines whether a parameter has a restricted minimum value.\nThis attribute is relevant only for parameters with **integer** or **decimal** *dataType*.",
                               "type" : "boolean"
                            },
                            "checkMinValueLength" : {
+                              "default" : false,
                               "description" : "Determines whether a parameter has a restricted minimum length for value.",
                               "type" : "boolean"
                            },
                            "checkMultipleOfValue" : {
+                              "default" : false,
                               "description" : "Determines whether a parameter's value is a multiple of a number defined in *multipleOf*.\nThis attribute is relevant only for parameters with **integer** or **decimal** *dataType*.",
                               "type" : "boolean"
                            },
@@ -1963,6 +2173,7 @@
                               "type" : "object"
                            },
                            "dataType" : {
+                              "default" : "alpha-numeric",
                               "description" : "Specifies data type of parameter's value:\n\n - **alpha-numeric**: specifies that the value of parameter can be any text consisting of letters, digits, and the underscore character.\n - **binary**: specifies there is no text limit for the value of a parameter (length checks only).\n - **phone**: specifies that the value of a parameter can be text in telephone number format only.\n - **email**: specifies that the value of a parameter must be text in email format only.\n - **boolean**: specifies that the value of a parameter must be boolean (only *true* and  *false* values are allowed).\n - **integer**: specifies that the value of a parameter must be whole numbers only (no decimals).\n - **decimal**: specifies that the value of a parameter is numbers only and can include decimals.\n\n**Notes**:\n-  This attribute is relevant for parameters with **array** or **user-input** *valueType* only.",
                               "enum" : [
                                  "alpha-numeric",
@@ -1976,6 +2187,7 @@
                               "type" : "string"
                            },
                            "decodeValueAsBase64" : {
+                              "default" : "enabled",
                               "description" : "Specifies whether the the system should detect or require values to be Base64 encoded:\n\n - **disabled**: the value will not be decoded as Base64 content.\n - **enabled**: the value will be checked whether it can be decoded as Base64 and, if so, security checks will be performed on the decoded value.\n - **required**: the value must be decoded as Base64. Security checks will be performed on the decoded value.\n\n**Notes**:\n-  This attribute is relevant for parameters with **binary**, **auto-detect**, or **user-input** *valueType* only.",
                               "enum" : [
                                  "disabled",
@@ -1985,26 +2197,32 @@
                               "type" : "string"
                            },
                            "disallowFileUploadOfExecutables" : {
+                              "default" : true,
                               "description" : "Determines whether a parameter's value cannot have binary executable content.\nThis attribute is relevant only for parameters with **binary** *dataType*.",
                               "type" : "boolean"
                            },
                            "enableRegularExpression" : {
+                              "default" : false,
                               "description" : "Determines whether the parameter value includes the pattern defined in *regularExpression*.\nThis attribute is relevant only for parameters with **alpha-numeric** *dataType*.",
                               "type" : "boolean"
                            },
                            "exclusiveMax" : {
+                              "default" : false,
                               "description" : "Determines whether the maximum value defined in *maximumValue* attribute is exclusive.\nThis attribute is relevant only if *checkMaxValue* is set to **true**.",
                               "type" : "boolean"
                            },
                            "exclusiveMin" : {
+                              "default" : false,
                               "description" : "Determines whether a minimum value defined in *minimumValue* attribute is exclusive.\nThis attribute is relevant only if *checkMinValue* is set to **true**.",
                               "type" : "boolean"
                            },
                            "explodeObjectSerialization" : {
+                              "default" : false,
                               "description" : "Specifies whether an array or object parameters should have separate values for each array item or object property.\nThis attribute is relevant only if *objectSerializationStyle* is defined.\n\n**Notes**:\n-  This attribute is not relevant for parameters with **deep-object**, **space-delimited** or **pipe-delimited** *objectSerializationStyle*.",
                               "type" : "boolean"
                            },
                            "hostNameRepresentation" : {
+                              "default" : "domain-name",
                               "enum" : [
                                  "any",
                                  "domain-name",
@@ -2013,14 +2231,17 @@
                               "type" : "string"
                            },
                            "isCookie" : {
+                              "default" : false,
                               "description" : "Determines whether a parameter is located in the value of Cookie header.\n*parameterLocation* attribute is ignored if **isCookie** is set to *true*.",
                               "type" : "boolean"
                            },
                            "isHeader" : {
+                              "default" : false,
                               "description" : "Determines whether a parameter is located in headers as one of the headers.\n*parameterLocation* attribute is ignored if **isHeader** is set to *true*.",
                               "type" : "boolean"
                            },
                            "level" : {
+                              "default" : "global",
                               "description" : "Specifies whether the parameter is associated with a URL, a flow, or neither.",
                               "enum" : [
                                  "global",
@@ -2029,42 +2250,51 @@
                               "type" : "string"
                            },
                            "mandatory" : {
+                              "default" : false,
                               "description" : "Determines whether a parameter must exist in the request.",
                               "type" : "boolean"
                            },
                            "maxItemsInArray" : {
+                              "default" : 100,
                               "description" : "Determines the restriction for the maximum number of items in an array parameter.\nThis attribute is relevant only if *checkMaxItemsInArray* is set to **true**.",
                               "minimum" : 0,
                               "type" : "integer"
                            },
                            "maximumLength" : {
+                              "default" : 10,
                               "description" : "Determines the restriction for the maximum length of parameter's value.\nThis attribute is relevant only if *checkMaxValueLength* is set to **true**.",
                               "minimum" : 0,
                               "type" : "integer"
                            },
                            "maximumValue" : {
+                              "default" : 10,
                               "description" : "Determines the restriction for the maximum value of parameter.\nThis attribute is relevant only if *checkMaxValue* is set to **true**.",
                               "type" : "number"
                            },
                            "metacharsOnParameterValueCheck" : {
+                              "default" : true,
                               "description" : "Determines whether disallowed metacharacters must be detected in a parameter's value.\nThis attribute is relevant only for parameters with **alpha-numeric** *dataType*.",
                               "type" : "boolean"
                            },
                            "minItemsInArray" : {
+                              "default" : 1,
                               "description" : "Determines the restriction for the minimum number of items in an array parameter.\nThis attribute is relevant only if *checkMinItemsInArray* is set to **true**.",
                               "minimum" : 0,
                               "type" : "integer"
                            },
                            "minimumLength" : {
+                              "default" : 0,
                               "description" : "Determines the restriction for the minimum length of parameter's value.\nThis attribute is relevant only if *checkMinValueLength* is set to **true**.",
                               "minimum" : 0,
                               "type" : "integer"
                            },
                            "minimumValue" : {
+                              "default" : 0,
                               "description" : "Determines the restriction for the minimum value of a parameter.\nThis attribute is relevant only if *checkMinValue* is set to **true**.",
                               "type" : "number"
                            },
                            "multipleOf" : {
+                              "default" : 5,
                               "description" : "Determines the number by which a parameter's value is divisible without remainder.\nThis number must be positive and it may be a floating-point number.\nThis attribute is relevant only if *checkMultipleOfValue* is set to **true**.",
                               "type" : "number"
                            },
@@ -2093,6 +2323,7 @@
                               "type" : "array"
                            },
                            "objectSerializationStyle" : {
+                              "default" : "simple",
                               "description" : "Specifies the type of serialization for an object or complex array parameter.\nSerialization defines how multiple values are delimited - format that can be transmitted and reconstructed later:\n - **pipe-delimited**: pipe-separated values. Object color={\"R\":100,\"G\":200} -> color=R|100|G|200.\n - **form**: ampersand-separated values. Object color={\"R\":100,\"G\":200} -> color=R,100,G,200 if *explodeObjectSerialization* set to **false** or -> R=100&G=200 if *explodeObjectSerialization* set to **true**.\n - **space-delimited**: space-separated values. Object color={\"R\":100,\"G\":200} -> color=R 100 G 200.\n - **deep-object**: rendering nested objects. Object color={\"R\":100,\"G\":200} -> color[R]=100&color[G]=200.\n - **matrix**: semicolon-prefixed values. Object color={\"R\":100,\"G\":200} -> ;color=R,100,G,200 if *explodeObjectSerialization* set to **false** or -> ;R=100;G=200 if *explodeObjectSerialization* set to **true**.\n - **simple**: comma-separated values. Object color={\"R\":100,\"G\":200} -> R,100,G,200 if *explodeObjectSerialization* set to **false** or -> R=100,G=200 if *explodeObjectSerialization* set to **true**.\n - **label**: dot-prefixed values. Object color={\"R\":100,\"G\":200} -> .R.100.G.200 if *explodeObjectSerialization* set to **false** or -> .R=100.G=200 if *explodeObjectSerialization* set to **true**.\n\n**Notes**:\n - This attribute is relevant only for parameters with **object** or **openapi-array** *valueType*.\n - **form** serialization can be defined for a parameter with *query*, *form-data* or *cookie* locations only.\n - **matrix** and **label** serializations can be defined for an array parameter with *path* location only.\n - **simple** serializations can be defined for a parameter with *path* and *header* locations only.\n - **deep-object** serialization can be defined for a parameter with *query* or *form-data* locations only.",
                               "enum" : [
                                  "deep-object",
@@ -2113,6 +2344,7 @@
                               "type" : "array"
                            },
                            "parameterLocation" : {
+                              "default" : "any",
                               "description" : "Specifies location of parameter in request:\n\n - **any**: in query string, in POST data (body) or in URL path.\n - **query**: in query string.\n - **form-data**: in POST data (body).\n - **cookie**: in value of Cookie header.\n - **path**: in URL path.\n - **header**: in request headers.\n\n**Notes**:\n - **path** location can be defined for parameter with **global** *level* only.\n - **path**, **header** and **cookie** location can be defined for parameter with **explicit** *type* only.\n - **header** and **cookie** location cannot be defined for parameter with empty *name*.",
                               "enum" : [
                                  "any",
@@ -2129,6 +2361,7 @@
                               "type" : "string"
                            },
                            "sensitiveParameter" : {
+                              "default" : false,
                               "description" : "Determines whether a parameter is sensitive and must be not visible in logs nor in the user interface.\nInstead of the actual value, a string of asterisks is shown for this parameter.\nUse it to protect sensitive user input, such as a password or a credit card number, in a validated request.",
                               "type" : "boolean"
                            },
@@ -2165,6 +2398,7 @@
                               "type" : "array"
                            },
                            "type" : {
+                              "default" : "explicit",
                               "description" : "Specifies the type of the *name* attribute.",
                               "enum" : [
                                  "explicit",
@@ -2197,6 +2431,7 @@
                               "type" : "array"
                            },
                            "valueType" : {
+                              "default" : "user-input",
                               "description" : "Specifies type of parameter's value:\n\n - **object**: the parameter's value is complex object defined by JSON schema.\n - **dynamic-content**: the parameter's content changes dynamically.\n - **openapi-array**: the parameter's value is complex array defined by JSON schema.\n - **ignore**: the system does not perform validity checks on the value of the parameter.\n - **static-content**: the parameter has a static, or pre-defined, value(s).\n - **json**: the parameter's value is JSON data.\n - **array**: the parameter's value is array of primitives.\n - **user-input**: the parameter's value is provided by user-input.\n - **xml**: the parameter's value is XML data.\n - **auto-detect**: the parameter's value can be user-input, XML data or JSON data. The system automatically classifies the type of value.\n - **dynamic-parameter-name**: the parameter's name changes dynamically.\n\n**Notes**:\n - **dynamic-parameter-name** value type can be defined for a parameter with **flow** *level* and **explicit** *type* only.\n - **dynamic-content** value type can be defined for a parameter with **explicit** *type* only.",
                               "enum" : [
                                  "array",
@@ -2235,6 +2470,7 @@
                         "description" : "The Security Policy has a default blocking response page that it returns to the client when the client request, or the web server response, is blocked by the security policy. You can change the way the system responds to blocked requests. All default response pages contain a variable, <%TS.request.ID()%>, that the system replaces with a support ID number when it issues the page.",
                         "properties" : {
                            "ajaxActionType" : {
+                              "default" : "redirect",
                               "description" : "Which content, or URL, the system sends to the client as a response to an AJAX request that does not comply with the security policy.\n- **alert-popup**: The system opens a message as a popup screen. Type the message the system displays in the popup screen, or leave the default text.\n- **custom**: A response text that will replace the frame or page which generated the AJAX request. The system provides additional options where you can type the response body you prefer.\n- **redirect**: The system redirects the user to a specific web page instead of viewing a response page. Type the web page's full URL path, for example, http://www.redirectpage.com. ",
                               "enum" : [
                                  "alert-popup",
@@ -2260,6 +2496,7 @@
                               "type" : "string"
                            },
                            "grpcStatusCode" : {
+                              "default" : "UNKNOWN",
                               "oneOf" : [
                                  {
                                     "type" : "integer"
@@ -2296,6 +2533,7 @@
                               "type" : "string"
                            },
                            "responseActionType" : {
+                              "default" : "default",
                               "description" : "Which action the system takes, and which content the system sends to the client, as a response when the security policy blocks the client request.\n- **custom**: The system returns a response page with HTML code that the user defines.\n- **default**: The system returns the system-supplied response page in HTML. No further configuration is needed.\n- **erase-cookies**:  The system deletes all client side domain cookies. This is done in order to block web application users once, and not from the entire web application. The system displays this text in the response page. You cannot edit this text.\n- **redirect**: The system redirects the user to a specific web page instead of viewing a response page. The system provides an additional setting where you can indicate the redirect web page.\n- **soap-fault**:  Displays the system-supplied response written in SOAP fault message structure. Use this type when a SOAP request is blocked due to an XML related violation. You cannot edit this text.",
                               "enum" : [
                                  "custom",
@@ -2315,6 +2553,7 @@
                               "type" : "string"
                            },
                            "responsePageType" : {
+                              "default" : "default",
                               "description" : "The different types of blocking response pages which are available from the system:\n- **ajax**: The system sends the AJAX Blocking Response Page when the security policy blocks an AJAX request that does not comply with the security policy.\n- **default**: The system sends the default response when the security policy blocks a client request.\n- **graphql**: The system sends the GraphQL response when the security policy blocks a client request that contains GraphQL message that does not comply with the settings of a GraphQL profile configured in the security policy.\n- **grpc**: The system sends the gRPC response when the security policy blocks a client request that contains gRPC message that does not comply with the settings of a gRPC profile configured in the security policy.\n- **xml**: The system sends the XML response page when the security policy blocks a client request that contains XML content that does not comply with the settings of an XML profile configured in the security policy.",
                               "enum" : [
                                  "ajax",
@@ -2388,6 +2627,9 @@
                               "type" : "string"
                            }
                         },
+                        "required" : [
+                           "serverTechnologyName"
+                        ],
                         "type" : "object"
                      },
                      "type" : "array"
@@ -2443,10 +2685,12 @@
                               "type" : "string"
                            },
                            "alarm" : {
+                              "default" : true,
                               "description" : "If enabled - when a signature from this signature set is detected in a request - the request is logged.",
                               "type" : "boolean"
                            },
                            "block" : {
+                              "default" : true,
                               "description" : "If enabled - when a signature from this signature set is detected in a request - the request is blocked.",
                               "type" : "boolean"
                            },
@@ -2487,6 +2731,7 @@
                                           "type" : "object"
                                        },
                                        "hasCve" : {
+                                          "default" : "all",
                                           "enum" : [
                                              "all",
                                              "no",
@@ -2503,6 +2748,7 @@
                                           "type" : "string"
                                        },
                                        "lastUpdatedValue" : {
+                                          "default" : "1970-01-01",
                                           "type" : "string"
                                        },
                                        "riskFilter" : {
@@ -2524,6 +2770,7 @@
                                           "type" : "string"
                                        },
                                        "signatureType" : {
+                                          "default" : "request",
                                           "enum" : [
                                              "all",
                                              "request",
@@ -2532,6 +2779,7 @@
                                           "type" : "string"
                                        },
                                        "tagFilter" : {
+                                          "default" : "all",
                                           "description" : "Filter by signature tagValue.\n\n- **all**: no filter applied.\n- **eq**: only signatures with a tag that equals tagValue are added to the signature set.\n- **untagged**: only signatures without a tag are added to the signature set.",
                                           "enum" : [
                                              "all",
@@ -2545,6 +2793,7 @@
                                           "type" : "string"
                                        },
                                        "userDefinedFilter" : {
+                                          "default" : "all",
                                           "enum" : [
                                              "all",
                                              "no",
@@ -2584,6 +2833,7 @@
                                     "type" : "array"
                                  },
                                  "type" : {
+                                    "default" : "filter-based",
                                     "enum" : [
                                        "filter-based",
                                        "manual"
@@ -2594,6 +2844,9 @@
                               "type" : "object"
                            }
                         },
+                        "required" : [
+                           "name"
+                        ],
                         "type" : "object"
                      },
                      "type" : "array"
@@ -2608,6 +2861,7 @@
                   {
                      "properties" : {
                         "minimumAccuracyForAutoAddedSignatures" : {
+                           "default" : "medium",
                            "enum" : [
                               "high",
                               "low",
@@ -2630,6 +2884,7 @@
                         "description" : "This section defines the properties of a signature on the policy.",
                         "properties" : {
                            "enabled" : {
+                              "default" : true,
                               "description" : "Specifies, if true, that the signature is enabled on the security policy. When false, the signature is disable on the security policy.",
                               "type" : "boolean"
                            },
@@ -2681,6 +2936,7 @@
                               "type" : "string"
                            },
                            "isEnabled" : {
+                              "default" : true,
                               "description" : "If enabled - threat campaign is enforced in the security policy.",
                               "type" : "boolean"
                            },
@@ -2689,6 +2945,9 @@
                               "type" : "string"
                            }
                         },
+                        "required" : [
+                           "name"
+                        ],
                         "type" : "object"
                      },
                      "type" : "array"
@@ -2711,6 +2970,7 @@
                               "type" : "string"
                            },
                            "allowRenderingInFrames" : {
+                              "default" : "never",
                               "description" : "Specifies the conditions for when the browser should allow this URL to be rendered in a frame or iframe.\nnever: Specifies that this URL must never be rendered in a frame or iframe. The web application instructs browsers to hide, or disable, frame and iframe parts of this URL.\nonly-same: Specifies that the browser may load the frame or iframe if the referring page is from the same protocol, port, and domain as this URL. This limits the user to navigate only within the same web application.",
                               "enum" : [
                                  "never",
@@ -2723,23 +2983,28 @@
                               "type" : "string"
                            },
                            "attackSignaturesCheck" : {
+                              "default" : true,
                               "description" : "Specifies, when true, that you want attack signatures and threat campaigns to be detected on this URL and possibly override the security policy settings of an attack signature or threat campaign specifically for this URL. After you enable this setting, the system displays a list of attack signatures and threat campaigns.",
                               "type" : "boolean"
                            },
                            "canChangeDomainCookie" : {
+                              "default" : false,
                               "type" : "boolean"
                            },
                            "clickjackingProtection" : {
+                              "default" : false,
                               "description" : "Specifies that the system adds the X-Frame-Options header to the domain URL's response header. This is done to protect the web application against clickjacking. Clickjacking occurs when an attacker lures a user to click illegitimate frames and iframes because the attacker hid them on legitimate visible website buttons. Therefore, enabling this option protects the web application from other web sites hiding malicious code behind them. The default is disabled. After you enable this option, you can select whether, and under what conditions, the browser should allow this URL to be rendered in a frame or iframe.",
                               "type" : "boolean"
                            },
                            "disallowFileUploadOfExecutables" : {
+                              "default" : false,
                               "type" : "boolean"
                            },
                            "html5CrossOriginRequestsEnforcement" : {
                               "description" : "The system extracts the Origin (domain) of the request from the Origin header.",
                               "properties" : {
                                  "allowOriginsEnforcementMode" : {
+                                    "default" : "unmodified",
                                     "description" : "Allows you to specify a list of origins allowed to share data returned by this URL.",
                                     "enum" : [
                                        "replace-with",
@@ -2748,6 +3013,7 @@
                                     "type" : "string"
                                  },
                                  "checkAllowedMethods" : {
+                                    "default" : false,
                                     "description" : "Allows you to specify a list of methods that other web applications hosted in different domains can use when requesting this URL.",
                                     "type" : "boolean"
                                  },
@@ -2764,6 +3030,7 @@
                                              "type" : "string"
                                           },
                                           "originPort" : {
+                                             "default" : "all",
                                              "description" : "Select the port that other web applications can use to request data from your web application, or use the * wildcard for all ports.",
                                              "oneOf" : [
                                                 {
@@ -2784,6 +3051,7 @@
                                              ]
                                           },
                                           "originProtocol" : {
+                                             "default" : "http/https",
                                              "description" : "Select the appropriate protocol for the allowed origin.",
                                              "enum" : [
                                                 "http",
@@ -2794,15 +3062,16 @@
                                           }
                                        },
                                        "required" : [
-                                          "originProtocol",
                                           "originName",
-                                          "originPort"
+                                          "originPort",
+                                          "originProtocol"
                                        ],
                                        "type" : "object"
                                     },
                                     "type" : "array"
                                  },
                                  "enforcementMode" : {
+                                    "default" : "disabled",
                                     "description" : "Specify the option to determine how to handle CORS requests.\ndisabled: Do nothing related to cross-domain requests. Pass CORS requests exactly as set by the server.\nenforce: Allow cross-origin resource sharing as configured in the crossDomainAllowedOrigin setting. CORS requests are allowed from the domains specified as allowed origins. ",
                                     "enum" : [
                                        "disabled",
@@ -2814,10 +3083,12 @@
                               "type" : "object"
                            },
                            "isAllowed" : {
+                              "default" : true,
                               "description" : "If *true*, the URLs allowed by the security policy.",
                               "type" : "boolean"
                            },
                            "mandatoryBody" : {
+                              "default" : false,
                               "description" : "A request body is mandatory. This is relevant for any method acting as POST.",
                               "type" : "boolean"
                            },
@@ -2826,6 +3097,7 @@
                               "items" : {
                                  "properties" : {
                                     "isAllowed" : {
+                                       "default" : true,
                                        "description" : "If *true*, metacharacters and other characters are allowed in a URL.",
                                        "type" : "boolean"
                                     },
@@ -2842,10 +3114,12 @@
                               "type" : "array"
                            },
                            "metacharsOnUrlCheck" : {
+                              "default" : true,
                               "description" : "Specifies, when true, that you want meta characters to be detected on this URL and possibly override the security policy settings of a meta character specifically for this URL. After you enable this setting, the system displays a list of meta characters.",
                               "type" : "boolean"
                            },
                            "method" : {
+                              "default" : "*",
                               "description" : "Unique ID of a URL with a protocol type and name. Select a Method for the URL to create an API endpoint: URL + Method.",
                               "enum" : [
                                  "ACL",
@@ -2896,6 +3170,7 @@
                               "items" : {
                                  "properties" : {
                                     "allowed" : {
+                                       "default" : true,
                                        "description" : "Specifies that the system allows you to override allowed methods for this URL. When selected, the global policy settings for methods are listed, and you can change what is allowed or disallowed for this URL.",
                                        "type" : "boolean"
                                     },
@@ -2953,6 +3228,7 @@
                               "type" : "array"
                            },
                            "methodsOverrideOnUrlCheck" : {
+                              "default" : false,
                               "description" : "Specifies, when true, that you want methods to be detected on this URL and possibly override the security policy settings of a method specifically for this URL. After you enable this setting, the system displays a list of methods.",
                               "type" : "boolean"
                            },
@@ -2973,20 +3249,22 @@
                                        "type" : "object"
                                     },
                                     "urlSegmentIndex" : {
+                                       "default" : 1,
                                        "description" : "Select which to add: Text or Parameter and enter your desired segments. You can add multiple text and parameter segments.",
                                        "minimum" : 1,
                                        "type" : "integer"
                                     }
                                  },
                                  "required" : [
-                                    "urlSegmentIndex",
-                                    "parameter"
+                                    "parameter",
+                                    "urlSegmentIndex"
                                  ],
                                  "type" : "object"
                               },
                               "type" : "array"
                            },
                            "protocol" : {
+                              "default" : "http",
                               "description" : "Specifies whether the protocol for the URL is HTTP or HTTPS.",
                               "enum" : [
                                  "http",
@@ -3020,6 +3298,7 @@
                               "type" : "array"
                            },
                            "type" : {
+                              "default" : "explicit",
                               "description" : "Determines the type of the **name** attribute. Only when setting the type to wildcard will the special wildcard characters in the name be interpreted as such.",
                               "enum" : [
                                  "explicit",
@@ -3040,10 +3319,12 @@
                                        "type" : "object"
                                     },
                                     "headerName" : {
+                                       "default" : "*",
                                        "description" : "Specifies an explicit header name that must appear in requests for this URL. This field is not case-sensitive.",
                                        "type" : "string"
                                     },
                                     "headerOrder" : {
+                                       "default" : "default",
                                        "description" : "Displays the order in which the system checks header content of requests for this URL.",
                                        "oneOf" : [
                                           {
@@ -3062,10 +3343,12 @@
                                        ]
                                     },
                                     "headerValue" : {
+                                       "default" : "*",
                                        "description" : "Specifies a simple pattern string (glob pattern matching) for the header value that must appear in legal requests for this URL; for example, *json*, xml_method?, or method[0-9]. If the header includes this pattern, the system assumes the request contains the type of data you select in the Request Body Handling setting. This field is case-sensitive.",
                                        "type" : "string"
                                     },
                                     "type" : {
+                                       "default" : "form-data",
                                        "description" : "- **Apply Content Signatures**: Do not parse the content; scan the entire payload with full-content attack signatures.\n- **Apply Value and Content Signatures**: Do not parse the content or extract parameters; process the entire payload with value and full-content attack signatures.\n- **Disallow**: Block requests for an URL containing this header content. Log the Illegal Request Content Type violation.\n- **Do Nothing**: Do not inspect or parse the content. Handle the header of the request as specified by the security policy.\n- **Form Data**: Parse content as posted form data in either URL-encoded or multi-part formats. Enforce the form parameters according to the policy.\n- **GWT**: Perform checks for data in requests, based on the configuration of the GWT (Google Web Toolkit) profile associated with this URL.\n- **JSON**: Review JSON data using an associated JSON profile, and use value attack signatures to scan the element values.\n- **XML**: Review XML data using an associated XML profile.",
                                        "enum" : [
                                           "apply-content-signatures",
@@ -3082,8 +3365,8 @@
                                     }
                                  },
                                  "required" : [
-                                    "headerValue",
-                                    "headerName"
+                                    "headerName",
+                                    "headerValue"
                                  ],
                                  "type" : "object"
                               },
@@ -3119,6 +3402,7 @@
                               "type" : "string"
                            },
                            "blockRequests" : {
+                              "default" : "policy-default",
                               "description" : "Specifies how the system responds to blocking requests sent from this IP address.\n- **Policy Default:** Specifies that the Policy Blocking Settings will be used for requests from this IP address.\n- **Never Block:** Specifies that the system does not block requests sent from this IP address, even if your security policy is configured to block all traffic.\n- **Always Block:** Specifies that the system blocks requests sent from this IP address on condition that IP is denylisted is set to Block under Policy Building Settings.",
                               "enum" : [
                                  "always",
@@ -3136,17 +3420,19 @@
                               "type" : "string"
                            },
                            "ipMask" : {
+                              "default" : "255.255.255.255",
                               "description" : "Specifies the netmask of the exceptional IP address. This is an optional field.",
                               "type" : "string"
                            },
                            "neverLogRequests" : {
+                              "default" : false,
                               "description" : "Specifies when enabled that the system does not log requests or responses sent from this IP address, even if the traffic is illegal, and even if your security policy is configured to log all traffic.",
                               "type" : "boolean"
                            }
                         },
                         "required" : [
-                           "ipMask",
-                           "ipAddress"
+                           "ipAddress",
+                           "ipMask"
                         ],
                         "type" : "object"
                      },
@@ -3169,23 +3455,29 @@
                               "type" : "string"
                            },
                            "attackSignaturesCheck" : {
+                              "default" : true,
                               "type" : "boolean"
                            },
                            "defenseAttributes" : {
                               "properties" : {
                                  "allowCDATA" : {
+                                    "default" : false,
                                     "type" : "boolean"
                                  },
                                  "allowDTDs" : {
+                                    "default" : false,
                                     "type" : "boolean"
                                  },
                                  "allowExternalReferences" : {
+                                    "default" : false,
                                     "type" : "boolean"
                                  },
                                  "allowProcessingInstructions" : {
+                                    "default" : true,
                                     "type" : "boolean"
                                  },
                                  "maximumAttributeValueLength" : {
+                                    "default" : "1024",
                                     "oneOf" : [
                                        {
                                           "maximum" : 2147483647,
@@ -3205,6 +3497,7 @@
                                     ]
                                  },
                                  "maximumAttributesPerElement" : {
+                                    "default" : "16",
                                     "oneOf" : [
                                        {
                                           "maximum" : 2147483647,
@@ -3224,6 +3517,7 @@
                                     ]
                                  },
                                  "maximumChildrenPerElement" : {
+                                    "default" : "1024",
                                     "oneOf" : [
                                        {
                                           "maximum" : 2147483647,
@@ -3243,6 +3537,7 @@
                                     ]
                                  },
                                  "maximumDocumentDepth" : {
+                                    "default" : "32",
                                     "oneOf" : [
                                        {
                                           "maximum" : 2147483647,
@@ -3262,6 +3557,7 @@
                                     ]
                                  },
                                  "maximumDocumentSize" : {
+                                    "default" : "1024000",
                                     "oneOf" : [
                                        {
                                           "maximum" : 2147483647,
@@ -3281,6 +3577,7 @@
                                     ]
                                  },
                                  "maximumElements" : {
+                                    "default" : "65536",
                                     "oneOf" : [
                                        {
                                           "maximum" : 2147483647,
@@ -3300,6 +3597,7 @@
                                     ]
                                  },
                                  "maximumNSDeclarations" : {
+                                    "default" : "64",
                                     "oneOf" : [
                                        {
                                           "maximum" : 2147483647,
@@ -3319,6 +3617,7 @@
                                     ]
                                  },
                                  "maximumNameLength" : {
+                                    "default" : "256",
                                     "oneOf" : [
                                        {
                                           "maximum" : 2147483647,
@@ -3338,6 +3637,7 @@
                                     ]
                                  },
                                  "maximumNamespaceLength" : {
+                                    "default" : "256",
                                     "oneOf" : [
                                        {
                                           "maximum" : 2147483647,
@@ -3357,12 +3657,15 @@
                                     ]
                                  },
                                  "tolerateCloseTagShorthand" : {
+                                    "default" : false,
                                     "type" : "boolean"
                                  },
                                  "tolerateLeadingWhiteSpace" : {
+                                    "default" : false,
                                     "type" : "boolean"
                                  },
                                  "tolerateNumericNames" : {
+                                    "default" : false,
                                     "type" : "boolean"
                                  }
                               },
@@ -3395,6 +3698,7 @@
                               "type" : "array"
                            },
                            "useXmlResponsePage" : {
+                              "default" : false,
                               "type" : "boolean"
                            }
                         },
@@ -3412,8 +3716,8 @@
             }
          },
          "required" : [
-            "template",
-            "name"
+            "name",
+            "template"
          ],
          "type" : "object"
       }
