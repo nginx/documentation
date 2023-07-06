@@ -83,7 +83,7 @@ To configure a basic authentication scheme, take the following steps:
 
 1. Create an API spec with the basic security scheme configured. In the following example, take a look at how `ExampleBasicAuth` is configured in `component.securitySchemes`.
 
-   ```shell
+   ```bash
    POST https://{{NMS-FQDN}}/api/acm/v1/services/workspaces/{{proxyworkspacename}}/api-docs
    ```
 
@@ -97,7 +97,7 @@ To configure a basic authentication scheme, take the following steps:
 
 2. Create a proxy with `specRef` referencing the spec from step 1. Since the referenced spec uses Basic Authentication, you need to include the necessary basic authentication credentials within the body of the POST/PUT request.
 
-   ```shell
+   ```bash
    POST https://{{NMS-FQDN}}/api/acm/v1/services/workspaces/{{proxyworkspacename}}/proxies
    ```
 
@@ -110,7 +110,7 @@ To configure a basic authentication scheme, take the following steps:
 
    Verify the GET request for the proxy. You should see the output with the basic auth policy in the proxy config.
 
-   ```shell
+   ```bash
    GET https://{{NMS-FQDN}}/api/acm/v1/services/workspaces/{{proxyworkspacename}}/proxies/petstore-proxy?hostname={{environmentHostname}}&version=v1&includes=sensitivedata
    ```
 
@@ -123,7 +123,7 @@ To configure a basic authentication scheme, take the following steps:
 
 3. Pass traffic to the endpoints. The following example sends a request through a proxy to the Pet Store server, using Basic Authentication. A successful request will return a `200` status response.
 
-   ```shell
+   ```bash
    curl -X GET -u user1:secret -H "Content-Type: application/json"  http://54.188.248.124/api/v3/pet/4
 
    {"id":4,"category":{"id":1,"name":"{{$$randomFirstName}}"},"name":"Steve","photoUrls":["http://placeimg.com/640/480/cats"],"tags":[{"id":0,"name":"string"}],"status":"available"}
@@ -131,7 +131,7 @@ To configure a basic authentication scheme, take the following steps:
 
    In contrast, if the request lacks proper authentication, the response is "Unauthorized" with a status code of `401`
 
-   ```shell
+   ```bash
    curl -X GET -H "Content-Type: application/json" http://54.188.248.124/v1/pet
 
    {
@@ -171,7 +171,7 @@ To configure the API Key Authentication security scheme, take the following step
 
 1. Create an API spec with the `apiKey` security scheme configured. In the following example, take a look at how `ExampleApiKeyAuth` is configured in `component.securitySchemes`. 
 
-   ```shell
+   ```bash
    POST https://{{NMS-FQDN}}/api/acm/v1/services/workspaces/{{proxyworkspacename}}/api-docs
    ```
 
@@ -186,7 +186,7 @@ To configure the API Key Authentication security scheme, take the following step
 
    Note, since the referenced spec uses the API Key Authentication security scheme, you need to include the required API key within the POST/PUT request body.
 
-   ```shell
+   ```bash
    POST https://{{NMS-FQDN}}/api/acm/v1/services/workspaces/{{proxyworkspacename}}/proxies
    ```
 
@@ -201,7 +201,7 @@ To configure the API Key Authentication security scheme, take the following step
 
    The following example shows how a proxy config looks for GET requests when the OAS has a security scheme.
 
-   ```shell
+   ```bash
    GET https://{{NMS-FQDN}}/api/acm/v1/services/workspaces/{{proxyworkspacename}}/proxies/petstore-proxy?hostname={{environmentHostname}}&version=v1&includes=sensitivedata
    ```
 
@@ -217,7 +217,9 @@ To configure the API Key Authentication security scheme, take the following step
    {"id":4,"category":{"id":1,"name":"{{$$randomFirstName}}"},"name":"Steve","photoUrls":["http://placeimg.com/640/480/cats"],"tags":[{"id":0,"name":"string"}],"status":"available"}
    ```
 
-   ```shell
+   If the request lacks proper authentication, the response is "Unauthorized" with a status code of `401`
+
+   ```bash
    curl -X GET -H "Content-Type: application/json" http://54.188.248.124/v1/pet
    {
        "message": "Unauthorized",
