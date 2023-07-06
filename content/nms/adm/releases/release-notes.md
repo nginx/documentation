@@ -26,7 +26,7 @@ This release includes the following updates:
 
   We have added the ability to enable NGINX  App Protect per location, use the default policy that provides OWASP Top 10 and Bot security protection, and a strict policy containing more restrictive criteria for blocking traffic. 
   
-- {{% icon-feature %}} **Added support for rate limiting**
+- {{% icon-feature %}} **Adds support for rate limiting**
 
   We have added the ability to enable rate limiting per component to limit network traffic, prevent users from exhausting system resources, and make it harder for malicious actors to overburden components and cause attacks like Denial of Service.
   
