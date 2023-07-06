@@ -4979,10 +4979,7 @@ For example:
 
 ### Condition Syntax Usage
 
-Boolean Expression Syntax
-The condition is a Boolean expression consisting of the following parts in BNF format. Spaces are allowed anywhere between the arguments.
-
-For the full reference of Override Rules condition syntax and usage see the NGINX App Protect WAF [Declarative Policy guide]({{< relref "/nap-waf/declarative-policy/policy.md" >}}/#policy/override-rules).
+For the full reference of Override Rules condition syntax and usage see the NGINX App Protect WAF [Declarative Policy guide]({{< relref "/nap-waf/declarative-policy/policy.md" >}}/#policy/override-rules). 
 
  
 ### Important Things to Remember About Override Rules
@@ -4995,7 +4992,7 @@ Here are some key points to remember regarding the Override Rules feature:
 - The URI, host, and user-agent strings in the request will be treated as plain ASCII characters and won't undergo language decoding. If any of these strings contain non-ASCII characters, they may be misinterpreted and may not comply with rules that expect specific values in the conditions.
 
 {{< note >}}
-In NGINX App Protect WAF version 4.4 there is a limitation when using Override Rules with gRPC. The Override Rules do not provide support for gRPC traffic. If the Override Rules are configured to match gRPC traffic, it will result in the blocking of such traffic.
+In NGINX App Protect WAF version 4.4, there is a limitation when using Override Rules with gRPC. The Override Rules do not provide support for gRPC traffic. If the Override Rules are configured to match gRPC traffic, it will result in the blocking of such traffic.
 {{< /note >}}
 
 ### Override Rules Logging & Reporting
