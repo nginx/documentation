@@ -1461,8 +1461,10 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td><a href="#policy/idl-files">idlFile</a></td>
-<td>object</td>
+<td><code>idlFile</code></td>
+<td><ul>
+<li>object</li>
+</ul></td>
 <td></td>
 <td></td>
 </tr>
@@ -1742,8 +1744,10 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td><a href="#policy/idl-files">idlFile</a></td>
-<td>object</td>
+<td><code>idlFile</code></td>
+<td><ul>
+<li>object</li>
+</ul></td>
 <td></td>
 <td></td>
 </tr>
@@ -2343,8 +2347,10 @@
 <td></td>
 </tr>
 <tr class="odd">
-<td><a href="#policy/json-validation-files">jsonValidationFile</a></td>
-<td>object</td>
+<td><code>jsonValidationFile</code></td>
+<td><ul>
+<li>object</li>
+</ul></td>
 <td></td>
 <td></td>
 </tr>
@@ -2437,17 +2443,40 @@
 <p>Condition Syntax:</p>
 <blockquote>
 <ul>
-<li>The condition consists of one or more clauses separated by <em>and</em>.</li>
-<li>Each clause can optionally start with <em>not</em>.</li>
+<li>The condition consists of one or more clauses separated by <strong>and</strong>.</li>
+</ul>
+<p>Example: "clientIp == '10.0.0.5' and host.startsWith('internal')"</p>
+<ul>
+<li>Each clause can optionally start with <strong>not</strong> - to negate the expression.</li>
+</ul>
+<p>Example: "not clientIp == '127.0.0.1'"</p>
+<ul>
 <li>A clause can be a simple comparison between two value expressions, or a boolean function applied to a literal value.</li>
+<li>Supported comparison operators:</li>
+<li><strong>==</strong> - Checks for equality between two value expressions.</li>
+<li><strong>!=</strong> - Checks for inequality between two value expressions.</li>
+</ul>
+<p>Example: "clientIp != '10.0.0.5'" (equivalent to "not clientIp == '10.0.0.5'")</p>
+<ul>
+<li>Supported boolean functions:</li>
+<li><strong>matches</strong>: Performs an exact match of a value expression, equivalent to <strong>==</strong>.</li>
+<li><strong>startsWith</strong>: Checks if a value expression starts with a specific substring.</li>
+<li><strong>contains</strong>: Checks if a value expression contains a specific substring.</li>
+</ul>
+<p>Example: "uri.startsWith('/api')"</p>
+</blockquote>
+<p><strong>Note</strong>: Regular expressions are not supported.</p>
+<blockquote>
+<ul>
 <li>Value expressions can be a request attribute, literal value, or a value function.</li>
 <li>A literal can be a string value enclosed in single quotes, or can be the keyword "null" without quotes.</li>
-<li>Supported comparison operators are <em>==</em> and <em>!=</em>.</li>
-<li>Supported boolean functions are <em>matches</em>, <em>startsWith</em>, and <em>contains</em>.</li>
-<li>The only supported value function is <em>lower</em>. Any boolean function applied on the resulting string will be <strong>case insensitive</strong>.</li>
 </ul>
+<p>Example: "userAgent == null"</p>
+<ul>
+<li>The only supported value function is <strong>lower</strong>. Any boolean function applied on the resulting string will be <strong>case insensitive</strong>.</li>
+</ul>
+<p>Example: "uri.lower().contains('BaR')" will match the URI "/Foo/bAr"</p>
 </blockquote>
-<p>For example, if the URI is /Foo/bAr then uri.lower().contains("BaR") will return true.</p>
 <p>Request Attributes:</p>
 <blockquote>
 <ul>
@@ -2457,8 +2486,7 @@
 <li><strong>uri</strong>: The URI (path part) of the request</li>
 <li><strong>userAgent</strong>: The value of the User-Agent header, or <em>null</em> (without quotes) if not present</li>
 </ul>
-</blockquote>
-<p><strong>Note</strong>: Regular expressions are not supported.</p></td>
+</blockquote></td>
 <td></td>
 </tr>
 <tr class="even">
