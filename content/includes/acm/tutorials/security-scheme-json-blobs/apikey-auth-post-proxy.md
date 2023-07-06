@@ -35,21 +35,17 @@
                       "value" : "stringValue.petstore3.swagger.io"
                       }
                 ]
-   }}
-          }
-          ],
-               "basic-authn": [
+              }}
+          }],
+          "apikey-authn": [
+            {
+              "data": [
                 {
-                    "data": [
-                        {
-                            "clientID": "user1-clientid",
-                            "password": "secret",
-                            "username": "user1"
-                        }
-                    ]
+                  "apiKey": "testapikey1234",
+                  "clientID": "userA"
                 }
-            ]
-          }
+              ]
+            }]}
     }
 }
 ```
