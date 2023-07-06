@@ -34,4 +34,4 @@ versions:
 weight: 300
 ---
 
-{{< readfile file="content/includes/policy.html" >}}
+{{< include "nap-waf/policy.html" >}}
