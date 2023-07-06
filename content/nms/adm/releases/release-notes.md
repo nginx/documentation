@@ -22,7 +22,7 @@ July 06, 2023
 ### What's New
 This release includes the following updates:
 
-- {{% icon-feature %}} **Added initial support for NGINX App Protect**
+- {{% icon-feature %}} **Adds support for NGINX App Protect**
 
   We have added the ability to enable NGINX  App Protect per location, use the default policy that provides OWASP Top 10 and Bot security protection, and a strict policy containing more restrictive criteria for blocking traffic. 
   
