@@ -88,7 +88,7 @@ To configure a basic authentication scheme, take the following steps:
    ```
 
    <details>
-   <summary>Example: Basic Authentication API Spec JSON request</summary>
+   <summary>Example POST/PUT JSON request: Create Basic Authentication API Spec</summary>
 
    {{< include "acm/tutorials/security-scheme-json-blobs/basic-security-apispec.md" >}}
 
@@ -102,20 +102,20 @@ To configure a basic authentication scheme, take the following steps:
    ```
 
    <details>
-   <summary>Example: Proxy request referencing OAS spec with Basic Authentication scheme</summary>
+   <summary>Example POST/PUT JSON request: Create Proxy referencing OAS spec with Basic Authentication scheme</summary>
 
    {{< include "acm/tutorials/security-scheme-json-blobs/basic-auth-post-proxy.md" >}}
 
    </details>
 
-   Verify the GET request for the proxy. You should see the output with the basic auth policy in the proxy config.
+   Verify the GET request for the proxy. In the JSON response, you should see `policies.basic-authn` configured in the `proxyConfig` section.
 
    ```bash
    GET https://{{NMS-FQDN}}/api/acm/v1/services/workspaces/{{proxyworkspacename}}/proxies/petstore-proxy?hostname={{environmentHostname}}&version=v1&includes=sensitivedata
    ```
 
    <details>
-   <summary> GET Proxy details with basic auth referencing the OAS with a basic auth security scheme</summary>
+   <summary>Example GET JSON response: Proxy with basic-authn policy configured</summary>
 
    {{< include "acm/tutorials/security-scheme-json-blobs/basic-auth-get-proxy.md" >}}
 
@@ -176,7 +176,7 @@ To configure the API Key Authentication security scheme, take the following step
    ```
 
    <details>
-   <summary>Example: API Key Authentication API Spec JSON Request</summary>
+   <summary>Example POST/PUT JSON request: Create API Key Authentication API Spec</summary>
 
    {{< include "acm/tutorials/security-scheme-json-blobs/apikey-auth-spec.md" >}}
 
@@ -191,22 +191,20 @@ To configure the API Key Authentication security scheme, take the following step
    ```
 
    <details>
-   <summary>Example: Proxy request referencing OAS spec with API Key Authentication scheme</summary>
+   <summary>Example POST/PUT JSON request: Create Proxy referencing OAS spec with API Key Authentication scheme</summary>
 
    {{< include "acm/tutorials/security-scheme-json-blobs/apikey-auth-post-proxy.md" >}}
 
    </details>
 
-   <br>
-
-   The following example shows how a proxy config looks for GET requests when the OAS has a security scheme.
+   Verify the GET request for the proxy. In the JSON response, you should see `policies.apikey-authn` in the `proxyConfig` section.
 
    ```bash
    GET https://{{NMS-FQDN}}/api/acm/v1/services/workspaces/{{proxyworkspacename}}/proxies/petstore-proxy?hostname={{environmentHostname}}&version=v1&includes=sensitivedata
    ```
 
    <details>
-   <summary>GET Proxy Request</summary>
+   <summary>Example GET JSON response: Proxy with apikey-authn policy configured</summary>
 
    {{< include "acm/tutorials/security-scheme-json-blobs/apikey-auth-get-proxy.md" >}}
 

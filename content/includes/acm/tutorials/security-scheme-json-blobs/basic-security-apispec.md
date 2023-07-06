@@ -1,3 +1,7 @@
+---
+docs:
+---
+
 ```json
 {
   "openapi": "3.0.2",
@@ -23,17 +27,20 @@
     "description": "Find out more about Swagger",
     "url": "http://swagger.io"
   },
-  "servers": [{
-    "url": "https://petstore3.swagger.io/api/v3"
-  }],
-  "tags": [{
-    "name": "pet",
-    "description": "Everything about your Pets",
-    "externalDocs": {
-      "description": "Find out more",
-      "url": "http://swagger.io"
+  "servers": [
+    {
+      "url": "https://petstore3.swagger.io/api/v3"
     }
-  },
+  ],
+  "tags": [
+    {
+      "name": "pet",
+      "description": "Everything about your Pets",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
     {
       "name": "store",
       "description": "Access to Petstore orders",
@@ -162,22 +169,24 @@
         "summary": "Finds Pets by status",
         "description": "Multiple status values can be provided with comma separated strings",
         "operationId": "findPetsByStatus",
-        "parameters": [{
-          "name": "status",
-          "in": "query",
-          "description": "Status values that need to be considered for filter",
-          "required": false,
-          "explode": true,
-          "schema": {
-            "type": "string",
-            "default": "available",
-            "enum": [
-              "available",
-              "pending",
-              "sold"
-            ]
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Status values that need to be considered for filter",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "default": "available",
+              "enum": [
+                "available",
+                "pending",
+                "sold"
+              ]
+            }
           }
-        }],
+        ],
         "responses": {
           "200": {
             "description": "successful operation",
@@ -214,19 +223,21 @@
         "summary": "Finds Pets by tags",
         "description": "Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
         "operationId": "findPetsByTags",
-        "parameters": [{
-          "name": "tags",
-          "in": "query",
-          "description": "Tags to filter by",
-          "required": false,
-          "explode": true,
-          "schema": {
-            "type": "array",
-            "items": {
-              "type": "string"
+        "parameters": [
+          {
+            "name": "tags",
+            "in": "query",
+            "description": "Tags to filter by",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             }
           }
-        }],
+        ],
         "responses": {
           "200": {
             "description": "successful operation",
@@ -263,16 +274,18 @@
         "summary": "Find pet by ID",
         "description": "Returns a single pet",
         "operationId": "getPetById",
-        "parameters": [{
-          "name": "petId",
-          "in": "path",
-          "description": "ID of pet to return",
-          "required": true,
-          "schema": {
-            "type": "integer",
-            "format": "int64"
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "description": "ID of pet to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
           }
-        }],
+        ],
         "responses": {
           "200": {
             "description": "successful operation",
@@ -304,16 +317,17 @@
         "summary": "Updates a pet in the store with form data",
         "description": "",
         "operationId": "updatePetWithForm",
-        "parameters": [{
-          "name": "petId",
-          "in": "path",
-          "description": "ID of pet that needs to be updated",
-          "required": true,
-          "schema": {
-            "type": "integer",
-            "format": "int64"
-          }
-        },
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "description": "ID of pet that needs to be updated",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
           {
             "name": "name",
             "in": "query",
@@ -344,15 +358,16 @@
         "summary": "Deletes a pet",
         "description": "",
         "operationId": "deletePet",
-        "parameters": [{
-          "name": "api_key",
-          "in": "header",
-          "description": "",
-          "required": false,
-          "schema": {
-            "type": "string"
-          }
-        },
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "petId",
             "in": "path",
@@ -517,5 +532,4 @@
     }
   }
 }
-
 ```
