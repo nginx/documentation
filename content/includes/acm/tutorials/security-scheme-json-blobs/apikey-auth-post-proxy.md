@@ -1,61 +1,51 @@
----
-docs: 000
----
-
 ```json
 {
-  "name": "petstore-proxy",
-  "version": "v1",
-  "specRef": "swagger-petstore-openapi-3-0-1-0-17",
-  "proxyConfig": {
-    "hostname": "{{environmentHostname}}",
-    "ingress": {
-      "basePath": "/api/v3",
-      "basePathVersionAppendRule": "NONE"
-    },
-    "backends": [
-      {
-        "serviceName": "petstore-svc",
-        "serviceTargets": [
-          {
-            "hostname": "petstore3.swagger.io",
-            "listener": {
+    "name": "petstore-proxy",
+    "version": "v1",
+    "specRef": "swagger-petstore-openapi-3-0-1-0-17",
+    "proxyConfig": {
+        "hostname": "{{environmentHostname}}",
+        "ingress": {
+            "basePath": "/api/v3",
+            "basePathVersionAppendRule": "NONE"
+            },
+        "backends": [
+            {
+                "serviceName": "petstore-svc",
+                "serviceTargets": [
+                    {
+                        "hostname": "petstore3.swagger.io",
+                        "listener": {
               "enableTLS": true,
               "port": 443,
               "transportProtocol": "HTTP"
             }
-          }
-        ]
-      }
-    ],
-    "policies": {
-      "proxy-request-headers": [
-        {
-          "action": {
-            "proxyHeaders": {
-              "proxyDefaultHeadersToBackend": false,
-              "proxyCustomHeadersToBackend": [
+                    }
+                ]
+            }
+        ],
+        "policies": {
+            "proxy-request-headers" : [{
+            "action":{
+              "proxyHeaders" : {
+                "proxyDefaultHeadersToBackend": false,
+                "proxyCustomHeadersToBackend" : [
+                      {
+                      "key"   : "Host",
+                      "value" : "stringValue.petstore3.swagger.io"
+                      }
+                ]
+              }}
+          }],
+          "apikey-authn": [
+            {
+              "data": [
                 {
-                  "key": "Host",
-                  "value": "stringValue.petstore3.swagger.io"
+                  "apiKey": "testapikey1234",
+                  "clientID": "userA"
                 }
               ]
-            }
-          }
-        }
-      ],
-      "basic-authn": [
-        {
-          "data": [
-            {
-              "clientID": "user1-clientid",
-              "password": "secret",
-              "username": "user1"
-            }
-          ]
-        }
-      ]
+            }]}
     }
-  }
 }
 ```
