@@ -4940,6 +4940,10 @@ These three rules demonstrate how the override rules feature allows for customiz
 - External references are supported regardless of whether the extendsPolicy field is set to true or false.
 {{< /note >}}
 
+### Condition Syntax Usage
+
+For the full reference of Override Rules condition syntax and usage see the NGINX App Protect WAF [Declarative Policy guide]({{< relref "/nap-waf/declarative-policy/policy.md" >}}/#policy/override-rules).
+
 ### First Match Principle 
 
 The policy enforcement operates on the **first match** principle. This principle is applied when multiple conditions match or are similar, indicating that any incoming requests that match the first condition will be processed. In the following example, the "override_rules_example2" policy uses two override rules: "this_rule_will_match" and "non_matching_rule". Since both conditions match, the first match principle will be applied, and requests with "api" in the URI will be processed. It will reference an external policy file named "NginxStrictPolicy.json" to override the current policy. .
@@ -4975,13 +4979,8 @@ For example:
     ]
   }
 }
-```
+``` 
 
-### Condition Syntax Usage
-
-For the full reference of Override Rules condition syntax and usage see the NGINX App Protect WAF [Declarative Policy guide]({{< relref "/nap-waf/declarative-policy/policy.md" >}}/#policy/override-rules). 
-
- 
 ### Important Things to Remember About Override Rules
 
 Here are some key points to remember regarding the Override Rules feature:
