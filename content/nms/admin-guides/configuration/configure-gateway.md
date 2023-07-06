@@ -43,7 +43,7 @@ To update the number of worker connections and file descriptors, edit the NGINX 
 
 ## Configure GRPC for Agents
 
-By default, the NGINX Management Suite's NGINX configuration (`/etc/nginx/conf.d/nms-http.conf`) times out the GRPC connection from Agents at 10 minutes using the client body timeout (`client_body_timeout`). You can adjust this value to suit your needs, a lower value will time out GRPC connection from aborted Agent connections faster. An aborted Agent connection can happen when Agent is unexpectedly disconnected from the network without going through the GRPC protocol teardown process.
+By default, the NGINX Management Suite's NGINX configuration (`/etc/nginx/conf.d/nms-http.conf`) times out the gRPC connection from Agents at 10 minutes using the client body timeout (`client_body_timeout`). You can adjust this value to suit your needs, a lower value will time out gRPC connection from aborted Agent connections faster. An aborted Agent connection can happen when Agent is unexpectedly disconnected from the network without going through the gRPC protocol teardown process.
 
 To update the timeout value, edit the NGINX Management Suite's NGINX configuration file (`/etc/nginx/conf.d/nms-http.conf`) on the NGINX Management Suite host. For example:
 
