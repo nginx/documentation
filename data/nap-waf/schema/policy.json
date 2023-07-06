@@ -108,10 +108,7 @@
                               "required" : [
                                  "description"
                               ],
-                              "type" : "object",
-                              "x-f5-key" : [
-                                 "description"
-                              ]
+                              "type" : "object"
                            },
                            "type" : "array"
                         },
@@ -175,10 +172,7 @@
                               "required" : [
                                  "description"
                               ],
-                              "type" : "object",
-                              "x-f5-key" : [
-                                 "description"
-                              ]
+                              "type" : "object"
                            },
                            "type" : "array"
                         },
@@ -271,10 +265,7 @@
                               "required" : [
                                  "name"
                               ],
-                              "type" : "object",
-                              "x-f5-key" : [
-                                 "name"
-                              ]
+                              "type" : "object"
                            },
                            "type" : "array"
                         },
@@ -341,10 +332,7 @@
                                     "required" : [
                                        "name"
                                     ],
-                                    "type" : "object",
-                                    "x-f5-key" : [
-                                       "name"
-                                    ]
+                                    "type" : "object"
                                  },
                                  "type" : "array"
                               },
@@ -390,12 +378,7 @@
                                     "required" : [
                                        "name"
                                     ],
-                                    "type" : "object",
-                                    "x-f5-key" : [
-                                       "maxVersion",
-                                       "minVersion",
-                                       "name"
-                                    ]
+                                    "type" : "object"
                                  },
                                  "type" : "array"
                               },
@@ -438,10 +421,7 @@
                                     "required" : [
                                        "name"
                                     ],
-                                    "type" : "object",
-                                    "x-f5-key" : [
-                                       "name"
-                                    ]
+                                    "type" : "object"
                                  },
                                  "type" : "array"
                               },
@@ -480,10 +460,7 @@
                                     "required" : [
                                        "name"
                                     ],
-                                    "type" : "object",
-                                    "x-f5-key" : [
-                                       "name"
-                                    ]
+                                    "type" : "object"
                                  },
                                  "type" : "array"
                               },
@@ -548,10 +525,7 @@
                         "required" : [
                            "name"
                         ],
-                        "type" : "object",
-                        "x-f5-key" : [
-                           "name"
-                        ]
+                        "type" : "object"
                      },
                      "type" : "array"
                   },
@@ -583,10 +557,7 @@
                                  "required" : [
                                     "metachar"
                                  ],
-                                 "type" : "object",
-                                 "x-f5-key" : [
-                                    "metachar"
-                                 ]
+                                 "type" : "object"
                               },
                               "type" : "array"
                            },
@@ -605,10 +576,7 @@
                         "required" : [
                            "characterSetType"
                         ],
-                        "type" : "object",
-                        "x-f5-key" : [
-                           "characterSetType"
-                        ]
+                        "type" : "object"
                      },
                      "type" : "array"
                   },
@@ -738,12 +706,7 @@
                                        "type" : "string"
                                     }
                                  },
-                                 "type" : "object",
-                                 "x-f5-key" : [
-                                    "name",
-                                    "signatureId",
-                                    "tag"
-                                 ]
+                                 "type" : "object"
                               },
                               "type" : "array"
                            },
@@ -764,11 +727,7 @@
                         "required" : [
                            "name"
                         ],
-                        "type" : "object",
-                        "x-f5-key" : [
-                           "name",
-                           "type"
-                        ]
+                        "type" : "object"
                      },
                      "type" : "array"
                   },
@@ -853,11 +812,7 @@
                         "required" : [
                            "url"
                         ],
-                        "type" : "object",
-                        "x-f5-key" : [
-                           "method",
-                           "url"
-                        ]
+                        "type" : "object"
                      },
                      "type" : "array"
                   },
@@ -1059,11 +1014,7 @@
                         "required" : [
                            "name"
                         ],
-                        "type" : "object",
-                        "x-f5-key" : [
-                           "name",
-                           "type"
-                        ]
+                        "type" : "object"
                      },
                      "type" : "array"
                   },
@@ -1259,8 +1210,22 @@
                               "items" : {
                                  "properties" : {
                                     "idlFile" : {
-                                       "$ref" : "#/properties/policy/properties/idl-files/oneOf/0/items",
-                                       "type" : "object"
+                                       "oneOf" : [
+                                          {
+                                             "$ref" : "#/properties/policy/properties/idl-files/oneOf/0/items"
+                                          },
+                                          {
+                                             "properties" : {
+                                                "id" : {
+                                                   "type" : "string"
+                                                }
+                                             },
+                                             "required" : [
+                                                "id"
+                                             ],
+                                             "type" : "object"
+                                          }
+                                       ]
                                     },
                                     "isPrimary" : {
                                        "type" : "boolean"
@@ -1269,10 +1234,7 @@
                                  "required" : [
                                     "idlFile"
                                  ],
-                                 "type" : "object",
-                                 "x-f5-key" : [
-                                    "idlFile"
-                                 ]
+                                 "type" : "object"
                               },
                               "type" : "array"
                            },
@@ -1293,10 +1255,7 @@
                                  "required" : [
                                     "metachar"
                                  ],
-                                 "type" : "object",
-                                 "x-f5-key" : [
-                                    "metachar"
-                                 ]
+                                 "type" : "object"
                               },
                               "type" : "array"
                            },
@@ -1331,10 +1290,7 @@
                                  "required" : [
                                     "parameterName"
                                  ],
-                                 "type" : "object",
-                                 "x-f5-key" : [
-                                    "parameterName"
-                                 ]
+                                 "type" : "object"
                               },
                               "type" : "array"
                            },
@@ -1354,12 +1310,7 @@
                                        "type" : "string"
                                     }
                                  },
-                                 "type" : "object",
-                                 "x-f5-key" : [
-                                    "name",
-                                    "signatureId",
-                                    "tag"
-                                 ]
+                                 "type" : "object"
                               },
                               "type" : "array"
                            }
@@ -1367,10 +1318,7 @@
                         "required" : [
                            "name"
                         ],
-                        "type" : "object",
-                        "x-f5-key" : [
-                           "name"
-                        ]
+                        "type" : "object"
                      },
                      "type" : "array"
                   },
@@ -1445,8 +1393,22 @@
                               "items" : {
                                  "properties" : {
                                     "idlFile" : {
-                                       "$ref" : "#/properties/policy/properties/idl-files/oneOf/0/items",
-                                       "type" : "object"
+                                       "oneOf" : [
+                                          {
+                                             "$ref" : "#/properties/policy/properties/idl-files/oneOf/0/items"
+                                          },
+                                          {
+                                             "properties" : {
+                                                "id" : {
+                                                   "type" : "string"
+                                                }
+                                             },
+                                             "required" : [
+                                                "id"
+                                             ],
+                                             "type" : "object"
+                                          }
+                                       ]
                                     },
                                     "importUrl" : {
                                        "type" : "string"
@@ -1461,11 +1423,7 @@
                                  "required" : [
                                     "idlFile"
                                  ],
-                                 "type" : "object",
-                                 "x-f5-key" : [
-                                    "idlFile",
-                                    "importUrl"
-                                 ]
+                                 "type" : "object"
                               },
                               "type" : "array"
                            },
@@ -1492,12 +1450,7 @@
                                        "type" : "string"
                                     }
                                  },
-                                 "type" : "object",
-                                 "x-f5-key" : [
-                                    "name",
-                                    "signatureId",
-                                    "tag"
-                                 ]
+                                 "type" : "object"
                               },
                               "type" : "array"
                            }
@@ -1505,10 +1458,7 @@
                         "required" : [
                            "name"
                         ],
-                        "type" : "object",
-                        "x-f5-key" : [
-                           "name"
-                        ]
+                        "type" : "object"
                      },
                      "type" : "array"
                   },
@@ -1627,12 +1577,7 @@
                                        "type" : "string"
                                     }
                                  },
-                                 "type" : "object",
-                                 "x-f5-key" : [
-                                    "name",
-                                    "signatureId",
-                                    "tag"
-                                 ]
+                                 "type" : "object"
                               },
                               "type" : "array"
                            },
@@ -1658,11 +1603,7 @@
                         "required" : [
                            "name"
                         ],
-                        "type" : "object",
-                        "x-f5-key" : [
-                           "name",
-                           "type"
-                        ]
+                        "type" : "object"
                      },
                      "type" : "array"
                   },
@@ -1693,10 +1634,7 @@
                         "required" : [
                            "name"
                         ],
-                        "type" : "object",
-                        "x-f5-key" : [
-                           "name"
-                        ]
+                        "type" : "object"
                      },
                      "type" : "array"
                   },
@@ -1712,18 +1650,19 @@
                         "oneOf" : [
                            {
                               "required" : [
-                                 "id"
+                                 "contents",
+                                 "fileName"
                               ]
                            },
                            {
                               "required" : [
-                                 "id",
+                                 "fileName",
                                  "$ref"
                               ]
                            },
                            {
                               "required" : [
-                                 "id",
+                                 "fileName",
                                  "link"
                               ]
                            }
@@ -1753,11 +1692,7 @@
                               "type" : "string"
                            }
                         },
-                        "type" : "object",
-                        "x-f5-key" : [
-                           "contents",
-                           "fileName"
-                        ]
+                        "type" : "object"
                      },
                      "type" : "array"
                   },
@@ -1897,10 +1832,7 @@
                                  "required" : [
                                     "metachar"
                                  ],
-                                 "type" : "object",
-                                 "x-f5-key" : [
-                                    "metachar"
-                                 ]
+                                 "type" : "object"
                               },
                               "type" : "array"
                            },
@@ -1923,12 +1855,7 @@
                                        "type" : "string"
                                     }
                                  },
-                                 "type" : "object",
-                                 "x-f5-key" : [
-                                    "name",
-                                    "signatureId",
-                                    "tag"
-                                 ]
+                                 "type" : "object"
                               },
                               "type" : "array"
                            },
@@ -1942,18 +1869,28 @@
                                        "type" : "boolean"
                                     },
                                     "jsonValidationFile" : {
-                                       "$ref" : "#/properties/policy/properties/json-validation-files/oneOf/0/items",
-                                       "type" : "object"
+                                       "oneOf" : [
+                                          {
+                                             "$ref" : "#/properties/policy/properties/json-validation-files/oneOf/0/items"
+                                          },
+                                          {
+                                             "properties" : {
+                                                "id" : {
+                                                   "type" : "string"
+                                                }
+                                             },
+                                             "required" : [
+                                                "id"
+                                             ],
+                                             "type" : "object"
+                                          }
+                                       ]
                                     }
                                  },
                                  "required" : [
                                     "jsonValidationFile"
                                  ],
-                                 "type" : "object",
-                                 "x-f5-key" : [
-                                    "importUrl",
-                                    "jsonValidationFile"
-                                 ]
+                                 "type" : "object"
                               },
                               "type" : "array"
                            }
@@ -1961,10 +1898,7 @@
                         "required" : [
                            "name"
                         ],
-                        "type" : "object",
-                        "x-f5-key" : [
-                           "name"
-                        ]
+                        "type" : "object"
                      },
                      "type" : "array"
                   },
@@ -1980,18 +1914,19 @@
                         "oneOf" : [
                            {
                               "required" : [
-                                 "id"
+                                 "fileName",
+                                 "contents"
                               ]
                            },
                            {
                               "required" : [
-                                 "id",
+                                 "fileName",
                                  "$ref"
                               ]
                            },
                            {
                               "required" : [
-                                 "id",
+                                 "fileName",
                                  "link"
                               ]
                            }
@@ -2021,11 +1956,7 @@
                               "type" : "string"
                            }
                         },
-                        "type" : "object",
-                        "x-f5-key" : [
-                           "contents",
-                           "fileName"
-                        ]
+                        "type" : "object"
                      },
                      "type" : "array"
                   },
@@ -2052,10 +1983,7 @@
                         "required" : [
                            "name"
                         ],
-                        "type" : "object",
-                        "x-f5-key" : [
-                           "name"
-                        ]
+                        "type" : "object"
                      },
                      "type" : "array"
                   },
@@ -2114,7 +2042,7 @@
                               "type" : "string"
                            },
                            "condition" : {
-                              "description" : "Specifies the condition under which the override rule should be applied.\n\nExample: \"clientIp != '10.0.0.5' and userAgent.lower().contains('WebRobot')\"\n\nCondition Syntax:\n\n- The condition consists of one or more clauses separated by *and*.\n- Each clause can optionally start with *not*.\n- A clause can be a simple comparison between two value expressions, or a boolean function applied to a literal value.\n- Value expressions can be a request attribute, literal value, or a value function.\n- A literal can be a string value enclosed in single quotes, or can be the keyword \"null\" without quotes.\n- Supported comparison operators are *==* and *!=*.\n- Supported boolean functions are *matches*, *startsWith*, and *contains*.\n- The only supported value function is *lower*. Any boolean function applied on the resulting string will be **case insensitive**.\nFor example, if the URI is /Foo/bAr then uri.lower().contains(\"BaR\") will return true.\n\nRequest Attributes:\n\n- **clientIp**: Client IP address in canonical IPv4 or IPv6 format. Use CIDR notation for subnet definition. Example: *192.168.1.2* or *fd00:1::/48*. If *trustXff* (X-Forwarded-For) is enabled in the containing policy, then the value is taken from the configured header (XFF or other). The only supported boolean function for the clientIP attribute is *matches*.\n- **host**: The value of the Host header\n- **method**: The HTTP method in the request\n- **uri**: The URI (path part) of the request\n- **userAgent**: The value of the User-Agent header, or *null* (without quotes) if not present\n\n**Note**: Regular expressions are not supported.",
+                              "description" : "Specifies the condition under which the override rule should be applied.\n\nExample: \"clientIp != '10.0.0.5' and userAgent.lower().contains('WebRobot')\"\n\nCondition Syntax:\n\n- The condition consists of one or more clauses separated by **and**.\n\n  Example: \"clientIp == '10.0.0.5' and host.startsWith('internal')\"\n\n- Each clause can optionally start with **not** - to negate the expression.\n\n  Example: \"not clientIp == '127.0.0.1'\"\n\n- A clause can be a simple comparison between two value expressions, or a boolean function applied to a literal value.\n\n- Supported comparison operators:\n\n  - **==** - Checks for equality between two value expressions.\n  - **!=** - Checks for inequality between two value expressions.\n\n  Example: \"clientIp != '10.0.0.5'\" (equivalent to \"not clientIp == '10.0.0.5'\")\n\n- Supported boolean functions:\n\n  - **matches**: Performs an exact match of a value expression, equivalent to **==**.\n  - **startsWith**: Checks if a value expression starts with a specific substring.\n  - **contains**: Checks if a value expression contains a specific substring.\n\n  Example: \"uri.startsWith('/api')\"\n\n**Note**: Regular expressions are not supported.\n\n- Value expressions can be a request attribute, literal value, or a value function.\n- A literal can be a string value enclosed in single quotes, or can be the keyword \"null\" without quotes.\n\n  Example: \"userAgent == null\"\n\n- The only supported value function is **lower**. Any boolean function applied on the resulting string will be **case insensitive**.\n\n  Example: \"uri.lower().contains('BaR')\" will match the URI \"/Foo/bAr\"\n\nRequest Attributes:\n\n- **clientIp**: Client IP address in canonical IPv4 or IPv6 format. Use CIDR notation for subnet definition. Example: *192.168.1.2* or *fd00:1::/48*. If *trustXff* (X-Forwarded-For) is enabled in the containing policy, then the value is taken from the configured header (XFF or other). The only supported boolean function for the clientIP attribute is *matches*.\n- **host**: The value of the Host header\n- **method**: The HTTP method in the request\n- **uri**: The URI (path part) of the request\n- **userAgent**: The value of the User-Agent header, or *null* (without quotes) if not present",
                               "type" : "string"
                            },
                            "extendsPolicy" : {
@@ -2134,10 +2062,7 @@
                         "required" : [
                            "name"
                         ],
-                        "type" : "object",
-                        "x-f5-key" : [
-                           "name"
-                        ]
+                        "type" : "object"
                      },
                      "type" : "array"
                   },
@@ -2242,10 +2167,7 @@
                                           "type" : "string"
                                        }
                                     },
-                                    "type" : "object",
-                                    "x-f5-key" : [
-                                       "name"
-                                    ]
+                                    "type" : "object"
                                  }
                               },
                               "type" : "object"
@@ -2396,10 +2318,7 @@
                                  "required" : [
                                     "metachar"
                                  ],
-                                 "type" : "object",
-                                 "x-f5-key" : [
-                                    "metachar"
-                                 ]
+                                 "type" : "object"
                               },
                               "type" : "array"
                            },
@@ -2467,12 +2386,7 @@
                                        "type" : "string"
                                     }
                                  },
-                                 "type" : "object",
-                                 "x-f5-key" : [
-                                    "name",
-                                    "signatureId",
-                                    "tag"
-                                 ]
+                                 "type" : "object"
                               },
                               "type" : "array"
                            },
@@ -2512,10 +2426,7 @@
                                  "required" : [
                                     "metachar"
                                  ],
-                                 "type" : "object",
-                                 "x-f5-key" : [
-                                    "metachar"
-                                 ]
+                                 "type" : "object"
                               },
                               "type" : "array"
                            },
@@ -2543,12 +2454,7 @@
                         "required" : [
                            "name"
                         ],
-                        "type" : "object",
-                        "x-f5-key" : [
-                           "level",
-                           "name",
-                           "type"
-                        ]
+                        "type" : "object"
                      },
                      "type" : "array"
                   },
@@ -2666,10 +2572,7 @@
                         "required" : [
                            "responsePageType"
                         ],
-                        "type" : "object",
-                        "x-f5-key" : [
-                           "responsePageType"
-                        ]
+                        "type" : "object"
                      },
                      "type" : "array"
                   },
@@ -2698,10 +2601,7 @@
                         "required" : [
                            "name"
                         ],
-                        "type" : "object",
-                        "x-f5-key" : [
-                           "name"
-                        ]
+                        "type" : "object"
                      },
                      "type" : "array"
                   },
@@ -2730,10 +2630,7 @@
                         "required" : [
                            "serverTechnologyName"
                         ],
-                        "type" : "object",
-                        "x-f5-key" : [
-                           "serverTechnologyName"
-                        ]
+                        "type" : "object"
                      },
                      "type" : "array"
                   },
@@ -2766,10 +2663,7 @@
                         "required" : [
                            "tag"
                         ],
-                        "type" : "object",
-                        "x-f5-key" : [
-                           "tag"
-                        ]
+                        "type" : "object"
                      },
                      "type" : "array"
                   },
@@ -2834,10 +2728,7 @@
                                                 "type" : "string"
                                              }
                                           },
-                                          "type" : "object",
-                                          "x-f5-key" : [
-                                             "name"
-                                          ]
+                                          "type" : "object"
                                        },
                                        "hasCve" : {
                                           "default" : "all",
@@ -2926,12 +2817,7 @@
                                              "type" : "string"
                                           }
                                        },
-                                       "type" : "object",
-                                       "x-f5-key" : [
-                                          "name",
-                                          "signatureId",
-                                          "tag"
-                                       ]
+                                       "type" : "object"
                                     },
                                     "type" : "array"
                                  },
@@ -2942,10 +2828,7 @@
                                              "type" : "string"
                                           }
                                        },
-                                       "type" : "object",
-                                       "x-f5-key" : [
-                                          "name"
-                                       ]
+                                       "type" : "object"
                                     },
                                     "type" : "array"
                                  },
@@ -2958,19 +2841,13 @@
                                     "type" : "string"
                                  }
                               },
-                              "type" : "object",
-                              "x-f5-key" : [
-                                 "name"
-                              ]
+                              "type" : "object"
                            }
                         },
                         "required" : [
                            "name"
                         ],
-                        "type" : "object",
-                        "x-f5-key" : [
-                           "name"
-                        ]
+                        "type" : "object"
                      },
                      "type" : "array"
                   },
@@ -3024,12 +2901,7 @@
                               "type" : "string"
                            }
                         },
-                        "type" : "object",
-                        "x-f5-key" : [
-                           "name",
-                           "signatureId",
-                           "tag"
-                        ]
+                        "type" : "object"
                      },
                      "type" : "array"
                   },
@@ -3076,11 +2948,7 @@
                         "required" : [
                            "name"
                         ],
-                        "type" : "object",
-                        "x-f5-key" : [
-                           "displayName",
-                           "name"
-                        ]
+                        "type" : "object"
                      },
                      "type" : "array"
                   },
@@ -3198,12 +3066,7 @@
                                           "originPort",
                                           "originProtocol"
                                        ],
-                                       "type" : "object",
-                                       "x-f5-key" : [
-                                          "originName",
-                                          "originPort",
-                                          "originProtocol"
-                                       ]
+                                       "type" : "object"
                                     },
                                     "type" : "array"
                                  },
@@ -3246,10 +3109,7 @@
                                  "required" : [
                                     "metachar"
                                  ],
-                                 "type" : "object",
-                                 "x-f5-key" : [
-                                    "metachar"
-                                 ]
+                                 "type" : "object"
                               },
                               "type" : "array"
                            },
@@ -3363,10 +3223,7 @@
                                  "required" : [
                                     "method"
                                  ],
-                                 "type" : "object",
-                                 "x-f5-key" : [
-                                    "method"
-                                 ]
+                                 "type" : "object"
                               },
                               "type" : "array"
                            },
@@ -3402,11 +3259,7 @@
                                     "parameter",
                                     "urlSegmentIndex"
                                  ],
-                                 "type" : "object",
-                                 "x-f5-key" : [
-                                    "parameter",
-                                    "urlSegmentIndex"
-                                 ]
+                                 "type" : "object"
                               },
                               "type" : "array"
                            },
@@ -3440,12 +3293,7 @@
                                        "type" : "string"
                                     }
                                  },
-                                 "type" : "object",
-                                 "x-f5-key" : [
-                                    "name",
-                                    "signatureId",
-                                    "tag"
-                                 ]
+                                 "type" : "object"
                               },
                               "type" : "array"
                            },
@@ -3468,10 +3316,7 @@
                                              "type" : "string"
                                           }
                                        },
-                                       "type" : "object",
-                                       "x-f5-key" : [
-                                          "name"
-                                       ]
+                                       "type" : "object"
                                     },
                                     "headerName" : {
                                        "default" : "*",
@@ -3523,11 +3368,7 @@
                                     "headerName",
                                     "headerValue"
                                  ],
-                                 "type" : "object",
-                                 "x-f5-key" : [
-                                    "headerName",
-                                    "headerValue"
-                                 ]
+                                 "type" : "object"
                               },
                               "type" : "array"
                            },
@@ -3539,13 +3380,7 @@
                         "required" : [
                            "name"
                         ],
-                        "type" : "object",
-                        "x-f5-key" : [
-                           "method",
-                           "name",
-                           "protocol",
-                           "type"
-                        ]
+                        "type" : "object"
                      },
                      "type" : "array"
                   },
@@ -3599,11 +3434,7 @@
                            "ipAddress",
                            "ipMask"
                         ],
-                        "type" : "object",
-                        "x-f5-key" : [
-                           "ipAddress",
-                           "ipMask"
-                        ]
+                        "type" : "object"
                      },
                      "type" : "array"
                   },
@@ -3862,12 +3693,7 @@
                                        "type" : "string"
                                     }
                                  },
-                                 "type" : "object",
-                                 "x-f5-key" : [
-                                    "name",
-                                    "signatureId",
-                                    "tag"
-                                 ]
+                                 "type" : "object"
                               },
                               "type" : "array"
                            },
@@ -3879,10 +3705,7 @@
                         "required" : [
                            "name"
                         ],
-                        "type" : "object",
-                        "x-f5-key" : [
-                           "name"
-                        ]
+                        "type" : "object"
                      },
                      "type" : "array"
                   },
