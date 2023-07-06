@@ -4977,7 +4977,7 @@ For example:
 }
 ```
 
-### Override Rules Syntax Usage
+### Override Rules Condition Syntax Usage
 
 For the full reference of Override Rules condition syntax and usage see the NGINX App Protect WAF [Declarative Policy guide]({{< relref "/nap-waf/declarative-policy/policy.md/#policy/override-rules" >}}).
  
