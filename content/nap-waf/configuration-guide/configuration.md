@@ -4977,9 +4977,12 @@ For example:
 }
 ```
 
-### Override Rules Condition Syntax Usage
+### Condition Syntax Usage
 
-For the full reference of Override Rules condition syntax and usage see the NGINX App Protect WAF [Declarative Policy guide]({{< relref "/nap-waf/declarative-policy/policy.md/#policy/override-rules" >}}).
+Boolean Expression Syntax
+The condition is a Boolean expression consisting of the following parts in BNF format. Spaces are allowed anywhere between the arguments.
+
+For the full reference of Override Rules condition syntax and usage see the NGINX App Protect WAF [Declarative Policy guide]({{< relref "/nap-waf/declarative-policy/policy.md" >}}).
  
 ### Important Things to Remember About Override Rules
 
