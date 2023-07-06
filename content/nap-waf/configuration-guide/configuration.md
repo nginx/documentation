@@ -4977,6 +4977,10 @@ For example:
 }
 ```
 
+### Override Rules Syntax Usage
+
+For the full reference of Override Rules condition syntax and usage see the NGINX App Protect WAF [Declarative Policy guide]({{< relref "/nap-waf/declarative-policy/policy.md/#policy/override-rules" >}}).
+ 
 ### Important Things to Remember About Override Rules
 
 Here are some key points to remember regarding the Override Rules feature:
@@ -4985,6 +4989,10 @@ Here are some key points to remember regarding the Override Rules feature:
 - The replacement policy should not include any override rules. Override rules should be used to extend or switch to a different policy, rather than being part of the replacement policy itself.
 - Each override rule will be compiled as a separate policy, whether extending the main policy or switching to a new one. The enforcer will switch to the policy that corresponds to the matched rule, but the main policy name will be reported along with the override rule property.
 - The URI, host, and user-agent strings in the request will be treated as plain ASCII characters and won't undergo language decoding. If any of these strings contain non-ASCII characters, they may be misinterpreted and may not comply with rules that expect specific values in the conditions.
+
+{{< note >}}
+In NGINX App Protect WAF version 4.4 there is a limitation when using Override Rules with gRPC. The Override Rules do not provide support for gRPC traffic. If the Override Rules are configured to match gRPC traffic, it will result in the blocking of such traffic.
+{{< /note >}}
 
 ### Override Rules Logging & Reporting
 
