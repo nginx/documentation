@@ -57,7 +57,7 @@ You can install the NGINX Agent using `curl`, `wget`, or any command-line tool f
   wget --no-check-certificate https://<NMS_FQDN>/install/nginx-agent -O - | sudo sh
   ```
 
-   Modules including App Delivery Manager and API Connectivity Manager take advantage of the [instance group]({{< relref "/nms/nim/how-to/nginx/manage-instance-groups.md" >}}) feature for managing NGINX Instances.  You can add your NGINX instance to an existing instance group or create one using `--instance-group` or `-g` flag when installing NGINX Agent.
+   Modules including App Delivery Manager and API Connectivity Manager take advantage of the [instance group]({{< relref "/nms/nim/how-to/nginx/manage-instance-groups.md" >}}) feature for managing NGINX Instances.  When you install the NGINX Agent, you can use the  `--instance-group` or `-g` flag to add your NGINX instance to an existing instance group or to a new group that you specify. 
 
    The following example downloads and runs the NGINX Agent install script with the optional `--instance-group` flag, adding the NGINX instance to the instance group **my-instance-group**:
 
