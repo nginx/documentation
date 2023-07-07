@@ -118,7 +118,7 @@ On the Publish API Proxy window:
 
 {{%/tab%}}
 {{%tab name="API"%}}
-After creating the service workspace you can click the Publish API Proxy or you can use the following steps
+After creating the service workspace, you can select **Publish API Proxy**, or you can follow these steps:
 
 {{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
 {{<bootstrap-table "table">}}
