@@ -98,9 +98,9 @@ On the Publish API Proxy window:
 {{< note >}}If this field is disabled, check the job status of your environment on the infrastructure workspace page.{{<  /note >}}
 
 ##### **Ingress**
-1. Input the Base Path that you wish to route traffic to 
-2. Input the version of your API
-3. Click the publish button
+1. Enter the Base Path that you wish to route traffic to.
+1. Type the version of your API.
+1. Select the **Publish** button.
 
 ##### **Confirm Setup**
 1. Open a terminal application
