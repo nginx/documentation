@@ -188,7 +188,7 @@ If we used the OpenAPI example [Petstore API](https://github.com/OAI/OpenAPI-Spe
 1. Select the **Add API Spec** button.
 1. Select the **Browse** button and select a YAML or JSON file.
 1. After the file uploads you can either select or search for your API spec.
-1. Select the **Publish** button
+1. Select **Publish**.
 
 ##### Ingress
 Populated from API Specification and are read-only
