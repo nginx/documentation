@@ -276,10 +276,10 @@ You should define this field using the hostname that you assigned to the Develop
 {{%tab name="UI"%}}
 
 Refer to [Publish API Proxy with OpenAPI Spec](#publish-api-proxy-with-spec).
-1. Select the Also publish API to developer portal option
-2. Select the Portal Proxy Hostname
-2. Enter a category if required, but this is optional
-3. Click the publish button
+1. Select the **Also publish API to developer portal** option
+1. Select the **Portal Proxy Hostname**.
+1. (Optional) Enter a category if required.
+1. Select the publish button.
 
 Open the Developer Portal and you should see the API doc is now displayed on the page.
 
