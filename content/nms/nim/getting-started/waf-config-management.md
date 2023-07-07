@@ -21,9 +21,9 @@ You can use NGINX Management Suite Instance Manager to publish configurations to
 
 2. In Instance Manager, [onboard the App Protect Instances]({{< relref "/nms/nim/how-to/app-protect/setup-waf-config-management#onboard-nginx-app-protect-waf-instances" >}}) you want to publish policies and log profiles to.
 
-3. [Create the security policies]({{< relref "/nms/nim/how-to/app-protect/manage-waf-security-policies#create-a-security-policy" >}}).
+3. [Create the security policies]({{< relref "/nms/nim/how-to/app-protect/manage-waf-security-policies#create-security-policy" >}}).
 
-4. [Create the security log profiles]({{< relref "/nms/nim/how-to/app-protect/manage-waf-security-policies#create-a-security-log-profile" >}}).
+4. [Create the security log profiles]({{< relref "/nms/nim/how-to/app-protect/manage-waf-security-policies#create-security-log-profile" >}}).
 
 5. [Add or edit a WAF Configuration]({{< relref "/nms/nim/how-to/app-protect/setup-waf-config-management#add-waf-config" >}}) to your NGINX Instances, and publish using Instance Manager.
 
