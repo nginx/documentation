@@ -91,7 +91,7 @@ On the Publish API Proxy window:
 1. For the **Service Target Transport Protocol**, if your backend service is using gRPC, then select gRPC.
 1.  Type the **Service Target Port**, or use the arrow buttons to increase or decrease the port number.
 
-##### **API Proxy**
+##### API Proxy
 1. Type a name for the API Proxy.
 1. Select No in the **Use an OpenAPI spec** option.
 1. Select the **Gateway Proxy Hostname from** the menu.
