@@ -97,7 +97,7 @@ On the Publish API Proxy window:
 1. Select the **Gateway Proxy Hostname from** the menu.
 {{< note >}}If this field is disabled, check the job status of your environment on the infrastructure workspace page.{{<  /note >}}
 
-##### **Ingress**
+##### Ingress
 1. Enter the Base Path that you wish to route traffic to.
 1. Type the version of your API.
 1. Select the **Publish** button.
