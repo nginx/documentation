@@ -177,11 +177,10 @@ If we used the OpenAPI example [Petstore API](https://github.com/OAI/OpenAPI-Spe
 
 {{%tab name="UI"%}}
 
-1. Input a name for the backend service
-2. Input the Service Target Hostname, this can be an IP or FQDN
-3. Service Target Transport Protocol
-    - If your backend service is using gRPC then select gRPC
-4.  Input Service Target Port, or use the arrow buttons to increase or decrease the port number
+1. Enter a name for the backend service.
+1. Type the **Service Target Hostname**; this can be an IP or FQDN.
+1. In the **Service Target Transport Protocol** menu, select gRPC if your backend service uses gRPC.
+1. Enter the *Service Target Port*, or use the arrow buttons to increase or decrease the port number.
 
 ##### **API Proxy**
 1. Input a name for the API Proxy 
