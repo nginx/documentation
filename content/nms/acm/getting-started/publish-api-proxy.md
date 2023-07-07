@@ -103,8 +103,8 @@ On the Publish API Proxy window:
 1. Select the **Publish** button.
 
 ##### **Confirm Setup**
-1. Open a terminal application
-2.  Execute the following command
+1. Open a terminal application.
+1. Run the following command:
     ```curl
     curl -k -X GET "https://gateway-proxy-hostname/version/basepath"
     ```
