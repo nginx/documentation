@@ -279,7 +279,7 @@ Refer to [Publish API Proxy with OpenAPI Spec](#publish-api-proxy-with-spec).
 1. Select the **Also publish API to developer portal** option
 1. Select the **Portal Proxy Hostname**.
 1. (Optional) Enter a category if required.
-1. Select the publish button.
+1. Select **Publish**
 
 Open the Developer Portal and you should see the API doc is now displayed on the page.
 
