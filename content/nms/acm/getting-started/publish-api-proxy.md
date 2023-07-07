@@ -34,13 +34,12 @@ You should complete the following Quick Start Guides before proceeding with the 
 
 {{%tab name="UI"%}}
 
-1. Click the Services option on the left hand menu  
-2. Click the Create Workspace button 
-3. Enter a name
-   - If required you can give the workspace a description 
-   - Also optional, tick the Contact Information check box to provide contact details
-    
-4. Click the create button
+1. Select the **Services** option on the left hand menu.
+1. Select the **Create Workspace** button.
+1. Enter a name.
+1. (Optional) Provide a description of the workspace.
+1. (Optional) Select the **Contact Information** check box to provide contact details.
+1. Select the **Create** button.
 
 
 {{%/tab%}}
