@@ -190,7 +190,7 @@ If we used the OpenAPI example [Petstore API](https://github.com/OAI/OpenAPI-Spe
 1. After the file uploads you can either select or search for your API spec.
 1. Select the **Publish** button
 
-##### **Ingress**
+##### Ingress
 Populated from API Specification and are read-only
 
 ##### **Confirm Setup**
