@@ -111,7 +111,7 @@ On the Publish API Proxy window:
     _Note:_ By default the ingress append rule is set to `PREFIX` so your request must be in the form of
 `version/basepath`
     
-3. If your proxy is setup correctly you should be able to send traffic.
+1. If your proxy is set up correctly, you can send traffic.
 
 
 
