@@ -102,7 +102,7 @@ On the Publish API Proxy window:
 1. Type the version of your API.
 1. Select the **Publish** button.
 
-##### **Confirm Setup**
+##### Confirm Setup
 1. Open a terminal application.
 1. Run the following command:
     ```curl
