@@ -1,10 +1,10 @@
 ---
-title: "Publish an API Proxy and Developer Portal"
+title: "Publish an API Proxy"
 date: 2022-07-15T10:23:41-06:00
 # Description
 # Add a short description (150 chars) for the doc. Include keywords for SEO. 
 # The description text appears in search results and at the top of the doc.
-description: "Learn how to use NGINX Management Suite API Connectivity Manager to publish an API Proxy with a Developer Portal."
+description: "Learn how to use NGINX Management Suite API Connectivity Manager to publish an API Proxy."
 # Assign weights in increments of 100
 weight: 300
 toc: true
@@ -165,7 +165,7 @@ The basic configuration below creates an API Proxy to a backend service.
 
 {{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
 
-### Publish API Proxy with OpenAPI Spec {#publish-api-proxy-with-spec}
+## Publish API Proxy with OpenAPI Spec {#publish-api-proxy-with-spec}
 {{< include "acm/openapi-support" >}}
 
 - When you upload an OpenAPI spec, API Connectivity Manager automatically generates a name for the API Docs object using the following format:
@@ -266,7 +266,7 @@ Take the steps below to add an API Proxy with an OpenAPI spec.
 {{%/tab%}}
 {{</tabs>}}
 
-## Add a Developer Portal Proxy
+## Publish an API Doc to Developer Portal
 Next, you can publish API Docs to your Developer Portal.
 
 API Connectivity Manager uses the `portalConfig.hostname` setting to connect your Dev Portal Proxy to the Developer Portal. 
@@ -326,4 +326,4 @@ The example below adds the Developer Portal to the same API Proxy that you creat
 }
 ```
 {{%/tab%}}
-{{</tabs>}}
+{{</tabs>}}__
