@@ -95,7 +95,7 @@ On the Publish API Proxy window:
 1. Type a name for the API Proxy.
 1. Select No in the **Use an OpenAPI spec** option.
 1. Select the **Gateway Proxy Hostname from** the menu.
-_Note: If this field is disabled check the job status of your environment on the infrastructure workspace page._
+{{< note >}}If this field is disabled, check the job status of your environment on the infrastructure workspace page.{{<  /note >}}
 
 ##### **Ingress**
 1. Input the Base Path that you wish to route traffic to 
