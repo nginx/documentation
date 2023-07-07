@@ -81,7 +81,7 @@ You should complete the following Quick Start Guides before proceeding with the 
 
 {{%tab name="UI"%}}
 
-After creating the workspace, you have the option to click the Publish API Proxy button, or open the previously created workspace
+After creating the workspace, you have the option to select the Publish API Proxy button or open the previously created workspace.
 and click the Publish to Proxy button.
 
 On the Publish API Proxy window:
