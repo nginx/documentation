@@ -40,3 +40,35 @@ To update the number of worker connections and file descriptors, edit the NGINX 
 
 - [NGINX worker_connections](http://nginx.org/en/docs/ngx_core_module.html#worker_connections)
 - [NGINX worker_rlimit_nofile](http://nginx.org/en/docs/ngx_core_module.html#worker_rlimit_nofile)
+
+## Configure GRPC for Agents
+
+By default, the NGINX Management Suite's NGINX configuration (`/etc/nginx/conf.d/nms-http.conf`) times out the gRPC connection from Agents at 10 minutes using the client body timeout (`client_body_timeout`). You can adjust this value to suit your needs; a lower value will time out gRPC connection from aborted Agent connections faster. An aborted Agent connection can happen when the Agent disconnects unexpectedly from the network without going through the gRPC protocol teardown process.
+
+To update the timeout value, edit the NGINX Management Suite's NGINX configuration file (`/etc/nginx/conf.d/nms-http.conf`) on the NGINX Management Suite host. For example:
+
+```nginx
+     # gRPC service for metric ingestion
+     location /f5.nginx.agent.sdk.MetricsService {
+         # uncomment to enable mTLS with agent
+         # auth_request /check-agent-client-cert;
+         include /etc/nms/nginx/errors-grpc.loc_conf;
+         grpc_socket_keepalive on;
+         grpc_read_timeout 5m;
+         grpc_send_timeout 5m;
+         client_body_timeout 10m;
+         grpc_pass grpc://ingestion-grpc-service;
+     }
+
+     # gRPC service for DPM
+     location /f5.nginx.agent.sdk.Commander {
+         # uncomment to enable mTLS with agent
+         # auth_request /check-agent-client-cert;
+         include /etc/nms/nginx/errors-grpc.loc_conf;
+         grpc_socket_keepalive on;
+         grpc_read_timeout 5m;
+         grpc_send_timeout 5m;
+         client_body_timeout 10m;
+         grpc_pass grpc://dpm-grpc-service;
+     }
+```
