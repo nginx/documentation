@@ -100,7 +100,7 @@ On the Publish API Proxy window:
 ##### Ingress
 1. Enter the Base Path that you wish to route traffic to.
 1. Type the version of your API.
-1. Select the **Publish** button.
+1. Select **Publish**.
 
 ##### Confirm Setup
 1. Open a terminal application.
