@@ -85,7 +85,7 @@ After creating the workspace, you have the option to select the Publish API Prox
 and click the Publish to Proxy button.
 
 On the Publish API Proxy window:
-##### **Backend Service**
+##### Backend Service
 1. Type a name for the backend service.
 1. Type the **Service Target Hostname**; this can be an IP or FQDN.
 1. For the **Service Target Transport Protocol**, if your backend service is using gRPC, then select gRPC.
