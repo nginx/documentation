@@ -86,11 +86,10 @@ and click the Publish to Proxy button.
 
 On the Publish API Proxy window:
 ##### **Backend Service**
-1. Input a name for the backend service
-2. Input the Service Target Hostname, this can be an IP or FQDN
-3. Service Target Transport Protocol
-    - If your backend service is using gRPC then select gRPC
-4.  Input Service Target Port, or use the arrow buttons to increase or decrease the port number
+1. Type a name for the backend service.
+1. Type the **Service Target Hostname**; this can be an IP or FQDN.
+1. For the **Service Target Transport Protocol**, if your backend service is using gRPC, then select gRPC.
+1.  Type the **Service Target Port**, or use the arrow buttons to increase or decrease the port number.
 
 ##### **API Proxy**
 1. Input a name for the API Proxy 
