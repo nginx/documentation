@@ -92,9 +92,9 @@ On the Publish API Proxy window:
 1.  Type the **Service Target Port**, or use the arrow buttons to increase or decrease the port number.
 
 ##### **API Proxy**
-1. Input a name for the API Proxy 
-2. Select No for the Use an OpenAPI spec option
-3. Select the Gateway Proxy Hostname from the dropdown 
+1. Type a name for the API Proxy.
+1. Select No in the **Use an OpenAPI spec** option.
+1. Select the **Gateway Proxy Hostname from** the menu.
 _Note: If this field is disabled check the job status of your environment on the infrastructure workspace page._
 
 ##### **Ingress**
