@@ -183,12 +183,12 @@ If we used the OpenAPI example [Petstore API](https://github.com/OAI/OpenAPI-Spe
 1. Enter the *Service Target Port*, or use the arrow buttons to increase or decrease the port number.
 
 ##### **API Proxy**
-1. Input a name for the API Proxy 
-2. Select Yes for the Use an OpenAPI spec option
-3. Click the Add API Spec button
-4. Click the browse button and select a YAML or JSON file
-5. After the file upload you can either select or search for your API spec
-6. Click the Publish button
+1. Enter a name for the API Proxy.
+1. Select Yes in the **Use an OpenAPI spec** option.
+1. Select the **Add API Spec** button.
+1. Select the **Browse** button and select a YAML or JSON file.
+1. After the file uploads you can either select or search for your API spec.
+1. Select the **Publish** button
 
 ##### **Ingress**
 Populated from API Specification and are read-only
