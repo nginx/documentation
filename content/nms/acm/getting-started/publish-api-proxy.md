@@ -182,7 +182,7 @@ If we used the OpenAPI example [Petstore API](https://github.com/OAI/OpenAPI-Spe
 1. In the **Service Target Transport Protocol** menu, select gRPC if your backend service uses gRPC.
 1. Enter the *Service Target Port*, or use the arrow buttons to increase or decrease the port number.
 
-##### **API Proxy**
+##### API Proxy
 1. Enter a name for the API Proxy.
 1. Select Yes in the **Use an OpenAPI spec** option.
 1. Select the **Add API Spec** button.
