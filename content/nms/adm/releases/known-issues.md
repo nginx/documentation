@@ -106,16 +106,15 @@ It is possible to update an existing certificate's serial number to one already 
 
 ---
 
-###  {{% icon-bug %}} Duplicate Certificate and Key published for managed certificates {#42517}
+### {{% icon-resolved %}} Duplicate Certificate and Key published for managed certificates {#42517}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 42517    | Open   |
+| Issue ID       | Status |
+|----------------|--------|
+| 42517 | Fixed in App Delivery Manager 4.0.0  |
 {{</bootstrap-table>}}
 
 #### Description
-
 When deploying a configuration with a certificate and key handled by NGINX Management Suite to a custom file path, it may deploy a duplicate copy of the certificate and key to the default /etc/nginx/ path. When deleting the certificate and key, it will only delete the certificate and key in the custom path, leaving the duplicate copy.
 
 #### Workaround
