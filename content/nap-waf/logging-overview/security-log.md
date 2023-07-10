@@ -30,7 +30,7 @@ roles:
 title: NGINX App Protect WAF Security Log
 toc: true
 versions:
-- "4.3"
+- "4.4"
 weight: 520
 ---
 

@@ -31,7 +31,7 @@ roles:
 title: NGINX App Protect WAF Configuration Guide
 toc: true
 versions:
-- "4.3"
+- "4.4"
 weight: 200
 ---
 
@@ -2397,16 +2397,16 @@ In the following example, the policy is configured with these items:
             {
                 "name": "FunkyBrowserV3",
                 "matchString": "FunkyBrowser/1.3.1",
-                "description": "Funky Browser is what you should browse with!"
             },
             {
                 "name": "SmartBrowser4",
                 "matchRegex": "smartbrowser/([\\d.]+)",
-                "description": "This browser is really smart!"
             }
         ],
         "bot-defense": {
-            "isEnabled": true,
+            "settings" : {
+                "isEnabled": true
+            },
             "mitigations": {
                 "classes": [
                     {
@@ -2462,16 +2462,16 @@ In the next example, the policy is configured with the following items:
             {
                 "name": "FunkyBrowserV3",
                 "matchString": "FunkyBrowser/1.3.1",
-                "description": "Funky Browser is what you should browse with!"
             },
             {
                 "name": "SmartBrowser4",
                 "matchRegex": "smartbrowser/([\\d.]+)",
-                "description": "This browser is really smart!"
             }
         ],
         "bot-defense": {
-            "isEnabled": true,
+            "settings" : {
+                "isEnabled": true
+            },   
             "mitigations": {
                 "classes": [
                     {
@@ -4859,6 +4859,207 @@ For example:
     ]
 ```
 
+## Override Rules
+
+### Override Rules Overview
+
+The **Override Rules** feature allows overriding of the **default policy** settings. Each override rule consists of a condition followed by changes to the original policy applied to requests that meet the respective condition. This feature provides the ability to include the override rules within a declarative policy such that all incoming requests are verified against those rules.
+
+With this enhancement, users now have more control over how a unique policy setting is applied to incoming requests with a specific method, source IP address, header or URI value through one or multiple unique override rules. Each override rule possesses a unique name and specific conditions that are matched against incoming traffic from a specific client side. The structure of these override rules adheres to the JSON schema defined by the declarative policy.
+
+Here is an example of a declarative policy using an override rules entity:
+
+```shell
+{
+  "policy": {
+    "name": "override_rules_example",
+    "template": {
+      "name": "POLICY_TEMPLATE_NGINX_BASE"
+    },
+    "override-rules": [
+      {
+        "name": "localhost-log-only",
+        "condition": "host.contains('localhost') and clientIp == '127.0.0.1' and userAgent.lower().startsWith('curl')",
+        "override": {
+          "policy": {
+            "enforcementMode": "transparent"
+          }
+        }
+      },
+      {
+        "name": "login_page",
+        "condition": "method == 'POST' and uri.contains('/login/')",
+        "extendsPolicy": false,
+        "override": {
+          "policy": {
+            "name": "login_page_block_redirect",
+            "template": {
+              "name": "POLICY_TEMPLATE_NGINX_BASE"
+            },
+            "signature-sets": [
+              {
+                "name": "All Signatures",
+                "block": true,
+                "alarm": true
+              }
+            ],
+            "response-pages": [
+              {
+                "responseRedirectUrl": "https://example.com/rejected?id=<%TS.request.ID()%>",
+                "responseActionType": "redirect",
+                "responsePageType": "default"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "name": "api-strict",
+        "condition": "uri.contains('api4') and not clientIp.matches('fd00:1::/48') and not userAgent.lower().startsWith('Mozilla')",
+        "extendsPolicy": false,
+        "override": {
+          "$ref": "file:///NginxStrictPolicy.json"
+        }
+      }
+    ]
+  }
+}
+```
+
+The above "override_rules_example" policy contains three override rules:
+
+1. The **"localhost-log-only"** rule applies to the requests with a user agent header starting with "curl", a host header containing "localhost", and a client IP address set to 127.0.0.1. It switches the enforcement mode to "transparent" without blocking the request. The remaining policy settings remain unchanged. This type of override rule is an example of an **Inline Policy Reference**.
+2. The **"login_page"** rule is triggered by POST requests to URIs containing "/login/". Since the "extendsPolicy" field is set to false, it overrides the policy with a new one named "login_page_block_redirect". This new policy is independent of the "override_rules_example" policy. It enables all signature sets and redirects the user to a rejection page. This is another example of an **Inline Policy Reference** with a different condition.
+3. The **"api-strict"** rule is applied for requests with "api4" in the URI, except for client IP addresses matching the "fd00:1::/48" range and user agents starting with "Mozilla". It references an external policy file named "NginxStrictPolicy.json" located at "/etc/app_protect/conf/" to override the current policy. The extendsPolicy is set to false and the external policy can be specified using a reference to its file using **$ref**. The file is the JSON policy source of that policy. This type of policy switching is known as **External Policy Reference**.
+
+These three rules demonstrate how the override rules feature allows for customization and the ability to modify specific aspects of the original policy based on predefined conditions.
+
+
+{{< note >}}
+- By default, the extendsPolicy field is configured to true.
+- External references are supported regardless of whether the extendsPolicy field is set to true or false.
+{{< /note >}}
+
+### Condition Syntax Usage
+
+For the full reference of Override Rules condition syntax and usage see the NGINX App Protect WAF [Declarative Policy guide]({{< relref "/nap-waf/declarative-policy/policy.md" >}}/#policy/override-rules).
+
+### First Match Principle 
+
+The policy enforcement operates on the **first match** principle. This principle is applied when multiple conditions match or are similar, indicating that any incoming requests that match the first condition will be processed. In the following example, the "override_rules_example2" policy uses two override rules: "this_rule_will_match" and "non_matching_rule". Since both conditions match, the first match principle will be applied, and requests with "api" in the URI will be processed. It will reference an external policy file named "NginxStrictPolicy.json" to override the current policy. .
+
+For example:
+
+```shell
+{
+  "policy": {
+    "name": "override_rules_example2",
+    "template": {
+      "name": "POLICY_TEMPLATE_NGINX_BASE"
+    },
+    "override-rules": [
+      {
+        "name": "this_rule_will_match",
+        "condition": "uri.contains('api')",
+        "extendsPolicy": false,
+        "override": {
+          "$ref": "file:///NginxStrictPolicy.json"
+        }
+      },
+      {
+        "name": "non_matching_rule",
+        "condition": "uri.contains('api') and not clientIp == '192.168.0.10'",
+        "extendsPolicy": true,
+        "override": {
+          "policy": {
+            "enforcementMode": "transparent"
+          }
+        }
+      }
+    ]
+  }
+}
+``` 
+
+### Important Things to Remember About Override Rules
+
+Here are some key points to remember regarding the Override Rules feature:
+
+- To ensure efficient compilation time and optimal resource allocation for policies, there are limitations in place. Currently, policies have a maximum limit of 10 rules and a maximum of 5 clauses in a condition. These limitations help maintain better performance and manageability. A compilation error will not occur if a policy file contains more than 5 clauses or 10 overrides.
+- The replacement policy should not include any override rules. Override rules should be used to extend or switch to a different policy, rather than being part of the replacement policy itself.
+- Each override rule will be compiled as a separate policy, whether extending the main policy or switching to a new one. The enforcer will switch to the policy that corresponds to the matched rule, but the main policy name will be reported along with the override rule property.
+- The URI, host, and user-agent strings in the request will be treated as plain ASCII characters and won't undergo language decoding. If any of these strings contain non-ASCII characters, they may be misinterpreted and may not comply with rules that expect specific values in the conditions.
+
+{{< note >}}
+In NGINX App Protect WAF version 4.4, there is a limitation when using Override Rules with gRPC. The Override Rules do not provide support for gRPC traffic. If the Override Rules are configured to match gRPC traffic, it will result in the blocking of such traffic.
+{{< /note >}}
+
+### Override Rules Logging & Reporting
+
+If a request matches an override rule, the `json_log` field will include a new block named 'overrideRule'. However, if no rules match the request, the log will not contain any related information. When the 'extendsPolicy' flag is set to false, the 'originalPolicyName' field in the log will reflect the name of the original policy name (the one that contains override rules), and the `policy_name` field will reflect the policy that was enforced.
+
+For example, if the matching override rule is called "login_page":
+
+```shell
+
+...
+policy_name="login_page_block_redirect"
+...
+ 
+json_log will have:
+ 
+{
+    ...
+    "overrideRule": {
+        "name": "login_page",
+        "originalPolicyName": "override_rule_example" 
+}
+    ...
+ 
+```
+
+### Errors and Warnings
+
+#### Missing Policy Name
+
+Every policy must have a name, including a policy used for overriding in case extendsPolicy is false. If the policy 'name' is not provided in the override section, an error message will be displayed indicating the missing policy 'name' within that specific override rule. For instance, in the override rule below, the policy name is not specified.
+
+
+Example of Missing policy 'name':
+
+```shell
+"override-rules": [
+    {
+        "name": "example-rule",
+        "condition": "uri.contains('127')",
+        "extendsPolicy": false,
+        "override": {
+            "policy": {
+                "name": "policy_name",  <--- the missing part
+                "enforcementMode": "transparent"
+            }
+        }
+    }
+]
+```
+
+Example of Missing policy 'name' error:
+
+```shell
+"error_message": "Failed to import Policy 'policy1' from '/etc/app_protect/conf/test.json': Missing policy 'name' in the override rule 'example-rule'."
+```
+
+#### Cyclic Override Rule Error
+
+If an inline or externally referenced policy contains an override rule, a Cyclic Override Rule error will be issued.
+
+Example of Cyclic Override Rule error:
+
+```shell
+"error_message": "Failed to import an override policy: Cyclic override-rules detected."
+```
+
+
 ## Directives
 
 ### Global Directives
@@ -5026,7 +5227,7 @@ The following violations are supported and can be enabled by turning on the **al
 |VIOL_PARAMETER_STATIC_VALUE | Illegal static parameter value | Alarm | The system checks that the request contains a static parameter whose value is defined in the security policy. Prevents static parameter change. NGINX App Protect WAF can be configured to block parameter values that are not in a predefined list. Parameters can be defined on each of the following levels: file type, URL, and flow. Each parameter can be one of the following types: explicit or wildcard. |  | 
 |VIOL_PARAMETER_VALUE_BASE64 | Illegal Base64 value | Alarm | The system checks that the value is a valid Base64 string. If the value is indeed Base64, the system decodes this value and continues with its security checks. |  | 
 |VIOL_PARAMETER_VALUE_LENGTH | Illegal parameter value length | Alarm | The system checks that the request contains a parameter whose value length (in bytes) matches the value length defined in the security policy. |  | 
-|VIOL_PARAMETER_VALUE_METACHAR | Illegal meta character in value | Alarm | The system checks that all parameter values, XML element/attribute values, or JSON values within the request only contain meta characters defined as allowed in the security policy. Enforces proper input values. |  | 
+|VIOL_PARAMETER_VALUE_METACHAR | Illegal meta character in value | Alarm | The system checks that all parameter values, XML element/attribute values, or JSON values within the request only contain meta characters defined as allowed in the security policy. Enforces proper input values. In case of a violation, the reported value represents the decimal ASCII value (metachar_index), or, in case of using "json_log" the hexadecimal ASCII value (metachar) of the violating character. |  | 
 |VIOL_PARAMETER_VALUE_REGEXP | Parameter value does not comply with regular expression | Alarm | The system checks that the request contains an alphanumeric parameter value that matches the expected pattern specified by the regular-expression field for that parameter. Prevents HTTP requests which do not comply with a defined pattern. NGINX App Protect WAF lets you set up a regular expression to block requests where a parameter value does not match the regular expression. |  | 
 |VIOL_POST_DATA_LENGTH | Illegal POST data length | Alarm | The system checks that the request contains POST data whose length does not exceed the acceptable length specified in the security policy. | In * file type entity. This check is disabled by default. | 
 |VIOL_QUERY_STRING_LENGTH | Illegal query string length | Alarm | The system checks that the request contains a query string whose length does not exceed the acceptable length specified in the security policy. | In * file type entity. Actual size is 2 KB. | 
@@ -5069,11 +5270,10 @@ The following table specifies the HTTP Compliance sub-violation settings. All ar
 |Unescaped space in URL | Enabled | App Protect | The system checks that there is no unescaped space within the URL in the request line. Such spaces split URLs introducing ambiguity on picking the actual one. when enabled, the default value for number of unescaped space in URL is 50.| 
 |Body in GET or HEAD requests | Disabled | App Protect | Examines GET and HEAD requests which have a body. | 
 |Bad multipart/form-data request parsing | Enabled | App Protect | When the content type of a request header contains the substring "Multipart/form-data", the system checks whether each multipart request chunk contains the strings "Content-Disposition" and "Name". If they do not, the system issues a violation. | 
-|Bad multipart parameters parsing | Enabled | App Protect | The system checks the following:<ol><li>A boundary follows immediately after request headers.</li><li>The parameter value matches the format: 'name="param_key";\\r\\n.</li><li>A chunked body contains at least one CRLF.</li><li>A chunked body ends with CRLF.</li><li>Final boundary was found on multipart request.</li><li>There is no payload after final boundary.</li></ol><br><br>       If one of these is false, the system issues a violation. | 
+|Bad multipart parameters parsing | Enabled | App Protect | The system checks the following:<ol><li>A boundary follows immediately after request headers.</li><li>The parameter value matches the format: 'name="param_key";\\r\\n.</li><li>A chunked body contains at least one CRLF.</li><li>A chunked body ends with CRLF.</li><li>Final boundary was found on multipart request.</li><li>There is no payload after final boundary.</li></ol><br><br> If one of these is false, the system issues a violation. | 
 |Bad HTTP version | Enabled | NGINX | Enforces legal HTTP version number (only 0.9 or higher allowed). | 
 |Bad host header value | Enabled | NGINX | Detected non RFC compliant header value. | 
-| Check maximum number of cookies | Disabled | App Protect | The system compares the request cookies to the maximal configured
-number of cookies. When enabled, the default value for number of maximum cookies if unmodified is 50. |
+| Check maximum number of cookies | Enabled | App Protect | The system compares the request cookies to the maximal configured number of cookies. When enabled, the default value for number of maximum cookies if unmodified is 100. |
 {{</bootstrap-table>}} 
 
 
