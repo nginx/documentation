@@ -196,7 +196,7 @@ If we used the OpenAPI example [Petstore API](https://github.com/OAI/OpenAPI-Spe
 ### Ingress
 Populated from API Specification and are read-only
 
-### **Confirm Setup**
+### Confirm Setup
 1. Open a terminal application.
 1. Run the following command:
     ```curl
