@@ -63,6 +63,7 @@ NGINX App Protect WAF supports the following operating systems:
 - [Ubuntu 20.04](#ubuntu-2004-installation)
 - [Alpine 3.10](#alpine-310-installation) - (Unsupported starting from NGINX Plus R25)
 - [Alpine 3.16](#alpine-316-installation) 
+- [Alpine 3.17](#alpine-317-installation) 
 
 The NGINX App Protect WAF package has the following dependencies:
 
@@ -1674,6 +1675,127 @@ If a user other than **nginx** is to be used, note the following:
     sudo service nginx start
     ```
 
+## Alpine 3.17 Installation
+
+1. If you already have NGINX packages in your system, back up your configs and logs:
+
+    ```shell
+    sudo cp -a /etc/nginx /etc/nginx-plus-backup
+    sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
+    ```
+
+2. Log in to the [Customer Portal](https://my.f5.com) and download the following two files:
+    ```shell
+    nginx-repo.key
+    nginx-repo.crt
+    ```
+
+3. Upload `nginx-repo.key` to `/etc/apk/cert.key` and `nginx-repo.crt` to `/etc/apk/cert.pem`. Make sure that files do not contain other certificates and keys, as Alpine Linux does not support mixing client certificates for different repositories.
+
+4. Add the NGINX public signing key to the directory `/etc/apk/keys`:
+
+    ```shell
+    sudo wget -O /etc/apk/keys/nginx_signing.rsa.pub  https://cs.nginx.com/static/keys/nginx_signing.rsa.pub
+
+    sudo wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
+    ```
+
+5. Remove any previously configured NGINX Plus repository:
+    
+    ```shell
+    sed "/plus-pkgs.nginx.com/d" /etc/apk/repositories
+    ```
+
+6. Add NGINX Plus repository to `/etc/apk/repositories` file:
+
+    ```shell
+    printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
+    ```
+
+7. Add NGINX App Protect WAF repository to `/etc/apk/repositories` file:
+
+    ```shell
+    printf "https://pkgs.nginx.com/app-protect/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
+
+    printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
+    ```
+
+8. It is recommended to remove all community-supported NGINX packages. Note that all NGINX modules will be removed as well.
+
+    ```shell
+    sudo apk del -r app-protect
+    sudo apk del -r nginx
+    ```
+    
+9. Update the repository and install the most recent version of the NGINX Plus and NGINX App Protect WAF:
+
+    ```shell
+    sudo apk update
+    sudo apk add app-protect
+    ```
+
+    Alternatively, to install a specific version you should modify the repository URL in the `/etc/apk/repositories` file in the following way:
+
+    ```shell
+    https://pkgs.nginx.com/plus/Rxx/alpine/v3.17/main
+    https://pkgs.nginx.com/app-protect/Rxx/alpine/v3.17/main
+    ```
+    
+    where xx is a release number.
+
+    For example, to install NGINX App Protect WAF for NGINX Plus R28 make sure of the following:
+
+    ```shell
+    cat /etc/apk/repositories
+    https://pkgs.nginx.com/plus/R28/alpine/v3.17/main
+    https://pkgs.nginx.com/app-protect/R28/alpine/v3.17/main
+    ```
+
+    Install the most recent version of NGINX App Protect WAF for NGINX Plus R28:
+
+    ```shell
+    sudo apk update
+    sudo apk add app-protect
+    ```
+
+    Alternatively, use the following commands to list available versions:
+
+    ```shell
+    sudo apk update
+    sudo apk info app-protect
+    ```
+
+    Finally, install a specific version from the output of command above. For example:
+
+    ```shell
+    sudo apk add app-protect=28.4.100.1-r1
+    ```
+
+10. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
+
+    ```shell
+    sudo nginx -v
+    ```
+
+11. Load the NGINX App Protect WAF module on the main context in the `nginx.conf` file:
+
+    ```nginx
+    load_module modules/ngx_http_app_protect_module.so;
+    ```
+
+12. Enable NGINX App Protect WAF on an `http/server/location` context in the `nginx.conf` via:
+
+    ```nginx
+    app_protect_enable on;
+    ```
+
+13. Start the App Protect service and NGINX service:
+
+    ```
+    sudo service nginx-app-protect start
+    sudo service nginx start
+    ```
+
 ## Docker Deployment
 
 ### General Docker Deployment Instructions
@@ -2243,6 +2365,39 @@ COPY entrypoint.sh /root/
 CMD ["sh", "/root/entrypoint.sh"]
 ```
 
+### Alpine 3.17 Docker Deployment Example
+```dockerfile
+# syntax=docker/dockerfile:1
+# For Alpine 3.17:
+FROM alpine:3.17
+
+# Download and add the NGINX signing keys:
+RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub \
+ && wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
+
+# Add NGINX Plus repository:
+RUN printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
+
+# Add NGINX App-protect repository:
+RUN printf "https://pkgs.nginx.com/app-protect/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories \
+ && printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
+
+# Update the repository and install the most recent version of the NGINX App Protect WAF package (which includes NGINX Plus):
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
+    apk update && apk add app-protect
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Copy configuration files:
+COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY entrypoint.sh /root/
+
+CMD ["sh", "/root/entrypoint.sh"]
+```
+
 ## Converter Tool Docker Image
 
 This section explains how to build a Docker image for the purpose of converting policy files from other F5 WAF products to NGINX App Protect WAF JSON declarative format.
@@ -2652,7 +2807,27 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
     apk update && apk add app-protect-compiler
 ```
-  
+
+### Alpine 3.17 Converter Docker Deployment Example
+```dockerfile
+# syntax=docker/dockerfile:1
+# For Alpine 3.17:
+FROM alpine:3.17
+
+# Download and add the NGINX signing keys:
+RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub \
+ && wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
+
+# Add NGINX Plus repository:
+RUN printf "https://pkgs.nginx.com/app-protect/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories \
+ && printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
+
+# Update the repository and install the most recent version of the NGINX App Protect WAF Compiler package:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
+    apk update && apk add app-protect-compiler
+```
+
 ## Offline Installation
 
 To perform an offline installation of NGINX App Protect WAF you can use a host with access to the NGINX repository to download all the packages (including dependencies) to your local repository.
@@ -3112,6 +3287,39 @@ After having updated the Attack Signature package you have to reload the configu
     sudo apk add app-protect-attack-signatures=2023.01.26-r1
     ```
 
+### Alpine 3.17
+
+1. If not already configured, add NGINX App Protect WAF Security Updates repository:
+
+    ```shell
+    printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
+    ```
+    
+2. If not already downloaded, download and add the NGINX App Protect WAF Security Updates signing key:
+
+    ```shell
+    sudo wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
+    ```
+
+3. Update attack signatures:
+
+    To install the latest version, first update the packages:
+
+    ```shell
+    sudo apk update
+    ```
+    Then, list the available versions:
+
+    ```shell
+    sudo apk search app-protect-attack-signatures
+    ```
+
+    Finally, install the latest version from the output:
+
+    ```shell
+    sudo apk add app-protect-attack-signatures=2023.01.26-r1
+    ```
+
 ### Attack Signatures when Upgrading App Protect
 
 Upgrading App Protect does _not_ install new Attack Signatures. You will get the same Attack Signature release after upgrading App Protect. If you want to also upgrade the Attack Signatures, you will have to explicitly update them by the respective command above.
@@ -3414,6 +3622,40 @@ Example: app-protect-threat-campaigns-2022.07.21
     ```shell 
     sudo apk add app-protect-threat-campaigns=2023.01.24-r1
     ```
+
+### Alpine 3.17
+
+1. If not already configured, add NGINX App Protect WAF Security Updates repository:
+
+    ```shell
+    printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
+    ```
+
+2. If not already downloaded, download and add the NGINX App Protect WAF Security Updates signing key:
+
+    ```shell
+    sudo wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
+    ```
+
+3. Update Threat Campaigns:
+
+    To install the latest version, first update the packages:
+    ```shell
+    sudo apk update
+    ```
+
+    Then, list the available versions:
+
+    ```shell
+    sudo apk search app-protect-threat-campaigns
+    ```
+
+    Finally, install the latest version from the output:
+
+    ```shell 
+    sudo apk add app-protect-threat-campaigns=2023.01.24-r1
+    ```
+
 
 ## Upgrading App Protect
 
