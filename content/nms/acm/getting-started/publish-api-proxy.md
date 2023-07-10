@@ -202,7 +202,8 @@ Populated from API Specification and are read-only
     ```curl
     curl -k -X GET "https://gateway-proxy-hostname/version/basepath"
     ```
-    {{< note >}}By default the ingress append rule is set to `PREFIX` so your request must be in the form of `version/basepath`. {{< /note >}}
+
+{{< note >}}By default the ingress append rule is set to `PREFIX` so your request must be in the form of `version/basepath`. {{< /note >}}
 
 {{%/tab%}}
 {{%tab name="API"%}}
