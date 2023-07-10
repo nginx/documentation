@@ -30,6 +30,8 @@ You should complete the following Quick Start Guides before proceeding with the 
 1. [Set Up a Developer Portal Environment]({{< relref "add-devportal" >}})
 
 ## Create a service workspace
+Services workspaces is a logical grouping of APIs. A user can created multiple workspaces that match an organizational structure.  
+
 {{<tabs name="Add a Services Workspace">}}
 
 {{%tab name="UI"%}}
@@ -77,6 +79,9 @@ You should complete the following Quick Start Guides before proceeding with the 
 [comment]: <> (-------------------------Temp divider-----------------------------------)
 
 ## Publish API Proxy without OpenAPI Spec {#set-up-api-proxy}
+
+An API proxy connects the backend services to the API-Gateway. 
+
 {{<tabs name="Publish API Proxy without OpenAPI Spec">}}
 
 {{%tab name="UI"%}}
@@ -84,24 +89,24 @@ You should complete the following Quick Start Guides before proceeding with the 
 After creating the workspace, you can select **Publish API Proxy** or open the previously created workspace.
 
 On the Publish API Proxy window:
-##### Backend Service
+### Backend Service
 1. Type a name for the backend service.
 1. Type the **Service Target Hostname**; this can be an IP or FQDN.
 1. For the **Service Target Transport Protocol**, if your backend service is using gRPC, then select gRPC.
 1.  Type the **Service Target Port**, or use the arrow buttons to increase or decrease the port number.
 
-##### API Proxy
+### API Proxy
 1. Type a name for the API Proxy.
 1. Select No in the **Use an OpenAPI spec** option.
 1. Select the **Gateway Proxy Hostname from** the menu.
 {{< note >}}If this field is disabled, check the job status of your environment on the infrastructure workspace page.{{<  /note >}}
 
-##### Ingress
+### Ingress
 1. Enter the Base Path that you wish to route traffic to.
 1. Type the version of your API.
 1. Select **Publish**.
 
-##### Confirm Setup
+### Confirm Setup
 1. Open a terminal application.
 1. Run the following command:
     ```curl
@@ -181,7 +186,7 @@ If we used the OpenAPI example [Petstore API](https://github.com/OAI/OpenAPI-Spe
 1. In the **Service Target Transport Protocol** menu, select gRPC if your backend service uses gRPC.
 1. Enter the *Service Target Port*, or use the arrow buttons to increase or decrease the port number.
 
-##### API Proxy
+### API Proxy
 1. Enter a name for the API Proxy.
 1. Select Yes in the **Use an OpenAPI spec** option.
 1. Select the **Add API Spec** button.
@@ -189,10 +194,10 @@ If we used the OpenAPI example [Petstore API](https://github.com/OAI/OpenAPI-Spe
 1. After the file uploads you can either select or search for your API spec.
 1. Select **Publish**.
 
-##### Ingress
+### Ingress
 Populated from API Specification and are read-only
 
-##### **Confirm Setup**
+### **Confirm Setup**
 1. Open a terminal application.
 1. Run the following command:
     ```curl
