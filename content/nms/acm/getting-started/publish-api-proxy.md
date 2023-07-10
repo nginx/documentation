@@ -200,6 +200,7 @@ Populated from API Specification and are read-only
 
 ### Confirm Setup
 1. Open a terminal application.
+   
 1. Run the following command:
     ```curl
     curl -k -X GET "https://gateway-proxy-hostname/version/basepath"
