@@ -376,19 +376,19 @@ To ensure that the dashboards show the most up-to-date information, you need to 
 ---
 
 ## Setup Compiler Resource Pruning
-You can setup automatic compiler resource pruning for the following compiler resources:
+You can configure the following compiler resources to prune automatically:
 - Compiled Security Policies
 - Compiled Security Log Profiles
 - Attack Signatures
 - Threat Campaigns
 
-In the case of `compiled security policies` and `compiled security log profiles`, the definition of the `security policy` and/or `security log profile` is not removed, it is only the compiled bundles associated with those resources that are removed.
+In the case of `compiled security policies` and `compiled security log profiles`, the definition of the `security policy` and/or `security log profile` is not removed. Only the compiled bundles associated with those resources are removed.
 
-In order to enable automatic compiler resource pruning please follow these steps:
+To enable automatic compiler resource pruning, please follow these steps:
 
 1. Log in to the management plane host using SSH.
 1. Open the `/etc/nms/nms.conf` file for editing.
-1. Update the `policy_manager` field to contain the desired `time to live` values for each resource type, see the following snippet for an example of adding the necessary fields under `integrations`->`policy_manager`:
+1. Update the `policy_manager` field to contain the desired `time to live` values for each resource type; see the following snippet for an example of adding the necessary fields under `integrations`->`policy_manager`:
 
     ```yaml
     integrations:
@@ -420,7 +420,7 @@ In order to enable automatic compiler resource pruning please follow these steps
     sudo systemctl restart nms-integrations
     ```
 
-The compiler resource pruning process occurs once upon start up of the `nms-integrations` service and once every `24 hours` after the `nms-integrations` service has been started.
+The compiler resource pruning process occurs once upon start-up of the `nms-integrations` service and once every `24 hours` after the `nms-integrations` service has been started.
 
 ---
 
