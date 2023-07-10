@@ -312,7 +312,7 @@ curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/logprofiles \
 
 To update a security log profile, send an HTTP `POST` request to the Security Log Profiles API endpoint, `/api/platform/v1/security/logprofiles`.
 
-You can use the optional `isNewRevision` parameter to indicate whether the updated log profile is a new version of an existing log pofile.
+You can use the optional `isNewRevision` parameter to indicate whether the updated log profile is a new version of an existing log profile.
 
 {{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
 {{<bootstrap-table "table">}}
