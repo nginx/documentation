@@ -59,7 +59,7 @@ Trials cannot be combined; for example, you cannot use a trial for Instance Mana
 
 After a trial expires, it cannot be reused on the same instance.
 
-## July 06, 2023
+## July 10, 2023
 
 ### What's New
 This release includes the following updates:
