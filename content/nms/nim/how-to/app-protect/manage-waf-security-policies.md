@@ -243,7 +243,7 @@ curl -X DELETE https://{{NMS_FQDN}}/api/platform/v1/security/policies/23139e0a-4
 
 {{%tab name="API"%}}
 
-To upload a new security log profile, send an HTTP `POST` request to the Security Log Profiles API endpoint.
+Send an HTTP `POST` request to the Security Log Profiles API endpoint to upload a new security log profile.
 
 {{<important>}}Before sending a security log profile to Instance Manager, you need to encode it using `base64`. Submitting a log profile in its original JSON format will result in an error.{{</important>}}
 
