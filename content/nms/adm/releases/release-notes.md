@@ -46,7 +46,7 @@ Add the NGINX Management Suite and App Delivery Manager repositories to your sys
     sudo wget -q -O /etc/apt/apt.conf.d/90pkgs-nginx https://cs.nginx.com/static/files/90pkgs-nginx
     ```
 
-After completing the steps in the the [prerequisites]({{< relref "/nms/installation/vm-bare-metal/prerequisites.md" >}}) section, follow the steps in the [Install or Upgrade App Delivery Manager]({{< relref "/nms/installation/vm-bare-metal/install-adm.md" >}}) guide.
+After completing the steps in the [prerequisites]({{< relref "/nms/installation/vm-bare-metal/prerequisites.md" >}}) section, follow the steps in the [Install or Upgrade App Delivery Manager]({{< relref "/nms/installation/vm-bare-metal/install-adm.md" >}}) guide.
 
 ### Licensing
 
