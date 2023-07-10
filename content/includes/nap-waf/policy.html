@@ -2,6 +2,9 @@
   table, th, td {
     border: 1px solid black;
   }
+  td {
+    padding:5px;
+  }
 </style>
 
 <h1 id="policy">policy</h1>
@@ -274,90 +277,97 @@
 <td></td>
 </tr>
 <tr class="odd">
+<td><a href="#policy/override-rules">override-rules</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td>This section defines policy override rules.</td>
+<td></td>
+</tr>
+<tr class="even">
 <td><a href="#policy/parameters">parameters</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>This section defines parameters that the security policy permits in requests.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/response-pages">response-pages</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>The Security Policy has a default blocking response page that it returns to the client when the client request, or the web server response, is blocked by the security policy. You can change the way the system responds to blocked requests. All default response pages contain a variable, &lt;%TS.request.ID()%&gt;, that the system replaces with a support ID number when it issues the page.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/sensitive-parameters">sensitive-parameters</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>This section defines sensitive parameters. The contents of these parameters are not visible in logs nor in the user interfaces. Instead of actual values a string of asterisks is shown for these parameters. Use these parameters to protect sensitive user input, such as a password or a credit card number, in a validated request. A parameter name of "password" is always defined as sensitive by default.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/server-technologies">server-technologies</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>The server technology is a server-side application, framework, web server or operating system type that is configured in the policy in order to adapt the policy to the checks needed for the respective technology.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/signature-requirements">signature-requirements</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/signature-sets">signature-sets</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>Defines behavior when signatures found within a signature-set are detected in a request. Settings are culmulative, so if a signature is found in any set with block enabled, that signature will have block enabled.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/signature-settings">signature-settings</a></td>
 <td>Yes</td>
 <td>object</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/signatures">signatures</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>This section defines the properties of a signature on the policy.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/template">template</a></td>
 <td>Yes</td>
 <td>object</td>
 <td>Specifies the template to populate the default attributes of a new policy.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/threat-campaigns">threat-campaigns</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>This section defines the enforcement state for the threat campaigns in the security policy.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/urls">urls</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>In a security policy, you can manually specify the HTTP URLs that are allowed (or disallowed) in traffic to the web application being protected. When you create a security policy, wildcard URLs of * (representing all HTTP URLs) are added to the Allowed HTTP URLs lists.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/whitelist-ips">whitelist-ips</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>An IP address exception is an IP address that you want the system to treat in a specific way for a security policy. You can use the IP address exception feature to create exceptions for IP addresses of internal tools that your company uses, such as penetration tools, manual or automatic scanners, or web scraping tools. You can add an IP address exception and instruct the system how to handle traffic coming from that address.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/xml-profiles">xml-profiles</a></td>
 <td>Yes</td>
 <td>array of objects</td>
@@ -1451,8 +1461,10 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td><a href="#policy/idl-files">idlFile</a></td>
-<td>object</td>
+<td><code>idlFile</code></td>
+<td><ul>
+<li>object</li>
+</ul></td>
 <td></td>
 <td></td>
 </tr>
@@ -1732,8 +1744,10 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td><a href="#policy/idl-files">idlFile</a></td>
-<td>object</td>
+<td><code>idlFile</code></td>
+<td><ul>
+<li>object</li>
+</ul></td>
 <td></td>
 <td></td>
 </tr>
@@ -2333,8 +2347,10 @@
 <td></td>
 </tr>
 <tr class="odd">
-<td><a href="#policy/json-validation-files">jsonValidationFile</a></td>
-<td>object</td>
+<td><code>jsonValidationFile</code></td>
+<td><ul>
+<li>object</li>
+</ul></td>
 <td></td>
 <td></td>
 </tr>
@@ -2398,6 +2414,106 @@
 <td><code>name</code></td>
 <td>string</td>
 <td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="policy/override-rules">override-rules</h2>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><code>condition</code></p></td>
+<td><p>string</p></td>
+<td><p>Specifies the condition under which the override rule should be applied.</p>
+<p>Example: "clientIp != '10.0.0.5' and userAgent.lower().contains('WebRobot')"</p>
+<p>Condition Syntax:</p>
+<blockquote>
+<ul>
+<li>The condition consists of one or more clauses separated by <strong>and</strong>.</li>
+</ul>
+<p>Example: "clientIp == '10.0.0.5' and host.startsWith('internal')"</p>
+<ul>
+<li>Each clause can optionally start with <strong>not</strong> - to negate the expression.</li>
+</ul>
+<p>Example: "not clientIp == '127.0.0.1'"</p>
+<ul>
+<li>A clause can be a simple comparison between two value expressions, or a boolean function applied to a literal value.</li>
+</ul>
+</blockquote>
+<p>Supported comparison operators:</p>
+<blockquote>
+<ul>
+<li><strong>==</strong> - Checks for equality between two value expressions.</li>
+<li><strong>!=</strong> - Checks for inequality between two value expressions.</li>
+</ul>
+<p>Example: "clientIp != '10.0.0.5'" (equivalent to "not clientIp == '10.0.0.5'")</p>
+</blockquote>
+<p>Supported boolean functions:</p>
+<blockquote>
+<ul>
+<li><strong>matches</strong>: Performs an exact match of a value expression, equivalent to <strong>==</strong>.</li>
+<li><strong>startsWith</strong>: Checks if a value expression starts with a specific substring.</li>
+<li><strong>contains</strong>: Checks if a value expression contains a specific substring.</li>
+</ul>
+<p>Example: "uri.startsWith('/api')"</p>
+</blockquote>
+<p><strong>Note</strong>: Functions "startsWith" and "contains" are not applicable to the "clientIp" attribute. Regular expressions are not supported.</p>
+<blockquote>
+<ul>
+<li>Value expressions can be a request attribute, literal value, or a value function.</li>
+<li>A literal can be a string value enclosed in single quotes, or can be the keyword "null" without quotes.</li>
+</ul>
+<p>Example: "userAgent == null"</p>
+</blockquote>
+<p>Supported value functions:</p>
+<blockquote>
+<ul>
+<li><strong>lower</strong>: Any boolean function applied on the resulting string will be <strong>case insensitive</strong>. Applicable to ANSI characters only.</li>
+</ul>
+<p>Example: "uri.lower().contains('BaR')" will match the URI "/Foo/bAr"</p>
+</blockquote>
+<p>Request Attributes:</p>
+<blockquote>
+<ul>
+<li><strong>clientIp</strong>: Client IP address in canonical IPv4 or IPv6 format. Use CIDR notation for subnet definition. Example: <em>192.168.1.2</em> or <em>fd00:1::/48</em>. If <em>trustXff</em> (X-Forwarded-For) is enabled in the containing policy, then the value is taken from the configured header (XFF or other). The only supported boolean function for the clientIP attribute is <em>matches</em>.</li>
+<li><strong>host</strong>: The value of the Host header</li>
+<li><strong>method</strong>: The HTTP method in the request</li>
+<li><strong>uri</strong>: The URI (path part) of the request</li>
+<li><strong>userAgent</strong>: The value of the User-Agent header, or <em>null</em> (without quotes) if not present</li>
+</ul>
+</blockquote></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>extendsPolicy</code></td>
+<td>boolean</td>
+<td>If <em>true</em> - the override policy inherits the containing policy settings, allowing only the required settings to be overridden. If <em>false</em> - the override policy must be a valid declarative policy that includes a name, template and all necessary settings. The default is <em>true</em>.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>name</code></td>
+<td>string</td>
+<td>The unique name of the override rule. Cannot contain spaces or special characters.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>override</code></td>
+<td>string</td>
+<td>The overriding security policy definition.</td>
 <td></td>
 </tr>
 </tbody>
