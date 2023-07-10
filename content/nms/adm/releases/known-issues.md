@@ -111,7 +111,7 @@ It is possible to update an existing certificate's serial number to one already 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 42517 | Fixed in App Delivery Manager 4.0.0-EA2   |
+| 42517 | Fixed in App Delivery Manager 4.0.0  |
 {{</bootstrap-table>}}
 
 #### Description
