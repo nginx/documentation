@@ -2452,28 +2452,37 @@
 <p>Example: "not clientIp == '127.0.0.1'"</p>
 <ul>
 <li>A clause can be a simple comparison between two value expressions, or a boolean function applied to a literal value.</li>
-<li>Supported comparison operators:</li>
+</ul>
+</blockquote>
+<p>Supported comparison operators:</p>
+<blockquote>
+<ul>
 <li><strong>==</strong> - Checks for equality between two value expressions.</li>
 <li><strong>!=</strong> - Checks for inequality between two value expressions.</li>
 </ul>
 <p>Example: "clientIp != '10.0.0.5'" (equivalent to "not clientIp == '10.0.0.5'")</p>
+</blockquote>
+<p>Supported boolean functions:</p>
+<blockquote>
 <ul>
-<li>Supported boolean functions:</li>
 <li><strong>matches</strong>: Performs an exact match of a value expression, equivalent to <strong>==</strong>.</li>
 <li><strong>startsWith</strong>: Checks if a value expression starts with a specific substring.</li>
 <li><strong>contains</strong>: Checks if a value expression contains a specific substring.</li>
 </ul>
 <p>Example: "uri.startsWith('/api')"</p>
 </blockquote>
-<p><strong>Note</strong>: Regular expressions are not supported.</p>
+<p><strong>Note</strong>: Functions "startsWith" and "contains" are not applicable to the "clientIp" attribute. Regular expressions are not supported.</p>
 <blockquote>
 <ul>
 <li>Value expressions can be a request attribute, literal value, or a value function.</li>
 <li>A literal can be a string value enclosed in single quotes, or can be the keyword "null" without quotes.</li>
 </ul>
 <p>Example: "userAgent == null"</p>
+</blockquote>
+<p>Supported value functions:</p>
+<blockquote>
 <ul>
-<li>The only supported value function is <strong>lower</strong>. Any boolean function applied on the resulting string will be <strong>case insensitive</strong>.</li>
+<li><strong>lower</strong>: Any boolean function applied on the resulting string will be <strong>case insensitive</strong>. Applicable to ANSI characters only.</li>
 </ul>
 <p>Example: "uri.lower().contains('BaR')" will match the URI "/Foo/bAr"</p>
 </blockquote>
