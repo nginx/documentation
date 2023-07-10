@@ -112,9 +112,11 @@ On the Publish API Proxy window:
     ```curl
     curl -k -X GET "https://gateway-proxy-hostname/version/basepath"
     ```
-   {{< note >}}By default the ingress append rule is set to `PREFIX` so your request must be in the form of `version/basepath` {{< /note >}}
-    
-1. If your proxy is set up correctly, you can send traffic.
+
+  1. If your proxy is set up correctly, you can send traffic.
+  
+{{< note >}}By default the ingress append rule is set to `PREFIX` so your request must be in the form of `version/basepath` {{< /note >}}
+
 
 
 
