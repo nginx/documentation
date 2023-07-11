@@ -20,9 +20,10 @@ docs: "DOCS-924"
 API Connectivity Manager lets you manage your API infrastructure by using a set of hierarchical resources. The top-level resource, called a **Workspace**, provides a logical grouping for resources called **Environments**. Environments contain **Clusters** that allocate NGINX instances for use as API Gateways and Developer Portals.
 
 You can use Workspaces to create isolated work areas for business units or teams. You can use Environments to allocate infrastructure resources for use within a team's Workspace.   
+
 This guide provides instructions for using  API Connectivity Manager Workspaces and Environments to manage your API infrastructure.
 
-### Before You Begin
+## Before You Begin
 
 Complete the following prerequisites before proceeding with this guide: 
 
@@ -33,11 +34,15 @@ Complete the following prerequisites before proceeding with this guide:
 - You have SSH access to each of the hosts that you want to allocate to a cluster and can use the `sudo` command.
 - You have installed the [`njs`](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/nginscript/) module on each host that you want to add to the cluster.
 
-### How to Access the User Interface
+## How to Access the User Interface
 
 {{< include "acm/how-to/access-acm-ui.md" >}}
 
 ## Create a Workspace {#create-workspace}
+
+{{<tabs name="Add a Services Workspace">}}
+
+{{%tab name="UI"%}}
 
 Take the steps below to create a new Workspace.
 
@@ -57,7 +62,38 @@ Take the steps below to create a new Workspace.
 
 The **Create Workspace** drawer will display a confirmation when the Workspace has been created. From there, you can go on to [Add an Environment](#Add-an-environment) or go back to the Workspaces landing page.
 
+{{%/tab%}}
+{{%tab name="API"%}}
+
+{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
+{{<bootstrap-table "table">}}
+| Method      | Endpoint |
+|-------------|----------|
+| POST| `/infrastructure/workspaces`| 
+{{</bootstrap-table>}}
+{{< raw-html>}}</div>{{</raw-html>}}
+
+```json
+{
+    "name":  "{{infraWorkspaceName}}",
+    "metadata": {
+        "description": "Petstore Team Workspace"
+    },
+    "contactDetails": {
+        "adminEmail": "admin@example.com",
+        "adminName": "I.M. Admin",
+        "adminPhone": "555 123 1234"
+    }
+}
+```
+
+{{%/tab%}}
+{{</tabs>}}
 ## Add an Environment {#add-environment}
+{{<tabs name="Add an Environment">}}
+
+{{%tab name="UI"%}}
 
 After creating a Workspace, you must create at least one Environment. When creating an Environment, you will also create the Clusters where your API Gateway(s) and/or Developer Portal(s) will reside. 
 
@@ -81,10 +117,46 @@ Take the steps below to add an Environment.
 1. (Optional) In the **Developer Portals** section, provide the **Name** and **Hostname** of at least one instance that you want to add to the cluster. 
    
    This instance, or instance group, will host the Developer Portal. 
+      
    {{<note>}}The Dev Portal requires a separate, dedicated host. Do not install the Dev Portal on a host that is already running the management or data planes.{{</note>}}   
 1. Select the **Create** button to create the Environment. The **Add Environment** drawer will display a confirmation when the Environment has been created. 
 1. Copy the `cURL` or `wget` command shown in the confirmation drawer and save it -- you will need to use this information to [add your NGINX instances to the cluster](#register-nginx-instance).
 
+{{%/tab%}}
+{{%tab name="API"%}}
+{{% table %}}
+| Parameter | Description |
+|:-----------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `proxies.proxyClusterName`                     | The group of NGINX instances where configuration will be written     | 
+| `proxies.hostnames`                            | An IP Address or fully qualified domain name (FQDN) used to identify the API-Gateway environment| 
+
+{{</bootstrap-table>}}
+{{% /table %}}
+
+{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
+{{<bootstrap-table "table">}}
+| Method      | Endpoint |
+|-------------|----------|
+| POST| `/infrastructure/workspaces/{{infraWorkspaceName}}/environments`| 
+{{< raw-html>}}</div>{{</raw-html>}}
+
+```json
+{
+    "name": "{{environmentname}}",
+    "proxies": [
+        {
+            "proxyClusterName": "{{proxyClusterName}}",
+            "hostnames": [
+                "{{environmentHostname}}"
+            ]
+        }
+    ]
+}
+```
+
+{{%/tab%}}
+{{</tabs>}}
 ## Onboard an NGINX Instance {#register-nginx-instance}
 
 [Install the NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent" >}}) on each host to register the instance with API Connectivity Manager as part of the cluster.
