@@ -169,7 +169,7 @@ Take the steps below to add an NGINX instance to an API Gateway.
 1. Use SSH to log in to the host machine.
 1. Run the `cURL` or `wget` install command that was displayed in the **Environment Created** confirmation drawer. 
 1. When the installation is complete, the instance will appear in the **Instances** list for the cluster in the API Connectivity Manager user interface. 
-1. After running the `cURL` command the environment you can check the environment job  status
+1. After running the `cURL` command you can check the environment job status on the environments page
 {{<img src="/acm/acm-onboarding-success.png" alt="Environment Onboarding Status." >}}
 
 
