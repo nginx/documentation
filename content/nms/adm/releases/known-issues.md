@@ -58,7 +58,7 @@ To remove the object, the instance groups that the object is referencing (direct
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 42517 | Fixed in App Delivery Manager 4.0.0-EA2   |
+| 42517 | Fixed in App Delivery Manager 4.0.0 (2023/07/10)   |
 {{</bootstrap-table>}}
 
 #### Description

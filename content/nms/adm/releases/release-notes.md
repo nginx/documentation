@@ -76,19 +76,16 @@ This release includes the following updates:
 
   We have added the ability to configure OIDC integration for NGINX Plus to communicate directly with an Identity Provider to perform authentication.
 
-  
 - {{% icon-feature %}} **Added new traffic setting template**
 
   We have added a new template, traffic-settings, that enables the configuration of `underscores_in_headers` and `ignore_invalid_headers` directives per URI. Users can now control whether header fields with invalid names should be ignored and if header fields whose names contain underscores are marked as invalid.
-  
 
 ### Changes in Behavior
 This release has the following changes in default behavior:
 
 - {{% icon-feature %}} **Updated the API to better support automation**
 
-  We have added the option to use arrays to make App Delivery Manager APIs easier to use and automate. Replaces map data structures. 
-  
+  We have simplified the APIs for the Gateway and Component objects to use arrays instead of maps when specifying the URIs. This will break any existing automation scripts that make use of these APIs. 
 
 - {{% icon-feature %}} **Improved usability of caching template**
 
