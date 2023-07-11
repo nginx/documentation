@@ -125,10 +125,12 @@ Take the steps below to add an Environment.
 {{%/tab%}}
 {{%tab name="API"%}}
 {{% table %}}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
 | Parameter | Description |
 |:-----------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `proxies.proxyClusterName`                     | The group of NGINX instances where configuration will be written     | 
-| `proxies.hostnames`                            | An IP Address or fully qualified domain name (FQDN) used to identify the API-Gateway environment| 
+| `proxies.hostnames`                     | An IP Address or fully qualified domain name (FQDN) used to identify the API-Gateway environment| 
 
 {{</bootstrap-table>}}
 {{% /table %}}
@@ -139,6 +141,7 @@ Take the steps below to add an Environment.
 | Method      | Endpoint |
 |-------------|----------|
 | POST| `/infrastructure/workspaces/{{infraWorkspaceName}}/environments`| 
+{{</bootstrap-table>}}
 {{< raw-html>}}</div>{{</raw-html>}}
 
 ```json
