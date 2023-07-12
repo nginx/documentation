@@ -46,7 +46,12 @@ Alternatively, you can use an S/MIME license in cases when NGINX Management Suit
 
 ### Trial License
 
-{{<call-out "note" "License period">}}JWT trial licenses expire 30 days after being applied to NGINX Management Suite.{{</call-out>}}
+{{<call-out "note" "Trial periods">}}
+<br>
+
+- JWT trial licenses expire 30 days after being applied to NGINX Management Suite.
+- S/MIME trial licenses expire 30 days after they are issued.
+{{</call-out>}}
 
 To download a trial license for NGINX Management Suite:
 
@@ -58,8 +63,6 @@ To download a trial license for NGINX Management Suite:
 
 
 ### Subscription and Flexible Consumption Program
-
-{{<call-out "note" "License period">}}S/MIME trial licenses expire 30 days after they are issued.{{</call-out>}}
 
 To download a subscription or Flexible Consumption Program license for NGINX Management Suite:
 
@@ -145,5 +148,6 @@ If you have issues uploading a license, make sure you're using the newest versio
 
 ### Unable to retrieve entitlements
 
-If you're using a JWT license file, make sure NGINX Management Suite can establish inbound and outbound connections on port 443.
+{{<include "installation/jwt-license-firewall-settings.md" >}}
+
 
