@@ -1473,7 +1473,7 @@ In this example, we define a sensitive parameter `mypass` configuration.
 The user-defined URL feature allows the user to configure the URL while supporting the following options:
 - Define a protected URL configuration both explicitly and by wildcards.
 - Define a per-URL list of allowed/disallowed methods that will override the list defined in the policy level.
-- Define a content-type: json/xml/form-data on a user-defined URL.
+- Define a content-type: json/xml/form-data/do-nothing on a user-defined URL.
 - Define an Allowed/Disallowed user-defined URL.
 - Add a user-defined URL to the Signature/Metacharacters override list.
 
@@ -1720,6 +1720,33 @@ In this example, we configure json/xml/form-data content types for a specific us
     }
 }
 ~~~
+
+In this example, we configure do-nothing content types for a specific user-defined URL:
+
+~~~json
+{
+    "policy" : {
+        "name": "ignore_body",
+        "template": { "name": "POLICY_TEMPLATE_NGINX_BASE" },
+        "urls": [
+            {
+                "method": "*",
+                "name": "*",
+                "type": "wildcard",
+                "urlContentProfiles": [
+                    {
+                        "headerName": "*",
+                        "headerOrder": "default",
+                        "headerValue": "*",
+                        "type": "do-nothing"
+                    }
+                ]
+            }
+        ]
+    }
+}
+~~~
+
 
 #### User-Defined Parameters
 
