@@ -178,7 +178,9 @@ sudo apt-get install -f /path/to/nms-nap-compiler-<version>_focal_amd64.deb -o D
 
 ### Automatically Download and Install New WAF Compiler
 
-After a version of the NGINX App Protect WAF compiler has been successfully installed manually on Instance Manager, a new WAF compiler will be downloaded and installed automatically if Instance Manager determines a new WAF compiler is required.  A new WAF compiler is required when the data plane's NGINX App Protect WAF version has been [upgraded](#upgrade-nap-waf-version-on-managed-instances) or a new data plane with a new NGINX App Protect WAF version has been added. The user must [upload their NGINX App Protect WAF certificate and key](#upload-nginx-app-protect-waf-certificate-and-key) in order for NGINX Instance Manager to automatically download and install a new WAF compiler from the NGINX repo. Note, the NGINX App Protect WAF certificate and key only need to be uploaded once to Instance Manager.
+Once a version of the NGINX App Protect WAF compiler is manually installed on Instance Manager, the system will automatically download and install a new WAF compiler when it detects that an update is required. This typically happens when the NGINX App Protect WAF version on the data plane has been [upgraded](#upgrade-nap-waf-version-on-managed-instances) or when a new data plane with a different NGINX App Protect WAF version is added.
+
+To enable the automatic download and installation of a new WAF compiler, you need to [upload your NGINX App Protect WAF certificate and key](#upload-nginx-app-protect-waf-certificate-and-key) to Instance Manager. This upload needs to be done only once. By providing the certificate and key, Instance Manager can securely fetch and install the latest WAF compiler from the NGINX repository.
 
 If the automatic download and install of the new WAF compiler step fails, when publishing the NGINX configuration, the error message
 
