@@ -150,7 +150,7 @@ A valid license is required in order to use App Delivery Manager.
    sudo systemctl restart nginx
    ```
 
-4. Restart the ADM Service
+4. Restart the App Delivery service:
 
    ```bash
    sudo systemctl restart nms-adm
