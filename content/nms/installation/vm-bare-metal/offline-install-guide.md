@@ -529,7 +529,7 @@ To upgrade App Delivery Manager to a newer version, take the following steps:
    sudo systemctl restart nginx
    ```
 
-2. Restart the ADM Service
+2. Restart the App Delivery service:
 
    ```bash
    sudo systemctl restart nms-adm
