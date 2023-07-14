@@ -529,7 +529,13 @@ To upgrade App Delivery Manager to a newer version, take the following steps:
    sudo systemctl restart nginx
    ```
 
-2. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore SELinux contexts (`restorecon`) for the files and directories related to NGINX Management suite.
+2. Restart the App Delivery service:
+
+   ```bash
+   sudo systemctl restart nms-adm
+   ```
+
+3. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore SELinux contexts (`restorecon`) for the files and directories related to NGINX Management suite.
 
 ### Set Up the Data Plane {#adm-data-plane}
 
