@@ -466,7 +466,7 @@ To install App Delivery Manager, take the following steps:
 {{%/tab%}}
 {{</tabs>}}
 
-3. Enable and start the App Delivery service:
+3. Enable and start the App Delivery Manager service:
 
     ```bash
     sudo systemctl enable nms-adm --now
@@ -529,7 +529,7 @@ To upgrade App Delivery Manager to a newer version, take the following steps:
    sudo systemctl restart nginx
    ```
 
-2. Restart the App Delivery service:
+2. Restart the App Delivery Manager service:
 
    ```bash
    sudo systemctl restart nms-adm
