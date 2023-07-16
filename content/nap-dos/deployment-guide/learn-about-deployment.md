@@ -750,6 +750,12 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo apt-get install app-protect-dos=27+2.4.0-1~focal nginx-plus-module-appprotectdos=27+2.4.0-1~focal
     ```
 
+    For example for Ubuntu 22.04:
+
+     ```shell
+    sudo apt-get install app-protect-dos=27+2.4.0-1~jammy nginx-plus-module-appprotectdos=27+2.4.0-1~jammy
+    ```
+
 10. In the case of upgrading from a previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):
 
     ```shell
@@ -1057,11 +1063,14 @@ COPY entrypoint.sh  /root/
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
 
-### Debian 10 Docker Deployment Example
+### Debian 10 (buster)/ Debian 11 Docker Deployment Example
 
 ```Dockerfile
-# For Debian 10 / Debian 11:
-FROM debian:buster
+
+ARG OS_CODENAME
+# Where OS_CODENAME can be: buster/bullseye
+
+FROM debian:${OS_CODENAME}
 
 # Download certificate and key from the customer portal (https://my.f5.com)
 # and copy to the build context:
@@ -1093,48 +1102,15 @@ COPY entrypoint.sh  /root/
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
 
-### Ubuntu 18.04 Docker Deployment Example
+### Ubuntu 18.04(bionic)/20.04(focal)/22.04(jammy) Docker Deployment Example
 
 ```Dockerfile
-# For Ubuntu 18.04:
-FROM ubuntu:bionic
- 
-# Download certificate and key from the customer portal (https://my.f5.com)
-# and copy to the build context:
-COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
- 
-# Install prerequisite packages:
-RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2
- 
-# Download and add the NGINX signing key:
-RUN wget https://cs.nginx.com/static/keys/nginx_signing.key && apt-key add nginx_signing.key
- 
-# Add NGINX Plus and NGINX App Protect DoS repository:
-RUN printf "deb https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list
-RUN printf "deb https://pkgs.nginx.com/app-protect-dos/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
- 
-# Download the apt configuration to `/etc/apt/apt.conf.d`:
-RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
- 
-# Update the repository and install the most recent version of the NGINX App Protect DoS package (which includes NGINX Plus):
-RUN apt-get update && apt-get install -y app-protect-dos
- 
-# Remove nginx repository key/cert from docker
-RUN rm -rf /etc/ssl/nginx
- 
-# Copy configuration files:
-COPY nginx.conf /etc/nginx/
-COPY entrypoint.sh /root/
- 
-CMD /root/entrypoint.sh && tail -f /dev/null
-```
 
-### Ubuntu 20.04 Docker Deployment Example
+ARG OS_CODENAME
+# Where OS_CODENAME can be: bionic/focal/jammy 
 
-```Dockerfile
-# For Ubuntu 20.04:
-FROM ubuntu:focal
- 
+FROM ubuntu:${OS_CODENAME}
+
 # Download certificate and key from the customer portal (https://my.f5.com)
 # and copy to the build context:
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
@@ -1453,11 +1429,14 @@ COPY entrypoint.sh  /root/
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
 
-### Debian 10 Docker Deployment Example
+### Debian 10 (buster)/ Debian 11 Docker Deployment Example
 
 ```Dockerfile
-# For Debian 10:
-FROM debian:buster
+
+ARG OS_CODENAME
+# Where OS_CODENAME can be: buster/bullseye
+
+FROM debian:${OS_CODENAME}
  
 # Download certificate and key from the customer portal (https://my.f5.com)
 # and copy to the build context:
@@ -1490,89 +1469,16 @@ COPY entrypoint.sh  /root/
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
 
-### Debian 11 Docker Deployment Example
+### Ubuntu 18.04(bionic)/20.04(focal)/22.04(jammy) Docker Deployment Example
 
 ```Dockerfile
-# For Debian 11:
-FROM debian:bullseye
- 
-# Download certificate and key from the customer portal (https://my.f5.com)
-# and copy to the build context:
-COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
- 
-# Install prerequisite packages:
-RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2
- 
-# Download and add the NGINX signing key:
-RUN wget https://cs.nginx.com/static/keys/nginx_signing.key && apt-key add nginx_signing.key
- 
-# Add NGINX Plus, NGINX App Protect and NGINX App Protect DoS repository:
-RUN printf "deb https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list
-RUN printf "deb https://pkgs.nginx.com/app-protect-dos/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
-RUN printf "deb https://pkgs.nginx.com/app-protect/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect.list
- 
-# Download the apt configuration to `/etc/apt/apt.conf.d`:
-RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
- 
-# Update the repository and install the most recent version of the NGINX App Protect DoS and NGINX App Protect package (which includes NGINX Plus):
-RUN apt-get update && apt-get install -y app-protect-dos app-protect
- 
-# Remove nginx repository key/cert from docker
-RUN rm -rf /etc/ssl/nginx
- 
-# Copy configuration files:
-COPY nginx.conf custom_log_format.json /etc/nginx/
-COPY entrypoint.sh  /root/
- 
-CMD /root/entrypoint.sh && tail -f /dev/null
-```
 
-### Ubuntu 18.04 Docker Deployment Example
+ARG OS_CODENAME
+# Where OS_CODENAME can be: bionic/focal/jammy 
 
-```Dockerfile
-# For Ubuntu 18.04:
-FROM ubuntu:bionic
- 
-# Download certificate and key from the customer portal (https://my.f5.com)
-# and copy to the build context:
-COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
- 
-# Install prerequisite packages:
-RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2
- 
-# Download and add the NGINX signing key:
-RUN wget https://cs.nginx.com/static/keys/nginx_signing.key && apt-key add nginx_signing.key
- 
-# Add NGINX Plus, NGINX App Protect and NGINX App Protect DoS repository:
-RUN printf "deb https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list
-RUN printf "deb https://pkgs.nginx.com/app-protect-dos/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
-RUN printf "deb https://pkgs.nginx.com/app-protect/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect.list
- 
-# Download the apt configuration to `/etc/apt/apt.conf.d`:
-RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
- 
-# Update the repository and install the most recent version of the NGINX App Protect DoS and NGINX App Protect package (which includes NGINX Plus):
-RUN apt-get update && apt-get install -y app-protect-dos app-protect
- 
-# Remove nginx repository key/cert from docker
-RUN rm -rf /etc/ssl/nginx
- 
-# Copy configuration files:
-COPY nginx.conf custom_log_format.json /etc/nginx/
-COPY entrypoint.sh /root/
- 
-CMD /root/entrypoint.sh && tail -f /dev/null
-```
-
-
-### Ubuntu 20.04 Docker Deployment Example
-
-```Dockerfile
-# For Ubuntu 20.04:
-FROM ubuntu:focal
+FROM ubuntu:${OS_CODENAME}
 
 ARG DEBIAN_FRONTEND=noninteractive
-ENV TZ=Europe/London
  
 # Download certificate and key from the customer portal (https://my.f5.com)
 # and copy to the build context:
