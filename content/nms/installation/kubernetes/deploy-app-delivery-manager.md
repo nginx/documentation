@@ -181,7 +181,7 @@ To enable the App Delivery Manager module, take the following steps:
 ### Upgrade Existing App Delivery Manager Deployment {#upgrade-adm-helm}
 
 
-If you've already deployed API Connectivity Manager and would like to upgrade to a newer version, take the following steps:
+If you've already deployed App Delivery Manager and would like to upgrade to a newer version, take the following steps:
 
 1. Repeat the steps above to:
 
