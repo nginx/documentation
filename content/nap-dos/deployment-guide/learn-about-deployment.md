@@ -134,7 +134,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     Then, install a specific version from the output of command above. For example:
 
     ```shell
-    sudo yum install app-protect-dos-25+2.0.1
+    sudo yum install app-protect-dos-27+2.4.0
     ```
 
 8. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus): 
@@ -279,10 +279,10 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     gpgkey=http://ftp.heanet.ie/pub/centos/7/os/x86_64/RPM-GPG-KEY-CentOS-7
     [epel]
     name=epel packages for CentOS/RHEL 7
-    baseurl=https://download-ib01.fedoraproject.org/pub/epel/7/x86_64
+    baseurl=https://dl.fedoraproject.org/pub/epel/7/x86_64
     enabled=1
     gpgcheck=1
-    gpgkey=https://download-ib01.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
+    gpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
     [extras]
     name=extras packages for CentOS/RHEL 7
     mirrorlist=http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=extras
@@ -312,7 +312,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     Then, install a specific version from the output of command above. For example:
 
     ```shell
-    sudo yum install app-protect-dos-25+2.0.1
+    sudo yum install app-protect-dos-27+2.4.0
     ```
 
 9. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus): 
@@ -470,7 +470,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     Then, install a specific version from the output of command above. For example:
 
     ```shell
-    sudo yum install app-protect-dos-25+2.0.1
+    sudo yum install app-protect-dos-27+2.4.0
     ```
 
 9. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus): 
@@ -881,12 +881,12 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     
     where xx is a release number.
 
-    For example, to install NGINX App Protect DoS for NGINX Plus R26 make sure of the following:
+    For example, to install NGINX App Protect DoS for NGINX Plus R27 make sure of the following:
 
     ```shell
     sudo cat /etc/apk/repositories
-    https://pkgs.nginx.com/plus/R26/alpine/v3.15/main
-    https://pkgs.nginx.com/app-protect-dos/R26/alpine/v3.15/main
+    https://pkgs.nginx.com/plus/R27/alpine/v3.15/main
+    https://pkgs.nginx.com/app-protect-dos/R27/alpine/v3.15/main
     ```
     Install the most recent version of NGINX App Protect DoS for NGINX Plus R23:
 
@@ -905,7 +905,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     Finally, install a specific version from the output of command above. For example:
 
     ```shell    
-    sudo apk add nginx-plus app-protect-dos=26.2.2.41-r1
+    sudo apk add nginx-plus app-protect-dos=27+2.4.0-r1
     ```
 
 10. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):  
