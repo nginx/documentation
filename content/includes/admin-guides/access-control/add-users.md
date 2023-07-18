@@ -1,6 +1,12 @@
-To add users and assign roles, take the following steps:
+---
+docs: DOCS-1024
+---
 
-1. Go to the FQDN for your NGINX Management Suite host in a web browser and log in.
+The default `admin` user or any user with `CREATE` permission for the **User Management** feature can create a role.
+
+To add users, take the following steps:
+
+1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in.
 2. Select the **Settings** (gear) icon in the upper-right corner.
 3. On the left menu, select **Users**.
 4. Select **Create**.
@@ -19,7 +25,4 @@ To add users and assign roles, take the following steps:
 Changes made to a user may take up to 10 minutes to take effect.
 {{< /note >}}
 
-{{< see-also >}}To automate creating users and groups using the [SCIM API](http://www.simplecloud.info), refer to the [Provision Users and Groups with SCIM]({{< relref "/nms/admin-guides/access-control/scim-provisioning.md" >}}) topic for instructions. Requires Instance Manager 2.3 or later.{{< /see-also >}}
-
-<!-- Do not remove. Keep this code at the bottom of the include -->
-<!-- DOCS-1024 -->
+{{< see-also >}}Refer to the "[Provision Users and Groups with SCIM](({{< relref "/nms/admin-guides/access-control/scim-provisioning.md" >}}))" topic for instructions on automating user and group creation using the [SCIM API](http://www.simplecloud.info).{{< /see-also >}}

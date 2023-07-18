@@ -59,7 +59,7 @@ To add tags to the configuration file, take the following steps:
 
 To add tags using the Instance Manager web interface, take the following steps:
 
-1. Open the NGINX Management Suite web interface and log in.
+1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in.
 
 1. In the left menu, select **Instances**.
 

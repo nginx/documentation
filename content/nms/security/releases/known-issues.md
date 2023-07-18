@@ -17,6 +17,22 @@ categories: ["known issues"]
 
 ---
 
+## 1.5.0
+
+### {{% icon-resolved %}} Using empty values as filters returns inaccurate results {#42941}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status         |
+|----------|----------------|
+| 42941    | Fixed in 1.6.0 |
+{{</bootstrap-table>}}
+
+#### Description
+
+Using an empty string as a key or value results in an empty dataset.
+
+---
+
 ## 1.0.0
 
 ### {{% icon-resolved %}} The API Connectivity Manager module won't load if the Security Monitoring module is enabled {#39943}
@@ -48,20 +64,6 @@ To see which version of Instance Manager you have installed, run the following c
    ```bash
    dpkg -s nms-instance-manager
    ```
-
----
-
-### {{% icon-resolved %}} The field retrieving URIs is incorrectly listed as URL. {#38377}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 38377    | Fixed in 1.2.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-The field with URI data is mapped to the heading URL. 
 
 ---
 

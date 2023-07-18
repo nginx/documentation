@@ -63,7 +63,7 @@ Complete the following prerequisites before proceeding with this guide:
 
 To create a security policy using the Instance Manager web interface:
 
-1. Go to the FQDN for your NGINX Management Suite host in a web browser and log in. Then, from the Launchpad menu, select **Instance Manager**.
+1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in. Then, from the Launchpad menu, select **Instance Manager**.
 2. On the left menu, select **App Protect**.
 3. On the *Security Policies* page, select **Create**.
 4. On the *Create Policy* page, fill out the necessary fields:
@@ -204,7 +204,7 @@ After you have pushed an updated security policy, you can [publish it](#publish-
 
 To delete a security policy using the Instance Manager web interface:
 
-1. Go to the FQDN for your NGINX Management Suite host in a web browser and log in. Then, from the Launchpad menu, select **Instance Manager**.
+1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in. Then, from the Launchpad menu, select **Instance Manager**.
 2. On the left menu, select **App Protect**.
 3. On the *Security Policies* page, select the **Actions** menu (represented by an ellipsis, **...**) for the policy you want to delete. Select **Delete** to remove the policy.
 
