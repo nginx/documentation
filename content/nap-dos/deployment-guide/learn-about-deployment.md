@@ -679,7 +679,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo apt-get install app-protect-dos
     ```
 
-    For L4 accelerated mitigation feature (Debian11/Ubuntu20.04/Ubuntu22.04):
+    For L4 accelerated mitigation feature (Debian 11 / Ubuntu 20.04 / Ubuntu 22.04):
 
     ```shell
     sudo apt-get install app-protect-dos-ebpf
