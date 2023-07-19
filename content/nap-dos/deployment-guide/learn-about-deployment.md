@@ -655,7 +655,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```
 7. Add NGINX Plus and NGINX App Protect DoS repository:
 
-    For Debian
+    For Debian:
     ```shell
     printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-plus.list
     printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/debian `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
