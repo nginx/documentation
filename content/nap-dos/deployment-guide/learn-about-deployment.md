@@ -1107,7 +1107,7 @@ COPY entrypoint.sh  /root/
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
 
-### Ubuntu 18.04(bionic)/20.04(focal)/22.04(jammy) Docker Deployment Example
+### Ubuntu 18.04 (Bionic) / 20.04 (Focal) / 22.04 (Jammy) Docker Deployment Example
 
 ```Dockerfile
 
