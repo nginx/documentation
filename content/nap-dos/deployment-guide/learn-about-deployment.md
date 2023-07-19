@@ -686,7 +686,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```
 
    {{< note >}}
-   L4 accelerated mitigation feature (Debian11/Ubuntu20.04/Ubuntu22.04):
+   L4 accelerated mitigation feature (Debian 11 / Ubuntu 20.04 / Ubuntu 22.04):
    `nginx-app-protect-dos` and `nginx` needs to run with root privileges.
    `nginx-app-protect-dos` service executes the command: `ulimit -l unlimited`.
    {{< /note >}}
