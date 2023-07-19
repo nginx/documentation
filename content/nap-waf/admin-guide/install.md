@@ -3705,6 +3705,19 @@ app-protect-attack-signatures \
 app-protect-threat-campaigns
 ```
 
+### Alpine 3.16 / Alpine 3.16
+
+```shell
+sudo apk del app-protect \
+app-protect-plugin \
+app-protect-engine \
+app-protect-graphql \
+app-protect-compiler \
+app-protect-common \
+app-protect-attack-signatures \
+app-protect-threat-campaigns
+```
+
 ## Upgrading App Protect to a specific version
 
    ### Debian 10
