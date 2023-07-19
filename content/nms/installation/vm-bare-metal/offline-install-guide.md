@@ -203,9 +203,13 @@ To upgrade Instance Manager to a newer version, take the following steps:
    sudo rpm -Uvh --nosignature /home/user/nms-instance-manager_<version>.x86_64.rpm
    ```
 
+3. Restart the NGINX Management Suite platform services:
+
    ```bash
    sudo systemctl restart nms
    ```
+   
+   NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
 
 {{%/tab%}}
 {{%tab name="Debian, Ubuntu, and Deb-Based"%}}
@@ -227,13 +231,13 @@ To upgrade Instance Manager to a newer version, take the following steps:
 {{%/tab%}}
 {{</tabs>}}
 
-1. Restart the NGINX web server:
+4. Restart the NGINX web server:
 
    ```bash
    sudo systemctl restart nginx
    ```
 
-2. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore SELinux contexts (`restorecon`) for the files and directories related to NGINX Management suite.
+5. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore SELinux contexts (`restorecon`) for the files and directories related to NGINX Management Suite.
 
 ---
 
@@ -340,13 +344,28 @@ To upgrade API Connectivity Manager to a newer version, take the following steps
 {{%/tab%}}
 {{</tabs>}}
 
-1. Restart the NGINX web server:
+
+3. Restart the NGINX Management Suite platform services:
+
+    ```bash
+    sudo systemctl restart nms
+    ```
+
+    NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
+
+4. Restart the API Connectivity Manager service:
+   
+   ```bash
+    sudo systemctl restart nms-acm
+    ```
+
+5. Restart the NGINX web server:
 
    ```bash
    sudo systemctl restart nginx
    ```
 
-2. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore SELinux contexts (`restorecon`) for the files and directories related to NGINX Management suite.
+6. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore SELinux contexts (`restorecon`) for the files and directories related to NGINX Management Suite.
 
 
 ### Set Up the Data Plane {#acm-offline-dependencies}
