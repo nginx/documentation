@@ -796,7 +796,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     app_protect_dos_monitor "example.com/";
     ```
 
-15. Enable L4 accelerated mitigation feature (Debian 11/Ubuntu20.04/Ubuntu22.04) on an `http` context in the `nginx.conf` file:
+15. Enable L4 accelerated mitigation feature (Debian 11 / Ubuntu 20.04 / Ubuntu 22.04) on an `http` context in the `nginx.conf` file:
 
     ```nginx
     app_protect_dos_accelerated_mitigation on;
