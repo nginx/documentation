@@ -19,12 +19,12 @@ categories: ["known issues"]
 
 ## 2.12.0
 
-### {{% icon-resolved %}} An "unregistered clickhouse-adapter" failure is logged every few seconds if logging is set to debug. {#43438}
+### {{% icon-bug %}} An "unregistered clickhouse-adapter" failure is logged every few seconds if logging is set to debug. {#43438}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 43438 | Fixed in Instance Manager 2.13.0   |
+| 43438 | Open   |
 {{</bootstrap-table>}}
 
 #### Description
