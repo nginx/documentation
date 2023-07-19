@@ -68,7 +68,7 @@ The NGINX App Protect DoS package has the following dependencies:
 See the NGINX Plus full list of prerequisites for more details. NGINX App Protect DoS can be installed as a module to an existing NGINX Plus installation or as a complete NGINX Plus with App Protect DoS installation in a clean environment or to a system with NGINX App Protect WAF.
 
 {{< note >}} 
-gRPC and HTTP/2 protection require active monitoring of the protected service. The directive app_protect_dos_monitor is mandatory for the attack to be detected.
+gRPC and HTTP/2 protection require active monitoring of the protected service. The directive `app_protect_dos_monitor` is mandatory for the attack to be detected.
 
 TLS fingerprint feature is not used in CentOS 7.4 and RHEL 7 / UBI 7 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
 
