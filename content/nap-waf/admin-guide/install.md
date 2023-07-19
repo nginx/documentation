@@ -3705,7 +3705,7 @@ app-protect-attack-signatures \
 app-protect-threat-campaigns
 ```
 
-### Alpine 3.16 / Alpine 3.16
+### Alpine 3.16 / Alpine 3.17
 
 ```shell
 sudo apk del app-protect \
