@@ -1067,7 +1067,7 @@ COPY entrypoint.sh  /root/
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
 
-### Debian 10 (buster)/ Debian 11 Docker Deployment Example
+### Debian 10 (Buster) / Debian 11 (Bullseye) Docker Deployment Example
 
 ```Dockerfile
 
