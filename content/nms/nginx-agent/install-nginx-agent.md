@@ -130,7 +130,7 @@ Send an API request similar to the following example to get the inventory list. 
 
 {{%tab name="WEBUI"%}}
 
-Open the NGINX Management Suite web interface and log in. The registered instance is shown in the **Instances** list.
+In a web browser, go to the FQDN for your NGINX Management Suite host and log in. The registered instance is shown in the **Instances** list.
 
   ![Registered instances](/install/registered-instance.png)
 

@@ -123,11 +123,11 @@ In the NGINX Agent source root, run the following command:
 ```
 $ mkdir build
 ```
-Copy the license and key files into the `[PATH_TO_NGINX_AGENT_SRC_ROOT]/build` directory.
+Copy the license and key files into the `[PATH_TO_NGINX_AGENT_SRC_ROOT]/build/certs` directory.
 
 ```bash
-$ cp [PATH_TO_LICENSE_CRT] build/nginx-repo.crt
-$ cp [PATH_TO_LICENSE_KEY] build/nginx-repo.key
+$ cp [PATH_TO_LICENSE_CRT] build/certs/nginx-repo.crt
+$ cp [PATH_TO_LICENSE_KEY] build/certs/nginx-repo.key
 ```
 
 From the NGINX Agent source root directory, run the following command to build the image with an Ubuntu 22.04 LTS base

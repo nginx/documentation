@@ -23,7 +23,7 @@ NGINX Management Suite Instance Manager provides events and metrics data for you
 
 To view events in the Instance Manager user interface, take the following steps:
 
-1. Open the NGINX Management Suite web interface and log in.
+1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in.
 2. In the **Platform** section, select **Events**. The **Events** overview page lists the events from the last six hours, with the most recent event listed first.
 3. You can use the filters to filter events by level and time range, and sort events by selecting the column heading.
 4. Select an event from the list to view the details.
@@ -269,7 +269,7 @@ The **Metrics Summary** page includes a highlights section of the most important
 
 To view the metrics summary for an NGINX instance, take the following steps:
 
-1. Open the NGINX Management Suite web interface and log in.
+1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in.
 2. Under **Modules**, select the **Instance Manager**.
 3. Select an instance on the **Instances** detail page.
 4. Select the **Metrics Summary** tab.

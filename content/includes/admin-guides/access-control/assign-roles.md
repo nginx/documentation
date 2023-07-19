@@ -1,6 +1,6 @@
 To assign roles to one or more user accounts, take the following steps:
 
-1. Open the NGINX Management Suite web interface and log in.
+1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in.
 2. Select the **Settings** (gear) icon in the upper-right corner.
 3. On the left navigation menu, select **Users**.
 4. Select a user in the list or select **Create** to [add a new user]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md#add-users" >}}).
