@@ -17,19 +17,36 @@ categories: ["known issues"]
 
 ---
 
-## 2.11.0
+## 2.12.0
 
+### {{% icon-bug %}} An "unregistered clickhouse-adapter" failure is logged every few seconds if logging is set to debug. {#43438}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 43438 | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+If NGINX Management Suite logging is set to debug, it may log an "unregistered clickhouse-adapter" failure every few seconds. These logs do not affect the system's performance and can safely be ignored.
+
+#### Workaround
+
+Choose a less verbose logging level, such as warning, error, or info.
+
+---
+
+## 2.11.0
 
 ### {{% icon-bug %}} Querying API endpoints for Security deployments associations may return empty UIDs for Attack-Signatures and Threat-Campaigns {#43034}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 43034    | Open   |
+| Issue ID       | Status |
+|----------------|--------|
+| 43034 | Open   |
 {{</bootstrap-table>}}
 
 #### Description
-
 When querying the following API endpoints for Security deployment associations, you may encounter results where the UID value for Attack-Signatures and Threat-Campaigns is empty. 
 
 - /api/platform/v1/security/deployments/attack-signatures/associations
@@ -48,13 +65,12 @@ To obtain the UID value for Attack-Signatures and Threat-Campaigns, you can quer
 ### {{% icon-bug %}} Publication status of instance groups may be shown as 'not available' after restarting NGINX Management Suite {#43016}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 43016    | Open   |
+| Issue ID       | Status |
+|----------------|--------|
+| 43016 | Open   |
 {{</bootstrap-table>}}
 
 #### Description
-
 After restarting the NGINX Management Suite services, the publication status of instance groups for deployments that include a security policy may show as 'not available'.
 
 #### Workaround
@@ -66,13 +82,12 @@ Redeploy a new version of the security policy or an updated 'nginx.conf'.
 ### {{% icon-bug %}} When adding a Certs RBAC permission, the "Applies to" field may display as "nginx-repo" {#43012}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 43012    | Open   |
+| Issue ID       | Status |
+|----------------|--------|
+| 43012 | Open   |
 {{</bootstrap-table>}}
 
 #### Description
-
 In certain situations, when you update a certificate or key using the NGINX Management Suite web interface, and subsequently add or edit a Certificate permission for Role-Based Access Control (RBAC) in **Settings > Roles**, you may notice that the "Applies to" name appears as "nginx-repo".
 
 #### Workaround
@@ -84,13 +99,12 @@ Use the unique identifier to assign specific permissions to a particular certifi
 ### {{% icon-bug %}} Agent 2.26 has issues when deployed in RHEL9 with SELinux {#43010}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 43010    | Open   |
+| Issue ID       | Status |
+|----------------|--------|
+| 43010 | Open   |
 {{</bootstrap-table>}}
 
 #### Description
-
 NGINX Agent 2.26, which is packaged with Instance Manager 2.11, may fail to start on RHEL 9 systems with SELinux enabled. An error similar to the following is logged: "Unable to read dynamic config".
 
 #### Workaround
@@ -102,13 +116,12 @@ Use an earlier version of the NGINX Agent. You can install the NGINX Agent from 
 ### {{% icon-bug %}} Error: "Failed to create secret" when reinstalling or upgrading NGINX Management Suite in Kubernetes {#42967}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 42967    | Open   |
+| Issue ID       | Status |
+|----------------|--------|
+| 42967 | Open   |
 {{</bootstrap-table>}}
 
 #### Description
-
 When deploying NGINX Management Suite in Kubernetes, if you have previously run the support package script and the output is still in the default location, you may encounter an error message similar to the following example when reinstalling or upgrading NGINX Management Suite:
 
 `Failed to create: Secret "sh.helm.release.v1.(release-name).v1"`
@@ -122,13 +135,12 @@ Delete or move the support package output files: `nms-hybrid/support-package/k8s
 ### {{% icon-bug %}} Updating Attack Signatures or Threat Campaigns on multiple instances simultaneously updates only one instance {#42838}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 42838    | Open   |
+| Issue ID       | Status |
+|----------------|--------|
+| 42838 | Open   |
 {{</bootstrap-table>}}
 
 #### Description
-
 When updating Attack Signatures or Threat Campaign packages on multiple instances simultaneously, only one instance may be successfully updated. An error similar to the following is logged: `security policy bundle object with given ID was not found.`
 
 #### Workaround
@@ -139,20 +151,31 @@ Update the Attack Signatures or Threat Campaigns package one instance at a time.
 
 ## 2.10.0
 
-### {{% icon-bug %}} Unable to publish configurations referencing the log bundle for Security Monitor {#42932}
+### {{% icon-resolved %}} Disk Usage in Metrics Summary shows incorrect data when multiple partitions exist on a system {#42999}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 42932    | Open   |
+| Issue ID       | Status |
+|----------------|--------|
+| 42999 | Fixed in Instance Manager 2.12.0   |
 {{</bootstrap-table>}}
 
 #### Description
+The Disk Usage metric on the Metrics Summary page averages disk usage across all the partitions instead of summing it.
 
+---
+
+### {{% icon-resolved %}} Unable to publish configurations referencing the log bundle for Security Monitor {#42932}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 42932 | Fixed in Instance Manager 2.12.0   |
+{{</bootstrap-table>}}
+
+#### Description
 Configuration deployments that reference the log bundle for Security Monitoring (app_protect_security_log "/etc/nms/secops_dashboard.tgz" syslog:server=127.0.0.1:514;), may fail with an error message similar to the following:
 
-<instance>: error while retrieving NGINX App Protect profile bundle secops_dashboard info for NAP version 4.279.0: Not Found. Please create it first.
-<br>
+<instance>: error while retrieving Nginx App Protect profile bundle secops_dashboard info for NAP version 4.279.0: Not Found. Please create it first
 
 #### Workaround
 
@@ -167,71 +190,37 @@ sudo systemctl restart nms
 ### {{% icon-resolved %}} Valid licenses incorrectly identified as invalid {#42598}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status          |
-|----------|-----------------|
-| 42598    | Fixed in 2.10.1 |
+| Issue ID       | Status |
+|----------------|--------|
+| 42598 | Fixed in Instance Manager 2.10.1   |
 {{</bootstrap-table>}}
 
 #### Description
-
 Sometimes, valid licenses for NGINX Management Suite are incorrectly identified as invalid when uploaded. As a result, you may not be able to access features that require a valid license.
-
----
-
-###  {{% icon-resolved %}} Certificate updates allow for multiples certs to share the same serial number {#42429}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status          |
-|----------|-----------------|
-| 42429    | Fixed in 2.11.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-It is possible to update an existing certificate's serial number to one already in use. This incorrectly changes the cert (matching the serial number) details to a new name.
-
----
-
-###  {{% icon-resolved %}} Certificate file is not updated automatically under certain conditions {#42425}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status          |
-|----------|-----------------|
-| 42425    | Fixed in 2.11.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-Certificate file is not updated automatically when a config change is pushed to an offline instance after it comes back online.
 
 ---
 
 ### {{% icon-resolved %}} The Metrics module is interrupted during installation on Red Hat 9 {#42219}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status          |
-|----------|-----------------|
-| 42219    | Fixed in 2.11.0 |
+| Issue ID       | Status |
+|----------------|--------|
+| 42219 | Fixed in Instance Manager 2.11.0   |
 {{</bootstrap-table>}}
 
 #### Description
-
 When installing the Metrics module on Red Hat 9, the following error will prevent it from finishing:
 
-```text
 warning: Signature not supported. Hash algorithm SHA1 not available.
 error: /tmp/nginx_signing.key: key 1 import failed.
 
 Failed to import nginx signing key. exiting.
-```
 
 #### Workaround
 
 Before installation, run the following command:
 
-```text
 sudo update-crypto-policies --set DEFAULT:SHA1
-```
 
 After installation, we recommend you return the default to a more secure algorithm such as SHA256.
 
@@ -240,15 +229,13 @@ After installation, we recommend you return the default to a more secure algorit
 ### {{% icon-bug %}} When publishing a new version of Threat Campaign, the last two versions in the list cannot be selected {#42217}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 42217    | Open   |
+| Issue ID       | Status |
+|----------------|--------|
+| 42217 | Open   |
 {{</bootstrap-table>}}
 
 #### Description
-
 The list of Threat Campaigns will disappear when scrolling down, preventing the selection of the oldest versions.
-<br>
 
 #### Workaround
 
@@ -259,52 +246,45 @@ Threat Campaign versions can be published with the API using the route: `api/pla
 ### {{% icon-resolved %}} Duplicate Certificate and Key published for managed certificates {#42182}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status          |
-|----------|-----------------|
-| 42182    | Fixed in 2.11.0 |
+| Issue ID       | Status |
+|----------------|--------|
+| 42182 | Fixed in Instance Manager 2.11.0   |
 {{</bootstrap-table>}}
 
 #### Description
-
-When deploying a configuration with a certificate and key handled by NGINX Management Suite to a custom file path, it may deploy a duplicate copy of the certificate and key to the default `/etc/nginx/` path. When deleting the certificate and key, it will only delete the certificate and key in the custom path, leaving the duplicate copy.
-<br>
+When deploying a configuration with a certificate and key handled by NGINX Management Suite to a custom file path, it may deploy a duplicate copy of the certificate and key to the default /etc/nginx/ path. When deleting the certificate and key, it will only delete the certificate and key in the custom path, leaving the duplicate copy.
 
 #### Workaround
 
-Manually delete the certificate and key from the `/etc/nginx/` path.
+Manually delete the certificate and key from the /etc/nginx/ path.
 
 ---
 
 ### {{% icon-bug %}} When upgrading to Instance Manager 2.10, there may be warnings from the Ingestion service {#42133}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 42133    | Open   |
+| Issue ID       | Status |
+|----------------|--------|
+| 42133 | Open   |
 {{</bootstrap-table>}}
 
 #### Description
+When upgrading to 2.10 you may see a warning like the below message for the NGINX Management Suite Ingestion service. It can be safely ignored.
 
-When upgrading to 2.10.0 you may see a warning like the below message for the NGINX Management Suite Ingestion service. It can be safely ignored.
-
-```text
-[WARN] #011/usr/bin/nms-ingestion   #011start/start.go:497  #011error checking migrations Mismatched migration version for ClickHouse, expected 39 migrations to be applied, currently have only 44 migrations applied.
-```
+[WARN] #011/usr/bin/nms-ingestion               #011start/start.go:497                 #011error checking migrations Mismatched migration version for ClickHouse, expected 39 migrations to be applied, currently have only 44 migrations applied.
 
 ---
 
-### {{% icon-bug %}} When upgrading to Instance Manager 2.10.0, the API does not return lastDeploymentDetails for existing configurations {#42119}
+### {{% icon-bug %}} When upgrading to Instance Manager 2.10, the API does not return lastDeploymentDetails for existing configurations {#42119}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 42119    | Open   |
+| Issue ID       | Status |
+|----------------|--------|
+| 42119 | Open   |
 {{</bootstrap-table>}}
 
 #### Description
-
-When upgrading to Instance Manager 2.10.0, the API does not return `lastDeploymentDetails` for existing configuration blocks. This is then reflected as "Invalid Date" in the web interface (See [42108](#42108)).
-<br>
+After upgrading to Instance Manager 2.10, the API does not return lastDeploymentDetails for existing configuration blocks. This is then reflected as "Invalid Date" in the UI (See #42108).
 
 #### Workaround
 
@@ -312,36 +292,46 @@ Republish the configuration for the affected configuration blocks.
 
 ---
 
-### {{% icon-bug %}} When upgrading to Instance Manager 2.10.0, the publish status on App Security pages shows "Invalid Date" {#42108}
+### {{% icon-bug %}} When upgrading to Instance Manager 2.10, the publish status on App Security pages shows "Invalid Date" {#42108}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 42108    | Open   |
+| Issue ID       | Status |
+|----------------|--------|
+| 42108 | Open   |
 {{</bootstrap-table>}}
 
 #### Description
+After upgrading to Instance Manager 2.10, the publish status on App Security pages of Policies, Attack Signatures, and Threat Campaign shows "Invalid Date" until new configurations are published to the instance or instance group. 
 
-After upgrading to Instance Manager 2.10.0, the publish status on App Security pages of Policies, Attack Signatures, and Threat Campaign shows "Invalid Date" until new configurations are published to the instance or instance group. 
+---
+
+### {{% icon-resolved %}} Filtering Analytics data with values that have double backslashes (`\\`) causes failures {#42105}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 42105 | Fixed in Instance Manager 2.12.0   |
+{{</bootstrap-table>}}
+
+#### Description
+When you apply a filter with double backslashes (`\\`) on any of the Analytics endpoints, such as metrics, events, or the security dashboard, the API fails to parse and apply the filter correctly. 
 
 ---
 
 ### {{% icon-bug %}} Configuration changes for NGINX Agent take longer than expected. {#41257}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 41257    | Open   |
+| Issue ID       | Status |
+|----------------|--------|
+| 41257 | Open   |
 {{</bootstrap-table>}}
 
 #### Description
-
-NGINX Agent introduced the `config_reload_monitoring_period` parameter under `nginx` to define the duration which Agent will monitor the logs for relevant errors and warnings after a configuration change. As a result, configuration changes will take at least one second to appear.
-<br>
+NGINX Agent introduced the config_reload_monitoring_period parameter under nginx to define the duration which Agent will monitor the logs for relevant errors and warnings after a configuration change. As a result, configuration changes will take at least one second to appear.
 
 #### Workaround
 
-Adjust the `config_reload_monitoring_period` parameter to a value that suits your workflow. 
+Adjust the config_reload_monitoring_period parameter to a value that suits your workflow. 
 
 ---
 
