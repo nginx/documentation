@@ -19,16 +19,68 @@ categories: ["known issues"]
 
 ## 2.12.0
 
-### {{% icon-bug %}} An "unregistered clickhouse-adapter" failure is logged every few seconds if logging is set to debug. {#43438}
+
+
+### {{% icon-bug %}} Upgrading to 2.12 disables telemetry {#43606}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 43438 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 43606    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
+
+Upgrading to Instance Manager 2.12 will stop NGINX Management Suite from transmitting telemetry.
+<br>
+
+#### Workaround
+
+Toggle the telemetry setting off and on. You can do this by selecting **Settings > License** from the NGINX Management Suite web interface.
+
+---
+
+
+
+
+
+### {{% icon-bug %}} A JWT license for an expired subscription cannot be terminated from the web interface {#43580}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status |
+|----------|--------|
+| 43580    | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+When a JWT license from an expired subscription is uploaded to NGINX Management Suite, it cannot be replaced or terminated from the web interface.
+<br>
+
+#### Workaround
+
+Upload a valid JWT or S/MIME license file using the Platform API. 
+
+More information is available in the Platform API reference guide, under the License endpoint. In a web browser, go to the FQDN for your NGINX Management Suite host and log in. Then, from the Launchpad menu, select **API Documentation**.
+
+---
+
+
+
+
+
+### {{% icon-bug %}} An "unregistered clickhouse-adapter" failure is logged every few seconds if logging is set to debug. {#43438}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status |
+|----------|--------|
+| 43438    | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
 If NGINX Management Suite logging is set to debug, it may log an "unregistered clickhouse-adapter" failure every few seconds. These logs do not affect the system's performance and can safely be ignored.
+<br>
 
 #### Workaround
 
@@ -36,14 +88,15 @@ Choose a less verbose logging level, such as warning, error, or info.
 
 ---
 
+
 ## 2.11.0
 
 ### {{% icon-bug %}} Querying API endpoints for Security deployments associations may return empty UIDs for Attack-Signatures and Threat-Campaigns {#43034}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 43034 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 43034    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
@@ -65,9 +118,9 @@ To obtain the UID value for Attack-Signatures and Threat-Campaigns, you can quer
 ### {{% icon-bug %}} Publication status of instance groups may be shown as 'not available' after restarting NGINX Management Suite {#43016}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 43016 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 43016    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
@@ -82,9 +135,9 @@ Redeploy a new version of the security policy or an updated 'nginx.conf'.
 ### {{% icon-bug %}} When adding a Certs RBAC permission, the "Applies to" field may display as "nginx-repo" {#43012}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 43012 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 43012    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
@@ -99,9 +152,9 @@ Use the unique identifier to assign specific permissions to a particular certifi
 ### {{% icon-bug %}} Agent 2.26 has issues when deployed in RHEL9 with SELinux {#43010}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 43010 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 43010    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
@@ -116,9 +169,9 @@ Use an earlier version of the NGINX Agent. You can install the NGINX Agent from 
 ### {{% icon-bug %}} Error: "Failed to create secret" when reinstalling or upgrading NGINX Management Suite in Kubernetes {#42967}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 42967 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 42967    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
@@ -135,9 +188,9 @@ Delete or move the support package output files: `nms-hybrid/support-package/k8s
 ### {{% icon-bug %}} Updating Attack Signatures or Threat Campaigns on multiple instances simultaneously updates only one instance {#42838}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 42838 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 42838    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
@@ -154,9 +207,9 @@ Update the Attack Signatures or Threat Campaigns package one instance at a time.
 ### {{% icon-resolved %}} Disk Usage in Metrics Summary shows incorrect data when multiple partitions exist on a system {#42999}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 42999 | Fixed in Instance Manager 2.12.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 42999    | Fixed in Instance Manager 2.12.0 |
 {{</bootstrap-table>}}
 
 #### Description
@@ -167,9 +220,9 @@ The Disk Usage metric on the Metrics Summary page averages disk usage across all
 ### {{% icon-resolved %}} Unable to publish configurations referencing the log bundle for Security Monitor {#42932}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 42932 | Fixed in Instance Manager 2.12.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 42932    | Fixed in Instance Manager 2.12.0 |
 {{</bootstrap-table>}}
 
 #### Description
@@ -190,9 +243,9 @@ sudo systemctl restart nms
 ### {{% icon-resolved %}} Valid licenses incorrectly identified as invalid {#42598}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 42598 | Fixed in Instance Manager 2.10.1   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 42598    | Fixed in Instance Manager 2.10.1 |
 {{</bootstrap-table>}}
 
 #### Description
@@ -203,9 +256,9 @@ Sometimes, valid licenses for NGINX Management Suite are incorrectly identified 
 ### {{% icon-resolved %}} The Metrics module is interrupted during installation on Red Hat 9 {#42219}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 42219 | Fixed in Instance Manager 2.11.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 42219    | Fixed in Instance Manager 2.11.0 |
 {{</bootstrap-table>}}
 
 #### Description
@@ -229,9 +282,9 @@ After installation, we recommend you return the default to a more secure algorit
 ### {{% icon-bug %}} When publishing a new version of Threat Campaign, the last two versions in the list cannot be selected {#42217}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 42217 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 42217    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
@@ -246,9 +299,9 @@ Threat Campaign versions can be published with the API using the route: `api/pla
 ### {{% icon-resolved %}} Duplicate Certificate and Key published for managed certificates {#42182}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 42182 | Fixed in Instance Manager 2.11.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 42182    | Fixed in Instance Manager 2.11.0 |
 {{</bootstrap-table>}}
 
 #### Description
@@ -263,9 +316,9 @@ Manually delete the certificate and key from the /etc/nginx/ path.
 ### {{% icon-bug %}} When upgrading to Instance Manager 2.10, there may be warnings from the Ingestion service {#42133}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 42133 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 42133    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
@@ -278,9 +331,9 @@ When upgrading to 2.10 you may see a warning like the below message for the NGIN
 ### {{% icon-bug %}} When upgrading to Instance Manager 2.10, the API does not return lastDeploymentDetails for existing configurations {#42119}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 42119 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 42119    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
@@ -295,9 +348,9 @@ Republish the configuration for the affected configuration blocks.
 ### {{% icon-bug %}} When upgrading to Instance Manager 2.10, the publish status on App Security pages shows "Invalid Date" {#42108}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 42108 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 42108    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
@@ -308,9 +361,9 @@ After upgrading to Instance Manager 2.10, the publish status on App Security pag
 ### {{% icon-resolved %}} Filtering Analytics data with values that have double backslashes (`\\`) causes failures {#42105}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 42105 | Fixed in Instance Manager 2.12.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 42105    | Fixed in Instance Manager 2.12.0 |
 {{</bootstrap-table>}}
 
 #### Description
@@ -321,9 +374,9 @@ When you apply a filter with double backslashes (`\\`) on any of the Analytics e
 ### {{% icon-bug %}} Configuration changes for NGINX Agent take longer than expected. {#41257}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 41257 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 41257    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
