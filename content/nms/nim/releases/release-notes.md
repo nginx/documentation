@@ -19,7 +19,8 @@ aliases:
 {{<rn-styles>}}
 
 ## 2.12.0
-July 20, 2023
+
+July 24, 2023
 
 ### Upgrade Paths {#2-11-0-upgrade-paths}
 

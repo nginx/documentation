@@ -31,7 +31,7 @@ doctypes: ["reference"]
 
 ## 1.6.0
 
-June 20, 2023
+July 24, 2023
 
 ### Upgrade Paths
 
