@@ -1,14 +1,14 @@
 ---
-title: "Deploy images using Terraform"
+title: "Build and Deploy images"
 date: 2023-07-20T14:44:12.320Z
 # Change draft status to false to publish doc.
 draft: false
 # Description
 # Add a short description (150 chars) for the doc. Include keywords for SEO.
 # The description text appears in search results and at the top of the doc.
-description: "The guide provides step-by-step instructions to deploy NGINX Management Suite images with Hashicorp Terraform on various cloud providers."
+description: "The guide provides step-by-step instructions to build and deploy NGINX Management Suite images on various cloud providers."
 # Assign weights in increments of 100
-weight: 400
+weight: 300
 toc: true
 tags: ["docs"]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
@@ -27,4 +27,4 @@ authors: []
 
 {{<custom-styles>}}
 
-## Overview
+Placeholder

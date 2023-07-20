@@ -58,4 +58,4 @@ The IaC project aims to setup both control-plane and data-plane in one solution.
 
 {{< img src="img/iac/iac-process.svg" caption="Figure 1. NGINX Management Suite IaC Process" alt="A diagram showing the architecture of the NGINX Management Suites Infrastructure as Code build and deploy process.">}}
 
-[Learn More]({{< relref "./build.md" >}})
+[Learn More]({{< relref "./build-and-deploy.md" >}})

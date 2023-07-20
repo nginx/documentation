@@ -26,5 +26,3 @@ authors: []
 ---
 
 {{<custom-styles>}}
-
-## Overview
