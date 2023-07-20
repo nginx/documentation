@@ -170,7 +170,7 @@ The following sections explain how to configure the NGINX Agent using configurat
 
 The configuration files for the NGINX Agent are `/etc/nginx-agent/nginx-agent.conf` and `/var/lib/nginx-agent/agent-dynamic.conf`. These files have comments at the top indicating their purpose.
 
-{{<note>}}If you're running Instance Manager 2.10.1 or earlier or NGINX Agent 2.25.1 or earlier, the `agent-dynamic.conf` file is located in `/etc/nginx-agent`.{{</note>}}
+{{<note>}}If you're running Instance Manager 2.10.1 or earlier or NGINX Agent 2.25.1 or earlier, the `agent-dynamic.conf` file is located in `/etc/nginx-agent/`.{{</note>}}
 
 Examples of the configuration files are provided below:
 
