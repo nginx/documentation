@@ -43,8 +43,8 @@ Take the steps in this section if you would like to deny or allow access to your
 {{<tabs name="add_tls_listener">}}
     {{%tab name="UI"%}}
 
-1. In the API Connectivity Manager user interface, go to **Services > \<your workspace\>**, where "your workspace" is the workspace that contains the API Gateway or Dev Portal.
-1. Select **Edit Advanced Config** from the **Actions** menu for the desired API Gateway or Dev Portal.
+1. In the API Connectivity Manager user interface, go to **Services > \<your workspace\>**, where "your workspace" is the workspace that contains the API Proxy.
+1. Select **Edit Proxy** from the Actions menu for the desired API Proxy.
 1. On the **Policies** tab, select **Add Policy** from the **Actions** menu.
 1. Provide the desired **Allowed IP Addresses** and/or **Denied IP Addresses**. Valid values include IPv4, IPv6, and CIDR blocks. To allow or deny all, use the * symbol. 
 
