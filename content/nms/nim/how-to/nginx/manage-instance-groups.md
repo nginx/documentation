@@ -82,6 +82,8 @@ You can assign NGINX instances to instance groups in the following ways:
 
 You can easily add instances to a default instance group that you specify. To do so, [install the NGINX Agent on an instance]({{< relref "/nms/nginx-agent/install-nginx-agent.md" >}}), then edit the `/var/lib/nginx-agent/agent-dynamic.conf` file as described below.
 
+{{<note>}}If you're running Instance Manager 2.10.1 or earlier or NGINX Agent 2.25.1 or earlier, the `agent-dynamic.conf` file is located in `/etc/nginx-agent`.{{</note>}}
+
 {{< important >}}If the specified instance group doesn't already exist, the NGINX Agent installer will create it, using the current instance's config file as the group's config file. This means that all instances added to the group later will use this config as well. If you're using a script to add instances, you should consider carefully which instance to run the script on first.{{< /important >}}
 
 1. Open a secure shell (SSH) connection to the NGINX instance and log in.
