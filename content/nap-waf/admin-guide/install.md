@@ -138,7 +138,7 @@ If a user other than **nginx** is to be used, note the following:
 
 ## CentOS 7.4+ Installation
 
-1. If you already have NGINX packages in your system, back up your configs and logs:
+1. If you already have NGINX packages on your system, back up your configs and logs:
 
     ```shell
     sudo cp -a /etc/nginx /etc/nginx-plus-backup
@@ -766,7 +766,7 @@ If a user other than **nginx** is to be used, note the following:
     deb https://pkgs.nginx.com/app-protect/Rxx/debian ...
     ```
 
-    where xx is a release number.
+    where `xx` is a release number.
 
     For example, to install the most recent version of the NGINX App Protect WAF for the NGINX Plus R23 make sure of the following:
 
@@ -920,7 +920,7 @@ If a user other than **nginx** is to be used, note the following:
     deb https://pkgs.nginx.com/app-protect/Rxx/debian ...
     ```
 
-    where xx is a release number.
+    where `xx` is a release number.
 
     For example, to install app-protect version 24 make sure of the following:
 
@@ -1078,7 +1078,7 @@ If a user other than **nginx** is to be used, note the following:
     deb https://pkgs.nginx.com/app-protect/Rxx/debian ...
     ```
 
-    where xx is a release number.
+    where `xx` is a release number.
 
     For example, to install app-protect version 27 make sure of the following:
 
@@ -1228,7 +1228,7 @@ If a user other than **nginx** is to be used, note the following:
     deb https://pkgs.nginx.com/app-protect/Rxx/ubuntu ...
     ```
 
-    where xx is a release number.
+    where `xx` is a release number.
 
     For example, to install app-protect version 23 make sure of the following:
 
@@ -1373,7 +1373,7 @@ If a user other than **nginx** is to be used, note the following:
     deb https://pkgs.nginx.com/app-protect/Rxx/ubuntu ...
     ```
 
-    where xx is a release number.
+    where `xx` is a release number.
 
     For example, to install app-protect version 23 make sure of the following:
 
@@ -1466,19 +1466,19 @@ If a user other than **nginx** is to be used, note the following:
     sed "/plus-pkgs.nginx.com/d" /etc/apk/repositories
     ```
 
-6. Add NGINX Plus repository to `/etc/apk/repositories` file:
+6. Add the NGINX Plus repository to `/etc/apk/repositories` file:
 
     ```shell
     printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
     ```
 
-7. Add NGINX App Protect WAF repository to `/etc/apk/repositories` file:
+7. Add the NGINX App Protect WAF repository to `/etc/apk/repositories` file:
 
     ```shell
     printf "https://pkgs.nginx.com/app-protect/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
     ```
 
-8. It is recommended to remove all community-supported NGINX packages. Note that all NGINX modules will be removed as well.
+8. We recommend removing all community-supported NGINX packages. Note that all NGINX modules will be removed as well.
 
     ```shell
     sudo apk del -r app-protect
@@ -1499,14 +1499,14 @@ If a user other than **nginx** is to be used, note the following:
     sudo apk add nginx-plus app-protect
     ```
 
-    Alternatively, to install a specific version you should modify the repository URL in the `/etc/apk/repositories` file in the following way:
+    Alternatively, to install a specific version, you should modify the repository URL in the `/etc/apk/repositories` file in the following way:
 
     ```shell
     https://pkgs.nginx.com/plus/Rxx/alpine/v3.10/main
     https://pkgs.nginx.com/app-protect/Rxx/alpine/v3.10/main
     ```
     
-    where xx is a release number.
+    where `xx` is a release number.
 
     For example, to install NGINX App Protect WAF for NGINX Plus R23 make sure of the following:
 
@@ -1585,13 +1585,13 @@ If a user other than **nginx** is to be used, note the following:
     sed "/plus-pkgs.nginx.com/d" /etc/apk/repositories
     ```
 
-6. Add NGINX Plus repository to `/etc/apk/repositories` file:
+6. Add the NGINX Plus repository to `/etc/apk/repositories` file:
 
     ```shell
     printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
     ```
 
-7. Add NGINX App Protect WAF repository to `/etc/apk/repositories` file:
+7. Add the NGINX App Protect WAF repository to `/etc/apk/repositories` file:
 
     ```shell
     printf "https://pkgs.nginx.com/app-protect/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
@@ -1599,7 +1599,7 @@ If a user other than **nginx** is to be used, note the following:
     printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
     ```
 
-8. It is recommended to remove all community-supported NGINX packages. Note that all NGINX modules will be removed as well.
+8. We recommend removing all community-supported NGINX packages. Note that all NGINX modules will be removed as well.
 
     ```shell
     sudo apk del -r app-protect
@@ -1613,16 +1613,16 @@ If a user other than **nginx** is to be used, note the following:
     sudo apk add app-protect
     ```
 
-    Alternatively, to install a specific version you should modify the repository URL in the `/etc/apk/repositories` file in the following way:
+    Alternatively, to install a specific version, you should modify the repository URL in the `/etc/apk/repositories` file in the following way:
 
     ```shell
     https://pkgs.nginx.com/plus/Rxx/alpine/v3.16/main
     https://pkgs.nginx.com/app-protect/Rxx/alpine/v3.16/main
     ```
     
-    where xx is a release number.
+    where `xx` is a release number.
 
-    For example, to install NGINX App Protect WAF for NGINX Plus R28 make sure of the following:
+    For example, to install NGINX App Protect WAF for NGINX Plus R28, make sure of the following:
 
     ```shell
     cat /etc/apk/repositories
@@ -1668,7 +1668,7 @@ If a user other than **nginx** is to be used, note the following:
     app_protect_enable on;
     ```
 
-13. Start the App Protect service and NGINX service:
+13. Start the App Protect and NGINX services:
 
     ```
     sudo service nginx-app-protect start
@@ -1706,13 +1706,13 @@ If a user other than **nginx** is to be used, note the following:
     sed "/plus-pkgs.nginx.com/d" /etc/apk/repositories
     ```
 
-6. Add NGINX Plus repository to `/etc/apk/repositories` file:
+6. Add the NGINX Plus repository to `/etc/apk/repositories` file:
 
     ```shell
     printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
     ```
 
-7. Add NGINX App Protect WAF repository to `/etc/apk/repositories` file:
+7. Add the NGINX App Protect WAF repository to `/etc/apk/repositories` file:
 
     ```shell
     printf "https://pkgs.nginx.com/app-protect/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
@@ -1720,7 +1720,7 @@ If a user other than **nginx** is to be used, note the following:
     printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
     ```
 
-8. It is recommended to remove all community-supported NGINX packages. Note that all NGINX modules will be removed as well.
+8. We recommend removing all community-supported NGINX packages. Note that all NGINX modules will be removed as well.
 
     ```shell
     sudo apk del -r app-protect
@@ -1734,16 +1734,16 @@ If a user other than **nginx** is to be used, note the following:
     sudo apk add app-protect
     ```
 
-    Alternatively, to install a specific version you should modify the repository URL in the `/etc/apk/repositories` file in the following way:
+    Alternatively, to install a specific version, you should modify the repository URL in the `/etc/apk/repositories` file in the following way:
 
     ```shell
     https://pkgs.nginx.com/plus/Rxx/alpine/v3.17/main
     https://pkgs.nginx.com/app-protect/Rxx/alpine/v3.17/main
     ```
     
-    where xx is a release number.
+    where `xx` is a release number.
 
-    For example, to install NGINX App Protect WAF for NGINX Plus R28 make sure of the following:
+    For example, to install NGINX App Protect WAF for NGINX Plus R28, make sure of the following:
 
     ```shell
     cat /etc/apk/repositories
@@ -1789,7 +1789,7 @@ If a user other than **nginx** is to be used, note the following:
     app_protect_enable on;
     ```
 
-13. Start the App Protect service and NGINX service:
+13. Start the App Protect and NGINX services:
 
     ```
     sudo service nginx-app-protect start
@@ -2312,7 +2312,7 @@ RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys
 # Add NGINX Plus repository:
 RUN printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
 
-# Add NGINX App-protect repository:
+# Add NGINX App Protect repository:
 RUN printf "https://pkgs.nginx.com/app-protect/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
 
 
@@ -2345,7 +2345,7 @@ RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys
 # Add NGINX Plus repository:
 RUN printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
 
-# Add NGINX App-protect repository:
+# Add NGINX App Protect repository:
 RUN printf "https://pkgs.nginx.com/app-protect/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories \
  && printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
 
@@ -2378,7 +2378,7 @@ RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys
 # Add NGINX Plus repository:
 RUN printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
 
-# Add NGINX App-protect repository:
+# Add NGINX App Protect repository:
 RUN printf "https://pkgs.nginx.com/app-protect/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories \
  && printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
 
@@ -3014,7 +3014,7 @@ After having updated the Attack Signature package you have to reload the configu
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-7.repo
     ```
 
-2.  Update attack signatures:
+2.  Update the attack signatures:
 
     ```shell
     sudo yum install app-protect-attack-signatures
@@ -3046,7 +3046,7 @@ After having updated the Attack Signature package you have to reload the configu
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
     ```
 
-2.  Update attack signatures:
+2.  Update the attack signatures:
 
     ```shell
     sudo yum install app-protect-attack-signatures
@@ -3090,7 +3090,7 @@ After having updated the Attack Signature package you have to reload the configu
     sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
     ```
 
-4. Update attack signatures:
+4. Update the attack signatures:
 
     ```shell
     sudo apt-get update && sudo apt-get install app-protect-attack-signatures
@@ -3128,7 +3128,7 @@ After having updated the Attack Signature package you have to reload the configu
     sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
     ```
 
-4. Update attack signatures:
+4. Update the attack signatures:
 
     ```shell
     sudo apt-get update && sudo apt-get install app-protect-attack-signatures
@@ -3166,7 +3166,7 @@ After having updated the Attack Signature package you have to reload the configu
     sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
     ```
 
-4. Update attack signatures:
+4. Update the attack signatures:
 
     ```shell
     sudo apt-get update && sudo apt-get install app-protect-attack-signatures
@@ -3204,7 +3204,7 @@ After having updated the Attack Signature package you have to reload the configu
     sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
     ```
 
-4. Update attack signatures:
+4. Update the attack signatures:
 
     ```shell
     sudo apt-get update && sudo apt-get install app-protect-attack-signatures
@@ -3236,7 +3236,7 @@ After having updated the Attack Signature package you have to reload the configu
     sudo wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
     ```
 
-3. Update attack signatures:
+3. Update the attack signatures:
 
     ```shell
     sudo apk update && sudo apk add app-protect-attack-signatures
@@ -3256,7 +3256,7 @@ After having updated the Attack Signature package you have to reload the configu
 
 ### Alpine 3.16
 
-1. If not already configured, add NGINX App Protect WAF Security Updates repository:
+1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
     ```shell
     printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
@@ -3268,7 +3268,7 @@ After having updated the Attack Signature package you have to reload the configu
     sudo wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
     ```
 
-3. Update attack signatures:
+3. Update the attack signatures:
 
     To install the latest version, first update the packages:
 
@@ -3289,7 +3289,7 @@ After having updated the Attack Signature package you have to reload the configu
 
 ### Alpine 3.17
 
-1. If not already configured, add NGINX App Protect WAF Security Updates repository:
+1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
     ```shell
     printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
@@ -3301,7 +3301,7 @@ After having updated the Attack Signature package you have to reload the configu
     sudo wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
     ```
 
-3. Update attack signatures:
+3. Update the attack signatures:
 
     To install the latest version, first update the packages:
 
@@ -3408,7 +3408,7 @@ Example: app-protect-threat-campaigns-2022.07.21
 
 ### Debian 9
 
-1. If not already configured, add NGINX App Protect WAF Security Updates repository:
+1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
     ```shell
     printf "deb https://pkgs.nginx.com/app-protect-security-updates/debian `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
@@ -3446,7 +3446,7 @@ Example: app-protect-threat-campaigns-2022.07.21
 
 ### Debian 10
 
-1. If not already configured, add NGINX App Protect WAF Security Updates repository:
+1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
     ```shell
     printf "deb https://pkgs.nginx.com/app-protect-security-updates/debian `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
@@ -3484,7 +3484,7 @@ Example: app-protect-threat-campaigns-2022.07.21
 
 ### Ubuntu 18.04
 
-1. If not already configured, add NGINX App Protect WAF Security Updates repository:
+1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
     ```shell
     printf "deb https://pkgs.nginx.com/app-protect-security-updates/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
@@ -3522,7 +3522,7 @@ Example: app-protect-threat-campaigns-2022.07.21
 
 ### Ubuntu 20.04
 
-1. If not already configured, add NGINX App Protect WAF Security Updates repository:
+1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
     ```shell
     printf "deb https://pkgs.nginx.com/app-protect-security-updates/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
@@ -3560,7 +3560,7 @@ Example: app-protect-threat-campaigns-2022.07.21
 
 ### Alpine 3.10
 
-1. If not already configured, add NGINX App Protect WAF Security Updates repository:
+1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
     ```shell
     printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
@@ -3592,7 +3592,7 @@ Example: app-protect-threat-campaigns-2022.07.21
 
 ### Alpine 3.16
 
-1. If not already configured, add NGINX App Protect WAF Security Updates repository:
+1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
     ```shell
     printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
@@ -3625,7 +3625,7 @@ Example: app-protect-threat-campaigns-2022.07.21
 
 ### Alpine 3.17
 
-1. If not already configured, add NGINX App Protect WAF Security Updates repository:
+1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
     ```shell
     printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
