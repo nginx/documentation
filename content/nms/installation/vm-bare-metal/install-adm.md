@@ -150,7 +150,13 @@ A valid license is required in order to use App Delivery Manager.
    sudo systemctl restart nginx
    ```
 
-4. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Management suite.
+4. Restart the App Delivery Manager service:
+
+   ```bash
+   sudo systemctl restart nms-adm
+   ```
+
+5. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Management suite.
 
 ---
 

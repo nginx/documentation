@@ -65,6 +65,7 @@ The following table shows the NGINX App Protect WAF Release version and its corr
 {{<bootstrap-table "table table-striped table-bordered">}}
 | NGINX App Protect WAF Release version | WAF Compiler               |
 |---------------------------------------|----------------------------|
+| NGINX App Protect WAF 4.4.0           | nms-nap-compiler-v4.402.0  |
 | NGINX App Protect WAF 4.3.0           | nms-nap-compiler-v4.279.0  |
 | NGINX App Protect WAF 4.2.0           | nms-nap-compiler-v4.218.0  |
 | NGINX App Protect WAF 4.1.0           | nms-nap-compiler-v4.100.1  |
@@ -89,13 +90,13 @@ The following table shows the NGINX App Protect WAF Release version and its corr
 Install the WAF compiler, then restart the `nms-integrations` service:
 
 ```bash
-sudo apt-get install nms-nap-compiler-v4.279.0
+sudo apt-get install nms-nap-compiler-v4.402.0
 ```
 
 {{<note>}}
 - If you want to have more than one version of the `nms-nap-compiler` installed on your system at once, you'll need to append `-o Dpkg::Options::="--force-overwrite"` to the `nms-nap-compiler` installation commands after your initial `nms-nap-compiler` installation. For example, the installation command would look like this:
 ```bash
-sudo apt-get install nms-nap-compiler-v4.279.0 -o Dpkg::Options::="--force-overwrite"
+sudo apt-get install nms-nap-compiler-v4.402.0 -o Dpkg::Options::="--force-overwrite"
 ```
 
 {{</note>}}
@@ -107,7 +108,7 @@ Download the file dependencies.repo to `/etc/yum.repos.d`, enable the `codeready
 ```bash
 sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
 sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
-sudo yum install nms-nap-compiler-v4.279.0
+sudo yum install nms-nap-compiler-v4.402.0
 ```
 
 ### RHEL 7.4 or later; CentOS
@@ -116,7 +117,19 @@ Download the file `dependencies.repo` to `/etc/yum.repos.d`, enable the RHEL 7 s
 ```bash
 sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
 sudo yum-config-manager --enable rhui-REGION-rhel-server-optional rhui-REGION-rhel-server-releases rhel-7-server-optional-rpms
-sudo yum install nms-nap-compiler-v4.279.0
+sudo yum install nms-nap-compiler-v4.402.0
+```
+
+### Amazon Linux 2 LTS
+Download the files `nms-amazon2.repo` and `app-protect-7.repo` to `/etc/yum.repos.d`, enable the `Extra Packages for Enterprise (EPEL)` repository, and install the WAF compiler package:
+
+```bash
+sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nms-amazon2.repo
+sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-7.repo
+sudo amazon-linux-extras enable epel
+sudo yum clean metadata
+sudo yum install epel-release
+sudo yum install nms-nap-compiler-v4.402.0
 ```
 
 ### Oracle Linux 7.4 or later
@@ -125,7 +138,7 @@ Download the file `dependencies.repo` to `/etc/yum.repos.d`, enable the `ol8_cod
 ```bash
 sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
 sudo yum-config-manager --enable ol8_codeready_builder
-sudo yum install nms-nap-compiler-v4.279.0
+sudo yum install nms-nap-compiler-v4.402.0
 ```
 
 ### Download from MyF5
@@ -165,12 +178,14 @@ sudo apt-get install -f /path/to/nms-nap-compiler-<version>_focal_amd64.deb -o D
 
 ### Automatically Download and Install New WAF Compiler
 
-After a version of the NGINX App Protect WAF compiler has been successfully installed manually on Instance Manager, a new WAF compiler will be downloaded and installed automatically if Instance Manager determines a new WAF compiler is required.  A new WAF compiler is required when the data plane's NGINX App Protect WAF version has been [upgraded](#upgrade-nap-waf-version-on-managed-instances) or a new data plane with a new NGINX App Protect WAF version has been added. The user must [upload their NGINX App Protect WAF certificate and key](#upload-nginx-app-protect-waf-certificate-and-key) in order for NGINX Instance Manager to automatically download and install a new WAF compiler from the NGINX repo. Note, the NGINX App Protect WAF certificate and key only need to be uploaded once to Instance Manager. 
+Once a version of the NGINX App Protect WAF compiler is manually installed on Instance Manager, the system will automatically download and install a new WAF compiler when it detects that an update is required. This typically happens when the NGINX App Protect WAF version on the data plane has been [upgraded](#upgrade-nap-waf-version-on-managed-instances) or when a new data plane with a different NGINX App Protect WAF version is added.
 
-If the automatic download and install of the new WAF compiler step fails, when publishing the NGINX configuration, the error message 
+To enable the automatic download and installation of a new WAF compiler, you need to [upload your NGINX App Protect WAF certificate and key](#upload-nginx-app-protect-waf-certificate-and-key) to Instance Manager. This upload needs to be done only once. By providing the certificate and key, Instance Manager can securely fetch and install the latest WAF compiler from the NGINX repository.
+
+If the automatic download and install of the new WAF compiler step fails, when publishing the NGINX configuration, the error message
 
 ``` text
-missing the specific compiler, please install it and try again.  
+missing the specific compiler, please install it and try again.
 ```
 
 will appear. This happens if the NGINX App Protect WAF certificate and key are missing or not working, or if Instance Manager cannot connect to the NGINX Repository. Please check `/var/log/nms/nms.log` for errors.
@@ -398,7 +413,7 @@ To onboard your NGINX App Protect WAF instances to Instance Manager, you need to
 
    ```yaml
    ...
-   config_dirs: "/etc/nginx:/usr/local/etc/nginx:/etc/nms;" 
+   config_dirs: "/etc/nginx:/usr/local/etc/nginx:/etc/nms;"
    extensions:
      - nginx-app-protect
    nginx_app_protect:
@@ -938,24 +953,24 @@ Check if the WAF compiler has been installed and is working properly by viewing 
 sudo /opt/nms-nap-compiler/app_protect-<version>/bin/apcompile -h
 ```
 
-For example, to view the help description for WAF compiler 4.279.0, run the following command:
+For example, to view the help description for WAF compiler 4.402.0, run the following command:
 
 ``` bash
-sudo /opt/nms-nap-compiler/app_protect-4.279.0/bin/apcompile -h
+sudo /opt/nms-nap-compiler/app_protect-4.402.0/bin/apcompile -h
 ```
 
 The output looks similar to the following example:
 
 ```text
 USAGE:
-    /opt/nms-nap-compiler/app_protect-4.279.0/bin/apcompile <options>
+    /opt/nms-nap-compiler/app_protect-4.402.0/bin/apcompile <options>
 
 Examples:
-    /opt/nms-nap-compiler/app_protect-4.279.0/bin/apcompile -p /path/to/policy.json -o mypolicy.tgz
-    /opt/nms-nap-compiler/app_protect-4.279.0/bin/apcompile -p policyA.json -g myglobal.json -o /path/to/policyA_bundle.tgz
-    /opt/nms-nap-compiler/app_protect-4.279.0/bin/apcompile -g myglobalsettings.json --global-state-outfile /path/to/myglobalstate.tgz
-    /opt/nms-nap-compiler/app_protect-4.279.0/bin/apcompile -b /path/to/policy_bundle.tgz --dump
-    /opt/nms-nap-compiler/app_protect-4.279.0/bin/apcompile -l logprofA.json -o /path/to/logprofA_bundle.tgz
+    /opt/nms-nap-compiler/app_protect-4.402.0/bin/apcompile -p /path/to/policy.json -o mypolicy.tgz
+    /opt/nms-nap-compiler/app_protect-4.402.0/bin/apcompile -p policyA.json -g myglobal.json -o /path/to/policyA_bundle.tgz
+    /opt/nms-nap-compiler/app_protect-4.402.0/bin/apcompile -g myglobalsettings.json --global-state-outfile /path/to/myglobalstate.tgz
+    /opt/nms-nap-compiler/app_protect-4.402.0/bin/apcompile -b /path/to/policy_bundle.tgz --dump
+    /opt/nms-nap-compiler/app_protect-4.402.0/bin/apcompile -l logprofA.json -o /path/to/logprofA_bundle.tgz
 ...
 ```
 
