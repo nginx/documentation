@@ -22,17 +22,17 @@ aliases:
 
 July 24, 2023
 
-### Upgrade Paths {#2-11-0-upgrade-paths}
+### Upgrade Paths {#2-12-0-upgrade-paths}
 
 Instance Manager 2.11.0 supports upgrades from these previous versions:
 
-- 2.8.0–2.11.0
+- 2.9.0–2.11.0
 
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.{{</see-also>}}
 
-### What's New
+### What's New {#2-12-0-whats-new}
 This release includes the following updates:
 
 - {{% icon-feature %}} **New support for license tokens for automatic entitlement updates, renewals, and Flexible Consumption Reporting**
@@ -40,7 +40,7 @@ This release includes the following updates:
   NGINX Management Suite now supports license tokens formatted as a JSON Web Token (JWT). With JWT licensing, you can automatically update entitlements during subscription renewals or amendments, and you can automate reporting for the Flexible Consumption Program (FCP). For more information, see the [Add a License]({{< relref "/nms/installation/add-license.md" >}}) topic.
   
 
-### Resolved Issues
+### Resolved Issues {#2-12-0-resolved-issues}
 This release fixes the following issues. Select an issue's ID link to view its details.
 
 - {{% icon-resolved %}} Filtering Analytics data with values that have double backslashes (`\\`) causes failures [(42105)]({{< relref "/nms/nim/releases/known-issues.md#42105" >}})
@@ -48,7 +48,7 @@ This release fixes the following issues. Select an issue's ID link to view its d
 - {{% icon-resolved %}} Disk Usage in Metrics Summary shows incorrect data when multiple partitions exist on a system [(42999)]({{< relref "/nms/nim/releases/known-issues.md#42999" >}})
 
 
-### Support for NGINX App Protect WAF
+### Support for NGINX App Protect WAF {#2-12-0-nap-waf-support}
 
 {{< include "tech-specs/nim-app-protect-support.md" >}}
 

@@ -19,7 +19,29 @@ categories: ["known issues"]
 
 ## 2.12.0
 
+### {{% icon-bug %}} On Kubernetes, uploading a JWT license for NGINX Management Suite results in the error "secret not found" {#43655}
 
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status |
+|----------|--------|
+| 43655    | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+When uploading a JWT license to an NGINX Management Suite deployment on Kubernetes, you may see error messages in the web interface and logs similar to the following example:  
+
+<pre>[ERROR] /usr/bin/nms-integrations   license/secrets.go:100    jwt-manager: failed to get [secret=dataEncryptionKey] from remote store. secret not found</pre>
+
+#### Workaround
+
+This error can be resolved by deleting the integrations pod and restarting it. You can do this by running the following command on the NGINX Management Suite host:
+
+```bash
+kubectl -n nms scale --replicas=0 deployment.apps/integrations; kubectl -n nms scale --replicas=1 deployment.apps/integrations
+```
+
+---
 
 ### {{% icon-bug %}} Upgrading to 2.12 disables telemetry {#43606}
 
@@ -32,17 +54,12 @@ categories: ["known issues"]
 #### Description
 
 Upgrading to Instance Manager 2.12 will stop NGINX Management Suite from transmitting telemetry.
-<br>
 
 #### Workaround
 
 Toggle the telemetry setting off and on. You can do this by selecting **Settings > License** from the NGINX Management Suite web interface.
 
 ---
-
-
-
-
 
 ### {{% icon-bug %}} A JWT license for an expired subscription cannot be terminated from the web interface {#43580}
 
@@ -65,10 +82,6 @@ More information is available in the Platform API reference guide, under the Lic
 
 ---
 
-
-
-
-
 ### {{% icon-bug %}} An "unregistered clickhouse-adapter" failure is logged every few seconds if logging is set to debug. {#43438}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
@@ -80,14 +93,12 @@ More information is available in the Platform API reference guide, under the Lic
 #### Description
 
 If NGINX Management Suite logging is set to debug, it may log an "unregistered clickhouse-adapter" failure every few seconds. These logs do not affect the system's performance and can safely be ignored.
-<br>
 
 #### Workaround
 
 Choose a less verbose logging level, such as warning, error, or info.
 
 ---
-
 
 ## 2.11.0
 
@@ -207,9 +218,9 @@ Update the Attack Signatures or Threat Campaigns package one instance at a time.
 ### {{% icon-resolved %}} Disk Usage in Metrics Summary shows incorrect data when multiple partitions exist on a system {#42999}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status                           |
-|----------|----------------------------------|
-| 42999    | Fixed in Instance Manager 2.12.0 |
+| Issue ID | Status          |
+|----------|-----------------|
+| 42999    | Fixed in 2.12.0 |
 {{</bootstrap-table>}}
 
 #### Description
@@ -220,9 +231,9 @@ The Disk Usage metric on the Metrics Summary page averages disk usage across all
 ### {{% icon-resolved %}} Unable to publish configurations referencing the log bundle for Security Monitor {#42932}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status                           |
-|----------|----------------------------------|
-| 42932    | Fixed in Instance Manager 2.12.0 |
+| Issue ID | Status          |
+|----------|-----------------|
+| 42932    | Fixed in 2.12.0 |
 {{</bootstrap-table>}}
 
 #### Description
@@ -243,9 +254,9 @@ sudo systemctl restart nms
 ### {{% icon-resolved %}} Valid licenses incorrectly identified as invalid {#42598}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status                           |
-|----------|----------------------------------|
-| 42598    | Fixed in Instance Manager 2.10.1 |
+| Issue ID | Status          |
+|----------|-----------------|
+| 42598    | Fixed in 2.10.1 |
 {{</bootstrap-table>}}
 
 #### Description
@@ -256,9 +267,9 @@ Sometimes, valid licenses for NGINX Management Suite are incorrectly identified 
 ### {{% icon-resolved %}} The Metrics module is interrupted during installation on Red Hat 9 {#42219}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status                           |
-|----------|----------------------------------|
-| 42219    | Fixed in Instance Manager 2.11.0 |
+| Issue ID | Status          |
+|----------|-----------------|
+| 42219    | Fixed in 2.11.0 |
 {{</bootstrap-table>}}
 
 #### Description
@@ -299,9 +310,9 @@ Threat Campaign versions can be published with the API using the route: `api/pla
 ### {{% icon-resolved %}} Duplicate Certificate and Key published for managed certificates {#42182}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status                           |
-|----------|----------------------------------|
-| 42182    | Fixed in Instance Manager 2.11.0 |
+| Issue ID | Status          |
+|----------|-----------------|
+| 42182    | Fixed in 2.11.0 |
 {{</bootstrap-table>}}
 
 #### Description
@@ -361,9 +372,9 @@ After upgrading to Instance Manager 2.10, the publish status on App Security pag
 ### {{% icon-resolved %}} Filtering Analytics data with values that have double backslashes (`\\`) causes failures {#42105}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status                           |
-|----------|----------------------------------|
-| 42105    | Fixed in Instance Manager 2.12.0 |
+| Issue ID | Status          |
+|----------|-----------------|
+| 42105    | Fixed in 2.12.0 |
 {{</bootstrap-table>}}
 
 #### Description
