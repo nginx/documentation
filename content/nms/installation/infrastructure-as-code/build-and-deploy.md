@@ -33,7 +33,7 @@ authors: []
 
 #### Overview
 
-The Packer stage builds the cloud image and installs NMS using the ansible role for later consumption in the deployment stage.
+The Packer stage builds the cloud image and installs NMS using the [ansible role](https://github.com/nginxinc/ansible-role-nginx-management-suite) for later consumption in the deployment stage.
 
 #### Requirements
 
