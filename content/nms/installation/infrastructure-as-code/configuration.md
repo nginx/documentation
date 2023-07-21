@@ -77,4 +77,4 @@ Create and run the ansible playbook. For example:
 
 ### Getting support
 
-Access the support network via the [github Ansible role project](https://github.com/nginxinc/ansible-role-nginx-management-suite/blob/main/SUPPORT.md).
+Get support from the [github Ansible role project](https://github.com/nginxinc/ansible-role-nginx-management-suite/blob/main/SUPPORT.md).
