@@ -1,5 +1,5 @@
 ---
-title: "Build and Deploy images"
+title: "Build and deploy images"
 date: 2023-07-20T14:44:12.320Z
 # Change draft status to false to publish doc.
 draft: false
