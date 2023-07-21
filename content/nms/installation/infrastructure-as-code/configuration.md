@@ -37,20 +37,9 @@ See [the Ansible role requirements here.](https://github.com/nginxinc/ansible-ro
 
 ### Getting Started
 
-Install the Ansible role using an ansible galaxy requirements file. For example:
+1. Install the Ansible role using an ansible galaxy requirements file. Follow the Installation steps [here](https://github.com/nginxinc/ansible-role-nginx-management-suite#installation).
 
-```
-collections:
-  - name: nginxinc.nginx_core
-roles:
-  - name: ansible-role-nginx-management-suite
-    version: 0.3.0
-```
-
-<br />
-<br />
-
-Create and run the ansible playbook. For example:
+2. The next step is to run the ansible playbook. Create a file similar to the following named "nms-playbook.yml" or similar.
 
 ```
 - hosts: nms
@@ -68,6 +57,16 @@ Create and run the ansible playbook. For example:
     - nginxinc.nginx_core
   roles:
     - ansible-role-nginx-management-suite
+```
+
+<br />
+
+3. Create an [Ansible hosts file](https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html) containing the hosts you want in the group listed in your playbook.
+
+4. Run the playbook.
+
+```
+ansible-playbook -i <path-to-your-hostfile> nms-playbook.yml
 ```
 
 <br />
