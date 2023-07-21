@@ -25,17 +25,15 @@ versions: []
 authors: []
 ---
 
-## {{<custom-styles>}}
+{{<custom-styles>}}
 
 ---
 
 {{< img src="img/iac/ansible-flow.png" caption="Figure 1. NGINX Management Suite Ansible Flow" alt="A diagram showing the install flow of the NGINX Management Suites Ansible role.">}}
 
-### Prerequisites
+### Requirements
 
-- A host capable of running ansible.
-- Ansible version >= 2.12.
-- NGINX repository cert and key. [Follow these]({{< relref "../vm-bare-metal/prerequisites.md#download-cert-key" >}}) instructions to obtain them.
+See [the Ansible role requirements here.](https://github.com/nginxinc/ansible-role-nginx-management-suite#requirements)
 
 ### Getting Started
 
