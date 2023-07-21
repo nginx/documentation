@@ -56,10 +56,16 @@ The Terraform stage deploys the cloud images built during the Packer stage. Ther
 
 #### Requirements
 
-See [the requirements here.](https://github.com/nginxinc/nginx-management-suite-iac/tree/main/packer#Requirements)
+1. You will need to have build the relevant Images in [Packer]({{< ref "#packer" >}}). For the basic reference Architecture you will need both NMS and NGINX images.
+2. See [the requirements.](https://github.com/nginxinc/nginx-management-suite-iac/tree/main/terraform#Requirements)
 
 #### Getting Started
 
 To get started with the basic reference architecture and deploy the following infrastructure, use the [AWS guide.](https://github.com/nginxinc/nginx-management-suite-iac/blob/main/terraform/basic-reference/aws/README.md)
 
 {{< img src="img/iac/aws-infrastructure.png" caption="Figure 1. AWS NGINX Management Suite basic reference architecture" alt="A diagram the AWS basic reference architecture.">}}
+
+### Suggested Reading
+
+- [Packer Best Practices]()
+- [Teraform Best Practices](https://developer.hashicorp.com/terraform/cloud-docs/recommended-practices)
