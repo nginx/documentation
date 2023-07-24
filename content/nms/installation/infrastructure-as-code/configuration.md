@@ -1,12 +1,12 @@
 ---
-title: "Install with Ansible"
+title: "Install NGINX Management Suite with Ansible"
 date: 2023-07-20T14:44:12.320Z
 # Change draft status to false to publish doc.
 draft: false
 # Description
 # Add a short description (150 chars) for the doc. Include keywords for SEO.
 # The description text appears in search results and at the top of the doc.
-description: "The guide provides step-by-step instructions to install NGINX Management Suite using our open source ansible role. Easily reproduce your installation across many different environments throught automation."
+description: "This guide shows you how to install NGINX Management Suite using the open-source Ansible role. Easily reproduce your installation across multiple environments through automation."
 # Assign weights in increments of 100
 weight: 200
 toc: true
@@ -25,55 +25,64 @@ versions: []
 authors: []
 ---
 
-{{<custom-styles>}}
+{{< custom-styles >}}
+
+{{< call-out "tip" "Open-Source Project on GitHub" >}}
+The steps in this guide refer to the <a href="https://github.com/nginxinc/ansible-role-nginx-management-suite" target="_blank">Ansible NGINX Management Suite Role project on GitHub.</a> <i class="fa-regular fa-arrow-up-right-from-square" style="color:#009639;"></i>
+{{</call-out>}}
 
 ---
 
-{{< img src="img/iac/ansible-flow.png" caption="Figure 1. NGINX Management Suite Ansible Flow" alt="A diagram showing the install flow of the NGINX Management Suites Ansible role.">}}
+## Installation Flow
 
-### Requirements
+The Ansible role for NGINX Management Suite simplifies the installation process by installing all the prerequisites and any modules you specify.
 
-See [the Ansible role requirements here.](https://github.com/nginxinc/ansible-role-nginx-management-suite#requirements)
+{{< img src="img/iac/ansible-flow.png" caption="Figure 1. NGINX Management Suite Ansible flow" alt="A diagram showing the installation flow of the NGINX Management Suites Ansible role.">}}
 
-### Getting Started
+---
 
-1. Install the Ansible role using an ansible galaxy requirements file. Follow the Installation steps [here](https://github.com/nginxinc/ansible-role-nginx-management-suite#installation).
+## Requirements
 
-2. The next step is to run the ansible playbook. Create a file similar to the following named "nms-playbook.yml" or similar.
+- to view the Ansible role requirements, click [here](https://github.com/nginxinc/ansible-role-nginx-management-suite#requirements).
 
-```
-- hosts: nms
-  become: yes
-  vars:
-    nginx_license:
-      certificate: ./nginx-repo.crt
-      key: ./nginx-repo.key
-    nms_setup: install
-    nms_modules:
-      - name: acm
-      - name: adm
-      - name: sm
-  collections:
-    - nginxinc.nginx_core
-  roles:
-    - ansible-role-nginx-management-suite
-```
+---
 
-<br />
+## Getting Started
+
+1. Install the Ansible role by using an Ansible Galaxy requirements file. Follow the installation steps [here](https://github.com/nginxinc/ansible-role-nginx-management-suite#installation).
+
+2. Next, run the Ansible playbook. Create a file named `nms-playbook.yml` (or any other name) with contents similar to the following example:
+
+    ``` yaml
+    - hosts: nms
+      become: yes
+      vars:
+        nginx_license:
+          certificate: ./nginx-repo.crt
+          key: ./nginx-repo.key
+        nms_setup: install
+        nms_modules:
+          - name: acm
+          - name: adm
+          - name: sm
+      collections:
+        - nginxinc.nginx_core
+      roles:
+        - ansible-role-nginx-management-suite
+    ```
 
 3. Create an [Ansible hosts file](https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html) containing the hosts you want in the group listed in your playbook.
 
-4. Run the playbook.
+4. Run the playbook:
 
-```
-ansible-playbook -i <path-to-your-hostfile> nms-playbook.yml
-```
+    ``` bash
+    ansible-playbook -i <path-to-your-hostfile> nms-playbook.yml
+    ```
 
-<br />
-<br />
+{{<see-also>}}For a comprehensive list of configuration options, click [here](https://github.com/nginxinc/ansible-role-nginx-management-suite/blob/main/defaults/main.yml).{{</see-also>}}
 
-{{<note>}}The entire list of configuration options can be seen [here](https://github.com/nginxinc/ansible-role-nginx-management-suite/blob/main/defaults/main.yml){{</note>}}
+---
 
-### Getting support
+## Getting Support
 
-Get support from the [github Ansible role project](https://github.com/nginxinc/ansible-role-nginx-management-suite/blob/main/SUPPORT.md).
+If you need assistance or have questions, you can find support from the [NGINX Management Suite Ansible Role Project](https://github.com/nginxinc/ansible-role-nginx-management-suite/blob/main/SUPPORT.md) on GitHub.
