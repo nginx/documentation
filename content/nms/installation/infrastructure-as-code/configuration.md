@@ -56,7 +56,7 @@ See [the Ansible role requirements here.](https://github.com/nginxinc/ansible-ro
   collections:
     - nginxinc.nginx_core
   roles:
-    - ansible-role-nginx-management-suite
+    - nginxinc.nginx_management_suite
 ```
 
 <br />
