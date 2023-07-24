@@ -43,7 +43,7 @@ The Ansible role for NGINX Management Suite simplifies the installation process 
 
 ## Requirements
 
-- to view the Ansible role requirements, click [here](https://github.com/nginxinc/ansible-role-nginx-management-suite#requirements).
+- To view the Ansible role requirements, click [here](https://github.com/nginxinc/ansible-role-nginx-management-suite#requirements).
 
 ---
 
