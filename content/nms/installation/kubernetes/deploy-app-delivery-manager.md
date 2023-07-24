@@ -201,15 +201,9 @@ If you've already deployed App Delivery Manager and would like to upgrade to a n
 
 ## Add License
 
-A valid license is required in order to use App Delivery Manager.
+A valid license is required to make full use of all the features in App Delivery Manager.
 
-### Download License
-
-{{< include "adm/installation/license-adm.md" >}}
-
-### Apply License
-
-{{< include "installation/add-license.md" >}}
+Refer to the [Add a License]({{< relref "/nms/installation/add-license.md" >}}) topic for instructions on how to download and apply a trial license, subscription license, or Flexible Consumption Program license.
 
 ---
 ## Configurable Helm Settings

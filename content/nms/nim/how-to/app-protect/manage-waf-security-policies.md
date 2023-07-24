@@ -1,12 +1,12 @@
 ---
-title: "Manage WAF Security Policies"
+title: "Manage WAF Security Policies and Security Log Profiles"
 date: 2022-12-15T21:43:51-07:00
 # Change draft status to false to publish doc.
 draft: false
 # Description
 # Add a short description (150 chars) for the doc. Include keywords for SEO. 
 # The description text appears in search results and at the top of the doc.
-description: "Learn how to use NGINX Management Suite Instance Manager to manage NGINX App Protect WAF security policies."
+description: "Learn how to use NGINX Management Suite Instance Manager to manage NGINX App Protect WAF security policies and security log profiles."
 # Assign weights in increments of 100
 weight: 200
 toc: true
@@ -25,7 +25,7 @@ doctypes: ["task"]
 
 ## Overview
 
-With the Instance Manager browser interface or REST API, you can easily manage, update, and deploy security policies, attack signatures, and threat campaigns to your NGINX App Protect WAF instances.
+With the Instance Manager browser interface or REST API, you can easily manage, update, and deploy security policies, security log profiles, attack signatures, and threat campaigns to your NGINX App Protect WAF instances.
 
 ---
 
@@ -63,7 +63,7 @@ Complete the following prerequisites before proceeding with this guide:
 
 To create a security policy using the Instance Manager web interface:
 
-1. Go to the FQDN for your NGINX Management Suite host in a web browser and log in. Then, from the Launchpad menu, select **Instance Manager**.
+1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in. Then, from the Launchpad menu, select **Instance Manager**.
 2. On the left menu, select **App Protect**.
 3. On the *Security Policies* page, select **Create**.
 4. On the *Create Policy* page, fill out the necessary fields:
@@ -204,7 +204,7 @@ After you have pushed an updated security policy, you can [publish it](#publish-
 
 To delete a security policy using the Instance Manager web interface:
 
-1. Go to the FQDN for your NGINX Management Suite host in a web browser and log in. Then, from the Launchpad menu, select **Instance Manager**.
+1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in. Then, from the Launchpad menu, select **Instance Manager**.
 2. On the left menu, select **App Protect**.
 3. On the *Security Policies* page, select the **Actions** menu (represented by an ellipsis, **...**) for the policy you want to delete. Select **Delete** to remove the policy.
 
@@ -237,15 +237,161 @@ curl -X DELETE https://{{NMS_FQDN}}/api/platform/v1/security/policies/23139e0a-4
 
 ---
 
+## Create a Security Log Profile {#create-security-log-profile}
+
+{{<tabs name="create-security-log-profile">}}
+
+{{%tab name="API"%}}
+
+Send an HTTP `POST` request to the Security Log Profiles API endpoint to upload a new security log profile.
+
+{{<important>}}Before sending a security log profile to Instance Manager, you need to encode it using `base64`. Submitting a log profile in its original JSON format will result in an error.{{</important>}}
+
+<br>
+
+{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+{{<bootstrap-table "table">}}
+| Method | Endpoint                             |
+|--------|--------------------------------------|
+| POST   | `/api/platform/v1/security/logprofiles` |
+
+{{</bootstrap-table>}}
+{{< raw-html>}}</div>{{</raw-html>}}
+
+For example:
+
+``` shell
+curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/logprofiles \
+    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz" \
+    -d @default-log-example.json
+```
+
+<details open>
+<summary>JSON Request</summary>
+
+```json
+{
+  "metadata": {
+    "name": "default-log-example"
+  },
+  "content": "Cgl7CgkJImZpbHRlciI6IHsKCQkJInJlcXVlc3RfdHlwZSI6ICJpbGxlZ2FsIgoJCX0sCgkJImNvbnRlbnQiOiB7CgkJCSJmb3JtYXQiOiAiZGVmYXVsdCIsCgkJCSJtYXhfcmVxdWVzdF9zaXplIjogImFueSIsCgkJCSJtYXhfbWVzc2FnZV9zaXplIjogIjVrIgoJCX0KCX0="
+}
+```
+
+</details>
+
+<details open>
+<summary>JSON Response</summary>
+
+```json
+{
+  "metadata": {
+    "created": "2023-07-05T22:09:19.634358096Z",
+    "externalIdType": "",
+    "modified": "2023-07-05T22:09:19.634358096Z",
+    "name": "default-log-example",
+    "revisionTimestamp": "2023-07-05T22:09:19.634358096Z",
+    "uid": "54c35ad7-e082-4dc5-bb5d-2640a17d5620"
+  },
+  "selfLink": {
+    "rel": "/api/platform/v1/security/logprofiles/54c35ad7-e082-4dc5-bb5d-2640a17d5620"
+  }
+}
+```
+
+{{%/tab%}}
+
+{{</tabs>}}
+
+---
+## Update a Security Log Profile
+
+{{<tabs name="update-security-log-profile">}}
+
+{{%tab name="API"%}}
+
+To update a security log profile, send an HTTP `POST` request to the Security Log Profiles API endpoint, `/api/platform/v1/security/logprofiles`.
+
+You can use the optional `isNewRevision` parameter to indicate whether the updated log profile is a new version of an existing log profile.
+
+{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+{{<bootstrap-table "table">}}
+| Method | Endpoint                                                |
+|--------|---------------------------------------------------------|
+| POST   | `/api/platform/v1/security/logprofiles?isNewRevision=true` |
+| PUT    | `/api/platform/v1/security/logprofiles/{security-log-profile-uid}` |
+
+{{</bootstrap-table>}}
+{{< raw-html>}}</div>{{</raw-html>}}
+
+For example:
+
+``` shell
+curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/logprofiles?isNewRevision=true \
+    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz" \
+    -d @update-default-log.json
+```
+
+You can update a specific log profile by sending an HTTP `PUT` request to the Security Log Profiles API endpoint that includes the log profile's unique identifier (UID). 
+
+To find the UID, send an HTTP `GET` request to the Security Log Profiles API endpoint. This returns a list of all Security Log Profiles that contains the unique identifier for each log profile.
+
+Include the UID for the security log profile in your `PUT` request to update the log profile. 
+
+For example:
+
+``` shell
+curl -X PUT https://{{NMS_FQDN}}/api/platform/v1/security/logprofiles/23139e0a-4ac8-49f9-b7a0-0577b42c70c7 \
+    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz" \
+    --Content-Type application/json -d @update-default-log.json
+```
+
+After you have pushed an updated security log profile, you can [publish it](#publish-policy) to selected instances or instance groups.
+
+{{%/tab%}}
+
+{{</tabs>}}
+
+---
+
+## Delete a Security Log Profile
+
+{{<tabs name="delete-security-log-profile">}}
+
+{{%tab name="API"%}}
+
+To delete a security log profile, send an HTTP `DELETE` request to the Security Log Profiles API endpoint that includes the unique identifier for the log profile that you want to delete.
+
+{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+{{<bootstrap-table "table">}}
+| Method | Endpoint                                                   |
+|--------|------------------------------------------------------------|
+| DELETE | `/api/platform/v1/security/logprofiles/{security-log-profile-uid}` |
+{{</bootstrap-table>}}
+{{< raw-html>}}</div>{{</raw-html>}}
+
+For example:
+
+``` shell
+curl -X DELETE https://{{NMS_FQDN}}/api/platform/v1/security/logprofiles/23139e0a-4ac8-49f9-b7a0-0577b42c70c7 \
+    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz
+```
+
+{{%/tab%}}
+
+{{</tabs>}}
+
+---
+
 ## Publish Updates to Instances {#publish-policy}
 
 {{<tabs name="publish-policy-updates">}}
 
 {{%tab name="API"%}}
 
-The Publish API lets you distribute security policies, attack signatures, and/or threat campaigns to instances and instance groups.
+The Publish API lets you distribute security policies, security log profiles, attack signatures, and/or threat campaigns to instances and instance groups.
 
-{{<tip>}}Use this endpoint *after* you've added or updated security policies, attack signatures, and/or threat campaigns.{{</tip>}}
+{{<tip>}}Use this endpoint *after* you've added or updated security policies, security log profiles, attack signatures, and/or threat campaigns.{{</tip>}}
 
 {{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
 {{<bootstrap-table "table">}}
@@ -262,6 +408,7 @@ When making a request to the Publish API, make sure to include all the necessary
 - Threat Campaign version and UID
 - Attack Signature version and UID
 - Security Policy UID(s)
+- Security Log Profile UID(s)
 
 For example:
 
@@ -286,6 +433,10 @@ curl -X PUT https://{{NMS_FQDN}}/api/platform/v1/security/publish -H "Authorizat
       "instances": [
         "3fa85f64-5717-4562-b3fc-2c963f66afa6"
       ],
+      "logProfileContent": {
+        "name": "default-log",
+        "uid": "ffdbda39-88be-420a-b673-19d4183b7e4c"
+      },
       "policyContent": {
         "name": "default-enforcement",
         "uid": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
@@ -326,8 +477,8 @@ curl -X PUT https://{{NMS_FQDN}}/api/platform/v1/security/publish -H "Authorizat
 
 ---
 
-## Check Security Policy Publication Status
-When publishing an NGINX configuration that references a security policy, the Instance Manager REST APIs can provide further details about the status of the configuration publications. To access this information, use the Instance Manager API endpoints and method as indicated.
+## Check Security Policy and Security Log Profile Publication Status
+When publishing an NGINX configuration that references a security policy and secuity log profile, the Instance Manager REST APIs can provide further details about the status of the configuration publications. To access this information, use the Instance Manager API endpoints and method as indicated.
 
 To retrieve the details for the different configuration publication statuses for a particular security policy, send an HTTP `GET` request to the Security Deployments Associations API endpoint, providing the name of the security policy.
 
@@ -432,6 +583,101 @@ curl -X GET "https://{NGINX-INSTANCE-MANAGER-FQDN}/api/platform/v1/security/depl
         "uid": "eab683fe-c2f1-4910-a88c-8bfbc6363164",
         "versionDateTime": "2023.02.15"
       }
+    }
+  ]
+}
+```
+
+</details>
+
+To retrieve the details for the different configuration publication statuses for a particular security log profile, send an HTTP `GET` request to the Security Deployments Associations API endpoint, providing the name of the security log profile.
+
+| Method | Endpoint                                                                    |
+|--------|-----------------------------------------------------------------------------|
+| GET    | `/api/platform/v1/security/deployments/logprofiles/associations/{security-log-profile-name}` |
+
+You can locate the configuration publication status in the response within the field `lastDeploymentDetails` for instances and instance groups:
+
+- `lastDeploymentDetails` (for an instance): associations -> instance -> lastDeploymentDetails
+- `lastDeploymentDetails` (for an instance in an instance group): associations -> instanceGroup -> instances -> lastDeploymentDetails
+
+The example below shows a call to the `security deployments associations` endpoint and the corresponding JSON response containing successful deployments.
+
+``` shell
+curl -X GET "https://{NGINX-INSTANCE-MANAGER-FQDN}/api/platform/v1/security/deployments/logprofiles/associations/default-log" -H "Authorization: Bearer xxxxx.yyyyy.zzzzz"
+```
+
+<details close>
+<summary>JSON Response</summary>
+
+```json
+{
+  "associations": [
+    {
+      "instance": {
+        "hostName": "",
+        "systemUid": "",
+        "uid": ""
+      },
+      "instanceGroup": {
+        "displayName": "ig1",
+        "instances": [
+          {
+            "hostName": "ip-172-16-0-142",
+            "systemUid": "1d1f03ff-02de-32c5-8dfd-902658aada4c",
+            "uid": "18d074e6-3868-51ba-9999-b7466a936815"
+          }
+        ],
+        "lastDeploymentDetails": {
+          "createTime": "2023-07-05T23:01:06.679136973Z",
+          "details": {
+            "failure": [],
+            "pending": [],
+            "success": [
+              {
+                "name": "ip-172-16-0-142"
+              }
+            ]
+          },
+          "id": "9bfc9db7-877d-4e8e-a43d-9660a6cd11cc",
+          "message": "Instance Group config successfully published to ig1",
+          "status": "successful",
+          "updateTime": "2023-07-05T23:01:06.790802157Z"
+        },
+        "uid": "0df0386e-82f7-4efc-863e-5d7cfbc3f7df"
+      },
+      "logProfileUid": "b680f7c3-6fc0-4c6b-889a-3025580c7fcb",
+      "logProfileVersionDateTime": "2023-07-05T22:08:47.371Z"
+    },
+    {
+      "instance": {
+        "hostName": "ip-172-16-0-5",
+        "lastDeploymentDetails": {
+          "createTime": "2023-07-05T21:45:08.698646791Z",
+          "details": {
+            "failure": [],
+            "pending": [],
+            "success": [
+              {
+                "name": "ip-172-16-0-5"
+              }
+            ]
+          },
+          "id": "73cf670a-738a-4a74-b3fb-ac9771e89814",
+          "message": "Instance config successfully published to",
+          "status": "successful",
+          "updateTime": "2023-07-05T21:45:08.698646791Z"
+        },
+        "systemUid": "0afe5ac2-43aa-36c8-bcdc-7f88cdd35ab2",
+        "uid": "9bb4e2ef-3746-5d79-b526-e545fad27e90"
+      },
+      "instanceGroup": {
+        "displayName": "",
+        "instances": [],
+        "uid": ""
+      },
+      "logProfileUid": "bb3badb2-f8f5-4b95-9428-877fc208e2f1",
+      "logProfileVersionDateTime": "2023-07-03T21:46:17.006Z"
     }
   ]
 }
@@ -545,7 +791,7 @@ curl -X GET "https://{NGINX-INSTANCE-MANAGER-FQDN}/api/platform/v1/systems/b9df6
 
 </details>
 
-When you use the Publish API (`/security/publish`) to [publish a security policy](#publish-policy), Instance Manager creates a deployment ID for the request. To view the status of the update, or to check for any errors, use the endpoint and method shown below and reference the deployment ID.
+When you use the Publish API (`/security/publish`) to [publish a security policy and security log profile](#publish-policy), Instance Manager creates a deployment ID for the request. To view the status of the update, or to check for any errors, use the endpoint and method shown below and reference the deployment ID.
 
 | Method | Endpoint                                                         |
 |--------|------------------------------------------------------------------|

@@ -1,5 +1,5 @@
 ---
-
+docs: DOCS-1240
 ---
 
 1. Load the NGINX Management Suite policy:
@@ -52,3 +52,4 @@
     ```bash
     sudo systemctl restart nms
     ```
+
