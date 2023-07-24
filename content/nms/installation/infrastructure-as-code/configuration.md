@@ -68,7 +68,7 @@ The Ansible role for NGINX Management Suite simplifies the installation process 
       collections:
         - nginxinc.nginx_core
       roles:
-        - ansible-role-nginx-management-suite
+        - nginxinc.nginx_management_suite
     ```
 
 3. Create an [Ansible hosts file](https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html) containing the hosts you want in the group listed in your playbook.
