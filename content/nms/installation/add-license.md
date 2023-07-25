@@ -111,9 +111,7 @@ The following tables show which features are available when NGINX Management Sui
 
 ### Unlicensed Mode
 
-Without a license, you can still use the following features of NGINX Management Suite. The Scan feature is READ only. The defa
-
-#### NGINX Management Suite Platform
+The NGINX Management Suite features listed in the table below are available for use without a license. 
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | User  | Feature                       | Description                                                                                     | Access |
