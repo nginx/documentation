@@ -105,15 +105,9 @@ authors: []
 
 ### Add License
 
-A valid license is required in order to use the Security Monitoring module.
+A valid license is required to make full use of all the features in Security Monitoring module.
 
-#### Download License
-
-{{< include "installation/download-license.md" >}}
-
-#### Apply License
-
-{{< include "installation/add-license.md" >}}
+Refer to the [Add a License]({{< relref "/nms/installation/add-license.md" >}}) topic for instructions on how to download and apply a trial license, subscription license, or Flexible Consumption Program license.
 
 ---
 
