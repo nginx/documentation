@@ -30,11 +30,12 @@ categories: ["known issues"]
 #### Description
 
 If firewall rules prevent access to F5 servers, attempting to license NGINX Management Suite with a JWT license may result in the product being unable to terminate the license or upload another one, even if connectivity is restored.
-<br>
 
 #### Workaround
 
 To fix this issue, follow the steps below for your environment type.
+
+<br>
 
 ##### Virtual Machine or Bare Metal
 
