@@ -19,7 +19,7 @@ categories: ["known issues"]
 
 ## 2.12.0
 
-### {{% icon-bug %}} Licensing Issues when adding JWT licenses in firewalled environments {#43719}
+### {{% icon-bug %}} Licensing issues when adding JWT licenses in firewalled environments {#43719}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
