@@ -19,6 +19,70 @@ categories: ["known issues"]
 
 ## 2.12.0
 
+### {{% icon-bug %}} Licensing Issues when adding JWT licenses in firewalled environments {#43719}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 43719 | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+If firewall rules prevent access to F5 servers, attempting to license NGINX Management Suite with a JWT license may result in the product being unable to terminate the license or upload another one, even if connectivity is restored.
+<br>
+
+#### Workaround
+
+To fix this issue, follow the steps below for your environment type.
+
+##### Virtual Machine or Bare Metal
+
+1. Stop the integrations service:
+
+   ``` bash
+   sudo systemctl stop nms-integrations
+   ```
+
+2. Delete the contents of `/var/lib/nms/dqlite/license`
+
+3. Start the integrations service:
+
+   ```bash
+   sudo systemctl start nms-integrations
+   ```
+
+4. Upload a valid S/MIME license.
+
+   Alternatively, to use a JWT license, make sure to allow inbound and outbound access on port 443 to the following URLs:
+
+   - https://product.apis.f5.com
+   - https://product-s.apis.f5.com/ee
+
+##### Kubernetes
+
+1. Run the following command to stop the integrations service by scaling down:
+
+   ```bash
+   kubectl -n nms scale --replicas=0 deployment.apps/integrations
+   ```
+2. Access the Dqlite volume for the integrations service and delete the contents of `/var/lib/nms/dqlite/license`.
+
+3. Run the following command to start the integrations service by scaling up:
+
+   ```bash
+   kubectl -n nms scale --replicas=1 deployment.apps/integrations
+   ```
+
+4. Upload a valid S/MIME license.
+
+   Alternatively, to use a JWT license, make sure to allow inbound and outbound access on port 443 to the following URLs:
+
+   - https://product.apis.f5.com
+   - https://product-s.apis.f5.com/ee
+
+---
+
 ### {{% icon-bug %}} On Kubernetes, uploading a JWT license for NGINX Management Suite results in the error "secret not found" {#43655}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
