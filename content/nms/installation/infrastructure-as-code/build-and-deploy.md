@@ -41,7 +41,6 @@ The Packer stage involves building the cloud image and installing NGINX Manageme
 
 - To view the Packer requirements, click [here](https://github.com/nginxinc/nginx-management-suite-iac/tree/main/packer#Requirements).
 
-
 ### Getting Started
 
 - To get started, follow the [appropriate Packer guide for your cloud deployment](https://github.com/nginxinc/nginx-management-suite-iac/tree/main/packer#how-to-use).
@@ -72,5 +71,4 @@ Get started with the basic reference architecture and deploy the following infra
 
 ## Suggested Reading
 
-- [Packer Best Practices]()
 - [Teraform Best Practices](https://developer.hashicorp.com/terraform/cloud-docs/recommended-practices)
