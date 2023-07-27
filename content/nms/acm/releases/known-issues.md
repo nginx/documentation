@@ -15,15 +15,37 @@ doctypes: ["reference"]
 {{<rn-styles>}}
 
 ---
+## 1.8.0
+
+
+
+### {{% icon-bug %}} Certificates associated with empty instance groups can be deleted, resulting in a broken reference in the API Connectivity Manager module {#43671}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 43671 | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+In the Instance Manager **Certificates and Keys** web interface, you can delete API Connectivity Manager TLS Policy certificates associated with empty instance groups. However, this action may lead to a broken reference problem in the API Connectivity Manager module, resulting in the inability to modify or delete the broken Environment from the web interface.
+<br>
+
+#### Workaround
+
+You can delete the Environment using the API if it cannot be modified or deleted using the web interface.
+
+---
 ## 1.7.0
 
-### {{% icon-bug %}} Environments with WAF enabled may transition to a Failed status when a Developer Portal cluster is added. {#43231}
+### {{% icon-resolved %}} Environments with WAF enabled may transition to a Failed status when a Developer Portal cluster is added. {#43231}
 
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID | Status |
 |----------|--------|
-| 43231    | Open   |
+| 43231    | Fixed in 1.8   |
 {{</bootstrap-table>}}
 
 #### Description
