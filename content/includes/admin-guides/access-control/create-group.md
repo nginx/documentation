@@ -1,8 +1,14 @@
+---
+docs: DOCS-1027
+---
+
+{{< call-out "important" "User Groups require an OIDC Identity Provider" >}}User groups are only used with external identity providers configured for OpenID Connect (OIDC) authentication, as described in the [Set Up Authentication Guide]({{< relref "/nms/admin-guides/access-control/configure-authentication.md#oidc-auth" >}}). Users from an external identity provider cannot be assigned roles directly in NGINX Management Suite. However, they can inherit roles through their group memberships.{{< /call-out >}}
+
 The default `admin` user or any user with `CREATE` permission for the **User Management** feature can create a group.
 
-To create a group, take the following steps:
+To create a user group, take the following steps:
 
-1. Go to the FQDN for your NGINX Management Suite host in a web browser and log in.
+1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in.
 1. Select the **Settings** (gear) icon in the upper-right corner.
 
 1. On the left navigation menu, select **User Groups**.
@@ -15,6 +21,3 @@ To create a group, take the following steps:
 
 1. In the **Roles** list, select one or more roles to assign to the group.
 1. Select **Save** to create the group.
-
-<!-- Do not remove. Keep this code at the bottom of the include -->
-<!-- DOCS-1027 -->

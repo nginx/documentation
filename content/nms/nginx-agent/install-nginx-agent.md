@@ -130,7 +130,7 @@ Send an API request similar to the following example to get the inventory list. 
 
 {{%tab name="WEBUI"%}}
 
-Open the NGINX Management Suite web interface and log in. The registered instance is shown in the **Instances** list.
+In a web browser, go to the FQDN for your NGINX Management Suite host and log in. The registered instance is shown in the **Instances** list.
 
   ![Registered instances](/install/registered-instance.png)
 
@@ -169,6 +169,8 @@ The following sections explain how to configure the NGINX Agent using configurat
 ### Configure with Config Files
 
 The configuration files for the NGINX Agent are `/etc/nginx-agent/nginx-agent.conf` and `/var/lib/nginx-agent/agent-dynamic.conf`. These files have comments at the top indicating their purpose.
+
+{{<note>}}If you're running Instance Manager 2.10.1 or earlier or NGINX Agent 2.25.1 or earlier, the `agent-dynamic.conf` file is located in `/etc/nginx-agent/`.{{</note>}}
 
 Examples of the configuration files are provided below:
 

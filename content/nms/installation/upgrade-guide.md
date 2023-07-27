@@ -92,18 +92,20 @@ We recommend upgrading NGINX Management Suite in a test environment before upgra
 
 - [Upgrade Instance Manager on a virtual machine or bare metal]({{< relref "/nms/installation/vm-bare-metal/install-nim.md#upgrade-nim" >}})
 - [Upgrade Instance Manager from a Helm Chart]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md#helm-upgrade-nim" >}})
+- [Upgrade Instance Manager in an offline environment]({{< relref "/nms/installation/vm-bare-metal/offline-install-guide.md#upgrade-nim-offline" >}})
 
 ### API Connectivity Manager
 
 - [Upgrade API Connectivity Manager on a virtual machine or bare metal]({{< relref "/nms/installation/vm-bare-metal/install-acm.md#upgrade-acm" >}})
 - [Upgrade API Connectivity Manager from a Helm Chart]({{< relref "/nms/installation/kubernetes/deploy-api-connectivity-manager.md#upgrade-acm-helm" >}})
-
+- [Upgrade API Connectivity Manager in an offline environment]({{< relref "/nms/installation/vm-bare-metal/offline-install-guide.md#upgrade-acm-offline" >}})
 ### App Delivery Manager
 
 {{< beta-badge >}}
 
 - [Upgrade App Delivery Manager on a virtual machine or bare metal]({{< relref "/nms/installation/vm-bare-metal/install-adm.md#upgrade-adm" >}})
 - [Upgrade App Delivery Manager from a Helm Chart]({{< relref "/nms/installation/kubernetes/deploy-app-delivery-manager.md#upgrade-adm-helm" >}})
+- [Upgrade App Delivery Manager in an offline environment]({{< relref "/nms/installation/vm-bare-metal/offline-install-guide.md#upgrade-adm-offline" >}})
 
 ### Security Monitoring
 

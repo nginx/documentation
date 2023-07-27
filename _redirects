@@ -52,6 +52,7 @@
 /nginx-management-suite/admin-guides/installation/offline-install-guide/ /nginx-management-suite/installation/vm-bare-metal/offline-install-guide/ 301
 /nms/installation/vm-bare-metal/ /nginx-management-suite/installation/vm-bare-metal/ 301
 /nginx-management-suite/overview/ /nginx-management-suite/about/ 301
+/nginx-management-suite/admin-guides/installation/ /nginx-management-suite/installation/ 301
 
 # NGINX Plus redirects
 /install-community-modules /nginx/admin-guide/installing-nginx/installing-nginx-plus/#installing-nginx-community-modules 301

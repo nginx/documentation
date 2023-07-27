@@ -4940,6 +4940,10 @@ These three rules demonstrate how the override rules feature allows for customiz
 - External references are supported regardless of whether the extendsPolicy field is set to true or false.
 {{< /note >}}
 
+### Condition Syntax Usage
+
+For the full reference of Override Rules condition syntax and usage see the NGINX App Protect WAF [Declarative Policy guide]({{< relref "/nap-waf/declarative-policy/policy.md" >}}/#policy/override-rules).
+
 ### First Match Principle 
 
 The policy enforcement operates on the **first match** principle. This principle is applied when multiple conditions match or are similar, indicating that any incoming requests that match the first condition will be processed. In the following example, the "override_rules_example2" policy uses two override rules: "this_rule_will_match" and "non_matching_rule". Since both conditions match, the first match principle will be applied, and requests with "api" in the URI will be processed. It will reference an external policy file named "NginxStrictPolicy.json" to override the current policy. .
@@ -4975,7 +4979,7 @@ For example:
     ]
   }
 }
-```
+``` 
 
 ### Important Things to Remember About Override Rules
 
@@ -4985,6 +4989,10 @@ Here are some key points to remember regarding the Override Rules feature:
 - The replacement policy should not include any override rules. Override rules should be used to extend or switch to a different policy, rather than being part of the replacement policy itself.
 - Each override rule will be compiled as a separate policy, whether extending the main policy or switching to a new one. The enforcer will switch to the policy that corresponds to the matched rule, but the main policy name will be reported along with the override rule property.
 - The URI, host, and user-agent strings in the request will be treated as plain ASCII characters and won't undergo language decoding. If any of these strings contain non-ASCII characters, they may be misinterpreted and may not comply with rules that expect specific values in the conditions.
+
+{{< note >}}
+In NGINX App Protect WAF version 4.4, there is a limitation when using Override Rules with gRPC. The Override Rules do not provide support for gRPC traffic. If the Override Rules are configured to match gRPC traffic, it will result in the blocking of such traffic.
+{{< /note >}}
 
 ### Override Rules Logging & Reporting
 

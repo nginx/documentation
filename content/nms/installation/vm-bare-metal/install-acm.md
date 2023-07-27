@@ -95,15 +95,9 @@ authors: []
 
 ### Add License
 
-A valid license is required in order to use API Connectivity Manager.
+A valid license is required to make full use of all the features in API Connectivity Manager.
 
-#### Download License
-
-{{< include "installation/download-license.md" >}}
-
-#### Apply License
-
-{{< include "installation/add-license.md" >}}
+Refer to the [Add a License]({{< relref "/nms/installation/add-license.md" >}}) topic for instructions on how to download and apply a trial license, subscription license, or Flexible Consumption Program license.
 
 ---
 
@@ -144,13 +138,19 @@ A valid license is required in order to use API Connectivity Manager.
 
     NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
 
-3. Restart the NGINX web server:
+3. Restart the API Connectivity Manager service:
+   
+    ```bash
+    sudo systemctl restart nms-acm
+    ```
+
+4. Restart the NGINX web server:
 
    ```bash
    sudo systemctl restart nginx
    ```
 
-4. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Management suite.
+5. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Management Suite.
 
 ---
 ## What's Next
