@@ -44,7 +44,7 @@ This release includes the following updates:
 
   You can use the [Advanced Security policy]({{< relref "/nms/acm/how-to/policies/advanced-security.md" >}}) to add a pre-defined NGINX App Protect to your deployment. This enhancement allows you to specify the rules for each API.
 
-- {{% icon-feature %}} ** Publish APIs using OpenAPI Specification version 3.0 or 3.1**
+- {{% icon-feature %}} **Publish APIs using OpenAPI Specification version 3.0 or 3.1**
 
    Now, you can publish APIs using OpenAPI Specification version 3.0 or 3.1
 
@@ -52,9 +52,7 @@ This release includes the following updates:
 
   The `matchRule` field is now available in the `route` items in `proxyConfig.ingress`. This field is optional and allows you to define a path matching rule for advanced routes.
 
-The OpenAPI Specification now supports the `x-acm-match-rule` extension for defining match rules for paths within routes. If you don't specify a value for this extension, it will default to `EXACT`. The only allowed values for `matchRule` are the strings `EXACT` and `PREFIX`.
-
-
+  The OpenAPI Specification now supports the `x-acm-match-rule` extension for defining match rules for paths within routes. If you don't specify a value for this extension, it will default to `EXACT`. The only allowed values for `matchRule` are the strings `EXACT` and `PREFIX`.
 
 ### Changes in Default Behavior {#1-8-0-changes-default-behavior}
 
@@ -64,8 +62,6 @@ API Connectivity Manager 1.8.0 has the following changes in default behavior:
 - {{% icon-feature %}} **Proxy labels removed**
 
   Labels on proxies were added with future use cases in mind although without a current need. The proxy labels have been removed to avoid confusion as to their purpose.
-
-
 
 ### Resolved Issues {#1-8-0-resolved-issues}
 
