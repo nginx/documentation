@@ -13,6 +13,67 @@ categories: ["release notes"]
 
 {{<rn-styles>}}
 
+## 1.8.0
+
+7/27/2023
+
+### Upgrade Paths {#1-8-0-upgrade-paths}
+
+API Connectivity Manager 1.8.0 supports upgrades from these previous versions:
+
+- 1.5.0 - 1.7.0
+
+If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading API Connectivity Manager.{{< /see-also >}}
+
+<br>
+
+<details closed>
+<summary><i class="fa-solid fa-circle-exclamation"></i> Dependencies with Instance Manager</summary>
+
+{{< include "tech-specs/acm-nim-dependencies.md" >}}
+
+</details>
+
+### What's New {#1-8-0-whats-new}
+
+This release includes the following updates:
+
+- {{% icon-feature %}} **Advanced security policy for proxies**
+
+  You can use the [Advanced Security policy]({{< relref "/nms/acm/how-to/policies/advanced-security.md" >}}) to add a pre-defined NGINX App Protect to your deployment. This enhancement allows you to specify the rules for each API.
+
+- {{% icon-feature %}} ** Publish APIs using OpenAPI Specification version 3.0 or 3.1**
+
+   Now, you can publish APIs using OpenAPI Specification version 3.0 or 3.1
+
+- {{% icon-feature %}} **Added `matchRule` field to the `route` items in `proxyConfig.ingress`**
+
+  The `matchRule` field is now available in the `route` items in `proxyConfig.ingress`. This field is optional and allows you to define a path matching rule for advanced routes.
+
+The OpenAPI Specification now supports the `x-acm-match-rule` extension for defining match rules for paths within routes. If you don't specify a value for this extension, it will default to `EXACT`. The only allowed values for `matchRule` are the strings `EXACT` and `PREFIX`.
+
+
+
+### Changes in Default Behavior {#1-8-0-changes-default-behavior}
+
+API Connectivity Manager 1.8.0 has the following changes in default behavior:
+
+
+- {{% icon-feature %}} **Proxy labels removed**
+
+  Labels on proxies were added with future use cases in mind although without a current need. The proxy labels have been removed to avoid confusion as to their purpose.
+
+
+
+### Resolved Issues {#1-8-0-resolved-issues}
+
+This release fixes the following issues. Select an issue's ID link to view its details.
+
+
+- {{% icon-resolved %}} Environments with WAF enabled may transition to a Failed status when a Developer Portal cluster is added. [(43231)]({{< relref "/nms/acm/releases/known-issues.md#43231" >}})
+
 ---
 
 ## 1.7.0
