@@ -37,8 +37,8 @@ This guide is meant for NGINX Management Suite Administrators who can modify or 
 Complete the following prerequisites before proceeding with this guide:
 
 - API Connectivity Manager is installed, licensed, and running.
-- You have one or more Environments with an [API Gateway]({{< relref "/acm/getting-started/add-api-gateway" >}}).
-- You have published one or more [API Gateways]({{< relref "/acm/getting-started/publish-api-proxy" >}})
+- You have one or more Environments with an [API Gateway]({{< relref "/nms/acm/getting-started/add-api-gateway" >}}).
+- You have published one or more [API Gateways]({{< relref "/nms/acm/getting-started/publish-api-proxy" >}})
 
 
 ## Policy Settings
