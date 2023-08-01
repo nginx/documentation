@@ -8,8 +8,7 @@ Docs are written in Markdown. We build the docs using [Hugo](https://gohugo.io) 
 
 1. To install Hugo locally, refer to the [Hugo installation instructions](https://gohugo.io/getting-started/installing/).
 
-    > **NOTE**: We don't support Hugo versions newer than `v0.91`. 
-    > This means you'll need to install Hugo by following the "Prebuilt binaries" instructions for your operating system.
+    > **NOTE**: We are currently running [Hugo v0.115.3](https://github.com/gohugoio/hugo/releases/tag/v0.115.3) in production.
 
 2. We use `markdownlint` to check that Markdown files are correct. Use `npm` to install `markdownlint-cli`:
 
