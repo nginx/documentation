@@ -91,7 +91,7 @@ sudo apt install podman
 ### Build Images with NGINX Agent and NGINX Open Source
 Prior to building an NGINX Agent bundled with NGINX Open Source image, an NGINX Agent binary must be built or downloaded.
 
-You can download an appropriate binary from the [NGINX Agent Releases](https://github.com/nginx/agent/releases) section on GitHub. Copy the binary into the `[PATH_TO_NGINX_AGENT_SRC_ROOT]/build` directory. If the directory doesn't exist, you'll need to create it. This is done automatically when choosing to build the binary from source. 
+You can download an appropriate binary from [NGINX Agent Releases](https://github.com/nginx/agent/releases) on GitHub. Copy the binary to the `[PATH_TO_NGINX_AGENT_SRC_ROOT]/build` directory. If the directory doesn't exist, you'll need to create it. This is done automatically when choosing to build the binary from source. 
 
 The following command will produce an Ubuntu base image. Setting the `PACKAGE_NAME` environment variable is not necessary if you have built the binary from source. When using a downloaded binary, do not include the extension of the package file name in the environment variable definition. Example `PACKAGE_NAME=nginx-agent-2.26.2.jammy_amd64`
 
