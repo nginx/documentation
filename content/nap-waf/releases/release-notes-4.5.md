@@ -53,13 +53,13 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 
 #### App Protect
 
-##### Debian 11
+##### Alpine 3.16
 
-- app-protect_30+4.457.0-1~bullseye_amd64.deb
+- app-protect-30.4.457.0-r1.apk
 
-##### Ubuntu 20.04
+##### Alpine 3.17
 
-- app-protect_30+4.457.0-1~focal_amd64.deb
+- app-protect-30.4.457.0-r1.apk
 
 ##### CentOS 7.4+ / RHEL 7.4+ / Amazon Linux 2
 
@@ -69,17 +69,17 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 
 - app-protect-30+4.457.0-1.el8.ngx.x86_64.rpm
 
-##### Alpine 3.16
-
-- app-protect-30.4.457.0-r1.apk
-
-##### Alpine 3.17
-
-- app-protect-30.4.457.0-r1.apk
-
 ##### Oracle Linux 8.1+
 
 - app-protect-30+4.457.0-1.el8.ngx.x86_64.rpm
+
+##### Debian 11
+
+- app-protect_30+4.457.0-1~bullseye_amd64.deb
+
+##### Ubuntu 20.04
+
+- app-protect_30+4.457.0-1~focal_amd64.deb
 
 
  #### NGINX Plus
