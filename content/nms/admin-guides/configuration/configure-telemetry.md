@@ -57,4 +57,7 @@ You can disable telemetry sharing at any time by going to the NGINX Management S
 
 NGINX Management Suite must be able to establish outbound connections to the IP address range 159.60.126.0/25 on port 443 in order to successfully transmit telemetry data to NGINX F5. The Product Usage data point requires both inbound and outbound connections on port 443.
 
-{{<include "installation/jwt-license-firewall-settings.md" >}}
+If you are using a JWT license, make sure to allow inbound and outbound access on port 443 to the following URLs:
+
+- https://product.apis.f5.com
+- https://product-s.apis.f5.com/ee
