@@ -93,7 +93,7 @@ Prior to building an NGINX Agent bundled with NGINX Open Source image, an NGINX 
 
 You can download an appropriate binary from [NGINX Agent Releases](https://github.com/nginx/agent/releases) on GitHub. Copy the binary to the `[PATH_TO_NGINX_AGENT_SRC_ROOT]/build` directory. If the directory doesn't exist, you'll need to create it. This is done automatically when choosing to build the binary from source. 
 
-The following command will produce an Ubuntu base image. Setting the `PACKAGE_NAME` environment variable is not necessary if you have built the binary from source. When using a downloaded binary, do not include the extension of the package file name in the environment variable definition. Example `PACKAGE_NAME=nginx-agent-2.26.2.jammy_amd64`
+The following command produces an Ubuntu base image. Setting the `PACKAGE_NAME` environment variable is not necessary if you built the binary from source. When using a downloaded binary, do not include the extension of the package file name in the environment variable definition. Example `PACKAGE_NAME=nginx-agent-2.26.2.jammy_amd64`.
 
 ```bash
 PACKAGE_NAME=[NAME-OF-PACKAGE] make oss-image 
