@@ -1,8 +1,6 @@
 ---
 title: "Rate Limiting"
 description: Learn how to use the NGINX Management Suite API Connectivity Manager Rate Limiting policy to protect backend servers. The Rate Limiting policy lets you limit connections and the rate of requests based on request URI, client IP address, or authenticated clients.
-
-
 weight: 1300
 toc: true
 tags: [ "docs" ]
@@ -22,13 +20,13 @@ personas: ["netops", "secops"]
 
 ## About the Policy
 
-Use the Rate Limit policy to throttle the number of requests over a given time that enters an application.
-Specify multiple rate limit stipulations on a single policy based off of the **Request URI**, **Client IP address** or the **Authenticated Client ID**.
-The policy can also specify the type of traffic shaping required to allow burst traffic or two-stage rate limiting
+The Rate Limit policy can be used to throttle the number of requests in a time period that enter an application.
+You can specify multiple rate limit stipulations with a single policy based on the **Request URI**, **Client IP address** or the **Authenticated Client ID**.
+The policy can also specify the type of traffic shaping required to allow burst traffic or two-stage rate limiting.
 
 #### Intended Audience
 
-This guide is meant for NGINX Management Suite Administrators who can modify or create policies on an API Gateway Proxy
+This guide is meant for NGINX Management Suite Administrators who can modify or create policies on an API Gateway Proxy.
 
 ---
 
@@ -38,7 +36,7 @@ Complete the following prerequisites before proceeding with this guide:
 
 - API Connectivity Manager is installed, licensed, and running.
 - You have one or more Environments with an [API Gateway]({{< relref "/nms/acm/getting-started/add-api-gateway" >}}).
-- You have published one or more [API Gateways]({{< relref "/nms/acm/getting-started/publish-api-proxy" >}})
+- You have published one or more [API Gateways]({{< relref "/nms/acm/getting-started/publish-api-proxy" >}}).
 
 
 ## Policy Settings
@@ -64,7 +62,7 @@ Complete the following prerequisites before proceeding with this guide:
 
 ## Applying the Policy
 
-You can apply this policy using either the web interface or the REST API. The policy uses `x-correlation-id` as the default HTTP header name, or you can provide a custom header value.
+You can apply this policy using the web interface or the REST API. The policy uses `x-correlation-id` as the default HTTP header name, or you can provide a custom header value.
 
 <br>
 
@@ -120,19 +118,18 @@ This JSON example defines a Request Correlation ID policy, which specifies that 
 To add a Request Correlation ID policy using the web interface:
 
 1. In the ACM user interface, go to **Services > \{your workspace}**, where "your workspace" is the workspace that contains the API Proxy.
-2. Select **Edit Proxy** from the **Actions** menu for the desired API Proxy.
-3. On the **Policies** tab, select **Add Policy** from the **Actions** menu for **Rate Limit**.
-4. Multiple Rate limit stipulations can be added for a policy.
-5. Configure the associated **Key**, **Limit**, **Unit** **Zone Size** and **Zone size  unit** for each stipulation.
-6. Optionally you can customize the type of rate limiting that is applied to the policy. Choose from one of the 3  following options
+1. Select **Edit Proxy** from the **Actions** menu for the desired API Proxy.
+1. On the **Policies** tab, select **Add Policy** from the **Actions** menu for **Rate Limit**.
+1. Multiple Rate limit stipulations can be added for a policy.
+1. Configure the associated **Key**, **Limit**, **Unit** **Zone Size** and **Zone size  unit** for each stipulation.
+1. Optionally you can customize the type of rate limiting that is applied to the policy. Choose from one of the 3  following options
    1. **Buffer excess requests**: will allow bursts of requests to be stored in a buffer
-   2. **Buffer excess requests no delay**: will allow bursts of requests to get processed immediately while there is space in the buffer
-   3. **Throttle excess requests**: will enable Two-Stage rate limiting
-
-7. Set custom error return code conditions if rate limiting **is exceeded**.
-8. Select **Add** to apply the Rate Limit policy to the Proxy. Then select **Save & Publish** to deploy the configuration to the API Proxy.
-9. Select **Add** to apply the policy to the cluster. 
-10. Select **Save and Submit** to deploy the configuration.
+   1. **Buffer excess requests no delay**: will allow bursts of requests to get processed immediately while there is space in the buffer
+   1. **Throttle excess requests**: will enable Two-Stage rate limiting
+1. Set custom error return code conditions if rate limiting **is exceeded**.
+1. Select **Add** to apply the Rate Limit policy to the Proxy. Then select **Save & Publish** to deploy the configuration to the API Proxy.
+1. Select **Add** to apply the policy to the cluster. 
+1. Select **Save and Submit** to deploy the configuration.
 
 {{%/tab%}}
 
@@ -140,9 +137,8 @@ To add a Request Correlation ID policy using the web interface:
 
 ---
 
-## Common use-cases
-See the following resources for example use cases of Rate Limiting;
+## Common Use Cases
+The following articles describe common use cases for rate limiting:
 
-1. https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-2-protecting-backend-services/
-2. https://www.nginx.com/blog/rate-limiting-nginx/
-
+1. [Rate Limiting with NGINX and NGINX Plus](https://www.nginx.com/blog/rate-limiting-nginx/)
+1. [Deploying NGINX as an API Gateway, Part 2: Protecting Backend Services](https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-2-protecting-backend-services/)
