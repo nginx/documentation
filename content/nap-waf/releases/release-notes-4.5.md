@@ -92,4 +92,5 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 - 8976 Fixed - When using multiple arcsight remote loggers for NGINX App Protect WAF policy, request with a query string may cause enforcer core.
 - 8312 Fixed - Running the get-signatures utility on Alpine ad Debian Operating Systems writes output to a different location.
 - 8936 Fixed - To reduce potential false positives, user defined Headers and Cookies that do not specify whether their decodeValueAsBase64 value, are now `disabled` instead of `enabled` by default.
+- 8939 Fixed - The issue with rejected gRPC request support id logged as "Passed" has been fixed.
  
