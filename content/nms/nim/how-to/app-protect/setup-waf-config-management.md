@@ -461,7 +461,7 @@ To onboard your NGINX App Protect WAF instances to Instance Manager, you need to
 
    ```yaml
    ...
-   config_dirs: "/etc/nginx:/usr/local/etc/nginx:/etc/nms;"
+   config_dirs: "/etc/nginx:/usr/local/etc/nginx:/usr/share/nginx/modules:/etc/nms:/etc/app_protect"
    extensions:
      - nginx-app-protect
    nginx_app_protect:
@@ -1037,9 +1037,15 @@ Configure NGINX Agent on your NGINX App Protect WAF instance with settings simil
 # path to aux file dirs can also be added
 config_dirs: "/etc/nginx:/usr/local/etc/nginx:/usr/share/nginx/modules:/etc/nms:/etc/app_protect"
 
+# Enable necessary NAP extensions
+extensions:
+    - nginx-app-protect
+    - nap-monitoring
+
 nginx_app_protect:
   # Report interval for NGINX App Protect details - the frequency the NGINX Agent checks NGINX App Protect for changes.
   report_interval: 15s
+  # Enable precompiled publication from the NGINX Management Suite (true) or perform compilation on the data plane host (false).
   precompiled_publication: true
 
 nap_monitoring:
