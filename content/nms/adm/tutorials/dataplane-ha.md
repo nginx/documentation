@@ -14,7 +14,7 @@ docs: "DOCS-000"
 {{< custom-styles >}}
 
 ## Overview
-ADM Gateways are entry points for application traffic and create NGINX server blocks. These `server` blocks bind to the specified IP:port and accept incoming connections on them. We can make these IP addresses(virtual IP addresses) highly available using `keepalived`. `server` blocks can be made highly available by binding to these IP addresses. This document describes how to configure HA on a Gateway using `keepalived`. 
+ADM Gateways are entry points for application traffic and create NGINX server blocks. These server blocks normally bind to local IP:Port tuple and accept incoming connections. To achieve a highly available (HA) connection, we can make these server blocks bind to a non-local IP (virtual IP) address in conjunction with the use of the keepalived framework. This document describes how to configure HA on a gateway using keepalived. 
 
 ## Prerequisites.
 
