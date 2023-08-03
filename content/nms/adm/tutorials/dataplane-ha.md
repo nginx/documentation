@@ -1,9 +1,13 @@
 ---
-title: Configuring HA Gateways
-weight: 100
-toc: true
+title: "Creating Highly Available Gateways"
+date: 2023-08-02T22:09:31-07:00
 draft: false
-tags: ["docs"]
+description: "Describes how to create highly available Gateways using `nginx-ha-keepalived` package"
+# Assign weights in increments of 100
+weight: 
+toc: true
+tags: [ "docs" ]
+# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
 docs: "DOCS-000"
 ---
 
@@ -21,8 +25,8 @@ ADM Gateways are entry points for application traffic and create NGINX server bl
 
 ### NGINX
 - Install NGINX+ on both systems.
-- Install NGINX agent on both systems as described [here](https://docs.nginx.com/nginx-management-suite/nginx-agent/install-nginx-agent/).
-- Add both instances to the same instance group as described [here](https://docs.nginx.com/nginx-management-suite/nim/how-to/nginx/manage-instance-groups/).
+- Install NGINX agent on both systems. Refer to [Install and Configure NGINX Agent](https://docs.nginx.com/nginx-management-suite/nginx-agent/install-nginx-agent/) for more details.
+- Add both instances to the same instance group. Refer to [Working with Instance Groups](https://docs.nginx.com/nginx-management-suite/nim/how-to/nginx/manage-instance-groups/).
 
 ### NGINX HA keepalived package installation and configuration
 {{<tabs name="install-nginx-ha-keepalived">}}
@@ -39,7 +43,7 @@ ADM Gateways are entry points for application traffic and create NGINX server bl
     ```bash
     sudo nginx-ha-setup
     ```
- Refer to [High Availability Support for NGINX Plus in On-Premises Deployments](https://docs.nginx.com/nginx/admin-guide/high-availability/ha-keepalived/) document for full details.
+ Refer to [High Availability Support for NGINX Plus in On-Premises Deployments](https://docs.nginx.com/nginx/admin-guide/high-availability/ha-keepalived/) for full details.
 
 {{%/tab%}}
 
