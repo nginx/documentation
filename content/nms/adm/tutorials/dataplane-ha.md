@@ -33,36 +33,30 @@ ADM Gateways are entry points for application traffic and create NGINX server bl
 
 {{%tab name="CentOS, RHEL, RPM-Based"%}}
 
-1. To install keepalived and scripts needed for HA configuration, run the following commands.
-    ```bash
-    sudo yum install -y nginx-ha-keepalived
-    sudo systemctl unmask keepalived
-    sudo systemctl enable keepalived
-    ```
-2. To configure keepalived run the following command and follow the prompts.
-    ```bash
-    sudo nginx-ha-setup
-    ```
- Refer to [High Availability Support for NGINX Plus in On-Premises Deployments](https://docs.nginx.com/nginx/admin-guide/high-availability/ha-keepalived/) for full details.
-
+#### 1. To install keepalived and scripts needed for HA configuration, run the following commands.
+```bash
+sudo yum install -y nginx-ha-keepalived
+sudo systemctl unmask keepalived
+sudo systemctl enable keepalived
+```
 {{%/tab%}}
 
 {{%tab name="Debian, Ubuntu, Deb-Based"%}}
 
-1. To install keepalived and scripts needed for HA configuration, run the following commands.
-    ```bash
-    sudo apt-get install -y nginx-ha-keepalived
-    sudo systemctl unmask keepalived
-    sudo systemctl enable keepalived
-    ```
-2. To configure keepalived run the following command and follow the prompts.
-    ```bash
-    sudo nginx-ha-setup
-    ```
- Refer to [High Availability Support for NGINX Plus in On-Premises Deployments](https://docs.nginx.com/nginx/admin-guide/high-availability/ha-keepalived/) document for full details.
+#### 1. To install keepalived and scripts needed for HA configuration, run the following commands.
+```bash
+sudo apt-get install -y nginx-ha-keepalived
+sudo systemctl unmask keepalived
+sudo systemctl enable keepalived
+```
 {{%/tab%}}
 
 {{</tabs>}}
+#### 2. To configure keepalived run the following command and follow the prompts.
+```bash
+sudo nginx-ha-setup
+```
+ Refer to [High Availability Support for NGINX Plus in On-Premises Deployments](https://docs.nginx.com/nginx/admin-guide/high-availability/ha-keepalived/) for full details.
 
 {{< warning >}}
 - `nginx-ha-keepalived` has the `keepalived` binary bundled in the install package.
@@ -75,7 +69,7 @@ If the above is not desired, then scripts in `nginx-ha-keepalived` can be used a
 ## Validate NGINX and keepalived configuration.
 Before proceeding further we need to check if `keepalived` is configured and working properly. Follow the steps below to verify.
 
-### 1. keepalived is running.
+### 1. Keepalived is running.
 Ensure that keepalived is up and running on both systems using the command below.
 ```bash
 systemctl status keepalived
@@ -86,27 +80,27 @@ There are multiple ways to check the state of keepalived.
 #### Option-1: Check the IP address assignment on the interface configured with keepalived.
 In the keepalived configuration note down the `virtual_ipaddress`. This IP address must be configured on the active system. 
 ```bash
-    vrrp_instance VI_1 {
-        interface ens192
-        priority 101
-        virtual_router_id 51
-        advert_int 1
-        accept
-        garp_master_refresh 5
-        garp_master_refresh_repeat 1
-        unicast_src_ip 10.10.10.123
-        unicast_peer {
-            10.10.10.118
-        }
-        virtual_ipaddress {
-            10.10.10.150
-        }
-        track_script {
-            chk_nginx_service
-            chk_manual_failover
-        }
-        notify "/usr/lib/keepalived/nginx-ha-notify"
+vrrp_instance VI_1 {
+    interface ens192
+    priority 101
+    virtual_router_id 51
+    advert_int 1
+    accept
+    garp_master_refresh 5
+    garp_master_refresh_repeat 1
+    unicast_src_ip 10.10.10.123
+    unicast_peer {
+        10.10.10.118
     }
+    virtual_ipaddress {
+        10.10.10.150
+    }
+    track_script {
+        chk_nginx_service
+        chk_manual_failover
+    }
+    notify "/usr/lib/keepalived/nginx-ha-notify"
+}
 
 ```
 When both systems are up on the active system, the IP in `virtual_ipaddress` must be assigned to the configured interface on the active system. IP`10.10.10.150/32` on interface `ens192` in the example below.
