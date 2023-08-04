@@ -5,7 +5,7 @@ date: "2021-12-21T12:00:00-07:00"
 description: This topic explains how to use Instance Manager with containers.
 doctypes:
 - tutorial
-draft: false
+draft: true
 journeys:
 - getting started
 - using
