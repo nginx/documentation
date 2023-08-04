@@ -120,6 +120,7 @@ to transition from `PodScheduled` to `Ready`:
 | Module                      | Pod          | Transition from `PodScheduled` to `Ready` |
 |-----------------------------|--------------|-------------------------------------------|
 | API Connectivity Manager    | acm          | 4.2 seconds                               |
+{{</bootstrap-table>}}
 
 ---
 
