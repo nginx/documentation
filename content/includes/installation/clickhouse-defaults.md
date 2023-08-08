@@ -1,4 +1,7 @@
-#
+---
+docs: DOCS-1238
+---
+
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Configuration            | Default                            | Notes |
 |--------------------------|------------------------------------|-------|

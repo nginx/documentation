@@ -29,55 +29,33 @@ aliases:
 
 ## Overview
 
-Instance Manager RBAC, or Role-Based Access Control, helps you control who has access to Instance Manager resources, what they can do, and what areas they have access to.
+With role-based access control, or RBAC, you can define permissions for users and control which resources and areas they have access to.
 
-Instance Manager RBAC is an authorization system built around three core objects:
+Here are some key concepts related to RBAC:
 
-- **Roles**: A role definition, or role for short, is a collection of permissions for one or more [features](#feature-definition). A role definition lists the actions that can be performed for each feature: create, read, update, or delete. Instance Manager includes an `admin` built-in role with full access.
-- **Users**: A user account is a username with a set of credentials. You can create users directly in Instance Manager, or you can add an external identity provider.
-- **Groups**: A group is a collection of users. Groups in Instance Manager are used only with external identity providers. Users from an external identity provider can't be assigned roles directly in Instance Manager, but they inherit roles through group memberships.
+- **Users**: Users are individual accounts identified by a username and credentials. You have the flexibility to create users directly within NGINX Management Suite or integrate an external identity provider.
+- **Roles**: Roles represent a collection of permissions associated with one or more features. Each role determines the actions that can be performed for each feature, such as create, read, update, or delete. The pre-defined `admin` role provides full access to all features.
 
-Users can, and often will, have **multiple roles**. When this happens, permissions are *additive*, that is, the sum of the role assignments. For example, a user with two roles, the first role granting read access to all NGINX instances and one role granting create, update, and delete access to a specific instance, will be able to read all instances and create, update, or delete only the single instance she has permission for.
+   Users can have multiple roles simultaneously. In such cases, the permissions granted by each role are combined, providing an additive effect. For instance, a user with two roles, one granting read access to all NGINX instances and the other allowing create, update, and delete access to a specific instance, will be able to read all instances while having the ability to create, update, or delete only the designated instance for which they have permission.
 
-<a name="feature-definition"></a>
+- **Groups**: Groups are collections of users. Groups are exclusively used in conjunction with external identity providers. Users from external identity providers cannot be directly assigned roles within NGINX Management Suite. However, they inherit roles through their group memberships.
+- **Features**: Features in NGINX Management Suite are specific functional components or capabilities that allow users to perform various tasks and access related resources. 
 
-A **feature** is a grouping of functionality in Instance Manager.
-
-{{< note >}}The features belonging to API Connectivity Manager are only accessible if that module is installed.
-Instance Manager should not be used to manage the same configurations as API Connectivity Manager. To avoid configuration issues, only READ permissions should be enabled for the following features:
-Staged Configs, Instance Groups, and Instance Management. This will ensure that configurations can be viewed only in Instance Manager. {{< /note >}}
 
 The following table lists the features you can assign roles to:
 
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Module                   | Feature             | Description                                                                       |
-|--------------------------|---------------------|-----------------------------------------------------------------------------------|
-| Settings                 | Licensing           | Allows access to view and manage licenses                                         |
-| Settings                 | User Management     | Allows access to view and manage roles, users, and user groups                    |
-| Instance Manager         | Analytics           | Allows access to the analytics endpoints, including metrics, catalogs, and events |
-| Instance Manager         | Certs               | Allows access to view and manage certs for NGINX instances                        |
-| Instance Manager         | Instance Groups     | Allows access to view and manage NGINX instance groups                            |
-| Instance Manager         | Resource Groups     | Allows access to view and manage resource groups                            |
-| Instance Manager         | Instance Management | Allows access to view and manage NGINX instances where granting write access (Create, Update) allows a user to read and publish any valid certificate stored in NGINX Management Suite by name                              |
-| Instance Manager         | Scan                | Allows access to scan for NGINX Instances                                         |
-| Instance Manager         | Staged Configs      | Allows access to view and manage staged NGINX configurations                      |
-| Security Monitoring      | Security Monitoring | Allows access to the Security Monitoring dashboard and APIs                       |
-| API Connectivity Manager | API Docs            | Allows access to view and manage API Docs to be published to Dev Portal           |
-| API Connectivity Manager | Dev Portal Setup    | Allows access to view and manage Dev Portals                                      |
-| API Connectivity Manager | Environments        | Allows access to view and manage environments                                     |
-| API Connectivity Manager | Hostname            | Allows access to view and manage hostnames for deploying proxies to               |
-| API Connectivity Manager | Infra Workspace     | Allows access to view and manage Infrastructure workspaces                        |
-| API Connectivity Manager | Job History         | Allows access to view and manage job history                                      |
-| API Connectivity Manager | Proxy Config        | Allows access to view and manage Proxies                                          |
-| API Connectivity Manager | Service Workspace   | Allows access to view and manage Service workspaces                               |
-| App Delivery Manager     | Environments        | Allows access to view and manage Environments |
-| App Delivery Manager     | Apps                | Allows access to view and manage Apps |
-| App Delivery Manager     | Gateways            | Allows access to view and manage Gateways |
-| App Delivery Manager     | Web Components      | Allows access to view and manage Web Components |
-| App Delivery Manager     | TCP-UDP Components  | Allows access to view and manage TCP-UDP Components |
-| App Delivery Manager     | Sites               | Allows access to view and manage Sites |
+{{< include "admin-guides/access-control/rbac-features.md" >}}
 
-{{</bootstrap-table>}}
+<br>
+
+{{< call-out "important" "API Connectivity Manager's features" >}}The features belonging to API Connectivity Manager are available only when that module is installed.
+Instance Manager **should not** be used to manage the same configurations as API Connectivity Manager. To avoid potential configuration issues, only READ permissions should be enabled for Staged Configs, Instance Groups, and Instance Management. This will ensure that configurations can only be viewed in Instance Manager. {{< /call-out >}}
+
+---
+
+## Add Users {#add-users}
+
+{{< include "admin-guides/access-control/add-users.md" >}}
 
 ---
 
@@ -85,7 +63,11 @@ The following table lists the features you can assign roles to:
 
 {{< include "admin-guides/access-control/create-role.md" >}}
 
-{{<see-also>}}If you use the Security Monitoring module, see the [Create Role for Security Monitoring]({{<relref "/nms/security/how-to/create-role-security-monitoring" >}}) topic for instructions on creating a role for accessing the module's dashboards and REST API.{{</see-also>}}
+---
+
+## Assign Roles {#assign-roles}
+
+{{< include "admin-guides/access-control/assign-roles.md" >}}
 
 ---
 
@@ -108,27 +90,15 @@ API Connectivity Manager comes pre-configured with roles suitable for API Owners
 
 {{<see-also>}}The tutorial [Set Up RBAC for Infra Admins]({{< relref "/nms/acm/tutorials/rbac-infra-admins.md">}}) provides an example of how to configure RBAC for Infrastructure Administrators.{{</see-also>}}
 
-## Add Users {#add-users}
-
-{{< include "admin-guides/access-control/add-users.md" >}}
-
 ---
 
-## Assign Roles {#assign-roles}
+## Create a User Group {#create-group}
 
-{{< include "admin-guides/access-control/assign-roles.md" >}}
-
----
-
-## Create a Group {#create-group}
-
-{{< important >}}**Groups are used only with external identity providers** configured to use OpenID Connect (OIDC) authentication, following the steps in the [Set Up Authentication Guide]({{< relref "/nms/admin-guides/access-control/configure-authentication.md#oidc-auth" >}}).{{< /important >}}
-
-Users from an external identity provider can't be assigned roles directly in Instance Manager, but they inherit roles through group memberships.
 
 {{< include "admin-guides/access-control/create-group.md" >}}
 
-{{< see-also >}}To automate creating users and groups using the [SCIM API](http://www.simplecloud.info), refer to the [Provision Users and Groups with SCIM]({{< relref "/nms/admin-guides/access-control/scim-provisioning.md" >}}) topic for instructions. Requires Instance Manager 2.3 or later.{{< /see-also >}}
+{{< see-also >}}Refer to the "[Provision Users and Groups with SCIM](({{< relref "/nms/admin-guides/access-control/scim-provisioning.md" >}}))" topic for instructions on automating user and group creation using the [SCIM API](http://www.simplecloud.info).{{< /see-also >}}
+
 
 ---
 

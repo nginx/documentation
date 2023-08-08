@@ -29,6 +29,30 @@ doctypes: ["reference"]
 
 ---
 
+## 1.6.0
+
+July 24, 2023
+
+### Upgrade Paths
+
+Security Monitoring 1.6.0 supports upgrades from these previous versions:
+
+- 1.3.0–1.5.0
+
+If your Security Monitoring version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading NGINX Security Monitoring and the NGINX Agent.{{< /see-also >}}
+
+### Resolved Issues
+
+This release fixes the following issues. Select an issue's ID link to view its details.
+
+
+- {{% icon-resolved %}} The field retrieving URIs is incorrectly listed as URL ([38377]({{< relref "/nms/security/releases/known-issues.md#42941" >}}))
+
+
+---
+
 ## 1.5.0
 
 June 12, 2023
@@ -52,6 +76,7 @@ This release includes the following updates:
   This release adds violation and signature details to Security Monitoring. This information helps you identify false positives and gain a more comprehensive understanding of violations, allowing you to fine-tune your security policies and optimize your threat detection.
 
 ---
+
 ## 1.4.0 {#1-4-0}
 
 April 26, 2023
@@ -98,10 +123,6 @@ This release includes the following security update:
 
   Single quotes in filtered values are automatically escaped to ensure that the data is parsed correctly.
 
-### Known Issues {#1-3-0-known-issues}
-
-- To view the known issues in this release, see the [Known Issues]({{< relref "/nms/security/releases/known-issues.md" >}}) topic.
-
 ---
 
 ## 1.2.0
@@ -121,11 +142,7 @@ January 30, 2023
 This release fixes the following issue. To view the history for an issue, see the [Known Issues list]({{< relref "/nms/security/releases/known-issues.md" >}}).
 
 
-- {{% icon-resolved %}} The field retrieving URIs is incorrectly listed as URL (38377)
-
-### Known Issues
-
-- To view the known issues in this release, see the [Known Issues]({{< relref "/nms/security/releases/known-issues.md" >}}) topic.
+- {{% icon-resolved %}} The field retrieving URIs is incorrectly listed as URL ([38377]({{< relref "/nms/security/releases/known-issues.md#38377" >}}))
 
 ---
 
@@ -150,10 +167,6 @@ Security Monitoring 1.1.0 has the following changes in default behavior:
 
   The count of WAF `PASSED` requests was removed from the Security Monitoring dashboards to avoid customer confusion, as it counted only requests with violations and not all requests filtered by NGINX App Protect WAF.
 
-### Known Issues
-
-- To view the known issues in this release, see the [Known Issues]({{< relref "/nms/security/releases/known-issues.md" >}}) topic.
-
 ---
 
 ## 1.0.0
@@ -174,7 +187,3 @@ This release includes the following updates:
   - In-depth security log details to help with analyzing possible threats and making policy decisions
 
   Refer to the [Installation Guide]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}) to get started.
-
-### Known Issues
-
-- To view the known issues in this release, see the [Known Issues]({{< relref "/nms/security/releases/known-issues.md" >}}) topic.

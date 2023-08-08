@@ -42,7 +42,6 @@ Instance Manager does not support the following NGINX App Protect features:
 - [Policies with external references](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#external-references)
 - [Policies with modifications](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#modifying-configurations)
 - Custom signatures
-- [Custom log profiles](https://docs.nginx.com/nginx-app-protect/logging-overview/security-log/). Instance Manager provides the same default log profiles as NGINX App Protect.
 
 ---
 
@@ -390,6 +389,55 @@ To ensure that the dashboards show the most up-to-date information, you need to 
 
 ---
 
+## Setup Compiler Resource Pruning
+You can configure the following compiler resources to prune automatically:
+- Compiled Security Policies
+- Compiled Security Log Profiles
+- Attack Signatures
+- Threat Campaigns
+
+In the case of `compiled security policies` and `compiled security log profiles`, the definition of the `security policy` and/or `security log profile` is not removed. Only the compiled bundles associated with those resources are removed.
+
+To enable automatic compiler resource pruning, please follow these steps:
+
+1. Log in to the management plane host using SSH.
+1. Open the `/etc/nms/nms.conf` file for editing.
+1. Update the `policy_manager` field to contain the desired `time to live` values for each resource type; see the following snippet for an example of adding the necessary fields under `integrations`->`policy_manager`:
+
+    ```yaml
+    integrations:
+    address: unix:/var/run/nms/integrations.sock
+    dqlite:
+        addr: 127.0.0.1:7892
+    policy_manager:
+        # Time to live for attack signatures. If the attack signatures exceed their TTL and are not deployed to an instance or
+        # instance group they will be deleted from the database. Duration unit can be seconds (s), minutes (m), or hours (h).
+        attack_signatures_ttl: 336h
+        # Time to live for compiled bundles, this includes compiled security policies and compiled log profiles. If a compiled
+        # bundle exceeds its TTL and is not deployed to an instance or instance group it will be deleted from the database. Note
+        # that the compiled bundle is deleted, not the definition of it (i.e. the security policy or log profile definition).
+        # Duration unit can be seconds (s), minutes (m), or hours (h).
+        compiled_bundles_ttl: 336h
+        # Time to live for threat campaigns. If the threat campaigns exceed their TTL and are not deployed to an instance or
+        # instance group they will be deleted from the database. Duration unit can be seconds (s), minutes (m), or hours (h).
+        threat_campaigns_ttl: 1440h
+    app_protect_security_update:
+        enable: true
+        interval: 6
+        number_of_updates: 10
+    ```
+
+1. Save the changes and close the file.
+1. Restart the `nms-integrations` service:
+
+    ```  bash
+    sudo systemctl restart nms-integrations
+    ```
+
+The compiler resource pruning process occurs once upon start-up of the `nms-integrations` service and once every `24 hours` after the `nms-integrations` service has been started.
+
+---
+
 ## Onboard NGINX App Protect WAF Instances
 
 To onboard your NGINX App Protect WAF instances to Instance Manager, you need to install and configure NGINX Agent.
@@ -413,7 +461,7 @@ To onboard your NGINX App Protect WAF instances to Instance Manager, you need to
 
    ```yaml
    ...
-   config_dirs: "/etc/nginx:/usr/local/etc/nginx:/etc/nms;"
+   config_dirs: "/etc/nginx:/usr/local/etc/nginx:/usr/share/nginx/modules:/etc/nms:/etc/app_protect"
    extensions:
      - nginx-app-protect
    nginx_app_protect:
@@ -989,9 +1037,15 @@ Configure NGINX Agent on your NGINX App Protect WAF instance with settings simil
 # path to aux file dirs can also be added
 config_dirs: "/etc/nginx:/usr/local/etc/nginx:/usr/share/nginx/modules:/etc/nms:/etc/app_protect"
 
+# Enable necessary NAP extensions
+extensions:
+    - nginx-app-protect
+    - nap-monitoring
+
 nginx_app_protect:
   # Report interval for NGINX App Protect details - the frequency the NGINX Agent checks NGINX App Protect for changes.
   report_interval: 15s
+  # Enable precompiled publication from the NGINX Management Suite (true) or perform compilation on the data plane host (false).
   precompiled_publication: true
 
 nap_monitoring:

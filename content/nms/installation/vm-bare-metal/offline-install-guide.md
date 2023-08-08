@@ -569,15 +569,9 @@ To upgrade App Delivery Manager to a newer version, take the following steps:
 ---
 ## Add License {#add-license}
 
-A valid license is required to use all of the features of NGINX Management Suite.
+A valid license is required to make full use of all the features in NGINX Management Suite.
 
-### Download License
-
-{{< include "installation/download-license.md" >}}
-
-### Apply License
-
-{{< include "installation/add-license.md" >}}
+Refer to the [Add a License]({{< relref "/nms/installation/add-license.md" >}}) topic for instructions on how to download and apply a trial license, subscription license, or Flexible Consumption Program license.
 
 ---
 

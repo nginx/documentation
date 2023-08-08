@@ -94,27 +94,30 @@ Repeat the steps in this section on each NGINX App Protect WAF data plane host t
 
    # OSS NGINX default config path
    # path to aux file dirs can also be added
-   config_dirs: "/etc/nginx:/usr/local/etc/nginx:/usr/share/nginx/modules:/etc/nms"
+   config_dirs: "/etc/nginx:/usr/local/etc/nginx:/usr/share/nginx/modules:/etc/nms:/etc/app_protect"
 
    # Enable reporting NGINX App Protect details to the management plane.
    extensions:
      - nginx-app-protect
      - nap-monitoring
+
    # Enable reporting NGINX App Protect details to the control plane.
    nginx_app_protect:
-   # Report interval for NGINX App Protect details - the frequency the NGINX Agent checks NGINX App Protect for changes.
-   report_interval: 15s
+      # Report interval for NGINX App Protect details - the frequency the NGINX Agent checks NGINX App Protect for changes.
+      report_interval: 15s
+      # Enable precompiled publication from the NGINX Management Suite (true) or perform compilation on the data plane host (false).
+      precompiled_publication: true
 
    # NGINX App Protect Monitoring config
    nap_monitoring:
-   # Buffer size for collector. Will contain log lines and parsed log lines
-   collector_buffer_size: 50000
-   # Buffer size for processor. Will contain log lines and parsed log lines
-   processor_buffer_size: 50000
-   # Syslog server IP address the collector will be listening to
-   syslog_ip: "127.0.0.1"
-   # Syslog server port the collector will be listening to
-   syslog_port: 514
+      # Buffer size for collector. Will contain log lines and parsed log lines
+      collector_buffer_size: 50000
+      # Buffer size for processor. Will contain log lines and parsed log lines
+      processor_buffer_size: 50000
+      # Syslog server IP address the collector will be listening to
+      syslog_ip: "127.0.0.1"
+      # Syslog server port the collector will be listening to
+      syslog_port: 514
    ```
 
 1. If the `location /api` directive has not been set up in the `nginx.conf` file, follow the example below to add it:
@@ -122,9 +125,9 @@ Repeat the steps in this section on each NGINX App Protect WAF data plane host t
    ```nginx
    server{
               location /api {
-              api write=on;
-              allow 127.0.0.1;
-              deny all;
+                  api write=on;
+                  allow 127.0.0.1;
+                  deny all;
               }
    }
    ```
