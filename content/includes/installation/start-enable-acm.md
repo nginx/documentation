@@ -1,3 +1,7 @@
+---
+docs: DOCS-807
+---
+
 To enable and start the NGINX Management Suite services for API Connectivity Manager, take the following steps:
 
 1. Enable the NGINX Management Suite services:
@@ -24,6 +28,3 @@ To enable and start the NGINX Management Suite services for API Connectivity Man
     ```bash
     ps aufx | grep nms
     ```
-
-<!-- Do not remove. Keep this code at the bottom of the include -->
-<!-- DOCS-807 -->

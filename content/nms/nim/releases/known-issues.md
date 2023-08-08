@@ -17,8 +17,155 @@ categories: ["known issues"]
 
 ---
 
-## 2.11.0
+## 2.12.0
 
+### {{% icon-bug %}} Licensing issues when adding JWT licenses in firewalled environments {#43719}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 43719 | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+If firewall rules prevent access to F5 servers, attempting to license NGINX Management Suite with a JWT license may result in the product being unable to terminate the license or upload another one, even if connectivity is restored.
+
+#### Workaround
+
+To fix this issue, follow the steps below for your environment type.
+
+<br>
+
+##### Virtual Machine or Bare Metal
+
+1. Stop the integrations service:
+
+   ``` bash
+   sudo systemctl stop nms-integrations
+   ```
+
+2. Delete the contents of `/var/lib/nms/dqlite/license`
+
+3. Start the integrations service:
+
+   ```bash
+   sudo systemctl start nms-integrations
+   ```
+
+4. Upload a valid S/MIME license.
+
+   Alternatively, to use a JWT license, make sure to allow inbound and outbound access on port 443 to the following URLs:
+
+   - https://product.apis.f5.com
+   - https://product-s.apis.f5.com/ee
+
+##### Kubernetes
+
+1. Run the following command to stop the integrations service by scaling down:
+
+   ```bash
+   kubectl -n nms scale --replicas=0 deployment.apps/integrations
+   ```
+2. Access the Dqlite volume for the integrations service and delete the contents of `/var/lib/nms/dqlite/license`.
+
+3. Run the following command to start the integrations service by scaling up:
+
+   ```bash
+   kubectl -n nms scale --replicas=1 deployment.apps/integrations
+   ```
+
+4. Upload a valid S/MIME license.
+
+   Alternatively, to use a JWT license, make sure to allow inbound and outbound access on port 443 to the following URLs:
+
+   - https://product.apis.f5.com
+   - https://product-s.apis.f5.com/ee
+
+---
+
+### {{% icon-bug %}} On Kubernetes, uploading a JWT license for NGINX Management Suite results in the error "secret not found" {#43655}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status |
+|----------|--------|
+| 43655    | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+When uploading a JWT license to an NGINX Management Suite deployment on Kubernetes, you may see error messages in the web interface and logs similar to the following example:  
+
+<pre>[ERROR] /usr/bin/nms-integrations   license/secrets.go:100    jwt-manager: failed to get [secret=dataEncryptionKey] from remote store. secret not found</pre>
+
+#### Workaround
+
+This error can be resolved by deleting the integrations pod and restarting it. You can do this by running the following command on the NGINX Management Suite host:
+
+```bash
+kubectl -n nms scale --replicas=0 deployment.apps/integrations; kubectl -n nms scale --replicas=1 deployment.apps/integrations
+```
+
+---
+
+### {{% icon-bug %}} Upgrading to 2.12 disables telemetry {#43606}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status |
+|----------|--------|
+| 43606    | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+Upgrading to Instance Manager 2.12 will stop NGINX Management Suite from transmitting telemetry.
+
+#### Workaround
+
+Toggle the telemetry setting off and on. You can do this by selecting **Settings > License** from the NGINX Management Suite web interface.
+
+---
+
+### {{% icon-bug %}} A JWT license for an expired subscription cannot be terminated from the web interface {#43580}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status |
+|----------|--------|
+| 43580    | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+When a JWT license from an expired subscription is uploaded to NGINX Management Suite, it cannot be replaced or terminated from the web interface.
+<br>
+
+#### Workaround
+
+Upload a valid JWT or S/MIME license file using the Platform API. 
+
+More information is available in the Platform API reference guide, under the License endpoint. In a web browser, go to the FQDN for your NGINX Management Suite host and log in. Then, from the Launchpad menu, select **API Documentation**.
+
+---
+
+### {{% icon-bug %}} An "unregistered clickhouse-adapter" failure is logged every few seconds if logging is set to debug. {#43438}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status |
+|----------|--------|
+| 43438    | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+If NGINX Management Suite logging is set to debug, it may log an "unregistered clickhouse-adapter" failure every few seconds. These logs do not affect the system's performance and can safely be ignored.
+
+#### Workaround
+
+Choose a less verbose logging level, such as warning, error, or info.
+
+---
+
+## 2.11.0
 
 ### {{% icon-bug %}} Querying API endpoints for Security deployments associations may return empty UIDs for Attack-Signatures and Threat-Campaigns {#43034}
 
@@ -29,7 +176,6 @@ categories: ["known issues"]
 {{</bootstrap-table>}}
 
 #### Description
-
 When querying the following API endpoints for Security deployment associations, you may encounter results where the UID value for Attack-Signatures and Threat-Campaigns is empty. 
 
 - /api/platform/v1/security/deployments/attack-signatures/associations
@@ -54,7 +200,6 @@ To obtain the UID value for Attack-Signatures and Threat-Campaigns, you can quer
 {{</bootstrap-table>}}
 
 #### Description
-
 After restarting the NGINX Management Suite services, the publication status of instance groups for deployments that include a security policy may show as 'not available'.
 
 #### Workaround
@@ -72,7 +217,6 @@ Redeploy a new version of the security policy or an updated 'nginx.conf'.
 {{</bootstrap-table>}}
 
 #### Description
-
 In certain situations, when you update a certificate or key using the NGINX Management Suite web interface, and subsequently add or edit a Certificate permission for Role-Based Access Control (RBAC) in **Settings > Roles**, you may notice that the "Applies to" name appears as "nginx-repo".
 
 #### Workaround
@@ -90,7 +234,6 @@ Use the unique identifier to assign specific permissions to a particular certifi
 {{</bootstrap-table>}}
 
 #### Description
-
 NGINX Agent 2.26, which is packaged with Instance Manager 2.11, may fail to start on RHEL 9 systems with SELinux enabled. An error similar to the following is logged: "Unable to read dynamic config".
 
 #### Workaround
@@ -108,7 +251,6 @@ Use an earlier version of the NGINX Agent. You can install the NGINX Agent from 
 {{</bootstrap-table>}}
 
 #### Description
-
 When deploying NGINX Management Suite in Kubernetes, if you have previously run the support package script and the output is still in the default location, you may encounter an error message similar to the following example when reinstalling or upgrading NGINX Management Suite:
 
 `Failed to create: Secret "sh.helm.release.v1.(release-name).v1"`
@@ -128,7 +270,6 @@ Delete or move the support package output files: `nms-hybrid/support-package/k8s
 {{</bootstrap-table>}}
 
 #### Description
-
 When updating Attack Signatures or Threat Campaign packages on multiple instances simultaneously, only one instance may be successfully updated. An error similar to the following is logged: `security policy bundle object with given ID was not found.`
 
 #### Workaround
@@ -139,20 +280,31 @@ Update the Attack Signatures or Threat Campaigns package one instance at a time.
 
 ## 2.10.0
 
-### {{% icon-bug %}} Unable to publish configurations referencing the log bundle for Security Monitor {#42932}
+### {{% icon-resolved %}} Disk Usage in Metrics Summary shows incorrect data when multiple partitions exist on a system {#42999}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 42932    | Open   |
+| Issue ID | Status          |
+|----------|-----------------|
+| 42999    | Fixed in 2.12.0 |
 {{</bootstrap-table>}}
 
 #### Description
+The Disk Usage metric on the Metrics Summary page averages disk usage across all the partitions instead of summing it.
 
+---
+
+### {{% icon-resolved %}} Unable to publish configurations referencing the log bundle for Security Monitor {#42932}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status          |
+|----------|-----------------|
+| 42932    | Fixed in 2.12.0 |
+{{</bootstrap-table>}}
+
+#### Description
 Configuration deployments that reference the log bundle for Security Monitoring (app_protect_security_log "/etc/nms/secops_dashboard.tgz" syslog:server=127.0.0.1:514;), may fail with an error message similar to the following:
 
-<instance>: error while retrieving NGINX App Protect profile bundle secops_dashboard info for NAP version 4.279.0: Not Found. Please create it first.
-<br>
+<instance>: error while retrieving Nginx App Protect profile bundle secops_dashboard info for NAP version 4.279.0: Not Found. Please create it first
 
 #### Workaround
 
@@ -173,36 +325,7 @@ sudo systemctl restart nms
 {{</bootstrap-table>}}
 
 #### Description
-
 Sometimes, valid licenses for NGINX Management Suite are incorrectly identified as invalid when uploaded. As a result, you may not be able to access features that require a valid license.
-
----
-
-###  {{% icon-resolved %}} Certificate updates allow for multiples certs to share the same serial number {#42429}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status          |
-|----------|-----------------|
-| 42429    | Fixed in 2.11.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-It is possible to update an existing certificate's serial number to one already in use. This incorrectly changes the cert (matching the serial number) details to a new name.
-
----
-
-###  {{% icon-resolved %}} Certificate file is not updated automatically under certain conditions {#42425}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status          |
-|----------|-----------------|
-| 42425    | Fixed in 2.11.0 |
-{{</bootstrap-table>}}
-
-#### Description
-
-Certificate file is not updated automatically when a config change is pushed to an offline instance after it comes back online.
 
 ---
 
@@ -215,23 +338,18 @@ Certificate file is not updated automatically when a config change is pushed to 
 {{</bootstrap-table>}}
 
 #### Description
-
 When installing the Metrics module on Red Hat 9, the following error will prevent it from finishing:
 
-```text
 warning: Signature not supported. Hash algorithm SHA1 not available.
 error: /tmp/nginx_signing.key: key 1 import failed.
 
 Failed to import nginx signing key. exiting.
-```
 
 #### Workaround
 
 Before installation, run the following command:
 
-```text
 sudo update-crypto-policies --set DEFAULT:SHA1
-```
 
 After installation, we recommend you return the default to a more secure algorithm such as SHA256.
 
@@ -246,9 +364,7 @@ After installation, we recommend you return the default to a more secure algorit
 {{</bootstrap-table>}}
 
 #### Description
-
 The list of Threat Campaigns will disappear when scrolling down, preventing the selection of the oldest versions.
-<br>
 
 #### Workaround
 
@@ -265,13 +381,11 @@ Threat Campaign versions can be published with the API using the route: `api/pla
 {{</bootstrap-table>}}
 
 #### Description
-
-When deploying a configuration with a certificate and key handled by NGINX Management Suite to a custom file path, it may deploy a duplicate copy of the certificate and key to the default `/etc/nginx/` path. When deleting the certificate and key, it will only delete the certificate and key in the custom path, leaving the duplicate copy.
-<br>
+When deploying a configuration with a certificate and key handled by NGINX Management Suite to a custom file path, it may deploy a duplicate copy of the certificate and key to the default /etc/nginx/ path. When deleting the certificate and key, it will only delete the certificate and key in the custom path, leaving the duplicate copy.
 
 #### Workaround
 
-Manually delete the certificate and key from the `/etc/nginx/` path.
+Manually delete the certificate and key from the /etc/nginx/ path.
 
 ---
 
@@ -284,16 +398,13 @@ Manually delete the certificate and key from the `/etc/nginx/` path.
 {{</bootstrap-table>}}
 
 #### Description
+When upgrading to 2.10 you may see a warning like the below message for the NGINX Management Suite Ingestion service. It can be safely ignored.
 
-When upgrading to 2.10.0 you may see a warning like the below message for the NGINX Management Suite Ingestion service. It can be safely ignored.
-
-```text
-[WARN] #011/usr/bin/nms-ingestion   #011start/start.go:497  #011error checking migrations Mismatched migration version for ClickHouse, expected 39 migrations to be applied, currently have only 44 migrations applied.
-```
+[WARN] #011/usr/bin/nms-ingestion               #011start/start.go:497                 #011error checking migrations Mismatched migration version for ClickHouse, expected 39 migrations to be applied, currently have only 44 migrations applied.
 
 ---
 
-### {{% icon-bug %}} When upgrading to Instance Manager 2.10.0, the API does not return lastDeploymentDetails for existing configurations {#42119}
+### {{% icon-bug %}} When upgrading to Instance Manager 2.10, the API does not return lastDeploymentDetails for existing configurations {#42119}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID | Status |
@@ -302,9 +413,7 @@ When upgrading to 2.10.0 you may see a warning like the below message for the NG
 {{</bootstrap-table>}}
 
 #### Description
-
-When upgrading to Instance Manager 2.10.0, the API does not return `lastDeploymentDetails` for existing configuration blocks. This is then reflected as "Invalid Date" in the web interface (See [42108](#42108)).
-<br>
+After upgrading to Instance Manager 2.10, the API does not return lastDeploymentDetails for existing configuration blocks. This is then reflected as "Invalid Date" in the UI (See #42108).
 
 #### Workaround
 
@@ -312,7 +421,7 @@ Republish the configuration for the affected configuration blocks.
 
 ---
 
-### {{% icon-bug %}} When upgrading to Instance Manager 2.10.0, the publish status on App Security pages shows "Invalid Date" {#42108}
+### {{% icon-bug %}} When upgrading to Instance Manager 2.10, the publish status on App Security pages shows "Invalid Date" {#42108}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID | Status |
@@ -321,8 +430,20 @@ Republish the configuration for the affected configuration blocks.
 {{</bootstrap-table>}}
 
 #### Description
+After upgrading to Instance Manager 2.10, the publish status on App Security pages of Policies, Attack Signatures, and Threat Campaign shows "Invalid Date" until new configurations are published to the instance or instance group. 
 
-After upgrading to Instance Manager 2.10.0, the publish status on App Security pages of Policies, Attack Signatures, and Threat Campaign shows "Invalid Date" until new configurations are published to the instance or instance group. 
+---
+
+### {{% icon-resolved %}} Filtering Analytics data with values that have double backslashes (`\\`) causes failures {#42105}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status          |
+|----------|-----------------|
+| 42105    | Fixed in 2.12.0 |
+{{</bootstrap-table>}}
+
+#### Description
+When you apply a filter with double backslashes (`\\`) on any of the Analytics endpoints, such as metrics, events, or the security dashboard, the API fails to parse and apply the filter correctly. 
 
 ---
 
@@ -335,13 +456,11 @@ After upgrading to Instance Manager 2.10.0, the publish status on App Security p
 {{</bootstrap-table>}}
 
 #### Description
-
-NGINX Agent introduced the `config_reload_monitoring_period` parameter under `nginx` to define the duration which Agent will monitor the logs for relevant errors and warnings after a configuration change. As a result, configuration changes will take at least one second to appear.
-<br>
+NGINX Agent introduced the config_reload_monitoring_period parameter under nginx to define the duration which Agent will monitor the logs for relevant errors and warnings after a configuration change. As a result, configuration changes will take at least one second to appear.
 
 #### Workaround
 
-Adjust the `config_reload_monitoring_period` parameter to a value that suits your workflow. 
+Adjust the config_reload_monitoring_period parameter to a value that suits your workflow. 
 
 ---
 
