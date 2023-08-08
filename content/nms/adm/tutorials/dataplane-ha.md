@@ -63,7 +63,7 @@ sudo nginx-ha-setup
 - An existing keepalived binary is overwritten by the `nginx-ha-keepalived` installation. 
 - Running the `nginx-ha-setup` script will overwrite existing `keepalived` configuration.
 
-If the above is not desired, then scripts in `nginx-ha-keepalived` can be used as a reference to create a custom NGINX+ keepalived setup. 
+If the above is not desired, then the scripts in the `nginx-ha-keepalived` package can be used as a reference to create a custom NGINX+ keepalived setup. 
 {{< /warning >}}
 
 ## Validate NGINX and keepalived configuration.
@@ -74,7 +74,7 @@ Ensure that keepalived is up and running on both systems using the command below
 ```bash
 systemctl status keepalived
 ```
-### 2. Check the one instance of keepalived is in active state and the other in standby state.
+### 2. Check that one instance of keepalived is in the active state and the other is in the standby state.
 There are multiple ways to check the state of keepalived.
 
 #### Option-1: Check the IP address assignment on the interface configured with keepalived.
@@ -139,9 +139,34 @@ Test failover works by stopping NGINX on the active system or by rebooting the a
 ## ADM configuration
 To configure HA on a Gateway, the `server` blocks must bind to the `keepalived` floating/virtual IP addresses. On a Gateway this can be done via `listenIps` configuration when adding an instance group to the Gateway as shown below. The `listenIps` configuration is per instance group and must be specified on all instance groups for correct HA configuration.
 
-### API
-```bash
- "placement": {
+{{<tabs name="configure-listenip">}}
+
+{{%tab name="API"%}}
+To add `listenIps` via API include the IP addresses in the Gateway POST/PUT request to endpoint `https://<NMS_FQDN>/api/adm/v1/environments/<ENVIRONMENT_UUID>/gateways`.
+{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+{{<bootstrap-table "table">}}
+| Method | Endpoint                                           |
+|--------|----------------------------------------------------|
+| `POST` | `/api/adm/v1/environments/{environment-uuid}/gateways` |
+| `PUT` | `/api/adm/v1/environments/{environment-uuid}/gateways/{gateway-uuid}` |
+{{</bootstrap-table>}}
+{{< raw-html>}}</div>{{</raw-html>}}
+<details open>
+<summary>JSON request</summary>
+
+```json
+{
+  "metadata": {
+    "uid": "dcbdf985-ba2c-48e9-9fa2-be8097957197",
+    "name": "gw1"
+  },
+  "ingress": {
+    "uris": [
+      {
+        "uri": "http://foo.com"
+      }
+    ],
+    "placement": {
       "instanceGroupRefs": [
         {
           "ref": "08a35e5d-7bdd-4b26-971c-0ce0e43271b9",
@@ -152,10 +177,24 @@ To configure HA on a Gateway, the `server` blocks must bind to the `keepalived` 
       ]
     }
   }
+}
 ```
 
-### UI
+</details>
+
+{{%/tab%}}
+{{%tab name="UI"%}}
+To configure this via UI, follow the steps below.
+1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in. Then, from the Launchpad menu, select App Delivery Manager.
+2. On the left menu, select **Gateways**.
+3. In the Gateway edit form select **Placements**.
+3. Add or edit the instance group.
+4. In the instance group edit form enter the `listenIps`.
+
 {{< img src="adm/tutorials/gateway-listen-ip-configuration.png" alt="Gateway Listen IP configuration" width="80%">}}
+
+{{%/tab%}}
+{{</tabs>}}
 
 ## Validate ADM configuration
 - Create a Gateway with `listenIps` set to `keepalived` virtual IPs.
