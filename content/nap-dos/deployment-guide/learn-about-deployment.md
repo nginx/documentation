@@ -55,8 +55,6 @@ NGINX App Protect DoS supports the following operating systems:
 - [Ubuntu 22.04 (Jammy)](#debian--ubuntu-installation)
 - [Alpine 3.15.x](#alpine-315-installation)
 
-
-
 The NGINX App Protect DoS package has the following dependencies:
 
 1. **nginx-plus-module-appprotectdos** - NGINX Plus dynamic module for App Protect DoS
@@ -70,9 +68,12 @@ The NGINX App Protect DoS package has the following dependencies:
 See the NGINX Plus full list of prerequisites for more details. NGINX App Protect DoS can be installed as a module to an existing NGINX Plus installation or as a complete NGINX Plus with App Protect DoS installation in a clean environment or to a system with NGINX App Protect WAF.
 
 {{< note >}} 
-gRPC and HTTP/2 protection require active monitoring of the protected service. The directive `app_protect_dos_monitor` is mandatory for these use cases, otherwise, attacks will not be detected. 
+gRPC and HTTP/2 protection require active monitoring of the protected service. The directive `app_protect_dos_monitor` is mandatory for the attack to be detected.
 
-gRPC and HTTP/2 protection are available only on Debian 10, Ubuntu 18.04 and Ubuntu 20.04 platforms. For rest of the platforms, NGINX App Protect DoS does not provide gRPC and HTTP/2 services. The traffic is bypassed.{{< /note >}}
+TLS fingerprint feature is not used in CentOS 7.4 and RHEL 7 / UBI 7 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
+
+Monitor directive `app_protect_dos_monitor` with proxy_protocol parameter can not be configured on Ubuntu 18.04. As a result, gRPC and HTTP/2 DoS protection for proxy_protocol configuration is not supported.
+{{< /note >}}
 
 ## Platform Security Considerations
 
@@ -133,7 +134,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     Then, install a specific version from the output of command above. For example:
 
     ```shell
-    sudo yum install app-protect-dos-25+2.0.1
+    sudo yum install app-protect-dos-27+2.4.0
     ```
 
 8. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus): 
@@ -278,10 +279,10 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     gpgkey=http://ftp.heanet.ie/pub/centos/7/os/x86_64/RPM-GPG-KEY-CentOS-7
     [epel]
     name=epel packages for CentOS/RHEL 7
-    baseurl=https://download-ib01.fedoraproject.org/pub/epel/7/x86_64
+    baseurl=https://dl.fedoraproject.org/pub/epel/7/x86_64
     enabled=1
     gpgcheck=1
-    gpgkey=https://download-ib01.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
+    gpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
     [extras]
     name=extras packages for CentOS/RHEL 7
     mirrorlist=http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=extras
@@ -311,7 +312,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     Then, install a specific version from the output of command above. For example:
 
     ```shell
-    sudo yum install app-protect-dos-25+2.0.1
+    sudo yum install app-protect-dos-27+2.4.0
     ```
 
 9. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus): 
@@ -469,7 +470,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     Then, install a specific version from the output of command above. For example:
 
     ```shell
-    sudo yum install app-protect-dos-25+2.0.1
+    sudo yum install app-protect-dos-27+2.4.0
     ```
 
 9. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus): 
@@ -605,7 +606,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```
 
 
-## Debian 10 / Debian 11 Installation
+## Debian / Ubuntu Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -631,8 +632,14 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
 5. Install apt utils:
 
+    For Debian:
     ```shell
-    sudo apt-get install apt-transport-https lsb-release ca-certificates wget gnupg2
+    sudo apt-get install apt-transport-https lsb-release ca-certificates wget gnupg2 debian-archive-keyring
+    ```
+
+    For Ubuntu:
+    ```shell
+    sudo apt-get install apt-transport-https lsb-release ca-certificates wget gnupg2 ubuntu-keyring
     ```
     
     {{< note >}}In case the apt installation or database update fails due to release info change, run the below command before you install.{{< /note >}}
@@ -644,14 +651,20 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 6. Download and add the NGINX signing key:
 
     ```shell
-    sudo wget http://nginx.org/keys/nginx_signing.key && sudo apt-key add nginx_signing.key
+    sudo wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | sudo gpg --dearmor | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
     ```
-
 7. Add NGINX Plus and NGINX App Protect DoS repository:
 
+    For Debian:
     ```shell
-    printf "deb https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-plus.list
-    printf "deb https://pkgs.nginx.com/app-protect-dos/debian `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
+    printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-plus.list
+    printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/debian `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
+    ```
+    
+    For Ubuntu:
+    ```shell
+    printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-plus.list
+    printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
     ```
 
 8. Download the apt configuration to `/etc/apt/apt.conf.d`:
@@ -666,14 +679,14 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo apt-get install app-protect-dos
     ```
 
-    For L4 accelerated mitigation feature (Debian 11):
+    For L4 accelerated mitigation feature (Debian 11 / Ubuntu 20.04 / Ubuntu 22.04):
 
     ```shell
     sudo apt-get install app-protect-dos-ebpf
     ```
 
    {{< note >}}
-   L4 accelerated mitigation feature (Debian 11):
+   L4 accelerated mitigation feature (Debian 11 / Ubuntu 20.04 / Ubuntu 22.04):
    `nginx-app-protect-dos` and `nginx` needs to run with root privileges.
    `nginx-app-protect-dos` service executes the command: `ulimit -l unlimited`.
    {{< /note >}}
@@ -689,13 +702,13 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     where xx is a release number.
 
-    For example, to install `app-protect-dos` for Debian 10 NGINX Plus version 27, make sure of the following:
+    For example, to install `app-protect-dos` for Debian 11 NGINX Plus version 27, make sure of the following:
 
     ```shell
     sudo cat /etc/apt/sources.list.d/nginx-plus.list
-    deb https://pkgs.nginx.com/plus/R27/debian buster nginx-plus
+    deb https://pkgs.nginx.com/plus/R27/debian bullseye nginx-plus
     sudo cat /etc/apt/sources.list.d/nginx-app-protect-dos.list
-    deb https://pkgs.nginx.com/app-protect-dos/R27/debian buster nginx-plus
+    deb https://pkgs.nginx.com/app-protect-dos/R27/debian bullseye nginx-plus
     ```
 
     For example, to install `app-protect-dos` for Debian 11 NGINX Plus version 27, make sure of the following:
@@ -727,6 +740,24 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     ```shell
     sudo apt-get install app-protect-dos=27+2.4.0-1~bullseye nginx-plus-module-appprotectdos=27+2.4.0-1~bullseye
+    ```
+
+    For example for Ubuntu 18.04:
+
+    ```shell
+    sudo apt-get install app-protect-dos=27+2.4.0-1~bionic nginx-plus-module-appprotectdos=27+2.4.0-1~bionic
+    ```
+
+    For example for Ubuntu 20.04:
+
+     ```shell
+    sudo apt-get install app-protect-dos=27+2.4.0-1~focal nginx-plus-module-appprotectdos=27+2.4.0-1~focal
+    ```
+
+    For example for Ubuntu 22.04:
+
+     ```shell
+    sudo apt-get install app-protect-dos=27+2.4.0-1~jammy nginx-plus-module-appprotectdos=27+2.4.0-1~jammy
     ```
 
 10. In the case of upgrading from a previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):
@@ -765,287 +796,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     app_protect_dos_monitor "example.com/";
     ```
 
-15. Enable L4 accelerated mitigation feature (Debian 11) on an `http` context in the `nginx.conf` file:
-
-    ```nginx
-    app_protect_dos_accelerated_mitigation on;
-    ```
-
-16. Start the NGINX service:
-
-    ```shell
-    sudo service nginx start
-    ```
-
-## Ubuntu 18.04 Installation
-
-1. If you already have NGINX packages in your system, back up your configs and logs:
-
-    ```shell
-    sudo cp -a /etc/nginx /etc/nginx-plus-backup
-    sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
-    ```
-
-2. Create the `/etc/ssl/nginx/` directory:
-
-    ```shell
-    sudo mkdir -p /etc/ssl/nginx
-    ```
-
-3. Log in to the NGINX [Customer Portal](https://my.f5.com) and download the following two files:
-
-    ```
-    nginx-repo.key
-    nginx-repo.crt
-    ```
-
-4. Copy the above two files to the Ubuntu server’s `/etc/ssl/nginx/` directory. Use an SCP client or another secure file transfer tool to perform this task.
-
-5. Install apt utils:
-
-    ```shell
-    sudo apt-get install apt-transport-https lsb-release ca-certificates wget
-    ```
-
-6. Download and add the NGINX signing key:
-
-    ```shell
-    sudo wget http://nginx.org/keys/nginx_signing.key && sudo apt-key add nginx_signing.key
-    ```
-
-7. Add NGINX Plus and NGINX App Protect DoS repository:
-
-    ```shell
-    printf "deb https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-plus.list
-    printf "deb https://pkgs.nginx.com/app-protect-dos/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
-    ```
-
-8. Download the apt configuration to `/etc/apt/apt.conf.d`:
-
-    ```shell
-    sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
-    ```
-
-9. In case of fresh Installation, update the repository and install the most recent version of the NGINX Plus App Protect DoS package (which includes NGINX Plus):
-
-    ```shell
-    sudo apt-get update
-    sudo apt-get install app-protect-dos
-    ```
-
-    Alternatively, to install a specific version you should modify the repository URL in the `/etc/apt/sources.list.d/nginx-plus.list` file in the following way:
-
-    ```shell
-    deb https://pkgs.nginx.com/plus/Rxx/ubuntu ...
-    ```
-    
-    and make the same changes to the `/etc/apt/sources.list.d/nginx-app-protect-dos.list`
-
-    ```shell
-    deb https://pkgs.nginx.com/app-protect-dos/Rxx/ubuntu ...
-    ```
-    Where xx is a release number.
-
-    For example, to install `app-protect-dos` for NGINX Plus version 25 make sure of the following:
-
-    ```shell
-    sudo cat /etc/apt/sources.list.d/nginx-plus.list
-    deb https://pkgs.nginx.com/plus/R25/ubuntu bionic nginx-plus
-    sudo cat /etc/apt/sources.list.d/nginx-app-protect-dos.list
-    deb https://pkgs.nginx.com/app-protect-dos/R25/ubuntu bionic nginx-plus
-    ```
-    Then, use the following commands to update and list available versions:
-
-    ```shell
-    sudo apt-get update
-    sudo apt-cache policy app-protect-dos
-    ```
-    Finally, install a specific version from the output of command above. For example:
-
-    ```shell
-    sudo apt-get install app-protect-dos=25+2.0.1-1~bionic nginx-plus-module-appprotectdos=25+2.0.1-1~bionic
-    ```
-
-10. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):  
-
-    ```shell
-    sudo apt-get update
-    sudo apt-get remove nginx-plus
-    sudo apt-get install app-protect-dos
-    sudo service nginx start
-    ```
-
-11. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
-
-    ```shell
-    sudo nginx -v
-    ```
-
-12. Check the App Protect DoS binary version to ensure that you have the right version installed correctly:
-
-    ```shell
-    sudo admd -v
-    ```
-
-13. Load the NGINX App Protect DoS module on the main context in the `nginx.conf` file:
-
-    ```nginx
-    load_module modules/ngx_http_app_protect_dos_module.so;
-    ```
-
-14. Enable NGINX App Protect DoS on an `http/server/location` context in the `nginx.conf` via:
-
-    ```nginx
-    app_protect_dos_enable on;
-    app_protect_dos_name "vs-example";
-    app_protect_dos_policy_file "/etc/app_protect_dos/BADOSDefaultPolicy.json";
-    app_protect_dos_monitor "example.com/";
-    ```
-
-15. Start the NGINX service:
-
-    ```shell
-    sudo service nginx start
-    ```
-
-## Ubuntu 20.04 Installation
-
-1. If you already have NGINX packages in your system, back up your configs and logs:
-
-    ```shell
-    sudo cp -a /etc/nginx /etc/nginx-plus-backup
-    sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
-    ```
-
-2. Create the `/etc/ssl/nginx/` directory:
-
-    ```shell
-    sudo mkdir -p /etc/ssl/nginx
-    ```
-
-3. Log in to the NGINX [Customer Portal](https://my.f5.com) and download the following two files:
-
-    ```
-    nginx-repo.key
-    nginx-repo.crt
-    ```
-
-4. Copy the above two files to the Ubuntu server’s `/etc/ssl/nginx/` directory. Use an SCP client or another secure file transfer tool to perform this task.
-
-5. Install apt utils:
-
-    ```shell
-    sudo apt-get install apt-transport-https lsb-release ca-certificates wget
-    ```
-
-6. Download and add the NGINX signing key:
-
-    ```shell
-    sudo wget http://nginx.org/keys/nginx_signing.key && sudo apt-key add nginx_signing.key
-    ```
-
-7. Add NGINX Plus repository and NGINX App Protect DoS repository:
-
-    ```shell
-    printf "deb https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-plus.list
-    printf "deb https://pkgs.nginx.com/app-protect-dos/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
-    ```
-
-8. Download the apt configuration to `/etc/apt/apt.conf.d`:
-
-    ```shell
-    sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
-    ```
-
-9. In case of fresh Installation, update the repository and install the most recent version of the NGINX Plus App Protect DoS package (which includes NGINX Plus):
-
-    ```shell
-    sudo apt-get update
-    sudo apt-get install app-protect-dos
-    ```
-
-    For L4 accelerated mitigation feature:
-    
-    ```shell
-    sudo apt-get install app-protect-dos-ebpf
-    ```
-
-   {{< note >}}
-   L4 accelerated mitigation feature:
-   `nginx-app-protect-dos` and `nginx` needs to run with root privileges.
-   `nginx-app-protect-dos` service executes the command: `ulimit -l unlimited`.
-   {{< /note >}}
-    
-    Alternatively, to install a specific version you should modify the repository URL in the `/etc/apt/sources.list.d/nginx-plus.list` file in the following way:
-
-    ```shell
-    deb https://pkgs.nginx.com/app-protect-dos/Rxx/ubuntu ...
-    ```
-
-    and make the same changes to the `/etc/apt/sources.list.d/nginx-app-protect-dos.list`
-
-    ```shell
-    deb https://pkgs.nginx.com/app-protect-dos/Rxx/ubuntu ...
-    ```
-    Where xx is a release number.
-
-    For example, to install app-protect-dos for NGINX Plus version 25 make sure of the following:
-
-    ```shell
-    sudo cat /etc/apt/sources.list.d/nginx-plus.list
-    deb https://pkgs.nginx.com/plus/R25/ubuntu focal nginx-plus
-    sudo cat /etc/apt/sources.list.d/nginx-app-protect-dos.list
-    deb https://pkgs.nginx.com/app-protect-dos/R25/ubuntu focal nginx-plus
-    ```
-    Then, use the following commands to update and list available versions:
-
-    ```shell
-    sudo apt-get update
-    sudo apt-cache policy app-protect-dos
-    ```
-    Finally, install a specific version from the output of command above. For example:
-
-    ```shell
-    sudo apt-get install app-protect-dos=25+2.0.1-1~focal nginx-plus-module-appprotectdos=25+2.0.1-1~focal
-    ```
-
-10. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):  
-
-    ```shell
-    sudo apt-get update
-    sudo apt-get remove nginx-plus
-    sudo apt-get install app-protect-dos
-    sudo service nginx start
-    ```
-
-11. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
-
-    ```shell
-    sudo nginx -v
-    ```
-
-12. Check the App Protect DoS binary version to ensure that you have the right version installed correctly:
-
-    ```shell
-    sudo admd -v
-    ```
-
-13. Load the NGINX App Protect DoS module on the main context in the `nginx.conf` file:
-
-    ```nginx
-    load_module modules/ngx_http_app_protect_dos_module.so;
-    ```
-
-14. Enable NGINX App Protect DoS on an `http/server/location` context in the `nginx.conf` via:
-
-    ```nginx
-    app_protect_dos_enable on;
-    app_protect_dos_name "vs-example";
-    app_protect_dos_policy_file "/etc/app_protect_dos/BADOSDefaultPolicy.json";
-    app_protect_dos_monitor "example.com/";
-    ```
-
-15. Enable L4 accelerated mitigation feature (Debian 11) on an `http` context in the `nginx.conf` file:
+15. Enable L4 accelerated mitigation feature (Debian 11 / Ubuntu 20.04 / Ubuntu 22.04) on an `http` context in the `nginx.conf` file:
 
     ```nginx
     app_protect_dos_accelerated_mitigation on;
@@ -1130,12 +881,12 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     
     where xx is a release number.
 
-    For example, to install NGINX App Protect DoS for NGINX Plus R26 make sure of the following:
+    For example, to install NGINX App Protect DoS for NGINX Plus R27 make sure of the following:
 
     ```shell
     sudo cat /etc/apk/repositories
-    https://pkgs.nginx.com/plus/R26/alpine/v3.15/main
-    https://pkgs.nginx.com/app-protect-dos/R26/alpine/v3.15/main
+    https://pkgs.nginx.com/plus/R27/alpine/v3.15/main
+    https://pkgs.nginx.com/app-protect-dos/R27/alpine/v3.15/main
     ```
     Install the most recent version of NGINX App Protect DoS for NGINX Plus R23:
 
@@ -1154,7 +905,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     Finally, install a specific version from the output of command above. For example:
 
     ```shell    
-    sudo apk add nginx-plus app-protect-dos=26.2.2.41-r1
+    sudo apk add nginx-plus app-protect-dos=27+2.4.0-r1
     ```
 
 10. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):  
@@ -1316,25 +1067,29 @@ COPY entrypoint.sh  /root/
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
 
-### Debian 10 Docker Deployment Example
+### Debian 10 (Buster) / Debian 11 (Bullseye) Docker Deployment Example
 
 ```Dockerfile
-# For Debian 10 / Debian 11:
-FROM debian:buster
+
+ARG OS_CODENAME
+# Where OS_CODENAME can be: buster/bullseye
+
+FROM debian:${OS_CODENAME}
 
 # Download certificate and key from the customer portal (https://my.f5.com)
 # and copy to the build context:
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
  
 # Install prerequisite packages:
-RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2
+RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2 debian-archive-keyring
  
 # Download and add the NGINX signing key:
 RUN wget https://cs.nginx.com/static/keys/nginx_signing.key && apt-key add nginx_signing.key
- 
+RUN wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+
 # Add NGINX Plus and NGINX App Protect DoS repository:
-RUN printf "deb https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list
-RUN printf "deb https://pkgs.nginx.com/app-protect-dos/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
+RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list
+RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
  
 # Download the apt configuration to `/etc/apt/apt.conf.d`:
 RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
@@ -1352,61 +1107,28 @@ COPY entrypoint.sh  /root/
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
 
-### Ubuntu 18.04 Docker Deployment Example
+### Ubuntu 18.04 (Bionic) / 20.04 (Focal) / 22.04 (Jammy) Docker Deployment Example
 
 ```Dockerfile
-# For Ubuntu 18.04:
-FROM ubuntu:bionic
- 
+
+ARG OS_CODENAME
+# Where OS_CODENAME can be: bionic/focal/jammy 
+
+FROM ubuntu:${OS_CODENAME}
+
 # Download certificate and key from the customer portal (https://my.f5.com)
 # and copy to the build context:
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
  
 # Install prerequisite packages:
-RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2
+RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2 ubuntu-keyring
  
 # Download and add the NGINX signing key:
-RUN wget https://cs.nginx.com/static/keys/nginx_signing.key && apt-key add nginx_signing.key
- 
-# Add NGINX Plus and NGINX App Protect DoS repository:
-RUN printf "deb https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list
-RUN printf "deb https://pkgs.nginx.com/app-protect-dos/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
- 
-# Download the apt configuration to `/etc/apt/apt.conf.d`:
-RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
- 
-# Update the repository and install the most recent version of the NGINX App Protect DoS package (which includes NGINX Plus):
-RUN apt-get update && apt-get install -y app-protect-dos
- 
-# Remove nginx repository key/cert from docker
-RUN rm -rf /etc/ssl/nginx
- 
-# Copy configuration files:
-COPY nginx.conf /etc/nginx/
-COPY entrypoint.sh /root/
- 
-CMD /root/entrypoint.sh && tail -f /dev/null
-```
+RUN wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
 
-### Ubuntu 20.04 Docker Deployment Example
-
-```Dockerfile
-# For Ubuntu 20.04:
-FROM ubuntu:focal
- 
-# Download certificate and key from the customer portal (https://my.f5.com)
-# and copy to the build context:
-COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
- 
-# Install prerequisite packages:
-RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2
- 
-# Download and add the NGINX signing key:
-RUN wget https://cs.nginx.com/static/keys/nginx_signing.key && apt-key add nginx_signing.key
- 
 # Add NGINX Plus and NGINX App Protect DoS repository:
-RUN printf "deb https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list
-RUN printf "deb https://pkgs.nginx.com/app-protect-dos/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
+RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg]https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list
+RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
  
 # Download the apt configuration to `/etc/apt/apt.conf.d`:
 RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
@@ -1712,26 +1434,29 @@ COPY entrypoint.sh  /root/
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
 
-### Debian 10 Docker Deployment Example
+### Debian 10 (Buster) / Debian 11 (Bullseye) Docker Deployment Example
 
 ```Dockerfile
-# For Debian 10:
-FROM debian:buster
+
+ARG OS_CODENAME
+# Where OS_CODENAME can be: buster/bullseye
+
+FROM debian:${OS_CODENAME}
  
 # Download certificate and key from the customer portal (https://my.f5.com)
 # and copy to the build context:
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
  
 # Install prerequisite packages:
-RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2
+RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2 debian-archive-keyring
  
 # Download and add the NGINX signing key:
-RUN wget https://cs.nginx.com/static/keys/nginx_signing.key && apt-key add nginx_signing.key
+RUN wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
  
 # Add NGINX Plus, NGINX App Protect and NGINX App Protect DoS repository:
-RUN printf "deb https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list
-RUN printf "deb https://pkgs.nginx.com/app-protect-dos/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
-RUN printf "deb https://pkgs.nginx.com/app-protect/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect.list
+RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list
+RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
+RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect.list
  
 # Download the apt configuration to `/etc/apt/apt.conf.d`:
 RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
@@ -1749,104 +1474,31 @@ COPY entrypoint.sh  /root/
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
 
-### Debian 11 Docker Deployment Example
+### Ubuntu 18.04 (Bionic) / 20.04 (Focal) / 22.04 (Jammy) Docker Deployment Example
 
 ```Dockerfile
-# For Debian 11:
-FROM debian:bullseye
- 
-# Download certificate and key from the customer portal (https://my.f5.com)
-# and copy to the build context:
-COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
- 
-# Install prerequisite packages:
-RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2
- 
-# Download and add the NGINX signing key:
-RUN wget https://cs.nginx.com/static/keys/nginx_signing.key && apt-key add nginx_signing.key
- 
-# Add NGINX Plus, NGINX App Protect and NGINX App Protect DoS repository:
-RUN printf "deb https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list
-RUN printf "deb https://pkgs.nginx.com/app-protect-dos/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
-RUN printf "deb https://pkgs.nginx.com/app-protect/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect.list
- 
-# Download the apt configuration to `/etc/apt/apt.conf.d`:
-RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
- 
-# Update the repository and install the most recent version of the NGINX App Protect DoS and NGINX App Protect package (which includes NGINX Plus):
-RUN apt-get update && apt-get install -y app-protect-dos app-protect
- 
-# Remove nginx repository key/cert from docker
-RUN rm -rf /etc/ssl/nginx
- 
-# Copy configuration files:
-COPY nginx.conf custom_log_format.json /etc/nginx/
-COPY entrypoint.sh  /root/
- 
-CMD /root/entrypoint.sh && tail -f /dev/null
-```
 
-### Ubuntu 18.04 Docker Deployment Example
+ARG OS_CODENAME
+# Where OS_CODENAME can be: bionic/focal/jammy 
 
-```Dockerfile
-# For Ubuntu 18.04:
-FROM ubuntu:bionic
- 
-# Download certificate and key from the customer portal (https://my.f5.com)
-# and copy to the build context:
-COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
- 
-# Install prerequisite packages:
-RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2
- 
-# Download and add the NGINX signing key:
-RUN wget https://cs.nginx.com/static/keys/nginx_signing.key && apt-key add nginx_signing.key
- 
-# Add NGINX Plus, NGINX App Protect and NGINX App Protect DoS repository:
-RUN printf "deb https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list
-RUN printf "deb https://pkgs.nginx.com/app-protect-dos/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
-RUN printf "deb https://pkgs.nginx.com/app-protect/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect.list
- 
-# Download the apt configuration to `/etc/apt/apt.conf.d`:
-RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
- 
-# Update the repository and install the most recent version of the NGINX App Protect DoS and NGINX App Protect package (which includes NGINX Plus):
-RUN apt-get update && apt-get install -y app-protect-dos app-protect
- 
-# Remove nginx repository key/cert from docker
-RUN rm -rf /etc/ssl/nginx
- 
-# Copy configuration files:
-COPY nginx.conf custom_log_format.json /etc/nginx/
-COPY entrypoint.sh /root/
- 
-CMD /root/entrypoint.sh && tail -f /dev/null
-```
-
-
-### Ubuntu 20.04 Docker Deployment Example
-
-```Dockerfile
-# For Ubuntu 20.04:
-FROM ubuntu:focal
+FROM ubuntu:${OS_CODENAME}
 
 ARG DEBIAN_FRONTEND=noninteractive
-ENV TZ=Europe/London
  
 # Download certificate and key from the customer portal (https://my.f5.com)
 # and copy to the build context:
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
  
 # Install prerequisite packages:
-RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2
+RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2 ubuntu-keyring
  
 # Download and add the NGINX signing key:
-RUN wget https://cs.nginx.com/static/keys/nginx_signing.key && apt-key add nginx_signing.key
+RUN wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
  
 # Add NGINX Plus, NGINX App Protect and NGINX App Protect DoS repository:
-RUN printf "deb https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list
-RUN printf "deb https://pkgs.nginx.com/app-protect-dos/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
-RUN printf "deb https://pkgs.nginx.com/app-protect/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect.list
+RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list
+RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
+RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect.list
  
 # Download the apt configuration to `/etc/apt/apt.conf.d`:
 RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
