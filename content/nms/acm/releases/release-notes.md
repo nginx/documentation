@@ -15,7 +15,7 @@ categories: ["release notes"]
 
 ## 1.8.0
 
-7/27/2023
+July 27, 2023
 
 ### Upgrade Paths {#1-8-0-upgrade-paths}
 
