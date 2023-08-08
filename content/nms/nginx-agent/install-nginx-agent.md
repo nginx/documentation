@@ -130,7 +130,7 @@ Send an API request similar to the following example to get the inventory list. 
 
 {{%tab name="WEBUI"%}}
 
-Open the NGINX Management Suite web interface and log in. The registered instance is shown in the **Instances** list.
+In a web browser, go to the FQDN for your NGINX Management Suite host and log in. The registered instance is shown in the **Instances** list.
 
   ![Registered instances](/install/registered-instance.png)
 
@@ -169,6 +169,8 @@ The following sections explain how to configure the NGINX Agent using configurat
 ### Configure with Config Files
 
 The configuration files for the NGINX Agent are `/etc/nginx-agent/nginx-agent.conf` and `/var/lib/nginx-agent/agent-dynamic.conf`. These files have comments at the top indicating their purpose.
+
+{{<note>}}If you're running Instance Manager 2.10.1 or earlier or NGINX Agent 2.25.1 or earlier, the `agent-dynamic.conf` file is located in `/etc/nginx-agent/`.{{</note>}}
 
 Examples of the configuration files are provided below:
 
@@ -227,7 +229,10 @@ metrics:
 
 # OSS NGINX default config path
 # path to aux file dirs can also be added
-config_dirs: "/etc/nginx:/usr/local/etc/nginx"
+config_dirs: "/etc/nginx:/usr/local/etc/nginx:/usr/share/nginx/modules:/etc/nms:/etc/app_protect"
+
+extensions:
+  - nginx-app-protect
 
 # Enable reporting NGINX App Protect details to the control plane.
 nginx_app_protect:
@@ -399,8 +404,14 @@ You can also configure NGINX Agent to enable the publication of precompiled NGIN
 
 To enable NGINX App Protect WAF reporting or precompiled publication, edit the `/etc/nginx-agent/nginx-agent.conf` to add the following directives:
 
-```text
-# Enable reporting NGINX App Protect details to the control plane.
+```yaml
+# path to aux file dirs can also be added
+config_dirs: "/etc/nginx:/usr/local/etc/nginx:/usr/share/nginx/modules:/etc/nms:/etc/app_protect"
+
+# Enable necessary NAP extension
+extensions:
+    - nginx-app-protect
+
 nginx_app_protect:
   # Report interval for NGINX App Protect details - the frequency the NGINX Agent checks NGINX App Protect for changes.
   report_interval: 15s

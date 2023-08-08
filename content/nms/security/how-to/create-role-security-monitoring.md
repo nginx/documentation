@@ -71,7 +71,7 @@ After you've created a role for Security Monitoring, assign the role to one or m
 
 To assign the role to a user group, take the following steps:
 
-1. Open the NGINX Management Suite web interface and log in.
+1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in.
 2. Select the **Settings** (gear) icon in the upper-right corner.
 3. Select **User Groups**.
 4. Select the user group from the list, or select **Create** to [add a new user group]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md#create-group" >}}).
