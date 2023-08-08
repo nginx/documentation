@@ -18,7 +18,7 @@ Explore the topics below to find out what the NGINX Management Suite modules hav
 
 ---
 
-## Instance Manager
+## Instance Manager {#instance-manager}
 
 [Instance Manager]({{< relref "/nms/nim/">}}) allows you to configure, scale, and manage NGINX Open Source and NGINX Plus instances. 
 
@@ -40,7 +40,7 @@ Instance Manager provides the following features:
 
 ---
 
-## API Connectivity Manager
+## API Connectivity Manager {#api-connectivity-manager}
 
 [API Connectivity Manager]({{< relref "/nms/acm/">}}) enables self-service and automation of API delivery. API Connectivity Manager allows you to deploy, configure, secure, monitor, and govern API gateways at scale. 
 
@@ -62,7 +62,7 @@ The API Connectiviy Manager module provides the following features:
 
 ---
 
-## App Delivery Manager
+## App Delivery Manager {#app-delivery-manager}
 
 [App Delivery Manager]({{< relref "/nms/adm/">}}) is built on top of the NGINX Management Suite platform and sits alongside the Instance Manager module. As such, uses many of the features that are included with the Instance Manager module, such as [authentication]({{< relref "/nms/admin-guides/access-control/configure-authentication.md" >}}), [Role-Based Access Control (RBAC)]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}), [instance groups]({{< relref "/nms/nim/how-to/nginx/manage-instance-groups.md" >}}), and [certificate management]({{< relref "/nms/nim/how-to/nginx/manage-certificates.md" >}}).
 
@@ -81,7 +81,7 @@ This is all done behind a simple API abstraction provided by App Delivery Manage
 
 ---
 
-## Security Monitoring
+## Security Monitoring {#security-monitoring}
 
 [Security Monitoring]({{< relref "/nms/security/">}}) allows you to monitor NGINX App Protect WAF with analytics dashboards and security log details to get protection insights for analyzing possible threats or areas for tuning policies.
 
