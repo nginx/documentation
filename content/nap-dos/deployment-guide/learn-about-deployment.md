@@ -48,11 +48,11 @@ NGINX App Protect DoS supports the following operating systems:
 - [CentOS 7.4.x and above](#centos-74-installation)
 - [RHEL 7.4.x / UBI 7.6.x and above](#rhel-74-installation)
 - [RHEL 8 / UBI 8 and above](#rhel-8-installation) 
-- [Debian 10 (Buster)](#debianubuntu-installation)
-- [Debian 11 (Bullseye)](#debianubuntu-installation)
-- [Ubuntu 18.04 (Bionic)](#debianubuntu-installation)
-- [Ubuntu 20.04 (Focal)](#debianubuntu-installation)
-- [Ubuntu 22.04 (Jammy)](#debianubuntu-installation)
+- [Debian 10 (Buster)](#debian--ubuntu-installation)
+- [Debian 11 (Bullseye)](#debian--ubuntu-installation)
+- [Ubuntu 18.04 (Bionic)](#debian--ubuntu-installation)
+- [Ubuntu 20.04 (Focal)](#debian--ubuntu-installation)
+- [Ubuntu 22.04 (Jammy)](#debian--ubuntu-installation)
 - [Alpine 3.15.x](#alpine-315-installation)
 
 The NGINX App Protect DoS package has the following dependencies:
