@@ -70,7 +70,7 @@ The IaC project requires the following:
 - A trial or paid subscription for NGINX Management Suite. You can [sign up for NGINX Management Suite at MyF5](https://account.f5.com/myf5).
 - A host capable of running Packer, Ansible, and Terraform.
 
-{{< img src="img/iac/iac-process.svg" caption="Figure 1. NGINX Management Suite's IaC build and deployment process" alt="Diagram showing the build and deployment process for NGINX Management Suite's Infrastructure as Code.">}}
+{{< img src="img/iac/iac-process.png" caption="Figure 1. NGINX Management Suite's IaC build and deployment process" alt="Diagram showing the build and deployment process for NGINX Management Suite's Infrastructure as Code.">}}
 
 <br>
 
