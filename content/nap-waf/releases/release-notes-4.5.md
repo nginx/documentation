@@ -47,6 +47,8 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 
 ### New Feature
 
+In this release, NGINX App Protect WAF supports NGINX Plus R30 for which Ubuntu 18.04 support has been deprecated.
+
 - [Alpine 3.17 Support]({{< relref "/nap-waf/admin-guide/install.md#alpine-317-installation" >}})
 
 ### Supported Packages
@@ -65,26 +67,26 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 
 - app-protect-30+4.457.0-1.el7.ngx.x86_64.rpm
 
-##### RHEL 8.1+
+##### Debian 11
 
-- app-protect-30+4.457.0-1.el8.ngx.x86_64.rpm
+- app-protect_30+4.457.0-1~bullseye_amd64.deb
 
 ##### Oracle Linux 8.1+
 
 - app-protect-30+4.457.0-1.el8.ngx.x86_64.rpm
 
-##### Debian 11
+##### RHEL 8.1+
 
-- app-protect_30+4.457.0-1~bullseye_amd64.deb
+- app-protect-30+4.457.0-1.el8.ngx.x86_64.rpm
 
 ##### Ubuntu 20.04
 
 - app-protect_30+4.457.0-1~focal_amd64.deb
 
 
- #### NGINX Plus
- 
- - NGINX Plus R30
+#### NGINX Plus
+
+- NGINX Plus R30
 
 
 ### Resolved Issues
@@ -93,7 +95,4 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 - 8312 Fixed - Running the get-signatures utility writes output to a different location.
 - 8936 Fixed - To reduce potential false positives, user defined Headers and Cookies that do not specify whether their decodeValueAsBase64 value, are now `disabled` instead of `enabled` by default.
 - 8939 Fixed - The issue with rejected gRPC request support id logged as "Passed" has been fixed.
- 
-### **Important Notes**
- 
-- Starting with the NGINX App Protect WAF release version 4.5, Ubuntu 18.04 will no longer be supported and will be deprecated.
+- 8821 Fixed - The Override Rules now support gRPC traffic. The previous limitation regarding the use of [Override Rules]({{< relref "/nap-waf/configuration-guide/configuration.md#override-rules" >}}) with gRPC traffic has been resolved. 
