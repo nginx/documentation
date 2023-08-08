@@ -15,7 +15,7 @@ categories: ["release notes"]
 
 ## 1.8.0
 
-7/27/2023
+July 27, 2023
 
 ### Upgrade Paths {#1-8-0-upgrade-paths}
 
@@ -125,7 +125,7 @@ You can find information about known issues in the [Known Issues]({{< relref "/n
 
 ## 1.6.0
 
-5/11/2023
+May 11, 2023
 
 ### Upgrade Paths {#1-6-0-upgrade-paths}
 
@@ -180,7 +180,7 @@ This release fixes the following issues. Select an issue's ID link to view its d
 
 ## 1.5.0
 
-3/28/2023
+March 28, 2023
 
 ### Upgrade Paths {#1-5-0-upgrade-paths}
 
