@@ -1,6 +1,5 @@
 ---
-description: Verify that NGINX Plus is operating in conformance with the FIPS 140-2
-  Level 1 standard.
+description:
 docs: DOCS-470
 doctypes:
 - concept
@@ -18,9 +17,10 @@ When used with a FIPS 140-2 validated build of OpenSSL operating in FIPS mode, N
 
 Several operating system vendors have obtained FIPS 140-2 Level 1 validation for the OpenSSL Cryptographic Module shipped with their respective operating systems:
 
-* [Canonical Ltd.: Ubuntu OpenSSL Cryptographic Module](https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/2888)
-* [Oracle Corporation: Oracle Linux OpenSSL Cryptographic Module](https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3017)
-* [Red Hat, Inc.: Red Hat Enterprise Linux OpenSSL Cryptographic Module](https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3016)
+* [Canonical Ltd.: Ubuntu 18.04 OpenSSL Cryptographic Module](https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4540)
+* [Oracle Corporation: Oracle OpenSSL FIPS Provider](https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4506)
+* [Red Hat, Inc.: Red Hat Enterprise Linux 7 NSS Cryptographic Module](https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4498)
+* [SUSE, LLC: SUSE Linux Enterprise Server Kernel Crypto API Cryptographic Module](https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4508)
 
 NGINX Plus uses the OpenSSL cryptographic module exclusively for all operations relating to the decryption and encryption of SSL/TLS and HTTP/2 traffic. 
 
@@ -52,7 +52,7 @@ The process uses Red Hat Enterprise Linux (RHEL) version 7.4 as an example, and
 
 For the purposes of the following demonstration, we installed and configured a RHEL 7.4 server. The [Red Hat FIPS documentation](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/chap-federal_standards_and_regulations#sec-Enabling-FIPS-Mode) explains how to switch the operating system between FIPS mode and non‑FIPS mode by editing the boot options and restarting the system.
 
-For instructions for enabling FIPS mode on other FIPS‑compliant Linux operating systems, see the operating system documentation (for example, [Oracle Linux](https://docs.oracle.com/cd/E52668_01/E54670/html/ol7-fips-enable.html), [Ubuntu](https://blog.ubuntu.com/2017/12/13/fips-140-2-certified-modules-for-ubuntu-16-04-lts)).
+For instructions for enabling FIPS mode on other FIPS‑compliant Linux operating systems, see the operating system documentation (for example, [Oracle Linux](https://docs.oracle.com/cd/E52668_01/E54670/html/ol7-fips-enable.html), [Ubuntu](https://ubuntu.com/security/certifications/docs/fips-faq)).
 
 ### Step 2: Verify the Operating System and OpenSSL Are in FIPS Mode
 
@@ -60,21 +60,21 @@ You can verify that the operating system is in FIPS mode and that the version of
 
 **Check operating system flags**: When the operating system is in FIPS mode, ```crypto.fips_enabled``` is ```1```; otherwise, it is ```0```:
 
-```none
+```shell
 $ sudo sysctl –a | grep fips
 crypto.fips_enabled = 1
 ```
 
 **Determine whether OpenSSL can perform SHA1 hashes**: This test verifies the correct operation of OpenSSL. The SHA1 hash algorithm is permitted in all modes, so failure of this command indicates that the OpenSSL implementation does not work properly:
 
-```none
+```shell
 $ openssl sha1 /dev/null
 SHA1(/dev/null)= da39a3ee5e6b4b0d3255bfef95601890afd80709
 ```
 
 **Determine whether OpenSSL can perform MD5 hashes**: This test verifies that OpenSSL is running in FIPS mode. MD5 is not a permitted hash algorithm in FIPS mode, so an attempt to use it fails:
 
-```none
+```shell
 $ openssl md5 /dev/null
 Error setting digest md5
 140647163811744:error:060800A3:digital envelope routines:EVP_DigestInit _ex:disabled for fips:digest.c:251:
@@ -82,7 +82,7 @@ Error setting digest md5
  
 If OpenSSL is not running in FIPS mode, the MD5 hash functions normally:
 
-```none
+```shell
 $ openssl md5 /dev/null
 MD5(/dev/null)= d41d8cd98f00b204e9800998ecf8427e
 ```
@@ -93,8 +93,8 @@ Follow the [NGINX documentation](https://docs.nginx.com/nginx/admin-guide/instal
  
 **Verify that NGINX Plus is correctly installed**: Run the following command to confirm that NGINX Plus is installed and is using the expected OpenSSL cryptographic module:
 
-```none
-# nginx -V
+```shell
+$ nginx -V
 nginx version: nginx/1.15.2 (nginx-plus-r16)
 built by gcc 4.8.5 20150623 (Red Hat 4.8.5-16) (GCC)
 built with OpenSSL 1.0.2k-fips  26 Jan 2017
@@ -122,15 +122,15 @@ server {
 
 If necessary, you can generate a self‑signed certificate for test purposes:
 
-```none
-# mkdir -p /etc/nginx/ssl
-# openssl req -newkey rsa:2048 -nodes -keyout /etc/nginx/ssl/test.key -x509 -days 365 -out /etc/nginx/ssl/test.crt
+```shell
+$ mkdir -p /etc/nginx/ssl
+$ openssl req -newkey rsa:2048 -nodes -keyout /etc/nginx/ssl/test.key -x509 -days 365 -out /etc/nginx/ssl/test.crt
 ```
 
 Verify that you can access the website using HTTPS from a remote host. Connect to the NGINX IP address using the `openssl s_client` command, and enter the HTTP message `GET /`:
 
-```none
-# (echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443
+```shell
+$ (echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443
 ```
 
 Use `openssl s_client` for this test because it unambiguously confirms which SSL/TLS cipher was negotiated in the connection. After some debugging information (including the cipher selected), the body of the default “Welcome to nginx!” greeting page is displayed.
@@ -141,16 +141,16 @@ FIPS 140-2 disallows the use of some cryptographic algorithms, including the Cam
  
 #### RC4-MD5
 
-```none
-# (echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443 -cipher RC4-MD5
+```shell
+$ (echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443 -cipher RC4-MD5
 ```
 
 This cipher is insecure and is disabled by NGINX Plus by default. The SSL handshake always fails.
  
 #### CAMELLIA-SHA
 
-```none
-# (echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443 -cipher CAMELLIA256-SHA
+```shell
+$ (echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443 -cipher CAMELLIA256-SHA
 ```
  
 This cipher is considered secure but is not permitted by the FIPS standard. The SSL handshake fails if the target system is compliant with FIPS 140-2, and succeeds otherwise.
@@ -159,8 +159,8 @@ Note that if you attempt to issue the client request on a host running in FIPS m
  
 #### AES256-SHA
 
-```none
-# (echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443 -cipher AES256-SHA
+```shell
+$ (echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443 -cipher AES256-SHA
 ```
 
 This cipher is considered secure by NGINX Plus and is permitted by FIPS 140-2. The SSL handshake succeeds.
