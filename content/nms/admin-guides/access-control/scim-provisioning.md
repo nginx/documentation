@@ -35,7 +35,7 @@ h4 {font-weight: bold; padding-top: 20px;}
 
 ## Overview
 
-With Instance Manager 2.3 or later, you can provision, update, or deprovision users and user groups using SCIM 2.0. SCIM, short for "[System for Cross-domain Identity Management](http://www.simplecloud.info)," is an open API for managing identities.
+With Instance Manager 2.3 or later, you can provision, update, or deprovision users and user groups using SCIM 2.0. SCIM, short for "System for Cross-domain Identity Management" is an open API for managing identities.
 
 ## Access SCIM APIs
 

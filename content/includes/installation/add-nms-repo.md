@@ -1,6 +1,7 @@
 ---
-docs: "000"
+docs: "DOCS-1243"
 ---
+
 Select the tab matching your Linux distribution, then follow the instructions to add the NGINX Management Suite repository.
 
 <br>
@@ -57,3 +58,4 @@ Add the NGINX Management Suite repository:
 
 {{%/tab%}}
 {{</tabs>}}
+

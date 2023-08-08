@@ -203,9 +203,13 @@ To upgrade Instance Manager to a newer version, take the following steps:
    sudo rpm -Uvh --nosignature /home/user/nms-instance-manager_<version>.x86_64.rpm
    ```
 
+3. Restart the NGINX Management Suite platform services:
+
    ```bash
    sudo systemctl restart nms
    ```
+   
+   NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
 
 {{%/tab%}}
 {{%tab name="Debian, Ubuntu, and Deb-Based"%}}
@@ -227,13 +231,13 @@ To upgrade Instance Manager to a newer version, take the following steps:
 {{%/tab%}}
 {{</tabs>}}
 
-1. Restart the NGINX web server:
+4. Restart the NGINX web server:
 
    ```bash
    sudo systemctl restart nginx
    ```
 
-2. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore SELinux contexts (`restorecon`) for the files and directories related to NGINX Management suite.
+5. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore SELinux contexts (`restorecon`) for the files and directories related to NGINX Management Suite.
 
 ---
 
@@ -340,13 +344,28 @@ To upgrade API Connectivity Manager to a newer version, take the following steps
 {{%/tab%}}
 {{</tabs>}}
 
-1. Restart the NGINX web server:
+
+3. Restart the NGINX Management Suite platform services:
+
+    ```bash
+    sudo systemctl restart nms
+    ```
+
+    NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
+
+4. Restart the API Connectivity Manager service:
+   
+   ```bash
+    sudo systemctl restart nms-acm
+    ```
+
+5. Restart the NGINX web server:
 
    ```bash
    sudo systemctl restart nginx
    ```
 
-2. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore SELinux contexts (`restorecon`) for the files and directories related to NGINX Management suite.
+6. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore SELinux contexts (`restorecon`) for the files and directories related to NGINX Management Suite.
 
 
 ### Set Up the Data Plane {#acm-offline-dependencies}
@@ -466,7 +485,7 @@ To install App Delivery Manager, take the following steps:
 {{%/tab%}}
 {{</tabs>}}
 
-3. Enable and start the App Delivery service:
+3. Enable and start the App Delivery Manager service:
 
     ```bash
     sudo systemctl enable nms-adm --now
@@ -529,7 +548,13 @@ To upgrade App Delivery Manager to a newer version, take the following steps:
    sudo systemctl restart nginx
    ```
 
-2. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore SELinux contexts (`restorecon`) for the files and directories related to NGINX Management suite.
+2. Restart the App Delivery Manager service:
+
+   ```bash
+   sudo systemctl restart nms-adm
+   ```
+
+3. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore SELinux contexts (`restorecon`) for the files and directories related to NGINX Management suite.
 
 ### Set Up the Data Plane {#adm-data-plane}
 
@@ -544,15 +569,9 @@ To upgrade App Delivery Manager to a newer version, take the following steps:
 ---
 ## Add License {#add-license}
 
-A valid license is required to use all of the features of NGINX Management Suite.
+A valid license is required to make full use of all the features in NGINX Management Suite.
 
-### Download License
-
-{{< include "installation/download-license.md" >}}
-
-### Apply License
-
-{{< include "installation/add-license.md" >}}
+Refer to the [Add a License]({{< relref "/nms/installation/add-license.md" >}}) topic for instructions on how to download and apply a trial license, subscription license, or Flexible Consumption Program license.
 
 ---
 
