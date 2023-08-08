@@ -28,7 +28,7 @@ roles:
 title: NGINX App Protect DoS Live Activity Monitoring
 toc: true
 versions:
-- "4.1"
+- "4.2"
 weight: 140
 ---
 

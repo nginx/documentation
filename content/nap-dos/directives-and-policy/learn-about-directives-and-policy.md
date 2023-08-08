@@ -28,7 +28,7 @@ roles:
 title: NGINX App Protect DoS Directives and Policy
 toc: true
 versions:
-- "4.1"
+- "4.2"
 weight: 120
 ---
 
