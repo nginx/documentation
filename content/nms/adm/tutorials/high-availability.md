@@ -150,13 +150,34 @@ This configuration is per instance group and must be specified on all instance g
 
 <br>
 
-{{<tabs name="listen-ip-configuration">}}
+{{<tabs name="listenip-configuration">}}
 
 {{%tab name="API"%}}
+To add `listenIps` via API include the IP addresses in the Gateway POST/PUT request to endpoint `https://<NMS_FQDN>/api/adm/v1/environments/<ENVIRONMENT_UUID>/gateways`.
+{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+{{<bootstrap-table "table">}}
+| Method | Endpoint                                           |
+|--------|----------------------------------------------------|
+| `POST` | `/api/adm/v1/environments/{environment-uuid}/gateways` |
+| `PUT` | `/api/adm/v1/environments/{environment-uuid}/gateways/{gateway-uuid}` |
+{{</bootstrap-table>}}
+{{< raw-html>}}</div>{{</raw-html>}}
+<details open>
+<summary>JSON request</summary>
 
-### API
 ```json
- "placement": {
+{
+  "metadata": {
+    "uid": "dcbdf985-ba2c-48e9-9fa2-be8097957197",
+    "name": "gw1"
+  },
+  "ingress": {
+    "uris": [
+      {
+        "uri": "http://foo.com"
+      }
+    ],
+    "placement": {
       "instanceGroupRefs": [
         {
           "ref": "08a35e5d-7bdd-4b26-971c-0ce0e43271b9",
@@ -167,19 +188,23 @@ This configuration is per instance group and must be specified on all instance g
       ]
     }
   }
+}
 ```
 
-{{%/tab%}}
+</details>
 
+{{%/tab%}}
 {{%tab name="UI"%}}
+To configure this via UI, follow the steps below.
+1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in. Then, from the Launchpad menu, select App Delivery Manager.
+2. On the left menu, select **Gateways**.
+3. In the Gateway edit form select **Placements**.
+3. Add or edit the instance group.
+4. In the instance group edit form enter the `listenIps`.
 
-### UI
-To add a listen IP address using the web interface:
-
-1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in. Then, from the Launchpad menu, select
+{{< img src="adm/tutorials/gateway-listen-ip-configuration.png" alt="Gateway Listen IP configuration" width="80%">}}
 
 {{%/tab%}}
-
 {{</tabs>}}
 
 ## Validating Application Delivery Manager
