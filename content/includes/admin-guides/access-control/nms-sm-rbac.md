@@ -1,6 +1,6 @@
 To create a role for Security Monitoring, take the steps below.
 
-1. Open the NGINX Management Suite web interface and log in.
+1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in.
 1. Select the **Settings** (gear) icon in the upper-right corner.
 1. On the left navigation menu, select **Roles**.
 1. Select **Create**.

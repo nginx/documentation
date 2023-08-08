@@ -153,7 +153,7 @@ To apply the Proxy Cache policy using the REST API, send an HTTP `POST` request 
 
 To apply the Proxy Cache policy using the web interface:
 
-1. Go to the FQDN for your NGINX Management Suite host in a web browser and log in. Then, from the Launchpad menu, select **API Connectivity Manager**.
+1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in. Then, from the Launchpad menu, select **API Connectivity Manager**.
 2. On the left menu, select **Services**.
 3. Select a workspace in the list that contains the API Proxy you want to update.
 4. On the workspace overview page, on the **API Proxies** tab, locate the API Proxy you want to update. Select the **Actions** menu (represented by an ellipsis, `...`), then select **Edit Proxy**.

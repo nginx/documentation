@@ -2,7 +2,7 @@ The default `admin` user or any user with `CREATE` permission for the **User Man
 
 To create a role, take the following steps:
 
-1. Open the NGINX Management Suite web interface and log in.
+1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in.
 2. Select the **Settings** (gear) icon in the upper-right corner.
 3. On the left navigation menu, select **Roles**.
 4. Select **Create**.

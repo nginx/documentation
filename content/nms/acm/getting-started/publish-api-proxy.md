@@ -220,7 +220,7 @@ Populated from API Specification and are read-only
 {{</bootstrap-table>}}
 {{< raw-html>}}</div>{{</raw-html>}}
 
-Take the steps below to add an API Proxy with an OpenAPI spec.
+Take the steps below to add an API Proxy with an OpenAPI spec using either version 3.0.x or 3.1.
 
 1. Send a POST request containing the OpenAPI spec for your API to the `api-docs` endpoint to upload it. 
 

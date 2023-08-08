@@ -1,12 +1,10 @@
 ---
-date: "2021-06-08T12:00:00-07:00"
 doctypes:
 - reference
 - troubleshooting
-draft: false
 title: Help
 description: NGINX Management Suite documentation and help.
-toc: true
+toc: false
 docs: "DOCS-898"
 _build:
   list: never
@@ -14,7 +12,7 @@ _build:
   render: always
 ---
 
-<style>h2 {color: #429345;}</style>
+## Overview
 
 NGINX Management Suite is a family of management plane solutions that enable governance of the data plane to easily scale, secure, and monitor applications and APIs. It consists of:
 
@@ -26,7 +24,7 @@ NGINX Management Suite is a family of management plane solutions that enable gov
 
 - **Security Monitoring:** Monitor NGINX App Protect WAF instances,  analyze possible threats and identify opportunities for tuning your security policies.
 
-## <i class="fa-solid fa-book"></i> Documentation Overview
+##  Documentation Sections
 
 The documentation for NGINX Management Suite is divided into the following sections:
 
@@ -62,7 +60,7 @@ The documentation for NGINX Management Suite is divided into the following secti
 
 - Learn how to get support for NGINX Management Suite.
 
-## <i class="fa-solid fa-star"></i> Popular Topics
+## Popular Topics
 
 Check out some of our most consulted topics:
 
@@ -77,3 +75,10 @@ Check out some of our most consulted topics:
 ### [Tech Specs]({{< relref "/nms/tech-specs" >}})
 
 - This document lists the requirements for NGINX Management Suite, including supported platforms, hardware specs, sizing guidelines, supported browsers, and more.
+
+---
+
+## What's Next
+
+- [Get support for NGINX Management Suite]({{< relref "/nms/support/" >}})
+
