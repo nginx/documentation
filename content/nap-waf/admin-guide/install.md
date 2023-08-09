@@ -227,7 +227,13 @@ If a user other than **nginx** is to be used, note the following:
 
     If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/troubleshooting-guide/troubleshooting#selinux" >}}).
 
-14. Start the NGINX service:
+14. To enable the NGINX/App Protect WAF service start at boot, run the command:
+
+    ```shell
+    sudo systemctl enable nginx.service
+    ```
+
+15. Start the NGINX service:
 
     ```shell
     sudo systemctl start nginx
@@ -351,7 +357,13 @@ If a user other than **nginx** is to be used, note the following:
 
     If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/troubleshooting-guide/troubleshooting#selinux" >}}).
 
-15. Start the NGINX service:
+15. To enable the NGINX/App Protect WAF service start at boot, run the command:
+
+    ```shell
+    sudo systemctl enable nginx.service
+    ```
+
+16. Start the NGINX service:
 
     ```shell
     sudo systemctl start nginx
@@ -463,7 +475,13 @@ If a user other than **nginx** is to be used, note the following:
 
     If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/troubleshooting-guide/troubleshooting#selinux" >}}).
 
-15. Start the NGINX service:
+15. To enable the NGINX/App Protect WAF service start at boot, run the command:
+
+    ```shell
+    sudo systemctl enable nginx.service
+    ```
+
+16. Start the NGINX service:
 
     ```shell
     sudo systemctl start nginx
@@ -575,7 +593,13 @@ If a user other than **nginx** is to be used, note the following:
 
     If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/troubleshooting-guide/troubleshooting#selinux" >}}).
 
-15. Start the NGINX service:
+15. To enable the NGINX/App Protect WAF service start at boot, run the command:
+
+    ```shell
+    sudo systemctl enable nginx.service
+    ```
+
+16. Start the NGINX service:
 
     ```shell
     sudo systemctl start nginx
@@ -675,7 +699,13 @@ If a user other than **nginx** is to be used, note the following:
     
     If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/troubleshooting-guide/troubleshooting#selinux" >}}).
 
-14. Start the NGINX service:
+14. To enable the NGINX/App Protect WAF service start at boot, run the command:
+
+    ```shell
+    sudo systemctl enable nginx.service
+    ```
+
+15. Start the NGINX service:
 
     ```shell
     sudo systemctl start nginx
