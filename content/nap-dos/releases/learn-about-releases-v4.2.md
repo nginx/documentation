@@ -42,8 +42,8 @@ In this release, NGINX App Protect DoS supports NGINX Plus R30.
 
 ### New Features
 - Support for Nginx Plus R30
-- [Support for Ubuntu 22.04]({{< relref "learn-about-deployment.md#debian--ubuntu-installation" >}}), depreciation of Ubuntu 18.04
-- Support for HTTP3/QUIC (validation of DoS functionality)
+- [Support for Ubuntu 22.04]({{< relref "learn-about-deployment.md#debian--ubuntu-installation" >}})
+- Support for HTTP3/QUIC
 - Improvement of Embedded Server Health mechanism
 
 ### Supported Packages
@@ -110,3 +110,5 @@ In this release, NGINX App Protect DoS supports NGINX Plus R30.
 - The recommended option of running NGINX Plus in a Docker Container is with the `daemon off` flag. It's mandatory for UBI 8.
 
 - The package dependencies for NGINX App Protect DoS have changed in this release, replacing the `curl` dependencies with `libcurl` only. For more information, see the [NGINX App Protect DoS Deployment Guide]({{< relref "/nap-dos/deployment-guide/learn-about-deployment.md#prerequisites" >}}).
+
+- Starting with this release, Ubuntu 18.04 support has been deprecated. 
