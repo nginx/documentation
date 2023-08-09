@@ -29,7 +29,7 @@ roles:
 title: Using NGINX App Protect WAF with NGINX Management Suite
 toc: true
 versions:
-- "4.4"
+- "4.5"
 weight: 100
 ---
 

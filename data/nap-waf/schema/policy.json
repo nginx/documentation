@@ -4,6 +4,17 @@
    "definitions" : {
       "link" : {
          "properties" : {
+            "basicAuth" : {
+               "properties" : {
+                  "passwordBase64" : {
+                     "type" : "string"
+                  },
+                  "user" : {
+                     "type" : "string"
+                  }
+               },
+               "type" : "object"
+            },
             "link" : {
                "format" : "uri",
                "type" : "string"
@@ -19,6 +30,17 @@
             "$ref" : {
                "format" : "uri",
                "type" : "string"
+            },
+            "basicAuth" : {
+               "properties" : {
+                  "passwordBase64" : {
+                     "type" : "string"
+                  },
+                  "user" : {
+                     "type" : "string"
+                  }
+               },
+               "type" : "object"
             }
          },
          "required" : [
@@ -642,7 +664,7 @@
                               "type" : "boolean"
                            },
                            "decodeValueAsBase64" : {
-                              "default" : "enabled",
+                              "default" : "disabled",
                               "description" : "Specifies whether the the system should detect or require values to be Base64 encoded:\n\n - **disabled**: the value will not be decoded as Base64 content.\n - **enabled**: the value will be checked whether it can be decoded as Base64 and, if so, security checks will be performed on the decoded value.\n - **required**: the value must be decoded as Base64, and security checks will be performed on the decoded value.\n\n **Note**: This setting is only relevant if the Cookie Enforcement Type is set to Allowed.",
                               "enum" : [
                                  "disabled",
@@ -1224,6 +1246,17 @@
                                                 "id"
                                              ],
                                              "type" : "object"
+                                          },
+                                          {
+                                             "properties" : {
+                                                "fileName" : {
+                                                   "type" : "string"
+                                                }
+                                             },
+                                             "required" : [
+                                                "fileName"
+                                             ],
+                                             "type" : "object"
                                           }
                                        ]
                                     },
@@ -1407,6 +1440,17 @@
                                                 "id"
                                              ],
                                              "type" : "object"
+                                          },
+                                          {
+                                             "properties" : {
+                                                "fileName" : {
+                                                   "type" : "string"
+                                                }
+                                             },
+                                             "required" : [
+                                                "fileName"
+                                             ],
+                                             "type" : "object"
                                           }
                                        ]
                                     },
@@ -1522,7 +1566,7 @@
                               "type" : "boolean"
                            },
                            "decodeValueAsBase64" : {
-                              "default" : "enabled",
+                              "default" : "disabled",
                               "description" : "Specifies whether the the system should detect or require values to be Base64 encoded:\n\n - **disabled**: the value will not be decoded as Base64 content.\n - **enabled**: the value will be checked whether it can be decoded as Base64 and, if so, security checks will be performed on the decoded value.\n - **required**: the value must be decoded as Base64, and security checks will be performed on the decoded value.",
                               "enum" : [
                                  "disabled",
@@ -1677,6 +1721,17 @@
                            "$ref" : {
                               "format" : "uri",
                               "type" : "string"
+                           },
+                           "basicAuth" : {
+                              "properties" : {
+                                 "passwordBase64" : {
+                                    "type" : "string"
+                                 },
+                                 "user" : {
+                                    "type" : "string"
+                                 }
+                              },
+                              "type" : "object"
                            },
                            "contents" : {
                               "type" : "string"
@@ -1883,6 +1938,17 @@
                                                 "id"
                                              ],
                                              "type" : "object"
+                                          },
+                                          {
+                                             "properties" : {
+                                                "fileName" : {
+                                                   "type" : "string"
+                                                }
+                                             },
+                                             "required" : [
+                                                "fileName"
+                                             ],
+                                             "type" : "object"
                                           }
                                        ]
                                     }
@@ -1914,8 +1980,8 @@
                         "oneOf" : [
                            {
                               "required" : [
-                                 "fileName",
-                                 "contents"
+                                 "contents",
+                                 "fileName"
                               ]
                            },
                            {
@@ -1941,6 +2007,17 @@
                            "$ref" : {
                               "format" : "uri",
                               "type" : "string"
+                           },
+                           "basicAuth" : {
+                              "properties" : {
+                                 "passwordBase64" : {
+                                    "type" : "string"
+                                 },
+                                 "user" : {
+                                    "type" : "string"
+                                 }
+                              },
+                              "type" : "object"
                            },
                            "contents" : {
                               "type" : "string"
