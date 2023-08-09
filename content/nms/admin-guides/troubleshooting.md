@@ -50,6 +50,15 @@ If the NGINX proxy gateway for NGINX Management Suite alerts you that there are 
 
 ---
 
+## Unable to retrieve entitlements
+
+If you are using a JWT license, make sure to allow inbound and outbound access on port 443 to the following URLs:
+
+- https://product.apis.f5.com
+- https://product-s.apis.f5.com/ee
+
+---
+
 ## How to Get Support
 
 {{< include "support/how-to-get-support.md" >}}

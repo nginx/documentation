@@ -42,7 +42,6 @@ Instance Manager does not support the following NGINX App Protect features:
 - [Policies with external references](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#external-references)
 - [Policies with modifications](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#modifying-configurations)
 - Custom signatures
-- [Custom log profiles](https://docs.nginx.com/nginx-app-protect/logging-overview/security-log/). Instance Manager provides the same default log profiles as NGINX App Protect.
 
 ---
 
@@ -120,6 +119,18 @@ sudo yum-config-manager --enable rhui-REGION-rhel-server-optional rhui-REGION-rh
 sudo yum install nms-nap-compiler-v4.402.0
 ```
 
+### Amazon Linux 2 LTS
+Download the files `nms-amazon2.repo` and `app-protect-7.repo` to `/etc/yum.repos.d`, enable the `Extra Packages for Enterprise (EPEL)` repository, and install the WAF compiler package:
+
+```bash
+sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nms-amazon2.repo
+sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-7.repo
+sudo amazon-linux-extras enable epel
+sudo yum clean metadata
+sudo yum install epel-release
+sudo yum install nms-nap-compiler-v4.402.0
+```
+
 ### Oracle Linux 7.4 or later
 Download the file `dependencies.repo` to `/etc/yum.repos.d`, enable the `ol8_codeready_builder` repository, and install the WAF compiler package:
 
@@ -166,12 +177,14 @@ sudo apt-get install -f /path/to/nms-nap-compiler-<version>_focal_amd64.deb -o D
 
 ### Automatically Download and Install New WAF Compiler
 
-After a version of the NGINX App Protect WAF compiler has been successfully installed manually on Instance Manager, a new WAF compiler will be downloaded and installed automatically if Instance Manager determines a new WAF compiler is required.  A new WAF compiler is required when the data plane's NGINX App Protect WAF version has been [upgraded](#upgrade-nap-waf-version-on-managed-instances) or a new data plane with a new NGINX App Protect WAF version has been added. The user must [upload their NGINX App Protect WAF certificate and key](#upload-nginx-app-protect-waf-certificate-and-key) in order for NGINX Instance Manager to automatically download and install a new WAF compiler from the NGINX repo. Note, the NGINX App Protect WAF certificate and key only need to be uploaded once to Instance Manager. 
+Once a version of the NGINX App Protect WAF compiler is manually installed on Instance Manager, the system will automatically download and install a new WAF compiler when it detects that an update is required. This typically happens when the NGINX App Protect WAF version on the data plane has been [upgraded](#upgrade-nap-waf-version-on-managed-instances) or when a new data plane with a different NGINX App Protect WAF version is added.
 
-If the automatic download and install of the new WAF compiler step fails, when publishing the NGINX configuration, the error message 
+To enable the automatic download and installation of a new WAF compiler, you need to [upload your NGINX App Protect WAF certificate and key](#upload-nginx-app-protect-waf-certificate-and-key) to Instance Manager. This upload needs to be done only once. By providing the certificate and key, Instance Manager can securely fetch and install the latest WAF compiler from the NGINX repository.
+
+If the automatic download and install of the new WAF compiler step fails, when publishing the NGINX configuration, the error message
 
 ``` text
-missing the specific compiler, please install it and try again.  
+missing the specific compiler, please install it and try again.
 ```
 
 will appear. This happens if the NGINX App Protect WAF certificate and key are missing or not working, or if Instance Manager cannot connect to the NGINX Repository. Please check `/var/log/nms/nms.log` for errors.
@@ -376,6 +389,55 @@ To ensure that the dashboards show the most up-to-date information, you need to 
 
 ---
 
+## Setup Compiler Resource Pruning
+You can configure the following compiler resources to prune automatically:
+- Compiled Security Policies
+- Compiled Security Log Profiles
+- Attack Signatures
+- Threat Campaigns
+
+In the case of `compiled security policies` and `compiled security log profiles`, the definition of the `security policy` and/or `security log profile` is not removed. Only the compiled bundles associated with those resources are removed.
+
+To enable automatic compiler resource pruning, please follow these steps:
+
+1. Log in to the management plane host using SSH.
+1. Open the `/etc/nms/nms.conf` file for editing.
+1. Update the `policy_manager` field to contain the desired `time to live` values for each resource type; see the following snippet for an example of adding the necessary fields under `integrations`->`policy_manager`:
+
+    ```yaml
+    integrations:
+    address: unix:/var/run/nms/integrations.sock
+    dqlite:
+        addr: 127.0.0.1:7892
+    policy_manager:
+        # Time to live for attack signatures. If the attack signatures exceed their TTL and are not deployed to an instance or
+        # instance group they will be deleted from the database. Duration unit can be seconds (s), minutes (m), or hours (h).
+        attack_signatures_ttl: 336h
+        # Time to live for compiled bundles, this includes compiled security policies and compiled log profiles. If a compiled
+        # bundle exceeds its TTL and is not deployed to an instance or instance group it will be deleted from the database. Note
+        # that the compiled bundle is deleted, not the definition of it (i.e. the security policy or log profile definition).
+        # Duration unit can be seconds (s), minutes (m), or hours (h).
+        compiled_bundles_ttl: 336h
+        # Time to live for threat campaigns. If the threat campaigns exceed their TTL and are not deployed to an instance or
+        # instance group they will be deleted from the database. Duration unit can be seconds (s), minutes (m), or hours (h).
+        threat_campaigns_ttl: 1440h
+    app_protect_security_update:
+        enable: true
+        interval: 6
+        number_of_updates: 10
+    ```
+
+1. Save the changes and close the file.
+1. Restart the `nms-integrations` service:
+
+    ```  bash
+    sudo systemctl restart nms-integrations
+    ```
+
+The compiler resource pruning process occurs once upon start-up of the `nms-integrations` service and once every `24 hours` after the `nms-integrations` service has been started.
+
+---
+
 ## Onboard NGINX App Protect WAF Instances
 
 To onboard your NGINX App Protect WAF instances to Instance Manager, you need to install and configure NGINX Agent.
@@ -399,7 +461,7 @@ To onboard your NGINX App Protect WAF instances to Instance Manager, you need to
 
    ```yaml
    ...
-   config_dirs: "/etc/nginx:/usr/local/etc/nginx:/etc/nms;" 
+   config_dirs: "/etc/nginx:/usr/local/etc/nginx:/usr/share/nginx/modules:/etc/nms:/etc/app_protect"
    extensions:
      - nginx-app-protect
    nginx_app_protect:
@@ -975,9 +1037,15 @@ Configure NGINX Agent on your NGINX App Protect WAF instance with settings simil
 # path to aux file dirs can also be added
 config_dirs: "/etc/nginx:/usr/local/etc/nginx:/usr/share/nginx/modules:/etc/nms:/etc/app_protect"
 
+# Enable necessary NAP extensions
+extensions:
+    - nginx-app-protect
+    - nap-monitoring
+
 nginx_app_protect:
   # Report interval for NGINX App Protect details - the frequency the NGINX Agent checks NGINX App Protect for changes.
   report_interval: 15s
+  # Enable precompiled publication from the NGINX Management Suite (true) or perform compilation on the data plane host (false).
   precompiled_publication: true
 
 nap_monitoring:
