@@ -28,7 +28,7 @@ roles:
 title: NGINX App Protect DoS Deployment
 toc: true
 versions:
-- "4.1"
+- "4.2"
 weight: 100
 ---
 
@@ -50,7 +50,7 @@ NGINX App Protect DoS supports the following operating systems:
 - [RHEL 8 / UBI 8 and above](#rhel-8-installation) 
 - [Debian 10 (Buster)](#debian--ubuntu-installation)
 - [Debian 11 (Bullseye)](#debian--ubuntu-installation)
-- [Ubuntu 18.04 (Bionic)](#debian--ubuntu-installation)
+- [Ubuntu 18.04 (Bionic)](#debian--ubuntu-installation) - (Deprecated starting from NGINX Plus R30)
 - [Ubuntu 20.04 (Focal)](#debian--ubuntu-installation)
 - [Ubuntu 22.04 (Jammy)](#debian--ubuntu-installation)
 - [Alpine 3.15.x](#alpine-315-installation)
