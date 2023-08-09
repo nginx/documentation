@@ -53,23 +53,23 @@ Using your preferred method, clone the NGINX Agent repository into your developm
 
 Use the following command to clone the repository using the HTTPS method.
 
-```
-$ git clone https://github.com/nginx/agent.git
-$ cd agent
+```bash
+git clone https://github.com/nginx/agent.git
+cd agent
 ```
 
 ## Prepare your Environment
 To build container images using scripts available in the NGINX Agent repository, you will need to install several packages. The steps outlined in this document provide installation instructions for distributions that use the `apt` package manager (for example, for Debian, Ubuntu, etc.). For installations on other operating systems, please refer to the documentation within each prerequisite package. In some cases, it may help to update package source lists in your operating system before proceeding.
 
 ```bash
-$ sudo apt update
+sudo apt update
 ```
 
 ### Install `make` Package
 Start by installing the [`make`](https://www.gnu.org/software/make/) package, which will enable you to execute build targets within the `Makefile` included in the NGINX Agent source code repository.
 
 ```bash
-$ sudo apt install make
+sudo apt install make
 ```
 
 ### Install a Container Engine
@@ -77,12 +77,12 @@ A container engine will enable you to build images and run containers. NGINX Age
 
 To install the Docker engine run the following command:
 ```bash
-$ sudo apt get install docker.io
+sudo apt install docker.io
 ```
 
 To install the Podman engine run the following command:
 ```bash
-$ sudo apt get install podman
+sudo apt install podman
 ```
 
 ## Build Container Images
@@ -91,11 +91,12 @@ $ sudo apt get install podman
 ### Build Images with NGINX Agent and NGINX Open Source
 Prior to building an NGINX Agent bundled with NGINX Open Source image, an NGINX Agent binary must be built or downloaded.
 
-You can download an appropriate binary from the [NGINX Agent Releases](https://github.com/nginx/agent/releases) section on GitHub. Note the location and name of the downloaded package, which will be referred to as [PATH-TO-PACKAGE] below.
+You can download an appropriate binary from [NGINX Agent Releases](https://github.com/nginx/agent/releases) on GitHub. Copy the binary to the `[PATH_TO_NGINX_AGENT_SRC_ROOT]/build` directory. If the directory doesn't exist, you'll need to create it. This is done automatically when choosing to build the binary from source. 
 
-The following command will produce an Ubuntu base image:
+The following command produces an Ubuntu base image. Setting the `PACKAGE_NAME` environment variable is not necessary if you built the binary from source. When using a downloaded binary, do not include the extension of the package file name in the environment variable definition. Example `PACKAGE_NAME=nginx-agent-2.26.2.jammy_amd64`.
+
 ```bash
-$ PACKAGE_NAME=[PATH-TO-PACKAGE] make oss-image 
+PACKAGE_NAME=[NAME-OF-PACKAGE] make oss-image 
 ```
 
 To build the image using a different base image, replace the values for `OS_RELEASE` and `OS_VERSION` with the options from the following table: 
@@ -111,7 +112,7 @@ To build the image using a different base image, replace the values for `OS_RELE
 
 For example, to build an image for RockyLinux 9, use the following command. Replace `OS_VERSION=9` with the desired version tag. See [Supported Tags](https://hub.docker.com/_/rockylinux) for version options.
 ```bash
-$ PACKAGE_NAME=[PATH-TO-PACKAGE] OS_RELEASE=rockylinux OS_VERSION=9 make oss-image 
+PACKAGE_NAME=[NAME-OF-PACKAGE] OS_RELEASE=rockylinux OS_VERSION=9 make oss-image 
 ```
 
 Optional: Rather than specifying `PACKAGE_NAME` or `OS_RELEASE` on the command line, you may set these environment variables directly by editing the Makefile.
@@ -120,19 +121,20 @@ Optional: Rather than specifying `PACKAGE_NAME` or `OS_RELEASE` on the command l
 Building an NGINX Agent bundled with NGINX Plus image requires an NGINX Plus license. NGINX Plus licenses are provided as `.crt` and `.key` files and must be renamed to `nginx-repo.crt` and `nginx-repo.key`, respectively. Begin by creating the `build` directory under the NGINX Agent source root directory (`[PATH_TO_NGINX_AGENT_SRC_ROOT]/build`).
 
 In the NGINX Agent source root, run the following command:
+```bash
+mkdir build
+mkdir build/certs
 ```
-$ mkdir build
-```
-Copy the license and key files into the `[PATH_TO_NGINX_AGENT_SRC_ROOT]/build` directory.
+Copy the license and key files into the `[PATH_TO_NGINX_AGENT_SRC_ROOT]/build/certs` directory.
 
 ```bash
-$ cp [PATH_TO_LICENSE_CRT] build/nginx-repo.crt
-$ cp [PATH_TO_LICENSE_KEY] build/nginx-repo.key
+cp [PATH_TO_LICENSE_CRT] build/certs/nginx-repo.crt
+cp [PATH_TO_LICENSE_KEY] build/certs/nginx-repo.key
 ```
 
 From the NGINX Agent source root directory, run the following command to build the image with an Ubuntu 22.04 LTS base
 ```bash
-$ make image
+make image
 ```
 
 To build the image using a different base image, substitute values for `OS_RELEASE` and `OS_VERSION` from the following table: 
@@ -150,7 +152,7 @@ To build the image using a different base image, substitute values for `OS_RELEA
 
 
 ```bash
-$ OS_RELEASE=[NAME_OF_OS] OS_VERSION=[VERSION_OF_OS] make image
+OS_RELEASE=[NAME_OF_OS] OS_VERSION=[VERSION_OF_OS] make image
 ```
 
 ## Rootless Containers
@@ -159,7 +161,7 @@ NGINX Agent images can be built and run as rootless containers, which run withou
 To build a Podman image with an Ubuntu 22.04 base, execute the following command from the NGINX Agent source root directory. Altering the `OS_RELEASE` and `OS_VERSION` variables with values from the table above will build images using other supported Operating Systems.
 
 ```bash
-$ CONTAINER_CLITOOL=podman make image
+CONTAINER_CLITOOL=podman make image
 ```
 
 ## Unprivileged Containers
@@ -168,7 +170,7 @@ Certain system architectures, like [F5 Distributed Cloud](https://www.f5.com/clo
 ### Modify Dockerfile to Support Unprivileged Use
 To modify a Dockerfile to run NGINX and NGINX Agent in an unprivileged manner, paste the following `RUN` directly below the Dockerfile's primary `RUN` statement.
 
-```
+```bash
 RUN sed -i 's,listen       80,listen       8080,' /etc/nginx/conf.d/default.conf \
     && sed -i '/user  nginx;/d' /etc/nginx/nginx.conf \
     && sed -i 's,/var/run/nginx.pid,/tmp/nginx.pid,' /etc/nginx/nginx.conf \
@@ -252,7 +254,7 @@ Unable to collect Swap metrics because the file ... was not found
 When using Docker, follow these steps to enable swap memory metrics:
 
 Check if cgroup swap limit capabilities are enabled:
-```
+```bash
 $ docker info | grep swap
 WARNING: No swap limit support
 ```

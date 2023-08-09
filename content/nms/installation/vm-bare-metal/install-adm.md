@@ -95,15 +95,17 @@ authors: []
 
 ### Add License
 
-A valid license is required in order to use App Delivery Manager.
+A valid license is required to make full use of all the features in App Delivery Manager.
 
 #### Download License
 
+{{<call-out "important" "Licensing App Delivery Manager">}}
 {{< include "adm/installation/license-adm.md" >}}
+{{</call-out>}}
 
 #### Apply License
 
-{{< include "installation/add-license.md" >}}
+Refer to the [Add a License]({{< relref "/nms/installation/add-license.md#apply-license" >}}) topic for instructions on how to apply a trial license, subscription license, or Flexible Consumption Program license.
 
 ---
 
@@ -150,7 +152,13 @@ A valid license is required in order to use App Delivery Manager.
    sudo systemctl restart nginx
    ```
 
-4. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Management suite.
+4. Restart the App Delivery Manager service:
+
+   ```bash
+   sudo systemctl restart nms-adm
+   ```
+
+5. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Management suite.
 
 ---
 

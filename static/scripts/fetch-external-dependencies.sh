@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # This script is used to fetch external packages that are not available in standard Linux distribution
 
 # Example: ./fetch-external-dependencies ubuntu18.04
@@ -30,7 +30,7 @@ fetch() {
     output=$2
     if ! http_code=$(curl -fs "${url}" --output "${output}" --write-out '%{http_code}'); then
       echo "   -- Failed to download $url with HTTP code $http_code. Exiting."
-      exit
+      exit 1
     fi
 }
 
