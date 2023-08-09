@@ -1524,7 +1524,7 @@ If a user other than **nginx** is to be used, note the following:
 
 13. Start the App Protect and NGINX services:
 
-    ```
+    ```shell
     sudo service nginx-app-protect start
     sudo service nginx start
     ```
@@ -1645,7 +1645,7 @@ If a user other than **nginx** is to be used, note the following:
 
 13. Start the App Protect and NGINX services:
 
-    ```
+    ```shell
     sudo service nginx-app-protect start
     sudo service nginx start
     ```
@@ -2973,21 +2973,23 @@ After having updated the Attack Signature package you have to reload the configu
     sudo apt-get install app-protect-attack-signatures=2020.07.16-1~focal
     ```
 
-### Alpine 3.10
+### Alpine 3.10 / Alpine 3.16 /Alpine 3.17
 
-1. Add NGINX App Protect WAF Security Updates repository:
+1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
     ```shell
     printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
     ```
 
-2. Download and add the NGINX App Protect WAF signatures signing key:
+2. If not already downloaded, download and add the NGINX App Protect WAF Security Updates signing key:
 
     ```shell
     sudo wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
     ```
 
 3. Update the attack signatures:
+
+    To install the latest version, first update the packages:
 
     ```shell
     sudo apk update && sudo apk add app-protect-attack-signatures
@@ -2999,77 +3001,12 @@ After having updated the Attack Signature package you have to reload the configu
     sudo apk search app-protect-attack-signatures
     ```
 
-    Install a specific version:
-
-    ```shell
-    sudo apk add app-protect-attack-signatures=2020.12.28-r1
-    ```
-
-### Alpine 3.16
-
-1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
-
-    ```shell
-    printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
-    ```
-    
-2. If not already downloaded, download and add the NGINX App Protect WAF Security Updates signing key:
-
-    ```shell
-    sudo wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
-    ```
-
-3. Update the attack signatures:
-
-    To install the latest version, first update the packages:
-
-    ```shell
-    sudo apk update
-    ```
-    Then, list the available versions:
-
-    ```shell
-    sudo apk search app-protect-attack-signatures
-    ```
-
     Finally, install the latest version from the output:
 
     ```shell
     sudo apk add app-protect-attack-signatures=2023.01.26-r1
     ```
 
-### Alpine 3.17
-
-1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
-
-    ```shell
-    printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
-    ```
-    
-2. If not already downloaded, download and add the NGINX App Protect WAF Security Updates signing key:
-
-    ```shell
-    sudo wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
-    ```
-
-3. Update the attack signatures:
-
-    To install the latest version, first update the packages:
-
-    ```shell
-    sudo apk update
-    ```
-    Then, list the available versions:
-
-    ```shell
-    sudo apk search app-protect-attack-signatures
-    ```
-
-    Finally, install the latest version from the output:
-
-    ```shell
-    sudo apk add app-protect-attack-signatures=2023.01.26-r1
-    ```
 
 ### Attack Signatures when Upgrading App Protect
 
@@ -3157,7 +3094,39 @@ Example: app-protect-threat-campaigns-2022.07.21
     sudo yum install app-protect-threat-campaigns-2022.07.21
     ```
 
-### Debian 10
+### Alpine 3.10 / Alpine 3.16 / Alpine 3.17
+
+1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
+
+    ```shell
+    printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
+    ```
+
+2. If not already downloaded, download and add the NGINX App Protect WAF Security Updates signing key:
+
+    ```shell
+    sudo wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
+    ```
+
+3. Update Threat Campaigns:
+
+    ```shell
+    sudo apk update && sudo apk add app-protect-threat-campaigns
+    ```
+
+    To install a specific version, list the available versions:
+
+    ```shell
+    sudo apk search app-protect-threat-campaigns
+    ```
+
+    Finally, install the latest version from the output:
+
+    ```shell
+    sudo apk add app-protect-threat-campaigns=2020.12.24-r1
+    ```
+
+### Debian 10 
 
 1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
@@ -3189,7 +3158,7 @@ Example: app-protect-threat-campaigns-2022.07.21
     sudo apt-cache policy app-protect-threat-campaigns
     ```
 
-    Install a specific version:
+    Install a specific version:   
 
     ```shell
     sudo apt-get install app-protect-threat-campaigns=2020.06.25-1~buster
@@ -3269,104 +3238,6 @@ Example: app-protect-threat-campaigns-2022.07.21
 
     ```shell
     sudo apt-get install app-protect-threat-campaigns=2020.08.20-1~focal
-    ```
-
-### Alpine 3.10
-
-1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
-
-    ```shell
-    printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
-    ```
-
-2. Download and add the NGINX App Protect WAF Threat Campaigns signing key:
-
-    ```shell
-    sudo wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
-    ```
-
-3. Update Threat Campaigns:
-
-    ```shell
-    sudo apk update && sudo apk add app-protect-threat-campaigns
-    ```
-
-    To install a specific version, list the available versions:
-
-    ```shell
-    sudo apk search app-protect-threat-campaigns
-    ```
-
-    Install a specific version:
-
-    ```shell
-    sudo apk add app-protect-threat-campaigns=2020.12.24-r1
-    ```
-
-### Alpine 3.16
-
-1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
-
-    ```shell
-    printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
-    ```
-
-2. If not already downloaded, download and add the NGINX App Protect WAF Security Updates signing key:
-
-    ```shell
-    sudo wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
-    ```
-
-3. Update Threat Campaigns:
-
-    To install the latest version, first update the packages:
-    ```shell
-    sudo apk update
-    ```
-
-    Then, list the available versions:
-
-    ```shell
-    sudo apk search app-protect-threat-campaigns
-    ```
-
-    Finally, install the latest version from the output:
-
-    ```shell 
-    sudo apk add app-protect-threat-campaigns=2023.01.24-r1
-    ```
-
-### Alpine 3.17
-
-1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
-
-    ```shell
-    printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
-    ```
-
-2. If not already downloaded, download and add the NGINX App Protect WAF Security Updates signing key:
-
-    ```shell
-    sudo wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
-    ```
-
-3. Update Threat Campaigns:
-
-    To install the latest version, first update the packages:
-    ```shell
-    sudo apk update
-    ```
-
-    Then, list the available versions:
-
-    ```shell
-    sudo apk search app-protect-threat-campaigns
-    ```
-
-    Finally, install the latest version from the output:
-
-    ```shell 
-    sudo apk add app-protect-threat-campaigns=2023.01.24-r1
     ```
 
 
