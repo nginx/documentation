@@ -1725,7 +1725,7 @@ In this example, we configure json/xml/form-data content types for a specific us
 
 #### Do-Nothing
 
-The do-nothing feature in urlContentProfiles allows the user to avoid inspecting or parsing the content in a policy, and instead handle the request's header according to the specifications outlined in the security policy.
+The do-nothing in urlContentProfiles allows the user to avoid inspecting or parsing the content in a policy, and instead handle the request's header according to the specifications outlined in the security policy.
 
 In this example, we configure do-nothing content types for a specific user-defined URL:
 
