@@ -31,7 +31,7 @@ roles:
 title: NGINX App Protect WAF Configuration Guide
 toc: true
 versions:
-- "4.4"
+- "4.5"
 weight: 200
 ---
 
@@ -669,6 +669,17 @@ In this example, we override the action for a specific signature (python-request
     }
 }
 ~~~
+
+#### Bot Signatures File
+
+Starting with NGINX App Protect WAF release 4.5, the bot signatures will be included in the `included_bot_signatures` file, which is located at the following path: `/opt/app-protect/var/update_files/included_bot_signatures`. This file will contain an up-to-date list of all the bot signatures that have been included.
+
+The list is generated automatically as a part of the `app-protect-compiler` package, and resembles as a text file that is similar to the readme-files found in the attack-signature. It contains essential information which includes:
+
+- Bot name
+- Bot type
+- Bot classification/category
+
 
 #### List of Trusted Bots
 
@@ -2731,7 +2742,7 @@ In the following example, the policy is configured with the following items:
             ]
         },
         "csrf-protection": {
-            "enabled": "true"
+            "enabled": true
         },
         "csrf-urls": [
             {
@@ -2770,7 +2781,7 @@ In the following example, the policy is configured with the following items:
             "name": "POLICY_TEMPLATE_NGINX_BASE"
         },
         "csrf-protection": {
-            "enabled": "true"
+            "enabled": true
         },
         "csrf-urls": [
             {
@@ -5023,9 +5034,6 @@ Here are some key points to remember regarding the Override Rules feature:
 - Each override rule will be compiled as a separate policy, whether extending the main policy or switching to a new one. The enforcer will switch to the policy that corresponds to the matched rule, but the main policy name will be reported along with the override rule property.
 - The URI, host, and user-agent strings in the request will be treated as plain ASCII characters and won't undergo language decoding. If any of these strings contain non-ASCII characters, they may be misinterpreted and may not comply with rules that expect specific values in the conditions.
 
-{{< note >}}
-In NGINX App Protect WAF version 4.4, there is a limitation when using Override Rules with gRPC. The Override Rules do not provide support for gRPC traffic. If the Override Rules are configured to match gRPC traffic, it will result in the blocking of such traffic.
-{{< /note >}}
 
 ### Override Rules Logging & Reporting
 

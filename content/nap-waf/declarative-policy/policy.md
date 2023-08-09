@@ -30,7 +30,7 @@ tags:
 title: NGINX App Protect WAF Declarative Policy
 toc: false
 versions:
-- "4.4"
+- "4.5"
 weight: 300
 ---
 
