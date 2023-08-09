@@ -47,7 +47,7 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 
 ### New Feature
 
-In this release, NGINX App Protect WAF supports NGINX Plus R30 for which Ubuntu 18.04 support has been deprecated.
+In this release, NGINX App Protect WAF supports NGINX Plus R30.
 
 - [Alpine 3.17 Support]({{< relref "/nap-waf/admin-guide/install.md#alpine-317-installation" >}})
 
@@ -96,3 +96,8 @@ In this release, NGINX App Protect WAF supports NGINX Plus R30 for which Ubuntu 
 - 8936 Fixed - To reduce potential false positives, user defined Headers and Cookies that do not specify whether their decodeValueAsBase64 value, are now `disabled` instead of `enabled` by default.
 - 8939 Fixed - The issue with rejected gRPC request support id logged as "Passed" has been fixed.
 - 8821 Fixed - The Override Rules now support gRPC traffic. The previous limitation regarding the use of [Override Rules]({{< relref "/nap-waf/configuration-guide/configuration.md#override-rules" >}}) with gRPC traffic has been resolved. 
+
+
+### **Important Note**
+
+- Starting with this release, Ubuntu 18.04 support has been deprecated.
