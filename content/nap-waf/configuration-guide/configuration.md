@@ -1477,6 +1477,8 @@ The user-defined URL feature allows the user to configure the URL while supporti
 - Define an Allowed/Disallowed user-defined URL.
 - Add a user-defined URL to the Signature/Metacharacters override list.
 
+For `urlContentProfiles` default values, see NGINX App Protect WAF [Declarative Policy guide.]({{< relref "/nap-waf/declarative-policy/policy.md" >}})
+
 In this example we configure allowed meta-characters in a user-defined URL:
 
 ~~~json
@@ -1720,6 +1722,37 @@ In this example, we configure json/xml/form-data content types for a specific us
     }
 }
 ~~~
+
+#### Do-Nothing
+
+The do-nothing in urlContentProfiles allows the user to avoid inspecting or parsing the content in a policy, and instead handle the request's header according to the specifications outlined in the security policy.
+
+In this example, we configure do-nothing content types for a specific user-defined URL:
+
+~~~json
+{
+    "policy" : {
+        "name": "ignore_body",
+        "template": { "name": "POLICY_TEMPLATE_NGINX_BASE" },
+        "urls": [
+            {
+                "method": "*",
+                "name": "*",
+                "type": "wildcard",
+                "urlContentProfiles": [
+                    {
+                        "headerName": "*",
+                        "headerOrder": "default",
+                        "headerValue": "*",
+                        "type": "do-nothing"
+                    }
+                ]
+            }
+        ]
+    }
+}
+~~~
+
 
 #### User-Defined Parameters
 
