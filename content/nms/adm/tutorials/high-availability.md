@@ -9,6 +9,8 @@ tags: [ "docs" ]
 docs: "DOCS-000"
 ---
 
+{{<custom-styles>}}
+
 ## Overview
 Application Delivery Manager Gateways are entry points for applications, and create NGINX server blocks. These blocks are normally used to bind local IPs to ports and accept incoming connections. 
 
@@ -73,9 +75,9 @@ systemctl status keepalived
 
 Once we have verified that `keepalived` is running on both systems, we can then compare their states.
 
-One instance of `keepalived` should be in the active state and the other in standby state. We have three methods for checking this:
+One instance of `keepalived` should be in the active state and the other in standby state. We have multiple methods for checking the instances are behaving correctly.
 
-#### 1. Comparing the IP address assignment on the interface configured with keepalived.
+#### Compare the configured IP address assignment
 
 Check the `keepalived` configuration in order to obtain the `virtual_ipaddress`:
 
@@ -123,7 +125,7 @@ docker0          DOWN           172.17.0.1/16 fe80::42:39ff:fe87:b458/64
 
 ---
 
-#### 2. Reading the `nginx-ha-keepalived` state file
+#### Read the `nginx-ha-keepalived` state file
 `keepalived` invokes the `/usr/lib/keepalived/nginx-ha-notify` script on state changes, which stores the current state in the `/var/run/nginx-ha-keepalived.state` file.
 
 **Active Instance**
@@ -140,11 +142,11 @@ STATE=BACKUP
 
 ---
 
-#### 3. Manually Triggering a Failover
+#### Manually Trigger a Failover
 You can trigger a test failover by stopping NGINX on the active instance or rebooting the system completely. This should move the virtual IP address from the active instance to the standby (backup) instance, verifying that it is working correctly.
 
 ## Configuring Application Delivery Manager
-To enable high availability on a Gateway, the `server` blocks must bind to the `keepalived` floating/virtual IP addresses. This can be done using the Listen IPs when adding an instance group to a gateway, which is possible through both the API and the UI. 
+To enable high availability on a Gateway, the `server` blocks must bind to the `keepalived` floating/virtual IP addresses. This can be by defining listen IPs when adding an instance group to a gateway, which is possible through both the API and the UI. 
 
 This configuration is per instance group and must be specified on all instance groups for correct high availability configuration.
 
@@ -153,7 +155,8 @@ This configuration is per instance group and must be specified on all instance g
 {{<tabs name="listenip-configuration">}}
 
 {{%tab name="API"%}}
-To add `listenIps` via API include the IP addresses in the Gateway POST/PUT request to endpoint `https://<NMS_FQDN>/api/adm/v1/environments/<ENVIRONMENT_UUID>/gateways`.
+To add `listenIps` using the REST API, include the IP addresses in a Gateway `POST` or `PUT` request to the following endpoints:
+
 {{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
 {{<bootstrap-table "table">}}
 | Method | Endpoint                                           |
@@ -162,6 +165,7 @@ To add `listenIps` via API include the IP addresses in the Gateway POST/PUT requ
 | `PUT` | `/api/adm/v1/environments/{environment-uuid}/gateways/{gateway-uuid}` |
 {{</bootstrap-table>}}
 {{< raw-html>}}</div>{{</raw-html>}}
+
 <details open>
 <summary>JSON request</summary>
 
