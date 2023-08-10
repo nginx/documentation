@@ -1627,12 +1627,12 @@ If a user other than **nginx** is to be used, note the following:
     
     where `xx` is a release number.
 
-    For example, to install NGINX App Protect WAF for NGINX Plus R28, make sure of the following:
+    For example, to install NGINX App Protect WAF for NGINX Plus R30, make sure of the following:
 
     ```shell
     cat /etc/apk/repositories
-    https://pkgs.nginx.com/plus/R28/alpine/v3.17/main
-    https://pkgs.nginx.com/app-protect/R28/alpine/v3.17/main
+    https://pkgs.nginx.com/plus/R30/alpine/v3.17/main
+    https://pkgs.nginx.com/app-protect/R30/alpine/v3.17/main
     ```
 
     Install the most recent version of NGINX App Protect WAF for NGINX Plus R28:
@@ -3003,7 +3003,7 @@ After having updated the Attack Signature package you have to reload the configu
     sudo apt-get install app-protect-attack-signatures=2020.07.16-1~focal
     ```
 
-### Alpine 3.10 / Alpine 3.16 /Alpine 3.17
+### Alpine 3.10 / Alpine 3.16 / Alpine 3.17
 
 1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
