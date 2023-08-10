@@ -114,6 +114,16 @@ The TCP-UDP-COMPONENT-MANAGEMENT feature controls access to TCP/UDP components a
 
 - All permissions within a particular feature (for example, ENVIRONMENT-MANAGEMENT) should be granted the same CRUD level of access. So, if a particular permission has READ and DELETE access for ENVIRONMENT-MANAGEMENT, all permissions under ENVIRONMENT-MANAGEMENT should have the same READ and DELETE access.
 
+## Predefined roles
+
+The installation process creates two predefined roles, ADM admin and ADM guest, to quickly get you started with RBAC configuration.
+
+The ADM Admin role has CREATE, READ, UPDATE, and DELETE permissions for all objects associated with App Delivery Manager module. Compared to the Admin role for the entire NGINX Management Suite, the ADM Admin role does not have permission to create or delete users, roles, or other objects not associated with App Delivery Manager. We recommend assigning the more restrictive ADM Admin role to users who need to make changes to any App Delivery Manager object but don't need to make changes to the underlying NGINX Management Suite platform.
+
+ADM Guest is a role with read-only access to all objects associated with App Delivery Manager.
+
+We recommend creating additional new roles to restrict permissions. Role configuration is dependent on a chosen organizational structure. We have outlined one example scenario of configuring roles in the [Example Roles](#example-roles) section below.
+
 ## Example Roles
 
 We recommend configuring roles to limit permissions. An example scenario is detailed below.  For more details on how to assign roles and the special considerations which need to be taken into account when using the user interface, see [Setting up User Roles]({{< relref "/nms/adm/getting-started/roles.md" >}}) section of **Getting-Started**.
@@ -158,7 +168,7 @@ Details:
 
 #### Example-Admin Role
 
-The Example-Admin role is a custom role and not the built-in Admin role. This role has full access to all objects. It is used to manage the full lifecycle of all objects and data.
+The Example-Admin role is a custom role and not the built-in Admin role. This role has full access to all objects. It is used to manage the full lifecycle of all objects and data. This role is similar to the predefined ADM Admin role.
 
 Permissions:
 
