@@ -1635,7 +1635,7 @@ If a user other than **nginx** is to be used, note the following:
     https://pkgs.nginx.com/app-protect/R30/alpine/v3.17/main
     ```
 
-    Install the most recent version of NGINX App Protect WAF for NGINX Plus R28:
+    Install the most recent version of NGINX App Protect WAF for NGINX Plus R30:
 
     ```shell
     sudo apk update
@@ -1652,7 +1652,7 @@ If a user other than **nginx** is to be used, note the following:
     Finally, install a specific version from the output of command above. For example:
 
     ```shell
-    sudo apk add app-protect=28.4.100.1-r1
+    sudo apk add app-protect=30.4.457.0-r1
     ```
 
 10. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
@@ -3034,7 +3034,7 @@ After having updated the Attack Signature package you have to reload the configu
     Finally, install the latest version from the output:
 
     ```shell
-    sudo apk add app-protect-attack-signatures=2023.01.26-r1
+    sudo apk add app-protect-attack-signatures=2023.08.03-r1
     ```
 
 
@@ -3153,7 +3153,7 @@ Example: app-protect-threat-campaigns-2022.07.21
     Finally, install the latest version from the output:
 
     ```shell
-    sudo apk add app-protect-threat-campaigns=2020.12.24-r1
+    sudo apk add app-protect-threat-campaigns=2023.08.09-r1
     ```
 
 ### Debian 10 
