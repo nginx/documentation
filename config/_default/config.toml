@@ -2,6 +2,8 @@ baseURL = "/"
 languageCode = "en-us"
 title = "NGINX Documentation"
 refLinksErrorLevel = "ERROR"
+pygmentsCodeFences = true
+pygmentsUseClasses = true
 
 [permalinks]
   controller = '/nginx-controller/:sections[1:]/:filename'

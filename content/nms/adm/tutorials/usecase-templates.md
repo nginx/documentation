@@ -48,7 +48,7 @@ Template can access the template input and data inside it as shown below. The ex
 - Get the top level `customExtension`.
 - Get the URI/Server level `customExtension`.
 
-```
+```text
 {{$input := .}}
 {{$gwData := .Data.V1}}
 {{$argsLen := len $input.Args}}
@@ -59,7 +59,7 @@ Template can access the template input and data inside it as shown below. The ex
 {{$uriCe := $server.customExtensions}}
 ```
 This data can now be used to implement custom logic. In our case we will add comments using this as shown below.
-```
+```text
 {{if and $topCe $topCe.commentsUsecase  $topCe.commentsUsecase.allUriComments}}
     {{range $comment := $topCe.commentsUsecase.allUriComments}}
         # {{$comment}}
@@ -75,7 +75,7 @@ This data can now be used to implement custom logic. In our case we will add com
 
 ### 3. Create the schema
 This use case expands the Gateway API. We need to define the JSON schema used to validate the template input and render additional fields in the UI. Create file `gateway.json` under the use case directory. Describe the API and validation needed in the JSON schema as shown below.
-```
+```json
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "type": "object",
