@@ -3,6 +3,7 @@ Instance Manager supports the following versions of [NGINX App Protect WAF](http
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Instance Manager | NGINX App Protect WAF |
 |------------------|-----------------------|
+| 2.13.0           | Release 4.3.0–4.5.0   |
 | 2.12.0           | Release 4.2.0–4.5.0   |
 | 2.11.0           | Release 4.1.0–4.3.0   |
 | 2.10.0–2.10.1    | Release 4.0.0–4.3.0   |
