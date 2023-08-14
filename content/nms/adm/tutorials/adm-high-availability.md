@@ -18,7 +18,7 @@ Application Delivery Manager gateways are entry points for applications, and cre
 For high availability (HA) connections, you can use the `keepalived` framework to make the server blocks bind to non-local IP addresses instead.
 
 {{<call-out "tip" "High Availability">}}
-High availability Gateway: A Gateway which runs continously without failing even after some of the systems it is deployed on fails. 
+*High Availability* describes software or systems that can operate continuously at a high level without intervention. This is possible due to robust mechanisms such as failover instances for handling issues such as service interruptions or outages.
 {{</call-out>}}
 
 ## Before You Begin
@@ -246,7 +246,7 @@ To configure this with the web interface, follow the steps below.
 
 ## Validating Application Delivery Manager
 
-Once you have configured a gateway listen IP using a `keepalived` virtual IP, you can then test it for correctness using a [web component]({{<relref "/nms/adm/about/api-overview" >}}).
+Once you have configured a gateway listen IP using a `keepalived` virtual IP, you can then test it for correctness using a [web component]({{<relref "/nms/adm/about/api-overview#components" >}}).
 1. Create a web component that references the high availability gateway.
 1. Access the web component using the virtual IP, such as with `curl`:
 
