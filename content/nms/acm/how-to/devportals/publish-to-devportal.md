@@ -8,7 +8,7 @@ tags:
 title: Publish Docs to a Developer Portal
 toc: true
 versions: []
-weight: 100
+weight: 200
 docs: "DOCS-1082"
 ---
 
