@@ -59,8 +59,7 @@ To create a support package from a Helm installation:
 2. Run the Kubernetes support package script. See the [Arguments](#arguments) section for a list of the available options.
 
     ``` bash
-    cd nms/charts/nms-hybrid/support-package
-    ./k8s-support-package.sh
+    bash ./nms/charts/nms-hybrid/support-package/k8s-support-package.sh
     ```
 
     The Kubernetes support package is saved in the same location from where you run the script.
@@ -110,7 +109,7 @@ Includes the versions of:
 - Helm chart
 - `kubectl` tool
 - `helm` tool
-- NGINX gateway  
+- NGINX gateway
 - ClickHouse
 
 ### cluster-info
