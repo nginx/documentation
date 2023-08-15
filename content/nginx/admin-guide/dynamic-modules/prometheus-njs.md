@@ -27,6 +27,7 @@ The following NGINX Plus status metrics are exported to Prometheus:
 * [Connections](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_connections): `/connections`
 * [SSL](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_ssl_object): `/ssl`
 * [Slabs](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_slab_zone): `/slabs/`
+* [Workers](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_worker): `/workers/`
 * [HTTP](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_): `/http/`
 * [HTTP Requests](http://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_requests): `/http/requests`
 * [HTTP Caches](http://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_cache): `/http/caches/`
@@ -60,7 +61,7 @@ The following NGINX Plus status metrics are exported to Prometheus:
 
 Install the `nginx-plus-module-prometheus` module.
 
-* For Amazon Linux, CentOS, Oracle Linux, and RHEL:
+* For Amazon Linux, CentOS, Oracle Linux, Alma/Rocky Linux, and RHEL:
 
   ```shell
   $ yum install nginx-plus-module-prometheus
@@ -274,6 +275,7 @@ You can disable exporting the following NGINX Plus status metrics to Prometheus:
 * `connections`
 * `ssl`
 * `slabs`
+* `workers`
 * `http/requests`
 * `http/caches`
 * `http/upstreams`

@@ -21,10 +21,10 @@ NGINX Plus is available in binary form only; it is not available in source form
 - 9 (x86_64, aarch64)
 
 ### Alpine Linux
-- 3.14 (x86_64, aarch64)
 - 3.15 (x86_64, aarch64)
 - 3.16 (x86_64, aarch64)
 - 3.17 (x86_64, aarch64)
+- 3.18 (x86_64, aarch64)
 
 ### Amazon Linux
 - 2023 (x86_64, aarch64)
@@ -37,6 +37,7 @@ NGINX Plus is available in binary form only; it is not available in source form
 
 ### Debian
 - 11 (x86_64, aarch64)
+- 12 (x86_64, aarch64)
 
 ### FreeBSD
 - 12.1+ (amd64)
@@ -61,7 +62,6 @@ NGINX Plus is available in binary form only; it is not available in source form
 - 15 SP2 (x86_64)
 
 ### Ubuntu 
-- 18.04 LTS (x86_64, aarch64)
 - 20.04 LTS (x86_64, aarch64, s390x)
 - 22.04 LTS (x86_64, aarch64, s390x)
 
@@ -77,9 +77,11 @@ Except as specified below, dynamic modules are supported on the [same distributi
 - Oracle/AlmaLinux/Rocky Linux: Not supported
 - RHEL 9: Not supported
 - RHEL 7, RHEL 8,: x86_64 only
-- Debian, Ubuntu: x86_64 only
+- Debian 11: x86_64 only
+- Ubuntu 20.04: x86_64 only
 - Amazon Linux 2: x86_64 only
 - Amazon Linux 2023: Not supported
+- Alpine Linux: Not supported
 
 ### Brotli
 - SLES 12: Not supported
@@ -90,7 +92,8 @@ Except as specified below, dynamic modules are supported on the [same distributi
 - Amazon Linux 2023: Not supported
 
 ### GeoIP2
-- SLES: Not supported
+- SLES 12: Not supported
+- Amazon Linux 2: Not supported
 
 ### HA-Keepalived
 - FreeBSD: Not supported
@@ -98,11 +101,11 @@ Except as specified below, dynamic modules are supported on the [same distributi
 - Amazon Linux 2: Not supported
 
 ### Lua
-- CentOS/RHEL 7.4+: s390x not supported
+- RHEL 8, RHEL9: s390x not supported
 - Ubuntu: s390x not supported
 
 ### NGINX ModSecurity WAF
-- CentOS/Oracle Linux/RHEL 7.4+: x86_64 only
+- CentOS/RHEL 7.4+: x86_64 only
 
 ### NGINX sync
 - FreeBSD: Not supported
@@ -110,14 +113,10 @@ Except as specified below, dynamic modules are supported on the [same distributi
 
 ### OpenTelemetry
 - RHEL/Oracle Linux/AlmaLinux/Rocky Linux 7: Not supported
-- Ubuntu 18.04: Not supported
+- SLES 12, SLES 15: Not supported
 - Amazon Linux 2: Not supported
 
 ### OpenTracing
-- SLES 12: Not supported
-
-### QUIC
-- RHEL/Oracle Linux/AlmaLinux/Rocky Linux 7: Not supported
 - SLES 12: Not supported
 
 ## Supported SSL/TLS Versions

@@ -148,7 +148,7 @@ The package can be installed from:
     ```shell
     curl -I 127.0.0.1
     HTTP/1.1 200 OK
-    Server: nginx/1.23.4
+    Server: nginx/1.25.1
     ```
 
 <span id="prebuilt_debian"></span>
@@ -161,6 +161,7 @@ NGINX provides packages for the following Debian operating systems:
 |Version | Codename | Supported Platforms | 
 | ---| ---| --- | 
 |11.x | bullseye | x86_64, aarch64/arm64 |
+|12.x | bookworm | x86_64, aarch64/arm64 |
 {{</bootstrap-table>}} 
 
 The package can be installed from:
@@ -261,7 +262,7 @@ The package can be installed from:
     ```shell
     curl -I 127.0.0.1
     HTTP/1.1 200 OK
-    Server: nginx/1.23.4
+    Server: nginx/1.25.1
     ```
 
 <span id="prebuilt_ubuntu"></span>
@@ -273,10 +274,10 @@ NGINX provides packages for the following Ubuntu operating systems:
 {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |Version | Codename | Supported Platforms | 
 | ---| ---| --- | 
-|18.04 | bionic | x86_64, aarch64/arm64 |
 |20.04 | focal | x86_64, aarch64/arm64, s390x |
 |22.04 | jammy | x86_64, aarch64/arm64, s390x |
 |22.10 | kinetic | x86_64, aarch64/arm64 |
+|23.04 | lunar | x86_64, aarch64/arm64 |
 {{</bootstrap-table>}} 
 
 The package can be installed from:
@@ -376,7 +377,7 @@ The package can be installed from:
     ```shell
     curl -I 127.0.0.1
     HTTP/1.1 200 OK
-    Server: nginx/1.23.4
+    Server: nginx/1.25.1
     ```
 
 <span id="prebuilt_suse"></span>
@@ -457,10 +458,10 @@ NGINX provides packages for the following Alpine Linux operating systems:
 {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |Version | Supported Platforms | 
 | ---| --- | 
-|3.14 | x86_64, aarch64/arm64 |
 |3.15 | x86_64, aarch64/arm64 |
 |3.16 | x86_64, aarch64/arm64 |
 |3.17 | x86_64, aarch64/arm64 |
+|3.18 | x86_64, aarch64/arm64 |
 {{</bootstrap-table>}} 
 
 The package can be installed from the official repo at **nginx.org**. You have to set up the  <span style="white-space: nowrap;">`apt-get`</span> repository the first time, but after that the provided package is always up to date.
@@ -655,9 +656,9 @@ Prior to compiling NGINX Open Source from source, you need to install librarie
 * [OpenSSL](https://www.openssl.org/) – Supports the HTTPS protocol. Required by the NGINX [SSL](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) module and others.
 
   ```shell
-  wget http://www.openssl.org/source/openssl-1.1.1t.tar.gz
-  tar -zxf openssl-1.1.1t.tar.gz
-  cd openssl-1.1.1t
+  wget http://www.openssl.org/source/openssl-1.1.1v.tar.gz
+  tar -zxf openssl-1.1.1v.tar.gz
+  cd openssl-1.1.1v
   ./Configure darwin64-x86_64-cc --prefix=/usr
   make
   sudo make install
@@ -671,9 +672,9 @@ Download the source files for both the stable and mainline versions from [**ngin
 To download and unpack the source for the latest _mainline_ version, run:
 
 ```shell
-wget https://nginx.org/download/nginx-1.23.4.tar.gz
-tar zxf nginx-1.23.4.tar.gz
-cd nginx-1.23.4
+wget https://nginx.org/download/nginx-1.25.1.tar.gz
+tar zxf nginx-1.25.1.tar.gz
+cd nginx-1.25.1
 ```
 
 To download and unpack source files for the latest _stable_ version, run:  

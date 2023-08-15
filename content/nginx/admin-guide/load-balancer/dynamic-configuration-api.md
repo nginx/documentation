@@ -146,7 +146,7 @@ The URI specifies the following information in this order:
 
 * The hostname or IP address of the node that handles the request (in the following examples, `127.0.0.1`)
 * The location where the `api` directive appears (`api`)
-* The API version (`8`)
+* The API version (`9`)
 * The name of the upstream group, complete its place in the NGINX Plus configuration hierarchy represented as a slash‑separated path (`http/upstreams/appservers`)
 
 For example, to add a new server to the `appservers` upstream group, send the following `curl` command:
@@ -161,19 +161,19 @@ curl -X POST -d '{ \
    "slow_start": "10s", \
    "backup": true, \
    "down": true \
- }' -s 'http://127.0.0.1/api/8/http/upstreams/appservers/servers'
+ }' -s 'http://127.0.0.1/api/9/http/upstreams/appservers/servers'
 ```
 
 To remove a server from the upstream group:
 
 ```shell
-curl -X DELETE -s 'http://127.0.0.1/api/8/http/upstreams/appservers/servers/0'
+curl -X DELETE -s 'http://127.0.0.1/api/9/http/upstreams/appservers/servers/0'
 ```
 
 To set the `down` parameter for the first server in the group (with ID `0`):
 
 ```shell
-curl -X PATCH -d '{ "down": true }' -s 'http://127.0.0.1/api/8/http/upstreams/appservers/servers/0'
+curl -X PATCH -d '{ "down": true }' -s 'http://127.0.0.1/api/9/http/upstreams/appservers/servers/0'
 ```
 
 
