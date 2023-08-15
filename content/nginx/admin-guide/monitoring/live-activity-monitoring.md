@@ -28,7 +28,7 @@ NGINX Plus provides various monitoring tools for your server infrastructure:
 
 * * *
 
-[![live activity monitoring](https://www.nginx.com/wp-content/uploads/2022/11/nginx-plus-dashboard_R28-overview-ssl.png)](https://demo.nginx.com/dashboard.html "Live status metrics from NGINX Plus")
+[![live activity monitoring](https://www.nginx.com/wp-content/uploads/2023/08/nginx-plus-dashboard_R30-overview.png)](https://demo.nginx.com/dashboard.html "Live status metrics from NGINX Plus")
 
 * * *
 
@@ -259,7 +259,7 @@ In the address bar of your browser, type-in the address that corresponds to your
 
 There is also a live demo page from NGINX available at [demo.nginx.com/dashboard.html](https://demo.nginx.com/dashboard.html):
 
-[![live activity monitor](https://www.nginx.com/wp-content/uploads/2022/11/nginx-plus-dashboard_R28-overview-ssl.png)](https://demo.nginx.com/dashboard.html "Live load-balancing status from NGINX Plus")
+[![live activity monitor](https://www.nginx.com/wp-content/uploads/2023/08/nginx-plus-dashboard_R30-overview.png)](https://demo.nginx.com/dashboard.html "Live load-balancing status from NGINX Plus")
 
 <span id="dashboard_tabs"></span>
 ### Tabs Overview
@@ -508,7 +508,7 @@ To enable the Swagger UI:
 {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |OpenAPI YAML File/API Version | NGINX Plus Version | Changes |
 | ---| --- | --- |
-|[{{<fa "download">}}OpenAPI v2](../../yaml/v8/nginx_api.yaml) for API version 9 | NGINX Plus Releases [30](https://docs.nginx.com/nginx/releases/#nginxplusrelease-30-r30) | The [`/workers/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#workers_) data were added
+|[{{<fa "download">}}OpenAPI v2](../../yaml/v9/nginx_api.yaml) for API version 9 | NGINX Plus Releases [30](https://docs.nginx.com/nginx/releases/#nginxplusrelease-30-r30) | The [`/workers/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#workers_) data were added
 |[{{<fa "download">}}OpenAPI v2](../../yaml/v8/nginx_api.yaml) for API version 8 | NGINX Plus Releases [27](https://docs.nginx.com/nginx/releases/#nginxplusrelease-27-r27), [28](https://docs.nginx.com/nginx/releases/#nginxplusrelease-28-r28), [29](https://docs.nginx.com/nginx/releases/#nginxplusrelease-29-r29) | SSL statistics for each HTTP [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) and stream [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_upstream), SSL statistics for each HTTP [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_server_zone) and stream [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_server_zone), extended statistics for [SSL](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_ssl_object) endpoint
 |[{{<fa "download">}}OpenAPI v2](../../yaml/v7/nginx_api.yaml) for API version 7 | NGINX Plus Releases [25](https://docs.nginx.com/nginx/releases/#nginxplusrelease-25-r25), [26](https://docs.nginx.com/nginx/releases/#nginxplusrelease-26-r26)| The `codes` data in `responses` for each HTTP [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream), [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_server_zone), and [location zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_location_zone) were added
 |[{{<fa "download">}}OpenAPI v2](../../yaml/v6/nginx_api.yaml) for API version 6 | NGINX Plus Releases [20](https://docs.nginx.com/nginx/releases/#nginxplusrelease-20-r20), [21](https://docs.nginx.com/nginx/releases/#nginxplusrelease-21-r21), [22](https://docs.nginx.com/nginx/releases/#nginxplusrelease-22-r22), [23](https://docs.nginx.com/nginx/releases/#nginxplusrelease-23-r23), [24](https://docs.nginx.com/nginx/releases/#nginxplusrelease-24-r24) | The [`/stream/limit_conns/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#stream_limit_conns_),  [`/http/limit_conns/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_limit_conns_), and  [`/http/limit_reqs/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_limit_reqs_) data were added |
