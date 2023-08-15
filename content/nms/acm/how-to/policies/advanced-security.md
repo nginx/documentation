@@ -43,15 +43,19 @@ To complete the steps in this guide, you need the following:
 
 ## Policy Settings
 
-The applied policy is configurable, and all events created by rule volations will go to the `Security Monitoring` dashboard in NGINX Management Suite.
+The applied policy is configurable, and all events created by rule violations will go to the `Security Monitoring` dashboard in NGINX Management Suite.
 
 ---
 
 ## Applying the Policy
 
-{{< note >}} Advanced Security policies can currently only be applied to Environments.{{< /note >}}
+{{< note >}} 
+You can apply Advanced Security policies to Environments or individual Proxies for more granular control.
 
-There are two methods available to allow adding an *Advanced Security* policy to your *Environment*:
+To create an NGINX App Protect WAF policy to use in your Advanced Security policy, please see the [Create a Policy]({{< relref "/nms/nim/how-to/app-protect/manage-waf-security-policies#create-security-policy" >}}) documentation.
+{{< /note >}}
+
+There are two methods available to allow adding an *Advanced Security* policy to your *Environment* or your *Proxy*:
 
 {{<tabs name="add_advanced_security_policy">}}
 
@@ -59,7 +63,7 @@ There are two methods available to allow adding an *Advanced Security* policy to
 
 {{<see-also>}}{{< include "acm/how-to/access-acm-api.md" >}}{{</see-also>}}
 
-To create an *Allowed HTTP Methods* policy using the REST API, send an HTTP `POST` request to the Proxies endpoint.
+To create an *Advanced Security* policy for your global *Environment* using the REST API, send a `POST` request to the Environments endpoint.
 
 {{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
 {{<bootstrap-table "table">}}

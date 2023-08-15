@@ -25,4 +25,4 @@ To add users, take the following steps:
 Changes made to a user may take up to 10 minutes to take effect.
 {{< /note >}}
 
-{{< see-also >}}Refer to the "[Provision Users and Groups with SCIM](({{< relref "/nms/admin-guides/access-control/scim-provisioning.md" >}}))" topic for instructions on automating user and group creation using the [SCIM API](http://www.simplecloud.info).{{< /see-also >}}
+{{< see-also >}}Refer to the "[Provision Users and Groups with SCIM]({{< relref "/nms/admin-guides/access-control/scim-provisioning.md" >}})" topic for instructions on automating user and group creation using the SCIM API.{{< /see-also >}}

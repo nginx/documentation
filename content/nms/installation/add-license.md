@@ -78,20 +78,29 @@ To download a subscription or Flexible Consumption Program license for NGINX Man
 
 ### How to Apply a JWT License {#apply-jwt-license}
 
+{{<important>}}
+<br>
+
+To retrieve your entitlements, make sure to allow inbound and outbound access on port 443 to the following URLs:
+
+- https://product.apis.f5.com
+- https://product-s.apis.f5.com/ee
+
+{{</important>}}
+
 To upload and apply a JWT license for NGINX Management Suite:
 
 1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in.
-2. Select the **Settings** gear icon.
-3. On the **Settings** menu, select **Licenses**.
-4. Select **Get Started**.
-5. Locate the `.jwt` file you [downloaded from MyF5]({{< relref "/nms/installation/add-license.md#download-license" >}}), then select **Upload**. NGINX Management Suite will automatically retrieve your product entitlements from F5's licensing servers.
-6. Select **Review Entitlements** and confirm the correct product entitlements are listed.
-7. Select **Submit**.
-8. (Optional) To send telemetry data to F5 NGINX, select the **Enable Telemetry** option. For detailed information about the data being transmitted and its purpose, refer to the topic [Configure Telemetry]({{< relref "/nms/admin-guides/configuration/configure-telemetry.md" >}}).
+1. Select the **Settings** gear icon.
+1. On the **Settings** menu, select **Licenses**.
+1. Select **Get Started**.
+1. Select **Browse** to upload the license, or you can simply drag and drop the license onto the form.
+1. Select **Add**. NGINX Management Suite will automatically retrieve your product entitlements from F5's licensing servers.
+1. (Optional) To send telemetry data to F5 NGINX, select the **Enable Continuous Connection** option. For detailed information about the data being transmitted and its purpose, refer to the topic [Configure Telemetry]({{< relref "/nms/admin-guides/configuration/configure-telemetry.md" >}}).
 
-Your NGINX entitlements will now be visible on the Licenses page, along with information about your product usage relative to your entitled capacity.
+Your NGINX entitlements will now be visible on the **Licenses** page, along with information about your product usage relative to your entitled capacity.
 
-If needed, you can return to this page at any time to cancel the license by removing the `.jwt` file and revoking your entitlements. This action will notify F5 that the license has been terminated.
+You can return to this page at any time to cancel the license. Simply select **Terminate** and then confirm the action. This action will notify F5 that the license has been terminated.
 
 ### How to Apply an S/MIME License {#apply-smime-license}
 
@@ -101,7 +110,14 @@ To upload and apply an S/MIME license for NGINX Management Suite:
 1. Select the **Settings** gear icon.
 1. On the **Settings** menu, select **Licenses**.
 1. Select **Get Started**.
-1. Locate the `.lic` file that you [downloaded from MyF5]({{< relref "/nms/installation/add-license.md#download-license" >}}), then select **Upload**.
+2. Select **Browse** to upload the license, or you can simply drag and drop the license onto the form.
+3. Select **Add**.
+4. Select **Done**.
+5. (Optional) To send telemetry data to F5 NGINX, select the **Enable Continuous Connection** option. For detailed information about the data being transmitted and its purpose, refer to the topic [Configure Telemetry]({{< relref "/nms/admin-guides/configuration/configure-telemetry.md" >}}).
+
+Your NGINX entitlements will now be visible on the **Licenses** page.
+
+You can return to this page at any time to cancel the license. Simply select **Terminate** and then confirm the action.
 
 ---
 
@@ -126,7 +142,7 @@ The NGINX Management Suite features listed in the table below are available for 
 
 When NGINX Management Suite is licensed, the full range of features is available for the NGINX Management Suite platform and any installed modules.
 
-{{<call-out "tip" "Manage access with RBAC">}}To learn how to manage and control access to features in NGINX Management Suite using role-bassed access control, refer to the topic [Set up RBAC]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}).{{</call-out>}}
+{{<call-out "tip" "Manage access with RBAC">}}To learn how to manage and control access to features in NGINX Management Suite using role-based access control, refer to the topic [Set up RBAC]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}).{{</call-out>}}
 
 
 {{< include "admin-guides/access-control/rbac-features.md" >}}
@@ -143,9 +159,3 @@ If you have issues uploading a license, make sure you're using the newest versio
 - [Firefox](https://www.mozilla.org/en-US/firefox/new/)
 - [Safari](https://support.apple.com/downloads/safari)
 - [Microsoft Edge](https://www.microsoft.com/en-us/edge)
-
-### Unable to retrieve entitlements
-
-{{<include "installation/jwt-license-firewall-settings.md" >}}
-
-
