@@ -63,37 +63,25 @@ NGINX Plus can be installed on Amazon Linux 2023 (x86_64, aarch64).
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/modsecurity-amazonlinux2023.repo
     ```
 
-8.  If you would like to enable experimental QUIC support, add NGINX Plus QUIC repository by downloading the [plus-quic-amazonlinux2023.repo](https://cs.nginx.com/static/files/plus-quic-amazonlinux2023.repo) file to **/etc/yum.repos.d**:
-
-    ```shell
-    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-quic-amazonlinux2023.repo
-    ```
-
-9.  Install the **nginx-plus** package. Any older NGINX Plus package is automatically replaced.
+8.  Install the **nginx-plus** package. Any older NGINX Plus package is automatically replaced.
 
     ```shell
     sudo yum install nginx-plus
     ```
 
-10. If you have NGINX ModSecurity subscription, install the ModSecurity package:
+9.  If you have NGINX ModSecurity subscription, install the ModSecurity package:
 
     ```shell
     sudo yum install nginx-plus nginx-plus-module-modsecurity
     ```
 
-11. For experimental QUIC support, install NGINX Plus QUIC package:
-
-    ```shell
-    sudo yum install nginx-plus-quic
-    ```
-
-12. Check the `nginx` binary version to ensure that you have NGINX Plus installed correctly:
+10. Check the `nginx` binary version to ensure that you have NGINX Plus installed correctly:
 
     ```shell
     nginx -v
     ```
 
-13. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
+11. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
 
 
 <span id="install_amazon2"></span>
@@ -131,37 +119,25 @@ NGINX Plus can be installed on Amazon Linux 2 LTS (x86_64, aarch64).
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-amazon2.repo
     ```
 
-7.  If you would like to enable experimental QUIC support, add NGINX Plus QUIC repository by downloading the file **plus-quic-amazon2.repo** to **/etc/yum.repos.d**:
-
-    ```shell
-    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-quic-amazon2.repo
-    ```
-
-8.  Install the **nginx-plus** package. Any older NGINX Plus package is automatically replaced.
+7.  Install the **nginx-plus** package. Any older NGINX Plus package is automatically replaced.
 
     ```shell
     sudo yum install nginx-plus
     ```
 
-9.  If you have NGINX ModSecurity subscription, install the ModSecurity package:
+8.  If you have NGINX ModSecurity subscription, install the ModSecurity package:
 
     ```shell
     sudo yum install nginx-plus nginx-plus-module-modsecurity
     ```
 
-10. For experimental QUIC support, install NGINX Plus QUIC package:
-
-    ```shell
-    sudo yum install nginx-plus-quic
-    ```
-
-11. Check the `nginx` binary version to ensure that you have NGINX Plus installed correctly:
+9.  Check the `nginx` binary version to ensure that you have NGINX Plus installed correctly:
 
     ```shell
     nginx -v
     ```
 
-12. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
+10. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
 
 
 <span id="install_rhel_centos"></span>
@@ -300,43 +276,31 @@ NGINX Plus can be installed on the following versions of CentOS/RHEL:
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/modsecurity-8.repo
     ```
 
-8.  If you would like to enable experimental QUIC support, add NGINX Plus QUIC repository by downloading the file **plus-quic-8.repo** to **/etc/yum.repos.d**:
-
-    ```shell
-    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-quic-8.repo
-    ```
-
-9.  Install the **nginx-plus** package. Any older NGINX Plus package is automatically replaced.
+8.  Install the **nginx-plus** package. Any older NGINX Plus package is automatically replaced.
 
     ```shell
     sudo yum install nginx-plus
     ```
 
-10. If you have NGINX ModSecurity subscription, install the ModSecurity package:
+9.  If you have NGINX ModSecurity subscription, install the ModSecurity package:
 
     ```shell
     sudo yum install nginx-plus nginx-plus-module-modsecurity
     ```
 
-11. For experimental QUIC support, install NGINX Plus QUIC package:
-
-    ```shell
-    sudo yum install nginx-plus-quic
-    ```
-
-12. To enable the nginx service start at boot, run the command:
+10. To enable the nginx service start at boot, run the command:
 
     ```shell
     sudo systemctl enable nginx.service
     ```
 
-13. Check the `nginx` binary version to ensure that you have NGINX Plus installed correctly:
+11. Check the `nginx` binary version to ensure that you have NGINX Plus installed correctly:
 
     ```shell
     nginx -v
     ```
 
-14. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
+12. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
 
 
 <span id="install_rhel9"></span>
@@ -385,43 +349,31 @@ NGINX Plus can be installed on the following versions of CentOS/RHEL:
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/modsecurity-9.repo
     ```
 
-8.  If you would like to enable experimental QUIC support, add NGINX Plus QUIC repository by downloading the file **plus-quic-9.repo** to **/etc/yum.repos.d**:
-
-    ```shell
-    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-quic-9.repo
-    ```
-
-9.  Install the **nginx-plus** package. Any older NGINX Plus package is automatically replaced.
+8.  Install the **nginx-plus** package. Any older NGINX Plus package is automatically replaced.
 
     ```shell
     sudo yum install nginx-plus
     ```
 
-10. If you have NGINX ModSecurity subscription, install the ModSecurity package:
+9.  If you have NGINX ModSecurity subscription, install the ModSecurity package:
 
     ```shell
     sudo yum install nginx-plus nginx-plus-module-modsecurity
     ```
 
-11. For experimental QUIC support, install NGINX Plus QUIC package:
-
-    ```shell
-    sudo yum install nginx-plus-quic
-    ```
-
-12. To enable the nginx service start at boot, run the command:
+10. To enable the nginx service start at boot, run the command:
 
     ```shell
     sudo systemctl enable nginx.service
     ```
 
-13. Check the `nginx` binary version to ensure that you have NGINX Plus installed correctly:
+11. Check the `nginx` binary version to ensure that you have NGINX Plus installed correctly:
 
     ```shell
     nginx -v
     ```
 
-14. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
+12. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
 
 
 <span id="install_debian_ubuntu"></span>
@@ -430,7 +382,7 @@ NGINX Plus can be installed on the following versions of CentOS/RHEL:
 NGINX Plus can be installed on the following versions of Debian or Ubuntu:
 
 * Debian 11 (x86_64, aarch64)
-* Ubuntu 18.04 LTS ("Bionic") (x86_64, aarch64)
+* Debian 12 (x86_64, aarch64)
 * Ubuntu 20.04 LTS ("Focal") (x86_64, aarch64, s390x)
 * Ubuntu 22.04 LTS ("Jammy") (x86_64, aarch64, s390x)
 
@@ -519,63 +471,43 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
     printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/modsecurity/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-modsecurity.list
     ```
 
-10. If you would like to enable experimental QUIC support, add NGINX Plus QUIC repository:
-
-    For Debian:
-
-    ```shell
-    printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus-quic/debian `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-plus-quic.list
-    ```
-
-    For Ubuntu:
-
-    ```shell
-    printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus-quic/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-plus-quic.list
-    ```
-
-11. Download the **nginx-plus** apt configuration to **/etc/apt/apt.conf.d**:
+10. Download the **nginx-plus** apt configuration to **/etc/apt/apt.conf.d**:
 
     ```shell
     sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
     ```
 
-12. Update the repository information:
+11. Update the repository information:
 
     ```shell
     sudo apt-get update
     ```
 
-13. Install the **nginx-plus** package. Any older NGINX Plus package is automatically replaced.
+12. Install the **nginx-plus** package. Any older NGINX Plus package is automatically replaced.
 
     ```shell
     sudo apt-get install -y nginx-plus
     ```
 
-14. If you have NGINX App Protect subscription, install NGINX App Protect and its signatures:
+13. If you have NGINX App Protect subscription, install NGINX App Protect and its signatures:
 
     ```shell
     sudo apt-get install app-protect app-protect-attack-signatures
     ```
 
-15. If you have NGINX ModSecurity subscription, install the ModSecurity package:
+14. If you have NGINX ModSecurity subscription, install the ModSecurity package:
 
     ```shell
     sudo apt-get install nginx-plus nginx-plus-module-modsecurity
     ```
 
-16. For experimental QUIC support, install NGINX Plus QUIC package:
-
-    ```shell
-    sudo apt-get install nginx-plus-quic 
-    ```
-
-17. Check the `nginx` binary version to ensure that you have NGINX Plus installed correctly:
+15. Check the `nginx` binary version to ensure that you have NGINX Plus installed correctly:
 
     ```shell
     nginx -v
     ```
 
-18. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
+16. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
 
 
 <span id="install_freebsd"></span>
@@ -624,13 +556,7 @@ To install NGINX Plus on FreeBSD:
     sudo fetch -o /etc/pkg/modsecurity.conf http://cs.nginx.com/static/files/modsecurity.conf
     ```
 
-8.  If you would like to enable experimental QUIC support, add NGINX Plus QUIC repository by downloading the `plus-quic.conf` file to **/etc/pkg/** directory:
-
-    ```shell
-    sudo fetch -o /etc/pkg/plus-quic.conf http://cs.nginx.com/static/files/plus-quic.conf 
-    ```
-
-9.  Add the following lines to the **/usr/local/etc/pkg.conf** file:
+8.  Add the following lines to the **/usr/local/etc/pkg.conf** file:
 
     ```none
     PKG_ENV: { SSL_NO_VERIFY_PEER: "1",
@@ -638,31 +564,25 @@ To install NGINX Plus on FreeBSD:
     SSL_CLIENT_KEY_FILE: "/etc/ssl/nginx/nginx-repo.key" }
     ```
 
-10. Install the **nginx-plus** package. Any older NGINX Plus package is automatically replaced. If you have older NGINX Plus package installed, it is recommended backing up the configuration and log files (see "[Upgrading NGINX Plus](#upgrade)" for details).
+9.  Install the **nginx-plus** package. Any older NGINX Plus package is automatically replaced. If you have older NGINX Plus package installed, it is recommended backing up the configuration and log files (see "[Upgrading NGINX Plus](#upgrade)" for details).
 
     ```shell
     sudo pkg install nginx-plus
     ```
 
-11. If you have NGINX ModSecurity subscription, install the `nginx-plus-module-modsecurity` package:
+10. If you have NGINX ModSecurity subscription, install the `nginx-plus-module-modsecurity` package:
 
     ```shell
     sudo pkg install nginx-plus nginx-plus-module-modsecurity
     ```
 
-12. For experimental QUIC support, install NGINX Plus QUIC package:
-
-    ```shell
-    sudo pkg install nginx-plus-quic 
-    ```
-
-13. Check the `nginx` binary version to ensure that you have NGINX Plus installed correctly:
+11. Check the `nginx` binary version to ensure that you have NGINX Plus installed correctly:
 
     ```shell
     nginx -v
     ```
 
-14. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
+12. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
 
 
 <span id="install_suse"></span>
@@ -724,43 +644,29 @@ To install NGINX Plus on SLES:
     zypper addrepo -G -t yum -c 'https://pkgs.nginx.com/modsecurity/sles/15?ssl_clientcert=/etc/ssl/nginx/nginx-repo-bundle.crt&ssl_verify=peer' nginx-modsecurity
     ```
 
-8.  If you would like to enable experimental QUIC support, add NGINX Plus QUIC repository.
-
-    For SLES 15:
-
-    ```shell
-    zypper addrepo -G -t yum -c 'https://pkgs.nginx.com/plus-quic/sles/15?ssl_clientcert=/etc/ssl/nginx/nginx-repo-bundle.crt&ssl_verify=peer' nginx-plus
-    ```
-
-9.  Install the **nginx-plus** package. Any older NGINX Plus package is automatically replaced.
+8.  Install the **nginx-plus** package. Any older NGINX Plus package is automatically replaced.
 
     ```shell
     zypper install nginx-plus
     ```
 
-10. If you have NGINX ModSecurity subscription, install the ModSecurity package:
+9.  If you have NGINX ModSecurity subscription, install the ModSecurity package:
 
     ```shell
     zypper install nginx-plus-module-modsecurity
     ```
 
-11. For experimental QUIC support, install NGINX Plus QUIC package:
-
-    ```shell
-    zypper install nginx-plus-quic
-    ```
-
-12. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
+10. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
 
 
 <span id="install_alpine"></span>
 ## Installing NGINX Plus on Alpine Linux
 
 NGINX Plus can be installed on the following versions of Alpine Linux:
-* 3.14 (x86_64, aarch64)
 * 3.15 (x86_64, aarch64)
 * 3.16 (x86_64, aarch64)
 * 3.17 (x86_64, aarch64)
+* 3.18 (x86_64, aarch64)
 
 To install NGINX Plus on Alpine Linux:
 
@@ -794,49 +700,37 @@ To install NGINX Plus on Alpine Linux:
     printf "https://pkgs.nginx.com/modsecurity/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
     ```
 
-8.  If you would like to enable experimental QUIC support, add NGINX Plus QUIC repository to **/etc/apk/repositories** file:
-
-    ```shell
-    printf "https://pkgs.nginx.com/plus-quic/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
-    ```
-
-9.  It is recommended to remove all community-supported NGINX packages. Please note all NGINX modules will be removed too.
+8.  It is recommended to remove all community-supported NGINX packages. Please note all NGINX modules will be removed too.
 
     ```shell
     sudo apk del -r nginx
     ```
 
-10. Install the NGINX Plus package:
+9.  Install the NGINX Plus package:
 
     ```shell
     sudo apk add nginx-plus
     ```
 
-11. If you have NGINX App Protect subscription, install NGINX App Protect and its signatures:
+10. If you have NGINX App Protect subscription, install NGINX App Protect and its signatures:
 
     ```shell
     sudo apk add app-protect app-protect-attack-signatures
     ```
 
-12. If you have NGINX ModSecurity subscription, install the ModSecurity package:
+11. If you have NGINX ModSecurity subscription, install the ModSecurity package:
 
     ```shell
     sudo apk add nginx-plus nginx-plus-module-modsecurity
     ```
 
-13. For experimental QUIC support, install NGINX Plus QUIC package:
-
-    ```shell
-    sudo apk add nginx-plus-quic
-    ```
-
-14. Check the `nginx` binary version to ensure that you have NGINX Plus installed correctly:
+12. Check the `nginx` binary version to ensure that you have NGINX Plus installed correctly:
 
     ```shell
     nginx -v
     ```
 
-15. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
+13. If [NGINX Management Suite Instance Manager]({{<relref "/nms/about.md">}}) is used in your infrastructure, install and enable NGINX Agent. See [Install and Configure NGINX Agent]({{<relref "/nms/nginx-agent/install-nginx-agent.md">}}) for details.
 
 
 <span id="install_modules"></span>
@@ -945,10 +839,10 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
 
    * Identify the NGINX Open Source version that corresponds to your version of NGINX Plus. See [NGINX Plus Releases]({{< relref "../../releases.md" >}}).
 
-   * Download the sources for the appropriate NGINX Open Source mainline version, in this case 1.23.4:
+   * Download the sources for the appropriate NGINX Open Source mainline version, in this case 1.25.1:
 
      ```shell
-     wget -qO - https://nginx.org/download/nginx-1.23.4.tar.gz | tar zxfv -
+     wget -qO - https://nginx.org/download/nginx-1.25.1.tar.gz | tar zxfv -
      ```
 
 3. Obtain the source for the dynamic module.
@@ -964,7 +858,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
    First establish binary compatibility by running the `configure` script with the <span style="white-space: nowrap;">`‑‑with‑compat`</span> option. Then compile the module with `make modules`.
 
    ```shell
-   cd nginx-1.23.4/
+   cd nginx-1.25.1/
    ./configure --with-compat --add-dynamic-module=../<MODULE-SOURCES>
    make modules
    ```
@@ -979,7 +873,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
 5. Make a copy of the module file and include the NGINX Open Source version in the filename. This makes it simpler to manage multiple versions of a dynamic module in the production environment.  
 
    ```shell
-   cp objs/ngx_http_hello_world.so ./ngx_http_hello_world_1.23.4.so
+   cp objs/ngx_http_hello_world.so ./ngx_http_hello_world_1.25.1.so
    ```
 
 <span id="enable_dynamic"></span>
@@ -1132,7 +1026,7 @@ To verify that the new NGINX Plus version is running, run:
 nginx -v
 ```
 ```shell
-nginx version: nginx/1.23.4 (nginx-plus-r29)
+nginx version: nginx/1.25.1 (nginx-plus-r30)
 ```
 
 <span id="upgrade_modules"></span>

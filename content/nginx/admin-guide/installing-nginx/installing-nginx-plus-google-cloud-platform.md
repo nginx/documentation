@@ -61,4 +61,4 @@ NGINX Plus includes open source software written by NGINX, Inc. and other contr
 # less /usr/share/nginx/html/nginx-modules-reference.pdf
 ```
 
-The _NGINX Plus Reference Guide_ is also [available online](https://cdn-1.wp.nginx.com/wp-content/files/nginx-pdfs/nginx-modules-reference.pdf) on the NGINX, Inc. website.
+The _NGINX Plus Reference Guide_ is also [available online](http://www.nginx.com/wp-content/uploads/2023/08/nginx-modules-reference.pdf).
