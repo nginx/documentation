@@ -374,6 +374,7 @@ The JSON data returned:
    "stream",
    "resolvers",
    "ssl"
+   "workers"
 ]
 ```
 
@@ -575,7 +576,7 @@ location /swagger-ui {
 To access the Swagger UI page:
 *   In the address bar of your browser, type-in the address of Swagger UI, in our example the address is *http://192.168.1.23/swagger-ui/*:
 
-![Swagger UI](https://www.nginx.com/wp-content/uploads/2020/06/swagger-ui.png)
+![Swagger UI](https://www.nginx.com/wp-content/uploads/2023/08/swagger-ui.png)
 
 *   If you have configured the HTTPS protocol for the Swagger UI page, you will need to choose the "HTTPS" scheme in the "Schemes" menu.
 
@@ -609,6 +610,6 @@ curl -s 'https://demo.nginx.com/api/9/http/upstreams/demo-backend/servers/0'
 
 The Swagger UI demo page is available at: <https://demo.nginx.com/swagger-ui/>
 
-[![Swagger UI](https://www.nginx.com/wp-content/uploads/2020/06/swagger-ui.png)](https://demo.nginx.com/swagger-ui)
+[![Swagger UI](https://www.nginx.com/wp-content/uploads/2023/08/swagger-ui.png)](https://demo.nginx.com/swagger-ui)
 
 Live examples operate in the read-only mode, resetting the statistics via the `DELETE` method and creating/modifying upstream servers with the `POST`/`PATCH` methods are not available. Also note that as the demo API is served over the HTTP protocol, it is required to choose the “HTTP” scheme in the “Schemes” menu on the [Swagger UI demo page](https://demo.nginx.com/swagger-ui/).
