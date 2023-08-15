@@ -367,7 +367,7 @@ See [Using the API for Dynamic Configuration](https://docs.nginx.com/nginx/admin
 ## Polling Sync Status with the API
 To get the synchronization status of the shared memory zone, send the API command, for example, with `curl`:
 ```shell
-$ curl -s '127.0.0.1/api/8/stream/zone_sync' | jq
+$ curl -s '127.0.0.1/api/9/stream/zone_sync' | jq
 ```
 
 The output will be:
