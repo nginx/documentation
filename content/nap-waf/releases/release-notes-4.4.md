@@ -4,7 +4,7 @@ categories:
 - releases
 date: "2021-04-14T13:32:41+00:00"
 description: ""
-docs: DOCS-1202
+docs: DOCS-1252
 doctypes:
 - concept
 draft: false

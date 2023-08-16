@@ -1,5 +1,8 @@
 # NGINX Docs
 
+[![Check for Broken Links](https://github.com/nginxinc/docs/actions/workflows/check-broken-links.yml/badge.svg)](https://github.com/nginxinc/docs/actions/workflows/check-broken-links.yml)
+
+
 This repo contains all of the user documentation for NGINX's enterprise products, as well as the requirements for linting, building, and publishing the documentation.
 
 Docs are written in Markdown. We build the docs using [Hugo](https://gohugo.io) and host them on [Netlify](https://www.netlify.com/).
