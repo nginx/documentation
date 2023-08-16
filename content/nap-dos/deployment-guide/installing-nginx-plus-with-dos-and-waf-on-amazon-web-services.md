@@ -31,7 +31,7 @@ roles:
 title: NGINX App Protect WAF + DoS AMIs on Amazon EC2
 toc: true
 versions:
-- "4.1"
+- "4.2"
 weight: 110
 ---
 
@@ -68,33 +68,27 @@ To quickly set up an environment with NGINX Plus, NGINX App Protect WAF and NGIN
 	/etc/init.d/nginx status
 	```
 
-    See [NGINX Plus on the AWS Cloud Quick Start](https://aws.amazon.com/quickstart/architecture/nginx-plus/) deployment guide for details.
+  See [NGINX Plus on the AWS Cloud Quick Start](https://aws.amazon.com/quickstart/architecture/nginx-plus/) deployment guide for details.
 
 6. If AMI includes [NGINX App Protect WAF](https://docs.nginx.com/nginx-app-protect-waf/)
 
-    To enable NGINX App Protect WAF use the following steps::
-
-
+    To enable NGINX App Protect WAF use the following steps:
 
     a. Load the NGINX App Protect WAF module on the main context in the `nginx.conf` file: 
 
-
-    
-    ```
+    ```shell
     load_module modules/ngx_http_app_protect_module.so;
     ```
 
     b. Enable NGINX App Protect WAF on an `http/server/location` context in the `nginx.conf` file:
-
-
     
-    ```
+    ```shell
     app_protect_enable on;
     ```
 
     c. Restart the NGINX service:
     
-    ```
+    ```shell
     sudo systemctl restart nginx
     ```
 
@@ -106,21 +100,15 @@ To quickly set up an environment with NGINX Plus, NGINX App Protect WAF and NGIN
     
     To enable NGINX App Protect DoS use the following steps:
 
-
-
     a. Load the NGINX App Protect DoS module on the main context in the `nginx.conf` file: 
 
-
-    
-    ```
+    ```shell
     load_module modules/ngx_http_app_protect_dos_module.so;
     ```
 
     b. Enable NGINX App Protect DoS on an `http/server/location` context in the `nginx.conf` file:
-
-
     
-    ```
+    ```shell
     app_protect_dos_enable on;
     app_protect_dos_name "vs-example";
     app_protect_dos_policy_file "/etc/app_protect_dos/BADOSDefaultPolicy.json";
@@ -128,20 +116,18 @@ To quickly set up an environment with NGINX Plus, NGINX App Protect WAF and NGIN
     ```
 
     c. Enable L4 accelerated mitigation feature (for Debian11/Ubuntu20.04/RHEL8) on an http context in the `nginx.conf` file:
-
-
     
-    ```
+    ```shell
     app_protect_dos_accelerated_mitigation on;
     ```
     
     d. Restart the NGINX service:
     
-    ```
+    ```shell
     sudo systemctl restart nginx
     ```
 
-      For more configuration information follow [NGINX App Protect DoS Directives and Policy](https://docs.nginx.com/nginx-app-protect-dos/directives-and-policy/learn-about-directives-and-policy/).
+  For more configuration information follow [NGINX App Protect DoS Directives and Policy](https://docs.nginx.com/nginx-app-protect-dos/directives-and-policy/learn-about-directives-and-policy/).
 
 
 
@@ -151,11 +137,7 @@ If you encounter any problems with NGINX Plus configuration, documentation is a
 
 If you encounter any problems with NGINX App Protect DoS configuration, documentation is available at the [NGINX App Protect DoS Troubleshooting Guide](https://docs.nginx.com/nginx-app-protect-dos/troubleshooting-guide/how-to-troubleshoot/).
 
-
-
 If you encounter any problems with NGINX App Protect WAF configuration, documentation is available at the [NGINX App Protect WAF Troubleshooting Guide](https://docs.nginx.com/nginx-app-protect-waf/troubleshooting-guide/troubleshooting/).
-
-
 
 
 Customers who purchase an NGINX Plus AMI at the AWS Marketplace are eligible for the AWS support provided by the NGINX, Inc. engineering team. To activate support, submit the [AMI Support Activation](https://www.nginx.com/ami-support-activation/) form (you need your AWS account number). When you request support, we’ll ask you to provide the AWS account number that you registered, along with the IDs of your EC2 instances in some cases.

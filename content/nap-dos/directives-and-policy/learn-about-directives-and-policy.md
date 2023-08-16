@@ -75,11 +75,11 @@ The derived blocks/contexts also inherit the directive.
 In case of multiple directives in different contexts, the derived overwrites the base's directive.
 
  {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
- | Config | Expected |
- |------- | -------- |
- | Http block: directive is **on** <br> Server block: none is written <br> Location-1 block: none is written <br> Location-2 block: none is written | VS1: the server block <br> VS2: location-1 block <br> VS3: location-2 block |
- | Server block: directive is **on** <br> Location-1 block: directive is **off** <br> Location-2 block: none is written | VS1: the server block <br> VS2: location-2 block |
- | Http block: directive is **on** <br> Server block: directive is **off** <br> Location-1 block: directive is **on** <br> Location-2 block: none is written | VS1: location-1 block |
+| Config | Expected |
+|------- | -------- |
+| Http block: directive is **on** <br> Server block: none is written <br> Location-1 block: none is written <br> Location-2 block: none is written | VS1: the server block <br> VS2: location-1 block <br> VS3: location-2 block |
+| Server block: directive is **on** <br> Location-1 block: directive is **off** <br> Location-2 block: none is written | VS1: the server block <br> VS2: location-2 block |  |
+| Http block: directive is **on** <br> Server block: directive is **off** <br> Location-1 block: directive is **on** <br> Location-2 block: none is written | VS1: location-1 block |
  {{</bootstrap-table>}}
 
  **Example:**
