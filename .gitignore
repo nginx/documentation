@@ -38,3 +38,4 @@ content/.idea/*
 build
 *.swp
 *.mo
+node_modules
