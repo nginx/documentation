@@ -28,7 +28,7 @@ NGINX Plus provides various monitoring tools for your server infrastructure:
 
 * * *
 
-[![live activity monitoring](https://www.nginx.com/wp-content/uploads/2022/11/nginx-plus-dashboard_R28-overview-ssl.png)](https://demo.nginx.com/dashboard.html "Live status metrics from NGINX Plus")
+[![live activity monitoring](https://www.nginx.com/wp-content/uploads/2023/08/nginx-plus-dashboard_R30-overview.png)](https://demo.nginx.com/dashboard.html "Live status metrics from NGINX Plus")
 
 * * *
 
@@ -259,7 +259,7 @@ In the address bar of your browser, type-in the address that corresponds to your
 
 There is also a live demo page from NGINX available at [demo.nginx.com/dashboard.html](https://demo.nginx.com/dashboard.html):
 
-[![live activity monitor](https://www.nginx.com/wp-content/uploads/2022/11/nginx-plus-dashboard_R28-overview-ssl.png)](https://demo.nginx.com/dashboard.html "Live load-balancing status from NGINX Plus")
+[![live activity monitor](https://www.nginx.com/wp-content/uploads/2023/08/nginx-plus-dashboard_R30-overview.png)](https://demo.nginx.com/dashboard.html "Live load-balancing status from NGINX Plus")
 
 <span id="dashboard_tabs"></span>
 ### Tabs Overview
@@ -345,11 +345,11 @@ The requests are sent in the JSON format that allows you to connect the stats to
 
 The status information of any element can be accessed with a slash-separated URL. The URL may look as follows:
 
-[`https://demo.nginx.com/api/8/http/caches/http_cache?fields=expired,bypass`](https://demo.nginx.com/api/8/http/caches/http_cache?fields=expired,bypass)
+[`https://demo.nginx.com/api/9/http/caches/http_cache?fields=expired,bypass`](https://demo.nginx.com/api/9/http/caches/http_cache?fields=expired,bypass)
 
 where:
 *   `/api` is the location you have configured in the NGINX configuration file for the API
-*   `/8` is the API version, the current API version is `8`
+*   `/9` is the API version, the current API version is `9`
 *   `/http/caches/http_cache` is the path to the resource
 *   `?fields=expired,bypass` is an optional argument that specifies which fields of the requested object will be output
 
@@ -358,7 +358,7 @@ The requested information is returned in the JSON data format.
 To get the list of all available rootpoints, send the `GET` request with the 'curl' command in terminal (in the example, JSON pretty print extension "json_pp" is used):
 
 ```shell
-curl -s 'https://demo.nginx.com/api/8/' | json_pp
+curl -s 'https://demo.nginx.com/api/9/' | json_pp
 ```
 
 The JSON data returned:
@@ -369,30 +369,32 @@ The JSON data returned:
    "processes",
    "connections",
    "slabs",
+   "workers",
    "http",
    "stream",
    "resolvers",
    "ssl"
+   "workers"
 ]
 ```
 
 To get the statistics for a particular endpoint, for example, obtain general information about NGINX, send the following `GET` request:
 
 ```shell
-curl -s 'https://demo.nginx.com/api/8/nginx' | json_pp
+curl -s 'https://demo.nginx.com/api/9/nginx' | json_pp
 ```
 
 The JSON data returned:
 
 ```json
 {
-   "generation" : 14,
-   "timestamp" : "2021-06-28T14:04:51.515Z",
-   "pid" : 2201,
+   "version" : "1.25.1",
+   "build" : "nginx-plus-r30",
    "address" : "206.251.255.64",
-   "build" : "nginx-plus-r28",
-   "version" : "1.23.2",
-   "load_timestamp" : "2022-11-29T10:00:00.114Z",
+   "generation" : 14,
+   "load_timestamp" : "2023-08-15T10:00:00.114Z",
+   "timestamp" : "2023-08-15T14:06:36.475Z",
+   "pid" : 2201,
    "ppid" : 92033
 }
 ```
@@ -400,15 +402,15 @@ The JSON data returned:
 You can specify which fields of the requested object will be output with the optional *fields* argument in the request line. For example, to display only NGINX Plus version and build, specify the command:
 
 ```shell
-curl -s 'https://demo.nginx.com/api/8/nginx?fields=version,build' | json_pp
+curl -s 'https://demo.nginx.com/api/9/nginx?fields=version,build' | json_pp
 ```
 
 The JSON data returned:
 
 ```json
 {
-   "version" : "1.23.2",
-   "build" : "nginx-plus-r28"
+   "version" : "1.25.1",
+   "build" : "nginx-plus-r30"
 }
 ```
 
@@ -432,13 +434,13 @@ You can reset the following types of statistics:
 For example, to reset the number of abnormally terminated and respawned child processes, you can perform the following command in the terminal via curl:
 
 ```shell
-curl -X DELETE -i 'http://192.168.1.23/api/8/processes'
+curl -X DELETE -i 'http://192.168.1.23/api/9/processes'
 ```
 
 To reset accepted and dropped client connections perform the following command:
 
 ```shell
-curl -X DELETE  -i 'http://192.168.1.23/api/8/connections'
+curl -X DELETE  -i 'http://192.168.1.23/api/9/connections'
 ```
 
 <span id="api_use"></span>
@@ -452,7 +454,7 @@ The URI specifies the following information in this order:
 
 * The hostname or IP address of the node that handles the request (in the following examples, **192.168.1.23**)
 * The location where the `api` directive appears (**api**)
-* The API version (**8**)
+* The API version (**9**)
 * The name of the upstream group, complete its place in the NGINX Plus configuration hierarchy represented as a slash-separated path (**http/upstreams/appservers**)
 
 For example, to add a new server to the **appservers** upstream group, send the following `curl` command:
@@ -467,19 +469,19 @@ curl -X POST -d '{ \
    "slow_start": "10s", \
    "backup": true, \
    "down": true \
- }' -s 'http://192.168.1.23/api/8/http/upstreams/appservers/servers'
+ }' -s 'http://192.168.1.23/api/9/http/upstreams/appservers/servers'
 ```
 
 To remove a server from the upstream group:
 
 ```shell
-curl -X DELETE -s 'http://192.168.1.23/api/8/http/upstreams/appservers/servers/0'
+curl -X DELETE -s 'http://192.168.1.23/api/9/http/upstreams/appservers/servers/0'
 ```
 
 To set the `down` parameter for the first server in the group (with ID `0`):
 
 ```shell
-curl -X PATCH -d '{ "down": true }' -s 'http://192.168.1.23/api/8/http/upstreams/appservers/servers/0'
+curl -X PATCH -d '{ "down": true }' -s 'http://192.168.1.23/api/9/http/upstreams/appservers/servers/0'
 ```
 
 <span id="swagger"></span>
@@ -507,7 +509,8 @@ To enable the Swagger UI:
 {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
 |OpenAPI YAML File/API Version | NGINX Plus Version | Changes |
 | ---| --- | --- |
-|[{{<fa "download">}}OpenAPI v2](../../yaml/v8/nginx_api.yaml) for API version 8 | NGINX Plus Releases [27](https://docs.nginx.com/nginx/releases/#nginxplusrelease-27-r27), [28](https://docs.nginx.com/nginx/releases/#nginxplusrelease-28-r28) | SSL statistics for each HTTP [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) and stream [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_upstream), SSL statistics for each HTTP [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_server_zone) and stream [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_server_zone), extended statistics for [SSL](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_ssl_object) endpoint
+|[{{<fa "download">}}OpenAPI v2](../../yaml/v9/nginx_api.yaml) for API version 9 | NGINX Plus Releases [30](https://docs.nginx.com/nginx/releases/#nginxplusrelease-30-r30) | The [`/workers/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#workers_) data were added
+|[{{<fa "download">}}OpenAPI v2](../../yaml/v8/nginx_api.yaml) for API version 8 | NGINX Plus Releases [27](https://docs.nginx.com/nginx/releases/#nginxplusrelease-27-r27), [28](https://docs.nginx.com/nginx/releases/#nginxplusrelease-28-r28), [29](https://docs.nginx.com/nginx/releases/#nginxplusrelease-29-r29) | SSL statistics for each HTTP [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) and stream [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_upstream), SSL statistics for each HTTP [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_server_zone) and stream [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_server_zone), extended statistics for [SSL](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_ssl_object) endpoint
 |[{{<fa "download">}}OpenAPI v2](../../yaml/v7/nginx_api.yaml) for API version 7 | NGINX Plus Releases [25](https://docs.nginx.com/nginx/releases/#nginxplusrelease-25-r25), [26](https://docs.nginx.com/nginx/releases/#nginxplusrelease-26-r26)| The `codes` data in `responses` for each HTTP [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream), [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_server_zone), and [location zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_location_zone) were added
 |[{{<fa "download">}}OpenAPI v2](../../yaml/v6/nginx_api.yaml) for API version 6 | NGINX Plus Releases [20](https://docs.nginx.com/nginx/releases/#nginxplusrelease-20-r20), [21](https://docs.nginx.com/nginx/releases/#nginxplusrelease-21-r21), [22](https://docs.nginx.com/nginx/releases/#nginxplusrelease-22-r22), [23](https://docs.nginx.com/nginx/releases/#nginxplusrelease-23-r23), [24](https://docs.nginx.com/nginx/releases/#nginxplusrelease-24-r24) | The [`/stream/limit_conns/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#stream_limit_conns_),  [`/http/limit_conns/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_limit_conns_), and  [`/http/limit_reqs/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_limit_reqs_) data were added |
 |[{{<fa "download">}}OpenAPI v2](../../yaml/v5/nginx_api.yaml) for API version 5 | [NGINX Plus Release 19](https://docs.nginx.com/nginx/releases/#nginxplusrelease-19-r19) | The `expire` parameter of a [key-value](https://nginx.org/en/docs/http/ngx_http_keyval_module.html) pair can be [set](https://nginx.org/en/docs/http/ngx_http_api_module.html#postHttpKeyvalZoneData) or [changed](https://nginx.org/en/docs/http/ngx_http_api_module.html#patchHttpKeyvalZoneKeyValue), the [`/resolvers/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#resolvers_) and  [`/http/location_zones/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_location_zones_) data were added |
@@ -573,7 +576,7 @@ location /swagger-ui {
 To access the Swagger UI page:
 *   In the address bar of your browser, type-in the address of Swagger UI, in our example the address is *http://192.168.1.23/swagger-ui/*:
 
-![Swagger UI](https://www.nginx.com/wp-content/uploads/2020/06/swagger-ui.png)
+![Swagger UI](https://www.nginx.com/wp-content/uploads/2023/08/swagger-ui.png)
 
 *   If you have configured the HTTPS protocol for the Swagger UI page, you will need to choose the "HTTPS" scheme in the "Schemes" menu.
 
@@ -597,16 +600,16 @@ Live example of JSON data is available at: <https://demo.nginx.com/api/8/>
 You can send an API command with curl or with a browser:
 
 ```shell
-curl -s 'https://demo.nginx.com/api/8/'
-curl -s 'https://demo.nginx.com/api/8/nginx?fields=version,build'
-curl -s 'https://demo.nginx.com/api/8/http/caches/http_cache'
-curl -s 'https://demo.nginx.com/api/8/http/upstreams/'
-curl -s 'https://demo.nginx.com/api/8/http/upstreams/demo-backend'
-curl -s 'https://demo.nginx.com/api/8/http/upstreams/demo-backend/servers/0'
+curl -s 'https://demo.nginx.com/api/9/'
+curl -s 'https://demo.nginx.com/api/9/nginx?fields=version,build'
+curl -s 'https://demo.nginx.com/api/9/http/caches/http_cache'
+curl -s 'https://demo.nginx.com/api/9/http/upstreams/'
+curl -s 'https://demo.nginx.com/api/9/http/upstreams/demo-backend'
+curl -s 'https://demo.nginx.com/api/9/http/upstreams/demo-backend/servers/0'
 ```
 
 The Swagger UI demo page is available at: <https://demo.nginx.com/swagger-ui/>
 
-[![Swagger UI](https://www.nginx.com/wp-content/uploads/2020/06/swagger-ui.png)](https://demo.nginx.com/swagger-ui)
+[![Swagger UI](https://www.nginx.com/wp-content/uploads/2023/08/swagger-ui.png)](https://demo.nginx.com/swagger-ui)
 
 Live examples operate in the read-only mode, resetting the statistics via the `DELETE` method and creating/modifying upstream servers with the `POST`/`PATCH` methods are not available. Also note that as the demo API is served over the HTTP protocol, it is required to choose the “HTTP” scheme in the “Schemes” menu on the [Swagger UI demo page](https://demo.nginx.com/swagger-ui/).
