@@ -11,6 +11,7 @@
 /nginxaas/azure/getting-started/configuration/managed-identity/ /nginxaas/azure/getting-started/managed-identity/ 301
 /nginxaas/azure/getting-started/configuration/nginx-configuration/ /nginxaas/azure/getting-started/nginx-configuration/ 301
 /nginxaas/azure/getting-started/configuration/ssl-tls-certificates/ /nginxaas/azure/getting-started/ssl-tls-certificates/ 301
+/nginxaas/azure/troubleshooting/faq/ /nginxaas/azure/faq/ 301
 
 # NGINX Ingress Controller redirects
 /nginx-ingress-controller/intro/nginx-ingress-controllers/ https://www.nginx.com/blog/guide-to-choosing-ingress-controller-part-4-nginx-ingress-controller-options/ 301!
