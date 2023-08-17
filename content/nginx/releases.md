@@ -782,7 +782,7 @@ NGINX Plus R16 is supported on:
 * Amazon Linux 2 (LTS) is updated to the GA version.
 * Ubuntu 17.10 is no longer supported
 * The Upstream Conf and Extended Status modules are superseded by the [NGINX Plus API](https://nginx.org/en/docs/http/ngx_http_api_module.html) module and are no longer distributed in NGINX Plus (see our [transition guide](https://www.nginx.com/blog/transitioning-to-nginx-plus-api-configuration-monitoring/) for details)
-* The [New Relic plug‑in](https://newrelic.com/plugins/nginx-inc/13) for NGINX has been updated to use the new NGINX Plus API, but is no longer supported by NGINX, Inc.
+* The [New Relic plug‑in](https://newrelic.com/integrations/nginx) for NGINX has been updated to use the new NGINX Plus API, but is no longer supported by NGINX, Inc.
 
 More information: [Announcing NGINX Plus R16](https://www.nginx.com/blog/nginx-plus-r16-released/)
 

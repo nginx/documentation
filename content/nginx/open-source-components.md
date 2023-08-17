@@ -126,7 +126,7 @@ like `import/require()` and will resolve them (6.5.1).
 
   - `cssnano`, a modular minifier, built on top of the PostCSS ecosystem (5.1.18).
 
-    Homepage: https://github.com/cssnano/cssnano"/
+    Homepage: https://github.com/cssnano/cssnano/
 
     Copyright © Ben Briggs <beneb.info@gmail.com>
 
