@@ -18,7 +18,7 @@ The VM image contains the latest version of NGINX Plus, optimized for use with 
 
 To quickly set up an NGINX Plus environment on Microsoft Azure:
 
-1.  Follow the instructions in <span style="white-space: nowrap;">[Create a Virtual Machine Running Linux](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-tutorial/)</span> to sign up on Azure and get more information about Azure itself.
+1.  Follow the instructions in <span style="white-space: nowrap;">[Create a Virtual Machine Running Linux](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-portal)</span> to sign up on Azure and get more information about Azure itself.
 2.  Search for “NGINX Plus” in the [Azure Marketplace](https://azure.microsoft.com/en-us/marketplace/), open the VM image, and follow the installation instructions.
 
 3.  Create an Azure _availability set_ of two or more NGINX Plus virtual machines, which adds redundancy to your NGINX Plus setup by ensuring that at least one virtual machine remains available during a planned or unplanned maintenance event on the Azure platform. For more information, see <span style="white-space: nowrap;">[Manage the availability of Linux virtual machines](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/manage-availability?)</span> in the Azure documentation.

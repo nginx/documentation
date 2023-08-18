@@ -355,7 +355,7 @@ If a domain name resolves to several IP addresses, the addresses are saved to th
 <span id="ntlm"></span>
 ## Load Balancing of Microsoft Exchange Servers
 
-In <a href="../../../releases/#r7">NGINX Plus R7</a> and later, NGINX Plus can proxy Microsoft Exchange traffic to a server or a group of servers and load balance it.
+In [NGINX Plus Release 7](https://docs.nginx.com/nginx/releases/#nginxplus-release7-r7) and later, NGINX Plus can proxy Microsoft Exchange traffic to a server or a group of servers and load balance it.
 
 To set up load balancing of Microsoft Exchange servers:
 
