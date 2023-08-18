@@ -160,25 +160,40 @@ A Helm `values.yaml` file is a configuration file you can use to customize the i
 1. Create a `values.yaml` file similar to the following example. This file is used to customize the configuration of the NGINX Developer Portal chart located in the `nginx-stable` Helm repository that you [added above](#add-helm-repository).
 
     ```yaml
-    # values.yaml
+   # values.yaml
    imagePullSecrets:
-      - name: regcred
+     - name: regcred
    apigw:
-      image:
-         repository: <my-docker-registry>/nginx-devportal-apigw
-         tag: <version>
-      controlPlane:
-         host: <my-control-plane-host>
-         instanceGroup: <my-instance-group>
+     acmService:
+       enabled: true
+       type: LoadBalancer
+     image:
+       repository: <my-docker-registry>/nginx-devportal-apigw
+       tag: <version>
+     controlPlane:
+       host: <my-control-plane-host>
+       instanceGroup: <my-instance-group>
+     service:
+       type: LoadBalancer
    api:
-      image:
-         repository: <my-docker-registry>/nginx-devportal-api
-         tag: <version>
+     image:
+       repository: <my-docker-registry>/nginx-devportal-api
+       tag: <version>
+     db:
+       type: <database-type>
+     acm:
+       client:
+         caSecret:
+           name: acm-tls
+           key: ca.crt
+
     ```
 
     - Replace `<my-docker-registry>` with your private Docker registry.
     - Replace `<version>` with the tag you used when [pushing the images to your private registry](#push-images-private-registry).
     - In the `imagePullSecrets` section, add the credentials for your private Docker registry.
+   
+   {{<note>}}The contents of `api.acm.client.caSecret.key` can be obtained from the `/etc/nms/certs/apigw/ca.pem` on the control plane.{{</note>}}
 
     This `values.yaml` file specifies the Docker images to be used for the NGINX Developer Portal `apigw` and `api` components, including the repository (`<my-docker-registry>`) and tag (`version`) of each image. It also specifies that a secret called `regcred` should be used for image pulls.
 
