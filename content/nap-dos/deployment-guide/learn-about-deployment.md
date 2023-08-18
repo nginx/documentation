@@ -47,7 +47,7 @@ NGINX App Protect DoS supports the following operating systems:
 
 - [CentOS 7.4.x and above](#centos-74-installation)
 - [RHEL 7.4.x / UBI 7.6.x and above](#rhel-74-installation)
-- [RHEL 8 / UBI 8 and above](#rhel-8-installation) 
+- [RHEL 8 / UBI 8 / Rocky Linux 8 and above](#rhel-8--rocky-linux-8-installation)
 - [Debian 10 (Buster)](#debian--ubuntu-installation)
 - [Debian 11 (Bullseye)](#debian--ubuntu-installation)
 - [Ubuntu 18.04 (Bionic)](#debian--ubuntu-installation) - (Deprecated starting from NGINX Plus R30)
@@ -408,7 +408,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```shell
     sudo systemctl start nginx
     ```
-## RHEL 8+ Installation
+## RHEL 8+ / Rocky Linux 8 Installation 
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -1042,7 +1042,7 @@ COPY entrypoint.sh  /root/
  
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
-### RHEL 8 Docker Deployment Example
+### RHEL 8 / Rocky Linux 8 Docker Deployment Example
 
 ```Dockerfile
 # For UBI 8
