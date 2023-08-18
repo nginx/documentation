@@ -105,5 +105,5 @@ Using NGINX and NGINX Plus in front of an application container has become a co
 <span id="resources"></span>
 ##Resources
 
-*   [NGINX support](http://uwsgi-docs.readthedocs.org/en/latest/NGINX.html) in the uWSGI project documentation
+*   [NGINX support](https://uwsgi-docs.readthedocs.io/en/latest/Nginx.html) in the uWSGI project documentation
 *   [How to use Django with uWSGI](https://docs.djangoproject.com/en/1.11/howto/deployment/wsgi/uwsgi/) in the Django project documentation
