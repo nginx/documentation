@@ -29,7 +29,7 @@ aliases:
 
 ## Overview
 
-This guide will help you track your NGINX Plus instances and their usage. Get started by installing Instance Manager on a dedicated host and the NGINX Agent on each NGINX Plus instance you want to track. You can then use the Instance Manager web interface to view your NGINX Plus inventory and export the list of your NGINX Plus instances if needed.
+This guide will help you track your NGINX Plus instances and their usage. Get started by installing NGINX Instance Manager on a dedicated host and NGINX Agent on each NGINX Plus instance you want to track. You can then use the NGINX Instance Manager web interface to view your NGINX Plus inventory and export the list of your NGINX Plus instances if needed.
 
 ---
 
@@ -37,20 +37,26 @@ This guide will help you track your NGINX Plus instances and their usage. Get st
 
 ### Install Instance Manager {#install-nim}
 
-{{<note>}}You do not need a license for Instance Manager to view the count of your NGINX Plus instances.{{</note>}}
+{{<note>}}You do not need a license for NGINX Instance Manager to view the count of your NGINX Plus instances.{{</note>}}
 
 Instance Manager is part of the NGINX Management Suite.
 
-To view your NGINX Plus inventory count, you’ll need to install Instance Manager on a dedicated host.
+To view your NGINX Plus inventory count, you’ll need to install NGINX Instance Manager on a dedicated host.
 
-1. Begin by following the instructions to [install the NGINX Management Suite prerequisites]({{< relref "/nms/installation/vm-bare-metal/prerequisites.md" >}}).
-2. Follow the instructions to [install Instance Manager]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}) on a dedicated host. 
+1. Begin by following the instructions to [install NGINX Management Suite prerequisites]({{< relref "/nms/installation/vm-bare-metal/prerequisites.md" >}}).
+2. Next, follow the instructions to [install NGINX Instance Manager]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}) on a dedicated host. 
 
 ### Install NGINX Agent on Each NGINX Plus Instance {#install-nginx-agent}
 
-For your NGINX Plus instances to communicate with Instance Manager, you need to install the NGINX Agent on each instance.
+For your NGINX Plus instances to communicate with NGINX Instance Manager, you must install NGINX Agent on each instance.
 
-- Follow the instructions to [install the NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent.md" >}}) on each NGINX Plus instance that needs to be counted.
+- Follow these instructions to [install NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent.md" >}}) on each NGINX Plus instance that needs to be counted.
+
+{{<note>}}To optimize NGINX Agent performance for reporting, the following line may be added to the NGINX Agent configuration file (`/etc/nginx-agent/nginx-agent.conf`).
+```
+features: registration,dataplane-status
+```
+{{</note>}}
 
 ---
 
@@ -68,7 +74,7 @@ The current count of NGINX Plus instances is shown on the **NGINX Plus Inventory
 
 ### Counting Instances without the NGINX Agent {#counting-without-nginx-agent}
 
-To count your NGINX Plus instances without NGINX Agent, you can set up an [HTTP Health Check]({{< relref "nginx/admin-guide/load-balancer/http-health-check" >}}) on your NGINX Plus instances to report information to Instance Manager. This will require you to edit your NGINX configuration.
+To track your NGINX Plus instances without NGINX Agent, you can set up an [HTTP Health Check]({{< relref "nginx/admin-guide/load-balancer/http-health-check" >}}) on your NGINX Plus instances to report tracking information to NGINX Instance Manager. This will require you to add the following to your NGINX Plus configuration:
 
 ```nginx
 ### F5 / NGINX Required Configuration Code ###
@@ -87,27 +93,27 @@ upstream receiver {
 }
 
 map CERT $repo_crt {
-    # OPTIONAL: Location of repository certificate
-    #default /etc/ssl/nginx/nginx-repo.crt;
+    # OPTIONAL: Location of client certificate
+    #default /etc/ssl/nginx/nginx-client.crt;
 }
 
 map KEY $repo_key {
-    # OPTIONAL: Location of repository private key
-    #default /etc/ssl/nginx/nginx-repo.key;
+    # OPTIONAL: Location of client certificate private key
+    #default /etc/ssl/nginx/nginx-client.key;
 }
 
 server {
     location @ngx_usage_https {
         # OPTIONAL: Configure scheme (http|https) here
         proxy_pass https://receiver;
-        # set nap=active if it's installed
+
+        # REQUIRED: If using NGINX APP PROTECT (NAP) on this instance, set nap=active on the following line:
         proxy_set_header Nginx-Usage "Version=$nginx_version;Hostname=$hostname;uuid=$nginx_uuid;nap=inactive"; 
+
         health_check uri=/api/nginx-usage interval=1800s;       # DO NOT MODIFY
         proxy_ssl_certificate     $repo_crt;                    # DO NOT MODIFY
         proxy_ssl_certificate_key $repo_key;                    # DO NOT MODIFY
     }
-
-    proxy_set_header ngxuuid $nginx_uuid;
 
     location @self {
         health_check uri=/_uuid interval=1d;
@@ -135,13 +141,14 @@ keyval 1 $nginx_uuid zone=uuid;
 ### End of F5 / NGINX Required Configuration Code ###
 ```
 
-The above NGINX `server` configuration can be saved as a file into the `http` context location for your NGINX plus installation, typically `/etc/nginx/conf.d`. You would need to modify the configuration base on your NGINX Instance Manager installation:
+The above NGINX `server` configuration can be saved as a file into the `http` context location of your NGINX Plus installation, typically `/etc/nginx/conf.d`. You must modify the configuration to suit your NGINX Instance Manager installation:
 
-1. The `receiver` block must be updated with your `NMS_FQDN`. If you use a private DNS name, uncomment and update the `resolver` to your [DNS resolver](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#resolver). 
-1. If your NGINX Instance Manager server is set up to require an SSL client certificate, the `map` block for `CERT` and `KEY` must be updated with the location of the SSL certificate and key that are known to the NGINX Instance Manager server. See [Securing HTTP Traffic to Upstream Servers]({{< relref "nginx/admin-guide/security-controls/securing-http-traffic-upstream" >}}) for more information. We recommend requiring an SSL client certificate for communication that is external to the NGINX Instance Manager server.
+1. The `NMS_FQDN` variable in the `upstream receiver` block must be updated to reflect your NGINX Instance Manager hostname or IP address. If using a private DNS, uncomment and update the `resolver` to reflect your [DNS IP Address](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#resolver). 
+1. If your NGINX Instance Manager server is configured to require a client SSL certificate, the `map CERT` and `map KEY` blocks must be updated with the location of the SSL certificate and key that are known to the NGINX Instance Manager server. See [Securing HTTP Traffic to Upstream Servers]({{< relref "nginx/admin-guide/security-controls/securing-http-traffic-upstream" >}}) for more information. We recommend using client SSL certificates for all communications external to the NGINX Instance Manager server.
+1. If you are using NGINX App Protect on this instance, you must update `nap=inactive` to `nap=active` in the `location @ngx_usage_https` block.
 1. Additionally, you can set up an access limit to the `/api/nginx-usage` location of your NGINX Instance Manager server based on client network address. See [Module ngx_http_access_module](http://nginx.org/en/docs/http/ngx_http_access_module.html) for more information.
 
-{{<warning>}}If you later install and register `nginx_agent` for your NGINX Plus instances, you should remove the added NGINX Plus instance counting configuration from the NGINX instance where the `nginx_agent` is running. Otherwise, your NGINX Plus instance may be counted multiple times.{{</warning>}}
+{{<warning>}}If you later install and register NGINX Agent for your NGINX Plus instances, you should remove the above NGINX Plus configuration from the NGINX instance where NGINX Agent is running. Otherwise, your NGINX Plus instance may be counted multiple times.{{</warning>}}
 
 ---
 
