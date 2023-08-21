@@ -39,7 +39,7 @@ h2 {
 </style>
 
 {{< warning >}}
-Basic authentication is not recommended for production environments due to its inherent security limitations. Consider using [OpenID Connect (OIDC)]({{< relref "/nms/admin-guides/authentication/_index.md" >}}) or another secure authentication method instead.
+Basic authentication is not recommended for production environments due to its inherent security limitations. Consider using [OpenID Connect (OIDC)]({{< relref "nms/admin-guides/authentication/oidc/_index.md" >}}) or another secure authentication method instead.
 {{< /warning >}}
 
 ## Overview

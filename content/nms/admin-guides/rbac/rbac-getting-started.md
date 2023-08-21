@@ -49,9 +49,9 @@ The following are essential concepts related to RBAC:
 
 - **Groups**: Groups are collections of users. They are used only when integrating with external identity providers. Users from these providers can't be assigned roles directly within NGINX Management Suite but inherit roles through membership in groups.
 - **Features**: In NGINX Management Suite, features refer to distinct functional components or capabilities that let users perform a variety of tasks and access related resources. The sections below outline the features available for the NGINX Management Suite platform and modules.
-- **Object**: 
+- **Resource Object**: These are specific elements within a feature that can be targeted for precise access control. Essentially, a resource object is a finer-grained component within a feature that you can control access to. For example, if you are working with the Instance Management feature, you have the option to apply access control to specific entities like Resource Groups and/or Systems. This allows for more nuanced management of permissions within NGINX Management Suite.
 
-## Features
+## Features {#features}
 
 The NGINX Management Suite platform and modules have their own set of capabilities called features, listed below. System administrators can decide who can access these features, and how they do so, by defining role-based access control. In the "[What's Next](#whats-next)" section at the bottom, you'll find links to resources for adding users and creating roles.
 
@@ -77,30 +77,6 @@ Explore the API endpoints for the NGINX Management Suite platform by going to **
 #### Endpoints
 
 Explore the API endpoints for Instance Manager by going to **https://<NMS_FQDN>/ui/docs**. Replace `<NMS_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Management Suite host, which is the complete domain name specific to your system.
-
-#### Resource Groups
-
-
-Resource Groups in Instance Manager make it easier to handle permissions for many resources at once. Instead of setting up permissions for each individual resource like an instance or instance group, you can use one Resource Group. This way, you can grant access to specific features like INSTANCE MANAGEMENT, CERTS, and STAGED CONFIGS all at once.
-
-Creating and Managing Resource Groups
-
-If users have the right permissions for the RESOURCE-GROUPS feature, they can create and manage Resource Groups. There's a connection between the resources you can choose when making changes to Resource Groups and the INSTANCE-MANAGEMENT feature. A user has to have a role with READ permission one or more instances.
-
-For example, an admin might be allowed to view instances (but not change them) while having full rights to create and manage Resource Groups.
-
-vvvvv
-
-Resource Groups are exclusively a tool to allow managing permissions for a large number of resources as a single item and provided as part of the Instance Manager module.
-
-Instead of assigning permissions for every resource (e.g. instance, instance group) individually, one resource group can be used when granting access to select features (INSTANCE-MANAGEMENT, CERTS, and STAGED-CONFIGS).
-
-Creating and Managing Resource Groups
-Users granted permission to the RESOURCE-GROUPS feature with the appropriate access types will be able to create and manage Resource Groups.
-The list of selectable instances when adding or updating Resource Groups has a cross-feature dependency with the INSTANCE-MANAGEMENT.  The user must have Role granting read permission for one ore more instances.
-Below is an example permission for an admin allowing them read-only access to view instances, but full access to manage Resource Groups.
-
-^^^^^
 
 ---
 

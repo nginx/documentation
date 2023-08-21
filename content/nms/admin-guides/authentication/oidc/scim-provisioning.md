@@ -87,14 +87,16 @@ To create a user, send a **POST** request similar to the following example to th
 
 ```json
 {
- "schemas":["urn:ietf:params:scim:schemas:core:2.0:User"],
- "externalId": "idpuser@mydomain.ctrl",
- "userName":"idpuser@mydomain.ctrl",
- "name":{
- "formatted":"Example IDP User",
- "familyName":"Example",
- "givenName":"SSO"
- }
+  "schemas": [
+    "urn:ietf:params:scim:schemas:core:2.0:User"
+  ],
+  "externalId": "idpuser@mydomain.ctrl",
+  "userName": "idpuser@mydomain.ctrl",
+  "name": {
+    "formatted": "Example IDP User",
+    "familyName": "Example",
+    "givenName": "SSO"
+  }
 }
 ```
 
@@ -102,27 +104,27 @@ To create a user, send a **POST** request similar to the following example to th
 
 ```json
 {
- "emails": [
- {
- "value": "idpuser@mydomain.ctrl"
- }
- ],
- "externalId": "idpuser@mydomain.ctrl",
- "id": "dc898740-4e9c-41a4-912c-1f3a20edf66e",
- "meta": {
- "created": "2022-06-17T21:03:37.138Z",
- "lastModified": "2022-06-17T21:03:37.138Z",
- "location": "/api/scim/v2/Users/dc898740-4e9c-41a4-912c-1f3a20edf66e",
- "resourceType": "User"
- },
- "name": {
- "familyName": "Example",
- "givenName": "SSO"
- },
- "schemas": [
- "urn:ietf:params:scim:schemas:core:2.0:User"
- ],
- "userName": "idpuser@mydomain.ctrl"
+  "emails": [
+    {
+      "value": "idpuser@mydomain.ctrl"
+    }
+  ],
+  "externalId": "idpuser@mydomain.ctrl",
+  "id": "dc898740-4e9c-41a4-912c-1f3a20edf66e",
+  "meta": {
+    "created": "2022-06-17T21:03:37.138Z",
+    "lastModified": "2022-06-17T21:03:37.138Z",
+    "location": "/api/scim/v2/Users/dc898740-4e9c-41a4-912c-1f3a20edf66e",
+    "resourceType": "User"
+  },
+  "name": {
+    "familyName": "Example",
+    "givenName": "SSO"
+  },
+  "schemas": [
+    "urn:ietf:params:scim:schemas:core:2.0:User"
+  ],
+  "userName": "idpuser@mydomain.ctrl"
 }
 ```
 
@@ -138,15 +140,17 @@ In this request, `User` is assigned as a member.
 
 ```json
 {
- "schemas":["urn:ietf:params:scim:schemas:core:2.0:Group"],
- "displayName":"Example Group",
- "externalId":"7fcb12f4-af71-4f7d-a987-6c1a91cb838a",
- "members":[
- {
- "type": "User",
- "value": "dc898740-4e9c-41a4-912c-1f3a20edf66e"
- }
- ]
+  "schemas": [
+    "urn:ietf:params:scim:schemas:core:2.0:Group"
+  ],
+  "displayName": "Example Group",
+  "externalId": "7fcb12f4-af71-4f7d-a987-6c1a91cb838a",
+  "members": [
+    {
+      "type": "User",
+      "value": "dc898740-4e9c-41a4-912c-1f3a20edf66e"
+    }
+  ]
 }
 ```
 
@@ -154,24 +158,24 @@ In this request, `User` is assigned as a member.
 
 ```json
 {
- "displayName": "Example Group",
- "externalId": "7fcb12f4-af71-4f7d-a987-6c1a91cb838a",
- "id": "e023964d-8a63-44f8-aa85-51ffa6aaa8f1",
- "members": [
- {
- "type": "User",
- "value": "dc898740-4e9c-41a4-912c-1f3a20edf66e"
- }
- ],
- "meta": {
- "created": "2022-06-17T21:06:46.774Z",
- "lastModified": "2022-06-17T21:06:46.774Z",
- "location": "/api/scim/v2/Groups/e023964d-8a63-44f8-aa85-51ffa6aaa8f1",
- "resourceType": "Group"
- },
- "schemas": [
- "urn:ietf:params:scim:schemas:core:2.0:Group"
- ]
+  "displayName": "Example Group",
+  "externalId": "7fcb12f4-af71-4f7d-a987-6c1a91cb838a",
+  "id": "e023964d-8a63-44f8-aa85-51ffa6aaa8f1",
+  "members": [
+    {
+      "type": "User",
+      "value": "dc898740-4e9c-41a4-912c-1f3a20edf66e"
+    }
+  ],
+  "meta": {
+    "created": "2022-06-17T21:06:46.774Z",
+    "lastModified": "2022-06-17T21:06:46.774Z",
+    "location": "/api/scim/v2/Groups/e023964d-8a63-44f8-aa85-51ffa6aaa8f1",
+    "resourceType": "Group"
+  },
+  "schemas": [
+    "urn:ietf:params:scim:schemas:core:2.0:Group"
+  ]
 }
 ```
 
