@@ -278,89 +278,9 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
 
 15. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/admin-guide/install#centos-rhel-74-amazon-linux-2" >}}).
 
-### Debian 9
+### Debian
 
 {{< note >}}As of NGINX Plus R24, support for Debian 9 is no longer available. As a consequence, NGINX App Protect WAF 3.1 is the final version available for this operating system version.{{< /note >}}
-
-1. If you already have NGINX packages in your system, back up your configs and logs:
-
-   ```shell
-   sudo cp -a /etc/nginx /etc/nginx-plus-backup
-   sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
-   ```
-
-2. Create the `/etc/ssl/nginx/` directory:
-
-   ```shell
-   sudo mkdir -p /etc/ssl/nginx
-   ```
-
-3. Log in to the [NGINX Customer Portal](https://my.f5.com) and download the following two files:
-
-   ```shell
-   nginx-repo.key
-   nginx-repo.crt
-   ```
-
-4. Copy the above two files to the Debian server’s `/etc/ssl/nginx/` directory. Use an SCP client or another secure file transfer tool to perform this task.
-
-5. Install apt utils:
-
-   ```shell
-   sudo apt-get install apt-transport-https lsb-release ca-certificates wget
-   ```
-
-6. Download and add the NGINX signing key:
-
-   ```shell
-   sudo wget https://cs.nginx.com/static/keys/nginx_signing.key && sudo apt-key add nginx_signing.key
-   ```
-
-7. Add NGINX Plus repository:
-
-   ```shell
-   printf "deb https://plus-pkgs.nginx.com/R23/debian `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-plus.list
-   ```
-
-8. Download the apt configuration to `/etc/apt/apt.conf.d`:
-
-   ```shell
-   sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90nginx
-   ```
-
-9. Update the repository and install NGINX Plus 23 and NGINX App Protect WAF 3.1 packages:
-
-   ```shell
-   sudo apt-get update
-   sudo apt-get install app-protect-compiler=6.53.1-1~stretch
-   sudo apt-get install app-protect-engine=6.53.1-1~stretch
-   sudo apt-get install app-protect-plugin=3.462.0-1~stretch
-   sudo apt-get install nginx-plus-module-appprotect=23+3.462.0-1~stretch
-   sudo apt-get install app-protect=23+3.462.0-1~stretch
-   ```
-
-10. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
-
-    ```shell
-    sudo nginx -v
-    ```
-
-11. Start the NGINX service:
-
-    ```shell
-    sudo systemctl start nginx
-    ```
-
-12. Verify NGINX Plus and BD processes are running:
-
-    ```shell
-    ps -ef | grep nginx
-    ps -ef | grep bd
-    ```
-
-13. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/admin-guide/install#debian-9" >}}).
-
-### Debian 10
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -421,15 +341,23 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
    sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
    ```
 
-11. Update the repository and install NGINX Plus 25 and NGINX App Protect WAF 3.6 packages:
+11. Update the repository and install the lastest supported NGINX App Protect WAF packages.
+
+    {{< see-also >}}Please refer to [NGINX App Protect Compatibility Matrix](https://docs.nginx.com/nginx-controller/admin-guides/install/nginx-controller-tech-specs/#nginx-app-protect-compatibility-matrix) for specific version compatibility.{{< /see-also >}}
 
     ```shell
     sudo apt-get update
-    sudo apt-get install app-protect-compiler=8.12.1-1~buster
-    sudo apt-get install app-protect-plugin=3.671.0-1~buster
-    sudo apt-get install app-protect-engine=8.12.1-1~buster
-    sudo apt-get install nginx-plus-module-appprotect=25+3.671.0-1~buster
-    sudo apt-get install app-protect=25+3.671.0-1~buster
+    sudo apt-get install nginx-plus-module-appprotect
+    ```
+    If you wish to install a specific version, based on the NGINX Plus version e.g. `r25`, do the following:
+
+    ```shell
+    sudo apt-cache policy app-protect | grep 25+
+         25+3.760.0-1~buster 500
+         25+3.733.0-1~buster 500
+         25+3.671.0-1~buster 500
+            
+    sudo apt-get install  nginx-plus-module-appprotect=25+3.671.0-1~buster
     ```
 
 12. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
