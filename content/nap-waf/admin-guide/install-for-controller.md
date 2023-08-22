@@ -467,7 +467,7 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
 
 16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/admin-guide/install#debian-10" >}}).
 
-### Ubuntu 18.04
+### Ubuntu
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -528,17 +528,25 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
    sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
    ```
 
-11. Update the repository and install NGINX Plus 25 and NGINX App Protect WAF 3.6 packages:
+11. Update the repository and install the latest App Protect WAF package.
+
+    {{< see-also >}}Please refer to [NGINX App Protect Compatibility Matrix](https://docs.nginx.com/nginx-controller/admin-guides/install/nginx-controller-tech-specs/#nginx-app-protect-compatibility-matrix) for specific version compatibility.{{< /see-also >}}
 
     ```shell
     sudo apt-get update
-    sudo apt-get install app-protect-compiler=8.12.1-1~bionic
-    sudo apt-get install app-protect-plugin=3.671.0-1~bionic
-    sudo apt-get install app-protect-engine=8.12.1-1~bionic
-    sudo apt-get install nginx-plus-module-appprotect=25+3.671.0-1~bionic
+    sudo apt-get install app-protect
+    ```
+    If you wish to install a specific version, based on the NGINX Plus version e.g. `r25`, do the following:
+
+    ```shell
+    sudo apt-cache policy app-protect | grep 25+
+         25+3.760.0-1~bionic 500
+         25+3.733.0-1~bionic 500
+         25+3.671.0-1~bionic 500
+    
     sudo apt-get install app-protect=25+3.671.0-1~bionic
     ```
-
+    
 12. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
 
     ```shell
@@ -573,113 +581,6 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
    ```
 
 16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/admin-guide/install#ubuntu-18-04" >}}).
-
-### Ubuntu 20.04
-
-1. If you already have NGINX packages in your system, back up your configs and logs:
-
-   ```shell
-   sudo cp -a /etc/nginx /etc/nginx-plus-backup
-   sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
-   ```
-
-2. Create the `/etc/ssl/nginx/` directory:
-
-   ```shell
-   sudo mkdir -p /etc/ssl/nginx
-   ```
-
-3. Log in to the [NGINX Customer Portal](https://my.f5.com) and download the following two files:
-
-   ```shell
-   nginx-repo.key
-   nginx-repo.crt
-   ```
-
-4. Copy the above two files to the Ubuntu server’s `/etc/ssl/nginx/` directory. Use an SCP client or another secure file transfer tool to perform this task.
-
-5. Install apt utils:
-
-   ```shell
-   sudo apt-get install apt-transport-https lsb-release ca-certificates wget
-   ```
-
-6. Download and add the NGINX signing key:
-
-   ```shell
-   sudo wget https://cs.nginx.com/static/keys/nginx_signing.key && sudo apt-key add nginx_signing.key
-   ```
-
-7. Remove any previous NGINX Plus repository and apt configuration files:
-
-   ```shell
-   sudo rm /etc/apt/sources.list.d/nginx-plus.list
-   sudo rm /etc/apt/apt.conf.d/90nginx
-   ```
-
-8. Add NGINX Plus repository:
-
-   ```shell
-   printf "deb https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-plus.list
-   ```
-
-9. Add NGINX App Protect WAF repository:
-
-   ```shell
-   printf "deb https://pkgs.nginx.com/app-protect/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-app-protect.list
-   ```
-
-10. Download the apt configuration to `/etc/apt/apt.conf.d`:
-
-   ```shell
-   sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
-   ```
-
-11. Update the repository and install NGINX Plus 25 and NGINX App Protect WAF 3.6 packages:
-
-    ```shell
-    sudo apt-get update
-    sudo apt-get install app-protect-compiler=8.12.1-1~focal
-    sudo apt-get install app-protect-plugin=3.671.0-1~focal
-    sudo apt-get install app-protect-engine=8.12.1-1~focal
-    sudo apt-get install nginx-plus-module-appprotect=25+3.671.0-1~focal
-    sudo apt-get install app-protect=25+3.671.0-1~focal
-    ```
-
-12. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
-
-    ```shell
-    sudo nginx -v
-    ```
-
-13. Start the NGINX service:
-
-    ```shell
-    sudo systemctl start nginx
-    ```
-
-14. Start the `bd_agent` service (for Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2 only)
-
-    If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, you need to start `bd_agent`:
-
-    ```shell
-    /bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' nginx
-    ```
-
-15. Verify NGINX Plus and BD processes are running:
-
-    ```shell
-    ps -ef | grep nginx
-    ps -ef | grep bd
-    ```
-
-   {{< note >}} If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, also verify that `bd_agent` is running: {{< /note >}}
-
-   ```shell
-   ps -ef | grep bd_agent
-   ```
-
-16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/admin-guide/install#ubuntu-20-04" >}}).
 
 {{< note >}}Ubuntu 20.04 activates __AppArmor__ by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment. {{< /note >}}
 
