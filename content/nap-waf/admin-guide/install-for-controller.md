@@ -127,11 +127,11 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
 
 14. Start the `bd_agent` service (for Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2 only)
 
-If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, you need to start the `bd_agent`:
+    If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, you need to start the `bd_agent`:
 
-   ```shell
-   /bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' nginx
-   ```
+    ```shell
+    /bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' nginx
+    ```
 
 15. Verify NGINX Plus and BD processes are running:
 
@@ -257,11 +257,11 @@ If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller 
 
 13. Start the `bd_agent` service (for Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2 only)
 
-If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, you need to start the `bd_agent`:
+    If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, you need to start the `bd_agent`:
 
-   ```shell
-   /bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' nginx
-   ```
+    ```shell
+    /bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' nginx
+    ```
 
 14. Verify NGINX Plus and BD processes are running:
 
@@ -446,11 +446,11 @@ If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller 
 
 14. Start the `bd_agent` service (for Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2 only)
 
-If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, you need to start the `bd_agent`:
+    If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, you need to start the `bd_agent`:
 
-   ```shell
-   /bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' nginx
-   ```
+    ```shell
+    /bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' nginx
+    ```
 
 15. Verify NGINX Plus and BD processes are running:
 
@@ -553,11 +553,11 @@ If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller 
 
 14. Start the `bd_agent` service (for Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2 only)
 
-If you plan to use this instance with Controller Agent 3.20.1, you need to start `bd_agent`:
+    If you plan to use this instance with Controller Agent 3.20.1, you need to start `bd_agent`:
 
-   ```shell
-   /bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' nginx
-   ```
+    ```shell
+    /bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' nginx
+    ```
 
 15. Verify NGINX Plus and BD processes are running:
 
@@ -660,11 +660,11 @@ If you plan to use this instance with Controller Agent 3.20.1, you need to start
 
 14. Start the `bd_agent` service (for Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2 only)
 
-If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, you need to start `bd_agent`:
+    If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, you need to start `bd_agent`:
 
-   ```shell
-   /bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' nginx
-   ```
+    ```shell
+    /bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' nginx
+    ```
 
 15. Verify NGINX Plus and BD processes are running:
 
