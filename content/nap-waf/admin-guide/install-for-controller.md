@@ -99,7 +99,11 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
    sudo yum clean all
    ```
 
-10. Install the latest NGINX App Protect WAF package:
+10. Install the latest NGINX App Protect WAF package.
+
+    {{< see-also >}}Please refer to [NGINX App Protect Compatibility Matrix](https://docs.nginx.com/nginx-controller/admin-guides/install/nginx-controller-tech-specs/#nginx-app-protect-compatibility-matrix) for specific version compatibility.{{< /see-also >}}
+
+    If you wish to install a specific version, please replace `app-protect` with the target version eg. `app-protect-25+3.671.0`:
 
    ```shell
    sudo yum install app-protect
