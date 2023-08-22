@@ -140,11 +140,11 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
     ps -ef | grep bd
     ```
 
-   {{< note >}} If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, also verify that `bd_agent` is running: {{< /note >}}
+    {{< note >}} If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, also verify that `bd_agent` is running: {{< /note >}}
 
-   ```shell
-   ps -ef | grep bd_agent
-   ```
+    ```shell
+    ps -ef | grep bd_agent
+    ```
 
 16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/admin-guide/install#centos-rhel-74-amazon-linux-2">}}).
 
