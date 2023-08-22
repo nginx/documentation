@@ -223,39 +223,39 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
       gpgkey=http://ftp.heanet.ie/pub/centos/7/os/x86_64/RPM-GPG-KEY-CentOS-7
       ```
 
-8. If NGINX Plus or NGINX App Protect WAF was previously installed on the system, clean up package manager cache information:
+10. If NGINX Plus or NGINX App Protect WAF was previously installed on the system, clean up package manager cache information:
 
-   ```shell
-   sudo yum clean all
-   ```
+    ```shell
+    sudo yum clean all
+    ```
 
-9. Install NGINX the latest App Protect WAF package.
+11. Install NGINX the latest App Protect WAF package.
 
-   {{< see-also >}}Please refer to [NGINX App Protect Compatibility Matrix](https://docs.nginx.com/nginx-controller/admin-guides/install/nginx-controller-tech-specs/#nginx-app-protect-compatibility-matrix) for specific version compatibility.{{< /see-also >}}
+    {{< see-also >}}Please refer to [NGINX App Protect Compatibility Matrix](https://docs.nginx.com/nginx-controller/admin-guides/install/nginx-controller-tech-specs/#nginx-app-protect-compatibility-matrix) for specific version compatibility.{{< /see-also >}}
 
-   If you wish to install a specific version, please replace `app-protect` with the target version eg. `app-protect-25+3.671.0`:
+    If you wish to install a specific version, please replace `app-protect` with the target version eg. `app-protect-25+3.671.0`:
 
     ```shell
     sudo yum install app-protect
     ```
 
-10. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
+12. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
 
     ```shell
     sudo nginx -v
     ```
 
-11. Configure SELinux as appropriate per your organization’s security policies. NGINX App Protect WAF applies the prebuilt SELinux policy module during the installation. If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/troubleshooting-guide/troubleshooting#selinux" >}}).
+13. Configure SELinux as appropriate per your organization’s security policies. NGINX App Protect WAF applies the prebuilt SELinux policy module during the installation. If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/troubleshooting-guide/troubleshooting#selinux" >}}).
 
     {{< note >}}NGINX Controller has specific [requirements regarding SELinux configuration](http://docs.nginx.com/nginx-controller/admin-guides/install/nginx-controller-tech-specs/#supported-distributions).{{< /note >}}
 
-12. Start the NGINX service:
+14. Start the NGINX service:
 
     ```shell
     sudo systemctl start nginx
     ```
 
-13. Start the `bd_agent` service (for Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2 only)
+15. Start the `bd_agent` service (for Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2 only)
 
     If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, you need to start the `bd_agent`:
 
@@ -263,20 +263,20 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
     /bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' nginx
     ```
 
-14. Verify NGINX Plus and BD processes are running:
+16. Verify NGINX Plus and BD processes are running:
 
     ```shell
     ps -ef | grep nginx
     ps -ef | grep bd
     ```
 
-   {{< note >}} If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, also verify that `bd_agent` is running: {{< /note >}}
+    {{< note >}} If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, also verify that `bd_agent` is running: {{< /note >}}
 
-   ```shell
-   ps -ef | grep bd_agent
-   ```
+    ```shell
+    ps -ef | grep bd_agent
+    ```
 
-15. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/admin-guide/install#centos-rhel-74-amazon-linux-2" >}}).
+17. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/admin-guide/install#centos-rhel-74-amazon-linux-2" >}}).
 
 ### Debian
 
@@ -337,9 +337,9 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
 
 10. Download the apt configuration to `/etc/apt/apt.conf.d`:
 
-   ```shell
-   sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
-   ```
+    ```shell
+    sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
+    ```
 
 11. Update the repository and install the lastest supported NGINX App Protect WAF packages.
 
@@ -387,11 +387,11 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
     ps -ef | grep bd
     ```
 
-   {{< note >}} If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, also verify that the `bd_agent` is running: {{< /note >}}
+    {{< note >}} If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, also verify that the `bd_agent` is running: {{< /note >}}
 
-   ```shell
-   ps -ef | grep bd_agent
-   ```
+    ```shell
+    ps -ef | grep bd_agent
+    ```
 
 16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/admin-guide/install#debian-10" >}}).
 
@@ -452,9 +452,9 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
 
 10. Download the apt configuration to `/etc/apt/apt.conf.d`:
 
-   ```shell
-   sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
-   ```
+    ```shell
+    sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
+    ```
 
 11. Update the repository and install the latest App Protect WAF package.
 
@@ -502,11 +502,11 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
     ps -ef | grep bd
     ```
 
-   {{< note >}} If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, also verify that `bd_agent` is running: {{< /note >}}
+    {{< note >}} If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, also verify that `bd_agent` is running: {{< /note >}}
 
-   ```shell
-   ps -ef | grep bd_agent
-   ```
+    ```shell
+    ps -ef | grep bd_agent
+    ```
 
 16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/admin-guide/install#ubuntu-18-04" >}}).
 
