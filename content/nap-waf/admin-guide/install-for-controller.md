@@ -99,10 +99,10 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
    sudo yum clean all
    ```
 
-10. Install NGINX App Protect WAF package `app-protect-25+3.671.0`, which includes NGINX Plus 25 and NGINX App Protect WAF 3.6:
+10. Install the latest NGINX App Protect WAF package:
 
    ```shell
-   sudo yum install app-protect-25+3.671.0
+   sudo yum install app-protect
    ```
 
 11. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
@@ -225,10 +225,12 @@ If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller 
    sudo yum clean all
    ```
 
-9. Install NGINX App Protect WAF package `app-protect-25+3.671.0`, which includes NGINX Plus 25 and NGINX App Protect WAF 3.6:
+9. Install NGINX the latest App Protect WAF package.
+   {{< see-also >}}Please refer to [NGINX App Protect Compatibility Matrix](https://docs.nginx.com/nginx-controller/admin-guides/install/nginx-controller-tech-specs/#nginx-app-protect-compatibility-matrix) for specific version compatibility.{{< /see-also >}}
+   If you wish to install a specific version, please replace `app-protect` with the target version eg. `app-protect-25+3.671.0`:
 
     ```shell
-    sudo yum install app-protect-25+3.671.0
+    sudo yum install app-protect
     ```
 
 10. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
