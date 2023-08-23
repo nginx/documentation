@@ -96,13 +96,9 @@ Create the users that will be allowed to log in to NGINX Management Suite.
 
 ### Create Roles in NGINX Management Suite
 
-NGINX Management Suite comes pre-configured with an administrator role called `admin`. Additional roles can be created as needed.
-
 {{< include "admin-guides/rbac/create-roles.md" >}}
 
 ### Create User Groups in NGINX Management Suite
-
-You can create user groups in NGINX Management Suite; for example, "nms-admins", "nms-users", and "nms-nap-users".  These user groups will be mapped from Keycloak Realm Roles by name. 
 
 {{< include "admin-guides/auth/create-user-groups.md" >}}
 

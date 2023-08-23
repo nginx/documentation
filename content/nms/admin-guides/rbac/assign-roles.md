@@ -36,7 +36,7 @@ h2 {
 
 ## Before You Begin
 
-This topic assumes you have already created users or user groups that can be assigned roles. If you need to complete these steps, chooseß one of the links below:
+This topic assumes you have already created users or user groups that can be assigned roles. If you need to complete these steps, choose one of the links below:
 
 - To create users, follow the instructions in the [Set Up Basic Authentication]({{< relref "/nms/admin-guides/authentication/basic-authentication.md" >}}).
 - To create user groups, follow the instructions in [Getting Started with OIDC]({{< relref "/nms/admin-guides/authentication/oidc/getting-started-oidc.md" >}}).
@@ -47,8 +47,5 @@ This topic assumes you have already created users or user groups that can be ass
 {{< include "admin-guides/rbac/assign-roles-to-users.md" >}}
 
 ## Assign Roles to User Groups (OIDC)
-
-{{< call-out "important" "User Groups require an OIDC identity provider" >}}User groups are only used with external identity providers configured for OpenID Connect (OIDC) authentication, as described in the [Getting Started with OIDC]({{< relref "/nms/admin-guides/authentication/oidc/getting-started-oidc.md" >}}). Users from an external identity provider cannot be assigned roles directly in NGINX Management Suite. However, they can inherit roles through their group memberships.{{< /call-out >}}
-
 
 {{< include "admin-guides/rbac/assign-roles-to-user-groups.md" >}}

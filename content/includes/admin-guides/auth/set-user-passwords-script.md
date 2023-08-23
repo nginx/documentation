@@ -1,5 +1,5 @@
 ---
-docs: 000
+docs: DOCS-000
 ---
 
 You can use the `basic_passwords.sh` script to add a user's encrypted password to the `/etc/nms/nginx/.htpasswd` file on the NGINX Management Suite server. 

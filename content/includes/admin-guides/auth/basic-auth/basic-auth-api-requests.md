@@ -1,3 +1,7 @@
+---
+docs: DOCS-000
+---
+
 To make API requests using basic authentication, you can include the base64-encoded credentials as a "Basic" token in the "Authorization" request header. Here's an example using cURL:
 
 ``` bash

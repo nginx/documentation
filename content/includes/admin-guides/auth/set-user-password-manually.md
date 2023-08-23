@@ -1,5 +1,5 @@
 ---
-doc: 000
+docs: DOCS-000
 ---
 
 To manually set user passwords:

@@ -1,5 +1,5 @@
 ---
-docs: 000
+docs: DOCS-000
 ---
 
 To modify an existing role in NGINX Management Suite, follow the steps below:

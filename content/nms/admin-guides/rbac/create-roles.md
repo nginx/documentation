@@ -69,10 +69,10 @@ API Connectivity Manager comes pre-configured with roles suitable for API Owners
 
 {{<see-also>}}The tutorial [Set Up RBAC for Infra Admins]({{< relref "/nms/acm/tutorials/rbac-infra-admins.md">}}) provides an example of how to configure RBAC for Infrastructure Administrators.{{</see-also>}}
 
-## What's Next
+## Next Steps
 
 ### Assign Roles to Users or User Groups
 
-Having successfully created RBAC roles, your next step in configuring the system is to assign these roles to the appropriate users or user groups. This ensures that permissions are aligned with individual responsibilities within the organization, providing a clear structure for access control.
+After creating RBAC roles, your next task in configuring RBAC is to assign these roles to the right users or user groups. This step ensures that permissions line up with individual responsibilities within the organization, creating a clear and understandable structure for access control.
 
 - [Assign Roles to Users or User Groups]({{< relref "nms/admin-guides/rbac/assign-roles.md" >}})

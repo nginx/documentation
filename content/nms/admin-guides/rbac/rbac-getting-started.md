@@ -43,7 +43,7 @@ The value of RBAC lies in its ability to provide clear and structured control ov
 The following are essential concepts related to RBAC:
 
 - **Users**: Users are individual accounts identified by a username and credentials. You have the option to create users within NGINX Management Suite using basic authentication or to integrate with an external identity provider using OpenID Connect (OIDC).
-- **Roles**: Roles are sets of permissions linked to one or more features. Each role specifies the actions that are allowed for each feature, such as creating, reading, updating, or deleting. The pre-defined `admin`` role grants full access to all features.
+- **Roles**: Roles are sets of permissions linked to one or more features. Each role specifies the actions that are allowed for each feature, such as creating, reading, updating, or deleting. The pre-defined `admin` role grants full access to all features.
 
    Users can have multiple roles simultaneously. In such cases, the permissions granted by each role are combined, providing an additive effect. For instance, a user with two roles, one granting read access to all NGINX instances and the other allowing create, update, and delete access to a specific instance, will be able to read all instances while having the ability to create, update, or delete only the designated instance for which they have permission.
 
@@ -53,7 +53,7 @@ The following are essential concepts related to RBAC:
 
 ## Features {#features}
 
-The NGINX Management Suite platform and modules have their own set of capabilities called features, listed below. System administrators can decide who can access these features, and how they do so, by defining role-based access control. In the "[What's Next](#whats-next)" section at the bottom, you'll find links to resources for adding users and creating roles.
+The NGINX Management Suite platform and modules have their own set of capabilities called features, listed below. System administrators can decide who can access these features, and how they do so, by defining role-based access control. In the "[Next Steps](#next-steps)" section at the bottom, you'll find links to resources for adding users and creating roles.
 
 <br>
 
@@ -130,7 +130,7 @@ Explore the API endpoints for App Delivery Manager by going to **https://<NMS_FQ
 
 Explore the API endpoints for Security Monitoring by going to **https://<NMS_FQDN>/ui/docs**. Replace `<NMS_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Management Suite host, which is the complete domain name specific to your system.
 
-## What's Next {#whats-next}
+## Next Steps {#next-steps}
 
 In the following topics, you'll learn how to add users and set up authentication methods such as basic authentication and OpenID Connect (OIDC). Once you've added users, you can create roles and assign them to individuals or user groups to provide access to specific features.
 

@@ -139,8 +139,6 @@ Adding a group to the registered application will give all group members the sam
 
 ### Create User Groups in NGINX Management Suite
 
-Create user groups in NGINX Management Suite using the same group names you created in Azure Active directory.
-
 {{< include "admin-guides/auth/create-user-groups.md" >}}
 
 ### Configure NGINX Plus with Azure AD as Identity Provider
