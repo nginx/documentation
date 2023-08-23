@@ -223,3 +223,58 @@ echo 'DB_PATH="/var/lib/nginx-devportal"' | sudo tee -a /etc/nginx-devportal/dev
    ```bash
    sudo systemctl restart nginx-devportal.service
    ```
+
+---
+
+## Secure Developer Portal API communication.
+
+Depending on your [deployment pattern for the Developer Portal]({{< relref "/nms/acm/how-to/infrastructure/configure-devportal-backend.md" >}}), you may have either a single host installation(default) or a multi-host installation for high availability. We recommend using mTLS for the communication between the NGINX reverse proxy and the Developer Portal APIs to provide maximum security.
+
+1. On the Developer Portal Service host or hosts, edit the Dev Portal configuration file located at `/etc/nginx-devportal/devportal.conf`
+1. Add the location of the server certificate and certificate key, as shown in the example below.
+
+   ```yaml
+   CERT_FILE="/path/to/devportal-server.crt"
+   KEY_FILE="/path/to/devportal-server.key"
+   INSECURE_MODE=false
+   CA_FILE="/path/to/ca.pem"  # If using mTLS
+   CLIENT_VERIFY=true # If using mTLS
+   ```
+
+1. Adjust the permissions of each of the certificate and key files provided to ensure they are readable by the Dev Portal backend service.
+1. Restart the developer portal backend service:
+
+   ```shell
+   sudo systemctl restart nginx-devportal
+   ```
+1. If mTLS is configured on your Developer Portal service, you must add a TLS Backend Policy to both;
+   - The Developer Portal Cluster (Used for communication from users to the Developer Portal API)
+   - The Developer Portal Internal Cluster (For communication from the API Connectivity Manager to your Devportal Portal API to publish and maintain information)
+{{< note >}}
+To add a TLS Backend Policy to both clusters. Follow the [TLS Policies]({{< relref "/nms/acm/how-to/policies/tls-policies.md#add-tls-listener" >}}) documentation.
+{{< /note >}}
+
+---
+
+## Secure communication from the Developer Portal to NGINX Management Suite host with mTLS
+
+For complete Developer Portal functionality, such as the ability to create credentials from the Developer Portal, mTLS must be added for server-to-server communication.
+
+Follow the steps below to make sure NGINX Management Suite host can verify the client certificates provided by the Developer Portals backend service.
+
+1. Edit the NGINX Management Suite configuration file located at `/etc/nginx/conf.d/nms-http.conf`.
+1. Add the location of the CA PEM file to the `ssl_client_certificate` directive, as shown in the example below:
+
+   ```yaml
+   ssl_certificate         /etc/nms/certs/manager-server.pem;
+   ssl_certificate_key     /etc/nms/certs/manager-server.key;
+   ssl_client_certificate  /etc/nms/certs/ca.pem;
+   ```
+
+1. Reload the NGINX configuration:
+
+   ```shell
+   sudo nginx -s reload
+   ```
+
+1. Follow the steps in the [TLS Policies]({{< relref "/nms/acm/how-to/policies/tls-policies.md#/#tls-internal-cluster" >}}) documentation to add TLS policies that will enforce mTLS using these the correct client keys to connect to the NGINX Management Suite host.
