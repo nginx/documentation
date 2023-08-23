@@ -574,7 +574,7 @@ Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgr
 
   {{<important>}}This is a **preview** feature for you to try out. You shouldn't use preview features for production purposes.{{</important>}}
   
-  To handle gRPC traffic, you can now [publish and manage gRPC proxies]({{< relref "/nms/acm/getting-started/publish-grpc-proxy.md" >}}).
+  To handle gRPC traffic, you can now [publish and manage gRPC proxies]({{< relref "/nms/acm/how-to/grpc/publish-grpc-proxy.md" >}}).
 
   Publish gRPC proxies and route gRPC traffic to support the following use cases:
 

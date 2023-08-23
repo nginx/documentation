@@ -210,7 +210,7 @@ To complete the steps in this guide, you need the following:
 
 - API Connectivity Manager is installed, licensed, and running
 - You have [one or more Environments with a gRPC API Gateway]({{< relref "/nms/acm/getting-started/add-api-gateway.md" >}})
-- You have [published one or more gRPC API Gateways]({{< relref "/nms/acm/getting-started/publish-grpc-proxy.md" >}})
+- You have [published one or more gRPC API Gateways]({{< relref "/nms/acm/how-to/grpc/publish-grpc-proxy.md" >}})
 - Your backend service(s) implements the [gRPC health checking protocol](https://github.com/grpc/grpc/blob/master/doc/health-checking.md#grpc-health-checking-protocol) and/or returns a status code (normally `12` for `unimplemented`) for health check requests.
 
 ### Policy Settings

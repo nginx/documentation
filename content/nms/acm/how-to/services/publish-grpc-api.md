@@ -24,7 +24,7 @@ This topic describes how to publish an API config to a cluster.
 Complete the following prerequisites before proceeding with this guide:
 
 - API Connectivity Manager is installed, licensed, and running.
-- You have one or more Environments with [API Gateway]({{<relref "/nms/acm/getting-started/publish-grpc-proxy" >}}) or [Dev Portal]({{< relref "/nms/acm/getting-started/add-devportal" >}}) clusters.
+- You have one or more Environments with [API Gateway]({{<relref "/nms/acm/how-to/grpc/publish-grpc-proxy" >}}) or [Dev Portal]({{< relref "/nms/acm/getting-started/add-devportal" >}}) clusters.
 
 ### How to Access the User Interface
 
