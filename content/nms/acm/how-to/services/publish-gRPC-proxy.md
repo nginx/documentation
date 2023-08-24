@@ -146,7 +146,7 @@ To configure the proxy to route by service:
 {{</tabs>}}
 
 
-#### Advanced Routes with a gRPC Method
+### Publish a gRPC API Proxy with Advanced Routes with a gRPC Method
 
 {{<tabs name="grpc_policy_routes">}}
 {{%tab name="API"%}}
@@ -216,7 +216,7 @@ To configure the proxy with an advanced route
 {{</tabs>}}
 
 
-#### Service-Level Routing using Labels
+### Service-Level Routing using Labels
 {{<tabs name="grpc_policy_labels">}}
 {{%tab name="API"%}}
     
@@ -306,8 +306,33 @@ If you have multiple backend servers and wish to route to a specific backend ser
 {{%/tab%}}
 {{</tabs>}}
 
+## Backends
 
-#### Setup gRPC Echo Server (Optional) {#setup-grpc-echo-server-optional}
+Backends tell your API where to resolve the queries to, for example your backend server.
+
+You can add, edit, or delete Backends.
+
+You can also set [DNS](https://en.wikipedia.org/wiki/Domain_Name_System) resolvers and [TLS](https://en.wikipedia.org/wiki/Transport_Layer_Security) on the backend.
+
+## Policies
+
+This section ensures you can set policies at the individual API level.
+
+Check the [Manage Policies]({{< relref "/nms/acm/how-to/policies/manage-policies.md" >}}) documentation for more information.
+
+## Update a Published API Proxy
+
+1. On the sidebar, select **Services**. Then on the Services Workspaces page, select the workspace containing the API proxy you want to edit.
+2. Select **Edit Proxy** from the **Actions** menu of the Proxy you want to delete.
+3. Edit as needed.
+4. Select **Save and Publish**.
+
+## Delete a Published API Proxy
+
+1. On the sidebar, select **Services**. Then on the Services Workspaces page, select the name of the workspace containing the API proxy you want to delete.
+2. Select **Delete Proxy** from the **Actions** menu of the Proxy you want to delete.
+
+## Setup gRPC Echo Server (Optional) {#setup-grpc-echo-server-optional}
 This section details how to setup a gRPC echo server which can be used to confirm that the gRPC API is working as expected.
 
 From a command line terminal:
