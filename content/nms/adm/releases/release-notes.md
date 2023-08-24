@@ -24,7 +24,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Added pre-configured roles when App Delivery Manager is installed**<a name="4-0-0-EA3-whats-new-Added-pre-configured-roles-when-App-Delivery-Manager-is-installed"></a>
 
-  We've made it easier to get started configuring role permissions by adding two predefined roles, App Delivery Admin and App Delivery Guest, when App Delivery Manager is installed.
+  We've made it easier to get started configuring role permissions by adding two predefined roles, App Delivery Manager Admin and App Delivery Manager Guest, when App Delivery Manager is installed. These roles can be modified to meet your needs.
   
 - {{% icon-feature %}} **New feature for users to bring their own WAF policy**<a name="4-0-0-EA3-whats-new-New-feature-for-users-to-bring-their-own-WAF-policy"></a>
 
@@ -215,7 +215,7 @@ This release has the following changes in default behavior:
   
 - {{% icon-feature %}} **HTTP/2 configuration is now a native option in the App Delivery Manager API**<a name="4-0-0-EA3-changes-in-behavior-HTTP/2-configuration-is-now-a-native-option-in-the-App-Delivery-Manager-API"></a>
 
-  Gateways and TCP/UDP component configuration options now include enabling HTTP/2 without requiring a specific use case template. When HTTP/2 is enabled the corresponding `http` directive will be set to `on` in the resulting config.
+  Gateways and TCP/UDP component configuration options now include enabling HTTP/2 without requiring a specific use case template. When HTTP/2 is enabled the corresponding `listen` directive will use `http2` in the resulting config.
   
 - {{% icon-feature %}} **Use case templates have been renamed**<a name="4-0-0-EA3-changes-in-behavior-Use-case-templates-have-been-renamed"></a>
 
@@ -232,6 +232,7 @@ This release has the following changes in default behavior:
 ### Known Issues{#4-0-0-EA3-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< relref "/nms/adm/releases/known-issues.md" >}}) topic.
+
 ## 4.0.0 July 06, 2023
 
 ### What's New{#4-0-0-EA2-whats-new}
@@ -287,6 +288,7 @@ This release fixes the following issues. Select an issue's ID link to view its d
 ### Known Issues{#4-0-0-EA2-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< relref "/nms/adm/releases/known-issues.md" >}}) topic.
+
 ## 4.0.0 May 18, 2023
 
 ### What's New{#4-0-0-EA-whats-new}
@@ -338,3 +340,4 @@ This release includes the following updates:
 ### Known Issues{#4-0-0-EA-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< relref "/nms/adm/releases/known-issues.md" >}}) topic.
+
