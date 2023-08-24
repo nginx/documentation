@@ -11,7 +11,7 @@ weight: 300
 
 ## Introduction
 
-The NGINX diagnostic package automates the collection of the data required to troubleshoot issues in your NGINX environment. The package contains a [light weight script](https://nginx.org/download/nginx-supportpkg.sh) to collect the diagnostic data required to troubleshoot your NGINX open source and/or NGINX Plus instance.  
+The NGINX diagnostic package automates the collection of the data required to troubleshoot issues in your NGINX environment. The package contains a [lightweight script](https://nginx.org/download/nginx-supportpkg.sh) to collect the diagnostic data required to troubleshoot your NGINX Open Source and/or NGINX Plus instance.  
 
 The diagnostic package collects following information from the NGINX installation:
 
@@ -20,17 +20,17 @@ The diagnostic package collects following information from the NGINX installatio
 - NGINX log files
 - NGINX service information
 - NGINX process information
-- NGINX versions, dynamically linked libraries, and NGINX Plus api endpoints (if its a NGINX Plus instance)
-- NGINX agent logs and configs if NGINX Agent is present
-- NGINX app protect logs and configs if NGINX App Protect is present
+- NGINX versions, dynamically linked libraries, and NGINX Plus API endpoints (if its an NGINX Plus instance)
+- NGINX Agent logs and configs if NGINX Agent is present
+- NGINX App Protect logs and configs if NGINX App Protect is present
 
 It will not collect:
 
 - NJS scripts
 - LUA scripts
-- inspect for coredumps
+- Inspect for coredumps
 
-How to run: 
+<b>Running the script:</b> 
 
 The script requires superuser privileges. It needs to be run as root or with `sudo` and should have execute permissions.
 ```shell
@@ -38,13 +38,13 @@ $ chmod +x nginx-supportpkg.sh
 $ sudo ./nginx-supportpkg.sh
 ```
 The output is a compressed `.tar.gz` file containing the diagnostic data and is created in the current working directory. The compressed archive contains textual output of all the commands run by the script to make it easier to review the collected data. 
-The archive has <b>```support-pkg-<timestamp>.tar.gz```</b> naming format.
+The archive has <b>`support-pkg-<timestamp>.tar.gz`</b> naming format.
 
 
-Use the tar command to extract the contents of the archive.
+Use the `tar` command to extract the contents of the archive.
 ```shell
 tar -xvf support-pkg-1682457903.tar.gz
-
+```
 The script provides a number of flags to customize what data needs to be collected based on your NGINX deployment. 
 
 Available Options:
@@ -64,9 +64,9 @@ Usage: ./nginx-supportpkg.sh [-option value...]
 -pi | --profile_interval Profiling interval in seconds. Default: '15'
 ```
 
-Supported Operating Systems:
+<b>Supported Operating Systems</b>:
 
-The script should run on most operating systems supported by NGINX [https://docs.nginx.com/nginx/technical-specs/]. It has been currently tested on the following operating systems.
+The script should run on most operating systems supported by NGINX [https://docs.nginx.com/nginx/technical-specs/]. It has been currently tested on the following operating systems:
 
 - CentOS 7
 - Ubuntu 20.04
@@ -79,6 +79,6 @@ The script should run on most operating systems supported by NGINX [https://docs
 
 
 
-Note: The goal of diagnostic package is to ease the process of collecting and sharing the data required to troubleshoot NGINX issues. It does not collect any sensitive information about your environment. However, it is advised to review the script prior to running it. It is also advised to review the archive output to make sure it conforms with your organizations data-sharing guidelines prior to sharing with us.   
+<b>Note</b>: The goal of the diagnostic package is to ease the process of collecting and sharing the data required to troubleshoot NGINX issues. It does not collect any sensitive information about your environment. However, it is advised to review the script prior to running it. It is also advised to review the archive output to make sure it conforms with your organizations data sharing guidelines prior with the Technical Support team.   
 
 
