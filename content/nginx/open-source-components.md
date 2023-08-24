@@ -13,9 +13,9 @@ weight: 500
 Open source components included in the NGINX Plus (package name is `nginx-plus`) are:
 
 
-- nginx/OSS 1.23.4, distributed under 2-clause BSD license.
+- nginx/OSS 1.25.1, distributed under 2-clause BSD license.
 
-  Homepage: http://nginx.org
+  Homepage: https://nginx.org
 
   Copyright © 2002-2021 Igor Sysoev
   
@@ -126,7 +126,7 @@ like `import/require()` and will resolve them (6.5.1).
 
   - `cssnano`, a modular minifier, built on top of the PostCSS ecosystem (5.1.18).
 
-    Homepage: https://github.com/cssnano/cssnano"/
+    Homepage: https://github.com/cssnano/cssnano/
 
     Copyright © Ben Briggs <beneb.info@gmail.com>
 

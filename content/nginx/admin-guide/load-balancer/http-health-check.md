@@ -47,7 +47,7 @@ Note that if there is only a single server in a group, the `fail_timeout` and `m
 <span id="slow_start"></span>
 ### Server Slow Start
 
-A recently recovered server can be easily overwhelmed by connections, which may cause the server to be marked as unavailable again. Slow start allows an upstream server to gradually recover its weight from zero to its nominal value after it has been recovered or became available. This can be done with the [`slow_start`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#slow_start) parameter of the upstream [`server`](https://nginx.org/en/docs/stream/ngx_stream_upstream_hc_module.html#match) directive:
+A recently recovered server can be easily overwhelmed by connections, which may cause the server to be marked as unavailable again. Slow start allows an upstream server to gradually recover its weight from zero to its nominal value after it has been recovered or became available. This can be done with the [`slow_start`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#slow_start) parameter of the upstream [`server`](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#match) directive:
 
 ```nginx
 upstream backend {
@@ -159,7 +159,7 @@ You can set custom conditions that the response must satisfy for the server to p
    }
    ```
 
-2. Refer to the block from the [`health_check`](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check) directive by specifying the [`match`](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check_match) parameter and the name of the [`match`](https://nginx.org/en/docs/http/ngx_stream_upstream_hc_module.html#match) block:
+2. Refer to the block from the [`health_check`](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check) directive by specifying the [`match`](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check_match) parameter and the name of the [`match`](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#match) block:
 
    ```nginx
    http {

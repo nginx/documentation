@@ -18,6 +18,73 @@ We do not issue updates for releases that have reached EoSD. For this reason, we
 The initial release dates for NGINX Plus are noted in this document. 
 New releases are announced on the [NGINX Product Support Announcements](https://interact.f5.com/Customer-Preference-Center.html) mailing list.
 
+<span id="r30"></span>
+## NGINX Plus Release 30 (R30)
+_15 August 2023_<br/>
+_Based on NGINX Open Source 1.25.1_
+
+NGINX Plus R30 is a feature release:
+
+* Native support for [HTTP/3 and QUIC](https://nginx.org/en/docs/http/ngx_http_v3_module.html)
+
+* Version [`9`](https://nginx.org/en/docs/http/ngx_http_api_module.html#compatibility) of the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html):
+
+  * Per-worker connection statistics including accepted, dropped, active and idle connections, total and current requests
+
+* The [Prometheus-njs module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/prometheus-njs/) now supports version [`9`](https://nginx.org/en/docs/http/ngx_http_api_module.html) of the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html)
+
+* DNS reload optimization: now DNS name expiry time for dynamically-resolved upstream hosts is preserved across reloads
+
+* The new [`mqtt_buffers`](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html#mqtt_buffers) directive in the [MQTT Filter](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html) module that specifies the number of buffers allocated per connection, the directive also supersedes the [`mqtt_rewrite_buffer_size`](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html#mqtt_buffer_size) directive
+
+* The [`ssl`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl) directive deprecated in NGINX Plus Release 16 was removed, the `ssl` parameter of the [`listen`](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive should be used instead
+
+* The new [`http2`](https://nginx.org/en/docs/http/ngx_http_v2_module.html#http2) directive
+obsoletes the `http2` parameter of the [`listen`](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive which is now deprecated
+
+* HTTP/2 server push removed, the [`http2_push`](https://nginx.org/en/docs/http/ngx_http_v2_module.html#http2_push), [`http2_push_preload`](https://nginx.org/en/docs/http/ngx_http_v2_module.html#http2_push_preload), [`http2_max_concurrent_pushes`](https://nginx.org/en/docs/http/ngx_http_v2_module.html#http2_max_concurrent_pushesd) directives are made obsolete
+
+* Optional NGINX diagnostic scripts that collect the data
+required for troubleshooting are available as a separate download package
+
+* New features in [njs](http://nginx.org/en/docs/njs):
+
+  * global NGINX properties: [`ngx.build`](https://nginx.org/en/docs/njs/reference.html#ngx_build), [`ngx.conf_file_path`](https://nginx.org/en/docs/njs/reference.html#ngx_conf_file_path), [`ngx.error_log_path`](https://nginx.org/en/docs/njs/reference.html#ngx_error_log_path), [`ngx.prefix`](https://nginx.org/en/docs/njs/reference.html#ngx_prefix), [`ngx.version`](https://nginx.org/en/docs/njs/reference.html#ngx_version), [`ngx.version_number`](https://nginx.org/en/docs/njs/reference.html#ngx_version_number), [`ngx.worker_id`](https://nginx.org/en/docs/njs/reference.html#ngx_worker_id)
+
+  * the `js_shared_dict_zone` directive for [http](https://nginx.org/en/docs/http/ngx_http_js_module.html#js_shared_dict_zone) and [stream](https://nginx.org/en/docs/stream/ngx_stream_js_module.html#js_shared_dict_zone) that allows declaring a dictionary shared between worker processes
+
+  * [ES13-compliant](https://nginx.org/en/docs/njs/compatibility.html) `Array` methods: `from()`, `toSorted()`, `toSpliced()`, `toReversed()`
+
+  * [`CryptoKey`](https://nginx.org/en/docs/njs/reference.html#cryptokey) properties in `WebCrypto` API: [`algorithm`](https://nginx.org/en/docs/njs/reference.html#cryptokey_alg), [`extractable`](https://nginx.org/en/docs/njs/reference.html#cryptokey_extractable), [`type`](https://nginx.org/en/docs/njs/reference.html#cryptokey_type), [`usages`](https://nginx.org/en/docs/njs/reference.html#cryptokey_usages)
+
+* The GeoIP2 module is no longer available for Amazon Linux 2 as the EPEL repository doesn't provide the `libmaxminddb` library required to build the module
+
+NGINX Plus R30 is supported on:
+
+* AlmaLinux 8, 9
+* Alpine Linux 3.16, 3.17, 3.18
+* Amazon Linux 2 LTS, 2023
+* CentOS 7.4+
+* Debian 11, 12
+* FreeBSD 12.1+, 13
+* Oracle Linux 7.4+, 8.1+, 9
+* RHEL 7.4+, 8.1+, 9.0+
+* Rocky Linux 8, 9
+* SUSE Linux Enterprise Server 12 SP5, 15 SP2
+* Ubuntu 20.04 LTS, 22.04 LTS
+
+**Notes:**
+
+* Alpine Linux 3.18 is new in this release
+* Debian 12 is new in this release
+* Alpine Linux 3.15 is deprecated
+* Alpine Linux 3.14 is removed
+* Ubuntu 18.04 is removed
+* The GeoIP2 dynamic module (package name is `nginx-plus-module-geoip2`) for Amazon Linux 2 is no longer provided
+
+More information: [Announcing NGINX Plus R30](https://www.nginx.com/blog/nginx-plus-r30-released/)
+
+
 <span id="r29"></span>
 ## NGINX Plus Release 29 (R29)
 _02 May 2023_<br/>
@@ -715,7 +782,7 @@ NGINX Plus R16 is supported on:
 * Amazon Linux 2 (LTS) is updated to the GA version.
 * Ubuntu 17.10 is no longer supported
 * The Upstream Conf and Extended Status modules are superseded by the [NGINX Plus API](https://nginx.org/en/docs/http/ngx_http_api_module.html) module and are no longer distributed in NGINX Plus (see our [transition guide](https://www.nginx.com/blog/transitioning-to-nginx-plus-api-configuration-monitoring/) for details)
-* The [New Relic plug‑in](https://newrelic.com/plugins/nginx-inc/13) for NGINX has been updated to use the new NGINX Plus API, but is no longer supported by NGINX, Inc.
+* The [New Relic plug‑in](https://newrelic.com/integrations/nginx) for NGINX has been updated to use the new NGINX Plus API, but is no longer supported by NGINX, Inc.
 
 More information: [Announcing NGINX Plus R16](https://www.nginx.com/blog/nginx-plus-r16-released/)
 

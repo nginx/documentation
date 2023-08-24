@@ -1,5 +1,6 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-.DS_Store
+**/.DS_Store
+
 # dependencies
 
 # testing
@@ -9,7 +10,6 @@
 ./public
 
 # misc
-.DS_Store
 *.pem
 
 # local env files
@@ -25,10 +25,9 @@ resources/
 *.orig
 
 # Local development artifacts
-.vscode/*
 .markdownlint.json
-.idea/*
-content/.idea/*
+**/.vscode/
+**/.idea/
 
 # Local Netlify artifacts
 .netlify/plugins/*
@@ -38,3 +37,4 @@ content/.idea/*
 build
 *.swp
 *.mo
+node_modules
