@@ -65,7 +65,7 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
    nginx-repo.key
    nginx-repo.crt
    ```
-   {{< see-also >}}You can use the [NGINX Controller REST API to download the key and cert files](https://docs.nginx.com/nginx-controller/admin-guides/install/get-n-plus-cert-and-key/).{{< /see-also >}}
+   {{< see-also >}}You can use the [NGINX Controller REST API to download the key and cert files]({{< relref "/controller/admin-guides/install/get-n-plus-cert-and-key" >}}).{{< /see-also >}}
 
 4. Copy the above two files to the CentOS server's `/etc/ssl/nginx/` directory. Use an SCP client or another secure file transfer tool to perform this task.
 
@@ -101,9 +101,9 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
 
 10. Install the latest NGINX App Protect WAF package.
 
-    {{< see-also >}}Please refer to [NGINX App Protect Compatibility Matrix](https://docs.nginx.com/nginx-controller/admin-guides/install/nginx-controller-tech-specs/#nginx-app-protect-compatibility-matrix) for specific version compatibility.{{< /see-also >}}
+    {{< see-also >}}Please refer to [NGINX App Protect Compatibility Matrix]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-app-protect-compatibility-matrix" >}}) for specific version compatibility.{{< /see-also >}}
 
-    If you wish to install a specific version, please replace `app-protect` with the target version eg. `app-protect-25+3.671.0`:
+    If you wish to install a specific version, please replace `app-protect` with the target version, for example `app-protect-25+3.671.0`:
 
     ```shell
     sudo yum install app-protect
@@ -117,7 +117,7 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
 
 12. Configure SELinux as appropriate per your organization’s security policies. NGINX App Protect WAF applies the prebuilt SELinux policy module during the installation. If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/troubleshooting-guide/troubleshooting#selinux" >}}).
 
-    {{< note >}}NGINX Controller has specific [requirements regarding SELinux configuration](http://docs.nginx.com/nginx-controller/admin-guides/install/nginx-controller-tech-specs/#supported-distributions).{{< /note >}}
+    {{< note >}}NGINX Controller has specific [requirements regarding SELinux configuration]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#supported-distributions" >}}).{{< /note >}}
 
 13. Start the NGINX service:
 
@@ -229,11 +229,11 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
     sudo yum clean all
     ```
 
-11. Install NGINX the latest App Protect WAF package.
+11. Install the latest NGINX App Protect WAF package.
 
-    {{< see-also >}}Please refer to [NGINX App Protect Compatibility Matrix](https://docs.nginx.com/nginx-controller/admin-guides/install/nginx-controller-tech-specs/#nginx-app-protect-compatibility-matrix) for specific version compatibility.{{< /see-also >}}
+    {{< see-also >}}Please refer to [NGINX App Protect Compatibility Matrix]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-app-protect-compatibility-matrix" >}}) for specific version compatibility.{{< /see-also >}}
 
-    If you wish to install a specific version, please replace `app-protect` with the target version eg. `app-protect-25+3.671.0`:
+    If you wish to install a specific version, please replace `app-protect` with the target version, for example `app-protect-25+3.671.0`:
 
     ```shell
     sudo yum install app-protect
@@ -247,7 +247,7 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
 
 13. Configure SELinux as appropriate per your organization’s security policies. NGINX App Protect WAF applies the prebuilt SELinux policy module during the installation. If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/troubleshooting-guide/troubleshooting#selinux" >}}).
 
-    {{< note >}}NGINX Controller has specific [requirements regarding SELinux configuration](http://docs.nginx.com/nginx-controller/admin-guides/install/nginx-controller-tech-specs/#supported-distributions).{{< /note >}}
+    {{< note >}}NGINX Controller has specific [requirements regarding SELinux configuration]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#supported-distributions" >}}).{{< /note >}}
 
 14. Start the NGINX service:
 
@@ -343,13 +343,13 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
 
 11. Update the repository and install the lastest supported NGINX App Protect WAF packages.
 
-    {{< see-also >}}Please refer to [NGINX App Protect Compatibility Matrix](https://docs.nginx.com/nginx-controller/admin-guides/install/nginx-controller-tech-specs/#nginx-app-protect-compatibility-matrix) for specific version compatibility.{{< /see-also >}}
+    {{< see-also >}}Please refer to [NGINX App Protect Compatibility Matrix]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-app-protect-compatibility-matrix" >}}) for specific version compatibility.{{< /see-also >}}
 
     ```shell
     sudo apt-get update
     sudo apt-get install nginx-plus-module-appprotect
     ```
-    If you wish to install a specific version, based on the NGINX Plus version e.g. `r25`, do the following:
+    To install a specific version based on the NGINX Plus version, for example `r25`, follow these steps:
 
     ```shell
     sudo apt-cache policy app-protect | grep 25+
@@ -458,13 +458,13 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
 
 11. Update the repository and install the latest App Protect WAF package.
 
-    {{< see-also >}}Please refer to [NGINX App Protect Compatibility Matrix](https://docs.nginx.com/nginx-controller/admin-guides/install/nginx-controller-tech-specs/#nginx-app-protect-compatibility-matrix) for specific version compatibility.{{< /see-also >}}
+    {{< see-also >}}Please refer to [NGINX App Protect Compatibility Matrix]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-app-protect-compatibility-matrix" >}}) for specific version compatibility.{{< /see-also >}}
 
     ```shell
     sudo apt-get update
     sudo apt-get install app-protect
     ```
-    If you wish to install a specific version, based on the NGINX Plus version e.g. `r25`, do the following:
+    To install a specific version based on the NGINX Plus version, for example `r25`, follow these steps:
 
     ```shell
     sudo apt-cache policy app-protect | grep 25+
@@ -522,9 +522,9 @@ Using NGINX App Protect WAF with NGINX Controller isn't supported on Alpine.
 
 ## Add NGINX App Protect WAF to NGINX Controller
 
-If this NGINX Plus instance is already managed by Controller, [restart the Agent](https://docs.nginx.com/nginx-controller/admin-guides/install/agent-restart) after NGINX App Protect WAF is installed.
+If this NGINX Plus instance is already managed by Controller, [restart the Agent]({{< relref "/controller/admin-guides/install/agent-restart" >}}) after NGINX App Protect WAF is installed.
 
-Otherwise, complete the tasks in the NGINX Controller [Add an NGINX App Protect WAF Instance](https://docs.nginx.com/nginx-controller/infrastructure/instances/add-nap-instance/#add-the-nginx-app-protect-instance) guide.
+Otherwise, complete the tasks in the NGINX Controller [Add an NGINX App Protect WAF Instance]({{< relref "/controller/infrastructure/instances/add-nap-instance.md#add-the-nginx-app-protect-instance" >}}) guide.
 
 ## Use NGINX App Protect WAF with NGINX Controller
 
@@ -532,6 +532,6 @@ Otherwise, complete the tasks in the NGINX Controller [Add an NGINX App Protect 
 
 Refer to the following NGINX Controller user guides for further information about how to secure your apps and/or APIs with NGINX Controller:
 
-- [Learn about App Security for the NGINX Controller App Delivery module](https://docs.nginx.com/nginx-controller/app-delivery/security/concepts/what-is-waf/)
-- [Add Security to your Apps with the NGINX Controller App Delivery module](https://docs.nginx.com/nginx-controller/app-delivery/security/tutorials/add-app-security-with-waf/)
-- [Add Advanced Security (WAF) to your APIs with the NGINX Controller API Management module](https://docs.nginx.com/nginx-controller/api-management/manage-apis/#define-the-routing-rules).
+- [Learn about App Security for the NGINX Controller App Delivery module]({{< relref "/controller/app-delivery/security/concepts/what-is-waf" >}})
+- [Add Security to your Apps with the NGINX Controller App Delivery module]({{< relref "/controller/app-delivery/security/tutorials/add-app-security-with-waf" >}})
+- [Add Advanced Security (WAF) to your APIs with the NGINX Controller API Management module]({{< relref "/controller/api-management/manage-apis.md#define-the-routing-rules" >}}).
