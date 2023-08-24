@@ -215,7 +215,7 @@ This release has the following changes in default behavior:
   
 - {{% icon-feature %}} **HTTP/2 configuration is now a native option in the App Delivery Manager API**<a name="4-0-0-EA3-changes-in-behavior-HTTP/2-configuration-is-now-a-native-option-in-the-App-Delivery-Manager-API"></a>
 
-  Gateways and TCP/UDP component configuration options now include enabling HTTP/2 without requiring a specific use case template. When HTTP/2 is enabled the corresponding `listen` directive will use `http2` in the resulting config.
+  Gateway configuration options now include enabling HTTP/2 without requiring a specific use case template. HTTP/2 is now a native configuration option in the App Delivery Manager API, and can also be enabled using the Web interface. When HTTP/2 is enabled, the corresponding `listen` directive will use `http2` in the resulting config.
   
 - {{% icon-feature %}} **Use case templates have been renamed**<a name="4-0-0-EA3-changes-in-behavior-Use-case-templates-have-been-renamed"></a>
 
