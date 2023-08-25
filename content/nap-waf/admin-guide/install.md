@@ -60,7 +60,6 @@ NGINX App Protect WAF supports the following operating systems:
 - [Debian 11](#debian-11-installation)
 - [Ubuntu 18.04](#ubuntu-1804-installation) - (Deprecated starting from NGINX Plus R30)
 - [Ubuntu 20.04](#ubuntu-2004-installation)
-- [Alpine 3.10](#alpine-310-installation) - (Unsupported starting from NGINX Plus R25)
 - [Alpine 3.16](#alpine-316-installation) 
 - [Alpine 3.17](#alpine-317-installation) 
 
@@ -1321,122 +1320,6 @@ If a user other than **nginx** is to be used, note the following:
 {{< note >}} Ubuntu 20.04 activates __AppArmor__ by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
 {{< /note >}}
 
-## Alpine 3.10 Installation
-
-1. If you already have NGINX packages in your system, back up your configs and logs:
-
-    ```shell
-    sudo cp -a /etc/nginx /etc/nginx-plus-backup
-    sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
-    ```
-
-2. Log in to the [Customer Portal](https://my.f5.com) and download the following two files:
-    ```shell
-    nginx-repo.key
-    nginx-repo.crt
-    ```
-
-3. Upload `nginx-repo.key` to `/etc/apk/cert.key` and `nginx-repo.crt` to `/etc/apk/cert.pem`. Make sure that files do not contain other certificates and keys, as Alpine Linux does not support mixing client certificates for different repositories.
-
-4. Add the NGINX public signing key to the directory `/etc/apk/keys`:
-
-    ```shell
-    sudo wget -O /etc/apk/keys/nginx_signing.rsa.pub  https://cs.nginx.com/static/keys/nginx_signing.rsa.pub
-    ```
-
-5. Remove any previously configured NGINX Plus repository:
-    
-    ```shell
-    sed "/plus-pkgs.nginx.com/d" /etc/apk/repositories
-    ```
-
-6. Add the NGINX Plus repository to `/etc/apk/repositories` file:
-
-    ```shell
-    printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
-    ```
-
-7. Add the NGINX App Protect WAF repository to `/etc/apk/repositories` file:
-
-    ```shell
-    printf "https://pkgs.nginx.com/app-protect/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
-    ```
-
-8. We recommend removing all community-supported NGINX packages. Note that all NGINX modules will be removed as well.
-
-    ```shell
-    sudo apk del -r app-protect
-    sudo apk del -r nginx
-    ```
-
-    If you are installing App Protect version 3.3 then also install `python3`:
-
-    ```shell
-    sudo apk update
-    sudo apk add python3
-    ```
-    
-9. Update the repository and install the most recent version of the NGINX Plus and NGINX App Protect WAF:
-
-    ```shell
-    sudo apk update
-    sudo apk add nginx-plus app-protect
-    ```
-
-    Alternatively, to install a specific version, you should modify the repository URL in the `/etc/apk/repositories` file in the following way:
-
-    ```shell
-    https://pkgs.nginx.com/plus/Rxx/alpine/v3.10/main
-    https://pkgs.nginx.com/app-protect/Rxx/alpine/v3.10/main
-    ```
-    
-    where `xx` is a release number.
-
-    For example, to install NGINX App Protect WAF for NGINX Plus R23 make sure of the following:
-
-    ```shell
-    cat /etc/apk/repositories
-    https://pkgs.nginx.com/plus/R23/alpine/v3.10/main
-    https://pkgs.nginx.com/app-protect/R23/alpine/v3.10/main
-    ```
-
-    Install the most recent version of NGINX App Protect WAF for NGINX Plus R23:
-
-    ```shell
-    sudo apk update
-    sudo apk add nginx-plus app-protect
-    ```
-
-    Alternatively, use the following commands to list available versions:
-
-    ```shell
-    sudo apk update
-    sudo apk add nginx-plus app-protect
-    ```
-
-    Finally, install a specific version from the output of command above. For example:
-
-    ```shell
-    sudo apk add nginx-plus app-protect=23.3.281.0-r1
-    ```
-
-10. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
-
-    ```shell
-    sudo nginx -v
-    ```
-
-11. Load the NGINX App Protect WAF module on the main context in the `nginx.conf` file:
-
-    ```nginx
-    load_module modules/ngx_http_app_protect_module.so;
-    ```
-
-12. Enable NGINX App Protect WAF on an `http/server/location` context in the `nginx.conf` via:
-
-    ```nginx
-    app_protect_enable on;
-    ```
 
 ## Alpine 3.16 Installation
 
@@ -2146,38 +2029,6 @@ COPY entrypoint.sh /root/
 CMD ["sh", "/root/entrypoint.sh"]
 ```
 
-### Alpine 3.10 Docker Deployment Example
-```dockerfile
-# syntax=docker/dockerfile:1
-# For Alpine 3.10:
-FROM alpine:3.10
-
-# Download and add the NGINX signing key:
-RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub
-
-# Add NGINX Plus repository:
-RUN printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
-
-# Add NGINX App Protect repository:
-RUN printf "https://pkgs.nginx.com/app-protect/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
-
-
-# Update the repository and install the most recent version of the NGINX App Protect WAF package (which includes NGINX Plus):
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
-    --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
-    apk update && apk add nginx-plus app-protect
-
-# Forward request logs to Docker log collector:
-RUN ln -sf /dev/stdout /var/log/nginx/access.log \
-    && ln -sf /dev/stderr /var/log/nginx/error.log
-
-# Copy configuration files:
-COPY nginx.conf custom_log_format.json /etc/nginx/
-COPY entrypoint.sh /root/
-
-CMD ["sh", "/root/entrypoint.sh"]
-```
-
 ### Alpine 3.16 Docker Deployment Example
 ```dockerfile
 # syntax=docker/dockerfile:1
@@ -2586,26 +2437,6 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect-compiler
 ```
 
-### Alpine 3.10 Converter Docker Deployment Example
-```dockerfile
-# syntax=docker/dockerfile:1
-# For Alpine 3.10:
-FROM alpine:3.10
-
-# Download and add the NGINX signing key:
-RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub
-
-# Add NGINX Plus repository:
-RUN printf "https://plus-pkgs.nginx.com/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
-
-# Update the repository and install the most recent version of the NGINX App Protect WAF Compiler package:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
-    --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
-    apk update && apk add app-protect-compiler
-
-CMD ["sh"]
-```
-
 ### Alpine 3.16 Converter Docker Deployment Example
 ```dockerfile
 # syntax=docker/dockerfile:1
@@ -3003,7 +2834,7 @@ After having updated the Attack Signature package you have to reload the configu
     sudo apt-get install app-protect-attack-signatures=2020.07.16-1~focal
     ```
 
-### Alpine 3.10 / Alpine 3.16 / Alpine 3.17
+### Alpine 3.16 / Alpine 3.17
 
 1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
@@ -3124,7 +2955,7 @@ Example: app-protect-threat-campaigns-2022.07.21
     sudo yum install app-protect-threat-campaigns-2022.07.21
     ```
 
-### Alpine 3.10 / Alpine 3.16 / Alpine 3.17
+### Alpine 3.16 / Alpine 3.17
 
 1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
