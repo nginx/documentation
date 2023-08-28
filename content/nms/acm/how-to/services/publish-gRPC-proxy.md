@@ -402,5 +402,5 @@ if __name__ == '__main__':
 ```
 
 10.  Run `python server.py`.
-11. Confirm that the server is running by running `netstat -tulpn | grep 50051`
+11. Confirm that the server is running by running `netstat -tulpn | grep 50051`.
 12. For step-by-step instructions on setting up gRPC testing using Postman, please refer to the following <a href="https://blog.postman.com/testing-grpc-apis-with-postman/">Testing gRPC APIs with Postman</a>  This guide will walk you through the process, ensuring you can effectively test and validate your gRPC APIs using Postman.
