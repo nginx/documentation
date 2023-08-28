@@ -293,13 +293,13 @@ Send a POST request to publish the gRPC proxy.
 
 If you have multiple backend servers and want to route to a specific backend server, you can use labels.
 
-1. Open the proxy and click the `Backend` button.
-2. Input a `Service Name` and `Service Version`
-3. Input a label for the backend service `custom2`
-4. Input a `Service Target Hostname`
-5. Click the Add button
-6. Click the `Save and Publish` button
-7. [Setup gRPC Echo Server and Test gRPC API Proxy](#setup-grpc-echo-server-optional)
+1. Open the proxy and select **Backend**.
+1. Enter a **Service Name** and **Service Version**.
+1. Add a label for the backend service, "custom2".
+1. Type the **Service Target Hostname**.
+1. Select **Add**.
+1. Select **Save and Publish**.
+1. [Setup gRPC Echo Server and Test gRPC API Proxy](#setup-grpc-echo-server-optional).
 
 {{%/tab%}}
 {{</tabs>}}
