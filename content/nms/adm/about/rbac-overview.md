@@ -1,11 +1,11 @@
 ---
-title: RBAC
-description: Learn how role-based access control (RBAC) is applied to NGINX Management Suite App Delivery Manager.
+title: "RBAC"
+description: "Learn how role-based access control (RBAC) is applied to NGINX Management Suite App Delivery Manager."
 weight: 600
 toc: true
 draft: false
 tags: ["docs"]
-docs: "DOCS-000"
+docs: "DOCS-1256"
 ---
 
 {{< custom-styles>}}
@@ -100,7 +100,7 @@ The TCP-UDP-COMPONENT-MANAGEMENT feature controls access to TCP/UDP components a
 
 * Environments
 * Apps
-* TCPUDP-Components
+* TCP/UDP-Components
 
 {{< note >}} If a feature does not have an object listed, there is currently no enforcement or RBAC control over features based on that object, eg: Web components cannot be filtered based on the gateways they reference.{{< /note >}}
 

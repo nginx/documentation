@@ -85,7 +85,7 @@ The following table shows the minimum permissions (RBAC) that should be granted 
 
 {{</bootstrap-table>}}
 
-\* These settings depend on the role the platform ops team wants to have regarding the NGINX configurations. If the platform ops team wants to manage the traffic going into the NGINX instances, they will want CRUD (create, read, update, and delete) control of the Gateways and restrict app teams to read-only permissions. Another restriction the platform ops team may want to impose is restricting the app teams to either Web or TCPUDP components. Finally, they can allow app teams to add their own certs or restrict the available certs (in the example provided, the app team has access to use any certs installed on the system).
+\* These settings depend on the role the platform ops team wants to have regarding the NGINX configurations. If the platform ops team wants to manage the traffic going into the NGINX instances, they will want CRUD (create, read, update, and delete) control of the Gateways and restrict app teams to read-only permissions. Another restriction the platform ops team may want to impose is restricting the app teams to either Web or TCP/UDP components. Finally, they can allow app teams to add their own certs or restrict the available certs (in the example provided, the app team has access to use any certs installed on the system).
 
 As mentioned, these are the minimum roles required. If the platform ops team decides each app team should be able to see resources from other app teams, they can modify the fine-tuned permissions below to allow this.
 
