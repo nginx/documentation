@@ -372,7 +372,7 @@ message GoodbyeReply {
 }
 ```
 
-6. Generate the python code `python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. helloworld.proto`
+6. Run the following command to generate the python code: `python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. helloworld.proto`
 7. Create `server.py` Add the following to the file:
 
 ```shell
