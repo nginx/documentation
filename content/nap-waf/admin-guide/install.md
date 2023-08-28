@@ -793,30 +793,6 @@ If a user other than **nginx** is to be used, note the following:
     sudo apt-get install app-protect
     ```
 
-    Alternatively, to install a specific version you should modify the repository URLs in the `/etc/apt/sources.list.d/nginx-plus.list` and `/etc/apt/sources.list.d/nginx-app-protect.list` files in the following way respectively:
-
-    ```shell
-    deb https://pkgs.nginx.com/plus/Rxx/debian ...
-    ```
-
-    ```shell
-    deb https://pkgs.nginx.com/app-protect/Rxx/debian ...
-    ```
-
-    where `xx` is a release number.
-
-    For example, to install app-protect version 24 make sure of the following:
-
-    ```shell
-    cat /etc/apt/sources.list.d/nginx-plus.list
-    deb https://pkgs.nginx.com/plus/R24/debian buster nginx-plus
-    ```
-
-    ```shell
-    cat /etc/apt/sources.list.d/nginx-app-protect.list
-    deb https://pkgs.nginx.com/app-protect/R24/debian buster nginx-plus
-    ```
-
     Then, use the following commands to update and list available versions:
 
     ```shell
@@ -951,30 +927,6 @@ If a user other than **nginx** is to be used, note the following:
     sudo apt-get install app-protect
     ```
 
-    Alternatively, to install a specific version you should modify the repository URLs in the `/etc/apt/sources.list.d/nginx-plus.list` and `/etc/apt/sources.list.d/nginx-app-protect.list` files in the following way respectively:
-
-    ```shell
-    deb https://pkgs.nginx.com/plus/Rxx/debian ...
-    ```
-
-    ```shell
-    deb https://pkgs.nginx.com/app-protect/Rxx/debian ...
-    ```
-
-    where `xx` is a release number.
-
-    For example, to install app-protect version 27 make sure of the following:
-
-    ```shell
-    cat /etc/apt/sources.list.d/nginx-plus.list
-    deb https://pkgs.nginx.com/plus/R27/debian bullseye nginx-plus
-    ```
-
-    ```shell
-    cat /etc/apt/sources.list.d/nginx-app-protect.list
-    deb https://pkgs.nginx.com/app-protect/R27/debian bullseye nginx-plus
-    ```
-
     Then, use the following commands to update and list available versions:
 
     ```shell
@@ -1101,30 +1053,6 @@ If a user other than **nginx** is to be used, note the following:
     sudo apt-get install app-protect
     ```
 
-    Alternatively, to install a specific version you should modify the repository URLs in the `/etc/apt/sources.list.d/nginx-plus.list` and `/etc/apt/sources.list.d/nginx-app-protect.list` files in the following way respectively:
-
-    ```shell
-    deb https://pkgs.nginx.com/plus/Rxx/ubuntu ...
-    ```
-
-    ```shell
-    deb https://pkgs.nginx.com/app-protect/Rxx/ubuntu ...
-    ```
-
-    where `xx` is a release number.
-
-    For example, to install app-protect version 23 make sure of the following:
-
-    ```shell
-    cat /etc/apt/sources.list.d/nginx-plus.list
-    deb https://pkgs.nginx.com/plus/R23/ubuntu bionic nginx-plus
-    ```
-
-    ```shell
-    cat /etc/apt/sources.list.d/nginx-app-protect.list
-    deb https://pkgs.nginx.com/app-protect/R23/ubuntu bionic nginx-plus
-    ```
-
     Then, use the following commands to update and list available versions:
 
     ```shell
@@ -1246,30 +1174,6 @@ If a user other than **nginx** is to be used, note the following:
     sudo apt-get install app-protect
     ```
 
-    Alternatively, to install a specific version you should modify the repository URLs in the `/etc/apt/sources.list.d/nginx-plus.list` and `/etc/apt/sources.list.d/nginx-app-protect.list` files in the following way respectively:
-
-    ```shell
-    deb https://pkgs.nginx.com/plus/Rxx/ubuntu ...
-    ```
-
-    ```shell
-    deb https://pkgs.nginx.com/app-protect/Rxx/ubuntu ...
-    ```
-
-    where `xx` is a release number.
-
-    For example, to install app-protect version 23 make sure of the following:
-
-    ```shell
-    cat /etc/apt/sources.list.d/nginx-plus.list
-    deb https://pkgs.nginx.com/plus/R23/ubuntu focal nginx-plus
-    ```
-
-    ```shell
-    cat /etc/apt/sources.list.d/nginx-app-protect.list
-    deb https://pkgs.nginx.com/app-protect/R23/ubuntu focal nginx-plus
-    ```
-
     Then, use the following commands to update and list available versions:
 
     ```shell
@@ -1380,23 +1284,6 @@ If a user other than **nginx** is to be used, note the following:
     sudo apk add app-protect
     ```
 
-    Alternatively, to install a specific version, you should modify the repository URL in the `/etc/apk/repositories` file in the following way:
-
-    ```shell
-    https://pkgs.nginx.com/plus/Rxx/alpine/v3.16/main
-    https://pkgs.nginx.com/app-protect/Rxx/alpine/v3.16/main
-    ```
-    
-    where `xx` is a release number.
-
-    For example, to install NGINX App Protect WAF for NGINX Plus R28, make sure of the following:
-
-    ```shell
-    cat /etc/apk/repositories
-    https://pkgs.nginx.com/plus/R28/alpine/v3.16/main
-    https://pkgs.nginx.com/app-protect/R28/alpine/v3.16/main
-    ```
-
     Install the most recent version of NGINX App Protect WAF for NGINX Plus R28:
 
     ```shell
@@ -1499,23 +1386,6 @@ If a user other than **nginx** is to be used, note the following:
     ```shell
     sudo apk update
     sudo apk add app-protect
-    ```
-
-    Alternatively, to install a specific version, you should modify the repository URL in the `/etc/apk/repositories` file in the following way:
-
-    ```shell
-    https://pkgs.nginx.com/plus/Rxx/alpine/v3.17/main
-    https://pkgs.nginx.com/app-protect/Rxx/alpine/v3.17/main
-    ```
-    
-    where `xx` is a release number.
-
-    For example, to install NGINX App Protect WAF for NGINX Plus R30, make sure of the following:
-
-    ```shell
-    cat /etc/apk/repositories
-    https://pkgs.nginx.com/plus/R30/alpine/v3.17/main
-    https://pkgs.nginx.com/app-protect/R30/alpine/v3.17/main
     ```
 
     Install the most recent version of NGINX App Protect WAF for NGINX Plus R30:
