@@ -30,13 +30,11 @@ gRPC has emerged as an alternative approach to building distributed applications
 
 Send a POST request to publish the gRPC API proxy.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
 {{<bootstrap-table "table">}}
 | Method   | Endpoint                                                |
 |----------|---------------------------------------------------------|
 | `POST`   | `/services/workspaces/<SERVICE_WORKSPACE_NAME>/proxies` |
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
 
 ```json
 {
