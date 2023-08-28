@@ -338,68 +338,68 @@ From a command line terminal:
 
 1. Create a virtual environment and install the required packages:
 
-```shell
-virtualenv echo-servers
-source echo-servers/bin/activate
-pip install grpcio protobuf grpcio-tools
-```
+   ```shell
+   virtualenv echo-servers
+   source echo-servers/bin/activate
+   pip install grpcio protobuf grpcio-tools
+   ```
 2. Create a file called `helloworld.proto` and paste the following content:
-
-```shell
-syntax = "proto3";
-
-package helloworld;
-
-service Greeter {
-    rpc SayHello (HelloRequest) returns (HelloReply) {}
-    rpc SayGoodbye (GoodbyeRequest) returns (GoodbyeReply) {}
-}
-
-message HelloRequest {
-    string name = 1;
-}
-
-message HelloReply {
-    string message = 1;
-}
-
-message GoodbyeRequest {
-    string name = 1;
-}
-
-message GoodbyeReply {
-    string message = 1;
-}
-```
+   
+   ```shell
+   syntax = "proto3";
+   
+   package helloworld;
+   
+   service Greeter {
+       rpc SayHello (HelloRequest) returns (HelloReply) {}
+       rpc SayGoodbye (GoodbyeRequest) returns (GoodbyeReply) {}
+   }
+   
+   message HelloRequest {
+       string name = 1;
+   }
+   
+   message HelloReply {
+       string message = 1;
+   }
+   
+   message GoodbyeRequest {
+       string name = 1;
+   }
+   
+   message GoodbyeReply {
+       string message = 1;
+   }
+   ```
 
 6. Run the following command to generate the python code: `python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. helloworld.proto`
 7. Create `server.py` Add the following to the file:
 
-```shell
-import grpc
-import helloworld_pb2
-import helloworld_pb2_grpc
-from concurrent import futures
-
-class GreeterServicer(helloworld_pb2_grpc.GreeterServicer):
-    def SayHello(self, request, context):
-        response = helloworld_pb2.HelloReply(message='Hello, ' + request.name)
-        return response
-        
-    def SayGoodbye(self, request, context):
-        response = helloworld_pb2.GoodbyeReply(message='Goodbye, ' + request.name)
-        return response
-
-def serve():
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    helloworld_pb2_grpc.add_GreeterServicer_to_server(GreeterServicer(), server)
-    server.add_insecure_port('[::]:50051')
-    server.start()
-    server.wait_for_termination()
-
-if __name__ == '__main__':
-    serve()
-```
+   ```shell
+   import grpc
+   import helloworld_pb2
+   import helloworld_pb2_grpc
+   from concurrent import futures
+   
+   class GreeterServicer(helloworld_pb2_grpc.GreeterServicer):
+       def SayHello(self, request, context):
+           response = helloworld_pb2.HelloReply(message='Hello, ' + request.name)
+           return response
+           
+       def SayGoodbye(self, request, context):
+           response = helloworld_pb2.GoodbyeReply(message='Goodbye, ' + request.name)
+           return response
+   
+   def serve():
+       server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+       helloworld_pb2_grpc.add_GreeterServicer_to_server(GreeterServicer(), server)
+       server.add_insecure_port('[::]:50051')
+       server.start()
+       server.wait_for_termination()
+   
+   if __name__ == '__main__':
+       serve()
+   ```
 
 10.  Run `python server.py`.
 11. Confirm that the server is running by running `netstat -tulpn | grep 50051`.
