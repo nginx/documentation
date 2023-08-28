@@ -316,7 +316,7 @@ You can also set [DNS](https://en.wikipedia.org/wiki/Domain_Name_System) resolve
 
 This section ensures you can set policies at the individual API level.
 
-Check the [Manage Policies]({{< relref "/nms/acm/how-to/policies/manage-policies.md" >}}) documentation for more information.
+See the [Manage Policies]({{< relref "/nms/acm/how-to/policies/manage-policies.md" >}}) documentation for more information.
 
 ## Update a Published API Proxy
 
