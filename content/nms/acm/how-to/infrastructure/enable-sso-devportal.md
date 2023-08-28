@@ -17,7 +17,7 @@ aliases:
 - /acm/how-to/setup-oidc-devportal/
 
 ---
-
+{{< raw-html >}}
 <style>
     h2 {
         margin-top: 30px;
@@ -34,6 +34,7 @@ aliases:
     }
 
 </style>
+{{< /raw-html >}}
 
 {{< shortversions "1.1.0" "latest" "acmvers" >}}
 

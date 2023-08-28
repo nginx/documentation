@@ -1,4 +1,4 @@
 ---
 title: Install the Developer Portal
-weight: 10
+weight: 100
 ---

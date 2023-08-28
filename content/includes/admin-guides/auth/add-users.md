@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1024"
+docs: DOCS-1024
 ---
 
 {{< note >}} Please note that the web interface does not support adding user passwords directly. Once you've created new users, refer to the following steps to [set user passwords](#set-basic-passwords).{{< /note >}}

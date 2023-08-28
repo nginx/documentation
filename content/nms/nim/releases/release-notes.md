@@ -52,7 +52,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Configure analytics data retention with the nms.conf file**
 
-  You can set the data retention policy for analytics data, which includes metrics, events, and security events, in the `nms.conf` file. By default, metrics and security events are stored for 30 days, while events are stored for 120 days. To keep data for a longer period, update the retention durations in the `nms.conf` file.
+  You can set the data retention policy for analytics data, which includes metrics, events, and security events, in the `nms.conf` file. By default, metrics and security events are stored for 32 days, while events are stored for 120 days. To keep data for a longer period, update the retention durations in the `nms.conf` file.
 
 - {{% icon-feature %}} **RBAC for security policies**
 

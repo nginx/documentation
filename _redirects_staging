@@ -54,7 +54,6 @@
 /nms/installation/vm-bare-metal/ /nginx-management-suite/installation/vm-bare-metal/ 301
 /nginx-management-suite/overview/ /nginx-management-suite/about/ 301
 /nginx-management-suite/admin-guides/installation/ /nginx-management-suite/installation/ 301
-/nginx-management-suite/adm/tutorials/usecase-templates/ /nginx-management-suite/adm/about/template-overview/ 301
 /nginx-management-suite/admin-guides/access-control/set-up-rbac/ /nginx-management-suite/nms/admin-guides/rbac/rbac-getting-started/ 301
 /nginx-management-suite/admin-guides/access-control/configure-authentication/ /nginx-management-suite/admin-guides/authentication/basic-authentication/ 301
 /nginx-management-suite/admin-guides/access-control/oidc-azure/ /nginx-management-suite/admin-guides/authentication/oidc/oidc-azure/ 301
@@ -63,6 +62,7 @@
 /nginx-management-suite/admin-guides/access-control/scim-provisioning/ /nginx-management-suite/admin-guides/authentication/oidc/scim-provisioning/ 301
 /nginx-management-suite/admin-guides/access-control/set-up-rbac/ /nginx-management-suite/admin-guides/rbac/rbac-getting-started/ 301
 /nginx-management-suite/nim/how-to/nginx/manage-resource-groups/ /nginx-management-suite/admin-guides/rbac/manage-resource-groups/ 301
+/nginx-management-suite/adm/tutorials/usecase-templates/ /nginx-management-suite/adm/about/template-overview/ 301
 
 # NGINX Plus redirects
 /install-community-modules /nginx/admin-guide/installing-nginx/installing-nginx-plus/#installing-nginx-community-modules 301
