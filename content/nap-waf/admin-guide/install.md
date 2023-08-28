@@ -793,7 +793,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo apt-get install app-protect
     ```
 
-    Then, use the following commands to update and list available versions:
+    Alternatively, to install a specific version, use the following commands to update and list available versions:
 
     ```shell
     sudo apt-get update
@@ -927,7 +927,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo apt-get install app-protect
     ```
 
-    Then, use the following commands to update and list available versions:
+    Alternatively, to install a specific version, use the following commands to update and list available versions:
 
     ```shell
     sudo apt-get update
@@ -1053,7 +1053,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo apt-get install app-protect
     ```
 
-    Then, use the following commands to update and list available versions:
+    Alternatively, to install a specific version, use the following commands to update and list available versions:
 
     ```shell
     sudo apt-get update
@@ -1174,7 +1174,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo apt-get install app-protect
     ```
 
-    Then, use the following commands to update and list available versions:
+    Alternatively, to install a specific version, use the following commands to update and list available versions:
 
     ```shell
     sudo apt-get update
@@ -1284,7 +1284,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo apk add app-protect
     ```
 
-    Install the most recent version of NGINX App Protect WAF for NGINX Plus R28:
+    Alternatively, use the following commands to install the most recent version of NGINX App Protect WAF for NGINX Plus R28:
 
     ```shell
     sudo apk update
@@ -1388,7 +1388,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo apk add app-protect
     ```
 
-    Install the most recent version of NGINX App Protect WAF for NGINX Plus R30:
+    Alternatively, use the following commands to install the most recent version of NGINX App Protect WAF for NGINX Plus R30 :
 
     ```shell
     sudo apk update
