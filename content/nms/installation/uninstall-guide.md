@@ -120,7 +120,7 @@ To uninstall NGINX Management suite and all of its modules, complete the followi
 1. To uninstall App Delivery Manager, run the following command:
 
    ```bash
-   yum remove nms-adm
+   yum remove nms-app-delivery-manager
    ```
 
 {{%/tab%}}
@@ -129,7 +129,7 @@ To uninstall NGINX Management suite and all of its modules, complete the followi
 1. To uninstall App Delivery Manager, run the following command:
 
    ```bash
-   sudo apt-get remove nms-adm
+   sudo apt-get remove nms-app-delivery-manager
    ```
 
    > **Note:** The `apt-get remove <package>` command will remove the package from your system, while keeping the associated configuration files for possible future use. If you want to completely remove the package and all of its configuration files, you should use `apt-get purge <package>`.
