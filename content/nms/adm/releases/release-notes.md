@@ -26,9 +26,9 @@ This release includes the following updates:
 
   We've made it easier to get started configuring role permissions by adding two predefined roles, App Delivery Manager Admin and App Delivery Manager Guest, when App Delivery Manager is installed. These roles can be modified to meet your needs.
   
-- {{% icon-feature %}} **New feature for users to bring their own WAF policy**<a name="4-0-0-EA3-whats-new-New-feature-for-users-to-bring-their-own-WAF-policy"></a>
+- {{% icon-feature %}} **Use of custom WAF policies is now available**<a name="4-0-0-EA3-whats-new-Use-of-custom-WAF-policies-is-now-available"></a>
 
-  This new feature allows you to set the appropriate controls for your apps by supporting BYO WAF policy, so that you can use your existing declarative JSON policies. To learn more see the [WAF Configuration Management]({{< relref "/nms/nim/getting-started/waf-config-management.md" >}}) documentation.
+  We have enabled the use of custom WAF policies to set the appropriate controls for your apps. This feature will let you use your existing declarative JSON policies. To learn more, see the [WAF Configuration Management]({{< relref "/nms/nim/getting-started/waf-config-management.md" >}}) documentation.
   
 - {{% icon-feature %}} **Added correlation ID to logs to simplify troubleshooting**<a name="4-0-0-EA3-whats-new-Added-correlation-ID-to-logs-to-simplify-troubleshooting"></a>
 
