@@ -136,9 +136,9 @@ Send a POST request to publish the gRPC proxy.
 {{%tab name="UI"%}}
 
 To configure the proxy to route by service:
-1. Open the proxy and click the `Ingress` button.
-2. Input the `helloWorld.Greeter` into the `Service Name` field
-3. Click the `Save and Publish` button
+1. Open the proxy and select **Ingress**.
+1. Type "helloWorld.Greeter" in the **Service Name** field.
+1. Select **Save and Publish**.
 
 {{%/tab%}}
 {{</tabs>}}
