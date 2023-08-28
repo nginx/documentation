@@ -343,7 +343,7 @@ virtualenv echo-servers
 source echo-servers/bin/activate
 pip install grpcio protobuf grpcio-tools
 ```
-2. Create a file called `helloworld.proto` and add the following:
+2. Create a file called `helloworld.proto` and paste the following content:
 
 ```shell
 syntax = "proto3";
