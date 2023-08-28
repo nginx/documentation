@@ -291,7 +291,7 @@ Send a POST request to publish the gRPC proxy.
 {{%/tab%}}
 {{%tab name="UI"%}}
 
-If you have multiple backend servers and wish to route to a specific backend server you can use labels.
+If you have multiple backend servers and want to route to a specific backend server, you can use labels.
 
 1. Open the proxy and click the `Backend` button.
 2. Input a `Service Name` and `Service Version`
