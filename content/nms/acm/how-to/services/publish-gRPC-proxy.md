@@ -306,7 +306,7 @@ If you have multiple backend servers and want to route to a specific backend ser
 
 ## Backends
 
-Backends tell your API where to resolve the queries to, for example your backend server.
+Backends specify where your API should send queries, such as to your backend server.
 
 You can add, edit, or delete Backends.
 
