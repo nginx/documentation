@@ -8,7 +8,7 @@ draft: false
 # The description text appears in search results and at the top of the doc.
 description: "This topic explains what SCIM support is available for automating the management of user identity lifecycles."
 # Assign weights in increments of 100
-weight: 999
+weight: 500
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
@@ -25,10 +25,13 @@ authors: ["Patrick Phrem"]
 
 ---
 
+{{< custom-styles >}}
+
 <style>
-h2 {padding-top: 40px;}
-h3 {font-size: 1.75em; padding-top: 20px;}
-h4 {font-weight: bold; padding-top: 20px;}
+h2 {
+  border-top: 1px solid #ccc;
+  padding-top:20px;
+}
 </style>
 
 {{< shortversions "2.3.0" "latest" "nimvers" >}}
@@ -44,7 +47,7 @@ Instance Manager enforces RBAC for the SCIM APIs through the `USER-MANAGEMENT` f
 {{< see-also >}}
 A **feature** is a grouping of functionality in Instance Manager. A **role** definition is a collection of permissions for one or more features.
 
-For more information about features and roles, see the [Set Up RBAC]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}) topic.
+For more information about features and roles, see the [Set Up RBAC]({{< relref "/nms/admin-guides/rbac/rbac-getting-started.md" >}}) topic.
 {{< /see-also >}}
 
 ### SCIM Endpoints
@@ -84,14 +87,16 @@ To create a user, send a **POST** request similar to the following example to th
 
 ```json
 {
- "schemas":["urn:ietf:params:scim:schemas:core:2.0:User"],
- "externalId": "idpuser@mydomain.ctrl",
- "userName":"idpuser@mydomain.ctrl",
- "name":{
- "formatted":"Example IDP User",
- "familyName":"Example",
- "givenName":"SSO"
- }
+  "schemas": [
+    "urn:ietf:params:scim:schemas:core:2.0:User"
+  ],
+  "externalId": "idpuser@mydomain.ctrl",
+  "userName": "idpuser@mydomain.ctrl",
+  "name": {
+    "formatted": "Example IDP User",
+    "familyName": "Example",
+    "givenName": "SSO"
+  }
 }
 ```
 
@@ -99,27 +104,27 @@ To create a user, send a **POST** request similar to the following example to th
 
 ```json
 {
- "emails": [
- {
- "value": "idpuser@mydomain.ctrl"
- }
- ],
- "externalId": "idpuser@mydomain.ctrl",
- "id": "dc898740-4e9c-41a4-912c-1f3a20edf66e",
- "meta": {
- "created": "2022-06-17T21:03:37.138Z",
- "lastModified": "2022-06-17T21:03:37.138Z",
- "location": "/api/scim/v2/Users/dc898740-4e9c-41a4-912c-1f3a20edf66e",
- "resourceType": "User"
- },
- "name": {
- "familyName": "Example",
- "givenName": "SSO"
- },
- "schemas": [
- "urn:ietf:params:scim:schemas:core:2.0:User"
- ],
- "userName": "idpuser@mydomain.ctrl"
+  "emails": [
+    {
+      "value": "idpuser@mydomain.ctrl"
+    }
+  ],
+  "externalId": "idpuser@mydomain.ctrl",
+  "id": "dc898740-4e9c-41a4-912c-1f3a20edf66e",
+  "meta": {
+    "created": "2022-06-17T21:03:37.138Z",
+    "lastModified": "2022-06-17T21:03:37.138Z",
+    "location": "/api/scim/v2/Users/dc898740-4e9c-41a4-912c-1f3a20edf66e",
+    "resourceType": "User"
+  },
+  "name": {
+    "familyName": "Example",
+    "givenName": "SSO"
+  },
+  "schemas": [
+    "urn:ietf:params:scim:schemas:core:2.0:User"
+  ],
+  "userName": "idpuser@mydomain.ctrl"
 }
 ```
 
@@ -135,15 +140,17 @@ In this request, `User` is assigned as a member.
 
 ```json
 {
- "schemas":["urn:ietf:params:scim:schemas:core:2.0:Group"],
- "displayName":"Example Group",
- "externalId":"7fcb12f4-af71-4f7d-a987-6c1a91cb838a",
- "members":[
- {
- "type": "User",
- "value": "dc898740-4e9c-41a4-912c-1f3a20edf66e"
- }
- ]
+  "schemas": [
+    "urn:ietf:params:scim:schemas:core:2.0:Group"
+  ],
+  "displayName": "Example Group",
+  "externalId": "7fcb12f4-af71-4f7d-a987-6c1a91cb838a",
+  "members": [
+    {
+      "type": "User",
+      "value": "dc898740-4e9c-41a4-912c-1f3a20edf66e"
+    }
+  ]
 }
 ```
 
@@ -151,28 +158,28 @@ In this request, `User` is assigned as a member.
 
 ```json
 {
- "displayName": "Example Group",
- "externalId": "7fcb12f4-af71-4f7d-a987-6c1a91cb838a",
- "id": "e023964d-8a63-44f8-aa85-51ffa6aaa8f1",
- "members": [
- {
- "type": "User",
- "value": "dc898740-4e9c-41a4-912c-1f3a20edf66e"
- }
- ],
- "meta": {
- "created": "2022-06-17T21:06:46.774Z",
- "lastModified": "2022-06-17T21:06:46.774Z",
- "location": "/api/scim/v2/Groups/e023964d-8a63-44f8-aa85-51ffa6aaa8f1",
- "resourceType": "Group"
- },
- "schemas": [
- "urn:ietf:params:scim:schemas:core:2.0:Group"
- ]
+  "displayName": "Example Group",
+  "externalId": "7fcb12f4-af71-4f7d-a987-6c1a91cb838a",
+  "id": "e023964d-8a63-44f8-aa85-51ffa6aaa8f1",
+  "members": [
+    {
+      "type": "User",
+      "value": "dc898740-4e9c-41a4-912c-1f3a20edf66e"
+    }
+  ],
+  "meta": {
+    "created": "2022-06-17T21:06:46.774Z",
+    "lastModified": "2022-06-17T21:06:46.774Z",
+    "location": "/api/scim/v2/Groups/e023964d-8a63-44f8-aa85-51ffa6aaa8f1",
+    "resourceType": "Group"
+  },
+  "schemas": [
+    "urn:ietf:params:scim:schemas:core:2.0:Group"
+  ]
 }
 ```
 
-{{< important >}}After creating a group with SCIM, you need to [assign roles to the group]({{< relref "/nms/admin-guides/access-control/set-up-rbac#create-group" >}}) in Instance Manager so the group has permissions associated with it.{{< /important >}}
+{{< important >}}After creating a group with SCIM, you need to [assign roles to the group]({{< relref "/nms/admin-guides/rbac/rbac-getting-started#create-group" >}}) in Instance Manager so the group has permissions associated with it.{{< /important >}}
 
 ## Update Users Created with SCIM
 

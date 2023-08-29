@@ -1,7 +1,7 @@
 ---
-title: "Set up OIDC for use with automation and Azure AD"
-description: "This guide explains how to configure OpenID Connect (OIDC) to use with automation services and Azure Active Directory as the identity provider."
-weight: 410
+title: "Set up OIDC for automated services using Azure Active Directory"
+description: "Learn how to configure OpenID Connect (OIDC) for automation services, using Azure Active Directory as the identity provider."
+weight: 300
 toc: true
 tags: [ "docs" ]
 # Taxonomies
@@ -16,6 +16,16 @@ aliases:
 - /nginx-instance-manager/admin-guide/oidc-azure-automation/
 ---
 
+{{< custom-styles >}}
+
+<style>
+h2 {
+  border-top: 1px solid #ccc;
+  padding-top:20px;
+}
+</style>
+
+
 {{< shortversions "2.9.0" "latest" "nimvers" >}}
 
 ## Overview
@@ -24,7 +34,7 @@ Complete the steps in this guide to secure Instance Manager with OpenID Connect 
 
 ## Before you begin
 
-First, secure Instance Manager with OpenID Connect (OIDC) using Azure Active Directory (AD) as the identity provider. To do so, complete the steps in the [Set up OIDC Authentication with Azure AD]({{< relref "/nms/admin-guides/access-control/oidc-azure.md" >}}) guide. After following the steps in that guide, you'll have a registered application (named "Instance Manager" in the guide's example) in Azure AD and a client ID and secret that you can use to configure automation. 
+First, secure Instance Manager with OpenID Connect (OIDC) using Azure Active Directory (AD) as the identity provider. To do so, complete the steps in the [Set up OIDC Authentication with Azure AD]({{< relref "/nms/admin-guides/authentication/oidc/oidc-azure.md" >}}) guide. After following the steps in that guide, you'll have a registered application (named "Instance Manager" in the guide's example) in Azure AD and a client ID and secret that you can use to configure automation. 
 
 ## Configure Azure
 
@@ -57,16 +67,17 @@ First, secure Instance Manager with OpenID Connect (OIDC) using Azure Active Dir
 
 1. On the left navigation menu, in the **Manage** section, select **App roles**.
 1. Select **Create app role**.
-1. Complete the new role form. You should use the details from an existing NGINX Management Suite user group, such as the one created in the [Create User Groups in Instance Manager]({{< relref "/nms/admin-guides/access-control/oidc-azure.md#create-user-groups-in-instance-manager" >}}) step. For example :
+1. Complete the new role form. You should use the details from an existing NGINX Management Suite user group, such as the one created in the [Create User Groups in Instance Manager]({{< relref "/nms/admin-guides/authentication/oidc/oidc-azure.md#create-user-groups-in-instance-manager" >}}) step. For example :
 
    - In the **Display name** box, type a name for the role. For example, "Admin".
    - In the **Allowed member types** section, select **Applications**.
-+   - In the **Value** box, type a value for the role. This needs to match the user-group in NGINX Management Suite. For example, the ID of the name group.
+   - In the **Value** box, type a value for the role. This needs to match the user-group in NGINX Management Suite. For example, the ID of the name group.
    - In the **Description** box, type a description for the role.
 
-1. Select **Save**.
+2. Select **Save**.
 
 ### Assign the App Role to the Application
+
 1. On the **App registrations** page, select the first application you created in the [Before you begin](#before-you-begin) section. (In the example, it was named "Instance Manager").
 1. On the left navigation menu, in the **Manage** section, select **API Permissions**.
 1. Select **Add a permission**.
@@ -79,7 +90,7 @@ First, secure Instance Manager with OpenID Connect (OIDC) using Azure Active Dir
 
 ## Configure NGINX OIDC to use Azure AD IdP
 
-Complete the steps in the [Set Up NGINX Plus to Interact with the Identity Provider]({{< relref "/nms/admin-guides/access-control/oidc-azure.md#set-up-nginx-plus-to-interact-with-the-identity-provider" >}}) topic. Please note that you might have already completed these steps as part of the [Before you begin](#before-you-begin) section of this guide.
+Complete the steps in the [Set Up NGINX Plus to Interact with the Identity Provider]({{< relref "/nms/admin-guides/authentication/oidc/oidc-azure.md#set-up-nginx-plus-to-interact-with-the-identity-provider" >}}) topic. Please note that you might have already completed these steps as part of the [Before you begin](#before-you-begin) section of this guide.
 
 Additionally, you will need to complete the following steps:
 

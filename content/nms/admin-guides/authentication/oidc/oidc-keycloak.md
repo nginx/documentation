@@ -1,8 +1,8 @@
 ---
-title: "Set up OIDC Authentication with Keycloak"
-description: "This guide explains how to configure OpenID Connect (OIDC) with Keycloak as the identity provider."
+title: "Set up Keycloak as an OIDC Identity Provider"
+description: "This guide provides step-by-step instructions on configuring Keycloak as an OpenID Connect (OIDC) identity provider (IdP) for NGINX Management Suite. By using OpenID authentication with NGINX Management Suite, you can implement role-based access control (RBAC) to limit user access to specific features available in NGINX Management Suite."
 # Assign weights in increments of 100
-weight: 450
+weight: 400
 toc: true
 tags: [ "docs" ]
 # Taxonomies
@@ -18,34 +18,40 @@ aliases:
 - /nginx-instance-manager/admin-guide/oidc-keycloak/
 ---
 
-{{< shortversions "2.1.0" "latest" "nimvers" >}}
+{{< custom-styles >}}
+
+<style>
+h2 {
+  border-top: 1px solid #ccc;
+  padding-top:20px;
+}
+</style>
 
 ## Overview
 
-Complete the steps in this guide to secure Instance Manager with OpenID Connect (OIDC) using the authorization code flow method and [Keycloak](https://www.keycloak.org) as the identity provider. As an administrator, when you integrate OpenID authentication with Instance Manager, you can use role-based access control (RBAC) to limit user access to NGINX instances.
+This guide explains how to configure Keycloak as an identity provider (IdP) for NGINX Management Suite. By implementing OIDC for authentication, administrators can simplify user management in NGINX Management Suite. Instead of creating and managing users individually, administrators can create user groups in NGINX Management Suite that align with groups in their Identity Provider. Access and permissions for users are determined by the roles assigned to their respective user groups. Users from the Identity Provider who are not part of a group with an assigned role will not have access to NGINX Management Suite.
 
----
+We strongly recommend Open ID Connect (OIDC) as the preferred authentication method for the NGINX Management Suite. OIDC brings several benefits, including Single Sign-On (SSO) and simplified user management through user groups.
 
-## Before You Begin
+## Requirements
 
-To complete the instructions in this guide, you'll need the following:
+To successfully follow the instructions in this guide, complete the following requirements for your Keycloak server and NGINX Management Suite host:
 
-- A running Keycloak server. See the Keycloak documentation for [Getting Started](https://www.keycloak.org/guides#getting-started) and [Server](https://www.keycloak.org/guides#server) configuration instructions. You will need to [create a Realm](https://www.keycloak.org/docs/latest/server_admin/#configuring-realms) with an OpenID Endpoint Configuration enabled.
-- [Install Instance Manager]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}) on [NGINX Plus R25 or later](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
-- Install the [NGINX JavaScript module](https://www.nginx.com/blog/introduction-nginscript/) (njs). This module is required for handling interactions between NGINX Plus and the identity provider.  
+### Keycloak Server
 
----
-## Create Roles and User Groups in Instance Manager {#create-roles-user-groups}
+- Set up a Keycloak server. See the Keycloak [Getting Started](https://www.keycloak.org/guides#getting-started) and [Server](https://www.keycloak.org/guides#server) documentation for configuration instructions. You will need to [create a Realm](https://www.keycloak.org/docs/latest/server_admin/#configuring-realms) with an OpenID Endpoint Configuration enabled.
 
-By default, Instance Manager includes a single role called `admin`. Depending on your requirements, you might need to create **additional roles** for the different User Groups, such as "user" and "nap-user".
+### NGINX Management Suite
 
-{{< include "admin-guides/access-control/create-role.md" >}}
+On the NGINX Management Suite host, take the following steps:
 
-Create user groups in Instance Manager, for example, "nms-admins", "nms-users", and "nms-nap-users".  These User Groups will be mapped from Keycloak Realm Roles by name. 
+- [Install NGINX Plus R25 or a later release]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). Make sure the server hosting NGINX Plus has a fully qualified domain name (FQDN).
+- [Install Instance Manager]({{< relref "/nms/installation/vm-bare-metal/install-nim.md" >}}).
+- [Install the NGINX JavaScript module (njs)](https://www.nginx.com/blog/introduction-nginscript/). This module is necessary for managing communications between NGINX Plus and the identity provider. 
 
-{{< include "admin-guides/access-control/create-group.md" >}}
+## Configure Keycloak {#configure-keycloak}
 
-## Set up Keycloak {#configure-keycloak}
+### Create Keycloak Client
 
 Follow these steps to configure Keycloak.
 
@@ -62,15 +68,19 @@ After the client has been created, add the following configuration:
 1. On the **Settings** tab, in the **Access Type** list, select **confidential**.
 1. On the **Mappers** tab, select **Add Builtin**, and select **groups**. This will export the user's Keycloak Realm Role information for NGINX Management Suite to use.
 
-NGINX Management Suite User Groups will be mapped from Keycloak **Realm Roles**; Keycloack Client Roles are **not** mapped. Make sure to use Keycloack top-level roles (Realm Roles).
+### Create Keycloak Roles
+
+NGINX Management Suite User Groups will be mapped from Keycloak **Realm Roles**; Keycloak Client Roles are **not** mapped. Make sure to use Keycloak top-level roles (Realm Roles).
 
 1. On the navigation menu, select **Realm Roles**  (or select **Roles** and then the **Realm Roles** tab if you are in an older version of Keycloak).
 1. Select **Create Role**.
-1. In the **Role Name** box, type the name of the first group you created in Instance Manager, for example "nms-admins".
+1. In the **Role Name** box, type the name of the first group you created in NGINX Management Suite, for example "nms-admins".
 1. Select **Save**.
 1. Repeat steps 1–3 until you've recreated all the groups you want to provide access to, for example "nms-users" and "nms-nap-users".
 
-Create the users that will be allowed to log in to Instance Manager.
+### Create Keycloak Users
+
+Create the users that will be allowed to log in to NGINX Management Suite.
 
 1. On the navigation bar, select **Users**. 
 1. Select **Add User**.
@@ -82,26 +92,48 @@ Create the users that will be allowed to log in to Instance Manager.
 1. On the **Role Mappings** tab, select the desired roles from the list, for example, "nms-admins", "nms-users", or "nms-nap-users".
 1. Select **Add selected**.
 
+## Configure NGINX Management Suite {#create-roles-user-groups}
 
----
+### Create Roles in NGINX Management Suite
 
-## Configure NGINX Management Suite to use Keycloak {#configure-nms}
+{{< include "admin-guides/rbac/create-roles.md" >}}
 
-- Copy the secret from Keycloak and set it as an environment variable on your NGINX Management Suite instance.
+### Create User Groups in NGINX Management Suite
 
-    On the Keycloak user interface:
+{{< include "admin-guides/auth/create-user-groups.md" >}}
 
-    1. Select the **Clients** tab, and then select the **nms** client.
-    1. On the **Credentials** tab, copy the **Secret** value.
+## Configure NGINX Management Suite to Use Keycloak {#configure-nms}
 
-    On your NGINX Management Suite instance, 
+To configure NGINX Management Suite to use Keycloak as the OIDC identity provider, take the following steps.
 
-    1. Set the following environment variable: `export KEYCLOAK_SECRET=<secret>`
-    1. Update the NGINX Management Suite OIDC configuration and with the appropriate values:
+### Set Keycloak Secret as an Environment Variable
+
+Set the Keycloak secret as an environment variable on the NGINX Management Suite host.
+
+{{< call-out "important" "Security consideration" >}}When setting a client secret as an environment variable, ensure that the environment where the variable is set has strict access controls. Only authorized users or processes should have access to view or modify the environment variables. You may want to take other precautions as well, such as encrypting the value and regularly rotating the client secret.{{</call-out>}}
+
+To copy the Keycloak secret:
+
+1. Open the Keycloak user interface.
+2. Select the **Clients** tab, and then select the **nms** client.
+3. On the **Credentials** tab, copy the **Secret** value.
+
+To set the Keycloak secret as an environment variable:
+
+1. Open an SSH connection to your NGINX Management Suite host and log in.
+2. Run the following command, replacing `<secret>` with the secret value you copied above: 
+   
+    ```bash
+    export KEYCLOAK_SECRET=<secret>
+    ```
+
+### Configure OIDC Settings
+
+In this section, we will show you how to update NGINX Management Suite OIDC configuration with the appropriate values.
 
 Connect to your NGINX Management Suite instance and run the following commands:
 
-- Export the environment varibles:
+- Export the environment variables:
 
     ```bash
     # Either the FQDN or the IP address is suitable for these environment variables.
@@ -157,7 +189,7 @@ Connect to your NGINX Management Suite instance and run the following commands:
     }
     ```
 
-- Copy the nms-http.conf file to `/tmp` so you can replace the necessary values.
+- Copy the `nms-http.conf` file to `/tmp` so you can replace the necessary values.
 
     ```bash
     sudo cp /etc/nginx/conf.d/nms-http.conf /tmp/nms-http.conf
@@ -213,8 +245,6 @@ Connect to your NGINX Management Suite instance and run the following commands:
 
     Also comment out all the sections starting with `# HTTP Basic authentication (comment if using OIDC auth)` or `# HTTP Basic authentication (disable if using OIDC)`.
 
-
-
 - Copy the modified configuration files back to their original locations.
 
     ```bash
@@ -225,7 +255,6 @@ Connect to your NGINX Management Suite instance and run the following commands:
 - Run `sudo nginx -t` to verify the config has no errors.
 
 - Reload NGINX running `sudo nginx -s reload`.
-
 
 ## Troubleshooting
 
@@ -240,6 +269,6 @@ sudo nginx -s reload
 
 ## Try It Out
 
-Open Instance Manager by going to `https://<your-nginx-instance-manager>/ui`.
+Open NGINX Management Suite by going to `https://<your-nginx-instance-manager>/ui`.
 
 You should be redirected to the Keycloak login page. Log in with the credentials you created in Keycloak.

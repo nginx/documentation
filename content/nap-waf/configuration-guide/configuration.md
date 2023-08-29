@@ -41,9 +41,9 @@ This guide explains the NGINX App Protect WAF security features and how to use t
 
 For more information on the NGINX App Protect WAF security features, see [NGINX App Protect WAF Terminology](#nginx-app-protect-waf-terminology).
 
-{{% important %}} 
+{{< important >}} 
 When configuring NGINX App Protect WAF, `app_protect_enable` should always be enabled in a `proxy_pass` location. If configuration returns static content, the user must add a location which enables App Protect, and proxies the request via `proxy_pass` to the internal static content location. An example can be found in [Configure Static Location](#configure-static-location).
-{{% /important %}} 
+{{< /important >}} 
 
 ## Supported Security Policy Features
 

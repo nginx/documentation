@@ -45,17 +45,12 @@ The Instance Manager REST API allows you to manage Instance Manager objects and 
 
 Instance Manager supports authentication by using basic authentication or a JSON Web Token (JWT). You can get a JWT by logging in with an OpenID Connect (OIDC) Identity Provider. 
 
-For more information about the available authentication options for NGINX Management Suite, refer to [Set Up Authentication]({{< relref "/nms/admin-guides/access-control/configure-authentication.md" >}}).
+For more information about the available authentication options for NGINX Management Suite, refer to [Set Up Authentication]({{< relref "/nms/admin-guides/authentication/basic-authentication.md" >}}).
 
 ### Basic Authentication
 
-You can make API requests with basic auth by sending the base64-encoded credentials as a "Basic" token in the "Authorization" request header, as shown in the example below.
+{{< include "admin-guides/auth/basic-auth/basic-auth-api-requests.md" >}}
 
-```[bash]
-curl -X GET "https://<NMS_FQDN>/api/platform/<API_VERSION>/systems" -H "Authorization: Basic YWRtaW..."
-```
-
-{{< warning >}}Even when encoded, basic authentication is not secure. The use of basic auth is not recommended for production environments.{{< /warning >}} 
 
 ### JSON Web Token
 
