@@ -3,7 +3,7 @@
 /nginx-app-protect/* /nginx-app-protect-waf/:splat 301
 
 # NGINX Amplify redirects
-/nginx-amplify/install-manage/_index/ /nginx-amplify/install-manage-amp-agent/_index/ 301
+/nginx-amplify/install-manage/ /nginx-amplify/install-manage-amp-agent/ 301
 /nginx-amplify/install-manage/configuring-agent/ /nginx-amplify/install-manage-amp-agent/configuring-agent/ 301
 /nginx-amplify/install-manage/installing-agent/ /nginx-amplify/install-manage-amp-agent/installing-agent/ 301
 /nginx-amplify/install-manage/uninstalling-agent/ /nginx-amplify/install-manage-amp-agent/uninstalling-agent/ 301
