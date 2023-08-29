@@ -343,7 +343,7 @@ From a command line terminal:
    source echo-servers/bin/activate
    pip install grpcio protobuf grpcio-tools
    ```
-2. Create a file called `helloworld.proto` and paste the following content:
+1. Create a file called `helloworld.proto` and paste the following content:
    
    ```shell
    syntax = "proto3";
@@ -372,8 +372,8 @@ From a command line terminal:
    }
    ```
 
-6. Run the following command to generate the python code: `python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. helloworld.proto`
-7. Create `server.py` Add the following to the file:
+1. Run the following command to generate the python code: `python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. helloworld.proto`
+1. Create `server.py` Add the following to the file:
 
    ```shell
    import grpc
@@ -401,6 +401,6 @@ From a command line terminal:
        serve()
    ```
 
-10.  Run `python server.py`.
-11. Confirm that the server is running by running `netstat -tulpn | grep 50051`.
-12. For step-by-step instructions on setting up gRPC testing using Postman, please see [Testing gRPC APIs with Postman](https://blog.postman.com/testing-grpc-apis-with-postman/).  This guide will walk you through the process, making sure you can effectively test and validate your gRPC APIs using Postman.
+1. Run `python server.py`.
+1. Confirm that the server is running by running `netstat -tulpn | grep 50051`.
+1. For step-by-step instructions on setting up gRPC testing using Postman, please see [Testing gRPC APIs with Postman](https://blog.postman.com/testing-grpc-apis-with-postman/).  This guide will walk you through the process, making sure you can effectively test and validate your gRPC APIs using Postman.
