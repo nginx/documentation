@@ -56,11 +56,11 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **RBAC for security policies**
 
-  You can now use [Role-Based Access Control (RBAC)({{< relref "nms/admin-guides/rbac/rbac-getting-started.md" >}})] to allow or restrict the level of access to security policies according to your security governance model.
+  You can now use [Role-Based Access Control (RBAC)]({{< relref "nms/admin-guides/rbac/rbac-getting-started.md" >}}) to allow or restrict the level of access to security policies according to your security governance model.
 
 - {{% icon-feature %}} **RBAC for log profiles**
 
-  You can now use [Role-Based Access Control (RBAC)({{< relref "nms/admin-guides/rbac/rbac-getting-started.md" >}})] to allow or restrict access to log profiles according to your security governance model.
+  You can now use [Role-Based Access Control (RBAC)]({{< relref "nms/admin-guides/rbac/rbac-getting-started.md" >}}) to allow or restrict access to log profiles according to your security governance model.
 
 - {{% icon-feature %}} **Use NGINX Plus Health Checks to easily track NGINX Plus Usage with NGINX Instance Manager**
 
