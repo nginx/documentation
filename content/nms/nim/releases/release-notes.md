@@ -26,7 +26,7 @@ August 29, 2023
 
 Instance Manager 2.13.0 supports upgrades from these previous versions:
 
-- Xxx–Yyy /* NIM supports the three previous minor versions */
+- 2.10.0–2.12.0
 
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
@@ -56,11 +56,11 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **RBAC for security policies**
 
-  You can now use Role-Based Access Control (RBAC) to allow or restrict the level of access to security policies according to your security governance model.
+  You can now use [Role-Based Access Control (RBAC)({{< relref "nms/admin-guides/rbac/rbac-getting-started.md" >}})] to allow or restrict the level of access to security policies according to your security governance model.
 
 - {{% icon-feature %}} **RBAC for log profiles**
 
-  You can now use Role-Based Access Control (RBAC) to allow or restrict access to log profiles according to your security governance model.
+  You can now use [Role-Based Access Control (RBAC)({{< relref "nms/admin-guides/rbac/rbac-getting-started.md" >}})] to allow or restrict access to log profiles according to your security governance model.
 
 - {{% icon-feature %}} **Use NGINX Plus Health Checks to easily track NGINX Plus Usage with NGINX Instance Manager**
 
