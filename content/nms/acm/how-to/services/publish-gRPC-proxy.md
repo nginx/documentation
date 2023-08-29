@@ -79,7 +79,7 @@ Send a POST request to publish the gRPC API proxy.
 1. Enter an **API Proxy** name.
 1. Select a **Gateway Proxy Hostname** in the menu.
 1. Enter the **Service name** and **Version**; for this example, we use "helloworld" and "v1".
-1. Select the **Publish** button.
+1. Select **Publish**.
 
 You should now have a published gRPC API proxy with a Lifecycle Status of success.
 
