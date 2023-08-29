@@ -83,15 +83,15 @@ Except as specified below, dynamic modules are supported on the [same distributi
 - Amazon Linux 2023: Not supported
 - Alpine Linux: Not supported
 
-### [Brotli](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/brotli)
+### Brotli
 - SLES 12: Not supported
 
-### [GeoIP](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/geoip)
+### GeoIP
 - RHEL/Oracle Linux/AlmaLinux/Rocky Linux 8.0+, 9: Not supported
 - FreeBSD: Not supported
 - Amazon Linux 2023: Not supported
 
-### [GeoIP2](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/geoip2/)
+### GeoIP2
 - SLES 12: Not supported
 - Amazon Linux 2: Not supported
 
@@ -100,23 +100,23 @@ Except as specified below, dynamic modules are supported on the [same distributi
 - Alpine Linux: Not supported
 - Amazon Linux 2: Not supported
 
-### [Lua](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/lua/)
+### Lua
 - RHEL 8, RHEL9: s390x not supported
 - Ubuntu: s390x not supported
 
-### [NGINX ModSecurity WAF](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/nginx-waf/)
+### NGINX ModSecurity WAF
 - CentOS/RHEL 7.4+: x86_64 only
 
-### [NGINX sync]()
+### NGINX sync
 - FreeBSD: Not supported
 - Alpine Linux: Not supported
 
-### [OpenTelemetry](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/opentelemetry/)
+### OpenTelemetry
 - RHEL/Oracle Linux/AlmaLinux/Rocky Linux 7: Not supported
 - SLES 12, SLES 15: Not supported
 - Amazon Linux 2: Not supported
 
-### [OpenTracing](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/opentracing/)
+### OpenTracing
 - SLES 12: Not supported
 
 ## Supported SSL/TLS Versions
