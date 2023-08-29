@@ -71,7 +71,7 @@ Send a POST request to publish the gRPC API proxy.
 {{%tab name="UI"%}}
 
 1. Open a service workspace.
-1. Select the **Publish to proxy** button.
+1. Select **Publish to proxy**.
 1. Type a **Backend Service** name.
 1. Enter a **Service Target Hostname**.
 1. Select GRPC in the **Service Target Transport Protocol** menu.
