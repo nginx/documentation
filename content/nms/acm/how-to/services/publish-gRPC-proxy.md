@@ -330,7 +330,7 @@ For more information, refer to the [Manage Policies]({{< relref "/nms/acm/how-to
 1. On the sidebar, select **Services**. Then on the Services Workspaces page, select the name of the workspace containing the API proxy you want to delete.
 2. Select **Delete Proxy** from the **Actions** menu of the Proxy you want to delete.
 
-## Setup gRPC Echo Server (Optional) {#setup-grpc-echo-server-optional}
+## Set Up gRPC Echo Server (Optional) {#setup-grpc-echo-server-optional}
 
 This section details how to setup a gRPC echo server which can be used to confirm that the gRPC API is working as expected.
 
