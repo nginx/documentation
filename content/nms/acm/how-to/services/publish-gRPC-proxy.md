@@ -332,7 +332,7 @@ For more information, refer to the [Manage Policies]({{< relref "/nms/acm/how-to
 
 ## Set Up gRPC Echo Server (Optional) {#setup-grpc-echo-server-optional}
 
-This section details how to setup a gRPC echo server which can be used to confirm that the gRPC API is working as expected.
+This section explains how to set up a gRPC echo server to verify that the gRPC API works as expected.
 
 From a command line terminal:
 
