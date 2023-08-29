@@ -69,15 +69,17 @@ Afterward, the API consumer can create credentials on the Developer Portal by pe
 
 ### Enable Create Credentials Endpoint
 
-For security reasons, the Credentials endpoint is disabled by default. To use the Developer Portal credentials workflow, you must enable the Credentials endpoint on the API Connectivity Manager host.
+As mTLS is not enabled by default, the Credentials endpoint is disabled initially. You must enable the Credentials endpoint on the API Connectivity Manager host to use the Developer Portal credentials workflow.
 
-{{<important>}}We recommend using mTLS to secure communication between API Connectivity Manager and the Developer Portal.{{</important>}}
+{{<important>}}mTLS is essential to secure communication between API Connectivity Manager and the Developer Portal.{{</important>}}
 
 To enable the Credentials endpoint on the API Connectivity Manager host, take the following steps:
 
+1. Make sure mTLS server and client certificates have been configured for Devportal to NGINX Management Suite by following these [instructions]({{< relref "/nms/acm/how-to/devportals/installation/install-dev-portal.md#secure-communication-from-the-developer-portal-to-nginx-management-suite-host-with-mtls" >}}) to add your server certs, CA file and enforce mTLS.
+
 1. Open an SSH connection into the API Connectivity Manager host and log in.
 
-2. Enable the Credentials endpoint:
+1. Enable the Credentials endpoint:
 
    Open `/etc/nms/nginx/locations/nms-acm.conf` for editing and uncomment the location block.
 
@@ -91,26 +93,16 @@ To enable the Credentials endpoint on the API Connectivity Manager host, take th
             #auth_jwt off;
             auth_basic off;
             error_page 401 /401_certs.json;
-            # if ($ssl_client_verify != SUCCESS) {
-            #   return 401;
-            # }
+            if ($ssl_client_verify != SUCCESS) {
+              return 401;
+            }
             proxy_pass http://acm-api-service/api/acm/v1/devportal/credentials;
     }
     ```
-
-    {{<note>}}If you've secured the communication between API Connectivity Manager and the Developer Portal using mTLS, you can uncomment these lines as well:
-
-  ``` yaml
-    if ($ssl_client_verify != SUCCESS) {
-      return 401;
-    }
-  ```
-
-    {{</note>}}
   
-3. Save the changes.
+1. Save the changes.
   
-4. Reload NGINX on the API Connectivity Manager host:
+1. Reload NGINX on the API Connectivity Manager host:
 
     ```bash
     sudo nginx -s reload

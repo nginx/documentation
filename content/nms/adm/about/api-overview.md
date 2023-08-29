@@ -71,7 +71,7 @@ For more information on the NGINX contexts affected by the components, see the f
 
 The gateway container controls the initial network entry point of the app traffic into the NGINX system (the ingress traffic as opposed to the component, which deals with the egress traffic). The gateway also specifies the NGINX instances that will participate in the routing of traffic using [instance groups]({{< relref "/nms/nim/how-to/nginx/manage-instance-groups.md" >}}). Each gateway can have one or more instance groups.
 
-Additionally, for web components, the gateway is used for setting up the hostname and connections that will be used by the NGINX instances and the TLS certificates that should be used (the TCPUDP component object handles these directly for the stream protocols).
+Additionally, for web components, the gateway is used for setting up the hostname and connections that will be used by the NGINX instances and the TLS certificates that should be used (the TCP/UDP component object handles these directly for the stream protocols).
 
 ### Sites
 

@@ -1,11 +1,11 @@
 ---
-title: Web Interface JSON schema support 
-description: Overview of what parts of JSON schema are supported by the NGIXN Management Suite App Delivery Manager web interface.
+title: "Web Interface JSON Schema Support "
+description: "Overview of what parts of JSON schema are supported by the NGINX Management Suite App Delivery Manager web interface."
 weight: 500
 toc: true
 draft: false
 tags: ["docs"]
-docs: "DOCS-000"
+docs: "DOCS-1258"
 ---
 
 {{< custom-styles>}}
@@ -15,16 +15,18 @@ docs: "DOCS-000"
 The web interface has limited support for [JSON schema](https://json-schema.org/understanding-json-schema/reference/). This document describes what is supported. The web interface will not render properly if JSON schema features outside this document are used. 
 
 - `type`
-    - [Boolean](#boolean-field)
-    - [String](#string-field)
-    - [Numeric](#numeric-field)
-    - [Object](#object-field)
-    - [Array](#array-field)
+  - [Boolean](#boolean-field)
+  - [String](#string-field)
+  - [Numeric](#numeric-field)
+  - [Object](#object-field)
+  - [Array](#array-field)
 - `title`
 - `description`
 
 ## Boolean field support
+
 Example:
+
 ```javascript
 {
   "boolField1": {
@@ -32,12 +34,13 @@ Example:
   }
 }
 ```
-Exception:
-`required` boolean fields are not supported.
+
+Exception: `required` boolean fields are not supported.
 
 Reference: [boolean](https://json-schema.org/understanding-json-schema/reference/boolean.html)
 
 ## String field
+
 Supported features:
 - `pattern` 
 - `minLength`
@@ -46,6 +49,7 @@ Supported features:
 - `enum`
 
 Example:
+
 ```javascript
 // Regular string field
 {
@@ -81,7 +85,9 @@ Example:
 Reference: [string](https://json-schema.org/understanding-json-schema/reference/string.html)
 
 ### Numeric field
+
 Supported types:
+
 - `integer` (integral numbers) 
 - `number` (float).
 
@@ -127,14 +133,17 @@ Example:
   }
 }
 ```
+
 Reference: [numeric](https://json-schema.org/understanding-json-schema/reference/numeric.html).
 
 ### Object field
+
 Supported features:
 - `properties`
 - `required`
 
 Example:
+
 ```javascript
 {
   "server": {
@@ -152,7 +161,9 @@ Example:
 Reference: [object](https://json-schema.org/understanding-json-schema/reference/object.html).
 
 ### Array field
+
 Supported features:
+
 - `minItems` – minimum number of items in array
 - `maxItems` – maximum number of items in array
 - `uniqueItems` – if array should cosist of unique items or not
