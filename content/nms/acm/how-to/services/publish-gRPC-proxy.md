@@ -403,4 +403,4 @@ From a command line terminal:
 
 1. Run `python server.py`.
 1. To confirm the server is running, run the command `netstat -tulpn | grep 50051`.
-1. For step-by-step instructions on setting up gRPC testing using Postman, please see [Testing gRPC APIs with Postman](https://blog.postman.com/testing-grpc-apis-with-postman/).  This guide will walk you through the process, making sure you can effectively test and validate your gRPC APIs using Postman.
+1. For step-by-step instructions on how to set up gRPC testing using Postman, refer to [Testing gRPC APIs with Postman](https://blog.postman.com/testing-grpc-apis-with-postman/).  This guide will help you test and validate your gRPC APIs effectively using Postman.
