@@ -343,7 +343,7 @@ From a command line terminal:
    source echo-servers/bin/activate
    pip install grpcio protobuf grpcio-tools
    ```
-1. Create a file called `helloworld.proto` and paste the following content:
+1. Create a file named `helloworld.proto` and add the following content:
    
    ```shell
    syntax = "proto3";
