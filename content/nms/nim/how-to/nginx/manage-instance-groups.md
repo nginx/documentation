@@ -219,7 +219,7 @@ If the instance group you deleted was specified in the `agent-dynamic.conf` file
 
 ## Permission for Instance Groups
 
-See [Set Up RBAC]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}), for detail information on setting up role-based access control (RBAC) for Instance Groups.
+See [Set Up RBAC]({{< relref "/nms/admin-guides/rbac/rbac-getting-started.md" >}}), for detail information on setting up role-based access control (RBAC) for Instance Groups.
 
 {{<note>}}
 Members of Instance Group automatically inherit role-based access control (RBAC) permissions from their parent.  

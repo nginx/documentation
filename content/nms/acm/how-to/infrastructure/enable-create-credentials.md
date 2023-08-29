@@ -14,6 +14,7 @@ doctypes: ["task"]
 docs: "DOCS-947"
 ---
 
+{{< raw-html >}}
 <style>
     h2 {
         margin-top: 30px;
@@ -34,7 +35,7 @@ docs: "DOCS-947"
         margin-bottom: 20px;
     }
 </style>
-
+{{< /raw-html >}}
 ## Overview
 
 API Connectivity manager supports public API workflows. Public APIs are open for anyone to consume by requesting resource credentials. Resource credentials can be managed on the Developer Portal for public APIs secured with APIKey or Basic Authentication. Consumers have to log in to the Developer Portal to create credentials. Once created, credentials can be used to access APIs. Users can also use the credentials to test APIs on the Developer Portal with the **Try It Out** feature.

@@ -45,9 +45,9 @@ Complete the following prerequisites before proceeding with this guide:
 - Your user account needs to be able to access the User Management settings in NGINX Management Suite. 
   The minimum required role permissions are:
 
-    - **Module**: Settings 
-    - **Feature**: User Management
-    - **Access**: `READ`, `CREATE`, `UPDATE`
+  - **Module**: Settings 
+  - **Feature**: User Management
+  - **Access**: `READ`, `CREATE`, `UPDATE`
 
 - Review the table below to determine the minimum permissions needed for your use case.
 
@@ -61,20 +61,16 @@ Complete the following prerequisites before proceeding with this guide:
 
 ## Create a Role
 
-{{< include "admin-guides/access-control/nms-sm-rbac.md" >}}
+{{< include "admin-guides/rbac/create-roles.md" >}}
 
-## Assign the Role to Users
+## Assign the Role
 
 After you've created a role for Security Monitoring, assign the role to one or more users or to a user group.
 
-{{< include "admin-guides/access-control/assign-roles.md" >}}
+### Assign the Role to Users
 
-To assign the role to a user group, take the following steps:
+{{< include "admin-guides/rbac/assign-roles-to-users.md" >}}
 
-1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in.
-2. Select the **Settings** (gear) icon in the upper-right corner.
-3. Select **User Groups**.
-4. Select the user group from the list, or select **Create** to [add a new user group]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md#create-group" >}}).
-5. Select the **Edit** icon.
-6. In the **Roles** list, select the role(s) that you want to assign to the group.
-7. Select **Save** to update the user group.
+### Assign the Role to User Groups
+
+{{< include "admin-guides/rbac/assign-roles-to-user-groups.md" >}}
