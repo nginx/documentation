@@ -21,9 +21,10 @@ docs: "DOCS-997"
 ## Overview
 
 gRPC has emerged as an alternative approach to building distributed applications, particularly microservice applications. API Connectivity Manager supports publishing gRPC services. 
+The following document describes how to publish a gRPC API proxy using the API Connectivity Manager API or UI. Additionally, this guide outlines the process of setting up a gRPC Echo Server to validate the functionality of the published proxy.
 
 
-### Publish a gRPC API Proxy with Package-level Routing
+## Publish a gRPC API Proxy with Package-level Routing
 
 {{<tabs name="grpc_policy_package">}}
 {{%tab name="API"%}}
@@ -86,7 +87,7 @@ You should now have a published gRPC API proxy with a Lifecycle Status of succes
 {{%/tab%}}
 {{</tabs>}}
 
-### Publish a gRPC API Proxy with Service-Level Routing
+## Publish a gRPC API Proxy with Service-Level Routing
 
 {{<tabs name="grpc_policy_service">}}
 {{%tab name="API"%}}
@@ -144,7 +145,7 @@ To configure the proxy to route by service:
 {{</tabs>}}
 
 
-### Publish a gRPC API Proxy with Advanced Routes with a gRPC Method
+## Publish a gRPC API Proxy with Advanced Routes with a gRPC Method
 
 {{<tabs name="grpc_policy_routes">}}
 {{%tab name="API"%}}
@@ -214,7 +215,7 @@ To configure the proxy with an advanced route
 {{</tabs>}}
 
 
-### Service-Level Routing using Labels
+## Service-Level Routing using Labels
 {{<tabs name="grpc_policy_labels">}}
 {{%tab name="API"%}}
     
