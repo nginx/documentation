@@ -208,7 +208,7 @@ To configure the proxy with an advanced route
 1. Open the proxy and select the **Ingress**.
 1. Select **Add route** and enter the **GRPC Method**; for example, "SayGoodbye".
 1. Select **Save and Publish**.
-1. [Setup gRPC Echo Server and Test gRPC API Proxy](#setup-grpc-echo-server-optional)
+1. Proceed to [Set Up gRPC Echo Server and Test gRPC API Proxy](#setup-grpc-echo-server-optional) for the next steps.
 
 {{%/tab%}}
 {{</tabs>}}
