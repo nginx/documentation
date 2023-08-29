@@ -2,6 +2,14 @@
 /nginx-agent/changelog/ https://github.com/nginx/agent/releases 301
 /nginx-app-protect/* /nginx-app-protect-waf/:splat 301
 
+# NGINX Amplify redirects
+/nginx-amplify/install-manage/_index/ /nginx-amplify/install-manage-amp-agent/_index/ 301
+/nginx-amplify/install-manage/configuring-agent/ /nginx-amplify/install-manage-amp-agent/configuring-agent/ 301
+/nginx-amplify/install-manage/installing-agent/ /nginx-amplify/install-manage-amp-agent/installing-agent/ 301
+/nginx-amplify/install-manage/uninstalling-agent/ /nginx-amplify/install-manage-amp-agent/uninstalling-agent/ 301
+/nginx-amplify/install-manage/updating-agent/ /nginx-amplify/install-manage-amp-agent/updating-agent/ 301 
+/nginx-amplify/install-manage/using-agent-docker/ /nginx-amplify/install-manage-amp-agent/using-agent-docker/ 301
+
 # NGINXaaS for Azure redirects
 /nginx-for-azure/* /nginxaas/azure/:splat 301
 /nginxaas/azure/management/manual-scale/ https://docs.nginx.com/nginxaas/azure/management/scaling/ 301
