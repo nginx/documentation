@@ -308,7 +308,7 @@ If you have multiple backend servers and want to route to a specific backend ser
 
 Backends specify where your API should send queries, such as to your backend server.
 
-You can add, edit, or delete Backends.
+You can add, edit, or delete backends.
 
 You can also set [DNS](https://en.wikipedia.org/wiki/Domain_Name_System) resolvers and [TLS](https://en.wikipedia.org/wiki/Transport_Layer_Security) on the backend.
 
