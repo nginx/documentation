@@ -3,7 +3,7 @@ categories:
 - installation
 - security
 date: "2021-12-21T12:00:00-07:00"
-description: "Learn how to manage user access in NGINX Management Suite using basic authentication with NGINX as a front-end proxy. The guide covers first-time login, creating additional users, and setting passwords."
+description: "Learn how to manage user access in NGINX Management Suite using basic authentication with NGINX as a front-end proxy. This guide covers first-time login, creating additional users, and setting passwords."
 doctypes:
 - tutorial
 draft: false
