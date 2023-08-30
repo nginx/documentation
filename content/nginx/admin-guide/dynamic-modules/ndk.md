@@ -41,6 +41,12 @@ The NDK module is also a prerequisite for [Lua]({{< relref "lua.md" >}}) and [Se
    apk add nginx-plus-module-ndk
    ```
 
+   For FreeBSD:
+
+   ```shell
+   pkg install nginx-plus-module-ndk
+   ```
+
 2. Put the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
 
    ```nginx

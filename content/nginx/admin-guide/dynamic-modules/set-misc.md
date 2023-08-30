@@ -42,6 +42,12 @@ weight: 100
    apk add nginx-plus-module-set-misc
    ```
 
+   For FreeBSD:
+
+   ```shell
+   pkg install nginx-plus-module-set-misc
+   ```
+
 3. Put the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directives  for NDK and Set-Misc modules in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
 
    ```nginx

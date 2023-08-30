@@ -45,7 +45,13 @@ The module provides [OpenTelemetry](https://opentelemetry.io/) distributed traci
    apk add nginx-plus-module-otel
    ```
 
-    {{< note >}} the OpenTelemetry module cannot be installed on RHEL/Oracle Linux/AlmaLinux/Rocky Linux 7, Ubuntu 18.04, and Amazon Linux 2. {{< /note >}}
+   For FreeBSD:
+
+   ```shell
+   pkg install nginx-plus-module-otel
+   ```
+
+   {{< note >}} the OpenTelemetry module cannot be installed on RHEL/Oracle Linux/AlmaLinux/Rocky Linux 7, Ubuntu 18.04, and Amazon Linux 2. {{< /note >}}
 
 2. Put the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
 

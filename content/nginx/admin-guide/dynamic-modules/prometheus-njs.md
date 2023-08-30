@@ -84,6 +84,12 @@ Install the `nginx-plus-module-prometheus` module.
   apk add nginx-plus-module-prometheus
   ```
 
+  For FreeBSD:
+
+  ```shell
+  pkg install nginx-plus-module-prometheus
+  ```
+
 > **Note:** The [`nginx-plus-module-njs`]({{< relref "nginscript.md" >}}) module will also be installed together with the module.
 
 

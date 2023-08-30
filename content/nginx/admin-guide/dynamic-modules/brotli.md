@@ -61,6 +61,12 @@ Install the `nginx-plus-module-brotli` module
    zypper install nginx-plus-module-brotli
    ```
 
+*  for FreeBSD:
+
+   ```shell
+   pkg install nginx-plus-module-brotli
+   ```
+
 <span id="configure"></span>
 
 ## NGINX Plus Configuration

@@ -39,6 +39,12 @@ weight: 100
    apk add nginx-plus-module-auth-spnego
    ```
 
+   For FreeBSD:
+
+   ```shell
+   pkg install nginx-plus-module-auth-spnego
+   ```
+
 2. Put the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
 
    ```nginx

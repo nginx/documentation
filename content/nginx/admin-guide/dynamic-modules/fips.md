@@ -42,6 +42,12 @@ For NGINX Plus, the cryptographic boundary includes all functionality that is im
    apk add nginx-plus-module-fips-check
    ```
 
+   For FreeBSD:
+
+   ```shell
+   pkg install nginx-plus-module-fips-check
+   ```
+
 2. Put the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
 
    ```nginx

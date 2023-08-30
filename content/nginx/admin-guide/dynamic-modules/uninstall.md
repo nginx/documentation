@@ -32,6 +32,12 @@ weight: 100
    zypper remove <dynamic_module_name>
    ```
 
+   For FreeBSD:
+
+   ```shell
+   pkg delete <dynamic_module_name>
+   ```
+
 2. Remove the corresponding [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive from NGINX Plus configuration file.
 
 3. In NGINX Plus configuration file, remove all directives related to the dynamic module.

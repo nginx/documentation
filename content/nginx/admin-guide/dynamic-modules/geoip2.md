@@ -40,6 +40,12 @@ weight: 100
    apk add nginx-plus-module-geoip2
    ```
 
+   For FreeBSD:
+
+   ```shell
+   pkg install nginx-plus-module-geoip2
+   ```
+
 2. Put both of the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directives in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
 
    ```nginx
