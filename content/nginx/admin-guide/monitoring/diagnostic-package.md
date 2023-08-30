@@ -1,6 +1,5 @@
 ---
-description: Automate collection of data required to troubleshoot issues in a NGINX or NGINX Plus deployment.
-
+description: This page describes how to trigger the automatic collection of data required to troubleshoot issues in a NGINX or NGINX Plus deployment.
 docs: 
 doctypes:
 - task
@@ -13,14 +12,14 @@ weight: 300
 
 The NGINX diagnostic package automates the collection of the data required to troubleshoot issues in your NGINX environment. The package contains a [lightweight script](https://nginx.org/download/nginx-supportpkg.sh) to collect the diagnostic data required to troubleshoot your NGINX Open Source and/or NGINX Plus instance.  
 
-The diagnostic package collects following information from the NGINX installation:
+The diagnostic package collects the following information from the NGINX installation:
 
-- host commands (`ps,lsof,vmstat...etc`)
+- host commands (Such as `ps`, `lsof` , `vmstat`)
 - NGINX config files
 - NGINX log files
 - NGINX service information
 - NGINX process information
-- NGINX versions, dynamically linked libraries, and NGINX Plus API endpoints (if its an NGINX Plus instance)
+- NGINX versions, dynamically linked libraries, and NGINX Plus API endpoints (If it is an NGINX Plus instance)
 - NGINX Agent logs and configs if NGINX Agent is present
 - NGINX App Protect logs and configs if NGINX App Protect is present
 
@@ -30,7 +29,7 @@ It will not collect:
 - LUA scripts
 - Inspect for coredumps
 
-<b>Running the script:</b> 
+## Running the script 
 
 The script requires superuser privileges. It needs to be run as root or with `sudo` and should have execute permissions.
 ```shell
@@ -38,7 +37,7 @@ $ chmod +x nginx-supportpkg.sh
 $ sudo ./nginx-supportpkg.sh
 ```
 The output is a compressed `.tar.gz` file containing the diagnostic data and is created in the current working directory. The compressed archive contains textual output of all the commands run by the script to make it easier to review the collected data. 
-The archive has <b>`support-pkg-<timestamp>.tar.gz`</b> naming format.
+The archive will be named with the format: `support-pkg-<timestamp>.tar.gz`.
 
 
 Use the `tar` command to extract the contents of the archive.
@@ -47,7 +46,6 @@ tar -xvf support-pkg-1682457903.tar.gz
 ```
 The script provides a number of flags to customize what data needs to be collected based on your NGINX deployment. 
 
-Available Options:
 ```shell
 Usage: ./nginx-supportpkg.sh [-option value...]
 -h | --help Print this help message+
@@ -64,9 +62,9 @@ Usage: ./nginx-supportpkg.sh [-option value...]
 -pi | --profile_interval Profiling interval in seconds. Default: '15'
 ```
 
-<b>Supported Operating Systems</b>:
+## Supported Operating Systems
 
-The script should run on most operating systems supported by NGINX [https://docs.nginx.com/nginx/technical-specs/]. It has been currently tested on the following operating systems:
+The script should run on most [operating systems supported by NGINX](https://docs.nginx.com/nginx/technical-specs/), and has been tested on the following operating systems:
 
 - CentOS 7
 - Ubuntu 20.04
@@ -79,6 +77,6 @@ The script should run on most operating systems supported by NGINX [https://docs
 
 
 
-<b>Note</b>: The goal of the diagnostic package is to ease the process of collecting and sharing the data required to troubleshoot NGINX issues. It does not collect any sensitive information about your environment. However, it is advised to review the script prior to running it. It is also advised to review the archive output to make sure it conforms with your organizations data sharing guidelines prior with the Technical Support team.   
-
-
+{{< note >}}
+The goal of the diagnostic package is to ease the process of collecting and sharing the data required to troubleshoot NGINX issues. It does not collect any sensitive information about your environment. However, it is advised to review the script prior to running it. It is also advised to review the archive output to make sure it conforms with your organizations data sharing guidelines prior with the Technical Support team.   
+{{< /note >}}
