@@ -179,6 +179,11 @@ Examples of the configuration files are provided below:
 
 {{<note>}}
 In the following example `nginx-agent.conf` file, you can change the `server.host` and `server.grpcPort` to connect to the NGINX Management Suite.
+
+If NGINX Agent was previously installed for data reporting purposes only, you may need to find and remove the following line from the NGINX Agent configuration file:
+```
+features: registration,dataplane-status
+```
 {{</note>}}
 
 ```nginx {hl_lines=[13]}

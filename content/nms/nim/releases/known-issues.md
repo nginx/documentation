@@ -17,14 +17,29 @@ categories: ["known issues"]
 
 ---
 
+## 2.13.0
+
+### {{% icon-bug %}} Inaccurate Attack Signatures and Threat Campaigns versions {#43950}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID | Status |
+|----------|--------|
+| 43950    | Open   |
+{{</bootstrap-table>}}
+
+#### Description
+
+If `precompiled_publication` is set to `true`, NGINX Management Suite may incorrectly report the version of Attack Signatures (AS) and Threat Campaigns (TC) that you previously installed on the NAP WAF instance.
+
+---
 ## 2.12.0
 
 ### {{% icon-bug %}} Licensing issues when adding JWT licenses in firewalled environments {#43719}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 43719 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 43719    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
@@ -147,12 +162,12 @@ More information is available in the Platform API reference guide, under the Lic
 
 ---
 
-### {{% icon-bug %}} An "unregistered clickhouse-adapter" failure is logged every few seconds if logging is set to debug. {#43438}
+### {{% icon-resolved %}} An "unregistered clickhouse-adapter" failure is logged every few seconds if logging is set to debug. {#43438}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 43438    | Open   |
+| Issue ID | Status          |
+|----------|-----------------|
+| 43438    | Fixed in 2.13.0 |
 {{</bootstrap-table>}}
 
 #### Description
@@ -546,20 +561,6 @@ To resolve this issue, please update the email addresses in your identity provid
       ```bash
       sudo systemctl restart nginx
       ```
-
----
-
-### {{% icon-resolved %}} NGINX configurations with special characters may not be editable from the web interface after upgrading Instance Manager {#41557}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 41557    | Fixed in 2.9.1 |
-{{</bootstrap-table>}}
-
-#### Description
-
-After upgrading to Instance Manager 2.9.0, the system may display a "URI malformed" error if you use the web interface to edit a staged configuration or `nginx.conf` that contains special characters, such as underscores ("_").
 
 ---
 

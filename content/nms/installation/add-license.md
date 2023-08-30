@@ -123,29 +123,57 @@ You can return to this page at any time to cancel the license. Simply select **T
 
 ## License Comparison {#license-comparison}
 
-The following tables show which features are available when NGINX Management Suite is unlicensed or licensed.
+The following tables show which features are available when NGINX Management Suite is licensed or unlicensed.
 
-### Unlicensed Mode
+### Unlicensed Mode Features
 
-The NGINX Management Suite features listed in the table below are available for use without a license. 
+The NGINX Management Suite features listed in the table below are available without a license. 
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| User  | Feature                       | Description                                                                                     | Access |
-|-------|-------------------------------|-------------------------------------------------------------------------------------------------|--------|
-| admin | Licensing                     | Allows access to view and manage licenses.                                                      | CRUD   |
-| admin | NGINX&nbsp;Plus&nbsp;Counting | Allows access to view the number of registered NGINX Plus instances and track Kubernetes usage. | CRUD   |
-| admin | Scan                          | Allows access to scan for NGINX Instances.                                                      | READ   |
-| admin | User Management               | Allows access to view and manage roles, users, and user groups.                                 | CRUD   |
+| Feature                       | Description                                                                    | Access Type |
+|-------------------------------|--------------------------------------------------------------------------------|-------------|
+| Licensing                     | View and manage licenses.                                                      | CRUD        |
+| NGINX&nbsp;Plus&nbsp;Counting | View the number of registered NGINX Plus instances and track Kubernetes usage. | CRUD        |
+| Scan                          | Permits scanning for NGINX instances.                                          | READ        |
+| User Management               | Create, configure, and manage roles, users, and user groups.                   | CRUD        |
 {{</bootstrap-table>}}
 
-### Licensed Mode
+### Licensed Mode Features
 
-When NGINX Management Suite is licensed, the full range of features is available for the NGINX Management Suite platform and any installed modules.
+When you license an NGINX Management Suite module, you gain access to the full range of platform features as well as the module-specific features. See the tables below to learn what features each module offers.
 
-{{<call-out "tip" "Manage access with RBAC">}}To learn how to manage and control access to features in NGINX Management Suite using role-based access control, refer to the topic [Set up RBAC]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}).{{</call-out>}}
+{{<call-out "note" "Manage feature access with RBAC">}}You can control access to features in NGINX Management Suite with role-based access control (RBAC). For details, see [Getting Started with RBAC]({{< relref "/nms/admin-guides/rbac/rbac-getting-started.md" >}}).{{</call-out>}}
 
 
-{{< include "admin-guides/access-control/rbac-features.md" >}}
+#### NGINX Management Suite Platform
+
+{{< include "admin-guides/rbac/features/platform.md" >}}
+
+<br>
+
+#### Instance Manager
+
+{{< include "admin-guides/rbac/features/instance-manager.md" >}}
+
+<br>
+
+#### API Connectivity Manager
+
+{{< include "admin-guides/rbac/features/api-connectivity-manager.md" >}}
+
+<br>
+
+#### App Delivery Manager
+
+{{< include "admin-guides/rbac/features/app-delivery-manager.md" >}}
+
+<br>
+
+#### Security Monitoring
+
+{{< include "admin-guides/rbac/features/security-monitoring.md" >}}
+
+<br>
 
 ---
 

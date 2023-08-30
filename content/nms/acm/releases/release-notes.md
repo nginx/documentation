@@ -213,7 +213,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Use role-based access control for enhanced security and governance**
 
-  With new [built-in RBAC roles for API Connectivity Manager]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md#build-in-roles" >}}), administrators can grant or restrict user access to workspaces and features, empowering teams to manage their own workflows.
+  With new [built-in RBAC roles for API Connectivity Manager]({{< relref "/nms/admin-guides/rbac/rbac-getting-started.md#build-in-roles" >}}), administrators can grant or restrict user access to workspaces and features, empowering teams to manage their own workflows.
 
   {{<see-also>}}
   - [Set Up RBAC for API Owners]({{< relref "/nms/acm/tutorials/rbac-api-owners.md" >}})
@@ -574,7 +574,7 @@ Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgr
 
   {{<important>}}This is a **preview** feature for you to try out. You shouldn't use preview features for production purposes.{{</important>}}
   
-  To handle gRPC traffic, you can now [publish and manage gRPC proxies]({{< relref "/nms/acm/getting-started/publish-grpc-proxy.md" >}}).
+  To handle gRPC traffic, you can now [publish and manage gRPC proxies]({{< relref "/nms/acm/how-to/services/publish-grpc-proxy.md" >}}).
 
   Publish gRPC proxies and route gRPC traffic to support the following use cases:
 
