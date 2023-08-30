@@ -210,7 +210,7 @@ Install and configure PHP and FastCGI on the instances.
 
 2. Working in the SSH terminal, install PHP 7 (the default PHP version for <span style="white-space: nowrap;">Ubuntu 16.04 LTS</span>) and FastCGI.
 
-   ```none
+   ```shell
    $ apt-get install php7.0-fpm
    ```
 
@@ -229,7 +229,7 @@ Install and configure PHP and FastCGI on the instances.
    
 4. Restart PHP:
 
-   ```none
+   ```shell
    $ service php7.0-fpm restart
    ```
 5. Leave the SSH connection open for reuse in the next section.
@@ -304,7 +304,7 @@ Both the configuration and content files are available at the [NGINX GitHub repo
    
 6. Rename **default.conf** to **default.conf.bak** so that NGINX Plus does not load it. The configuration files provided for the all‑active deployment include equivalent instructions plus additional function‑specific directives.
 
-   ```none
+   ```shell
    $ mv default.conf default.conf.bak
    ```
 
@@ -312,21 +312,21 @@ Both the configuration and content files are available at the [NGINX GitHub repo
 
    You can also run the following commands to download the configuration file directly from the GitHub repository:
 
-   ```none
+   ```shell
    $ cd /etc/nginx/conf.d/
    $ curl -o status.conf https://github.com/nginxinc/NGINX-Demos/blob/master/gce-nginx-plus-deployment-guide-files/etc_nginx_conf.d/status.conf
     ```
 
     or
 
-   ```none
+   ```shell
    $ cd /etc/nginx/conf.d/
    $ wget https://github.com/nginxinc/NGINX-Demos/blob/master/gce-nginx-plus-deployment-guide-files/etc_nginx_conf.d/status.conf
    ```
    
 8. Validate the NGINX Plus configuration and restart NGINX Plus:
 
-   ```none
+   ```shell
    $ nginx -t
    $ nginx -s reload
    ```
@@ -335,7 +335,7 @@ Both the configuration and content files are available at the [NGINX GitHub repo
 
     * Access the <span style="font-weight:bold; white-space: nowrap;">index.html</span> page either in a browser or by running this `curl` command.
 
-     ```none
+      ```shell
      $ curl http://<external-IP-address>
      ```
      
@@ -466,7 +466,7 @@ Install and configure PHP and FastCGI on the instances.
 
 2. Working in the SSH terminal, install PHP 5 (the default PHP version for Ubuntu 14.04 LTS) and FastCGI.
 
-   ```none
+   ```shell
    $ apt-get install php5-fpm
    ```
    
@@ -484,7 +484,7 @@ Install and configure PHP and FastCGI on the instances.
    ```
 4. Restart PHP:
 
-   ```none
+   ```shell
    $ service php5-fpm restart
    ```
    
@@ -514,7 +514,7 @@ Both the configuration and content files are available at the [NGINX GitHub repo
 
      You can also run the following commands to download the configuration file directly from the GitHub repository:
        
-     ```none
+      ```shell
      $ cd /etc/nginx/conf.d/
      $ curl -o gce-all-active-app.conf https://github.com/nginxinc/NGINX-Demos/blob/master/gce-nginx-plus-deployment-guide-files/etc_nginx_conf.d/gce-all-active-app.conf
       ```
@@ -558,7 +558,7 @@ Both the configuration and content files are available at the [NGINX GitHub repo
    
 5. Rename **default.conf** to **default.conf.bak** so that NGINX Plus does not load it. The configuration files provided for the all‑active deployment include equivalent instructions plus additional function‑specific directives.
 
-   ```none
+   ```shell
    $ mv default.conf default.conf.bak
    ```
    
@@ -566,21 +566,21 @@ Both the configuration and content files are available at the [NGINX GitHub repo
 
    You can also run the following commands to download the configuration file directly from the GitHub repository:
 
-   ```none
+   ```shell
    $ cd /etc/nginx/conf.d/
    $ curl -o status.conf https://github.com/nginxinc/NGINX-Demos/blob/master/gce-nginx-plus-deployment-guide-files/etc_nginx_conf.d/status.conf
    ```
 
     or
 
-   ```none
+   ```shell
    $ cd /etc/nginx/conf.d/
    $ wget https://github.com/nginxinc/NGINX-Demos/blob/master/gce-nginx-plus-deployment-guide-files/etc_nginx_conf.d/status.conf
    ```
    
 7. Validate the NGINX Plus configuration and restart NGINX Plus:
 
-   ```none
+   ```shell
    $ nginx -t
    $ nginx -s reload
    ```
@@ -589,7 +589,7 @@ Both the configuration and content files are available at the [NGINX GitHub repo
 
    * Access the <span style="font-weight:bold; white-space: nowrap;">index.html</span> page either in a browser or by running this `curl` command.
 
-     ```none
+      ```shell
      $ curl http://<external-IP-address-of-NGINX-Plus-server>
      ```
    
@@ -867,7 +867,7 @@ Update the NGINX Plus configuration on the two LB instances (<span style="color
   
 4. Validate the NGINX Plus configuration and restart NGINX Plus:
 
-   ```none
+   ```shell
    $ nginx -t
    $ nginx -s reload
    ```
@@ -878,7 +878,7 @@ Update the NGINX Plus configuration on the two LB instances (<span style="color
 
 6. Verify that NGINX Plus is load balancing traffic among the four application instance groups, by running this command on a separate client machine:
 
-   ```none
+   ```shell
    $ while true; do curl -s <LB-external-IP-address> | grep Server: ;done
    ```
    
@@ -951,7 +951,7 @@ Verify that GCE network load balancer is properly routing traffic to both NGINX�
 
 Working on a separate client machine, run this command, using the static IP address you set in the previous section for GCE network load balancer:
 
-```none
+```shell
 $ while true; do curl -s <GCE-Network-LB-external-static-IP-address> | grep Server: ;done
 ```
 
@@ -965,7 +965,7 @@ To verify that high availability is working:
 
 1. Connect to one of the instances in the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx-plus-lb-instance-group</span> over SSH and run this command to force it offline:
 
-   ```none
+   ```shell
    $ iptables -A INPUT -p tcp --destination-port 80 -j DROP
    ```
    
@@ -973,7 +973,7 @@ To verify that high availability is working:
 
 3. When the LB instance is back online, run this command to return it to its working state:
 
-   ```none
+   ```shell
    $ iptables -F
    ```
    

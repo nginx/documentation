@@ -82,13 +82,13 @@ Allocate an Elastic IP address and remember its ID. For detailed instructions, s
 
    * On Ubuntu systems:
 
-     ```none
+      ```shell
      $ sudo apt-get install keepalived wget
      ```
 
    * On CentOS systems:
 
-     ```none
+      ```shell
      $ sudo yum install keepalived wget
      ```
 
@@ -106,13 +106,13 @@ The NGINX Plus HA solution uses two scripts, which are invoked by `keepalived`:
 
    * On Ubuntu systems:
 
-     ```none
+      ```shell
      $ sudo mkdir -p /usr/lib/keepalived
      ```
 
    * On CentOS systems:
 
-     ```none
+      ```shell
      $ sudo mkdir -p /usr/libexec/keepalived
      ```
 
@@ -201,7 +201,7 @@ ALLOCATION_ID=<value>
 
 Run this command on both instances to start the `keepalived` daemon:
 
-```none
+```shell
 $ sudo service keepalived start
 ```
 
@@ -209,7 +209,7 @@ The instance with the higher priority becomes the primary. As a result, the Elas
 
 To check the instance state, run:
 
-```none
+```shell
 $ cat /var/run/nginx-ha-keepalived.state
 ```
 
@@ -217,7 +217,7 @@ The command outputs `STATE=MASTER` on the primary instance and `STATE=BACKUP` ot
 
 You can simulate the failure of the primary by stopping the `keepalived` daemon:
 
-```none
+```shell
 $ sudo service keepalived stop
 ```
 

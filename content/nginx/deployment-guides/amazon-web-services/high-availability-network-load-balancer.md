@@ -320,7 +320,7 @@ To run the scripts, follow these instructions:
 
 5. Run the `setup.sh` script:
 
-   ```none
+   ```shell
    $ chmod +x setup.sh
    $ ./setup.sh
    ```
@@ -329,7 +329,7 @@ The script launches two NGINX Plus load balancer instances and four NGINX web s
 
 If you want to delete the infrastructure created by Terraform, run the `cleanup.sh` script.
 
-```none
+```shell
 $ chmod +x cleanup.sh
 $ ./cleanup.sh
 ```

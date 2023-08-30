@@ -31,13 +31,13 @@ If you are using these instructions to satisfy the prerequisites for one of our 
 
 1. Open a connection to the NGINX Open Source instance and change the directory to **/**etc/nginx/conf.d**:
 
-   ```none
+   ```shell
    $ cd /etc/nginx/conf.d
    ```
    
 2. Rename **default.conf** to **default.conf.bak** so that NGINX Plus does not use it.
 
-   ```none
+   ```shell
    $ mv default.conf default.conf.bak
    ```
 
@@ -198,13 +198,13 @@ Repeat these instructions on each instance. Alternatively, you can configure one
 
 1. Open a connection to the NGINX Plus instance and change the directory to **/**etc/nginx/conf.d**:
 
-   ```none
+   ```shell
    $ cd /etc/nginx/conf.d
    ```
 
 2. Rename **default.conf** to **default.conf.bak** so that NGINX Plus does not use it.
 
-   ```none
+   ```shell
    $ mv default.conf default.conf.bak
    ```
 

@@ -220,19 +220,19 @@ There are several ways to obtain the required certificate, including the followi
 
 2. Create a private key to be packaged in the certificate.  
 
-   ```none
+   ```shell
    root# openssl genrsa -out ~/company.com.key 2048
    ```
    
 3. Create a backup of the key file in a secure location. If you lose the key, the certificate becomes unusable.
 
-   ```none
+   ```shell
    root# cp ~/company.com.key <SECURE-DIR>/company.com.key.backup
    ```
    
 4. Create a Certificate Signing Request (CSR) file.  
 
-   ```none
+   ```shell
    root# openssl req -new -sha256 -key ~/company.com.key -out ~/company.com.csr
    ```
    
@@ -277,19 +277,19 @@ Working on the NGINX Plus server (which must have the `openssl` software instal
 
 2. Extract the private key file from the **.pfx** file. You are prompted first for the password protecting the **.pfx** file (see Step 6 above), then for a new password used to encrypt the private key file being created (**company.com.key.encrypted** in the following sample command).
 
-   ```none
+   ```shell
    root# openssl pkcs12 -in exported-certs.pfx -nocerts -out company.com.key.encrypted
    ```
    
 3. Decrypt the key file. At the prompt, type the password you created in the previous step for the private key file.
 
-   ```none
+   ```shell
    root# openssl rsa -in company.com.key.encrypted -out company.com.key
    ```
    
 4. Extract the certificate file.
 
-   ```none
+   ```shell
    root# openssl pkcs12 -in exported-cert.pfx -clcerts -nokeys -out company.com.crt
    ```
    

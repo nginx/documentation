@@ -26,7 +26,7 @@ This guide explains how to use the NGINX Open Source or NGINX Plus Ingress Cont
   **Note:** If you build the image, do not push it to a public registry.  Run the following <span style="white-space: nowrap;">`make` `container`</span> command. Include the `PREFIX` argument to specify the repo in your private registry where the container is created; this also sets the name that you can later use to reference the image, instead of its numerical ID. In this example we set it to <span style="white-space: nowrap; font-weight:bold;">nginx/nginx-plus-ingress</span>.
  
 
-```
+```shell
 $ make container DOCKERFILE=DockerfileForPlus PREFIX=nginx/nginx-plus-ingress
 ``` 
  
@@ -46,7 +46,7 @@ In this guide we’re using the `eksctl` command to create an Amazon EKS cluster
  
 2. Run the following AWS CLI command. It generates an authorization token for your AWS ECR registry and outputs the <span style="white-space: nowrap;">`docker` `login`</span> command for logging into the registry. For details about the command, see the [AWS documentation](https://docs.aws.amazon.com/cli/latest/reference/ecr/get-login.html).
  
-   ```
+   ```shell
    $ aws ecr get-login --no-include-email --region <aws_region_code>
    ```
  
@@ -59,19 +59,19 @@ In this guide we’re using the `eksctl` command to create an Amazon EKS cluster
    * `<aws_region_code>` is the same region name you specified in Step 2 above.
    * `<ecr_repo>` is the AWS ECR repository you created in Step 1 above. In this guide it is called <span style="white-space: nowrap;">`nginx-plus-ic`</span>.
  
-   ```
+   ```shell
    $ docker tag <registry/image>:edge <aws_account_id>.dkr.ecr.<aws-region-code>.amazonaws.com/<ecr_repo>:edge
    ``` 
    
    So in this guide, the command is
  
-   ```
+   ```shell
    $ docker tag nginx/nginx-plus-ingress:edge <aws_account_id>.dkr.ecr.<aws_region_code>.amazonaws.com/nginx-plus-ic:edge
    ```
  
 5. Push the NGINX Plus Ingress Controller image to AWS ECR:
  
-   ```
+   ```shell
    $ docker push <aws_account_id>.dkr.ecr.<aws_region_code>.amazonaws.com/<ecr_repo>:edge
    ```
 
@@ -97,7 +97,7 @@ We assume you performed all the steps in the instructions referenced in [Install
  
 2. Run the following command:
  
-   ```
+   ```shell
    $ kubectl apply -f service/loadbalancer-aws-elb.yaml
    ```
  
@@ -113,7 +113,7 @@ We assume you performed all the steps in the instructions referenced in [Install
  
 2. Run the following command to update the config map:
  
-   ```
+   ```shell
    $ kubectl apply -f common/nginx-config.yaml
    ```
  
@@ -129,13 +129,13 @@ We assume you performed all the steps in the instructions referenced in [Install
  
 3. Run the following command to display the name of the running Ingress pod:
  
-   ```
+   ```shell
    $ kubectl get pods -namespace=nginx-ingress
    ```
  
 4. Run the following command to display the logs from the NGINX Plus Ingress Controller, where `<pod_name>` is the name you learned in the previous step. If the logged IP address matches the IP address from which you accessed **http://cafe .example.com/coffee**, the PROXY Protocol is enabled.
  
-   ``` 
+   ```shell
    $ kubectl logs nginx-ingress-<pod_name> -n nginx-ingress
    ```
  
@@ -156,7 +156,7 @@ If you choose to disable the PROXY Protocol, perform these steps.
  
 2. Run the following command to update the config map:
  
-   ```
+   ```shell
    $ kubectl apply -f common/nginx-config.yaml
    ```
  
@@ -190,7 +190,7 @@ If you choose to disable the PROXY Protocol, perform these steps.
  
 4. Run the following command to update the service:
  
-   ```
+   ```shell
    $ kubectl apply -f service/loadbalancer-aws-elb.yaml
    ```
 

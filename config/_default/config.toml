@@ -25,6 +25,8 @@ pygmentsUseClasses = true
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+    [markup.highlight]
+      guessSyntax = true
 
 [params]
   useSectionPageLists = "false"

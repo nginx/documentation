@@ -125,7 +125,7 @@ To install and configure NGINX Open Source or NGINX Plus on a VM, you need to o
 
 3. Run this command to establish an SSH connection to the VM: 
 
-   ```none
+   ```shell
    $ ssh -i <private-key-file> <username>@<public-IP-address>
    ```
    
@@ -158,7 +158,7 @@ NGINX publishes a unified Ansible role for NGINX Open Source and NGINX Plus on 
 
 2. Install Ansible. These commands are appropriate for Debian and Ubuntu systems:
 
-   ```none
+   ```shell
    $ apt update
    $ apt install python-pip -y
    $ pip install ansible
@@ -166,7 +166,7 @@ NGINX publishes a unified Ansible role for NGINX Open Source and NGINX Plus on 
 
 3. Install the official Ansible role from NGINX:
 
-   ```none
+   ```shell
    $ ansible-galaxy install nginxinc.nginx
    ```
 
@@ -184,7 +184,7 @@ NGINX publishes a unified Ansible role for NGINX Open Source and NGINX Plus on 
 
 5. Run the playbook:
 
-   ```none
+   ```shell
    $ ansible-playbook playbook.yml
    ```
    

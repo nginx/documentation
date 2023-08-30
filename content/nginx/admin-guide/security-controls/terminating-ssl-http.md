@@ -131,7 +131,7 @@ http {
 
 Some browsers may complain about a certificate signed by a well-known certificate authority, while other browsers may accept the certificate without issues. This occurs because the issuing authority has signed the server certificate using an intermediate certificate that is not present in the base of well-known trusted certificate authorities which is distributed in a particular browser. In this case the authority provides a bundle of chained certificates that should be concatenated to the signed server certificate. The server certificate must appear before the chained certificates in the combined file:
 
-```none
+```shell
 $ cat www.example.com.crt bundle.crt > www.example.com.chained.crt
 ```
 
@@ -159,7 +159,7 @@ The error happens because NGINX has tried to use the private key with the bundle
 
 Browsers usually store intermediate certificates which they receive and are signed by trusted authorities. So actively used browsers may already have the required intermediate certificates and may not complain about a certificate sent without a chained bundle. To ensure the server sends the complete certificate chain the openssl command-line utility may be used:
 
-```none
+```shell
 $ openssl s_client -connect www.godaddy.com:443
 ...
 Certificate chain
@@ -289,7 +289,7 @@ Only domain names can be passed in SNI. However, some browsers will pass the IP 
 
 In order to use SNI in NGINX, it must be supported in both the OpenSSL library with which the NGINX binary has been built, as well as the library with which it is being dynamically linked at runtime. OpenSSL supports SNI since the version 0.9.8f if it was built with configuration `option --enable-tlsext`. Since OpenSSL version 0.9.8j, this option is enabled by default. If NGINX was built with SNI support, NGINX shows the following when run with the <span style="white-space: nowrap;">`-V`</span> switch:
 
-```none
+```shell
 $ nginx -V
 ...
 TLS SNI support enabled
