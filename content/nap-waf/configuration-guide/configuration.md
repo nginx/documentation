@@ -5105,7 +5105,7 @@ Example of Cyclic Override Rule error:
 
 ### Overview
 
-Custom dimensions log entries feature refers to the new configuration in NGINX App Protect WAF, where the new directive called `app_protect_custom_log_attribute` is assigned to a particular location or server or http level in the `nginx.conf` file. The need is to be able to add a special name to the configuration, this name will be used as an identifying entry of the session environment in the Security Log. 
+Custom dimensions log entries feature refers to the new configuration in NGINX App Protect WAF, where the new directive called `app_protect_custom_log_attribute` is assigned to a particular location or server or http level in the `nginx.conf` file. The need is to be able to add custom identifiers to the respective location and/or server and identify requests in the Security Log by those identifiers.
 
 The `app_protect_custom_log_attribute` directive will be used to track the assigned location/server/http dimension of each request by adding the `app_protect_custom_log_attribute` to the **Security Logs** a.k.a **Request Logs**. Since it is a custom attribute a customer can set, that custom attribute will appear for every request log entry that was handled by that location/server.
 
@@ -5180,7 +5180,7 @@ The above key/value pair will be parsed as below:
 The `app_protect_custom_log_attribute` directive has a few limitations which should be kept in mind while configuring this directive:
 
 - Key and value strings are limited to 64 chars
-- Maximum possible directive numbers are limited to 10 in each context i.e. Limit of 10 keys and values
+- Maximum possible directive numbers are limited to 10 (in total) in each context i.e. Limit of 10 keys and values
 
 ### Errors and Warnings
 
@@ -5198,16 +5198,15 @@ app_protect_custom_log_attribute directive is invalid. Number of app_protect_cus
 
 ### Logging and Reporting
 
-1. When `app_protect_custom_log_attribute` is assigned to a particular location/server/http context, it will appear in the json_log field as a new JSON property called "customLogAttributes" at the top level. The property will not appear if no `app_protect_custom_log_attribute` directive was assigned.
+When `app_protect_custom_log_attribute` is assigned to a particular location/server/http context, it will appear in the `json_log` field as a new JSON property called "customLogAttributes" at the top level. The property will not appear if no `app_protect_custom_log_attribute` directive was assigned.
+
+Attributes at the http level applies to all servers and locations unless a specific server or location overrides the same key with a different value. Same goes for the server level and all locations under it. In the below example, the "environment" attribute will appear in logs of all locations under that server.
 
 Security logging example in json_log:
 
 ```json
 ""customLogAttribute"":[{""name"":""component"",""value"":""comp1""},{""name"":""gateway"",""value"":""gw1""}]}",
 ```
-
-2. The security log shall project the `app_protect_custom_log_attribute` **key/value** pair as one string, for example: 'environment env1'.
-
 
 ## Directives
 
