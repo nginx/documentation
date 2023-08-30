@@ -14,4 +14,4 @@ The flag `-H "Authorization: Basic YWRtaW..."` sets the "Authorization" header w
 
 <br>
 
-{{< call-out "warning" "Security Consideration" >}}You can use basic authentication for API requests, but you should be cautious: credentials are sent as base64-encoded text, which is not secure encryption. If your data gets intercepted, the encoding is easily reversible. In production environments where security is critical, we recommend [switching to OpenID Connect (OIDC)]({{< relref "nms/admin-guides/authentication/oidc/getting-started-oidc.md" >}}).
+{{< call-out "warning" "Security Consideration" >}}You can use basic authentication for API requests, but you should be cautious: credentials are sent as base64-encoded text, which is not secure encryption. If your data gets intercepted, the encoding is easily reversible. In production environments where security is critical, we recommend [switching to OpenID Connect (OIDC)]({{< relref "nms/admin-guides/authentication/oidc/getting-started-oidc.md" >}}).{{< /call-out >}}
