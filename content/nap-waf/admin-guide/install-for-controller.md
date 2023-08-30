@@ -146,7 +146,7 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
     ps -ef | grep bd_agent
     ```
 
-16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/admin-guide/install#centos-rhel-74-amazon-linux-2">}}).
+16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/admin-guide/install#centos--rhel-74--amazon-linux-2">}}).
 
 ### Red Hat Enterprise Linux 7.4+
 
@@ -276,7 +276,7 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
     ps -ef | grep bd_agent
     ```
 
-17. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/admin-guide/install#centos-rhel-74-amazon-linux-2" >}}).
+17. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/admin-guide/install#centos--rhel-74--amazon-linux-2" >}}).
 
 ### Debian
 
@@ -508,11 +508,11 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
     ps -ef | grep bd_agent
     ```
 
-16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/admin-guide/install#ubuntu-18-04" >}}).
+16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/admin-guide/install#ubuntu-1804" >}}).
 
 {{< note >}}Ubuntu 20.04 activates __AppArmor__ by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment. {{< /note >}}
 
-### Amazon Linux 2 LTS 
+### Amazon Linux 2 LTS
 
 Using NGINX App Protect WAF with NGINX Controller isn't supported on Amazon Linux 2 LTS.
 
