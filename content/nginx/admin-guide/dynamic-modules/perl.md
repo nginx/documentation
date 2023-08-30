@@ -19,25 +19,25 @@ weight: 100
    For Amazon Linux, CentOS, Oracle Linux, and RHEL:
   
    ```shell
-   $ yum install nginx-plus-module-perl
+   yum install nginx-plus-module-perl
    ```
 
    For Debian/Ubuntu:
   
    ```shell
-   $ apt-get install nginx-plus-module-perl
+   apt-get install nginx-plus-module-perl
    ```
 
    For SLES:
   
    ```shell
-   $ zypper install nginx-plus-module-perl
+   zypper install nginx-plus-module-perl
    ```
 
    For Alpine:
 
    ```shell
-   $ apk add nginx-plus-module-perl
+   apk add nginx-plus-module-perl
    ```
 
 2. Put the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
@@ -51,7 +51,7 @@ weight: 100
 4. Reload NGINX Plus to enable the module:
 
    ```shell
-   $ nginx -t && nginx -s reload
+   nginx -t && nginx -s reload
    ```
 
 

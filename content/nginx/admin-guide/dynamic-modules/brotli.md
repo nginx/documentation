@@ -28,13 +28,13 @@ The [ngx_brotli](https://github.com/google/ngx_brotli) module enables Brotli com
    * for Amazon Linux 2 LTS:
 
    ```shell
-   $ sudo amazon-linux-extras install epel -y
+   sudo amazon-linux-extras install epel -y
    ```
 
    * for CentOS, Oracle Linux, and RHEL:
 
    ```shell
-   $ sudo yum install epel-release -y
+   sudo yum install epel-release -y
    ```
 
 <span id="install"></span>
@@ -46,19 +46,19 @@ Install the `nginx-plus-module-brotli` module
 *  for Amazon Linux 2 LTS, CentOS, Oracle Linux, and RHEL:
 
    ```shell
-   $ yum install nginx-plus-module-brotli
+   yum install nginx-plus-module-brotli
    ```
 
 *  for Debian and Ubuntu:
 
    ```shell
-   $ apt-get install nginx-plus-module-brotli
+   apt-get install nginx-plus-module-brotli
    ```
 
 *  for SLES 15:
    
    ```shell
-   $ zypper install nginx-plus-module-brotli
+   zypper install nginx-plus-module-brotli
    ```
 
 <span id="configure"></span>
@@ -93,7 +93,7 @@ After installation you will need to enable and configure Brotli modules in NGINX
 3. Test the configuration and reload NGINX Plus to enable the module:
 
    ```shell
-   $ nginx -t && nginx -s reload
+   nginx -t && nginx -s reload
    ```
 
 

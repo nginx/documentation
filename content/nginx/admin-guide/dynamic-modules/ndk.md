@@ -20,25 +20,25 @@ The NDK module is also a prerequisite for [Lua]({{< relref "lua.md" >}}) and [Se
    For Amazon Linux, CentOS, Oracle Linux, and RHEL:
    
    ```shell
-   $ yum install nginx-plus-module-ndk
+   yum install nginx-plus-module-ndk
    ```
 
    For Debian and Ubuntu:
 
    ```shell
-   $ apt-get install nginx-plus-module-ndk
+   apt-get install nginx-plus-module-ndk
    ```
 
    For SLES:
    
    ```shell
-   $ zypper install nginx-plus-module-ndk
+   zypper install nginx-plus-module-ndk
    ```
 
    For Alpine:
 
    ```shell
-   $ apk add nginx-plus-module-ndk
+   apk add nginx-plus-module-ndk
    ```
 
 2. Put the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
@@ -52,7 +52,7 @@ The NDK module is also a prerequisite for [Lua]({{< relref "lua.md" >}}) and [Se
 4. Reload NGINX Plus to enable the module:
 
    ```shell
-   $ nginx -t && nginx -s reload
+   nginx -t && nginx -s reload
    ```
 
 

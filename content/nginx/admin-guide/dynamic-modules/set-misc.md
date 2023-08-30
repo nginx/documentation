@@ -21,25 +21,25 @@ weight: 100
    For Amazon Linux, CentOS, Oracle Linux, and RHEL:
       
    ```shell
-   $ yum install nginx-plus-module-set-misc
+   yum install nginx-plus-module-set-misc
    ```
 
    For Debian and Ubuntu:
    
    ```shell
-   $ apt-get install nginx-plus-module-set-misc
+   apt-get install nginx-plus-module-set-misc
    ```
 
    For SLES:
    
    ```shell
-   $ zypper install nginx-plus-module-set-misc
+   zypper install nginx-plus-module-set-misc
    ```
 
    For Alpine:
 
    ```shell
-   $ apk add nginx-plus-module-set-misc
+   apk add nginx-plus-module-set-misc
    ```
 
 3. Put the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directives  for NDK and Set-Misc modules in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
@@ -56,7 +56,7 @@ weight: 100
 5. Reload NGINX Plus to enable the module:
 
    ```shell
-   $ nginx -t && nginx -s reload
+   nginx -t && nginx -s reload
    ```
 
 

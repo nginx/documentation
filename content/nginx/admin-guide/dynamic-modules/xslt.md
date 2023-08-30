@@ -18,25 +18,25 @@ weight: 100
    For Amazon Linux, CentOS, Oracle Linux, and RHEL:
    
    ```shell
-   $ yum install nginx-plus-module-xslt
+   yum install nginx-plus-module-xslt
    ```
 
    For Debian and Ubuntu:
 
    ```shell
-   $ apt-get install nginx-plus-module-xslt
+   apt-get install nginx-plus-module-xslt
    ```
 
    For SLES:
    
    ```shell
-   $ zypper install nginx-plus-module-xslt
+   zypper install nginx-plus-module-xslt
    ```
 
    For Alpine:
 
    ```shell
-   $ apk add nginx-plus-module-xslt
+   apk add nginx-plus-module-xslt
    ```
 
 2. Put the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
@@ -50,7 +50,7 @@ weight: 100
 4. Reload NGINX Plus to enable the module:
 
    ```shell
-   $ nginx -t && nginx -s reload
+   nginx -t && nginx -s reload
    ```
 
 

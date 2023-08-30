@@ -20,25 +20,25 @@ weight: 100
    For Amazon Linux, CentOS, Oracle Linux, and RHEL:
    
    ```shell
-   $ yum install nginx-plus-module-lua
+   yum install nginx-plus-module-lua
    ```
 
    For Debian and Ubuntu:
    
    ```shell
-   $ apt-get install nginx-plus-module-lua
+   apt-get install nginx-plus-module-lua
    ```
 
    For SLES:
    
    ```shell
-   $ zypper install nginx-plus-module-lua
+   zypper install nginx-plus-module-lua
    ```
 
    For Alpine:
 
    ```shell
-   $ apk add nginx-plus-module-lua
+   apk add nginx-plus-module-lua
    ```
 
 3. Put the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directives for NDK and Lua modules in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
@@ -55,7 +55,7 @@ weight: 100
 5. Reload NGINX Plus to enable the module:
 
    ```shell
-   $ nginx -t && nginx -s reload
+   nginx -t && nginx -s reload
    ```
 
 

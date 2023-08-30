@@ -18,25 +18,25 @@ weight: 100
    For Amazon Linux, CentOS, Oracle Linux, and RHEL:
    
    ```shell
-   $ yum install nginx-plus-module-auth-spnego
+   yum install nginx-plus-module-auth-spnego
    ```
 
    For Debian and Ubuntu::
 
    ```shell
-   $ apt-get install nginx-plus-module-auth-spnego
+   apt-get install nginx-plus-module-auth-spnego
    ```
 
    For SLES:
    
    ```shell
-   $ zypper install nginx-plus-module-auth-spnego
+   zypper install nginx-plus-module-auth-spnego
    ```
 
    For Alpine:
 
    ```shell
-   $ apk add nginx-plus-module-auth-spnego
+   apk add nginx-plus-module-auth-spnego
    ```
 
 2. Put the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
@@ -50,7 +50,7 @@ weight: 100
 4. Reload NGINX Plus to enable the module:
 
    ```shell
-   $ nginx -t && nginx -s reload
+   nginx -t && nginx -s reload
    ```
 
 

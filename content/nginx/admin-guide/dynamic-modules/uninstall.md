@@ -17,19 +17,19 @@ weight: 100
    For Amazon Linux, CentOS, Oracle Linux, and RHEL:
   
    ```shell
-   $ yum remove <dynamic_module_name>
+   yum remove <dynamic_module_name>
    ```
    
    For Debian and Ubuntu:
   
    ```shell
-   $ apt-get remove <dynamic_module_name>
+   apt-get remove <dynamic_module_name>
    ```
 
    For SLES:
   
    ```shell
-   $ zypper remove <dynamic_module_name>
+   zypper remove <dynamic_module_name>
    ```
 
 2. Remove the corresponding [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive from NGINX Plus configuration file.
@@ -39,7 +39,7 @@ weight: 100
 4. Reload NGINX Plus:
 
    ```shell
-   $ nginx -t && nginx -s reload
+   nginx -t && nginx -s reload
    ```
 
 

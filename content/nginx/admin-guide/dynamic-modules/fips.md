@@ -21,25 +21,25 @@ For NGINX Plus, the cryptographic boundary includes all functionality that is im
    For Amazon Linux, CentOS, Oracle Linux, and RHEL:
    
    ```shell
-   $ yum install nginx-plus-module-fips-check
+   yum install nginx-plus-module-fips-check
    ```
 
    For Debian and Ubuntu:
 
    ```shell
-   $ apt-get install nginx-plus-module-fips-check
+   apt-get install nginx-plus-module-fips-check
    ```
 
    For SLES:
    
    ```shell
-   $ zypper install nginx-plus-module-fips-check
+   zypper install nginx-plus-module-fips-check
    ```
 
    For Alpine:
 
    ```shell
-   $ apk add nginx-plus-module-fips-check
+   apk add nginx-plus-module-fips-check
    ```
 
 2. Put the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
@@ -53,7 +53,7 @@ For NGINX Plus, the cryptographic boundary includes all functionality that is im
 4. Reload NGINX Plus to enable the module:
 
    ```shell
-   $ nginx -t && nginx -s reload
+   nginx -t && nginx -s reload
    ```
 
 

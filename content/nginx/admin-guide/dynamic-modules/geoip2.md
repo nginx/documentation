@@ -25,19 +25,19 @@ weight: 100
    For Amazon Linux, CentOS, Oracle Linux, and RHEL:
    
    ```shell
-   $ yum install nginx-plus-module-geoip2
+   yum install nginx-plus-module-geoip2
    ```
    Note: the GeoIP2 module cannot be installed on ppc64le version of CentOS, Oracle Linux, and RHEL.
 
    For Debian and Ubuntu:
 
    ```shell
-   $ apt-get install nginx-plus-module-geoip2
+   apt-get install nginx-plus-module-geoip2
    ```
    For Alpine:
 
    ```shell
-   $ apk add nginx-plus-module-geoip2
+   apk add nginx-plus-module-geoip2
    ```
 
 2. Put both of the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directives in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
@@ -56,7 +56,7 @@ weight: 100
 4. Reload NGINX Plus to enable the module:
 
    ```shell
-   $ nginx -t && nginx -s reload
+   nginx -t && nginx -s reload
    ```
 
 

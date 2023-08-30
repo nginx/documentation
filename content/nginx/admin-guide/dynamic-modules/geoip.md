@@ -20,7 +20,7 @@ weight: 100
    For Amazon Linux, CentOS, Oracle Linux, and RHEL:
    
    ```shell
-   $ yum install nginx-plus-module-geoip
+   yum install nginx-plus-module-geoip
    ```
    Note: Only 6.x and 7.x versions of CentOS, Oracle Linux, and RHEL are supported.
 
@@ -28,18 +28,18 @@ weight: 100
    For Debian and Ubuntu:
    
    ```shell
-   $ apt-get install nginx-plus-module-geoip
+   apt-get install nginx-plus-module-geoip
    ```
 
    For SLES:
    
    ```shell
-   $ zypper install nginx-plus-module-geoip
+   zypper install nginx-plus-module-geoip
    ```
    For Alpine:
 
    ```shell
-   $ apk add nginx-plus-module-geoip
+   apk add nginx-plus-module-geoip
    ```
 
 2. Put both of the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directives in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
@@ -58,7 +58,7 @@ weight: 100
 4. Reload NGINX Plus to enable the module:
 
    ```shell
-   $ nginx -t && nginx -s reload
+   nginx -t && nginx -s reload
    ```
 
 <span id="info"></span>

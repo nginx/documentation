@@ -64,24 +64,24 @@ Install the `nginx-plus-module-prometheus` module.
 * For Amazon Linux, CentOS, Oracle Linux, Alma/Rocky Linux, and RHEL:
 
   ```shell
-  $ yum install nginx-plus-module-prometheus
+  yum install nginx-plus-module-prometheus
   ```
 
 * For Debian and Ubuntu:
 
   ```shell
-  $ apt-get install nginx-plus-module-prometheus
+  apt-get install nginx-plus-module-prometheus
   ```
 
 * For SLES:
   ```shell
-  $ zypper install nginx-plus-module-prometheus
+  zypper install nginx-plus-module-prometheus
   ```
 
 * For Alpine:
 
   ```shell
-  $ apk add nginx-plus-module-prometheus
+  apk add nginx-plus-module-prometheus
   ```
 
 > **Note:** The [`nginx-plus-module-njs`]({{< relref "nginscript.md" >}}) module will also be installed together with the module.

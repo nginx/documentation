@@ -24,27 +24,27 @@ weight: 100
    For Amazon Linux, CentOS, Oracle Linux, and RHEL:
 
    ```shell
-   $ yum install nginx-plus-module-opentracing
+   yum install nginx-plus-module-opentracing
    ```
    > **Note:** the OpenTracing module cannot be installed on CentOS 6, Oracle Linux 6, and RHEL 6.
 
    For Debian and Ubuntu:
    
    ```shell
-    $ apt-get install nginx-plus-module-opentracing
+   apt-get install nginx-plus-module-opentracing
    ```
 
    For SLES:
 
    ```shell
-   $ zypper install nginx-plus-module-opentracing
+   zypper install nginx-plus-module-opentracing
    ```
    > **Note:**: the OpenTracing module cannot be installed on SLES 12.
 
    For Alpine:
 
    ```shell
-   $ apk add nginx-plus-module-opentracing
+   apk add nginx-plus-module-opentracing
    ```
 
 2. Put the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
@@ -57,7 +57,7 @@ weight: 100
 
 4. Reload NGINX Plus to enable the module:
    ```shell
-   $ nginx -t && nginx -s reload
+   nginx -t && nginx -s reload
    ```
 
 
