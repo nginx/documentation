@@ -19,6 +19,12 @@ weight: 100
    ```shell
    yum remove <dynamic_module_name>
    ```
+
+   For Amazon Linux 2023:
+
+   ```shell
+   dnf remove <dynamic_module_name>
+   ```
    
    For Debian and Ubuntu:
   

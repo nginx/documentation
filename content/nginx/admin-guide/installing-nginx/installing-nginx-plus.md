@@ -41,7 +41,7 @@ NGINX Plus can be installed on Amazon Linux 2023 (x86_64, aarch64).
 4.  Install the required **ca-certificates** dependency:
 
     ```shell
-    sudo yum install ca-certificates
+    sudo dnf install ca-certificates
     ```
 
 5.  Copy the **nginx-repo.crt** and **nginx-repo.key** files to the Amazon Linux server in the **/etc/ssl/nginx/** directory:
@@ -66,13 +66,13 @@ NGINX Plus can be installed on Amazon Linux 2023 (x86_64, aarch64).
 8.  Install the **nginx-plus** package. Any older NGINX Plus package is automatically replaced.
 
     ```shell
-    sudo yum install nginx-plus
+    sudo dnf install nginx-plus
     ```
 
 9.  If you have NGINX ModSecurity subscription, install the ModSecurity package:
 
     ```shell
-    sudo yum install nginx-plus nginx-plus-module-modsecurity
+    sudo dnf install nginx-plus nginx-plus-module-modsecurity
     ```
 
 10. Check the `nginx` binary version to ensure that you have NGINX Plus installed correctly:

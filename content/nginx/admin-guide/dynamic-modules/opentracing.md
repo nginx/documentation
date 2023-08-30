@@ -28,6 +28,12 @@ weight: 100
    ```
    > **Note:** the OpenTracing module cannot be installed on CentOS 6, Oracle Linux 6, and RHEL 6.
 
+   For Amazon Linux 2023:
+
+   ```shell
+   dnf install nginx-plus-module-opentracing
+   ```
+
    For Debian and Ubuntu:
    
    ```shell

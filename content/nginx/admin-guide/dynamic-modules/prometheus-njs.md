@@ -67,6 +67,12 @@ Install the `nginx-plus-module-prometheus` module.
   yum install nginx-plus-module-prometheus
   ```
 
+* For Amazon Linux 2023:
+
+  ```shell
+  dnf install nginx-plus-module-prometheus
+  ```
+
 * For Debian and Ubuntu:
 
   ```shell

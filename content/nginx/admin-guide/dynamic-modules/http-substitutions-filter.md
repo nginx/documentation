@@ -20,6 +20,12 @@ weight: 100
    ```shell
    yum install nginx-plus-module-subs-filter
    ```
+
+   For Amazon Linux 2023:
+
+   ```shell
+   dnf install nginx-plus-module-subs-filter
+   ```
    
    For Debian and Ubuntu:
 

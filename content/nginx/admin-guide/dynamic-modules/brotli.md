@@ -49,6 +49,12 @@ Install the `nginx-plus-module-brotli` module
    yum install nginx-plus-module-brotli
    ```
 
+*  for Amazon Linux 2023:
+
+   ```shell
+   dnf install nginx-plus-module-brotli
+   ```
+
 *  for Debian and Ubuntu:
 
    ```shell

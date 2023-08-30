@@ -21,6 +21,12 @@ weight: 100
    ```shell
    yum install nginx-plus-module-njs
    ```
+
+   For Amazon Linux 2023:
+
+   ```shell
+   dnf install nginx-plus-module-njs
+   ```
    
    For Debian and Ubuntu:
    

@@ -22,6 +22,12 @@ weight: 100
    yum install nginx-plus-module-passenger
    ```
 
+   For Amazon Linux 2023:
+
+   ```shell
+   dnf install nginx-plus-module-passenger
+   ```
+
    For Debian and Ubuntu:
   
    ```shell

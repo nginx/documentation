@@ -22,6 +22,12 @@ weight: 100
    ```shell
    yum install nginx-plus-module-encrypted-session
    ```
+
+   for Amazon Linux 2023:
+
+   ```shell
+   dnf install nginx-plus-module-encrypted-session
+   ```
    
    For Debian and Ubuntu:
    
