@@ -54,7 +54,7 @@
 /nms/installation/vm-bare-metal/ /nginx-management-suite/installation/vm-bare-metal/ 301
 /nginx-management-suite/overview/ /nginx-management-suite/about/ 301
 /nginx-management-suite/admin-guides/installation/ /nginx-management-suite/installation/ 301
-
+/nginx-management-suite/adm/tutorials/usecase-templates/ /nginx-management-suite/adm/about/template-overview/ 301
 
 # NGINX Plus redirects
 /install-community-modules /nginx/admin-guide/installing-nginx/installing-nginx-plus/#installing-nginx-community-modules 301
@@ -70,4 +70,3 @@
 /nginx-amplify/* https://dev--amplify-public-docs.netlify.app/nginx-amplify/:splat 200!
 /nginx-ingress-controller/* https://development--nginx-kubernetes-ingress.netlify.app/nginx-ingress-controller/:splat 200!
 /nginx-service-mesh/* https://development--mesh-public-docs.netlify.app/nginx-service-mesh/:splat 200!
-
