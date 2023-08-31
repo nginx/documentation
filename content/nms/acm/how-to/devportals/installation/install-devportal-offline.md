@@ -62,12 +62,13 @@ To install NGINX Plus and njs, take the following steps on the Developer Portal 
 
     - `ubuntu18.04`
     - `ubuntu20.04`
+    - `ubuntu22.04`
     - `debian10`
     - `debian11`
     - `centos7`
-    - `centos8`
     - `rhel7`
     - `rhel8`
+    - `rhel9`
     - `amzn2`
 
     For example, to download external dependencies for Ubuntu 20.04:
