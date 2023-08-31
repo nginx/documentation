@@ -771,10 +771,16 @@ NGINX Plus functionality can be extended with dynamically loadable modules that
 
 NGINX‑authored and NGINX‑certified dynamic modules can be installed directly from the modules repository. To install the modules:
 
-* For RHEL, Amazon Linux, CentOS, Oracle Linux, AlmaLinux and Rocky Linux:
+* For RHEL, Amazon Linux 2, CentOS, Oracle Linux:
 
   ```shell
   yum install <MODULE-NAME>
+  ```
+
+* For Amazon Linux 2023,  AlmaLinux and Rocky Linux:
+
+  ```shell
+  dnf install <MODULE-NAME>
   ```
 
 * For Debian and Ubuntu:
