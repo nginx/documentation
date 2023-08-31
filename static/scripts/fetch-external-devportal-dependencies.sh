@@ -48,16 +48,16 @@ NGINXPLUS_PACKAGES['rhel9']="nginx-plus-29-1.el9.ngx.x86_64.rpm"
 NGINXPLUS_PACKAGES['amzn2']="nginx-plus-29-1.amzn2.ngx.x86_64.rpm"
 
 declare -A NJS_PACKAGES
-NJS_PACKAGES['ubuntu18.04']="nginx-plus-module-njs_29+0.7.3-1~bionic_amd64.deb"
-NJS_PACKAGES['ubuntu20.04']="nginx-plus-module-njs_29+0.7.3-1~focal_amd64.deb"
-NJS_PACKAGES['ubuntu22.04']="nginx-plus-module-njs_29+0.7.3-1~jammy_amd64.deb"
-NJS_PACKAGES['debian10']="nginx-plus-module-njs_29+0.7.3-1~buster_amd64.deb"
-NJS_PACKAGES['debian11']="nginx-plus-module-njs_29+0.7.3-1~bullseye_amd64.deb"
-NJS_PACKAGES['centos7']="nginx-plus-module-njs-29+0.7.3-1.el7.ngx.x86_64.rpm"
-NJS_PACKAGES['rhel7']="nginx-plus-module-njs-29+0.7.3-1.el7.ngx.x86_64.rpm"
-NJS_PACKAGES['rhel8']="nginx-plus-module-njs-29+0.7.3-1.el8.ngx.x86_64.rpm"
-NJS_PACKAGES['rhel9']="nginx-plus-module-njs-29+0.7.3-1.el9.ngx.x86_64.rpm"
-NJS_PACKAGES['amzn2']="nginx-plus-module-njs-29+0.7.3-1.amzn2.ngx.x86_64.rpm"
+NJS_PACKAGES['ubuntu18.04']="nginx-plus-module-njs_29+0.7.12-1~bionic_amd64.deb"
+NJS_PACKAGES['ubuntu20.04']="nginx-plus-module-njs_29+0.7.12-1~focal_amd64.deb"
+NJS_PACKAGES['ubuntu22.04']="nginx-plus-module-njs_29+0.7.12-1~jammy_amd64.deb"
+NJS_PACKAGES['debian10']="nginx-plus-module-njs_29+0.7.12-1~buster_amd64.deb"
+NJS_PACKAGES['debian11']="nginx-plus-module-njs_29+0.7.12-1~bullseye_amd64.deb"
+NJS_PACKAGES['centos7']="nginx-plus-module-njs-29+0.7.12-1.el7.ngx.x86_64.rpm"
+NJS_PACKAGES['rhel7']="nginx-plus-module-njs-29+0.7.12-1.el7.ngx.x86_64.rpm"
+NJS_PACKAGES['rhel8']="nginx-plus-module-njs-29+0.7.12-1.el8.ngx.x86_64.rpm"
+NJS_PACKAGES['rhel9']="nginx-plus-module-njs-29+0.7.12-1.el9.ngx.x86_64.rpm"
+NJS_PACKAGES['amzn2']="nginx-plus-module-njs-29+0.7.12-1.amzn2.ngx.x86_64.rpm"
 
 download_packages() {
     local target_distribution=$1
