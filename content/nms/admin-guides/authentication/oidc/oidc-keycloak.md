@@ -16,6 +16,7 @@ versions: []
 authors: []
 aliases:
 - /nginx-instance-manager/admin-guide/oidc-keycloak/
+docs: "DOCS-1268"
 ---
 
 {{< custom-styles >}}

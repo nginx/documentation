@@ -8,6 +8,7 @@ draft: false
 description: "Learn how to use NGINX Management Suite Instance Manager to create  resource groups. These groups are used to manage multiple resources like instances, instance groups, and certificates as a single RBAC permission object."
 # Assign weights in increments of 100
 weight: 300
+docs: "DOCS-1271"
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below

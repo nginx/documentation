@@ -6,7 +6,7 @@ description: "This document describes how to create highly available gateways wi
 weight: 100
 toc: true
 tags: [ "docs" ]
-docs: "DOCS-000"
+docs: "DOCS-1266"
 doctype: "tutorial"
 ---
 
