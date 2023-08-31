@@ -5,8 +5,7 @@ categories:
 - apps
 - security
 date: "2020-10-26T15:32:41-06:00"
-description: Learn about the default protections provided by NGINX Controller App
-  Security.
+description: Learn about the default protections provided by NGINX Controller App Security.
 docs: DOCS-479
 doctypes:
 - concept

@@ -10,8 +10,7 @@ categories:
 - security
 - analytics
 date: "2020-10-26T15:32:41-06:00"
-description: Learn how to add and manage additional NGINX Controller nodes to create
-  a resilient cluster.
+description: Learn how to add and manage additional NGINX Controller nodes to create a resilient cluster.
 docs: DOCS-788
 doctypes:
 - task

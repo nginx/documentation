@@ -4,7 +4,7 @@ categories:
 - platform management
 - analytics
 date: "2020-10-26T15:32:41-06:00"
-description: View graphs and system reports for your Instances
+description: View graphs and system reports for your Instances.
 docs: DOCS-772
 doctypes:
 - task

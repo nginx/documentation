@@ -3,8 +3,7 @@ authors: []
 categories:
 - installation
 date: "2020-10-26T15:32:41-06:00"
-description: How to start, stop, and verify the state of the NGINX Controller Agent
-  service
+description: How to start, stop, and verify the state of the NGINX Controller Agent service.
 docs: DOCS-251
 doctypes:
 - task

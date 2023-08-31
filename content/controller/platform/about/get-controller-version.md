@@ -3,7 +3,7 @@ authors: []
 categories:
 - platform management
 date: "2020-10-26T15:32:41-06:00"
-description: How to look up the version details for NGINX Controller and its components
+description: How to look up the version details for NGINX Controller and its components.
 docs: DOCS-780
 doctypes:
 - task

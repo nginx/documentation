@@ -3,7 +3,7 @@ authors: []
 categories:
 - installation
 date: "2020-10-26T15:32:41-06:00"
-description: Overview of NGINX Controller
+description: Overview of NGINX Controller.
 docs: DOCS-781
 doctypes:
 - concept

@@ -3,7 +3,7 @@ authors: []
 categories:
 - analytics
 date: "2020-10-26T15:32:41-06:00"
-description: How to forward Analytics data to Splunk
+description: How to forward Analytics data to Splunk.
 docs: DOCS-533
 doctypes:
 - tutorial

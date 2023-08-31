@@ -8,7 +8,7 @@ categories:
 - platform management
 - analytics
 date: "2020-10-26T15:32:41-06:00"
-description: View and understand the Application Health Score for your application
+description: View and understand the Application Health Score for your application.
 docs: DOCS-526
 doctypes:
 - concept

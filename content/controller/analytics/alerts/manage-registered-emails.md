@@ -3,8 +3,7 @@ authors: []
 categories:
 - analytics
 date: "2020-10-26T15:32:41-06:00"
-description: Learn how to manage the email addresses that receive automatic alert
-  notifications.
+description: Learn how to manage the email addresses that receive automatic alert notifications.
 docs: DOCS-522
 doctypes:
 - concept

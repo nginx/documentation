@@ -4,8 +4,7 @@ categories:
 - installation
 - platform management
 date: "2020-12-06T13:55:05-08:00"
-description: Learn how to back up your NGINX Controller cluster configuration and
-  encryption keys.
+description: Learn how to back up your NGINX Controller cluster configuration and encryption keys.
 docs: DOCS-247
 doctypes:
 - task
