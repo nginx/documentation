@@ -14,7 +14,7 @@ weight: 100
 
 1. To uninstall a dynamic module:
 
-   For Amazon Linux, CentOS, Oracle Linux, and RHEL:
+   For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
   
    ```shell
    yum remove <dynamic_module_name>

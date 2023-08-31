@@ -17,7 +17,7 @@ weight: 100
 
 2. Install the Lua module.
 
-   For Amazon Linux, CentOS, Oracle Linux, and RHEL:
+   For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
    
    ```shell
    yum install nginx-plus-module-lua

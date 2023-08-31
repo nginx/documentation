@@ -17,7 +17,7 @@ The NDK module is also a prerequisite for [Lua]({{< relref "lua.md" >}}) and [Se
 
 1. Install the NDK module.
 
-   For Amazon Linux, CentOS, Oracle Linux, and RHEL:
+   For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
    
    ```shell
    yum install nginx-plus-module-ndk

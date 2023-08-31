@@ -18,7 +18,7 @@ weight: 100
 
 2. Install the Set-Misc module.
 
-   For Amazon Linux, CentOS, Oracle Linux, and RHEL:
+   For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
       
    ```shell
    yum install nginx-plus-module-set-misc

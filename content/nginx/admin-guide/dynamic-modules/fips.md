@@ -18,7 +18,7 @@ For NGINX Plus, the cryptographic boundary includes all functionality that is im
 
 1. Install the FIPS module.
 
-   For Amazon Linux, CentOS, Oracle Linux, and RHEL:
+   For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
    
    ```shell
    yum install nginx-plus-module-fips-check

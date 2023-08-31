@@ -15,7 +15,7 @@ weight: 100
 
 The module provides [OpenTelemetry](https://opentelemetry.io/) distributed tracing support. The module supports [W3C](https://w3c.github.io/trace-context/) context propagation and OTLP/gRPC export protocol.
 
- {{< note >}} the code of NGINX OpenTelemetry module is open source since [NGINX Open Source](https://nginx.org) 1.25.2 and [NGINX Plus Release 30](https://docs.nginx.com/nginx/releases/#nginxplusrelease-30-r30). The source code is available on [GitHub](https://github.com/nginxinc/nginx-otel).{{< /note >}}
+ {{< note >}} the code of NGINX OpenTelemetry module is open source since [NGINX Open Source](https://nginx.org) 1.25.2 and <a href="../../../releases/#r30">NGINX Plus Release 30</a>. The source code is available on [GitHub](https://github.com/nginxinc/nginx-otel).{{< /note >}}
 
 <span id="install"></span>
 ## Installation Instructions

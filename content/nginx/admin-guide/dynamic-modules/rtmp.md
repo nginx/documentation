@@ -15,7 +15,7 @@ weight: 100
 
 1. Install the RTMP Media Streaming module.
 
-   For Amazon Linux, CentOS, Oracle Linux, and RHEL:
+   For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
    
    ```shell
    yum install nginx-plus-module-rtmp

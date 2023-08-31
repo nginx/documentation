@@ -17,12 +17,12 @@ weight: 100
 
 1. Install the GeoIP module.
 
-   For Amazon Linux, CentOS, Oracle Linux, and RHEL:
+   For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
    
    ```shell
    yum install nginx-plus-module-geoip
    ```
-   Note: Only 6.x and 7.x versions of CentOS, Oracle Linux, and RHEL are supported.
+   Note: Only 7.x version of CentOS, Oracle Linux, and RHEL is supported.
 
 
    For Debian and Ubuntu:
