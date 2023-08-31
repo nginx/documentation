@@ -60,7 +60,7 @@ weight: 100
    load_module modules/ngx_http_lua_module.so;
    ```
    
-   > **Note:** The directives must be in this order.
+   {{< note >}} The directives must be in this order. {{< /note >}}
 
 4. Perform additional configuration as required by the [module](https://github.com/openresty/lua-nginx-module).
 

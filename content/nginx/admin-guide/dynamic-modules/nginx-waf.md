@@ -11,7 +11,7 @@ weight: 100
 
 The NGINX ModSecurity web application firewall (WAF) is built on ModSecurity 3.0.
 
- > **Note:** The ModSecurity WAF module is deprecated since NGINX Plus Release 29.
+ {{< note >}} The ModSecurity WAF module is deprecated since <a href="../../../releases/#r29">NGINX Plus Release 29</a>. {{< /note >}}
 
 
 <span id="install"></span>
@@ -25,7 +25,7 @@ The NGINX ModSecurity web application firewall (WAF) is built on ModSecurity 3.0
    yum install nginx-plus-module-modsecurity
    ```
 
-   > **Note:** ppc64le is currently not supported for Amazon Linux, CentOS, Oracle Linux, and RHEL.
+   {{< note >}} ppc64le is currently not supported for Amazon Linux, CentOS, Oracle Linux, and RHEL. {{< /note >}}
 
    For Debian and Ubuntu:
    
@@ -33,7 +33,7 @@ The NGINX ModSecurity web application firewall (WAF) is built on ModSecurity 3.0
    apt-get install nginx-plus-module-modsecurity
    ```
 
-   > **Note:** aarch64 and ppc64le is currently not supported for Ubuntu.
+   {{< note >}} aarch64 and ppc64le is currently not supported for Ubuntu.{{< /note >}}
 
    For SLES:
    

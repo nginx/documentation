@@ -41,7 +41,7 @@ The following NGINX Plus status metrics are exported to Prometheus:
 * [Stream Upstreams](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_upstream): `/stream/upstreams/`
 * [Stream Limit Conn](http://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_limit_conn_zone): `/stream/limit_conns/`
 
-> **Note:** The `state` metric values in [`/http/upstreams/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) and [`/stream/upstreams/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_upstream) are converted using the following rule:
+{{< note >}} The `state` metric values in [`/http/upstreams/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) and [`/stream/upstreams/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_upstream) are converted using the following rule:
 
 
 {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
@@ -54,7 +54,7 @@ The following NGINX Plus status metrics are exported to Prometheus:
 |"checking" | `5` | 
 |"unhealthy" | `6` | 
 {{</bootstrap-table>}} 
-
+{{< /note >}}
 
 <span id="install"></span>
 ## Installation Instructions
@@ -96,7 +96,7 @@ Install the `nginx-plus-module-prometheus` module.
   pkg install nginx-plus-module-prometheus
   ```
 
-> **Note:** The [`nginx-plus-module-njs`]({{< relref "nginscript.md" >}}) module will also be installed together with the module.
+{{< note >}} The [`nginx-plus-module-njs`]({{< relref "nginscript.md" >}}) module will also be installed together with the module. {{< /note >}}
 
 
 <span id="conf"></span>

@@ -60,7 +60,7 @@ weight: 100
    load_module modules/ngx_http_encrypted_session_module.so;
    ```
    
-   > **Note:** The directives must be in this order.
+   {{< note >}} The directives must be in this order. {{< /note >}}
 
 3. Perform additional configuration as required by the [module](https://github.com/openresty/encrypted-session-nginx-module).
 

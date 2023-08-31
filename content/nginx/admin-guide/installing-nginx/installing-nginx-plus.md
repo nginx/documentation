@@ -979,7 +979,7 @@ With this script, you can also upgrade an existing unprivileged installation of 
 <span id="upgrade"></span>
 ## Upgrading NGINX Plus
 
-> **Note**: Starting from <a href="../../../releases/#r24">Release 24</a> (R24), NGINX Plus repositories have been separated into individual repositories based on operating system distribution and license subscription. Before upgrading from previous NGINX Plus versions, you must first reconfigure your repositories to point to the correct location. To reconfigure your repository, follow the installation instructions above for your operating system.
+{{< note >}} Starting from <a href="../../../releases/#r24">Release 24</a> (R24), NGINX Plus repositories have been separated into individual repositories based on operating system distribution and license subscription. Before upgrading from previous NGINX Plus versions, you must first reconfigure your repositories to point to the correct location. To reconfigure your repository, follow the installation instructions above for your operating system. {{< /note >}}
 
 To upgrade your NGINX Plus installation to the newest version:
 
@@ -1020,14 +1020,16 @@ To upgrade your NGINX Plus installation to the newest version:
      sudo pkg upgrade nginx-plus
      ```
 
-To verify that the new NGINX Plus version is running, run:
+   To verify that the new NGINX Plus version is running, run:
 
-```shell
-nginx -v
-```
-```shell
-nginx version: nginx/1.25.1 (nginx-plus-r30)
-```
+   ```shell
+   nginx -v
+   ```
+   The output of the command:
+
+   ```shell
+   nginx version: nginx/1.25.1 (nginx-plus-r30)
+   ```
 
 <span id="upgrade_modules"></span>
 ## Upgrading NGINX Plus Modules
@@ -1036,6 +1038,6 @@ The upgrade procedure depends on how the module was supplied and installed.
 
 * NGINX‑authored and NGINX‑certified community dynamic modules are updated automatically together with NGINX Plus.
 
-  > **Note**: For FreeBSD, each NGINX‑authored and NGINX‑certified module must be updated separately using FreeBSD package management tool.
+  {{< note >}} For FreeBSD, each NGINX‑authored and NGINX‑certified module must be updated separately using FreeBSD package management tool. {{< /note >}}
 
 * Community dynamic modules must be recompiled against the corresponding NGINX Open Source  version. See [Installing NGINX Community Modules](#install_modules_oss).

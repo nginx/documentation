@@ -13,7 +13,7 @@ weight: 100
 ---
 
 
-> **Note**: Since NGINX Plus <a href="../../../releases/#r29">Release 29</a>, the [OpenTelemetry]({{< relref "opentelemetry.md" >}}) module is available that incorporates the features of the OpenTracing module.
+{{< note >}} Since NGINX Plus <a href="../../../releases/#r29">Release 29</a>, the [OpenTelemetry]({{< relref "opentelemetry.md" >}}) module is available that incorporates the features of the OpenTracing module.{{< /note >}}
 
 
 <span id="install"></span>
@@ -26,7 +26,7 @@ weight: 100
    ```shell
    yum install nginx-plus-module-opentracing
    ```
-   > **Note:** the OpenTracing module cannot be installed on CentOS 6, Oracle Linux 6, and RHEL 6.
+   {{< note >}}the OpenTracing module cannot be installed on CentOS 6, Oracle Linux 6, and RHEL 6. {{< /note >}}
 
    For Amazon Linux 2023, AlmaLinux, Rocky Linux:
 
@@ -45,7 +45,7 @@ weight: 100
    ```shell
    zypper install nginx-plus-module-opentracing
    ```
-   > **Note:**: the OpenTracing module cannot be installed on SLES 12.
+   {{< note >}} the OpenTracing module cannot be installed on SLES 12. {{< /note >}}
 
    For Alpine:
 
