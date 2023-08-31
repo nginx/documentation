@@ -1,3 +1,7 @@
+---
+docs: DOCS-1316
+---
+
 To enable the API Connectivity Manager Module, take the following steps:
 
 1. Open the `values.yaml` file for editing.

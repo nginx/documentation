@@ -1,3 +1,7 @@
+---
+docs: DOCS-1284
+---
+
 The following table shows the available Cluster Policies you can use when creating a new cluster.
 
 <br>
@@ -14,6 +18,3 @@ The following table shows the available Cluster Policies you can use when creati
 | [Cluster Zone Sync]({{< relref "/nms/acm/how-to/policies/cluster-zone-sync.md" >}})  | <i class="fa-solid fa-check"></i> | <i class="fa-solid fa-check"></i> | inbound        | Enables runtime state sharing between the instances belonging to a proxy cluster. Options configured through this policy affect other policies such as rate limit and OIDC. This policy is applied to all the instances in a proxy cluster. If the proxy cluster is shared between environments, any changes made to this policy will affect all the other environments.                                                                                                          |
 
 {{</bootstrap-table>}}
-
-<!-- Do not remove. Keep this code at the bottom of the include -->
-<!-- DOCS-1160 -->

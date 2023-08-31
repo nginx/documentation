@@ -1,5 +1,5 @@
 ---
-docs:
+docs: "DOCS-1298"
 ---
 
 Security Monitoring includes the following features:

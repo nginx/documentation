@@ -1,3 +1,7 @@
+---
+docs: "DOCS-1034"
+---
+
 To upgrade the NGINX Agent, take the following steps:
 
 1. Open an SSH connection to the server where you've installed the NGINX Agent and log in.
@@ -34,5 +38,3 @@ To upgrade the NGINX Agent, take the following steps:
    ```bash
    sudo systemctl start nginx-agent
    ```
-<!-- Do not remove. Keep this code at the bottom of the include -->
-<!-- DOCS-1034 -->

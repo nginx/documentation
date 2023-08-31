@@ -1,5 +1,5 @@
 ---
-docs:
+docs: DOCS-1296
 ---
 
 Instance Manager includes the following features:

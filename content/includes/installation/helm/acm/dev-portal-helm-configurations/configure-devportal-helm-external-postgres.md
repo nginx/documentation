@@ -1,4 +1,8 @@
-You can use an external PostgreSQL database for backend API service storage when deploying the Developer Portal from a Helm chart.  Access between the backend API service and the database can be secured using TLS server certificates and optional client TLS certificates. 
+---
+docs: "DOCS-1307"
+---
+
+You can use an external PostgreSQL database for backend API service storage when deploying the Developer Portal from a Helm chart. Access between the backend API service and the database can be secured using TLS server certificates and optional client TLS certificates. 
 
 To use an external PostgreSQL database, you need the following:
 
