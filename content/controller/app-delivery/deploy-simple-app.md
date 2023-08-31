@@ -3,7 +3,7 @@ authors: []
 categories:
 - application delivery
 date: "2020-10-26T15:32:41-06:00"
-description: Overview of the steps required to deploy a simple App
+description: Overview of the steps required to deploy a simple App.
 docs: DOCS-477
 doctypes:
 - tutorial

@@ -5,8 +5,7 @@ categories:
 - infrastructure
 - security
 date: "2020-11-03T14:06:51-07:00"
-description: Learn how to register an NGINX App Protect instance with NGINX Controller
-  for use with the ADC module.
+description: Learn how to register an NGINX App Protect instance with NGINX Controller for use with the ADC module.
 docs: DOCS-770
 doctypes:
 - task

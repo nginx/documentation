@@ -9,7 +9,7 @@ categories:
 - security
 - analytics
 date: "2020-10-26T15:32:41-06:00"
-description: View key metrics for all of your monitored systems
+description: View key metrics for all of your monitored systems.
 docs: DOCS-773
 doctypes:
 - task

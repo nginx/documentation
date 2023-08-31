@@ -2,7 +2,7 @@
 categories:
 - api
 date: "2020-10-26T15:32:41-06:00"
-description: Provides information about the NGINX Controller API
+description: Provides information about the NGINX Controller API.
 docs: DOCS-343
 doctypes:
 - concept

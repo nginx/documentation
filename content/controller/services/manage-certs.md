@@ -5,7 +5,7 @@ categories:
 - certs
 - security
 date: "2020-10-26T15:32:41-06:00"
-description: Create, apply, and mange Certs to use with your environments
+description: Create, apply, and mange Certs to use with your environments.
 docs: DOCS-371
 doctypes:
 - tutorial

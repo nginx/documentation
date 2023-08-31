@@ -5,7 +5,7 @@ categories:
 - apps
 - security
 date: "2020-10-26T15:32:41-06:00"
-description: Overview of the App Security module's WAF feature
+description: Overview of the App Security module's WAF feature.
 docs: DOCS-483
 doctypes:
 - concept

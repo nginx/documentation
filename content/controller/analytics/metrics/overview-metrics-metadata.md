@@ -5,8 +5,7 @@ authors: []
 categories:
 - analytics
 date: "2020-10-26T15:32:41-06:00"
-description: Understanding how the NGINX Controller Agent collects and reports metrics
-  and metadata
+description: Understanding how the NGINX Controller Agent collects and reports metrics and metadata.
 docs: DOCS-536
 doctypes:
 - reference

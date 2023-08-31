@@ -3,7 +3,7 @@ authors: []
 categories:
 - infrastructure
 date: "2020-10-26T15:32:41-06:00"
-description: Use the Instance Overview page to view and manage your NGINX Instances
+description: Use the Instance Overview page to view and manage your NGINX Instances.
 docs: DOCS-777
 doctypes:
 - tutorial

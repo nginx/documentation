@@ -4,7 +4,7 @@ categories:
 - installation
 - platform management
 date: "2021-12-01T17:32:41-06:00"
-description: Learn how to safely change the management IP of NGINX Controller .
+description: Learn how to safely change the management IP of NGINX Controller.
 docs: DOCS-779
 doctypes:
 - task

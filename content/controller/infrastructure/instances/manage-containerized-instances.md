@@ -1,7 +1,6 @@
 ---
 date: "2021-06-29T16:32:57-07:00"
-description: How to set up Kubernetes-native API Gateways using Instance Groups (requires
-  the API Management module)
+description: How to set up Kubernetes-native API Gateways using Instance Groups (requires the API Management module).
 docs: DOCS-775
 doctypes:
 - tutorial

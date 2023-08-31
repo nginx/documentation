@@ -6,8 +6,7 @@ categories:
 - installation
 - platform management
 date: "2020-10-26T15:32:41-06:00"
-description: Learn how to update NGINX Controller installation settings and manage
-  the NGINX Controller service using the helper.sh script.
+description: Learn how to update NGINX Controller installation settings and manage the NGINX Controller service using the helper.sh script.
 docs: DOCS-261
 doctypes:
 - task

@@ -8,7 +8,7 @@ categories:
 - platform management
 - analytics
 date: "2020-10-26T15:32:41-06:00"
-description: Create custom dashboards to view custom graphs
+description: Create custom dashboards to view custom graphs.
 docs: DOCS-527
 doctypes:
 - task

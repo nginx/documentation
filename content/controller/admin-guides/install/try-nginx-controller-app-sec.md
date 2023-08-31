@@ -10,8 +10,7 @@ categories:
 - security
 - analytics
 date: "2020-10-26T15:32:41-06:00"
-description: This quick-start tutorial shows you how to get started using NGINX Controller
-  with the Application Security Add-on.
+description: This quick-start tutorial shows you how to get started using NGINX Controller with the Application Security Add-on.
 docs: DOCS-259
 doctypes:
 - tutorial

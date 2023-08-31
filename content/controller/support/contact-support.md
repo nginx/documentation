@@ -10,7 +10,7 @@ categories:
 - security
 - analytics
 date: "2020-10-26T15:32:41-06:00"
-description: Contact information and knowledge resources for NGINX Support
+description: Contact information and knowledge resources for NGINX Support.
 docs: DOCS-375
 doctypes:
 - reference

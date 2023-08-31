@@ -4,7 +4,7 @@ categories:
 - platform management
 - account settings
 date: "2020-10-26T15:32:41-06:00"
-description: Create and manage User resources
+description: Create and manage User resources.
 docs: DOCS-784
 doctypes:
 - tutorial

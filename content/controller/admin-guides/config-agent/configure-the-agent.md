@@ -3,7 +3,7 @@ authors: []
 categories:
 - platform management
 - analytics
-description: Customize the NGINX Controller Agent configuration
+description: Customize the NGINX Controller Agent configuration.
 docs: DOCS-510
 doctypes:
 - tutorial

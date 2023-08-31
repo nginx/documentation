@@ -7,7 +7,7 @@ categories:
 - services
 - api management
 date: "2020-10-26T15:32:41-06:00"
-description: Learn about the policies available for use in the NGINX Controller
+description: Learn about the policies available for use in the NGINX Controller.
 docs: DOCS-568
 doctypes:
 - concept
