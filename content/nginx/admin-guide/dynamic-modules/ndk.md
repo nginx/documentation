@@ -23,7 +23,7 @@ The NDK module is also a prerequisite for [Lua]({{< relref "lua.md" >}}) and [Se
    yum install nginx-plus-module-ndk
    ```
 
-   For Amazon Linux 2023:
+   For Amazon Linux 2023, AlmaLinux, Rocky Linux:
 
    ```shell
    dnf install nginx-plus-module-ndk

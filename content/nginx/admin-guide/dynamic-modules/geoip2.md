@@ -29,7 +29,7 @@ weight: 100
    ```
    Note: the GeoIP2 module cannot be installed on ppc64le version of CentOS, Oracle Linux, and RHEL.
 
-   For Amazon Linux 2023:
+   For Amazon Linux 2023, AlmaLinux, Rocky Linux:
 
    ```shell
    dnf install nginx-plus-module-geoip2

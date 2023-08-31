@@ -61,13 +61,13 @@ The following NGINX Plus status metrics are exported to Prometheus:
 
 Install the `nginx-plus-module-prometheus` module.
 
-* For Amazon Linux, CentOS, Oracle Linux, Alma/Rocky Linux, and RHEL:
+* For Amazon Linux, CentOS, Oracle Linux, and RHEL:
 
   ```shell
   yum install nginx-plus-module-prometheus
   ```
 
-* For Amazon Linux 2023:
+* For Amazon Linux 2023, AlmaLinux, Rocky Linux:
 
   ```shell
   dnf install nginx-plus-module-prometheus

@@ -24,7 +24,7 @@ For NGINX Plus, the cryptographic boundary includes all functionality that is im
    yum install nginx-plus-module-fips-check
    ```
 
-   for Amazon Linux 2023:
+   for Amazon Linux 2023, AlmaLinux, Rocky Linux:
 
    ```shell
    dnf install nginx-plus-module-fips-check

@@ -261,7 +261,7 @@ NGINX Plus can be installed on the following versions of CentOS/RHEL:
 5.  Install the required **ca-certificates** dependency:
 
     ```shell
-    sudo yum install ca-certificates
+    sudo dnf install ca-certificates
     ```
 
 6.  Add NGINX Plus repository by downloading the [nginx-plus-8.repo](https://cs.nginx.com/static/files/nginx-plus-8.repo) file to **/etc/yum.repos.d**:
@@ -279,13 +279,13 @@ NGINX Plus can be installed on the following versions of CentOS/RHEL:
 8.  Install the **nginx-plus** package. Any older NGINX Plus package is automatically replaced.
 
     ```shell
-    sudo yum install nginx-plus
+    sudo dnf install nginx-plus
     ```
 
 9.  If you have NGINX ModSecurity subscription, install the ModSecurity package:
 
     ```shell
-    sudo yum install nginx-plus nginx-plus-module-modsecurity
+    sudo dnf install nginx-plus nginx-plus-module-modsecurity
     ```
 
 10. To enable the nginx service start at boot, run the command:
@@ -334,7 +334,7 @@ NGINX Plus can be installed on the following versions of CentOS/RHEL:
 5.  Install the required **ca-certificates** dependency:
 
     ```shell
-    sudo yum install ca-certificates
+    sudo dnf install ca-certificates
     ```
 
 6.  Add NGINX Plus repository by downloading the [plus-9.repo](https://cs.nginx.com/static/files/plus-9.repo) file to **/etc/yum.repos.d**:
@@ -352,13 +352,13 @@ NGINX Plus can be installed on the following versions of CentOS/RHEL:
 8.  Install the **nginx-plus** package. Any older NGINX Plus package is automatically replaced.
 
     ```shell
-    sudo yum install nginx-plus
+    sudo dnf install nginx-plus
     ```
 
 9.  If you have NGINX ModSecurity subscription, install the ModSecurity package:
 
     ```shell
-    sudo yum install nginx-plus nginx-plus-module-modsecurity
+    sudo dnf install nginx-plus nginx-plus-module-modsecurity
     ```
 
 10. To enable the nginx service start at boot, run the command:

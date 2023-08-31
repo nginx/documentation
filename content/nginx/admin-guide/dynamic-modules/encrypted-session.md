@@ -23,7 +23,7 @@ weight: 100
    yum install nginx-plus-module-encrypted-session
    ```
 
-   for Amazon Linux 2023:
+   for Amazon Linux 2023, AlmaLinux, Rocky Linux:
 
    ```shell
    dnf install nginx-plus-module-encrypted-session

@@ -22,13 +22,13 @@ The module provides [OpenTelemetry](https://opentelemetry.io/) distributed traci
 
 1. Install the OpenTelemetry module.
 
-   For Alma/Rocky Linux, CentOS, Oracle Linux, and RHEL:
+   For CentOS, Oracle Linux, and RHEL:
    
    ```shell
    yum install nginx-plus-module-otel
    ```
 
-   For Amazon Linux 2023:
+   For Amazon Linux 2023, AlmaLinux, Rocky Linux:
 
    ```shell
    dnf install nginx-plus-module-otel
