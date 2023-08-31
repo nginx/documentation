@@ -371,24 +371,6 @@ To see which version of Instance Manager you have installed, run the following c
 
 ---
 
-### {{% icon-bug %}} PATCH on API Proxies endpoint is not implemented {#35771}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 35771    | Open   |
-{{</bootstrap-table>}}
-
-#### Description
-
-The `PATCH` method for API proxies is listed in the API spec; however, this method hasn't been implemented yet.
-
-#### Workaround
-
-Use `PUT` instead for API proxies.
-
----
-
 ### {{% icon-bug %}} OIDC policy cannot be applied on a shared proxy cluster {#35337}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
@@ -404,64 +386,6 @@ If the same proxy cluster is used for both the Developer Portal and API Gateway,
 #### Workaround
 
 Within an environment, use separate proxy clusters for the Developer Portal and API Gateway when applying an OIDC policy.
-
----
-
-### {{% icon-bug %}} OpenID Connect Discovery is not implemented {#35186}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 35186    | Open   |
-{{</bootstrap-table>}}
-
-#### Description
-
-The implementation to automatically fetch all the metadata from IDP's well-known endpoint is incomplete.  Though the option to specify the well-known endpoint exists in the OIDC policy, it is not functional. These endpoints have to be explicitly provided.
-
-#### Workaround
-
-Provide all the relevant endpoints -- such as Keys, Authorize, Token, Logoff, and Userinfo -- while configuring OIDC policy.
-
----
-
-### {{% icon-bug %}} Error codes are not configurable for the OIDC policy {#34900}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 34900    | Open   |
-{{</bootstrap-table>}}
-
-#### Description
-
-Adding custom error codes in the OIDC policy causes a validation error similar to the following example:
-
-``` text
-duplicate location \"/_oidc_err_85de2f20_default_411\
-```
-
-#### Workaround
-
-Use the default error codes included in the OIDC policy.
-
----
-
-### {{% icon-bug %}} Multiple hostnames on a single proxy cluster are not supported {#34457}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 34457    | Open   |
-{{</bootstrap-table>}}
-
-#### Description
-
-The environment API allows an array of hostnames; however, this capability is not fully implemented.
-
-#### Workaround
-
-Use a single hostname per proxy cluster.
 
 ---
 
