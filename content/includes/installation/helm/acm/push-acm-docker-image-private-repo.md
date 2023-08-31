@@ -1,3 +1,7 @@
+---
+docs: DOCS-1315
+---
+
 After loading the Docker image, you can now tag and push the image to your private Docker registry. Replace `<my-docker-registry>` in the examples below with the path to your private Docker registry.
 
 1. Log in to your private registry:

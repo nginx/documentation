@@ -1,3 +1,7 @@
+---
+docs: DOCS-1308
+---
+
 The `values.yaml` file within the `nginx-devportal` Helm chart contains the deployment configuration for the Developer Portal.
 
 You can update these fields directly in the `values.yaml` file or by specifying the `--set` flag when running `helm install`.

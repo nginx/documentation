@@ -1,3 +1,7 @@
+---
+docs: "DOCS-1320"
+---
+
 To enable the App Delivery Manager module, take the following steps:
 
 1. Open the `values.yaml` file for editing.

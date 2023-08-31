@@ -1,3 +1,7 @@
+---
+docs: DOCS-1313
+---
+
 1. Change to the directory where you downloaded the Docker image:
 
    ``` shell

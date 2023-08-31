@@ -1,3 +1,7 @@
+---
+docs: DOCS-1314
+---
+
 The following table lists the configurable parameters and default values used by the API Connectivity Manager chart when installing from a Helm chart.
 
 To modify a configuration for an existing release, run the `helm upgrade` command and use `-f <my-values-file>`, where `my-values-file` is a path to a values file with your desired configuration.
