@@ -1,3 +1,7 @@
+---
+docs: "DOCS-1327"
+---
+
 
 With the Instance Manager REST API, you can add a commit hash to NGINX configurations if you use version control, such as Git. This will allow you to retrieve a configuration with a unique version identifier.
 
