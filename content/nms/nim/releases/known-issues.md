@@ -18,17 +18,75 @@ categories: ["known issues"]
 ---
 
 ## 2.13.0
+August 28, 2023
+
+### {{% icon-bug %}} If you publish a configuration with an uncompiled policy, it will fail the first time {#44267}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44267 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+In Instance Manager 2.13, a new configuration is published before the compile stage of a WAF policy is complete. This happens only when the policy is first referenced. This leads to a deployment failure, and the configuration rolls back. Typically, by the time you try to submit the configuration again, the policy has finished compiling, and the request goes through.
+
+The initial failure message looks like this:
+
+```text
+Config push failed - err: failure from multiple instances. Affected placements: instance/70328a2c-699d-3a90-8548-b8fcec15dabd (instance-group: ig1) - err: failed building config payload: config: aux payload /etc/nms/NginxDefaultPolicy.tgz for instance:70328a2c-699d-3a90-8548-b8fcec15dabd not ready aux payload not ready, instance/2e637e08-64b3-36f9-8f47-b64517805e98 (instance-group: ig1) - err: failed building config payload: config: aux payload /etc/nms/NginxDefaultPolicy.tgz for instance:2e637e08-64b3-36f9-8f47-b64517805e98 not ready aux payload not ready
+```
+
+#### Workaround
+
+Retry pushing the new configuration. The deployment should work the second time around.
+
+---
+
+### {{% icon-bug %}} Validation errors in Resource Groups for certificates uploaded before 2.13 upgrade {#44254}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44254 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+If you upgrade to Instance Manager 2.13 and already have certificates in place, you may encounter validation errors in the web interface when you try to create or edit a Resource Group and access the Certs list. You will not be able to save the Resource Group if you encounter these errors.
+
+This issue doesn't occur if you upload certificates _after_ upgrading to version 2.13, nor does it affect new 2.13 installations. Instance Groups and Systems are unaffected.
+
+#### Workaround
+
+To work around this issue, you have two options:
+
+1. When creating or editing a Resource Group, don't use the Certs list. Instance Groups and Systems can still be used.
+2. If you must use Resource Groups with Certs, delete any certificates that were uploaded before upgrading to 2.13, and then re-upload them.
+
+---
+
+### {{% icon-bug %}} getAttackCountBySeverity endpoint broken with NGINX App Protect 4.4 and above {#44051}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44051 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+The reporting of severities has been disabled in NGINX App Protect 4.4. As a result, the `getAttackCountBySeverity` endpoint on the NGINX Management Suite's API will report zeroes for all severities, and the related "Severity" donut diagram in the Security Monitoring Dashboard won't display any values.
+
+---
 
 ### {{% icon-bug %}} Inaccurate Attack Signatures and Threat Campaigns versions {#43950}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 43950    | Open   |
+| Issue ID       | Status |
+|----------------|--------|
+| 43950 | Open   |
+
 {{</bootstrap-table>}}
-
 #### Description
-
 If `precompiled_publication` is set to `true`, NGINX Management Suite may incorrectly report the version of Attack Signatures (AS) and Threat Campaigns (TC) that you previously installed on the NAP WAF instance.
 
 ---
