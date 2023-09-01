@@ -3,12 +3,35 @@
 /nginx-app-protect/* /nginx-app-protect-waf/:splat 301
 
 # NGINX Amplify redirects
-/nginx-amplify/install-manage/_index/ /nginx-amplify/install-manage-amp-agent/_index/ 301
-/nginx-amplify/install-manage/configuring-agent/ /nginx-amplify/install-manage-amp-agent/configuring-agent/ 301
-/nginx-amplify/install-manage/installing-agent/ /nginx-amplify/install-manage-amp-agent/installing-agent/ 301
-/nginx-amplify/install-manage/uninstalling-agent/ /nginx-amplify/install-manage-amp-agent/uninstalling-agent/ 301
-/nginx-amplify/install-manage/updating-agent/ /nginx-amplify/install-manage-amp-agent/updating-agent/ 301 
-/nginx-amplify/install-manage/using-agent-docker/ /nginx-amplify/install-manage-amp-agent/using-agent-docker/ 301
+/nginx-amplify/install-manage/ /nginx-amplify/nginx-amplify-agent/install/ 301
+/nginx-amplify/install-manage/configuring-agent/ /nginx-amplify/nginx-amplify-agent/install/configuring-amplify-agent/ 301
+/nginx-amplify/install-manage/installing-agent/ /nginx-amplify/nginx-amplify-agent/install/installing-amplify-agent/ 301
+/nginx-amplify/install-manage/uninstalling-agent/ /nginx-amplify/nginx-amplify-agent/install/uninstalling-amplify-agent/ 301
+/nginx-amplify/install-manage/updating-agent/ /nginx-amplify/nginx-amplify-agent/install/updating-amplify-agent/ 301 
+/nginx-amplify/install-manage/using-agent-docker/ /nginx-amplify/nginx-amplify-agent/install/using-amplify-agent-docker/ 301
+
+/nginx-amplify/install-manage-nginx-agent/installing-agent/ /nginx-agent/install/installing-nginx-agent/ 301
+/nginx-amplify/install-manage-nginx-agent/updating-agent/ /nginx-agent/install/updating-nginx-agent/ 301
+/nginx-amplify/install-manage-nginx-agent/configuring-agent/ /nginx-agent/install/configuring-nginx-agent/ 301
+/nginx-amplify/install-manage-nginx-agent/uninstalling-agent/ /nginx-agent/install/uninstalling-nginx-agent/ 301
+
+/nginx-amplify/how-agent-works/agent-overview/ /nginx-amplify/nginx-amplify-agent/amplify-agent-overview/ 301
+/nginx-amplify/how-agent-works/metadata-metrics-collection/ /nginx-amplify/nginx-amplify-agent/metadata-metrics-collection/ 301
+/nginx-amplify/how-agent-works/detecting-monitoring-instances/ /nginx-amplify/nginx-amplify-agent/detecting-monitoring-instances/ 301
+/nginx-amplify/how-agent-works/configuring-metric-collection/ /nginx-amplify/nginx-amplify-agent/configuring-metric-collection/ 301
+/nginx-amplify/how-agent-works/troubleshooting-metrics-collection/ /nginx-amplify/nginx-amplify-agent/troubleshooting-metrics-collection/ 301
+/nginx-amplify/how-agent-works/configuration-analysis/ /nginx-amplify/nginx-amplify-agent/configuration-analysis/ 301
+/nginx-amplify/how-agent-works/source-code/ /nginx-amplify/nginx-amplify-agent/source-code/ 301
+
+/nginx-amplify/how-nginx-agent-works/agent-overview/ /nginx-amplify/nginx-agent/nginx-agent-overview/ 301
+/nginx-amplify/how-nginx-agent-works/metadata-metrics-collection/ /nginx-amplify/nginx-agent/metadata-metrics-collection/ 301
+/nginx-amplify/how-nginx-agent-works/detecting-monitoring-instances/ /nginx-amplify/nginx-agent/detecting-monitoring-instances/ 301
+/nginx-amplify/how-nginx-agent-works/configuring-metric-collection/ /nginx-amplify/nginx-agent/configuring-metric-collection/ 301
+/nginx-amplify/how-nginx-agent-works/troubleshooting-metrics-collection/ /nginx-amplify/nginx-agent/troubleshooting-metrics-collection/ 301
+/nginx-amplify/how-nginx-agent-works/configuration-analysis/ /nginx-amplify/nginx-agent/configuration-analysis/ 301
+/nginx-amplify/how-nginx-agent-works/source-code/ /nginx-amplify/nginx-agent/source-code/ 301
+
+
 
 # NGINXaaS for Azure redirects
 /nginx-for-azure/* /nginxaas/azure/:splat 301
