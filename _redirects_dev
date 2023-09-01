@@ -3,12 +3,12 @@
 /nginx-app-protect/* /nginx-app-protect-waf/:splat 301
 
 # NGINX Amplify redirects
-/nginx-amplify/install-manage/ /nginx-amplify/nginx-amplify-agent/install/ 301
-/nginx-amplify/install-manage/configuring-agent/ /nginx-amplify/nginx-amplify-agent/install/configuring-amplify-agent/ 301
-/nginx-amplify/install-manage/installing-agent/ /nginx-amplify/nginx-amplify-agent/install/installing-amplify-agent/ 301
-/nginx-amplify/install-manage/uninstalling-agent/ /nginx-amplify/nginx-amplify-agent/install/uninstalling-amplify-agent/ 301
-/nginx-amplify/install-manage/updating-agent/ /nginx-amplify/nginx-amplify-agent/install/updating-amplify-agent/ 301 
-/nginx-amplify/install-manage/using-agent-docker/ /nginx-amplify/nginx-amplify-agent/install/using-amplify-agent-docker/ 301
+/nginx-amplify/install-manage-amp-agent/ /nginx-amplify/nginx-amplify-agent/install/ 301
+/nginx-amplify/install-manage-amp-agent/configuring-agent/ /nginx-amplify/nginx-amplify-agent/install/configuring-amplify-agent/ 301
+/nginx-amplify/install-manage-amp-agent/installing-agent/ /nginx-amplify/nginx-amplify-agent/install/installing-amplify-agent/ 301
+/nginx-amplify/install-manage-amp-agent/uninstalling-agent/ /nginx-amplify/nginx-amplify-agent/install/uninstalling-amplify-agent/ 301
+/nginx-amplify/install-manage-amp-agent/updating-agent/ /nginx-amplify/nginx-amplify-agent/install/updating-amplify-agent/ 301 
+/nginx-amplify/install-manage-amp-agent/using-agent-docker/ /nginx-amplify/nginx-amplify-agent/install/using-amplify-agent-docker/ 301
 
 /nginx-amplify/install-manage-nginx-agent/installing-agent/ /nginx-agent/install/installing-nginx-agent/ 301
 /nginx-amplify/install-manage-nginx-agent/updating-agent/ /nginx-agent/install/updating-nginx-agent/ 301
