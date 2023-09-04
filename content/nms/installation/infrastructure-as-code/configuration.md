@@ -28,7 +28,7 @@ authors: []
 {{< custom-styles >}}
 
 {{< call-out "tip" "Open-Source Project on GitHub" >}}
-The steps in this guide refer to the <a href="https://github.com/nginxinc/ansible-role-nginx-management-suite" target="_blank">Ansible NGINX Management Suite Role project on GitHub.</a> <i class="fa-regular fa-arrow-up-right-from-square" style="color:#009639;"></i>
+The steps in this guide refer to the <a href="https://github.com/nginxinc/ansible-role-nginx-management-suite" target="_blank">Ansible NGINX Management Suite Role project on GitHub.</a> <i class="fa-solid fa-arrow-up-right-from-square" style="color:#009639;"></i>
 {{</call-out>}}
 
 ---

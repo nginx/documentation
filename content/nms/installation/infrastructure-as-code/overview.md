@@ -30,7 +30,7 @@ authors: []
 ## NGINX Management Suite Ansible Role
 
 {{< call-out "tip" "Open-Source Project on GitHub" >}}
-The steps in this guide refer to the <a href="https://github.com/nginxinc/ansible-role-nginx-management-suite" target="_blank">Ansible NGINX Management Suite Role project on GitHub.</a> <i class="fa-regular fa-arrow-up-right-from-square" style="color:#009639;"></i>
+The steps in this guide refer to the <a href="https://github.com/nginxinc/ansible-role-nginx-management-suite" target="_blank">Ansible NGINX Management Suite Role project on GitHub.</a> <i class="fa-solid fa-arrow-up-right-from-square" style="color:#009639;"></i>
 {{</call-out>}}
 
 
@@ -50,7 +50,7 @@ To get started, you'll need:
 
 <br>
 
-<i class="fa-regular fa-circle-info" style="color:#009639;"></i> [Learn more]({{< relref "./configuration.md" >}})
+<i class="fa-solid fa-circle-info" style="color:#009639;"></i> [Learn more]({{< relref "./configuration.md" >}})
 
 ---
 
@@ -58,7 +58,7 @@ To get started, you'll need:
 
 
 {{< call-out "tip" "Open-Source Project on GitHub" >}}
-The steps in this guide refer to the <a href="https://github.com/nginxinc/nginx-management-suite-iac" target="_blank">NGINX Management Suite Infrastructure as Code project on GitHub.</a> <i class="fa-regular fa-arrow-up-right-from-square" style="color:#009639;"></i>
+The steps in this guide refer to the <a href="https://github.com/nginxinc/nginx-management-suite-iac" target="_blank">NGINX Management Suite Infrastructure as Code project on GitHub.</a> <i class="fa-solid fa-arrow-up-right-from-square" style="color:#009639;"></i>
 {{< /call-out >}}
 
 
@@ -74,4 +74,4 @@ The IaC project requires the following:
 
 <br>
 
-<i class="fa-regular fa-circle-info" style="color:#009639;"></i> [Learn more]({{< relref "./build-and-deploy.md" >}})
+<i class="fa-solid fa-circle-info" style="color:#009639;"></i> [Learn more]({{< relref "./build-and-deploy.md" >}})
