@@ -10,7 +10,7 @@ weight: 300
 
 ## Introduction
 
-The NGINX diagnostic package automates the collection of the data required to troubleshoot issues in your NGINX environment. The package contains a [lightweight script](https://nginx.org/download/nginx-supportpkg.sh) to collect the diagnostic data required to troubleshoot your NGINX Open Source and/or NGINX Plus instance.  
+The NGINX diagnostic package automates the collection of the data required to troubleshoot issues in your NGINX environment. The package contains a [support script](https://nginx.org/download/nginx-supportpkg.sh) to collect the diagnostic data required to troubleshoot your NGINX Open Source and/or NGINX Plus instance.  
 
 The diagnostic package collects the following information from the NGINX installation:
 
