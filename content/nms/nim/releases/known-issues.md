@@ -17,8 +17,53 @@ categories: ["known issues"]
 
 ---
 
+## 2.13.1
+September 05, 2023
+
+### {{% icon-bug %}} Certificates may not appear in resource group  {#44323}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44323 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+If you have certificates that were added to NGINX Management Suite before upgrading, they may not appear in the list of available certs when creating or editing a resource group.
+
+#### Workaround
+
+Restarting the DPM process will make all certificates visible in the Resource Group web interface and API.
+
+For VM and bare metal deployments:
+```shell
+sudo systemctl restart nms-dpm
+```
+
+For Kubernetes deployments:
+
+```shell
+kubectl -n nms scale --replicas=0 deployment.apps/dpm
+kubectl -n nms scale --replicas=1 deployment.apps/dpm
+```
+
+---
+
 ## 2.13.0
 August 28, 2023
+
+### {{% icon-resolved %}} Access levels cannot be assigned to certain RBAC features {#44277}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44277 | Fixed in Instance Manager 2.13.1   |
+
+{{</bootstrap-table>}}
+#### Description
+When configuring role-based access control (RBAC), you can't assign access levels to some features, including Analytics and Security Policies.
+
+---
 
 ### {{% icon-bug %}} If you publish a configuration with an uncompiled policy, it will fail the first time {#44267}
 
@@ -43,12 +88,12 @@ Retry pushing the new configuration. The deployment should work the second time 
 
 ---
 
-### {{% icon-bug %}} Validation errors in Resource Groups for certificates uploaded before 2.13 upgrade {#44254}
+### {{% icon-resolved %}} Validation errors in Resource Groups for certificates uploaded before 2.13 upgrade {#44254}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 44254 | Open   |
+| 44254 | Fixed in Instance Manager 2.13.1   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -90,6 +135,7 @@ The reporting of severities has been disabled in NGINX App Protect 4.4. As a res
 If `precompiled_publication` is set to `true`, NGINX Management Suite may incorrectly report the version of Attack Signatures (AS) and Threat Campaigns (TC) that you previously installed on the NAP WAF instance.
 
 ---
+
 ## 2.12.0
 
 ### {{% icon-bug %}} Licensing issues when adding JWT licenses in firewalled environments {#43719}
