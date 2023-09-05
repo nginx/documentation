@@ -21,7 +21,7 @@ NGINX Plus uses a modular architecture. New features and functionality can be ad
 
 NGINX maintains a repository of dynamic modules for NGINX Plus. All modules in our repository are fully tested and certified for correct interoperation with NGINX Plus.
 
-There are many additional [third‑party modules](https://www.nginx.com/resources/wiki/modules/) that are not included in the repository. You can [compile](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/#install_modules_oss) many of them as dynamic modules.
+There are many additional [third‑party modules](https://github.com/agile6v/awesome-nginx#third-party-modules) that are not included in the repository. You can [compile](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/#install_modules_oss) many of them as dynamic modules.
 
 
 <span id="getting_started"></span>
