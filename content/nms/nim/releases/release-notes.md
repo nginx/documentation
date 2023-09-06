@@ -18,6 +18,38 @@ aliases:
 
 {{<rn-styles>}}
 
+## 2.13.1
+September 05, 2023
+### Upgrade Paths {#2-13-1-upgrade-paths}
+
+Instance Manager  supports upgrades from these previous versions:
+
+- 2.10.0 - 2.13.0
+
+If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+{{< see-also >}}
+Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< /see-also >}}
+
+### Resolved Issues{#2-13-1-resolved-issues}
+This release fixes the following issues. Select an issue's ID link to view its details.
+
+- {{% icon-resolved %}} Validation errors in Resource Groups for certificates uploaded before 2.13 upgrade [(44254)]({{< relref "/nms/nim/releases/known-issues.md#44254" >}})<a name="2-13-1-resolved-issues-Validation-errors-in-Resource-Groups-for-certificates-uploaded-before-2-13-upgrade"></a>
+- {{% icon-resolved %}} Access levels cannot be assigned to certain RBAC features [(44277)]({{< relref "/nms/nim/releases/known-issues.md#44277" >}})<a name="2-13-1-resolved-issues-Access-levels-cannot-be-assigned-to-certain-RBAC-features"></a>
+
+### Known Issues{#2-13-1-known-issues}
+
+You can find information about known issues in the [Known Issues]({{< relref "/nms/nim/releases/known-issues.md" >}}) topic.
+
+
+### Support for NGINX App Protect WAF
+
+{{< include "tech-specs/nim-app-protect-support.md" >}}
+
+---
+
+
 ## 2.13.0
 
 August 29, 2023
