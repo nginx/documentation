@@ -74,23 +74,21 @@ Repeat the steps in this section on each NGINX App Protect WAF data plane host t
 
    ```yaml
    dataplane:
-   sync:
-      enable: true
-   status:
-      # poll interval for data plane status - the frequency the NGINX Agent will query the data plane for changes
-      poll_interval: 30s
-      # report interval for data plane status - the maximum duration to wait before syncing data plane information if no updates have been observed
-      report_interval: 24h
+      status:
+         # poll interval for data plane status - the frequency the NGINX Agent will query the data plane for changes
+         poll_interval: 30s
+         # report interval for data plane status - the maximum duration to wait before syncing data plane information if no updates have been observed
+         report_interval: 24h
    events:
       # report data plane events back to the management plane
       enable: true
    metrics:
-   # specify the size of a buffer to build before sending metrics
-   bulk_size: 20
-   # specify metrics poll interval
-   report_interval: 1m
-   collection_interval: 15s
-   mode: aggregated
+      # specify the size of a buffer to build before sending metrics
+      bulk_size: 20
+      # specify metrics poll interval
+      report_interval: 1m
+      collection_interval: 15s
+      mode: aggregated
 
    # OSS NGINX default config path
    # path to aux file dirs can also be added

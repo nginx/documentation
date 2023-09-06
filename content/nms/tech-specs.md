@@ -145,7 +145,7 @@ The following sizing recommendations are the minimum sizing guidelines for Insta
 
 ### Supported Distributions
 
-The NGINX Agent can run on most environments. For the supported distributions, see the [NGINX Technical Specs](https://docs.nginx.com/nginx/technical-specs/#supported-distributions) guide.
+The NGINX Agent can run on most environments. For the supported distributions, see the [NGINX Agent Technical Specs](https://docs.nginx.com/nginx-agent/technical-specifications/) guide.
 
 ### Supported Deployment Environments {#agent-environments}
 
