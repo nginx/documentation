@@ -171,6 +171,8 @@ The basic configuration below creates an API Proxy to a backend service.
 ## Publish API Proxy with OpenAPI Spec {#publish-api-proxy-with-spec}
 {{< include "acm/openapi-support" >}}
 
+{{< include "acm/openapi-extended" >}}
+
 - When you upload an OpenAPI spec, API Connectivity Manager automatically generates a name for the API Docs object using the following format:
     
 `"info.title"-"info.version"`
@@ -206,7 +208,7 @@ Populated from API Specification and are read-only
     curl -k -X GET "https://gateway-proxy-hostname/version/basepath"
     ```
 
-{{< note >}}By default the ingress append rule is set to `PREFIX` so your request must be in the form of `version/basepath`. {{< /note >}}
+{{< note >}} By default the ingress append rule is set to `NONE` when using an OAS Schema so your request must match the `basepath` you have supplied as part of your Global Server URL. {{< /note >}}
 
 {{%/tab%}}
 {{%tab name="API"%}}
