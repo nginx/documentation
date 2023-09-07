@@ -44,11 +44,18 @@ weight: 100
    pkg delete <dynamic_module_name>
    ```
 
-2. Remove the corresponding [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive from NGINX Plus configuration file.
 
-3. In NGINX Plus configuration file, remove all directives related to the dynamic module.
+<span id="configure"></span>
 
-4. Reload NGINX Plus:
+## Configuration
+
+After uninstalling the package, you will need to disable the module in NGINX Plus configuration file `nginx.conf`.
+
+1. Disable dynamic loading of the module by removing the corrsponding [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive.
+
+2. In NGINX Plus configuration file, remove all directives related to the dynamic module.
+
+3. Test the configuration and reload NGINX Plus to disable the module:
 
    ```shell
    nginx -t && nginx -s reload

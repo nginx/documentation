@@ -13,9 +13,11 @@ weight: 100
 
 
 <span id="install"></span>
-## Installation Instructions
+## Installaton
 
-1. Install the Encrypted-Session module.
+1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+
+2. Install the Encrypted Session module package `nginx-plus-module-encrypted-session`.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
    
@@ -53,7 +55,14 @@ weight: 100
    pkg install nginx-plus-module-encrypted-session
    ```
 
-2. Put the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
+
+<span id="configure"></span>
+
+## Configuration
+
+After installation you will need to enable and configure the module in NGINX Plus configuration file `nginx.conf`.
+
+1. Put the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
 
    ```nginx
    load_module modules/ndk_http_module.so;
@@ -62,14 +71,13 @@ weight: 100
    
    {{< note >}} The directives must be in this order. {{< /note >}}
 
-3. Perform additional configuration as required by the [module](https://github.com/openresty/encrypted-session-nginx-module).
+2. Perform additional configuration as required by the [module](https://github.com/openresty/encrypted-session-nginx-module).
 
-4. Reload NGINX Plus to enable the module:
+3. Test the configuration and reload NGINX Plus to enable the module:
 
    ```shell
    nginx -t && nginx -s reload
    ```
-
 
 <span id="info"></span>
 ## More Info

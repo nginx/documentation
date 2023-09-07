@@ -13,9 +13,11 @@ weight: 100
 The NDK module is also a prerequisite for [Lua]({{< relref "lua.md" >}}) and [Set-Misc]({{< relref "set-misc.md" >}}) modules.
 
 <span id="install"></span>
-## Installation Instructions
+## Installation
 
-1. Install the NDK module.
+1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+
+2. Install the NDK module package `nginx-plus-module-ndk`.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
    
@@ -53,15 +55,22 @@ The NDK module is also a prerequisite for [Lua]({{< relref "lua.md" >}}) and [Se
    pkg install nginx-plus-module-ndk
    ```
 
-2. Put the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
+
+<span id="configure"></span>
+
+## Configuration
+
+After installation you will need to enable and configure the module in NGINX Plus configuration file `nginx.conf`.
+
+1. Enable dynamic loading of the module with the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive specified in the top-level (“`main`”) context:
 
    ```nginx
    load_module modules/ndk_http_module.so;
    ```
 
-3. Perform additional configuration as required by the [module](https://github.com/vision5/ngx_devel_kit).
+2. Perform additional configuration as required by the [module](https://github.com/vision5/ngx_devel_kit).
 
-4. Reload NGINX Plus to enable the module:
+3. Test the configuration and reload NGINX Plus to enable the module:
 
    ```shell
    nginx -t && nginx -s reload

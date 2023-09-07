@@ -14,9 +14,11 @@ For NGINX Plus, the cryptographic boundary includes all functionality that is im
 
 
 <span id="install"></span>
-## Installation Instructions
+## Installation
 
-1. Install the FIPS module.
+1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+
+2. Install the FIPS module package `nginx-plus-module-fips-check`.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
    
@@ -54,15 +56,21 @@ For NGINX Plus, the cryptographic boundary includes all functionality that is im
    pkg install nginx-plus-module-fips-check
    ```
 
-2. Put the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
+<span id="configure"></span>
+
+## Configuration
+
+After installation you will need to enable and configure the module in NGINX Plus configuration file `nginx.conf`.
+
+1. Enable dynamic loading of the module with the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive specified in the top-level (“`main`”) context:
 
    ```nginx
    load_module modules/ngx_fips_check_module.so;
    ```
 
-3. Perform additional configuration as required by the [module](https://github.com/ogarrett/nginx-fips-check-module).
+2. Perform additional configuration as required by the [module](https://github.com/ogarrett/nginx-fips-check-module).
 
-4. Reload NGINX Plus to enable the module:
+3. Test the configuration and reload NGINX Plus to enable the module:
 
    ```shell
    nginx -t && nginx -s reload

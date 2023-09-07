@@ -15,9 +15,11 @@ The NGINX ModSecurity web application firewall (WAF) is built on ModSecurity 3.0
 
 
 <span id="install"></span>
-## Installation Instructions
+## Installation
 
-1. Install the NGINX ModSecurity WAF module.
+1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+
+2. Install the NGINX ModSecurity WAF module package `nginx-plus-module-modsecurity`.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
    
@@ -53,21 +55,29 @@ The NGINX ModSecurity web application firewall (WAF) is built on ModSecurity 3.0
    apk add nginx-plus-module-modsecurity
    ```
 
-2. Put the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
+
+<span id="configure"></span>
+
+## Configuration
+
+After installation you will need to enable and configure the module in NGINX Plus configuration file `nginx.conf`.
+
+1. Enable dynamic loading of the module with the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive specified in the top-level (“`main`”) context:
 
    ```nginx
    load_module modules/ngx_http_modsecurity_module.so;
    ```
 
-3. Perform additional configuration as required by the [module](https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual).
+2. Perform additional configuration as required by the [module](https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual).
 
-4. Reload NGINX Plus to enable the module:
+3. Test the configuration and reload NGINX Plus to enable the module:
 
    ```shell
    nginx -t && nginx -s reload
    ```
 
-5. [Configure](https://docs.nginx.com/nginx-waf/admin-guide/nginx-plus-modsecurity-waf-installation-logging/) the module.
+4. [Configure](https://docs.nginx.com/nginx-waf/admin-guide/nginx-plus-modsecurity-waf-installation-logging/) the module.
+
 
 <span id="info"></span>
 ## More Info

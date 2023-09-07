@@ -13,16 +13,18 @@ weight: 100
 
 
 <span id="install"></span>
-## Installation Instructions
+## Installation
 
-1. Install the GeoIP module.
+1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+
+2. Install the GeoIP module package `nginx-plus-module-geoip`.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
    
    ```shell
    yum install nginx-plus-module-geoip
    ```
-   Note: Only 7.x version of CentOS, Oracle Linux, and RHEL is supported.
+   {{< note >}} Only 7.x version of CentOS, Oracle Linux, and RHEL is supported. {{< /note >}}
 
 
    For Debian and Ubuntu:
@@ -42,7 +44,13 @@ weight: 100
    apk add nginx-plus-module-geoip
    ```
 
-2. Put both of the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directives in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
+<span id="configure"></span>
+
+## Configuration
+
+After installation you will need to enable and configure the module in NGINX Plus configuration file `nginx.conf`.
+
+1. Enable dynamic loading of GeoIP modules with the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directives specified in the top-level (“`main`”) context:
 
    ```nginx
    load_module modules/ngx_http_geoip_module.so;
@@ -53,9 +61,9 @@ weight: 100
    }
    ```
 
-3. Perform additional configuration as required by the module ([HTTP](https://nginx.org/en/docs/http/ngx_http_geoip_module.html) or [TCP/UDP](https://nginx.org/en/docs/stream/ngx_stream_geoip_module.html)).
+2. Perform additional configuration as required by the module ([HTTP](https://nginx.org/en/docs/http/ngx_http_geoip_module.html) or [TCP/UDP](https://nginx.org/en/docs/stream/ngx_stream_geoip_module.html)).
 
-4. Reload NGINX Plus to enable the module:
+3. Test the configuration and reload NGINX Plus to enable the module:
 
    ```shell
    nginx -t && nginx -s reload

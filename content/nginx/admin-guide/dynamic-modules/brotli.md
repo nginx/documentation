@@ -41,7 +41,7 @@ The [ngx_brotli](https://github.com/google/ngx_brotli) module enables Brotli com
 
 ## Installation
 
-Install the `nginx-plus-module-brotli` module
+Install the Brotli module package `nginx-plus-module-brotli`.
 
 *  for Amazon Linux 2 LTS, CentOS, Oracle Linux, and RHEL:
 
@@ -75,7 +75,7 @@ Install the `nginx-plus-module-brotli` module
 
 <span id="configure"></span>
 
-## NGINX Plus Configuration
+## Configuration
 
 After installation you will need to enable and configure Brotli modules in NGINX Plus configuration file **nginx.conf**. 
 
