@@ -113,6 +113,21 @@ By default, the data for modules isn't included in backups for NGINX Management 
     ./backup-acm.sh
     ```
 
+    Uncomment the following section as well:
+
+    ```text
+	## Back up API Connectivity Manager
+	# Uncomment the following line to back up API Connectivity Manager.
+	ACM_ACTIVE=$(systemctl is-active --quiet nms-acm)
+	IS_ACM_ACTIVE=$?
+	if [ $IS_ACM_ACTIVE -ne 0 ]; then
+	    echo "You need to start the required NGINX Management Suite services before running the backup script."
+	    echo "Please ensure the following nms service is running:"
+	    echo "nms-acm"
+	    exit 1
+	fi
+    ```
+
     </details>
 
     <details open>
