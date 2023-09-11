@@ -703,37 +703,8 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
    - `nginx-app-protect-dos` service executes the command: `ulimit -l unlimited`.
    {{< /note >}}
 
-    Alternatively, to install a specific version you should modify the repository URL in the `/etc/apt/sources.list.d/nginx-plus.list` file in the following way:
 
-    ```shell
-    deb https://plus-pkgs.nginx.com/Rxx/debian ...
-    ```
-    and make the same changes to the `/etc/apt/sources.list.d/nginx-app-protect-dos.list`
-
-    deb https://pkgs.nginx.com/app-protect-dos/Rxx/debian ...
-
-    where xx is a release number.
-
-    For example, to install `app-protect-dos` for Debian 11 NGINX Plus version 27, make sure of the following:
-
-    ```shell
-    sudo cat /etc/apt/sources.list.d/nginx-plus.list
-    deb https://pkgs.nginx.com/plus/R27/debian bullseye nginx-plus
-    sudo cat /etc/apt/sources.list.d/nginx-app-protect-dos.list
-    deb https://pkgs.nginx.com/app-protect-dos/R27/debian bullseye nginx-plus
-    ```
-
-    For example, to install `app-protect-dos` for Debian 11 NGINX Plus version 27, make sure of the following:
-
-    ```shell
-    sudo cat /etc/apt/sources.list.d/nginx-plus.list
-    deb https://pkgs.nginx.com/plus/R27/debian bullseye nginx-plus
-    sudo cat /etc/apt/sources.list.d/nginx-app-protect-dos.list
-    deb https://pkgs.nginx.com/app-protect-dos/R27/debian bullseye nginx-plus
-    ```
-
-
-    Then, use the following commands to update and list available versions:
+    Alternatively, to install a specific version, use the following commands to update and list available versions:
 
     ```shell
     sudo apt-get update
@@ -886,30 +857,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
    - `nginx-app-protect-dos` and `nginx` needs to run with root privileges.  
    {{< /note >}}
     
-    Alternatively, to install a specific version you should modify the repository URL in the `/etc/apk/repositories` file in the following way:
-
-    ```shell
-    https://pkgs.nginx.com/plus/Rxx/alpine/v3.15/main
-    https://pkgs.nginx.com/app-protect-dos/Rxx/alpine/v3.15/main
-    ```
-    
-    where xx is a release number.
-
-    For example, to install NGINX App Protect DoS for NGINX Plus R27 make sure of the following:
-
-    ```shell
-    sudo cat /etc/apk/repositories
-    https://pkgs.nginx.com/plus/R27/alpine/v3.15/main
-    https://pkgs.nginx.com/app-protect-dos/R27/alpine/v3.15/main
-    ```
-    Install the most recent version of NGINX App Protect DoS for NGINX Plus R23:
-
-    ```shell    
-    sudo apk update
-    sudo apk add nginx-plus app-protect-dos
-    ````
-
-    Alternatively, use the following commands to list available versions:
+    Alternatively, to install a specific version, use the following commands to update and list available versions:
 
     ```shell    
     sudo apk update
