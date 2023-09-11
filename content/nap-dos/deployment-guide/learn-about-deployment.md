@@ -1725,6 +1725,8 @@ Make sure to replace upstream and proxy pass directives in this example with rel
 
 ## NGINX App Protect DoS Arbitrator
 
+### Overview
+
 NGINX App Protect DoS arbitrator orchestrates all the running NGINX App Protect DoS instances to synchronize local/global attack start/stop.
 
 NGINX App Protect DoS arbitrator serves as a central coordinating component for managing multiple instances of  App Protect DoS in a network. Its primary function is to ensure that all instances are aware of and share the same state for each protected object. Here's a clearer breakdown of how it works and why it's necessary:
