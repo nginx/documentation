@@ -168,7 +168,7 @@ NGINX, Inc. publishes a unified Ansible role for NGINX Open Source and NGINX P
 
 2. Install Ansible. These commands are appropriate for Debian and Ubuntu systems:
 
-   ```none
+   ```shell
    $ apt update
    $ apt install python-pip -y
    $ pip install ansible
@@ -176,7 +176,7 @@ NGINX, Inc. publishes a unified Ansible role for NGINX Open Source and NGINX P
 
 3. Install the official Ansible role from NGINX, Inc.:
 
-   ```none
+   ```shell
    $ ansible-galaxy install nginxinc.nginx
    ```
 
@@ -194,7 +194,7 @@ NGINX, Inc. publishes a unified Ansible role for NGINX Open Source and NGINX P
 
 5. Run the playbook:
 
-   ```none
+   ```shell
    $ ansible-playbook playbook.yml
    ```
    

@@ -1,3 +1,7 @@
+---
+docs: DOCS-1304
+---
+
 NGINX Plus advanced metrics are application-centric metrics collected by the NGINX Agent.
 
 To enable advanced metrics, edit the `/etc/nginx-agent/nginx-agent.conf` file and add the following directives:

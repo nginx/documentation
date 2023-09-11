@@ -3,7 +3,7 @@ authors: []
 categories:
 - installation
 date: "2020-10-21T14:43:55-07:00"
-description: This guide explains how to deploy NGINX Controller as a multi-node resilient
+description: This guide explains how to deploy NGINX Controller as a multi-node resilient.
   cluster on AWS.
 docs: DOCS-257
 doctypes:

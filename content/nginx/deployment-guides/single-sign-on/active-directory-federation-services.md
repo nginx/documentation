@@ -32,7 +32,7 @@ The instructions assume you have the following:
    
    For CentOS, RHEL, and Oracle Linux:
  
-   ```none
+   ```shell
    $ sudo yum install nginx-plus-module-njs
    ```
     
@@ -56,17 +56,18 @@ Create an AD FS application for NGINX Plus:
    <img src="https://www.nginx.com/wp-content/uploads/2019/12/ADFS-SSO_Welcome.png" alt="" width="734" height="597" class="aligncenter size-full wp-image-62013" />
 
    <span id="ad-fs-server-application"></span>
-3. In the **Server application** step: 
+3. In the **Server application** step:
 
-       1. Make a note of the value in the **Client Identifier** field. You will add it to the NGINX Plus configuration in [Step 4 of _Configuring NGINX Plus_](#nginx-plus-variables).<br/>
-       2. In the **Redirect URI** field, type the URI of the NGINX Plus instance including the port number, and ending in **/\_codexch**. Here we’re using <span style="white-space: nowrap; color:#666666; font-weight:bolder;">https://my-nginx.example.com:443/\_codexch</span>. Click the <span style="background-color:#e1e1e1; white-space: nowrap; font-weight: bolder"> Add </span> button.
-        
-          **Notes:** 
-     
-          * For production, we strongly recommend that you use SSL/TLS (port 443).
-          * The port number is mandatory even when you're using the default port for HTTP (80) or HTTPS (443).
+   1. Make a note of the value in the **Client Identifier** field. You will add it to the NGINX Plus configuration in [Step 4 of _Configuring NGINX Plus_](#nginx-plus-variables).<br/>
+
+   2. In the **Redirect URI** field, type the URI of the NGINX Plus instance including the port number, and ending in **/\_codexch**. Here we’re using <span style="white-space: nowrap; color:#666666; font-weight:bolder;">https://my-nginx.example.com:443/\_codexch</span>. Click the <span style="background-color:#e1e1e1; white-space: nowrap; font-weight: bolder"> Add </span> button.
    
-      3. Click the <span style="background-color:#e1e1e1; white-space: nowrap; font-weight: bolder"> Next > </span> button.
+      **Notes:**
+
+      * For production, we strongly recommend that you use SSL/TLS (port 443).
+      * The port number is mandatory even when you're using the default port for HTTP (80) or HTTPS (443).
+
+3. Click the <span style="background-color:#e1e1e1; white-space: nowrap; font-weight: bolder"> Next > </span> button.
 
    <img src="https://www.nginx.com/wp-content/uploads/2019/12/ADFS-SSO_Server-application.png" alt="" width="860" height="523" class="aligncenter size-full wp-image-62012" />
 
@@ -85,7 +86,7 @@ Configure NGINX Plus as the OpenID Connect relying party:
 
 1. Create a clone of the [<span style="white-space: nowrap; font-weight:bold;">nginx-openid-connect</span>](https://github.com/nginxinc/nginx-openid-connect) GitHub repository.
 
-   ```none
+   ```shell
    $ git clone https://github.com/nginxinc/nginx-openid-connect
    ```
    
@@ -99,7 +100,7 @@ Configure NGINX Plus as the OpenID Connect relying party:
    <span id="nginx-plus-urls"></span>
 3. Get the URLs for the authorization endpoint, token endpoint, and JSON Web Key (JWK) file from the AD FS configuration. Run the following `curl` command in a terminal, piping the output to the indicated `python` command to output the entire configuration in an easily readable format. We've abridged the output to show only the relevant fields. 
 
-   ```none
+   ```shell
    $ curl https://<ADFS-server-address>/oidc/adfs/.well-known/openid-configuration | python -m json.tool
    {
     ...

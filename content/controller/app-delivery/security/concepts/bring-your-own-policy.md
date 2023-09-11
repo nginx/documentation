@@ -4,7 +4,7 @@ authors:
 categories:
 - security
 date: "2021-05-03T10:20:39-06:00"
-description: Learn how to use your own NGINX App Protect WAF policies with NGINX Controller
+description: Learn how to use your own NGINX App Protect WAF policies with NGINX Controller.
 docs: DOCS-481
 doctypes:
 - concept

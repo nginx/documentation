@@ -8,8 +8,7 @@ categories:
 - services
 - api management
 date: "2020-10-26T15:32:41-06:00"
-description: Use the NGINX Controller API Manager to add APIs and control how your
-  APIs are exposed and consumed.
+description: Use the NGINX Controller API Manager to add APIs and control how your APIs are exposed and consumed.
 docs: DOCS-569
 doctypes:
 - tutorial

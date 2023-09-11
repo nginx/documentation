@@ -1,5 +1,5 @@
 ---
-
+docs: "DOCS-1339"
 ---
 
 App Delivery Manager relies on the platform features provided by NGINX Management Suite, specifically those included with Instance Manager. 
@@ -11,9 +11,8 @@ The following table lists the minimum versions of Instance Manager required by A
 {{<bootstrap-table "table table-striped table-bordered">}}
 | App Delivery Manager | Instance Manager Dependency |
 |----------------------|-----------------------------|
-| 4.0.0                | 2.10.1                      |
+| 4.0.0-EA3            | 2.12.0 and later            |
+| 4.0.0-EA2            | 2.11.0 and later            |
+| 4.0.0-EA1            | 2.10.1 and later            |
 {{</bootstrap-table>}}
 
-
-<!-- Do not remove. Keep this code at the bottom of the include -->
-<!-- DOCS-000 -->

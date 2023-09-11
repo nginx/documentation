@@ -179,14 +179,14 @@ When FIPS mode is enabled on the host operating system, the two ciphers that use
 
 When you configure NGINX Plus with the `ssl_ciphers ALL` directive, NGINX Plus presents all the relevant ciphers available in the OpenSSL cryptographic module to the client. FIPS mode disables the following ciphers:
  
-* ```TLS_ECDH_anon_WITH_RC4_128_SHA```
-* ```TLS_ECDHE_RSA_WITH_RC4_128_SHA```
-* ```TLS_RSA_WITH_CAMELLIA_128_CBC_SHA```
-* ```TLS_RSA_WITH_CAMELLIA_256_CBC_SHA```
-* ```TLS_RSA_WITH_IDEA_CBC_SHA```
-* ```TLS_RSA_WITH_RC4_128_MD5```
-* ```TLS_RSA_WITH_RC4_128_SHA```
-* ```TLS_RSA_WITH_SEED_CBC_SHA```
+* `TLS_ECDH_anon_WITH_RC4_128_SHA`
+* `TLS_ECDHE_RSA_WITH_RC4_128_SHA`
+* `TLS_RSA_WITH_CAMELLIA_128_CBC_SHA`
+* `TLS_RSA_WITH_CAMELLIA_256_CBC_SHA`
+* `TLS_RSA_WITH_IDEA_CBC_SHA`
+* `TLS_RSA_WITH_RC4_128_MD5`
+* `TLS_RSA_WITH_RC4_128_SHA`
+* `TLS_RSA_WITH_SEED_CBC_SHA`
 
 ## Conclusion
 

@@ -52,7 +52,7 @@ To configure an additional passive node for your existing NGINX Plus active‑p
 
     Below is a sample **keepalived.conf** on an additional passive node with IP address 192.168.10.12. The IP addresses of the other two nodes are 192.168.10.10 and 192.168.10.11. The virtual IP address (VIP) is 192.168.10.100.
 
-    ```
+    ```yaml
     vrrp_script chk_nginx_service {
         script  "/usr/lib/keepalived/nginx-ha-check"
         interval 3
@@ -87,7 +87,7 @@ To configure an additional passive node for your existing NGINX Plus active‑p
 
 4. Edit **keepalived.conf** on the other nodes, adding the IP address of the new passive node to the `unicast_peer` section so that all other nodes are listed:
 
-   ```
+   ```yaml
    unicast_peer {
        192.168.10.11
        192.168.10.12
@@ -238,7 +238,7 @@ Both of the methods in [Configuring NGINX Plus for Active-Active HA](#nginx_for_
 
 The following `keepalived` configuration is for an <span style="white-space: nowrap;">active-active-active</span> configuration. Here the [steps for adding an active node](#conf_active) are just repeated for the third one. Notice that this node is active for one VIP, secondary for one VIP, and tertiary for one VIP.
 
-```
+```yaml
 vrrp_script chk_nginx_service {
     script   "/usr/lib/keepalived/nginx-ha-check"
     interval 3

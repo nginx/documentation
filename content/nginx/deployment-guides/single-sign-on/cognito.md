@@ -33,7 +33,7 @@ The instructions assume you have the following:
    
    For CentOS, RHEL, and Oracle Linux:
  
-   ```none
+   ```shell
    $ sudo yum install nginx-plus-module-njs
    ```
     
@@ -119,7 +119,7 @@ Configure NGINX Plus as the OpenID Connect relying party:
 
 1. Create a clone of the [<span style="white-space: nowrap; font-weight:bold;">nginx-openid-connect</span>](https://github.com/nginxinc/nginx-openid-connect) GitHub repository.
 
-   ```none
+   ```shell
    $ git clone https://github.com/nginxinc/nginx-openid-connect
    ```
    

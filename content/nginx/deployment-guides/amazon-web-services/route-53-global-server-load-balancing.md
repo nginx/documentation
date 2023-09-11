@@ -245,7 +245,7 @@ These instructions assume that you have configured NGINX Plus on two EC2 instan
 
 2. Change directory to **/etc/nginx/conf.d**.
 
-   ```none
+   ```shell
    $ cd /etc/nginx/conf.d
    ```
 
@@ -275,7 +275,7 @@ These instructions assume that you have configured NGINX Plus on two EC2 instan
 
 4. Verify the validity of the NGINX configuration and load it.
 
-   ```none
+   ```shell
    $ nginx -t
    $ nginx -s reload
    ```
@@ -370,13 +370,13 @@ Perform these steps on all four backend servers: <span style="color:#666666; fon
 
 1. Connect over SSH to the instance (or return to the terminal you left open after installing NGINX Open Source) and change directory to and change directory to your root directory. For the instance in this guide, it is **/home/ubuntu**.
 
-   ```none
+   ```shell
    $ cd /home/ubuntu
    ```
 
 2. Create a directory called **public_html** and change directory to it.
 
-   ```none
+   ```shell
    $ mkdir public_html
    $ cd public_html
    ```
@@ -389,13 +389,13 @@ Perform these steps on all four backend servers: <span style="color:#666666; fon
 
 4. Change directory to **/etc/nginx/conf.d**.
 
-   ```none
+   ```shell
    $ cd /etc/nginx/conf.d
    ```
 
 5. Rename **default.conf** to **default.conf.bak** so that NGINX Plus does not load it.
 
-   ```none
+   ```shell
    $ mv default.conf default.conf.bak
    ```
 
@@ -410,7 +410,7 @@ Perform these steps on all four backend servers: <span style="color:#666666; fon
    
 7. Verify the validity of the NGINX configuration and load it.
 
-   ```none
+   ```shell
    $ nginx -t
    $ nginx -s reload
    ```
@@ -424,13 +424,13 @@ Perform these steps on all four backend servers: <span style="color:#666666; fon
 
 1. Connect over SSH to the instance (or return to the terminal you left open after installing NGINX Plus) and change directory to **/etc/nginx/conf.d**.
 
-   ```none
+   ```shell
    $ cd /etc/nginx/conf.d
    ```
 
 3. Rename **default.conf** to **default.conf.bak** so that NGINX Plus does not load it.
 
-   ```none
+   ```shell
    $ mv default.conf default.conf.bak
    ```
 
@@ -458,7 +458,7 @@ Perform these steps on all four backend servers: <span style="color:#666666; fon
    
 5. Verify the validity of the NGINX configuration and load it.
 
-   ```none
+   ```shell
    $ nginx -t
    $ nginx -s reload
    ```

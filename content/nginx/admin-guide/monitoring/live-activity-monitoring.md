@@ -28,7 +28,7 @@ NGINX Plus provides various monitoring tools for your server infrastructure:
 
 * * *
 
-[![live activity monitoring](https://www.nginx.com/wp-content/uploads/2023/08/nginx-plus-dashboard_R30-overview.png)](https://demo.nginx.com/dashboard.html "Live status metrics from NGINX Plus")
+[![live activity monitoring](https://www.nginx.com/wp-content/uploads/2023/08/nginx-plus-dashboard_R30-overview-2.png)](https://demo.nginx.com/dashboard.html "Live status metrics from NGINX Plus")
 
 * * *
 
@@ -259,14 +259,14 @@ In the address bar of your browser, type-in the address that corresponds to your
 
 There is also a live demo page from NGINX available at [demo.nginx.com/dashboard.html](https://demo.nginx.com/dashboard.html):
 
-[![live activity monitor](https://www.nginx.com/wp-content/uploads/2023/08/nginx-plus-dashboard_R30-overview.png)](https://demo.nginx.com/dashboard.html "Live load-balancing status from NGINX Plus")
+[![live activity monitor](https://www.nginx.com/wp-content/uploads/2023/08/nginx-plus-dashboard_R30-overview-2.png)](https://demo.nginx.com/dashboard.html "Live load-balancing status from NGINX Plus")
 
 <span id="dashboard_tabs"></span>
 ### Tabs Overview
 
 All information in NGINX Plus Dashboard is represented in tabs.
 
-![The row of tabs at the top of the window on the NGINX Plus dashboard make it easy to drill down to more detailed information about server zones, upstream groups, or the cache](https://www.nginx.com/wp-content/uploads/2019/09/dashboard-tabs.png)
+![The row of tabs at the top of the window on the NGINX Plus dashboard make it easy to drill down to more detailed information about server zones, upstream groups, or the cache](https://www.nginx.com/wp-content/uploads/2023/08/dashboard-tabs.png)
 
 The **HTTP Zones** tab gives detailed statistics on the frontend performance. Statistics are shown per each [`server`](https://nginx.org/en/docs/http/ngx_http_core_module.html#server), [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) and [`limit_req`](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html) zones in the [`http`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) context. For NGINX Plus to collect information for each server, you must include the [`status_zone`](https://nginx.org/en/docs/http/ngx_http_api_module.html#status_zone) directive in each `server` or `location` block.  To include charts for `limit_req` limiting, you must configure the [`limit_req_zone`](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone) directive.
 
@@ -295,6 +295,10 @@ The **Cluster** tab provides the synchronization status of shared memory zones a
 The **Resolvers** tab provides DNS server statistics of requests and responses per each DNS status zone. For NGINX Plus to collect information about your DNS servers, include the [`status_zone`](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver_status_zone) parameter in the [`resolver`](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive.
 
 ![The 'Resolvers' tab in the NGINX Plus live activity monitoring dashboard provides information about cache readiness, fullness, and hit ratio](https://www.nginx.com/wp-content/uploads/2019/09/dashboard_tab_resolvers.png)
+
+The **Workers** tab provides information about worker processes and shows per-worker connection statistics. 
+
+![The 'Workers' tab in the NGINX Plus live activity monitoring dashboard provides information about worker processes](https://www.nginx.com/wp-content/uploads/2023/08/dashboard_tab_workers.png)
 
 
 <span id="dashboard_upstream"></span>

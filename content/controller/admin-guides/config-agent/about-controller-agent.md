@@ -3,7 +3,7 @@ authors: []
 categories:
 - installation
 date: "2020-10-26T15:32:41-06:00"
-description: Learn about the NGINX Controller Agent
+description: Learn about the NGINX Controller Agent.
 docs: DOCS-508
 doctypes:
 - concept

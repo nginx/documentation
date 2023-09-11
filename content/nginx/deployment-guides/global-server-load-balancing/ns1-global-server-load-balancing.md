@@ -198,7 +198,7 @@ Here we verify that NS1 switches over to the next‑nearest NGINX Plus instance
 
 1. On a host located in the US, run the following command to determine which site NS1 is returning as nearest. Appropriately, it's returning 10.10.10.1, the IP address of the NGINX Plus instance in the US.
 
-   ```none
+   ```shell
    $ nslookup nginxgslb.cf
 
    Server:     10.10.100.102
@@ -213,7 +213,7 @@ Here we verify that NS1 switches over to the next‑nearest NGINX Plus instance
 
 3. Wait an hour – because we didn't change the default <span style="white-space: nowrap;">time-to-live</span> (TTL) of 3600 seconds on the ``A`` record for **nginxgslb.cf** – and issue the ``nslookup`` command again. NS1 returns 10.10.10.2, the IP address of the NGINX Plus instance in Germany, which is now the nearest.
 
-   ```none
+   ```shell
    $ nslookup nginxgslb.cf
 
    Server:     10.10.100.102
@@ -233,7 +233,7 @@ We run the following commands on a host located in the US.
 
 1. Query the <span style="white-space: nowrap;">NGINX Plus API</span> to verify that the current status is ``up`` for the **my_backend** upstream group being proxied by the NGINX Plus instance in the US:
 
-   ```none
+   ```shell
    $ curl -X GET "127.0.0.1:8000/api/<version>/http/upstreams/my_backend/" -H "accept: application/json" | python -m json.tool | grep state
 
    "state": "up",
@@ -245,7 +245,7 @@ We run the following commands on a host located in the US.
 
    The output includes a ``destinations`` entry for each data feed, so we search for the one where the ``label`` field says <span style="white-space: nowrap;">``us-nginxgslb-datafeed``</span>, and verify that the ``up`` field in that entry says ``true``. 
 
-    ```none
+    ```shell
    $ curl -X GET -H 'X-NSONE-Key: <NS1-API-key>' https://api.nsone.net/v1/data/feeds/<NS1-data-source-ID> | python -m json.tool
    [
      ...
@@ -272,7 +272,7 @@ We run the following commands on a host located in the US.
 
 3. Determine which site NS1 is returning for hosts in the US. Appropriately, it's 10.10.10.1, the IP address of the US‑based NGINX Plus instance.
 
-   ```none
+   ```shell
    $ nslookup nginxgslb.cf
 
    Server:     10.10.100.102
@@ -295,7 +295,7 @@ We run the following commands on a host located in the US.
 
 6. Repeat Step 2. The NS1 API now returns ``false`` in the ``up`` field.
 
-   ```none
+   ```shell
    $ curl -X GET -H 'X-NSONE-Key: <NS1-API-key>' https://api.nsone.net/v1/data/feeds/<NS1-data-source-ID> | python -m json.tool
    [
      ...
@@ -322,7 +322,7 @@ We run the following commands on a host located in the US.
 
 7. Wait an hour – because we didn't change the default TTL of 3600 seconds on the ``A`` record for **nginxgslb.cf** – and repeat Step 3. NS1 returns 10.10.10.2, the IP address of the NGINX Plus instance in Germany, which is now the nearest to US‑based hosts.
 
-   ```none
+   ```shell
    $ nslookup nginxgslb.cf
 
    Server:     10.10.100.102
@@ -383,7 +383,7 @@ We run the following commands on a host located in the US.
 
 1. Query the <span style="white-space: nowrap;">NGINX Plus API</span> for the number of active connections:
 
-   ```none
+   ```shell
    $ curl -X GET "127.0.0.1:8000/api/<version>/connections" -H "accept: application/json" | python -m json.tool | grep active
 
    "active": 1,
@@ -399,7 +399,7 @@ We run the following commands on a host located in the US.
 
    The relevant field in the output is ``connections`` in the ``data`` section, and in this example it indicates there is one active connection.
 
-   ```none
+   ```shell
    $ curl -X GET -H 'X-NSONE-Key: <NS1-API-key>' https://api.nsone.net/v1/data/feeds/<NS1-data-source-ID>/<NS1-feed-ID> | python -m json.tool
 
    {
@@ -427,7 +427,7 @@ We run the following commands on a host located in the US.
 
 3. Determine which site NS1 is returning for hosts in the US. Appropriately, it's 10.10.10.1, the IP address of the US‑based NGINX Plus instance.
 
-   ```none
+   ```shell
    $ nslookup nginxgslb.cf
 
    Server:     10.10.100.102
@@ -442,7 +442,7 @@ We run the following commands on a host located in the US.
 
 5. Repeat Step 1. The <span style="white-space: nowrap;">NGINX Plus API</span> now reports five active connections.
 
-   ```none
+   ```shell
    $ curl -X GET "127.0.0.1:8000/api/<version>/connections" -H "accept: application/json" | python -m json.tool | grep active
 
    "active": 5,
@@ -450,7 +450,7 @@ We run the following commands on a host located in the US.
 
 6. Repeat Step 2. The NS1 API also reports five active connections.
 
-   ```none
+   ```shell
    $ curl -X GET -H 'X-NSONE-Key: <NS1-API-key>' https://api.nsone.net/v1/data/feeds/<NS1-data-source-ID>/<NS1-feed-ID> | python -m json.tool
 
    {
@@ -467,7 +467,7 @@ We run the following commands on a host located in the US.
 
 7. Wait an hour – because we didn't change the default <span style="white-space: nowrap;">time-to-live</span> (TTL) of 3600 seconds on the ``A`` record for **nginxgslb.cf** – and repeat Step 3. NS1 returns 10.10.10.2, the IP address of the NGINX Plus instance in Germany, which is the nearest now that the instance in the US has too many active connections.
 
-   ```none
+   ```shell
    $ nslookup nginxgslb.cf
 
    Server:     10.10.100.102

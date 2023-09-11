@@ -2,7 +2,7 @@
 authors: []
 categories:
 - installation
-description: Follow these steps to license your NGINX Controller
+description: Follow these steps to license your NGINX Controller.
 docs: DOCS-787
 doctypes:
 - task

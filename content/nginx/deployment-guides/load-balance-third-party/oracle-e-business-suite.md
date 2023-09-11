@@ -133,7 +133,7 @@ Generate a public‑private key pair and a self‑signed server certificate in P
 
 2. Generate the key pair in PEM format (the default). To encrypt the private key, include the <span style="white-space: nowrap;">`-des3`</span> parameter. (Other encryption algorithms are available, listed on the man page for the [genrsa](https://www.openssl.org/docs/manmaster/man1/openssl-genrsa.html) command.) You are prompted for the passphrase used as the basis for encryption.
 
-   ```none
+   ```shell
    root# openssl genrsa -des3 -out ~/private-key.pem 2048
    Generating RSA private key  ...
    Enter pass phrase for private-key.pem:
@@ -141,13 +141,13 @@ Generate a public‑private key pair and a self‑signed server certificate in P
 
 3. Create a backup of the key file in a secure location. If you lose the key, the certificate becomes unusable.
 
-   ```none
+   ```shell
    root# cp ~/private-key.pem secure-dir/private-key.pem.backup
    ```
    
 4. Generate the certificate. Include the <span style="white-space: nowrap;">`-new`</span> and <span style="white-space: nowrap;">`-x509`</span> parameters to make a new self-signed certificate. Optionally include the <span style="white-space: nowrap;">`-days`</span> parameter to change the key's validity lifetime from the default of 30 days (10950 days is about 30 years). Respond to the prompts with values appropriate for your testing deployment.
 
-   ```none
+   ```shell
    root# openssl req -new -x509 -key ~/private-key.pem -out ~/self-cert.pem -days 10950
    ```
    
@@ -162,19 +162,19 @@ Generate a public‑private key pair and a self‑signed server certificate in P
 
 2. Create a private key to be packaged in the certificate.
 
-   ```none
+   ```shell
    root# openssl genrsa -out ~/company.com.key 2048
    ```
    
 3. Create a backup of the key file in a secure location. If you lose the key, the certificate becomes unusable.
 
-   ```none
+   ```shell
    root# cp ~/company.com.key secure-dir/company.com.key.backup
    ```
    
 4. Create a Certificate Signing Request (CSR) file.
 
-   ```none
+   ```shell
    root# openssl req -new -sha256 -key ~/company.com.key -out ~/company.com.csr
    ```
    
@@ -219,19 +219,19 @@ Working on the NGINX Plus server (which must have the `openssl` software instal
 
 2. Extract the private key file from the **.pfx** file. You are prompted first for the password protecting the **.pfx** file (see Step 6 above), then for a new password used to encrypt the private key file being created (**company.com.key.encrypted** in the following sample command).
 
-   ```none
+   ```shell
    root# openssl pkcs12 -in exported-certs.pfx -nocerts -out company.com.key.encrypted
    ```
 
 3. Decrypt the key file. At the prompt, type the password you created in the previous step for the private key file.
 
-   ```none
+   ```shell
    root# openssl rsa -in company.com.key.encrypted -out company.com.key
    ```
    
 4. Extract the certificate file.
 
-   ```none
+   ```shell
    root# openssl pkcs12 -in exported-cert.pfx -clcerts -nokeys -out company.com.crt
    ```
 
@@ -577,7 +577,7 @@ Before configuring caching, make sure that the NGINX Plus host has adequate fre
 
 1. Create a directory for cached files:
 
-   ```none
+   ```shell
    root@nginx# mkdir /var/oracle-cache
    root@nginx# chown nginx /var/oracle-cache
    ```

@@ -5,8 +5,7 @@ categories:
 - infrastructure
 - platform management
 date: "2020-10-26T15:32:41-06:00"
-description: Steps to take to investigate and fix issues with NGINX Controller and
-  the Controller Agent
+description: Steps to take to investigate and fix issues with NGINX Controller and the Controller Agent.
 docs: DOCS-376
 doctypes:
 - tutorial

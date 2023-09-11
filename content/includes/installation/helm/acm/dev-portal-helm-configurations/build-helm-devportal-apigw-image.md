@@ -1,3 +1,7 @@
+---
+docs: DOCS-1310
+---
+
 The Developer Portal Helm chart requires a container image that includes the NGINX Plus service and NGINX Agent in order to deploy the chart and have the API Gateway register with the API Connectivity Manager control plane.
 
 In this example, we use Ubuntu (focal), but other supported distributions can be used.

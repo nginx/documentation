@@ -5,8 +5,7 @@ authors: []
 categories:
 - analytics
 date: "2020-10-26T15:32:41-06:00"
-description: Information about all of the Dimensions collected by NGINX Controller
-  Agent
+description: Information about all of the Dimensions collected by NGINX Controller Agent.
 docs: DOCS-524
 doctypes:
 - reference

@@ -3,7 +3,7 @@ authors: []
 categories:
 - analytics
 date: "2021-03-15T15:32:41-06:00"
-description: How to forward Analytics Metrics to OpenTelemetry Collector
+description: How to forward Analytics Metrics to OpenTelemetry Collector.
 docs: DOCS-532
 doctypes:
 - tutorial

@@ -1,3 +1,7 @@
+---
+docs: DOCS-1283
+---
+
 The following table shows the available Global Policies you can use when creating a new cluster.
 
 <br>
@@ -21,6 +25,3 @@ The following table shows the available Global Policies you can use when creatin
 | [TLS&nbsp;Backend]({{< relref "/nms/acm/how-to/policies/tls-policies" >}}) | <i class="fa-solid fa-check"></i>               | <i class="fa-solid fa-check"></i>               | Backend         | Secure the communication between the API gateway proxy and the backend API service by enabling and customizing the TLS backend policy.   When mTLS is enabled, the API gateway proxy identifies itself to the backend service using an SSL client certificate.                                                                                                                                     |
 | [TLS Inbound]({{< relref "/nms/acm/how-to/policies/tls-policies" >}}) | <i class="fa-solid fa-check"></i>               | <i class="fa-solid fa-check"></i>               | Inbound         | Secure inbound connections with the TLS inbound policy.   Enable mTLS for secure bidirectional communication.                                                                                                                                                                                                                                                                                      |
 {{</bootstrap-table>}}
-
-<!-- Do not remove. Keep this code at the bottom of the include -->
-<!-- DOCS-932 -->

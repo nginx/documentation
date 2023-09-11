@@ -6,8 +6,7 @@ categories:
 - apps
 - security
 date: null
-description: Learn how to extend your App Security configurations using NGINX Controller
-  Snippets.
+description: Learn how to extend your App Security configurations using NGINX Controller Snippets.
 docs: DOCS-338
 doctypes:
 - concept

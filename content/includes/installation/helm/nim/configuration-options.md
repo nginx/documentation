@@ -1,3 +1,7 @@
+---
+docs: "DOCS-1321"
+---
+
 The following table lists the configurable parameters and default values for the NGINX Management Suite platform when installing from a Helm chart.
 
 To modify a configuration for an existing release, run the `helm upgrade` command and use `-f <my-values-file>`, where `my-values-file` is a path to a values file with your desired configuration.

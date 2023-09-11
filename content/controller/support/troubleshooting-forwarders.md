@@ -3,7 +3,7 @@ authors: []
 categories:
 - analytics
 date: "2020-10-26T15:32:41-06:00"
-description: Steps to take to investigate and fix issues with data forwarders
+description: Steps to take to investigate and fix issues with data forwarders.
 docs: DOCS-377
 doctypes:
 - tutorial

@@ -5,8 +5,7 @@ categories:
 - apps
 - security
 date: "2020-10-26T15:32:41-06:00"
-description: How to use NGINX Controller App Security to monitor or block security
-  violations.
+description: How to use NGINX Controller App Security to monitor or block security violations.
 docs: DOCS-485
 doctypes:
 - task

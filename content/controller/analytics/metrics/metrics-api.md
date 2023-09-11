@@ -5,8 +5,7 @@ categories:
 - api management
 - analytics
 date: "2020-10-26T15:32:41-06:00"
-description: Tips and tricks for using the Metrics API query parameters to refine
-  your data.
+description: Tips and tricks for using the Metrics API query parameters to refine your data.
 docs: DOCS-535
 doctypes:
 - tutorial
