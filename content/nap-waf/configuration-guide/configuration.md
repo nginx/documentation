@@ -5228,11 +5228,6 @@ The next step to configure JWT is to define the URL settings. Add the access Pro
 Please note that the access profile cannot be deleted if it is in use in any URL.
 
 
-### Attack Signatures
-Attack signatures are checked only on the JSON parts of the token but not on the signature. The signature detection is according to the configuration of the respective header (usually "Authorization") or parameter that hosts the JWT. The signatures are checked within the JSON values of the token as if there was a JSON profile but no other checks that a JSON profile does will be done here: sizes (other than the total length as in the Access profile), parse properties as parameters and schema validation.
-
-In case the request does not match a URL with Access Profile, the Authorization header of "bearer" type is attempted for parsing but without raising violations except for Base64. The details are in this table:
-
 ### JWT Violations
 
 NGINX App Protect WAF introduces three new violations specific to JWT: `VIOL_ACCESS_INVALID`, `VIOL_ACCESS_MISSING` and `VIOL_ACCESS_MALFORMED`. 
