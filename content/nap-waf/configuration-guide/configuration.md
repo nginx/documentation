@@ -5100,6 +5100,187 @@ Example of Cyclic Override Rule error:
 "error_message": "Failed to import an override policy: Cyclic override-rules detected."
 ```
 
+## JSON Web Token Protection
+
+### Introduction
+JSON Web Token (JWT) is a compact and self-contained way to represent information between two parties in a JSON (JavaScript Object Notation) format and is commonly used for authentication and authorization. With NGINX App Protect now it is possible to control access to its application using JWT authentication. NGINX App Protect WAF uses JWTs for securely transmitting information between a client and a server or between different services in a distributed system. JWT is mainly used in API access. 
+
+When a user logs in to a web application, they might receive a JWT, which can then be included in subsequent requests to  the server. The server can validate the JWT to ensure that the user is authenticated and authorized to access the requested resources.
+
+Now on NGINX App Protect WAF provides JSON Web Token (JWT) protection. NGINX App Protect WAF will be placed in the path leading to the application server and will handle the token for the application. This includes :
+
+1. Validating the token's existence and ensuring its correct structure for specific URLs.
+2. Verifying the token's signature  based on provisioned certificates.
+3. Check the validity period of the token.
+4. Extract the user identity from the token and use it for logging and session awareness.
+
+The JSON Web Token consists of three parts: the **Header**, **Claims** and **Signature**. The first two parts are in JSON and Base64 encoded when carried in a request. The three parts are separated by a dot "." delimiter and put in the authorization header of type "Bearer", but can also be carried in a query string parameter.
+
+- **Header**: It contains information about the type of token (usually "JWT") and the cryptographic algorithm being used to secure the JSON Web Signature (JWS).
+- **Claims/Payload**: This part contains claims, which are statements about an entity (typically, the user) and additional data. Claims are categorized into three types: registered, public, and private claims. Registered claims are predefined and include things like the issuer, subject, and expiration time. Public claims are defined by the parties involved in the token exchange, and private claims are custom claims agreed upon by those parties.
+- **Signature**: To create the signature part, the header and payload are encoded using a specified algorithm and a secret key. This signature can be used to verify the authenticity of the token and to ensure that it has not been tampered with during transmission. The signature is computed based on the algorithm and the keys used and also Base64-encoded.
+
+#### NGINX App Protect WAF supports the following types of JWT:
+
+JSON Web Signature (JWS) - JWT content is digitally signed. The following algorithms can be used for signing:
+
+- HMAC 256
+- RSA/SHA-256 (RS256 for short)
+
+Here is an example of a Header: describes a JWT signed with HMAC 256 encryption algorithm:
+
+```json
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+```
+
+Here is an example of the Claims identifying the subject, the user John Doe, the issue date, and the expiration time:
+
+```json
+{
+  "sub": "1234567890",
+  "name": "John Doe",
+  "iat": 1654591231,
+  "nbf": 1654607591,
+  "exp": 1654608348
+}
+```
+
+### Configuring NGINX App Protect WAF to Authenticate JSON Web Token
+
+#### Access Profile
+
+NGINX App Protect WAF introduces a new policy entity known as "**access profile**" to authenticate JSON Web Token. Access Profile is added to the app protect policy to enforce JWT settings. JSON Web Token needs to be applied to the URLs for enforcement and includes the actions to be taken with respect to access tokens. It is specifically associated with HTTP URLs and does not have any predefined default profiles. 
+
+{{< note >}}At present, only one access profile is supported within the app protect policy. However, the JSON schema for the policy will be designed to accommodate multiple profiles in the future.{{< /note >}}
+
+The access profile includes:
+
+- **Enforcement Settings**: here you can configure the "enforceMaximumLength," "enforceValidityPeriod," and "keyFiles" settings within the scope of this profile, allowing you to enable or disable them as needed.
+- **Location**: here you can modify the location settings, choosing between "header" or "query," as well as specifying the "name" for the header or parameter.
+- **Access Profile Settings**: here you can set the "maximumLength" as well as specify the "name" and "type" for the access profile, with "jwt" representing JSON Web Token.
+
+Access Profile example: 
+
+Refer to the following example where all access profile properties are configured to enforce specific settings within the app protect policy. In this instance, we have established an access profile named "**access_profile_jwt**" located in the **authorization header**. The "maximumLength" for the token is defined as **2000**, and "verifyDigitalSignature" is set to **true**.
+
+```shell
+{
+    "policy": {
+        "name": "jwt_policy",
+        "template": { "name": "POLICY_TEMPLATE_NGINX_BASE"
+        },
+        "access-profiles": [
+         {
+            "description": "",
+            "enforceMaximumLength": true,
+            "enforceValidityPeriod": false,
+            "keyFiles": [
+               {
+                  "contents": "{\r\n  \"keys\": [\r\n    {\r\n      \"alg\": \"RS256\",\r\n      \"e\": \"AQAB\",\r\n      \"kid\": \"1234\",\r\n      \"kty\": \"RSA\",\r\n      \"n\": \"tSbi8WYTScbuM4fe5qe4l60A2SG5oo3u5JDBtH_dPJTeQICRkrgLD6oyyHJc9BCe9abX4FEq_Qd1SYHBdl838g48FWblISBpn9--B4D9O5TPh90zAYP65VnViKun__XHGrfGT65S9HFykvo2KxhtxOFAFw0rE6s5nnKPwhYbV7omVS71KeT3B_u7wHsfyBXujr_cxzFYmyg165Yx9Z5vI1D-pg4EJLXIo5qZDxr82jlIB6EdLCL2s5vtmDhHzwQSdSOMWEp706UgjPl_NFMideiPXsEzdcx2y1cS97gyElhmWcODl4q3RgcGTlWIPFhrnobhoRtiCZzvlphu8Nqn6Q\",\r\n      \"use\": \"sig\",\r\n      \"x5c\": [\r\n        \"MIID1zCCAr+gAwIBAgIJAJ/bOlwBpErqMA0GCSqGSIb3DQEBCwUAMIGAMQswCQYDVQQGEwJpbDEPMA0GA1UECAwGaXNyYWVsMRAwDgYDVQQHDAd0ZWxhdml2MRMwEQYDVQQKDApmNW5ldHdvcmtzMQwwCgYDVQQLDANkZXYxDDAKBgNVBAMMA21heDEdMBsGCSqGSIb3DQEJARYOaG93ZHlAbWF0ZS5jb20wIBcNMjIxMTA3MTM0ODQzWhgPMjA1MDAzMjUxMzQ4NDNaMIGAMQswCQYDVQQGEwJpbDEPMA0GA1UECAwGaXNyYWVsMRAwDgYDVQQHDAd0ZWxhdml2MRMwEQYDVQQKDApmNW5ldHdvcmtzMQwwCgYDVQQLDANkZXYxDDAKBgNVBAMMA21heDEdMBsGCSqGSIb3DQEJARYOaG93ZHlAbWF0ZS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC1JuLxZhNJxu4zh97mp7iXrQDZIbmije7kkMG0f908lN5AgJGSuAsPqjLIclz0EJ71ptfgUSr9B3VJgcF2XzfyDjwVZuUhIGmf374HgP07lM+H3TMBg/rlWdWIq6f/9ccat8ZPrlL0cXKS+jYrGG3E4UAXDSsTqzmeco/CFhtXuiZVLvUp5PcH+7vAex/IFe6Ov9zHMVibKDXrljH1nm8jUP6mDgQktcijmpkPGvzaOUgHoR0sIvazm+2YOEfPBBJ1I4xYSnvTpSCM+X80UyJ16I9ewTN1zHbLVxL3uDISWGZZw4OXirdGBwZOVYg8WGuehuGhG2IJnO+WmG7w2qfpAgMBAAGjUDBOMB0GA1UdDgQWBBSHykVOY3Q1bWmwFmJbzBkQdyGtkTAfBgNVHSMEGDAWgBSHykVOY3Q1bWmwFmJbzBkQdyGtkTAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQCgcgp72Xw6qzbGLHyNMaCm9A6smtquKTdFCXLWVSOBix6WAJGPv1iKOvvMNF8ZV2RU44vS4Qa+o1ViBN8DXuddmRbShtvxcJzRKy1I73szZBMlZL6euRB1KN4m8tBtDj+rfKtPpheMtwIPbiukRjJrzRzSz3LXAAlxEIEgYSifKpL/okYZYRY6JF5PwSR0cvrfe/qa/G2iYF6Ps7knxy424RK6gpMbnhxb2gdhLPqDE50uxkr6dVHXbc85AuwAi983tOMhTyzDh3XTBEt2hr26F7jSeniC7TTIxmMgDdtYzRMwdb1XbubdtzUPnB/SW7jemK9I45kpKlUBDZD/QwER\"\r\n      ]\r\n    }\r\n  ]\r\n}",  # there can be more than one key file in the policy JSON schema, but we support only one for now.
+                  "fileName": "JWKFile.json"
+               }
+            ],
+            "location": {
+               "in": "header",  # the other option is: "query"
+               "name": "authorization"  # the name of the header or parameter (according to "part")
+            },
+            "maximumLength": 2000,
+            "name": "access_profile_jwt",
+            "type": "jwt",
+            "usernameExtraction": {
+               "claimPropertyName": "sub",
+               "enabled": true,
+               "isMandatory": false
+            },
+            "verifyDigitalSignature": true
+        }
+      ],
+      "urls": [
+         {
+            "name": "/jwt",
+            "accessProfile": {
+               "name": "access_profile_jwt"
+            },
+            "attackSignaturesCheck": true,
+            "isAllowed": true,
+            "mandatoryBody": false,
+            "method": "*",
+            "methodsOverrideOnUrlCheck": false,
+            "name": "/jwt",
+            "performStaging": false,
+            "protocol": "http",
+            "type": "explicit"
+         }
+      ]
+    }
+}
+```
+
+{{< note >}} For access profile default values and their related field names, see NGINX App Protect WAF Declarative Policy guide.{{< /note >}}
+
+### Access Profile in URL settings
+
+The next step to configure JWT is to define the URL settings. Add the access Profile name that you defined previously under the access profiles in the "name" field. From the previous example, we associate the access profile "**access_profile_jwt**"  with the "name": **/jwt** in the URLs section to become effective, which means URLs with /jwt name are permitted for this feature and will be used for all JWT API requests.
+
+Please note that the access profile cannot be deleted if it is in use in any URL.
+
+
+### Attack Signatures
+Attack signatures are checked only on the JSON parts of the token but not on the signature. The signature detection is according to the configuration of the respective header (usually "Authorization") or parameter that hosts the JWT. The signatures are checked within the JSON values of the token as if there was a JSON profile but no other checks that a JSON profile does will be done here: sizes (other than the total length as in the Access profile), parse properties as parameters and schema validation.
+
+In case the request does not match a URL with Access Profile, the Authorization header of "bearer" type is attempted for parsing but without raising violations except for Base64. The details are in this table:
+
+### JWT Violations
+
+NGINX App Protect WAF introduces three new violations specific to JWT: `VIOL_ACCESS_INVALID`, `VIOL_ACCESS_MISSING` and `VIOL_ACCESS_MALFORMED`. 
+
+Under the “blocking-settings,” user can either enable or disable these violations. Note that these violations will be enabled by default. The details regarding logs will be recorded in the security log.
+
+See the below example for these violations.
+
+```shell
+{
+    "policy": {
+        "name": "jwt_policy",
+        "template": { "name": "POLICY_TEMPLATE_NGINX_BASE" },
+        "blocking-settings": {
+           "violations": [
+            {
+               "alarm": true,
+               "block": true,
+               "name": "VIOL_ACCESS_INVALID"
+            },
+            {
+               "alarm": true,
+               "block": true,
+               "name": "VIOL_ACCESS_MISSING"
+            },
+            {
+               "alarm": true,
+               "block": true,
+               "name": "VIOL_ACCESS_MALFORMED"
+            }
+        ]
+}
+
+```
+
+### Violation Rating Calculation
+The default violation rating is set to the level of **5** regardless of any violation. Any changes to these violation settings here will override the default settings. The details regarding logs will be recorded in the security log. All violations will be disabled on upgrade. 
+
+See also the Violations section for more details.
+
+### Other References
+For more information about JSON Web Token (JWT) see below reference links:
+
+- The definition of the JSON Web Token (JWT)
+- Specification of how tokens are digitally signed
+- The format of the JSON Web Key (JWK) that needs to be included in the profile for extracting the public keys used to verify the signatures
+- Examples of Protecting Content Using JSON Object Signing and Encryption (JOSE)
+
 
 ## Directives
 
