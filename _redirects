@@ -48,6 +48,7 @@
 /nginx-ingress-controller/troubleshooting/virtualserver-virtualserverroute /nginx-ingress-controller/troubleshooting/virtualserver 301
 /nginx-ingress-controller/troubleshooting/troubleshooting-with-app-protect-dos /nginx-ingress-controller/troubleshooting/troubleshooting-app-protect-dos 301
 /nginx-ingress-controller/troubleshooting/troubleshooting-with-app-protect /nginx-ingress-controller/troubleshooting/troubleshooting-app-protect-waf 301
+/nginx-ingress-controller/installation/pulling-ingress-controller-image/ /nginx-ingress-controller/installation/nic-images/pulling-ingress-controller-image/ 301
 
 # NGINX Management Suite redirects
 /nginx-management-suite/nginx-instance-manager/* /nginx-management-suite/nim/:splat 301!
