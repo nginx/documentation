@@ -5276,10 +5276,10 @@ See also the Violations section for more details.
 ### Other References
 For more information about JSON Web Token (JWT) see below reference links:
 
-- The definition of the JSON Web Token (JWT)
-- Specification of how tokens are digitally signed
-- The format of the JSON Web Key (JWK) that needs to be included in the profile for extracting the public keys used to verify the signatures
-- Examples of Protecting Content Using JSON Object Signing and Encryption (JOSE)
+- [The definition of the JSON Web Token (JWT)](https://datatracker.ietf.org/doc/html/rfc7519)
+- [Specification of how tokens are digitally signed](https://datatracker.ietf.org/doc/html/rfc7515)
+- [The format of the JSON Web Key (JWK) that needs to be included in the profile for extracting the public keys used to verify the signatures](https://datatracker.ietf.org/doc/html/rfc7515)
+- [Examples of Protecting Content Using JSON Object Signing and Encryption (JOSE)](https://datatracker.ietf.org/doc/html/rfc7520)
 
 
 ## Directives
@@ -5406,6 +5406,9 @@ The following violations are supported and can be enabled by turning on the **al
 {{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
 |Violation Name | Title | Enabled Flags in Default Template | Description | Comment | 
 | ---| ---| ---| ---| --- | 
+|VIOL_ACCESS_INVALID| Access token does not comply with the profile requirements| Alarm & Block | The system checks the access token in a request according to the access profile attached to the respective URL. The violation is raised when at least one of the enforced checks in the profile is not satisfied | This would trigger a Violation Rating of 5 |
+|VIOL_ACCESS_MISSING| Missing Access Token | Alarm & Block | The system checks that the request contains the access token for the respective URL according to the Access Profile. The violation is raised when that token is not found.| This would trigger a Violation Rating of 5 |
+|VIOL_ACCESS_MALFORMED| Malformed Access Token | Alarm & Block | The access token required for the URL in the request was malformed. | This would trigger a Violation Rating of 5 |
 |VIOL_ASM_COOKIE_MODIFIED | Modified ASM cookie | Alarm & Block | The system checks that the request contains an ASM cookie that has not been modified or tampered with. Blocks modified requests. |  |
 |VIOL_ATTACK_SIGNATURE | Attack signature detected | N/A | The system examines the HTTP message for known attacks by matching it against known attack patterns. | Determined per signature set. <br>Note: This violation cannot be configured by the user. Rather, the violation is determined by the combination of the signature sets on the policy.| 
 |VIOL_BLACKLISTED_IP | IP is in the deny list | Alarm | The violation is issued when a request comes from an IP address that falls in the range of an IP address exception marked for "always blocking", that is, the deny list of IPs. | Would trigger Violation Rating of 5. | 
