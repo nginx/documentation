@@ -48,6 +48,9 @@
 /nginx-ingress-controller/troubleshooting/virtualserver-virtualserverroute /nginx-ingress-controller/troubleshooting/virtualserver 301
 /nginx-ingress-controller/troubleshooting/troubleshooting-with-app-protect-dos /nginx-ingress-controller/troubleshooting/troubleshooting-app-protect-dos 301
 /nginx-ingress-controller/troubleshooting/troubleshooting-with-app-protect /nginx-ingress-controller/troubleshooting/troubleshooting-app-protect-waf 301
+/nginx-ingress-controller/intro/overview/ /nginx-ingress-controller/overview/about/ 301
+/nginx-ingress-controller/intro/how-nginx-ingress-controller-works/ /nginx-ingress-controller/overview/design/ 301
+/nginx-ingress-controller/intro/nginx-plus/ /nginx-ingress-controller/overview/nginx-plus/ 301
 /nginx-ingress-controller/installation/pulling-ingress-controller-image/ /nginx-ingress-controller/installation/nic-images/pulling-ingress-controller-image/ 301
 
 # NGINX Management Suite redirects
