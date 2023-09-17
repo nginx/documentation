@@ -5103,21 +5103,46 @@ Example of Cyclic Override Rule error:
 ## JSON Web Token Protection
 
 ### Introduction
-JSON Web Token (JWT) is a compact and self-contained way to represent information between two parties in a JSON (JavaScript Object Notation) format and is commonly used for authentication and authorization. With NGINX App Protect now it is possible to control access to its application using JWT authentication. NGINX App Protect WAF uses JWTs for securely transmitting information between a client and a server or between different services in a distributed system. JWT is mainly used in API access. 
+JSON Web Token (JWT) is a compact and self-contained way to represent information between two parties in a JSON (JavaScript Object Notation) format and is commonly used for authentication and authorization. With NGINX App Protect now it is possible to control access to its application using JWT authentication. NGINX App Protect WAF uses JWTs for securely transmitting information between a client and a server or between different services in a distributed system. JWT is mainly used for API access. 
 
 When a user logs in to a web application, they might receive a JWT, which can then be included in subsequent requests to  the server. The server can validate the JWT to ensure that the user is authenticated and authorized to access the requested resources.
 
-Now on NGINX App Protect WAF provides JSON Web Token (JWT) protection. NGINX App Protect WAF will be placed in the path leading to the application server and will handle the token for the application. This includes :
+Now NGINX App Protect WAF provides JSON Web Token (JWT) protection. NGINX App Protect WAF will be placed in the path leading to the application server and will handle the token for the application. This includes:
 
 1. Validating the token's existence and ensuring its correct structure for specific URLs.
-2. Verifying the token's signature  based on provisioned certificates.
+2. Verifying the token's signature based on provisioned certificates.
 3. Check the validity period of the token.
 4. Extract the user identity from the token and use it for logging and session awareness.
 
 The JSON Web Token consists of three parts: the **Header**, **Claims** and **Signature**. The first two parts are in JSON and Base64 encoded when carried in a request. The three parts are separated by a dot "." delimiter and put in the authorization header of type "Bearer", but can also be carried in a query string parameter.
 
 - **Header**: It contains information about the type of token (usually "JWT") and the cryptographic algorithm being used to secure the JSON Web Signature (JWS).
-- **Claims/Payload**: This part contains claims, which are statements about an entity (typically, the user) and additional data. Claims are categorized into three types: registered, public, and private claims. Registered claims are predefined and include things like the issuer, subject, and expiration time. Public claims are defined by the parties involved in the token exchange, and private claims are custom claims agreed upon by those parties.
+
+- **Claims**: This part contains claims, which refers to the statements or assertions about an entity (typically, the user) that the token is issued for. Claims are key-value pairs contained within the token's payload. The payload is the second part of a JWT and typically looks like this:
+
+    ```json
+    {
+    "sub": "1234567890",
+    "name": "John Doe",
+    "iat": 1654591231,
+    "nbf": 1654607591,
+    "exp": 1654608348
+    }
+    ```
+    In the example above, the payload contains several claims:
+
+    - sub (Subject): Represents the subject of the JWT, typically the user or entity for which the token was created.
+
+    - name (Issuer): Indicates the entity that issued the JWT. It is a string that identifies the issuer of the token.
+
+    - iat (Issued At): Indicates the time at which the token was issued. Like exp, it is represented as a timestamp.
+
+    - nbf (Not Before): Indicates the time before which the token should not be considered valid.
+
+    - exp (Expiration Time): Specifies the expiration time of the token. It is represented as a numeric timestamp (e.g., 1654608348), and the token is considered invalid after this time.
+
+    These claims provide information about the JWT and can be used by the recipient to verify the token's authenticity and determine its validity. Additionally, you can include custom claims in the payload to carry additional information specific to your application. 
+
 - **Signature**: To create the signature part, the header and payload are encoded using a specified algorithm and a secret key. This signature can be used to verify the authenticity of the token and to ensure that it has not been tampered with during transmission. The signature is computed based on the algorithm and the keys used and also Base64-encoded.
 
 #### NGINX App Protect WAF supports the following types of JWT:
@@ -5133,18 +5158,6 @@ Here is an example of a Header: describes a JWT signed with HMAC 256 encryption 
 {
   "alg": "HS256",
   "typ": "JWT"
-}
-```
-
-Here is an example of the Claims identifying the subject, the user John Doe, the issue date, and the expiration time:
-
-```json
-{
-  "sub": "1234567890",
-  "name": "John Doe",
-  "iat": 1654591231,
-  "nbf": 1654607591,
-  "exp": 1654608348
 }
 ```
 
@@ -5221,14 +5234,28 @@ Refer to the following example where all access profile properties are configure
 
 {{< note >}} For access profile default values and their related field names, see NGINX App Protect WAF Declarative Policy guide.{{< /note >}}
 
-### Access Profile in URL settings
+### Access Profile in URL Settings
 
 The next step to configure JWT is to define the URL settings. Add the access Profile name that you defined previously under the access profiles in the "name" field. From the previous example, we associate the access profile "**access_profile_jwt**"  with the "name": **/jwt** in the URLs section to become effective, which means URLs with /jwt name are permitted for this feature and will be used for all JWT API requests.
 
 Please note that the access profile cannot be deleted if it is in use in any URL.
 
+### Attack Signatures
 
-### JWT Violations
+Attack signatures are detected within the JSON values of the token, i.e. the header and payload parts, but not on the digital signature part of the token. The detection of signatures, and specifically which signatures are recognized, depends on the configuration entity within the Policy. Typically, this configuration entity is the Authorization HTTP header or else, the header or parameter entity configured as the location of the token in the access profile.
+
+If the request doesn't align with a URL associated with an Access Profile, an attempt is made to parse the "bearer" type Authorization header, but no violations are raised, except for Base64. More information can be found below:
+
+1. Token parsed successfully - No violations are detected when enforced on URL with or without access profile.
+
+2. There are more or less than two dots in the token - `VIOL_ACCESS_MALFORMED` is detected when enforced on URL with access profile.
+
+3. Base64 decoding failure - `VIOL_ACCESS_MALFORMED` is detected when enforced on URL with access profile. `VIOL_PARAMETER_BASE64` is detected when enforced with access profile. 
+
+4. JSON parsing failure - `VIOL_ACCESS_MALFORMED` is detected when enforced on URL with access profile.
+
+
+### JSON Web Token Violations
 
 NGINX App Protect WAF introduces three new violations specific to JWT: `VIOL_ACCESS_INVALID`, `VIOL_ACCESS_MISSING` and `VIOL_ACCESS_MALFORMED`. 
 
