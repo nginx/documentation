@@ -60,6 +60,7 @@ NGINX App Protect WAF supports the following operating systems:
 - [Debian 11](#debian-11-installation)
 - [Ubuntu 18.04](#ubuntu-1804-installation) - (Deprecated starting from NGINX Plus R30)
 - [Ubuntu 20.04](#ubuntu-2004-installation)
+- [Ubuntu 22.04](#ubuntu-2004-installation)
 - [Alpine 3.10](#alpine-310-installation) - (Unsupported starting from NGINX Plus R25)
 - [Alpine 3.16](#alpine-316-installation) 
 - [Alpine 3.17](#alpine-317-installation) 
@@ -1321,6 +1322,156 @@ If a user other than **nginx** is to be used, note the following:
 {{< note >}} Ubuntu 20.04 activates __AppArmor__ by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
 {{< /note >}}
 
+
+
+## Ubuntu 22.04 Installation
+1. If you already have NGINX packages in your system, back up your configs and logs:
+
+    ```shell
+    sudo cp -a /etc/nginx /etc/nginx-plus-backup
+    sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
+    ```
+
+2. Create the `/etc/ssl/nginx/` directory:
+
+    ```shell
+    sudo mkdir -p /etc/ssl/nginx
+    ```
+
+3. Log in to the [Customer Portal](https://my.f5.com) and download the following two files:
+
+    ```shell
+    nginx-repo.key
+    nginx-repo.crt
+    ```
+
+4. Copy the above two files to the Ubuntu server's `/etc/ssl/nginx/` directory. Use an SCP client or another secure file transfer tool to perform this task.
+
+5. Install prerequisite packages:
+
+    ```shell
+    sudo apt-get update && sudo apt-get install apt-transport-https lsb-release ca-certificates wget gnupg2
+    ```
+
+6. Download and add the NGINX signing keys:
+
+    ```shell
+    sudo wget https://cs.nginx.com/static/keys/nginx_signing.key && sudo apt-key add nginx_signing.key
+
+    sudo wget https://cs.nginx.com/static/keys/app-protect-security-updates.key && sudo apt-key add app-protect-security-updates.key
+    ```
+
+7. Remove any previous NGINX Plus repository and apt configuration files:
+
+    ```shell
+    sudo rm /etc/apt/sources.list.d/nginx-plus.list
+    sudo rm /etc/apt/sources.list.d/*app-protect*.list
+    sudo rm /etc/apt/apt.conf.d/90pkgs-nginx
+    ```
+
+8. Add NGINX Plus repository:
+
+    ```shell
+    printf "deb https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-plus.list
+    ```
+
+9. Add NGINX App Protect WAF repositories:
+
+    ```shell
+    printf "deb https://pkgs.nginx.com/app-protect/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-app-protect.list
+
+    printf "deb https://pkgs.nginx.com/app-protect-security-updates/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
+    ```
+
+10. Download the apt configuration to `/etc/apt/apt.conf.d`:
+
+    ```shell
+    sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
+    ```
+
+11. Update the repository and install the most recent version of the NGINX App Protect WAF package (which includes NGINX Plus):
+
+    ```shell
+    sudo apt-get update
+    sudo apt-get install app-protect
+    ```
+
+    Alternatively, to install a specific version you should modify the repository URLs in the `/etc/apt/sources.list.d/nginx-plus.list` and `/etc/apt/sources.list.d/nginx-app-protect.list` files in the following way respectively:
+
+    ```shell
+    deb https://pkgs.nginx.com/plus/Rxx/ubuntu ...
+    ```
+
+    ```shell
+    deb https://pkgs.nginx.com/app-protect/Rxx/ubuntu ...
+    ```
+
+    where `xx` is a release number.
+
+    For example, to install app-protect version 23 make sure of the following:
+
+    ```shell
+    cat /etc/apt/sources.list.d/nginx-plus.list
+    deb https://pkgs.nginx.com/plus/R23/ubuntu jammy nginx-plus
+    ```
+
+    ```shell
+    cat /etc/apt/sources.list.d/nginx-app-protect.list
+    deb https://pkgs.nginx.com/app-protect/R23/ubuntu jammy nginx-plus
+    ```
+
+    Then, use the following commands to update and list available versions:
+
+    ```shell
+    sudo apt-get update
+    sudo apt-cache policy app-protect
+    ```
+
+    Finally, install a specific version from the output of command above. For example:
+  
+    ```shell
+    sudo apt-get install -y app-protect-compiler=5.9.4-1~jammy \
+    app-protect-plugin=3.263.0-1~jammy \
+    nginx-plus-module-appprotect=23+3.263.0-1~jammy \
+    app-protect-engine=5.9.4-1~jammy \
+    app-protect=23+3.263.0-1~jammy
+    ```
+    {{< note >}} When installing an older version of NGINX App Protect WAF, the dependent packages have to be installed manually, as shown in the command above. The following script can be used to find out the dependent packages for a specific version of NGINX App Protect WAF.{{< /note >}}
+
+    ```shell
+    findDeps () { local pkgs=$(apt show $1 2>/dev/null | grep Depends: | grep -oE "(nginx-plus-module|app-protect)-[a-z]+ *\(= *[0-9\+\.-]+~`lsb_release -cs`\)" | tr -d ' ()'); for p in ${pkgs[@]}; do echo $p; findDeps $p; done; } 
+    findDeps app-protect=23+3.263.0-1~jammy
+    ```
+
+12. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
+
+    ```shell
+    sudo nginx -v
+    ```
+
+13. Load the NGINX App Protect WAF module on the main context in the `nginx.conf` file:
+
+    ```nginx
+    load_module modules/ngx_http_app_protect_module.so;
+    ```
+
+14. Enable NGINX App Protect WAF on an `http/server/location` context in the `nginx.conf` via:
+
+    ```nginx
+    app_protect_enable on;
+    ```
+
+15. Start the NGINX service:
+
+    ```shell
+    sudo systemctl start nginx
+    ```
+
+{{< note >}} Ubuntu 20.04 activates __AppArmor__ by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
+{{< /note >}}
+
+
+
 ## Alpine 3.10 Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
@@ -2112,6 +2263,45 @@ CMD ["sh", "/root/entrypoint.sh"]
 # syntax=docker/dockerfile:1
 # For Ubuntu 20.04:
 FROM ubuntu:focal
+
+# Install prerequisite packages:
+RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2
+
+# Download and add the NGINX signing keys:
+RUN wget https://cs.nginx.com/static/keys/nginx_signing.key && apt-key add nginx_signing.key \
+    && wget https://cs.nginx.com/static/keys/app-protect-security-updates.key && apt-key add app-protect-security-updates.key
+
+# Add NGINX Plus repository:
+RUN printf "deb https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list
+
+# Add NGINX App Protect WAF repositories:
+RUN printf "deb https://pkgs.nginx.com/app-protect/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect.list \
+    && printf "deb https://pkgs.nginx.com/app-protect-security-updates/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/app-protect-security-updates.list
+
+# Download the apt configuration to `/etc/apt/apt.conf.d`:
+RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
+
+# Update the repository and install the most recent version of the NGINX App Protect WAF package (which includes NGINX Plus):
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Copy configuration files:
+COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY entrypoint.sh /root/
+
+CMD ["sh", "/root/entrypoint.sh"]
+```
+
+### Ubuntu 22.04 Docker Deployment Example
+```dockerfile
+# syntax=docker/dockerfile:1
+# For Ubuntu 22.04:
+FROM ubuntu:jammy
 
 # Install prerequisite packages:
 RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2
