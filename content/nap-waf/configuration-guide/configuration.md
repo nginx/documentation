@@ -5118,7 +5118,7 @@ The JSON Web Token consists of three parts: the **Header**, **Claims** and **Sig
 
 - **Header**: It contains information about the type of token (usually "JWT") and the cryptographic algorithm being used to secure the JSON Web Signature (JWS).
 
-- **Claims**: This part contains claims, which refers to the statements or assertions about an entity (typically, the user) that the token is issued for. Claims are key-value pairs contained within the token's payload. The payload is the second part of a JWT and typically looks like this:
+- **Claims**: This part contains claims, which refers to the statements or assertions about an entity (typically, the user) that the token is issued for. Claims are **key/value** pairs contained within the token's payload. The claims is the second part of a JWT and typically looks like this:
 
     ```json
     {
