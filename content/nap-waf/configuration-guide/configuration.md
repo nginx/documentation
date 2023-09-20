@@ -1234,9 +1234,14 @@ In this example, we enable the file type violation in blocking mode. In the deta
 
 #### Restrict Response Signature
 
-The NGINX App Protect WAF base template is updated by enabling response signature checks in the * file type. Now you can add a restriction on response signatures.
+The NGINX App Protect WAF base template is updated by enabling response signature checks in the "filetypes" section. You can add a restriction on response signatures by setting the `responseCheck` parameter to true. The default value of this parameter is set to false.
 
-Since response signatures are specific to file type, the size restriction will also be associated with the respective file type. Make sure you enable the `responseCheck` attribute for `responseCheckLength` to function properly. The `responseCheckLength` field will be added with default value 20000 and the user can enable/disable it by setting responseCheck to true/false. The `responseCheckLength` parameter refers to the number of uncompressed bytes in the response body prefix that are examined for signatures. 
+Make sure you enable the `responseCheck` attribute for `responseCheckLength` to work properly. The `responseCheckLength` parameter refers to the number of uncompressed bytes in the response body prefix that are examined for signatures. The `responseCheckLength` field will be added with the default value of **20000** bytes which means that the first 20,000 bytes of the response body will undergo signature verification. 
+
+Restrict Response Signature example:
+
+In the below policy example, in the "filetypes" section, the `responseCheck` parameter is set to true, indicating that response check will be enabled.
+To enforce signature response, we have the flexibility to restrict the portion of the signature body that requires validation. In this case, the policy is configured with `responseCheckLength` set to 1000, signifying that only the initial 1000 bytes of the response body will undergo signature verification.
 
 ~~~json
 {
@@ -1268,7 +1273,7 @@ Since response signatures are specific to file type, the size restriction will a
 
 #### How Does Restrict Response Signature Check Work?
 
-1. If the matched request file type enables response signatures then continue, otherwise skip the following steps.
+1. If the matched request file type enables response signatures i.e `responseCheck` is set to true, then continue, otherwise skip the following steps.
 2. If the data guard is enabled (blocking or masking) or any feature that requires JavaScript injection in the response, then buffer the whole response up to the globally configured maximum (50 MB by default) as done today, but check signatures only on the prefix as detailed below.
 3. If data guard is disabled and there is no JavaScript injection, the process varies. If the body is compressed, it should be fully buffered and then uncompressed entirely. Otherwise, simply buffer the plain body up to that specified length.
 4. Scan the buffered body for signatures.
