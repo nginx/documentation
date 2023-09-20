@@ -1232,12 +1232,53 @@ In this example, we enable the file type violation in blocking mode. In the deta
 }
 ~~~
 
+#### Restrict Response Signature
+
+The NGINX App Protect WAF base template is updated by enabling response signature checks in the * file type. Now you can add a restriction on response signatures.
+
+Since response signatures are specific to file type, the size restriction will also be associated with the respective file type. Make sure you enable the `responseCheck` attribute for `responseCheckLength` to function properly. The `responseCheckLength` field will be added with default value 20000 and the user can enable/disable it by setting responseCheck to true/false. The `responseCheckLength` parameter refers to the number of uncompressed bytes in the response body prefix that are examined for signatures. 
+
+~~~json
+{
+    "policy": {
+        "name": "response_signatures_block",
+        "template": {
+            "name": "POLICY_TEMPLATE_NGINX_BASE"
+        },
+        "applicationLanguage": "utf-8",
+        "enforcementMode": "blocking",
+        "filetypes": [
+        {
+            "name": "*",
+            "type": "wildcard",
+            "responseCheck": true,
+		    "responseCheckLength" : 1000
+        }
+        ],
+            "signature-sets": [
+            {
+                "name": "All Response Signatures",
+                "block": true,
+                "alarm": true
+            }
+        ]
+    }
+}
+~~~
+
+#### How Does Restrict Response Signature Check Work?
+
+1. If the matched request file type enables response signatures then continue, otherwise skip the following steps.
+2. If the data guard is enabled (blocking or masking) or any feature that requires JavaScript injection in the response, then buffer the whole response up to the globally configured maximum (50 MB by default) as done today, but check signatures only on the prefix as detailed below.
+3. If data guard is disabled and there is no JavaScript injection, the process varies. If the body is compressed, it should be fully buffered and then uncompressed entirely. Otherwise, simply buffer the plain body up to that specified length.
+4. Scan the buffered body for signatures.
+5. Unhold the response or implement blocking if there are any blocking signatures detected.
 
 #### Allowed Methods
 
-  In the policy, you can specify what methods to allow or disallow.
+In the policy, you can specify what methods to allow or disallow.
 
-  In this example, we enable the illegal method violation in blocking mode. In the methods configuration, we define which of the methods are allowed. If a method is allowed by default, it can be disallowed via `"$action": "delete"`. In the following example we disallow the default allowed method `PUT` by removing it from the default enforcement. For illustrative purposes this example also has all the other methods that are allowed by default defined in the configuration, but in practicality they do not actually need to be included explicitly to be allowed:
+In this example, we enable the illegal method violation in blocking mode. In the methods configuration, we define which of the methods are allowed. If a method is allowed by default, it can be disallowed via `"$action": "delete"`. In the following example we disallow the default allowed method `PUT` by removing it from the default enforcement. For illustrative purposes this example also has all the other methods that are allowed by default defined in the configuration, but in practicality they do not actually need to be included explicitly to be allowed:
 
 
 ~~~json
