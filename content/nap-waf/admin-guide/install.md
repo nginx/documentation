@@ -56,13 +56,13 @@ NGINX App Protect WAF supports the following operating systems:
 - [RHEL 8.1.x and above](#rhel-81-installation)
 - [Oracle Linux 8.1.x and above](#oracle-linux-81-installation)
 - [Amazon Linux 2](#amazon-linux-2-lts-installation)
-- [Debian 10 (Buster)](#debian-10--11-installation) - (Deprecated starting from NGINX Plus R28)
-- [Debian 11 (Bullseye)](#debian-10--11-installation)
-- [Ubuntu 18.04 (Bionic)](#ubuntu-1804--2004--2204-installation) - (Deprecated starting from NGINX Plus R30)
-- [Ubuntu 20.04 (Focal)](#ubuntu-1804--2004--2204-installation)
-- [Ubuntu 22.04 (Jammy)](#ubuntu-1804--2004--2204-installation)
-- [Alpine 3.16](#alpine-316--317-installation) 
-- [Alpine 3.17](#alpine-316--317-installation) 
+- [Debian 10 (Buster)](#debian-10--debian-11-installation) - (Deprecated starting from NGINX Plus R28)
+- [Debian 11 (Bullseye)](#debian-10--debian-11-installation)
+- [Ubuntu 18.04 (Bionic)](#ubuntu-1804--ubuntu-2004--ubuntu-2204-installation) - (Deprecated starting from NGINX Plus R30)
+- [Ubuntu 20.04 (Focal)](#ubuntu-1804--ubuntu-2004--ubuntu-2204-installation)
+- [Ubuntu 22.04 (Jammy)](#ubuntu-1804--ubuntu-2004--ubuntu-2204-installation)
+- [Alpine 3.16](#alpine-316--alpine-317-installation) 
+- [Alpine 3.17](#alpine-316--alpine-317-installation) 
 
 
 The NGINX App Protect WAF package has the following dependencies:
@@ -801,16 +801,12 @@ If a user other than **nginx** is to be used, note the following:
 
     {{< note >}} When installing an older version of NGINX App Protect WAF, the dependent packages have to be installed manually, as shown in the command above. The following script can be used to find out the dependent packages for a specific version of NGINX App Protect WAF.{{< /note >}}
 
-    Debian 10 / Debian 11
-
     ```shell
     findDeps () { local pkgs=$(apt show $1 2>/dev/null | grep Depends: | grep -oE "(nginx-plus-module|app-protect)-[a-z]+ *\(= *[0-9\+\.-]+~`lsb_release -cs`\)" | tr -d ' ()'); for p in ${pkgs[@]}; do echo $p; findDeps $p; done; } 
     findDeps app-protect=24+3.639.0-1~[OS_CODENAME]
     ```
 
     Finally, install a specific version from the output of command above. For example:
-
-    Debian 10 / Debian 11
 
     ```shell
     sudo apt-get install -y app-protect-compiler=8.7.4-1~[OS_CODENAME] \
@@ -821,7 +817,7 @@ If a user other than **nginx** is to be used, note the following:
     app-protect-common=8.7.4-1~[OS_CODENAME]  
     ```
 
-    **Note**: Where the [OS_CODENAME] can be: buster for Debian 10 and bullseye for Debian 11.
+    Replace the [OS_CODENAME] in the above example with: **buster** for Debian 10 and **bullseye** for Debian 11.
 
 12. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
 
@@ -935,8 +931,6 @@ If a user other than **nginx** is to be used, note the following:
 
     Finally, install a specific version from the output of command above. For example:
 
-    Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04
-
     ```shell
     sudo apt-get install -y app-protect-compiler=5.9.4-1~[OS_CODENAME] \
     app-protect-plugin=3.263.0-1~[OS_CODENAME] \
@@ -945,12 +939,11 @@ If a user other than **nginx** is to be used, note the following:
     app-protect=23+3.263.0-1~[OS_CODENAME]
     ```
 
-**Note**: Where the [OS_CODENAME] can be: bionic for Ubuntu 18.04, focal for Ubuntu 20.04 and jammy for Ubuntu 22.04.
-
+    Replace the [OS_CODENAME] in above the example with: **bionic** for Ubuntu 18.04, **focal** for Ubuntu 20.04 and **jammy** for Ubuntu 22.04.
+    <br>
+    <br>
 
     {{< note >}} When installing an older version of NGINX App Protect WAF, the dependent packages have to be installed manually, as shown in the command above. The following script can be used to find out the dependent packages for a specific version of NGINX App Protect WAF.{{< /note >}}
-
-    Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04
 
     ```shell
     findDeps () { local pkgs=$(apt show $1 2>/dev/null | grep Depends: | grep -oE "(nginx-plus-module|app-protect)-[a-z]+ *\(= *[0-9\+\.-]+~`lsb_release -cs`\)" | tr -d ' ()'); for p in ${pkgs[@]}; do echo $p; findDeps $p; done; } 
@@ -1549,6 +1542,7 @@ You need root permissions to execute the following steps.
         ```shell
         podman build --no-cache --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key -t app-protect-converter .
         ```
+
     **Notes:**
     - The `--no-cache` option tells Docker/Podman to build the image from scratch and ensures the installation of the latest version of NGINX Plus and NGINX App Protect WAF. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the cache.
     - For RHEL:<br>
@@ -2099,7 +2093,6 @@ After having updated the Attack Signature package you have to reload the configu
     sudo yum downgrade app-protect-attack-signatures-2019.07.16
     ```
 
-
 ### Debian 10 / Debian 11
 
 1. Add NGINX App Protect WAF Security Updates repository:
@@ -2134,13 +2127,13 @@ After having updated the Attack Signature package you have to reload the configu
 
     Install a specific version:
 
-    Debian 10
+    For Debian 10:
 
     ```shell
     sudo apt-get install app-protect-attack-signatures=2020.04.30-1~buster
     ```
 
-    Debian 11
+    For Debian 11:
      ```shell
     sudo apt-get install app-protect-attack-signatures=2020.04.30-1~bulleye
     ```
@@ -2179,18 +2172,18 @@ After having updated the Attack Signature package you have to reload the configu
 
     Install a specific version:
 
-    Ubuntu 18.04
+    For Ubuntu 18.04:
 
     ```shell
     sudo apt-get install app-protect-attack-signatures=2020.07.16-1~bionic
     ```
 
-    Ubuntu 20.04
+    For Ubuntu 20.04:
     ```shell
     sudo apt-get install app-protect-attack-signatures=2020.07.16-1~focal
     ```
 
-    Ubuntu 22.04
+    For Ubuntu 22.04:
     ```shell
     sudo apt-get install app-protect-attack-signatures=2020.07.16-1~jammy
     ```
@@ -2230,7 +2223,7 @@ After having updated the Attack Signature package you have to reload the configu
     ```
 
 
-### Attack Signatures when Upgrading App Protect
+### Attack Signatures When Upgrading NGINX App Protect WAF
 
 Upgrading App Protect does _not_ install new Attack Signatures. You will get the same Attack Signature release after upgrading App Protect. If you want to also upgrade the Attack Signatures, you will have to explicitly update them by the respective command above.
 
@@ -2382,13 +2375,13 @@ Example: app-protect-threat-campaigns-2022.07.21
 
     Install a specific version:   
 
-    Debian 10
+    For Debian 10:
 
     ```shell
     sudo apt-get install app-protect-threat-campaigns=2020.06.25-1~buster
     ```
 
-    Debian 11
+    For Debian 11:
     ```shell
     sudo apt-get install app-protect-threat-campaigns=2020.06.25-1~bullseye
     ```
@@ -2427,17 +2420,17 @@ Example: app-protect-threat-campaigns-2022.07.21
 
     Install a specific version:
 
-    Ubuntu 18.04
+    For Ubuntu 18.04:
     ```shell
     sudo apt-get install app-protect-threat-campaigns=2020.08.05-1~bionic
     ```
 
-     Ubuntu 20.04
+    For Ubuntu 20.04:
     ```shell
     sudo apt-get install app-protect-threat-campaigns=2020.08.05-1~focal
     ```
 
-     Ubuntu 22.04
+    For Ubuntu 22.04:
     ```shell
     sudo apt-get install app-protect-threat-campaigns=2020.08.05-1~jammy
     ```
@@ -2533,7 +2526,7 @@ app-protect-threat-campaigns
     app-protect-engine=10.139.2-1~[OS_CODENAME] \
     app-protect=27+3.1088.2-1~[OS_CODENAME] 
     ```
-    **Note**: Where the [OS_CODENAME] can be: buster for Debian 10 and bullseye for Debian 11.
+    **Note**: Replace the [OS_CODENAME] in the above command with: **buster** for Debian 10 and **bullseye** for Debian 11.
 
 ### Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04
 
@@ -2555,7 +2548,7 @@ app-protect-threat-campaigns
     app-protect=27+3.1088.2-1~[OS_CODENAME]
     ```
 
-    **Note**: Where the [OS_CODENAME] can be:  bionic for Ubuntu 18.04, focal for Ubuntu 20.04 and jammy for Ubuntu 22.04.
+    **Note**: Replace the [OS_CODENAME] in the above command with: **bionic** for Ubuntu 18.04, **focal** for Ubuntu 20.04 and **jammy** for Ubuntu 22.04.
 
 
 ### CentOS / RHEL 7.4.x / Amazon Linux 2 / RHEL 8.1+ / Oracle Linux 8.1+
