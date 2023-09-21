@@ -56,13 +56,14 @@ NGINX App Protect WAF supports the following operating systems:
 - [RHEL 8.1.x and above](#rhel-81-installation)
 - [Oracle Linux 8.1.x and above](#oracle-linux-81-installation)
 - [Amazon Linux 2](#amazon-linux-2-lts-installation)
-- [Debian 10](#debian-10--11-installation) - (Deprecated starting from NGINX Plus R28)
-- [Debian 11](#debian-10--11-installation)
-- [Ubuntu 18.04](#ubuntu-1804--2004--2204-installation) - (Deprecated starting from NGINX Plus R30)
-- [Ubuntu 20.04](#ubuntu-1804--2004--2204-installation)
-- [Ubuntu 22.04](#ubuntu-1804--2004--2204-installation)
+- [Debian 10 (Buster)](#debian-10--11-installation) - (Deprecated starting from NGINX Plus R28)
+- [Debian 11 (Bullseye)](#debian-10--11-installation)
+- [Ubuntu 18.04 (Bionic)](#ubuntu-1804--2004--2204-installation) - (Deprecated starting from NGINX Plus R30)
+- [Ubuntu 20.04 (Focal)](#ubuntu-1804--2004--2204-installation)
+- [Ubuntu 22.04 (Jammy)](#ubuntu-1804--2004--2204-installation)
 - [Alpine 3.16](#alpine-316--317-installation) 
 - [Alpine 3.17](#alpine-316--317-installation) 
+
 
 The NGINX App Protect WAF package has the following dependencies:
 
@@ -711,7 +712,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo systemctl start nginx
     ```
 
-## Debian 10 / 11 Installation
+## Debian 10 / Debian 11 Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -800,43 +801,27 @@ If a user other than **nginx** is to be used, note the following:
 
     {{< note >}} When installing an older version of NGINX App Protect WAF, the dependent packages have to be installed manually, as shown in the command above. The following script can be used to find out the dependent packages for a specific version of NGINX App Protect WAF.{{< /note >}}
 
-    Debian 10
+    Debian 10 / Debian 11
 
     ```shell
     findDeps () { local pkgs=$(apt show $1 2>/dev/null | grep Depends: | grep -oE "(nginx-plus-module|app-protect)-[a-z]+ *\(= *[0-9\+\.-]+~`lsb_release -cs`\)" | tr -d ' ()'); for p in ${pkgs[@]}; do echo $p; findDeps $p; done; } 
-    findDeps app-protect=24+3.639.0-1~buster
-    ```
-
-    Debian 11
-
-    ```shell
-    findDeps () { local pkgs=$(apt show $1 2>/dev/null | grep Depends: | grep -oE "(nginx-plus-module|app-protect)-[a-z]+ *\(= *[0-9\+\.-]+~`lsb_release -cs`\)" | tr -d ' ()'); for p in ${pkgs[@]}; do echo $p; findDeps $p; done; } 
-    findDeps app-protect=24+3.639.0-1~bullseye
+    findDeps app-protect=24+3.639.0-1~[OS_CODENAME]
     ```
 
     Finally, install a specific version from the output of command above. For example:
 
-    Debian 10
+    Debian 10 / Debian 11
 
     ```shell
-    sudo apt-get install -y app-protect-compiler=8.7.4-1~buster \
-    app-protect-plugin=3.639.0-1~buster \
-    nginx-plus-module-appprotect=24+3.639.0-1~buster\
-    app-protect-engine=8.7.4-1~buster \
-    app-protect=24+3.639.0-1~buster \
-    app-protect-common=8.7.4-1~buster  
+    sudo apt-get install -y app-protect-compiler=8.7.4-1~[OS_CODENAME] \
+    app-protect-plugin=3.639.0-1~[OS_CODENAME] \
+    nginx-plus-module-appprotect=24+3.639.0-1~[OS_CODENAME]\
+    app-protect-engine=8.7.4-1~[OS_CODENAME] \
+    app-protect=24+3.639.0-1~[OS_CODENAME] \
+    app-protect-common=8.7.4-1~[OS_CODENAME]  
     ```
-    
-    Debian 11
 
-    ```shell
-    sudo apt-get install -y app-protect-compiler=8.7.4-1~bullseye \
-    app-protect-plugin=3.639.0-1~bullseye \
-    nginx-plus-module-appprotect=24+3.639.0-1~bullseye\
-    app-protect-engine=8.7.4-1~bullseye \
-    app-protect=24+3.639.0-1~bullseye \
-    app-protect-common=8.7.4-1~bullseye  
-    ```
+    **Note**: Where the [OS_CODENAME] can be: buster for Debian 10 and bullseye for Debian 11.
 
 12. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
 
@@ -862,11 +847,11 @@ If a user other than **nginx** is to be used, note the following:
     sudo systemctl start nginx
     ```
 
-{{< note >}} Debian 10 / 11 activates __AppArmor__ by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
+{{< note >}} Debian 10 / Debian 11 activates __AppArmor__ by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
 {{< /note >}}
 
 
-## Ubuntu 18.04 / 20.04 / 22.04 Installation
+## Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04 Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -950,57 +935,26 @@ If a user other than **nginx** is to be used, note the following:
 
     Finally, install a specific version from the output of command above. For example:
 
-    Ubuntu 18.04
+    Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04
 
     ```shell
-    sudo apt-get install -y app-protect-compiler=5.9.4-1~bionic \
-    app-protect-plugin=3.263.0-1~bionic \
-    nginx-plus-module-appprotect=23+3.263.0-1~bionic \
-    app-protect-engine=5.9.4-1~bionic \
-    app-protect=23+3.263.0-1~bionic
+    sudo apt-get install -y app-protect-compiler=5.9.4-1~[OS_CODENAME] \
+    app-protect-plugin=3.263.0-1~[OS_CODENAME] \
+    nginx-plus-module-appprotect=23+3.263.0-1~[OS_CODENAME] \
+    app-protect-engine=5.9.4-1~[OS_CODENAME] \
+    app-protect=23+3.263.0-1~[OS_CODENAME]
     ```
 
-    Ubuntu 20.04 
+**Note**: Where the [OS_CODENAME] can be: bionic for Ubuntu 18.04, focal for Ubuntu 20.04 and jammy for Ubuntu 22.04.
 
-    ```shell
-    sudo apt-get install -y app-protect-compiler=5.9.4-1~focal \
-    app-protect-plugin=3.263.0-1~focal \
-    nginx-plus-module-appprotect=23+3.263.0-1~focal \
-    app-protect-engine=5.9.4-1~focal \
-    app-protect=23+3.263.0-1~focal
-    ```
-        
-    Ubuntu 22.04
-
-    ```shell
-    sudo apt-get install -y app-protect-compiler=5.9.4-1~jammy \
-    app-protect-plugin=3.263.0-1~jammy \
-    nginx-plus-module-appprotect=23+3.263.0-1~jammy \
-    app-protect-engine=5.9.4-1~jammy \
-    app-protect=23+3.263.0-1~jammy
-    ```
 
     {{< note >}} When installing an older version of NGINX App Protect WAF, the dependent packages have to be installed manually, as shown in the command above. The following script can be used to find out the dependent packages for a specific version of NGINX App Protect WAF.{{< /note >}}
 
-    Ubuntu 18.04
+    Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04
 
     ```shell
     findDeps () { local pkgs=$(apt show $1 2>/dev/null | grep Depends: | grep -oE "(nginx-plus-module|app-protect)-[a-z]+ *\(= *[0-9\+\.-]+~`lsb_release -cs`\)" | tr -d ' ()'); for p in ${pkgs[@]}; do echo $p; findDeps $p; done; } 
-    findDeps app-protect=23+3.263.0-1~bionic
-    ```
-
-    Ubuntu 20.04
-
-    ```shell
-    findDeps () { local pkgs=$(apt show $1 2>/dev/null | grep Depends: | grep -oE "(nginx-plus-module|app-protect)-[a-z]+ *\(= *[0-9\+\.-]+~`lsb_release -cs`\)" | tr -d ' ()'); for p in ${pkgs[@]}; do echo $p; findDeps $p; done; } 
-    findDeps app-protect=23+3.263.0-1~focal
-    ```
-
-    Ubuntu 22.04
-
-    ```shell
-    findDeps () { local pkgs=$(apt show $1 2>/dev/null | grep Depends: | grep -oE "(nginx-plus-module|app-protect)-[a-z]+ *\(= *[0-9\+\.-]+~`lsb_release -cs`\)" | tr -d ' ()'); for p in ${pkgs[@]}; do echo $p; findDeps $p; done; } 
-    findDeps app-protect=23+3.263.0-1~jammy
+    findDeps app-protect=23+3.263.0-1~[OS_CODENAME]
     ```
 
 12. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
@@ -1027,11 +981,11 @@ If a user other than **nginx** is to be used, note the following:
     sudo systemctl start nginx
     ```
 
-{{< note >}} Ubuntu 20.04 / 22.04 activates __AppArmor__ by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
+{{< note >}} Ubuntu 20.04 / Ubuntu 22.04 activates __AppArmor__ by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
 {{< /note >}}
 
 
-## Alpine 3.16 / 3.17 Installation
+## Alpine 3.16 / Alpine 3.17 Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -1530,7 +1484,7 @@ COPY entrypoint.sh /root/
 CMD ["sh", "/root/entrypoint.sh"]
 ```
 
-### Alpine 3.16 / 3.17 Docker Deployment Example
+### Alpine 3.16 / Alpine 3.17 Docker Deployment Example
 ```dockerfile
 # syntax=docker/dockerfile:1
 # For Alpine 3.16 / 3.17:
@@ -1854,11 +1808,14 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect-compiler
 ```
 
-### Ubuntu 18.04 Converter Docker Deployment Example
+### Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04 Converter Docker Deployment Example
+
 ```dockerfile
+ARG OS_CODENAME
+# Where OS_CODENAME can be: bionic/focal/jammy
 # syntax=docker/dockerfile:1
-# For Ubuntu 18.04:
-FROM ubuntu:bionic
+# For Ubuntu 18.04 / 20.04 /22.04:
+FROM ubuntu:${OS_CODENAME}
 
 # Install prerequisite packages:
 RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2
@@ -1880,57 +1837,11 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect-compiler
 ```
 
-### Ubuntu 20.04 Converter Docker Deployment Example
+### Alpine 3.16 / Alpine 3.17 Converter Docker Deployment Example
 ```dockerfile
 # syntax=docker/dockerfile:1
-# For Ubuntu 20.04:
-FROM ubuntu:focal
-
-# Install prerequisite packages:
-RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2
-
-# Download and add the NGINX signing keys:
-RUN wget https://cs.nginx.com/static/keys/nginx_signing.key && apt-key add nginx_signing.key \
-    && wget https://cs.nginx.com/static/keys/app-protect-security-updates.key && apt-key add app-protect-security-updates.key
-
-# Add NGINX App Protect WAF repositories:
-RUN printf "deb https://pkgs.nginx.com/app-protect/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect.list \
-    && printf "deb https://pkgs.nginx.com/app-protect-security-updates/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/app-protect-security-updates.list
-
-# Download the apt configuration to `/etc/apt/apt.conf.d`:
-RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
-
-# Update the repository and install the most recent version of the NGINX App Protect WAF Compiler package:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
-    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-    apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect-compiler
-```
-
-### Alpine 3.16 Converter Docker Deployment Example
-```dockerfile
-# syntax=docker/dockerfile:1
-# For Alpine 3.16:
-FROM alpine:3.16
-
-# Download and add the NGINX signing keys:
-RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub \
- && wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
-
-# Add NGINX Plus repository:
-RUN printf "https://pkgs.nginx.com/app-protect/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories \
- && printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
-
-# Update the repository and install the most recent version of the NGINX App Protect WAF Compiler package:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
-    --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
-    apk update && apk add app-protect-compiler
-```
-
-### Alpine 3.17 Converter Docker Deployment Example
-```dockerfile
-# syntax=docker/dockerfile:1
-# For Alpine 3.17:
-FROM alpine:3.17
+# For Alpine 3.16/3.17:
+FROM alpine:3.16/3.17
 
 # Download and add the NGINX signing keys:
 RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub \
@@ -2567,7 +2478,7 @@ app-protect-selinux
 sudo yum remove app-protect app-protect-selinux
 ```
 
-### Debian 10 / Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04
+### Debian 10 / Debian 11 / Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04
 
 ```shell
 sudo apt-get remove app-protect \
@@ -2595,65 +2506,57 @@ app-protect-threat-campaigns
 
 ## Upgrading App Protect to a specific version
 
-   ### Debian 10
+### CentOS / RHEL 7.4.x / Amazon Linux 2 / RHEL 8.1+ / Oracle Linux 8.1+
 
-   1. Get the dependencies and their versions to be upgraded to by using the command:
+1. Upgrade the NGINX App Protect WAF to the specific version:
 
-       ```shell
-        findDeps () { local pkgs=$(apt show $1 2>/dev/null | grep Depends: | grep -oE "(nginx-plus-module|app-protect)-[a-z]+ *\(= *[0-9\+\.-]+~`lsb_release -cs`\)" | tr -d ' ()'); for p in ${pkgs[@]}; do echo $p; findDeps $p; done; }
-        findDeps app-protect=27+3.1088.2-1~buster
-       ```
+    ```shell
+    sudo yum -y update app-protect-27+3.1088.0-1
+    ```
 
-   2. Upgrade the NGINX App Protect WAF to the specific version:
+### Debian 10 / Debian 11
 
-        ```shell
-        sudo apt-get update && apt-get install -y app-protect-common=10.139.2-1~buster     
-        app-protect-compiler=10.139.2-1~buster \
-        app-protect-plugin=3.1088.2-1~buster \
-        nginx-plus-module-appprotect=27+3.1088.2-1~buster \
-        app-protect-engine=10.139.2-1~buster \
-        app-protect=27+3.1088.2-1~buster 
-        ```
+1. Get the dependencies and their versions to be upgraded to by using the command:
 
-   ### Ubuntu 18.04
+    ```shell
+    findDeps () { local pkgs=$(apt show $1 2>/dev/null | grep Depends: | grep -oE "(nginx-plus-module|app-protect)-[a-z]+ *\(= *[0-9\+\.-]+~`lsb_release -cs`\)" | tr -d ' ()'); for p in ${pkgs[@]}; do echo $p; findDeps $p; done; }
+    findDeps app-protect=27+3.1088.2-1~[OS_CODENAME]
+    ```
 
-   1. Get the dependencies and their versions to be upgraded to by using the command:
+2. Upgrade the NGINX App Protect WAF to the specific version:
 
-        ```shell
-        findDeps () { local pkgs=$(apt show $1 2>/dev/null | grep Depends: | grep -oE "(nginx-plus-module|app-protect)-[a-z]+ *\(= *[0-9\+\.-]+~`lsb_release -cs`\)" | tr -d ' ()'); for p in ${pkgs[@]}; do echo $p; findDeps $p; done; } 
-        findDeps app-protect=27+3.1088.2-1~bionic
-        ```
+    ```shell
+    sudo apt-get update && apt-get install -y app-protect-common=10.139.2-1~[OS_CODENAME]    
+    app-protect-compiler=10.139.2-1~[OS_CODENAME] \
+    app-protect-plugin=3.1088.2-1~[OS_CODENAME] \
+    nginx-plus-module-appprotect=27+3.1088.2-1~[OS_CODENAME] \
+    app-protect-engine=10.139.2-1~[OS_CODENAME] \
+    app-protect=27+3.1088.2-1~[OS_CODENAME] 
+    ```
+    **Note**: Where the [OS_CODENAME] can be: buster for Debian 10 and bullseye for Debian 11.
 
-   2. Upgrade the NGINX App Protect WAF to the specific version:
+### Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04
 
-        ```shell
-        sudo apt-get update && apt-get install -y app-protect-common=10.139.2-1~bionic
-        app-protect-compiler=10.139.2-1~bionic \
-        app-protect-plugin=3.1088.2-1~bionic \
-        nginx-plus-module-appprotect=27+3.1088.2-1~bionic \
-        app-protect-engine=10.139.2-1~bionic \
-        app-protect=27+3.1088.2-1~bionic
-        ```
+1. Get the dependencies and their versions to be upgraded to by using the command:
 
-   ### Ubuntu 20.04
+    ```shell
+    findDeps () { local pkgs=$(apt show $1 2>/dev/null | grep Depends: | grep -oE "(nginx-plus-module|app-protect)-[a-z]+ *\(= *[0-9\+\.-]+~`lsb_release -cs`\)" | tr -d ' ()'); for p in ${pkgs[@]}; do echo $p; findDeps $p; done; } 
+    findDeps app-protect=27+3.1088.2-1~[OS_CODENAME]
+    ```
 
-   1. Get the dependencies and their versions to be upgraded to by using the command:
+2. Upgrade the NGINX App Protect WAF to the specific version:
 
-        ```shell
-        findDeps () { local pkgs=$(apt show $1 2>/dev/null | grep Depends: | grep -oE "(nginx-plus-module|app-protect)-[a-z]+ *\(= *[0-9\+\.-]+~`lsb_release -cs`\)" | tr -d ' ()'); for p in ${pkgs[@]}; do echo $p; findDeps $p; done; } 
-        findDeps app-protect=27+3.1088.2-1~focal
-        ```
+    ```shell
+    sudo apt-get update && apt-get install -y app-protect-common=10.139.2-1~[OS_CODENAME]
+    app-protect-compiler=10.139.2-1~[OS_CODENAME] \
+    app-protect-plugin=3.1088.2-1~[OS_CODENAME] \
+    nginx-plus-module-appprotect=27+3.1088.2-1~[OS_CODENAME] \
+    app-protect-engine=10.139.2-1~[OS_CODENAME] \
+    app-protect=27+3.1088.2-1~[OS_CODENAME]
+    ```
 
-   2. Upgrade the NGINX App Protect WAF to the specific version:
+    **Note**: Where the [OS_CODENAME] can be:  bionic for Ubuntu 18.04, focal for Ubuntu 20.04 and jammy for Ubuntu 22.04.
 
-        ```shell
-        sudo apt-get update && apt-get install -y app-protect-common=10.139.2-1~focal 
-        app-protect-compiler=10.139.2-1~focal \
-        app-protect-plugin=3.1088.2-1~focal \
-        nginx-plus-module-appprotect=27+3.1088.2-1~focal \
-        app-protect-engine=10.139.2-1~focal \
-        app-protect=27+3.1088.2-1~focal
-        ```
 
 ### CentOS / RHEL 7.4.x / Amazon Linux 2 / RHEL 8.1+ / Oracle Linux 8.1+
 
@@ -2662,15 +2565,10 @@ app-protect-threat-campaigns
     ```shell
     sudo yum -y update app-protect
     ```
-- Upgrade the NGINX App Protect WAF to the specific version:
 
-    ```shell
-    sudo yum -y update app-protect-27+3.1088.0-1
-    ```
+### Debian 10 / Debian 11 / Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04
 
-### Debian 10 / Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04
-
- - Upgrade the NGINX App Protect WAF to the latest version:
+- Upgrade the NGINX App Protect WAF to the latest version:
 
     ```shell
     apt-get update && install -y app-protect-common \
