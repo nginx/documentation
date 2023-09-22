@@ -53,6 +53,15 @@
 /nginx-ingress-controller/intro/nginx-plus/ /nginx-ingress-controller/overview/nginx-plus/ 301
 /nginx-ingress-controller/installation/pulling-ingress-controller-image/ /nginx-ingress-controller/installation/nic-images/pulling-ingress-controller-image/ 301
 /nginx-ingress-controller/installation/building-ingress-controller-image/ /nginx-ingress-controller/installation/building-nginx-ingress-controller-image/ 301
+/nginx-ingress-controller/app-protect-dos/ /nginx-ingress-controller/installation/integrations/app-protect-dos/ 301
+/nginx-ingress-controller/app-protect-dos/configuration/ /nginx-ingress-controller/installation/integrations/app-protect-dos/configuration/ 301
+/nginx-ingress-controller/app-protect-dos/dos-protected/ /nginx-ingress-controller/installation/integrations/app-protect-dos/dos-protected/ 301
+/nginx-ingress-controller/app-protect-dos/installation/ /nginx-ingress-controller/installation/integrations/app-protect-dos/installation/ 301
+/nginx-ingress-controller/app-protect-waf/ /nginx-ingress-controller/installation/integrations/app-protect-waf/ 301
+/nginx-ingress-controller/app-protect-waf/configuration/ /nginx-ingress-controller/installation/integrations/app-protect-waf/configuration/ 301
+/nginx-ingress-controller/app-protect-waf/installation/ /nginx-ingress-controller/installation/integrations/app-protect-waf/installation/ 301
+/nginx-ingress-controller/f5-ingresslink/ /nginx-ingress-controller/installation/integrations/f5-ingresslink/ 301
+/nginx-ingress-controller/third-party-modules/opentracing/ /nginx-ingress-controller/installation/integrations/opentracing/ 301
 
 # NGINX Management Suite redirects
 /nginx-management-suite/nginx-instance-manager/* /nginx-management-suite/nim/:splat 301!
