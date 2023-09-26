@@ -1,6 +1,5 @@
 ---
-description: Integrate Lua co-routines into the NGINX event-processing model, with
-  the Lua dynamic module, community-authored and supported by NGINX, Inc.
+description:
 docs: DOCS-391
 doctypes:
 - task
@@ -10,14 +9,20 @@ weight: 100
 ---
 
 
-<span id="install"></span>
-## Installation
+Integrate Lua co-routines into the NGINX event-processing model with the community-authored Lua dynamic module.
+
+<span id="prereq"></span>
+## Prerequisites
 
 1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
-2. Prior to installing the Lua module, verify that the [NDK]({{< relref "ndk.md" >}}) module is already installed.
+2. Prior to installing the module, verify that the [NDK]({{< relref "ndk.md" >}}) module is already installed.
 
-3. Install the Lua module package `nginx-plus-module-lua`.
+
+<span id="install"></span>
+## Installation
+
+   Install the Lua module package `nginx-plus-module-lua`.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
    

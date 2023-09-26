@@ -1,6 +1,5 @@
 ---
-description: The NDK module makes it easier for module developers to develop NGINX
-  modules.
+description:
 docs: DOCS-392
 doctypes:
 - task
@@ -9,8 +8,10 @@ toc: true
 weight: 100
 ---
 
+The NGINX Developer Kit (NDK) module makes it easier for module developers to develop NGINX modules.
 
-The NDK module is also a prerequisite for [Lua]({{< relref "lua.md" >}}) and [Set-Misc]({{< relref "set-misc.md" >}}) modules.
+The NDK module is also a prerequisite for [Encrypted Session]({{< relref "encrypted-session.md" >}}), [Lua]({{< relref "lua.md" >}}), and [Set-Misc]({{< relref "set-misc.md" >}}) modules.
+
 
 <span id="install"></span>
 ## Installation
@@ -57,7 +58,6 @@ The NDK module is also a prerequisite for [Lua]({{< relref "lua.md" >}}) and [Se
 
 
 <span id="configure"></span>
-
 ## Configuration
 
 After installation you will need to enable and configure the module in NGINX Plus configuration file `nginx.conf`.

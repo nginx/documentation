@@ -11,14 +11,18 @@ weight: 100
 ---
 
 
-<span id="install"></span>
-## Installation
+<span id="prereq"></span>
+## Prerequisites
 
 1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
-2. Prior to installing the Set-Misc module, verify that the [NDK]({{< relref "ndk.md" >}}) module is already installed.
+2. Prior to installing the module, verify that the [NDK]({{< relref "ndk.md" >}}) module is already installed.
 
-3. Install the Set-Misc module package `nginx-plus-module-set-misc`.
+
+<span id="install"></span>
+## Installation
+
+Install the Set-Misc module package `nginx-plus-module-set-misc`.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
       

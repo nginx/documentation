@@ -57,7 +57,7 @@ The following NGINX Plus status metrics are exported to Prometheus:
 {{< /note >}}
 
 <span id="install"></span>
-## Installation Instructions
+## Installation
 
 Install the `nginx-plus-module-prometheus` module.
 
