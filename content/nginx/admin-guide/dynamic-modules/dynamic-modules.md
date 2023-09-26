@@ -30,14 +30,14 @@ There are many additional third‑party modules that are not included in the rep
 You can access and download the modules in the NGINX Plus dynamic modules repository using standard package management tools such as `apt` and `yum`. For example, to install njs dynamic modules for Debian and Ubuntu, run the command:
 
 ```shell
-   $ apt-get install nginx-plus-module-njs
+apt-get install nginx-plus-module-njs
 ```
 
 Then you include the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive in the NGINX Plus configuration file for each dynamic module. For example, to enable `njs` dynamic modules, specify the `load_module` directives in the top-level (“`main`”) context of the main NGINX Plus configuration file (**nginx.conf**):
 
 ```nginx
-   load_module modules/ngx_http_js_module.so;
-   load_module modules/ngx_stream_js_module.so;
+load_module modules/ngx_http_js_module.so;
+load_module modules/ngx_stream_js_module.so;
 ```
 
 For module‑specific instructions, see the list of modules in the same section of the NGINX Plus Admin Guide as this article:
@@ -78,7 +78,10 @@ To get started using dynamic modules, first install the latest NGINX Plus releas
 To see the list of available modules, run this command (for Debian and Ubuntu):
 
 ```shell
-$ apt-cache search nginx-plus-module
+apt-cache search nginx-plus-module
+```
+The output of the command:
+```shell
 nginx-plus-module-geoip - NGINX Plus, provided by NGINX, Inc. (GeoIP dynamic modules)
 nginx-plus-module-geoip-dbg - Debugging symbols for the nginx-plus-module-geoip
 nginx-plus-module-geoip2 - NGINX Plus, provided by NGINX, Inc. (3rd-party GeoIP2 dynamic modules)
@@ -89,7 +92,7 @@ nginx-plus-module-image-filter - NGINX Plus, provided by NGINX, Inc. (image filt
 nginx-plus-module-image-filter-dbg - Debugging symbols for the nginx-plus-module-image-filter
 ```
 
-> **Note:** There is an optional debugging symbols package available for every module. You can load and use the module without installing this package.
+{{< note >}} There is an optional debugging symbols package available for every module. You can load and use the module without installing this package.{{< /note >}}
 
 
 <span id="modules_nginx"></span>
@@ -116,10 +119,16 @@ Some modules are not available for certain OS versions because of OS limitations
 To compile your own dynamic modules, please see our [blog](https://www.nginx.com/blog/compiling-dynamic-modules-nginx-plus/).
 
 
+<span id="compile"></span>
+## Uninstalling a Dynamic Module
+
+To uninstall a dynamic module, please follow the [Uninstalling a dynamic module]({{< relref "uninstall.md" >}}) article.
+
+
 <span id="info"></span>
 ## See Also
 
-* [Uninstalling a dynamic module]({{< relref "uninstall.md" >}})
+* [Installing NGINX Plus]({{< relref "../installing-nginx/installing-nginx-plus.md" >}})
 
 * [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
 
