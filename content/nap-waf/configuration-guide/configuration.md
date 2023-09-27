@@ -1253,19 +1253,19 @@ To enforce signature response, we have the flexibility to restrict the portion o
         "applicationLanguage": "utf-8",
         "enforcementMode": "blocking",
         "filetypes": [
-        {
+           {
             "name": "*",
             "type": "wildcard",
             "responseCheck": true,
-		    "responseCheckLength" : 1000
-        }
+		    "responseCheckLength": 1000
+           }
         ],
             "signature-sets": [
-            {
+          {
                 "name": "All Response Signatures",
                 "block": true,
                 "alarm": true
-            }
+           }
         ]
     }
 }
@@ -1273,11 +1273,7 @@ To enforce signature response, we have the flexibility to restrict the portion o
 
 #### How Does Restrict Response Signature Check Work?
 
-1. If the matched request file type enables response signatures i.e `responseCheck` is set to true, then continue, otherwise skip the following steps.
-2. If the data guard is enabled (blocking or masking) or any feature that requires JavaScript injection in the response, then buffer the whole response up to the globally configured maximum (50 MB by default) as done today, but check signatures only on the prefix as detailed below.
-3. If data guard is disabled and there is no JavaScript injection, the process varies. If the body is compressed, it should be fully buffered and then uncompressed entirely. Otherwise, simply buffer the plain body up to that specified length.
-4. Scan the buffered body for signatures.
-5. Unhold the response or implement blocking if there are any blocking signatures detected.
+The response signature check is always done on the configured `responseCheckLength` as described above. Usually NGINX App Protect WAF will buffer only that part of the response saving memory and CPU, but in some conditions the whole response may have to be buffered, such as when the response body is compressed.
 
 #### Allowed Methods
 
@@ -5151,7 +5147,7 @@ Example of Cyclic Override Rule error:
 ### Introduction
 JSON Web Token (JWT) is a compact and self-contained way to represent information between two parties in a JSON (JavaScript Object Notation) format and is commonly used for authentication and authorization. With NGINX App Protect now it is possible to control access to its application using JWT authentication. NGINX App Protect WAF uses JWTs for securely transmitting information between a client and a server or between different services in a distributed system. JWT is mainly used for API access. 
 
-When a user logs in to a web application, they might receive a JWT, which can then be included in subsequent requests to  the server. The server can validate the JWT to ensure that the user is authenticated and authorized to access the requested resources.
+When a user logs in to a web application, they might receive a JWT, which can then be included in subsequent requests to  the server. The server can validate the JWT to ensure that the user is authenticated to access the requested resources.
 
 Now NGINX App Protect WAF provides JSON Web Token (JWT) protection. NGINX App Protect WAF will be placed in the path leading to the application server and will handle the token for the application. This includes:
 
@@ -5193,16 +5189,15 @@ The JSON Web Token consists of three parts: the **Header**, **Claims** and **Sig
 
 #### NGINX App Protect WAF supports the following types of JWT:
 
-JSON Web Signature (JWS) - JWT content is digitally signed. The following algorithms can be used for signing:
+JSON Web Signature (JWS) - JWT content is digitally signed. The following algorithm can be used for signing:
 
-- HMAC 256
 - RSA/SHA-256 (RS256 for short)
 
 Here is an example of a Header: describes a JWT signed with HMAC 256 encryption algorithm:
 
 ```json
 {
-  "alg": "HS256",
+  "alg": "RS256",
   "typ": "JWT"
 }
 ```
@@ -5288,7 +5283,7 @@ Please note that the access profile cannot be deleted if it is in use in any URL
 
 ### Attack Signatures
 
-Attack signatures are detected within the JSON values of the token, i.e. the header and payload parts, but not on the digital signature part of the token. The detection of signatures, and specifically which signatures are recognized, depends on the configuration entity within the Policy. Typically, this configuration entity is the Authorization HTTP header or else, the header or parameter entity configured as the location of the token in the access profile.
+Attack signatures are detected within the JSON values of the token, i.e. the header and claims parts, but not on the digital signature part of the token. The detection of signatures, and specifically which signatures are recognized, depends on the configuration entity within the Policy. Typically, this configuration entity is the Authorization HTTP header or else, the header or parameter entity configured as the location of the token in the access profile.
 
 If the request doesn't align with a URL associated with an Access Profile, an attempt is made to parse the "bearer" type Authorization header, but no violations are raised, except for Base64. More information can be found below:
 
@@ -5474,9 +5469,9 @@ The following violations are supported and can be enabled by turning on the **al
 {{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
 |Violation Name | Title | Enabled Flags in Default Template | Description | Comment | 
 | ---| ---| ---| ---| --- | 
-|VIOL_ACCESS_INVALID| Access token does not comply with the profile requirements| Alarm & Block | The system checks the access token in a request according to the access profile attached to the respective URL. The violation is raised when at least one of the enforced checks in the profile is not satisfied | This would trigger a Violation Rating of 5 |
-|VIOL_ACCESS_MISSING| Missing Access Token | Alarm & Block | The system checks that the request contains the access token for the respective URL according to the Access Profile. The violation is raised when that token is not found.| This would trigger a Violation Rating of 5 |
-|VIOL_ACCESS_MALFORMED| Malformed Access Token | Alarm & Block | The access token required for the URL in the request was malformed. | This would trigger a Violation Rating of 5 |
+|VIOL_ACCESS_INVALID| Access token does not comply with the profile requirements| Alarm | The system checks the access token in a request according to the access profile attached to the respective URL. The violation is raised when at least one of the enforced checks in the profile is not satisfied | This would trigger a Violation Rating of 5. |
+|VIOL_ACCESS_MISSING| Missing Access Token | Alarm | The system checks that the request contains the access token for the respective URL according to the Access Profile. The violation is raised when that token is not found.| This would trigger a Violation Rating of 5. |
+|VIOL_ACCESS_MALFORMED| Malformed Access Token | Alarm | The access token required for the URL in the request was malformed. | This would trigger a Violation Rating of 5. |
 |VIOL_ASM_COOKIE_MODIFIED | Modified ASM cookie | Alarm & Block | The system checks that the request contains an ASM cookie that has not been modified or tampered with. Blocks modified requests. |  |
 |VIOL_ATTACK_SIGNATURE | Attack signature detected | N/A | The system examines the HTTP message for known attacks by matching it against known attack patterns. | Determined per signature set. <br>Note: This violation cannot be configured by the user. Rather, the violation is determined by the combination of the signature sets on the policy.| 
 |VIOL_BLACKLISTED_IP | IP is in the deny list | Alarm | The violation is issued when a request comes from an IP address that falls in the range of an IP address exception marked for "always blocking", that is, the deny list of IPs. | Would trigger Violation Rating of 5. | 
