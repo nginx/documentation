@@ -1,5 +1,5 @@
 #
-# Copyright (C) F5 2022
+# Copyright (C) F5 2023
 # All rights reserved.
 #
 # No part of the software may be reproduced or transmitted in any
@@ -8,14 +8,17 @@
 #
 
 ---
-name: http.request.bytes_rcvd
+name: client.network.latency.max
 categories:
   - advanced-metrics
-description: The total number of bytes received from clients.
-type: counter
+description:
+  Maximal network latency on the client-side derived from TCP connection handshake.
+  If `family` dimension is set to `web`, the request was `http` type
+  and if the `family` is set to `tcp-udp`, the request was `stream` type.
+type: gauge
 source: advanced-metrics-module
-unit: bytes
-rate: net_io_rate
+unit: milliseconds
+rate: ""
 visible: true
 compound_payload: "false"
 modules:

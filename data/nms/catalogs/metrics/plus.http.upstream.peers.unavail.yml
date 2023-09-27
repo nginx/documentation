@@ -21,6 +21,7 @@ visible: true
 compound_payload: "false"
 modules:
 - platform
+- adm
 aggregations:
 - MIN
 - MAX
@@ -39,3 +40,11 @@ dimensions:
 - upstream_zone
 - peer.name
 - peer.address
+- site
+- environment
+- app
+- component
+- environment_name
+- component_name
+- app_name
+- site_name
