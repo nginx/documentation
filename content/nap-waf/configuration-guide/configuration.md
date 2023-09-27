@@ -4959,7 +4959,7 @@ Here is an example of a declarative policy using an override rules entity:
       },
       {
         "name": "api-strict",
-        "condition": "uri.contains('api4') and not clientIp.matches('fd00:1::/48') and not userAgent.lower().startsWith('Mozilla')",
+        "condition": "uri.contains('api4') and not (clientIp.matches('fd00:1::/48') or userAgent.lower().startsWith('Mozilla'))",
         "extendsPolicy": false,
         "override": {
           "$ref": "file:///NginxStrictPolicy.json"
@@ -4974,7 +4974,7 @@ The above "override_rules_example" policy contains three override rules:
 
 1. The **"localhost-log-only"** rule applies to the requests with a user agent header starting with "curl", a host header containing "localhost", and a client IP address set to 127.0.0.1. It switches the enforcement mode to "transparent" without blocking the request. The remaining policy settings remain unchanged. This type of override rule is an example of an **Inline Policy Reference**.
 2. The **"login_page"** rule is triggered by POST requests to URIs containing "/login/" if there is no query string parameter "ref" with value "example" (case insensitive). Since the "extendsPolicy" field is set to false, it overrides the policy with a new one named "login_page_block_redirect". This new policy is independent of the "override_rules_example" policy. It enables all signature sets and redirects the user to a rejection page. This is another example of an **Inline Policy Reference** with a different condition.
-3. The **"api-strict"** rule is applied for requests with "api4" in the URI, except for client IP addresses matching the "fd00:1::/48" range and user agents starting with "Mozilla". It references an external policy file named "NginxStrictPolicy.json" located at "/etc/app_protect/conf/" to override the current policy. The extendsPolicy is set to false and the external policy can be specified using a reference to its file using **$ref**. The file is the JSON policy source of that policy. This type of policy switching is known as **External Policy Reference**.
+3. The **"api-strict"** rule is applied for requests with "api4" in the URI, except for client IP addresses matching the "fd00:1::/48" range or user agents starting with "Mozilla". It references an external policy file named "NginxStrictPolicy.json" located at "/etc/app_protect/conf/" to override the current policy. The extendsPolicy is set to false and the external policy can be specified using a reference to its file using **$ref**. The file is the JSON policy source of that policy. This type of policy switching is known as **External Policy Reference**.
 
 These three rules demonstrate how the override rules feature allows for customization and the ability to modify specific aspects of the original policy based on predefined conditions.
 
