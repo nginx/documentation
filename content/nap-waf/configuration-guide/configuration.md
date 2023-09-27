@@ -5313,17 +5313,17 @@ See the below example for these violations.
            "violations": [
             {
                "alarm": true,
-               "block": true,
+               "block": false,
                "name": "VIOL_ACCESS_INVALID"
             },
             {
                "alarm": true,
-               "block": true,
+               "block": false,
                "name": "VIOL_ACCESS_MISSING"
             },
             {
                "alarm": true,
-               "block": true,
+               "block": false,
                "name": "VIOL_ACCESS_MALFORMED"
             }
         ]
