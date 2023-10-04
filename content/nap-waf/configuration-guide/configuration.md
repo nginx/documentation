@@ -4974,7 +4974,7 @@ Here is an example of a declarative policy using an override rules entity:
       },
       {
         "name": "login_page",
-        "condition": "method == 'POST' and uri.contains('/login/')",
+        "condition": "method == 'POST' and not parameters['ref'].lower().matches('example') and uri.contains('/login/')",
         "extendsPolicy": false,
         "override": {
           "policy": {
@@ -5001,7 +5001,7 @@ Here is an example of a declarative policy using an override rules entity:
       },
       {
         "name": "api-strict",
-        "condition": "uri.contains('api4') and not clientIp.matches('fd00:1::/48') and not userAgent.lower().startsWith('Mozilla')",
+        "condition": "uri.contains('api4') and not (clientIp.matches('fd00:1::/48') or userAgent.lower().startsWith('Mozilla'))",
         "extendsPolicy": false,
         "override": {
           "$ref": "file:///NginxStrictPolicy.json"
