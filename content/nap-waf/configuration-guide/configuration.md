@@ -5434,7 +5434,7 @@ http {
 
 #### Handling Compressed Requests
 
-Starting with NGINX App Protect WAF version 4.6, the [`app_protect_compressed_requests_action`](#global-directives) directive has been deprecated from the nginx configuration. When configuring this directive in the `nginx.conf`` file, App Protect will disregard any previously used values ("pass" or "drop") and issue a warning.
+Starting with NGINX App Protect WAF release version 4.6, the [`app_protect_compressed_requests_action`](#global-directives) directive has been deprecated from the nginx configuration. When configuring this directive in the `nginx.conf`` file, App Protect will disregard any previously used values ("pass" or "drop") and issue a warning.
 
 Now by default the enforcer will decompress all the HTTP compressed payload request and will apply the enforcment. The supported compression algorithms for this feature are "**gzip**" and "**deflate**".
 
