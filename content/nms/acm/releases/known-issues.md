@@ -11,7 +11,31 @@ doctypes: ["reference"]
 
 {{<rn-styles>}}
 
+
 ---
+
+## 1.9.0
+September 07, 2023
+
+### {{% icon-resolved %}} Module crashes when an OpenAPI spec is uploaded with a global security requirement that contains an empty security requirement object {#44393}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44393 | Fixed in API Connectivity Manager 1.9.1   |
+
+{{</bootstrap-table>}}
+#### Description
+API Connectivity Manager crashes when an OpenAPI specification file is uploaded with a global security requirement block containing an empty `security` object.
+
+Example OpenAPI security requirement with empty security object:
+
+```none
+"security": [{}]
+```
+
+---
+
 
 ## 1.8.0
 July 27, 2023
@@ -59,6 +83,7 @@ In the Instance Manager **Certificates and Keys** web interface, you can delete 
 You can delete the Environment using the API if it cannot be modified or deleted using the web interface.
 
 ---
+
 
 ## 1.7.0
 June 21, 2023
@@ -117,6 +142,7 @@ It is not possible to remove resources from API Connectivity Manager which have 
 
 ---
 
+
 ## 1.6.0
 May 11, 2023
 
@@ -153,6 +179,7 @@ For example, `/api/v1/shops/{shopID}`
 The API won’t match on the above route.
 
 ---
+
 
 ## 1.5.0
 March 28, 2023
@@ -221,6 +248,7 @@ Toggle the TLS setting in the web interface when removing the TLS policy from an
 
 ---
 
+
 ## 1.4.0
 January 23, 2023
 
@@ -279,6 +307,7 @@ After onboarding the instance as usual, push the existing configuration again to
 
 ---
 
+
 ## 1.3.0
 December 12, 2022
 
@@ -336,6 +365,7 @@ When using JWT authentication with advanced routes, a JWT token that is provided
 Pass the JWT token as a header instead of providing the JWT token as a query parameter. 
 
 ---
+
 
 ## 1.2.0
 October 18, 2022
@@ -470,6 +500,7 @@ Assign a minimum of READ access on the LICENSING feature to all new roles
 
 ---
 
+
 ## 1.1.0
 August 18, 2022
 
@@ -533,6 +564,7 @@ Enums cannot be set for path or query parameters while applying advanced routing
 
 ---
 
+
 ## 1.0.0
 July 19, 2022
 
@@ -545,11 +577,11 @@ July 19, 2022
 
 {{</bootstrap-table>}}
 #### Description
-If you have Instance Manager 2.7 or earlier installed and attempt to enable both the API Connectivity Manager (ACM) and Security Monitoring (SM) modules on the same NGINX Management Suite management plane, the ACM module will not load because of incompatibility issues with the SM module.
+If you have Instance Manager 2.7 or earlier installed and attempt to enable both the API Connectivity Manager and Security Monitoring modules on the same NGINX Management Suite management plane, the API Connectivity Manager module will not load because of incompatibility issues with the Security Monitoring module.
 
 #### Workaround
 
-Before enabling the ACM and SM modules, ensure that your Instance Manager is upgraded to version 2.8 or later. Be sure to read the release notes for each module carefully, as they may contain important information about version dependencies.
+Before enabling the API Connectivity Manager and Security Monitoring modules, ensure that your Instance Manager is upgraded to version 2.8 or later. Be sure to read the release notes for each module carefully, as they may contain important information about version dependencies.
 
 To see which version of Instance Manager you have installed, run the following command:
 
@@ -744,6 +776,3 @@ On an API Proxy with an authentication policy, applying a CORS policy with `pref
 #### Workaround
 
 Apply CORS policy and set `preflightContinue=false`.
-
----
-
