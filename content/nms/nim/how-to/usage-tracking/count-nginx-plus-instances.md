@@ -79,6 +79,10 @@ To track your NGINX Plus instances without NGINX Agent, you can set up an [HTTP 
 ```nginx
 ### F5 / NGINX Required Configuration Code ###
 ### Insert the following into the http {} block of your NGINX configuration file ###
+
+keyval_zone zone=uuid:32K state=/var/lib/nginx/state/instance_uuid.json;
+keyval 1 $nginx_uuid zone=uuid;
+
 upstream receiver {
     zone receiver 64k;
 
@@ -134,9 +138,6 @@ upstream self {
     zone self 64k;
     server unix:/tmp/ngx_usage.sock;
 }
-
-keyval_zone zone=uuid:32K state=/var/lib/nginx/state/instance_uuid.json;
-keyval 1 $nginx_uuid zone=uuid;
 
 ### End of F5 / NGINX Required Configuration Code ###
 ```
