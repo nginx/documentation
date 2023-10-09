@@ -703,37 +703,8 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
    - `nginx-app-protect-dos` service executes the command: `ulimit -l unlimited`.
    {{< /note >}}
 
-    Alternatively, to install a specific version you should modify the repository URL in the `/etc/apt/sources.list.d/nginx-plus.list` file in the following way:
 
-    ```shell
-    deb https://plus-pkgs.nginx.com/Rxx/debian ...
-    ```
-    and make the same changes to the `/etc/apt/sources.list.d/nginx-app-protect-dos.list`
-
-    deb https://pkgs.nginx.com/app-protect-dos/Rxx/debian ...
-
-    where xx is a release number.
-
-    For example, to install `app-protect-dos` for Debian 11 NGINX Plus version 27, make sure of the following:
-
-    ```shell
-    sudo cat /etc/apt/sources.list.d/nginx-plus.list
-    deb https://pkgs.nginx.com/plus/R27/debian bullseye nginx-plus
-    sudo cat /etc/apt/sources.list.d/nginx-app-protect-dos.list
-    deb https://pkgs.nginx.com/app-protect-dos/R27/debian bullseye nginx-plus
-    ```
-
-    For example, to install `app-protect-dos` for Debian 11 NGINX Plus version 27, make sure of the following:
-
-    ```shell
-    sudo cat /etc/apt/sources.list.d/nginx-plus.list
-    deb https://pkgs.nginx.com/plus/R27/debian bullseye nginx-plus
-    sudo cat /etc/apt/sources.list.d/nginx-app-protect-dos.list
-    deb https://pkgs.nginx.com/app-protect-dos/R27/debian bullseye nginx-plus
-    ```
-
-
-    Then, use the following commands to update and list available versions:
+    Alternatively, to install a specific version, use the following commands to update and list available versions:
 
     ```shell
     sudo apt-get update
@@ -886,30 +857,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
    - `nginx-app-protect-dos` and `nginx` needs to run with root privileges.  
    {{< /note >}}
     
-    Alternatively, to install a specific version you should modify the repository URL in the `/etc/apk/repositories` file in the following way:
-
-    ```shell
-    https://pkgs.nginx.com/plus/Rxx/alpine/v3.15/main
-    https://pkgs.nginx.com/app-protect-dos/Rxx/alpine/v3.15/main
-    ```
-    
-    where xx is a release number.
-
-    For example, to install NGINX App Protect DoS for NGINX Plus R27 make sure of the following:
-
-    ```shell
-    sudo cat /etc/apk/repositories
-    https://pkgs.nginx.com/plus/R27/alpine/v3.15/main
-    https://pkgs.nginx.com/app-protect-dos/R27/alpine/v3.15/main
-    ```
-    Install the most recent version of NGINX App Protect DoS for NGINX Plus R23:
-
-    ```shell    
-    sudo apk update
-    sudo apk add nginx-plus app-protect-dos
-    ````
-
-    Alternatively, use the following commands to list available versions:
+    Alternatively, to install a specific version, use the following commands to update and list available versions:
 
     ```shell    
     sudo apk update
@@ -1725,7 +1673,27 @@ Make sure to replace upstream and proxy pass directives in this example with rel
 
 ## NGINX App Protect DoS Arbitrator
 
+### Overview
+
 NGINX App Protect DoS arbitrator orchestrates all the running NGINX App Protect DoS instances to synchronize local/global attack start/stop.
+
+NGINX App Protect DoS arbitrator serves as a central coordinating component for managing multiple instances of  App Protect DoS in a network. It is needed when there are more than one NGINX App Protect DoS instances. Its primary function is to ensure that all instances are aware of and share the same state for each protected object. Here's a clearer breakdown of how it works and why it's necessary:
+
+How NGINX App Protect DoS Arbitrator Works:
+
+- **Collecting State Periodically**: The arbitrator regularly collects the state information from all running instances of App Protect DoS. This collection occurs at set intervals, typically every 10 seconds.
+- **State Initialization for New Instances**: When a new App Protect DoS instance is created, it doesn't start with a blank or uninitialized state for a protected object. Instead, it retrieves the initial state for the protected object from the arbitrator.
+- **Updating State in Case of an Attack**: If an attack is detected by one of the App Protect DoS instances, that instance sends an attack notification to the arbitrator. The arbitrator then updates the state of the affected protected object to indicate that it is under attack. Importantly, this updated state is propagated to all other instances.
+
+### Why NGINX App Protect DoS Arbitrator is Necessary
+
+NGINX App Protect DoS Arbitrator is essential for several reasons:
+
+- **Global State Management**: Without the arbitrator, each individual instance of App Protect DoS would manage its own isolated state for each protected object. This isolation could lead to inconsistencies. For example, if instance A declared an attack on a protected object named "PO-Example," instance B would remain unaware of this attack, potentially leaving the object vulnerable.
+- **Uniform Attack Detection**: With the arbitrator in place, when instance A detects an attack on "PO-Example" and reports it to the arbitrator, the state of "PO-Example" is immediately updated to indicate an attack. This means that all instances, including instance B, are aware of the attack and can take appropriate measures to mitigate it.
+
+In summary, NGINX App Protect DoS Arbitrator acts as a central coordinator to maintain a consistent and up-to-date global state for protected objects across multiple instances of App Protect DoS. This coordination helps ensure that attacks are properly detected and mitigated, and that knowledge gained by one instance is efficiently shared with others, enhancing the overall security of the network.
+
 
 ### NGINX App Protect DoS Arbitrator Deployment
 
