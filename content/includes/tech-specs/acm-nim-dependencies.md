@@ -3,7 +3,7 @@ API Connectivity Manager depends on the platform capabilities of Instance Manage
 {{<bootstrap-table "table table-striped table-bordered">}}
 | API Connectivity Manager | Instance Manager Dependency |
 |--------------------------|-----------------------------|
-| 1.9.0                    | 2.13.0 and later            |
+| 1.9.0 - 1.9.1            | 2.13.0 and later            |
 | 1.8.0                    | 2.12.0 and later            |
 | 1.6.0-1.7.0              | 2.10.0–2.10.1 and later     |
 | 1.5.0                    | 2.9.0 and later             |

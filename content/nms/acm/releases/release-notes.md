@@ -12,7 +12,53 @@ categories: ["release notes"]
 
 ---
 
+## 1.9.1
+
+October 05, 2023
+
+### Upgrade Paths {#1-9-1-upgrade-paths}
+
+API Connectivity Manager  supports upgrades from these previous versions:
+
+- 1.6.0 - 1.9.0
+
+If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+{{< see-also >}}
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
+{{< /see-also >}}
+
+<br>
+
+<details closed>
+<summary><i class="fa-solid fa-circle-exclamation"></i> Dependencies with Instance Manager</summary>
+
+{{< include "tech-specs/acm-nim-dependencies.md" >}}
+
+</details>
+
+
+### What's New{#1-9-1-whats-new}
+This release includes the following updates:
+
+- {{% icon-feature %}} **Stability and performance improvements**<a name="1-9-1-whats-new-Stability-and-performance-improvements"></a>
+
+  This release includes stability and performance improvements.
+  
+
+### Resolved Issues{#1-9-1-resolved-issues}
+This release fixes the following issues. Select an issue's ID link to view its details.
+
+- {{% icon-resolved %}} Module crashes when an OpenAPI spec is uploaded with a global security requirement that contains an empty security requirement object [(44393)]({{< relref "/nms/acm/releases/known-issues.md#44393" >}})<a name="1-9-1-resolved-issues-Module-crashes-when-an-OpenAPI-spec-is-uploaded-with-a-global-security-requirement-that-contains-an-empty-security-requirement-object"></a>
+
+### Known Issues{#1-9-1-known-issues}
+
+You can find information about known issues in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
+
+---
+
 ## 1.9.0
+
 September 07, 2023
 
 ### Upgrade Paths {#1-9-0-upgrade-paths}
@@ -35,6 +81,7 @@ Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgr
 {{< include "tech-specs/acm-nim-dependencies.md" >}}
 
 </details>
+
 
 ### What's New{#1-9-0-whats-new}
 This release includes the following updates:
@@ -82,7 +129,9 @@ This release fixes the following issues. Select an issue's ID link to view its d
 You can find information about known issues in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
 
 ---
+
 ## 1.8.0
+
 July 27, 2023
 
 ### Upgrade Paths {#1-8-0-upgrade-paths}
@@ -106,6 +155,7 @@ Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgr
 
 </details>
 
+
 ### What's New{#1-8-0-whats-new}
 This release includes the following updates:
 
@@ -124,7 +174,7 @@ This release includes the following updates:
   The OpenAPI Specification now supports the `x-acm-match-rule` extension for defining match rules for paths within routes. If you don't specify a value for this extension, it will default to `EXACT`. The only allowed values for `matchRule` are the strings `EXACT` and `PREFIX`.
   
 
-### Changes in Behavior{#1-8-0-changes-in-behavior}
+### Changes in Default Behavior{#1-8-0-changes-in-behavior}
 This release has the following changes in default behavior:
 
 - {{% icon-feature %}} **Proxy labels removed**<a name="1-8-0-changes-in-behavior-Proxy-labels-removed"></a>
@@ -142,7 +192,9 @@ This release fixes the following issues. Select an issue's ID link to view its d
 You can find information about known issues in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
 
 ---
+
 ## 1.7.0
+
 June 21, 2023
 
 ### Upgrade Paths {#1-7-0-upgrade-paths}
@@ -165,6 +217,7 @@ Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgr
 {{< include "tech-specs/acm-nim-dependencies.md" >}}
 
 </details>
+
 
 ### What's New{#1-7-0-whats-new}
 This release includes the following updates:
@@ -199,7 +252,9 @@ This release fixes the following issues. Select an issue's ID link to view its d
 You can find information about known issues in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
 
 ---
+
 ## 1.6.0
+
 May 11, 2023
 
 ### Upgrade Paths {#1-6-0-upgrade-paths}
@@ -222,6 +277,7 @@ Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgr
 {{< include "tech-specs/acm-nim-dependencies.md" >}}
 
 </details>
+
 
 ### What's New{#1-6-0-whats-new}
 This release includes the following updates:
@@ -252,7 +308,9 @@ This release fixes the following issues. Select an issue's ID link to view its d
 You can find information about known issues in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
 
 ---
+
 ## 1.5.0
+
 March 28, 2023
 
 ### Upgrade Paths {#1-5-0-upgrade-paths}
@@ -275,6 +333,7 @@ Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgr
 {{< include "tech-specs/acm-nim-dependencies.md" >}}
 
 </details>
+
 
 ### What's New{#1-5-0-whats-new}
 This release includes the following updates:
@@ -339,9 +398,9 @@ This release includes the following security updates:
   - Instance Manager 2.9.0
   
   For more information, refer to the MyF5 article [K000133135](https://my.f5.com/manage/s/article/K000133135).
-  
+ 
 
-### Changes in Behavior{#1-5-0-changes-in-behavior}
+### Changes in Default Behavior{#1-5-0-changes-in-behavior}
 This release has the following changes in default behavior:
 
 - {{% icon-feature %}} **ACL IP Policy denies IP addresses by default**<a name="1-5-0-changes-in-behavior-ACL-IP-Policy-denies-IP-addresses-by-default"></a>
@@ -360,14 +419,16 @@ This release fixes the following issues. Select an issue's ID link to view its d
 You can find information about known issues in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
 
 ---
+
 ## 1.4.1
+
 February 02, 2023
 
 ### Upgrade Paths {#1-4-1-upgrade-paths}
 
 API Connectivity Manager  supports upgrades from these previous versions:
 
-- 1.1.0 - 1.3.1
+- 1.1.0 - 1.4.0
 
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
@@ -383,6 +444,7 @@ Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgr
 {{< include "tech-specs/acm-nim-dependencies.md" >}}
 
 </details>
+
 
 ### What's New{#1-4-1-whats-new}
 This release includes the following updates:
@@ -402,7 +464,9 @@ This release fixes the following issues. Select an issue's ID link to view its d
 You can find information about known issues in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
 
 ---
+
 ## 1.4.0
+
 January 23, 2023
 
 ### Upgrade Paths {#1-4-0-upgrade-paths}
@@ -425,6 +489,7 @@ Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgr
 {{< include "tech-specs/acm-nim-dependencies.md" >}}
 
 </details>
+
 
 ### What's New{#1-4-0-whats-new}
 This release includes the following updates:
@@ -453,14 +518,16 @@ This release fixes the following issues. Select an issue's ID link to view its d
 You can find information about known issues in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
 
 ---
+
 ## 1.3.1
+
 December 16, 2022
 
 ### Upgrade Paths {#1-3-1-upgrade-paths}
 
 API Connectivity Manager  supports upgrades from these previous versions:
 
-- 1.0.0 - 1.2.0
+- 1.0.0 - 1.3.0
 
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
@@ -476,6 +543,7 @@ Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgr
 {{< include "tech-specs/acm-nim-dependencies.md" >}}
 
 </details>
+
 
 ### What's New{#1-3-1-whats-new}
 This release includes the following updates:
@@ -497,7 +565,9 @@ This release fixes the following issues. Select an issue's ID link to view its d
 You can find information about known issues in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
 
 ---
+
 ## 1.3.0
+
 December 12, 2022
 
 ### Upgrade Paths {#1-3-0-upgrade-paths}
@@ -520,6 +590,7 @@ Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgr
 {{< include "tech-specs/acm-nim-dependencies.md" >}}
 
 </details>
+
 
 ### What's New{#1-3-0-whats-new}
 This release includes the following updates:
@@ -604,14 +675,16 @@ This release fixes the following issues. Select an issue's ID link to view its d
 You can find information about known issues in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
 
 ---
+
 ## 1.2.0
+
 October 18, 2022
 
 ### Upgrade Paths {#1-2-0-upgrade-paths}
 
 API Connectivity Manager  supports upgrades from these previous versions:
 
-- 1.0.0 - 1.1.0
+- 1.0.0 - 1.1.1
 
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
@@ -627,6 +700,7 @@ Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgr
 {{< include "tech-specs/acm-nim-dependencies.md" >}}
 
 </details>
+
 
 ### What's New{#1-2-0-whats-new}
 This release includes the following updates:
@@ -715,14 +789,16 @@ This release fixes the following issues. Select an issue's ID link to view its d
 You can find information about known issues in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
 
 ---
+
 ## 1.1.1
+
 August 31, 2022
 
 ### Upgrade Paths {#1-1-1-upgrade-paths}
 
 API Connectivity Manager  supports upgrades from these previous versions:
 
-- 1.0.0
+- 1.0.0 - 1.1.0
 
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
@@ -738,6 +814,7 @@ Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgr
 {{< include "tech-specs/acm-nim-dependencies.md" >}}
 
 </details>
+
 
 ### What's New{#1-1-1-whats-new}
 This release includes the following updates:
@@ -759,14 +836,16 @@ This release fixes the following issues. Select an issue's ID link to view its d
 You can find information about known issues in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
 
 ---
+
 ## 1.1.0
+
 August 18, 2022
 
 ### Upgrade Paths {#1-1-0-upgrade-paths}
 
 API Connectivity Manager  supports upgrades from these previous versions:
 
-- 1.0.0
+- 1.0.0 - 1.0.0
 
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
@@ -782,6 +861,7 @@ Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgr
 {{< include "tech-specs/acm-nim-dependencies.md" >}}
 
 </details>
+
 
 ### What's New{#1-1-0-whats-new}
 This release includes the following updates:
@@ -817,7 +897,9 @@ This release fixes the following issues. Select an issue's ID link to view its d
 You can find information about known issues in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
 
 ---
+
 ## 1.0.0
+
 July 19, 2022
 
 ### What's New{#1-0-0-whats-new}
@@ -843,4 +925,3 @@ This release includes the following updates:
 
 You can find information about known issues in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
 
----

@@ -41,7 +41,7 @@ The following NGINX Plus status metrics are exported to Prometheus:
 * [Stream Upstreams](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_upstream): `/stream/upstreams/`
 * [Stream Limit Conn](http://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_limit_conn_zone): `/stream/limit_conns/`
 
-> **Note:** The `state` metric values in [`/http/upstreams/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) and [`/stream/upstreams/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_upstream) are converted using the following rule:
+{{< note >}} The `state` metric values in [`/http/upstreams/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) and [`/stream/upstreams/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_upstream) are converted using the following rule:
 
 
 {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}} 
@@ -54,37 +54,49 @@ The following NGINX Plus status metrics are exported to Prometheus:
 |"checking" | `5` | 
 |"unhealthy" | `6` | 
 {{</bootstrap-table>}} 
-
+{{< /note >}}
 
 <span id="install"></span>
-## Installation Instructions
+## Installation
 
 Install the `nginx-plus-module-prometheus` module.
 
-* For Amazon Linux, CentOS, Oracle Linux, Alma/Rocky Linux, and RHEL:
+* For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
   ```shell
-  $ yum install nginx-plus-module-prometheus
+  yum install nginx-plus-module-prometheus
+  ```
+
+* For Amazon Linux 2023, AlmaLinux, Rocky Linux:
+
+  ```shell
+  dnf install nginx-plus-module-prometheus
   ```
 
 * For Debian and Ubuntu:
 
   ```shell
-  $ apt-get install nginx-plus-module-prometheus
+  apt-get install nginx-plus-module-prometheus
   ```
 
 * For SLES:
   ```shell
-  $ zypper install nginx-plus-module-prometheus
+  zypper install nginx-plus-module-prometheus
   ```
 
 * For Alpine:
 
   ```shell
-  $ apk add nginx-plus-module-prometheus
+  apk add nginx-plus-module-prometheus
   ```
 
-> **Note:** The [`nginx-plus-module-njs`]({{< relref "nginscript.md" >}}) module will also be installed together with the module.
+  For FreeBSD:
+
+  ```shell
+  pkg install nginx-plus-module-prometheus
+  ```
+
+{{< note >}} The [`nginx-plus-module-njs`]({{< relref "nginscript.md" >}}) module will also be installed together with the module. {{< /note >}}
 
 
 <span id="conf"></span>

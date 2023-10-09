@@ -1,5 +1,5 @@
 ---
-description: This chapter describes how to use NGINX Plus to synchronize shared memory
+description: This article describes how to use NGINX Plus to synchronize shared memory
   zones across NGINX cluster nodes including sticky learn session persistence, requests
   limiting, and key-value store data.
 docs: DOCS-407
@@ -129,8 +129,7 @@ For each NGINX instance in a cluster, open the NGINX configuration file and perf
             zone_sync;
             zone_sync_server    nginx-cluster.example.com:9000 resolve;
 
-            zone_sync_ssl;
-
+            zone_sync_ssl                     on;
             zone_sync_ssl_verify              on;
             zone_sync_ssl_trusted_certificate /etc/ssl/server_ca.pem;
             #...
@@ -158,8 +157,7 @@ For each NGINX instance in a cluster, open the NGINX configuration file and perf
             zone_sync;
             zone_sync_server    nginx-cluster.example.com:9000 resolve;
 
-            zone_sync_ssl;
-
+            zone_sync_ssl                     on;
             zone_sync_ssl_verify              on;
             zone_sync_ssl_trusted_certificate /etc/ssl/server_ca.pem;
 
@@ -393,4 +391,4 @@ The output will be:
 }
 ```
 
-If all nodes have approximately the same number of records (`records_total`) and almost empty outgoing queue (`records_pending`), the cluster may be considered healthy.
+If all nodes have approximately the same number of records ([`records_total`](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_zone_sync_zone)) and almost empty outgoing queue ([`records_pending`](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_zone_sync_zone)), the cluster may be considered healthy.
