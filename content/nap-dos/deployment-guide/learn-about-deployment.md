@@ -861,7 +861,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     ```shell    
     sudo apk update
-    sudo apk add nginx-plus app-protect-dos
+    sudo apk info app-protect-dos
     ```
 
     Finally, install a specific version from the output of command above. For example:

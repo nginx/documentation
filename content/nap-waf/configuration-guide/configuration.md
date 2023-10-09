@@ -4567,7 +4567,7 @@ server {
     location / {
         app_protect_enable on;
         app_protect_policy_file "/etc/app_protect/conf/policies/policy_with_grpc_profile.json";
-	app_protect_security_log_enable on;
+        app_protect_security_log_enable on;
         app_protect_security_log "/opt/app_protect/share/defaults/log_grpc_all.json" stderr;
         grpc_pass grpcs://grpc_backend;
     }
@@ -4603,7 +4603,7 @@ You can enable GraphQL on app protect by following these steps:
 
 1. Create a GraphQL policy that includes the policy name. Note that GraphQL profile and GraphQL violation will be enabled by default in the default policy.
 You can enable GraphQL on app protect with minimum effort by using the following GraphQL policy example.
-2. Add the GraphQL URL to the policy and associate the GraphQL defeault profile with it.
+2. Add the GraphQL URL to the policy and associate the GraphQL default profile with it.
 3. Optionally, if the app that uses this policy serves only GraphQL traffic, then delete the wildcard URL "*" from the policy so that requests to any URL other than **/graphql** will trigger a violation. In the example below we assume this is the case.
 4. Update the `nginx.conf` file. To enforce GraphQL settings, update the `app_protect_policy_file` field with the GraphQL policy name in `nginx.conf` file. Perform nginx reload once `nginx.conf` file is updated to enforce the GraphQL settings.
 
