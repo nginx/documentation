@@ -2,6 +2,35 @@
 /nginx-agent/changelog/ https://github.com/nginx/agent/releases 301
 /nginx-app-protect/* /nginx-app-protect-waf/:splat 301
 
+# NGINX Amplify redirects
+/nginx-amplify/install-manage-amp-agent/ /nginx-amplify/nginx-amplify-agent/install/ 301
+/nginx-amplify/install-manage-amp-agent/configuring-agent/ /nginx-amplify/nginx-amplify-agent/install/configuring-amplify-agent/ 301
+/nginx-amplify/install-manage-amp-agent/installing-agent/ /nginx-amplify/nginx-amplify-agent/install/installing-amplify-agent/ 301
+/nginx-amplify/install-manage-amp-agent/uninstalling-agent/ /nginx-amplify/nginx-amplify-agent/install/uninstalling-amplify-agent/ 301
+/nginx-amplify/install-manage-amp-agent/updating-agent/ /nginx-amplify/nginx-amplify-agent/install/updating-amplify-agent/ 301 
+/nginx-amplify/install-manage-amp-agent/using-agent-docker/ /nginx-amplify/nginx-amplify-agent/install/using-amplify-agent-docker/ 301
+
+/nginx-amplify/install-manage-nginx-agent/installing-agent/ /nginx-agent/install/installing-nginx-agent/ 301
+/nginx-amplify/install-manage-nginx-agent/updating-agent/ /nginx-agent/install/updating-nginx-agent/ 301
+/nginx-amplify/install-manage-nginx-agent/configuring-agent/ /nginx-agent/install/configuring-nginx-agent/ 301
+/nginx-amplify/install-manage-nginx-agent/uninstalling-agent/ /nginx-agent/install/uninstalling-nginx-agent/ 301
+
+/nginx-amplify/how-agent-works/agent-overview/ /nginx-amplify/nginx-amplify-agent/amplify-agent-overview/ 301
+/nginx-amplify/how-agent-works/metadata-metrics-collection/ /nginx-amplify/nginx-amplify-agent/metadata-metrics-collection/ 301
+/nginx-amplify/how-agent-works/detecting-monitoring-instances/ /nginx-amplify/nginx-amplify-agent/detecting-monitoring-instances/ 301
+/nginx-amplify/how-agent-works/configuring-metric-collection/ /nginx-amplify/nginx-amplify-agent/configuring-metric-collection/ 301
+/nginx-amplify/how-agent-works/troubleshooting-metrics-collection/ /nginx-amplify/nginx-amplify-agent/troubleshooting-metrics-collection/ 301
+/nginx-amplify/how-agent-works/configuration-analysis/ /nginx-amplify/nginx-amplify-agent/configuration-analysis/ 301
+/nginx-amplify/how-agent-works/source-code/ /nginx-amplify/nginx-amplify-agent/source-code/ 301
+
+/nginx-amplify/how-nginx-agent-works/agent-overview/ /nginx-amplify/nginx-agent/nginx-agent-overview/ 301
+/nginx-amplify/how-nginx-agent-works/metadata-metrics-collection/ /nginx-amplify/nginx-agent/metadata-metrics-collection/ 301
+/nginx-amplify/how-nginx-agent-works/detecting-monitoring-instances/ /nginx-amplify/nginx-agent/detecting-monitoring-instances/ 301
+/nginx-amplify/how-nginx-agent-works/configuring-metric-collection/ /nginx-amplify/nginx-agent/configuring-metric-collection/ 301
+/nginx-amplify/how-nginx-agent-works/troubleshooting-metrics-collection/ /nginx-amplify/nginx-agent/troubleshooting-metrics-collection/ 301
+/nginx-amplify/how-nginx-agent-works/configuration-analysis/ /nginx-amplify/nginx-agent/configuration-analysis/ 301
+/nginx-amplify/how-nginx-agent-works/source-code/ /nginx-amplify/nginx-agent/source-code/ 301
+
 # NGINXaaS for Azure redirects
 /nginx-for-azure/* /nginxaas/azure/:splat 301
 /nginxaas/azure/management/manual-scale/ https://docs.nginx.com/nginxaas/azure/management/scaling/ 301
@@ -54,6 +83,14 @@
 /nms/installation/vm-bare-metal/ /nginx-management-suite/installation/vm-bare-metal/ 301
 /nginx-management-suite/overview/ /nginx-management-suite/about/ 301
 /nginx-management-suite/admin-guides/installation/ /nginx-management-suite/installation/ 301
+/nginx-management-suite/admin-guides/access-control/set-up-rbac/ /nginx-management-suite/nms/admin-guides/rbac/rbac-getting-started/ 301
+/nginx-management-suite/admin-guides/access-control/configure-authentication/ /nginx-management-suite/admin-guides/authentication/basic-authentication/ 301
+/nginx-management-suite/admin-guides/access-control/oidc-azure/ /nginx-management-suite/admin-guides/authentication/oidc/oidc-azure/ 301
+/nginx-management-suite/admin-guides/access-control/oidc-azure-automation/ /nginx-management-suite/admin-guides/authentication/oidc/oidc-azure-automation/ 301
+/nginx-management-suite/admin-guides/access-control/oidc-keycloak/ /nginx-management-suite/admin-guides/authentication/oidc/oidc-keycloak/ 301
+/nginx-management-suite/admin-guides/access-control/scim-provisioning/ /nginx-management-suite/admin-guides/authentication/oidc/scim-provisioning/ 301
+/nginx-management-suite/admin-guides/access-control/set-up-rbac/ /nginx-management-suite/admin-guides/rbac/rbac-getting-started/ 301
+/nginx-management-suite/nim/how-to/nginx/manage-resource-groups/ /nginx-management-suite/admin-guides/rbac/manage-resource-groups/ 301
 /nginx-management-suite/adm/tutorials/usecase-templates/ /nginx-management-suite/adm/about/template-overview/ 301
 
 # NGINX Plus redirects

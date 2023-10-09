@@ -54,6 +54,3 @@ Note, if any NGINX Management Suite modules are installed, one of more of them m
 
 <!-- Do not remove. Keep this code at the bottom of the include -->
 <!-- DOCS-1047 -->
-
-<!-- Do not remove. Keep this code at the bottom of the include -->
-<!-- DOCS-807 -->

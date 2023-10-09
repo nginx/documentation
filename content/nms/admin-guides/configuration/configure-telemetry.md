@@ -7,6 +7,7 @@ description: "The NGINX Management Suite platform has the option to share teleme
 weight: 260
 toc: true
 tags: [ "docs" ]
+docs: "DOCS-1269"
 # Taxonomies
 # These are pre-populated with all available terms for your convenience.
 # Remove all terms that do not apply.

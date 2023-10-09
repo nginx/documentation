@@ -1,18 +1,11 @@
-+++
-authors = []
-categories = ["installation", "infrastructure", "platform management", "services", "api management", "service mesh", "security", "analytics"]
-date = "2021-10-19T12:28:23+01:00"
-description = "These release notes contain information about new features, improvements, known issues, and bug fixes in the NGINX Controller API Management Module."
-doctypes = ["reference"]
-draft = false
-journeys = ["researching", "getting started", "using", "renewing", "self service"]
-personas = ["devops", "netops", "secops", "support"]
-roles = ["admin", "user", "read-only"]
-tags = ["docs"]
-title = "Release Notes 3.19.3"
-toc = true
-weight = 94
-docs = "DOCS-887"
+---
+description: These release notes contain information about new features, improvements, known issues, and bug fixes in the NGINX Controller API Management Module.
+docs: DOCS-887
+title: Release Notes 3.19.3
+toc: true
+weight: 94
+---
+
 
 +++
 

@@ -5,7 +5,7 @@ categories:
 - apps
 - security
 date: "2020-10-26T15:32:41-06:00"
-description: How to view App Security Analytics
+description: How to view App Security Analytics.
 docs: DOCS-487
 doctypes:
 - concept

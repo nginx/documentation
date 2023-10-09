@@ -10,8 +10,7 @@ categories:
 - security
 - analytics
 date: "2020-10-26T15:32:41-06:00"
-description: Learn about the new features, enhancements, resolved issues, and known
-  issues in NGINX Controller.
+description: Learn about the new features, enhancements, resolved issues, and known issues in NGINX Controller.
 docs: DOCS-370
 doctypes:
 - reference

@@ -32,7 +32,7 @@ The instructions assume you have the following:
    
    For CentOS, RHEL, and Oracle Linux:
  
-   ```none
+   ```shell
    $ sudo yum install nginx-plus-module-njs
    ```
     
@@ -86,7 +86,7 @@ Configure NGINX Plus as the OpenID Connect relying party:
 
 1. Create a clone of the [<span style="white-space: nowrap; font-weight:bold;">nginx-openid-connect</span>](https://github.com/nginxinc/nginx-openid-connect) GitHub repository.
 
-   ```none
+   ```shell
    $ git clone https://github.com/nginxinc/nginx-openid-connect
    ```
    
@@ -100,7 +100,7 @@ Configure NGINX Plus as the OpenID Connect relying party:
    <span id="nginx-plus-urls"></span>
 3. Get the URLs for the authorization endpoint, token endpoint, and JSON Web Key (JWK) file from the AD FS configuration. Run the following `curl` command in a terminal, piping the output to the indicated `python` command to output the entire configuration in an easily readable format. We've abridged the output to show only the relevant fields. 
 
-   ```none
+   ```shell
    $ curl https://<ADFS-server-address>/oidc/adfs/.well-known/openid-configuration | python -m json.tool
    {
     ...

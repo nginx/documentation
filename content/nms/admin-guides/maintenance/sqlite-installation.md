@@ -12,8 +12,7 @@ weight: 10
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: 
-
+docs: "DOCS-1270"
 ---
 
 {{< custom-styles >}}

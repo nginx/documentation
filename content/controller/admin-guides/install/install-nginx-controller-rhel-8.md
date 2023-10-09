@@ -3,8 +3,7 @@ authors: []
 categories:
 - installation
 date: "2020-10-26T15:32:41-06:00"
-description: This guide explains how to prepare your RHEL 8 system to install NGINX
-  Controller and the NGINX Controller Agent.
+description: This guide explains how to prepare your RHEL 8 system to install NGINX Controller and the NGINX Controller Agent.
 docs: DOCS-342
 doctypes:
 - beta

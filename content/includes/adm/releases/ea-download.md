@@ -1,3 +1,7 @@
+---
+docs: DOCS-1294
+---
+
 ### App Delivery Manager Trial Download and Installation
 
 <style>

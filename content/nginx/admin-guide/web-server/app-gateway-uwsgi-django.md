@@ -43,7 +43,7 @@ Configuring the uWSGI application container itself is outside the scope of this 
 
 For illustrative purposes only, this is one way you might invoke your uWSGI server with Django:
 
-```
+```none
      --chdir=/var/django/projects/myapp \
      --module=myapp.wsgi:application \
      --env DJANGO_SETTINGS_MODULE=myapp.settings \
@@ -59,7 +59,7 @@ For illustrative purposes only, this is one way you might invoke your uWSGI serv
 
 With these options in place, here's a sample NGINX configuration for use with a Django project:
 
-```
+```nginx
 http {
     # ...
     upstream django {

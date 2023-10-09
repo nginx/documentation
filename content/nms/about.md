@@ -36,7 +36,7 @@ Instance Manager provides the following features:
 - [Analyze NGINX configurations]({{< relref "/nms/nim/how-to/nginx/publish-configs">}}) for syntactic errors before publishing them
 - [Scan the network]({{< relref "/nms/nim/how-to/nginx/scan-instances#scan-ui">}}) to find unmanaged NGINX instances.
 - [Manage certificates]({{< relref "/nms/nim/how-to/nginx/manage-certificates">}})
-- [Create users, roles, and role permissions]({{< relref "/nms/admin-guides/access-control/set-up-rbac">}}) for role-based access control
+- [Create users, roles, and role permissions]({{< relref "/nms/admin-guides/rbac/rbac-getting-started">}}) for role-based access control
 
 ---
 
@@ -64,7 +64,7 @@ The API Connectiviy Manager module provides the following features:
 
 ## App Delivery Manager {#app-delivery-manager}
 
-[App Delivery Manager]({{< relref "/nms/adm/">}}) is built on top of the NGINX Management Suite platform and sits alongside the Instance Manager module. As such, uses many of the features that are included with the Instance Manager module, such as [authentication]({{< relref "/nms/admin-guides/access-control/configure-authentication.md" >}}), [Role-Based Access Control (RBAC)]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}), [instance groups]({{< relref "/nms/nim/how-to/nginx/manage-instance-groups.md" >}}), and [certificate management]({{< relref "/nms/nim/how-to/nginx/manage-certificates.md" >}}).
+[App Delivery Manager]({{< relref "/nms/adm/">}}) is built on top of the NGINX Management Suite platform and sits alongside the Instance Manager module. As such, uses many of the features that are included with the Instance Manager module, such as [authentication]({{< relref "/nms/admin-guides/authentication/basic-authentication.md" >}}), [Role-Based Access Control (RBAC)]({{< relref "/nms/admin-guides/rbac/rbac-getting-started.md" >}}), [instance groups]({{< relref "/nms/nim/how-to/nginx/manage-instance-groups.md" >}}), and [certificate management]({{< relref "/nms/nim/how-to/nginx/manage-certificates.md" >}}).
 
 ### App Delivery Manager Key Features
 

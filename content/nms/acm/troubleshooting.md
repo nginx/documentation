@@ -61,6 +61,42 @@ After installing the API Connectivity Manager module, the module doesn't appear 
 
 ---
 
+## Routing traffic fails with `RangeError: Maximum call stack size exceeded` in the data plane error logs
+
+#### Description
+
+After deploying an API Proxy using a large OpenAPI Specification or a large number of advanced routes, traffic fails to route to the backend service and instead returns a `404` error. Failed requests trigger `js exception: RangeError: Maximum call stack size exceeded` in the data plane logs.
+
+The number API proxy advanced routes which can be deployed to a single API proxy is dependent on the complexity of the configuration, so it is not possible to give an exact limit; however, the table below illustrates some limits based on example configurations. For example, if all of your routes support a single method and have two non-enum query parameters, your configuration should be able to support up to 440 routes per API proxy. Enum parameters are not illustrated in the table below but will reduce the number of supported routes more significantly than a non-enum parameter.
+
+{{< bootstrap-table "table table-striped table-bordered" >}}
+| Path/Route methods | Query parameters | Supported number of Paths/Advanced Routes |
+| ------------------ | ---------------- | ----------------------------------------- |
+| 1                  | 0                | 1100                                      |
+| 1                  | 1+               | 440                                       |
+| 2                  | 0                | 550                                       |
+| 2                  | 1+               | 220                                       |
+| 3                  | 0                | 360                                       |
+| 3                  | 1+               | 140                                       |
+| 4                  | 0                | 270                                       |
+| 4                  | 1+               | 110                                       |
+|                    |                  |                                           |
+{{< /bootstrap-table >}}
+
+{{< note >}}
+The numbers in the above table are provided only as an example. Other factors may impact the total supported number of routes.
+{{< /note >}}
+
+#### Resolution
+
+- The limitations are for a single API proxy. Splitting your configuration and deploying it across multiple API proxies may resolve the issue. For example: 
+  - Given an OpenAPI specification with contains 1500 routes with a single method and no parameters
+  - 800 paths in the specification begin with `/v1`, and 700 begin with `/v2`
+  - Splitting the definition into two definitions, with one containing all of the `/v1` paths and the other containing all of the `/v2` paths, should allow deployment of two API proxies which cover all of the paths defined, each one below the 1100 route limit
+- Replacing enum parameters with non-enum parameters may increase the number of routes which can be deployed
+
+---
+
 ## Can't delete API Connectivity Manager objects after upgrading NGINX instances
 
 #### Description

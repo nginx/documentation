@@ -224,7 +224,7 @@ When multiple modules are deployed on the same NGINX Management Suite instance, 
 
 #### Workaround
 
-Use [Role-based Account Control]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}) to prevent sharing of instance groups between App Delivery Manager and API Connectivity Manager.
+Use [Role-based Account Control]({{< relref "/nms/admin-guides/rbac/rbac-getting-started.md" >}}) to prevent sharing of instance groups between App Delivery Manager and API Connectivity Manager.
 
 ---
 

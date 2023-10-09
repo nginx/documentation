@@ -1,3 +1,7 @@
+---
+docs: DOCS-1293
+---
+
 ### Upgrading from previous Early Access releases
 
 {{< custom-styles >}}

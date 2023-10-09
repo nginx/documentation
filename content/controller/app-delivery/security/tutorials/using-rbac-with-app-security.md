@@ -9,7 +9,7 @@ categories:
 - security
 - analytics
 date: "2022-03-14T18:39:24Z"
-description: How to use Role Based Access Control with App Security
+description: How to use Role Based Access Control with App Security.
 docs: DOCS-845
 doctypes:
 - task

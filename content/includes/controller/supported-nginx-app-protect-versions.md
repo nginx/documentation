@@ -8,6 +8,7 @@ Refer to [Using NGINX App Protect with NGINX Controller](https://docs.nginx.com/
 
 | NGINX Controller version            | NGINX App Protect version(s)                                                                    | NGINX Plus version(s)          |
 |-------------------------------------|-------------------------------------------------------------------------------------------------|--------------------------------|
+| NGINX Controller ADC v3.22.9        | v4.5 <hr> v4.3, v4.4 <hr> v4.0, v4.1, v4.2 <hr> v3.12, v3.11 | R30 <hr> R29 <hr> R28 <hr> R27 |
 | NGINX Controller ADC v3.22.8        | v4.0, v4.1 <hr> v3.12, v3.11 <hr> v3.10.0, v3.9.1, v3.9.0 <hr> v3.8, v3.7, v3.6                 | R28 <hr> R27 <hr> R26 <hr> R25 |
 | NGINX Controller ADC v3.22.7        | v4.0, v4.1 <hr> v3.12, v3.11 <hr> v3.10.0, v3.9.1, v3.9.0 <hr> v3.8, v3.7, v3.6                 | R28 <hr> R27 <hr> R26 <hr> R25 |
 | NGINX Controller ADC v3.22.6        | v4.0, v4.1 <hr> v3.12, v3.11 <hr> v3.10.0, v3.9.1, v3.9.0 <hr> v3.8, v3.7, v3.6                 | R28 <hr> R27 <hr> R26 <hr> R25 |

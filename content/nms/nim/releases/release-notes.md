@@ -18,6 +18,103 @@ aliases:
 
 {{<rn-styles>}}
 
+## 2.13.1
+September 05, 2023
+### Upgrade Paths {#2-13-1-upgrade-paths}
+
+Instance Manager  supports upgrades from these previous versions:
+
+- 2.10.0 - 2.13.0
+
+If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+{{< see-also >}}
+Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< /see-also >}}
+
+### Resolved Issues{#2-13-1-resolved-issues}
+This release fixes the following issues. Select an issue's ID link to view its details.
+
+- {{% icon-resolved %}} Validation errors in Resource Groups for certificates uploaded before 2.13 upgrade [(44254)]({{< relref "/nms/nim/releases/known-issues.md#44254" >}})<a name="2-13-1-resolved-issues-Validation-errors-in-Resource-Groups-for-certificates-uploaded-before-2-13-upgrade"></a>
+- {{% icon-resolved %}} Access levels cannot be assigned to certain RBAC features [(44277)]({{< relref "/nms/nim/releases/known-issues.md#44277" >}})<a name="2-13-1-resolved-issues-Access-levels-cannot-be-assigned-to-certain-RBAC-features"></a>
+
+### Known Issues{#2-13-1-known-issues}
+
+You can find information about known issues in the [Known Issues]({{< relref "/nms/nim/releases/known-issues.md" >}}) topic.
+
+
+### Support for NGINX App Protect WAF
+
+{{< include "tech-specs/nim-app-protect-support.md" >}}
+
+---
+
+
+## 2.13.0
+
+August 29, 2023
+
+### Upgrade Paths {#2-13-0-upgrade-paths}
+
+Instance Manager 2.13.0 supports upgrades from these previous versions:
+
+- 2.10.0–2.12.0
+
+If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+{{< see-also >}}Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.{{< /see-also >}}
+
+### What's New {#2-13-0-whats-new}
+
+This release includes the following updates:
+
+- {{% icon-feature %}} **Easily manage access to specific objects with Resource Groups**
+
+  With NGINX Instance Manager, you can now combine Instances, Instance Groups, and Certificates into a Resource Group. This grouping can be used when defining roles to grant access to those specific objects. When objects are added to or removed from the Resource Group, the changes are automatically reflected in any roles that use the Resource Group. For more details, refer to [Working with Resource Groups]({{< relref "nms/admin-guides/rbac/manage-resource-groups.md" >}}).
+
+- {{% icon-feature %}} **Get version controlled NGINX configurations with an external commit hash**
+
+  The Instance Manager REST API supports setting and retrieving instances, instance groups, and staged NGINX configurations using a version control commit hash. 
+
+  To learn how to use a commit hash with NGINX configurations, refer to these topics:
+
+  - [Add Hash Versioning to Staged Configs]({{< relref "nms/nim/how-to/nginx/stage-configs.md#hash-versioning-staged-configs" >}}) 
+  - [Publish Configs with Hash Versioning to Instances]({{< relref "nms/nim/how-to/nginx/publish-configs.md#publish-configs-instances-hash-versioning" >}}) 
+  - [Publish Configs with Hash Versioning to Instance Groups]({{< relref "nms/nim/how-to/nginx/publish-configs.md#publish-configs-instance-groups-hash-versioning" >}})
+
+- {{% icon-feature %}} **Configure analytics data retention with the nms.conf file**
+
+  You can set the data retention policy for analytics data, which includes metrics, events, and security events, in the `nms.conf` file. By default, metrics and security events are stored for 32 days, while events are stored for 120 days. To keep data for a longer period, update the retention durations in the `nms.conf` file.
+
+- {{% icon-feature %}} **RBAC for security policies**
+
+  You can now use [Role-Based Access Control (RBAC)]({{< relref "nms/admin-guides/rbac/rbac-getting-started.md" >}}) to allow or restrict the level of access to security policies according to your security governance model.
+
+- {{% icon-feature %}} **RBAC for log profiles**
+
+  You can now use [Role-Based Access Control (RBAC)]({{< relref "nms/admin-guides/rbac/rbac-getting-started.md" >}}) to allow or restrict access to log profiles according to your security governance model.
+
+- {{% icon-feature %}} **Use NGINX Plus Health Checks to easily track NGINX Plus Usage with NGINX Instance Manager**
+
+  The NGINX Plus Health Check feature now allows you to monitor the count of both NGINX Plus and NGINX App Protect instances that you've deployed. You can view this information in the "NGINX Plus" area of the "Instance Manager" web interface, or through the `/inventory` API. For guidance on how to set this up, refer to the following documentation: [View Count of NGINX Plus Instances]({{< relref "nms/nim/how-to/usage-tracking/count-nginx-plus-instances.md" >}}).
+
+- {{% icon-feature %}} **Improved log output for better JSON parsing**
+
+  In the log output, extra whitespace has been removed, and brackets have been removed from the log `level` field. This results in clean, parsable log output, particularly when using JSON log encoding.
+
+### Resolved Issues {#2-13-0-resolved-issues}
+
+This release fixes the following issues. Select an issue's ID link to view its details.
+
+
+- {{% icon-resolved %}} An "unregistered clickhouse-adapter" failure is logged every few seconds if logging is set to debug. [(43438)]({{< relref "/nms/nim/releases/known-issues.md#43438" >}})
+
+### Support for NGINX App Protect WAF
+
+{{< include "tech-specs/nim-app-protect-support.md" >}}
+
+---
+
 ## 2.12.0
 
 July 24, 2023
@@ -869,7 +966,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Support for provisioning users and user groups with SCIM**
 
-  Now, you can [use SCIM to provision, update, or deprovision users and user groups]({{< relref "/nms/admin-guides/access-control/scim-provisioning.md" >}}) for your Identity Provider to Instance Manager. SCIM, short for "[System for Cross-domain Identity Management](http://www.simplecloud.info)," is an open API for managing identities.
+  Now, you can [use SCIM to provision, update, or deprovision users and user groups]({{< relref "/nms/admin-guides/authentication/oidc/scim-provisioning.md" >}}) for your Identity Provider to Instance Manager. SCIM, short for "[System for Cross-domain Identity Management](http://www.simplecloud.info)," is an open API for managing identities.
 
 - {{% icon-feature %}} **Instance Manager provides information about your NGINX App Protect WAF installations**
 
@@ -943,7 +1040,7 @@ If you're running Instance Manager 1.x or earlier, follow the steps in the [Migr
 
 - {{% icon-feature %}} **Role-based access control added to Events and Metrics pages**
 
-  A warning message is shown when users try to view the Events and Metrics pages in the web interface if they don't have permission to access the Analytics feature. For instructions on assigning access to features using role-based access control (RBAC), see [Set Up RBAC]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}).
+  A warning message is shown when users try to view the Events and Metrics pages in the web interface if they don't have permission to access the Analytics feature. For instructions on assigning access to features using role-based access control (RBAC), see [Set Up RBAC]({{< relref "/nms/admin-guides/rbac/rbac-getting-started.md" >}}).
 
 - {{% icon-feature %}} **Filter events and metrics with custom time ranges**
 
@@ -1007,7 +1104,7 @@ This release includes the following new features and enhancements:
 
   RBAC has been updated and improved. Add users to roles -- or add users to user groups if you're using an external identity provider -- to limit access to Instance Manager features.
 
-  For more information, see the tutorial [Set Up RBAC]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}).
+  For more information, see the tutorial [Set Up RBAC]({{< relref "/nms/admin-guides/rbac/rbac-getting-started.md" >}}).
 
 - {{% icon-feature %}} **Deploy Instance Manager on Kubernetes using a helm chart**
 
@@ -1121,7 +1218,7 @@ This release includes the following new features and enhancements:
 
 - {{% icon-feature %}} **Improved user access control**
 
-  Instance Manager 2.x. allows you to create user access controls with tags. Administrators can grant users read or write access to perform instance management tasks. And admins can grant or restrict access to the Settings options, such as managing licenses and creating users and roles. See the [Set up Authentication]({{< relref "/nms/admin-guides/access-control/configure-authentication.md#rbac" >}}) guide for more details.
+  Instance Manager 2.x. allows you to create user access controls with tags. Administrators can grant users read or write access to perform instance management tasks. And admins can grant or restrict access to the Settings options, such as managing licenses and creating users and roles. See the [Set up Authentication]({{< relref "/nms/admin-guides/authentication/basic-authentication.md#rbac" >}}) guide for more details.
 
 - {{% icon-feature %}} **More metrics and instance dashboards**
 

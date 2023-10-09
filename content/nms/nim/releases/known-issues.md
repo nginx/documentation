@@ -17,14 +17,133 @@ categories: ["known issues"]
 
 ---
 
+## 2.13.1
+September 05, 2023
+
+### {{% icon-bug %}} Certificates may not appear in resource group  {#44323}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44323 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+If you have certificates that were added to NGINX Management Suite before upgrading, they may not appear in the list of available certs when creating or editing a resource group.
+
+#### Workaround
+
+Restarting the DPM process will make all certificates visible in the Resource Group web interface and API.
+
+For VM and bare metal deployments:
+```shell
+sudo systemctl restart nms-dpm
+```
+
+For Kubernetes deployments:
+
+```shell
+kubectl -n nms scale --replicas=0 deployment.apps/dpm
+kubectl -n nms scale --replicas=1 deployment.apps/dpm
+```
+
+---
+
+## 2.13.0
+August 28, 2023
+
+### {{% icon-resolved %}} Access levels cannot be assigned to certain RBAC features {#44277}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44277 | Fixed in Instance Manager 2.13.1   |
+
+{{</bootstrap-table>}}
+#### Description
+When configuring role-based access control (RBAC), you can't assign access levels to some features, including Analytics and Security Policies.
+
+---
+
+### {{% icon-bug %}} If you publish a configuration with an uncompiled policy, it will fail the first time {#44267}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44267 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+In Instance Manager 2.13, a new configuration is published before the compile stage of a WAF policy is complete. This happens only when the policy is first referenced. This leads to a deployment failure, and the configuration rolls back. Typically, by the time you try to submit the configuration again, the policy has finished compiling, and the request goes through.
+
+The initial failure message looks like this:
+
+```text
+Config push failed - err: failure from multiple instances. Affected placements: instance/70328a2c-699d-3a90-8548-b8fcec15dabd (instance-group: ig1) - err: failed building config payload: config: aux payload /etc/nms/NginxDefaultPolicy.tgz for instance:70328a2c-699d-3a90-8548-b8fcec15dabd not ready aux payload not ready, instance/2e637e08-64b3-36f9-8f47-b64517805e98 (instance-group: ig1) - err: failed building config payload: config: aux payload /etc/nms/NginxDefaultPolicy.tgz for instance:2e637e08-64b3-36f9-8f47-b64517805e98 not ready aux payload not ready
+```
+
+#### Workaround
+
+Retry pushing the new configuration. The deployment should work the second time around.
+
+---
+
+### {{% icon-resolved %}} Validation errors in Resource Groups for certificates uploaded before 2.13 upgrade {#44254}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44254 | Fixed in Instance Manager 2.13.1   |
+
+{{</bootstrap-table>}}
+#### Description
+If you upgrade to Instance Manager 2.13 and already have certificates in place, you may encounter validation errors in the web interface when you try to create or edit a Resource Group and access the Certs list. You will not be able to save the Resource Group if you encounter these errors.
+
+This issue doesn't occur if you upload certificates _after_ upgrading to version 2.13, nor does it affect new 2.13 installations. Instance Groups and Systems are unaffected.
+
+#### Workaround
+
+To work around this issue, you have two options:
+
+1. When creating or editing a Resource Group, don't use the Certs list. Instance Groups and Systems can still be used.
+2. If you must use Resource Groups with Certs, delete any certificates that were uploaded before upgrading to 2.13, and then re-upload them.
+
+---
+
+### {{% icon-bug %}} getAttackCountBySeverity endpoint broken with NGINX App Protect 4.4 and above {#44051}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44051 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+The reporting of severities has been disabled in NGINX App Protect 4.4. As a result, the `getAttackCountBySeverity` endpoint on the NGINX Management Suite's API will report zeroes for all severities, and the related "Severity" donut diagram in the Security Monitoring Dashboard won't display any values.
+
+---
+
+### {{% icon-bug %}} Inaccurate Attack Signatures and Threat Campaigns versions {#43950}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 43950 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+If `precompiled_publication` is set to `true`, NGINX Management Suite may incorrectly report the version of Attack Signatures (AS) and Threat Campaigns (TC) that you previously installed on the NAP WAF instance.
+
+---
+
 ## 2.12.0
 
 ### {{% icon-bug %}} Licensing issues when adding JWT licenses in firewalled environments {#43719}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 43719 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 43719    | Open   |
 {{</bootstrap-table>}}
 
 #### Description
@@ -147,12 +266,12 @@ More information is available in the Platform API reference guide, under the Lic
 
 ---
 
-### {{% icon-bug %}} An "unregistered clickhouse-adapter" failure is logged every few seconds if logging is set to debug. {#43438}
+### {{% icon-resolved %}} An "unregistered clickhouse-adapter" failure is logged every few seconds if logging is set to debug. {#43438}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status |
-|----------|--------|
-| 43438    | Open   |
+| Issue ID | Status          |
+|----------|-----------------|
+| 43438    | Fixed in 2.13.0 |
 {{</bootstrap-table>}}
 
 #### Description
@@ -546,20 +665,6 @@ To resolve this issue, please update the email addresses in your identity provid
       ```bash
       sudo systemctl restart nginx
       ```
-
----
-
-### {{% icon-resolved %}} NGINX configurations with special characters may not be editable from the web interface after upgrading Instance Manager {#41557}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID | Status         |
-|----------|----------------|
-| 41557    | Fixed in 2.9.1 |
-{{</bootstrap-table>}}
-
-#### Description
-
-After upgrading to Instance Manager 2.9.0, the system may display a "URI malformed" error if you use the web interface to edit a staged configuration or `nginx.conf` that contains special characters, such as underscores ("_").
 
 ---
 

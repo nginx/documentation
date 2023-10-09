@@ -1,7 +1,8 @@
 ---
+docs: "DOCS-1263"
 title: "Request Header Specification"
 draft: false
-description: Learn how to use API Connectivity Manager's Request Header Specification policy to configure how headers with invalid characters are processed.
+description: "Learn how to set up the Request Header Specification policy in API Connectivity Manager to process headers with invalid characters."
 weight: 1300
 toc: true
 tags: [ "docs" ]

@@ -399,7 +399,7 @@ To pass a configuration command to NGINX, send an API command by any method, for
 
 For example, to add a new server to the server group, send a `POST` request:
 
-```none
+```shell
 curl -X POST -d '{ \ 
    "server": "appserv3.example.com:12345", \ 
    "weight": 4 \ 
@@ -408,13 +408,13 @@ curl -X POST -d '{ \
 
 To remove a server from the server group, send a `DELETE` request:
 
-```none
+```shell
 curl -X DELETE -s 'http://127.0.0.1/api/6/stream/upstreams/appservers/servers/0'
 ```
 
 To modify a parameter for a specific server, send a  `PATCH` request:
 
-```none
+```shell
 curl -X PATCH -d '{ "down": true }' -s 'http://127.0.0.1/api/6/http/upstreams/appservers/servers/0'
 ```
 

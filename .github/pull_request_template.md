@@ -20,7 +20,7 @@ Before creating a PR, run through this checklist and mark each step as complete.
     
 - [ ] I have updated any relevant supporting documentation ([`README.md`](https://github.com/nginxinc/docs/blob/main/README.md) and the [`CHANGELOG.md`](https://github.com/nginxinc/docs/blob/main/CHANGELOG.md))
 - [ ] I have followed the [conventional commits guidelines](https://www.conventionalcommits.org/en/v1.0.0/#summary) for all commits on my branch
-- [ ] I have updated the [_redirects](https://github.com/nginxinc/docs/blob/ma in/_redirects), [_redirect_dev](https://github.com/nginxinc/docs/blob/main/_redirects_dev), and [_redirects_staging](https://github.com/nginxinc/docs/blob/main/_redirects_staging) files to reflect changes to any public-facing doc files that I moved or renamed.
+- [ ] I have updated the [_redirects](https://github.com/nginxinc/docs/blob/main/_redirects), [_redirect_dev](https://github.com/nginxinc/docs/blob/main/_redirects_dev), and [_redirects_staging](https://github.com/nginxinc/docs/blob/main/_redirects_staging) files to reflect changes to any public-facing doc files that I moved or renamed.
 
 When you're ready to merge a PR, run through this checklist and mark each step as complete.
 

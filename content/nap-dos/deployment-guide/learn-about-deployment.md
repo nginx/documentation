@@ -47,7 +47,7 @@ NGINX App Protect DoS supports the following operating systems:
 
 - [CentOS 7.4.x and above](#centos-74-installation)
 - [RHEL 7.4.x / UBI 7.6.x and above](#rhel-74-installation)
-- [RHEL 8 / UBI 8 and above](#rhel-8-installation) 
+- [RHEL 8 / UBI 8 / Rocky Linux 8 and above](#rhel-8--rocky-linux-8-installation)
 - [Debian 10 (Buster)](#debian--ubuntu-installation)
 - [Debian 11 (Bullseye)](#debian--ubuntu-installation)
 - [Ubuntu 18.04 (Bionic)](#debian--ubuntu-installation) - (Deprecated starting from NGINX Plus R30)
@@ -68,11 +68,9 @@ The NGINX App Protect DoS package has the following dependencies:
 See the NGINX Plus full list of prerequisites for more details. NGINX App Protect DoS can be installed as a module to an existing NGINX Plus installation or as a complete NGINX Plus with App Protect DoS installation in a clean environment or to a system with NGINX App Protect WAF.
 
 {{< note >}} 
-gRPC and HTTP/2 protection require active monitoring of the protected service. The directive `app_protect_dos_monitor` is mandatory for the attack to be detected.
-
-TLS fingerprint feature is not used in CentOS 7.4 and RHEL 7 / UBI 7 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
-
-Monitor directive `app_protect_dos_monitor` with proxy_protocol parameter can not be configured on Ubuntu 18.04. As a result, gRPC and HTTP/2 DoS protection for proxy_protocol configuration is not supported.
+- gRPC and HTTP/2 protection require active monitoring of the protected service. The directive `app_protect_dos_monitor` is mandatory for the attack to be detected.
+- TLS fingerprint feature is not used in CentOS 7.4 and RHEL 7 / UBI 7 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher. 
+- Monitor directive `app_protect_dos_monitor` with proxy_protocol parameter can not be configured on Ubuntu 18.04. As a result, gRPC and HTTP/2 DoS protection for proxy_protocol configuration is not supported.
 {{< /note >}}
 
 ## Platform Security Considerations
@@ -100,7 +98,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
 3. Log in to the NGINX [Customer Portal](https://my.f5.com) and download the following two files:
 
-    ```
+    ```shell
     nginx-repo.key
     nginx-repo.crt
     ```
@@ -183,7 +181,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     b. Insert the following contents into the file created above:
 
-    ```
+    ```shell
     module app-protect-dos 2.0;
     require { 
         type unconfined_t;
@@ -196,7 +194,6 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
         class shm { associate read unix_read unix_write write };
         class file { read write };
     }
-
     allow httpd_t initrc_state_t:file { read write };
     allow httpd_t self:capability sys_resource;
     allow httpd_t tmpfs_t:file { read write };
@@ -245,7 +242,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
 3. Log in to the NGINX [Customer Portal](https://my.f5.com) and download the following two files:
 
-    ```
+    ```shell
     nginx-repo.key
     nginx-repo.crt
     ```
@@ -367,7 +364,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     b. Insert the following contents into the file created above:
 
-    ```
+    ```shell
     module app-protect-dos 2.0;
     require { 
         type unconfined_t;
@@ -380,7 +377,6 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
         class shm { associate read unix_read unix_write write };
         class file { read write };
     }
-
     allow httpd_t initrc_state_t:file { read write };
     allow httpd_t self:capability sys_resource;
     allow httpd_t tmpfs_t:file { read write };
@@ -412,7 +408,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```shell
     sudo systemctl start nginx
     ```
-## RHEL 8+ Installation
+## RHEL 8+ / Rocky Linux 8 Installation 
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -429,7 +425,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
 3. Log in to the NGINX [Customer Portal](https://my.f5.com) and download the following two files:
 
-    ```
+    ```shell
     nginx-repo.key
     nginx-repo.crt
     ```
@@ -469,8 +465,8 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     {{< note >}}
    L4 accelerated mitigation feature (RHEL 8.6+):
-   `nginx-app-protect-dos` and `nginx` needs to run with root privileges.
-   `nginx-app-protect-dos` service executes the command: `ulimit -l unlimited`.
+   - `nginx-app-protect-dos` and `nginx` needs to run with root privileges.
+   - `nginx-app-protect-dos` service executes the command: `ulimit -l unlimited`.
     {{< /note >}}
    
     Alternatively, you can use the following command to list available versions:
@@ -537,7 +533,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     b. Insert the following contents into the file created above:
 
-    ```
+    ```shell
     module app-protect-dos 2.0;
     require { 
         type unconfined_t;
@@ -550,7 +546,6 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
         class shm { associate read unix_read unix_write write };
         class file { read write };
     }
-
     allow httpd_t initrc_state_t:file { read write };
     allow httpd_t self:capability sys_resource;
     allow httpd_t tmpfs_t:file { read write };
@@ -576,7 +571,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     b. Insert the following contents into the file created above:
 
-    ```
+    ```shell
     module app-protect-dos-ebpf 2.0;
         require {
         type bpf_t;
@@ -590,7 +585,6 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
         class file { append read write };
         class bpf { map_read map_write };
     }
-
     allow httpd_t bpf_t:file { read write };
     allow httpd_t http_cache_port_t:tcp_socket name_connect;
     allow httpd_t initrc_t:bpf { map_read map_write };
@@ -641,7 +635,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
 3. Log in to the NGINX [Customer Portal](https://my.f5.com) and download the following two files:
 
-    ```
+    ```shell
     nginx-repo.key
     nginx-repo.crt
     ```
@@ -705,41 +699,12 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
    {{< note >}}
    L4 accelerated mitigation feature (Debian 11 / Ubuntu 20.04 / Ubuntu 22.04):
-   `nginx-app-protect-dos` and `nginx` needs to run with root privileges.
-   `nginx-app-protect-dos` service executes the command: `ulimit -l unlimited`.
+   - `nginx-app-protect-dos` and `nginx` needs to run with root privileges.
+   - `nginx-app-protect-dos` service executes the command: `ulimit -l unlimited`.
    {{< /note >}}
 
-    Alternatively, to install a specific version you should modify the repository URL in the `/etc/apt/sources.list.d/nginx-plus.list` file in the following way:
 
-    ```shell
-    deb https://plus-pkgs.nginx.com/Rxx/debian ...
-    ```
-    and make the same changes to the `/etc/apt/sources.list.d/nginx-app-protect-dos.list`
-
-    deb https://pkgs.nginx.com/app-protect-dos/Rxx/debian ...
-
-    where xx is a release number.
-
-    For example, to install `app-protect-dos` for Debian 11 NGINX Plus version 27, make sure of the following:
-
-    ```shell
-    sudo cat /etc/apt/sources.list.d/nginx-plus.list
-    deb https://pkgs.nginx.com/plus/R27/debian bullseye nginx-plus
-    sudo cat /etc/apt/sources.list.d/nginx-app-protect-dos.list
-    deb https://pkgs.nginx.com/app-protect-dos/R27/debian bullseye nginx-plus
-    ```
-
-    For example, to install `app-protect-dos` for Debian 11 NGINX Plus version 27, make sure of the following:
-
-    ```shell
-    sudo cat /etc/apt/sources.list.d/nginx-plus.list
-    deb https://pkgs.nginx.com/plus/R27/debian bullseye nginx-plus
-    sudo cat /etc/apt/sources.list.d/nginx-app-protect-dos.list
-    deb https://pkgs.nginx.com/app-protect-dos/R27/debian bullseye nginx-plus
-    ```
-
-
-    Then, use the following commands to update and list available versions:
+    Alternatively, to install a specific version, use the following commands to update and list available versions:
 
     ```shell
     sudo apt-get update
@@ -886,38 +851,17 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```shell
     sudo sudo apk add app-protect-dos-ebpf
     ```
-    {{< note >}}
-    For L4 accelerated mitigation feature, `nginx-app-protect-dos` and `nginx` needs to run with root privileges.
-    {{< /note >}}
+
+   {{< note >}}
+   L4 accelerated mitigation feature:
+   - `nginx-app-protect-dos` and `nginx` needs to run with root privileges.  
+   {{< /note >}}
     
-    Alternatively, to install a specific version you should modify the repository URL in the `/etc/apk/repositories` file in the following way:
-
-    ```shell
-    https://pkgs.nginx.com/plus/Rxx/alpine/v3.15/main
-    https://pkgs.nginx.com/app-protect-dos/Rxx/alpine/v3.15/main
-    ```
-    
-    where xx is a release number.
-
-    For example, to install NGINX App Protect DoS for NGINX Plus R27 make sure of the following:
-
-    ```shell
-    sudo cat /etc/apk/repositories
-    https://pkgs.nginx.com/plus/R27/alpine/v3.15/main
-    https://pkgs.nginx.com/app-protect-dos/R27/alpine/v3.15/main
-    ```
-    Install the most recent version of NGINX App Protect DoS for NGINX Plus R23:
+    Alternatively, to install a specific version, use the following commands to update and list available versions:
 
     ```shell    
     sudo apk update
-    sudo apk add nginx-plus app-protect-dos
-    ````
-
-    Alternatively, use the following commands to list available versions:
-
-    ```shell    
-    sudo apk update
-    sudo apk add nginx-plus app-protect-dos
+    sudo apk info app-protect-dos
     ```
 
     Finally, install a specific version from the output of command above. For example:
@@ -1046,7 +990,7 @@ COPY entrypoint.sh  /root/
  
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
-### RHEL 8 Docker Deployment Example
+### RHEL 8 / Rocky Linux 8 Docker Deployment Example
 
 ```Dockerfile
 # For UBI 8
@@ -1729,7 +1673,27 @@ Make sure to replace upstream and proxy pass directives in this example with rel
 
 ## NGINX App Protect DoS Arbitrator
 
+### Overview
+
 NGINX App Protect DoS arbitrator orchestrates all the running NGINX App Protect DoS instances to synchronize local/global attack start/stop.
+
+NGINX App Protect DoS arbitrator serves as a central coordinating component for managing multiple instances of  App Protect DoS in a network. It is needed when there are more than one NGINX App Protect DoS instances. Its primary function is to ensure that all instances are aware of and share the same state for each protected object. Here's a clearer breakdown of how it works and why it's necessary:
+
+How NGINX App Protect DoS Arbitrator Works:
+
+- **Collecting State Periodically**: The arbitrator regularly collects the state information from all running instances of App Protect DoS. This collection occurs at set intervals, typically every 10 seconds.
+- **State Initialization for New Instances**: When a new App Protect DoS instance is created, it doesn't start with a blank or uninitialized state for a protected object. Instead, it retrieves the initial state for the protected object from the arbitrator.
+- **Updating State in Case of an Attack**: If an attack is detected by one of the App Protect DoS instances, that instance sends an attack notification to the arbitrator. The arbitrator then updates the state of the affected protected object to indicate that it is under attack. Importantly, this updated state is propagated to all other instances.
+
+### Why NGINX App Protect DoS Arbitrator is Necessary
+
+NGINX App Protect DoS Arbitrator is essential for several reasons:
+
+- **Global State Management**: Without the arbitrator, each individual instance of App Protect DoS would manage its own isolated state for each protected object. This isolation could lead to inconsistencies. For example, if instance A declared an attack on a protected object named "PO-Example," instance B would remain unaware of this attack, potentially leaving the object vulnerable.
+- **Uniform Attack Detection**: With the arbitrator in place, when instance A detects an attack on "PO-Example" and reports it to the arbitrator, the state of "PO-Example" is immediately updated to indicate an attack. This means that all instances, including instance B, are aware of the attack and can take appropriate measures to mitigate it.
+
+In summary, NGINX App Protect DoS Arbitrator acts as a central coordinator to maintain a consistent and up-to-date global state for protected objects across multiple instances of App Protect DoS. This coordination helps ensure that attacks are properly detected and mitigated, and that knowledge gained by one instance is efficiently shared with others, enhancing the overall security of the network.
+
 
 ### NGINX App Protect DoS Arbitrator Deployment
 
@@ -1767,7 +1731,7 @@ You can run the following commands to ensure that NGINX App Protect DoS enforcem
     - nginx: master process
     - nginx: worker process
 
-    ```
+    ```shell
     USER       PID   %CPU   %MEM    VSZ    RSS TTY      STAT  START     TIME  COMMAND
     nginx      7759   0.0    0.0   113120  1200 ?       Ss    Sep06     0:00  /bin/sh -c /usr/bin/admd -d --log info > /var/log/adm/admd.log 2>&1
     root       7765   0.0    0.0   87964   1464 ?       Ss    Sep06     0:00  nginx: master process /usr/sbin/nginx -g daemon off;
@@ -1776,7 +1740,7 @@ You can run the following commands to ensure that NGINX App Protect DoS enforcem
 
 2. Verify that there are no NGINX errors in the `/var/log/nginx/error.log` and that the policy compiled successfully:
 
-    ```
+    ```shell
     2020/09/07 15:33:44 [notice] 9307#9307: using the "epoll" event method
     2020/09/07 15:33:44 [notice] 9307#9307: nginx/1.19.0 (nginx-plus-r22)
     2020/09/07 15:33:44 [notice] 9307#9307: built by gcc 4.8.5 20150623 (Red Hat 4.8.5-39) (GCC)
@@ -1790,7 +1754,7 @@ You can run the following commands to ensure that NGINX App Protect DoS enforcem
 
     a. Simulate good traffic:
 
-    ```
+    ```shell
     echo "Start Good Traffic 2"
     while true; do
       curl ${VS}/good1 &
@@ -1803,7 +1767,7 @@ You can run the following commands to ensure that NGINX App Protect DoS enforcem
 
     b. After 7 minutes start the attack:
 
-   ```
+   ```shell
    while [ true ]
    do
    ab -B ${BAD_IP1} -l -r -n 1000000 -c 150 -d -H "Host: evil.net" -H "Pragma: no-cache" -H "Cache-Control: no-cache" -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" -H "Upgrade-Insecure-Requests: 1" -H "User-Agent: WireXBot" -H "x-requested-with:" -H "Referer: http://10.0.2.1/none.html" -H "Accept-Encoding: gzip, deflate" -H "Accept-Language: en-US" http://${VS}/ &

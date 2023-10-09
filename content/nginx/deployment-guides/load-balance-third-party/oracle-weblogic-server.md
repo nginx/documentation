@@ -92,7 +92,7 @@ Generate a public‑private key pair and a self‑signed server certificate in P
 
 2. Generate the key pair in PEM format (the default). To encrypt the private key, include the <span style="white-space: nowrap;">`-des3`</span> parameter. (Other encryption algorithms are available, listed on the man page for the [genrsa](https://www.openssl.org/docs/manmaster/man1/openssl-genrsa.html) command.) You are prompted for the passphrase used as the basis for encryption.
 
-   ```none
+   ```shell
    root# openssl genrsa -des3 -out ~/private-key.pem 2048
    Generating RSA private key  ...
    Enter pass phrase for private-key.pem:
@@ -100,13 +100,13 @@ Generate a public‑private key pair and a self‑signed server certificate in P
 
 3. Create a backup of the key file in a secure location. If you lose the key, the certificate becomes unusable.
 
-   ```none
+   ```shell
    root# cp ~/private-key.pem secure-dir/private-key.pem.backup
    ```
    
 4. Generate the certificate. Include the <span style="white-space: nowrap;">`-new`</span> and <span style="white-space: nowrap;">`-x509`</span> parameters to make a new self-signed certificate. Optionally include the <span style="white-space: nowrap;">`-days`</span> parameter to change the key's validity lifetime from the default of 30 days (10950 days is about 30 years). Respond to the prompts with values appropriate for your testing deployment.
 
-   ```none
+   ```shell
    root# openssl req -new -x509 -key ~/private-key.pem -out ~/self-cert.pem -days 10950
    ```
    
@@ -119,19 +119,19 @@ Generate a public‑private key pair and a self‑signed server certificate in P
 
 2. Create a private key to be packaged in the certificate.
 
-   ```none
+   ```shell
    root# openssl genrsa -out ~/example.com.key 2048
    ```
    
 3. Create a backup of the key file in a secure location. If you lose the key, the certificate becomes unusable.
 
-   ```none
+   ```shell
    root# cp ~/company.com.key secure-dir/example.com.key.backup
    ```
    
 4. Create a Certificate Signing Request (CSR) file.
 
-   ```none
+   ```shell
    root# openssl req -new -sha256 -key ~/example.com.key -out ~/example.com.csr
    ```
    
@@ -662,7 +662,7 @@ Directive documentation: [location](https://nginx.org/en/docs/http/ngx_http_core
 
 With this configuration in place, from any HTTP client you can clear the cache for a particular key. The following sample `curl` command shows how to use the API to send an HTTP `PURGE` request to the NGINX Open Source server that hosts **www.example.com**. The example further illustrates how you can purge an entire set of resources that have a common URL stem, by appending the asterisk (*) wildcard to the URL.
 
-```none
+```shell
 $ curl -X PURGE -D - "http://www.example.com/*"
 HTTP/1.1 204 No Content
 Server: nginx/1.5.12

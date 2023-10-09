@@ -5,8 +5,7 @@ authors: []
 categories:
 - analytics
 date: "2020-10-26T15:32:41-06:00"
-description: Contains instructions for setting up the NGINX Controller Agent to collect
-  metrics for NGINX Plus instances
+description: Contains instructions for setting up the NGINX Controller Agent to collect metrics for NGINX Plus instances.
 docs: DOCS-509
 doctypes:
 - task

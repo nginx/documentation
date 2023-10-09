@@ -2,8 +2,7 @@
 categories:
 - app management
 date: "2021-12-07T11:50:26-07:00"
-description: Learn how NGINX Controller handles caching configurations and what NGINX
-  cache directives are supported.
+description: Learn how NGINX Controller handles caching configurations and what NGINX cache directives are supported.
 docs: DOCS-339
 doctypes:
 - concept

@@ -1,3 +1,7 @@
+---
+docs: "DOCS-1335"
+---
+
 #
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Configuration            | Default                            | Notes |

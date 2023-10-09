@@ -1,5 +1,5 @@
 ---
-Title: "Access Control Routing"
+title: "Access Control Routing"
 date: 2022-11-22T09:36:01Z
 # Change draft status to false to publish doc.
 draft: false
@@ -12,7 +12,7 @@ weight: 300
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-993"
+docs: "DOCS-1265"
 # Taxonomies
 # These are pre-populated with all available terms for your convenience.
 # Remove all terms that do not apply.

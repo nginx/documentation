@@ -1,6 +1,5 @@
 ---
 Title: "gRPC Policies"
-date: 2022-11-30T12:00.00-07.00
 description: "Learn how to use NGINX Management Suite API Connectivity Manager to configure policies for your gRPC API Gateway."
 # Assign weights in increments of 100
 weight: 600

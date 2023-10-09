@@ -1,3 +1,7 @@
+---
+docs: DOCS-1317
+---
+
 To modify a configuration for an existing release, run the `helm upgrade` command and use `-f <my-values-file>`, where `my-values-file` is a path to a values file with your desired configuration.
 
 The following table lists the configurable parameters and default values used by the App Delivery Manager chart when installing from a Helm chart.

@@ -88,14 +88,14 @@ Generate a public‑private key pair and a self‑signed server certificate in P
 
 2. Generate the key pair in PEM format (the default). To encrypt the private key, include the <span style="white-space: nowrap;">`-des3`</span> parameter. (Other encryption algorithms are available, listed on the man page for the [genrsa](https://www.openssl.org/docs/manmaster/man1/openssl-genrsa.html) command.) You are prompted for the passphrase used as the basis for encryption.  
 
-   ```none
+   ```shell
    root# openssl genrsa -des3 -out ~/private-key.pem 2048
    Generating RSA private key ...
    Enter pass phrase for private-key.pem:
    ```
 3. Create a backup of the key file in a secure location. If you lose the key, the certificate becomes unusable.
 
-   ```none
+   ```shell
    root# cp ~/private-key.pem <SECURE-DIR>/private-key.pem.backup
    ```
 
@@ -115,19 +115,19 @@ Generate a public‑private key pair and a self‑signed server certificate in P
 
 2. Create a private key to be packaged in the certificate.  
 
-   ```none
+   ```shell
    root# openssl genrsa -out ~/example.com.key 2048
    ```
 
 3. Create a backup of the key file in a secure location. If you lose the key, the certificate becomes unusable.
 
-   ```none
+   ```shell
    root# cp ~/example.com.key <SECURE-DIR>/example.com.key.backup
    ```
    
 4. Create a Certificate Signing Request (CSR) file.
 
-   ```none
+   ```shell
    root# openssl req -new -sha256 -key ~/example.com.key -out ~/example.com.csr
    ```
 
@@ -697,7 +697,7 @@ The quickest way to configure the module and the built‑in dashboard is to down
 
 1. Download the **status.conf** file to the NGINX Plus server:
 
-   ```none
+   ```shell
    # cd /etc/nginx/conf.d
    # curl https://www.nginx.com/resource/conf/status.conf > status.conf
    ```
