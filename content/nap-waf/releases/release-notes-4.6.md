@@ -92,7 +92,6 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 - app-protect_30+4.578.0-1~jammy_amd64.deb
 
 
-
 ### Resolved Issues
 
 - 8264 Fixed - Ability to turn bd debug logs on/off without reload (check with Zahava)
