@@ -100,7 +100,7 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 - 9151 Fixed - The header field `base64Decoding` is deprecated. It is now replaced with a new `decodeValueAsBase64` field.
 
 
-### **Important Note**
+### **Important Notes**
 
 - Starting with this release, the `app_protect_compressed_requests_action` directive has been deprecated from the nginx configuration. Now by default the enforcer will decompress all the HTTP compressed payload request and will apply the enforcment. See [Handling Compressed Requests]({{< relref "/nap-waf/configuration-guide/configuration.md#handling-compressed-requests" >}}) for more details.
 
