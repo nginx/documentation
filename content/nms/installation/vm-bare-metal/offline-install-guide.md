@@ -391,9 +391,10 @@ The API Connectivity Manager data plane requires [NGINX Plus R24](https://docs.n
 
     Supported Linux distributions:
 
+    - `ubuntu18.04`
     - `ubuntu20.04`
+    - `debian10`
     - `debian11`
-    - `debian12`
     - `centos7`
     - `centos8`
     - `rhel7`
