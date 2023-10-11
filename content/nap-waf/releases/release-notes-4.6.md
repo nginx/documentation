@@ -98,7 +98,7 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 - 8264 Fixed - Ability to turn bd debug logs on/off without reload (check with Zahava)
 - 9060 Fixed - Default uri size is changed from 2k to 8k so that the user can send bigger uri without any configuration change. Now the user will not get the RFC violation and will be able to control the size by using policy configuration.
 - 9185 Fixed - Unparsable requests, rejected by NGINX are now flagged with `SECURITY_WAF_VIOLATION` instead of `SECURITY_WAF_VIOLATION_TRANSPARENT`.
-- 8339 Fixec - Attack signatures accuracy is now available for configuration in the security log.
+- 8339 Fixed - Attack signatures accuracy is now available for configuration in the security log.
 - 9151 Fixed - The header field `base64Decoding` is deprecated. It is now replaced with a new `decodeValueAsBase64` field. (check with Avri/Shlomo)
 
 
