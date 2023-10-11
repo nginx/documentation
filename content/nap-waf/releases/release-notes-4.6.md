@@ -51,7 +51,6 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 
 - [Ubuntu 22.04 Support]({{< relref "/nap-waf/admin-guide/install.md#ubuntu-1804--ubuntu-2004--ubuntu-2204-installation" >}})
 - [JSON Web Token Protection]({{< relref "/nap-waf/configuration-guide/configuration.md#json-web-token-protection" >}})
-- [Restrict Response Signature]({{< relref "/nap-waf/configuration-guide/configuration.md#restrict-response-signature" >}})
 - [Custom Dimensions Log Entries]({{< relref "/nap-waf/configuration-guide/configuration.md#custom-dimensions-log-entries" >}})
 
 
@@ -94,13 +93,15 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 
 ### Resolved Issues
 
-- 8264 Fixed - Ability to turn bd debug logs on/off without reload (check with Zahava)
-- 9060 Fixed - Default uri size is changed from 2k to 8k so that the user can send bigger uri without any configuration change. Now the user will not get the RFC violation and will be able to control the size by using policy configuration.
+- 8264 Fixed - Implemented the capability to turn enforcer debug logs on/off without the need for a system reload to apply the changes..
+- 9060 Fixed - Default uri size is changed from 2k to 8k so that the user can send bigger uri without any configuration change. Now the user will be able to control the size by using policy configuration.
 - 9185 Fixed - Unparsable requests, rejected by NGINX are now flagged with `SECURITY_WAF_VIOLATION` instead of `SECURITY_WAF_VIOLATION_TRANSPARENT`.
 - 8339 Fixed - Attack signatures accuracy is now available for configuration in the security log.
-- 9151 Fixed - The header field `base64Decoding` is deprecated. It is now replaced with a new `decodeValueAsBase64` field. (check with Avri/Shlomo)
+- 9151 Fixed - The header field `base64Decoding` is deprecated. It is now replaced with a new `decodeValueAsBase64` field.
 
 
 ### **Important Note**
 
 - Starting with this release, the `app_protect_compressed_requests_action` directive has been deprecated from the nginx configuration. Now by default the enforcer will decompress all the HTTP compressed payload request and will apply the enforcment. See [Handling Compressed Requests]({{< relref "/nap-waf/configuration-guide/configuration.md#handling-compressed-requests" >}}) for more details.
+
+- The NGINX App Protect WAF has been enhanced to include response signature checks within the "filetypes" section. You have the option to add restrictions on response signatures by configuring the `responseCheck` parameter to true. By default, this parameter is set to false. See [Restrict Response Signature]({{< relref "/nap-waf/configuration-guide/configuration.md#restrict-response-signature" >}}) for more details.
