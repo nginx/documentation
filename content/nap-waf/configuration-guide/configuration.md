@@ -5562,7 +5562,7 @@ Now by default the enforcer will decompress all the HTTP compressed payload requ
 
 The 'Content-Encoding' header must match the compression algorithm used while sending compressed payload in a HTTP request, else the enfocer will fail to decompress the payload.
 
-The decompressed request must not exceed the size limit of 10 MB. If it does exceed this limit, NGINX App Protect will only decompress the first 10 KB, ignoring the remainder, and trigger the `VIOL_REQUEST_MAX_LENGTH` violation, just as it would for an uncompressed request that exceeds 10 MB.
+The decompressed request must not exceed the size limit of 10 MB. If it does exceed this limit, NGINX App Protect WAF will only decompress the first 10 KB, ignoring the remainder, and trigger the `VIOL_REQUEST_MAX_LENGTH` violation, just as it would for an uncompressed request that exceeds 10 MB.
 
 In the cases where decompression fails,  NGINX App Protect WAF will continue with the scan in the same manner as it does for uncompressed requests.
 
