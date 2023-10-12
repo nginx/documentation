@@ -1234,7 +1234,7 @@ In this example, we enable the file type violation in blocking mode. In the deta
 
 #### Restrict Response Signatures
 
-Restrict Response Signatures allows the user to add a restriction on response signatures by setting the `responseCheck` parameter to true. All Response Signatures are attack signatures detected on the response side, in contrast to the request side.
+Restrict Response Signatures enhancement assists the users in saving time by limiting the search for response signatures to a specified amount. All Response Signatures are attack signatures detected on the response side, in contrast to the request side. You can add a restriction on response signatures by setting the `responseCheck` parameter to true. 
 
 In the policy base template under the “filetypes” section, make sure you enable the `responseCheck` attribute for `responseCheckLength` to work properly. 
 The default value of `responseCheck` parameter is set to false. 
@@ -1244,7 +1244,7 @@ The `responseCheckLength` parameter refers to the number of uncompressed bytes i
 Restrict Response Signature example:
 
 In the below policy example, in the "filetypes" section, the `responseCheck` parameter is set to true, indicating that response check will be enabled.
-To enforce signature response, we have the flexibility to restrict the portion of the signature body that requires validation. In this case, the policy is configured with `responseCheckLength` set to 1000, signifying that only the initial 1000 bytes of the response body will undergo signature verification.
+To enforce signature response, we have the flexibility to restrict the portion of the response body that requires validation. In this case, the policy is configured with `responseCheckLength` set to 1000, signifying that only the initial 1000 bytes of the response body will undergo signature verification.
 
 ~~~json
 {
