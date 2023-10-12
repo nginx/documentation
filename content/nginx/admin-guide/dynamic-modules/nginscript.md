@@ -12,47 +12,68 @@ weight: 100
 
 
 <span id="install"></span>
-## Installation Instructions
+## Installation
 
-1. Install the njs module.
+1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+
+2. Install the njs module package `nginx-plus-module-njs`.
  
-   For Amazon Linux, CentOS, Oracle Linux, and RHEL:
+   For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
    
    ```shell
-   $ yum install nginx-plus-module-njs
+   yum install nginx-plus-module-njs
+   ```
+
+   For Amazon Linux 2023, AlmaLinux, Rocky Linux:
+
+   ```shell
+   dnf install nginx-plus-module-njs
    ```
    
    For Debian and Ubuntu:
    
    ```shell
-   $ apt-get install nginx-plus-module-njs
+   apt-get install nginx-plus-module-njs
    ```
 
    For SLES:
    
    ```shell
-   $ zypper install nginx-plus-module-njs
+   zypper install nginx-plus-module-njs
    ```
 
    For Alpine:
 
    ```shell
-   $ apk add nginx-plus-module-njs
+   apk add nginx-plus-module-njs
    ```
 
-2. Put both of the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directives in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
+   For FreeBSD:
+
+   ```shell
+   pkg install nginx-plus-module-njs
+   ```
+
+
+<span id="configure"></span>
+
+## Configuration
+
+After installation you will need to enable and configure the module in NGINX Plus configuration file `nginx.conf`.
+
+1. Enable dynamic loading of njs modules with the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directives specified in the top-level (“`main`”) context:
 
    ```nginx
    load_module modules/ngx_http_js_module.so;
    load_module modules/ngx_stream_js_module.so;
    ```
 
-3. Perform additional configuration as required by the [module](https://www.nginx.com/blog/introduction-nginscript/).
+2. Perform additional configuration as required by the [module](https://www.nginx.com/blog/introduction-nginscript/).
 
-4. Reload NGINX Plus to enable the module:
+3. Test the configuration and reload NGINX Plus to enable the module:
 
    ```shell
-   $ nginx -t && nginx -s reload
+   nginx -t && nginx -s reload
    ```
 
 

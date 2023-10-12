@@ -54,3 +54,9 @@ dimensions:
   - acm_service_workspaces_name
   - family
   - proxied_protocol
+  - site
+  - environment_name
+  - gateway_name
+  - component_name
+  - app_name
+  - site_name

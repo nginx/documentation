@@ -40,3 +40,8 @@ dimensions:
 - app
 - environment
 - component
+- site
+- environment_name
+- component_name
+- app_name
+- site_name

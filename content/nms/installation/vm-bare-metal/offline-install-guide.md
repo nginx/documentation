@@ -78,11 +78,10 @@ To download the external dependencies:
 
     Supported Linux distributions:
 
-    - `ubuntu18.04`
     - `ubuntu20.04`
     - `ubuntu22.04`
-    - `debian10`
     - `debian11`
+    - `debian12`
     - `centos7`
     - `oracle7`
     - `oracle8`

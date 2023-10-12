@@ -23,9 +23,9 @@ NGINX and NGINX Plus can continually test your TCP upstream servers, avoid the s
     stream {
         #...
         upstream stream_backend {
-        server backend1.example.com:12345;
-        server backend2.example.com:12345;
-        server backend3.example.com:12345;
+            server backend1.example.com:12345;
+            server backend2.example.com:12345;
+            server backend3.example.com:12345;
        }
         #...
     }
