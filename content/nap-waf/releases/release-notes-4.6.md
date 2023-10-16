@@ -36,18 +36,18 @@ October 17, 2023
 
 This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/configuration-guide/configuration.md#anti-automation-bot-mitigation" >}}) (bot defense):
 
-- Added the following Crawler bot signature: CheckMarkNetwork, FileHound, ReverseEngineeringBot, University Of Edinburgh, Audisto, crawler eb germany, FAST Enterprise, AASA-Bot, Neticle, newslookup-bot, MYIP.MS, Boomtrain Content Bot, Ads Standards Bot, Seamless Link Tester, CMS detector bot, Aesop, BullsEye, Drip, EyeNetIE Scanner
+- Added the following Crawler bot signature: CheckMarkNetwork, FileHound, ReverseEngineeringBot, University Of Edinburgh, Audisto, crawler eb germany, FAST Enterprise, AASA-Bot, Neticle, newslookup-bot, MYIP.MS, Boomtrain Content Bot, Ads Standards Bot, Seamless Link Tester, CMS detector bot, Aesop, BullsEye, Drip, EyeNetIE Scanner, IIS bot, OWLer, RetrevoPageAnalyzer, criteo-crawler, trafilatura
 - Added the following HTTP Library bot signatures: libtorrent, Apache-HttpAsyncClient, RobotsTxtParser-VIPnytt, OpenAI Python Library, OpenAPI Generator, ServiceNow Http Client, CarrierWave 
-- Added the following Service Agent bot signatures: Symbolicator, admantx-sap, SISTRIX Optimizer, anomify.ai ssl_check, CyberPatrol SiteCat Webbot, DaniBot, SiteMonitor Enterprise
+- Added the following Service Agent bot signatures: Symbolicator, admantx-sap, SISTRIX Optimizer, anomify.ai ssl_check, CyberPatrol SiteCat Webbot, DaniBot, SiteMonitor Enterprise, GumGum
 - Added the following Vulnerability Scanner bot signatures: interact.sh bot, AcuMonitor bot, interact.sh 2 bot 
 - Added the following Exploit Tool bot signatures: feroxbuster, WebApp Attacker 
-- Added the following Site Monitor bot signature: Allmystery
+- Added the following Site Monitor bot signature: Allmystery, httpstatus
 - Added the following Web Downloader bot signatures: FlashGet
-- Updated the following Vulnerability Scanner bot signature: OpenVAS 
+- Updated the following Vulnerability Scanner bot signature: OpenVAS
 - Updated the following HTTP Library bot signature: DynatraceSynthetic
 
 
-### New Feature
+### New Features
 
 - [Ubuntu 22.04 Support]({{< relref "/nap-waf/admin-guide/install.md#ubuntu-1804--ubuntu-2004--ubuntu-2204-installation" >}})
 - [JSON Web Token Protection]({{< relref "/nap-waf/configuration-guide/configuration.md#json-web-token-protection" >}})
@@ -60,35 +60,35 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 
 ##### Alpine 3.16
 
-- app-protect-30.4.578.0-r1.apk
+- app-protect-30.4.583.0-r1.apk
 
 ##### Alpine 3.17
 
-- app-protect-30.4.578.0-r1.apk
+- app-protect-30.4.583.0-r1.apk
 
 ##### CentOS 7.4+ / RHEL 7.4+ / Amazon Linux 2
 
-- app-protect-30+4.578.0-1.el7.ngx.x86_64.rpm
+- app-protect-30+4.583.0-1.el7.ngx.x86_64.rpm
 
 ##### Debian 11
 
-- app-protect_30+4.578.0-1~bullseye_amd64.deb
+- app-protect_30+4.583.0-1~bullseye_amd64.deb
 
 ##### Oracle Linux 8.1+
 
-- app-protect-30+4.578.0-1.el8.ngx.x86_64.rpm
+- app-protect-30+4.583.0-1.el8.ngx.x86_64.rpm
 
 ##### RHEL 8.1+
 
-- app-protect-30+4.578.0-1.el8.ngx.x86_64.rpm
+- app-protect-30+4.583.0-1.el8.ngx.x86_64.rpm
 
 ##### Ubuntu 20.04
 
-- app-protect_30+4.578.0-1~focal_amd64.deb
+- app-protect_30+4.583.0-1~focal_amd64.deb
 
 ##### Ubuntu 22.04
 
-- app-protect_30+4.578.0-1~jammy_amd64.deb
+- app-protect_30+4.583.0-1~jammy_amd64.deb
 
 
 ### Resolved Issues
