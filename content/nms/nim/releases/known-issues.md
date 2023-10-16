@@ -18,6 +18,23 @@ categories: ["known issues"]
 ## 2.14.0
 October 16, 2023
 
+### {{% icon-bug %}} Missing Data when ClickHouse services are not running {#44586}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44586 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+The ClickHouse database service is a required component of the Instance Manager Dashboard. The dashboard may display an error message if the ClickHouse service does not start or quits unexpectedly.
+
+#### Workaround
+
+Restart the Clickhouse service.
+
+---
+
 ### {{% icon-bug %}} Scan results may not include CVE count with App Protect installed {#44554}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
@@ -40,7 +57,7 @@ When using the Scan feature, the CVE column may provide a value of '--' for inst
 
 {{</bootstrap-table>}}
 #### Description
-Under certain conditions, instances that are not reporting request totals may not show in the Network Utilization drawer when data is sorted by Request count. This typically happens when NGINX is not configured to stream metrics data to NGINX Agent.
+Under certain conditions, instances that are not reporting request totals may not show in the Network Utilization panel or drawer when data is sorted by Request count. This typically happens when NGINX is not configured to stream metrics data to NGINX Agent.
 
 #### Workaround
 
@@ -108,57 +125,6 @@ or
 {{</bootstrap-table>}}
 #### Description
 Dashboard data may update unexpectedly when opening a drawer view. The updated data accurately represents the latest available information about your NGINX instances.
-
----
-
-### {{% icon-bug %}} The "Try Again" button in the dashboard is not working correctly {#44486}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 44486 | Open   |
-
-{{</bootstrap-table>}}
-#### Description
-When a dashboard panel is unable to load data, a "Try Again" button shows in the center of the panel. Under rare circumstances, selecting this button may not result in the intended action.
-
-#### Workaround
-
-Please select **Refresh** in the top-right corner of the page to reload data across all panels.
-
----
-
-### {{% icon-bug %}} Selecting time intervals of one hour or less results in no data being displayed on a dashboard panel {#44485}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 44485 | Open   |
-
-{{</bootstrap-table>}}
-#### Description
-Under rare circumstances, when navigating away from the dashboard and returning, data may not load correctly in dashboard panels when selecting time intervals of one hour or less.
-
-#### Workaround
-
-Refreshing the browser window should resolve this issue
-
----
-
-### {{% icon-bug %}} Instances fail to show in the dashboard {#44429}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 44429 | Open   |
-
-{{</bootstrap-table>}}
-#### Description
-Under certain circumstances, data used to construct the dashboard may be stale when the page first loads.
-
-#### Workaround
-
-Select the **Refresh** button at the top right corner of the dashboard to load the latest data.
 
 ---
 
