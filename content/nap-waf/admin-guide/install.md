@@ -29,7 +29,7 @@ roles:
 title: NGINX App Protect WAF Administration Guide
 toc: true
 versions:
-- "4.5"
+- "4.6"
 weight: 100
 ---
 

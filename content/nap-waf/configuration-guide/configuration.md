@@ -5,8 +5,7 @@ authors: []
 categories:
 - configuration guide
 date: "2021-04-14T13:32:41+00:00"
-description: This guide explains the NGINX App Protect WAF security features and how
-  to use them.
+description: This guide explains the NGINX App Protect WAF security features and how to use them.
 docs: DOCS-647
 doctypes:
 - task
@@ -31,7 +30,7 @@ roles:
 title: NGINX App Protect WAF Configuration Guide
 toc: true
 versions:
-- "4.5"
+- "4.6"
 weight: 200
 ---
 
@@ -1239,7 +1238,7 @@ All Response Signatures are attack signatures detected on the response side, in 
 
 #### Restrict Response Signatures
 
-Restrict Response Signatures enhancement assists the users in saving time by limiting the search for response signatures to a specified amount. You can enable the signature verification in the response by setting the `responseCheck` parameter to true. However, the restriction of certain signatures is set in the policy and then enforced by the app protect.
+Restrict Response Signatures enhancement assists the users in saving time by limiting the search for response signatures to a specified amount. You can enable the signature verification in the response by setting the `responseCheck` parameter to true. However, the restriction of certain signatures is set in the policy and then enforced by the App Protect.
 
 In the policy base template under the “filetypes” section, make sure you enable the `responseCheck` attribute for `responseCheckLength` to work properly. 
 The default value of `responseCheck` parameter is set to false. 
@@ -3530,7 +3529,7 @@ Apreload is a new configuration tool where the NGINX App Protect WAF can be conf
 #### Some Conditions Required for Apreload to Work:
 
 - For apreload to work, NGINX must be started first.
-- Apreload may be used if the app protect configuration (policies, log configuration files, global settings etc) have been modified, but the NGINX configuration hasn't changed.<br>
+- Apreload may be used if the App Protect configuration (policies, log configuration files, global settings etc) have been modified, but the NGINX configuration hasn't changed.<br>
 
     Whenever `nginx.conf` file or any of its included files are modified, nginx reload must be used, rather than apreload. This will also update any changes in the App Protect configuration (policies, logging profiles, global settings). This applies also if only the App Protect directives have been modified in the `nginx.conf` file.
 - Apreload should be executed with the same user that executes NGINX to avoid any access error. 
@@ -4607,10 +4606,10 @@ This section describes how to configure GraphQL with minimal configuration. Refe
 
 GraphQL policy consists of three basic elements: GraphQL Profile, GraphQL Violations and GraphQL URL.
 
-You can enable GraphQL on app protect by following these steps: 
+You can enable GraphQL on App Protect by following these steps: 
 
 1. Create a GraphQL policy that includes the policy name. Note that GraphQL profile and GraphQL violation will be enabled by default in the default policy.
-You can enable GraphQL on app protect with minimum effort by using the following GraphQL policy example.
+You can enable GraphQL on App Protect with minimum effort by using the following GraphQL policy example.
 2. Add the GraphQL URL to the policy and associate the GraphQL default profile with it.
 3. Optionally, if the app that uses this policy serves only GraphQL traffic, then delete the wildcard URL "*" from the policy so that requests to any URL other than **/graphql** will trigger a violation. In the example below we assume this is the case.
 4. Update the `nginx.conf` file. To enforce GraphQL settings, update the `app_protect_policy_file` field with the GraphQL policy name in `nginx.conf` file. Perform nginx reload once `nginx.conf` file is updated to enforce the GraphQL settings.
@@ -4713,7 +4712,7 @@ See also the [Violations](#violations) section for more details.
 
 While configuring GraphQL, since the GraphQL violations are enabled by default, you can change the GraphQL violations settings i.e. alarm: `true` and block: `false` under the "blocking settings". In this manner, the GraphQL profile detects violations but does not block the request. They may contribute to the Violation Rating, which, if raised above 3, will automatically block the request. 
 
-However, setting the alarm and block to `true` will enforce block settings and app protect will block any violating requests.
+However, setting the alarm and block to `true` will enforce block settings and App Protect will block any violating requests.
 
 See below example for more details:
 
@@ -5225,7 +5224,7 @@ Here is an example of a Header: describes a JWT signed with HMAC 256 encryption 
 
 NGINX App Protect WAF introduces a new policy entity known as "**access profile**" to authenticate JSON Web Token. Access Profile is added to the app protect policy to enforce JWT settings. JSON Web Token needs to be applied to the URLs for enforcement and includes the actions to be taken with respect to access tokens. It is specifically associated with HTTP URLs and does not have any predefined default profiles. 
 
-{{< note >}}At present, only one access profile is supported within the app protect policy. However, the JSON schema for the policy will be designed to accommodate multiple profiles in the future.{{< /note >}}
+{{< note >}}At present, only one access profile is supported within the App Protect policy. However, the JSON schema for the policy will be designed to accommodate multiple profiles in the future.{{< /note >}}
 
 The access profile includes:
 
@@ -5235,7 +5234,7 @@ The access profile includes:
 
 Access Profile example: 
 
-Refer to the following example where all access profile properties are configured to enforce specific settings within the app protect policy. In this instance, we have established an access profile named "**access_profile_jwt**" located in the **authorization header**. The "maximumLength" for the token is defined as **2000**, and "verifyDigitalSignature" is set to **true**.
+Refer to the following example where all access profile properties are configured to enforce specific settings within the App Protect policy. In this instance, we have established an access profile named "**access_profile_jwt**" located in the **authorization header**. The "maximumLength" for the token is defined as **2000**, and "verifyDigitalSignature" is set to **true**.
 
 ```shell
 {
@@ -5290,7 +5289,7 @@ Refer to the following example where all access profile properties are configure
 }
 ```
 
-{{< note >}} For access profile default values and their related field names, see NGINX App Protect WAF Declarative Policy guide.{{< /note >}}
+{{< note >}} For access profile default values and their related field names, see NGINX App Protect WAF [Declarative Policy guide]({{< relref "/nap-waf/declarative-policy/policy.md" >}}). {{< /note >}}
 
 ### Access Profile in URL Settings
 
@@ -5601,7 +5600,7 @@ The following violations are supported and can be enabled by turning on the **al
 |VIOL_FILETYPE | Illegal file type | Alarm | The system checks that the requested file type is configured as a valid file type, or not configured as an invalid file type, within the security policy. | Only for disallowed file types. | 
 |VIOL_FILE_UPLOAD | Disallowed file upload content detected | Alarm | The system checks that the file upload content is not a binary executable file format. | The check must be enabled for parameters of data type file upload | 
 |VIOL_FILE_UPLOAD_IN_BODY | Disallowed file upload content detected in body | Alarm | The system checks that the file upload content is not a binary executable file format. | The check must be enabled for URLs | 
-|VIOL_GRAPHQL_MALFORMED | Malformed GraphQL data | Alarm & Block | This violation will be issued when the traffic expected to be GraphQL doesn't comply to the GraphQL syntax. The specifics of the syntax that will be enforced in app protect is detailed in the enforcing section. The violation details will note the error.| In case of tolerate parser warning turned on, missing closing bracket of the JSON should not issue a violation. | 
+|VIOL_GRAPHQL_MALFORMED | Malformed GraphQL data | Alarm & Block | This violation will be issued when the traffic expected to be GraphQL doesn't comply to the GraphQL syntax. The specifics of the syntax that will be enforced in App Protect is detailed in the enforcing section. The violation details will note the error.| In case of tolerate parser warning turned on, missing closing bracket of the JSON should not issue a violation. | 
 |VIOL_GRAPHQL_FORMAT | GraphQL format data does not comply with format settings | Alarm & Block | This violation will be issued when the GraphQL profile settings are not satisfied, for example the length is too long, depth is too deep, a specific value is too long or too many batched queries. <br> The violation details will note what happened and the found length, depth or which value is too long and by what. <br> The depth violation is not learnable. The reason is that we don't know the actual depth of the query - we stop parsing at the max depth. <br> Note that the values will be used on the variables JSON part as well as the query. In a way, we can see these values as a JSON profile attributes just for the variables. | |
 |VIOL_GRAPHQL_INTROSPECTION_QUERY| GraphQL introspection Query | Alarm & Block | This violation will be issued when an introspection query was seen. |  |
 |VIOL_GRAPHQL_ERROR_RESPONSE | GraphQL Error Response | Alarm & Block | GraphQL disallowed pattern in response. | |

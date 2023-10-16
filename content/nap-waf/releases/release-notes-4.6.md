@@ -93,7 +93,7 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 
 ### Resolved Issues
 
-- 8264 Fixed - Implemented the capability to turn enforcer debug logs on/off without the need for a system reload to apply the changes..
+- 8264 Fixed - Implemented the capability to turn enforcer debug logs on/off without the need for a system reload to apply the changes.
 - 9060 Fixed - Default uri size is changed from 2k to 8k so that the user can send bigger uri without any configuration change. Now the user will be able to control the size by using policy configuration.
 - 9185 Fixed - Unparsable requests, rejected by NGINX are now flagged with `SECURITY_WAF_VIOLATION` instead of `SECURITY_WAF_VIOLATION_TRANSPARENT`.
 - 8339 Fixed - Attack signatures accuracy is now available for configuration in the security log.
