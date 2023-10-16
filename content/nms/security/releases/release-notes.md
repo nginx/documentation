@@ -13,36 +13,6 @@ doctypes: ["reference"]
 
 ---
 
-## 1.7.0
-
-October 16, 2023
-
-### Upgrade Paths {#1-7-0-upgrade-paths}
-
-Security Monitoring  supports upgrades from these previous versions:
-
-- 1.4.0 - 1.6.0
-
-If your Security Monitoring version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
-
-{{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
-{{< /see-also >}}
-
-### Changes in Default Behavior{#1-7-0-changes-in-behavior}
-This release has the following changes in default behavior:
-
-- {{% icon-feature %}} **Security Monitoring backend service**<a name="1-7-0-changes-in-behavior-Security-Monitoring-backend-service-"></a>
-
-  The backend for Security Monitoring is now served by the `nms-sm` process instead of `nms-core`. The `nms-sm` process must be started after installation of the `nms-sm` package.
-  
-
-### Known Issues{#1-7-0-known-issues}
-
-You can find information about known issues in the [Known Issues]({{< relref "/nms/security/releases/known-issues.md" >}}) topic.
-
----
-
 ## 1.6.0
 
 July 20, 2023
@@ -70,7 +40,7 @@ You can find information about known issues in the [Known Issues]({{< relref "/n
 
 ---
 
-## 1.5.0
+ ## 1.5.0
 
 June 12, 2023
 
@@ -100,7 +70,7 @@ You can find information about known issues in the [Known Issues]({{< relref "/n
 
 ---
 
-## 1.4.0
+ ## 1.4.0
 
 April 26, 2023
 
@@ -138,7 +108,7 @@ You can find information about known issues in the [Known Issues]({{< relref "/n
 
 ---
 
-## 1.3.0
+ ## 1.3.0
 
 March 21, 2023
 
@@ -208,7 +178,7 @@ You can find information about known issues in the [Known Issues]({{< relref "/n
 
 ---
 
-## 1.2.0
+ ## 1.2.0
 
 January 30, 2023
 
@@ -245,7 +215,7 @@ You can find information about known issues in the [Known Issues]({{< relref "/n
 
 ---
 
-## 1.1.0
+ ## 1.1.0
 
 December 20, 2022
 
@@ -279,9 +249,10 @@ You can find information about known issues in the [Known Issues]({{< relref "/n
 
 ---
 
-## 1.0.0
+ ## 1.0.0
 
 November 17, 2022
+
 
 ### What's New{#1-0-0-whats-new}
 This release includes the following updates:
@@ -302,3 +273,6 @@ This release includes the following updates:
 
 You can find information about known issues in the [Known Issues]({{< relref "/nms/security/releases/known-issues.md" >}}) topic.
 
+---
+
+ 
