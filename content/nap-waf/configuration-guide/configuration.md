@@ -1232,9 +1232,14 @@ In this example, we enable the file type violation in blocking mode. In the deta
 }
 ~~~
 
+
+#### Response Signatures
+All Response Signatures are attack signatures detected on the response side, in contrast to the request side.
+
+
 #### Restrict Response Signatures
 
-Restrict Response Signatures enhancement assists the users in saving time by limiting the search for response signatures to a specified amount. All Response Signatures are attack signatures detected on the response side, in contrast to the request side. You can add a restriction on response signatures by setting the `responseCheck` parameter to true. 
+Restrict Response Signatures enhancement assists the users in saving time by limiting the search for response signatures to a specified amount. You can enable the signature verification in the response by setting the `responseCheck` parameter to true. However, the restriction of certain signatures is set in the policy and then enforced by the app protect.
 
 In the policy base template under the “filetypes” section, make sure you enable the `responseCheck` attribute for `responseCheckLength` to work properly. 
 The default value of `responseCheck` parameter is set to false. 
@@ -1244,7 +1249,7 @@ The `responseCheckLength` parameter refers to the number of uncompressed bytes i
 Restrict Response Signature example:
 
 In the below policy example, in the "filetypes" section, the `responseCheck` parameter is set to true, indicating that response check will be enabled.
-To enforce signature response, we have the flexibility to restrict the portion of the response body that requires validation. In this case, the policy is configured with `responseCheckLength` set to 1000, signifying that only the initial 1000 bytes of the response body will undergo signature verification.
+When enforcing signatures on the response, we have the flexibility to restrict the portion of the response body that requires validation. In this case, the policy is configured with `responseCheckLength` set to 1000, signifying that only the initial 1000 bytes of the response body will undergo signature verification.
 
 ~~~json
 {
@@ -5157,7 +5162,7 @@ Example of Cyclic Override Rule error:
 ## JSON Web Token Protection
 
 ### Overview
-JSON Web Token (JWT) is a compact and self-contained way to represent information between two parties in a JSON (JavaScript Object Notation) format and is commonly used for authentication and authorization. With NGINX App Protect now it is possible to control access to its application using JWT validation. NGINX App Protect WAF validates the authenticity and well-formedness of JWTs coming from a client, denying access to services that require JWT authentication. JWT is mainly used for API access. 
+JSON Web Token (JWT) is a compact and self-contained way to represent information between two parties in a JSON (JavaScript Object Notation) format and is commonly used for authentication and authorization. With NGINX App Protect now it is possible to control access to its application using JWT validation. NGINX App Protect WAF validates the authenticity and well-formedness of JWTs coming from a client, denying access to the service exclusively when the validation process fails. JWT is mainly used for API access. 
 
 When a user logs in to a web application, they might receive a JWT, which can then be included in subsequent requests to  the server. The server can validate the JWT to ensure that the user is authenticated to access the requested resources.
 
