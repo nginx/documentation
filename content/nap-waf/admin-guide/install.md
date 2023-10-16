@@ -2564,11 +2564,7 @@ app-protect-threat-campaigns
 - Upgrade the NGINX App Protect WAF to the latest version:
 
     ```shell
-    apt-get update && install -y app-protect-common \
-    app-protect-compiler \
-    app-protect-plugin \
-    nginx-plus-module-appprotect \
-    app-protect-engine \
+    sudo apt-get update && apt-get install -y app-protect
     ```
 
 ## SELinux Configuration
