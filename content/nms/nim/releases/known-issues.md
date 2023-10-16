@@ -15,6 +15,171 @@ categories: ["known issues"]
 
 ---
 
+## 2.14.0
+October 16, 2023
+
+### {{% icon-bug %}} Scan results may not include CVE count with App Protect installed {#44554}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44554 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+When using the Scan feature, the CVE column may provide a value of '--' for instances running specific versions of NGINX App Protect, including App Protect 4.4 and potentially others.
+
+---
+
+### {{% icon-bug %}} Certain instances not showing in the Network Utilization drawer {#44547}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44547 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+Under certain conditions, instances that are not reporting request totals may not show in the Network Utilization drawer when data is sorted by Request count. This typically happens when NGINX is not configured to stream metrics data to NGINX Agent.
+
+#### Workaround
+
+Configure NGINX Plus or NGINX Stub Status APIs to send correctly the NGINX metrics using NGINX Agent. See the [Metrics]({{< relref "nms/nim/about/overview-metrics.md" >}}) documentation to learn more.
+
+---
+
+### {{% icon-bug %}} Issues sorting HTTP errors in the dashboard {#44536}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44536 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+Sorting HTTP errors by “Request Count” sometimes shows the data in an incorrect order.
+
+---
+
+### {{% icon-bug %}} NGINX Agent does not report NGINX App Protect status {#44531}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44531 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+NGINX Agent does not report NGINX App Protect as "Active" when the Attack Signature or Threat Campaign version is newer than 2023.10.01.
+
+#### Workaround
+
+[Upgrade NGINX Agent]({{< relref "nms/installation/upgrade-guide.md#upgrade-nginx-agent" >}} to version v2.30.1 or later. 
+
+---
+
+### {{% icon-bug %}} Built-in security policies may not be accessible {#44520}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44520 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+Users might not have permission to access the built-in policies (NginxDefaultPolicy and NginxStrictPolicy) while using NGINX Management Suite.
+
+#### Workaround
+
+Use RBAC to assign the following permissions to the user:
+- (At minimum) READ access to any other custom security policy 
+or
+- READ access to the security policy feature: `/api/platform/v1/security/policies`   
+
+---
+
+### {{% icon-bug %}} Data on the dashboard is updating unexpectedly {#44504}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44504 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+Dashboard data may update unexpectedly when opening a drawer view. The updated data accurately represents the latest available information about your NGINX instances.
+
+---
+
+### {{% icon-bug %}} The "Try Again" button in the dashboard is not working correctly {#44486}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44486 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+When a dashboard panel is unable to load data, a "Try Again" button shows in the center of the panel. Under rare circumstances, selecting this button may not result in the intended action.
+
+#### Workaround
+
+Please select **Refresh** in the top-right corner of the page to reload data across all panels.
+
+---
+
+### {{% icon-bug %}} Selecting time intervals of one hour or less results in no data being displayed on a dashboard panel {#44485}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44485 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+Under rare circumstances, when navigating away from the dashboard and returning, data may not load correctly in dashboard panels when selecting time intervals of one hour or less.
+
+#### Workaround
+
+Refreshing the browser window should resolve this issue
+
+---
+
+### {{% icon-bug %}} Instances fail to show in the dashboard {#44429}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44429 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+Under certain circumstances, data used to construct the dashboard may be stale when the page first loads.
+
+#### Workaround
+
+Select the **Refresh** button at the top right corner of the dashboard to load the latest data.
+
+---
+
+### {{% icon-bug %}} Instances reporting incorrect memory utilization {#44351}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44351 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+An upgrade to NGINX Agent v2.30 or later is required for instances to stream memory utilization data correctly. Note that even after the upgrade, historical data recorded before the upgrade will not be correct.
+
+#### Workaround
+
+[Upgrade NGINX Agent]({{< relref "nms/installation/upgrade-guide.md#upgrade-nginx-agent" >}}) to version 2.30 or later.
+
+---
+
+
 ## 2.13.1
 September 05, 2023
 
