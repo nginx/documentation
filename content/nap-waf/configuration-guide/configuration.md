@@ -5386,31 +5386,22 @@ error_log /var/log/nginx/error.log debug;
 events {
     worker_connections  65536;
 }
-   
 server {
   
         listen       80;
   
         server_name  localhost;
-  
         proxy_http_version 1.1;
-  
         app_protect_custom_log_attribute ‘environment' 'env1';
-  
   
         location / {
   
             app_protect_enable on;
-  
             app_protect_policy_file /etc/app_protect/conf/mypolicy.json;
-  
             app_protect_custom_log_attribute gateway gway1;
             app_protect_custom_log_attribute component comp1;
-  
             proxy_pass http://172.29.38.211:80$request_uri;
-  
         }
-  
     }
 ```
 
@@ -5465,7 +5456,7 @@ Attributes at the http level applies to all servers and locations unless a speci
 Security logging example in json_log:
 
 ```json
-""customLogAttribute"":[{""name"":""component"",""value"":""comp1""},{""name"":""gateway"",""value"":""gw1""}]}",
+""customLogAttribute"":[{""name"":""component"",""value"":""comp1""},{""name"":""gateway"",""value"":""gw1""}]}"
 ```
 
 ## Directives
