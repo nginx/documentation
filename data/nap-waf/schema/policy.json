@@ -52,6 +52,111 @@
    "properties" : {
       "policy" : {
          "properties" : {
+            "access-profiles" : {
+               "oneOf" : [
+                  {
+                     "items" : {
+                        "properties" : {
+                           "$action" : {
+                              "enum" : [
+                                 "delete"
+                              ],
+                              "type" : "string"
+                           },
+                           "description" : {
+                              "type" : "string"
+                           },
+                           "enforceMaximumLength" : {
+                              "default" : true,
+                              "type" : "boolean"
+                           },
+                           "enforceValidityPeriod" : {
+                              "default" : true,
+                              "type" : "boolean"
+                           },
+                           "keyFiles" : {
+                              "items" : {
+                                 "properties" : {
+                                    "contents" : {
+                                       "type" : "string"
+                                    },
+                                    "fileName" : {
+                                       "type" : "string"
+                                    }
+                                 },
+                                 "required" : [
+                                    "contents",
+                                    "fileName"
+                                 ],
+                                 "type" : "object"
+                              },
+                              "type" : "array"
+                           },
+                           "location" : {
+                              "properties" : {
+                                 "in" : {
+                                    "default" : "header",
+                                    "enum" : [
+                                       "header",
+                                       "query"
+                                    ],
+                                    "type" : "string"
+                                 },
+                                 "name" : {
+                                    "default" : "authorization",
+                                    "type" : "string"
+                                 }
+                              },
+                              "type" : "object"
+                           },
+                           "maximumLength" : {
+                              "default" : 2000,
+                              "type" : "integer"
+                           },
+                           "name" : {
+                              "type" : "string"
+                           },
+                           "type" : {
+                              "default" : "jwt",
+                              "enum" : [
+                                 "jwt"
+                              ],
+                              "type" : "string"
+                           },
+                           "usernameExtraction" : {
+                              "properties" : {
+                                 "claimPropertyName" : {
+                                    "default" : "sub",
+                                    "type" : "string"
+                                 },
+                                 "enabled" : {
+                                    "default" : true,
+                                    "type" : "boolean"
+                                 },
+                                 "isMandatory" : {
+                                    "default" : true,
+                                    "type" : "boolean"
+                                 }
+                              },
+                              "type" : "object"
+                           },
+                           "verifyDigitalSignature" : {
+                              "default" : true,
+                              "type" : "boolean"
+                           }
+                        },
+                        "required" : [
+                           "name"
+                        ],
+                        "type" : "object"
+                     },
+                     "type" : "array"
+                  },
+                  {
+                     "$ref" : "#/definitions/reference"
+                  }
+               ]
+            },
             "applicationLanguage" : {
                "default" : "utf-8",
                "description" : "The character encoding for the application. The character encoding determines how the policy processes the character sets. The default is utf-8.",
@@ -221,6 +326,9 @@
                                  },
                                  "name" : {
                                     "enum" : [
+                                       "VIOL_ACCESS_INVALID",
+                                       "VIOL_ACCESS_MALFORMED",
+                                       "VIOL_ACCESS_MISSING",
                                        "VIOL_ASM_COOKIE_MODIFIED",
                                        "VIOL_BLACKLISTED_IP",
                                        "VIOL_COOKIE_EXPIRED",
@@ -1013,6 +1121,13 @@
                               "default" : false,
                               "description" : "Determines whether the responses to requests that match the respective file types are inspected for attack signature detection.\nThis attribute is relevant only to *allowed* file types.",
                               "type" : "boolean"
+                           },
+                           "responseCheckLength" : {
+                              "default" : 20000,
+                              "description" : "Determines how much of the response body will be checked for signatures.\nWhen value is set to 0, only the header will be checked.\nThis attribute is relevant only to *allowed* file types.",
+                              "maximum" : 10000000000,
+                              "minimum" : 0,
+                              "type" : "integer"
                            },
                            "type" : {
                               "default" : "explicit",
@@ -2119,7 +2234,7 @@
                               "type" : "string"
                            },
                            "condition" : {
-                              "description" : "Specifies the condition under which the override rule should be applied.\n\nExample: \"clientIp != '10.0.0.5' and userAgent.lower().contains('WebRobot')\"\n\nCondition Syntax:\n\n- The condition consists of one or more clauses separated by **and**.\n\n  Example: \"clientIp == '10.0.0.5' and host.startsWith('internal')\"\n\n- Each clause can optionally start with **not** - to negate the expression.\n\n  Example: \"not clientIp == '127.0.0.1'\"\n\n- A clause can be a simple comparison between two value expressions, or a boolean function applied to a literal value.\n\nSupported comparison operators:\n\n  - **==** - Checks for equality between two value expressions.\n  - **!=** - Checks for inequality between two value expressions.\n\n  Example: \"clientIp != '10.0.0.5'\" (equivalent to \"not clientIp == '10.0.0.5'\")\n\nSupported boolean functions:\n\n  - **matches**: Performs an exact match of a value expression, equivalent to **==**.\n  - **startsWith**: Checks if a value expression starts with a specific substring.\n  - **contains**: Checks if a value expression contains a specific substring.\n\n  Example: \"uri.startsWith('/api')\"\n\n**Note**: Functions \"startsWith\" and \"contains\" are not applicable to the \"clientIp\" attribute. Regular expressions are not supported.\n\n- Value expressions can be a request attribute, literal value, or a value function.\n- A literal can be a string value enclosed in single quotes, or can be the keyword \"null\" without quotes.\n\n  Example: \"userAgent == null\"\n\nSupported value functions:\n\n  - **lower**: Any boolean function applied on the resulting string will be **case insensitive**. Applicable to ANSI characters only.\n\n  Example: \"uri.lower().contains('BaR')\" will match the URI \"/Foo/bAr\"\n\nRequest Attributes:\n\n- **clientIp**: Client IP address in canonical IPv4 or IPv6 format. Use CIDR notation for subnet definition. Example: *192.168.1.2* or *fd00:1::/48*. If *trustXff* (X-Forwarded-For) is enabled in the containing policy, then the value is taken from the configured header (XFF or other). The only supported boolean function for the clientIP attribute is *matches*.\n- **host**: The value of the Host header\n- **method**: The HTTP method in the request\n- **uri**: The URI (path part) of the request\n- **userAgent**: The value of the User-Agent header, or *null* (without quotes) if not present",
+                              "description" : "Specifies the condition under which the override rule should be applied.\n\nExample: \"clientIp != '10.0.0.5' and userAgent.lower().contains('WebRobot')\"\n\nCondition Syntax:\n\n- The condition consists of one or more clauses separated by **and** or **or**.\n\n  Example: \"clientIp == '10.0.0.5' and (host.startsWith('internal') or uri.contains('api'))\"\n\n- Each clause can optionally start with **not** - to negate the expression.\n\n  Example: \"not clientIp == '127.0.0.1'\"\n\n- **not** can also be used to negate a parenthesized expression.\n\n  Example: \"not (method == 'GET' or method == 'PUT')\"\n\n- A clause can be a simple comparison between two value expressions, or a boolean function applied to a literal value.\n\nSupported comparison operators:\n\n  - **==** - Checks for equality between two value expressions.\n  - **!=** - Checks for inequality between two value expressions.\n\n  Example: \"clientIp != '10.0.0.5'\" (equivalent to \"not clientIp == '10.0.0.5'\")\n\nSupported boolean functions:\n\n  - **matches**: Performs an exact match of a value expression, equivalent to **==**.\n  - **startsWith**: Checks if a value expression starts with a specific substring.\n  - **contains**: Checks if a value expression contains a specific substring.\n\n  Example: \"uri.startsWith('/api')\"\n\n**Note**: Functions \"startsWith\" and \"contains\" are not applicable to the \"clientIp\" attribute. Regular expressions are not supported.\n\n- Value expressions can be a request attribute, literal value, or a value function.\n- A literal can be a string value enclosed in single quotes, or can be the keyword \"null\" without quotes.\n\n  Example: \"userAgent == null\"\n\nSupported value functions:\n\n  - **lower**: Any boolean function applied on the resulting string will be **case insensitive**. Applicable to ANSI characters only.\n\n  Example: \"uri.lower().contains('BaR')\" will match the URI \"/Foo/bAr\"\n\nRequest Attributes:\n\n- **clientIp**: Client IP address in canonical IPv4 or IPv6 format. Use CIDR notation for subnet definition. Example: *192.168.1.2* or *fd00:1::/48*. If *trustXff* (X-Forwarded-For) is enabled in the containing policy, then the value is taken from the configured header (XFF or other). The only supported boolean function for the clientIP attribute is *matches*.\n- **host**: The value of the Host header\n- **method**: The HTTP method in the request\n- **uri**: The URI (path part) of the request\n- **userAgent**: The value of the User-Agent header, or *null* (without quotes) if not present\n- **parameters['<name>']**: (map-type) The value of the specified parameter name (limited to query string parameters). Example: \"parameters['id'] == '11'\"\n- **cookies['<name>']**: (map-type) The value of the specified cookie name. Example: \"cookies['Path'].contains('product')\"\n- **headers['<name>']**: (map-type) The value of the specified header name. Example: \"headers['Accept'].startsWith('application')\"\n\n**Note**: The \"headers['<name>']\" attribute does not support 'Cookie' as a header name.",
                               "type" : "string"
                            },
                            "extendsPolicy" : {
@@ -2172,7 +2287,7 @@
                            },
                            "arraySerializationFormat" : {
                               "default" : "csv",
-                              "description" : "Specifies type of serialization for array of primitives parameter.\nSerialization defines how multiple values are delimited - format that can be transmitted and reconstructed later:\n - **pipe**: pipe-separated values. Array color=[\"blue\",\"black\"] -> color=blue|black.\n - **form**: ampersand-separated values. Array color=[\"blue\",\"black\"] -> color=blue,black.\n - **matrix**: semicolon-prefixed values. Array color=[\"blue\",\"black\"] -> ;color=blue,black.\n - **tsv**: tab-separated values. Aarray color=[\"blue\",\"black\"] -> color=blue\\tblack.\n - **csv**: comma-separated values. Array color=[\"blue\",\"black\"] -> color=blue,black.\n - **label**: dot-prefixed values. Array color=[\"blue\",\"black\"] -> .blue.black.\n - **multi**: multiple parameter instances rather than multiple values. Array color=[\"blue\",\"black\"] -> color=blue&color=black.\n - **ssv**: space-separated values. Array color=[\"blue\",\"black\"] -> color=blue black.\n - **multipart**: defines array of files.\n\n**Notes**:\n - This attribute is relevant only for parameters with **array** *valueType*.\n - **multi** and **form** serializations can be defined for parameter with *query*, *form-data* or *cookie* locations only.\n - **multipart** serialization can be defined for parameter with *form-data* location only.\n - **matrix** and **label** serializations can be defined for parameter with *path* location only.",
+                              "description" : "Specifies type of serialization for array of primitives parameter.\nSerialization defines how multiple values are delimited - format that can be transmitted and reconstructed later:\n\n - **pipe**: pipe-separated values. Array color=[\"blue\",\"black\"] -> color=blue|black.\n - **form**: ampersand-separated values. Array color=[\"blue\",\"black\"] -> color=blue,black.\n - **matrix**: semicolon-prefixed values. Array color=[\"blue\",\"black\"] -> ;color=blue,black.\n - **tsv**: tab-separated values. Array color=[\"blue\",\"black\"] -> color=blue\\tblack.\n - **csv**: comma-separated values. Array color=[\"blue\",\"black\"] -> color=blue,black.\n - **label**: dot-prefixed values. Array color=[\"blue\",\"black\"] -> .blue.black.\n - **multi**: multiple parameter instances rather than multiple values. Array color=[\"blue\",\"black\"] -> color=blue&color=black.\n - **ssv**: space-separated values. Array color=[\"blue\",\"black\"] -> color=blue black.\n - **multipart**: defines array of files.\n\n**Notes**:\n\n - This attribute is relevant only for parameters with **array** *valueType*.\n - **multi** and **form** serializations can be defined for parameter with *query*, *form-data* or *cookie* locations only.\n - **multipart** serialization can be defined for parameter with *form-data* location only.\n - **matrix** and **label** serializations can be defined for parameter with *path* location only.",
                               "enum" : [
                                  "csv",
                                  "form",
@@ -2401,7 +2516,7 @@
                            },
                            "objectSerializationStyle" : {
                               "default" : "simple",
-                              "description" : "Specifies the type of serialization for an object or complex array parameter.\nSerialization defines how multiple values are delimited - format that can be transmitted and reconstructed later:\n - **pipe-delimited**: pipe-separated values. Object color={\"R\":100,\"G\":200} -> color=R|100|G|200.\n - **form**: ampersand-separated values. Object color={\"R\":100,\"G\":200} -> color=R,100,G,200 if *explodeObjectSerialization* set to **false** or -> R=100&G=200 if *explodeObjectSerialization* set to **true**.\n - **space-delimited**: space-separated values. Object color={\"R\":100,\"G\":200} -> color=R 100 G 200.\n - **deep-object**: rendering nested objects. Object color={\"R\":100,\"G\":200} -> color[R]=100&color[G]=200.\n - **matrix**: semicolon-prefixed values. Object color={\"R\":100,\"G\":200} -> ;color=R,100,G,200 if *explodeObjectSerialization* set to **false** or -> ;R=100;G=200 if *explodeObjectSerialization* set to **true**.\n - **simple**: comma-separated values. Object color={\"R\":100,\"G\":200} -> R,100,G,200 if *explodeObjectSerialization* set to **false** or -> R=100,G=200 if *explodeObjectSerialization* set to **true**.\n - **label**: dot-prefixed values. Object color={\"R\":100,\"G\":200} -> .R.100.G.200 if *explodeObjectSerialization* set to **false** or -> .R=100.G=200 if *explodeObjectSerialization* set to **true**.\n\n**Notes**:\n - This attribute is relevant only for parameters with **object** or **openapi-array** *valueType*.\n - **form** serialization can be defined for a parameter with *query*, *form-data* or *cookie* locations only.\n - **matrix** and **label** serializations can be defined for an array parameter with *path* location only.\n - **simple** serializations can be defined for a parameter with *path* and *header* locations only.\n - **deep-object** serialization can be defined for a parameter with *query* or *form-data* locations only.",
+                              "description" : "Specifies the type of serialization for an object or complex array parameter.\nSerialization defines how multiple values are delimited - format that can be transmitted and reconstructed later:\n\n - **pipe-delimited**: pipe-separated values. Object color={\"R\":100,\"G\":200} -> color=R|100|G|200.\n - **form**: ampersand-separated values. Object color={\"R\":100,\"G\":200} -> color=R,100,G,200 if *explodeObjectSerialization* set to **false** or -> R=100&G=200 if *explodeObjectSerialization* set to **true**.\n - **space-delimited**: space-separated values. Object color={\"R\":100,\"G\":200} -> color=R 100 G 200.\n - **deep-object**: rendering nested objects. Object color={\"R\":100,\"G\":200} -> color[R]=100&color[G]=200.\n - **matrix**: semicolon-prefixed values. Object color={\"R\":100,\"G\":200} -> ;color=R,100,G,200 if *explodeObjectSerialization* set to **false** or -> ;R=100;G=200 if *explodeObjectSerialization* set to **true**.\n - **simple**: comma-separated values. Object color={\"R\":100,\"G\":200} -> R,100,G,200 if *explodeObjectSerialization* set to **false** or -> R=100,G=200 if *explodeObjectSerialization* set to **true**.\n - **label**: dot-prefixed values. Object color={\"R\":100,\"G\":200} -> .R.100.G.200 if *explodeObjectSerialization* set to **false** or -> .R=100.G=200 if *explodeObjectSerialization* set to **true**.\n\n**Notes**:\n\n - This attribute is relevant only for parameters with **object** or **openapi-array** *valueType*.\n - **form** serialization can be defined for a parameter with *query*, *form-data* or *cookie* locations only.\n - **matrix** and **label** serializations can be defined for an array parameter with *path* location only.\n - **simple** serializations can be defined for a parameter with *path* and *header* locations only.\n - **deep-object** serialization can be defined for a parameter with *query* or *form-data* locations only.",
                               "enum" : [
                                  "deep-object",
                                  "form",
@@ -3045,6 +3160,10 @@
                                  "delete"
                               ],
                               "type" : "string"
+                           },
+                           "accessProfile" : {
+                              "$ref" : "#/properties/policy/properties/access-profiles/oneOf/0/items",
+                              "type" : "object"
                            },
                            "allowRenderingInFrames" : {
                               "default" : "never",

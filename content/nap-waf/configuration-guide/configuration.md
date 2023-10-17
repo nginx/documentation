@@ -5,8 +5,7 @@ authors: []
 categories:
 - configuration guide
 date: "2021-04-14T13:32:41+00:00"
-description: This guide explains the NGINX App Protect WAF security features and how
-  to use them.
+description: This guide explains the NGINX App Protect WAF security features and how to use them.
 docs: DOCS-647
 doctypes:
 - task
@@ -31,7 +30,7 @@ roles:
 title: NGINX App Protect WAF Configuration Guide
 toc: true
 versions:
-- "4.5"
+- "4.6"
 weight: 200
 ---
 
@@ -1233,11 +1232,60 @@ In this example, we enable the file type violation in blocking mode. In the deta
 ~~~
 
 
+#### Response Signatures
+All Response Signatures are attack signatures detected on the response side, in contrast to the request side.
+
+
+#### Restrict Response Signatures
+
+Restrict Response Signatures enhancement assists the users in saving time by limiting the search for response signatures to a specified amount. You can enable the signature verification in the response by setting the `responseCheck` parameter to true. However, the restriction of certain signatures is set in the policy and then enforced by the App Protect.
+
+In the policy base template under the “filetypes” section, make sure you enable the `responseCheck` attribute for `responseCheckLength` to work properly. The default value of `responseCheck` parameter is set to false. 
+
+The `responseCheckLength` parameter refers to the number of uncompressed bytes in the response body prefix that are examined for signatures. The `responseCheckLength` field will be added with the default value of **20000** bytes which means that the first 20,000 bytes of the response body will undergo signature verification. 
+
+Restrict Response Signature example:
+
+In the below policy example, in the "filetypes" section, the `responseCheck` parameter is set to true, indicating that response check will be enabled.
+When enforcing signatures on the response, we have the flexibility to restrict the portion of the response body that requires validation. In this case, the policy is configured with `responseCheckLength` set to 1000, signifying that only the initial 1000 bytes of the response body will undergo signature verification.
+
+~~~json
+{
+    "policy": {
+        "name": "response_signatures_block",
+        "template": {
+            "name": "POLICY_TEMPLATE_NGINX_BASE"
+        },
+        "applicationLanguage": "utf-8",
+        "enforcementMode": "blocking",
+        "filetypes": [
+           {
+            "name": "*",
+            "type": "wildcard",
+            "responseCheck": true,
+		    "responseCheckLength": 1000
+           }
+        ],
+            "signature-sets": [
+          {
+                "name": "All Response Signatures",
+                "block": true,
+                "alarm": true
+           }
+        ]
+    }
+}
+~~~
+
+#### How Does Restrict Response Signature Check Work?
+
+The response signature check is always done on the configured `responseCheckLength` as described above. Usually NGINX App Protect WAF will buffer only that part of the response saving memory and CPU, but in some conditions the whole response may have to be buffered, such as when the response body is compressed.
+
 #### Allowed Methods
 
-  In the policy, you can specify what methods to allow or disallow.
+In the policy, you can specify what methods to allow or disallow.
 
-  In this example, we enable the illegal method violation in blocking mode. In the methods configuration, we define which of the methods are allowed. If a method is allowed by default, it can be disallowed via `"$action": "delete"`. In the following example we disallow the default allowed method `PUT` by removing it from the default enforcement. For illustrative purposes this example also has all the other methods that are allowed by default defined in the configuration, but in practicality they do not actually need to be included explicitly to be allowed:
+In this example, we enable the illegal method violation in blocking mode. In the methods configuration, we define which of the methods are allowed. If a method is allowed by default, it can be disallowed via `"$action": "delete"`. In the following example we disallow the default allowed method `PUT` by removing it from the default enforcement. For illustrative purposes this example also has all the other methods that are allowed by default defined in the configuration, but in practicality they do not actually need to be included explicitly to be allowed:
 
 
 ~~~json
@@ -3480,7 +3528,7 @@ Apreload is a new configuration tool where the NGINX App Protect WAF can be conf
 #### Some Conditions Required for Apreload to Work:
 
 - For apreload to work, NGINX must be started first.
-- Apreload may be used if the app protect configuration (policies, log configuration files, global settings etc) have been modified, but the NGINX configuration hasn't changed.<br>
+- Apreload may be used if the App Protect configuration (policies, log configuration files, global settings etc) have been modified, but the NGINX configuration hasn't changed.<br>
 
     Whenever `nginx.conf` file or any of its included files are modified, nginx reload must be used, rather than apreload. This will also update any changes in the App Protect configuration (policies, logging profiles, global settings). This applies also if only the App Protect directives have been modified in the `nginx.conf` file.
 - Apreload should be executed with the same user that executes NGINX to avoid any access error. 
@@ -4557,10 +4605,10 @@ This section describes how to configure GraphQL with minimal configuration. Refe
 
 GraphQL policy consists of three basic elements: GraphQL Profile, GraphQL Violations and GraphQL URL.
 
-You can enable GraphQL on app protect by following these steps: 
+You can enable GraphQL on App Protect by following these steps: 
 
 1. Create a GraphQL policy that includes the policy name. Note that GraphQL profile and GraphQL violation will be enabled by default in the default policy.
-You can enable GraphQL on app protect with minimum effort by using the following GraphQL policy example.
+You can enable GraphQL on App Protect with minimum effort by using the following GraphQL policy example.
 2. Add the GraphQL URL to the policy and associate the GraphQL default profile with it.
 3. Optionally, if the app that uses this policy serves only GraphQL traffic, then delete the wildcard URL "*" from the policy so that requests to any URL other than **/graphql** will trigger a violation. In the example below we assume this is the case.
 4. Update the `nginx.conf` file. To enforce GraphQL settings, update the `app_protect_policy_file` field with the GraphQL policy name in `nginx.conf` file. Perform nginx reload once `nginx.conf` file is updated to enforce the GraphQL settings.
@@ -4663,7 +4711,7 @@ See also the [Violations](#violations) section for more details.
 
 While configuring GraphQL, since the GraphQL violations are enabled by default, you can change the GraphQL violations settings i.e. alarm: `true` and block: `false` under the "blocking settings". In this manner, the GraphQL profile detects violations but does not block the request. They may contribute to the Violation Rating, which, if raised above 3, will automatically block the request. 
 
-However, setting the alarm and block to `true` will enforce block settings and app protect will block any violating requests.
+However, setting the alarm and block to `true` will enforce block settings and App Protect will block any violating requests.
 
 See below example for more details:
 
@@ -4932,7 +4980,7 @@ Here is an example of a declarative policy using an override rules entity:
       },
       {
         "name": "login_page",
-        "condition": "method == 'POST' and uri.contains('/login/')",
+        "condition": "method == 'POST' and not parameters['ref'].lower().matches('example') and uri.contains('/login/')",
         "extendsPolicy": false,
         "override": {
           "policy": {
@@ -4959,7 +5007,15 @@ Here is an example of a declarative policy using an override rules entity:
       },
       {
         "name": "api-strict",
-        "condition": "uri.contains('api4') and not clientIp.matches('fd00:1::/48') and not userAgent.lower().startsWith('Mozilla')",
+        "condition": "uri.contains('api4') and not (clientIp.matches('fd00:1::/48') or userAgent.lower().startsWith('Mozilla'))",
+        "extendsPolicy": false,
+        "override": {
+          "$ref": "file:///NginxStrictPolicy.json"
+        }
+      },
+      {
+        "name": "strict-post",
+        "condition": "method.matches('POST') and (cookies['sessionToken'] != 'c2Vzc2lvblRva2Vu' or headers['Content-Encoding'] == 'gzip')",
         "extendsPolicy": false,
         "override": {
           "$ref": "file:///NginxStrictPolicy.json"
@@ -4970,13 +5026,14 @@ Here is an example of a declarative policy using an override rules entity:
 }
 ```
 
-The above "override_rules_example" policy contains three override rules:
+The above "override_rules_example" policy contains four override rules:
 
 1. The **"localhost-log-only"** rule applies to the requests with a user agent header starting with "curl", a host header containing "localhost", and a client IP address set to 127.0.0.1. It switches the enforcement mode to "transparent" without blocking the request. The remaining policy settings remain unchanged. This type of override rule is an example of an **Inline Policy Reference**.
 2. The **"login_page"** rule is triggered by POST requests to URIs containing "/login/". Since the "extendsPolicy" field is set to false, it overrides the policy with a new one named "login_page_block_redirect". This new policy is independent of the "override_rules_example" policy. It enables all signature sets and redirects the user to a rejection page. This is another example of an **Inline Policy Reference** with a different condition.
 3. The **"api-strict"** rule is applied for requests with "api4" in the URI, except for client IP addresses matching the "fd00:1::/48" range and user agents starting with "Mozilla". It references an external policy file named "NginxStrictPolicy.json" located at "/etc/app_protect/conf/" to override the current policy. The extendsPolicy is set to false and the external policy can be specified using a reference to its file using **$ref**. The file is the JSON policy source of that policy. This type of policy switching is known as **External Policy Reference**.
+4. The **"strict-post"** rule is triggered when POST requests include a session token in the cookies that is not equal to "c2Vzc2lvblRva2Vu" or when the "gzip" value is found in the content-encoding headers. This rule follows a similar approach to referencing an external policy file, just like the **api-strict** rule mentioned above.
 
-These three rules demonstrate how the override rules feature allows for customization and the ability to modify specific aspects of the original policy based on predefined conditions.
+These four rules demonstrate how the override rules feature allows for customization and the ability to modify specific aspects of the original policy based on predefined conditions.
 
 
 {{< note >}}
@@ -5100,6 +5157,307 @@ Example of Cyclic Override Rule error:
 "error_message": "Failed to import an override policy: Cyclic override-rules detected."
 ```
 
+## JSON Web Token Protection
+
+### Overview
+JSON Web Token (JWT) is a compact and self-contained way to represent information between two parties in a JSON (JavaScript Object Notation) format and is commonly used for authentication and authorization. With NGINX App Protect now it is possible to control access to its application using JWT validation. NGINX App Protect WAF validates the authenticity and well-formedness of JWTs coming from a client, denying access to the service exclusively when the validation process fails. JWT is mainly used for API access. 
+
+When a user logs in to a web application, they might receive a JWT, which can then be included in subsequent requests to the server. The server can validate the JWT to ensure that the user is authenticated to access the requested resources.
+
+Now NGINX App Protect WAF provides JSON Web Token (JWT) protection. NGINX App Protect WAF will be placed in the path leading to the application server and will handle the token for the application. This includes:
+
+1. Validating the token's existence and ensuring its correct structure for specific URLs.
+2. Verifying the token's signature based on provisioned certificates.
+3. Check the validity period of the token.
+4. Extract the user identity from the token and use it for logging and session awareness.
+
+The JSON Web Token consists of three parts: the **Header**, **Claims** and **Signature**. The first two parts are in JSON and Base64 encoded when carried in a request. The three parts are separated by a dot "." delimiter and put in the authorization header of type "Bearer", but can also be carried in a query string parameter.
+
+- **Header**: It contains information about the type of token (usually "JWT") and the cryptographic algorithm being used to secure the JSON Web Signature (JWS).
+
+- **Claims**: This part contains claims, which refers to the statements or assertions about an entity (typically, the user) that the token is issued for. Claims are **key/value** pairs contained within the token's payload. The claims is the second part of a JWT and typically looks like this:
+
+    ```json
+    {
+    "sub": "1234567890",
+    "name": "John Doe",
+    "iat": 1654591231,
+    "nbf": 1654607591,
+    "exp": 1654608348
+    }
+    ```
+    In the example above, the payload contains several claims:
+
+    - sub (Subject): Represents the subject of the JWT, typically the user or entity for which the token was created.
+
+    - name (Issuer): Indicates the entity that issued the JWT. It is a string that identifies the issuer of the token.
+
+    - iat (Issued At): Indicates the time at which the token was issued. Like exp, it is represented as a timestamp.
+
+    - nbf (Not Before): Indicates the time before which the token should not be considered valid.
+
+    - exp (Expiration Time): Specifies the expiration time of the token. It is represented as a numeric timestamp (e.g., 1654608348), and the token is considered invalid after this time.
+
+    These claims provide information about the JWT and can be used by the recipient to verify the token's authenticity and determine its validity. Additionally, you can include custom claims in the payload to carry additional information specific to your application. 
+
+- **Signature**: To create the signature part, the header and payload are encoded using a specified algorithm and a secret key. This signature can be used to verify the authenticity of the token and to ensure that it has not been tampered with during transmission. The signature is computed based on the algorithm and the keys used and also Base64-encoded.
+
+#### NGINX App Protect WAF supports the following types of JWT:
+
+JSON Web Signature (JWS) - JWT content is digitally signed. The following algorithm can be used for signing:
+
+- RSA/SHA-256 (RS256 for short)
+
+Here is an example of a Header: describes a JWT signed with HMAC 256 encryption algorithm:
+
+```json
+{
+  "alg": "RS256",
+  "typ": "JWT"
+}
+```
+
+### Configuring NGINX App Protect WAF to Authenticate JSON Web Token
+
+#### Access Profile
+
+NGINX App Protect WAF introduces a new policy entity known as "**access profile**" to authenticate JSON Web Token. Access Profile is added to the app protect policy to enforce JWT settings. JSON Web Token needs to be applied to the URLs for enforcement and includes the actions to be taken with respect to access tokens. It is specifically associated with HTTP URLs and does not have any predefined default profiles. 
+
+{{< note >}}At present, only one access profile is supported within the App Protect policy. However, the JSON schema for the policy will be designed to accommodate multiple profiles in the future.{{< /note >}}
+
+The access profile includes:
+
+- **Enforcement Settings**: here you can configure the "enforceMaximumLength," "enforceValidityPeriod," and "keyFiles" settings within the scope of this profile, allowing you to enable or disable them as needed.
+- **Location**: here you can modify the location settings, choosing between "header" or "query," as well as specifying the "name" for the header or parameter.
+- **Access Profile Settings**: here you can set the "maximumLength" as well as specify the "name" and "type" for the access profile, with "jwt" representing JSON Web Token.
+
+Access Profile example: 
+
+Refer to the following example where all access profile properties are configured to enforce specific settings within the App Protect policy. In this instance, we have established an access profile named "**access_profile_jwt**" located in the **authorization header**. The "maximumLength" for the token is defined as **2000**, and "verifyDigitalSignature" is set to **true**.
+
+```shell
+{
+    "policy": {
+        "name": "jwt_policy",
+        "template": { "name": "POLICY_TEMPLATE_NGINX_BASE"
+        },
+        "access-profiles": [
+         {
+            "description": "",
+            "enforceMaximumLength": true,
+            "enforceValidityPeriod": false,
+            "keyFiles": [
+               {
+                  "contents": "{\r\n  \"keys\": [\r\n    {\r\n      \"alg\": \"RS256\",\r\n      \"e\": \"AQAB\",\r\n      \"kid\": \"1234\",\r\n      \"kty\": \"RSA\",\r\n      \"n\": \"tSbi8WYTScbuM4fe5qe4l60A2SG5oo3u5JDBtH_dPJTeQICRkrgLD6oyyHJc9BCe9abX4FEq_Qd1SYHBdl838g48FWblISBpn9--B4D9O5TPh90zAYP65VnViKun__XHGrfGT65S9HFykvo2KxhtxOFAFw0rE6s5nnKPwhYbV7omVS71KeT3B_u7wHsfyBXujr_cxzFYmyg165Yx9Z5vI1D-pg4EJLXIo5qZDxr82jlIB6EdLCL2s5vtmDhHzwQSdSOMWEp706UgjPl_NFMideiPXsEzdcx2y1cS97gyElhmWcODl4q3RgcGTlWIPFhrnobhoRtiCZzvlphu8Nqn6Q\",\r\n      \"use\": \"sig\",\r\n      \"x5c\": [\r\n        \"MIID1zCCAr+gAwIBAgIJAJ/bOlwBpErqMA0GCSqGSIb3DQEBCwUAMIGAMQswCQYDVQQGEwJpbDEPMA0GA1UECAwGaXNyYWVsMRAwDgYDVQQHDAd0ZWxhdml2MRMwEQYDVQQKDApmNW5ldHdvcmtzMQwwCgYDVQQLDANkZXYxDDAKBgNVBAMMA21heDEdMBsGCSqGSIb3DQEJARYOaG93ZHlAbWF0ZS5jb20wIBcNMjIxMTA3MTM0ODQzWhgPMjA1MDAzMjUxMzQ4NDNaMIGAMQswCQYDVQQGEwJpbDEPMA0GA1UECAwGaXNyYWVsMRAwDgYDVQQHDAd0ZWxhdml2MRMwEQYDVQQKDApmNW5ldHdvcmtzMQwwCgYDVQQLDANkZXYxDDAKBgNVBAMMA21heDEdMBsGCSqGSIb3DQEJARYOaG93ZHlAbWF0ZS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC1JuLxZhNJxu4zh97mp7iXrQDZIbmije7kkMG0f908lN5AgJGSuAsPqjLIclz0EJ71ptfgUSr9B3VJgcF2XzfyDjwVZuUhIGmf374HgP07lM+H3TMBg/rlWdWIq6f/9ccat8ZPrlL0cXKS+jYrGG3E4UAXDSsTqzmeco/CFhtXuiZVLvUp5PcH+7vAex/IFe6Ov9zHMVibKDXrljH1nm8jUP6mDgQktcijmpkPGvzaOUgHoR0sIvazm+2YOEfPBBJ1I4xYSnvTpSCM+X80UyJ16I9ewTN1zHbLVxL3uDISWGZZw4OXirdGBwZOVYg8WGuehuGhG2IJnO+WmG7w2qfpAgMBAAGjUDBOMB0GA1UdDgQWBBSHykVOY3Q1bWmwFmJbzBkQdyGtkTAfBgNVHSMEGDAWgBSHykVOY3Q1bWmwFmJbzBkQdyGtkTAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQCgcgp72Xw6qzbGLHyNMaCm9A6smtquKTdFCXLWVSOBix6WAJGPv1iKOvvMNF8ZV2RU44vS4Qa+o1ViBN8DXuddmRbShtvxcJzRKy1I73szZBMlZL6euRB1KN4m8tBtDj+rfKtPpheMtwIPbiukRjJrzRzSz3LXAAlxEIEgYSifKpL/okYZYRY6JF5PwSR0cvrfe/qa/G2iYF6Ps7knxy424RK6gpMbnhxb2gdhLPqDE50uxkr6dVHXbc85AuwAi983tOMhTyzDh3XTBEt2hr26F7jSeniC7TTIxmMgDdtYzRMwdb1XbubdtzUPnB/SW7jemK9I45kpKlUBDZD/QwER\"\r\n      ]\r\n    }\r\n  ]\r\n}",  # there can be more than one key file in the policy JSON schema, but we support only one for now.
+                  "fileName": "JWKFile.json"
+               }
+            ],
+            "location": {
+               "in": "header",  # the other option is: "query"
+               "name": "authorization"  # the name of the header or parameter (according to "part")
+            },
+            "maximumLength": 2000,
+            "name": "access_profile_jwt",
+            "type": "jwt",
+            "usernameExtraction": {
+               "claimPropertyName": "sub",
+               "enabled": true,
+               "isMandatory": false
+            },
+            "verifyDigitalSignature": true
+        }
+      ],
+      "urls": [
+         {
+            "name": "/jwt",
+            "accessProfile": {
+               "name": "access_profile_jwt"
+            },
+            "attackSignaturesCheck": true,
+            "isAllowed": true,
+            "mandatoryBody": false,
+            "method": "*",
+            "methodsOverrideOnUrlCheck": false,
+            "name": "/jwt",
+            "performStaging": false,
+            "protocol": "http",
+            "type": "explicit"
+         }
+      ]
+    }
+}
+```
+
+{{< note >}} For access profile default values and their related field names, see NGINX App Protect WAF [Declarative Policy guide]({{< relref "/nap-waf/declarative-policy/policy.md" >}}). {{< /note >}}
+
+### Access Profile in URL Settings
+
+The next step to configure JWT is to define the URL settings. Add the access Profile name that you defined previously under the access profiles in the "name" field. From the previous example, we associate the access profile "**access_profile_jwt**" with the "name": **/jwt** in the URLs section to become effective, which means URLs with /jwt name are permitted for this feature and will be used for all JWT API requests.
+
+Please note that the access profile cannot be deleted if it is in use in any URL.
+
+### Attack Signatures
+
+Attack signatures are detected within the JSON values of the token, i.e. the header and claims parts, but not on the digital signature part of the token. The detection of signatures, and specifically which signatures are recognized, depends on the configuration entity within the Policy. Typically, this configuration entity is the Authorization HTTP header or else, the header or parameter entity configured as the location of the token in the access profile.
+
+If the request doesn't align with a URL associated with an Access Profile, an attempt is made to parse the "bearer" type Authorization header, but no violations are raised, except for Base64. More information can be found below:
+
+1. Token parsed successfully - No violations are detected when enforced on URL with or without access profile.
+
+2. There are more or less than two dots in the token - `VIOL_ACCESS_MALFORMED` is detected when enforced on URL with access profile.
+
+3. Base64 decoding failure - `VIOL_ACCESS_MALFORMED` is detected when enforced on URL with access profile. `VIOL_PARAMETER_BASE64` is detected when enforced with access profile. 
+
+4. JSON parsing failure - `VIOL_ACCESS_MALFORMED` is detected when enforced on URL with access profile.
+
+
+### JSON Web Token Violations
+
+NGINX App Protect WAF introduces three new violations specific to JWT: `VIOL_ACCESS_INVALID`, `VIOL_ACCESS_MISSING` and `VIOL_ACCESS_MALFORMED`. 
+
+Under the “blocking-settings,” user can either enable or disable these violations. Note that these violations will be enabled by default. The details regarding logs will be recorded in the security log.
+
+See the below example for these violations.
+
+```shell
+{
+    "policy": {
+        "name": "jwt_policy",
+        "template": { "name": "POLICY_TEMPLATE_NGINX_BASE" },
+        "blocking-settings": {
+           "violations": [
+            {
+               "alarm": true,
+               "block": false,
+               "name": "VIOL_ACCESS_INVALID"
+            },
+            {
+               "alarm": true,
+               "block": false,
+               "name": "VIOL_ACCESS_MISSING"
+            },
+            {
+               "alarm": true,
+               "block": false,
+               "name": "VIOL_ACCESS_MALFORMED"
+            }
+            ]
+        }    
+    }
+}
+```
+
+### Violation Rating Calculation
+The default violation rating is set to the level of **5** regardless of any violation. Any changes to these violation settings here will override the default settings. The details regarding logs will be recorded in the security log. All violations will be disabled on upgrade. 
+
+See also the [Violations](#violations) section for more details.
+
+### Other References
+For more information about JSON Web Token (JWT) see below reference links:
+
+- [The definition of the JSON Web Token (JWT)](https://datatracker.ietf.org/doc/html/rfc7519)
+- [Specification of how tokens are digitally signed](https://datatracker.ietf.org/doc/html/rfc7515)
+- [The format of the JSON Web Key (JWK) that needs to be included in the profile for extracting the public keys used to verify the signatures](https://datatracker.ietf.org/doc/html/rfc7515)
+- [Examples of Protecting Content Using JSON Object Signing and Encryption (JOSE)](https://datatracker.ietf.org/doc/html/rfc7520)
+
+
+## Custom Dimensions Log Entries
+
+### Overview
+
+Custom dimensions log entries feature refers to the new configuration in NGINX App Protect WAF, where the new directive called `app_protect_custom_log_attribute` is assigned to a particular location or server or http level in the `nginx.conf` file. The need is to be able to add custom identifiers to the respective location and/or server and identify requests in the Security Log by those identifiers.
+
+The `app_protect_custom_log_attribute` directive will be used to track the assigned location/server/http dimension of each request by adding the `app_protect_custom_log_attribute` to the **Security Logs** a.k.a **Request Logs**. Since it is a custom attribute a customer can set, that custom attribute will appear for every request log entry that was handled by that location/server.
+
+### Configuration
+
+ A new directive `app_protect_custom_log_attribute` will be added to the `nginx.conf` file. You can set this directive at all scopes: http, server and location. The setting at the location scope overrides the setting in the server and/or http scopes and the server scope overrides the http scope. The `app_protect_custom_log_attribute` directive syntax will consist of a **name/value** or **key/value** pair i.e. "app_protect_custom_log_attribute <name> <value>". 
+
+Example Configuration:
+
+In the below example, we are configuring the `app_protect_custom_log_attribute` directive at the server and location level where we define the **key/value** pair as one string.
+
+```nginx
+
+user nginx;
+load_module modules/ngx_http_app_protect_module.so;
+error_log /var/log/nginx/error.log debug;
+ 
+events {
+    worker_connections  65536;
+}
+server {
+  
+        listen       80;
+  
+        server_name  localhost;
+        proxy_http_version 1.1;
+        app_protect_custom_log_attribute ‘environment' 'env1';
+  
+        location / {
+  
+            app_protect_enable on;
+            app_protect_policy_file /etc/app_protect/conf/mypolicy.json;
+            app_protect_custom_log_attribute gateway gway1;
+            app_protect_custom_log_attribute component comp1;
+            proxy_pass http://172.29.38.211:80$request_uri;
+        }
+    }
+```
+
+The **key/value** pair will be 'environment env1', ‘gateway gw1’ and ‘component comp1’ in the above examples, i.e.
+
+- app_protect_custom_log_attribute environment env1;
+- app_protect_custom_log_attribute gateway gw1;
+- app_protect_custom_log_attribute component comp1;
+
+The above key/value pair will be parsed as below:
+
+```shell
+"customLogAttributes": [
+    {
+        "name": "gateway",
+        "value": "gw1"
+    },
+    {
+        "name": "component",
+        "value": "comp1"
+    },
+]
+```
+
+### Things to Remember While Configuring the Custom Dimensions Log Entries
+
+The `app_protect_custom_log_attribute` directive has a few limitations which should be kept in mind while configuring this directive:
+
+- Key and value strings are limited to 64 chars
+- Maximum possible directive numbers are limited to 10 (in total) in each context i.e. Limit of 10 keys and values
+
+### Errors and Warnings
+
+An error message "`app_protect_custom_log_attribute` directive is invalid" will be displayed in the Security Log if the below conditions are met:
+
+1. If the `app_protect_custom_log_attribute` exceeds the maximum number of 10 directives
+2. If the `app_protect_custom_log_attribute` exceeds the maximum name length of 64 chars
+3. If the `app_protect_custom_log_attribute` exceeds the maximum value of 64 chars
+
+Error message example:
+
+```shell
+app_protect_custom_log_attribute directive is invalid. Number of app_protect_custom_log_attribute directives exceeds maximum
+```
+
+### Logging and Reporting
+
+When `app_protect_custom_log_attribute` is assigned to a particular location/server/http context, it will appear in the `json_log` field as a new JSON property called "customLogAttributes" at the top level. The property will not appear if no `app_protect_custom_log_attribute` directive was assigned.
+
+Attributes at the http level applies to all servers and locations unless a specific server or location overrides the same key with a different value. Same goes for the server level and all locations under it. In the below example, the "environment" attribute will appear in logs of all locations under that server.
+
+Security logging example in json_log:
+
+```json
+""customLogAttribute"":[{""name"":""component"",""value"":""comp1""},{""name"":""gateway"",""value"":""gw1""}]}"
+```
 
 ## Directives
 
@@ -5118,7 +5476,7 @@ When applied to a cluster, all cluster members will get the same globals as expe
 |app_protect_cpu_thresholds | app_protect_cpu_thresholds high=<number_0-100> low=<number_0-100> | Sets the CPU utilization thresholds for entering and exiting failure mode respectively: when the high threshold is exceeded the system enters failure mode until CPU drops below the low threshold. Setting the value of 100 disables this feature.<br>         **Note**:  The system does not enter failure mode during policy compilation after reload even if the threshold is exceeded. | high=low=100 (disabled) | 
 |app_protect_failure_mode_action | app_protect_failure_mode_action pass &#124; drop | How to handle requests when the App Protect Enforcer cannot process them, either because it is down, disconnected or because of excessive CPU or memory utilization. There are two values:<ul><li>**pass**: Pass the request without App Protect Enforcer inspection, a.k.a. "fail-open".</li><li>**drop**: Drop the request by returning the response "503 Service Unavailable", a.k.a. "fail-close".</li></ul> | pass | 
 |app_protect_cookie_seed | app_protect_cookie_seed <string> | A long randomized string that serves to generate the encryption key for the cookies generated by App Protect. The string should contain only alphanumeric characters and be no longer than 1000 characters. | Auto-generated random string | 
-|app_protect_compressed_requests_action | app_protect_compressed_requests_action pass &#124; drop | Determines how to handle compressed requests. There are two values:<ul><li>**pass**: Pass the request without App Protect Enforcer inspection, a.k.a. "fail-open".</li><li>**drop**: Drop the request by returning the response "501 Not Implemented", a.k.a. "fail-close".</li></ul> | drop | 
+|app_protect_compressed_requests_action | app_protect_compressed_requests_action pass &#124; drop | Determines how to handle compressed requests. There are two values:<ul><li>**pass**: Pass the request without App Protect Enforcer inspection, a.k.a. "fail-open".</li><li>**drop**: Drop the request by returning the response "501 Not Implemented", a.k.a. "fail-close".</li></ul> **Note**: Starting with App Protect release version 4.6, this directive has been deprecated from the `nginx.conf` file. | drop | 
 |app_protect_request_buffer_overflow_action | app_protect_request_buffer_overflow_action pass &#124; drop | Determines how to handle requests in case the NGINX request buffer is full and requests cannot be buffered anymore. There are two values:<ul><li>**pass**: Pass the request without App Protect Enforcer inspection, a.k.a. "fail-open".</li><li>**drop**: Drop the request by resetting connection. No response page is returned, a.k.a. "fail-close".</li></ul> | pass | 
 |app_protect_user_defined_signatures | app_protect_user_defined_signatures <path> | Imports the user-defined tagged signature file with the respective tag name from the provided path. Multiple instances of this directive are supported. In order to import multiple signatures files, each file must have a different tag. | N/A | 
 |app_protect_reconnect_period_seconds| app_protect_reconnect_period_seconds <value> <br> **Value type**: number with decimal fraction <br> **Value Range**:  0-60. 0 is illegal | Determines the period of time between reconnect retries of the module to the web application firewall (WAF) engine. The time unit is seconds.| 5 |
@@ -5137,6 +5495,7 @@ This table summarizes the nginx.conf directives for NGINX App Protect WAF functi
 |app_protect_policy_file | app_protect_policy_file <file_path> | Set a App Protect policy configuring behavior for the respective context. | HTTP, Server, Location | app_protect_policy_file /config/waf/strict_policy.json | 
 |app_protect_security_log_enable | app_protect_security_log_enable on &#124; off | Whether to enable the App Protect per-request log at the respective context. | HTTP, Server, Location | app_protect_security_log_enable on | 
 |app_protect_security_log | app_protect_security_log <file_path> <destination> | Specifies the per-request logging: what to log and where | HTTP, Server, Location | app_protect_security_log /config/waf/log_illegal.json syslog:localhost:522 | 
+|app_protect_custom_log_attribute | app_protect_custom_log_attribute <key_value> | Specifies the assigned location/server/http dimension of each request. | HTTP, Server, Location | app_protect_custom_log_attribute ‘environment' 'env1' | 
 {{</bootstrap-table>}} 
 
 
@@ -5190,27 +5549,17 @@ http {
 
 #### Handling Compressed Requests
 
-Requests with compressed body encoding are rarely used and NGINX App Protect WAF does not support them. Similar to failure mode, you can decide what to do with those requests. Either:
+Starting with NGINX App Protect WAF release version 4.6, the [`app_protect_compressed_requests_action`](#global-directives) directive has been deprecated from the nginx configuration. When configuring this directive in the `nginx.conf` file, App Protect will disregard any previously used values ("pass" or "drop") and issue a warning.
 
--   **Pass** the traffic without inspection, or
--   **Drop** the traffic. This is the preferred option as passing would create a security breach.
+#### Handling Decompression
 
-The default is to **Drop**, fail open, but you can control this using the `app_protect_compressed_requests_action` directive with one argument with two possible values: "pass" or "fail" for the two above options.
+Now by default the enforcer will decompress all the HTTP compressed payload request and will apply the enforcment. The supported compression algorithms for this feature are "**gzip**" and "**deflate**". There will be no decompression, if the compression method is not supported. 
 
-This directive is also placed in the `http` block of the nginx.conf file.
+The 'Content-Encoding' header must match the compression algorithm used while sending compressed payload in a HTTP request, else the enfocer will fail to decompress the payload.
 
-~~~nginx
-...
-http {
-    ...
-    app_protect_compressed_requests_action drop;
-    ...
-    server {
-        listen       80;
-...
-    }
-...
-~~~
+The decompressed request must not exceed the size limit of 10 MB. If it does exceed this limit, NGINX App Protect WAF will only decompress the first 10 KB, ignoring the remainder, and trigger the `VIOL_REQUEST_MAX_LENGTH` violation, just as it would for an uncompressed request that exceeds 10 MB.
+
+In the cases where decompression fails,  NGINX App Protect WAF will continue with the scan in the same manner as it does for uncompressed requests.
 
 ## Violations
 
@@ -5225,6 +5574,9 @@ The following violations are supported and can be enabled by turning on the **al
 {{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
 |Violation Name | Title | Enabled Flags in Default Template | Description | Comment | 
 | ---| ---| ---| ---| --- | 
+|VIOL_ACCESS_INVALID| Access token does not comply with the profile requirements| Alarm | The system checks the access token in a request according to the access profile attached to the respective URL. The violation is raised when at least one of the enforced checks in the profile is not satisfied | This would trigger a Violation Rating of 5. |
+|VIOL_ACCESS_MISSING| Missing Access Token | Alarm | The system checks that the request contains the access token for the respective URL according to the Access Profile. The violation is raised when that token is not found.| This would trigger a Violation Rating of 5. |
+|VIOL_ACCESS_MALFORMED| Malformed Access Token | Alarm | The access token required for the URL in the request was malformed. | This would trigger a Violation Rating of 5. |
 |VIOL_ASM_COOKIE_MODIFIED | Modified ASM cookie | Alarm & Block | The system checks that the request contains an ASM cookie that has not been modified or tampered with. Blocks modified requests. |  |
 |VIOL_ATTACK_SIGNATURE | Attack signature detected | N/A | The system examines the HTTP message for known attacks by matching it against known attack patterns. | Determined per signature set. <br>Note: This violation cannot be configured by the user. Rather, the violation is determined by the combination of the signature sets on the policy.| 
 |VIOL_BLACKLISTED_IP | IP is in the deny list | Alarm | The violation is issued when a request comes from an IP address that falls in the range of an IP address exception marked for "always blocking", that is, the deny list of IPs. | Would trigger Violation Rating of 5. | 
@@ -5239,7 +5591,7 @@ The following violations are supported and can be enabled by turning on the **al
 |VIOL_FILETYPE | Illegal file type | Alarm | The system checks that the requested file type is configured as a valid file type, or not configured as an invalid file type, within the security policy. | Only for disallowed file types. | 
 |VIOL_FILE_UPLOAD | Disallowed file upload content detected | Alarm | The system checks that the file upload content is not a binary executable file format. | The check must be enabled for parameters of data type file upload | 
 |VIOL_FILE_UPLOAD_IN_BODY | Disallowed file upload content detected in body | Alarm | The system checks that the file upload content is not a binary executable file format. | The check must be enabled for URLs | 
-|VIOL_GRAPHQL_MALFORMED | Malformed GraphQL data | Alarm & Block | This violation will be issued when the traffic expected to be GraphQL doesn't comply to the GraphQL syntax. The specifics of the syntax that will be enforced in app protect is detailed in the enforcing section. The violation details will note the error.| In case of tolerate parser warning turned on, missing closing bracket of the JSON should not issue a violation. | 
+|VIOL_GRAPHQL_MALFORMED | Malformed GraphQL data | Alarm & Block | This violation will be issued when the traffic expected to be GraphQL doesn't comply to the GraphQL syntax. The specifics of the syntax that will be enforced in App Protect is detailed in the enforcing section. The violation details will note the error.| In case of tolerate parser warning turned on, missing closing bracket of the JSON should not issue a violation. | 
 |VIOL_GRAPHQL_FORMAT | GraphQL format data does not comply with format settings | Alarm & Block | This violation will be issued when the GraphQL profile settings are not satisfied, for example the length is too long, depth is too deep, a specific value is too long or too many batched queries. <br> The violation details will note what happened and the found length, depth or which value is too long and by what. <br> The depth violation is not learnable. The reason is that we don't know the actual depth of the query - we stop parsing at the max depth. <br> Note that the values will be used on the variables JSON part as well as the query. In a way, we can see these values as a JSON profile attributes just for the variables. | |
 |VIOL_GRAPHQL_INTROSPECTION_QUERY| GraphQL introspection Query | Alarm & Block | This violation will be issued when an introspection query was seen. |  |
 |VIOL_GRAPHQL_ERROR_RESPONSE | GraphQL Error Response | Alarm & Block | GraphQL disallowed pattern in response. | |
