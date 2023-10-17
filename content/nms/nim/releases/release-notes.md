@@ -10,6 +10,63 @@ docs: "DOCS-938"
 
 ---
 
+## 2.14.0
+
+October 16, 2023
+
+### Upgrade Paths {#2-14-0-upgrade-paths}
+
+Instance Manager  supports upgrades from these previous versions:
+
+- 2.11.0 - 2.13.1
+
+If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+{{< see-also >}}
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< /see-also >}}
+
+<br>
+
+<details closed>
+<summary><i class="fa-solid fa-circle-exclamation"></i> Support for NGINX App Protect WAF</summary>
+
+{{< include "tech-specs/nim-app-protect-support.md" >}}
+
+</details>
+
+
+### What's New{#2-14-0-whats-new}
+This release includes the following updates:
+
+- {{% icon-feature %}} **Instance Manager Dashboard**<a name="2-14-0-whats-new-Instance-Manager-Dashboard"></a>
+
+  Monitor the health and performance of your NGINX instance fleet from a single page. Get insights and trends on CPU, memory, disk, and network traffic utilization. Quickly spot and mitigate common HTTP errors and TLS certificate issues. See the [Instance Manager Dashboard]({{< relref "nms/nim/about/instance-manager-dashboard.md" >}}) documentation to learn more.
+  
+- {{% icon-feature %}} **Work with NGINX App Protect Bundles from Instance Manager**<a name="2-14-0-whats-new-Work-with-NGINX-App-Protect-Bundles-from-Instance-Manager"></a>
+
+  Starting with Instance Manager 2.14, you can now use the "/security/policies/bundles" endpoint to create, read, update, and delete NGINX App Protect bundles, which allow faster deployment through pre-compilation of security policies, attack signatures, and threat-campaign.  For additional information on how to use the API endpoint, refer to your product API documentation.
+  To learn more about this feature, see the [Manage WAF Security Policies]({{< relref "nms/nim/how-to/app-protect/manage-waf-security-policies.md" >}}) documentation.
+  
+- {{% icon-feature %}} **Clickhouse LTS 23.8 support**<a name="2-14-0-whats-new-Clickhouse-LTS-23-8-support"></a>
+
+  This release of Instance Manager has been tested and is compatible with Clickhouse LTS versions 22.3.15.33 to 23.8.
+  
+
+### Changes in Default Behavior{#2-14-0-changes-in-behavior}
+This release has the following changes in default behavior:
+
+- {{% icon-feature %}} **Inactive NGINX instances are automatically removed over time**<a name="2-14-0-changes-in-behavior-Inactive-NGINX-instances-are-automatically-removed-over-time"></a>
+
+  If an NGINX instance has been inactive (NGINX Agent not reporting to NGINX Management Suite) for a fixed amount of time, it is now automatically removed from the instances list. Instances deployed in a virtual machine or hardware are removed after 72 hours of inactivity, and those deployed in a container are removed after 12 hours.
+  
+
+### Known Issues{#2-14-0-known-issues}
+
+You can find information about known issues in the [Known Issues]({{< relref "/nms/nim/releases/known-issues.md" >}}) topic.
+
+---
+
 ## 2.13.1
 
 September 05, 2023
@@ -23,7 +80,7 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 <br>
@@ -61,7 +118,7 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 <br>
@@ -136,7 +193,7 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 <br>
@@ -183,7 +240,7 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 <br>
@@ -282,7 +339,7 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 <br>
@@ -319,7 +376,7 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 <br>
@@ -406,7 +463,7 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 <br>
@@ -443,7 +500,7 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 <br>
@@ -612,7 +669,7 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 <br>
@@ -701,7 +758,7 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 <br>
@@ -760,7 +817,7 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 <br>
@@ -835,7 +892,7 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 <br>
@@ -872,7 +929,7 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 <br>
@@ -923,7 +980,7 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 <br>
@@ -984,7 +1041,7 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 <br>
@@ -1033,7 +1090,7 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 <br>
@@ -1113,7 +1170,7 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 <br>
@@ -1179,7 +1236,7 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 <br>
@@ -1297,7 +1354,7 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 <br>
@@ -1326,19 +1383,6 @@ You can find information about known issues in the [Known Issues]({{< relref "/n
 
 December 21, 2021
 
-### Upgrade Paths {#2-0-0-upgrade-paths}
-
-Instance Manager  supports upgrades from these previous versions:
-
-- 2.13.1
-
-If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
-
-{{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
-{{< /see-also >}}
-
-<br>
 
 <details closed>
 <summary><i class="fa-solid fa-circle-exclamation"></i> Support for NGINX App Protect WAF</summary>
@@ -1372,4 +1416,3 @@ This release includes the following updates:
 
 You can find information about known issues in the [Known Issues]({{< relref "/nms/nim/releases/known-issues.md" >}}) topic.
 
- 
