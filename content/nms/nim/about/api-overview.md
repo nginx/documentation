@@ -3,7 +3,7 @@ title: "API Overview"
 date: 2021-12-21T12:00:00-07:00
 description: "This topic gives an overview of the Instance Manager API."
 # Assign weights in increments of 100
-weight: 300
+weight: 200
 draft: false
 toc: true
 tags: [ "docs" ]

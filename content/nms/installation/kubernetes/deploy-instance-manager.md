@@ -254,6 +254,33 @@ A Helm `values.yaml` file is a configuration file you can use to customize the i
 
 ---
 
+## Manage Network Policies 
+
+To enforce existing network policies for NGINX Management Suite, Kubernetes must have a [network plugin](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/) installed before helm chart installation.
+
+When enabled, the following network policies will be created in the release namespace.
+
+``` shell
+kubectl get netpol -n nms
+NAME           POD-SELECTOR                          AGE
+apigw          app.kubernetes.io/name=apigw          4m47s
+clickhouse     app.kubernetes.io/name=clickhouse     4m47s
+core           app.kubernetes.io/name=core           4m47s
+dpm            app.kubernetes.io/name=dpm            4m47s
+ingestion      app.kubernetes.io/name=ingestion      4m47s
+integrations   app.kubernetes.io/name=integrations   4m47s
+```
+
+To disable the existing network policies, update the `values.yaml` file as shown below:
+
+```yaml
+ networkPolicies:
+	 # Setting this to true enables network policies for NGINX Management Suite.
+	 enabled: false  
+```
+
+---
+
 ## Install Chart {#install-chart}
 
 {{<note>}}To complete the steps in this section, you need to have [OpenSSL 1.1.1](https://www.openssl.org/source/) or later installed.{{</note>}}
