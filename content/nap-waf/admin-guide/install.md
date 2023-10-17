@@ -2497,7 +2497,7 @@ app-protect-attack-signatures \
 app-protect-threat-campaigns
 ```
 
-## Upgrading App Protect to a specific version
+## Upgrading App Protect to a Specific Version
 
 ### CentOS / RHEL 7.4.x / Amazon Linux 2 / RHEL 8.1+ / Oracle Linux 8.1+
 
