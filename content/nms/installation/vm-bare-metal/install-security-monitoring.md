@@ -56,22 +56,7 @@ authors: []
      sudo yum -y install nms-sm
      ```
 
-1. Restart the NGINX Management Suite services:
-
-    ```bash
-    sudo systemctl restart nms
-    ```
-
-    NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
-
-1. Restart the NGINX web server:
-
-   ```bash
-   sudo systemctl restart nginx
-   ```
-
 {{%/tab%}}
-
 {{%tab name="Debian, Ubuntu, Deb-Based"%}}
 
 1. To install the latest version of the Security Monitoring module, run the following commands:
@@ -81,7 +66,11 @@ authors: []
     sudo apt-get install -y nms-sm
     ```
 
-1. Restart the NGINX Management Suite services:
+{{%/tab%}}
+
+{{</tabs>}}
+
+2. Restart the NGINX Management Suite services:
 
     ```bash
     sudo systemctl restart nms
@@ -89,15 +78,18 @@ authors: []
 
     NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
 
-1. Restart the NGINX web server:
+3. Restart the NGINX web server:
 
    ```bash
    sudo systemctl restart nginx
    ```
 
-{{%/tab%}}
+4. If running Security Monitoring v1.7.0 or higher, start the module:
 
-{{</tabs>}}
+   ```bash
+   sudo systemctl start nms-sm
+   ```
+
 
 ### Accessing the Web Interface
 
@@ -154,7 +146,13 @@ Refer to the [Add a License]({{< relref "/nms/installation/add-license.md" >}}) 
    sudo systemctl restart nginx
    ```
 
-4. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Management suite.
+4. If running Security Monitoring v1.7.0 or higher, start the module:
+
+   ```bash
+   sudo systemctl start nms-sm
+   ```
+
+5. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Management suite.
 
 ---
 
