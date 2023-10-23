@@ -18,6 +18,28 @@ categories: ["known issues"]
 ## 2.14.0
 October 16, 2023
 
+### {{% icon-bug %}} NGINX App Protect Attack Signature, Threat Campaign and Compiler fail to download {#44603}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44603 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+NGINX App Protect Attack Signatures package, Threat Campaigns package, and WAF Compiler can fail to download automatically with an error similar to the following:
+
+```
+Oct 20 22:22:57 ip-127-0-0-1 <DPM>[9553]: 2023-10-20T22:22:57.648Z	ERROR	81c818dd-ffff-aaaa-8b9d-134a60020d20	authz/authz.go:245	failed to get license status: getting license status: Get "http://unix-socket/api/platform/v1/license/status": context deadline exceeded
+Oct 20 22:22:57 ip-127-0-0-1 <INT>[9527]: 2023-10-20T22:22:57.653Z	ERROR	nms-integrations	compiler-controller/security_updates_downloader.go:94	security_updates_downloader: error when creating the nginx repo retriever - unexpected status when retrieving certs: 500 Internal Server Error
+```
+
+#### Workaround
+
+Download manually the latest [Attack Signatures package, Threat Campaign package]({{< relref "nms/nim/how-to/app-protect/setup-waf-config-management.md#manually-update-packages" >}}), and [WAF Compiler]({{< relref "nms/nim/how-to/app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}).
+
+---
+
 ### {{% icon-bug %}} Missing Data when ClickHouse services are not running {#44586}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
