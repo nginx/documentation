@@ -5,7 +5,7 @@ doctypes:
 - task
 title: NGINX Diagnostic Package
 toc: true
-weight: 300
+weight: 400
 ---
 
 
