@@ -36,7 +36,7 @@ h2 {
 
 ## Overview
 
-NGINX Management Suite Instance Manager lets you to track and report on your NGINX products' usage; this is often required for commercial programs such as the [F5 Flex Consumption Program](https://www.f5.com/products/get-f5/flex-consumption-program). Once you have set up Instance Manager, you can configure your NGINX products to begin reporting. You can then view your deployments and track their usage over time. When you [apply a JSON Web Token]({{< relref "nms/installation/add-license.md#apply-jwt-license" >}}) from MyF5 to Instance Manager, you can send usage reports to F5 on a regular basis or on-demand when needed.
+With NGINX Management Suite Instance Manager, you can track and report on your NGINX products' usage; this is often required for commercial programs such as the [F5 Flex Consumption Program](https://www.f5.com/products/get-f5/flex-consumption-program). Once you've set up Instance Manager, you can configure your NGINX products to begin reporting. You can then view your deployments and track their usage over time. When you [apply a JSON Web Token]({{< relref "nms/installation/add-license.md#apply-jwt-license" >}}) from MyF5 to Instance Manager, you can send usage reports to F5 on a regular basis or on-demand when needed.
 
 ## Install NGINX Instance Manager on a dedicated host {#install-instance-manager}
 
@@ -45,19 +45,36 @@ NGINX Management Suite Instance Manager lets you to track and report on your NGI
 
 ## Tracking NGINX Plus and NGINX App Protect Deployments
 
-### Install NGINX Agent on each NGINX Plus instance {#install-nginx-agent}
+After you've installed NGINX Instance Manager, the next step is to configure your NGINX Plus instances to report usage metrics. You can do this by installing NGINX Agent on each instance or by setting up HTTP Health Checks. Both approaches enable your instances to relay data back to Instance Manager for detailed usage tracking. 
+
+### Set up reporting for each NGINX Plus instance {#set-up-reporting}
+
+Select the tab that matches your preferred method for configuring reporting:
+
+- (recommended) Install NGINX Agent 
+- Configure an HTTP Health Check
+
+{{<tabs name="configure-reporting">}}
+
+{{%tab name="Install NGINX Agent"%}}
 
 {{< include "nginx-plus/usage-tracking/install-nginx-agent.md" >}}
 
-### How to view NGINX Plus instances in Instance Manager {#view-nginx-plus-inventory}
+{{%/tab%}}
 
-{{< include "nginx-plus/usage-tracking/view-nginx-plus-count.md" >}}
-
-### Special Considerations
-
-#### How to track NGINX Plus instances without using NGINX Agent {#track-nginx-plus-without-nginx-agent}
+{{%tab name="Configure HTTP Health Check"%}}
 
 {{<include "nginx-plus/usage-tracking/http-health-check.md" >}}
+
+{{%/tab%}}
+
+{{</tabs>}}
+
+
+
+### View NGINX Plus usage in NGINX Instance Manager {#view-nginx-plus-usage}
+
+{{< include "nginx-plus/usage-tracking/view-nginx-plus-count.md" >}}
 
 ### Troubleshooting
 
