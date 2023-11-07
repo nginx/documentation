@@ -36,7 +36,9 @@ h2 {
 
 ## Overview
 
-With NGINX Management Suite Instance Manager, you can track and report on your NGINX product usage; this is often required for commercial programs such as the [F5 Flex Consumption Program](https://www.f5.com/products/get-f5/flex-consumption-program). Once you've set up Instance Manager, you can configure your NGINX products to begin reporting. You can then view your deployments and track their usage over time. When you [apply a JSON Web Token]({{< relref "nms/installation/add-license.md#apply-jwt-license" >}}) from MyF5 to Instance Manager, you can send usage reports to F5 on a regular basis or on-demand when needed.
+NGINX Management Suite Instance Manager makes it easy to track and report your NGINX product usage. You may be expected to report this information to F5 if you're enrolled in a commercial program, such as the [F5 Flex Consumption Program](https://www.f5.com/products/get-f5/flex-consumption-program).
+
+Start by installing NGINX Instance Manager on a dedicated host. Then configure your NGINX deployments for reporting. After your deployments have registered with Instance Manager, you can view and track your usage over time from the web interface. If you [apply a JSON Web Token]({{< relref "nms/installation/add-license.md#apply-jwt-license" >}}) as a license for Instance Manager, you can send usage reports to F5 on a regular basis or on-demand when needed.
 
 ## Install NGINX Instance Manager on a dedicated host {#install-instance-manager}
 
@@ -69,8 +71,6 @@ Select the tab that matches your preferred method for setting up reporting:
 {{%/tab%}}
 
 {{</tabs>}}
-
-
 
 ### View NGINX Plus and NGINX App Protect usage in NGINX Instance Manager {#view-nginx-plus-usage}
 
