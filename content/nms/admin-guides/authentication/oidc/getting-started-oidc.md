@@ -328,5 +328,5 @@ map $host $oidc_token_query_params {
 
 Select from the following options to set up OIDC for a specific identity provider:
 
-- [Set up Azure Active Directory as an OIDC identity provider]({{< relref "/nms/admin-guides/authentication/oidc/oidc-azure.md" >}})
+- [Set up Microsoft Entra as an OIDC identity provider]({{< relref "/nms/admin-guides/authentication/oidc/oidc-entra.md" >}})
 - [Set up Keycloak as an OIDC Identity Provider]({{< relref "/nms/admin-guides/authentication/oidc/oidc-keycloak.md" >}})

@@ -100,9 +100,9 @@ Take note of the following considerations when upgrading to this version of the 
 
   NGINX Controller ADC Release 3.22 includes support for referencing the NGINX variable `server_port` as the destination port for traffic to a backend server. This can be used, for example, to enable passive FTP scenarios.
 
-- **OIDC Authentication with Azure AD as the IDP**
+- **OIDC Authentication with Microsoft Entra as the IDP**
 
-  NGINX Controller ADC Release 3.22 includes [support for OpenID Connect (OIDC) authentication]({{< relref "/controller/platform/access-management/manage-active-directory-auth-provider.md" >}}) when the Identity Provider is Azure Active Directory.
+  NGINX Controller ADC Release 3.22 includes [support for OpenID Connect (OIDC) authentication]({{< relref "/controller/platform/access-management/manage-active-directory-auth-provider.md" >}}) when the Identity Provider is Microsoft Entra.
 
 - **Support for SELinux**
 
