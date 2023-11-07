@@ -1,6 +1,6 @@
 ---
-title: "Set up OIDC for automated services using Azure Active Directory"
-description: "Learn how to configure OpenID Connect (OIDC) for automation services, using Azure Active Directory as the identity provider."
+title: "Set up OIDC for automated services using Microsoft Entra"
+description: "Learn how to configure OpenID Connect (OIDC) for automation services, using Microsoft Entra as the identity provider."
 weight: 300
 toc: true
 tags: [ "docs" ]
@@ -13,7 +13,7 @@ journeys: ["getting started", "using"]
 personas: ["devops", "netops", "secops"]
 docs: "DOCS-1197"
 aliases:
-- /nginx-instance-manager/admin-guide/oidc-azure-automation/
+- /nginx-instance-manager/admin-guide/oidc-entra-automation/
 ---
 
 {{< custom-styles >}}
@@ -30,18 +30,18 @@ h2 {
 
 ## Overview
 
-Complete the steps in this guide to secure Instance Manager with OpenID Connect (OIDC) using the client credential code flow method and Azure Active Directory (AD) as the identity provider for use with automation, such as in CI/CD pipelines. 
+Complete the steps in this guide to secure Instance Manager with OpenID Connect (OIDC) using the client credential code flow method and Microsoft Entra (AD) as the identity provider for use with automation, such as in CI/CD pipelines. 
 
 ## Before you begin
 
-First, secure Instance Manager with OpenID Connect (OIDC) using Azure Active Directory (AD) as the identity provider. To do so, complete the steps in the [Set up OIDC Authentication with Azure AD]({{< relref "/nms/admin-guides/authentication/oidc/oidc-azure.md" >}}) guide. After following the steps in that guide, you'll have a registered application (named "Instance Manager" in the guide's example) in Azure AD and a client ID and secret that you can use to configure automation. 
+First, secure Instance Manager with OpenID Connect (OIDC) using Microsoft Entra (AD) as the identity provider. To do so, complete the steps in the [Set up OIDC Authentication with Microsoft Entra]({{< relref "/nms/admin-guides/authentication/oidc/oidc-entra.md" >}}) guide. After following the steps in that guide, you'll have a registered application (named "Instance Manager" in the guide's example) in Microsoft Entra and a client ID and secret that you can use to configure automation. 
 
 ## Configure Azure
 
 ### Register a New Application for Your Automation
 
 1. Log in to the [Azure portal](https://portal.azure.com/#home).
-1. Select **Azure Active Directory** from the list of Azure services.
+1. Select **Microsoft Entra** from the list of Azure services.
 1. On the left navigation menu, in the **Manage** section, select **App registrations**.
 1. Select **New registration**.
 1. Complete the following:
@@ -67,7 +67,7 @@ First, secure Instance Manager with OpenID Connect (OIDC) using Azure Active Dir
 
 1. On the left navigation menu, in the **Manage** section, select **App roles**.
 1. Select **Create app role**.
-1. Complete the new role form. You should use the details from an existing NGINX Management Suite user group, such as the one created in the [Create User Groups in Instance Manager]({{< relref "/nms/admin-guides/authentication/oidc/oidc-azure.md#create-user-groups-in-instance-manager" >}}) step. For example :
+1. Complete the new role form. You should use the details from an existing NGINX Management Suite user group, such as the one created in the [Create User Groups in Instance Manager]({{< relref "/nms/admin-guides/authentication/oidc/oidc-entra.md#create-user-groups-in-instance-manager" >}}) step. For example :
 
    - In the **Display name** box, type a name for the role. For example, "Admin".
    - In the **Allowed member types** section, select **Applications**.
@@ -86,15 +86,15 @@ First, secure Instance Manager with OpenID Connect (OIDC) using Azure Active Dir
 1. In the **Application permissions** section, select the role you created in the [Create an App Role](#create-an-app-role) steps. (In the example, it was named "Admin").
 1. Select **Add permissions**.
 
-  {{< note >}}If the permission created in the preceding step is not granted, try contacting the Azure AD administrator of your tenant about granting it.{{< /note >}}
+  {{< note >}}If the permission created in the preceding step is not granted, try contacting the Microsoft Entra administrator of your tenant about granting it.{{< /note >}}
 
-## Configure NGINX OIDC to use Azure AD IdP
+## Configure NGINX OIDC to use Microsoft Entra IdP
 
-Complete the steps in the [Set Up NGINX Plus to Interact with the Identity Provider]({{< relref "/nms/admin-guides/authentication/oidc/oidc-azure.md#set-up-nginx-plus-to-interact-with-the-identity-provider" >}}) topic. Please note that you might have already completed these steps as part of the [Before you begin](#before-you-begin) section of this guide.
+Complete the steps in the [Set Up NGINX Plus to Interact with the Identity Provider]({{< relref "/nms/admin-guides/authentication/oidc/oidc-entra.md#set-up-nginx-plus-to-interact-with-the-identity-provider" >}}) topic. Please note that you might have already completed these steps as part of the [Before you begin](#before-you-begin) section of this guide.
 
 Additionally, you will need to complete the following steps:
 
-1. Add the domain of your Azure AD tenant to the `/etc/nms/nginx/oidc/openid_configuration.conf` file. For example, to use the `f5.com` domain for your Azure AD tenant, update the `oidc_domain` value in the file as follows:
+1. Add the domain of your Microsoft Entra tenant to the `/etc/nms/nginx/oidc/openid_configuration.conf` file. For example, to use the `f5.com` domain for your Microsoft Entra tenant, update the `oidc_domain` value in the file as follows:
 
     ```nginx
     ...
@@ -106,11 +106,11 @@ Additionally, you will need to complete the following steps:
     ...
     ```
 
-1. In the same file, uncomment the map sections corresponding to OIDC with Azure AD:
+1. In the same file, uncomment the map sections corresponding to OIDC with Microsoft Entra:
     
     ```nginx
     ...
-    # Enable when using OIDC with Azure AD
+    # Enable when using OIDC with Microsoft Entra
     map $http_authorization $groups_claim {
         "~^Bearer.*" $jwt_claim_roles;
         default $jwt_claim_groups;
@@ -129,9 +129,9 @@ Additionally, you will need to complete the following steps:
     ```
 
 
-## Get an Access Token from Azure AD
+## Get an Access Token from Microsoft Entra
 
-1. Send a POST request to the Azure AD token endpoint, for example:
+1. Send a POST request to the Microsoft Entra token endpoint, for example:
     ```bash
     https://login.microsoftonline.com/<your-azure-tenant-id>/oauth2/v2.0/token
     ```
@@ -182,7 +182,7 @@ Additionally, you will need to complete the following steps:
 
     {{< note >}}The `roles` claim contains the role ID of the role you created in the [Create an App Role](#create-an-app-role) steps. (In the example, it was named "Admin").{{< /note >}}
 
-By default, tokens expire after 60 minutes. To configure the expiration please see the Azure AD [Configurable token lifetimes in the Microsoft identity platform](https://learn.microsoft.com/en-us/azure/active-directory/develop/Active-directory-configurable-token-lifetimes#configurable-token-lifetime-properties) documentation.
+By default, tokens expire after 60 minutes. To configure the expiration please see the Microsoft Entra [Configurable token lifetimes in the Microsoft identity platform](https://learn.microsoft.com/en-us/azure/active-directory/develop/Active-directory-configurable-token-lifetimes#configurable-token-lifetime-properties) documentation.
 
 ## Access NGINX Management Suite API Using the Access Token
 
@@ -192,4 +192,4 @@ To access the NGINX Management Suite API using the access token, you must send t
 curl -v -k --header "Authorization: Bearer <access token>" https://<nms-ip>/api/platform/v1/userinfo
 ```
 
-Replacing `<access token>` with the access token you obtained in the [Get an Access Token from Azure AD](#get-an-access-token-from-azure-ad) steps and `<nms-ip>` with the IP address of your NGINX Management Suite instance.
+Replacing `<access token>` with the access token you obtained in the [Get an Access Token from Microsoft Entra](#get-an-access-token-from-azure-ad) steps and `<nms-ip>` with the IP address of your NGINX Management Suite instance.

@@ -1724,10 +1724,9 @@ There is no such option for authentications between NGINX App Protect DoS server
 
 You can run the following commands to ensure that NGINX App Protect DoS enforcement is operational.
 
-1. Check that the four processes needed for NGINX App Protect DoS are running using `ps aux`:
+1. Check that the three processes needed for NGINX App Protect DoS are running using `ps aux`:
 
     - admd
-    - bd-socket-plugin
     - nginx: master process
     - nginx: worker process
 

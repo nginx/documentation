@@ -94,6 +94,8 @@
 /nginx-management-suite/admin-guides/access-control/set-up-rbac/ /nginx-management-suite/admin-guides/rbac/rbac-getting-started/ 301
 /nginx-management-suite/nim/how-to/nginx/manage-resource-groups/ /nginx-management-suite/admin-guides/rbac/manage-resource-groups/ 301
 /nginx-management-suite/adm/tutorials/usecase-templates/ /nginx-management-suite/adm/about/template-overview/ 301
+/nginx-management-suite/nms/admin-guides/authentication/oidc/oidc-azure/ /nginx-management-suite/nms/admin-guides/authentication/oidc/oidc-entra/ 301
+/nginx-management-suite/nms/admin-guides/authentication/oidc/oidc-azure-automation/ /nginx-management-suite/nms/admin-guides/authentication/oidc/oidc-entra-automation/ 301
 
 # NGINX Plus redirects
 /install-community-modules /nginx/admin-guide/installing-nginx/installing-nginx-plus/#installing-nginx-community-modules 301
