@@ -1,12 +1,12 @@
 ---
-title: "Tracking NGINX Plus and NGINX App Protect Usage"
+title: "Track NGINX Plus and NGINX App Protect Usage"
 date: 2022-06-09T15:27:20-07:00
 # Change draft status to false to publish doc.
 draft: false
 # Description
 # Add a short description (150 chars) for the doc. Include keywords for SEO. 
 # The description text appears in search results and at the top of the doc.
-description: "Learn how to set up NGINX Instance Manager to track the usage of your NGINX Plus and NGINX App Protect deployments. Subscribers to commercial plans, like the [F5 Flex Consumption Program](https://www.f5.com/products/get-f5/flex-consumption-program), are expected to report the number of NGINX Plus instances they use."
+description: "This guide will help you track and report your NGINX Plus and NGINX App Protect usage. You may be required to report this information if you are enrolled in a commercial plan such as [F5's Flex Consumption Program](https://www.f5.com/products/get-f5/flex-consumption-program)."
 
 # Assign weights in increments of 100
 weight: 100
@@ -34,16 +34,18 @@ h2 {
 
 ## Overview
 
+NGINX Management Suite Instance Manager makes it easy to track and report your NGINX Plus and NGINX App Protect usage. You may be expected to report this information to F5 if you're enrolled in a commercial program, such as the [F5 Flex Consumption Program](https://www.f5.com/products/get-f5/flex-consumption-program).
 
-This guide will help you track the usage of your NGINX Plus and NGINX App Protect deployments. Start by installing NGINX Instance Manager on a dedicated host, and then install NGINX Agent on each NGINX Plus instance you want to track. After doing this, you can view your NGINX Plus inventory in NGINX Instance Manager.
+Start by installing NGINX Instance Manager on a dedicated host. Then configure your NGINX data plane for reporting. After your data plane instances have registered with Instance Manager, you can to view and track your NGINX Plus and NGINX App Protect deployments over time from the web interface. If you [apply a JSON Web Token]({{< relref "nms/installation/add-license.md#apply-jwt-license" >}}) as a license for Instance Manager, you can send usage reports to F5 on a regular basis or on-demand when needed.
+
 
 ## Install NGINX Instance Manager on a dedicated host {#install-instance-manager}
 
 {{< include "nginx-plus/usage-tracking/install-nim.md" >}}
 
-## Set up reporting for each NGINX Plus instance {#set-up-reporting}
+## Set up reporting on each data plane system {#set-up-reporting}
 
-Select the tab that matches your preferred method for configuring reporting:
+Choose a tab below based on how you'd like to set up reporting for your NGINX data plane systems.
 
 - (recommended) Install NGINX Agent 
 - Configure an HTTP Health Check
@@ -64,9 +66,13 @@ Select the tab that matches your preferred method for configuring reporting:
 
 {{</tabs>}}
 
-## View NGINX Plus usage in NGINX Instance Manager {#view-nginx-plus-usage}
+## View NGINX Plus and NGINX App Protect usage {#view-nginx-plus-usage}
 
 {{< include "nginx-plus/usage-tracking/view-nginx-plus-count.md" >}}
+
+## Reporting product usage to F5
+
+{{< include "nginx-plus/usage-tracking/reporting-usage.md" >}}
 
 ## Troubleshooting
 
