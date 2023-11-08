@@ -6,7 +6,7 @@ When you install NGINX Agent on an NGINX instance, it will establish a connectio
 
 1. To install NGINX Agent on each NGINX instance, [follow these instructions]({{< relref "/nms/nginx-agent/install-nginx-agent.md" >}}).
 
-2. (Optional) If you're using Instance Manager solely to track NGINX usage, add the following line to the NGINX Agent configuration file, `/etc/nginx-agent/nginx-agent.conf`. This setting limits NGINX Agent's activity to usage tracking to optimize system performance.
+1. (Optional) If you're using Instance Manager solely to track NGINX usage, add the following line to the NGINX Agent configuration file, `/etc/nginx-agent/nginx-agent.conf`. This setting limits NGINX Agent's activity to usage tracking to optimize system performance.
 
    ``` yaml
    features: registration,dataplane-status
