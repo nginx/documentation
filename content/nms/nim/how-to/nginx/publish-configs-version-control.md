@@ -231,4 +231,4 @@ To add configuration changes to instances, modify the configuration files (`inst
 
 To add configuration changes to instance groups, modify the configuration files (`instance-groups/nginx.conf`)  and push your changes upstream to trigger the pipeline.
 
-{{< note >}}You can find a sample tempalte to modify as required in our [public repository](https://github.com/nginxinc/git-automation/settings).{{< /note >}}
+{{< note >}}You can find a sample template to modify as required in our [public repository](https://github.com/nginxinc/git-automation/).{{< /note >}}
