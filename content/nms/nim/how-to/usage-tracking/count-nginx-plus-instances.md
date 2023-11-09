@@ -6,7 +6,7 @@ draft: false
 # Description
 # Add a short description (150 chars) for the doc. Include keywords for SEO. 
 # The description text appears in search results and at the top of the doc.
-description: "This guide will help you track and report on the usage of your NGINX Plus, NGINX App Protect, NGINX Ingress Controller, and Kubernetes Connectivity Stack deployments. You may be required to report this information if you are enrolled in a commercial plan such as [F5's Flex Consumption Program](https://www.f5.com/products/get-f5/flex-consumption-program)."
+description: "This guide will help you track and report on the number of your NGINX Plus installations -- including for NGINX App Protect, NGINX Ingress Controller, and Kubernetes Connectivity Stack deployments. You may be required to report this information if you are enrolled in a commercial plan such as [F5's Flex Consumption Program](https://www.f5.com/products/get-f5/flex-consumption-program)."
 
 # Assign weights in increments of 100
 weight: 100
