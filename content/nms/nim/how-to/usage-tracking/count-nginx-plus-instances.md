@@ -47,7 +47,7 @@ Start by installing NGINX Instance Manager on a dedicated host. Then configure y
 
 ## Reporting NGINX Plus and NGINX App Protect usage
 
-After you've installed NGINX Instance Manager, the next step is to configure your NGINX Plus data plane to report usage metrics. You can do this by installing NGINX Agent on each instance or by setting up HTTP Health Checks. Both approaches enable your instances to relay data back to Instance Manager for detailed usage tracking. 
+After you've installed NGINX Instance Manager, the next step is to configure your NGINX Plus data plane for reporting. You can do this by installing NGINX Agent on each instance or by setting up HTTP Health Checks. Both approaches enable your instances to relay data back to Instance Manager for usage tracking.
 
 ### Set up usage reporting for NGINX Plus {#set-up-reporting}
 
