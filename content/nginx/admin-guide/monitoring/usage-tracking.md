@@ -38,7 +38,7 @@ h2 {
 
 {{< include "nginx-plus/usage-tracking/overview.md" >}}
 
-## Requirements
+## Prerequisites
 
 ### Install NGINX Instance Manager on a dedicated host {#install-instance-manager}
 
