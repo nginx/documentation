@@ -1,12 +1,12 @@
 ---
-title: "Tracking Usage for NGINX Products"
+title: "Reporting Usage for NGINX Products"
 date: 2023-10-26T10:27:57-07:00
 # Change draft status to false to publish doc.
 draft: false
 # Description
 # Add a short description (150 chars) for the doc. Include keywords for SEO. 
 # The description text appears in search results and at the top of the doc.
-description: "This guide will help you track the usage of your NGINX Plus, NGINX App Protect, NGINX Ingress Controller, and Kubernetes Connectivity Stack deployments. You may be required to report this information if you are enrolled in a commercial plan such as [F5's Flex Consumption Program](https://www.f5.com/products/get-f5/flex-consumption-program)."
+description: "This guide will help you track and the usage of your NGINX Plus, NGINX App Protect, NGINX Ingress Controller, and Kubernetes Connectivity Stack deployments. You may be required to report this information if you are enrolled in a commercial plan such as [F5's Flex Consumption Program](https://www.f5.com/products/get-f5/flex-consumption-program)."
 # Assign weights in increments of 100
 weight: 600
 toc: true
@@ -40,12 +40,14 @@ NGINX Management Suite Instance Manager makes it easy to track and report your N
 
 Start by installing NGINX Instance Manager on a dedicated host. Then configure your NGINX deployments for reporting. After your deployments have registered with Instance Manager, you can view and track your usage over time from the web interface. If you [apply a JSON Web Token]({{< relref "nms/installation/add-license.md#apply-jwt-license" >}}) as a license for Instance Manager, you can send usage reports to F5 on a regular basis or on-demand when needed.
 
-## Install NGINX Instance Manager on a dedicated host {#install-instance-manager}
+## Requirements
+
+### Install NGINX Instance Manager on a dedicated host {#install-instance-manager}
 
 {{< include "nginx-plus/usage-tracking/install-nim.md" >}}
 
 
-## Tracking NGINX Plus and NGINX App Protect deployments
+## Reporting NGINX Plus and NGINX App Protect usage
 
 After you've installed NGINX Instance Manager, the next step is to configure your NGINX data plane to report usage metrics. You can do this by installing NGINX Agent on each instance or by setting up HTTP Health Checks. Both approaches enable your instances to relay data back to Instance Manager for detailed usage tracking. 
 
@@ -72,18 +74,18 @@ Select the tab that matches your preferred method for setting up reporting:
 
 {{</tabs>}}
 
-### View NGINX Plus and NGINX App Protect usage in NGINX Instance Manager {#view-nginx-plus-usage}
+### Reporting your NGINX Plus inventory to F5 {#view-nginx-plus-usage}
 
 {{< include "nginx-plus/usage-tracking/view-nginx-plus-count.md" >}}
 
-### Troubleshooting
+## Reporting NGINX Ingress Controller usage
 
-If NGINX Plus reports non-compliance errors, you may need to [add the NGINX user to the `nginx_agent` group]({{< relref "/nms/nginx-agent/configure-nginx-agent-group.md" >}}).
+You can set up your Kubernetes-based NGINX products, including [NGINX Ingress Controller](https://www.nginx.com/products/nginx-ingress-controller/) and [Connectivity Stack for Kubernetes](https://www.nginx.com/solutions/kubernetes/), to report data directly to the NGINX Instance Manager API.
 
-## Tracking NGINX Ingress Controller and Kubernetes Connectivity Stack deployments
+### Set up usage reporting for NGINX Ingress Controller
 
-{{< include "nginx-plus/usage-tracking/tracking-k8s-deployments.md" >}}
+Follow the instructions in the [Enabling Usage Reporting](https://docs.nginx.com/nginx-ingress-controller/usage-reporting/) guide to enable usage reporting for NGINX Ingress Controller.
 
-## Reporting product usage to F5
+### Reporting your NGINX Kubernetes clusters to F5
 
-{{< include "nginx-plus/usage-tracking/reporting-usage.md" >}}
+{{< include "nginx-plus/usage-tracking/get-list-k8s-deployments.md" >}}
