@@ -2,7 +2,7 @@
 docs:
 ---
 
-Follow these steps to view and export the list of instances that have successfully registered with Instance Manager:
+Follow these steps to view and export the list of NGINX Plus instances that have successfully registered with Instance Manager:
 
 1. {{< include "nim/webui-nim-login.md" >}}
 1. On the left menu, select **NGINX Plus**.
