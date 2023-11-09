@@ -2,7 +2,7 @@
 docs:
 ---
 
-If you prefer, you can use an [HTTP Health Check]({{< relref "nginx/admin-guide/load-balancer/http-health-check" >}}) to track your NGINX Plus instances without installing NGINX Agent. To do this, add the following code to the NGINX Plus configuration for each instance you want to track:
+If you prefer, you can use an [HTTP Health Check]({{< relref "nginx/admin-guide/load-balancer/http-health-check" >}}) to track your NGINX Plus instances without installing NGINX Agent. To do this, add the following code to the NGINX Plus configuration for each instance:
 
 ```nginx
 ### F5 / NGINX Required Configuration Code ###

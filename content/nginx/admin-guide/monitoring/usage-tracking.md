@@ -45,15 +45,15 @@ h2 {
 {{< include "nginx-plus/usage-tracking/install-nim.md" >}}
 
 
-## Reporting NGINX Plus and NGINX App Protect usage
+## Reporting NGINX Plus usage
 
-After you've installed NGINX Instance Manager, the next step is to configure your NGINX Plus data plane for reporting. You can do this by installing NGINX Agent on each instance or by setting up HTTP Health Checks. Both approaches enable your instances to relay data back to Instance Manager for usage tracking.
+After you've installed NGINX Instance Manager, the next step is to configure your NGINX Plus data plane for reporting. You can do this by [installing NGINX Agent]({{< relref "nms/nginx-agent/install-nginx-agent.md" >}}) on each instance or by setting up [HTTP Health Checks]({{< relref "nginx/admin-guide/load-balancer/http-health-check.md" >}}). Both approaches enable your instances to relay data back to Instance Manager for usage tracking.
 
 ### Set up usage reporting for NGINX Plus {#set-up-reporting}
 
 Select the tab that matches your preferred method for setting up reporting:
 
-- (recommended) Install NGINX Agent 
+- Install NGINX Agent 
 - Configure an HTTP Health Check
 
 {{<tabs name="configure-reporting">}}
