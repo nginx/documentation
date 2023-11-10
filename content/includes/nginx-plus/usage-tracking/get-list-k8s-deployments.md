@@ -2,7 +2,7 @@
 docs:
 ---
 
-Query the Instance Manager REST API to get the list of NGINX Ingress Controller instances and nodes in the cluster, including node and pod counts. Replace `<NMS_FQDN>` with the fully-qualified domain name for your NGINX Management Suite host.
+Query the Instance Manager REST API to get the list of NGINX Ingress Controller instances and nodes in the cluster. Replace `<NMS_FQDN>` with the fully-qualified domain name for your NGINX Management Suite host.
 
 ```sh
 curl -X GET --url "https://<NMS_FQDN>/api/platform/v1/k8s-usage"
