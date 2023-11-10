@@ -76,7 +76,7 @@ Select the tab that matches your preferred method for setting up reporting:
 
 ## View your NGINX Ingress Controller instances and nodes
 
-You can set up your Kubernetes-based NGINX products, including [NGINX Ingress Controller](https://www.nginx.com/products/nginx-ingress-controller/) and [Connectivity Stack for Kubernetes](https://www.nginx.com/solutions/kubernetes/), to report data directly to the NGINX Instance Manager API.
+You can set up your Kubernetes-based NGINX Plus products, including [NGINX Ingress Controller](https://www.nginx.com/products/nginx-ingress-controller/) and [Connectivity Stack for Kubernetes](https://www.nginx.com/solutions/kubernetes/), to report usage data to NGINX Instance Manager.
 
 ### Set up usage reporting for NGINX Ingress Controller
 
