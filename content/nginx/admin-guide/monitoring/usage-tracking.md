@@ -6,7 +6,7 @@ draft: false
 # Description
 # Add a short description (150 chars) for the doc. Include keywords for SEO. 
 # The description text appears in search results and at the top of the doc.
-description: "This guide will help you count and report the number of NGINX Plus installations you have to F5 -- including for NGINX App Protect, NGINX Ingress Controller, and Kubernetes Connectivity Stack deployments. You may be required to report this information if you are enrolled in a commercial plan such as [F5's Flex Consumption Program](https://www.f5.com/products/get-f5/flex-consumption-program)."
+description: "You can easily keep track of your [NGINX Plus]({{< relref \"nginx/\" >}}) installations with [NGINX Management Suite Instance Manager]({{< relref \"nms/nim/\" >}}). If you’re part of a commercial program like the [F5 Flex Consumption Program](https://www.f5.com/products/get-f5/flex-consumption-program), you’ll need to report these numbers to F5."
 # Assign weights in increments of 100
 weight: 600
 toc: true
@@ -33,8 +33,6 @@ h2 {
   padding-top:20px;
 }
 </style>
-
-## Overview
 
 {{< include "nginx-plus/usage-tracking/overview.md" >}}
 
