@@ -44,7 +44,7 @@ h2 {
 
 ## View your NGINX Plus and NGINX App Protect Inventory
 
-After you've installed NGINX Instance Manager, the next step is to configure your NGINX Plus data plane for reporting. You can do this by [installing NGINX Agent]({{< relref "nms/nginx-agent/install-nginx-agent.md" >}}) on each instance or by setting up [HTTP Health Checks]({{< relref "nginx/admin-guide/load-balancer/http-health-check.md" >}}). Both approaches enable your instances to relay data back to Instance Manager for usage tracking.
+After you've installed NGINX Instance Manager, the next step is to configure your NGINX Plus data plane for reporting. This can be done in two ways. You can [install NGINX Agent]({{< relref "nms/nginx-agent/install-nginx-agent.md" >}}) on each instance. Alternatively, you can set up [HTTP Health Checks]({{< relref "nginx/admin-guide/load-balancer/http-health-check.md" >}}), which don't require any additional installation. Both approaches enable your instances to relay data back to Instance Manager for usage tracking.
 
 ### Set up instance reporting for NGINX Plus {#set-up-reporting}
 
