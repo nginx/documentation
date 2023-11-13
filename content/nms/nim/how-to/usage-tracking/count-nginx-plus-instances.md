@@ -6,7 +6,7 @@ draft: false
 # Description
 # Add a short description (150 chars) for the doc. Include keywords for SEO. 
 # The description text appears in search results and at the top of the doc.
-description: "You can easily keep track of your [NGINX Plus]({{< relref \"nginx/\" >}}) installations with [NGINX Management Suite Instance Manager]({{< relref \"nms/nim/\" >}}). If you’re part of a commercial program like the [F5 Flex Consumption Program](https://www.f5.com/products/get-f5/flex-consumption-program), you’ll need to report these numbers to F5."
+description: "Tracking your [NGINX Plus]({{< relref \"nginx/\" >}}) installations is straightforward with [NGINX Management Suite Instance Manager]({{< relref \"nms/nim/\" >}}). If you're enrolled in a commercial program like the [F5 Flex Consumption Program](https://www.f5.com/products/get-f5/flex-consumption-program), you'll need to regularly report this data to F5."
 # Assign weights in increments of 100
 weight: 100
 toc: true
