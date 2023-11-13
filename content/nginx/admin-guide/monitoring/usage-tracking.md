@@ -52,7 +52,7 @@ After you've installed NGINX Instance Manager, the next step is to configure you
 Select the tab that matches your preferred method for setting up reporting:
 
 - Install NGINX Agent 
-- Configure an HTTP Health Check
+- Configure HTTP Health Check for NGINX Plus without NGINX Agent
 
 {{<tabs name="configure-reporting">}}
 
