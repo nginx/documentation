@@ -6,10 +6,10 @@ When you install NGINX Agent on an NGINX Plus instance, it will establish a conn
 
 1. To install NGINX Agent, [follow these instructions]({{< relref "/nms/nginx-agent/install-nginx-agent.md" >}}).
 
-2. (Optional) If you're using Instance Manager solely to track your NGINX Plus usage, add the following line to the NGINX Agent configuration file, `/etc/nginx-agent/nginx-agent.conf`. This setting limits NGINX Agent's activity to usage tracking to optimize system performance.
+2. (Optional) If you're using Instance Manager primarily for tracking NGINX Plus usage, you can optimize performance by modifying the NGINX Agent configuration. Add this line to _/etc/nginx-agent/nginx-agent.conf_:
 
    ``` yaml
    features: registration,dataplane-status
    ```
 
-   {{<note>}}If you upgrade to the full version of Instance Manager, remove the `features: registration,dataplane-status` line from the NGINX Agent configuration file if you added it. This change will enable NGINX Agent to collect and report a wide range of metrics and allow remote configuration management.{{</note>}}
+   {{<note>}}If you upgrade to the full version of Instance Manager later, remove the `features: registration,dataplane-status` line from the configuration. This change will enable NGINX Agent to collect a broader range of metrics and manage configurations remotely.{{</note>}}
