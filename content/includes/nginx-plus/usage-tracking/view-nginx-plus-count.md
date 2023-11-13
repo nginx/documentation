@@ -1,5 +1,5 @@
 ---
-docs:
+docs: "DOCS-1350"
 ---
 
 Follow these steps to view and export the list of NGINX Plus instances that have successfully registered with Instance Manager:

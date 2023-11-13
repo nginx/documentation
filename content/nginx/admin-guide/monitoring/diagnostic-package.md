@@ -1,9 +1,9 @@
 ---
 description: "This page describes how to trigger the automatic collection of data required to troubleshoot issues in a NGINX or NGINX Plus deployment."
-docs: 
+docs: "DOCS-1357"
 doctypes:
 - task
-title: NGINX Diagnostic Package
+title: "NGINX Diagnostic Package"
 toc: true
 weight: 400
 ---

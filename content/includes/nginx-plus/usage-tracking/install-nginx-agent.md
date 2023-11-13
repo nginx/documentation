@@ -1,5 +1,5 @@
 ---
-docs:
+docs: "DOCS-1354"
 ---
 
 When you install NGINX Agent on an NGINX Plus instance, it will establish a connection with Instance Manager and begin transmitting usage data.

@@ -1,5 +1,5 @@
 ---
-docs:
+docs: "DOCS-1351"
 ---
 
 You can track NGINX Plus instances using an [HTTP Health Check]({{< relref "nginx/admin-guide/load-balancer/http-health-check" >}}) without installing NGINX Agent. This involves updating the NGINX Plus configuration file. Follow these steps:
