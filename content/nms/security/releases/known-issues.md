@@ -12,7 +12,29 @@ categories: ["known issues"]
 
 {{< tip >}}We recommend you upgrade to the latest version of the Security Monitoring module to take advantage of new features, improvements, and bug fixes.{{< /tip >}}
 
+
 ---
+
+## 1.7.0
+October 18, 2023
+
+### {{% icon-bug %}} Web interface fails to load after restarting NGINX Management Suite {#44587}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44587 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+The NGINX Management Suite web interface can fail to load with a "Page not found"  error after restarting its service. The security monitoring module will fail to appear on the launchpad until the page is manually reloaded.
+
+#### Workaround
+
+Reload the page in the browser to resolve this issue.
+
+---
+
 
 ## 1.5.0
 June 12, 2023
@@ -29,6 +51,7 @@ June 12, 2023
 Using an empty string as a key or value results in an empty dataset.
 
 ---
+
 
 ## 1.0.0
 November 17, 2022
@@ -62,6 +85,8 @@ To see which version of Instance Manager you have installed, run the following c
    dpkg -s nms-instance-manager
    ```
 
+---
+
 ### {{% icon-bug %}} Filtering data by Instance Group in the Security Monitoring module does not show any results. {#38790}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
@@ -79,6 +104,8 @@ Restart the NGINX Agent, and the subsequent Violations should be associated with
 
 `systemctl restart nginx-agent`
 
+---
+
 ### {{% icon-resolved %}} The field retrieving URIs is incorrectly listed as URL {#38377}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
@@ -89,4 +116,3 @@ Restart the NGINX Agent, and the subsequent Violations should be associated with
 {{</bootstrap-table>}}
 #### Description
 The field with URI data was mapped to the heading URL. The name of the field has been corrected.
-

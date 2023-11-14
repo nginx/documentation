@@ -1,6 +1,6 @@
 ---
 title: "Reporting NGINX Plus Installation Counts for Compliance"
-date: 2022-06-09T15:27:20-07:00
+date: 2023-10-26T10:27:57-07:00
 # Change draft status to false to publish doc.
 draft: false
 # Description
@@ -8,18 +8,21 @@ draft: false
 # The description text appears in search results and at the top of the doc.
 description: "Tracking your [NGINX Plus]({{< relref \"nginx/\" >}}) installations is straightforward with [NGINX Management Suite Instance Manager]({{< relref \"nms/nim/\" >}}). If you're enrolled in a commercial program like the [F5 Flex Consumption Program](https://www.f5.com/products/get-f5/flex-consumption-program), you'll need to regularly report this data to F5."
 # Assign weights in increments of 100
-weight: 100
+weight: 600
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-934"
+docs: "DOCS-1356"
 # Taxonomies
 # These are pre-populated with all available terms for your convenience.
 # Remove all terms that do not apply.
-categories: ["Installation"]
+categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
 doctypes: ["task"]
-aliases:
-- /nim/how-to/count-nginx-plus-instances/
+journeys: ["researching", "getting started", "using", "renewing", "self service"]
+personas: ["devops", "netops", "secops", "support"]
+versions: []
+authors: []
+
 ---
 
 {{< custom-styles >}}
@@ -30,8 +33,6 @@ h2 {
   padding-top:20px;
 }
 </style>
-
-## Overview
 
 {{< include "nginx-plus/usage-tracking/overview.md" >}}
 

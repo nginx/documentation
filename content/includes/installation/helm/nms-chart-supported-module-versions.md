@@ -5,6 +5,7 @@ docs: "DOCS-1324"
 {{<bootstrap-table "table table-striped table-bordered">}}
 | NGINX Management Suite chart | Instance Manager | API Connectivity Manager | App Delivery Manager |
 |------------------------------|------------------|--------------------------|----------------------|
+| 1.11.0                       | 2.14.0           | 1.9.0                    | 4.0.0-ea.3           |
 | 1.10.1                       | 2.13.1           | 1.9.0                    | 4.0.0-ea.3           |
 | 1.10.0                       | 2.13.1           | 1.8.0                    | 4.0.0-ea.3           |
 | 1.9.0                        | 2.13.0           | 1.8.0                    | 4.0.0-ea.3           |

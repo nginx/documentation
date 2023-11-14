@@ -19,10 +19,6 @@ Take the following steps to install the Security Monitoring module on your NGINX
 
     ```bash
     sudo systemctl restart nms
-    sudo systemctl restart nms-core
-    sudo systemctl restart nms-dpm
-    sudo systemctl restart nms-ingestion
-    sudo systemctl restart nms-integrations
     ```
 
     NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
@@ -38,6 +34,12 @@ Take the following steps to install the Security Monitoring module on your NGINX
    ```bash
    sudo systemctl restart nginx
    ```
+
+1. If running Security Monitoring v1.7.0 or higher, start the module:
+
+  ```bash
+  sudo systemctl start nms-sm
+  ```
 
 <!-- Do not remove. Keep this code at the bottom of the include -->
 <!-- DOCS-1061 -->

@@ -15,6 +15,159 @@ categories: ["known issues"]
 
 ---
 
+## 2.14.0
+October 16, 2023
+
+### {{% icon-bug %}} NGINX App Protect Attack Signature, Threat Campaign and Compiler fail to download {#44603}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44603 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+NGINX App Protect Attack Signatures package, Threat Campaigns package, and WAF Compiler can fail to download automatically with an error similar to the following:
+
+```
+Oct 20 22:22:57 ip-127-0-0-1 <DPM>[9553]: 2023-10-20T22:22:57.648Z	ERROR	81c818dd-ffff-aaaa-8b9d-134a60020d20	authz/authz.go:245	failed to get license status: getting license status: Get "http://unix-socket/api/platform/v1/license/status": context deadline exceeded
+Oct 20 22:22:57 ip-127-0-0-1 <INT>[9527]: 2023-10-20T22:22:57.653Z	ERROR	nms-integrations	compiler-controller/security_updates_downloader.go:94	security_updates_downloader: error when creating the nginx repo retriever - unexpected status when retrieving certs: 500 Internal Server Error
+```
+
+#### Workaround
+
+Download manually the latest [Attack Signatures package, Threat Campaign package]({{< relref "nms/nim/how-to/app-protect/setup-waf-config-management.md#manually-update-packages" >}}), and [WAF Compiler]({{< relref "nms/nim/how-to/app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}).
+
+---
+
+### {{% icon-bug %}} Missing Data when ClickHouse services are not running {#44586}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44586 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+The ClickHouse database service is a required component of the Instance Manager Dashboard. The dashboard may display an error message if the ClickHouse service does not start or quits unexpectedly.
+
+#### Workaround
+
+Restart the Clickhouse service.
+
+---
+
+### {{% icon-bug %}} Scan results may not include CVE count with App Protect installed {#44554}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44554 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+When using the Scan feature, the CVE column may provide a value of '--' for instances running specific versions of NGINX App Protect, including App Protect 4.4 and potentially others.
+
+---
+
+### {{% icon-bug %}} Certain instances not showing in the Network Utilization drawer {#44547}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44547 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+Under certain conditions, instances that are not reporting request totals may not show in the Network Utilization panel or drawer when data is sorted by Request count. This typically happens when NGINX is not configured to stream metrics data to NGINX Agent.
+
+#### Workaround
+
+Configure NGINX Plus or NGINX Stub Status APIs to send correctly the NGINX metrics using NGINX Agent. See the [Metrics]({{< relref "nms/nim/about/overview-metrics.md" >}}) documentation to learn more.
+
+---
+
+### {{% icon-bug %}} Issues sorting HTTP errors in the dashboard {#44536}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44536 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+Sorting HTTP errors by “Request Count” sometimes shows the data in an incorrect order.
+
+---
+
+### {{% icon-bug %}} NGINX Agent does not report NGINX App Protect status {#44531}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44531 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+NGINX Agent does not report NGINX App Protect as "Active" when the Attack Signature or Threat Campaign version is newer than 2023.10.01.
+
+#### Workaround
+
+[Upgrade NGINX Agent]({{< relref "nms/installation/upgrade-guide.md#upgrade-nginx-agent" >}} to version v2.30.1 or later. 
+
+---
+
+### {{% icon-bug %}} Built-in security policies may not be accessible {#44520}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44520 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+Users might not have permission to access the built-in policies (NginxDefaultPolicy and NginxStrictPolicy) while using NGINX Management Suite.
+
+#### Workaround
+
+Use RBAC to assign the following permissions to the user:
+- (At minimum) READ access to any other custom security policy 
+or
+- READ access to the security policy feature: `/api/platform/v1/security/policies`   
+
+---
+
+### {{% icon-bug %}} Data on the dashboard is updating unexpectedly {#44504}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44504 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+Dashboard data may update unexpectedly when opening a drawer view. The updated data accurately represents the latest available information about your NGINX instances.
+
+---
+
+### {{% icon-bug %}} Instances reporting incorrect memory utilization {#44351}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44351 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+An upgrade to NGINX Agent v2.30 or later is required for instances to stream memory utilization data correctly. Note that even after the upgrade, historical data recorded before the upgrade will not be correct.
+
+#### Workaround
+
+[Upgrade NGINX Agent]({{< relref "nms/installation/upgrade-guide.md#upgrade-nginx-agent" >}}) to version 2.30 or later.
+
+---
+
+
 ## 2.13.1
 September 05, 2023
 

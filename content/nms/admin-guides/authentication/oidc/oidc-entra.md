@@ -1,8 +1,8 @@
 ---
-title: "Set up Azure AD as an OIDC Identity Provider"
+title: "Set up Microsoft Entra as an OIDC Identity Provider"
 date: 2021-12-21T12:00:00-07:00
 draft: false
-description: "This guide provides step-by-step instructions on configuring Azure Active Directory (AD) as an OpenID Connect (OIDC) identity provider (IdP) for NGINX Management Suite. By using OpenID authentication with NGINX Management Suite, you can implement role-based access control (RBAC) to limit user access to specific features available in NGINX Management Suite."
+description: "This guide provides step-by-step instructions on configuring Microsoft Entra (AD) as an OpenID Connect (OIDC) identity provider (IdP) for NGINX Management Suite. By using OpenID authentication with NGINX Management Suite, you can implement role-based access control (RBAC) to limit user access to specific features available in NGINX Management Suite."
 # Assign weights in increments of 100
 weight: 100
 toc: true
@@ -18,7 +18,7 @@ versions: []
 authors: []
 docs: "DOCS-795"
 aliases:
-- /nginx-instance-manager/admin-guide/oidc-azure/
+- /nginx-instance-manager/admin-guide/oidc-entra/
 ---
 
 {{< custom-styles >}}
@@ -33,40 +33,40 @@ h2 {
 
 ## Overview
 
-This guide explains how to configure Azure Active Directory (AD) as an identity provider (IdP) for NGINX Management Suite. By implementing OIDC for authentication, administrators can simplify user management in NGINX Management Suite. Instead of creating and managing users individually, administrators can create user groups in NGINX Management Suite that align with groups in their Identity Provider. Access and permissions for users are determined by the roles assigned to their respective user groups. Users from the Identity Provider who are not part of a group with an assigned role will not have access to NGINX Management Suite.
+This guide explains how to configure Microsoft Entra (AD) as an identity provider (IdP) for NGINX Management Suite. By implementing OIDC for authentication, administrators can simplify user management in NGINX Management Suite. Instead of creating and managing users individually, administrators can create user groups in NGINX Management Suite that align with groups in their Identity Provider. Access and permissions for users are determined by the roles assigned to their respective user groups. Users from the Identity Provider who are not part of a group with an assigned role will not have access to NGINX Management Suite.
 
 We strongly recommend Open ID Connect (OIDC) as the preferred authentication method for the NGINX Management Suite. OIDC brings several benefits, including Single Sign-On (SSO) and simplified user management through user groups.
 
-To configure Azure Active Directory as an OIDC IdP, follow these steps:
+To configure Microsoft Entra as an OIDC IdP, follow these steps:
 
-**Configure Azure Active Directory:**
+**Configure Microsoft Entra:**
 
 1. Create an Application Registration for NGINX Management Suite.
-2. Add owners (users) and their email addresses to Azure Active Directory.
-3. Create groups in Azure Active Directory and assign user membership.
+2. Add owners (users) and their email addresses to Microsoft Entra.
+3. Create groups in Microsoft Entra and assign user membership.
 
 **Configure NGINX Management Suite:**
 
-1. Add user groups to NGINX Management Suite, using the same group names as in Azure Active Directory.
-1. Configure NGINX Plus in NGINX Management Suite to use Azure Active Directory as the designated identity provider.
+1. Add user groups to NGINX Management Suite, using the same group names as in Microsoft Entra.
+1. Configure NGINX Plus in NGINX Management Suite to use Microsoft Entra as the designated identity provider.
 
 ## Requirements
 
 To successfully follow the instructions in this guide, you must complete the following requirements:
 
-1. Create an [Azure Active Directory premium account](https://azure.microsoft.com/en-us/pricing/details/active-directory/). If you have a standard account, you'll need to upgrade.
+1. Create an [Microsoft Entra premium account](https://azure.microsoft.com/en-us/pricing/details/active-directory/). If you have a standard account, you'll need to upgrade.
 1. [Install Instance Manager]({{< relref "/nms/installation/vm-bare-metal/install-nim.md" >}}) on a server that also has [NGINX Plus R25 or a newer version installed]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). Make sure the server hosting NGINX Plus has a fully qualified domain name (FQDN).
 1. [Install the NGINX JavaScript module (njs)](https://www.nginx.com/blog/introduction-nginscript/) on the same server as Instance Manager. This module is necessary for managing communications between NGINX Plus and the identity provider. 
 
-## Configure Azure Active Directory {#configure-azure-ad}
+## Configure Microsoft Entra {#configur-entra}
 
-Complete the steps in the section to configure Azure Active Directory for use with NGINX Management Suite.
+Complete the steps in the section to configure Microsoft Entra for use with NGINX Management Suite.
 ### Register Application {#az-ad-register-app}
 
-To register an application with Azure Active Directory:
+To register an application with Microsoft Entra:
 
 1. Go to the [Azure portal](https://portal.azure.com/#home) and log in.
-1. Select **Azure Active Directory** from the list of Azure services.
+1. Select **Microsoft Entra** from the list of Azure services.
 1. On the left navigation menu, under the **Manage** section, select **App registrations**.
 1. Select **New registration**.
 1. Provide the following details:
@@ -107,7 +107,7 @@ To add owners (users):
 
 ### Add Group Claim to Token {#az-ad-group-claim}
 
-{{< note >}}The only supported group claim format for groups created in Azure Active Directory is **Azure AD group ObjectId**.{{< /note >}}
+{{< note >}}The only supported group claim format for groups created in Microsoft Entra is **Microsoft Entra group ObjectId**.{{< /note >}}
 
 To include the user's group membership information in the token for authentication and authorization, follow these steps:
 
@@ -118,7 +118,7 @@ To include the user's group membership information in the token for authenticati
 
 ### Assign Group to Application {#az-ad-group}
 
-{{< note >}}By default, tokens expire after 60 minutes. You can find instructions on configuring token expiration in the Azure Active Directory topic [Configurable token lifetime properties](https://learn.microsoft.com/en-us/azure/active-directory/develop/Active-directory-configurable-token-lifetimes#configurable-token-lifetime-properties).{{< /note >}}
+{{< note >}}By default, tokens expire after 60 minutes. You can find instructions on configuring token expiration in the Microsoft Entra topic [Configurable token lifetime properties](https://learn.microsoft.com/en-us/azure/active-directory/develop/Active-directory-configurable-token-lifetimes#configurable-token-lifetime-properties).{{< /note >}}
 
 Adding a group to the registered application will give all group members the same access.
 
@@ -141,11 +141,11 @@ Adding a group to the registered application will give all group members the sam
 
 {{< include "admin-guides/auth/create-user-groups.md" >}}
 
-### Configure NGINX Plus with Azure AD as Identity Provider
+### Configure NGINX Plus with Microsoft Entra as Identity Provider
 
-Configure NGINX Plus to use Azure Active Directory as the identity provider.
+Configure NGINX Plus to use Microsoft Entra as the identity provider.
 
-1. Install the NGINX JavaScript module (njs) on your NGINX Management Suite server by running the appropriate command. This module is required for handling the interaction between NGINX Plus and Azure Active Directory (IdP).
+1. Install the NGINX JavaScript module (njs) on your NGINX Management Suite server by running the appropriate command. This module is required for handling the interaction between NGINX Plus and Microsoft Entra (IdP).
 
 
    - CentOS, RHEL:
@@ -168,7 +168,7 @@ Configure NGINX Plus to use Azure Active Directory as the identity provider.
 
       Save the changes.
 
-1. Open the `/etc/nms/nginx/oidc/openid_configuration.conf` file in a text editor. Replace the following variables in the file with the values you saved when [configuring Azure Active Directory](#configure-azure-ad). Save the changes.
+1. Open the `/etc/nms/nginx/oidc/openid_configuration.conf` file in a text editor. Replace the following variables in the file with the values you saved when [configuring Microsoft Entra](#configure-entra). Save the changes.
 
    - `{client_key}`: Replace with the **Application (client) ID** obtained when [registering the application](#az-ad-register-app).
    - `{tenant_key}`: Replace with the **Directory (tenant) ID** obtained when [registering the application](#az-ad-register-app).
@@ -204,7 +204,7 @@ Configure NGINX Plus to use Azure Active Directory as the identity provider.
     #    "~^Bearer.*" '$jwt_clientId@$oidc_domain';
     #    default $jwt_claim_email;
     #}
-       # Enable when using OIDC with Azure AD
+       # Enable when using OIDC with Microsoft Entra
     map $http_authorization $groups_claim {
         "~^Bearer.*" $jwt_claim_roles;
        default $jwt_claim_groups;
@@ -318,10 +318,10 @@ Configure NGINX Plus to use Azure Active Directory as the identity provider.
     keyval $pkce_id $pkce_code_verifier zone=oidc_pkce;
 
     auth_jwt_claim_set $jwt_claim_groups groups; # For optional claim groups
-    auth_jwt_claim_set $jwt_claim_roles roles; # For optional claim roles used by Azure AD
+    auth_jwt_claim_set $jwt_claim_roles roles; # For optional claim roles used by Microsoft Entra
     auth_jwt_claim_set $jwt_claim_sub sub; # Subject unique identifier
     auth_jwt_claim_set $jwt_audience aud; # In case aud is an array
-    auth_jwt_claim_set $jwt_appid appid; # For optional claim appid used by Azure AD
+    auth_jwt_claim_set $jwt_appid appid; # For optional claim appid used by Microsoft Entra
     auth_jwt_claim_set $jwt_clientId clientId; # For optional claim clientId used by keycloak
     auth_jwt_claim_set $jwt_cid cid; # For optional claim cid used by okta
     js_import oidc from /etc/nms/nginx/oidc/openid_connect.js;
@@ -704,5 +704,5 @@ Configure NGINX Plus to use Azure Active Directory as the identity provider.
 
 ## Try It Out
 
-1. Open a web browser and go to the FQDN of your NGINX Management Suite host. You will be redirected to the Azure Active Directory login page.
-2. Enter your Azure Active Directory email address and password to log in.
+1. Open a web browser and go to the FQDN of your NGINX Management Suite host. You will be redirected to the Microsoft Entra login page.
+2. Enter your Microsoft Entra email address and password to log in.

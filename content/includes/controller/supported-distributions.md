@@ -14,7 +14,7 @@ NGINX Controller, the NGINX Controller Agent, and the NGINX Controller Applicati
 |Debian<br>10<br>(x86_64)| Not supported |v3.17+ | v3.17+ |v3.19+| See the [NGINX Plus Admin Guide](https://docs.nginx.com/nginx/) for requirements for Debian 10. |
 |Red Hat Enterprise Linux<br>6.5+| Not supported |v3.0+| Not supported | Not supported| &#8226; RHEL 6.5 and later versions in the RHEL 6 family are partially supported.|
 |Red Hat Enterprise Linux<br>7.4+<br>(x86_64)|v3.5+|v3.5+ | v3.12+|v3.19+| &#8226; RHEL 7.4 and later versions in the RHEL 7 family are supported.<br>&#8226; SELinux may interfere with NGINX Controller installation and operation. If you do enable SELinux, it must use permissive mode. Use of enforcing mode is not supported. |
-|Red Hat Enterprise Linux<br>8.0+<br>(x86_64)|v3.22+|v3.22+ | v3.22+|v3.22+| &#8226; RHEL 8.0 and later versions in the RHEL 8 family are supported. <br>&#8226; SELinux may interfere with NGINX Controller installation and operation. If you do enable SELinux, it must use permissive mode. Use of enforcing mode is not supported. |
+|Red Hat Enterprise Linux<br>8.0+<br>(x86_64)|v3.22+|v3.22+ | v3.22+| Not supported | &#8226; RHEL 8.0 and later versions in the RHEL 8 family are supported. <br>&#8226; SELinux may interfere with NGINX Controller installation and operation. If you do enable SELinux, it must use permissive mode. Use of enforcing mode is not supported. |
 |Ubuntu<br>18.04 LTS<br>(x86_64)|v3.0+|v3.0+ |v3.13+|v3.19+| |
 |Ubuntu<br>20.04 LTS<br>(x86_64)|v3.20+|v3.12+|v3.16.1+|v3.19+| |
 {{< /bootstrap-table >}}
