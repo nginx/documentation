@@ -6,7 +6,7 @@ doctypes:
 - task
 title: Monitoring NGINX and NGINX Plus with the New Relic Plug-In
 toc: true
-weight: 400
+weight: 500
 ---
 
 
