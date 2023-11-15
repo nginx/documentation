@@ -1,0 +1,765 @@
+paths:
+  collections: content
+collections_config:
+  pages:
+    path: content/
+    output: true
+    filter:
+      exclude:
+        - README.md
+        - CHANGELOG.md
+        - /nginx
+        - /controller
+        - /includes
+        - /modsec-waf
+        - /nap-dos
+        - /nap-waf
+        - /nms
+        - /solutions
+    parse_branch_index: true
+    name: Standalone Website Pages
+    description: These pages are not specific to any product.
+    icon: notes
+    sort_options:
+      - key: weight
+        order: ascending
+    _editables: {}
+    _inputs: {}
+    _select_data: {}
+    _structures: {}
+    disable_add: true
+    disable_add_folder: false
+    disable_file_actions: false
+    schemas: {}
+  NGINX-Plus:
+    path: content/nginx
+    output: true
+    parse_branch_index: true
+    icon: notes
+    preview:
+      metadata:
+        - text:
+            - key: path
+          icon: folder
+    _editables: {}
+    _inputs: {}
+    _select_data: {}
+    _structures: {}
+    create:
+      path: '[relative_base_path]/{directory}/{filename|slugify}.[ext]'
+      extra_data: {}
+      _inputs: {}
+      _select_data: {}
+      _structures: {}
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
+    schemas:
+      default:
+        path: .cloudcannon/schemas/default.md
+        reorder_inputs: true
+        hide_extra_inputs: false
+        remove_empty_inputs: false
+        remove_extra_inputs: true
+        name: Task (default)
+        icon: task
+        preview: {}
+        _editables: {}
+        _inputs: {}
+        _select_data: {}
+        _structures: {}
+        create:
+          path: '[relative_base_path]/{directory}/{filename|slugify}.[ext]'
+          extra_data: {}
+          _inputs: {}
+          _select_data: {}
+          _structures: {}
+      concept:
+        path: .cloudcannon/schemas/concept.md
+        reorder_inputs: true
+        hide_extra_inputs: false
+        remove_empty_inputs: false
+        remove_extra_inputs: true
+        name: Concept
+        icon: lightbulb
+        _editables: {}
+        _inputs: {}
+        _select_data: {}
+        _structures: {}
+  NGINX-App-Protect-DOS:
+    path: content/nap-dos
+    output: true
+    parse_branch_index: true
+    icon: notes
+    preview:
+      metadata:
+        - text:
+            - key: path
+          icon: folder
+    _editables: {}
+    _inputs: {}
+    _select_data: {}
+    _structures: {}
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
+    schemas:
+      default:
+        path: .cloudcannon/schemas/default.md
+        reorder_inputs: true
+        hide_extra_inputs: false
+        remove_empty_inputs: false
+        remove_extra_inputs: true
+        name: Task (default)
+        icon: task
+        _editables: {}
+        _inputs: {}
+        _select_data: {}
+        _structures: {}
+      concept:
+        path: .cloudcannon/schemas/concept.md
+        reorder_inputs: true
+        hide_extra_inputs: false
+        remove_empty_inputs: false
+        remove_extra_inputs: true
+        name: Concept
+        icon: lightbulb
+        _editables: {}
+        _inputs: {}
+        _select_data: {}
+        _structures: {}
+  NGINX-App-Protect-WAF:
+    path: content/nap-waf
+    output: true
+    filter:
+      exclude:
+        - README.txt
+        - CHANGELOG.txt
+    parse_branch_index: true
+    icon: notes
+    preview:
+      metadata:
+        - text:
+            - key: path
+          icon: folder
+    _editables: {}
+    _inputs: {}
+    _select_data: {}
+    _structures: {}
+    create:
+      path: '[relative_base_path]/{directory}/{filename|slugify}.[ext]'
+      extra_data: {}
+      _inputs: {}
+      _select_data: {}
+      _structures: {}
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
+    schemas:
+      default:
+        path: .cloudcannon/schemas/default.md
+        reorder_inputs: true
+        hide_extra_inputs: false
+        remove_empty_inputs: false
+        remove_extra_inputs: true
+        name: Task (default)
+        icon: task
+        _editables: {}
+        _inputs: {}
+        _select_data: {}
+        _structures: {}
+      concept:
+        path: .cloudcannon/schemas/concept.md
+        reorder_inputs: true
+        hide_extra_inputs: false
+        remove_empty_inputs: false
+        remove_extra_inputs: true
+        name: Concept
+        icon: lightbulb
+        _editables: {}
+        _inputs: {}
+        _select_data: {}
+        _structures: {}
+  NGINX-Management-Suite:
+    path: content/nms
+    output: true
+    parse_branch_index: true
+    icon: notes
+    preview:
+      metadata:
+        - text:
+            - key: path
+          icon: folder
+    _editables: {}
+    _inputs: {}
+    _select_data: {}
+    _structures: {}
+    create:
+      path: '[relative_base_path]/{directory}/{filename|slugify}.[ext]'
+      extra_data: {}
+      _inputs: {}
+      _select_data: {}
+      _structures: {}
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
+    schemas:
+      default:
+        path: .cloudcannon/schemas/default.md
+        reorder_inputs: true
+        hide_extra_inputs: false
+        remove_empty_inputs: false
+        remove_extra_inputs: true
+        name: Task (default)
+        icon: task
+        _editables: {}
+        _inputs: {}
+        _select_data: {}
+        _structures: {}
+      concept:
+        path: .cloudcannon/schemas/concept.md
+        reorder_inputs: true
+        hide_extra_inputs: false
+        remove_empty_inputs: false
+        remove_extra_inputs: true
+        name: Concept
+        icon: lightbulb
+        _editables: {}
+        _inputs: {}
+        _select_data: {}
+        _structures: {}
+      policy:
+        path: .cloudcannon/schemas/nms/policy.md
+        reorder_inputs: true
+        hide_extra_inputs: false
+        remove_empty_inputs: false
+        remove_extra_inputs: true
+        name: ACM Policy
+        icon: table_chart
+        _editables: {}
+        _inputs: {}
+        _select_data: {}
+        _structures: {}
+  NGINX-Controller:
+    path: content/controller
+    output: true
+    parse_branch_index: true
+    icon: notes
+    preview:
+      metadata:
+        - text:
+            - key: path
+          icon: folder
+    _editables: {}
+    _inputs: {}
+    _select_data: {}
+    _structures: {}
+    create:
+      path: '[relative_base_path]/{directory}/{filename|slugify}.[ext]'
+      extra_data: {}
+      _inputs: {}
+      _select_data: {}
+      _structures: {}
+    disable_add: false
+    disable_add_folder: true
+    disable_file_actions: true
+    schemas: {}
+  NGINX-ModSecurity-WAF:
+    path: content/modsec-waf
+    output: true
+    parse_branch_index: true
+    icon: notes
+    preview:
+      metadata:
+        - text:
+            - key: path
+          icon: folder
+    _editables: {}
+    _inputs: {}
+    _select_data: {}
+    _structures: {}
+    create:
+      path: '[relative_base_path]/{directory}/{filename|slugify}.[ext]'
+      extra_data: {}
+      _inputs: {}
+      _select_data: {}
+      _structures: {}
+    disable_add: true
+    disable_add_folder: true
+    disable_file_actions: true
+    schemas: {}
+  Solution-Bundles:
+    path: content/solutions
+    output: true
+    parse_branch_index: true
+    icon: notes
+    preview:
+      metadata:
+        - text:
+            - key: path
+          icon: folder
+    _editables: {}
+    _inputs: {}
+    _select_data: {}
+    _structures: {}
+    create:
+      path: '[relative_base_path]/{directory}/{filename|slugify}.[ext]'
+      extra_data: {}
+      _inputs: {}
+      _select_data: {}
+      _structures: {}
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
+    schemas: {}
+  Shared-Files-for-Content-Reuse:
+    path: content/includes
+    output: false
+    filter:
+      exclude:
+        - index.md
+    parse_branch_index: false
+    icon: notes
+    preview:
+      metadata:
+        - text:
+            - key: path
+          icon: folder
+    _editables: {}
+    _inputs: {}
+    _select_data: {}
+    _structures: {}
+    create:
+      path: '[relative_base_path]/{directory}/{filename|slugify}.[ext]'
+      extra_data: {}
+      _inputs: {}
+      _select_data: {}
+      _structures: {}
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
+    schemas: {}
+  data:
+    path: data
+    output: false
+    icon: dataset
+    _editables: {}
+    _enabled_editors:
+      - data
+      - content
+    _inputs: {}
+    _select_data: {}
+    _structures: {}
+    create:
+      path: '[relative_base_path]/{directory}/{filename|slugify}.[ext]'
+      extra_data: {}
+      _inputs: {}
+      _select_data: {}
+      _structures: {}
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
+    schemas: {}
+collections_config_override: true
+_enabled_editors:
+  - content
+  - data
+  - visual
+_inputs: {}
+_select_data: {}
+_structures: {}
+_editables:
+  text:
+    bold: true
+    copyformatting: true
+    italic: true
+    link: true
+    redo: true
+    removeformat: true
+    strike: true
+    subscript: true
+    superscript: true
+    underline: true
+    undo: true
+data_config: true
+timezone: Etc/UTC
+commit_templates:
+  - template_string: '{commit_type}: {message|trim} {breaking_change|if=breaking_change_message}'
+    _inputs:
+      commit_type:
+        type: select
+        options:
+          allow_empty: true
+          values:
+            - feature
+            - fix
+            - refactor
+            - update
+        cascade: true
+      breaking_change_message:
+        type: text
+        cascade: true
+    extra_data:
+      breaking_change: |-
+
+        ⚠️ {breaking_change_message}
+_snippets_imports:
+  hugo:
+    exclude:
+      - hugo_youtube
+      - hugo_twitter
+      - hugo_vimeo
+      - hugo_instagram
+_snippets:
+  important:
+    template: hugo_paired_shortcode_named_args
+    inline: false
+    preview:
+      text: Important
+      subtext:
+        - key: content_markdown
+        - Important note in a callout box.
+      icon: priority_high
+    definitions:
+      shortcode_name: important
+      content_key: content_markdown
+      named_args: []
+  note:
+    template: hugo_paired_shortcode_named_args
+    inline: false
+    preview:
+      text: Note
+      subtext:
+        - key: content_markdown
+        - Note in callout box.
+      icon: edit_note
+    definitions:
+      shortcode_name: note
+      content_key: content_markdown
+      named_args: []
+  see-also:
+    template: hugo_paired_shortcode_named_args
+    inline: false
+    preview:
+      text: See also
+      subtext:
+        - key: content_markdown
+        - See Also note in callout box.
+      icon: visibility
+    definitions:
+      shortcode_name: see-also
+      content_key: content_markdown
+      named_args: []
+  before-you-begin:
+    template: hugo_paired_shortcode_named_args
+    inline: false
+    preview:
+      text: Befor You Begin
+      subtext:
+        - key: content_markdown
+        - Before You Begin note in callout box.
+      icon: front_hand
+    definitions:
+      shortcode_name: before-you-begin
+      content_key: content_markdown
+      named_args: []
+  deprecated:
+    template: hugo_paired_shortcode_named_args
+    inline: false
+    preview:
+      text: Deprecated
+      subtext:
+        - key: content_markdown
+        - Deprecated callout in a box.
+      icon: delete
+    definitions:
+      shortcode_name: deprecated
+      content_key: content_markdown
+      named_args: []
+  caution:
+    template: hugo_paired_shortcode_named_args
+    inline: false
+    preview:
+      text: Caution
+      subtext:
+        - key: content_markdown
+        - Caution callout in a box.
+      icon: announcement
+    definitions:
+      shortcode_name: caution
+      content_key: content_markdown
+      named_args: []
+  warning:
+    template: hugo_paired_shortcode_named_args
+    inline: false
+    preview:
+      text: Warning
+      subtext:
+        - key: content_markdown
+        - Warning callout in a box.
+      icon: warning
+    definitions:
+      shortcode_name: warning
+      content_key: content_markdown
+      named_args: []
+  call-out:
+    template: hugo_paired_shortcode_positional_args
+    inline: false
+    preview:
+      text:
+        - key: callout_title
+        - Callout
+      subtext:
+        - key: content_markdown
+        - Custome callout with title in a box.
+      icon:
+        - key: icon_param
+        - document
+    definitions:
+      shortcode_name: call-out
+      content_key: content_markdown
+      positional_args:
+        - editor_key: icon_param
+          type: string
+        - editor_key: callout_title
+          type: string
+  Internal comment:
+    template: hugo_paired_shortcode_named_args
+    inline: false
+    preview:
+      text: Comment (Internal only)
+      subtext:
+        - key: content_markdown
+        - Internal comment that will not be rendered in the page.
+      icon: tag
+    definitions:
+      shortcode_name: comment
+      content_key: content_markdown
+      named_args: []
+  include:
+    template: hugo_shortcode_positional_args
+    inline: true
+    preview:
+      text: Include
+      subtext:
+        - key: url
+        - Include snippet.
+      icon: file_copy
+    definitions:
+      shortcode_name: include
+      positional_args:
+        - editor_key: url
+          type: string
+  bootstrap-table:
+    template: hugo_paired_shortcode_positional_args
+    inline: false
+    preview:
+      text: Bootstrap Table
+      subtext:
+        - key: content_markdown_table
+        - type: code
+        - Markdown table using Bootstrap.
+      icon: table_chart
+    definitions:
+      shortcode_name: bootstrap-table
+      content_key: content_markdown_table
+      positional_args:
+        - editor_key: table_style
+    _inputs:
+      content_markdown_table:
+        type: code
+        cascade: true
+  raw-html:
+    template: hugo_paired_shortcode_named_args
+    inline: false
+    preview:
+      text: Raw HTML
+      subtext:
+        - key: content_code_block
+        - Raw HTML Code.
+      icon: html
+    definitions:
+      shortcode_name: raw-html
+      content_key: content_code_block
+      named_args: []
+  img:
+    template: hugo_shortcode_named_args
+    inline: true
+    preview:
+      text:
+        - key: src
+        - Image
+      subtext:
+        - key: alt
+        - Alternative text
+      icon: image
+    definitions:
+      shortcode_name: img
+      named_args:
+        - editor_key: src
+          type: string
+        - editor_key: caption
+          optional: true
+          type: string
+        - editor_key: alt
+          optional: true
+          type: string
+        - editor_key: width
+          optional: true
+          type: string
+        - editor_key: height
+          optional: true
+          type: string
+  tab group:
+    template: hugo_paired_shortcode_named_args
+    inline: false
+    preview:
+      text:
+        - key: name
+        - Tab group section
+      subtext:
+        - key: content_code_block
+        - Tabs content
+      icon: tab
+    definitions:
+      shortcode_name: tabs
+      content_key: content_code_block
+      named_args:
+        - editor_key: name
+          type: string
+  tab section:
+    template: hugo_paired_markdown_shortcode_named_args
+    inline: false
+    preview:
+      text:
+        - key: name
+        - Tab inside tabbed section
+      subtext:
+        - key: tab_content
+        - Tab content
+      icon: tab
+    definitions:
+      shortcode_name: tabs
+      content_key: tab_content
+      named_args:
+        - editor_key: name
+          type: string
+  Custom css styles:
+    template: hugo_shortcode_positional_args
+    inline: false
+    preview:
+      text: Custom CSS Styles
+      icon: css
+    definitions:
+      shortcode_name: custom-styles
+  Release note css styles:
+    template: hugo_shortcode_positional_args
+    inline: false
+    preview:
+      text: Custom Styles for Release Notes
+      icon: css
+    definitions:
+      shortcode_name: rn-styles
+  beta-badge:
+    template: hugo_shortcode_positional_args
+    inline: false
+    preview:
+      text: This topic documents an early access feature.
+      subtext: >-
+        These features are provided for you to try before they are generally
+        available. You shouldn't use early access features for production
+        purposes.
+      icon: science
+    definitions:
+      shortcode_name: beta-badge
+  relref:
+    template: hugo_shortcode_positional_args
+    inline: true
+    preview:
+      view: inline
+      icon: link
+      text:
+        - key: url
+        - Empty URL
+    definitions:
+      shortcode_name: relref
+      positional_args:
+        - editor_key: url
+          type: string
+  link:
+    template: hugo_shortcode_positional_args
+    inline: true
+    preview:
+      text:
+        - key: text
+        - Link to download a file
+      icon: system_update_alt
+    definitions:
+      shortcode_name: link
+      positional_args:
+        - editor_key: url
+          type: string
+        - editor_key: text
+  Fontawesome-Icon:
+    template: hugo_shortcode_positional_args
+    inline: true
+    preview:
+      view: inline
+      text: FA-icon
+      icon:
+        - key: icon_name
+    definitions:
+      shortcode_name: fa
+      positional_args:
+        - editor_key: icon_name
+          type: string
+  icon-resolved:
+    template: hugo_markdown_shortcode_named_args
+    inline: true
+    preview:
+      text: Resolved Bug Icon
+      icon: bug_report
+    definitions:
+      shortcode_name: icon-resolved
+      content_key: content_markdown
+      named_args: []
+  icon-bug:
+    template: hugo_markdown_shortcode_named_args
+    inline: true
+    preview:
+      text: Bug Icon
+      icon: bug_report
+    definitions:
+      shortcode_name: icon-bug
+      content_key: content_markdown
+      named_args: []
+  shortversions:
+    template: hugo_shortcode_positional_args
+    inline: false
+    preview:
+      text: Shortversions - This shortcode has been deprecated
+      icon: format_list_numbered
+    definitions:
+      shortcode_name: shortversions
+      positional_args:
+        - editor_key: from
+          type: string
+        - editor_key: to
+          type: string
+        - editor_key: product
+          type: string
+  versions:
+    template: hugo_shortcode_positional_args
+    inline: false
+    preview:
+      text: Versions - This shortcode has been deprecated
+      icon: format_list_numbered
+    definitions:
+      shortcode_name: versions
+      positional_args:
+        - editor_key: from
+          type: string
+        - editor_key: to
+          type: string
+        - editor_key: product
+          type: string
