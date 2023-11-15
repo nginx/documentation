@@ -6,16 +6,15 @@ collections_config:
     output: true
     filter:
       exclude:
-        - README.md
-        - CHANGELOG.md
-        - /nginx
-        - /controller
-        - /includes
-        - /modsec-waf
-        - /nap-dos
-        - /nap-waf
-        - /nms
-        - /solutions
+        - /nginx/_index.md
+        - /controller/_index.md
+        - /includes/index.md
+        - /modsec-waf/_index.md
+        - /nap-dos/_index.md
+        - /nap-waf/_index.md
+        - /nms/_index.md
+        - /solutions/_index.md
+        - _index.md
     parse_branch_index: true
     name: Standalone Website Pages
     description: These pages are not specific to any product.
@@ -131,10 +130,6 @@ collections_config:
   NGINX-App-Protect-WAF:
     path: content/nap-waf
     output: true
-    filter:
-      exclude:
-        - README.txt
-        - CHANGELOG.txt
     parse_branch_index: true
     icon: notes
     preview:
@@ -278,12 +273,6 @@ collections_config:
     _inputs: {}
     _select_data: {}
     _structures: {}
-    create:
-      path: '[relative_base_path]/{directory}/{filename|slugify}.[ext]'
-      extra_data: {}
-      _inputs: {}
-      _select_data: {}
-      _structures: {}
     disable_add: true
     disable_add_folder: true
     disable_file_actions: true
@@ -344,9 +333,7 @@ collections_config:
     output: false
     icon: dataset
     _editables: {}
-    _enabled_editors:
-      - data
-      - content
+    _enabled_editors: {}
     _inputs: {}
     _select_data: {}
     _structures: {}
@@ -356,15 +343,13 @@ collections_config:
       _inputs: {}
       _select_data: {}
       _structures: {}
-    disable_add: false
-    disable_add_folder: false
-    disable_file_actions: false
+    disable_add: true
+    disable_add_folder: true
+    disable_file_actions: true
     schemas: {}
 collections_config_override: true
 _enabled_editors:
   - content
-  - data
-  - visual
 _inputs: {}
 _select_data: {}
 _structures: {}
