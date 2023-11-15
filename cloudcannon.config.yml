@@ -346,7 +346,6 @@ collections_config:
     _editables: {}
     _enabled_editors:
       - data
-      - content
     _inputs: {}
     _select_data: {}
     _structures: {}
@@ -364,7 +363,6 @@ collections_config_override: true
 _enabled_editors:
   - content
   - data
-  - visual
 _inputs: {}
 _select_data: {}
 _structures: {}
