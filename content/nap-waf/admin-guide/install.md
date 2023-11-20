@@ -410,13 +410,13 @@ If a user other than **nginx** is to be used, note the following:
 7. Add NGINX Plus repository by downloading the file `nginx-plus-8.repo` to `/etc/yum.repos.d`:
 
     ```shell
-    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.repo
+    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-9.repo
     ```
 
-8. Add NGINX App Protect WAF repository by downloading the file `app-protect-8.repo` to `/etc/yum.repos.d`:
+8. Add NGINX App Protect WAF repository by downloading the file `app-protect-9.repo` to `/etc/yum.repos.d`:
 
     ```shell
-    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
+    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
     ```
 
 9. Enable Yum repositories to pull App Protect dependencies:
@@ -430,7 +430,7 @@ If a user other than **nginx** is to be used, note the following:
     Enable `codeready-builder` repository through subscription manager:
 
     ```shell
-    sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
+    sudo subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
     ```
 
 10. Install the most recent version of the NGINX App Protect WAF package (which includes NGINX Plus):
@@ -1445,19 +1445,19 @@ FROM registry.access.redhat.com/ubi8/ubi
 RUN yum -y install wget ca-certificates
 
 # Add NGINX Plus repo to Yum:
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.repo
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-9.repo
 
 # Add NGINX App-protect & dependencies repo to Yum:
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
     # You can use either of the dependencies or epel repo
-    # && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm \
+    # && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm \
     && yum clean all
 
 # Install NGINX App Protect WAF:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-    yum install --enablerepo=codeready-builder-for-rhel-8-x86_64-rpms -y app-protect \
+    yum install --enablerepo=codeready-builder-for-rhel-9-x86_64-rpms -y app-protect \
     && yum clean all \
     && rm -rf /var/cache/yum
 
@@ -1865,16 +1865,16 @@ FROM registry.access.redhat.com/ubi8/ubi
 RUN yum -y install wget ca-certificates
 
 # Add NGINX App-protect & dependencies repo to Yum:
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
     # You can use either of the dependencies or epel repo
-    # && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm \
+    # && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm \
     && yum clean all
 
 # Install NGINX App Protect WAF:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-    yum install --enablerepo=codeready-builder-for-rhel-8-x86_64-rpms -y app-protect-compiler \
+    yum install --enablerepo=codeready-builder-for-rhel-9-x86_64-rpms -y app-protect-compiler \
     && yum clean all \
     && rm -rf /var/cache/yum
 ```
