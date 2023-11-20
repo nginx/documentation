@@ -76,6 +76,7 @@ The NGINX App Protect WAF package has the following dependencies:
 6. **app-protect-graphql** - The App Protect shared library package for GraphQL protection
 7. **app-protect-attack-signatures** - The App Protect attack signatures update package 
 8. **app-protect-threat-campaigns** - The App Protect threat campaigns update package 
+9. **app-protect-bot-signatures** - The App Protect bot signatures update package
 9. **app-protect-selinux** - The prebuilt SELinux policy module for NGINX App Protect WAF (optional dependency)
 
 See the NGINX Plus full list of prerequisites for more details. NGINX App Protect WAF can be installed as a module to an existing NGINX Plus installation or as a complete NGINX Plus with App Protect installation in a clean environment.
@@ -2619,7 +2620,7 @@ Example: app-protect-threat-campaigns-2022.07.21
 
 The App Protect Bot Signatures feature is described [here]({{< relref "/nap-waf/configuration-guide/configuration.md#bot-signatures" >}}).<br>
 
-The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a separate package like the attack signatures and threat campaigns. The version number for this package reflects the date the package was released. For example: app-protect-bot-signatures-2023.11.14, where the format for app protect bot signatures is: YYYY.MM.DD.
+The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a dependency similar to attack signatures and threat campaigns and can be updated more often like attack signatures and threat campaigns. The version number for this package reflects the date the package was released. For example: app-protect-bot-signatures-2023.11.14, where the format for app protect bot signatures is: YYYY.MM.DD.
 
 
 ### CentOS / RHEL 7.4+ / Amazon Linux 2
