@@ -2617,7 +2617,9 @@ Example: app-protect-threat-campaigns-2022.07.21
 
 ## Updating App Protect Bot Signatures
 
-The App Protect Bot Signatures is a seperate package like the attack signatures and threat campaigns and named: app-protect-bot-signatures. 
+The App Protect Bot Signatures feature is described [here]({{< relref "/nap-waf/configuration-guide/configuration.md#bot-signatures" >}}).<br>
+
+The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a separate package like the attack signatures and threat campaigns. The version number for this package reflects the date the package was released. For example: app-protect-bot-signatures-2023.11.14, where the format for app protect bot signatures is: YYYY.MM.DD.
 
 
 ### CentOS / RHEL 7.4+ / Amazon Linux 2
