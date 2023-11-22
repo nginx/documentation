@@ -51,6 +51,9 @@
 /nginx-ingress-controller/intro/overview/ /nginx-ingress-controller/overview/about/ 301
 /nginx-ingress-controller/intro/how-nginx-ingress-controller-works/ /nginx-ingress-controller/overview/design/ 301
 /nginx-ingress-controller/intro/nginx-plus/ /nginx-ingress-controller/overview/nginx-plus/ 301
+/nginx-ingress-controller/installation/installation-with-helm/ /nginx-ingress-controller/installation/installing-nic/installation-with-helm/ 301
+/nginx-ingress-controller/installation/installation-with-manifests/ /nginx-ingress-controller/installation/installing-nic/installation-with-manifests/ 301
+/nginx-ingress-controller/installation/installation-with-operator/ /nginx-ingress-controller/installation/installing-nic/installation-with-operator/ 301
 /nginx-ingress-controller/installation/pulling-ingress-controller-image/ /nginx-ingress-controller/installation/nic-images/pulling-ingress-controller-image/ 301
 /nginx-ingress-controller/installation/building-ingress-controller-image/ /nginx-ingress-controller/installation/building-nginx-ingress-controller-image/ 301
 /nginx-ingress-controller/app-protect-dos/ /nginx-ingress-controller/installation/integrations/app-protect-dos/ 301
