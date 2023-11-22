@@ -445,6 +445,23 @@ In this example, we enable the HTTP compliance violation with the blocking as tr
 }
 ~~~
 
+#### RFC Checks on the Referer Header
+
+This feature introduces RFC checks on the URL referer header.
+
+If a request contains a referer header with a URL that doesn't comply with RFC standards as per RFC-3986, it will trigger the `VIOL_HTTP_PROTOCOL` violation along with its associated sub-violations. If this violation is reported, the user should inspect both the request and referer URLs to dentify and address the underlying issue.
+
+For example, in the below URL in Referer header in "Example 1" there is NULL used in Referer value and in "Example 2" unescaped space is used. Since these requests are non-RFC compliant, it will trigger the `VIOL_HTTP_PROTOCOL` violation.
+
+```
+Example 1
+...  Referer: http://example.com/hello%2500world\r\n
+```
+
+```
+Example 2
+...  Referer: http://example.com/hello world\r\n
+```
 
 #### Evasion Techniques
 
