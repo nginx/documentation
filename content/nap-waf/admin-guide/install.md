@@ -1440,7 +1440,7 @@ CMD ["sh", "/root/entrypoint.sh"]
 ```dockerfile
 # syntax=docker/dockerfile:1
 # For RHEL ubi9:
-FROM registry.access.redhat.com/ubi8/ubi
+FROM registry.access.redhat.com/ubi9/ubi
 
 # Install prerequisite packages:
 RUN yum -y install wget ca-certificates
@@ -1449,7 +1449,7 @@ RUN yum -y install wget ca-certificates
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-9.repo
 
 # Add NGINX App-protect & dependencies repo to Yum:
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
     # You can use either of the dependencies or epel repo
     # && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm \
@@ -1860,7 +1860,7 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
 ```dockerfile
 # syntax=docker/dockerfile:1
 # For RHEL ubi9:
-FROM registry.access.redhat.com/ubi8/ubi
+FROM registry.access.redhat.com/ubi9/ubi
 
 # Install prerequisite packages:
 RUN yum -y install wget ca-certificates
@@ -2242,12 +2242,44 @@ After having updated the Attack Signature package you have to reload the configu
     sudo yum downgrade app-protect-attack-signatures-2019.07.16
     ```
 
-### RHEL 8.1+ / Oracle Linux 8.1+ / RHEL 9
+### RHEL 8.1+ / Oracle Linux 8.1+ 
 
 1. To add NGINX App Protect WAF Security Updates repository, download the file `app-protect-8.repo` to `/etc/yum.repos.d`:
 
     ```shell
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
+    ```
+
+2.  Update the attack signatures:
+
+    ```shell
+    sudo yum install app-protect-attack-signatures
+    ```
+
+    To install a specific version, list the available versions:
+
+    ```shell
+    sudo yum --showduplicates list app-protect-attack-signatures
+    ```
+
+    To upgrade to a specific version:
+
+    ```shell
+    sudo yum install app-protect-attack-signatures-2021.12.30
+    ```
+
+    To downgrade to a specific version:
+
+    ```shell
+    sudo yum downgrade app-protect-attack-signatures-2019.07.16
+    ```
+
+### RHEL 9
+
+1. To add NGINX App Protect WAF Security Updates repository, download the file `app-protect-9.repo` to `/etc/yum.repos.d`:
+
+    ```shell
+    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
     ```
 
 2.  Update the attack signatures:
@@ -2464,12 +2496,38 @@ Example: app-protect-threat-campaigns-2022.07.21
     sudo yum install app-protect-threat-campaigns-2022.07.21
     ```
 
-### RHEL 8.1+ / Oracle Linux 8.1+ / RHEL 9
+### RHEL 8.1+ / Oracle Linux 8.1+
 
 1. If not already configured, add NGINX App Protect WAF Security Updates repository by downloading the file `app-protect-8.repo` to `/etc/yum.repos.d`:
 
     ```shell
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
+    ```
+
+2.  Update Threat Campaigns:
+
+    ```shell
+    sudo yum install app-protect-threat-campaigns
+    ```
+
+    To install a specific version, list the available versions:
+
+    ```shell
+    sudo yum --showduplicates list app-protect-threat-campaigns
+    ```
+
+    To upgrade to a specific version:
+
+    ```shell
+    sudo yum install app-protect-threat-campaigns-2022.07.21
+    ```
+
+### RHEL 9
+
+1. If not already configured, add NGINX App Protect WAF Security Updates repository by downloading the file `app-protect-9.repo` to `/etc/yum.repos.d`:
+
+    ```shell
+    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
     ```
 
 2.  Update Threat Campaigns:
@@ -2649,12 +2707,38 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     sudo yum install app-protect-bot-signatures-2023.11.14
     ```
 
-### RHEL 8.1+ / Oracle Linux 8.1+ / RHEL 9
+### RHEL 8.1+ / Oracle Linux 8.1+ 
 
 1. If not already configured, add NGINX App Protect WAF Security Updates repository by downloading the file `app-protect-8.repo` to `/etc/yum.repos.d`:
 
     ```shell
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
+    ```
+
+2.  Update Bot Signatures:
+
+    ```shell
+    sudo yum install app-protect-bot-signatures
+    ```
+
+    To install a specific version, list the available versions:
+
+    ```shell
+    sudo yum --showduplicates list app-protect-bot-signatures
+    ```
+
+    To upgrade to a specific version:
+
+    ```shell
+    sudo yum install app-protect-bot-signatures-2023.11.14
+    ```
+
+### RHEL 9
+
+1. If not already configured, add NGINX App Protect WAF Security Updates repository by downloading the file `app-protect-9.repo` to `/etc/yum.repos.d`:
+
+    ```shell
+    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
     ```
 
 2.  Update Bot Signatures:
