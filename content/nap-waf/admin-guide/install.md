@@ -2906,6 +2906,7 @@ app-protect-graphql \
 app-protect-common \
 app-protect-attack-signatures \
 app-protect-threat-campaigns \
+app-protect-bot-signatures \
 app-protect-selinux
 ```
 ### RHEL 8.1+ / Oracle Linux 8.1+ / RHEL 9
@@ -2924,7 +2925,8 @@ app-protect-graphql \
 app-protect-compiler \
 app-protect-common \
 app-protect-attack-signatures \
-app-protect-threat-campaigns
+app-protect-threat-campaigns \
+app-protect-bot-signatures
 ```
 
 ### Alpine 3.16 / Alpine 3.17
@@ -2937,7 +2939,8 @@ app-protect-graphql \
 app-protect-compiler \
 app-protect-common \
 app-protect-attack-signatures \
-app-protect-threat-campaigns
+app-protect-threat-campaigns \
+app-protect-bot-signatures
 ```
 
 ## Upgrading App Protect to a Specific Version
