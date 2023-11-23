@@ -2069,6 +2069,11 @@ On a host with access to the NGINX App Protect WAF repository:
     wget -P /etc/packages https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
     ```
 
+    For RHEL 9:
+    ```shell
+    wget -P /etc/packages https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+    ```
+
 4. Add the packages in `/etc/packages` to your local repository.
 
 
