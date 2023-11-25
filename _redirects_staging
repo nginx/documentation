@@ -46,6 +46,10 @@
 
 # NGINX Ingress Controller redirects
 /nginx-ingress-controller/intro/nginx-ingress-controllers/ https://www.nginx.com/blog/guide-to-choosing-ingress-controller-part-4-nginx-ingress-controller-options/ 301!
+/nginx-ingress-controller/troubleshooting/troubleshoot-ingress-controller /nginx-ingress-controller/troubleshooting/troubleshooting-common 301
+/nginx-ingress-controller/troubleshooting/virtualserver-virtualserverroute /nginx-ingress-controller/troubleshooting/virtualserver 301
+/nginx-ingress-controller/troubleshooting/troubleshooting-with-app-protect-dos /nginx-ingress-controller/troubleshooting/troubleshooting-app-protect-dos 301
+/nginx-ingress-controller/troubleshooting/troubleshooting-with-app-protect /nginx-ingress-controller/troubleshooting/troubleshooting-app-protect-waf 301
 /nginx-ingress-controller/intro/overview/ /nginx-ingress-controller/overview/about/ 301
 /nginx-ingress-controller/intro/how-nginx-ingress-controller-works/ /nginx-ingress-controller/overview/design/ 301
 /nginx-ingress-controller/intro/nginx-plus/ /nginx-ingress-controller/overview/nginx-plus/ 301
@@ -53,11 +57,7 @@
 /nginx-ingress-controller/installation/installation-with-manifests/ /nginx-ingress-controller/installation/installing-nic/installation-with-manifests/ 301
 /nginx-ingress-controller/installation/installation-with-operator/ /nginx-ingress-controller/installation/installing-nic/installation-with-operator/ 301
 /nginx-ingress-controller/installation/pulling-ingress-controller-image/ /nginx-ingress-controller/installation/nic-images/pulling-ingress-controller-image/ 301
-/nginx-ingress-controller/installation/building-ingress-controller-image/ /nginx-ingress-controller/installation/building-nginx-ingress-controller/ 301
-/nginx-ingress-controller/troubleshooting/troubleshoot-ingress-controller /nginx-ingress-controller/troubleshooting/troubleshooting-common 301
-/nginx-ingress-controller/troubleshooting/virtualserver-virtualserverroute /nginx-ingress-controller/troubleshooting/virtualserver 301
-/nginx-ingress-controller/troubleshooting/troubleshooting-with-app-protect-dos /nginx-ingress-controller/troubleshooting/troubleshooting-app-protect-dos 301
-/nginx-ingress-controller/troubleshooting/troubleshooting-with-app-protect /nginx-ingress-controller/troubleshooting/troubleshooting-app-protect-waf 301
+/nginx-ingress-controller/installation/building-ingress-controller-image/ /nginx-ingress-controller/installation/building-nginx-ingress-controller-image/ 301
 /nginx-ingress-controller/app-protect-dos/ /nginx-ingress-controller/installation/integrations/app-protect-dos/ 301
 /nginx-ingress-controller/app-protect-dos/configuration/ /nginx-ingress-controller/installation/integrations/app-protect-dos/configuration/ 301
 /nginx-ingress-controller/app-protect-dos/dos-protected/ /nginx-ingress-controller/installation/integrations/app-protect-dos/dos-protected/ 301
