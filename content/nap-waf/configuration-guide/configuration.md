@@ -5405,10 +5405,10 @@ server {
     }
 ```
 
-The **key/value** pair will be 'environment env1', ‘gateway gw1’ and ‘component comp1’ in the above examples, i.e.
+The **key/value** pair will be 'environment env1', ‘gateway gway1’ and ‘component comp1’ in the above examples, i.e.
 
 - app_protect_custom_log_attribute environment env1;
-- app_protect_custom_log_attribute gateway gw1;
+- app_protect_custom_log_attribute gateway gway1;
 - app_protect_custom_log_attribute component comp1;
 
 The above key/value pair will be parsed as below:
@@ -5417,7 +5417,7 @@ The above key/value pair will be parsed as below:
 "customLogAttributes": [
     {
         "name": "gateway",
-        "value": "gw1"
+        "value": "gway1"
     },
     {
         "name": "component",
@@ -5456,7 +5456,7 @@ Attributes at the http level applies to all servers and locations unless a speci
 Security logging example in json_log:
 
 ```json
-""customLogAttribute"":[{""name"":""component"",""value"":""comp1""},{""name"":""gateway"",""value"":""gw1""}]}"
+""customLogAttribute"":[{""name"":""component"",""value"":""comp1""},{""name"":""gateway"",""value"":""gway1""}]}"
 ```
 
 ## Directives
