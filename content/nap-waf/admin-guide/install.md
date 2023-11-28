@@ -399,7 +399,7 @@ If a user other than **nginx** is to be used, note the following:
 5.  Install prerequisite packages:
 
     ```shell
-    sudo yum install ca-certificates wget
+    sudo dnf install ca-certificates wget
     ```
 
 6. Remove any previously downloaded NGINX Plus repository file from `/etc/yum.repos.d`:
@@ -411,13 +411,13 @@ If a user other than **nginx** is to be used, note the following:
 7. Add NGINX Plus repository by downloading the file `nginx-plus-8.repo` to `/etc/yum.repos.d`:
 
     ```shell
-    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-9.repo
+    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.repo
     ```
 
-8. Add NGINX App Protect WAF repository by downloading the file `app-protect-9.repo` to `/etc/yum.repos.d`:
+8. Add NGINX App Protect WAF repository by downloading the file `app-protect-8.repo` to `/etc/yum.repos.d`:
 
     ```shell
-    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
+    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
     ```
 
 9. Enable Yum repositories to pull App Protect dependencies:
@@ -431,7 +431,7 @@ If a user other than **nginx** is to be used, note the following:
     Enable `codeready-builder` repository through subscription manager:
 
     ```shell
-    sudo subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
+    sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
     ```
 
 10. Install the most recent version of the NGINX App Protect WAF package (which includes NGINX Plus):
@@ -1443,24 +1443,24 @@ CMD ["sh", "/root/entrypoint.sh"]
 FROM registry.access.redhat.com/ubi9/ubi
 
 # Install prerequisite packages:
-RUN yum -y install wget ca-certificates
+RUN dnf -y install wget ca-certificates
 
 # Add NGINX Plus repo to Yum:
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-9.repo
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-9.repo
 
 # Add NGINX App-protect & dependencies repo to Yum:
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
     # You can use either of the dependencies or epel repo
     # && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm \
-    && yum clean all
+    && dnf clean all
 
 # Install NGINX App Protect WAF:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-    yum install --enablerepo=codeready-builder-for-rhel-9-x86_64-rpms -y app-protect \
-    && yum clean all \
-    && rm -rf /var/cache/yum
+    dnf install --enablerepo=codeready-builder-for-rhel-9-x86_64-rpms -y app-protect \
+    && dnf clean all \
+    && rm -rf /var/cache/dnf
 
 # Forward request logs to Docker log collector:
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
@@ -1863,7 +1863,7 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
 FROM registry.access.redhat.com/ubi9/ubi
 
 # Install prerequisite packages:
-RUN yum -y install wget ca-certificates
+RUN dnf -y install wget ca-certificates
 
 # Add NGINX App-protect & dependencies repo to Yum:
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
@@ -1875,9 +1875,9 @@ RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
 # Install NGINX App Protect WAF:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-    yum install --enablerepo=codeready-builder-for-rhel-9-x86_64-rpms -y app-protect-compiler \
-    && yum clean all \
-    && rm -rf /var/cache/yum
+    dnf install --enablerepo=codeready-builder-for-rhel-9-x86_64-rpms -y app-protect-compiler \
+    && dnf clean all \
+    && rm -rf /var/cache/dnf
 ```
 
 ### Oracle Linux 8 Converter Docker Deployment Example
@@ -2723,19 +2723,19 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
 2.  Update Bot Signatures:
 
     ```shell
-    sudo yum install app-protect-bot-signatures
+    sudo dnf install app-protect-bot-signatures
     ```
 
     To install a specific version, list the available versions:
 
     ```shell
-    sudo yum --showduplicates list app-protect-bot-signatures
+    sudo dnf --showduplicates list app-protect-bot-signatures
     ```
 
     To upgrade to a specific version:
 
     ```shell
-    sudo yum install app-protect-bot-signatures-2023.11.14
+    sudo dnf install app-protect-bot-signatures-2023.11.14
     ```
 
 ### RHEL 9
@@ -2749,19 +2749,19 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
 2.  Update Bot Signatures:
 
     ```shell
-    sudo yum install app-protect-bot-signatures
+    sudo dnf install app-protect-bot-signatures
     ```
 
     To install a specific version, list the available versions:
 
     ```shell
-    sudo yum --showduplicates list app-protect-bot-signatures
+    sudo dnf --showduplicates list app-protect-bot-signatures
     ```
 
     To upgrade to a specific version:
 
     ```shell
-    sudo yum install app-protect-bot-signatures-2023.11.14
+    sudo dnf install app-protect-bot-signatures-2023.11.14
     ```
 
 ### Alpine 3.16 / Alpine 3.17
@@ -2915,7 +2915,7 @@ app-protect-selinux
 sudo yum remove app-protect app-protect-selinux
 ```
 
-### Debian 10 / Debian 11 / Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04
+### Debian 11 / Ubuntu 20.04 / Ubuntu 22.04
 
 ```shell
 sudo apt-get remove app-protect \
