@@ -473,7 +473,7 @@ If a user other than **nginx** is to be used, note the following:
 14. Optionally, install a prebuilt SELinux policy module for NGINX App Protect WAF (or configure SELinux as appropriate per your organization's security policies):
 
     ```shell
-    sudo yum install app-protect-selinux
+    sudo dnf install app-protect-selinux
     ```
 
     If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/troubleshooting-guide/troubleshooting#selinux" >}}).
@@ -517,7 +517,7 @@ If a user other than **nginx** is to be used, note the following:
 5.  Install prerequisite packages:
 
     ```shell
-    sudo yum install ca-certificates wget
+    sudo dnf install ca-certificates wget
     ```
 
 6. Remove any previously downloaded NGINX Plus repository file from `/etc/yum.repos.d`:
@@ -591,7 +591,7 @@ If a user other than **nginx** is to be used, note the following:
 14. Optionally, install a prebuilt SELinux policy module for NGINX App Protect WAF (or configure SELinux as appropriate per your organization's security policies):
 
     ```shell
-    sudo yum install app-protect-selinux
+    sudo dnf install app-protect-selinux
     ```
 
     If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/troubleshooting-guide/troubleshooting#selinux" >}}).
@@ -635,7 +635,7 @@ If a user other than **nginx** is to be used, note the following:
 5. Install prerequisite packages:
 
     ```shell
-    sudo yum install ca-certificates wget yum-utils
+    sudo dnf install ca-certificates wget yum-utils
     ```
 
 6. Remove any previously downloaded NGINX Plus repository file from `/etc/yum.repos.d`:
@@ -667,7 +667,7 @@ If a user other than **nginx** is to be used, note the following:
     Enable `ol8_codeready_builder` repository:
 
     ```shell
-    sudo yum-config-manager --enable ol8_codeready_builder
+    dnf config-manager --set-enabled ol8_codeready_builder
     ```
 
 10. Install the most recent version of the NGINX App Protect WAF package (which includes NGINX Plus):
@@ -709,7 +709,7 @@ If a user other than **nginx** is to be used, note the following:
 14. Optionally, install a prebuilt SELinux policy module for NGINX App Protect WAF (or configure SELinux as appropriate per your organization's security policies):
 
     ```shell
-    sudo yum install app-protect-selinux
+    sudo dnf install app-protect-selinux
     ```
 
     If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/troubleshooting-guide/troubleshooting#selinux" >}}).
@@ -1406,7 +1406,7 @@ CMD ["sh", "/root/entrypoint.sh"]
 FROM registry.access.redhat.com/ubi8/ubi
 
 # Install prerequisite packages:
-RUN yum -y install wget ca-certificates
+RUN dnf -y install wget ca-certificates
 
 # Add NGINX Plus repo to Yum:
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.repo
@@ -1416,13 +1416,13 @@ RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.rep
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
     # You can use either of the dependencies or epel repo
     # && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm \
-    && yum clean all
+    && dnf clean all
 
 # Install NGINX App Protect WAF:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-    yum install --enablerepo=codeready-builder-for-rhel-8-x86_64-rpms -y app-protect \
-    && yum clean all \
+    dnf install --enablerepo=codeready-builder-for-rhel-8-x86_64-rpms -y app-protect \
+    && dnf clean all \
     && rm -rf /var/cache/yum
 
 # Forward request logs to Docker log collector:
@@ -1481,7 +1481,7 @@ CMD ["sh", "/root/entrypoint.sh"]
 FROM oraclelinux:8
 
 # Install prerequisite packages:
-RUN yum -y install wget ca-certificates yum-utils
+RUN dnf -y install wget ca-certificates yum-utils
 
 # Add NGINX Plus repo to Yum:
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.repo
@@ -1490,17 +1490,17 @@ RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.repo
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
 
 # Enable Yum repositories to pull App Protect dependencies:
-RUN yum-config-manager --enable ol8_codeready_builder \
+RUN dnf config-manager --set-enabled ol8_codeready_builder \
     && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
     # You can use either of the dependencies or epel repo
     # && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm \
-    && yum clean all
+    && dnf clean all
 
 # Install NGINX App Protect WAF:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-    yum -y install app-protect \
-    && yum clean all \
+    dnf -y install app-protect \
+    && dnf clean all \
     && rm -rf /var/cache/yum
 
 # Forward request logs to Docker log collector:
@@ -1839,20 +1839,20 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
 FROM registry.access.redhat.com/ubi8/ubi
 
 # Install prerequisite packages:
-RUN yum -y install wget ca-certificates
+RUN dnf -y install wget ca-certificates
 
 # Add NGINX App-protect & dependencies repo to Yum:
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
     # You can use either of the dependencies or epel repo
     # && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm \
-    && yum clean all
+    && dnf clean all
 
 # Install NGINX App Protect WAF:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-    yum install --enablerepo=codeready-builder-for-rhel-8-x86_64-rpms -y app-protect-compiler \
-    && yum clean all \
+    dnf install --enablerepo=codeready-builder-for-rhel-8-x86_64-rpms -y app-protect-compiler \
+    && dnf clean all \
     && rm -rf /var/cache/yum
 ```
 
@@ -1870,7 +1870,7 @@ RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.rep
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
     # You can use either of the dependencies or epel repo
     # && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm \
-    && yum clean all
+    && dnf clean all
 
 # Install NGINX App Protect WAF:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
@@ -1887,23 +1887,23 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
 FROM oraclelinux:8
 
 # Install prerequisite packages:
-RUN yum -y install wget ca-certificates yum-utils
+RUN dnf -y install wget ca-certificates yum-utils
 
 # Add NGINX App-protect repo to Yum:
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
 
 # Enable Yum repositories to pull App Protect dependencies:
-RUN yum-config-manager --enable ol8_codeready_builder \
+RUN dnf config-manager --set-enabled ol8_codeready_builder \
     && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
     # You can use either of the dependencies or epel repo
     # && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm \
-    && yum clean all
+    && dnf clean all
 
 # Install NGINX App Protect WAF:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-     yum install -y app-protect-compiler \
-    && yum clean all \
+    dnf install -y app-protect-compiler \
+    && dnf clean all \
     && rm -rf /var/cache/yum
 ```
 
@@ -2258,25 +2258,25 @@ After having updated the Attack Signature package you have to reload the configu
 2.  Update the attack signatures:
 
     ```shell
-    sudo yum install app-protect-attack-signatures
+    sudo dnf install app-protect-attack-signatures
     ```
 
     To install a specific version, list the available versions:
 
     ```shell
-    sudo yum --showduplicates list app-protect-attack-signatures
+    sudo dnf --showduplicates list app-protect-attack-signatures
     ```
 
     To upgrade to a specific version:
 
     ```shell
-    sudo yum install app-protect-attack-signatures-2021.12.30
+    sudo dnf install app-protect-attack-signatures-2021.12.30
     ```
 
     To downgrade to a specific version:
 
     ```shell
-    sudo yum downgrade app-protect-attack-signatures-2019.07.16
+    sudo dnf downgrade app-protect-attack-signatures-2019.07.16
     ```
 
 ### RHEL 9
@@ -2290,25 +2290,25 @@ After having updated the Attack Signature package you have to reload the configu
 2.  Update the attack signatures:
 
     ```shell
-    sudo yum install app-protect-attack-signatures
+    sudo dnf install app-protect-attack-signatures
     ```
 
     To install a specific version, list the available versions:
 
     ```shell
-    sudo yum --showduplicates list app-protect-attack-signatures
+    sudo dnf --showduplicates list app-protect-attack-signatures
     ```
 
     To upgrade to a specific version:
 
     ```shell
-    sudo yum install app-protect-attack-signatures-2021.12.30
+    sudo dnf install app-protect-attack-signatures-2021.12.30
     ```
 
     To downgrade to a specific version:
 
     ```shell
-    sudo yum downgrade app-protect-attack-signatures-2019.07.16
+    sudo dnf downgrade app-protect-attack-signatures-2019.07.16
     ```
 
 ### Debian 10 / Debian 11
@@ -2518,13 +2518,13 @@ Example: app-protect-threat-campaigns-2022.07.21
     To install a specific version, list the available versions:
 
     ```shell
-    sudo yum --showduplicates list app-protect-threat-campaigns
+    sudo dnf --showduplicates list app-protect-threat-campaigns
     ```
 
     To upgrade to a specific version:
 
     ```shell
-    sudo yum install app-protect-threat-campaigns-2022.07.21
+    sudo dnf install app-protect-threat-campaigns-2022.07.21
     ```
 
 ### RHEL 9
@@ -2538,19 +2538,19 @@ Example: app-protect-threat-campaigns-2022.07.21
 2.  Update Threat Campaigns:
 
     ```shell
-    sudo yum install app-protect-threat-campaigns
+    sudo dnf install app-protect-threat-campaigns
     ```
 
     To install a specific version, list the available versions:
 
     ```shell
-    sudo yum --showduplicates list app-protect-threat-campaigns
+    sudo dnf --showduplicates list app-protect-threat-campaigns
     ```
 
     To upgrade to a specific version:
 
     ```shell
-    sudo yum install app-protect-threat-campaigns-2022.07.21
+    sudo dnf install app-protect-threat-campaigns-2022.07.21
     ```
 
 ### Alpine 3.16 / Alpine 3.17
