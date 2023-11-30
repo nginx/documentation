@@ -123,7 +123,7 @@
 /nginx/directives/ https://nginx.org/en/docs/dirindex.html 301!
 
 # NGINX Gateway Fabric redirects
-/releases/ https://docs.nginx.com/nginx-gateway-fabric/releases/ 301!
+/nginx-gateway-fabric/releases/ https://docs.nginx.com/nginx-gateway-fabric/releases/ 301!
 
 # Redirects to the backend netlify sites for each product
 /nginxaas/azure/* https://staging--n4a-public-docs.netlify.app/nginxaas/azure/:splat 200!
