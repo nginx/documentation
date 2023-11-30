@@ -128,3 +128,4 @@
 /nginx-amplify/* https://staging--amplify-public-docs.netlify.app/nginx-amplify/:splat 200!
 /nginx-ingress-controller/* https://staging--nginx-kubernetes-ingress.netlify.app/nginx-ingress-controller/:splat 200!
 /nginx-service-mesh/*   https://staging--mesh-public-docs.netlify.app/nginx-service-mesh/:splat 200!
+/nginx-gateway-fabric/* https://staging--nginx-gateway-fabric.netlify.app/nginx-gateway-fabric/:splat 200!
