@@ -2953,14 +2953,6 @@ app-protect-bot-signatures
     sudo yum -y update app-protect-27+3.1088.0-1
     ```
 
-###  RHEL 9
-
-1. Upgrade the NGINX App Protect WAF to the specific version:
-
-   ```shell
-   sudo yum -y update app-protect-27+3.1088.0-1
-   ```
-
 ### Debian 10 / Debian 11
 
 1. Get the dependencies and their versions to be upgraded to by using the command:
@@ -3005,12 +2997,20 @@ app-protect-bot-signatures
     **Note**: Replace the [OS_CODENAME] in the above command with: **bionic** for Ubuntu 18.04, **focal** for Ubuntu 20.04 and **jammy** for Ubuntu 22.04.
 
 
-### CentOS / RHEL 7.4.x / Amazon Linux 2 / RHEL 8.1+ / Oracle Linux 8.1+ / RHEL 9
+### CentOS / RHEL 7.4.x / Amazon Linux 2 
 
 - Upgrade the NGINX App Protect WAF to the latest version:
 
     ```shell
     sudo yum -y update app-protect
+    ```
+
+###  RHEL 8.1+ / Oracle Linux 8.1+ / RHEL 9
+
+- Upgrade the NGINX App Protect WAF to the latest version:
+
+    ```shell
+    sudo dnf -y update app-protect
     ```
 
 ### Debian 10 / Debian 11 / Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04
