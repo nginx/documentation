@@ -54,7 +54,7 @@ NGINX Plus Release 22 and later supports NGINX App Protect WAF.
 NGINX App Protect WAF supports the following operating systems:
 - [CentOS/RHEL 7.4.x and above](#centos-74-installation)
 - [RHEL 8.1.x and above](#rhel-81-installation)
-- [RHEL 9](#rhel-9-installation)
+- [RHEL 9 and above](#rhel-9-installation)
 - [Oracle Linux 8.1.x and above](#oracle-linux-81-installation)
 - [Amazon Linux 2](#amazon-linux-2-lts-installation)
 - [Debian 10 (Buster)](#debian-10--debian-11-installation) - (Deprecated starting from NGINX Plus R28)
@@ -275,7 +275,7 @@ If a user other than **nginx** is to be used, note the following:
 6. Remove any previously downloaded NGINX Plus repository file from `/etc/yum.repos.d`:
 
     ```shell
-    sudo rm /etc/yum.repos.d/nginx-plus-*.repo
+    sudo rm /etc/yum.repos.d/nginx-plus-8.repo
     ```
 
 7. Add NGINX Plus repository by downloading the file `nginx-plus-7.4.repo` to `/etc/yum.repos.d`:
@@ -405,7 +405,7 @@ If a user other than **nginx** is to be used, note the following:
 6. Remove any previously downloaded NGINX Plus repository file from `/etc/yum.repos.d`:
 
     ```shell
-    sudo rm /etc/yum.repos.d/nginx-plus-*.repo
+    sudo rm /etc/yum.repos.d/nginx-plus-8.repo
     ```
 
 7. Add NGINX Plus repository by downloading the file `nginx-plus-8.repo` to `/etc/yum.repos.d`:
@@ -437,19 +437,19 @@ If a user other than **nginx** is to be used, note the following:
 10. Install the most recent version of the NGINX App Protect WAF package (which includes NGINX Plus):
 
     ```shell
-    sudo yum install app-protect
+    sudo dnf install app-protect
     ```
 
     Alternatively, you can use the following command to list available versions:
 
     ```shell
-    sudo yum --showduplicates list app-protect
+    sudo dnf --showduplicates list app-protect
     ```
 
     Then, install a specific version from the output of command above. For example:
 
     ```shell
-    sudo yum install app-protect-25+3.743.4
+    sudo dnf install app-protect-25+3.743.4
     ```
 
 11. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
@@ -526,16 +526,16 @@ If a user other than **nginx** is to be used, note the following:
     sudo rm /etc/yum.repos.d/nginx-plus-*.repo
     ```
 
-7. Add NGINX Plus repository by downloading the file `nginx-plus-8.repo` to `/etc/yum.repos.d`:
+7. Add NGINX Plus repository by downloading the file `nginx-plus-9.repo` to `/etc/yum.repos.d`:
 
     ```shell
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.repo
     ```
 
-8. Add NGINX App Protect WAF repository by downloading the file `app-protect-8.repo` to `/etc/yum.repos.d`:
+8. Add NGINX App Protect WAF repository by downloading the file `app-protect-9.repo` to `/etc/yum.repos.d`:
 
     ```shell
-    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
+    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
     ```
 
 9. Enable Yum repositories to pull App Protect dependencies:
@@ -549,25 +549,25 @@ If a user other than **nginx** is to be used, note the following:
     Enable `codeready-builder` repository through subscription manager:
 
     ```shell
-    sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
+    sudo subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
     ```
 
 10. Install the most recent version of the NGINX App Protect WAF package (which includes NGINX Plus):
 
     ```shell
-    sudo yum install app-protect
+    sudo dnf install app-protect
     ```
 
     Alternatively, you can use the following command to list available versions:
 
     ```shell
-    sudo yum --showduplicates list app-protect
+    sudo dnf --showduplicates list app-protect
     ```
 
     Then, install a specific version from the output of command above. For example:
 
     ```shell
-    sudo yum install app-protect-25+3.743.4
+    sudo dnf install app-protect-25+3.743.4
     ```
 
 11. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
@@ -673,19 +673,19 @@ If a user other than **nginx** is to be used, note the following:
 10. Install the most recent version of the NGINX App Protect WAF package (which includes NGINX Plus):
 
     ```shell
-    sudo yum install app-protect
+    sudo dnf install app-protect
     ```
 
     Alternatively, you can use the following command to list available versions:
 
     ```shell
-    sudo yum --showduplicates list app-protect
+    sudo dnf --showduplicates list app-protect
     ```
 
     Then, install a specific version from the output of command above. For example:
 
     ```shell
-    sudo yum install app-protect-26+3.890.0
+    sudo dnf install app-protect-26+3.890.0
     ```
 
 11. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
@@ -2512,7 +2512,7 @@ Example: app-protect-threat-campaigns-2022.07.21
 2.  Update Threat Campaigns:
 
     ```shell
-    sudo yum install app-protect-threat-campaigns
+    sudo dnf install app-protect-threat-campaigns
     ```
 
     To install a specific version, list the available versions:
@@ -2952,6 +2952,14 @@ app-protect-bot-signatures
     ```shell
     sudo yum -y update app-protect-27+3.1088.0-1
     ```
+
+###  RHEL 9
+
+1. Upgrade the NGINX App Protect WAF to the specific version:
+
+   ```shell
+   sudo yum -y update app-protect-27+3.1088.0-1
+   ```
 
 ### Debian 10 / Debian 11
 
