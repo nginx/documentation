@@ -275,7 +275,7 @@ If a user other than **nginx** is to be used, note the following:
 6. Remove any previously downloaded NGINX Plus repository file from `/etc/yum.repos.d`:
 
     ```shell
-    sudo rm /etc/yum.repos.d/nginx-plus-8.repo
+    sudo rm /etc/yum.repos.d/nginx-plus-*.repo
     ```
 
 7. Add NGINX Plus repository by downloading the file `nginx-plus-7.4.repo` to `/etc/yum.repos.d`:
