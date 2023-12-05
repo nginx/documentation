@@ -523,13 +523,13 @@ If a user other than **nginx** is to be used, note the following:
 6. Remove any previously downloaded NGINX Plus repository file from `/etc/yum.repos.d`:
 
     ```shell
-    sudo rm /etc/yum.repos.d/nginx-plus-*.repo
+    sudo rm /etc/yum.repos.d/plus-*.repo
     ```
 
-7. Add NGINX Plus repository by downloading the file `nginx-plus-9.repo` to `/etc/yum.repos.d`:
+7. Add NGINX Plus repository by downloading the file `plus-9.repo` to `/etc/yum.repos.d`:
 
     ```shell
-    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.repo
+    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-9.repo
     ```
 
 8. Add NGINX App Protect WAF repository by downloading the file `app-protect-9.repo` to `/etc/yum.repos.d`:
@@ -3005,7 +3005,7 @@ app-protect-bot-signatures
     **Note**: Replace the [OS_CODENAME] in the above command with: **bionic** for Ubuntu 18.04, **focal** for Ubuntu 20.04 and **jammy** for Ubuntu 22.04.
 
 
-### CentOS / RHEL 7.4.x / Amazon Linux 2 / RHEL 8.1+ / Oracle Linux 8.1+
+### CentOS / RHEL 7.4.x / Amazon Linux 2 / RHEL 8.1+ / Oracle Linux 8.1+ / RHEL 9
 
 - Upgrade the NGINX App Protect WAF to the latest version:
 
