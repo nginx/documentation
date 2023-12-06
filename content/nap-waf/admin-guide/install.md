@@ -2945,7 +2945,7 @@ app-protect-bot-signatures
 
 ## Upgrading App Protect to a Specific Version
 
-### CentOS / RHEL 7.4.x / Amazon Linux 2 / Oracle Linux 8.1+ 
+### CentOS / RHEL 7.4.x / Amazon Linux 2 
 
 1. Upgrade the NGINX App Protect WAF to the specific version:
 
@@ -2953,7 +2953,7 @@ app-protect-bot-signatures
     sudo yum -y update app-protect-27+3.1088.0-1
     ```
 
-###  RHEL 8.1+ 
+###  RHEL 8.1+ / Oracle Linux 8.1+
 1. Upgrade the NGINX App Protect WAF to the specific version:
 
     ```shell
