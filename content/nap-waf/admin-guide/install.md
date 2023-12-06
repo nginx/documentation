@@ -2912,7 +2912,7 @@ app-protect-selinux
 ### RHEL 8.1+ / Oracle Linux 8.1+ / RHEL 9
 
 ```shell
-sudo yum remove app-protect app-protect-selinux
+sudo dnf remove app-protect app-protect-selinux
 ```
 
 ### Debian 11 / Ubuntu 20.04 / Ubuntu 22.04
