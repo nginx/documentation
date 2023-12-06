@@ -490,7 +490,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo systemctl start nginx
     ```
 
-## RHEL 9 Installation
+## RHEL 9+ Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -2069,7 +2069,7 @@ On a host with access to the NGINX App Protect WAF repository:
     wget -P /etc/packages https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
     ```
 
-    For RHEL 9:
+    For RHEL 9+:
     ```shell
     wget -P /etc/packages https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
     ```
@@ -2279,7 +2279,7 @@ After having updated the Attack Signature package you have to reload the configu
     sudo dnf downgrade app-protect-attack-signatures-2019.07.16
     ```
 
-### RHEL 9
+### RHEL 9+
 
 1. To add NGINX App Protect WAF Security Updates repository, download the file `app-protect-9.repo` to `/etc/yum.repos.d`:
 
@@ -2527,7 +2527,7 @@ Example: app-protect-threat-campaigns-2022.07.21
     sudo dnf install app-protect-threat-campaigns-2022.07.21
     ```
 
-### RHEL 9
+### RHEL 9+
 
 1. If not already configured, add NGINX App Protect WAF Security Updates repository by downloading the file `app-protect-9.repo` to `/etc/yum.repos.d`:
 
@@ -2738,7 +2738,7 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     sudo dnf install app-protect-bot-signatures-2023.11.14
     ```
 
-### RHEL 9
+### RHEL 9+
 
 1. If not already configured, add NGINX App Protect WAF Security Updates repository by downloading the file `app-protect-9.repo` to `/etc/yum.repos.d`:
 
@@ -2909,7 +2909,7 @@ app-protect-threat-campaigns \
 app-protect-bot-signatures \
 app-protect-selinux
 ```
-### RHEL 8.1+ / Oracle Linux 8.1+ / RHEL 9
+### RHEL 8.1+ / Oracle Linux 8.1+ / RHEL 9+
 
 ```shell
 sudo dnf remove app-protect app-protect-selinux
@@ -3012,7 +3012,7 @@ app-protect-bot-signatures
     sudo yum -y update app-protect
     ```
 
-###  RHEL 8.1+ / Oracle Linux 8.1+ / RHEL 9
+###  RHEL 8.1+ / Oracle Linux 8.1+ / RHEL 9+
 
 - Upgrade the NGINX App Protect WAF to the latest version:
 
