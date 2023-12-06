@@ -1253,7 +1253,6 @@ Make sure to replace upstream and proxy pass directives in this example with rel
 6. In the same directory create an `entrypoint.sh` file with executable permissions, with the following content:
 
     For CentOS 7 / UBI 7:
-
     ```shell
     #!/usr/bin/env bash
     
@@ -1274,8 +1273,7 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
     ```
 
-    For Alpine/Debian/Ubuntu/UBI8:
-
+    For Alpine / Debian / Ubuntu/ UBI 8:
     ```shell
     #!/usr/bin/env bash
     
@@ -1293,8 +1291,7 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
     ```
 
-    For Alpine/Debian/Ubuntu/UBI8 with L4 accelerated mitigation feature:
-    
+    For Alpine / Debian / Ubuntu / UBI 8 with L4 accelerated mitigation feature:
     ```shell
     #!/usr/bin/env bash
    
@@ -1622,7 +1619,6 @@ Make sure to replace upstream and proxy pass directives in this example with rel
 6. In the same directory create an `entrypoint.sh` file with executable permissions, with the following content:
 
    For CentOS 7 / UBI 7:
-
      ```shell
      #!/usr/bin/env bash
     USER=nginx
@@ -1643,8 +1639,7 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
     ```
 
-   For Alpine/Debian/Ubuntu/UBI8:
-
+   For Alpine / Debian / Ubuntu / UBI 8:
      ```shell
      #!/usr/bin/env bash
     USER=nginx
@@ -1663,8 +1658,7 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     ```
 
 
-   For Alpine/Debian/Ubuntu/UBI8 with L4 accelerated mitigation feature:
-   
+   For Alpine / Debian / Ubuntu / UBI8 with L4 accelerated mitigation feature:
     ```shell
     #!/usr/bin/env bash
     LOGDIR=/var/log/adm
@@ -1681,7 +1675,7 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
     ```
 
-7. Create a Docker image:
+8. Create a Docker image:
 
     For CentOS:
 
@@ -1704,17 +1698,17 @@ Make sure to replace upstream and proxy pass directives in this example with rel
    The `--privileged` grants the Docker container root capabilities to all devices on the host system
 
 
-8. Verify that the `app-protect-dos` image was created successfully with the docker images command:
+9. Verify that the `app-protect-dos` image was created successfully with the docker images command:
 
     ```shell
     docker images app-protect-dos
     ```
-9. Create a container based on this image, for example, `my-app-protect-dos` container:
+10. Create a container based on this image, for example, `my-app-protect-dos` container:
 
     ```shell
     docker run --name my-app-protect-dos -p 80:80 -d app-protect-dos
     ```
-10. Verify that the `my-app-protect-dos` container is up and running with the `docker ps` command:
+11. Verify that the `my-app-protect-dos` container is up and running with the `docker ps` command:
 
     ```shell
     docker ps
