@@ -1621,7 +1621,7 @@ Make sure to replace upstream and proxy pass directives in this example with rel
 
 6. In the same directory create an `entrypoint.sh` file with executable permissions, with the following content:
 
-   For Centos7/UBI7:
+   For CentOS 7 / UBI 7:
 
      ```shell
      #!/usr/bin/env bash
