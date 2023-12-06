@@ -1423,7 +1423,7 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install --enablerepo=codeready-builder-for-rhel-8-x86_64-rpms -y app-protect \
     && dnf clean all \
-    && rm -rf /var/cache/yum
+    && rm -rf /var/cache/dnf
 
 # Forward request logs to Docker log collector:
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
@@ -1501,7 +1501,7 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf -y install app-protect \
     && dnf clean all \
-    && rm -rf /var/cache/yum
+    && rm -rf /var/cache/dnf
 
 # Forward request logs to Docker log collector:
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
@@ -1853,7 +1853,7 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install --enablerepo=codeready-builder-for-rhel-8-x86_64-rpms -y app-protect-compiler \
     && dnf clean all \
-    && rm -rf /var/cache/yum
+    && rm -rf /var/cache/dnf
 ```
 
 ### RHEL UBI9 Converter Docker Deployment Example
@@ -1904,7 +1904,7 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install -y app-protect-compiler \
     && dnf clean all \
-    && rm -rf /var/cache/yum
+    && rm -rf /var/cache/dnf
 ```
 
 ### Amazon Linux 2 Converter Docker Deployment Example
@@ -2945,12 +2945,19 @@ app-protect-bot-signatures
 
 ## Upgrading App Protect to a Specific Version
 
-### CentOS / RHEL 7.4.x / Amazon Linux 2 / RHEL 8.1+ / Oracle Linux 8.1+ 
+### CentOS / RHEL 7.4.x / Amazon Linux 2 / Oracle Linux 8.1+ 
 
 1. Upgrade the NGINX App Protect WAF to the specific version:
 
     ```shell
     sudo yum -y update app-protect-27+3.1088.0-1
+    ```
+
+###  RHEL 8.1+ 
+1. Upgrade the NGINX App Protect WAF to the specific version:
+
+    ```shell
+    sudo dnf -y update app-protect-27+3.1088.0-1
     ```
 
 ### Debian 10 / Debian 11
