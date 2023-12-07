@@ -589,6 +589,7 @@ Following is an example configuration where we enable Header violations in block
 
 Anti Automation provides basic bot protection by detecting bot signatures and clients that falsely claim to be browsers or search engines. The `bot-defense` section in the policy is enabled by default. Anti Automation encompasses both Bot Signatures and Header Anomalies, each of which can be disabled separately.
 
+As new bot signatures are identified, they will be accessible for [download and installation]({{< ref "/nap-waf/admin-guide/install.md#updating-app-protect-bot-signatures" >}}) so that your system will always have the most up-to-date protection. You can update the bot signatures without updating the App Protect release. Similarly, you can update App Protect without altering the bot signature package, unless you upgrade to a new NGINX Plus release.
 
 #### Bot Signatures
 
@@ -622,7 +623,6 @@ In this example we show how to enable bot signatures using the default bot confi
 ~~~
 
 The default actions for classes are: `detect` for `trusted-bot`, `alarm` for `untrusted-bot`, and `block` for `malicious-bot`. In this example, we enabled bot defense and specified that we want to raise a violation for `trusted-bot`, and block for `untrusted-bot`.
-
 
 ~~~json
 {
@@ -688,9 +688,9 @@ In this example, we override the action for a specific signature (python-request
 
 #### Bot Signatures File
 
-Starting with NGINX App Protect WAF release 4.5, the bot signatures will be included in the `included_bot_signatures` file, which is located at the following path: `/opt/app-protect/var/update_files/included_bot_signatures`. This file will contain an up-to-date list of all the bot signatures that have been included.
+Starting with NGINX App Protect WAF release 4.5, the bot signatures is included in the `included_bot_signatures` file, which is located at the following path: `/opt/app-protect/var/update_files/included_bot_signatures`. This file contains an up-to-date list of all the bot signatures that have been included.
 
-The list is generated automatically as a part of the `app-protect-compiler` package, and resembles as a text file that is similar to the readme-files found in the attack-signature. It contains essential information which includes:
+The list is generated automatically and resembles as a text file that is similar to the readme-files found in the attack-signature. It contains essential information which includes:
 
 - Bot name
 - Bot type
