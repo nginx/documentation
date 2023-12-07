@@ -1,0 +1,1040 @@
+{
+    "components": {
+        "examples": {
+            "DataplaneKeyRequest": {
+                "value": {
+                    "expiresAt": "2023-12-01T00:00:00Z",
+                    "name": "foo"
+                }
+            },
+            "DataplaneKeyResponse": {
+                "value": {
+                    "expiresAt": "2023-12-01T00:00:00Z",
+                    "key": "AVQFrgADVFpJ9qvI7BX1+OlHUxdZRMsSCm4Q35CrqAQ=",
+                    "name": "foo",
+                    "uuid": "c51f9b68-c436-4a69-9aa4-c01fd89895b0"
+                }
+            },
+            "DataplaneKeys": {
+                "value": {
+                    "items": [
+                        {
+                            "expiresAt": "2023-12-01T00:00:00Z",
+                            "name": "foo",
+                            "uuid": "c51f9b68-c436-4a69-9aa4-c01fd89895b0"
+                        },
+                        {
+                            "expiresAt": "2023-12-01T00:00:00Z",
+                            "name": "foo",
+                            "uuid": "c0fd9d55-7b4b-43aa-aa44-7289cc5b3a5c"
+                        }
+                    ]
+                }
+            }
+        },
+        "schemas": {
+            "CertAssociation": {
+                "description": "Summary information for a certificate that's associated with an instance.",
+                "properties": {
+                    "domain": {
+                        "description": "Hostname or domain for the certificate. Usually the subject-alt-name (SAN) value for the cert.",
+                        "example": "nginx.com",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "a friendly name for the certificate.",
+                        "type": "string"
+                    },
+                    "not_after": {
+                        "description": "the expiration date for the certificate.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "not_before": {
+                        "description": "the effective date of the certificate.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "paths": {
+                        "description": "Paths for the certificate file. Multiple, since the same cert object can be in different places.\n",
+                        "example": [
+                            "/etc/ssl/cert.pem",
+                            "/etc/ssl/cert.crt"
+                        ],
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "uid": {
+                        "example": "6692f820-c15c-4286-a405-38806b22064f",
+                        "format": "uuid",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "name",
+                    "uid",
+                    "paths",
+                    "domain",
+                    "not_before",
+                    "not_after",
+                    "details"
+                ],
+                "type": "object"
+            },
+            "CertDetails": {
+                "description": "Detailed information for a certificate.",
+                "properties": {
+                    "name": {
+                        "description": "a friendly name for the certificate.",
+                        "type": "string"
+                    },
+                    "uid": {
+                        "example": "6692f820-c15c-4286-a405-38806b22064f",
+                        "format": "uuid",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "CertificateSummary": {
+                "description": "summary information for certs.",
+                "properties": {
+                    "expired": {
+                        "description": "count of certificates that's not currently valid.",
+                        "type": "integer"
+                    },
+                    "expiring": {
+                        "description": "count of certificates that's expiring in the next 30 days.",
+                        "type": "integer"
+                    },
+                    "total": {
+                        "description": "count of distinct certificates objects.",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "total",
+                    "expired",
+                    "expiring"
+                ],
+                "type": "object"
+            },
+            "DataplaneKey": {
+                "description": "dataplane key",
+                "properties": {
+                    "createdAt": {
+                        "description": "date and time at which the dataplane key was created.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "expiresAt": {
+                        "description": "date and time at which the dataplane key expires.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "modifiedAt": {
+                        "description": "date and time at which the dataplane key modified.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "name of the dataplane key.",
+                        "type": "string"
+                    },
+                    "uuid": {
+                        "description": "unique identifier for the dataplane key.",
+                        "format": "uuid",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "uuid",
+                    "expiresAt",
+                    "createdAt",
+                    "modifiedAt"
+                ],
+                "type": "object"
+            },
+            "DataplaneKeyRequest": {
+                "description": "dataplane key",
+                "properties": {
+                    "expiresAt": {
+                        "description": "date and time at which the token expires",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "name of the dataplane key",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "expiresAt"
+                ],
+                "type": "object"
+            },
+            "DataplaneKeyResponse": {
+                "description": "dataplane key",
+                "properties": {
+                    "expiresAt": {
+                        "description": "date and time at which the token expires",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "key": {
+                        "description": "the dataplane key, store at a safe place, this can not be retrieved later.",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "name of the dataplane key",
+                        "type": "string"
+                    },
+                    "uuid": {
+                        "description": "unique identifier for the dataplane key",
+                        "format": "uuid",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "key",
+                    "uuid",
+                    "expiresAt"
+                ],
+                "type": "object"
+            },
+            "DataplaneKeys": {
+                "items": {
+                    "$ref": "#/components/schemas/DataplaneKey"
+                },
+                "type": "array"
+            },
+            "DirectoryWithFileContent": {
+                "description": "directory with file contents.",
+                "properties": {
+                    "files": {
+                        "items": {
+                            "$ref": "#/components/schemas/FileData"
+                        },
+                        "type": "array"
+                    },
+                    "mtime": {
+                        "description": "The modified time of the directory.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Full path name of the directory.",
+                        "type": "string"
+                    },
+                    "permissions": {
+                        "description": "Directory permissions assigned.",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "name",
+                    "permissions",
+                    "mtime",
+                    "files"
+                ],
+                "type": "object"
+            },
+            "FileData": {
+                "description": "File contents.",
+                "properties": {
+                    "contents": {
+                        "description": "The base64 encoded contents of the files.",
+                        "format": "byte",
+                        "maxLength": 3145728,
+                        "type": "string"
+                    },
+                    "mtime": {
+                        "description": "The modified time of the file.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Absolute path for the file.",
+                        "maxLength": 4096,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "size": {
+                        "description": "The size of the file in bytes.",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "name",
+                    "contents",
+                    "size",
+                    "mtime"
+                ],
+                "type": "object"
+            },
+            "Instance": {
+                "description": "Summary information for NGINX instance on a system.",
+                "properties": {
+                    "agent_version": {
+                        "description": "version of the agent that's connecting.",
+                        "type": "string"
+                    },
+                    "hostname": {
+                        "description": "hostname of the system.",
+                        "type": "string"
+                    },
+                    "key_uuid": {
+                        "description": "uuid of the dataplane key that was used in the latest connection. Could be empty if the key was deleted.\n",
+                        "format": "uuid",
+                        "type": "string"
+                    },
+                    "last_reported": {
+                        "description": "last report timestamp from the NGINX Agent.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "nginx_build": {
+                        "$ref": "#/components/schemas/NginxBuild"
+                    },
+                    "nginx_id": {
+                        "description": "unique identifier for the NGINX process on the host system, this is generated by the NGINX Agent.",
+                        "type": "string"
+                    },
+                    "registered_at": {
+                        "description": "the first time that the Instance was registered.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "system_id": {
+                        "description": "unique identifier for the system, this is provided by the NGINX Agent.",
+                        "type": "string"
+                    },
+                    "uuid": {
+                        "description": "unique identifier for the instance object.",
+                        "format": "uuid",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "uuid",
+                    "hostname",
+                    "system_id",
+                    "agent_version",
+                    "registered_at",
+                    "last_reported"
+                ],
+                "type": "object"
+            },
+            "InstanceDetails": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Instance"
+                    },
+                    {
+                        "properties": {
+                            "certs": {
+                                "items": {
+                                    "$ref": "#/components/schemas/CertAssociation"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ],
+                "description": "Detail information for NGINX instance on a system.",
+                "type": "object"
+            },
+            "InstanceSummary": {
+                "description": "summary information for NGINX instances, and their related objects.",
+                "properties": {
+                    "certs": {
+                        "$ref": "#/components/schemas/CertificateSummary"
+                    }
+                },
+                "type": "object"
+            },
+            "Instances": {
+                "items": {
+                    "$ref": "#/components/schemas/Instance"
+                },
+                "type": "array"
+            },
+            "Metric": {
+                "description": "Metrics provide a means of measuring and analyzing the performance of your dataplane instances.",
+                "properties": {
+                    "aggr": {
+                        "enum": [
+                            "AVG",
+                            "COUNT",
+                            "SUM",
+                            "MAX",
+                            "MIN",
+                            "RATE"
+                        ],
+                        "example": "AVG",
+                        "type": "string"
+                    },
+                    "name": {
+                        "example": "plus.upstream.response.count",
+                        "type": "string"
+                    },
+                    "series": {
+                        "items": {
+                            "$ref": "#/components/schemas/Series"
+                        },
+                        "type": "array"
+                    }
+                },
+                "type": "object"
+            },
+            "MetricQueryMetadata": {
+                "properties": {
+                    "endTime": {
+                        "example": "2019-08-07T09:57:36.088757764Z",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "resolution": {
+                        "example": "30m",
+                        "type": "string"
+                    },
+                    "startTime": {
+                        "example": "2019-08-07T09:57:36.088757764Z",
+                        "format": "date-time",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "MetricQueryResult": {
+                "properties": {
+                    "metrics": {
+                        "items": {
+                            "$ref": "#/components/schemas/Metric"
+                        },
+                        "type": "array"
+                    },
+                    "queryMetadata": {
+                        "$ref": "#/components/schemas/MetricQueryMetadata"
+                    },
+                    "responseMetadata": {
+                        "$ref": "#/components/schemas/MetricResponseMetadata"
+                    }
+                },
+                "type": "object"
+            },
+            "MetricResponseMetadata": {
+                "properties": {
+                    "warning": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "NginxBuild": {
+                "description": "build information for NGINX binary, this includes the configure parameters the NGINX binary was\nbuilt with.\n",
+                "properties": {
+                    "conf_path": {
+                        "description": "The full path to the NGINX config, should corresponds to the NGINX binary's `--conf-path`.",
+                        "type": "string"
+                    },
+                    "plus_release": {
+                        "description": "NGINX Plus release string, only present for NGINX Plus instances",
+                        "type": "string"
+                    },
+                    "version": {
+                        "description": "Base Open Source NGINX version",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "version"
+                ],
+                "type": "object"
+            },
+            "NginxConfig": {
+                "description": "NGINX config contents.\n",
+                "properties": {
+                    "aux": {
+                        "items": {
+                            "$ref": "#/components/schemas/DirectoryWithFileContent"
+                        },
+                        "type": "array"
+                    },
+                    "conf_path": {
+                        "description": "The full path to the NGINX config, should corresponds to the NGINX binary's `--conf-path`.\n",
+                        "example": "/etc/nginx/nginx.conf.",
+                        "type": "string"
+                    },
+                    "configs": {
+                        "items": {
+                            "$ref": "#/components/schemas/DirectoryWithFileContent"
+                        },
+                        "type": "array"
+                    },
+                    "uuid": {
+                        "description": "unique identifier for the config object.",
+                        "format": "uuid",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "uuid",
+                    "conf_path",
+                    "configs"
+                ],
+                "type": "object"
+            },
+            "NginxConfigProblem": {
+                "description": "representation of problem associated with nginx analysis validation.",
+                "properties": {
+                    "directive": {
+                        "description": "directive with a problem",
+                        "type": "string"
+                    },
+                    "file": {
+                        "description": "file with a problem",
+                        "type": "string"
+                    },
+                    "line": {
+                        "description": "line number of troubled directive in a file",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "NginxConfigReport": {
+                "description": "nginx config analysis report.",
+                "properties": {
+                    "documentation": {
+                        "description": "links to documents that can be helpful in resolving problem.",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "info": {
+                        "description": "description of issue.",
+                        "type": "string"
+                    },
+                    "rule": {
+                        "description": "violated rule name.",
+                        "type": "string"
+                    },
+                    "severity": {
+                        "description": "severity of issue.",
+                        "type": "string"
+                    },
+                    "where": {
+                        "description": "details on where problems occurred during config analysis.",
+                        "items": {
+                            "$ref": "#/components/schemas/NginxConfigProblem"
+                        },
+                        "type": "array"
+                    }
+                },
+                "type": "object"
+            },
+            "NginxSecurityAdvisory": {
+                "description": "nginx security advisory.",
+                "properties": {
+                    "advisory": {
+                        "description": "link to security advisory details.",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "security advisory id.",
+                        "type": "string"
+                    },
+                    "info": {
+                        "description": "nginx security advisory description.",
+                        "type": "string"
+                    },
+                    "severity": {
+                        "description": "severity of advisory.",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "OperatingSystem": {
+                "description": "operating system release information.",
+                "example": {
+                    "name": "Ubuntu",
+                    "version": "18.04.5 LTS (Bionic Beaver)",
+                    "versionId": "18.04"
+                },
+                "properties": {
+                    "codename": {
+                        "description": "The OS release codename.",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "The OS release ID.",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "The OS release name.",
+                        "type": "string"
+                    },
+                    "version": {
+                        "description": "The OS release version string.",
+                        "type": "string"
+                    },
+                    "versionId": {
+                        "description": "The OS release version.",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Series": {
+                "properties": {
+                    "dimensions": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "example": {
+                            "instance_group": "prod",
+                            "server_zone": "prod_zone"
+                        },
+                        "type": "object"
+                    },
+                    "timestamps": {
+                        "example": [
+                            "2019-08-07T09:57:30",
+                            "2019-08-07T09:57:35"
+                        ],
+                        "items": {
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "values": {
+                        "example": [
+                            4.2,
+                            4.4
+                        ],
+                        "items": {
+                            "type": "number"
+                        },
+                        "type": "array"
+                    }
+                },
+                "type": "object"
+            },
+            "System": {
+                "description": "representation of host system.",
+                "properties": {
+                    "os": {
+                        "$ref": "#/components/schemas/OperatingSystem"
+                    },
+                    "system_id": {
+                        "description": "unique identifier for the system, this is provided by the NGINX Agent."
+                    },
+                    "uuid": {
+                        "description": "unique identifier for the system object."
+                    }
+                },
+                "type": "object"
+            },
+            "Time": {
+                "description": "Indicates a point in time.\n\nYou can provide time using ISO 8601 format or as an offset. An offset is a string that starts with `+` or `-`, followed by a number and a unit of time (`y`, `M`, `w`, `d`, `h`, `m` or `s`).\nExamples: \"2019-08-07T09:57:36.088757764Z\", \"now-3h\"\n",
+                "example": "2019-08-07T09:57:36.088757764Z",
+                "type": "string"
+            }
+        }
+    },
+    "info": {
+        "description": "The API Reference documentation for NGINX One",
+        "title": "NGINX One Spec",
+        "version": "v1"
+    },
+    "openapi": "3.0.3",
+    "paths": {
+        "/dataplane-keys": {
+            "get": {
+                "description": "list dataplane keys for the tenant namespace.",
+                "operationId": "listDataplaneKeys",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "DataplaneKeys": {
+                                        "$ref": "#/components/examples/DataplaneKeys"
+                                    }
+                                },
+                                "schema": {
+                                    "$ref": "#/components/schemas/DataplaneKeys"
+                                }
+                            }
+                        },
+                        "description": "Successfully retrieved the dataplane key entries."
+                    }
+                },
+                "summary": "list dataplane keys for the tenant namespace.",
+                "tags": [
+                    "Dataplane Key"
+                ]
+            },
+            "post": {
+                "description": "creates a dataplane key.",
+                "operationId": "createDataplaneKey",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "examples": {
+                                "DataPlaneKeyRequest": {
+                                    "$ref": "#/components/examples/DataplaneKeyRequest"
+                                }
+                            },
+                            "schema": {
+                                "$ref": "#/components/schemas/DataplaneKeyRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "DataPlaneKeyResponse": {
+                                        "$ref": "#/components/examples/DataplaneKeyResponse"
+                                    }
+                                },
+                                "schema": {
+                                    "$ref": "#/components/schemas/DataplaneKeyResponse"
+                                }
+                            }
+                        },
+                        "description": "Successfully created the usage entry."
+                    },
+                    "400": {
+                        "description": "bad data, TODO"
+                    },
+                    "500": {
+                        "description": "internal server error, TODO"
+                    }
+                },
+                "summary": "creates a dataplane key",
+                "tags": [
+                    "Dataplane Key"
+                ]
+            }
+        },
+        "/instances": {
+            "get": {
+                "operationId": "listInstances",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Instances"
+                                }
+                            }
+                        },
+                        "description": "Successfully retrieved the instances entries."
+                    }
+                },
+                "summary": "list instances.",
+                "tags": [
+                    "Instances"
+                ]
+            }
+        },
+        "/instances/summary": {
+            "get": {
+                "operationId": "listSummary",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InstanceSummary"
+                                }
+                            }
+                        },
+                        "description": "Successfully retrieved the summary information"
+                    }
+                },
+                "summary": "display instance related summary information for the tenant.",
+                "tags": [
+                    "Instances"
+                ]
+            }
+        },
+        "/instances/{instanceUUID}": {
+            "get": {
+                "operationId": "getInstance",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "instanceUUID",
+                        "required": true,
+                        "schema": {
+                            "format": "uuid",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InstanceDetails"
+                                }
+                            }
+                        },
+                        "description": "Successfully retrieved the specified instance entry."
+                    },
+                    "404": {
+                        "description": "resource not found."
+                    }
+                },
+                "summary": "return an instance as identified by the instanceUUID.",
+                "tags": [
+                    "Instances"
+                ]
+            }
+        },
+        "/instances/{instanceUUID}/config": {
+            "get": {
+                "operationId": "getInstanceConfig",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "instanceUUID",
+                        "required": true,
+                        "schema": {
+                            "format": "uuid",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NginxConfig"
+                                }
+                            }
+                        },
+                        "description": "Successfully retrieved the config for the specified instance."
+                    },
+                    "404": {
+                        "description": "resource not found."
+                    }
+                },
+                "summary": "return the configs for the instance as identified by the instanceUUID.",
+                "tags": [
+                    "Instances"
+                ]
+            }
+        },
+        "/instances/{instanceUUID}/config-report": {
+            "get": {
+                "operationId": "getConfigReport",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "instanceUUID",
+                        "required": true,
+                        "schema": {
+                            "format": "uuid",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/NginxConfigReport"
+                                    },
+                                    "type": "array"
+                                }
+                            }
+                        },
+                        "description": "nginx config report retrieved successfully."
+                    },
+                    "404": {
+                        "description": "nginx config report not found."
+                    }
+                },
+                "summary": "nginx config analysis report as identified by the instanceUUID.",
+                "tags": [
+                    "Instances"
+                ]
+            }
+        },
+        "/instances/{instanceUUID}/cves": {
+            "get": {
+                "operationId": "listSecurityAdvisories",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "instanceUUID",
+                        "required": true,
+                        "schema": {
+                            "format": "uuid",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/NginxSecurityAdvisory"
+                                    },
+                                    "type": "array"
+                                }
+                            }
+                        },
+                        "description": "Successfully retrieved the security advisorites."
+                    },
+                    "404": {
+                        "description": "resource not found."
+                    }
+                },
+                "summary": "list security advisorites for instance",
+                "tags": [
+                    "Instances"
+                ]
+            }
+        },
+        "/monitor/metrics": {
+            "get": {
+                "description": "Returns system Metrics data based on the query parameters provided.\n\nSupports filtering based on name and/or timestamp; aggregation over a configurable time span; and grouping by dimension.\n",
+                "operationId": "queryMetrics",
+                "parameters": [
+                    {
+                        "description": "Identifies the Metrics data that you want to receive.\n\n- Provide multiple names as a comma-separated list.\n- You can provide an aggregate function for each Metric (`AVG`, `SUM`, `COUNT`, `MAX`, `MIN`, or `RATE`).\n- Combining non-aggregated and aggregated Metrics in a single query would apply any `groupBy` clause to only the latter.\n- Metrics with aggregates require the `startTime` parameter.\n",
+                        "in": "query",
+                        "name": "names",
+                        "required": true,
+                        "schema": {
+                            "example": "AVG(agent.cpu.system),SUM(plus.upstream.bytes_rcvd)",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Groups the results according to the specified dimension(s).\n\n- Provide multiple dimension names as a comma-separated list.\n- All Metric names that you pass into the `names` parameter must be aggregated for the `groupBy` to work.\n",
+                        "in": "query",
+                        "name": "groupBy",
+                        "schema": {
+                            "example": "server_zone,instance_group",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Sets an upper limit on the number of series returned.\nAlways returns additional series with dimension value named `all` (aggregating the values of all the metrics included in the results).\nIf the result does not include `all` stored dimensions values, the Metrics query returns series with dimension value named `other` (aggregating the values of all the metrics not included in the results).\nHas to be used along with the `orderSeriesBy` parameter.\n\n- Exactly one groupBy parameter must be provided in the query\n- Cannot be used along with `dimensions` parameter.\n",
+                        "in": "query",
+                        "name": "seriesLimit",
+                        "schema": {
+                            "example": 25,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Sorts the results according to the order specified, and, if no order is specified a default SUM DESC will be applied by the API.\nHas to be used only with the `seriesLimit` parameter.\n",
+                        "in": "query",
+                        "name": "orderSeriesBy",
+                        "schema": {
+                            "example": "MAX DESC",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "List of dimensions that should be returned in the response for each metric series.\n\nDimensions not specified in this parameter will be hidden in the results.\nThis might result in series having exact same dimension set, but being visible as separate.\n\nIf the `aggregation` and `groupBy` parameters are provided for a metric, any dimension provided in\nthe `dimensions` query parameter also has to be provided in the `groupBy` parameter.\n\nDimensions provided in the `groupBy` query parameter do not have to be provided in the `dimensions` query parameter.\n\n- To get a single series, provide the metric name with aggregation and the dimensions parameter with an empty value.\n- Cannot be used along with `seriesLimit`.\n- Cannot pass `Tenant` or `Namespace` as filterable dimensions, these are allowed to be provided only as Headers\n",
+                        "in": "query",
+                        "name": "dimensions",
+                        "schema": {
+                            "example": "server_zone,instance_group",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Indicates the start of the time window to include collection elements from (inclusive).\n\n- Must be provided if `endTime` was specified.\n- In Metrics API requests, if `startTime` is omitted, the last recorded value for the queried Metrics will be returned.\n- In Metrics API requests - for aggregated Metrics - you must provide `startTime` to calculate the resolution\n",
+                        "example": "now-5h",
+                        "in": "query",
+                        "name": "startTime",
+                        "schema": {
+                            "$ref": "#/components/schemas/Time"
+                        }
+                    },
+                    {
+                        "description": "Indicates the end of the time window to include objects from (non-inclusive).\n\n- Must be greater than `startTime`.\n- If `endTime` is not specified when `startTime` is present, `endTime` defaults to the current time.\n",
+                        "in": "query",
+                        "name": "endTime",
+                        "schema": {
+                            "$ref": "#/components/schemas/Time"
+                        }
+                    },
+                    {
+                        "description": "Filters results based on key value pairs.\n\nConsists of one or more predicates in the form  `\u003ckey\u003e\u003coperator\u003e\u003cvalue\u003e` where:\n- `\u003ckey\u003e` is the name of the dimension.\n- `\u003coperator\u003e` is one of the supported operators (`=`, `!=`, `\u003c`, `\u003c=`, `\u003e=` `\u003e`, `in` or `not`).\n- `\u003cvalue\u003e` is value of the dimension(s) that you want to filter on.\n- `\u003ckey\u003e and \u003cvalue\u003e` is case sensitive.\n\nFor example: 'count \u003e 100'\n\nPredicates can be combined into logical expressions using `OR`, `AND`, and `(` `)`.\nFor matching values, wildcard (`*`) use is supported.\n\nWrapping predicates in single quotes is required to ensure that the full query string is processed correctly.\n\nSee the Dimensions Catalog to find out more about Dimensions.\n\n- Cannot pass `Tenant` or `Namespace` as filterable dimensions, these are allowed to be provided only as Headers\n",
+                        "in": "query",
+                        "name": "filter",
+                        "schema": {
+                            "example": "((server_zone!='server_zone_1' OR server_zone='server_zone_2') AND nginx_id in ('id1', 'id2')) AND (system.tags!='*tag1*')",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Changes the granularity of the returned data. Applicable only for endpoints that return time series data.\n\n- Must be a valid duration -- a string starting with a number followed by a unit of time (`y`, `M`, `w`, `d`, `h`, `m` or `s`).\n- Metrics API:\n  - When using a resolution, you must provide an aggregate function (or functions) in the `names` parameter and `startTime`.\n  - If you do not provide a resolution, the maximum available resolution will be returned (`endTime` - `startTime`).\n",
+                        "in": "query",
+                        "name": "resolution",
+                        "schema": {
+                            "example": "30s",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MetricQueryResult"
+                                }
+                            }
+                        },
+                        "description": "Successfully returned the requested Metrics data."
+                    },
+                    "400": {
+                        "description": "Bad input parameter, or possibly a bad URI. Check the input for typos and try again."
+                    },
+                    "404": {
+                        "description": "The resource defined in the URI could not be found. Check the URI for errors and try again."
+                    },
+                    "500": {
+                        "description": "The request cannot be processed because of an internal server error."
+                    }
+                },
+                "summary": "Get Metrics",
+                "tags": [
+                    "Metrics"
+                ]
+            }
+        }
+    },
+    "servers": [
+        {
+            "description": "default server URL",
+            "url": "/api/nginx/one/namespaces/default"
+        }
+    ]
+}
