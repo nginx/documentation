@@ -8,13 +8,25 @@ export default async (req) => {
     // Netlify details
     const netlify_account_id = '5aef7fb2b3127447cfdc7578' // Nginx account id
     const site_ids = {
-        'docs-dev': '8f101906-ee43-4fc6-9754-ff460265ad8e',
-        'docs-staging': 'e5dd2562-92a6-4cad-894a-4629256414fe',
-        'docs': 'a95b7860-e908-4df4-9677-610d55e50cc7',
-        // 'kubernetes-ingress': "9467201e-2dd4-40f5-a9d9-546c0a10b4f7",
-        // 'agent': "4edaaed0-4bcd-4699-b112-174410e18fa4",
-        // "service-mesh": "2d8f8acf-36b9-4b62-83cb-54d381f8bcfb",
-        // "N4A": "81ebffe4-d7f0-439c-9840-282905978ce9"
+        'docs-dev.nginx.com': '8f101906-ee43-4fc6-9754-ff460265ad8e',
+        'docs-staging.nginx.com': 'e5dd2562-92a6-4cad-894a-4629256414fe',
+        'docs.nginx.com': 'a95b7860-e908-4df4-9677-610d55e50cc7',
+        'kubernetes-ingress': "9467201e-2dd4-40f5-a9d9-546c0a10b4f7",
+        'gateway-fabric': "8e1ced5e-d146-4481-95e6-2ac4552d18ac",
+        'agent': "4edaaed0-4bcd-4699-b112-174410e18fa4",
+        "service-mesh": "2d8f8acf-36b9-4b62-83cb-54d381f8bcfb",
+        "N4A": "81ebffe4-d7f0-439c-9840-282905978ce9"
+    }
+
+    const sites_keys_context = {
+        'docs-dev.nginx.com': "COVEO_API_DEV",
+        'docs-staging.nginx.com': "COVEO_API_STAGING",
+        'docs.nginx.com': "COVEO_API_PROD",
+        'kubernetes-ingress': "COVEO_API_DEV",
+        'gateway-fabric': "COVEO_API_DEV",
+        'agent': "COVEO_API_DEV",
+        'service-mesh': "COVEO_API_DEV",
+        'N4A': "COVEO_API_DEV"
     }
 
     // Coveo details
@@ -29,7 +41,7 @@ export default async (req) => {
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${Netlify.env.get("COVEO_API_TOKEN")}`
+                "Authorization": `Bearer ${Netlify.env.get(sites_keys_context[key])}`
             },
             json: {
                 "searchHub": `${coveo_search_hub}`,
@@ -104,7 +116,4 @@ export default async (req) => {
             console.error(error.config.data)
         }
     }
-
-    // TODO: Trigger a rebuild for all sites via Netlify API
-    //  https://open-api.netlify.com/#tag/build
 }
