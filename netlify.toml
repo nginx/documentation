@@ -11,6 +11,7 @@
 [context.deploy-preview]
   command = "make deploy-preview"
   publish = "public"
+  NGINX_THEME_VERSION = "0.40.1-0.20231207104732-4e91965c5782"
 
 [context.branch-deploy]
   command = "make deploy-preview"
