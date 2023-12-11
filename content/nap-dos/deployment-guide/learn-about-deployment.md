@@ -53,7 +53,7 @@ NGINX App Protect DoS supports the following operating systems:
 - [Ubuntu 18.04 (Bionic)](#debian--ubuntu-installation) - (Deprecated starting from NGINX Plus R30)
 - [Ubuntu 20.04 (Focal)](#debian--ubuntu-installation)
 - [Ubuntu 22.04 (Jammy)](#debian--ubuntu-installation)
-- [Alpine 3.17.x](#alpine-317-installation)
+- [Alpine 3.15.x 3.17.x](#alpine-installation)
 
 The NGINX App Protect DoS package has the following dependencies:
 
@@ -791,7 +791,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo service nginx start
     ```
 
-## Alpine 3.17 Installation
+## Alpine Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -1306,11 +1306,13 @@ COPY entrypoint.sh /root/
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
 
-### Alpine 3.17 Docker Deployment Example
+### Alpine 3.15 / 3.17 Docker Deployment Example
 
 ```Dockerfile
-# For Alpine 3.17:
-FROM alpine:3.17
+# For Alpine 3.15 / 3.17:
+ARG OS_CODENAME
+# Where OS_CODENAME can be: 3.15 / 3.17
+FROM alpine:${OS_CODENAME}
 
 # Download certificate and key from the customer portal (https://my.f5.com)
 # and copy to the build context:
