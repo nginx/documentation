@@ -56,7 +56,7 @@ export default async (req) => {
             }
         }
 
-        try { // Generate new Coveo Search API token
+        try { // Generate new Coveo Search token
             const response = await axios.post(
                 _request_new_search_token.uri,
                 _request_new_search_token.json,
@@ -74,7 +74,7 @@ export default async (req) => {
 
         console.log('Updating environment variable '+coveo_var_name+' for site '+key+'.nginx.com')
 
-        const _request_update_env_var = { // request header for Coveo token generation
+        const _request_update_env_var = { // request header for netlify api request
             method: "PUT",
             uri: 'https://api.netlify.com/api/v1/accounts/'+netlify_account_id+'/env/'+coveo_var_name+'?site_id='+value,
             headers: {
@@ -100,7 +100,7 @@ export default async (req) => {
             }
         }
 
-        try {
+        try { // Update site's search token env var
             response = await axios.put(
                 _request_update_env_var.uri,
                 _request_update_env_var.json,
