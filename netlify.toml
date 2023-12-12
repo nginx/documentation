@@ -11,12 +11,12 @@
 [context.deploy-preview]
   command = "make deploy-preview"
   publish = "public"
-  NGINX_THEME_VERSION = "baa3e73f"
+  NGINX_THEME_VERSION = "0.40.2-beta"
 
 [context.branch-deploy]
   command = "make deploy-preview"
   publish = "public"
-  NGINX_THEME_VERSION = "baa3e73f"
+  NGINX_THEME_VERSION = "0.40.2-beta"
 
 # Keep the 404 redirect defined here
 # Netlify processes the _redirects file first
