@@ -449,7 +449,7 @@ If a user other than **nginx** is to be used, note the following:
     Then, install a specific version from the output of command above. For example:
 
     ```shell
-    sudo dnf install app-protect-25+3.743.4
+    sudo dnf install app-protect-31+4.641.0
     ```
 
 11. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
@@ -567,7 +567,7 @@ If a user other than **nginx** is to be used, note the following:
     Then, install a specific version from the output of command above. For example:
 
     ```shell
-    sudo dnf install app-protect-25+3.743.4
+    sudo dnf install app-protect-31+4.641.0
     ```
 
 11. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
@@ -2550,7 +2550,7 @@ Example: app-protect-threat-campaigns-2022.07.21
     To upgrade to a specific version:
 
     ```shell
-    sudo dnf install app-protect-threat-campaigns-2022.07.21
+    sudo dnf install app-protect-threat-campaigns-2023.12.11
     ```
 
 ### Alpine 3.16 / Alpine 3.17
@@ -2712,6 +2712,12 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     sudo yum install app-protect-bot-signatures-2023.11.14
     ```
 
+    To downgrade to a specific version:
+
+    ```shell
+    sudo yum downgrade app-protect-bot-signatures-2023.11.14
+    ```    
+
 ### RHEL 8.1+ / Oracle Linux 8.1+ 
 
 1. If not already configured, add NGINX App Protect WAF Security Updates repository by downloading the file `app-protect-8.repo` to `/etc/yum.repos.d`:
@@ -2738,6 +2744,12 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     sudo dnf install app-protect-bot-signatures-2023.11.14
     ```
 
+    To downgrade to a specific version:
+
+    ```shell
+    sudo dnf downgrade app-protect-bot-signatures-2023.11.14
+    ```
+
 ### RHEL 9+
 
 1. If not already configured, add NGINX App Protect WAF Security Updates repository by downloading the file `app-protect-9.repo` to `/etc/yum.repos.d`:
@@ -2761,7 +2773,13 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     To upgrade to a specific version:
 
     ```shell
-    sudo dnf install app-protect-bot-signatures-2023.11.14
+    sudo dnf install app-protect-bot-signatures-2023.12.11
+    ```
+
+    To downgrade to a specific version:
+
+    ```shell
+    sudo dnf downgrade app-protect-bot-signatures-2023.12.11
     ```
 
 ### Alpine 3.16 / Alpine 3.17
@@ -2795,6 +2813,7 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     ```shell
     sudo apk add app-protect-bot-signatures=2023.11.14
     ```
+
 
 ### Debian 11
 
@@ -2834,6 +2853,7 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     ```shell
     sudo apt-get install app-protect-bot-signatures=2023.11.14~bullseye
     ```
+
 
 ### Ubuntu 20.04 / Ubuntu 22.04
 
@@ -2878,6 +2898,7 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     ```shell
     sudo apt-get install app-protect-bot-signatures=2023.11.14~jammy
     ```
+
 
 ## Upgrading App Protect
 
