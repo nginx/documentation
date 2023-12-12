@@ -15,15 +15,74 @@ categories: ["known issues"]
 
 ---
 
-## 2.14.0
-October 16, 2023
+## 2.15.0
+December 12, 2023
 
-### {{% icon-bug %}} NGINX App Protect Attack Signature, Threat Campaign and Compiler fail to download {#44603}
+### {{% icon-bug %}} Some NGINX Management Suite features not available after adding license {#44698}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 44603 | Open   |
+| 44698 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+After adding a license, some NGINX Management Suite features might be disabled, even if they are included in the license.
+
+#### Workaround
+
+Restart NGINX Management Suite to make all the features available for use. To restart NGINX Management Suite, open a terminal on the host and run the command:
+
+```shell
+sudo systemctl restart nms
+```
+
+---
+
+### {{% icon-bug %}} Users receive login error when NGINX Management Suite is deployed in Kubernetes {#44686}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44686 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+After deploying NGINX Management Suite in a Kubernetes environment, when a user tries to log on for the first time, a generic error is displayed.
+
+#### Workaround
+
+Refreshing the browser clears the error and allows the user to log on. 
+
+---
+
+### {{% icon-bug %}}   Licenses for NGINX Plus applied prior to Instance Manager 2.15 don't show the full feature set {#44685}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44685 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+With the introduction of Instance Manager 2.15, we are expanding the features available for some licenses, such as those with only NGINX Plus entitlement. If such a license was applied before upgrading to 2.15, the expanded set of features will not be available as intended.
+
+#### Workaround
+
+Terminate the license applied previously. Re-apply the license.
+
+---
+
+
+## 2.14.0
+October 16, 2023
+
+### {{% icon-resolved %}} NGINX App Protect Attack Signature, Threat Campaign and Compiler fail to download {#44603}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44603 | Fixed in Instance Manager 2.15.0   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -40,12 +99,12 @@ Download manually the latest [Attack Signatures package, Threat Campaign package
 
 ---
 
-### {{% icon-bug %}} Missing Data when ClickHouse services are not running {#44586}
+### {{% icon-resolved %}} Missing Data when ClickHouse services are not running {#44586}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 44586 | Open   |
+| 44586 | Fixed in Instance Manager 2.15.0   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -137,12 +196,12 @@ or
 
 ---
 
-### {{% icon-bug %}} Data on the dashboard is updating unexpectedly {#44504}
+### {{% icon-resolved %}} Data on the dashboard is updating unexpectedly {#44504}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 44504 | Open   |
+| 44504 | Fixed in Instance Manager 2.15.0   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -150,12 +209,12 @@ Dashboard data may update unexpectedly when opening a drawer view. The updated d
 
 ---
 
-### {{% icon-bug %}} Instances reporting incorrect memory utilization {#44351}
+### {{% icon-resolved %}} Instances reporting incorrect memory utilization {#44351}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 44351 | Open   |
+| 44351 | Fixed in Instance Manager 2.15.0   |
 
 {{</bootstrap-table>}}
 #### Description

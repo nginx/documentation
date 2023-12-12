@@ -10,6 +10,54 @@ docs: "DOCS-938"
 
 ---
 
+## 2.15.0
+
+December 12, 2023
+
+### Upgrade Paths {#2-15-0-upgrade-paths}
+
+Instance Manager  supports upgrades from these previous versions:
+
+- 2.12.0 - 2.14.1
+
+If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+{{< see-also >}}
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< /see-also >}}
+
+<br>
+
+<details closed>
+<summary><i class="fa-solid fa-circle-exclamation"></i> Support for NGINX App Protect WAF</summary>
+
+{{< include "tech-specs/nim-app-protect-support.md" >}}
+
+</details>
+
+
+### What's New{#2-15-0-whats-new}
+This release includes the following updates:
+
+- {{% icon-feature %}} **Support for CA Certificates added**<a name="2-15-0-whats-new-Support-for-CA-Certificates-added"></a>
+
+  Instance Manager now allows for managing CA Certificates to fully support NGINX directives such as _proxy_ssl_trusted_ and _proxy_ssl_verify_. The main difference after this change is that you no longer need a corresponding key to upload a certificate to Instance Manager.
+  
+
+### Resolved Issues{#2-15-0-resolved-issues}
+This release fixes the following issues. Select an issue's ID link to view its details.
+
+- {{% icon-resolved %}} Instances reporting incorrect memory utilization [(44351)]({{< relref "/nms/nim/releases/known-issues.md#44351" >}})<a name="2-15-0-resolved-issues-Instances-reporting-incorrect-memory-utilization"></a>
+- {{% icon-resolved %}} Data on the dashboard is updating unexpectedly [(44504)]({{< relref "/nms/nim/releases/known-issues.md#44504" >}})<a name="2-15-0-resolved-issues-Data-on-the-dashboard-is-updating-unexpectedly"></a>
+- {{% icon-resolved %}} Missing Data when ClickHouse services are not running [(44586)]({{< relref "/nms/nim/releases/known-issues.md#44586" >}})<a name="2-15-0-resolved-issues-Missing-Data-when-ClickHouse-services-are-not-running"></a>
+- {{% icon-resolved %}} NGINX App Protect Attack Signature, Threat Campaign and Compiler fail to download [(44603)]({{< relref "/nms/nim/releases/known-issues.md#44603" >}})<a name="2-15-0-resolved-issues-NGINX-App-Protect-Attack-Signature,-Threat-Campaign-and-Compiler-fail-to-download"></a>
+
+### Known Issues{#2-15-0-known-issues}
+
+You can find information about known issues in the [Known Issues]({{< relref "/nms/nim/releases/known-issues.md" >}}) topic.
+
+---
+
 ## 2.14.1
 
 October 19, 2023
