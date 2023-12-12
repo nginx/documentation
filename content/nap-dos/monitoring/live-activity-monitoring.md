@@ -167,8 +167,8 @@ The displayed graph is a stacked composition, encompassing two specific metrics:
   The sum of these two metrics at any given moment provides the aggregate count of incoming requests.
 
 ### Status Color Indicators
-- **Green**: Represents a normal state, signifying that there is no attack and the server health is optimal.
-- **Yellow**: Denotes a situation that demands attention, either due to an active attack or diminished server health.
+- **Green**: Indicates a normal state, with no attack and optimal server health.
+- **Yellow**: Indicates the presence of either an active attack or diminished server health.
 - **Red**: Indicates a severe scenario, where the object is experiencing an attack combined with poor health.
 
 ### Configuring Dashboard Options
