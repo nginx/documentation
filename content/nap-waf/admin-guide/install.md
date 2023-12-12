@@ -43,7 +43,7 @@ This guide explains how to deploy NGINX App Protect WAF as well as upgrade App P
 ### Using NGINX App Protect with NGINX Management Suite
 
 NGINX Management Suite provides centralized configuration management and visibility for your NGINX App Protect WAF fleet.
-After completing the NGINX App Protect WAF installation, refer to the [NGINX Management Suite installation guide](https://docs.nginx.com/nginx-management-suite/admin-guides/installation/on-prem/install-guide/) for the deployment instructions.<br>
+After completing the NGINX App Protect WAF installation, refer to the [NGINX Management Suite Installation Guide](https://docs.nginx.com/nginx-management-suite/admin-guides/installation/on-prem/install-guide/) for the deployment instructions.<br>
 
 ## Prerequisites
 
@@ -2302,13 +2302,13 @@ After having updated the Attack Signature package you have to reload the configu
     To upgrade to a specific version:
 
     ```shell
-    sudo dnf install app-protect-attack-signatures-2021.12.30
+    sudo dnf install app-protect-attack-signatures-2023.12.11
     ```
 
     To downgrade to a specific version:
 
     ```shell
-    sudo dnf downgrade app-protect-attack-signatures-2019.07.16
+    sudo dnf downgrade app-protect-attack-signatures-2023.12.11
     ```
 
 ### Debian 10 / Debian 11
