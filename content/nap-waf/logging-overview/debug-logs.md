@@ -30,7 +30,7 @@ roles:
 title: NGINX App Protect WAF Debug Log
 toc: true
 versions:
-- "4.6"
+- "4.7"
 weight: 540
 ---
 
