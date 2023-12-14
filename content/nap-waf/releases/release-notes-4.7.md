@@ -71,7 +71,7 @@ In this release, NGINX App Protect WAF supports NGINX Plus R31.
 
 ##### RHEL 9+ 
 
-- app-protect-31+4.641.0-1.el8.ngx.x86_64.rpm
+- app-protect-31+4.641.0-1.el9.ngx.x86_64.rpm
 
 ##### Ubuntu 20.04
 
