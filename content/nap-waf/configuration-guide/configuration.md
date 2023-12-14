@@ -686,15 +686,11 @@ In this example, we override the action for a specific signature (python-request
 }
 ~~~
 
-#### Bot Signatures Updated File
+#### Bot Signatures Update File
 
-Starting with NGINX App Protect WAF release 4.7, there are now two files, the original file (a.k.a `included_bot_signatures` that is part of the compiler) and the new file located under the `bot_signatures` path (that will be part of the **app-protect-bot-signatures** package).
- 
-The already existing file `included_bot_signatures`, is located at the following path: `/opt/app-protect/var/update_files/included_bot_signatures`. This file contains an up-to-date list of all the bot signatures that have been included. The list is generated automatically as a part of the **app-protect-compiler** package, and resembles as a text file that is similar to the readme-files found in the attack-signature.
- 
-The new file `included_bot_signatures`, is located at the following path: `/opt/app-protect/var/update_files/bot_signatures/included_bot_signatures`. This file contains an up-to-date list of all bot signatures that have been updated with the new bot signatures package. Like the original, this list is automatically generated as a part of the **app-protect-bot-signatures** package and follows a format similar to the readme-files found in the attack-signature.
+Starting with NGINX App Protect WAF release 4.7, the bot signatures file `included_bot_signatures`, is located at the following path: `/opt/app-protect/var/update_files/bot_signatures/included_bot_signatures`. This will be part of the **app-protect-bot-signatures** package. <br>
 
-These two files contains essential information which includes:
+This file contains an up-to-date list of all bot signatures that have been updated with the new bot signature package. This list is automatically generated as a part of the **app-protect-bot-signatures** package and follows a format similar to the readme-files found in the attack-signature. This file contains an essential information which includes:
  
 - Bot name
 - Bot type
