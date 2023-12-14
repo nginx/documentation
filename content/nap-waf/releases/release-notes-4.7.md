@@ -47,7 +47,7 @@ In this release, NGINX App Protect WAF supports NGINX Plus R31.
 
 ##### Alpine 3.16
 
-- app-protect-31.4.461.0-r1.apk
+- app-protect-31.4.641.0-r1.apk
 
 ##### Alpine 3.17
 
@@ -93,11 +93,10 @@ In this release, NGINX App Protect WAF supports NGINX Plus R31.
 - 9297 Fixed - Add new limit from `responseCheckLength` to response ingress event handling in order to reduce the memory used for buffering. 
 - 7877 Fixed - If a JSON value contains an URL-decoded value, it should to be decoded and then matched against the signatures.
 - 7876 Fixed - Perform percent decoding on textual parameters received from multipart requests.
-- 9992 Fixed - Enforcer does not support Edwards-curve Digital Signature Algorithm (EdDSA) on CentOS 7. When a JSON Web Token (JWT) signed with EdDSA is used on CentOS 7, it results in a `VIOL_ACCESS_INVALID` error with the reason "unsupported_signature_algorithm" in the details. The "expected algorithms" should not include EdDSA.
+- 9992 Fixed - Enforcer does not support Edwards-curve Digital Signature Algorithm (EdDSA) on CentOS 7. When a JSON Web Token (JWT) signed with EdDSA is used on CentOS 7, it results in a `VIOL_ACCESS_INVALID` error.
 
 
 ### **Important Note**
 
-- Starting with this release, bot signatures list is generated automatically as a part of the `app-protect-compiler` package, and resembles as a text file that is similar to the readme-files found in the attack-signature. <br>
+- Starting with this release, the bot signatures list is generated automatically as a part of the `app-protect-bot-signatures` package, which is a dependency of the `app-protect-compiler` package. It resembles a text file similar to the readme-files found in the attack-signature. <br>
 Refer to the [Bot Signatures Updated File]({{< relref "/nap-waf/configuration-guide/configuration.md#bot-signatures-updated-file" >}}) section for more details.
-
