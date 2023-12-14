@@ -101,7 +101,7 @@ export default async (req) => {
         }
 
         try { // Update site's search token env var
-            response = await axios.put(
+            const response = await axios.put(
                 _request_update_env_var.uri,
                 _request_update_env_var.json,
                 {
