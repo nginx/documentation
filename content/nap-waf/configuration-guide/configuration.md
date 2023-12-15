@@ -30,7 +30,7 @@ roles:
 title: NGINX App Protect WAF Configuration Guide
 toc: true
 versions:
-- "4.6"
+- "4.7"
 weight: 200
 ---
 
@@ -445,6 +445,23 @@ In this example, we enable the HTTP compliance violation with the blocking as tr
 }
 ~~~
 
+#### RFC Checks on the Referer Header
+
+This feature introduces RFC checks on the URL referer header.
+
+If a request contains a referer header with a URL that doesn't comply with RFC standards as per RFC-3986, it will trigger the `VIOL_HTTP_PROTOCOL` violation along with its associated sub-violations. If this violation is reported, the user should inspect both the request and referer URLs to identify and address the underlying issue.
+
+For example, in the below URL in Referer header in "Example 1" there is NULL used in Referer value and in "Example 2" unescaped space is used. Since these requests are non-RFC compliant, it will trigger the `VIOL_HTTP_PROTOCOL` violation.
+
+```
+Example 1
+...  Referer: http://example.com/hello%2500world\r\n
+```
+
+```
+Example 2
+...  Referer: http://example.com/hello world\r\n
+```
 
 #### Evasion Techniques
 
@@ -572,6 +589,7 @@ Following is an example configuration where we enable Header violations in block
 
 Anti Automation provides basic bot protection by detecting bot signatures and clients that falsely claim to be browsers or search engines. The `bot-defense` section in the policy is enabled by default. Anti Automation encompasses both Bot Signatures and Header Anomalies, each of which can be disabled separately.
 
+As new bot signatures are identified, they will be accessible for [download and installation]({{< ref "/nap-waf/admin-guide/install.md#updating-app-protect-bot-signatures" >}}) so that your system will always have the most up-to-date protection. You can update the bot signatures without updating the App Protect release. Similarly, you can update App Protect without altering the bot signature package, unless you upgrade to a new NGINX Plus release.
 
 #### Bot Signatures
 
@@ -605,7 +623,6 @@ In this example we show how to enable bot signatures using the default bot confi
 ~~~
 
 The default actions for classes are: `detect` for `trusted-bot`, `alarm` for `untrusted-bot`, and `block` for `malicious-bot`. In this example, we enabled bot defense and specified that we want to raise a violation for `trusted-bot`, and block for `untrusted-bot`.
-
 
 ~~~json
 {
@@ -669,12 +686,12 @@ In this example, we override the action for a specific signature (python-request
 }
 ~~~
 
-#### Bot Signatures File
+#### Bot Signatures Update File
 
-Starting with NGINX App Protect WAF release 4.5, the bot signatures will be included in the `included_bot_signatures` file, which is located at the following path: `/opt/app-protect/var/update_files/included_bot_signatures`. This file will contain an up-to-date list of all the bot signatures that have been included.
+Starting with NGINX App Protect WAF release 4.7, the bot signatures file `included_bot_signatures`, is located at the following path: `/opt/app-protect/var/update_files/bot_signatures/included_bot_signatures`. This will be part of the **app-protect-bot-signatures** package. <br>
 
-The list is generated automatically as a part of the `app-protect-compiler` package, and resembles as a text file that is similar to the readme-files found in the attack-signature. It contains essential information which includes:
-
+This file contains an up-to-date list of all bot signatures that have been updated with the new bot signature package. This list is automatically generated as a part of the **app-protect-bot-signatures** package and follows a format similar to the README-style text file found in the attack signature. This file contains essential information which includes:
+ 
 - Bot name
 - Bot type
 - Bot classification/category
