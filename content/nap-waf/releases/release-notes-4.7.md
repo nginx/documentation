@@ -96,7 +96,7 @@ In this release, NGINX App Protect WAF supports NGINX Plus R31.
 - 9992 Fixed - Enforcer does not support Edwards-curve Digital Signature Algorithm (EdDSA) on CentOS 7. When a JSON Web Token (JWT) signed with EdDSA is used on CentOS 7, it results in a `VIOL_ACCESS_INVALID` error.
 
 
-### **Important Note**
+### **Important Notes**
 
 - Starting with this release, the bot signatures list is generated automatically as a part of the **app-protect-bot-signatures** package, which is a dependency of the **app-protect-compiler** package. It resembles a format similar to the README-style text file found in the attack signature.
 Refer to the [Bot Signatures Update File]({{< relref "/nap-waf/configuration-guide/configuration.md#bot-signatures-update-file" >}}) for more details.
