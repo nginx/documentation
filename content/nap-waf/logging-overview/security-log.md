@@ -153,7 +153,7 @@ This is the content of `/etc/app_protect/conf/log_default.json`. It is used by d
     },
     "content": {
         "format": "default",
-        "max_request_size": "any",
+        "max_request_size": "2k",
         "max_message_size": "5k"
     }
 }
@@ -184,7 +184,7 @@ This is the content of `/etc/app_protect/conf/log_default.json`. It is used by d
     },
     "content": {
         "format": "default",
-        "max_request_size": "any",
+        "max_request_size": "2k",
         "max_message_size": "5k"
     }
 }
@@ -200,7 +200,7 @@ This is the content of `/etc/app_protect/conf/log_default.json`. It is used by d
     "content": {
         "format": "user-defined",
         "format_string": "Request ID %support_id%: %method% %uri% received on %date_time% from IP %ip_client% had the following violations: %violations%",
-        "max_request_size": "any",
+        "max_request_size": "2k",
         "max_message_size": "5k"
     }
 }
@@ -215,7 +215,7 @@ This is the content of `/etc/app_protect/conf/log_default.json`. It is used by d
     },
     "content": {
         "format": "default",
-        "max_request_size": "any",
+        "max_request_size": "2k",
         "max_message_size": "5k",
         "escaping_characters": [
       	    {
