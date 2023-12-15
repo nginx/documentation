@@ -101,9 +101,3 @@ MODULE = ALL;
 LOG_LEVEL = TS_ERR | TS_CRIT | TS_WARNING | TS_NOTICE;
 FILE=2;
 ~~~
-
-Then run the following command to update the log configuration without having to restart App Protect or reload NGINX:
-
-~~~
-pkill -SIGUSR1 bd
-~~~
