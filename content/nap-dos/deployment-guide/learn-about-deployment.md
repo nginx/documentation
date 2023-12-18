@@ -1052,7 +1052,7 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
     ```
 
-    For Alpine / Debian / Ubuntu/ UBI 8:
+    For Alpine / Debian / Ubuntu / UBI 8:
     ```shell
     #!/usr/bin/env bash
     
