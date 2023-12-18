@@ -2,22 +2,21 @@ paths:
   collections: content
 collections_config:
   pages:
+    parse_branch_index: true
+    path: /
+  standalone_pages:
     path: content/
     output: true
+    parse_branch_index: false
     filter:
-      exclude:
-        - /nginx/_index.md
-        - /controller/_index.md
-        - /includes/index.md
-        - /modsec-waf/_index.md
-        - /nap-dos/_index.md
-        - /nap-waf/_index.md
-        - /nms/_index.md
-        - /solutions/_index.md
-        - _index.md
-    parse_branch_index: true
+      base: strict
+      include:
+        - feedback.md
+        - ossc.md
+        - search.md
+        - success.md
     name: Standalone Website Pages
-    description: These pages are not specific to any product.
+    description: This collection contains standalone website pages like the search landing page and feedback form.
     icon: notes
     sort_options:
       - key: weight
@@ -30,10 +29,12 @@ collections_config:
     disable_add_folder: false
     disable_file_actions: false
     schemas: {}
-  NGINX-Plus:
+  nginx_plus:
     path: content/nginx
+    name: NGINX Plus
+    description: Documentation for NGINX and NGINX Plus.
     output: true
-    parse_branch_index: true
+    parse_branch_index: false
     icon: notes
     preview:
       metadata:
@@ -57,9 +58,9 @@ collections_config:
       default:
         path: .cloudcannon/schemas/default.md
         reorder_inputs: true
-        hide_extra_inputs: false
+        hide_extra_inputs: true
         remove_empty_inputs: false
-        remove_extra_inputs: true
+        remove_extra_inputs: false
         name: Task (default)
         icon: task
         preview: {}
@@ -76,19 +77,21 @@ collections_config:
       concept:
         path: .cloudcannon/schemas/concept.md
         reorder_inputs: true
-        hide_extra_inputs: false
+        hide_extra_inputs: true
         remove_empty_inputs: false
-        remove_extra_inputs: true
+        remove_extra_inputs: false
         name: Concept
         icon: lightbulb
         _editables: {}
         _inputs: {}
         _select_data: {}
         _structures: {}
-  NGINX-App-Protect-DOS:
+  nap_dos:
     path: content/nap-dos
     output: true
-    parse_branch_index: true
+    name: NGINX App Protect DoS
+    description: Documentation for NGINX App Protect DoS
+    parse_branch_index: false
     icon: notes
     preview:
       metadata:
@@ -106,9 +109,9 @@ collections_config:
       default:
         path: .cloudcannon/schemas/default.md
         reorder_inputs: true
-        hide_extra_inputs: false
+        hide_extra_inputs: true
         remove_empty_inputs: false
-        remove_extra_inputs: true
+        remove_extra_inputs: false
         name: Task (default)
         icon: task
         _editables: {}
@@ -118,19 +121,21 @@ collections_config:
       concept:
         path: .cloudcannon/schemas/concept.md
         reorder_inputs: true
-        hide_extra_inputs: false
+        hide_extra_inputs: true
         remove_empty_inputs: false
-        remove_extra_inputs: true
+        remove_extra_inputs: false
         name: Concept
         icon: lightbulb
         _editables: {}
         _inputs: {}
         _select_data: {}
         _structures: {}
-  NGINX-App-Protect-WAF:
+  nap_waf:
     path: content/nap-waf
     output: true
-    parse_branch_index: true
+    name: NGINX App Protect WAF
+    description: Documentation for NGINX App Protect WAF.
+    parse_branch_index: false
     icon: notes
     preview:
       metadata:
@@ -154,9 +159,9 @@ collections_config:
       default:
         path: .cloudcannon/schemas/default.md
         reorder_inputs: true
-        hide_extra_inputs: false
+        hide_extra_inputs: true
         remove_empty_inputs: false
-        remove_extra_inputs: true
+        remove_extra_inputs: false
         name: Task (default)
         icon: task
         _editables: {}
@@ -166,19 +171,21 @@ collections_config:
       concept:
         path: .cloudcannon/schemas/concept.md
         reorder_inputs: true
-        hide_extra_inputs: false
+        hide_extra_inputs: true
         remove_empty_inputs: false
-        remove_extra_inputs: true
+        remove_extra_inputs: false
         name: Concept
         icon: lightbulb
         _editables: {}
         _inputs: {}
         _select_data: {}
         _structures: {}
-  NGINX-Management-Suite:
+  nms:
     path: content/nms
     output: true
-    parse_branch_index: true
+    name: NGINX Management Suite
+    description: Documentation for NGINX Management Suite.
+    parse_branch_index: false
     icon: notes
     preview:
       metadata:
@@ -202,9 +209,9 @@ collections_config:
       default:
         path: .cloudcannon/schemas/default.md
         reorder_inputs: true
-        hide_extra_inputs: false
+        hide_extra_inputs: true
         remove_empty_inputs: false
-        remove_extra_inputs: true
+        remove_extra_inputs: false
         name: Task (default)
         icon: task
         _editables: {}
@@ -214,9 +221,9 @@ collections_config:
       concept:
         path: .cloudcannon/schemas/concept.md
         reorder_inputs: true
-        hide_extra_inputs: false
+        hide_extra_inputs: true
         remove_empty_inputs: false
-        remove_extra_inputs: true
+        remove_extra_inputs: false
         name: Concept
         icon: lightbulb
         _editables: {}
@@ -226,19 +233,21 @@ collections_config:
       policy:
         path: .cloudcannon/schemas/nms/policy.md
         reorder_inputs: true
-        hide_extra_inputs: false
+        hide_extra_inputs: true
         remove_empty_inputs: false
-        remove_extra_inputs: true
+        remove_extra_inputs: false
         name: ACM Policy
         icon: table_chart
         _editables: {}
         _inputs: {}
         _select_data: {}
         _structures: {}
-  NGINX-Controller:
+  controller:
     path: content/controller
     output: true
-    parse_branch_index: true
+    name: NGINX Controller
+    description: Documentation for NGINX Controller.
+    parse_branch_index: false
     icon: notes
     preview:
       metadata:
@@ -258,11 +267,25 @@ collections_config:
     disable_add: false
     disable_add_folder: true
     disable_file_actions: true
-    schemas: {}
-  NGINX-ModSecurity-WAF:
+    schemas: 
+     default:
+        path: .cloudcannon/schemas/default.md
+        reorder_inputs: true
+        hide_extra_inputs: true
+        remove_empty_inputs: false
+        remove_extra_inputs: false
+        name: Task (default)
+        icon: task
+        _editables: {}
+        _inputs: {}
+        _select_data: {}
+        _structures: {}
+  modsec_waf:
     path: content/modsec-waf
     output: true
-    parse_branch_index: true
+    name: NGINX ModSec WAF
+    description: Documentation for NGINX ModSec WAF.
+    parse_branch_index: false
     icon: notes
     preview:
       metadata:
@@ -276,11 +299,25 @@ collections_config:
     disable_add: true
     disable_add_folder: true
     disable_file_actions: true
-    schemas: {}
-  Solution-Bundles:
+    schemas: 
+      default:
+        path: .cloudcannon/schemas/default.md
+        reorder_inputs: true
+        hide_extra_inputs: true
+        remove_empty_inputs: false
+        remove_extra_inputs: false
+        name: Task (default)
+        icon: task
+        _editables: {}
+        _inputs: {}
+        _select_data: {}
+        _structures: {}
+  solution_bundles:
     path: content/solutions
     output: true
-    parse_branch_index: true
+    name: NGINX Solution Bundles
+    description: Instructions for deploying the multi-product solution bundles.
+    parse_branch_index: false
     icon: notes
     preview:
       metadata:
@@ -300,10 +337,24 @@ collections_config:
     disable_add: false
     disable_add_folder: false
     disable_file_actions: false
-    schemas: {}
-  Shared-Files-for-Content-Reuse:
+    schemas:
+      default:
+        path: .cloudcannon/schemas/default.md
+        reorder_inputs: true
+        hide_extra_inputs: true
+        remove_empty_inputs: false
+        remove_extra_inputs: false
+        name: Task (default)
+        icon: task
+        _editables: {}
+        _inputs: {}
+        _select_data: {}
+        _structures: {}
+  includes:
     path: content/includes
     output: false
+    name: Content Reuse
+    description: A collection of files that can be reused in other documents across the website.
     filter:
       exclude:
         - index.md
@@ -327,13 +378,21 @@ collections_config:
     disable_add: false
     disable_add_folder: false
     disable_file_actions: false
-    schemas: {}
+    schemas:
+      default:
+        path: .cloudcannon/schemas/includes.md
+        name: Includes template
+      headless-collection:
+        path: .cloudcannon/schemas/headless-collection.md
+        name: Index.md template
   data:
     path: data
     output: false
     icon: dataset
     _editables: {}
-    _enabled_editors: {}
+    _enabled_editors: 
+      - data
+      - content
     _inputs: {}
     _select_data: {}
     _structures: {}
@@ -343,11 +402,29 @@ collections_config:
       _inputs: {}
       _select_data: {}
       _structures: {}
-    disable_add: true
+    disable_add: false
     disable_add_folder: true
     disable_file_actions: true
     schemas: {}
 collections_config_override: true
+collection_groups:
+  - heading: "Standalone Web Pages"
+    collections: 
+    - "standalone_pages"
+  - heading: "Product Docs"
+    collections:
+    - "nginx_plus"
+    - "nap_dos"
+    - "nap_waf"
+    - "nms"
+    - "controller"
+    - "modsec_waf"
+  - heading: "Solutions"
+    collections:
+    - "solution_bundles"
+  - heading: "Content Reuse"
+    collections:
+    - "includes"
 _enabled_editors:
   - content
 _inputs: {}
@@ -629,22 +706,6 @@ _snippets:
       named_args:
         - editor_key: name
           type: string
-  Custom css styles:
-    template: hugo_shortcode_positional_args
-    inline: false
-    preview:
-      text: Custom CSS Styles
-      icon: css
-    definitions:
-      shortcode_name: custom-styles
-  Release note css styles:
-    template: hugo_shortcode_positional_args
-    inline: false
-    preview:
-      text: Custom Styles for Release Notes
-      icon: css
-    definitions:
-      shortcode_name: rn-styles
   beta-badge:
     template: hugo_shortcode_positional_args
     inline: false
@@ -685,7 +746,7 @@ _snippets:
         - editor_key: url
           type: string
         - editor_key: text
-  Fontawesome-Icon:
+  fontawesome-Icon:
     template: hugo_shortcode_positional_args
     inline: true
     preview:
@@ -698,6 +759,10 @@ _snippets:
       positional_args:
         - editor_key: icon_name
           type: string
+        - editor_key: styles
+          type: string
+          optional: true
+          remove_empty: true
   icon-resolved:
     template: hugo_markdown_shortcode_named_args
     inline: true
