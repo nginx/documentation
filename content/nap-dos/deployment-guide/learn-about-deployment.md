@@ -791,7 +791,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo service nginx start
     ```
 
-## Alpine Installation
+## Alpine 3.15.x / 3.17.x Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
