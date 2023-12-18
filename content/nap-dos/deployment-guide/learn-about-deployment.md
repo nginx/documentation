@@ -1343,7 +1343,7 @@ CMD ["sh", "/root/entrypoint.sh"]
 ```
 
 
-## Docker Deployment with Nginx App Protect
+## Docker Deployment with NGINX App Protect
 
 ### Docker Deployment Instructions
 
