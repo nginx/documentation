@@ -53,7 +53,7 @@ NGINX App Protect DoS supports the following operating systems:
 - [Ubuntu 18.04 (Bionic)](#debian--ubuntu-installation) - (Deprecated starting from NGINX Plus R30)
 - [Ubuntu 20.04 (Focal)](#debian--ubuntu-installation)
 - [Ubuntu 22.04 (Jammy)](#debian--ubuntu-installation)
-- [Alpine 3.15.x 3.17.x](#alpine-installation)
+- [Alpine 3.15.x / 3.17.x](#alpine-installation)
 
 The NGINX App Protect DoS package has the following dependencies:
 
