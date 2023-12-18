@@ -53,7 +53,7 @@ NGINX App Protect DoS supports the following operating systems:
 - [Ubuntu 18.04 (Bionic)](#debian--ubuntu-installation) - (Deprecated starting from NGINX Plus R30)
 - [Ubuntu 20.04 (Focal)](#debian--ubuntu-installation)
 - [Ubuntu 22.04 (Jammy)](#debian--ubuntu-installation)
-- [Alpine 3.15.x](#alpine-315-installation)
+- [Alpine 3.15.x / 3.17.x](#alpine-315x--317x-installation)
 
 The NGINX App Protect DoS package has the following dependencies:
 
@@ -791,7 +791,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo service nginx start
     ```
 
-## Alpine 3.15 Installation
+## Alpine 3.15.x / 3.17.x Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -920,6 +920,204 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```
 
 ## Docker Deployment
+
+### Docker Deployment Instructions
+
+You need root permissions to execute the following steps.
+
+1. Create a Dockerfile (see examples below) which copies the following files into the docker image:
+
+- `nginx-repo.crt`: Certificate for NGINX repository access
+- `nginx-repo.key`: Private key for NGINX repository access
+- `nginx.conf`: User defined `nginx.conf` with app-protect-dos enabled
+- `entrypoint.sh`: Docker startup script which spins up all App Protect DoS processes, must have executable permissions
+
+2. Log in to NGINX Plus Customer Portal and download your `nginx-repo.crt` and `nginx-repo.key` files.
+
+3. Copy the files to the directory where the Dockerfile is located.
+
+4. Add NGINX App Protect DoS to your `nginx.conf`. The configuration below is an example for an `http` and `grpc+tls` servers which has NGINX App Protect DoS enabled. Note that every NGINX App Protect DoS related directive starts with `app_protect_dos_`.
+
+    `nginx.conf`
+
+    ```nginx
+    user nginx;
+    worker_processes auto;
+    error_log /var/log/nginx/error.log error;
+    worker_rlimit_nofile 65535;
+    working_directory /tmp/cores;
+
+    load_module modules/ngx_http_app_protect_dos_module.so; # NGINX App Protect DoS module
+
+    events {
+        worker_connections  65535;
+    }
+
+    http {
+        include         /etc/nginx/mime.types;
+
+        log_format log_napd ', vs_name_al=$app_protect_dos_vs_name, ip=$remote_addr, tls_fp=$app_protect_dos_tls_fp, '
+                            'outcome=$app_protect_dos_outcome, reason=$app_protect_dos_outcome_reason, '
+                            'ip_tls=$remote_addr:$app_protect_dos_tls_fp, ';
+
+        app_protect_dos_security_log_enable on; # Enable NGINX App Protect DoS's security logger
+        app_protect_dos_security_log "/etc/app_protect_dos/log-default.json" /var/log/adm/logger.log; # Security logger outputs to a file
+        # app_protect_dos_security_log "/etc/app_protect_dos/log-default.json" syslog:server=1.2.3.4:5261; # Security logger outputs to a syslog destination
+
+        # HTTP/1 server
+        server {
+            default_type    application/octet-stream;
+            listen          80 reuseport;
+            server_name     serv80;
+
+            set $loggable '0';
+            access_log /var/log/nginx/access.log log_napd if=$loggable; # Access log with rate limiting and additional information
+            # access_log syslog:server=1.1.1.1:5561 log_napd if=$loggable;
+
+            app_protect_dos_policy_file "/etc/app_protect_dos/BADOSDefaultPolicy.json"; # Policy configuration for NGINX App Protect DoS
+
+            location / {
+                app_protect_dos_enable on; # Enable NGINX App Protect DoS in this block
+                app_protect_dos_name "serv80"; # PO name
+                app_protect_dos_monitor uri=http://serv80/; # Health monitoring
+                proxy_pass http://1.2.3.4:80;
+            }
+        }
+ 
+        # gRPC server with ssl
+        server {
+            default_type    application/grpc;
+            listen          443 http2 ssl reuseport;
+            server_name     serv_grpc;
+
+            # TLS config
+            ssl_certificate      /etc/ssl/certs/grpc.example.com.crt;
+            ssl_certificate_key  /etc/ssl/private/grpc.example.com.key;
+            ssl_session_cache    shared:SSL:10m;
+            ssl_session_timeout  5m;
+            ssl_ciphers          HIGH:!aNULL:!MD5;
+            ssl_protocols        TLSv1.2 TLSv1.3;
+
+            set $loggable '0';
+            access_log /var/log/nginx/access.log log_napd if=$loggable;
+            #access_log syslog:server=1.1.1.1:5561 log_napd if=$loggable;
+
+            location / {
+                app_protect_dos_enable on;
+                app_protect_dos_name "serv_grpc";
+                app_protect_dos_monitor uri=https://serv_grpc:443/service/method protocol=grpc; # mandatory for gRPC
+                grpc_pass grpc://1.2.3.4:1001;
+            }
+        }
+
+        sendfile            on;
+        tcp_nopush          on;
+        keepalive_timeout   65;
+    }
+
+{{< important >}} 
+Make sure to replace upstream and proxy pass directives in this example with relevant application backend settings.
+{{< /important >}}
+
+5. For L4 accelerated mitigation feature:<br />
+   Need to replace from the `nginx.conf` file the line:<br />
+   ```nginx   
+   user nginx;
+   ```
+   to
+   ```nginx   
+   user root;
+   ```
+   
+6. In the same directory create an `entrypoint.sh` file with executable permissions, with the following content:
+
+    For CentOS 7 / UBI 7:
+    ```shell
+    #!/usr/bin/env bash
+    
+    USER=nginx
+    LOGDIR=/var/log/adm
+    
+    # prepare environment
+    mkdir -p /var/run/adm /tmp/cores ${LOGDIR}
+    chmod 755 /var/run/adm /tmp/cores ${LOGDIR}
+    chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
+    
+    LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/rpm/lib64
+    export LD_LIBRARY_PATH
+
+    # run processes
+    /bin/su -s /bin/bash -c "/usr/bin/adminstall --daemons 1 --memory 200 > ${LOGDIR}/adminstall.log 2>&1" ${USER}
+    /usr/sbin/nginx -g 'daemon off;' &
+    /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
+    ```
+
+    For Alpine / Debian / Ubuntu / UBI 8:
+    ```shell
+    #!/usr/bin/env bash
+    
+    USER=nginx
+    LOGDIR=/var/log/adm
+    
+    # prepare environment
+    mkdir -p /var/run/adm /tmp/cores ${LOGDIR}
+    chmod 755 /var/run/adm /tmp/cores ${LOGDIR}
+    chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
+    
+    # run processes
+    /bin/su -s /bin/bash -c "/usr/bin/adminstall --daemons 1 --memory 200 > ${LOGDIR}/adminstall.log 2>&1" ${USER}
+    /usr/sbin/nginx -g 'daemon off;' &
+    /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
+    ```
+
+    For Alpine / Debian / Ubuntu / UBI 8 with L4 accelerated mitigation feature:
+    ```shell
+    #!/usr/bin/env bash
+   
+    LOGDIR=/var/log/adm
+    
+    # prepare environment
+    mkdir -p /var/run/adm /tmp/cores ${LOGDIR}
+    chmod 755 /var/run/adm /tmp/cores ${LOGDIR}
+    chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
+    
+    # run processes
+    /bin/su -s /bin/bash -c "ulimit -l unlimited && /usr/bin/adminstall -e > ${LOGDIR}/admd.log 2>&1" ${USER}
+    /usr/sbin/nginx -g 'daemon off;' &
+    /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
+    ```
+
+7. Create a Docker image:
+
+    ```shell
+    docker build --no-cache -t app-protect-dos .
+    ```
+    The `--no-cache` option tells Docker to build the image from scratch and ensures the installation of the latest version of NGINX Plus and NGINX App Protect DoS. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the Docker cache.
+
+    For L4 accelerated mitigation feature:
+    
+   ```shell
+    docker build --no-cache --privileged -t app-protect-dos .
+    ```
+    The `--privileged` grants the Docker container root capabilities to all devices on the host system.
+
+8. Verify that the `app-protect-dos` image was created successfully with the docker images command:
+
+    ```shell
+    docker images app-protect-dos
+    ```
+
+9. Create a container based on this image, for example, `my-app-protect-dos` container:
+
+    ```shell
+    docker run --name my-app-protect-dos -p 80:80 -d app-protect-dos
+    ```
+
+10. Verify that the `my-app-protect-dos` container is up and running with the `docker ps` command:
+
+    ```shell
+    docker ps
+    ```
 
 ### CentOS 7.4 Docker Deployment Example
 
@@ -1108,11 +1306,13 @@ COPY entrypoint.sh /root/
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
 
-### Alpine 3.15 Docker Deployment Example
+### Alpine 3.15 / 3.17 Docker Deployment Example
 
 ```Dockerfile
-# For Alpine 3.15:
-FROM alpine:3.15
+# For Alpine 3.15 / 3.17:
+ARG OS_CODENAME
+# Where OS_CODENAME can be: 3.15 / 3.17
+FROM alpine:${OS_CODENAME}
 
 # Download certificate and key from the customer portal (https://my.f5.com)
 # and copy to the build context:
@@ -1142,24 +1342,25 @@ COPY entrypoint.sh /root/
 CMD ["sh", "/root/entrypoint.sh"]
 ```
 
+
+## Docker Deployment with NGINX App Protect
+
 ### Docker Deployment Instructions
 
 You need root permissions to execute the following steps.
 
-1. Create a Dockerfile (see examples above) which copies the following files into the docker image:
+1. Create a Dockerfile (see examples below) which copies the following files into the docker image:
 
-- `nginx-repo.crt`: Certificate for NGINX repository access
-- `nginx-repo.key`: Private key for NGINX repository access
-- `nginx.conf`: User defined `nginx.conf` with app-protect-dos enabled
-- `entrypoint.sh`: Docker startup script which spins up all App Protect DoS processes, must have executable permissions
+    - `nginx-repo.crt`: Certificate for NGINX repository access
+    - `nginx-repo.key`: Private key for NGINX repository access
+    - `nginx.conf`: User defined `nginx.conf` with `app-protect-dos` enabled
+    - `entrypoint.sh`: Docker startup script which spins up all App Protect DoS processes, must have executable permissions
 
 2. Log in to NGINX Plus Customer Portal and download your `nginx-repo.crt` and `nginx-repo.key` files.
 
 3. Copy the files to the directory where the Dockerfile is located.
 
-4. Add NGINX App Protect DoS to your `nginx.conf`. The configuration below is an example for an `http` and `grpc+tls` servers which has NGINX App Protect DoS enabled. Note that every NGINX App Protect DoS related directive starts with `app_protect_dos_`.
-
-    `nginx.conf`
+4. In the same directory create the `nginx.conf` file with the following contents:
 
     ```nginx
     user nginx;
@@ -1167,50 +1368,60 @@ You need root permissions to execute the following steps.
     error_log /var/log/nginx/error.log error;
     worker_rlimit_nofile 65535;
     working_directory /tmp/cores;
-
-    load_module modules/ngx_http_app_protect_dos_module.so; # NGINX App Protect DoS module
-
+    
+    load_module modules/ngx_http_app_protect_module.so;
+    load_module modules/ngx_http_app_protect_dos_module.so;
+    
     events {
-        worker_connections  65535;
+        worker_connections 65535;
+        
     }
-
+    
     http {
         include         /etc/nginx/mime.types;
-
+    
         log_format log_napd ', vs_name_al=$app_protect_dos_vs_name, ip=$remote_addr, tls_fp=$app_protect_dos_tls_fp, '
                             'outcome=$app_protect_dos_outcome, reason=$app_protect_dos_outcome_reason, '
                             'ip_tls=$remote_addr:$app_protect_dos_tls_fp, ';
-
-        app_protect_dos_security_log_enable on; # Enable NGINX App Protect DoS's security logger
-        app_protect_dos_security_log "/etc/app_protect_dos/log-default.json" /var/log/adm/logger.log; # Security logger outputs to a file
-        # app_protect_dos_security_log "/etc/app_protect_dos/log-default.json" syslog:server=1.2.3.4:5261; # Security logger outputs to a syslog destination
-
+    
+        app_protect_dos_security_log_enable on;
+        app_protect_dos_security_log "/etc/app_protect_dos/log-default.json" /var/log/adm/logger.log;
+        #app_protect_dos_security_log "/etc/app_protect_dos/log-default.json" syslog:server=1.2.3.4:5261;
+    
         # HTTP/1 server
         server {
-            default_type    application/octet-stream;
-            listen          80 reuseport;
-            server_name     serv80;
-
+            default_type        application/octet-stream;
+            listen              80 reuseport;
+            server_name         serv80;
+            proxy_http_version  1.1;
+    
+            app_protect_policy_file "/etc/app_protect/conf/NginxDefaultPolicy.json";
+            app_protect_security_log_enable on;
+    
             set $loggable '0';
-            access_log /var/log/nginx/access.log log_napd if=$loggable; # Access log with rate limiting and additional information
-            # access_log syslog:server=1.1.1.1:5561 log_napd if=$loggable;
-
-            app_protect_dos_policy_file "/etc/app_protect_dos/BADOSDefaultPolicy.json"; # Policy configuration for NGINX App Protect DoS
-
+            access_log /var/log/nginx/access.log log_napd if=$loggable;
+            #access_log syslog:server=1.1.1.1:5561 log_napd if=$loggable;
+            app_protect_dos_policy_file "/etc/app_protect_dos/BADOSDefaultPolicy.json";
+    
             location / {
-                app_protect_dos_enable on; # Enable NGINX App Protect DoS in this block
-                app_protect_dos_name "serv80"; # PO name
-                app_protect_dos_monitor uri=http://serv80/; # Health monitoring
+                app_protect_enable on;
+                app_protect_name "serv80";
+                client_max_body_size 0;
+    
+                app_protect_dos_enable on;
+                app_protect_dos_name "serv80";
+                app_protect_dos_monitor uri=http://serv80/;
+    
                 proxy_pass http://1.2.3.4:80;
             }
         }
- 
+    
         # gRPC server with ssl
         server {
             default_type    application/grpc;
             listen          443 http2 ssl reuseport;
             server_name     serv_grpc;
-
+    
             # TLS config
             ssl_certificate      /etc/ssl/certs/grpc.example.com.crt;
             ssl_certificate_key  /etc/ssl/private/grpc.example.com.key;
@@ -1218,11 +1429,11 @@ You need root permissions to execute the following steps.
             ssl_session_timeout  5m;
             ssl_ciphers          HIGH:!aNULL:!MD5;
             ssl_protocols        TLSv1.2 TLSv1.3;
-
+    
             set $loggable '0';
             access_log /var/log/nginx/access.log log_napd if=$loggable;
             #access_log syslog:server=1.1.1.1:5561 log_napd if=$loggable;
-
+    
             location / {
                 app_protect_dos_enable on;
                 app_protect_dos_name "serv_grpc";
@@ -1230,18 +1441,19 @@ You need root permissions to execute the following steps.
                 grpc_pass grpc://1.2.3.4:1001;
             }
         }
-
+    
         sendfile            on;
         tcp_nopush          on;
         keepalive_timeout   65;
     }
+    ```
 
-{{< important >}} 
+{{< important >}}
 Make sure to replace upstream and proxy pass directives in this example with relevant application backend settings.
 {{< /important >}}
 
-5. For L4 accelerated mitigation feature:<br />
-   Need to replace from the `nginx.conf` file the line:<br />
+5. For L4 accelerated mitigation feature: <br />
+   Need to remove from the`nginx.conf` file the the line:<br />
    ```nginx   
    user nginx;
    ```
@@ -1249,12 +1461,33 @@ Make sure to replace upstream and proxy pass directives in this example with rel
    ```nginx   
    user root;
    ```
-   
+
 6. In the same directory create an `entrypoint.sh` file with executable permissions, with the following content:
 
-    ```shell
-    #!/usr/bin/env bash
+   For CentOS 7 / UBI 7:
+     ```shell
+     #!/usr/bin/env bash
+    USER=nginx
+    LOGDIR=/var/log/adm
     
+    # prepare environment
+    mkdir -p /var/run/adm /tmp/cores ${LOGDIR}
+    chmod 755 /var/run/adm /tmp/cores ${LOGDIR}
+    chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
+
+    LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/rpm/lib64
+    export LD_LIBRARY_PATH
+    
+    # run processes
+    /bin/su -s /bin/bash -c "/usr/bin/adminstall > ${LOGDIR}/adminstall.log 2>&1" ${USER}/bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' ${USER}
+    /bin/su -s /bin/bash -c "/usr/share/ts/bin/bd-socket-plugin tmm_count 4 proc_cpuinfo_cpu_mhz 2000000 total_xml_memory 307200000 total_umu_max_size 3129344 sys_max_account_id 1024 no_static_config 2>&1 > /var/log/app_protect/bd-socket-plugin.log &" ${USER}
+    /usr/sbin/nginx -g 'daemon off;' &
+    /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
+    ```
+
+   For Alpine / Debian / Ubuntu / UBI 8:
+     ```shell
+     #!/usr/bin/env bash
     USER=nginx
     LOGDIR=/var/log/adm
     
@@ -1264,16 +1497,16 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
     
     # run processes
-    /bin/su -s /bin/bash -c "/usr/bin/adminstall --daemons 1 --memory 200 > ${LOGDIR}/adminstall.log 2>&1" ${USER}
+    /bin/su -s /bin/bash -c "/usr/bin/adminstall > ${LOGDIR}/adminstall.log 2>&1" ${USER}/bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' ${USER}
+    /bin/su -s /bin/bash -c "/usr/share/ts/bin/bd-socket-plugin tmm_count 4 proc_cpuinfo_cpu_mhz 2000000 total_xml_memory 307200000 total_umu_max_size 3129344 sys_max_account_id 1024 no_static_config 2>&1 > /var/log/app_protect/bd-socket-plugin.log &" ${USER}
     /usr/sbin/nginx -g 'daemon off;' &
     /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
     ```
 
-    For L4 accelerated mitigation feature :
-    
+
+   For Alpine / Debian / Ubuntu / UBI8 with L4 accelerated mitigation feature:
     ```shell
     #!/usr/bin/env bash
-   
     LOGDIR=/var/log/adm
     
     # prepare environment
@@ -1283,44 +1516,49 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     
     # run processes
     /bin/su -s /bin/bash -c "ulimit -l unlimited && /usr/bin/adminstall -e > ${LOGDIR}/admd.log 2>&1" ${USER}
+    /bin/su -s /bin/bash -c "/usr/share/ts/bin/bd-socket-plugin tmm_count 4 proc_cpuinfo_cpu_mhz 2000000 total_xml_memory 307200000 total_umu_max_size 3129344 sys_max_account_id 1024 no_static_config 2>&1 > /var/log/app_protect/bd-socket-plugin.log &" ${USER}
     /usr/sbin/nginx -g 'daemon off;' &
     /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
     ```
 
-7. Create a Docker image:
+8. Create a Docker image:
+
+    For CentOS:
 
     ```shell
     docker build --no-cache -t app-protect-dos .
     ```
+
+    For RHEL:
+
+    ```shell
+    docker build --build-arg RHEL_ORGANIZATION=${RHEL_ORGANIZATION} --build-arg RHEL_ACTIVATION_KEY=${RHEL_ACTIVATION_KEY} --no-cache -t app-protect-dos .
+    ```
     The `--no-cache` option tells Docker to build the image from scratch and ensures the installation of the latest version of NGINX Plus and NGINX App Protect DoS. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the Docker cache.
 
-    For L4 accelerated mitigation feature:
-    
-   ```shell
-    docker build --no-cache --privileged -t app-protect-dos .
-    ```
-    The `--privileged` grants the Docker container root capabilities to all devices on the host system.
+   For L4 accelerated mitigation feature:
 
-8. Verify that the `app-protect-dos` image was created successfully with the docker images command:
+   ```shell
+   docker build --build-arg RHEL_ORGANIZATION=${RHEL_ORGANIZATION} --build-arg RHEL_ACTIVATION_KEY=${RHEL_ACTIVATION_KEY} --no-cache --privileged -t app-protect-dos .±
+    ```
+   The `--privileged` grants the Docker container root capabilities to all devices on the host system
+
+
+9. Verify that the `app-protect-dos` image was created successfully with the docker images command:
 
     ```shell
     docker images app-protect-dos
     ```
-
-9. Create a container based on this image, for example, `my-app-protect-dos` container:
+10. Create a container based on this image, for example, `my-app-protect-dos` container:
 
     ```shell
     docker run --name my-app-protect-dos -p 80:80 -d app-protect-dos
     ```
-
-10. Verify that the `my-app-protect-dos` container is up and running with the `docker ps` command:
+11. Verify that the `my-app-protect-dos` container is up and running with the `docker ps` command:
 
     ```shell
     docker ps
     ```
-
-
-## Docker Deployment with Nginx App Protect
 
 ### Centos 7.4 Docker Deployment Example
 
@@ -1477,199 +1715,6 @@ COPY entrypoint.sh /root/
  
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
-
-### Docker Deployment Instructions
-
-You need root permissions to execute the following steps.
-
-1. Create a Dockerfile (see examples above) which copies the following files into the docker image:
-
-    - `nginx-repo.crt`: Certificate for NGINX repository access
-    - `nginx-repo.key`: Private key for NGINX repository access
-    - `nginx.conf`: User defined `nginx.conf` with `app-protect-dos` enabled
-    - `entrypoint.sh`: Docker startup script which spins up all App Protect DoS processes, must have executable permissions
-
-2. Log in to NGINX Plus Customer Portal and download your `nginx-repo.crt` and `nginx-repo.key` files.
-
-3. Copy the files to the directory where the Dockerfile is located.
-
-4. In the same directory create the `nginx.conf` file with the following contents:
-
-    ```nginx
-    user nginx;
-    worker_processes auto;
-    error_log /var/log/nginx/error.log error;
-    worker_rlimit_nofile 65535;
-    working_directory /tmp/cores;
-    
-    load_module modules/ngx_http_app_protect_module.so;
-    load_module modules/ngx_http_app_protect_dos_module.so;
-    
-    events {
-        worker_connections 65535;
-        
-    }
-    
-    http {
-        include         /etc/nginx/mime.types;
-    
-        log_format log_napd ', vs_name_al=$app_protect_dos_vs_name, ip=$remote_addr, tls_fp=$app_protect_dos_tls_fp, '
-                            'outcome=$app_protect_dos_outcome, reason=$app_protect_dos_outcome_reason, '
-                            'ip_tls=$remote_addr:$app_protect_dos_tls_fp, ';
-    
-        app_protect_dos_security_log_enable on;
-        app_protect_dos_security_log "/etc/app_protect_dos/log-default.json" /var/log/adm/logger.log;
-        #app_protect_dos_security_log "/etc/app_protect_dos/log-default.json" syslog:server=1.2.3.4:5261;
-    
-        # HTTP/1 server
-        server {
-            default_type        application/octet-stream;
-            listen              80 reuseport;
-            server_name         serv80;
-            proxy_http_version  1.1;
-    
-            app_protect_policy_file "/etc/app_protect/conf/NginxDefaultPolicy.json";
-            app_protect_security_log_enable on;
-    
-            set $loggable '0';
-            access_log /var/log/nginx/access.log log_napd if=$loggable;
-            #access_log syslog:server=1.1.1.1:5561 log_napd if=$loggable;
-            app_protect_dos_policy_file "/etc/app_protect_dos/BADOSDefaultPolicy.json";
-    
-            location / {
-                app_protect_enable on;
-                app_protect_name "serv80";
-                client_max_body_size 0;
-    
-                app_protect_dos_enable on;
-                app_protect_dos_name "serv80";
-                app_protect_dos_monitor uri=http://serv80/;
-    
-                proxy_pass http://1.2.3.4:80;
-            }
-        }
-    
-        # gRPC server with ssl
-        server {
-            default_type    application/grpc;
-            listen          443 http2 ssl reuseport;
-            server_name     serv_grpc;
-    
-            # TLS config
-            ssl_certificate      /etc/ssl/certs/grpc.example.com.crt;
-            ssl_certificate_key  /etc/ssl/private/grpc.example.com.key;
-            ssl_session_cache    shared:SSL:10m;
-            ssl_session_timeout  5m;
-            ssl_ciphers          HIGH:!aNULL:!MD5;
-            ssl_protocols        TLSv1.2 TLSv1.3;
-    
-            set $loggable '0';
-            access_log /var/log/nginx/access.log log_napd if=$loggable;
-            #access_log syslog:server=1.1.1.1:5561 log_napd if=$loggable;
-    
-            location / {
-                app_protect_dos_enable on;
-                app_protect_dos_name "serv_grpc";
-                app_protect_dos_monitor uri=https://serv_grpc:443/service/method protocol=grpc; # mandatory for gRPC
-                grpc_pass grpc://1.2.3.4:1001;
-            }
-        }
-    
-        sendfile            on;
-        tcp_nopush          on;
-        keepalive_timeout   65;
-    }
-    ```
-
-{{< important >}}
-Make sure to replace upstream and proxy pass directives in this example with relevant application backend settings.
-{{< /important >}}
-
-5. For L4 accelerated mitigation feature: <br />
-   Need to remove from the`nginx.conf` file the the line:<br />
-   ```nginx   
-   user nginx;
-   ```
-   to
-   ```nginx   
-   user root;
-   ```
-
-6. In the same directory create an `entrypoint.sh` file with executable permissions, with the following content:
-
-     ```shell
-     #!/usr/bin/env bash
-    USER=nginx
-    LOGDIR=/var/log/adm
-    
-    # prepare environment
-    mkdir -p /var/run/adm /tmp/cores ${LOGDIR}
-    chmod 755 /var/run/adm /tmp/cores ${LOGDIR}
-    chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
-    
-    # run processes
-    /bin/su -s /bin/bash -c "/usr/bin/adminstall > ${LOGDIR}/adminstall.log 2>&1" ${USER}/bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' ${USER}
-    /bin/su -s /bin/bash -c "/usr/share/ts/bin/bd-socket-plugin tmm_count 4 proc_cpuinfo_cpu_mhz 2000000 total_xml_memory 307200000 total_umu_max_size 3129344 sys_max_account_id 1024 no_static_config 2>&1 > /var/log/app_protect/bd-socket-plugin.log &" ${USER}
-    /usr/sbin/nginx -g 'daemon off;' &
-    /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
-    ```
-
-   For L4 accelerated mitigation feature:
-   
-    ```shell
-    #!/usr/bin/env bash
-    LOGDIR=/var/log/adm
-    
-    # prepare environment
-    mkdir -p /var/run/adm /tmp/cores ${LOGDIR}
-    chmod 755 /var/run/adm /tmp/cores ${LOGDIR}
-    chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
-    
-    # run processes
-    /bin/su -s /bin/bash -c "ulimit -l unlimited && /usr/bin/adminstall -e > ${LOGDIR}/admd.log 2>&1" ${USER}
-    /bin/su -s /bin/bash -c "/usr/share/ts/bin/bd-socket-plugin tmm_count 4 proc_cpuinfo_cpu_mhz 2000000 total_xml_memory 307200000 total_umu_max_size 3129344 sys_max_account_id 1024 no_static_config 2>&1 > /var/log/app_protect/bd-socket-plugin.log &" ${USER}
-    /usr/sbin/nginx -g 'daemon off;' &
-    /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
-    ```
-
-7. Create a Docker image:
-
-    For CentOS:
-
-    ```shell
-    docker build --no-cache -t app-protect-dos .
-    ```
-
-    For RHEL:
-
-    ```shell
-    docker build --build-arg RHEL_ORGANIZATION=${RHEL_ORGANIZATION} --build-arg RHEL_ACTIVATION_KEY=${RHEL_ACTIVATION_KEY} --no-cache -t app-protect-dos .
-    ```
-    The `--no-cache` option tells Docker to build the image from scratch and ensures the installation of the latest version of NGINX Plus and NGINX App Protect DoS. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the Docker cache.
-
-   For L4 accelerated mitigation feature:
-
-   ```shell
-   docker build --build-arg RHEL_ORGANIZATION=${RHEL_ORGANIZATION} --build-arg RHEL_ACTIVATION_KEY=${RHEL_ACTIVATION_KEY} --no-cache --privileged -t app-protect-dos .±
-    ```
-   The `--privileged` grants the Docker container root capabilities to all devices on the host system
-
-
-8. Verify that the `app-protect-dos` image was created successfully with the docker images command:
-
-    ```shell
-    docker images app-protect-dos
-    ```
-9. Create a container based on this image, for example, `my-app-protect-dos` container:
-
-    ```shell
-    docker run --name my-app-protect-dos -p 80:80 -d app-protect-dos
-    ```
-10. Verify that the `my-app-protect-dos` container is up and running with the `docker ps` command:
-
-    ```shell
-    docker ps
-    ```
 
 ## NGINX App Protect DoS Arbitrator
 
