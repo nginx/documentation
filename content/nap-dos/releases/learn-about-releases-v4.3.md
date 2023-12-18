@@ -72,6 +72,6 @@ In this release, NGINX App Protect DoS supports NGINX Plus R31.
 - NGINX Plus R31
 
 
-### Important Notes
+### Important Note
 
 - Starting with this release, Alpine 3.15 support has been deprecated. 
