@@ -94,7 +94,7 @@ In this release, NGINX App Protect WAF supports NGINX Plus R31.
 
 ### Limitation
 
-- 9992 - There is a limitation on Edwards-curve Digital Signature Algorithm (EdDSA) protocol on CentOS 7 as the Enforcer does not support EdDSA on this OS. When a JSON Web Token (JWT) signed with EdDSA is used on CentOS 7, it results in a `VIOL_ACCESS_INVALID` error.
+- 9992 - There is a limitation on Edwards-curve Digital Signature Algorithm (EdDSA) protocol on CentOS 7 as the Enforcer does not support this protocol on this Operating System (OS). When a JSON Web Token (JWT) signed with EdDSA is used on CentOS 7, it results in a `VIOL_ACCESS_INVALID` error.
 
 ### **Important Notes**
 
