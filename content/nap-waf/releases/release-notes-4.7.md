@@ -91,10 +91,11 @@ In this release, NGINX App Protect WAF supports NGINX Plus R31.
 
 - 9065 Fixed - Increasing the limit for "max_request_size" in log configuration from 2k to 10k. The default will change from "any" to 2k to maintain the old behaviour.
 - 9297 Fixed - Add new limit from `responseCheckLength` to response ingress event handling in order to reduce the memory used for buffering. 
-- 7877 Fixed - If a JSON value contains an URL-decoded value, it should to be decoded and then matched against the signatures.
-- 7876 Fixed - Perform percent decoding on textual parameters received from multipart requests.
 - 9992 Fixed - Enforcer does not support Edwards-curve Digital Signature Algorithm (EdDSA) on CentOS 7. When a JSON Web Token (JWT) signed with EdDSA is used on CentOS 7, it results in a `VIOL_ACCESS_INVALID` error.
 
+### Limitation
+
+- 9992 - There is a limitation on Edwards-curve Digital Signature Algorithm (EdDSA) protocol on CentOS 7 i.e Enforcer does not support EdDSA on CentOS 7. When a JSON Web Token (JWT) signed with EdDSA is used on CentOS 7, it results in a `VIOL_ACCESS_INVALID` error.
 
 ### **Important Notes**
 
