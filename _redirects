@@ -120,6 +120,9 @@
 /nginx/deployment-guides/gcp-high-availability-all-active/ /nginx/deployment-guides/google-cloud-platform/high-availability-all-active/ 301
 /nginx/directives/ https://nginx.org/en/docs/dirindex.html 301!
 
+# NGINX Gateway Fabric redirects
+/nginx-gateway-fabric/releases/ https://github.com/nginxinc/nginx-gateway-fabric/blob/main/CHANGELOG.md 301!
+
 # Redirects to the backend netlify sites for each product
 # /nginx/*     https://n-plus-public-docs.netlify.app/nginx/:splat 200!
 /nginxaas/azure/* https://n4a-public-docs.netlify.app/nginxaas/azure/:splat 200!
@@ -132,6 +135,7 @@
 # /nginx-management-suite/* https://nms-public-docs.netlify.app/nginx-management-suite/:splat 200!
 /nginx-service-mesh/*   https://mesh-public-docs.netlify.app/nginx-service-mesh/:splat 200!
 # /nginx-waf/* https://nginx-waf-docs.netlify.app/nginx-waf/:splat 200!
+/nginx-gateway-fabric/* https://nginx-gateway-fabric.netlify.app/nginx-gateway-fabric/:splat 200!
 
 
 # Keep at the bottom, otherwise the backend site redirects will break

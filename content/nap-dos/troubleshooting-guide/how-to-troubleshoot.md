@@ -28,7 +28,7 @@ roles:
 title: NGINX App Protect DoS Troubleshooting Guide
 toc: true
 versions:
-- "4.2"
+- "4.3"
 weight: 200
 ---
 

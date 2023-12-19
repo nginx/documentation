@@ -187,15 +187,25 @@ RUN sed -i 's,listen       80,listen       8080,' /etc/nginx/conf.d/default.conf
 ```
 
 This command alters the Dockerfile in the following ways:
-1) Changes the listen port from `80` to `8080`.
-2) Removes the `user nginx;` directive from nginx.conf.
-3) Moves the `nginx.pid` file from `/var/run` to `/tmp`.
-4) Moves all nginx temporary directories from `/var/run` to `/tmp`.
-5) Changes ownership and read/write permissions for several directories that NGINX and NGINX Agent need to write to.
-6) Links the `agent.log` file to stdout, while allowing `access.log` and `error.log` to stay in `/var/log/nginx` to be read by NGINX Agent.
+1. Changes the listen port from `80` to `8080`.
+1. Removes the `user nginx;` directive from nginx.conf.
+1. Moves the `nginx.pid` file from `/var/run` to `/tmp`.
+1. Moves all nginx temporary directories from `/var/run` to `/tmp`.
+1. Changes ownership and read/write permissions for several directories that NGINX and NGINX Agent need to write to.
+1. Links the `agent.log` file to stdout, while allowing `access.log` and `error.log` to stay in `/var/log/nginx` to be read by NGINX Agent.
 
 ### Standalone NGINX Unprivileged Dockerfiles
-Standalone NGINX (without NGINX Agent) unprivileged container images can be built by using Dockerfiles available in [this github repository](https://github.com/nginxinc/docker-nginx-unprivileged).
+Standalone NGINX (Without NGINX Agent) unprivileged container images can be built using Dockerfiles available in [this GitHub repository](https://github.com/nginxinc/docker-nginx-unprivileged).
+
+## Configure NGINX Agent
+
+Once you have successfully built the image, you need to run a container to configure NGINX Agent. 
+
+```shell	
+docker run -d --name nginx-agent-container <NAME-OF-PACKAGE>
+```
+
+Once your container is running, follow the steps in our [Install and Configure]({{< relref "/nms/nginx-agent/install-nginx-agent.md#enable-and-start-nginx-agent" >}}) guide.
 
 ## Supported Environments
 Images built with NGINX Agent Dockerfiles can run in the following container environments:

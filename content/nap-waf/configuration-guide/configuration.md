@@ -686,7 +686,9 @@ In this example, we override the action for a specific signature (python-request
 }
 ~~~
 
-#### Bot Signatures Update File
+#### Bot Signatures File
+
+Starting with NGINX App Protect WAF release 4.5, the bot signatures is included in the `included_bot_signatures` file, which is located at the following path: `/opt/app-protect/var/update_files/included_bot_signatures`. This file will contain an up-to-date list of all the bot signatures that have been included.
 
 Starting with NGINX App Protect WAF release 4.7, the bot signatures file `included_bot_signatures`, is located at the following path: `/opt/app-protect/var/update_files/bot_signatures/included_bot_signatures`. This will be part of the **app-protect-bot-signatures** package. <br>
 
@@ -5422,10 +5424,10 @@ server {
     }
 ```
 
-The **key/value** pair will be 'environment env1', ‘gateway gw1’ and ‘component comp1’ in the above examples, i.e.
+The **key/value** pair will be 'environment env1', ‘gateway gway1’ and ‘component comp1’ in the above examples, i.e.
 
 - app_protect_custom_log_attribute environment env1;
-- app_protect_custom_log_attribute gateway gw1;
+- app_protect_custom_log_attribute gateway gway1;
 - app_protect_custom_log_attribute component comp1;
 
 The above key/value pair will be parsed as below:
@@ -5434,7 +5436,7 @@ The above key/value pair will be parsed as below:
 "customLogAttributes": [
     {
         "name": "gateway",
-        "value": "gw1"
+        "value": "gway1"
     },
     {
         "name": "component",
@@ -5473,7 +5475,7 @@ Attributes at the http level applies to all servers and locations unless a speci
 Security logging example in json_log:
 
 ```json
-""customLogAttribute"":[{""name"":""component"",""value"":""comp1""},{""name"":""gateway"",""value"":""gw1""}]}"
+""customLogAttribute"":[{""name"":""component"",""value"":""comp1""},{""name"":""gateway"",""value"":""gway1""}]}"
 ```
 
 ## Directives

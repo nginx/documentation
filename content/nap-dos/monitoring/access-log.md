@@ -28,7 +28,7 @@ roles:
 title: NGINX App Protect DoS Access Log Request Mechanism
 toc: true
 versions:
-- "4.2"
+- "4.3"
 weight: 160
 ---
 
