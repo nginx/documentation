@@ -688,7 +688,7 @@ In this example, we override the action for a specific signature (python-request
 
 #### Bot Signatures Update File
 
-Starting with NGINX App Protect WAF release 4.7,  the bot signature file `included_bot_signatures`, is located at the following path: `/opt/app-protect/var/update_files/bot_signatures/included_bot_signatures`. This will be part of the **app-protect-bot-signatures** package. 
+Starting with NGINX App Protect WAF release 4.7, the bot signature file `included_bot_signatures`, is located at the following path: `/opt/app-protect/var/update_files/bot_signatures/included_bot_signatures`. This will be part of the **app-protect-bot-signatures** package. 
 
 This file contains an up-to-date list of all bot signatures that have been updated with the new bot signature package. This list is automatically generated as a part of the **app-protect-bot-signatures** package and follows a format similar to the README-style text file found in the attack signature. This file contains essential information which includes:
  
