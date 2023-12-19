@@ -45,26 +45,33 @@ h2 {
 
 ## View your NGINX Plus and NGINX App Protect Inventory
 
-After you've installed NGINX Instance Manager, the next step involves configuring your NGINX Plus data plane to report back. This can be done in two ways. First, you can install NGINX Agent on each instance. Alternatively, for an agentless approach, you can set up HTTP Health Checks, which don't require additional installations. Both methods enable your instances to communicate with Instance Manager.
+After you've installed NGINX Instance Manager, the next step involves configuring your NGINX Plus data plane to report back. This can be done in several ways. In NGINX Plus Release 31, native usage reporting is enabled by default. If you are using an earlier version of NGINX Plus, you can install NGINX Agent on each instance or you can set up HTTP Health Checks, which don't require additional installations. All methods enable your instances to communicate with Instance Manager.
 
 ### Set up instance reporting for NGINX Plus {#set-up-reporting}
 
 Select the tab that matches your preferred method for setting up reporting:
 
+- Configure native usage reporting (since NGINX Plus <a href="../../../releases/#r31">Release 31</a>)
 - Install NGINX Agent 
 - Configure HTTP Health Check for NGINX Plus without NGINX Agent
 
 {{<tabs name="configure-reporting">}}
 
-{{%tab name="Install NGINX Agent"%}}
+{{%tab name="Native Usage Reporting"%}}
+
+{{< include "nginx-plus/usage-tracking/agentless-reporting.md" >}}
+
+{{%/tab%}}
+
+{{%tab name="NGINX Agent"%}}
 
 {{< include "nginx-plus/usage-tracking/install-nginx-agent.md" >}}
 
 {{%/tab%}}
 
-{{%tab name="Configure HTTP Health Check"%}}
+{{%tab name="HTTP Health Check"%}}
 
-{{<include "nginx-plus/usage-tracking/http-health-check.md" >}}
+{{< include "nginx-plus/usage-tracking/http-health-check.md" >}}
 
 {{%/tab%}}
 

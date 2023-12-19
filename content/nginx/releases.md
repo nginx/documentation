@@ -18,6 +18,89 @@ We do not issue updates for releases that have reached EoSD. For this reason, we
 The initial release dates for NGINX Plus are noted in this document. 
 New releases are announced on the [NGINX Product Support Announcements](https://interact.f5.com/Customer-Preference-Center.html) mailing list.
 
+<span id="r31"></span>
+## NGINX Plus Release 31 (R31)
+_19 December 2023_<br/>
+_Based on NGINX Open Source 1.25.3_
+
+NGINX Plus R31 is a feature release:
+
+* [Native usage reporting](https://nginx.org/en/docs/ngx_mgmt_module.html)
+of NGINX Plus installations to [NGINX Instance Manager](https://docs.nginx.com/nginx-management-suite/nim/)
+
+* The [$upstream_last_server_name](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_last_server_name) variable that keeps the name of the last selected upstream server and allows passing it to the proxied server through SNI
+
+* Notable startup speedup when using a large number of locations
+
+* [HTTP/3 and QUIC](https://nginx.org/en/docs/http/ngx_http_v3_module.html) features and bugfixes:
+
+  * Path MTU Discovery (PMTUD) feature
+
+  * support for `TLS_AES_128_CCM_SHA256` cipher suite
+
+  * support for [`server_tokens`](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_tokens) with variables
+
+  * bugfixes and improvements
+
+* New features in njs:
+
+  * the `js_periodic` directive for [http](https://nginx.org/en/docs/http/ngx_http_js_module.html#js_periodic) and [stream](https://nginx.org/en/docs/stream/ngx_stream_js_module.html#js_periodic) that allows specifying a JS handler to run at regular intervals
+
+  * the `Console` object:
+[`error()`](https://nginx.org/en/docs/njs/reference.html#console_error),
+[`info()`](https://nginx.org/en/docs/njs/reference.html#console_info),
+[`log()`](https://nginx.org/en/docs/njs/reference.html#console_log),
+[`time()`](https://nginx.org/en/docs/njs/reference.html#console_time),
+[`timeEnd()`](https://nginx.org/en/docs/njs/reference.html#console_time_end),
+[`warn()`](https://nginx.org/en/docs/njs/reference.html#console_warn) methods
+
+  * the [`fs()`](https://nginx.org/en/docs/njs/reference.html#njs_api_fs) module: the [`fs.existsSync()`](https://nginx.org/en/docs/njs/reference.html#fs_existssync) method
+
+  * [shared dictionary](https://nginx.org/en/docs/njs/reference.html#ngx_shared): the [`items()`](https://nginx.org/en/docs/njs/reference.html#dict_items) method
+
+* MQTT bugfixes and improvements:
+
+  * the `CONNECT` message was rejected when a password was not provided
+
+  * the `CONNECT` message parsing is stopped when the message length is less than the number of bytes received
+
+  * added the `Will` topic and `Will` payload for MQTT Version 3.1.1 if the `CONNECT` message is rewritten
+
+* Various bugfixes and improvements:
+
+  * the `Status` response header line with an empty reason phrase from the backend was handled incorrectly
+
+  * memory leak during reconfiguration when using the PCRE2 library
+
+  * improved detection of misbehaving clients when using HTTP/2
+
+* The [OpenTracing](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/opentracing/) module introduced in NGINX Plus [R18](#r18) is deprecated, it recommended to use the [OpenTelemetry Distributed Tracing](https://nginx.org/en/docs/ngx_otel_module.html) module that incorporates all the features of the OpenTracing module.
+
+NGINX Plus R31 is supported on:
+
+* AlmaLinux 8, 9
+* Alpine Linux 3.16, 3.17, 3.18, 3.19
+* Amazon Linux 2 LTS, 2023
+* CentOS 7.4+
+* Debian 11, 12
+* FreeBSD 12.1+, 13, 14
+* Oracle Linux 7.4+, 8.1+, 9
+* RHEL 7.4+, 8.1+, 9.0+
+* Rocky Linux 8, 9
+* SUSE Linux Enterprise Server 12 SP5, 15 SP2
+* Ubuntu 20.04 LTS, 22.04 LTS
+
+**Notes:**
+
+* Alpine Linux 3.19 is new in this release
+* FreeBSD 14 is new in this release
+* Alpine Linux 3.15 is removed
+* FreeBSD 12 is deprecated
+* OpenTracing dynamic module (package name is `nginx-plus-module-opentracing-module`) is deprecated
+
+More information: [Announcing NGINX Plus R31](https://www.nginx.com/blog/nginx-plus-r31-released/)
+
+
 <span id="r30"></span>
 ## NGINX Plus Release 30 (R30)
 _15 August 2023_<br/>
@@ -967,7 +1050,7 @@ _Based on NGINX Open Source 1.11.10_
 
 NGINX Plus R12 is a feature release:
 
-* Synchronization of NGINX Plus configuration across instances in a cluster, from a single primary node (new `config_sync` package)
+* Synchronization of NGINX Plus configuration across instances in a cluster, from a single primary node (new `nginx_sync` package)
 * Updates to Extended Status module [data set](https://nginx.org/en/docs/http/ngx_http_status_module.html#data), including NGINX Plus version (`nginx_build`), usage statistics for shared memory zones (under the `slabs/` subtree), and additional upstream fields (`name`, `service`)
 * New statistics displayed on [live activity monitoring dashboard](http://demo.nginx.com/): NGINX Plus version, response time metrics, shared memory zones usage, and server names for upstreams
 * [Support](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_use_stale) for the `stale-while-revalidate` and `stale-if-error` extensions to the `Cache-Control` header, as defined by [RFC 5861](https://www.ietf.org/rfc/rfc5861.txt)
