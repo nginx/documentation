@@ -31,7 +31,7 @@ roles:
 title: NGINX App Protect WAF + DoS AMIs on Amazon EC2
 toc: true
 versions:
-- "4.2"
+- "4.3"
 weight: 110
 ---
 
