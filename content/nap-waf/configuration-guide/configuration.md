@@ -5476,6 +5476,64 @@ Security logging example in json_log:
 ""customLogAttribute"":[{""name"":""component"",""value"":""comp1""},{""name"":""gateway"",""value"":""gway1""}]}"
 ```
 
+### Time-Based Signature Staging
+
+#### Signature in Staging Overview
+
+When the new attack signatures are launched they are deployed in a staging environment first before being promoted to production. In some cases, the staging environment that fully simulates the real traffic is impossible and hence it is impossible to detect real attacks. There can be false positives and expose the application to attacks.
+For such cases we need to deploy the new signatures in staging environment in “staging” mode.
+
+The purpose of this feature is to put signatures in staging by their age (modification time).
+There are two types of signatures:
+1. Staging Signatures - All the signatures in the policy that were created or modified **after** the certification time are in staging.
+2. Enforced Signatures – All the signatures in the policy that were created or modified **prior** to the certification date time are enforced.
+
+#### Latest Signature Certification Time
+The latest signatures certification time, is the timestamp (in date-time ISO format) as the time the signatures in the policy are considered as “trusted” by the user.
+
+When this value is not defined and the staging flag is enabled, it means that all the signatures in the policy are in staging.
+
+A signature is considered new in two cases:
+1. It was introduced by a recent signature update that was applied to the respective policy.
+2. It was added to a policy in which it wasn’t included before.
+
+#### New Policy
+When a new policy is deployed the user would like to have all its signatures in staging. For that to happen, the `performStaging` flag at the signature settings level is set to true. `stagingCertificationDatetime` is not present in this case. This way, all signatures are in staging regardless of their modification time.
+If the user is not interested in putting the initial signatures in staging,, then `performStaging` is set to `false`.
+
+#### Signature Update
+After applying a signature update (F5 or user defined), and assuming the update creation time is later than the previous signature update applied to the policy (i.e. the signatures are upgraded, not downgraded), then all the signatures that were affected by the update (created or modified) are automatically put in staging. That's because their modification time is newer than the current `stagingCertificationDatetime`. Signatures that were not affected by the update will **not** be in staging.
+
+#### Configuration
+
+#### Staging Certification Date-Time
+
+A new property `stagingCertificationDatetime` is added to `signature-settings` section. All signatures that were created or modified in a signature update that is later than that time are in staging while all the rest are enforced and not in staging.
+
+The `stagingCertificationDatetime` property will contain ISO 8601 date-time format. It has effect only if `performStaging` is set to true. It is **optional** and its absence means that all signatures are put in staging (again, if performStaging is true).
+
+See below policy for more details.
+
+```json
+policy:
+    name: myPolicy
+    signature-settings:
+        performStaging: true
+        stagingCertificationDatetime: "2023-06-13T14:53:24Z"
+```
+
+#### Enforcement
+All signatures that are in staging if their creation or modification time are later than the `stagingCertificationDatetime`:
+
+A signature in staging will be reported in the security log but will not cause the request to be blocked neither directly, nor indirectly by raising the Violation Rating (threat score). However, the potential Violation Rating will be reported if the staged signatures are enforced and moved out of staging.
+
+If there are also staged entities other than signatures (Parameters, URLs or Cookies) the violations or signatures related to them will also not be taken into consideration in the Violation Rating, but will be taken into consideration in the Violation Rating without staging. 
+
+####  Reporting
+
+##### Time Based Signature - Logging and Reporting
+
+
 ## Directives
 
 ### Global Directives
