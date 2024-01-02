@@ -88,7 +88,8 @@ To quickly set up an environment with NGINX Plus, NGINX App Protect WAF and NGIN
 
 6. Verify latest NGINX PLUS / NGINX DOS / NGINX WAF packages are installed on EC2 after its first start:
      
-     Verify NGINX WAF latest release from https://docs.nginx.com/nginx-app-protect-waf/releases/ is 
+     Verify NGINX App Protect WAF latest release from https://docs.nginx.com/nginx-app-protect-waf/releases/ is 
+
      installed by comparing with installed version from following command on the EC2 machine  
       ```shell
       cat /opt/app_protect/VERSION /opt/app_protect/RELEASE 
