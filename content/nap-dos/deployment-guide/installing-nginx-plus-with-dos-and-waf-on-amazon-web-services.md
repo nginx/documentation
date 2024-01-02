@@ -94,7 +94,8 @@ To quickly set up an environment with NGINX Plus, NGINX App Protect WAF and NGIN
       cat /opt/app_protect/VERSION /opt/app_protect/RELEASE 
       ```
 
-     Verify NGINX DOS latest release from https://docs.nginx.com/nginx-app-protect-dos/releases/ is 
+     Verify NGINX DoS latest release from https://docs.nginx.com/nginx-app-protect-dos/releases/ is 
+
      installed by comparing with installed version from following command on the EC2 machine  
       ```shell
       admd -v 
