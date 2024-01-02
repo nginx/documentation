@@ -108,7 +108,8 @@ To quickly set up an environment with NGINX Plus, NGINX App Protect WAF and NGIN
 
     In case NGINX PLUS / NGINX DOS / NGINX WAF packages are not latest release than upgrade following this commands:
 
-    For App Protect DoS solution based on RedHat / Centos
+    For App Protect DoS solution based on RedHat / CentOS
+
       ```shell
       sudo service nginx stop
       sudo yum install app-protect-dos
