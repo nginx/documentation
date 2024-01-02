@@ -123,7 +123,8 @@ To quickly set up an environment with NGINX Plus, NGINX App Protect WAF and NGIN
       sudo service nginx start
       ```  
 
-     For App Protect WAF solution based on RedHat / Centos
+     For App Protect WAF solution based on RedHat / CentOS
+
       ```shell
       sudo service nginx stop
       sudo yum install app-protect
