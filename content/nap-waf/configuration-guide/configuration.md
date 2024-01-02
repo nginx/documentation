@@ -5481,20 +5481,25 @@ Security logging example in json_log:
 
 ### Signature in Staging Overview
 
-In Time-based Signature Staging, newly introduced attack signatures are deployed first in a staging environment before being promoted to production. However, in some instances where it is challenging to replicate real traffic accurately in the staging environment, the detection of genuine attacks becomes difficult. This situation may lead to false positives and vulnerabilities, exposing the application to potential security threats. For such cases the user need to deploy the new signatures in production environment in **staging** mode.
+In Time-Based Signature Staging a policy is tested in a staging environment after any attack signature update before being promoted to production.
 
-The purpose of this feature is to put signatures in staging by their age (modification time). There are two types of signatures:
-1. Staging Signatures - All the signatures in the policy that were created or modified **after** the certification date time are in staging.
-2. Enforced Signatures - All the signatures in the policy that were created or modified **prior** to the certification date time are enforced.
+However, in some instances where it is challenging to replicate real traffic accurately in the staging environment, the detection of genuine attacks becomes difficult. There can be false positives and expose the application to attacks. For such cases, we need to deploy the new signatures in staging environment in “staging” mode.
+
+This feature introduces a new policy property known as **Certification Time** that determines the point in time for which signatures have been tested, approved and certified.
+
+The purpose of this feature is to put signatures in staging by their age (modification time).
+
+There are two types of signatures:
+1. **Staging Signatures** - All the signatures in the policy that were created or modified **after** the certification time are in staging.
+2. **Enforced Signatures** – All the signatures in the policy that were created or modified **prior** to the certification date time or exactly at that time.
 
 ### Latest Signature Certification Time
 The latest signatures certification time, is the timestamp (in date-time ISO format) as the time the signatures in the policy are considered as “trusted” by the user and separates enforced signatures from signatures in staging.
 
-When this value is not defined and the staging flag is enabled, it means that all the signatures in the policy are in staging.
+When this value is not defined and the staging flag is enabled, it means that all the signatures in the policy are in staging. If the signature was added to the policy but was created before the certification date-time then it will not be in staging. 
 
-A signature is considered new in two cases:
-1. It was introduced by a recent signature update that was applied to the respective policy.
-2. It was added to a policy in which it wasn’t included before.
+A signature is considered new if it was introduced by a recent signature update that was applied to the respective policy. 
+
 
 ### New Policy
 When a new policy is deployed, the user prefers to have all its signatures present in the staging environment. To facilitate this, the `performStaging ` flag is configured to true at the signature settings level.
@@ -5536,12 +5541,15 @@ See below policy for more details.
    }
 ```
 
-#### Enforcement
+### Enforcing the Modified Signatures After Testing Them
+
 All signatures that are in staging if their creation or modification time are later than the `stagingCertificationDatetime`.
 
 A signature in staging will be reported in the security log but will not cause the request to be blocked neither directly, nor indirectly by raising the Violation Rating (threat score). However, the potential Violation Rating will be reported if the staged signatures are enforced and moved out of staging.
 
-If there are also staged entities other than signatures (Parameters, URLs or Cookies) the violations or signatures related to them will also not be taken into consideration in the Violation Rating, but will be taken into consideration in the Violation Rating without staging. 
+After you review the logs and can be assured that the new and modified signatures that were in staging are behaving correctly and do not cause false positives, you should enforce them, that is, move them out of staging by modifying the `stagingCertificationDatetime` to the time stamp of the latest signature update. This way all the signatures will now be enforced, but when installing a new signature update in the future, all the new and modified signatures in that update will be automatically in staging.
+
+Note that we do not recommend setting the `stagingCertificationDatetime` to the current time, the time you finished reviewing the signatures. That's because the future signature update might have been created before that time, and when you install that update, modified signatures in it will not be in staging because they will be older than the `stagingCertificationDatetime`.
 
 
 ### Logging and Reporting
@@ -5555,15 +5563,8 @@ Security log will have the following new fields under the enforcementState:
 -	The `lastUpdateTime` of the signature - for the user to be able to determine why the signature was (or was not) in staging.
 
 ```json
-json_log="{""id"":""7103271131347005954"",""violations"":[{""enforcementState"":{""isBlocked"":true,""isAlarmed"":true,""isInStaging"":false,""isLearned"":false,""isLikelyFalsePositive"":false},""violation"":{""name"":""VIOL_ATTACK_SIGNATURE""},""signature"":{""name"":""XSS script tag (Parameter)"",""signatureId"":200000098,""accuracy"":""high"",""risk"":""high"",""hasCve"":false,""stagingCertificationDatetime"":""1970-01-01T00:00:00Z"",""lastUpdateTime"":""2023-11-02T19:36:54Z""},""snippet"":{""buffer"":""cGFyYW09PHNjcmlwdA=="",""offset"":6,""length"":7},""policyEntity"":{""parameters"":[{""name"":""*"",""level"":""global"",""type"":""wildcard""}]},""observedEntity"":{""name"":""cGFyYW0="",""value"":""PHNjcmlwdA=="",""location"":""query""}},{""enforcementState"":{""isBlocked"":false,""isAlarmed"":true,""isLearned"":false},""violation"":{""name"":""VIOL_PARAMETER_VALUE_METACHAR""},""policyEntity"":{""parameters"":[{""name"":""*"",""level"":""global"",""type"":""wildcard""}]},""observedEntity"":{""name"":""cGFyYW0="",""value"":""PHNjcmlwdA=="",""location"":""query""},""metachar"":""0x3c"",""charsetType"":""parameter-value""},{""enforcementState"":{""isBlocked"":false},""violation"":{""name"":""VIOL_HTTP_PROTOCOL""},""policyEntity"":{""blocking-settings"":{""http-protocols"":{""description"":""Host header contains IP address""}}}},{""enforcementState"":{""isBlocked"":true},""violation"":{""name"":""VIOL_RATING_THREAT""}},{""enforcementState"":{""isBlocked"":false},""violation"":{""name"":""VIOL_BOT_CLIENT""}}],""enforcementAction"":""block"",""method"":""GET"",""clientPort"":6026,""clientIp"":""10.42.0.1"",""host"":""nginx-78b84c446f-flw6h"",""responseCode"":0,""serverIp"":""0.0.0.0"",""serverPort"":80,""requestStatus"":""blocked"",""url"":""L2luZGV4LnBocA=="",""virtualServerName"":""24-localhost:1-/"",""enforcementState"":{""isBlocked"":true,""isAlarmed"":true,""rating"":4,""attackType"":[{""name"":""Non-browser Client""},{""name"":""Abuse of Functionality""},{""name"":""Cross Site Scripting (XSS)""},{""name"":""Other Application Activity""},{""name"":""HTTP Parser Attack""}],""ratingIncludingViolationsInStaging"":4,""stagingCertificationDatetime"":""1970-01-01T00:00:00Z""},""requestDatetime"":""2023-12-27T14:22:29Z""
+json_log="{""id"":""7103271131347005954"",""violations"":[{""enforcementState"":{""isBlocked"":true,""isAlarmed"":true,""isInStaging"":false,""isLearned"":false,""isLikelyFalsePositive"":false},""violation"":{""name"":""VIOL_ATTACK_SIGNATURE""},""signature"":{""name"":""XSS script tag (Parameter)"",""signatureId"":200000098,""accuracy"":""high"",""risk"":""high"",""hasCve"":false,""stagingCertificationDatetime"":""2024-01-01T00:00:00Z"",""lastUpdateTime"":""2023-11-02T19:36:54Z""},""snippet"":{""buffer"":""cGFyYW09PHNjcmlwdA=="",""offset"":6,""length"":7},""policyEntity"":{""parameters"":[{""name"":""*"",""level"":""global"",""type"":""wildcard""}]},""observedEntity"":{""name"":""cGFyYW0="",""value"":""PHNjcmlwdA=="",""location"":""query""}},{""enforcementState"":{""isBlocked"":false,""isAlarmed"":true,""isLearned"":false},""violation"":{""name"":""VIOL_PARAMETER_VALUE_METACHAR""},""policyEntity"":{""parameters"":[{""name"":""*"",""level"":""global"",""type"":""wildcard""}]},""observedEntity"":{""name"":""cGFyYW0="",""value"":""PHNjcmlwdA=="",""location"":""query""},""metachar"":""0x3c"",""charsetType"":""parameter-value""},{""enforcementState"":{""isBlocked"":false},""violation"":{""name"":""VIOL_HTTP_PROTOCOL""},""policyEntity"":{""blocking-settings"":{""http-protocols"":{""description"":""Host header contains IP address""}}}},{""enforcementState"":{""isBlocked"":true},""violation"":{""name"":""VIOL_RATING_THREAT""}},{""enforcementState"":{""isBlocked"":false},""violation"":{""name"":""VIOL_BOT_CLIENT""}}],""enforcementAction"":""block"",""method"":""GET"",""clientPort"":6026,""clientIp"":""10.42.0.1"",""host"":""nginx-78b84c446f-flw6h"",""responseCode"":0,""serverIp"":""0.0.0.0"",""serverPort"":80,""requestStatus"":""blocked"",""url"":""L2luZGV4LnBocA=="",""virtualServerName"":""24-localhost:1-/"",""enforcementState"":{""isBlocked"":true,""isAlarmed"":true,""rating"":4,""attackType"":[{""name"":""Non-browser Client""},{""name"":""Abuse of Functionality""},{""name"":""Cross Site Scripting (XSS)""},{""name"":""Other Application Activity""},{""name"":""HTTP Parser Attack""}],""ratingIncludingViolationsInStaging"":4,""stagingCertificationDatetime"":""2024-01-01T00:00:00Z""},""requestDatetime"":""2023-12-27T14:22:29Z""
 ```
-
-### Limitations in NGINX App Protect WAF
-
-NGINX App Protect WAF does not support the following:
-
-- Policy-level `performStaging` value is fixed to "true" by default since app protect will not support staging for any entity other than signatures.
-- Updated signatures are always put in **staging** mode, that is, the mode that retains the old rule (if modified) is not supported.
 
 ## Directives
 
