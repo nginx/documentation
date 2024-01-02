@@ -106,7 +106,8 @@ To quickly set up an environment with NGINX Plus, NGINX App Protect WAF and NGIN
       nginx -v 
       ```  
 
-    In case NGINX PLUS / NGINX DOS / NGINX WAF packages are not latest release than upgrade following this commands:
+    In case NGINX PLUS / NGINX App Protect DoS / NGINX App Protect WAF packages are not latest release then upgrade the following  with these commands:
+
 
     For App Protect DoS solution based on RedHat / CentOS
 
