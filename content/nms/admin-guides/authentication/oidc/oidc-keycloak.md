@@ -262,7 +262,7 @@ Connect to your NGINX Management Suite instance and run the following commands:
 You can revert to Basic Auth to troubleshoot authentication issues by running the following commands:
 
 ```bash
-sudo cp ~/openid_configuration.conf.orig etc/nms/nginx/oidc/openid_configuration.conf
+sudo cp ~/openid_configuration.conf.orig /etc/nms/nginx/oidc/openid_configuration.conf
 sudo cp ~/nms-http.conf.orig /etc/nginx/conf.d/nms-http.conf
 
 sudo nginx -s reload

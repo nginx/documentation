@@ -21,10 +21,10 @@ NGINX Plus is available in binary form only; it is not available in source form
 - 9 (x86_64, aarch64)
 
 ### Alpine Linux
-- 3.15 (x86_64, aarch64)
 - 3.16 (x86_64, aarch64)
 - 3.17 (x86_64, aarch64)
 - 3.18 (x86_64, aarch64)
+- 3.19 (x86_64, aarch64)
 
 ### Amazon Linux
 - 2023 (x86_64, aarch64)
@@ -42,6 +42,7 @@ NGINX Plus is available in binary form only; it is not available in source form
 ### FreeBSD
 - 12.1+ (amd64)
 - 13 (amd64)
+- 14 (amd64)
 
 ### Oracle Linux
 - 7.4+ (x86_64)
@@ -59,7 +60,7 @@ NGINX Plus is available in binary form only; it is not available in source form
 
 ### SUSE Linux Enterprise Server (SLES)
 - 12 SP5 (x86_64)
-- 15 SP2 (x86_64)
+- 15 SP2+ (x86_64)
 
 ### Ubuntu 
 - 20.04 LTS (x86_64, aarch64, s390x)
@@ -99,20 +100,21 @@ Except as specified below, dynamic modules are supported on the [same distributi
 - FreeBSD: Not supported
 - Alpine Linux: Not supported
 - Amazon Linux 2: Not supported
+- Amazon Linux 2023: Not supported
 
 ### Lua
 - RHEL 8, RHEL9: s390x not supported
 - Ubuntu: s390x not supported
 
 ### NGINX ModSecurity WAF
-- CentOS/RHEL 7.4+: x86_64 only
+- CentOS/RHEL/Oracle Linux 7.4+: x86_64 only
 
 ### NGINX sync
 - FreeBSD: Not supported
 - Alpine Linux: Not supported
 
 ### OpenTelemetry
-- RHEL/Oracle Linux/AlmaLinux/Rocky Linux 7: Not supported
+- RHEL/CentOS/Oracle Linux/ 7: Not supported
 - SLES 12, SLES 15: Not supported
 - Amazon Linux 2: Not supported
 
@@ -222,6 +224,7 @@ See [Sizing Guide for Deploying NGINX Plus on Bare Metal Servers](https://www.ng
 ### Programmability and Monitoring
 *   [NGINX Plus API](https://nginx.org/en/docs/http/ngx_http_api_module.html) – Provide REST API for accessing metrics, configuring upstream server groups dynamically, and managing key-value pairs, without the need to reload NGINX configuration
 *   [Key-Value Store](https://nginx.org/en/docs/http/ngx_http_keyval_module.html) – Create variables with values taken from key-value pairs managed by the [NGINX Plus API](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_keyvals_)
+*   [Management](https://nginx.org/en/docs/ngx_mgmt_module.html) – Configure reporting of NGINX Plus installation to [NGINX Management Suite Instance Manager](https://docs.nginx.com/nginx-management-suite/about)
 
 ### TCP and UDP Proxying and Load Balancing
 *   [Stream](https://nginx.org/en/docs/stream/ngx_stream_module.html) – Process TCP and UDP traffic
