@@ -91,10 +91,16 @@ export default async (req) => {
                 ],
                 "values": [
                     {
-                        "id": coveo_var_name,
-                        "value": coveoKey,
-                        "context": "all",
-                        "context_parameter": ""
+                        "context": "production",
+                        "value": coveoKey
+                    },
+                    {
+                        "context": "deploy-preview",
+                        "value": coveoKey
+                    },
+                    {
+                        "context": "branch-deploy",
+                        "value": coveoKey
                     }
                 ]
             }
