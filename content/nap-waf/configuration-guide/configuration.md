@@ -5481,9 +5481,7 @@ Security logging example in json_log:
 
 ### Signature in Staging Overview
 
-In Time-Based Signature Staging a policy is tested in a staging environment after any attack signature update before being promoted to production.
-
-However, in some instances where it is challenging to replicate real traffic accurately in the staging environment, the detection of genuine attacks becomes difficult. There can be false positives and expose the application to attacks. For such cases, we need to deploy the new signatures in staging environment in “staging” mode.
+When new attack signtaures are introduced in a app protect policy, the policy is tested in a staging environment first before being promoted to production. However, in some instances where it is challenging to replicate real traffic accurately in the staging environment, the detection of genuine attacks becomes difficult. There can be false positives and expose the application to attacks. For such cases, we need to deploy the new signatures in staging environment in “staging” mode.
 
 This feature introduces a new policy property known as **Certification Time** that determines the point in time for which signatures have been tested, approved and certified.
 
@@ -5498,7 +5496,7 @@ The latest signatures certification time, is the timestamp (in date-time ISO for
 
 When this value is not defined and the staging flag is enabled, it means that all the signatures in the policy are in staging. If the signature was added to the policy but was created before the certification date-time then it will not be in staging. 
 
-A signature is considered new if it was introduced by a recent signature update that was applied to the respective policy. 
+A signature is considered new if it was introduced by a recent signature update that was applied to the respective policy. Note that signatures that were added later to the policy (by adding a new signature set) are not considered new unless they were added in the recent signature update. These signatures will not be in staging.
 
 
 ### New Policy
