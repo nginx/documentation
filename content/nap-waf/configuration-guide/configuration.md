@@ -5481,7 +5481,7 @@ Security logging example in json_log:
 
 ### Signature in Staging Overview
 
-When new attack signtaures are introduced in an App Protect policy, the policy is tested in a staging environment first before being promoted to production. However, in some instances where it is challenging to replicate real traffic accurately in the staging environment, the detection of genuine attacks becomes difficult. There can be false positives and expose the application to attacks. For such cases, we need to deploy the new signatures in staging environment in “staging” mode.
+When new attack signatures are introduced in an App Protect policy, the policy is tested in a staging environment first before being promoted to production. However, in some instances where it is challenging to replicate real traffic accurately in the staging environment, the detection of genuine attacks becomes difficult. There can be false positives and expose the application to attacks. For such cases, we need to deploy the new signatures in staging environment in “staging” mode.
 
 This feature introduces a new policy property known as **Certification Time** that determines the point in time for which signatures have been tested, approved and certified.
 
@@ -5492,7 +5492,7 @@ There are two types of signatures:
 2. **Enforced Signatures** – All the signatures in the policy that were created or modified **prior** to the certification date time or exactly at that time.
 
 ### Latest Signature Certification Time
-The latest signatures certification time, is the timestamp (in date-time ISO format) as the time the signatures in the policy are considered as “trusted” by the user and separates enforced signatures from signatures in staging.
+The latest signatures certification time is the timestamp (in date-time ISO format) as the time the signatures in the policy are considered as “trusted” by the user and separates enforced signatures from signatures in staging.
 
 When this value is not defined and the staging flag is enabled, it means that all the signatures in the policy are in staging. If the signature was added to the policy but was created before the certification date-time then it will not be in staging. 
 
@@ -5506,7 +5506,7 @@ When a new policy is deployed, the user prefers to have all its signatures prese
 If the user is not interested in putting the initial signatures in staging, then `performStaging` is set to `false`.
 
 ### Signature Update
-After applying a signature update (F5 or user defined), and assuming the update creation time is later than the previous signature update applied to the policy (i.e. the signatures are upgraded, not downgraded), then all the signatures that were affected by the update (created or modified) are automatically put in staging. That's because their modification time is newer than the current `stagingCertificationDatetime`. Signatures that were not affected by the update will **not** be in staging.
+After applying a signature update (F5 or user-defined), and assuming the update creation time is later than the previous signature update applied to the policy (i.e. the signatures are upgraded, not downgraded), then all the signatures that were affected by the update (created or modified) are automatically put in staging. That's because their modification time is newer than the current `stagingCertificationDatetime`. Signatures that were not affected by the update will **not** be in staging.
 
 ### Configuration
 
@@ -5541,7 +5541,7 @@ See below policy for more details.
 
 ### Enforcing the Modified Signatures After Testing Them
 
-All signatures that are in staging if their creation or modification time are later than the `stagingCertificationDatetime`.
+All signatures that are in staging if their creation or modification time is later than the `stagingCertificationDatetime`.
 
 A signature in staging will be reported in the security log but will not cause the request to be blocked neither directly, nor indirectly by raising the Violation Rating (threat score). However, the potential Violation Rating will be reported if the staged signatures are enforced and moved out of staging.
 
@@ -5552,7 +5552,7 @@ Note that we do not recommend setting the `stagingCertificationDatetime` to the 
 
 ### Logging and Reporting
 
-Time based Signature will be logged and reported in the Security log without blocking the request as discussed in the above section.
+Time-based Signature will be logged and reported in the Security log without blocking the request as discussed in the above section.
 
 Security log will have the following new fields under the enforcementState:
 -	The Violation Rating if there was no staging - `ratingIncludingViolationsInStaging`
