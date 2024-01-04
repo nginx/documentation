@@ -39,7 +39,7 @@ December 30, 2020
 - [Debian 10 Support]({{< relref "/nap-waf/admin-guide/install.md#debian-10-installation" >}})
 - [Alpine 3.10 Support]({{< relref "/nap-waf/admin-guide/install.md#alpine-3-10-installation" >}})
 - [User-defined HTTP Headers]({{< relref "/nap-waf/configuration-guide/configuration.md#user-defined-http-headers" >}})
-- [Converter Tools]({{< relref "/nap-waf/configuration-guide/configuration.md#converter-tool" >}})
+- [Converter Tools]({{< relref "/nap-waf/configuration-guide/configuration.md#converter-tools" >}})
 - [Attack Signature Report Tool]({{< relref "/nap-waf/configuration-guide/configuration.md#attack-signature-report-tool" >}})
 
 ### Supported Packages
