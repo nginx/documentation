@@ -5481,7 +5481,7 @@ Security logging example in json_log:
 
 ### Signature in Staging Overview
 
-When new attack signtaures are introduced in a app protect policy, the policy is tested in a staging environment first before being promoted to production. However, in some instances where it is challenging to replicate real traffic accurately in the staging environment, the detection of genuine attacks becomes difficult. There can be false positives and expose the application to attacks. For such cases, we need to deploy the new signatures in staging environment in “staging” mode.
+When new attack signtaures are introduced in an App Protect policy, the policy is tested in a staging environment first before being promoted to production. However, in some instances where it is challenging to replicate real traffic accurately in the staging environment, the detection of genuine attacks becomes difficult. There can be false positives and expose the application to attacks. For such cases, we need to deploy the new signatures in staging environment in “staging” mode.
 
 This feature introduces a new policy property known as **Certification Time** that determines the point in time for which signatures have been tested, approved and certified.
 
