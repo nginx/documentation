@@ -67,10 +67,12 @@ export default async (req) => {
             )
             if (response.status != 200) {
                 console.debug(JSON.stringify(response.body, null, 2));
+                throw new Error("Failed to create search token.")
             }
             coveoKey = response.data.token
         } catch (error) {
             console.error(`An error occurred: ${error}`);
+            continue;
         }
 
         console.log('Updating environment variable '+coveo_var_name+' for site '+site_name)
@@ -125,10 +127,10 @@ export default async (req) => {
                     case 200:
                         console.log("OK")
                         break;
-                    case 401: // Unauthorized
+                    case 401:
                         console.error("Unauthorized")
                         break;
-                    case 419: // Expired session
+                    case 419:
                         console.error("Session expired")
                         break;
                     default:
@@ -137,6 +139,7 @@ export default async (req) => {
             }
         } catch (error) {
             console.error(error.config.data)
+            continue;
         }
     }
 }
