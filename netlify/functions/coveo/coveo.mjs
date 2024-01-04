@@ -3,10 +3,10 @@ import axios from "axios"
 
 export default async (req) => {
     const { next_run } = await req.json()
-    console.log("Received event! Next invocation at:", next_run)
+    console.log("Running daily refresh of Coveo search tokens... Next invocation at:", next_run)
     
     // Netlify details
-    const netlify_account_id = '5aef7fb2b3127447cfdc7578' // Nginx account id
+    const nginx_account_id = '5aef7fb2b3127447cfdc7578'
     const site_ids = {
         'docs-dev.nginx.com': '8f101906-ee43-4fc6-9754-ff460265ad8e',
         'docs-staging.nginx.com': 'e5dd2562-92a6-4cad-894a-4629256414fe',
@@ -18,15 +18,16 @@ export default async (req) => {
         "N4A": "81ebffe4-d7f0-439c-9840-282905978ce9"
     }
 
+    // Maps site names to their corresponding Coveo api key name
     const sites_keys_context = {
         'docs-dev.nginx.com': "COVEO_API_DEV",
         'docs-staging.nginx.com': "COVEO_API_STAGING",
         'docs.nginx.com': "COVEO_API_PROD",
-        'kubernetes-ingress': "COVEO_API_DEV",
-        'gateway-fabric': "COVEO_API_DEV",
-        'agent': "COVEO_API_DEV",
-        'service-mesh': "COVEO_API_DEV",
-        'N4A': "COVEO_API_DEV"
+        'kubernetes-ingress': "COVEO_API_PROD",
+        'gateway-fabric': "COVEO_API_PROD",
+        'agent': "COVEO_API_PROD",
+        'service-mesh': "COVEO_API_PROD",
+        'N4A': "COVEO_API_PROD"
     }
 
     // Coveo details
@@ -34,14 +35,14 @@ export default async (req) => {
     const coveo_org_id = "f5networkx1h1607h"
     const coveo_search_hub = "HUB_ES_Nginx_Docs_And_Org"
     let coveoKey
-    for (const [key, value] of Object.entries(site_ids)) {
+    for (const [site_name, site_id] of Object.entries(site_ids)) {
         const _request_new_search_token = { // request header for Coveo token generation
             method: "POST",
             uri: "https://"+coveo_org_id+".org.coveo.com/rest/search/v2/token?organizationid="+coveo_org_id,
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${Netlify.env.get(sites_keys_context[key])}`
+                "Authorization": `Bearer ${Netlify.env.get(sites_keys_context[site_name])}`
             },
             json: {
                 "searchHub": `${coveo_search_hub}`,
@@ -72,11 +73,11 @@ export default async (req) => {
             console.error(`An error occurred: ${error}`);
         }
 
-        console.log('Updating environment variable '+coveo_var_name+' for site '+key+'.nginx.com')
+        console.log('Updating environment variable '+coveo_var_name+' for site '+site_name)
 
         const _request_update_env_var = { // request header for netlify api request
             method: "PUT",
-            uri: 'https://api.netlify.com/api/v1/accounts/'+netlify_account_id+'/env/'+coveo_var_name+'?site_id='+value,
+            uri: 'https://api.netlify.com/api/v1/accounts/'+nginx_account_id+'/env/'+coveo_var_name+'?site_id='+site_id,
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
@@ -89,6 +90,8 @@ export default async (req) => {
                     "functions",
                     "runtime"
                 ],
+                // when updating secrets via the api, be sure not to use the 'all' value for context
+                // as it may return 200 without actually updating the value in Netlify
                 "values": [
                     {
                         "context": "production",
@@ -115,8 +118,22 @@ export default async (req) => {
                 }
             )
 
-            if (response.status != 200){
-                console.error(response)
+            if (response.hasOwnProperty('status') == false) {
+                console.error("Could not update environment variable for "+site_name+": error code "+response.code+" "+response.message)
+            } else {
+                switch (response.status) {
+                    case 200:
+                        console.log("OK")
+                        break;
+                    case 401: // Unauthorized
+                        console.error("Unauthorized")
+                        break;
+                    case 419: // Expired session
+                        console.error("Session expired")
+                        break;
+                    default:
+                        break;
+                }
             }
         } catch (error) {
             console.error(error.config.data)
