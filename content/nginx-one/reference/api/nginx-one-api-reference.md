@@ -27,4 +27,4 @@ versions: ["<version>"]
 authors: []
 ---
 
-{{< openapi spec="/nginx-one/api/one.json" >}}
+{{< openapi spec="/nginx-one/api/monitor/ext-openapi.yaml" >}}

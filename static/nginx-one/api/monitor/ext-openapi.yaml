@@ -1,0 +1,477 @@
+openapi: 3.0.3
+servers:
+  - url: /api/v1
+info:
+  title: Monitor NGINX Instances
+  description: Keep track of how your NGINX instances are performing by querying for system metrics. Refine your insights by applying specific dimensions.
+  version: "v1"
+tags:
+  - name: "Monitor"
+paths:
+  /monitor/metrics:
+    get:
+      tags:
+        - "Metrics"
+      summary: Query for system metrics
+      operationId: queryMetrics
+      description: |
+        Returns system metrics for NGINX instances based on query parameters.
+
+        You can filter metrics by name and timestamp, aggregate metrics over a configurable period of time, and group metrics by dimension.
+      parameters:
+        - name: names
+          in: query
+          description: |
+            Use this parameter to select specific metrics for your query, tailoring it to your needs. Here's how you can customize it:
+            * Query on multiple metrics: Provide multiple metric names as a comma-separated list.
+            * Apply aggregate functions: You can apply an aggregate function (`AVG`, `SUM`, `COUNT`, `MAX`, `MIN`, or `RATE`) to each metric to summarize or analyze data points.
+            * Combining non-aggregated and aggregated metrics: If your query combines non-aggregated and aggregated metrics, any `group_by` clause will apply only to the aggregated metrics.
+            * Time requirement for aggregated metrics: Metrics with aggregates require specifying a `start_time` to define the analysis period.
+          required: true
+          schema:
+            type: string
+            example: AVG(agent.cpu.system),SUM(plus.upstream.bytes_rcvd)
+        - name: group_by
+          in: query
+          description: |
+            Use this parameter to group your query results by specified dimension(s).
+
+            - Provide multiple dimension names as a comma-separated list.
+            - For grouping to work, all metrics in the `names` parameter must be aggregated.
+          schema:
+            type: string
+            example: server_zone,instance_group
+        - name: series_limit
+          in: query
+          description: |
+            This parameter limits the number of series returned in the response. 
+            
+            Key points to note:
+            * Always returns an additional series called `all`, which aggregates values from all the metrics in the results.
+            * If `all` doesn't include every stored dimension, you'll also get a series named `other`. This includes aggregated values from any metrics not included in `all`.
+            * Use this parameter together with `order_series_by`.
+            * You need to use exactly one `group_by` parameter in the query.
+            * This parameter cannot be used with the `dimensions` parameter.
+          schema:
+            type: integer
+            example: 25
+        - name: order_series_by
+          in: query
+          description: |
+            Sorts your query results in a specific order. If you don't set an order, it defaults to `SUM DESC`.
+            
+            Important: Use this only with the `series_limit` parameter.
+          schema:
+            type: string
+            example: MAX DESC
+        - name: dimensions
+          in: query
+          description: |
+            Choose dimensions for each metric series in the response:
+            * Only dimensions you list here will show in the results.
+            * Not listing a dimension means it won't appear, which might result in series with the same dimensions showing as separate.
+            * If you use the `aggregation` and `group_by` parameters with a metric, any dimension in the `dimensions` parameter must also be included in `group_by`.
+            * Dimensions in `group_by` don't need to be in `dimensions`, unless you want them in the results.
+
+            Considerations:
+            * To get a single series, provide the metric name with aggregation and leave the `dimensions` parameter empty.
+            * This parameter can't be used with the `series_limit` parameter.
+            * Note: You cannot use `Tenant` or `Namespace` as filterable dimensions in this parameter. These should be provided only as headers.
+          schema:
+            type: string
+            example: server_zone,instance_group
+        - name: start_time
+          in: query
+          description: |
+            Use `start_time` to set the start of the time period for your metrics query. It marks the earliest time from which metrics are included.
+            
+            Important points:
+            * You must use `start_time` if you're also specifying `end_time`.
+            * If you don't set `start_time`, the API automatically gives you the most recent metrics.
+            * For aggregated metrics (like averages or sums over time), `start_time` is required to calculate the resolution.
+          schema:
+            $ref: "#/components/schemas/Time"
+          example: now-5h
+        - name: end_time
+          in: query
+          description: |
+            `end_time` sets the end of the time period for your metrics query (non-inclusive).
+
+            Keep in mind:
+            * `end_time` must be a time after `start_time`.
+            * If you set `start_time` but not `end_time`, the system assumes `end_time` is now (the current time).
+          schema:
+            $ref: "#/components/schemas/Time"
+        - name: filter
+          in: query
+          description: |
+            Filters results based on key value pairs.
+
+            Consists of one or more predicates in the form  `<key><operator><value>` where:
+            * `<key>`: The name of the dimension you're filtering by.
+            * `<operator>`: Choose from `=`, `!=`, `<`, `<=`, `>=` `>`, `in` or `not`.
+            * `<value>`: The specific value of the dimension(s) you you want to filter by.
+            * `<key> and <value>` are case sensitive.
+
+            Example: 'count > 100'
+
+            You can combine multiple predicates using logical operators like `AND`, `OR`, and parentheses `( )`. Use a wildcard (`*`) for partial matches. Remember to enclose predicates in single quotes to ensure the query string is processed correctly..
+
+            See the Dimensions Catalog to learn more about dimensions.
+
+            Note: `Tenant` or `Namespace` cannot be used as filterable dimensions. These can be provided only as headers.
+          schema:
+            type: string
+            example: ((server_zone!='server_zone_1' OR server_zone='server_zone_2') AND nginx_id in ('id1', 'id2')) AND (system.tags!='*tag1*')
+        - name: resolution
+          in: query
+          description: |
+            `resolution` adjusts how detailed the returned time series data are. It's applicable only for endpoints that return time series data.
+
+            Must be a valid duration. Format as a string starting with a number followed by a unit of time, such as `y` (years), `M` (months), `w` (weeks), `d` (days), `h` (hours), `m` (minutes) or `s` (seconds).
+
+            In the context of the Metrics API:
+              * You need to use `resolution` along with an aggregate function (or functions) in the `names` parameter and specify the `start_time`.
+              * If `resolution` isn't specified, the API uses the widest available resolution, based on the difference between `end_time` and `start_time.`
+          schema:
+            type: string
+            example: 30s
+
+      responses:
+        "200":
+          description: The requested metrics data were successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MetricQueryResult"
+        "400":
+          description: The request could not be processed due to invalid input. Verify the request data and try again.
+        "404":
+          description: The requested resource was not found. Make sure the address (URL) is correct and try again.
+        "500":
+          description: The server encountered an internal error while processing the request. Please try again later.
+
+  /monitor/catalogs/metrics:
+    get:
+      tags:
+        - "Catalogs"
+      summary: List all metric resources
+      operationId: listMetricsDescriptions
+      description: |
+        Returns a list of all the metrics resources in the Metrics Catalog. 
+        The Metrics Catalog includes detailed definitions of each NGINX One metric. 
+        Use this information to understand the available metrics and to refine your analytics queries. 
+      responses:
+        "200":
+          description: Successfully returned the Metrics Catalog list.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MetricsDescriptionsResponse"
+
+  /monitor/catalogs/metrics/{metricName}:
+    get:
+      tags:
+        - "Catalogs"
+      summary: Retrieve a metric resource
+      operationId: getMetricDescription
+      description: |
+        Retrieves comprehensive information about a specific metric, identified by its name.
+        
+        The response includes:
+        * The metric's name and description, explaining what it measures.
+        * The types of aggregations (e.g., AVG, SUM) applicable to the metric.
+        * The categories the metric belongs to, such as 'nginx'.
+        * The dimensions associated with the metric, detailing how it can be broken down.
+        * The type of metric (for example, incremental) and its unit of measurement (for example, bytes).
+        
+        This detailed view of each metric assists in understanding its role and application in monitoring and analytics.
+      parameters:
+        - in: path
+          name: metricName
+          description: The name of of the metric resource you want details for. This name is used to identify the metric in the Metrics Catalog.
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successfully returned the requested metric resource.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MetricDescriptionRecord"
+        "400":
+          description: Request could not be processed due to invalid input. Verify the request data and try again.
+        "404":
+          description: The specified metric resource was not found.
+          
+  /monitor/catalogs/dimensions:
+    get:
+      tags:
+        - "Catalogs"
+      summary: List all dimensions
+      operationId: listDimensionsDescriptions
+      description: |
+        Returns a list of all the dimensions in the Dimensions Catalog.
+
+        Dimensions let you refine the data returned from metrics and events queries, allowing more detailed and useful results.
+        Use this endpoint to discover available dimensions. To get detailed information about a particular dimension, use the 'Get a Dimension' endpoint.
+      responses:
+        "200":
+          description: Successfully returned the requested Dimensions Catalog list.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DimensionsDescriptionsResponse"
+
+  /monitor/catalogs/dimensions/{dimensionName}:
+    get:
+      tags:
+        - "Catalogs"
+      summary: Retrieve a dimension
+      operationId: getDimensionDescription
+      description: |
+        Retrieves the details for a specific dimension.
+      parameters:
+        - in: path
+          name: dimensionName
+          description: The name of the dimension you want details for. The name identifies the specific dimension in the Dimensions Catalog.
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: The requested dimension was successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DimensionDescriptionRecord"
+        "400":
+          description: Invalid request. Verify the dimension name and other parameters, then try again.
+        "404":
+          description: The specified dimension could not be found.
+
+components:
+  schemas:
+    MetricQueryResult:
+      type: object
+      properties:
+        query_metadata:
+          $ref: "#/components/schemas/MetricQueryMetadata"
+        metrics:
+          type: array
+          items:
+            $ref: "#/components/schemas/Metric"
+        response_metadata:
+          $ref: "#/components/schemas/MetricResponseMetadata"
+    MetricResponseMetadata:
+      type: object
+      properties:
+        warning:
+          type: string
+    MetricQueryMetadata:
+      type: object
+      properties:
+        start_time:
+          type: string
+          format: date-time
+          example: "2019-08-07T09:57:36.088757764Z"
+        end_time:
+          type: string
+          format: date-time
+          example: "2019-08-07T09:57:36.088757764Z"
+        resolution:
+          type: string
+          example: 30m
+
+    Metric:
+      type: object
+      description: Metrics provide a means of measuring and analyzing the performance of your NGINX dataplane instances.
+      properties:
+        name:
+          type: string
+          example: plus.upstream.response.count
+        aggr:
+          type: string
+          enum:
+            - AVG
+            - COUNT
+            - SUM
+            - MAX
+            - MIN
+            - RATE
+          example: AVG
+        series:
+          type: array
+          items:
+            $ref: "#/components/schemas/Series"
+
+    Series:
+      type: object
+      properties:
+        dimensions:
+          type: object
+          additionalProperties:
+            type: string
+          example:
+            server_zone: prod_zone
+            instance_group: prod
+        timestamps:
+          type: array
+          items:
+            type: string
+            format: date-time
+          example:
+            - "2019-08-07T09:57:30"
+            - "2019-08-07T09:57:35"
+        values:
+          type: array
+          items:
+            type: number
+          example:
+            - 4.2
+            - 4.4
+
+    Time:
+      description: |
+        Indicates a point in time.
+
+        You can provide time using ISO 8601 format or as an offset. An offset is a string that starts with `+` or `-`, followed by a number and a unit of time, such as `y` (years), `M` (months), `w` (weeks), `d` (days), `h` (hours), `m` (minutes) or `s` (seconds).
+        Examples: "2019-08-07T09:57:36.088757764Z", "now-3h"
+      type: string
+      example: "2019-08-07T09:57:36.088757764Z"
+
+    MetricDescriptionResponse:
+      $ref: "#/components/schemas/MetricDescriptionRecord"
+    MetricDescriptionRecord:
+      type: object
+      required:
+        - metadata
+      properties:
+        name:
+          type: string
+          example: nginx.http.request.bytes_sent
+        description:
+          type: string
+          example: "Number of bytes sent to clients."
+        unit:
+          type: string
+          example: "bytes"
+        aggregations:
+          type: array
+          items:
+            type: string
+            enum:
+              - AVG
+              - COUNT
+              - SUM
+              - MAX
+              - MIN
+          example: ["AVG", "SUM"]
+        type:
+          type: string
+          enum:
+            - counter
+            - gauge
+            - incremental
+          example: "incremental"
+        categories:
+          type: array
+          items:
+            type: string
+          example: ["nginx"]
+          description: "An array of freeform strings containing the category(ies) of a Metrics Catalog resource."
+        dimensions:
+          type: array
+          items:
+            $ref: "#/components/schemas/ResourceRef"
+          description: "An array of dimensions that apply to a Metrics Catalog resource."
+    MetricsDescriptionsResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/MetricDescriptionRecord"
+
+    DimensionDescriptionResponse:
+      $ref: "#/components/schemas/DimensionDescriptionRecord"
+    DimensionDescriptionRecord:
+      type: object
+      required:
+        - metadata
+      properties:
+        name:
+          type: string
+          example: instance
+        description:
+          type: string
+          example: "Instance name."
+        type:
+          type: string
+          enum:
+            - string
+            - int
+            - list
+          example: "string"
+        metrics:
+          type: array
+          items:
+            $ref: "#/components/schemas/ResourceRef"
+          description: "An array of metrics that the Dimensions resource applies to."
+    DimensionsDescriptionsResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/DimensionDescriptionRecord"
+
+    ResourceRef:
+      type: object
+      required:
+        - ref
+      properties:
+        ref:
+          type: string
+          example: "/monitor/catalogs/dimensions/system_id"
+          description: |
+            A reference to another Control Plane resource.
+        links:
+          $ref: "#/components/schemas/NamedLinks"
+    NamedLinks:
+      allOf:
+        - $ref: "#/components/schemas/SelfLinks"
+        - type: object
+          description: |
+            Contains information about the object being referred to.
+
+            These are generally details -- like the object name and display name --
+            that are useful to a consumer of the API that performs further
+            processing.
+
+            This object is only present in responses.
+
+          properties:
+            name:
+              type: string
+              example: "system_id"
+              description: |
+                The name of the linked resource.
+
+            display_name:
+              type: string
+              example: "system ID"
+              description: "A user friendly resource name."
+    SelfLinks:
+      type: object
+      description: |
+        The SelfLinks object contains a link from the resource to itself.
+        This object is used only in responses.
+      properties:
+        rel:
+          type: string
+          example: "/api/v1/monitor/catalogs/dimensions/system_id"
+          description: |
+            `rel` contains the complete path fragment of a URI and can be used
+            to construct a query to the object.

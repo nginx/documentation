@@ -1,0 +1,169 @@
+openapi: 3.0.3
+servers:
+  - url: /api/v1
+info:
+  title: Manage NGINX Instances
+  description: Manage your NGINX dataplane instances, view security advisories (CVEs), and analyze the NGINX configuration for issues and recommendations.
+  version: "v1"
+tags:
+  - name: "Instances"
+paths:
+  /instances/summary:
+    get:
+      tags:
+        - "Instances"
+      summary: Displays a summary of instance-related information for the tenant.
+      description: |
+        Retrieve a summary of all instances, including:
+          * Certificates and associations
+          * Operating system
+          * NGINX Agent version
+          * System status
+      operationId: listSummary
+      responses:
+        '200':
+          description: Summary information retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "../../common.yaml#/components/schemas/InstanceSummary"
+  /instances:
+    get:
+      tags:
+        - "Instances"
+      summary: List all NGINX instances.
+      operationId: listInstances
+      description: |
+        Retrieves detailed information for all NGINX instances, including:
+          * Unique identifiers
+          * Timestamps of key actions (registration, last reported, etc.)
+          * NGINX build data
+          * Agent version
+      parameters:
+        - $ref: '../../common.yaml#/components/parameters/Paginated'
+        - $ref: '../../common.yaml#/components/parameters/Limit'
+        - $ref: '../../common.yaml#/components/parameters/Offset'
+        - $ref: '../../common.yaml#/components/parameters/FilterFieldInstances'
+        - $ref: '../../common.yaml#/components/parameters/FilterOperands'
+        - $ref: '../../common.yaml#/components/parameters/FilterValues'
+      responses:
+        '200':
+          description: List of instances retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "../../common.yaml#/components/schemas/InstanceListResponse"
+  /instances/{instanceUUID}/cves:
+    get:
+      tags:
+        - "Instances"
+      summary: Lists security advisories for a specific NGINX instance.
+      description: Shows security advisories (CVEs) for a specific NGINX instance, identified by its UUID.
+      operationId: listSecurityAdvisories
+      parameters:
+        - $ref: '../../common.yaml#/components/parameters/InstanceUUID'
+      responses:
+        '404':
+          description: Instance or security advisories not found for the specified UUID.
+        '200':
+          description: Security advisories retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "../../common.yaml#/components/schemas/NginxSecurityAdvisory"
+
+  /instances/{instanceUUID}:
+    get:
+      tags:
+        - "Instances"
+      summary: Retrieve a specific NGINX instance's details.
+      description: |
+        Fetches detailed information for a specific NGINX instance, identified by its UUID. 
+        The response includes important information, such as:
+        * NGINX Agent version
+        * Instance hostname
+        * System status
+        * Timestamps of key actions (registration, last reported, etc.)
+        * NGINX build information
+        * Certificate data
+        * Operating system version
+        
+      operationId: getInstance
+      parameters:
+        - $ref: '../../common.yaml#/components/parameters/InstanceUUID'
+      responses:
+        '404':
+          description: Instance not found.
+        '200':
+          description: Instance details retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "../../common.yaml#/components/schemas/InstanceDetails"
+
+    delete:
+      tags:
+        - "Instances"
+      summary: Delete a specific NGINX instance
+      description: |
+        Deletes a specific NGINX instance, identified by its UUID. This will clean up
+        all certificate associations for this instance.
+
+      operationId: deleteInstance
+      parameters:
+        - $ref: '../../common.yaml#/components/parameters/InstanceUUID'
+      responses:
+        '404':
+          description: Instance not found
+        '204':
+          description: Instance deleted successfully.
+
+  /instances/{instanceUUID}/config-report:
+    get:
+      tags:
+        - "Instances"
+      summary: Get an NGINX configuration analysis report for a specific NGINX instance.
+      description: |
+        Generates a detailed analysis report of the NGINX configuration for a specific NGINX instance, identified by its UUID.
+        The report includes insights, identified issues, and recommendations for optimizing and troubleshooting.
+      operationId: getConfigReport
+      parameters:
+        - $ref: '../../common.yaml#/components/parameters/InstanceUUID'
+      responses:
+        '404':
+          description: Instance or NGINX configuration analysis report not found for the specified UUID.
+        '200':
+          description: NGINX configuration analysis report retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "../../common.yaml#/components/schemas/NginxConfigReport"
+
+  /instances/{instanceUUID}/config:
+    get:
+      tags:
+        - "Instances"
+      summary: Retrieve the configuration details for a specific NGINX instance.
+      description: |
+        Fetches configuration information for a specific NGINX instance, identified by its UUID. 
+        The response includes important information, such as:
+        * Main configuration path
+        * Details about configuration files
+        * Details about auxiliary files
+        * Unique identifiers
+      operationId: getInstanceConfig
+      parameters:
+        - $ref: '../../common.yaml#/components/parameters/InstanceUUID'
+      responses:
+        '404':
+          description: Instance or configuration details not found for the specified UUID.
+        '200':
+          description: Instance configuration retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "../../common.yaml#/components/schemas/NginxConfig"
