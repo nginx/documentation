@@ -61,7 +61,7 @@ To create NGINX Diagnostic Package:
 
 1. [Download](https://nginx.org/download/nginx-supportpkg.sh) the `nginx-supportpkg.sh` script:
    ```shell
-   wget -r https://nginx.org/download/nginx-supportpkg.sh
+   wget https://nginx.org/download/nginx-supportpkg.sh
    ```
 
 2. Grant execution permissions to the script:

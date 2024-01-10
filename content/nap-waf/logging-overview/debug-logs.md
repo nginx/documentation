@@ -30,7 +30,7 @@ roles:
 title: NGINX App Protect WAF Debug Log
 toc: true
 versions:
-- "4.6"
+- "4.7"
 weight: 540
 ---
 
@@ -100,10 +100,4 @@ FILE = 2;
 MODULE = ALL;
 LOG_LEVEL = TS_ERR | TS_CRIT | TS_WARNING | TS_NOTICE;
 FILE=2;
-~~~
-
-Then run the following command to update the log configuration without having to restart App Protect or reload NGINX:
-
-~~~
-pkill -SIGUSR1 bd
 ~~~

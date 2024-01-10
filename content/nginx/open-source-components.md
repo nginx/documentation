@@ -13,7 +13,7 @@ weight: 500
 Open source components included in the NGINX Plus (package name is `nginx-plus`) are:
 
 
-- nginx/OSS 1.25.1, distributed under 2-clause BSD license.
+- nginx/OSS 1.25.3, distributed under 2-clause BSD license.
 
   Homepage: https://nginx.org
 
@@ -77,58 +77,101 @@ OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 (`dashboard.html` in `nginx-plus` package) and distributed under MIT license:
 
 
-  - `@babel-core`, Babel compiler core (7.16.0)
+  - `@babel-core`, Babel compiler core (7.23.2)
     
     Homepage: https://github.com/babel/babel/tree/master/packages/babel-core
 
     Copyright © 2014-present Sebastian McKenzie and other contributors
 
-  - `@babel/plugin-proposal-object-rest-spread`, produces spec-compliant code by using Babel's objectSpread helper (7.16.0).
+  - `@babel/plugin-proposal-object-rest-spread`, produces spec-compliant code by using Babel's objectSpread helper (7.22.15).
 
     Homepage: https://github.com/babel/babel/tree/master/packages/babel-plugin-proposal-object-rest-spread
 
-  - `@babel/plugin-transform-runtime`, makes helpers reference the module babel-runtime to avoid duplication across your compiled output (7.16.4).
+  - `@babel/plugin-transform-runtime`, makes helpers reference the module babel-runtime to avoid duplication across your compiled output (7.22.15).
 
     Homepage: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-runtime
 
-  - `@babel/preset-env`, a Babel preset for each environment (7.16.4).
+  - `@babel/preset-env`, a Babel preset for each environment (7.22.15).
 
     Homepage: https://github.com/babel/babel/tree/master/packages/babel-preset-env
 
-  - `@babel/preset-react`, a Babel preset for all React plugins (7.16.0).
+  - `@babel/preset-react`, a Babel preset for all React plugins (7.22.15).
 
     Homepage: https://github.com/babel/babel/tree/master/packages/babel-preset-react
 
-  - `autoprefixer`, a PostCSS plugin to parse CSS and add vendor prefixes to CSS rules (10.4.0)
+  - `autoprefixer`, a PostCSS plugin to parse CSS and add vendor prefixes to CSS rules (10.4.7)
 
     Homepage: https://github.com/postcss/autoprefixer
 
     Copyright © 2013 Andrey Sitnik <andrey@sitnik.ru>
 
-  - `babel-loader`, allows transpiling JavaScript files using Babel and webpack (8.2.3).
+  - `babel-loader`, allows transpiling JavaScript files using Babel and webpack (9.1.3).
 
     Homepage: https://github.com/babel/babel-loader
 
     Copyright © 2014-2019 Luís Couto <hello@luiscouto.pt>
 
-  - `core-js`, a modular standard library for JavaScript (3.19.3).
+
+  - `babel-plugin-istanbul`, a babel plugin that adds istanbul instrumentation to ES6 code (6.1.1).
+
+    Homepage: https://github.com/istanbuljs/babel-plugin-istanbul
+
+    Copyright © 2016, Istanbul Code Coverage
+
+  - `core-js`, a modular standard library for JavaScript (3.22.8).
 
     Homepage: https://github.com/zloirock/core-js
 
     Copyright © 2014-2022 Denis Pushkarev
 
   - `css-loader`, interprets `@import` and `url()`
-like `import/require()` and will resolve them (6.5.1).
+like `import/require()` and will resolve them (6.8.1).
 
     Homepage: https://github.com/webpack-contrib/css-loader
 
     Copyright © JS Foundation and other contributors
 
-  - `cssnano`, a modular minifier, built on top of the PostCSS ecosystem (5.1.18).
+  - `cssnano`, a modular minifier, built on top of the PostCSS ecosystem (5.1.11).
 
     Homepage: https://github.com/cssnano/cssnano/
 
     Copyright © Ben Briggs <beneb.info@gmail.com>
+
+  - `eslint`, a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code (8.49.0).
+
+    Homepage: https://www.npmjs.com/package/eslint
+
+    Copyright OpenJS Foundation and other contributors, www.openjsf.org
+
+  - `eslint-config-airbnb`, exports some ESLint configurations (19.0.4).
+
+    Homepage: https://www.npmjs.com/package/eslint-config-airbnb
+
+    Copyright © 2012 Airbnb
+
+  - `eslint-plugin-import`, supports linting of ES2015+ (ES6+) import/export syntax and prevent issues with misspelling of file paths and import names (2.28.1).
+
+    Homepage: https://www.npmjs.com/package/eslint-plugin-import
+
+    Copyright © 2015 Ben Mosher
+
+  - `eslint-plugin-jsx-a11y`, static AST checker for accessibility rules on JSX elements (6.5.1).
+
+    Homepage: https://www.npmjs.com/package/eslint-plugin-jsx-a11y
+
+     Copyright © 2016 Ethan Cohen
+
+  - `eslint-plugin-react`, react specific linting rules for eslint (7.33.2).
+
+    Homepage: https://www.npmjs.com/package/eslint-plugin-react
+
+    Copyright © 2014 Yannick Croissant
+
+  - `eslint-webpack-plugin`, uses eslint to find and fix problems in the JavaScript code (4.0.1).
+
+    Homepage: https://www.npmjs.com/package/eslint-webpack-plugin
+
+    Copyright JS Foundation and other contributors
 
   - `history`, manage session history with JavaScript (4.10.1).
 
@@ -148,19 +191,19 @@ like `import/require()` and will resolve them (6.5.1).
 
     Copyright © JS Foundation and other contributors
 
-  - `mini-css-extract-plugin`, extracts CSS into separate files (5.5.0).
+  - `mini-css-extract-plugin`, extracts CSS into separate files (2.6.0).
 
     Homepage: https://github.com/webpack-contrib/mini-css-extract-plugin
 
     Copyright © JS Foundation and other contributors
 
-  - `postcss`, a tool for transforming styles with JS plugins (8.4.4).
+  - `postcss`, a tool for transforming styles with JS plugins (8.4.31).
 
     Homepage: https://github.com/postcss/postcss
 
     Copyright 2013 Andrey Sitnik &lt;andrey@sitnik.ru&gt;
 
-  - `postcss-loader`, PostCSS loader for webpack (6.2.1).
+  - `postcss-loader`, PostCSS loader for webpack (7.3.3).
 
     Homepage: https://github.com/postcss/postcss-loader
 
@@ -172,31 +215,13 @@ like `import/require()` and will resolve them (6.5.1).
 
     Copyright © 2014 Maxime Thirouin
 
-  - `preact`, fast 3kb React alternative with the same ES6 API (8.5.3).
+  - `preact`, fast 3kb React alternative with the same ES6 API (10.7.3).
 
     Homepage: https://github.com/developit/preact
 
     Copyright © 2015-present Jason Miller
 
-  - `preact-compat`, React compatibility layer for Preact (3.19.0).
-
-    Homepage: https://github.com/preactjs/preact-compat
-
-    Copyright © 2016 Jason Miller
-
-  - `preact-portal`, render Preact components into SPACE (1.1.3).
-
-    Homepage: https://github.com/developit/preact-portal
-
-    Copyright © 2015 Jason Miller
-
-  - `preact-portal`, render Preact components into SPACE (1.1.3).
-
-    Homepage: https://github.com/developit/preact-portal
-
-    Copyright © 2015 Jason Miller
-
-  - `react-dev-utils`, utilities used by Create React App (12.0.0-next.58).
+  - `react-dev-utils`, utilities used by Create React App (12.0.1).
 
     Homepage: https://github.com/facebook/create-react-app
 
@@ -214,13 +239,13 @@ like `import/require()` and will resolve them (6.5.1).
 
     Copyright © JS Foundation and other contributors
 
-  - `webpack`, a bundler for javascript and friends (5.65.0).
+  - `webpack`, a bundler for javascript and friends (5.88.2).
 
     Homepage: https://github.com/webpack/webpack
 
     Copyright © JS Foundation and other contributors
 
-  - `webpack-cli`, provides the interface of options webpack uses in its configuration file (4.9.1).
+  - `webpack-cli`, provides the interface of options webpack uses in its configuration file (4.10.0).
 
     Homepage: https://github.com/webpack/webpack-cli
 
