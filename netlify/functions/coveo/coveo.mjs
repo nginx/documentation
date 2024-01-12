@@ -32,7 +32,7 @@ export default async (req) => {
 
     // Coveo details
     const coveo_var_name = 'COVEO_SEARCH_TOKEN' // name of env variable to update in each site
-    const coveo_org_id = "f5networkx1h1607h"
+    const coveo_org_id = "f5networksproduction5vkhn00h"
     const coveo_search_hub = "HUB_ES_Nginx_Docs_And_Org"
     let coveoKey
     for (const [site_name, site_id] of Object.entries(site_ids)) {
@@ -111,6 +111,7 @@ export default async (req) => {
             }
         }
 
+        console.log("Updating the Coveo search token")
         try { // Update site's search token env var
             const response = await axios.put(
                 _request_update_env_var.uri,
