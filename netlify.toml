@@ -25,4 +25,4 @@
   status = 404
 
 [functions."coveo"]
-  schedule = "@daily"
+  schedule = "@hourly"
