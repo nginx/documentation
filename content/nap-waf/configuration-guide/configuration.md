@@ -57,7 +57,7 @@ The following security features are supported in NGINX App Protect WAF. We show 
 |Threat Campaigns | These are patterns that detect all the known attack campaigns. They are very accurate and have almost no false positives, but are very specific and do not detect malicious traffic that is not part of those campaigns. The default policy enables threat campaigns but it is possible to disable it through the respective violation. | 
 |HTTP Compliance | All HTTP protocol compliance checks are enabled by default except for GET with body and POST without body. It is possible to enable any of these two. Some of the checks enabled by default can be disabled, but others, such as bad HTTP version and null in request are performed by the NGINX parser and NGINX App Protect WAF only reports them. These checks cannot be disabled. | 
 |Evasion Techniques | All evasion techniques are enabled by default and each can be disabled. These include directory traversal, bad escaped character and more. | 
-|Data Guard | Detects and masks credit card and/or US social security numbers and/or custom patterns in responses. Disabled by default but can be enabled. | 
+|Data Guard | Detects and masks Credit Card Number (CCN) and/or U.S. Social Security Number (SSN) and/or custom patterns in HTTP responses. Disabled by default but can be enabled. |
 |Parameter parsing | Support only auto-detect parameter value type and acts according to the result: plain alphanumeric string, XML or JSON. | 
 |Disallowed meta characters | Detected in parameter names, parameter values, URLs, headers and in JSON and XML content. Metacharacters indicate suspicious traffic, but not necessarily an actual threat. It is the combination of meta characters, attack signatures and other violations that indicates an actual threat that should be blocked and this is determined by Violation Rating. See section below. | 
 |Disallowed file type extension | Support any file type. Default includes a predefined list of file types.  See Disallowed File Types list below. | 
@@ -241,7 +241,7 @@ In addition the Strict Policy also **blocks** the following:
 {{< note >}} Other violations, specifically attack signatures and metacharacters, which are more prone to false positives, still have only Alarm turned on, without blocking, contributing to the Violation Rating as in the Default policy.{{< /note >}}
 
 In addition, the Strict policy also enables the following features in **alarm only** mode:
-- **Data Guard**: masking Credit Card, US Social Security numbers and custom patterns found in HTTP responses.
+- **Data Guard**: masking Credit Card Number (CCN), US Social Security Number (SSN) and custom patterns found in HTTP responses.
 - **HTTP response data leakage signatures**: preventing exfiltration of sensitive information from the servers.
 - **More restrictive limitations**: mainly sizing and parsing of JSON and XML payloads.
 - **Cookie attribute insertion**: the Strict policy adds the **Secure** and **SameSite=lax** attributes to every cookie set by the application server. These attributes are enforced by the browsers and protect against session hijacking and CSRF attacks respectively.
@@ -1136,7 +1136,7 @@ In this example we disable both alarm and blocking.
 
 #### Data Guard - Blocking
 
-Data Guard is a security feature that can be used to prevent the leakage of sensitive information from an application. This could be credit card numbers or Social Security numbers or a custom pattern (CCN, SSN, etc.). Once this feature is enabled, sensitive data is either blocked or masked, depending on the configuration.
+Data Guard is a security feature that can be used to prevent the leakage of sensitive information from an application. This could be credit card numbers (CCN) or Social Security numbers (SSN) or custom patterns. Once this feature is enabled, sensitive data is either blocked or masked, depending on the configuration.
 
 In this example, we enable the data guard violation in blocking mode. In the detailed configuration, we enable enforcement of data guard and specify which items are being protected against information leakage. Note that if blocking is enabled, data masking will have no effect in this case.
 
@@ -1202,12 +1202,12 @@ In this example, we enable data guard in alarm mode. In the detailed configurati
 }
 ~~~
 
-Another example shows masking custom pattern
+Here is an example showing partial masking on custom patterns. Custom patterns are specified in `customPatternsList`, number of unmasked leading and trailing characters are defined in `firstCustomCharactersToExpose` and `lastCustomCharactersToExpose` parameters.
 
 ~~~json
 {
     "policy": {
-        "name": "nginx_default_policy",
+        "name": "custom_pattern_mask_policy",
         "template": { "name": "POLICY_TEMPLATE_NGINX_BASE" },
         "applicationLanguage": "utf-8",
         "enforcementMode": "blocking",
@@ -1231,7 +1231,8 @@ Another example shows masking custom pattern
             "firstCustomCharactersToExpose": 2,
             "lastCustomCharactersToExpose": 4,
             "customPatternsList": [
-               "....-....-....-...."
+               "....-....-....-....",
+               "siteTk_[0-9]+"
             ]
         }
     }
