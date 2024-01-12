@@ -111,6 +111,7 @@ export default async (req) => {
             }
         }
 
+        console.log("Updating the Coveo search token")
         try { // Update site's search token env var
             const response = await axios.put(
                 _request_update_env_var.uri,
