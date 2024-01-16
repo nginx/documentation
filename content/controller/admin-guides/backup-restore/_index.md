@@ -7,5 +7,6 @@ menu:
     weight: 50
 title: Back Up & Restore
 weight: 300
+layout: "ctlr-eos-list"
 url: /nginx-controller/admin-guides/backup-restore/
 ---

@@ -7,4 +7,5 @@ menu:
 title: Events
 weight: 140
 url: /nginx-controller/analytics/events/
+layout: "ctlr-eos-list"
 ---

@@ -6,4 +6,5 @@ menu:
 title: API Management
 weight: 155
 url: /nginx-controller/api-management/
+layout: "ctlr-eos-list"
 ---
