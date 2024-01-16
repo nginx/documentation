@@ -7,4 +7,5 @@ menu:
 title: Data Forwarders
 weight: 130
 url: /nginx-controller/analytics/forwarders/
+layout: "ctlr-eos-list"
 ---

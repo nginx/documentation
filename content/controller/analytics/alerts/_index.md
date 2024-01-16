@@ -7,4 +7,5 @@ menu:
 title: Alerts
 weight: 100
 url: /nginx-controller/analytics/alerts/
+layout: "ctlr-eos-list"
 ---

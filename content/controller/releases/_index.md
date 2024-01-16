@@ -6,6 +6,7 @@ menu:
 title: Releases
 weight: 1000
 url: /nginx-controller/releases/
+layout: "ctlr-eos-list"
 ---
 
 To learn more about the different NGINX Controller offerings, see the following product pages:
