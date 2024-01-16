@@ -3,7 +3,7 @@ The Security Monitoring module requires the following versions of [NGINX App Pro
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Security Monitoring | NGINX App Protect WAF  |
 |---------------------|------------------------|
-| 1.7.0               | Release 4.4.0 - 4.6.0  |
+| 1.7.0               | Release 4.4.0 - 4.7.0  |
 | 1.6.0               | Release 4.3.0 - 4.4.0  |
 | 1.5.0               | Release 4.3.0          |
 | 1.4.0               | Release 4.2.0          |
