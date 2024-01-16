@@ -6,4 +6,5 @@ menu:
 title: Infrastructure
 weight: 130
 url: /nginx-controller/infrastructure/
+layout: "ctlr-eos-list"
 ---

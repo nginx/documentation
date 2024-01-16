@@ -101,6 +101,8 @@ The following sizing recommendations are the minimum sizing guidelines for Insta
 
 ## API Connectivity Manager {#acm-tech-specs}
 
+{{< include "nms/EOS/acm-eos.md" >}}
+
 ### Dependencies with Instance Manager
 
 {{< include "tech-specs/acm-nim-dependencies.md" >}}
@@ -118,6 +120,8 @@ The following sizing recommendations are the minimum sizing guidelines for Insta
 ---
 
 ## App Delivery Manager
+
+{{< include "nms/EOS/adm-eos.md" >}}
 
 {{< beta-badge >}}
 

@@ -73,6 +73,8 @@ To uninstall NGINX Management suite and all of its modules, complete the followi
 
 ## API Connectivity Manager {#uninstall-acm}
 
+{{< include "nms/EOS/acm-eos.md" >}}
+
 {{<tabs name="uninstall_acm">}}
 {{%tab name="CentOS, RHEL, and RPM-Based"%}}
 
@@ -111,6 +113,8 @@ To uninstall NGINX Management suite and all of its modules, complete the followi
 ---
 
 ## App Delivery Manager {#uninstall-app-delivery-manager}
+
+{{< include "nms/EOS/adm-eos.md" >}}
 
 {{< beta-badge >}}
 

@@ -10,4 +10,5 @@ menu:
 title: Catalogs Reference
 weight: 210
 url: /nginx-controller/analytics/catalogs/
+layout: "ctlr-eos-list"
 ---
