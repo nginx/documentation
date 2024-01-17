@@ -4998,7 +4998,7 @@ Here is an example of a declarative policy using an override rules entity:
       {
         "name": "login_page",
         "condition": "method == 'POST' and not parameters['ref'].lower().matches('example') and uri.contains('/login/')",
-        "extendsPolicy": false,
+        "actionType": “replace-policy”,
         "override": {
           "policy": {
             "name": "login_page_block_redirect",
@@ -5025,7 +5025,7 @@ Here is an example of a declarative policy using an override rules entity:
       {
         "name": "api-strict",
         "condition": "uri.contains('api4') and not (clientIp.matches('fd00:1::/48') or userAgent.lower().startsWith('Mozilla'))",
-        "extendsPolicy": false,
+        "actionType": “replace-policy”,
         "override": {
           "$ref": "file:///NginxStrictPolicy.json"
         }
@@ -5033,17 +5033,30 @@ Here is an example of a declarative policy using an override rules entity:
       {
         "name": "strict-post",
         "condition": "method.matches('POST') and (cookies['sessionToken'] != 'c2Vzc2lvblRva2Vu' or headers['Content-Encoding'] == 'gzip')",
-        "extendsPolicy": false,
+        "actionType": “replace-policy”,
         "override": {
           "$ref": "file:///NginxStrictPolicy.json"
         }
-      }
+      },
+        "name": "usa-only",
+        "condition": "geolocation != ‘US’",
+                "actionType": "violation",
+                "violation": {
+                    "block": true,
+                    "alarm": true,
+                    "attackType": {
+                           "name": "Forceful Browsing"
+                       },
+                    "description": "Attempt to access from outside the USA",
+                    "rating": 4
+                }
+        }        
     ]
   }
 }
 ```
 
-The above "override_rules_example" policy contains four override rules:
+The above "override_rules_example" policy contains five override rules:
 
 1. The **"localhost-log-only"** rule applies to the requests with a user agent header starting with "curl", a host header containing "localhost", and a client IP address set to 127.0.0.1. It switches the enforcement mode to "transparent" without blocking the request. The remaining policy settings remain unchanged. This type of override rule is an example of an **Inline Policy Reference**.
 2. The **"login_page"** rule is triggered by POST requests to URIs containing "/login/". Since the "extendsPolicy" field is set to false, it overrides the policy with a new one named "login_page_block_redirect". This new policy is independent of the "override_rules_example" policy. It enables all signature sets and redirects the user to a rejection page. This is another example of an **Inline Policy Reference** with a different condition.
