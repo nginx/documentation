@@ -5059,16 +5059,17 @@ Here is an example of a declarative policy using an override rules entity:
 The above "override_rules_example" policy contains five override rules:
 
 1. The **"localhost-log-only"** rule applies to the requests with a user agent header starting with "curl", a host header containing "localhost", and a client IP address set to 127.0.0.1. It switches the enforcement mode to "transparent" without blocking the request. The remaining policy settings remain unchanged. This type of override rule is an example of an **Inline Policy Reference**.
-2. The **"login_page"** rule is triggered by POST requests to URIs containing "/login/". Since the "extendsPolicy" field is set to false, it overrides the policy with a new one named "login_page_block_redirect". This new policy is independent of the "override_rules_example" policy. It enables all signature sets and redirects the user to a rejection page. This is another example of an **Inline Policy Reference** with a different condition.
-3. The **"api-strict"** rule is applied for requests with "api4" in the URI, except for client IP addresses matching the "fd00:1::/48" range and user agents starting with "Mozilla". It references an external policy file named "NginxStrictPolicy.json" located at "/etc/app_protect/conf/" to override the current policy. The extendsPolicy is set to false and the external policy can be specified using a reference to its file using **$ref**. The file is the JSON policy source of that policy. This type of policy switching is known as **External Policy Reference**.
+2. The **"login_page"** rule is triggered by POST requests to URIs containing "/login/". Since the “actionType” field is set to “replace-policy”, it overrides the policy with a new one named "login_page_block_redirect". This new policy is independent of the "override_rules_example" policy. It enables all signature sets and redirects the user to a rejection page. This is another example of an **Inline Policy Reference** with a different condition.
+3. The **"api-strict"** rule is applied for requests with "api4" in the URI, except for client IP addresses matching the "fd00:1::/48" range and user agents starting with "Mozilla". It references an external policy file named "NginxStrictPolicy.json" located at "/etc/app_protect/conf/" to override the current policy. The “actionType” field is set to “replace-policy” and the external policy can be specified using a reference to its file using **$ref**. The file is the JSON policy source of that policy. This type of policy switching is known as **External Policy Reference**.
 4. The **"strict-post"** rule is triggered when POST requests include a session token in the cookies that is not equal to "c2Vzc2lvblRva2Vu" or when the "gzip" value is found in the content-encoding headers. This rule follows a similar approach to referencing an external policy file, just like the **api-strict** rule mentioned above.
+5. The **“usa-only”** rule is triggered when a request coming from a country other than the USA. The actionType is set to “violation”, meaning that `VIOL_RULE` violation is triggered for such a request. This violation is will block and mark the request as illegal with regard to the “block” and “alarm” attributes. There is no change in policy for this rule.
 
-These four rules demonstrate how the override rules feature allows for customization and the ability to modify specific aspects of the original policy based on predefined conditions.
+These five rules demonstrate how the override rules feature allows for customization and the ability to modify specific aspects of the original policy based on predefined conditions.
 
 
 {{< note >}}
-- By default, the extendsPolicy field is configured to true.
-- External references are supported regardless of whether the extendsPolicy field is set to true or false.
+- By default, the actionType field is configured to “extend-policy”.
+- External references are supported for any policy reference.
 {{< /note >}}
 
 ### Condition Syntax Usage
@@ -5092,7 +5093,7 @@ For example:
       {
         "name": "this_rule_will_match",
         "condition": "uri.contains('api')",
-        "extendsPolicy": false,
+        "actionType": “replace-policy”,
         "override": {
           "$ref": "file:///NginxStrictPolicy.json"
         }
@@ -5100,7 +5101,7 @@ For example:
       {
         "name": "non_matching_rule",
         "condition": "uri.contains('api') and not clientIp == '192.168.0.10'",
-        "extendsPolicy": true,
+        "actionType": “extend-policy”,
         "override": {
           "policy": {
             "enforcementMode": "transparent"
@@ -5124,7 +5125,7 @@ Here are some key points to remember regarding the Override Rules feature:
 
 ### Override Rules Logging & Reporting
 
-If a request matches an override rule, the `json_log` field will include a new block named 'overrideRule'. However, if no rules match the request, the log will not contain any related information. When the 'extendsPolicy' flag is set to false, the 'originalPolicyName' field in the log will reflect the name of the original policy name (the one that contains override rules), and the `policy_name` field will reflect the policy that was enforced.
+If a request matches an override rule, the `json_log` field will include a new block named 'overrideRule'. However, if no rules match the request, the log will not contain any related information. When the ’actionType’ flag is set to “replace-policy”, the 'originalPolicyName' field in the log will reflect the name of the original policy name (the one that contains override rules), and the `policy_name` field will reflect the policy that was enforced.
 
 For example, if the matching override rule is called "login_page":
 
@@ -5146,11 +5147,38 @@ json_log will have:
  
 ```
 
+If the matching override rule is called “usa-only”:
+
+```shell
+{
+     "enforcementState":{
+          "isBlocked":true,
+          "isAlarmed":true,
+          "rating":4,
+          "attackType":[
+               {
+                    "name":"ATTACK_TYPE_FORCEFUL_BROWSING"
+               }
+          ]
+     },
+     "violation":{
+          "name":"VIOL_RULE"
+     },
+     "policyEntity":{
+          "override-rule":{
+          "name":"usa-only"
+          }
+     },
+     "description":"Trying to access special""
+},
+
+```
+
 ### Errors and Warnings
 
 #### Missing Policy Name
 
-Every policy must have a name, including a policy used for overriding in case extendsPolicy is false. If the policy 'name' is not provided in the override section, an error message will be displayed indicating the missing policy 'name' within that specific override rule. For instance, in the override rule below, the policy name is not specified.
+Every policy must have a name, if actionType is either “extend-policy” or “replace-policy”. If the policy 'name' is not provided in the override section, an error message will be displayed indicating the missing policy 'name' within that specific override rule. For instance, in the override rule below, the policy name is not specified.
 
 
 Example of Missing policy 'name':
@@ -5160,7 +5188,7 @@ Example of Missing policy 'name':
     {
         "name": "example-rule",
         "condition": "uri.contains('127')",
-        "extendsPolicy": false,
+        "actionType": “replace-policy”,
         "override": {
             "policy": {
                 "name": "policy_name",  <--- the missing part
@@ -5658,6 +5686,7 @@ The following violations are supported and can be enabled by turning on the **al
 |VIOL_RATING_NEED_EXAMINATION | Request needs further examination | Disabled | The combination of violations could not determine whether the request is a threat or violations are false positives thus requiring more examination. | For VR = 3 | 
 |VIOL_REQUEST_LENGTH | Illegal request length | Alarm | The system checks that the request length does not exceed the  acceptable length specified in the security policy per the requested file type. | In * file type entity. This check is disabled by default. | 
 |VIOL_REQUEST_MAX_LENGTH | Request length exceeds defined buffer size | Alarm & Block| The system checks that the request length is not larger than the maximum memory buffer size. Note that this protects NGINX App Protect WAF from consuming too much memory across all security policies which are active on the device. | Default is 10MB | 
+|VIOL_RULE | Actionable override rule was triggered. | Disabled |A policy override rule with an action was triggered.| |
 |VIOL_THREAT_CAMPAIGN | Threat Campaign detected | Alarm & Block | The system examines the HTTP message for known threat campaigns by matching it against known attack patterns. |  | 
 |VIOL_URL | Illegal URL | Alarm | The system checks that the requested URL is configured as a valid URL, or not configured as an invalid URL, within the security policy. |  | 
 |VIOL_URL_CONTENT_TYPE | Illegal request content type | Alarm | The URL in the security policy has a `Header-Based Content Profiles` setting that disallows the request because the specified HTTP header or the default is set to `disallow`. |  | 
