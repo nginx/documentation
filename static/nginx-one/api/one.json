@@ -576,7 +576,7 @@
           {
             "name": "names",
             "in": "query",
-            "description": "Use this parameter to select specific metrics for your query, tailoring it to your needs. Here's how you can customize it:\n* Query on multiple metrics: Provide multiple metric names as a comma-separated list.\n* Apply aggregate functions: You can apply an aggregate function (`AVG`, `SUM`, `COUNT`, `MAX`, `MIN`, or `RATE`) to each metric to summarize or analyze data points.\n* Combining non-aggregated and aggregated metrics: If your query combines non-aggregated and aggregated metrics, any `group_by` clause will apply only to the aggregated metrics.\n* Time requirement for aggregated metrics: Metrics with aggregates require specifying a `start_time` to define the analysis period.\n",
+            "description": "Specify the metrics you want information on.\n\nUsage: \n* List the names of metrics you want, separated by commas.\n* When using aggregate functions like `avg()`, `sum()`, `count()`, `min()`, `max()`, or `rate()` on metrics, you must also set a `start_time`.\n* If your query includes both aggregated and non-aggregated metrics, the `group_by` setting will apply only to the aggregated metrics.\n* Aggregated metrics require a `start_time`.\n",
             "required": true,
             "schema": {
               "type": "string",
@@ -586,7 +586,7 @@
           {
             "name": "group_by",
             "in": "query",
-            "description": "Use this parameter to group your query results by specified dimension(s).\n\n- Provide multiple dimension names as a comma-separated list.\n- For grouping to work, all metrics in the `names` parameter must be aggregated.\n",
+            "description": "Group your query results by the specified dimension(s).\n\nUsage:\n* Provide multiple dimensions as a comma-separated list.\n* All metrics in the `names` parameter must be aggregated.\n",
             "schema": {
               "type": "string",
               "example": "server_zone,instance_group"
@@ -595,7 +595,7 @@
           {
             "name": "series_limit",
             "in": "query",
-            "description": "This parameter limits the number of series returned in the response. \n\nKey points to note:\n* Always returns an additional series called `all`, which aggregates values from all the metrics in the results.\n* If `all` doesn't include every stored dimension, you'll also get a series named `other`. This includes aggregated values from any metrics not included in `all`.\n* Use this parameter together with `order_series_by`.\n* You need to use exactly one `group_by` parameter in the query.\n* This parameter cannot be used with the `dimensions` parameter.\n",
+            "description": "Limits the number of series returned in the response. \n\nUsage:\n* Use this parameter in conjunction with `order_series_by` for sorting.\n* You muse use exactly one `group_by` parameter in your query.\n* This parameter is incompatible with the `dimensions` parameter.\n\nNotes:\n* Always returns an additional series called `all`, which aggregates values from all the metrics in the results.\n* If `all` doesn't encompass every stored dimension, a series named `other` will be included, providing aggregated values for metrics not included in `all`.\n",
             "schema": {
               "type": "integer",
               "example": 25
@@ -604,7 +604,7 @@
           {
             "name": "order_series_by",
             "in": "query",
-            "description": "Sorts your query results in a specific order. If you don't set an order, it defaults to `SUM DESC`.\n\nImportant: Use this only with the `series_limit` parameter.\n",
+            "description": "Sets the sort order of the metric series in your results. The default is descending order by total sum (`SUM DESC`) if no sort order is specified.\n\nUsage:\n\n* Use with `series_limit` to apply the sort order to a specific number of series.\n",
             "schema": {
               "type": "string",
               "example": "MAX DESC"
@@ -613,7 +613,7 @@
           {
             "name": "dimensions",
             "in": "query",
-            "description": "Choose dimensions for each metric series in the response:\n* Only dimensions you list here will show in the results.\n* Not listing a dimension means it won't appear, which might result in series with the same dimensions showing as separate.\n* If you use the `aggregation` and `group_by` parameters with a metric, any dimension in the `dimensions` parameter must also be included in `group_by`.\n* Dimensions in `group_by` don't need to be in `dimensions`, unless you want them in the results.\n\nConsiderations:\n* To get a single series, provide the metric name with aggregation and leave the `dimensions` parameter empty.\n* This parameter can't be used with the `series_limit` parameter.\n* Note: You cannot use `Tenant` or `Namespace` as filterable dimensions in this parameter. These should be provided only as headers.\n",
+            "description": "Specify which dimensions to use for categorizing metric data.\n\nNote: To return a single series without categorization, provide the metric name and aggregation function, and leave the `dimensions` parameter blank.\n\nUsage:\n\n* List the dimensions you want to include as a comma-separated list.\n* If you do not include a dimension, it will not appear in the results.\n* When you use the `aggregation and `group_by` parameters, any dimension specified here for `dimensions` must be also specified in `group_by`.\n* You do not need to list dimensions in `dimensions` if you are already including them in `group_by`, unless you want to display them in the results.\n* To return a single series without categorization, provide the metric name and aggregation function, and leave this `dimensions` parameter blank.\n* This parameter is incompatible with the `series_limit` parameter.\n* `Tenant` and `Namespace` are not valid dimensions for this parameter; include these as headers instead.\n",
             "schema": {
               "type": "string",
               "example": "server_zone,instance_group"

@@ -10,7 +10,7 @@ description: ""
 # Assign weights in increments of 100
 weight: 
 doctypes: ["reference"]
-toc: true
+toc: false
 tags: [ "api" ]
 menu: api
 layout: api
