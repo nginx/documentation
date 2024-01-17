@@ -3,7 +3,7 @@ title: NGINX One
 description: NGINX One does all the things
 url: /nginx-one/
 cascade:
-  logo: "NGINX-One-product-icon-ph.svg"
+  logo: "NGINX-product-icon.svg"
 ---
 
 
