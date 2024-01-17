@@ -5262,9 +5262,19 @@ The JSON Web Token consists of three parts: the **Header**, **Claims** and **Sig
 
 #### NGINX App Protect WAF supports the following types of JWT:
 
-JSON Web Signature (JWS) - JWT content is digitally signed. The following algorithm can be used for signing:
+JSON Web Signature (JWS) - JWT content is digitally signed. The following algorithms are supported and can be used for signing:
 
-- RSA/SHA-256 (RS256 for short)
+- ES256 - ECDSA signature algorithm using SHA-256 hash algorithm
+- ES256K - ECDSA signature algorithm with secp256k1 curve using SHA-256 hash algorithm
+- ES384 - ECDSA signature algorithm using SHA-384 hash algorithm
+- ES512 - ECDSA signature algorithm using SHA-512 hash algorithm
+- RS256 - RSASSA-PKCS1-v1_5 signature algorithm using SHA-256 hash algorithm
+- RS384 - RSASSA-PKCS1-v1_5 signature algorithm using SHA-384 hash algorithm
+- RS512 - RSASSA-PKCS1-v1_5 signature algorithm using SHA-512 hash algorithm
+- PS256 - RSASSA-PSS signature using SHA-256 and MGF1 padding with SHA-256
+- PS384 - RSASSA-PSS signature using SHA-384 and MGF1 padding with SHA-384
+- PS512 - RSASSA-PSS signature using SHA-512 and MGF1 padding with SHA-512
+- EdDSA - Both Ed25519 signatures using SHA-512 and Ed448 signatures using SHA-3 are supported. Ed25519 and Ed448 provide 128-bit and 224-bit security respectively
 
 Here is an example of a Header: describes a JWT signed with HMAC 256 encryption algorithm:
 
@@ -5293,6 +5303,8 @@ Access Profile example:
 
 Refer to the following example where all access profile properties are configured to enforce specific settings within the App Protect policy. In this instance, we have established an access profile named "**access_profile_jwt**" located in the **authorization header**. The "maximumLength" for the token is defined as **2000**, and "verifyDigitalSignature" is set to **true**.
 
+JWKs file, this file is responsible for the most important enforcement in a JWT (signature validation).
+
 ```shell
 {
     "policy": {
@@ -5307,7 +5319,7 @@ Refer to the following example where all access profile properties are configure
             "keyFiles": [
                {
                   "contents": "{\r\n  \"keys\": [\r\n    {\r\n      \"alg\": \"RS256\",\r\n      \"e\": \"AQAB\",\r\n      \"kid\": \"1234\",\r\n      \"kty\": \"RSA\",\r\n      \"n\": \"tSbi8WYTScbuM4fe5qe4l60A2SG5oo3u5JDBtH_dPJTeQICRkrgLD6oyyHJc9BCe9abX4FEq_Qd1SYHBdl838g48FWblISBpn9--B4D9O5TPh90zAYP65VnViKun__XHGrfGT65S9HFykvo2KxhtxOFAFw0rE6s5nnKPwhYbV7omVS71KeT3B_u7wHsfyBXujr_cxzFYmyg165Yx9Z5vI1D-pg4EJLXIo5qZDxr82jlIB6EdLCL2s5vtmDhHzwQSdSOMWEp706UgjPl_NFMideiPXsEzdcx2y1cS97gyElhmWcODl4q3RgcGTlWIPFhrnobhoRtiCZzvlphu8Nqn6Q\",\r\n      \"use\": \"sig\",\r\n      \"x5c\": [\r\n        \"MIID1zCCAr+gAwIBAgIJAJ/bOlwBpErqMA0GCSqGSIb3DQEBCwUAMIGAMQswCQYDVQQGEwJpbDEPMA0GA1UECAwGaXNyYWVsMRAwDgYDVQQHDAd0ZWxhdml2MRMwEQYDVQQKDApmNW5ldHdvcmtzMQwwCgYDVQQLDANkZXYxDDAKBgNVBAMMA21heDEdMBsGCSqGSIb3DQEJARYOaG93ZHlAbWF0ZS5jb20wIBcNMjIxMTA3MTM0ODQzWhgPMjA1MDAzMjUxMzQ4NDNaMIGAMQswCQYDVQQGEwJpbDEPMA0GA1UECAwGaXNyYWVsMRAwDgYDVQQHDAd0ZWxhdml2MRMwEQYDVQQKDApmNW5ldHdvcmtzMQwwCgYDVQQLDANkZXYxDDAKBgNVBAMMA21heDEdMBsGCSqGSIb3DQEJARYOaG93ZHlAbWF0ZS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC1JuLxZhNJxu4zh97mp7iXrQDZIbmije7kkMG0f908lN5AgJGSuAsPqjLIclz0EJ71ptfgUSr9B3VJgcF2XzfyDjwVZuUhIGmf374HgP07lM+H3TMBg/rlWdWIq6f/9ccat8ZPrlL0cXKS+jYrGG3E4UAXDSsTqzmeco/CFhtXuiZVLvUp5PcH+7vAex/IFe6Ov9zHMVibKDXrljH1nm8jUP6mDgQktcijmpkPGvzaOUgHoR0sIvazm+2YOEfPBBJ1I4xYSnvTpSCM+X80UyJ16I9ewTN1zHbLVxL3uDISWGZZw4OXirdGBwZOVYg8WGuehuGhG2IJnO+WmG7w2qfpAgMBAAGjUDBOMB0GA1UdDgQWBBSHykVOY3Q1bWmwFmJbzBkQdyGtkTAfBgNVHSMEGDAWgBSHykVOY3Q1bWmwFmJbzBkQdyGtkTAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQCgcgp72Xw6qzbGLHyNMaCm9A6smtquKTdFCXLWVSOBix6WAJGPv1iKOvvMNF8ZV2RU44vS4Qa+o1ViBN8DXuddmRbShtvxcJzRKy1I73szZBMlZL6euRB1KN4m8tBtDj+rfKtPpheMtwIPbiukRjJrzRzSz3LXAAlxEIEgYSifKpL/okYZYRY6JF5PwSR0cvrfe/qa/G2iYF6Ps7knxy424RK6gpMbnhxb2gdhLPqDE50uxkr6dVHXbc85AuwAi983tOMhTyzDh3XTBEt2hr26F7jSeniC7TTIxmMgDdtYzRMwdb1XbubdtzUPnB/SW7jemK9I45kpKlUBDZD/QwER\"\r\n      ]\r\n    }\r\n  ]\r\n}",  # there can be more than one key file in the policy JSON schema, but we support only one for now.
-                  "fileName": "JWKFile.json"
+                  "fileName": "JWKSFile.json" # this file is responsible for the most important enforcement in a JWT (signature validation).
                }
             ],
             "location": {
@@ -5350,7 +5362,7 @@ Refer to the following example where all access profile properties are configure
 
 ### Access Profile in URL Settings
 
-The next step to configure JWT is to define the URL settings. Add the access Profile name that you defined previously under the access profiles in the "name" field. From the previous example, we associate the access profile "**access_profile_jwt**" with the "name": **/jwt** in the URLs section to become effective, which means URLs with /jwt name are permitted for this feature and will be used for all JWT API requests.
+The next step to configure JWT is to define the URL settings. Add the access profile name that you defined previously under the access profiles in the "name" field. From the previous example, we associate the access profile "**access_profile_jwt**" with the "name": **/jwt** in the URLs section to become effective, which means URLs with /jwt name are permitted for this feature and will be used for all JWT API requests.
 
 Please note that the access profile cannot be deleted if it is in use in any URL.
 
