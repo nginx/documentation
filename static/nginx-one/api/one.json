@@ -639,7 +639,7 @@
           {
             "name": "filter",
             "in": "query",
-            "description": "`filter` helps you pick only the results you need by using key value pairs, formatted as `<key><operator><value>`.\n\nCreate a filter with:\n* `<key>`: This is the dimension you want to filter on (like `count`).\n* `<operator>`: Choose from `=`, `!=`, `<`, `<=`, `>`, `>=`, `in`, `not`.\n* `<value>`: The specific value you're looking for in the dimension.\n* Both `<key> and <value>` are case sensitive.\n\nExample: `count > 100`\n\nCombine multiple filters using `AND`, `OR`, and parentheses `( )`. Use a wildcard `*` for partial matches. \nAlways put filters in single quotes for proper processing.\n\nSee the Dimensions Catalog to learn more about dimensions.\n\nNote: You can't filter by `Tenant` or `Namespace`. These can be provided only as headers.\n",
+            "description": "Use the `filter` parameter to narrow down your results by specifying what to include or exclude.\n\nUsage:\n* Format your filter as `<key><operator><value>`.\n  * `<key>`: This is the dimension you want to filter on, such as `count`.\n  * `<operator>`: Can be `=`, `!=`, `<`, `<=`, `>`, `>=`, `in`, `not`.\n  * `<value>`: The value you're looking for in the dimension.\n  * Both `<key>` and `<value>` are case sensitive.\n* `Tenant` and `Namespace` are not valid filters for this parameter; include these as headers instead.\n\nFor more complex filtering:\n\n* Combine multiple filters using `AND`, `OR`, and parentheses `( )`. \n* Use a wildcard `*` for partial matches. \n* Enclose each filter in single quotes `' '`.\n",
             "schema": {
               "type": "string",
               "example": "((server_zone!='server_zone_1' OR server_zone='server_zone_2') AND nginx_id in ('id1', 'id2')) AND (system.tags!='*tag1*')"
@@ -648,7 +648,7 @@
           {
             "name": "resolution",
             "in": "query",
-            "description": "`resolution` sets how detailed time series data you get will be. It's only for endpoints that return time series data.\n\nIt must be a valid duration. Format as a string starting with a number followed by a unit of time, such as `y` (years), `M` (months), `w` (weeks), `d` (days), `h` (hours), `m` (minutes) or `s` (seconds).\n\nWhen using the Metrics API:\n  * Combine `resolution` with an aggregate function (or functions) in the `names` parameter, and set a `start_time`.\n  * If you don't specify `resolution,` the API uses the broadest resolution based on the time between `start_time` and `end_time.`\n",
+            "description": "Sets the granularity of the time series data in your results. This parameter applies only to endpoints that return time series data.\n\nUsage: \n* Specify as a string with a number followed by a unit of time, such as `y` (years), `M` (months), `w` (weeks), `d` (days), `h` (hours), `m` (minutes) or `s` (seconds).\n* Use `resolution` with aggregate functions in the `names` parameter and define `start_time` to get detailed data.\n* If you don't provide a `resolution,` the API selects the broadest resolution based on the range between `start_time` and `end_time.`\n",
             "schema": {
               "type": "string",
               "example": "30s"
