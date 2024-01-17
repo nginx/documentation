@@ -1,5 +1,5 @@
 ---
-title: "About"
+title: "About NGINX One"
 date: 2024-01-10T13:44:04-08:00
 # Change draft status to false to publish doc
 draft: false
@@ -33,23 +33,20 @@ h2 {
 }
 </style>
 
-NGINX One simplifies managing NGINX deployments across locations and environments. It provides a centralized platform for analyzing and managing configurations, identifying critical vulnerabilities, and monitoring the health of your NGINX instances. NGINX One's user-friendly design makes it easy to get the information you need quickly, contributing to the smooth operation of your applications and services.
+NGINX One helps users manage multiple NGINX deployments across multiple locations and environments. Traditionally, overseeing these deployments has been a time-consuming and demanding job. With NGINX One, you can monitor and manage your NGINX fleet from an intuitive, centralized console. This console gives insights into the configuration and performance of your NGINX instances, highlights critical vulnerabilities, shows the status of SSL certificates, and more.
+
 
 ## Benefits and Key Features
 
 NGINX One delivers these key advantages:
 
-- **Centralized Management**: Monitor and manage all your NGINX deployments from a single console.
+- **All-in-One Control**: Monitor and manage all your NGINX deployments from one central console.
 
-- **User-Friendly Interface**: NGINX One's console provides clear, comprehensive information at a glance.
+- **Enhanced Monitoring and Risk Detection**: Automatically identify critical vulnerabilities (CVEs), check the status of SSL certificates, and identify security issues in NGINX configurations.
 
-- **Enhanced Monitoring and Risk Detection**: Automatically detect vulnerabilities, certificates nearing expiration, and insecure configurations.
+- **Optimized Performance**: Monitor your installed NGINX versions and get advice on how to optimize your NGINX configurations.
 
-- **Graphical Metrics Display**: View metrics for NGINX instances in a graphical format for easier analysis and understanding.
-
-- **Security Reporting**: Access CVSS-based security reports and configuration recommendations.
-
-- **Optimized Performance**: Monitor NGINX versions and get suggestions for improving the efficiency and security of your NGINX deployments.
+- **Graphical Metrics Display**: View the performance metrics of NGINX instances in a graphical format for straightforward analysis.
 
 - **Real-Time Alerts**: Receive immediate notifications about urgent issues.
 
