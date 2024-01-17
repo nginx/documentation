@@ -10,7 +10,7 @@ description: ""
 # Assign weights in increments of 100
 weight: 
 doctypes: ["reference"]
-toc: true
+toc: false
 tags: [ "api" ]
 menu: api
 layout: api
@@ -27,4 +27,4 @@ versions: ["<version>"]
 authors: []
 ---
 
-{{< openapi spec="/nginx-one/api/monitor/ext-openapi.yaml" >}}
+{{< openapi spec="/nginx-one/api/one.json" >}}
