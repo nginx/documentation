@@ -622,7 +622,7 @@
           {
             "name": "start_time",
             "in": "query",
-            "description": "Use `start_time` to set the start of the time period for your metrics query. It marks the earliest time from which metrics are included.\n\nImportant points:\n* You must use `start_time` if you're also specifying `end_time`.\n* If you don't set `start_time`, the API automatically gives you the most recent metrics.\n* For aggregated metrics (like averages or sums over time), `start_time` is required to calculate the resolution.\n",
+            "description": "Sets the beginning of the time period for your metrics query. This determines the earliest time from which the system will gather metrics.\n\nUsage:\n* The time format should be in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ).\n* Use `start_time` when you specify `end_time`.\n* If you leave `start_time` blank, the API will return the most recent metrics.\n* `start_time` is required for aggregated metrics to determine the level of detail, the `resolution`.\n",
             "schema": {
               "$ref": "#/components/schemas/Time"
             },
@@ -631,7 +631,7 @@
           {
             "name": "end_time",
             "in": "query",
-            "description": "`end_time` sets the end of the time period for your metrics query (non-inclusive).\n\nKeep in mind:\n* `end_time` must be a time after `start_time`.\n* If you set `start_time` but not `end_time`, the system assumes `end_time` is now (the current time).\n",
+            "description": "Sets the end point for the time period for your metrics query. The specified time is non-inclusive, meaning it's not included in the data returned.\n\nUsage:\n* `end_time` must later than `start_time`.\n* If only `start_time` is set, `end_time` defaults to the current time.\n",
             "schema": {
               "$ref": "#/components/schemas/Time"
             }
