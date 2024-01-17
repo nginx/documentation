@@ -5366,6 +5366,79 @@ The next step to configure JWT is to define the URL settings. Add the access pro
 
 Please note that the access profile cannot be deleted if it is in use in any URL.
 
+### Authorization Rules in Access Profile
+
+A new entity named as `authorization-rules` is introduced under the access profile. This entity encompasses an authorization condition essential for "Claims" validation, enabling access to a specific URL based on claims of a JWT.
+
+The `authorization-rules` entity consists of the following two mandatory fields:
+- `name`: a unique descriptive name for the condition predicate
+- `condition`: a boolean expression that defines the conditions for granting access to the URL
+
+Here is an example of declarative policy using an `authorization-rules` entity under the access profile:
+
+```json
+"urls": [
+{    
+    "name": "/api/v3/items/*",    
+    "accessProfile": {
+        "name: my_jwt"
+    },
+    "authorization-rules": # Contains a list of conditions referencing "claims[]" from the access token all of which must be satisfied.
+    {
+    "name": "auth_scope",
+    "condition": "claims['scope'].contains('pet:read') and claims['scope'].contains('pet:write')",
+    "name": "auth_role",
+    "condition": "claims['roles'].contains('admin') or claims['roles'].contains('inventory-manager')",
+    "name": "auth_email",
+    "condition": "claims['email'].endsWith('petshop.com')"
+    }
+  }
+]
+``` 
+
+#### Authorization-Rules Condition Syntax Usage
+
+The `authorization-rules` use a Boolean expression to articulate the conditions for granting access to the URL. The conditions use the same syntax as in [Policy Override Rules](#override-rules) with one additional attribute **"claims"**.
+
+#### Claims Attribute
+
+The newly introduced attribute "claims" is a mapping of JSON paths for claims from the JWT to their respective values. Only structure nesting is supported using the "." notation. 
+
+A few points to remember regarding JWT claims:
+- Please note that at the moment, accessing individual cells within JSON arrays isn't possible. Instead, the entire array gets serialized as a string, and its elements can be evaluated using string operators like "contains".
+- While it's technically feasible to consolidate all conditions into one with "and" between them, it's not recommended. Dividing them into multiple conditions enhances the readability and clarity of the policy, particularly when explaining the reasons for authorization failure.
+
+For the full reference of authorization-rules condition syntax and usage see the NGINX App Protect WAF [Declarative Policy guide]({{< relref "/nap-waf/declarative-policy/policy.md" >}}/#policy/override-rules).
+
+See below example for JWT claims:
+ 
+```json
+{
+    "scope": "top-level:read",
+    "roles": [
+        "inventory-manager",
+        "price-editor"
+    ],
+    "sub": "joe@doe.com"
+    "address": {
+        "country": "US",
+        "state": "NY",
+        "city": "New York",
+        "street": "888 38th W"
+    }      
+}
+```
+
+then the claims can be:
+
+```
+claims['scope'] = "top-level:read" 
+claims['roles'] = "[inventory-manager", "price-editor]" # the whole array is presented as a string
+claims['address.country'] = "US" 
+claims['company'] = null # does not exist 
+claims['address'] = "{ \"address\": { .... } }" # JSON structs can be accessed using the dot "." notation
+```
+
 ### Attack Signatures
 
 Attack signatures are detected within the JSON values of the token, i.e. the header and claims parts, but not on the digital signature part of the token. The detection of signatures, and specifically which signatures are recognized, depends on the configuration entity within the Policy. Typically, this configuration entity is the Authorization HTTP header or else, the header or parameter entity configured as the location of the token in the access profile.
@@ -5647,6 +5720,7 @@ The following violations are supported and can be enabled by turning on the **al
 |VIOL_ACCESS_INVALID| Access token does not comply with the profile requirements| Alarm | The system checks the access token in a request according to the access profile attached to the respective URL. The violation is raised when at least one of the enforced checks in the profile is not satisfied | This would trigger a Violation Rating of 5. |
 |VIOL_ACCESS_MISSING| Missing Access Token | Alarm | The system checks that the request contains the access token for the respective URL according to the Access Profile. The violation is raised when that token is not found.| This would trigger a Violation Rating of 5. |
 |VIOL_ACCESS_MALFORMED| Malformed Access Token | Alarm | The access token required for the URL in the request was malformed. | This would trigger a Violation Rating of 5. |
+|VIOL_ACCESS_UNAUTHORIZED| Unauthorized access attempt | Alarm | The system checks that the access token complies with the authorization conditions defined per the accessed URL. The violation is raised at least one condition is not met.| This would trigger a Violation Rating of 5 with weight 200 when computing the weighted average. |
 |VIOL_ASM_COOKIE_MODIFIED | Modified ASM cookie | Alarm & Block | The system checks that the request contains an ASM cookie that has not been modified or tampered with. Blocks modified requests. |  |
 |VIOL_ATTACK_SIGNATURE | Attack signature detected | N/A | The system examines the HTTP message for known attacks by matching it against known attack patterns. | Determined per signature set. <br>Note: This violation cannot be configured by the user. Rather, the violation is determined by the combination of the signature sets on the policy.| 
 |VIOL_BLACKLISTED_IP | IP is in the deny list | Alarm | The violation is issued when a request comes from an IP address that falls in the range of an IP address exception marked for "always blocking", that is, the deny list of IPs. | Would trigger Violation Rating of 5. | 
