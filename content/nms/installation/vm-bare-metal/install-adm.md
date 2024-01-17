@@ -22,6 +22,7 @@ journeys: ["researching", "getting started", "using", "renewing", "self service"
 personas: ["devops", "netops", "secops", "support"]
 versions: []
 authors: []
+layout: adm-eos
 ---
 
 {{< custom-styles >}}

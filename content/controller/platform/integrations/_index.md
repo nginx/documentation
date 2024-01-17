@@ -6,4 +6,5 @@ menu:
 title: Integrations
 weight: 200
 url: /nginx-controller/platform/integrations/
+layout: "ctlr-eos-list"
 ---

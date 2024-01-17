@@ -6,4 +6,5 @@ menu:
 title: API Reference
 weight: 210
 url: /nginx-controller/api/reference/
+layout: "ctlr-eos-list"
 ---

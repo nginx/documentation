@@ -242,6 +242,8 @@ To upgrade Instance Manager to a newer version, take the following steps:
 
 ## Install or Upgrade API Connectivity Manager {#install-or-upgrade-acm-offline}
 
+{{< include "nms/EOS/acm-eos.md" >}}
+
 ### Dependencies with Instance Manager {#acm-nim-dependencies}
 
 {{< include "tech-specs/acm-nim-dependencies.md" >}}
@@ -435,6 +437,8 @@ sudo dpkg -i ./*.deb
 ---
 
 ## Install or Upgrade App Delivery Manager {#install-adm-offline}
+
+{{< include "nms/EOS/adm-eos.md" >}}
 
 {{< beta-badge >}}
 
