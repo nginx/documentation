@@ -26,7 +26,7 @@ authors: []
 
 {{< custom-styles >}}
 
-Welcome to the *Getting Started Guide for NGINX One*. This guide provides step-by-step instructions on how to activate and use NGINX One, a management console designed to monitor and manage NGINX data plane deployments effectively. Follow these steps to begin.
+This guide provides step-by-step instructions on how to activate and start using NGINX One. NGINX One is a management console for monitoring and managing NGINX data plane deployments.
 
 ## Step 1: Enable the NGINX One Service on F5 Distributed Cloud
 
@@ -39,8 +39,8 @@ Welcome to the *Getting Started Guide for NGINX One*. This guide provides step-b
 
 Once you've enabled NGINX One, the first thing to do is to add the NGINX instances you want to track.
 
-1. If this is your first time accessing the NGINX console, select **Add Instance** on the welcome screen. If you've added instances before and now you want to add more, select **Instances** on the console's left menu, then select **Add Instance**.
-2. **Generate a new data plane key**: A data plane key is a security token that ensures only trusted NGINX instances can register and communicate with NGINX One. To generate a data plane key, select **Generate Data Plane Key**.
+1. **Add your NGINX instances with the web interface**. If this is your first time accessing the NGINX console, select **Add Instance** on the welcome screen. If you've added instances before and now you want to add more, select **Instances** on the console's left menu, then select **Add Instance**.
+2. **Generate a data plane key**. A data plane key is a security token that ensures only trusted NGINX instances can register and communicate with NGINX One. To generate a data plane key, select **Generate Data Plane Key**.
 
    Alternatively, if you've already created a data plane key that you want to reuse, select **Use existing key**, then paste the key's value in the **Data Plane Key** box.
 
@@ -51,21 +51,23 @@ Once you've enabled NGINX One, the first thing to do is to add the NGINX instanc
 
    **IMPORTANT**: Data plane keys are not saved and are displayed only once when you generate them. You should save this key in a secure location for future reference.
    {{</note>}}
-3. **Install NGINX Agent on the NGINX instances you want to track**: After you create or use an existing data plane key, a curl command will appear. Copy this command and run it on each NGINX instance you want to register with NGINX One.
+3. **Install NGINX Agent on the NGINX instances you want to monitor**. After providing a data plane key, you'll see a curl command similar to the following example. Copy and run this command on each NGINX instance you want to connect to NGINX One.
 
-## Step 2: Create a Data Plane Key
+   ```shell
+   curl https://agent.connect.nginxlab.net/nginx-agent/install | DATAPLANE_KEY="<data-plane-key>" sh -s -- -y
+   ```
 
-1. **Access Key Management:** In NGINX One, navigate to the key management section.
-2. **Generate Key:** Select the option to create a new data plane key.
-3. **Save Key:** Store the generated key securely. You will need this key for registering NGINX data plane instances.
+   <br>
 
-## Step 3: Add NGINX Data Plane Instances to NGINX One
+   Make sure your Linux version supports the NGINX Agent. For supported distributions, click the following link.
 
-1. **Install NGINX Agent:** On each NGINX data plane instance, manually install the NGINX Agent.
-   - Download the NGINX Agent installer from the NGINX One portal.
-   - Run the installer on each data plane instance.
-2. **Register Instances:** Use the previously generated data plane key to register each instance with NGINX One.
-3. **Verify Connection:** Check in the NGINX One console to ensure all instances are listed and connected.
+   <details closed>
+   <summary><i class="fa-solid fa-circle-info"></i> NGINX Agent: Supported distributions </summary>
+
+   The NGINX Agent is compatible with the following Linux distributions. To learn more about the NGINX Agent, refer to the [NGINX Agent documentation](https://docs.nginx.com/nginx-agent/).
+
+   {{< include "nginx-one/nginx-agent/nginx-agent-tech-specs.md" >}}
+   </details>
 
 ## After Setup: Monitoring and Managing Your NGINX Data Plane Fleet
 
@@ -79,6 +81,3 @@ Once you have added your NGINX instances to NGINX One, several management and mo
 
 You have now successfully set up NGINX One and can begin monitoring and managing your NGINX data plane deployments. For any further assistance or detailed procedures, refer to the NGINX One documentation or contact support.
 
----
-
-This guide is designed to provide clear and straightforward instructions for a global audience, avoiding technical jargon and complex language to ensure accessibility for all users.
