@@ -57,8 +57,9 @@ NGINX App Protect WAF supports the following operating systems:
 - [RHEL 9 and above](#rhel-9-installation)
 - [Oracle Linux 8.1.x and above](#oracle-linux-81-installation)
 - [Amazon Linux 2](#amazon-linux-2-lts-installation)
-- [Debian 10 (Buster)](#debian-10--debian-11-installation) - (Deprecated starting from NGINX Plus R28)
-- [Debian 11 (Bullseye)](#debian-10--debian-11-installation)
+- [Debian 10 (Buster)](#debian-10--debian-11--debian-12-installation) - (Deprecated starting from NGINX Plus R28)
+- [Debian 11 (Bullseye)](#debian-10--debian-11--debian-12-installation)
+- [Debian 12 ()](#debian-10--debian-11--debian-12-installation)
 - [Ubuntu 18.04 (Bionic)](#ubuntu-1804--ubuntu-2004--ubuntu-2204-installation) - (Deprecated starting from NGINX Plus R30)
 - [Ubuntu 20.04 (Focal)](#ubuntu-1804--ubuntu-2004--ubuntu-2204-installation)
 - [Ubuntu 22.04 (Jammy)](#ubuntu-1804--ubuntu-2004--ubuntu-2204-installation)
@@ -832,7 +833,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo systemctl start nginx
     ```
 
-## Debian 10 / Debian 11 Installation
+## Debian 10 / Debian 11 / Debian 12 Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -963,7 +964,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo systemctl start nginx
     ```
 
-{{< note >}} Debian 10 / Debian 11 activates __AppArmor__ by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
+{{< note >}} Debian 10 / Debian 11 / Debian 12 activates __AppArmor__ by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
 {{< /note >}}
 
 
@@ -1549,13 +1550,13 @@ COPY entrypoint.sh /root/
 CMD ["sh", "/root/entrypoint.sh"]
 ```
 
-### Debian 10 (Buster) / 11 (Bullseye) Docker Deployment Example
+### Debian 10 (Buster) / 11 (Bullseye) / 12 () Docker Deployment Example
 
 ```dockerfile
 ARG OS_CODENAME
 # Where OS_CODENAME can be: buster/bullseye
 # syntax=docker/dockerfile:1
-# For Debian 10 / 11:
+# For Debian 10 / 11 / 12:
 FROM debian:${OS_CODENAME}
 
 # Install prerequisite packages:
@@ -1957,7 +1958,7 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
 CMD ["sh"]
 ```
 
-### Debian 11 Converter Docker Deployment Example
+### Debian 11 / Debian 12 Converter Docker Deployment Example
 ```dockerfile
 # syntax=docker/dockerfile:1
 # For Debian 11:
@@ -2311,7 +2312,7 @@ After having updated the Attack Signature package you have to reload the configu
     sudo dnf downgrade app-protect-attack-signatures-2023.12.11
     ```
 
-### Debian 10 / Debian 11
+### Debian 10 / Debian 11 / Debian 12
 
 1. Add NGINX App Protect WAF Security Updates repository:
 
@@ -2585,7 +2586,7 @@ Example: app-protect-threat-campaigns-2022.07.21
     sudo apk add app-protect-threat-campaigns=2023.08.09-r1
     ```
 
-### Debian 10 / Debian 11
+### Debian 10 / Debian 11 / Debian 12
 
 1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
@@ -2981,7 +2982,7 @@ app-protect-bot-signatures
     sudo dnf -y update app-protect-27+3.1088.0-1
     ```
 
-### Debian 10 / Debian 11
+### Debian 10 / Debian 11 / Debian 12
 
 1. Get the dependencies and their versions to be upgraded to by using the command:
 
@@ -3041,7 +3042,7 @@ app-protect-bot-signatures
     sudo dnf -y update app-protect
     ```
 
-### Debian 10 / Debian 11 / Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04
+### Debian 10 / Debian 11 / Debian 12 / Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04
 
 - Upgrade the NGINX App Protect WAF to the latest version:
 
