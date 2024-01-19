@@ -26,12 +26,12 @@
     },
     {
       "name": "Metrics",
-      "description": "metrics, blah",
+      "description": null,
       "x-displayName": "Metrics"
     },
     {
       "name": "Catalogs",
-      "description": "catalog, blah",
+      "description": null,
       "x-displayName": "Catalogs"
     }
   ],
@@ -191,6 +191,16 @@
           },
           "404": {
             "description": "The data plane key with the specified UUID was not found. Check that the UUID provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Cannot delete an active data plane key. Revoke the key first, then try deleting it again.",
             "content": {
               "application/json": {
                 "schema": {
@@ -576,7 +586,7 @@
           {
             "name": "names",
             "in": "query",
-            "description": "Specify the metrics you want information on.\n\nUsage: \n* List the names of metrics you want, separated by commas.\n* When using aggregate functions like `avg()`, `sum()`, `count()`, `min()`, `max()`, or `rate()` on metrics, you must also set a `start_time`.\n* If your query includes both aggregated and non-aggregated metrics, the `group_by` setting will apply only to the aggregated metrics.\n* Aggregated metrics require a `start_time`.\n",
+            "description": "Specify the metrics you want details for.\n\nUsage: \n* List multiple metric names as a comma-separated list.\n* You can aggregate metrics with `AVG`, `SUM`, `COUNT`, `MIN`, `MAX`, `RATE`.\n* Metrics with aggregates require a `start_time`.\n* If you combine aggregated and non-aggregated metrics in a single query, any `group_by` clause applies only to the aggregated metrics.\n",
             "required": true,
             "schema": {
               "type": "string",
@@ -586,7 +596,7 @@
           {
             "name": "group_by",
             "in": "query",
-            "description": "Group your query results by the specified dimension(s).\n\nUsage:\n* Provide multiple dimensions as a comma-separated list.\n* All metrics in the `names` parameter must be aggregated.\n",
+            "description": "Group the query results by the specified dimension(s).\n\nUsage:\n* List multiple dimensions as a comma-separated list.\n* For `group_by` to work, all metrics in the `names` parameter must be aggregated.\n",
             "schema": {
               "type": "string",
               "example": "server_zone,instance_group"
@@ -595,7 +605,7 @@
           {
             "name": "series_limit",
             "in": "query",
-            "description": "Limits the number of series returned in the response. \n\nUsage:\n* Use this parameter in conjunction with `order_series_by` for sorting.\n* You muse use exactly one `group_by` parameter in your query.\n* This parameter is incompatible with the `dimensions` parameter.\n\nNotes:\n* Always returns an additional series called `all`, which aggregates values from all the metrics in the results.\n* If `all` doesn't encompass every stored dimension, a series named `other` will be included, providing aggregated values for metrics not included in `all`.\n",
+            "description": "Sets the maximum number of series that can be returned. \n\nUsage:\n* Must be used with `order_series_by`.\n* Cannot be used together with the `dimensions`.\n* Requires exactly one `group_by` parameter.\n\n\nNotes:\n* Always returns an additional series with a dimension named `all`, aggregating the values of all metrics included in the results.\n* A series with a dimension named `other` may be returned, aggregating the values of metrics not included in the results.\n",
             "schema": {
               "type": "integer",
               "example": 25
@@ -604,16 +614,17 @@
           {
             "name": "order_series_by",
             "in": "query",
-            "description": "Sets the sort order of the metric series in your results. The default is descending order by total sum (`SUM DESC`) if no sort order is specified.\n\nUsage:\n\n* Use with `series_limit` to apply the sort order to a specific number of series.\n",
+            "description": "Sets the sort order of the metric series in your results.\n\nUsage:\n\n* Must be used with `series_limit`.\n",
             "schema": {
               "type": "string",
+              "default": "SUM DESC",
               "example": "MAX DESC"
             }
           },
           {
             "name": "dimensions",
             "in": "query",
-            "description": "Specify which dimensions to use for categorizing metric data.\n\nNote: To return a single series without categorization, provide the metric name and aggregation function, and leave the `dimensions` parameter blank.\n\nUsage:\n\n* List the dimensions you want to include as a comma-separated list.\n* If you do not include a dimension, it will not appear in the results.\n* When you use the `aggregation and `group_by` parameters, any dimension specified here for `dimensions` must be also specified in `group_by`.\n* You do not need to list dimensions in `dimensions` if you are already including them in `group_by`, unless you want to display them in the results.\n* To return a single series without categorization, provide the metric name and aggregation function, and leave this `dimensions` parameter blank.\n* This parameter is incompatible with the `series_limit` parameter.\n* `Tenant` and `Namespace` are not valid dimensions for this parameter; include these as headers instead.\n",
+            "description": "List the dimensions to include in the response for each metric series.\n\nUsage:\n\n* List dimensions as a comma-separated list. Dimensions not specified in this parameter will be hidden in the results.\n* Cannot be used with `series_limit`.\n* If you specify dimensions in `group_by`, you don't need to list them again in `dimensions`. \nHowever, if you are using `group_by`, then any dimensions you list in `dimensions` must also be included in `group_by`.\n* To return a single series, specify the metric name with aggregation (for example, `AVG(agent.cpu.system)`) and leave the `dimensions` parameter empty. \n* `Tenant` and `Namespace` are not valid dimensions for this parameter. Rather, include them as headers in your request.\n",
             "schema": {
               "type": "string",
               "example": "server_zone,instance_group"
@@ -622,7 +633,7 @@
           {
             "name": "start_time",
             "in": "query",
-            "description": "Sets the beginning of the time period for your metrics query. This determines the earliest time from which the system will gather metrics.\n\nUsage:\n* The time format should be in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ).\n* Use `start_time` when you specify `end_time`.\n* If you leave `start_time` blank, the API will return the most recent metrics.\n* `start_time` is required for aggregated metrics to determine the level of detail, the `resolution`.\n",
+            "description": "Sets the beginning of the time period for your metrics query (inclusive).\n\nUsage:\n* `start_time` is required if `end_time` is specified.\n* If `start_time` isn't provided, the API returns the latest metrics.\n* `start_time` is required for aggregated metrics in order to calculate the `resolution` (granularity).\n",
             "schema": {
               "$ref": "#/components/schemas/Time"
             },
@@ -631,7 +642,7 @@
           {
             "name": "end_time",
             "in": "query",
-            "description": "Sets the end point for the time period for your metrics query. The specified time is non-inclusive, meaning it's not included in the data returned.\n\nUsage:\n* `end_time` must later than `start_time`.\n* If only `start_time` is set, `end_time` defaults to the current time.\n",
+            "description": "Sets the end point for the time period for your metrics query (non-inclusive).\n\nUsage:\n* Must be greater than `start_time`.\n* If `start_time` is specified and `end_time` is not, `end_time` defaults to the current time.\n",
             "schema": {
               "$ref": "#/components/schemas/Time"
             }
@@ -639,7 +650,7 @@
           {
             "name": "filter",
             "in": "query",
-            "description": "Use the `filter` parameter to narrow down your results by specifying what to include or exclude.\n\nUsage:\n* Format your filter as `<key><operator><value>`.\n  * `<key>`: This is the dimension you want to filter on, such as `count`.\n  * `<operator>`: Can be `=`, `!=`, `<`, `<=`, `>`, `>=`, `in`, `not`.\n  * `<value>`: The value you're looking for in the dimension.\n  * Both `<key>` and `<value>` are case sensitive.\n* `Tenant` and `Namespace` are not valid filters for this parameter; include these as headers instead.\n\nFor more complex filtering:\n\n* Combine multiple filters using `AND`, `OR`, and parentheses `( )`. \n* Use a wildcard `*` for partial matches. \n* Enclose each filter in single quotes `' '`.\n",
+            "description": "Filters results based on key value pairs.\n\nUsage:\n* Format as one or more predicates in the form of `<key><operator><value>`.\n  * `<key>`: The dimension name you want to filter on.\n  * `<operator>`: The possible operators (`=`, `!=`, `<`, `<=`, `>`, `>=`, `in`, `not`) you can use for comparison or condition checking.\n  * `<value>`: The value of the dimension to filter against. Enclose `<value>` in single quotes `' '`.\n  * `<key>` and `<value>` are case sensitive.\n* `Tenant` and `Namespace` are not filterable dimensions for this parameter. Rather, include them as headers in your request.\n\nFor more complex filtering:\n\n* Combine predicates into logical expressions using `AND`, `OR`, and parentheses `( )`. \n* Use a wildcard `*` for matching partial values. \n",
             "schema": {
               "type": "string",
               "example": "((server_zone!='server_zone_1' OR server_zone='server_zone_2') AND nginx_id in ('id1', 'id2')) AND (system.tags!='*tag1*')"
@@ -648,7 +659,7 @@
           {
             "name": "resolution",
             "in": "query",
-            "description": "Sets the granularity of the time series data in your results. This parameter applies only to endpoints that return time series data.\n\nUsage: \n* Specify as a string with a number followed by a unit of time, such as `y` (years), `M` (months), `w` (weeks), `d` (days), `h` (hours), `m` (minutes) or `s` (seconds).\n* Use `resolution` with aggregate functions in the `names` parameter and define `start_time` to get detailed data.\n* If you don't provide a `resolution,` the API selects the broadest resolution based on the range between `start_time` and `end_time.`\n",
+            "description": "Specifies the level of granularity for time series data in your results. Applicable only for endpoints that return time series data.\n\nUsage: \n* Specify as a string with a number followed by a unit of time, such as `y` (years), `M` (months), `w` (weeks), `d` (days), `h` (hours), `m` (minutes) or `s` (seconds).\n* Metrics in `names` must be aggregated.\n* `start_time` is required.\n* If `resolution` is not set, the API returns the maximum resolution (`end_time` - `start_time`).\n",
             "schema": {
               "type": "string",
               "example": "30s"
@@ -657,7 +668,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Request completed successfully.",
+            "description": "Successfully retrieved system metrics.",
             "content": {
               "application/json": {
                 "schema": {
@@ -706,10 +717,10 @@
         ],
         "summary": "List all metrics",
         "operationId": "listMetricsDescriptions",
-        "description": "Returns a list of all the metrics available in the NGINX One Metrics Catalog. \nThis catalog provides detailed definitions of each metric, helping you to better understand the available metrics and refine your analytics queries. \n",
+        "description": "Returns a list of all the metric resources in the Metrics Catalog. \nThis catalog provides detailed definitions of each metric, helping you to better understand the available metrics and refine your analytics queries. \n",
         "responses": {
           "200": {
-            "description": "Request completed successfully.",
+            "description": "Successfully retrieved the list of metrics.",
             "content": {
               "application/json": {
                 "schema": {
@@ -728,12 +739,12 @@
         ],
         "summary": "Retrieve a metric description",
         "operationId": "getMetricDescription",
-        "description": "Retrieves detailed information about a specific metric in the NGINX One Metrics Catalog.\nThis detailed view helps you see how a metric can be used for monitoring and analytics.\n\nThe response includes:\n* Name and description of the metric, explaining what it measures.\n* Applicable types of aggregations (for example `AVG`, `SUM`).\n* Categories to which the metric belongs, like 'nginx'.\n* Associated dimensions, showing different ways to analyze the metric.\n* Type and unit of the metric, such as 'incremental' and 'bytes'.\n",
+        "description": "Retrieves detailed information about a metric resource in the Metrics Catalog.\nThis detailed view helps you see how a metric can be used for monitoring and analytics.\n\nThe response includes:\n* Name and description of the metric, explaining what it measures.\n* Applicable types of aggregations (for example `AVG`, `SUM`).\n* Categories to which the metric belongs, like 'nginx'.\n* Associated dimensions, showing different ways to analyze the metric.\n* Type and unit of the metric, such as 'incremental' and 'bytes'.\n",
         "parameters": [
           {
             "in": "path",
             "name": "metricName",
-            "description": "The name of the metric you want details for. This name is used to identify the metric in the NGINX One Metrics Catalog.",
+            "description": "The name of the metric resource you want details for. This name is used to identify the metric in the Metrics Catalog.",
             "required": true,
             "schema": {
               "type": "string"
@@ -742,7 +753,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Request completed successfully.",
+            "description": "Successfully retrieved the details for the metric resource.",
             "content": {
               "application/json": {
                 "schema": {
@@ -781,10 +792,10 @@
         ],
         "summary": "List all dimensions",
         "operationId": "listDimensionsDescriptions",
-        "description": "Returns a list of all the dimensions in the Dimensions Catalog.\n\nDimensions let you refine the data returned from metrics and events queries, allowing more detailed and useful results.\nUse this endpoint to discover available dimensions. To get detailed information about a particular dimension, use the [Retrieve a dimension description](#operation/getDimensionDescription) endpoint.\n",
+        "description": "Returns a list of all the dimension resources in the Dimensions Catalog.\n\nDimensions let you categorize and filter metrics data. \nTo get detailed information about a particular dimension, use the [Retrieve a dimension description](#operation/getDimensionDescription) endpoint.\n",
         "responses": {
           "200": {
-            "description": "Request completed successfully.",
+            "description": "Successfully retrieved the list of dimensions.",
             "content": {
               "application/json": {
                 "schema": {
@@ -808,7 +819,7 @@
           {
             "in": "path",
             "name": "dimensionName",
-            "description": "The name of the dimension you want details for. The name is used to identify the dimension in the Dimensions Catalog.",
+            "description": "The name of the dimension you want details for. This name is used to identify the dimension in the Dimensions Catalog.",
             "required": true,
             "schema": {
               "type": "string"
@@ -817,7 +828,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Request completed successfully.",
+            "description": "Successfully retrieved the details for the dimension resource.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1107,28 +1118,28 @@
         }
       },
       "Error": {
-        "description": "A response payload returned when an API request results in a failure.",
+        "description": "This object contains details about the errors that are returned when API requests fail.",
         "type": "object",
         "required": [
           "message",
-          "requestId",
+          "request_id",
           "timestamp"
         ],
         "properties": {
           "message": {
-            "description": "The error message.",
+            "description": "The error message describing the problem.",
             "type": "string"
           },
-          "requestId": {
-            "description": "The unique ID of the request that caused the error.",
+          "request_id": {
+            "description": "The unique identifier of the API request that failed.",
             "type": "string"
           },
           "timestamp": {
-            "description": "The UTC timestamp when the error occurred.",
+            "description": "The date and time (in UTC) when the error happened.",
             "type": "string"
           },
           "detail": {
-            "description": "Additional information about the error. Optional.",
+            "description": "Additional information about the error, if available.",
             "type": "string"
           }
         }
@@ -1900,7 +1911,7 @@
             "$ref": "#/components/schemas/MetricQueryMetadata"
           },
           "metrics": {
-            "description": "needs a description.",
+            "description": "An array of Metric objects, each including the name of the metric resource, aggregate function, and series details.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Metric"
@@ -1922,23 +1933,23 @@
         }
       },
       "MetricQueryMetadata": {
-        "description": "needs a description.",
+        "description": "This object includes details about the time period and resolution (granularity) used in the metrics query.\n",
         "type": "object",
         "properties": {
           "start_time": {
-            "description": "needs a description.",
+            "description": "The beginning of the time period for the metrics query (inclusive).",
             "type": "string",
             "format": "date-time",
             "example": "2019-08-07T09:57:36.088757764Z"
           },
           "end_time": {
-            "description": "needs a description.",
+            "description": "The end point for the time period for the metrics query (non-inclusive).",
             "type": "string",
             "format": "date-time",
             "example": "2019-08-07T09:57:36.088757764Z"
           },
           "resolution": {
-            "description": "needs a description.",
+            "description": "The level of granularity for the time series data.",
             "type": "string",
             "example": "30m"
           }
@@ -1946,15 +1957,15 @@
       },
       "Metric": {
         "type": "object",
-        "description": "Metrics provide a means of measuring and analyzing the performance of your NGINX data plane instances.",
+        "description": "This object represents a metric, including the name of the metric resource, aggregate function, and series details.\n",
         "properties": {
           "name": {
-            "description": "needs a description.",
+            "description": "The name of the metric resource.\n",
             "type": "string",
             "example": "plus.upstream.response.count"
           },
           "aggr": {
-            "description": "needs a description.",
+            "description": "The aggregation function applied to the metric. \n",
             "type": "string",
             "enum": [
               "AVG",
@@ -1967,7 +1978,7 @@
             "example": "AVG"
           },
           "series": {
-            "description": "needs a description.",
+            "description": "An array of data points aligned along one or more dimensions from the Dimensions Catalog.\n",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Series"
@@ -1976,14 +1987,14 @@
         }
       },
       "Series": {
-        "description": "needs a description.",
+        "description": "This object represents a set of data points aligned along one or more dimensions from the Dimensions Catalog.",
         "type": "object",
         "properties": {
           "dimensions": {
-            "description": "needs a description.",
+            "description": "This object represents a set of data points aligned along one or more dimensions from the Dimensions Catalog.\n",
             "type": "object",
             "additionalProperties": {
-              "description": "needs a description.",
+              "description": "The names of the dimensions used in the metrics query.\n",
               "type": "string"
             },
             "example": {
@@ -1992,7 +2003,7 @@
             }
           },
           "timestamps": {
-            "description": "needs a description.",
+            "description": "An array of date-time strings that represent when each data point in the series was recorded.\n",
             "type": "array",
             "items": {
               "type": "string",
@@ -2004,7 +2015,7 @@
             ]
           },
           "values": {
-            "description": "needs a description.",
+            "description": "An array of values for the metric recorded at each timestamp.\n",
             "type": "array",
             "items": {
               "type": "number"
@@ -2017,7 +2028,7 @@
         }
       },
       "Time": {
-        "description": "Indicates a point in time.\n\nTime can be specified in two ways:\n* ISO 8601 format, which looks like \"2019-08-07T09:57:36.088757764Z\".\n* As an offset from the current time, using a string that starts with `+` or `-`, followed by a number and a time unit. Units include `y` (years), `M` (months), `w` (weeks), `d` (days), `h` (hours), `m` (minutes), or `s` (seconds). \nExample of an offset: \"now-3h\" (3 hours before now).\n",
+        "description": "Indicates a point in time.\n\nTime can be specified in two ways:\n* Using ISO 8601 format. For example, \"2019-08-07T09:57:36.088757764Z\".\n* As an offset from the current time. For the offset, use `+` or `-`, followed by a number and the appropriate time unit. The time unit can can be `y` (years), `M` (months), `w` (weeks), `d` (days), `h` (hours), `m` (minutes), or `s` (seconds). \nExample of an offset: \"now-3h\" (3 hours before now).\n",
         "type": "string",
         "example": "2019-08-07T09:57:36.088757764Z"
       },
@@ -2031,22 +2042,22 @@
         ],
         "properties": {
           "name": {
-            "description": "needs a description.",
+            "description": "The name of the metric resource.",
             "type": "string",
             "example": "nginx.http.request.bytes_sent"
           },
           "description": {
-            "description": "needs a description.",
+            "description": "A description of what the metric measures.",
             "type": "string",
             "example": "Number of bytes sent to clients."
           },
           "unit": {
-            "description": "needs a description.",
+            "description": "The measurement scale or data type for the metric's value.\n",
             "type": "string",
             "example": "bytes"
           },
           "aggregations": {
-            "description": "needs a description.",
+            "description": "The supported aggregate functions for the metric.",
             "type": "array",
             "items": {
               "type": "string",
@@ -2055,7 +2066,8 @@
                 "COUNT",
                 "SUM",
                 "MAX",
-                "MIN"
+                "MIN",
+                "RATE"
               ]
             },
             "example": [
@@ -2064,31 +2076,31 @@
             ]
           },
           "type": {
-            "description": "needs a description.",
+            "description": "The nature of the metric. Examples include `counter` (a cumulative metric that generally grows over time and can reset) and \n`gauge` (a value that can fluctuate, increasing or decreasing over time).\n",
             "type": "string",
             "enum": [
               "counter",
               "gauge",
               "incremental"
             ],
-            "example": "incremental"
+            "example": "counter"
           },
           "categories": {
+            "description": "Categories are used to organize metrics into specific groups. For example, `nginx` or `system`.",
             "type": "array",
             "items": {
               "type": "string"
             },
             "example": [
               "nginx"
-            ],
-            "description": "An array of freeform strings containing the category(ies) of a Metrics Catalog resource."
+            ]
           },
           "dimensions": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ResourceRef"
             },
-            "description": "An array of dimensions that apply to a Metrics Catalog resource."
+            "description": "An array dimensions that apply to the metric resource. "
           }
         }
       },
@@ -2096,6 +2108,7 @@
         "type": "object",
         "properties": {
           "items": {
+            "description": "An array of metric resource descriptions.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/MetricDescriptionRecord"
@@ -2113,17 +2126,17 @@
         ],
         "properties": {
           "name": {
-            "description": "needs a description.",
+            "description": "The name of the dimension resource.",
             "type": "string",
             "example": "instance"
           },
           "description": {
-            "description": "needs a description.",
+            "description": "An explanation of what the dimension represents or measures in the context of the metric.",
             "type": "string",
             "example": "Instance name."
           },
           "type": {
-            "description": "needs a description.",
+            "description": "The data type for the dimension. For example, `string`.",
             "type": "string",
             "enum": [
               "string",
@@ -2137,7 +2150,7 @@
             "items": {
               "$ref": "#/components/schemas/ResourceRef"
             },
-            "description": "An array of metrics that the Dimensions resource applies to."
+            "description": "An array of metrics that the dimension resource applies to."
           }
         }
       },
@@ -2145,7 +2158,7 @@
         "type": "object",
         "properties": {
           "items": {
-            "description": "needs a description.",
+            "description": "An array of dimension resource descriptions.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/DimensionDescriptionRecord"
@@ -2162,7 +2175,7 @@
           "ref": {
             "type": "string",
             "example": "/monitor/catalogs/dimensions/system_id",
-            "description": "A reference to another Control Plane resource.\n"
+            "description": "A URI that points directly to the resource within the API.\n"
           },
           "links": {
             "$ref": "#/components/schemas/NamedLinks"
@@ -2176,17 +2189,17 @@
           },
           {
             "type": "object",
-            "description": "Contains information about the object being referred to.\n\nThese are generally details -- like the object name and display name --\nthat are useful to a consumer of the API that performs further\nprocessing.\n\nThis object is only present in responses.\n",
+            "description": "Contains information about the resource being referred to, including the resource name and display name. \nThis information is useful for consumers of the API who may need to perform further processing.\n\nThis object is only present in responses.\n",
             "properties": {
               "name": {
                 "type": "string",
                 "example": "system_id",
-                "description": "The name of the linked resource.\n"
+                "description": "The name of the resource.\n"
               },
               "display_name": {
                 "type": "string",
                 "example": "system ID",
-                "description": "A user friendly resource name."
+                "description": "A user-friendly display name for the resource."
               }
             }
           }
@@ -2194,12 +2207,12 @@
       },
       "SelfLinks": {
         "type": "object",
-        "description": "The SelfLinks object contains a link from the resource to itself.\nThis object is used only in responses.\n",
+        "description": "This object represents links to a resource, including the complete API path fragment, the resource name, and the resource's user-friendly display name. \nThis object is used only in responses.\n",
         "properties": {
           "rel": {
             "type": "string",
             "example": "/api/v1/monitor/catalogs/dimensions/system_id",
-            "description": "`rel` contains the complete path fragment of a URI and can be used\nto construct a query to the object.\n"
+            "description": "The complete path fragment of a URI that, when combined with a base URL, can be used to construct a query to the dimension resource. \n"
           }
         }
       }
