@@ -13,7 +13,7 @@ doctypes: ["reference"]
 toc: false
 tags: [ "api" ]
 menu: api
-layout: api
+layout: redoc-single
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
 docs: "DOCS-000"
 # Taxonomies
