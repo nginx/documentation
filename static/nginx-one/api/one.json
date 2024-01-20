@@ -333,7 +333,7 @@
         "tags": [
           "Instances"
         ],
-        "summary": "Retrieve summary for all NGINX instances",
+        "summary": "Retrieve a summary for all NGINX instances",
         "description": "Retrieve a comprehensive summary for all NGINX instances, which includes details such as:\n  * Certificate status and associations\n  * Operating system details\n  * Version of the NGINX Agent\n  * Overall system status\n",
         "operationId": "listSummary",
         "responses": {
@@ -688,7 +688,7 @@
             }
           },
           "404": {
-            "description": "The requested resource was not found. Verify that the identifier or reference used corresponds to an existing resource.",
+            "description": "The requested metric resource was not found. Check that the resource name provided is correct and corresponds to an existing resource.",
             "content": {
               "application/json": {
                 "schema": {
@@ -773,7 +773,7 @@
             }
           },
           "404": {
-            "description": "The requested resource was not found. Verify that the identifier or reference used corresponds to an existing resource.",
+            "description": "The requested metric resource resource was not found. Check that the resource name provided is correct and corresponds to an existing resource.",
             "content": {
               "application/json": {
                 "schema": {
@@ -848,7 +848,7 @@
             }
           },
           "404": {
-            "description": "The requested resource was not found. Verify that the identifier or reference used corresponds to an existing resource.",
+            "description": "The requested dimension resource was not found. Check that the resource name provided is correct and corresponds to an existing resource.",
             "content": {
               "application/json": {
                 "schema": {
