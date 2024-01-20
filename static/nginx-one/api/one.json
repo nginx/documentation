@@ -605,7 +605,7 @@
           {
             "name": "series_limit",
             "in": "query",
-            "description": "Sets the maximum number of series that can be returned. \n\nUsage:\n* Must be used with `order_series_by`.\n* Cannot be used together with the `dimensions`.\n* Requires exactly one `group_by` parameter.\n\n\nNotes:\n* Always returns an additional series with a dimension named `all`, aggregating the values of all metrics included in the results.\n* A series with a dimension named `other` may be returned, aggregating the values of metrics not included in the results.\n",
+            "description": "Sets the maximum number of series that can be returned. \n\nUsage:\n* Must be used with `order_series_by`.\n* Cannot be used together with `dimensions`.\n* Requires exactly one `group_by` parameter.\n\n\nNotes:\n* Always returns an additional series with a dimension named `all`, aggregating the values of all metrics included in the results.\n* A series with a dimension named `other` may be returned, aggregating the values of metrics not included in the results.\n",
             "schema": {
               "type": "integer",
               "example": 25
