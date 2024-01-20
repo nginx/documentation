@@ -54,7 +54,7 @@ Once you've enabled NGINX One, the first thing to do is to add the NGINX instanc
 3. **Install NGINX Agent on the NGINX instances you want to monitor**. After providing a data plane key, you'll see a curl command similar to the following example. Copy and run this command on each NGINX instance you want to connect to NGINX One.
 
    ```shell
-   curl https://agent.connect.nginxlab.net/nginx-agent/install | DATAPLANE_KEY="<data-plane-key>" sh -s -- -y
+   curl agent.connect.nginx.com/nginx-agent/install | DATAPLANE_KEY="<data-plane-key>" sh -s -- -y
    ```
 
    <br>
@@ -69,15 +69,7 @@ Once you've enabled NGINX One, the first thing to do is to add the NGINX instanc
    {{< include "nginx-one/nginx-agent/nginx-agent-tech-specs.md" >}}
    </details>
 
-## After Setup: Monitoring and Managing Your NGINX Data Plane Fleet
+## After Setup: ... in progress
 
-Once you have added your NGINX instances to NGINX One, several management and monitoring features become available:
 
-- **View CVEs:** Easily monitor and view Common Vulnerabilities and Exposures (CVEs) related to your NGINX data plane fleet.
-- **Configuration Issues and Recommendations:** Access insights into configuration issues and receive recommendations for optimization.
-- **Performance Metrics:** Review and analyze performance metrics for your NGINX data plane fleet to ensure optimal functioning.
-
-## Conclusion
-
-You have now successfully set up NGINX One and can begin monitoring and managing your NGINX data plane deployments. For any further assistance or detailed procedures, refer to the NGINX One documentation or contact support.
 
