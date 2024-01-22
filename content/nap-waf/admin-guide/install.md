@@ -59,7 +59,7 @@ NGINX App Protect WAF supports the following operating systems:
 - [Amazon Linux 2](#amazon-linux-2-lts-installation)
 - [Debian 10 (Buster)](#debian-10--debian-11--debian-12-installation) - (Deprecated starting from NGINX Plus R28)
 - [Debian 11 (Bullseye)](#debian-10--debian-11--debian-12-installation)
-- [Debian 12 ()](#debian-10--debian-11--debian-12-installation)
+- [Debian 12 (Bookworm)](#debian-10--debian-11--debian-12-installation)
 - [Ubuntu 18.04 (Bionic)](#ubuntu-1804--ubuntu-2004--ubuntu-2204-installation) - (Deprecated starting from NGINX Plus R30)
 - [Ubuntu 20.04 (Focal)](#ubuntu-1804--ubuntu-2004--ubuntu-2204-installation)
 - [Ubuntu 22.04 (Jammy)](#ubuntu-1804--ubuntu-2004--ubuntu-2204-installation)
@@ -939,7 +939,7 @@ If a user other than **nginx** is to be used, note the following:
     app-protect-common=8.7.4-1~[OS_CODENAME]  
     ```
 
-    Replace the [OS_CODENAME] in the above example with: **buster** for Debian 10 and **bullseye** for Debian 11.
+    Replace the [OS_CODENAME] in the above example with: **buster** for Debian 10, **bullseye** for Debian 11 and **bookworm** for Debian 12.
 
 12. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
 
@@ -1551,11 +1551,11 @@ COPY entrypoint.sh /root/
 CMD ["sh", "/root/entrypoint.sh"]
 ```
 
-### Debian 10 (Buster) / 11 (Bullseye) / 12 () Docker Deployment Example
+### Debian 10 (Buster) / 11 (Bullseye) / 12 (Bookworm) Docker Deployment Example
 
 ```dockerfile
 ARG OS_CODENAME
-# Where OS_CODENAME can be: buster/bullseye
+# Where OS_CODENAME can be: buster/bullseye/bookworm
 # syntax=docker/dockerfile:1
 # For Debian 10 / 11 / 12:
 FROM debian:${OS_CODENAME}
@@ -1963,7 +1963,7 @@ CMD ["sh"]
 ```dockerfile
 # syntax=docker/dockerfile:1
 # For Debian 11:
-FROM debian:bullseye
+FROM debian:bullseye/bookworm
 
 # Install prerequisite packages:
 RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2
@@ -2358,6 +2358,11 @@ After having updated the Attack Signature package you have to reload the configu
     sudo apt-get install app-protect-attack-signatures=2020.04.30-1~bulleye
     ```
 
+    For Debian 12:
+     ```shell
+    sudo apt-get install app-protect-attack-signatures=2020.04.30-1~bookworm
+    ```
+
 ### Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04
 
 1. Add NGINX App Protect WAF Security Updates repository:
@@ -2632,6 +2637,11 @@ Example: app-protect-threat-campaigns-2022.07.21
     sudo apt-get install app-protect-threat-campaigns=2020.06.25-1~bullseye
     ```
 
+      For Debian 12:
+    ```shell
+    sudo apt-get install app-protect-threat-campaigns=2020.06.25-1~bookworm
+    ```
+
 ### Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04
 
 1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
@@ -2817,7 +2827,7 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     ```
 
 
-### Debian 11
+### Debian 11 / Debian 12
 
 1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
@@ -2854,6 +2864,11 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     For Debian 11:
     ```shell
     sudo apt-get install app-protect-bot-signatures=2023.11.14~bullseye
+    ```
+
+     For Debian 12:
+    ```shell
+    sudo apt-get install app-protect-bot-signatures=2023.11.14~bookworm
     ```
 
 
@@ -2939,7 +2954,7 @@ app-protect-selinux
 sudo dnf remove app-protect app-protect-selinux
 ```
 
-### Debian 11 / Ubuntu 20.04 / Ubuntu 22.04
+### Debian 11 / Debian 12 / Ubuntu 20.04 / Ubuntu 22.04
 
 ```shell
 sudo apt-get remove app-protect \
@@ -3005,7 +3020,7 @@ app-protect-bot-signatures
     app-protect-engine=10.139.2-1~[OS_CODENAME] \
     app-protect=27+3.1088.2-1~[OS_CODENAME] 
     ```
-    **Note**: Replace the [OS_CODENAME] in the above command with: **buster** for Debian 10 and **bullseye** for Debian 11.
+    **Note**: Replace the [OS_CODENAME] in the above command with: **buster** for Debian 10, **bullseye** for Debian 11 and **bookworm** for Debian 12.
 
 ### Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04
 
