@@ -5219,16 +5219,16 @@ Example of Cyclic Override Rule error:
 
 ### Overview
 
-Geolocation refers to the process of assessing or determining geographic location of an object. This feature helps in identifying the geographic location of a client or web application user.
+Geolocation refers to the process of assessing or determining the geographic location of an object. This feature helps in identifying the geographic location of a client or web application user.
 
-In app protect, the Enforcer will look up the client IP address in the Geolocation file included in the app protect package, and extract the corresponding [ISO 3166](https://www.iso.org/obp/ui/#search) two-letter code, representing the country. For instance, "IL" denotes Israel, and this information is denoted as "geolocation" in the condition and also included in the request reporting.
+In app protect, the Enforcer will look up the client IP address in the Geolocation file included in the app protect package, and extract the corresponding [ISO 3166](https://www.iso.org/obp/ui/#search) two-letter code, representing the country. For instance, "IL" denotes Israel, and this information is denoted as "geolocation" in the condition and is also included in the request reporting.
 
 
 ### Disallowing Application Use in Certain Geolocations
 
-For applications protected by app protect, you can use Geolocation enforcement to restrict or allow application use in specific countries. You can adjust the lists of which countries or locations are allowed or disallowed in a app protect security policy. If the user tries to access the web application from a location that is not allowed, the `VIOL_GEOLOCATION` violation will be triggered. By default, all locations are allowed, and the alarm, and block flags are enabled.
+For applications protected by app protect, you can use Geolocation enforcement to restrict or allow application use in specific countries. You can adjust the lists of which countries or locations are allowed or disallowed in a app protect security policy. If the user tries to access the web application from a location that is not allowed, the `VIOL_GEOLOCATION` violation will be triggered. By default, all locations are allowed, and the alarm and block flags are enabled.
 
-Requests from certain locations, such as RFC-1918 addresses or unassigned global addresses, do not include a valid country code. The geolocation is shown as **N/A** in both the request, and the list of geolocations. You have the option to disallow N/A requests whose country of origination is unknown.
+Requests from certain locations, such as RFC-1918 addresses or unassigned global addresses, do not include a valid country code. The geolocation is shown as **N/A** in both the request and the list of geolocations. You have the option to disallow N/A requests whose country of origination is unknown.
 
 For example, in the policy provided below, within the "disallowed-geolocations" section, "countryCode": IL and "countryName": Israel have been included.  This signifies that requests originating from these locations will raise an alarm, trigger the `VIOL_GEOLOCATION` violation and will be blocked.
 
@@ -5259,7 +5259,7 @@ For example, in the policy provided below, within the "disallowed-geolocations" 
 
 ### Geolocation in Policy Override Rules Conditions
 
-For instance the below example represents a security policy for a web application. The policy named as "override_rule_example" is based on a template called "POLICY_TEMPLATE_NGINX_BASE." The policy is set to operate in "blocking" mode, which means it will prevent certain activities.
+For instance, the below example represents a security policy for a web application. The policy named as "override_rule_example" is based on a template called "POLICY_TEMPLATE_NGINX_BASE." The policy is set to operate in "blocking" mode, which means it will prevent certain activities.
 
 There's a specific configuration under "general" that deals with custom headers for cross-origin requests, specifically the "xff" header. The policy is configured to trust this header.
 
