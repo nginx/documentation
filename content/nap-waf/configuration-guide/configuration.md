@@ -5062,7 +5062,7 @@ The above "override_rules_example" policy contains five override rules:
 2. The **"login_page"** rule is triggered by POST requests to URIs containing "/login/". Since the “actionType” field is set to “replace-policy”, it overrides the policy with a new one named "login_page_block_redirect". This new policy is independent of the "override_rules_example" policy. It enables all signature sets and redirects the user to a rejection page. This is another example of an **Inline Policy Reference** with a different condition.
 3. The **"api-strict"** rule is applied for requests with "api4" in the URI, except for client IP addresses matching the "fd00:1::/48" range and user agents starting with "Mozilla". It references an external policy file named "NginxStrictPolicy.json" located at "/etc/app_protect/conf/" to override the current policy. The “actionType” field is set to “replace-policy” and the external policy can be specified using a reference to its file using **$ref**. The file is the JSON policy source of that policy. This type of policy switching is known as **External Policy Reference**.
 4. The **"strict-post"** rule is triggered when POST requests include a session token in the cookies that is not equal to "c2Vzc2lvblRva2Vu" or when the "gzip" value is found in the content-encoding headers. This rule follows a similar approach to referencing an external policy file, just like the **api-strict** rule mentioned above.
-5. The **“usa-only”** rule is triggered when a request coming from a country other than the USA. The actionType is set to “violation”, meaning that `VIOL_RULE` violation is triggered for such a request. This violation will block and mark the request as illegal with regard to the “block” and “alarm” attributes. There is no change in policy for this rule.
+5. The **“usa-only”** rule is triggered when a request coming from a country other than the USA. The actionType is set to “violation”, meaning that `VIOL_RULE` violation is triggered for such a request. This violation will block and mark the request as illegal with regard to the “block” and “alarm” attributes. There is no change in policy for this rule. For more details about **Geolocation** feature, see [Geolocation in Policy Override Rules Conditions](#geolocation-in-policy-override-rules-conditions).
 
 These five rules demonstrate how the override rules feature allows for customization and the ability to modify specific aspects of the original policy based on predefined conditions.
 
@@ -5214,6 +5214,83 @@ Example of Cyclic Override Rule error:
 ```shell
 "error_message": "Failed to import an override policy: Cyclic override-rules detected."
 ```
+
+## Geolocation Support in App Protect
+
+### Overview
+
+Geolocation refers to the process of assessing or determining geographic location of an object. This feature helps in identifying the geographic location of a client or web application user.
+
+In app protect, the Enforcer will look up the client IP address in the Geolocation file included in the app protect package, and extract the corresponding [ISO 3166](https://www.iso.org/obp/ui/#search) two-letter code, representing the country. For instance, "IL" denotes Israel, and this information is denoted as "geolocation" in the condition and also included in the request reporting.
+
+
+### Disallowing Application Use in Certain Geolocations
+
+For applications protected by app protect, you can use Geolocation enforcement to restrict or allow application use in specific countries. You can adjust the lists of which countries or locations are allowed or disallowed in a app protect security policy. If the user tries to access the web application from a location that is not allowed, the `VIOL_GEOLOCATION` violation will be triggered. By default, all locations are allowed, and the alarm, and block flags are enabled.
+
+For example, in the policy provided below, within the "disallowed-geolocations" section, "countryCode": IL and "countryName": Israel have been included.  This signifies that requests originating from these locations will raise an alarm, trigger the `VIOL_GEOLOCATION` violation and will be blocked.
+
+
+```shell
+"general": {
+         "customXffHeaders": [],
+         "trustXff": true
+      },
+"disallowed-geolocations" : [
+         {
+            "countryCode" : "IL",
+            "countryName" : "Israel"
+         }
+      ],
+"blocking-settings": {
+      "violations": [
+       {
+          "name": "VIOL_GEOLOCATION",
+          "alarm": true,
+          "block": true
+        }
+    ]
+}
+
+```
+
+
+### Geolocation in Policy Override Rules Conditions
+
+For instance the below example represents a security policy for a web application. The policy named as "override_rule_example" is based on a template called "POLICY_TEMPLATE_NGINX_BASE." The policy is set to operate in "blocking" mode, which means it will prevent certain activities.
+
+There's a specific configuration under "general" that deals with custom headers for cross-origin requests, specifically the "xff" header. The policy is configured to trust this header.
+
+In the "override-rules" section there is one override rule named "myFirstRule." This rule is set up to trigger when the geolocation of a request is identified as 'IL' (Israel). When this condition is met, the action taken is to extend the policy, but with a change in enforcement mode to "transparent."
+
+In simpler terms, when someone tries to access the web application from Israel ('IL'), the security policy will be adjusted to allow the access but in a more transparent manner, meaning it won't block the access but may monitor it differently.
+
+```shell
+{
+    "policy": {
+        "name": "override_rule_example",
+        "template": { "name": "POLICY_TEMPLATE_NGINX_BASE" },
+        "enforcementMode": "blocking",
+        "general": {
+             "customXffHeaders": ["xff"],
+             "trustXff": true
+         },
+         "override-rules": [
+            {
+                "name": "myFirstRule",
+                "condition": "geolocation == 'IL'",
+                "actionType": "extend-policy",
+                "override": {
+                    "policy": {
+                        "enforcementMode": "transparent"
+                    }
+                }
+            }
+        ]
+    }
+}
+```
+
 
 ## JSON Web Token Protection
 
@@ -5661,6 +5738,7 @@ The following violations are supported and can be enabled by turning on the **al
 |VIOL_FILETYPE | Illegal file type | Alarm | The system checks that the requested file type is configured as a valid file type, or not configured as an invalid file type, within the security policy. | Only for disallowed file types. | 
 |VIOL_FILE_UPLOAD | Disallowed file upload content detected | Alarm | The system checks that the file upload content is not a binary executable file format. | The check must be enabled for parameters of data type file upload | 
 |VIOL_FILE_UPLOAD_IN_BODY | Disallowed file upload content detected in body | Alarm | The system checks that the file upload content is not a binary executable file format. | The check must be enabled for URLs | 
+|VIOL_GEOLOCATION | Disallowed Geolocations | Alarm & Block | This violation will be triggered when an attempt is made to access the web application from a restricted location. | |
 |VIOL_GRAPHQL_MALFORMED | Malformed GraphQL data | Alarm & Block | This violation will be issued when the traffic expected to be GraphQL doesn't comply to the GraphQL syntax. The specifics of the syntax that will be enforced in App Protect is detailed in the enforcing section. The violation details will note the error.| In case of tolerate parser warning turned on, missing closing bracket of the JSON should not issue a violation. | 
 |VIOL_GRAPHQL_FORMAT | GraphQL format data does not comply with format settings | Alarm & Block | This violation will be issued when the GraphQL profile settings are not satisfied, for example the length is too long, depth is too deep, a specific value is too long or too many batched queries. <br> The violation details will note what happened and the found length, depth or which value is too long and by what. <br> The depth violation is not learnable. The reason is that we don't know the actual depth of the query - we stop parsing at the max depth. <br> Note that the values will be used on the variables JSON part as well as the query. In a way, we can see these values as a JSON profile attributes just for the variables. | |
 |VIOL_GRAPHQL_INTROSPECTION_QUERY| GraphQL introspection Query | Alarm & Block | This violation will be issued when an introspection query was seen. |  |
