@@ -73,7 +73,8 @@ The NGINX App Protect WAF package has the following dependencies:
 2. **app-protect-engine** - The App Protect enforcement engine
 3. **app-protect-plugin** - The App Protect connector API between the engine and the NGINX Plus dynamic module
 4. **app-protect-compiler** - The App Protect enforcement engine compiler agent
-5. **app-protect-common** -The App Protect shared libraries package 
+5. **app-protect-common** - The App Protect shared libraries package 
+6. **app-protect-geoip** - The App Protect geolocation update package
 6. **app-protect-graphql** - The App Protect shared library package for GraphQL protection
 7. **app-protect-attack-signatures** - The App Protect attack signatures update package 
 8. **app-protect-threat-campaigns** - The App Protect threat campaigns update package 
@@ -2925,6 +2926,7 @@ app-protect-compiler \
 app-protect-plugin \
 app-protect-engine \
 app-protect-graphql \
+app-protect-geoip \
 app-protect-common \
 app-protect-attack-signatures \
 app-protect-threat-campaigns \
@@ -2944,6 +2946,7 @@ sudo apt-get remove app-protect \
 app-protect-plugin \
 app-protect-engine \
 app-protect-graphql \
+app-protect-geoip \
 app-protect-compiler \
 app-protect-common \
 app-protect-attack-signatures \
@@ -2958,6 +2961,7 @@ sudo apk del app-protect \
 app-protect-plugin \
 app-protect-engine \
 app-protect-graphql \
+app-protect-geoip \
 app-protect-compiler \
 app-protect-common \
 app-protect-attack-signatures \
