@@ -2979,7 +2979,7 @@ app-protect-bot-signatures
     sudo yum -y update app-protect-27+3.1088.0-1
     ```
 
-###  RHEL 8.1+ / Oracle Linux 8.1+
+###  RHEL 8.1+ / Oracle Linux 8.1+ / Rhel 9+
 1. Upgrade the NGINX App Protect WAF to the specific version:
 
     ```shell
