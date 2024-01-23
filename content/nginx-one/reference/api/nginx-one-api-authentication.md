@@ -31,7 +31,9 @@ In this guide, we'll show you how to authenticate API requests with NGINX One. T
 
 ## Getting Ready
 
-Before you start, ensure you have either an API Token or API Certificate for authentication. You can get these from the F5 Distributed Cloud Console. Click [here]([/docs/how-to/user-mgmt/credentials](https://docs.cloud.f5.com/docs/how-to/user-mgmt/credentials)) for instructions.
+Before you begin, ensure you have either an API Token or API Certificate for authentication. You can get these from the F5 Distributed Cloud Console. Visit the following link for instructions:
+
+- [F5 Distributed Cloud User Guide: Managing User Credentials](https://docs.cloud.f5.com/docs/how-to/user-mgmt/credentials)
 
 ## Authentication Methods
 
