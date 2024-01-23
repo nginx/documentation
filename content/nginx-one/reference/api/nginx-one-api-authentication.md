@@ -31,7 +31,7 @@ In this guide, we'll show you how to authenticate API requests with F5 Distribut
 
 ## Getting Ready
 
-Before you begin, ensure you have either an API Token or API Certificate for authentication. You can get these from the F5 Distributed Cloud Console. Visit the following link for instructions:
+Before you begin, make sure you have either an API Token or API Certificate for authentication. You can get these from the F5 Distributed Cloud Console. Visit the following link for instructions:
 
 - [F5 Distributed Cloud User Guide: Managing User Credentials](https://docs.cloud.f5.com/docs/how-to/user-mgmt/credentials)
 
@@ -41,7 +41,7 @@ You can authenticate API requests in two ways: using an API Token or an API Cert
 
 1. **API Token Authentication**: Include the token in the Authorization request header. Here's how to list tenant namespaces for organization plans:
 
-   ```text
+   ```shell
    curl https://<tenant>.console.ves.volterra.io/api/web/namespaces \
    -H "Authorization: APIToken <token value>"
    ```
@@ -50,7 +50,7 @@ You can authenticate API requests in two ways: using an API Token or an API Cert
 
 2. **API Certificate Authentication**: Include the client certificate and password in the request. For organization plans:
 
-   ```text
+   ```shell
    curl https://<tenant>.console.ves.volterra.io/api/web/namespaces --cert-type P12 \
    --cert <api-creds>:<password>
    ```
@@ -62,7 +62,7 @@ You can authenticate API requests in two ways: using an API Token or an API Cert
 NGINX One API requests should follow this URL format:
 
 ```text
-https://<tenant>.console.ves.volterra.io/{service_prefix}/namespaces/\{namespace\}/{kind}
+https://<tenant>.console.ves.volterra.io/{service_prefix}/namespaces/{namespace}/{kind}
 ```
 
 - `<tenant>`: Your tenant name for organization plans.
@@ -70,10 +70,10 @@ https://<tenant>.console.ves.volterra.io/{service_prefix}/namespaces/\{namespace
 - `{namespace}`: The namespace your object belongs to.
 - `{kind}`: The type of object you're dealing with.
 
-For instance, to list all NGINX 'instance' objects in the 'default' namespace, use:
+For instance, to list all NGINX One 'dataplane-key' objects in the 'default' namespace, use:
 
-```text
-curl https://acmepackingco.console.ves.volterra.io/api/nginx/one/namespaces/default/instances \
+```shell
+curl https://acmepackingco.console.ves.volterra.io/api/nginx/one/namespaces/default/dataplane-keys \
 -H "Authorization: APIToken QWFyb25Sb2RnZXJzMTI="
 ```
 
