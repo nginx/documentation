@@ -70,12 +70,15 @@ https://<tenant>.console.ves.volterra.io/{service_prefix}/namespaces/{namespace}
 - `{namespace}`: The namespace your object belongs to.
 - `{kind}`: The type of object you're dealing with.
 
+{{<see-also>}}If these terms are new to you, please refer to the [Core Concepts](https://docs.cloud.f5.com/docs/ves-concepts/core-concepts) section in the F5 Distributed Cloud documentation.{{</see-also>}}
+
 For instance, to list all NGINX One 'dataplane-key' objects in the 'default' namespace, use:
 
 ```shell
-curl https://acmepackingco.console.ves.volterra.io/api/nginx/one/namespaces/default/dataplane-keys \
+curl https://exampleindustries.console.ves.volterra.io/api/nginx/one/namespaces/default/dataplane-keys \
 -H "Authorization: APIToken QWFyb25Sb2RnZXJzMTI="
 ```
+
 
 ## Further Reading
 
