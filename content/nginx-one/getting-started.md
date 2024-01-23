@@ -45,12 +45,14 @@ Once you've enabled NGINX One, the first thing to do is to add the NGINX instanc
    Alternatively, if you've already created a data plane key that you want to reuse, select **Use existing key**, then paste the key's value in the **Data Plane Key** box.
 
    {{<note>}}
-   Data plane keys automatically expire after one year. However, you can extend this expiration date if needed.
+   Data plane keys expire after one year. This is the default setting if you don't specify an expiration time when you create a key. If necessary, you can update the data plane key later to extend its expiration.
 
    Revoking a data plane key will disconnect the associated NGINX instances from NGINX One.
-
-   **IMPORTANT**: Data plane keys are not saved and are displayed only once when you generate them. You should save this key in a secure location for future reference.
    {{</note>}}
+   {{<important>}}
+   Data plane keys are not saved and are displayed only once when you generate them. You should save this key in a secure location for future reference.
+   {{</important>}}
+
 3. **Install NGINX Agent on the NGINX instances you want to monitor**. After providing a data plane key, you'll see a curl command similar to the following example. Copy and run this command on each NGINX instance you want to connect to NGINX One.
 
    ```shell

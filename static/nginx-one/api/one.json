@@ -16,7 +16,7 @@
   "tags": [
     {
       "name": "Data Plane Key",
-      "description": "The `DataplaneKey` object represents a secure token required to establish a connection between your NGINX instances and NGINX One. \nAs a fundamental security measure, the data plane key ensures that only trusted NGINX instances can register and communicate with NGINX One. \n\nData plane keys automatically expire after one year. However, you can extend this expiration date if needed.\n\nRevoking a data plane key will disconnect the associated NGINX instances from NGINX One.\n\n**IMPORTANT** Data plane keys are not saved and are displayed only once when you generate them. You should save this key in a secure location for future reference.\n",
+      "description": "The `DataplaneKey` object represents a secure token required to establish a connection between your NGINX instances and NGINX One. \nAs a fundamental security measure, the data plane key ensures that only trusted NGINX instances can register and communicate with NGINX One. \n\nData plane keys expire after one year. This is the default setting if you don't specify an expiration time when you create a key. \nIf necessary, you can update the data plane key later to extend its expiration.\n\nRevoking a data plane key will disconnect the associated NGINX instances from NGINX One.\n\n**IMPORTANT** Data plane keys are not saved and are displayed only once when you generate them. You should save this key in a secure location for future reference.\n",
       "x-displayName": "Data Plane Key"
     },
     {
@@ -376,6 +376,12 @@
           },
           {
             "$ref": "#/components/parameters/FilterValues"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameInstances"
           }
         ],
         "responses": {
@@ -947,6 +953,43 @@
           "type": "array",
           "items": {
             "$ref": "#/components/schemas/FilterNameInstances"
+          }
+        }
+      },
+      "SortDirection": {
+        "name": "sort_dir",
+        "in": "query",
+        "description": "Sorting direction for the criteria and the resulting collection returned. Defaults to descending if not specified.\n",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "Ascending",
+            "Descending"
+          ],
+          "x-enum-varnames": [
+            "sort_dir_ascending",
+            "sort_dir_descending"
+          ]
+        }
+      },
+      "SortNameInstances": {
+        "name": "sort_instances",
+        "in": "query",
+        "description": "Sort instances by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "hostname",
+              "status",
+              "last_reported"
+            ],
+            "x-enum-varnames": [
+              "sort_name_instance_hostname",
+              "sort_name_instance_status",
+              "sort_name_instance_last_reported"
+            ]
           }
         }
       },
