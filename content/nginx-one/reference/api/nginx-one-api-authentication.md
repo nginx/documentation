@@ -62,14 +62,15 @@ You can authenticate API requests in two ways: using an API Token or an API Cert
 NGINX One API requests should follow this URL format:
 
 ```text
-https://<tenant>.console.ves.volterra.io/api/nginx/one/namespaces/\{namespace\}/{kind}
+https://<tenant>.console.ves.volterra.io/{service_prefix}/namespaces/\{namespace\}/{kind}
 ```
 
 - `<tenant>`: Your tenant name for organization plans.
+- `{service_prefix}`: The F5 Distributed Cloud service handling your request.
 - `{namespace}`: The namespace your object belongs to.
 - `{kind}`: The type of object you're dealing with.
 
-For instance, to list all 'instance' objects in the 'default' namespace, use:
+For instance, to list all NGINX 'instance' objects in the 'default' namespace, use:
 
 ```text
 curl https://acmepackingco.console.ves.volterra.io/api/nginx/one/namespaces/default/instances \
