@@ -27,7 +27,7 @@ authors: []
 
 {{<custom-styles>}}
 
-In this guide, we'll show you how to authenticate API requests with NGINX One. There are two options for authentication: API Token or API Certificate. Both methods ensure secure access to your data.
+In this guide, we'll show you how to authenticate API requests with F5 Distributed Cloud. There are two options for authentication: API Token or API Certificate. Both methods ensure secure access to your data.
 
 ## Getting Ready
 
