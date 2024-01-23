@@ -82,6 +82,5 @@ curl https://exampleindustries.console.ves.volterra.io/api/nginx/one/namespaces/
 
 ## Further Reading
 
-- [Credentials Setup](https://docs.cloud.f5.com/docs/how-to/user-mgmt/credentials)
 - [NGINX One API Reference]({{< relref "nginx-one/reference/api/nginx-one-api-reference.md" >}})
 - [F5 Distributed Cloud API Documentation](https://docs.cloud.f5.com/docs/api)
