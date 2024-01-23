@@ -21,7 +21,7 @@
     },
     {
       "name": "Instances",
-      "description": "The `Instance` object represents an active NGINX deployment. \nYou can access detailed information about each NGINX instance, including its configuration analysis, security advisories, and operational status.\n",
+      "description": "The `Instance` object represents an active NGINX installation. \nYou can access detailed information about each NGINX instance, including its configuration analysis, security advisories, and operational status.\n",
       "x-displayName": "Instances"
     },
     {
@@ -605,7 +605,7 @@
             "description": "Group the query results by the specified dimension(s).\n\nUsage:\n* List multiple dimensions as a comma-separated list.\n* For `group_by` to work, all metrics in the `names` parameter must be aggregated.\n",
             "schema": {
               "type": "string",
-              "example": "server_zone,instance_group"
+              "example": "server_zone"
             }
           },
           {
