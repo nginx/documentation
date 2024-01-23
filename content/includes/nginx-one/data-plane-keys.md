@@ -8,9 +8,9 @@ Adding nodes to NGINX One requires a Data Plane key.  The NGINX One administrato
 
 ## When to use a data plane key
 
-When adding a new or existing NGINX or NGINX plus instance to the NGINX One console you will have to provide a data plane key.  It is possible to use the same key value for all instances or you can create unique keys for groups of instances in your environment.
+When adding a new or existing NGINX instances to the NGINX One console you will have to provide a data plane key.  It is possible to use the same key value for all instances or you can create unique keys for groups of instances in your environment.
 
-The NGINX One console will provide the preferred curl command syntax for adding an NGINX or NGINX plus instance to your NGINX One console on the XC distributed platform.
+The NGINX One console will provide the preferred curl command syntax for adding an NGINX instance to your NGINX One console on the XC distributed platform.  
 
 1. Expand the Manage menu and click on Data Plane Keys. 
 1. In the name field enter your desired data plane key name and set your expiration date.  
@@ -27,13 +27,21 @@ To generate a new Data Plane key login to the NGINX One console and
 
 You are able to add a new instance to the NGINX console and generate a new key at the same time.
 
+``shell
+   curl agent.connect.nginx.com/nginx-agent/install | DATAPLANE_KEY="<data-plane-key>" sh -s -- -y
+```
+
 ## How to add a new Instance and use and existing Data Plane key
 
 You can use an existing Data Plane key when adding a new instance to the NGINX console. 
 
+``shell
+   curl agent.connect.nginx.com/nginx-agent/install | DATAPLANE_KEY="<data-plane-key>" sh -s -- -y
+```
+
 ## How to revoke a Data Plane key
 
-You can you revoke a key before it expires.  Revoking a key will disconnect any associated NGINX or NGINX Plus instances from the NGINX One console.
+You can you revoke a key before it expires.  Revoking a key will disconnect any associated NGINX instances from the NGINX One console.
 
 ## How to delete a Data Plane key
 
