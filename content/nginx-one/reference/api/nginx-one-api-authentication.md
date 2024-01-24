@@ -55,7 +55,7 @@ For definitions of terms such as _'tenant'_ and _'namespace'_ used in the follow
    ```
 
    - `<tenant>`: Your tenant name for organization plans.
-   - `<token-value>` your API Token. 
+   - `<token-value>` Your API Token. 
 
 2. **API Certificate Authentication**: Include the client certificate and password in the request. For organization plans:
 
