@@ -39,14 +39,23 @@ Before you begin, make sure you have either an API Token or API Certificate for 
 
 You can authenticate API requests in two ways: using an API Token or an API Certificate. Below are examples of how to do this with curl, but you can also use other tools like Postman.
 
-1. **API Token Authentication**: Include the token in the Authorization request header. Here's how to list tenant namespaces for organization plans:
+{{<see-also>}}
+For definitions of terms such as _'tenant'_ and _'namespace'_ used in the following examples, refer to the [NGINX One Glossary]({{<relref "/nginx-one/reference/glossary.md" >}}).
+{{</see-also>}}
+
+<br>
+
+1. **API Token Authentication**: Include the token in the Authorization request header. Note that the permissions will be the same as the user who created the token.
+
+   Here's how to list tenant namespaces for organization plans:
 
    ```shell
    curl https://<tenant>.console.ves.volterra.io/api/web/namespaces \
-   -H "Authorization: APIToken <token value>"
+   -H "Authorization: APIToken <token-value>"
    ```
 
-   Replace `<tenant>` with your tenant name and `<token value>` with your API Token. Note that the permissions will be the same as the user who created the token.
+   - `<tenant>`: Your tenant name for organization plans.
+   - `<token-value>` your API Token. 
 
 2. **API Certificate Authentication**: Include the client certificate and password in the request. For organization plans:
 
@@ -55,7 +64,9 @@ You can authenticate API requests in two ways: using an API Token or an API Cert
    --cert <api-creds>:<password>
    ```
 
-   Replace `<tenant>` with your tenant name, `<api-creds>` with the path to your certificate file, and `<password>` with your certificate password. It's best to use the full path of the certificate.
+   - `<tenant>`: Your tenant name for organization plans.
+   - `<api-creds>`: The path to your certificate file. It's best to use the full path of the certificate.
+   - `<password>` Your certificate password. 
 
 ## Constructing a Request
 
@@ -69,13 +80,11 @@ https://<tenant>.console.ves.volterra.io/api/nginx/one/namespaces/{namespace}/{k
 - `{namespace}`: The namespace your object belongs to.
 - `{kind}`: The type of object you're dealing with.
 
-{{<see-also>}}If these terms are new to you, please refer to the [Core Concepts](https://docs.cloud.f5.com/docs/ves-concepts/core-concepts) section in the F5 Distributed Cloud documentation.{{</see-also>}}
-
-For instance, to list all NGINX One 'dataplane-key' objects in the 'default' namespace, use:
+For instance, to list all NGINX One 'data-plane-key' objects in the 'default' namespace, use:
 
 ```shell
-curl https://exampleindustries.console.ves.volterra.io/api/nginx/one/namespaces/default/dataplane-keys \
--H "Authorization: APIToken QWFyb25Sb2RnZXJzMTIEXAMPLEKEY="
+curl https://<tenant>.console.ves.volterra.io/api/nginx/one/namespaces/default/data-plane-keys \
+-H "Authorization: APIToken <token-value>"
 ```
 
 
