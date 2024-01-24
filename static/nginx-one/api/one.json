@@ -16,7 +16,7 @@
   "tags": [
     {
       "name": "Data Plane Key",
-      "description": "The `DataplaneKey` object represents a secure token required to establish a connection between your NGINX instances and NGINX One. \nAs a fundamental security measure, the data plane key ensures that only trusted NGINX instances can register and communicate with NGINX One. \n\nData plane keys expire after one year. This is the default setting if you don't specify an expiration time when you create a key. \nIf necessary, you can update the data plane key later to extend its expiration.\n\nRevoking a data plane key will disconnect the associated NGINX instances from NGINX One.\n\n**IMPORTANT** Data plane keys are not saved and are displayed only once when you generate them. You should save this key in a secure location for future reference.\n",
+      "description": "The `DataPlaneKey` object represents a secure token required to establish a connection between your NGINX instances and NGINX One. \nAs a fundamental security measure, the data plane key ensures that only trusted NGINX instances can register and communicate with NGINX One. \n\nData plane keys expire after one year. This is the default setting if you don't specify an expiration time when you create a key. \nIf necessary, you can update the data plane key later to extend its expiration.\n\nRevoking a data plane key will disconnect the associated NGINX instances from NGINX One.\n\n**IMPORTANT** Data plane keys are not saved and are displayed only once when you generate them. You should save this key in a secure location for future reference.\n",
       "x-displayName": "Data Plane Key"
     },
     {
@@ -26,24 +26,24 @@
     },
     {
       "name": "Metrics",
-      "description": null,
+      "description": "Get system metrics for your NGINX data plane instances. These metrics are collected by the NGINX Agent and reported to NGINX One.\n",
       "x-displayName": "Metrics"
     },
     {
       "name": "Catalogs",
-      "description": null,
+      "description": "Get details about the available metrics and dimensions in the Metrics and Dimensions catalogs.\n",
       "x-displayName": "Catalogs"
     }
   ],
   "paths": {
-    "/dataplane-keys": {
+    "/data-plane-keys": {
       "get": {
         "tags": [
           "Data Plane Key"
         ],
         "summary": "List all data plane keys",
         "description": "Returns a list of data plane keys for your tenant namespace. \nThis list provides important information such as each key's name, when it was created, and when it will expire.\n",
-        "operationId": "listDataplaneKeys",
+        "operationId": "listDataPlaneKeys",
         "parameters": [
           {
             "$ref": "#/components/parameters/Paginated"
@@ -55,7 +55,7 @@
             "$ref": "#/components/parameters/Offset"
           },
           {
-            "$ref": "#/components/parameters/FilterFieldDataplaneKeys"
+            "$ref": "#/components/parameters/FilterFieldDataPlaneKeys"
           },
           {
             "$ref": "#/components/parameters/FilterOperands"
@@ -70,11 +70,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DataplaneKeyListResponse"
+                  "$ref": "#/components/schemas/DataPlaneKeyListResponse"
                 },
                 "examples": {
-                  "DataplaneKeys": {
-                    "$ref": "#/components/examples/DataplaneKeys"
+                  "DataPlaneKeys": {
+                    "$ref": "#/components/examples/DataPlaneKeys"
                   }
                 }
               }
@@ -88,16 +88,16 @@
         ],
         "summary": "Create a data plane key",
         "description": "Creates a unique data plane key that you can use to register NGINX instances with NGINX One.\n\n**IMPORTANT**: Save the data plane key somewhere secure for reference. The key is displayed only once and cannot be retrieved again.\n",
-        "operationId": "createDataplaneKey",
+        "operationId": "createDataPlaneKey",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DataplaneKeyRequest"
+                "$ref": "#/components/schemas/DataPlaneKeyRequest"
               },
               "examples": {
                 "DataPlaneKeyRequest": {
-                  "$ref": "#/components/examples/DataplaneKeyRequest"
+                  "$ref": "#/components/examples/DataPlaneKeyRequest"
                 }
               }
             }
@@ -109,11 +109,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DataplaneKeyResponse"
+                  "$ref": "#/components/schemas/DataPlaneKeyResponse"
                 },
                 "examples": {
                   "DataPlaneKeyResponse": {
-                    "$ref": "#/components/examples/DataplaneKeyResponse"
+                    "$ref": "#/components/examples/DataPlaneKeyResponse"
                   }
                 }
               }
@@ -142,17 +142,17 @@
         }
       }
     },
-    "/dataplane-keys/{dataplaneKeyUUID}": {
+    "/data-plane-keys/{data_plane_key_uuid}": {
       "get": {
         "tags": [
           "Data Plane Key"
         ],
         "summary": "Retrieve a data plane key",
         "description": "Retrieves the details for an existing data plane key.\n",
-        "operationId": "getDataplaneKey",
+        "operationId": "getDataPlaneKey",
         "parameters": [
           {
-            "$ref": "#/components/parameters/DataplaneKeyUUID"
+            "$ref": "#/components/parameters/DataPlaneKeyUUID"
           }
         ],
         "responses": {
@@ -161,11 +161,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DataplaneKey"
+                  "$ref": "#/components/schemas/DataPlaneKey"
                 },
                 "examples": {
-                  "DataplaneKeys": {
-                    "$ref": "#/components/examples/DataplaneKey"
+                  "DataPlaneKeys": {
+                    "$ref": "#/components/examples/DataPlaneKey"
                   }
                 }
               }
@@ -179,10 +179,10 @@
         ],
         "summary": "Delete a data plane key",
         "description": "Deletes a data plane key.\n",
-        "operationId": "deleteDataplaneKey",
+        "operationId": "deleteDataPlaneKey",
         "parameters": [
           {
-            "$ref": "#/components/parameters/DataplaneKeyUUID"
+            "$ref": "#/components/parameters/DataPlaneKeyUUID"
           }
         ],
         "responses": {
@@ -217,21 +217,21 @@
         ],
         "summary": "Update a data plane key",
         "description": "Updates an existing data plane key. \n\nYou can update the data plane key's name or extend its expiration date. It's not possible to update the expiration date for a data plane key that has expired.\n",
-        "operationId": "updateDataplaneKey",
+        "operationId": "updateDataPlaneKey",
         "parameters": [
           {
-            "$ref": "#/components/parameters/DataplaneKeyUUID"
+            "$ref": "#/components/parameters/DataPlaneKeyUUID"
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DataplaneKeyRequest"
+                "$ref": "#/components/schemas/DataPlaneKeyRequest"
               },
               "examples": {
                 "DataPlaneKeyRequest": {
-                  "$ref": "#/components/examples/DataplaneKeyRequest"
+                  "$ref": "#/components/examples/DataPlaneKeyRequest"
                 }
               }
             }
@@ -243,11 +243,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DataplaneKey"
+                  "$ref": "#/components/schemas/DataPlaneKey"
                 },
                 "examples": {
-                  "DataplaneKeys": {
-                    "$ref": "#/components/examples/DataplaneKey"
+                  "DataPlaneKeys": {
+                    "$ref": "#/components/examples/DataPlaneKey"
                   }
                 }
               }
@@ -286,17 +286,17 @@
         }
       }
     },
-    "/dataplane-keys/{dataplaneKeyUUID}/revoke": {
+    "/data-plane-keys/{data_plane_key_uuid}/revoke": {
       "put": {
         "tags": [
           "Data Plane Key"
         ],
         "summary": "Revoke a data plane key",
         "description": "Revoke an existing data plane key.\n\n**IMPORTANT**: When you revoke a data plane key, all NGINX instances registered with this key will be disconnected from NGINX One.\n",
-        "operationId": "revokeDataplaneKey",
+        "operationId": "revokeDataPlaneKey",
         "parameters": [
           {
-            "$ref": "#/components/parameters/DataplaneKeyUUID"
+            "$ref": "#/components/parameters/DataPlaneKeyUUID"
           }
         ],
         "responses": {
@@ -305,11 +305,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DataplaneKey"
+                  "$ref": "#/components/schemas/DataPlaneKey"
                 },
                 "examples": {
-                  "DataplaneKeys": {
-                    "$ref": "#/components/examples/DataplaneKey"
+                  "DataPlaneKeys": {
+                    "$ref": "#/components/examples/DataPlaneKey"
                   }
                 }
               }
@@ -333,7 +333,7 @@
         "tags": [
           "Instances"
         ],
-        "summary": "Retrieve a summary for all NGINX instances",
+        "summary": "Retrieve a summary for all instances",
         "description": "Retrieve a comprehensive summary for all NGINX instances, which includes details such as:\n  * Certificate status and associations\n  * Operating system details\n  * Version of the NGINX Agent\n  * Overall system status\n",
         "operationId": "listSummary",
         "responses": {
@@ -508,7 +508,7 @@
         "tags": [
           "Instances"
         ],
-        "summary": "Analyze an instance's NGINX configuration",
+        "summary": "Retrieve analysis of an instance's configuration",
         "description": "Analyzes the configuration of an NGINX instance and returns a detailed report.\nThe report includes insights, identified issues, and recommendations for optimizing and troubleshooting.\n",
         "operationId": "getInstanceConfigReport",
         "parameters": [
@@ -585,7 +585,7 @@
         "tags": [
           "Metrics"
         ],
-        "summary": "Query for system metrics",
+        "summary": "Retrieve system metrics for instances",
         "operationId": "queryMetrics",
         "description": "Returns system metrics for NGINX instances based on query parameters.\n\nYou can filter metrics by name and timestamp, aggregate metrics over a configurable period of time, and group metrics by dimension.\n",
         "parameters": [
@@ -630,7 +630,7 @@
           {
             "name": "dimensions",
             "in": "query",
-            "description": "List the dimensions to include in the response for each metric series.\n\nUsage:\n\n* List dimensions as a comma-separated list. Dimensions not specified in this parameter will be hidden in the results.\n* Cannot be used with `series_limit`.\n* If you specify dimensions in `group_by`, you don't need to list them again in `dimensions`. \nHowever, if you are using `group_by`, then any dimensions you list in `dimensions` must also be included in `group_by`.\n* To return a single series, specify the metric name with aggregation (for example, `AVG(agent.cpu.system)`) and leave the `dimensions` parameter empty. \n* `Tenant` and `Namespace` are not valid dimensions for this parameter. Rather, include them as headers in your request.\n",
+            "description": "List the dimensions to include in the response for each metric series.\n\nUsage:\n\n* List dimensions as a comma-separated list. Dimensions not specified in this parameter will be hidden in the results.\n* Cannot be used with `series_limit`.\n* If you specify dimensions in `group_by`, you don't need to list them again in `dimensions`. \nHowever, if you are using `group_by`, then any dimensions you list in `dimensions` must also be included in `group_by`.\n* To return a single series, specify the metric name with aggregation (for example, `AVG(agent.cpu.system)`) and leave the `dimensions` parameter empty. \n",
             "schema": {
               "type": "string",
               "example": "server_zone,instance_group"
@@ -656,7 +656,7 @@
           {
             "name": "filter",
             "in": "query",
-            "description": "Filters results based on key value pairs.\n\nUsage:\n* Format as one or more predicates in the form of `<key><operator><value>`.\n  * `<key>`: The dimension name you want to filter on.\n  * `<operator>`: The possible operators (`=`, `!=`, `<`, `<=`, `>`, `>=`, `in`, `not`) you can use for comparison or condition checking.\n  * `<value>`: The value of the dimension to filter against. Enclose `<value>` in single quotes `' '`.\n  * `<key>` and `<value>` are case sensitive.\n* `Tenant` and `Namespace` are not filterable dimensions for this parameter. Rather, include them as headers in your request.\n\nFor more complex filtering:\n\n* Combine predicates into logical expressions using `AND`, `OR`, and parentheses `( )`. \n* Use a wildcard `*` for matching partial values. \n",
+            "description": "Filters results based on key value pairs.\n\nUsage:\n* Format as one or more predicates in the form of `<key><operator><value>`.\n  * `<key>`: The dimension name you want to filter on.\n  * `<operator>`: The possible operators (`=`, `!=`, `<`, `<=`, `>`, `>=`, `in`, `not`) you can use for comparison or condition checking.\n  * `<value>`: The value of the dimension to filter against. Enclose `<value>` in single quotes `' '`.\n  * `<key>` and `<value>` are case sensitive.\n\nFor more complex filtering:\n\n* Combine predicates into logical expressions using `AND`, `OR`, and parentheses `( )`. \n* Use a wildcard `*` for matching partial values. \n",
             "schema": {
               "type": "string",
               "example": "((server_zone!='server_zone_1' OR server_zone='server_zone_2') AND nginx_id in ('id1', 'id2')) AND (system.tags!='*tag1*')"
@@ -896,14 +896,14 @@
         },
         "description": "An integer that specifies the starting position of the results, starting at `1`. Any values less than `1` are treated as `1`. \nThis is parameter is not not applicable if `paginated` is `false`.\n"
       },
-      "FilterFieldDataplaneKeys": {
+      "FilterFieldDataPlaneKeys": {
         "name": "filter_fields",
         "in": "query",
         "description": "Filter options for data plane keys; used in conjunction with other filter parameters having the same array length.\n\nWhen filtering on `status`, only the following `filter_values` are supported:\n  * revoked\n  * valid\n",
         "schema": {
           "type": "array",
           "items": {
-            "$ref": "#/components/schemas/FilterNameDataplaneKeys"
+            "$ref": "#/components/schemas/FilterNameDataPlaneKeys"
           }
         }
       },
@@ -935,8 +935,8 @@
           }
         }
       },
-      "DataplaneKeyUUID": {
-        "name": "dataplaneKeyUUID",
+      "DataPlaneKeyUUID": {
+        "name": "data_plane_key_uuid",
         "in": "path",
         "schema": {
           "type": "string",
@@ -1005,14 +1005,14 @@
       }
     },
     "schemas": {
-      "FilterNameDataplaneKeys": {
+      "FilterNameDataPlaneKeys": {
         "type": "string",
         "description": "Keywords for data plane key filters.\nWhen filtering on `status`, only the following `filter_values` are supported:\n  * revoked\n  * valid\n",
         "enum": [
           "status"
         ],
         "x-enum-varnames": [
-          "filter_name_dataplane_key_status"
+          "filter_name_data_plane_key_status"
         ]
       },
       "PaginationResponse": {
@@ -1043,7 +1043,7 @@
           "items_per_page": 100
         }
       },
-      "DataplaneKey": {
+      "DataPlaneKey": {
         "type": "object",
         "description": "Represents a data plane key with details such as UUID, name, and timestamps.",
         "required": [
@@ -1090,7 +1090,7 @@
           }
         }
       },
-      "DataplaneKeyListResponse": {
+      "DataPlaneKeyListResponse": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PaginationResponse"
@@ -1103,17 +1103,17 @@
             ],
             "properties": {
               "items": {
-                "description": "An array of DataplaneKey objects.",
+                "description": "An array of DataPlaneKey objects.",
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/DataplaneKey"
+                  "$ref": "#/components/schemas/DataPlaneKey"
                 }
               }
             }
           }
         ]
       },
-      "DataplaneKeyRequest": {
+      "DataPlaneKeyRequest": {
         "type": "object",
         "description": "Request structure for creating a new data plane key.",
         "required": [
@@ -1131,7 +1131,7 @@
           }
         }
       },
-      "DataplaneKeyResponse": {
+      "DataPlaneKeyResponse": {
         "type": "object",
         "description": "Response structure containing details of the created or retrieved data plane key.",
         "required": [
@@ -2261,7 +2261,7 @@
       }
     },
     "examples": {
-      "DataplaneKeys": {
+      "DataPlaneKeys": {
         "value": {
           "items": [
             {
@@ -2277,13 +2277,13 @@
           ]
         }
       },
-      "DataplaneKeyRequest": {
+      "DataPlaneKeyRequest": {
         "value": {
           "name": "my-data-plane-key",
           "expires_at": "2023-12-01T00:00:00Z"
         }
       },
-      "DataplaneKeyResponse": {
+      "DataPlaneKeyResponse": {
         "value": {
           "expires_at": "2023-12-01T00:00:00Z",
           "key": "AVQFrgADVFpJ9qvI7BX1+OlHUxdZRMsSCm4Q35CrqAQ=",
@@ -2291,7 +2291,7 @@
           "uuid": "c51f9b68-c436-4a69-9aa4-c01fd89895b0"
         }
       },
-      "DataplaneKey": {
+      "DataPlaneKey": {
         "value": {
           "expires_at": "2023-12-01T00:00:00Z",
           "name": "my-data-plane-key",
