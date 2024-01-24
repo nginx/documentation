@@ -27,8 +27,6 @@ authors: []
 
 {{< shortversions "1.0.0" "latest" "secvers" >}}
 
-{{<custom-styles>}}
-
 ## Overview
 
 NGINX Management Suite Security Monitoring supports the following use cases:

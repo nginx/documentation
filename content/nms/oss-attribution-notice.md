@@ -24,8 +24,6 @@ versions: []
 authors: []
 ---
 
-{{< custom-styles >}}
-
 ## Overview
 
 NGINX Management Suite includes several open-source packages that are subject to their respective licenses.

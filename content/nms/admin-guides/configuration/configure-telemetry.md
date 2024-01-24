@@ -18,8 +18,6 @@ versions: []
 authors: []
 ---
 
-{{<custom-styles>}}
-
 ## Telemetry Data and Purpose
 
 NGINX Management Suite sends a limited set of telemetry data to F5 NGINX for analysis. This data is associated only with the subscription ID from the applied license and does not include any personally identifiable information or specific details about the management plane, data plane, or other details.

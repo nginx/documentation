@@ -19,8 +19,6 @@ aliases:
 - /nginx-instance-manager/support/k8s-support-package/
 ---
 
-{{<custom-styles>}}
-
 {{< shortversions "2.5.0" "latest" "nimvers" >}}
 
 ## Overview

@@ -8,8 +8,6 @@ tags: ["docs"]
 docs: "DOCS-1136"
 ---
 
-{{< custom-styles>}}
-
 Before using the App Delivery Manager module, we recommend setting up [role-based access control](https://docs.nginx.com/nginx-management-suite/admin-guides/access-control/set-up-rbac) (RBAC) for the teams that will be using the product. All App Delivery Manager API endpoints are backed by RBAC as well and bring unique considerations due to its object hierarchy. These are described in the [RBAC]({{< relref "/nms/adm/about/rbac-overview.md" >}}) section of **App Delivery Manager Concepts**. By default, users (except the Admin) are denied access to any endpoints unless explicitly given permission.
 
 ## Standard Roles

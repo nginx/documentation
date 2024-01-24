@@ -12,8 +12,6 @@ aliases:
 - /nginx-instance-manager/admin-guide/add-license/
 ---
 
-{{< custom-styles >}}
-
 ## Overview
 
 NGINX Management Suite offers several features that do not require a license; however, most features require a valid license to use. The [License Comparison](#license-comparison) section below provides more details about the included features and their license requirements. 

@@ -27,8 +27,6 @@ aliases:
 - /installation/offline-install-guide/
 ---
 
-{{< custom-styles >}}
-
 ## Overview
 
 {{< include "nms/nim-core-module.md" >}}

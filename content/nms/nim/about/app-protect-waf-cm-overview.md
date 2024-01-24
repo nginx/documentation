@@ -15,8 +15,6 @@ doctypes: ["reference"]
 docs: "DOCS-992"
 
 ---
-{{<custom-styles>}}
-
 {{< shortversions "2.6.0" "latest" "nimvers" >}}
   
 ## Overview

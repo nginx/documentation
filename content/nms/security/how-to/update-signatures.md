@@ -27,8 +27,6 @@ authors: []
 
 {{< shortversions "1.0.0" "latest" "secvers" >}}
 
-{{<custom-styles>}}
-
 ## Overview
 
 You can use the NGINX Management Suite Security Monitoring module to monitor NGINX App Protect WAF instances for security. The Security Monitoring module analytics dashboards utilize a Signature Database to give more detail about the Attack Signatures that have caused a Security Violation, like the Signature's name, accuracy, and risk. If the Signature Database is not updated to match the Attack Signature version used for App Protect WAF protection, new signatures may be triggered without a name or other attributes like risk and accuracy.

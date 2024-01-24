@@ -10,8 +10,6 @@ docs: "DOCS-1266"
 doctype: "tutorial"
 ---
 
-{{<custom-styles>}}
-
 ## Overview
 Application Delivery Manager gateways are entry points for applications, and create NGINX server blocks. These blocks are normally used to bind local IPs to ports and accept incoming connections. 
 

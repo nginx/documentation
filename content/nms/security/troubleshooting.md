@@ -24,8 +24,6 @@ versions: []
 authors: []
 ---
 
-{{< custom-styles >}}
-
 
 ## Security Event log backup with Security Monitoring
 

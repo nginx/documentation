@@ -8,8 +8,6 @@ tags: ["docs"]
 docs: "DOCS-1150"
 ---
 
-{{< custom-styles>}}
-
 ## Overview
 
 With the App Delivery Manager implementation of [Go Templates](https://pkg.Go.dev/text/template), template writers can extend or enhance the built-in templates that ship with the product using a set of utility functions and variables. These enhancements are described below.

@@ -24,8 +24,6 @@ versions: []
 authors: []
 ---
 
-{{< custom-styles >}}
-
 ## System returns `403 Forbidden` error for authorized resources
 
 #### Description

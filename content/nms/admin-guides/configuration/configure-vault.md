@@ -24,8 +24,6 @@ versions: []
 authors: []
 ---
 
-{{<custom-styles>}}
-
 {{< shortversions "2.6.0" "latest" "nimvers" >}}
 
 HashiCorp's Vault is a popular solution for storing secrets. While NGINX Management Suite provides encryption-at-rest for secrets stored on disk, if you have an existing Vault installation, you may prefer to store all secrets in one place. NGINX Management Suite provides a driver you can use to connect to existing Vault installations and store secrets.

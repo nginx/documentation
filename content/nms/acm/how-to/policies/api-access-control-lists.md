@@ -10,8 +10,6 @@ docs: "DOCS-950"
 version: []
 ---
 
-{{<custom-styles>}}
-
 ## Overview
 
 {{< include "acm/how-to/policies-intro" >}}
