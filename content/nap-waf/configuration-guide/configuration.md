@@ -5646,63 +5646,93 @@ Security logging example in json_log:
 ""customLogAttribute"":[{""name"":""component"",""value"":""comp1""},{""name"":""gateway"",""value"":""gway1""}]}"
 ```
 
-### Time-Based Signature Staging
 
-#### Signature in Staging Overview
+## Time-Based Signature Staging
 
-When the new attack signatures are launched they are deployed in a staging environment first before being promoted to production. In some cases, the staging environment that fully simulates the real traffic is impossible and hence it is impossible to detect real attacks. There can be false positives and expose the application to attacks.
-For such cases we need to deploy the new signatures in staging environment in “staging” mode.
+### Signature in Staging Overview
+
+When new attack signatures are introduced in an App Protect policy, the policy is tested in a staging environment first before being promoted to production. However, in some instances where it is challenging to replicate real traffic accurately in the staging environment, the detection of genuine attacks becomes difficult. There can be false positives and expose the application to attacks. For such cases, we need to deploy the new signatures in staging environment in “staging” mode.
+
+This feature introduces a new policy property known as **Certification Time** that determines the point in time for which signatures have been tested, approved and certified.
 
 The purpose of this feature is to put signatures in staging by their age (modification time).
+
 There are two types of signatures:
-1. Staging Signatures - All the signatures in the policy that were created or modified **after** the certification time are in staging.
-2. Enforced Signatures – All the signatures in the policy that were created or modified **prior** to the certification date time are enforced.
+1. **Staging Signatures** - All the signatures in the policy that were created or modified **after** the certification time are in staging.
+2. **Enforced Signatures** – All the signatures in the policy that were created or modified **prior** to the certification date time or exactly at that time.
 
-#### Latest Signature Certification Time
-The latest signatures certification time, is the timestamp (in date-time ISO format) as the time the signatures in the policy are considered as “trusted” by the user.
+### Latest Signature Certification Time
+The latest signatures certification time is the timestamp (in date-time ISO format) as the time the signatures in the policy are considered as “trusted” by the user and separates enforced signatures from signatures in staging.
 
-When this value is not defined and the staging flag is enabled, it means that all the signatures in the policy are in staging.
+When this value is not defined and the staging flag is enabled, it means that all the signatures in the policy are in staging. If the signature was added to the policy but was created before the certification date-time then it will not be in staging. 
 
-A signature is considered new in two cases:
-1. It was introduced by a recent signature update that was applied to the respective policy.
-2. It was added to a policy in which it wasn’t included before.
+A signature is considered new if it was introduced by a recent signature update that was applied to the respective policy. Note that signatures that were added later to the policy (by adding a new signature set) are not considered new unless they were added in the recent signature update. These signatures will not be in staging.
 
-#### New Policy
-When a new policy is deployed the user would like to have all its signatures in staging. For that to happen, the `performStaging` flag at the signature settings level is set to true. `stagingCertificationDatetime` is not present in this case. This way, all signatures are in staging regardless of their modification time.
-If the user is not interested in putting the initial signatures in staging,, then `performStaging` is set to `false`.
 
-#### Signature Update
-After applying a signature update (F5 or user defined), and assuming the update creation time is later than the previous signature update applied to the policy (i.e. the signatures are upgraded, not downgraded), then all the signatures that were affected by the update (created or modified) are automatically put in staging. That's because their modification time is newer than the current `stagingCertificationDatetime`. Signatures that were not affected by the update will **not** be in staging.
+### New Policy
+When a new policy is deployed, the user prefers to have all its signatures present in the staging environment. To facilitate this, the `performStaging ` flag is configured to true at the signature settings level.
 
-#### Configuration
+`stagingCertificationDatetime` setting is not present in this case. This way, all signatures are in staging regardless of their modification time.
+If the user is not interested in putting the initial signatures in staging, then `performStaging` is set to `false`.
+
+### Signature Update
+After applying a signature update (F5 or user-defined), and assuming the update creation time is later than the previous signature update applied to the policy (i.e. the signatures are upgraded, not downgraded), then all the signatures that were affected by the update (created or modified) are automatically put in staging. That's because their modification time is newer than the current `stagingCertificationDatetime`. Signatures that were not affected by the update will **not** be in staging.
+
+### Configuration
 
 #### Staging Certification Date-Time
 
-A new property `stagingCertificationDatetime` is added to `signature-settings` section. All signatures that were created or modified in a signature update that is later than that time are in staging while all the rest are enforced and not in staging.
+A new property known as `stagingCertificationDatetime` is added to `signature-settings` section. All signatures that were created or modified in a signature update that is later than that time are in staging while all the rest are enforced and not in staging.
 
-The `stagingCertificationDatetime` property will contain ISO 8601 date-time format. It has effect only if `performStaging` is set to true. It is **optional** and its absence means that all signatures are put in staging (again, if performStaging is true).
+The `stagingCertificationDatetime` property will contain `ISO 8601` date-time format. It has effect only if `performStaging` is set to true. It is **optional** and its absence means that all signatures are placed in the staging environment, assuming the `performStaging` setting is set to true.
 
 See below policy for more details.
 
 ```json
-policy:
-    name: myPolicy
-    signature-settings:
-        performStaging: true
-        stagingCertificationDatetime: "2023-06-13T14:53:24Z"
+{
+     "policy" : {
+        "applicationLanguage" : "utf-8",
+        "description" : "Nginx Policy",
+        "enforcementMode" : "blocking",
+        "fullPath" : "/Common/my_test_nginx_policy",
+        "name" : "my_test_nginx_policy",
+        "performStaging" : true,
+        "signature-settings" : {
+           "stagingCertificationDatetime": "2023-06-13T14:53:24Z",
+           "signatureStaging": true
+        },
+        "template" : {
+           "name" : "POLICY_TEMPLATE_NGINX_BASE"
+        },
+        "type" : "security"
+    }
+   }
 ```
 
-#### Enforcement
-All signatures that are in staging if their creation or modification time are later than the `stagingCertificationDatetime`:
+### Enforcing the Modified Signatures After Testing Them
+
+All signatures that are in staging if their creation or modification time is later than the `stagingCertificationDatetime`.
 
 A signature in staging will be reported in the security log but will not cause the request to be blocked neither directly, nor indirectly by raising the Violation Rating (threat score). However, the potential Violation Rating will be reported if the staged signatures are enforced and moved out of staging.
 
-If there are also staged entities other than signatures (Parameters, URLs or Cookies) the violations or signatures related to them will also not be taken into consideration in the Violation Rating, but will be taken into consideration in the Violation Rating without staging. 
+After you review the logs and can be assured that the new and modified signatures that were in staging are behaving correctly and do not cause false positives, you should enforce them, that is, move them out of staging by modifying the `stagingCertificationDatetime` to the time stamp of the latest signature update. This way all the signatures will now be enforced, but when installing a new signature update in the future, all the new and modified signatures in that update will be automatically in staging.
 
-####  Reporting
+Note that we do not recommend setting the `stagingCertificationDatetime` to the current time, the time you finished reviewing the signatures. That's because the future signature update might have been created before that time, and when you install that update, modified signatures in it will not be in staging because they will be older than the `stagingCertificationDatetime`.
 
-##### Time Based Signature - Logging and Reporting
 
+### Logging and Reporting
+
+Time-based Signature will be logged and reported in the Security log without blocking the request as discussed in the above section.
+
+Security log will have the following new fields under the enforcementState:
+-	The Violation Rating if there was no staging - `ratingIncludingViolationsInStaging`
+-	The `stagingCertificationDatetime` from the policy
+-	The specific staging state of the signature 
+-	The `lastUpdateTime` of the signature - for the user to be able to determine why the signature was (or was not) in staging.
+
+```json
+json_log="{""id"":""7103271131347005954"",""violations"":[{""enforcementState"":{""isBlocked"":true,""isAlarmed"":true,""isInStaging"":false,""isLearned"":false,""isLikelyFalsePositive"":false},""violation"":{""name"":""VIOL_ATTACK_SIGNATURE""},""signature"":{""name"":""XSS script tag (Parameter)"",""signatureId"":200000098,""accuracy"":""high"",""risk"":""high"",""hasCve"":false,""stagingCertificationDatetime"":""2024-01-01T00:00:00Z"",""lastUpdateTime"":""2023-11-02T19:36:54Z""},""snippet"":{""buffer"":""cGFyYW09PHNjcmlwdA=="",""offset"":6,""length"":7},""policyEntity"":{""parameters"":[{""name"":""*"",""level"":""global"",""type"":""wildcard""}]},""observedEntity"":{""name"":""cGFyYW0="",""value"":""PHNjcmlwdA=="",""location"":""query""}},{""enforcementState"":{""isBlocked"":false,""isAlarmed"":true,""isLearned"":false},""violation"":{""name"":""VIOL_PARAMETER_VALUE_METACHAR""},""policyEntity"":{""parameters"":[{""name"":""*"",""level"":""global"",""type"":""wildcard""}]},""observedEntity"":{""name"":""cGFyYW0="",""value"":""PHNjcmlwdA=="",""location"":""query""},""metachar"":""0x3c"",""charsetType"":""parameter-value""},{""enforcementState"":{""isBlocked"":false},""violation"":{""name"":""VIOL_HTTP_PROTOCOL""},""policyEntity"":{""blocking-settings"":{""http-protocols"":{""description"":""Host header contains IP address""}}}},{""enforcementState"":{""isBlocked"":true},""violation"":{""name"":""VIOL_RATING_THREAT""}},{""enforcementState"":{""isBlocked"":false},""violation"":{""name"":""VIOL_BOT_CLIENT""}}],""enforcementAction"":""block"",""method"":""GET"",""clientPort"":6026,""clientIp"":""10.42.0.1"",""host"":""nginx-78b84c446f-flw6h"",""responseCode"":0,""serverIp"":""0.0.0.0"",""serverPort"":80,""requestStatus"":""blocked"",""url"":""L2luZGV4LnBocA=="",""virtualServerName"":""24-localhost:1-/"",""enforcementState"":{""isBlocked"":true,""isAlarmed"":true,""rating"":4,""attackType"":[{""name"":""Non-browser Client""},{""name"":""Abuse of Functionality""},{""name"":""Cross Site Scripting (XSS)""},{""name"":""Other Application Activity""},{""name"":""HTTP Parser Attack""}],""ratingIncludingViolationsInStaging"":4,""stagingCertificationDatetime"":""2024-01-01T00:00:00Z""},""requestDatetime"":""2023-12-27T14:22:29Z""
+```
 
 ## Directives
 
