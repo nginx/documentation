@@ -27,7 +27,7 @@ To generate a new Data Plane key login to the NGINX One console and
 
 You are able to add a new instance to the NGINX console and generate a new key at the same time.
 
-``shell
+```shell
    curl agent.connect.nginx.com/nginx-agent/install | DATAPLANE_KEY="<data-plane-key>" sh -s -- -y
 ```
 
@@ -35,7 +35,7 @@ You are able to add a new instance to the NGINX console and generate a new key a
 
 You can use an existing Data Plane key when adding a new instance to the NGINX console. 
 
-``shell
+```shell
    curl agent.connect.nginx.com/nginx-agent/install | DATAPLANE_KEY="<data-plane-key>" sh -s -- -y
 ```
 
