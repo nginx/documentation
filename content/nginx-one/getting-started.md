@@ -40,7 +40,7 @@ This guide provides step-by-step instructions on how to activate and start using
 Once you've enabled NGINX One, the first thing to do is to add the NGINX instances you want to track.
 
 1. **Add your NGINX instances with the web interface**. If this is your first time accessing the NGINX console, select **Add Instance** on the welcome screen. If you've added instances before and now you want to add more, select **Instances** on the console's left menu, then select **Add Instance**.
-2. **Add a data plane key**. A data plane key is a security token that ensures only trusted NGINX instances can register and communicate with NGINX One. To generate a data plane key, select **Generate Data Plane Key**.
+2. **Generate a data plane key**. A data plane key is a security token that ensures only trusted NGINX instances can register and communicate with NGINX One. To generate a data plane key, select **Generate Data Plane Key**.
 
    Alternatively, if you've already created a data plane key that you want to reuse, select **Use existing key**, then paste the key's value in the **Data Plane Key** box.
 
