@@ -59,8 +59,10 @@ Once you've enabled NGINX One, the first thing to do is to add the NGINX instanc
 3. **Install NGINX Agent on the NGINX instances you want to monitor**. After providing a data plane key, you'll see a curl command similar to the following example. Copy and run this command on each NGINX instance you want to connect to NGINX One.
 
    ```shell
-   curl agent.connect.nginx.com/nginx-agent/install | DATAPLANE_KEY="DTROJy0El8ArZ/oTtYQoAUFRvO8Zm5jG9EXAMPLEKEY=" sh -s -- -y
+   curl agent.connect.nginx.com/nginx-agent/install | DATAPLANE_KEY="<data-plane-key>" sh -s -- -y
    ```
+
+   - `<data-plane-key>`: The data plane key value.
 
    <br>
 
