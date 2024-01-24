@@ -45,9 +45,9 @@ For definitions of terms such as _'tenant'_ and _'namespace'_ used in the follow
 
 <br>
 
-1. **API Token Authentication**: Include the token in the Authorization request header. Note that the permissions will be the same as the user who created the token.
+1. **API Token Authentication**: An API token grants a user access to the NGINX One REST API. The user's role determines the permissions associated with the API token. Include the token in the Authorization request header. 
 
-   Here's how to list tenant namespaces for organization plans:
+   Here's how to use an API token to authenticate a request to the F5 Distributed Cloud API. This example request lists tenant namespaces for organization plans:
 
    ```shell
    curl https://<tenant>.console.ves.volterra.io/api/web/namespaces \
