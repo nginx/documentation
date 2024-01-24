@@ -57,8 +57,9 @@ NGINX App Protect WAF supports the following operating systems:
 - [RHEL 9 and above](#rhel-9-installation)
 - [Oracle Linux 8.1.x and above](#oracle-linux-81-installation)
 - [Amazon Linux 2](#amazon-linux-2-lts-installation)
-- [Debian 10 (Buster)](#debian-10--debian-11-installation) - (Deprecated starting from NGINX Plus R28)
-- [Debian 11 (Bullseye)](#debian-10--debian-11-installation)
+- [Debian 10 (Buster)](#debian-10--debian-11--debian-12-installation) - (Deprecated starting from NGINX Plus R28)
+- [Debian 11 (Bullseye)](#debian-10--debian-11--debian-12-installation)
+- [Debian 12 (Bookworm)](#debian-10--debian-11--debian-12-installation)
 - [Ubuntu 18.04 (Bionic)](#ubuntu-1804--ubuntu-2004--ubuntu-2204-installation) - (Deprecated starting from NGINX Plus R30)
 - [Ubuntu 20.04 (Focal)](#ubuntu-1804--ubuntu-2004--ubuntu-2204-installation)
 - [Ubuntu 22.04 (Jammy)](#ubuntu-1804--ubuntu-2004--ubuntu-2204-installation)
@@ -72,7 +73,8 @@ The NGINX App Protect WAF package has the following dependencies:
 2. **app-protect-engine** - The App Protect enforcement engine
 3. **app-protect-plugin** - The App Protect connector API between the engine and the NGINX Plus dynamic module
 4. **app-protect-compiler** - The App Protect enforcement engine compiler agent
-5. **app-protect-common** -The App Protect shared libraries package 
+5. **app-protect-common** - The App Protect shared libraries package 
+6. **app-protect-geoip** - The App Protect geolocation update package
 6. **app-protect-graphql** - The App Protect shared library package for GraphQL protection
 7. **app-protect-attack-signatures** - The App Protect attack signatures update package 
 8. **app-protect-threat-campaigns** - The App Protect threat campaigns update package 
@@ -832,7 +834,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo systemctl start nginx
     ```
 
-## Debian 10 / Debian 11 Installation
+## Debian 10 / Debian 11 / Debian 12 Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -937,7 +939,7 @@ If a user other than **nginx** is to be used, note the following:
     app-protect-common=8.7.4-1~[OS_CODENAME]  
     ```
 
-    Replace the [OS_CODENAME] in the above example with: **buster** for Debian 10 and **bullseye** for Debian 11.
+    Replace the [OS_CODENAME] in the above example with: **buster** for Debian 10, **bullseye** for Debian 11 and **bookworm** for Debian 12.
 
 12. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
 
@@ -963,7 +965,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo systemctl start nginx
     ```
 
-{{< note >}} Debian 10 / Debian 11 activates __AppArmor__ by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
+{{< note >}} Debian 10 / Debian 11 / Debian 12 activates __AppArmor__ by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
 {{< /note >}}
 
 
@@ -1549,13 +1551,13 @@ COPY entrypoint.sh /root/
 CMD ["sh", "/root/entrypoint.sh"]
 ```
 
-### Debian 10 (Buster) / 11 (Bullseye) Docker Deployment Example
+### Debian 10 (Buster) / 11 (Bullseye) / 12 (Bookworm) Docker Deployment Example
 
 ```dockerfile
 ARG OS_CODENAME
-# Where OS_CODENAME can be: buster/bullseye
+# Where OS_CODENAME can be: buster/bullseye/bookworm
 # syntax=docker/dockerfile:1
-# For Debian 10 / 11:
+# For Debian 10 / 11 / 12:
 FROM debian:${OS_CODENAME}
 
 # Install prerequisite packages:
@@ -1957,11 +1959,11 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
 CMD ["sh"]
 ```
 
-### Debian 11 Converter Docker Deployment Example
+### Debian 11 / Debian 12 Converter Docker Deployment Example
 ```dockerfile
 # syntax=docker/dockerfile:1
 # For Debian 11:
-FROM debian:bullseye
+FROM debian:bullseye/bookworm
 
 # Install prerequisite packages:
 RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2
@@ -2311,7 +2313,7 @@ After having updated the Attack Signature package you have to reload the configu
     sudo dnf downgrade app-protect-attack-signatures-2023.12.11
     ```
 
-### Debian 10 / Debian 11
+### Debian 10 / Debian 11 / Debian 12
 
 1. Add NGINX App Protect WAF Security Updates repository:
 
@@ -2354,6 +2356,11 @@ After having updated the Attack Signature package you have to reload the configu
     For Debian 11:
      ```shell
     sudo apt-get install app-protect-attack-signatures=2020.04.30-1~bulleye
+    ```
+
+    For Debian 12:
+     ```shell
+    sudo apt-get install app-protect-attack-signatures=2020.04.30-1~bookworm
     ```
 
 ### Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04
@@ -2585,7 +2592,7 @@ Example: app-protect-threat-campaigns-2022.07.21
     sudo apk add app-protect-threat-campaigns=2023.08.09-r1
     ```
 
-### Debian 10 / Debian 11
+### Debian 10 / Debian 11 / Debian 12
 
 1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
@@ -2628,6 +2635,11 @@ Example: app-protect-threat-campaigns-2022.07.21
     For Debian 11:
     ```shell
     sudo apt-get install app-protect-threat-campaigns=2020.06.25-1~bullseye
+    ```
+
+      For Debian 12:
+    ```shell
+    sudo apt-get install app-protect-threat-campaigns=2020.06.25-1~bookworm
     ```
 
 ### Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04
@@ -2815,7 +2827,7 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     ```
 
 
-### Debian 11
+### Debian 11 / Debian 12
 
 1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
@@ -2852,6 +2864,11 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     For Debian 11:
     ```shell
     sudo apt-get install app-protect-bot-signatures=2023.11.14~bullseye
+    ```
+
+     For Debian 12:
+    ```shell
+    sudo apt-get install app-protect-bot-signatures=2023.11.14~bookworm
     ```
 
 
@@ -2924,6 +2941,7 @@ app-protect-compiler \
 app-protect-plugin \
 app-protect-engine \
 app-protect-graphql \
+app-protect-geoip \
 app-protect-common \
 app-protect-attack-signatures \
 app-protect-threat-campaigns \
@@ -2936,13 +2954,14 @@ app-protect-selinux
 sudo dnf remove app-protect app-protect-selinux
 ```
 
-### Debian 11 / Ubuntu 20.04 / Ubuntu 22.04
+### Debian 11 / Debian 12 / Ubuntu 20.04 / Ubuntu 22.04
 
 ```shell
 sudo apt-get remove app-protect \
 app-protect-plugin \
 app-protect-engine \
 app-protect-graphql \
+app-protect-geoip \
 app-protect-compiler \
 app-protect-common \
 app-protect-attack-signatures \
@@ -2957,6 +2976,7 @@ sudo apk del app-protect \
 app-protect-plugin \
 app-protect-engine \
 app-protect-graphql \
+app-protect-geoip \
 app-protect-compiler \
 app-protect-common \
 app-protect-attack-signatures \
@@ -2974,14 +2994,14 @@ app-protect-bot-signatures
     sudo yum -y update app-protect-27+3.1088.0-1
     ```
 
-###  RHEL 8.1+ / Oracle Linux 8.1+
+###  RHEL 8.1+ / Oracle Linux 8.1+ / Rhel 9+
 1. Upgrade the NGINX App Protect WAF to the specific version:
 
     ```shell
     sudo dnf -y update app-protect-27+3.1088.0-1
     ```
 
-### Debian 10 / Debian 11
+### Debian 10 / Debian 11 / Debian 12
 
 1. Get the dependencies and their versions to be upgraded to by using the command:
 
@@ -3000,7 +3020,7 @@ app-protect-bot-signatures
     app-protect-engine=10.139.2-1~[OS_CODENAME] \
     app-protect=27+3.1088.2-1~[OS_CODENAME] 
     ```
-    **Note**: Replace the [OS_CODENAME] in the above command with: **buster** for Debian 10 and **bullseye** for Debian 11.
+    **Note**: Replace the [OS_CODENAME] in the above command with: **buster** for Debian 10, **bullseye** for Debian 11 and **bookworm** for Debian 12.
 
 ### Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04
 
@@ -3041,7 +3061,7 @@ app-protect-bot-signatures
     sudo dnf -y update app-protect
     ```
 
-### Debian 10 / Debian 11 / Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04
+### Debian 10 / Debian 11 / Debian 12 / Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04
 
 - Upgrade the NGINX App Protect WAF to the latest version:
 

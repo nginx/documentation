@@ -6,4 +6,5 @@ menu:
 title: Platform
 weight: 140
 url: /nginx-controller/platform/
+layout: "ctlr-eos-list"
 ---
