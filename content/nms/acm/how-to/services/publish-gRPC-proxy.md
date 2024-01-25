@@ -14,8 +14,6 @@ tags: [ "docs" ]
 docs: "DOCS-997"
 ---
 
-{{< custom-styles >}}
-
 {{< shortversions "1.2.0" "latest" "acmvers" >}}
 
 ## Overview

@@ -25,8 +25,6 @@ versions: []
 authors: []
 ---
 
-{{< custom-styles >}}
-
 ## NGINX Management Suite Ansible Role
 
 {{< call-out "tip" "Open-Source Project on GitHub" >}}

@@ -24,8 +24,6 @@ versions: []
 authors: []
 ---
 
-{{<custom-styles>}}
-
 {{< shortversions "2.5.0" "latest" "nimvers" >}}
 
 ## NGINX Management Suite Helm Chart Settings {#nms-helm-settings}

@@ -7,8 +7,6 @@ weight: 250
 docs: "DOCS-1348"
 ---
 
-{{< custom-styles >}}
-
 
 ## Overview
 

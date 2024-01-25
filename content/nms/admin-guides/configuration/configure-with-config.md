@@ -25,8 +25,6 @@ authors: []
 
 ---
 
-{{<custom-styles>}}
-
 ## Overview
 
 The NGINX Management Suite includes several modules for managing your NGINX instances:

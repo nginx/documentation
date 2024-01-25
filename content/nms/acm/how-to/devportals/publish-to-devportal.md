@@ -12,8 +12,6 @@ weight: 200
 docs: "DOCS-1082"
 ---
 
-{{<custom-styles>}}
-
 {{< shortversions "1.1.0" "latest" "acmvers" >}}
 
 ---

@@ -8,8 +8,6 @@ tags: ["docs"]
 docs: "DOCS-1137"
 ---
 
-{{< custom-styles>}}
-
 ---
 
 ## Overview

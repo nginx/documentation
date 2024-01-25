@@ -25,7 +25,6 @@ aliases:
 - /nim/how-to/manage-resource-groups/
 ---
 
-{{< custom-styles >}}
 {{< shortversions "2.12.0" "latest" "nimvers" >}}
 
 ## What Is a Resource Group?

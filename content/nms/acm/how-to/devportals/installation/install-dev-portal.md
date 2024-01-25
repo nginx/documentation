@@ -24,8 +24,6 @@ versions: []
 authors: []
 ---
 
-{{< custom-styles >}}
-
 ---
 
 ## Platform Requirements {#acm-devportal-requirements}

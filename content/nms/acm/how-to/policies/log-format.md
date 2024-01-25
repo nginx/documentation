@@ -11,8 +11,6 @@ journeys: ["getting started", "using"]
 personas: ["Platform Ops", "Infra Admins"]
 ---
 
-{{<custom-styles>}}
-
 ## Overview
 
 {{< include "acm/how-to/policies-intro" >}}

@@ -26,8 +26,6 @@ aliases:
 - /nim/how-to/manage-instance-groups/
 ---
 
-{{< custom-styles >}}
-
 ## Overview
 
 You can easily manage multiple NGINX instances as a single entity by creating an instance group in Instance Manager and adding NGINX instances to it.

@@ -16,8 +16,6 @@ docs: "DOCS-1098"
 
 ---
 
-{{< custom-styles >}}
-
 ## Overview
 
 - NGINX Management Suite includes several scripts, which you can run to back up and restore the configuration files, secrets, and databases used by the NGINX Management Suite platform.
