@@ -8,8 +8,6 @@ description: "Learn how to use NGINX Management Suite App Delivery Manager to cr
 docs: "DOCS-1257"
 ---
 
-{{< custom-styles >}}
-
 ## Overview
 
 

@@ -24,8 +24,6 @@ versions: []
 authors: []
 ---
 
-{{< custom-styles >}}
-
 ## Overview
 
 ### Requirements {#requirements}

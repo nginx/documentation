@@ -25,8 +25,6 @@ authors: []
 
 ---
 
-{{< custom-styles >}}
-
 ## Overview
 
 Choose from the following options to view frequently used configurations for the NGINX Management Suite. To apply any of these configurations, modify the `values.yaml` file accordingly.

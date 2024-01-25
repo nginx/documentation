@@ -18,8 +18,6 @@ aliases:
 - /nginx-instance-manager/about/api-overview/
 ---
 
-{{< custom-styles >}}
-
 {{< shortversions "2.0.0" "latest" "nimvers" >}}
 
 ## Introduction

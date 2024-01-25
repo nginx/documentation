@@ -24,8 +24,6 @@ versions: []
 authors: []
 ---
 
-{{< custom-styles >}}
-
 {{< beta-badge >}}
 
 ## Payload Size Exceeds Internal Data Plane Manager (dpm) Max Message Size

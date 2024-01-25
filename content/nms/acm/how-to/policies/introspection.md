@@ -13,8 +13,6 @@ journeys: ["getting started", "using"]
 personas: ["secops"]
 ---
 
-{{<custom-styles>}}
-
 ## Overview
 
 API Connectivity Manager API Owners can restrict access to their APIs with OAuth2 tokens by swapping an opaque token for claims or JWT token to be proxied to the backend service. The policy can be configured to grant access to APIs after having the tokens introspected. In addition, the claims in the token can be extracted and forwarded to the backend service.

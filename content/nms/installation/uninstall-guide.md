@@ -13,8 +13,6 @@ aliases:
 ---
 
 
-{{< custom-styles >}}
-
 ## NGINX Management Suite {#uninstall-nms}
 
 {{<tabs name="uninstall_nms">}}

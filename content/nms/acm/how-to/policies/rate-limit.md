@@ -10,8 +10,6 @@ journeys: ["getting started", "using"]
 personas: ["netops", "secops"]
 ---
 
-{{<custom-styles>}}
-
 ## Overview
 
 {{< include "acm/how-to/policies-proxy-intro" >}}

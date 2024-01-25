@@ -24,8 +24,6 @@ versions: []
 authors: []
 ---
 
-{{<custom-styles>}}
-
 ## Overview
 
 If the NGINX proxy gateway for NGINX Management Suite alerts you that there are not enough worker connections, you may need to modify the NGINX configuration (`/etc/nginx/nginx.conf` on the NGINX Management Suite host) to allow more worker connections and increase the number of file descriptors for worker processes.

@@ -26,8 +26,6 @@ authors: []
 
 ---
 
-{{< custom-styles >}}
-
 ## Requirements
 
 Review the following requirements for App Delivery Manager before continuing.

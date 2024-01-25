@@ -12,8 +12,6 @@ docs: "DOCS-905"
 doctypes: ["concept"]
 ---
 
-{{<custom-styles>}}
-
 Explore the topics below to find out what the NGINX Management Suite modules have to offer.
 
 ---

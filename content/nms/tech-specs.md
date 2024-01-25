@@ -13,8 +13,6 @@ aliases:
 
 ---
 
-{{< custom-styles >}}
-
 ## Overview
 
 {{< include "nms/nim-core-module.md" >}}

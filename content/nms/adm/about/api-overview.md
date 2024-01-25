@@ -8,8 +8,6 @@ tags: ["docs"]
 docs: "DOCS-1138"
 ---
 
-{{< custom-styles>}}
-
 ## API Object Model
 
 The App Delivery Manager API extends the Instance Manager [API]({{< relref "/nms/nim/about/api-overview" >}}) to provide additional endpoints, which enables a user to manage NGINX configurations using an app-centric approach.

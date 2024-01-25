@@ -10,8 +10,6 @@ categories: ["developer portal"]
 docs: DOCS-955
 ---
 
-{{<custom-styles>}}
-
 {{< shortversions "1.2.0" "latest" "acmvers" >}}
 
 ## Overview
