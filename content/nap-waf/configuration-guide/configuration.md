@@ -822,7 +822,7 @@ In this example, only high accuracy signatures are configured to be enforced, bu
 }
 ~~~
 
-Since the “All Signatures” set is not included in the default policy, turning OFF both alarm and block has no effect because all the other sets with alarm turned ON (and high accuracy signatures with block enabled) are still in place and a signature that is a member of multiple sets behaves in accordance with the strict settings of all sets it belongs to. The only way to remove signature sets is to remove or disable sets that are part of the [default policy](#signature-sets-in-default-policy).
+Since the "All Signatures" set is not included in the default policy, turning OFF both alarm and block has no effect because all the other sets with alarm turned ON (and high accuracy signatures with block enabled) are still in place and a signature that is a member of multiple sets behaves in accordance with the strict settings of all sets it belongs to. The only way to remove signature sets is to remove or disable sets that are part of the [default policy](#signature-sets-in-default-policy).
 
 For example, in the below default policy, even though All Signature's Alarm/Block settings are set to false, we cannot ignore all attack signatures enforcement as some of the signature sets will be enabled in their strict policy. If the end users want to remove a specific signature set then they must explicitly mention it under the [strict policy](#the-strict-policy).
 
@@ -1294,7 +1294,7 @@ All Response Signatures are attack signatures detected on the response side, in 
 
 Restrict Response Signatures enhancement assists the users in saving time by limiting the search for response signatures to a specified amount. You can enable the signature verification in the response by setting the `responseCheck` parameter to true. However, the restriction of certain signatures is set in the policy and then enforced by the App Protect.
 
-In the policy base template under the “filetypes” section, make sure you enable the `responseCheck` attribute for `responseCheckLength` to work properly. The default value of `responseCheck` parameter is set to false. 
+In the policy base template under the "filetypes" section, make sure you enable the `responseCheck` attribute for `responseCheckLength` to work properly. The default value of `responseCheck` parameter is set to false. 
 
 The `responseCheckLength` parameter refers to the number of uncompressed bytes in the response body prefix that are examined for signatures. The `responseCheckLength` field will be added with the default value of **20000** bytes which means that the first 20,000 bytes of the response body will undergo signature verification. 
 
@@ -4667,7 +4667,7 @@ You can enable GraphQL on App Protect with minimum effort by using the following
 3. Optionally, if the app that uses this policy serves only GraphQL traffic, then delete the wildcard URL "*" from the policy so that requests to any URL other than **/graphql** will trigger a violation. In the example below we assume this is the case.
 4. Update the `nginx.conf` file. To enforce GraphQL settings, update the `app_protect_policy_file` field with the GraphQL policy name in `nginx.conf` file. Perform nginx reload once `nginx.conf` file is updated to enforce the GraphQL settings.
 
-In the following policy example, the GraphQL “policy name” i.e. “graphql_policy”, and graphql “urls” settings are defined.
+In the following policy example, the GraphQL "policy name" i.e. "graphql_policy", and graphql "urls" settings are defined.
 
 ```shell
 {
@@ -5035,7 +5035,7 @@ Here is an example of a declarative policy using an override rules entity:
       {
         "name": "login_page",
         "condition": "method == 'POST' and not parameters['ref'].lower().matches('example') and uri.contains('/login/')",
-        "actionType": “replace-policy”,
+        "actionType": "replace-policy",
         "override": {
           "policy": {
             "name": "login_page_block_redirect",
@@ -5062,7 +5062,7 @@ Here is an example of a declarative policy using an override rules entity:
       {
         "name": "api-strict",
         "condition": "uri.contains('api4') and not (clientIp.matches('fd00:1::/48') or userAgent.lower().startsWith('Mozilla'))",
-        "actionType": “replace-policy”,
+        "actionType": "replace-policy",
         "override": {
           "$ref": "file:///NginxStrictPolicy.json"
         }
@@ -5070,7 +5070,7 @@ Here is an example of a declarative policy using an override rules entity:
       {
         "name": "strict-post",
         "condition": "method.matches('POST') and (cookies['sessionToken'] != 'c2Vzc2lvblRva2Vu' or headers['Content-Encoding'] == 'gzip')",
-        "actionType": “replace-policy”,
+        "actionType": "replace-policy",
         "override": {
           "$ref": "file:///NginxStrictPolicy.json"
         }
@@ -5096,16 +5096,16 @@ Here is an example of a declarative policy using an override rules entity:
 The above "override_rules_example" policy contains five override rules:
 
 1. The **"localhost-log-only"** rule applies to the requests with a user agent header starting with "curl", a host header containing "localhost", and a client IP address set to 127.0.0.1. It switches the enforcement mode to "transparent" without blocking the request. The remaining policy settings remain unchanged. This type of override rule is an example of an **Inline Policy Reference**.
-2. The **"login_page"** rule is triggered by POST requests to URIs containing "/login/". Since the “actionType” field is set to “replace-policy”, it overrides the policy with a new one named "login_page_block_redirect". This new policy is independent of the "override_rules_example" policy. It enables all signature sets and redirects the user to a rejection page. This is another example of an **Inline Policy Reference** with a different condition.
-3. The **"api-strict"** rule is applied for requests with "api4" in the URI, except for client IP addresses matching the "fd00:1::/48" range and user agents starting with "Mozilla". It references an external policy file named "NginxStrictPolicy.json" located at "/etc/app_protect/conf/" to override the current policy. The “actionType” field is set to “replace-policy” and the external policy can be specified using a reference to its file using **$ref**. The file is the JSON policy source of that policy. This type of policy switching is known as **External Policy Reference**.
+2. The **"login_page"** rule is triggered by POST requests to URIs containing "/login/". Since the "actionType" field is set to "replace-policy", it overrides the policy with a new one named "login_page_block_redirect". This new policy is independent of the "override_rules_example" policy. It enables all signature sets and redirects the user to a rejection page. This is another example of an **Inline Policy Reference** with a different condition.
+3. The **"api-strict"** rule is applied for requests with "api4" in the URI, except for client IP addresses matching the "fd00:1::/48" range and user agents starting with "Mozilla". It references an external policy file named "NginxStrictPolicy.json" located at "/etc/app_protect/conf/" to override the current policy. The "actionType" field is set to "replace-policy" and the external policy can be specified using a reference to its file using **$ref**. The file is the JSON policy source of that policy. This type of policy switching is known as **External Policy Reference**.
 4. The **"strict-post"** rule is triggered when POST requests include a session token in the cookies that is not equal to "c2Vzc2lvblRva2Vu" or when the "gzip" value is found in the content-encoding headers. This rule follows a similar approach to referencing an external policy file, just like the **api-strict** rule mentioned above.
-5. The **“usa-only”** rule is triggered when a request coming from a country other than the USA. The actionType is set to “violation”, meaning that `VIOL_RULE` violation is triggered for such a request. This violation will block and mark the request as illegal with regard to the “block” and “alarm” attributes. There is no change in policy for this rule. For more details about **Geolocation** feature, see [Geolocation in Policy Override Rules Conditions](#geolocation-in-policy-override-rules-conditions).
+5. The **"usa-only"** rule is triggered when a request coming from a country other than the USA. The actionType is set to "violation", meaning that `VIOL_RULE` violation is triggered for such a request. This violation will block and mark the request as illegal with regard to the "block" and "alarm" attributes. There is no change in policy for this rule. For more details about **Geolocation** feature, see [Geolocation in Policy Override Rules Conditions](#geolocation-in-policy-override-rules-conditions).
 
 These five rules demonstrate how the override rules feature allows for customization and the ability to modify specific aspects of the original policy based on predefined conditions.
 
 
 {{< note >}}
-- By default, the actionType field is configured to “extend-policy”.
+- By default, the actionType field is configured to "extend-policy".
 - External references are supported for any policy reference.
 {{< /note >}}
 
@@ -5130,7 +5130,7 @@ For example:
       {
         "name": "this_rule_will_match",
         "condition": "uri.contains('api')",
-        "actionType": “replace-policy”,
+        "actionType": "replace-policy",
         "override": {
           "$ref": "file:///NginxStrictPolicy.json"
         }
@@ -5138,7 +5138,7 @@ For example:
       {
         "name": "non_matching_rule",
         "condition": "uri.contains('api') and not clientIp == '192.168.0.10'",
-        "actionType": “extend-policy”,
+        "actionType": "extend-policy",
         "override": {
           "policy": {
             "enforcementMode": "transparent"
@@ -5162,7 +5162,7 @@ Here are some key points to remember regarding the Override Rules feature:
 
 ### Override Rules Logging & Reporting
 
-If a request matches an override rule, the `json_log` field will include a new block named 'overrideRule'. However, if no rules match the request, the log will not contain any related information. When the ’actionType’ flag is set to “replace-policy”, the 'originalPolicyName' field in the log will reflect the name of the original policy name (the one that contains override rules), and the `policy_name` field will reflect the policy that was enforced.
+If a request matches an override rule, the `json_log` field will include a new block named 'overrideRule'. However, if no rules match the request, the log will not contain any related information. When the ’actionType’ flag is set to "replace-policy", the 'originalPolicyName' field in the log will reflect the name of the original policy name (the one that contains override rules), and the `policy_name` field will reflect the policy that was enforced.
 
 For example, if the matching override rule is called "login_page":
 
@@ -5184,7 +5184,7 @@ json_log will have:
  
 ```
 
-If the matching override rule is called “usa-only”:
+If the matching override rule is called "usa-only":
 
 ```shell
 {
@@ -5215,7 +5215,7 @@ If the matching override rule is called “usa-only”:
 
 #### Missing Policy Name
 
-Every policy must have a name, if actionType is either “extend-policy” or “replace-policy”. If the policy 'name' is not provided in the override section, an error message will be displayed indicating the missing policy 'name' within that specific override rule. For instance, in the override rule below, the policy name is not specified.
+Every policy must have a name, if actionType is either "extend-policy" or "replace-policy". If the policy 'name' is not provided in the override section, an error message will be displayed indicating the missing policy 'name' within that specific override rule. For instance, in the override rule below, the policy name is not specified.
 
 
 Example of Missing policy 'name':
@@ -5225,7 +5225,7 @@ Example of Missing policy 'name':
     {
         "name": "example-rule",
         "condition": "uri.contains('127')",
-        "actionType": “replace-policy”,
+        "actionType": "replace-policy",
         "override": {
             "policy": {
                 "name": "policy_name",  <--- the missing part
@@ -5487,7 +5487,7 @@ If the request doesn't align with a URL associated with an Access Profile, an at
 
 NGINX App Protect WAF introduces three new violations specific to JWT: `VIOL_ACCESS_INVALID`, `VIOL_ACCESS_MISSING` and `VIOL_ACCESS_MALFORMED`. 
 
-Under the “blocking-settings,” user can either enable or disable these violations. Note that these violations will be enabled by default. The details regarding logs will be recorded in the security log.
+Under the "blocking-settings," user can either enable or disable these violations. Note that these violations will be enabled by default. The details regarding logs will be recorded in the security log.
 
 See the below example for these violations.
 
@@ -6315,7 +6315,7 @@ This guide assumes that you have some familiarity with various Layer 7 (L7) Hype
 |Illegal request | A request which violates a security policy | 
 |Legal request | A request which has not violated the security policy. | 
 |Loosening | The process of adapting a security policy to allow specific entities such as File Types, URLs, and Parameters. The term also applies to attack signatures, which can be manually disabled — effectively removing the signature from triggering any violations. | 
-|Parameters | Parameters consist of “name=value” pairs, such as OrderID=10. The parameters appear in the query string and/or POST data of an HTTP request. Consequently, they are of particular interest to NGINX App Protect WAF because they represent inputs to the web application. | 
+|Parameters | Parameters consist of "name=value" pairs, such as OrderID=10. The parameters appear in the query string and/or POST data of an HTTP request. Consequently, they are of particular interest to NGINX App Protect WAF because they represent inputs to the web application. | 
 |TPS/RPS | Transactions per second (TPS)/requests per second (RPS). In NGINX App Protect WAF, these terms are used interchangeably. | 
 |Tuning | Making manual changes to an existing security policy to reduce false positives and increase the policy’s security level. | 
 |URI/URL | The Uniform Resource Identifier (URI) specifies the name of a web object in a request. A Uniform Resource Locator (URL) specifies the location of an object on the Internet. For example, in the web address, `http://www.siterequest.com/index.html`, index.html is the URI, and the URL is `http://www.siterequest.com/index.html`. In NGINX App Protect WAF, the terms URI and URL are used interchangeably. | 
