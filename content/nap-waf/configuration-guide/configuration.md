@@ -1237,7 +1237,6 @@ Here is an example showing partial masking on custom patterns. Custom patterns a
         }
     }
 }
-~~~
 
 
 #### File Types
