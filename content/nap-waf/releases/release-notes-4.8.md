@@ -96,7 +96,4 @@ February 6, 2024
 
 ### **Important Notes**
 
-- Starting with this release, the bot signatures list is generated automatically as a part of the **app-protect-bot-signatures** package, which is a dependency of the **app-protect-compiler** package. It resembles a format similar to the README-style text file found in the attack signature.
-Refer to the [Bot Signatures Update File]({{< relref "/nap-waf/configuration-guide/configuration.md#bot-signatures-update-file" >}}) for more details.
-
-- Starting with the next release version of NGINX App Protect WAF, the existing bot signatures file `included_bot_signatures` which is located at the following path: `/opt/app-protect/var/update_files/included_bot_signatures` will be removed from the **app-protect-compile** package.
+- Actionable Rules and Geolocation are now supported in [Policy Override Rules]({{< relref "/nap-waf/configuration-guide/configuration.md#override-rules" >}}).
