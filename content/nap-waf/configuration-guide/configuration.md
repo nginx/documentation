@@ -5379,19 +5379,9 @@ The JSON Web Token consists of three parts: the **Header**, **Claims** and **Sig
 
 #### NGINX App Protect WAF supports the following types of JWT:
 
-JSON Web Signature (JWS) - JWT content is digitally signed. The following algorithms are supported and can be used for signing:
+JSON Web Signature (JWS) - JWT content is digitally signed. The following algorithm can be used for signing:
 
-- ES256 - ECDSA signature algorithm using SHA-256 hash algorithm
-- ES256K - ECDSA signature algorithm with secp256k1 curve using SHA-256 hash algorithm
-- ES384 - ECDSA signature algorithm using SHA-384 hash algorithm
-- ES512 - ECDSA signature algorithm using SHA-512 hash algorithm
-- RS256 - RSASSA-PKCS1-v1_5 signature algorithm using SHA-256 hash algorithm
-- RS384 - RSASSA-PKCS1-v1_5 signature algorithm using SHA-384 hash algorithm
-- RS512 - RSASSA-PKCS1-v1_5 signature algorithm using SHA-512 hash algorithm
-- PS256 - RSASSA-PSS signature using SHA-256 and MGF1 padding with SHA-256
-- PS384 - RSASSA-PSS signature using SHA-384 and MGF1 padding with SHA-384
-- PS512 - RSASSA-PSS signature using SHA-512 and MGF1 padding with SHA-512
-- EdDSA - Both Ed25519 signatures using SHA-512 and Ed448 signatures using SHA-3 are supported. Ed25519 and Ed448 provide 128-bit and 224-bit security respectively
+- RSA/SHA-256 (RS256 for short)
 
 Here is an example of a Header: describes a JWT signed with HMAC 256 encryption algorithm:
 
@@ -5420,8 +5410,6 @@ Access Profile example:
 
 Refer to the following example where all access profile properties are configured to enforce specific settings within the App Protect policy. In this instance, we have established an access profile named "**access_profile_jwt**" located in the **authorization header**. The "maximumLength" for the token is defined as **2000**, and "verifyDigitalSignature" is set to **true**.
 
-JWKs file, this file is responsible for the most important enforcement in a JWT (signature validation).
-
 ```shell
 {
     "policy": {
@@ -5435,8 +5423,8 @@ JWKs file, this file is responsible for the most important enforcement in a JWT 
             "enforceValidityPeriod": false,
             "keyFiles": [
                {
-                  "contents": "{\r\n  \"keys\": [\r\n    {\r\n      \"alg\": \"RS256\",\r\n      \"e\": \"AQAB\",\r\n      \"kid\": \"1234\",\r\n      \"kty\": \"RSA\",\r\n      \"n\": \"tSbi8WYTScbuM4fe5qe4l60A2SG5oo3u5JDBtH_dPJTeQICRkrgLD6oyyHJc9BCe9abX4FEq_Qd1SYHBdl838g48FWblISBpn9--B4D9O5TPh90zAYP65VnViKun__XHGrfGT65S9HFykvo2KxhtxOFAFw0rE6s5nnKPwhYbV7omVS71KeT3B_u7wHsfyBXujr_cxzFYmyg165Yx9Z5vI1D-pg4EJLXIo5qZDxr82jlIB6EdLCL2s5vtmDhHzwQSdSOMWEp706UgjPl_NFMideiPXsEzdcx2y1cS97gyElhmWcODl4q3RgcGTlWIPFhrnobhoRtiCZzvlphu8Nqn6Q\",\r\n      \"use\": \"sig\",\r\n      \"x5c\": [\r\n        \"MIID1zCCAr+gAwIBAgIJAJ/bOlwBpErqMA0GCSqGSIb3DQEBCwUAMIGAMQswCQYDVQQGEwJpbDEPMA0GA1UECAwGaXNyYWVsMRAwDgYDVQQHDAd0ZWxhdml2MRMwEQYDVQQKDApmNW5ldHdvcmtzMQwwCgYDVQQLDANkZXYxDDAKBgNVBAMMA21heDEdMBsGCSqGSIb3DQEJARYOaG93ZHlAbWF0ZS5jb20wIBcNMjIxMTA3MTM0ODQzWhgPMjA1MDAzMjUxMzQ4NDNaMIGAMQswCQYDVQQGEwJpbDEPMA0GA1UECAwGaXNyYWVsMRAwDgYDVQQHDAd0ZWxhdml2MRMwEQYDVQQKDApmNW5ldHdvcmtzMQwwCgYDVQQLDANkZXYxDDAKBgNVBAMMA21heDEdMBsGCSqGSIb3DQEJARYOaG93ZHlAbWF0ZS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC1JuLxZhNJxu4zh97mp7iXrQDZIbmije7kkMG0f908lN5AgJGSuAsPqjLIclz0EJ71ptfgUSr9B3VJgcF2XzfyDjwVZuUhIGmf374HgP07lM+H3TMBg/rlWdWIq6f/9ccat8ZPrlL0cXKS+jYrGG3E4UAXDSsTqzmeco/CFhtXuiZVLvUp5PcH+7vAex/IFe6Ov9zHMVibKDXrljH1nm8jUP6mDgQktcijmpkPGvzaOUgHoR0sIvazm+2YOEfPBBJ1I4xYSnvTpSCM+X80UyJ16I9ewTN1zHbLVxL3uDISWGZZw4OXirdGBwZOVYg8WGuehuGhG2IJnO+WmG7w2qfpAgMBAAGjUDBOMB0GA1UdDgQWBBSHykVOY3Q1bWmwFmJbzBkQdyGtkTAfBgNVHSMEGDAWgBSHykVOY3Q1bWmwFmJbzBkQdyGtkTAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQCgcgp72Xw6qzbGLHyNMaCm9A6smtquKTdFCXLWVSOBix6WAJGPv1iKOvvMNF8ZV2RU44vS4Qa+o1ViBN8DXuddmRbShtvxcJzRKy1I73szZBMlZL6euRB1KN4m8tBtDj+rfKtPpheMtwIPbiukRjJrzRzSz3LXAAlxEIEgYSifKpL/okYZYRY6JF5PwSR0cvrfe/qa/G2iYF6Ps7knxy424RK6gpMbnhxb2gdhLPqDE50uxkr6dVHXbc85AuwAi983tOMhTyzDh3XTBEt2hr26F7jSeniC7TTIxmMgDdtYzRMwdb1XbubdtzUPnB/SW7jemK9I45kpKlUBDZD/QwER\"\r\n      ]\r\n    }\r\n  ]\r\n}",  # there can be more than one key file in the policy JSON schema, but we support only one for now.
-                  "fileName": "JWKSFile.json" # this file is responsible for the most important enforcement in a JWT (signature validation).
+                  "contents": "contents":83tOMhTyzDh3XTBEt2hr26F7jSeniC7TTIxmMgDdtYzRMwdb1X<SNIP>I45kpKlUBDZD/QwER\, # using more than one key is not supported.
+                  "fileName": "JWKSFile.json" 
                }
             ],
             "location": {
@@ -5644,94 +5632,6 @@ Security logging example in json_log:
 
 ```json
 ""customLogAttribute"":[{""name"":""component"",""value"":""comp1""},{""name"":""gateway"",""value"":""gway1""}]}"
-```
-
-
-## Time-Based Signature Staging
-
-### Signature in Staging Overview
-
-When new attack signatures are introduced in an App Protect policy, the policy is tested in a staging environment first before being promoted to production. However, in some instances where it is challenging to replicate real traffic accurately in the staging environment, the detection of genuine attacks becomes difficult. There can be false positives and expose the application to attacks. For such cases, we need to deploy the new signatures in staging environment in “staging” mode.
-
-This feature introduces a new policy property known as **Certification Time** that determines the point in time for which signatures have been tested, approved and certified.
-
-The purpose of this feature is to put signatures in staging by their age (modification time).
-
-There are two types of signatures:
-1. **Staging Signatures** - All the signatures in the policy that were created or modified **after** the certification time are in staging.
-2. **Enforced Signatures** – All the signatures in the policy that were created or modified **prior** to the certification date time or exactly at that time.
-
-### Latest Signature Certification Time
-The latest signatures certification time is the timestamp (in date-time ISO format) as the time the signatures in the policy are considered as “trusted” by the user and separates enforced signatures from signatures in staging.
-
-When this value is not defined and the staging flag is enabled, it means that all the signatures in the policy are in staging. If the signature was added to the policy but was created before the certification date-time then it will not be in staging. 
-
-A signature is considered new if it was introduced by a recent signature update that was applied to the respective policy. Note that signatures that were added later to the policy (by adding a new signature set) are not considered new unless they were added in the recent signature update. These signatures will not be in staging.
-
-
-### New Policy
-When a new policy is deployed, the user prefers to have all its signatures present in the staging environment. To facilitate this, the `performStaging ` flag is configured to true at the signature settings level.
-
-`stagingCertificationDatetime` setting is not present in this case. This way, all signatures are in staging regardless of their modification time.
-If the user is not interested in putting the initial signatures in staging, then `performStaging` is set to `false`.
-
-### Signature Update
-After applying a signature update (F5 or user-defined), and assuming the update creation time is later than the previous signature update applied to the policy (i.e. the signatures are upgraded, not downgraded), then all the signatures that were affected by the update (created or modified) are automatically put in staging. That's because their modification time is newer than the current `stagingCertificationDatetime`. Signatures that were not affected by the update will **not** be in staging.
-
-### Configuration
-
-#### Staging Certification Date-Time
-
-A new property known as `stagingCertificationDatetime` is added to `signature-settings` section. All signatures that were created or modified in a signature update that is later than that time are in staging while all the rest are enforced and not in staging.
-
-The `stagingCertificationDatetime` property will contain `ISO 8601` date-time format. It has effect only if `performStaging` is set to true. It is **optional** and its absence means that all signatures are placed in the staging environment, assuming the `performStaging` setting is set to true.
-
-See below policy for more details.
-
-```json
-{
-     "policy" : {
-        "applicationLanguage" : "utf-8",
-        "description" : "Nginx Policy",
-        "enforcementMode" : "blocking",
-        "fullPath" : "/Common/my_test_nginx_policy",
-        "name" : "my_test_nginx_policy",
-        "performStaging" : true,
-        "signature-settings" : {
-           "stagingCertificationDatetime": "2023-06-13T14:53:24Z",
-           "signatureStaging": true
-        },
-        "template" : {
-           "name" : "POLICY_TEMPLATE_NGINX_BASE"
-        },
-        "type" : "security"
-    }
-   }
-```
-
-### Enforcing the Modified Signatures After Testing Them
-
-All signatures that are in staging if their creation or modification time is later than the `stagingCertificationDatetime`.
-
-A signature in staging will be reported in the security log but will not cause the request to be blocked neither directly, nor indirectly by raising the Violation Rating (threat score). However, the potential Violation Rating will be reported if the staged signatures are enforced and moved out of staging.
-
-After you review the logs and can be assured that the new and modified signatures that were in staging are behaving correctly and do not cause false positives, you should enforce them, that is, move them out of staging by modifying the `stagingCertificationDatetime` to the time stamp of the latest signature update. This way all the signatures will now be enforced, but when installing a new signature update in the future, all the new and modified signatures in that update will be automatically in staging.
-
-Note that we do not recommend setting the `stagingCertificationDatetime` to the current time, the time you finished reviewing the signatures. That's because the future signature update might have been created before that time, and when you install that update, modified signatures in it will not be in staging because they will be older than the `stagingCertificationDatetime`.
-
-
-### Logging and Reporting
-
-Time-based Signature will be logged and reported in the Security log without blocking the request as discussed in the above section.
-
-Security log will have the following new fields under the enforcementState:
--	The Violation Rating if there was no staging - `ratingIncludingViolationsInStaging`
--	The `stagingCertificationDatetime` from the policy
--	The specific staging state of the signature 
--	The `lastUpdateTime` of the signature - for the user to be able to determine why the signature was (or was not) in staging.
-
-```json
-json_log="{""id"":""7103271131347005954"",""violations"":[{""enforcementState"":{""isBlocked"":true,""isAlarmed"":true,""isInStaging"":false,""isLearned"":false,""isLikelyFalsePositive"":false},""violation"":{""name"":""VIOL_ATTACK_SIGNATURE""},""signature"":{""name"":""XSS script tag (Parameter)"",""signatureId"":200000098,""accuracy"":""high"",""risk"":""high"",""hasCve"":false,""stagingCertificationDatetime"":""2024-01-01T00:00:00Z"",""lastUpdateTime"":""2023-11-02T19:36:54Z""},""snippet"":{""buffer"":""cGFyYW09PHNjcmlwdA=="",""offset"":6,""length"":7},""policyEntity"":{""parameters"":[{""name"":""*"",""level"":""global"",""type"":""wildcard""}]},""observedEntity"":{""name"":""cGFyYW0="",""value"":""PHNjcmlwdA=="",""location"":""query""}},{""enforcementState"":{""isBlocked"":false,""isAlarmed"":true,""isLearned"":false},""violation"":{""name"":""VIOL_PARAMETER_VALUE_METACHAR""},""policyEntity"":{""parameters"":[{""name"":""*"",""level"":""global"",""type"":""wildcard""}]},""observedEntity"":{""name"":""cGFyYW0="",""value"":""PHNjcmlwdA=="",""location"":""query""},""metachar"":""0x3c"",""charsetType"":""parameter-value""},{""enforcementState"":{""isBlocked"":false},""violation"":{""name"":""VIOL_HTTP_PROTOCOL""},""policyEntity"":{""blocking-settings"":{""http-protocols"":{""description"":""Host header contains IP address""}}}},{""enforcementState"":{""isBlocked"":true},""violation"":{""name"":""VIOL_RATING_THREAT""}},{""enforcementState"":{""isBlocked"":false},""violation"":{""name"":""VIOL_BOT_CLIENT""}}],""enforcementAction"":""block"",""method"":""GET"",""clientPort"":6026,""clientIp"":""10.42.0.1"",""host"":""nginx-78b84c446f-flw6h"",""responseCode"":0,""serverIp"":""0.0.0.0"",""serverPort"":80,""requestStatus"":""blocked"",""url"":""L2luZGV4LnBocA=="",""virtualServerName"":""24-localhost:1-/"",""enforcementState"":{""isBlocked"":true,""isAlarmed"":true,""rating"":4,""attackType"":[{""name"":""Non-browser Client""},{""name"":""Abuse of Functionality""},{""name"":""Cross Site Scripting (XSS)""},{""name"":""Other Application Activity""},{""name"":""HTTP Parser Attack""}],""ratingIncludingViolationsInStaging"":4,""stagingCertificationDatetime"":""2024-01-01T00:00:00Z""},""requestDatetime"":""2023-12-27T14:22:29Z""
 ```
 
 ## Directives
