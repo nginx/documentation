@@ -2,6 +2,9 @@
 /nginx-agent/changelog/ https://github.com/nginx/agent/releases 301
 /nginx-app-protect/* /nginx-app-protect-waf/:splat 301
 
+# NGINX App Protect WAF redirects
+/nginx-app-protect-waf/admin-guide/install-for-controller/ /nginx-controller/admin-guides/install/install-for-controller/ 301
+
 # NGINX Amplify redirects
 /nginx-amplify/install-manage-amp-agent/ /nginx-amplify/nginx-amplify-agent/install/ 301
 /nginx-amplify/install-manage-amp-agent/configuring-agent/ /nginx-amplify/nginx-amplify-agent/install/configuring-amplify-agent/ 301

@@ -1,39 +1,16 @@
 ---
-authors: []
-categories:
-- controller guide
-date: "2021-04-14T13:32:41+00:00"
 description: Take the steps in this guide to deploy NGINX App Protect WAF as a datapath instance for use with NGINX Controller.
 docs: DOCS-645
 doctypes:
 - task
 draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: NGINX App Protect WAF
-    weight: 45
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: Using NGINX App Protect WAF with NGINX Controller
 toc: true
-versions:
-- "4.3"
 weight: 500
 ---
 
 
-{{< note >}}Refer to the [NGINX Controller Technical Specifications](/nginx-controller/admin-guides/install/nginx-controller-tech-specs/) guide to find out which distributions are supported for use with NGINX Controller and NGINX Controller Agent.{{< /note >}}
+**Note:** Refer to the [NGINX Controller Technical Specifications]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md" >}}) guide to find out which distributions are supported for use with NGINX Controller and NGINX Controller Agent.
 
 ## Setup
 
@@ -42,9 +19,11 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
 
 ## Install NGINX App Protect WAF
 
-{{< note >}}If a version of NGINX App Protect WAF prior to 3.6 is required, please contact the NGINX Sales team to assist with this configuration.{{< /note >}}
+**Note:** If a version of NGINX App Protect WAF prior to 3.6 is required, please contact the NGINX Sales team to assist with this configuration.
 
-### CentOS 7.4+
+{{<tabs name="install-nap-waf">}}
+
+{{%tab name="CentOS 7.4+"%}}
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -65,7 +44,8 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
    nginx-repo.key
    nginx-repo.crt
    ```
-   {{< see-also >}}You can use the [NGINX Controller REST API to download the key and cert files]({{< relref "/controller/admin-guides/install/get-n-plus-cert-and-key" >}}).{{< /see-also >}}
+
+   **See Also:** You can use the [NGINX Controller REST API to download the key and cert files]({{< relref "/controller/admin-guides/install/get-n-plus-cert-and-key" >}}).
 
 4. Copy the above two files to the CentOS server's `/etc/ssl/nginx/` directory. Use an SCP client or another secure file transfer tool to perform this task.
 
@@ -101,54 +81,56 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
 
 10. Install the latest NGINX App Protect WAF package.
 
-    {{< see-also >}}Please refer to [NGINX App Protect Compatibility Matrix]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-app-protect-compatibility-matrix" >}}) for specific version compatibility.{{< /see-also >}}
+      **See Also:** Please refer to [NGINX App Protect Compatibility Matrix]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-app-protect-compatibility-matrix" >}}) for specific version compatibility.
 
-    If you wish to install a specific version, please replace `app-protect` with the target version, for example `app-protect-25+3.671.0`:
+      If you wish to install a specific version, please replace `app-protect` with the target version, for example `app-protect-25+3.671.0`:
 
-    ```shell
-    sudo yum install app-protect
-    ```
+      ```shell
+      sudo yum install app-protect
+      ```
 
 11. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
 
-    ```shell
-    sudo nginx -v
-    ```
+      ```shell
+      sudo nginx -v
+      ```
 
 12. Configure SELinux as appropriate per your organization’s security policies. NGINX App Protect WAF applies the prebuilt SELinux policy module during the installation. If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/troubleshooting-guide/troubleshooting#selinux" >}}).
 
-    {{< note >}}NGINX Controller has specific [requirements regarding SELinux configuration]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#supported-distributions" >}}).{{< /note >}}
+      **Note:** NGINX Controller has specific [requirements regarding SELinux configuration]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#supported-distributions" >}}).
 
 13. Start the NGINX service:
 
-    ```shell
-    sudo systemctl start nginx
-    ```
+      ```shell
+      sudo systemctl start nginx
+      ```
 
 14. Start the `bd_agent` service (for Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2 only)
 
-    If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, you need to start the `bd_agent`:
+      If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, you need to start the `bd_agent`:
 
-    ```shell
-    /bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' nginx
-    ```
+      ```shell
+      /bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' nginx
+      ```
 
 15. Verify NGINX Plus and BD processes are running:
 
-    ```shell
-    ps -ef | grep nginx
-    ps -ef | grep bd
-    ```
+      ```shell
+      ps -ef | grep nginx
+      ps -ef | grep bd
+      ```
 
-    {{< note >}} If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, also verify that `bd_agent` is running: {{< /note >}}
+      **Note:** If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, also verify that `bd_agent` is running:
 
-    ```shell
-    ps -ef | grep bd_agent
-    ```
+      ```shell
+      ps -ef | grep bd_agent
+      ```
 
 16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/admin-guide/install#centos--rhel-74--amazon-linux-2">}}).
 
-### Red Hat Enterprise Linux 7.4+
+{{%/tab%}}
+
+{{%tab name="Red Hat Enterprise Linux 7.4+"%}}
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -231,56 +213,58 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
 
 11. Install the latest NGINX App Protect WAF package.
 
-    {{< see-also >}}Please refer to [NGINX App Protect Compatibility Matrix]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-app-protect-compatibility-matrix" >}}) for specific version compatibility.{{< /see-also >}}
+      **See Also:** Please refer to [NGINX App Protect Compatibility Matrix]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-app-protect-compatibility-matrix" >}}) for specific version compatibility.
 
-    If you wish to install a specific version, please replace `app-protect` with the target version, for example `app-protect-25+3.671.0`:
+      If you wish to install a specific version, please replace `app-protect` with the target version, for example `app-protect-25+3.671.0`:
 
-    ```shell
-    sudo yum install app-protect
-    ```
+      ```shell
+      sudo yum install app-protect
+      ```
 
 12. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
 
-    ```shell
-    sudo nginx -v
-    ```
+      ```shell
+      sudo nginx -v
+      ```
 
 13. Configure SELinux as appropriate per your organization’s security policies. NGINX App Protect WAF applies the prebuilt SELinux policy module during the installation. If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/troubleshooting-guide/troubleshooting#selinux" >}}).
 
-    {{< note >}}NGINX Controller has specific [requirements regarding SELinux configuration]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#supported-distributions" >}}).{{< /note >}}
+      **Note:** NGINX Controller has specific [requirements regarding SELinux configuration]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#supported-distributions" >}}).
 
 14. Start the NGINX service:
 
-    ```shell
-    sudo systemctl start nginx
-    ```
+      ```shell
+      sudo systemctl start nginx
+      ```
 
 15. Start the `bd_agent` service (for Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2 only)
 
-    If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, you need to start the `bd_agent`:
+      If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, you need to start the `bd_agent`:
 
-    ```shell
-    /bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' nginx
-    ```
+      ```shell
+      /bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' nginx
+      ```
 
 16. Verify NGINX Plus and BD processes are running:
 
-    ```shell
-    ps -ef | grep nginx
-    ps -ef | grep bd
-    ```
+      ```shell
+      ps -ef | grep nginx
+      ps -ef | grep bd
+      ```
 
-    {{< note >}} If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, also verify that `bd_agent` is running: {{< /note >}}
+      **Note:**  If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, also verify that `bd_agent` is running: 
 
-    ```shell
-    ps -ef | grep bd_agent
-    ```
+      ```shell
+      ps -ef | grep bd_agent
+      ```
 
 17. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/admin-guide/install#centos--rhel-74--amazon-linux-2" >}}).
 
-### Debian
+{{%/tab%}}
 
-{{< note >}}As of NGINX Plus R24, support for Debian 9 is no longer available. As a consequence, NGINX App Protect WAF 3.1 is the final version available for this operating system version.{{< /note >}}
+{{%tab name="Debian"%}}
+
+**Note:** As of NGINX Plus R24, support for Debian 9 is no longer available. As a consequence, NGINX App Protect WAF 3.1 is the final version available for this operating system version.
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -343,59 +327,61 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
 
 11. Update the repository and install the lastest supported NGINX App Protect WAF packages.
 
-    {{< see-also >}}Please refer to [NGINX App Protect Compatibility Matrix]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-app-protect-compatibility-matrix" >}}) for specific version compatibility.{{< /see-also >}}
+      **See Also:** Please refer to [NGINX App Protect Compatibility Matrix]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-app-protect-compatibility-matrix" >}}) for specific version compatibility.
 
-    ```shell
-    sudo apt-get update
-    sudo apt-get install nginx-plus-module-appprotect
-    ```
-    To install a specific version based on the NGINX Plus version, for example `r25`, follow these steps:
+      ```shell
+      sudo apt-get update
+      sudo apt-get install nginx-plus-module-appprotect
+      ```
+      To install a specific version based on the NGINX Plus version, for example `r25`, follow these steps:
 
-    ```shell
-    sudo apt-cache policy app-protect | grep 25+
-         25+3.760.0-1~buster 500
-         25+3.733.0-1~buster 500
-         25+3.671.0-1~buster 500
-            
-    sudo apt-get install  nginx-plus-module-appprotect=25+3.671.0-1~buster
-    ```
+      ```shell
+      sudo apt-cache policy app-protect | grep 25+
+            25+3.760.0-1~buster 500
+            25+3.733.0-1~buster 500
+            25+3.671.0-1~buster 500
+               
+      sudo apt-get install  nginx-plus-module-appprotect=25+3.671.0-1~buster
+      ```
 
 12. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
 
-    ```shell
-    sudo nginx -v
-    ```
+      ```shell
+      sudo nginx -v
+      ```
 
 13. Start the NGINX service:
 
-    ```shell
-    sudo systemctl start nginx
-    ```
+      ```shell
+      sudo systemctl start nginx
+      ```
 
 14. Start the `bd_agent` service (for Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2 only)
 
-    If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, you need to start the `bd_agent`:
+      If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, you need to start the `bd_agent`:
 
-    ```shell
-    /bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' nginx
-    ```
+      ```shell
+      /bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' nginx
+      ```
 
 15. Verify NGINX Plus and BD processes are running:
 
-    ```shell
-    ps -ef | grep nginx
-    ps -ef | grep bd
-    ```
+      ```shell
+      ps -ef | grep nginx
+      ps -ef | grep bd
+      ```
 
-    {{< note >}} If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, also verify that the `bd_agent` is running: {{< /note >}}
+    **Note:** If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, also verify that the `bd_agent` is running: 
 
-    ```shell
-    ps -ef | grep bd_agent
-    ```
+      ```shell
+      ps -ef | grep bd_agent
+      ```
 
 16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/admin-guide/install#debian-10" >}}).
 
-### Ubuntu
+{{%/tab%}}
+
+{{%tab name="Ubuntu"%}}
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -452,73 +438,82 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
 
 10. Download the apt configuration to `/etc/apt/apt.conf.d`:
 
-    ```shell
-    sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
-    ```
+      ```shell
+      sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
+      ```
 
 11. Update the repository and install the latest App Protect WAF package.
 
-    {{< see-also >}}Please refer to [NGINX App Protect Compatibility Matrix]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-app-protect-compatibility-matrix" >}}) for specific version compatibility.{{< /see-also >}}
+      **See Also:** Please refer to [NGINX App Protect Compatibility Matrix]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-app-protect-compatibility-matrix" >}}) for specific version compatibility.
 
-    ```shell
-    sudo apt-get update
-    sudo apt-get install app-protect
-    ```
-    To install a specific version based on the NGINX Plus version, for example `r25`, follow these steps:
+      ```shell
+      sudo apt-get update
+      sudo apt-get install app-protect
+      ```
+      To install a specific version based on the NGINX Plus version, for example `r25`, follow these steps:
 
-    ```shell
-    sudo apt-cache policy app-protect | grep 25+
+      ```shell
+      sudo apt-cache policy app-protect | grep 25+
          25+3.760.0-1~bionic 500
          25+3.733.0-1~bionic 500
          25+3.671.0-1~bionic 500
-    
-    sudo apt-get install app-protect=25+3.671.0-1~bionic
-    ```
-    
+      
+      sudo apt-get install app-protect=25+3.671.0-1~bionic
+      ```
+
 12. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
 
-    ```shell
-    sudo nginx -v
-    ```
+      ```shell
+      sudo nginx -v
+      ```
 
 13. Start the NGINX service:
 
-    ```shell
-    sudo systemctl start nginx
-    ```
+      ```shell
+      sudo systemctl start nginx
+      ```
 
 14. Start the `bd_agent` service (for Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2 only)
 
-    If you plan to use this instance with Controller Agent 3.20.1, you need to start `bd_agent`:
+      If you plan to use this instance with Controller Agent 3.20.1, you need to start `bd_agent`:
 
-    ```shell
-    /bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' nginx
-    ```
+      ```shell
+      /bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' nginx
+      ```
 
 15. Verify NGINX Plus and BD processes are running:
 
-    ```shell
-    ps -ef | grep nginx
-    ps -ef | grep bd
-    ```
+      ```shell
+      ps -ef | grep nginx
+      ps -ef | grep bd
+      ```
 
-    {{< note >}} If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, also verify that `bd_agent` is running: {{< /note >}}
+      **Note:**  If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, also verify that `bd_agent` is running: 
 
-    ```shell
-    ps -ef | grep bd_agent
-    ```
+      ```shell
+      ps -ef | grep bd_agent
+      ```
 
 16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/admin-guide/install#ubuntu-1804" >}}).
 
-{{< note >}}Ubuntu 20.04 activates __AppArmor__ by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment. {{< /note >}}
+   **Note:** Ubuntu 20.04 activates __AppArmor__ by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment. 
 
-### Amazon Linux 2 LTS
+{{%/tab%}}
+
+{{%tab name="Amazon Linux 2 LTS"%}}
 
 Using NGINX App Protect WAF with NGINX Controller isn't supported on Amazon Linux 2 LTS.
 
-### Alpine
+{{%/tab%}}
+
+{{%tab name="Alpine"%}}
 
 Using NGINX App Protect WAF with NGINX Controller isn't supported on Alpine.
+
+{{%/tab%}}
+{{</tabs>}}
+
+<hr>
 
 ## Add NGINX App Protect WAF to NGINX Controller
 
@@ -528,7 +523,7 @@ Otherwise, complete the tasks in the NGINX Controller [Add an NGINX App Protect 
 
 ## Use NGINX App Protect WAF with NGINX Controller
 
-{{< note >}}When configuring NGINX App Protect WAF as a datapath instance for NGINX Controller, **you should not modify the `nginx.conf` file**. The `nginx.conf` file will be automatically updated when enabling WAF on a Component in NGINX Controller. {{< /note >}}
+**Note:** When configuring NGINX App Protect WAF as a datapath instance for NGINX Controller, **you should not modify the `nginx.conf` file**. The `nginx.conf` file will be automatically updated when enabling WAF on a Component in NGINX Controller. 
 
 Refer to the following NGINX Controller user guides for further information about how to secure your apps and/or APIs with NGINX Controller:
 
