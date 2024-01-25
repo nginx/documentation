@@ -1204,7 +1204,7 @@ In this example, we enable data guard in alarm mode. In the detailed configurati
 
 Here is an example showing partial masking on custom patterns. Custom patterns are specified in `customPatternsList`, number of unmasked leading and trailing characters are defined in `firstCustomCharactersToExpose` and `lastCustomCharactersToExpose` parameters.
 
-~~~json
+```json
 {
     "policy": {
         "name": "custom_pattern_mask_policy",
