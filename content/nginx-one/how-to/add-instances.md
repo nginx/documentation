@@ -49,7 +49,9 @@ If you've added instances before and now you want to add more, select **Instance
 
 A data plane key is a security token that ensures only trusted NGINX instances can register and communicate with NGINX One. 
 
-To generate a data plane key, select **Generate Data Plane Key**.
+To generate a data plane key:
+
+In the **Add Instance** pane, select **Generate Data Plane Key**.
 
 *–or–*
 

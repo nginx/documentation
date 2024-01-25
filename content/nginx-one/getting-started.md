@@ -38,7 +38,13 @@ This guide provides step-by-step instructions on how to activate and start using
 Once you've enabled NGINX One, the first thing to do is to add the NGINX instances you want to monitor.
 
 1. **Add your NGINX instances with the web interface**. If this is your first time accessing the NGINX console, select **Add Instance** on the welcome screen. If you've added instances before and now you want to add more, select **Instances** on the console's left menu, then select **Add Instance**.
-2. **Generate a data plane key**. A data plane key is a security token that ensures only trusted NGINX instances can register and communicate with NGINX One. To generate a data plane key, select **Generate Data Plane Key**.
+2. **Generate a data plane key**. A data plane key is a security token that ensures only trusted NGINX instances can register and communicate with NGINX One. 
+   
+   To generate a data plane key:
+
+   In the **Add Instance** pane, select **Generate Data Plane Key**.
+
+   *–or–*
 
    Alternatively, if you've already created a data plane key that you want to reuse, select **Use existing key**, then paste the key's value in the **Data Plane Key** box.
 
@@ -51,10 +57,7 @@ Once you've enabled NGINX One, the first thing to do is to add the NGINX instanc
    Revoking a data plane key will disconnect the associated NGINX instances from NGINX One.
    {{</note>}}
 
-   <br>
-   {{< img src="nginx-one/images/generate-data-plane-key.png" width="732" height="316">}}
-   <br>
-3. **Install NGINX Agent on the NGINX instances you want to monitor**. After providing a data plane key, you'll see a curl command similar to the following example. Copy and run this command on each NGINX instance you want to connect to NGINX One.
+3. **Install NGINX Agent on the NGINX instances you want to monitor**. After you enter a data plane key, a curl command like the one shown below will appear. Copy this command and run it on each NGINX instance to install the NGINX Agent. Once the NGINX Agent is installed, it typically registers with NGINX One within a few seconds.
 
    ```shell
    curl agent.connect.nginx.com/nginx-agent/install | DATAPLANE_KEY="<data-plane-key>" sh -s -- -y
