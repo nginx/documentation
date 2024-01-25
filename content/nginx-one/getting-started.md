@@ -26,10 +26,10 @@ authors: []
 
 This guide provides step-by-step instructions on how to activate and start using NGINX One. NGINX One is a management console for monitoring and managing NGINX data plane deployments.
 
-## Step 1: Enable the NGINX One Service on F5 Distributed Cloud
+## Step 1: Enable the NGINX One Service on F5 Distributed Cloud {#enable-nginx-one}
 
 1. Log in to the [F5 Distributed Cloud Console](https://www.f5.com/cloud/products/distributed-cloud-console).
-2. Find and select the **NGINX One** service on the dashboard.
+2. Select the **NGINX One** service on the dashboard.
 3. Select **Enable Service**.
 4. After the service has been enabled, select **Visit Service** to load the NGINX One console.
 
@@ -60,19 +60,21 @@ Once you've enabled NGINX One, the first thing to do is to add the NGINX instanc
    curl agent.connect.nginx.com/nginx-agent/install | DATAPLANE_KEY="<data-plane-key>" sh -s -- -y
    ```
 
-   - `<data-plane-key>`: The data plane key value.
+   - `<data-plane-key>`: Replace with the actual data plane key value.
 
    <br>
 
-   Make sure your Linux version supports the NGINX Agent. For supported distributions, click the following link.
+   <details open>
+   <summary><span style="background-color: #eef2f7; color: #008000; padding: 5px; border-radius: 5px;"><i class="fa-solid fa-list-alt"></i> NGINX Agent: Supported Distributions</span></summary>
 
-   <details closed>
-   <summary><i class="fa-solid fa-circle-info"></i> NGINX Agent: Supported distributions </summary>
+   Make sure your Linux version supports the NGINX Agent. The NGINX Agent is compatible with the following Linux distributions.
 
-   The NGINX Agent is compatible with the following Linux distributions. To learn more about the NGINX Agent, refer to the [NGINX Agent documentation](https://docs.nginx.com/nginx-agent/).
+   Related guide: [NGINX Agent: Technical Specifications](https://docs.nginx.com/nginx-agent/).
 
    {{< include "nginx-one/nginx-agent/nginx-agent-tech-specs.md" >}}
-   </details>
+
+
+   </details> 
 
 ## Step 3: View Data Plane Metrics with the NGINX One Dashboard
 
