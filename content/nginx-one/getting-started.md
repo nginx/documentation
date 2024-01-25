@@ -24,8 +24,6 @@ versions: []
 authors: []
 ---
 
-{{< custom-styles >}}
-
 This guide provides step-by-step instructions on how to activate and start using NGINX One. NGINX One is a management console for monitoring and managing NGINX data plane deployments.
 
 ## Step 1: Enable the NGINX One Service on F5 Distributed Cloud

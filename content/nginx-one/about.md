@@ -24,15 +24,6 @@ versions: []
 authors: []
 ---
 
-{{<custom-styles>}}
-
-<style>
-h2 {
-  border-top: 1px solid #ccc;
-  padding-top:20px;
-}
-</style>
-
 NGINX One helps users manage multiple NGINX deployments across multiple locations and environments. Traditionally, overseeing these deployments has been a time-consuming and demanding job. With NGINX One, you can monitor and manage your NGINX fleet from an intuitive, centralized console. This console gives insights into the configuration and performance of your NGINX instances, highlights critical vulnerabilities, shows the status of SSL certificates, and more.
 
 

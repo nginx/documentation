@@ -24,8 +24,6 @@ versions: []
 authors: []
 ---
 
-{{< custom-styles >}}
-
 ## Overview
 
 NGINX One is built using open source software. This page recognizes and highlights the open source projects contributing to NGINX One.
