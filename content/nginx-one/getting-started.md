@@ -86,7 +86,7 @@ Once your NGINX instances have registered with NGINX One, you’ll want to keep 
    - **Instance Availability**: See how many of your NGINX instances are online, offline, or unavailable.
    - **NGINX Versions by Instance**: Check the NGINX versions you're running across different instances.
    - **Operating Systems**: Know the operating systems your instances are running on.
-   - **Certificates**: Track the status of your SSL certificates – which are expiring soon, which are still valid.
+   - **Certificates**: Track the status of your SSL certificates – see which are expiring soon, and which are still valid.
    - **Config Recommendations**: View the type and number of configuration suggestions for optimizing your instance setups.
    - **CVEs**: Assess the severity and quantity of identified Common Vulnerabilities and Exposures in your instances.
    - **CPU Utilization**: Monitor CPU usage trends and identify instances with high CPU consumption.
