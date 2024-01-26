@@ -109,7 +109,7 @@ To register your containerized NGINX Agent with NGINX One:
 
     - `<nginx-image-with-nginx-agent>`: Enter the name of the Docker image that has the NGINX Agent.
 
-1. Within the Docker container, update the **/etc/nginx-agent/nginx-agent.conf** file by adding or modifying the following settings: 
+1. Within the Docker container, update the **/etc/nginx-agent/nginx-agent.conf** file by adding or updating the following settings: 
 
     ```yaml
     server:
