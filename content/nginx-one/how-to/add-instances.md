@@ -80,7 +80,8 @@ After you enter a data plane key, a curl command like the one shown below will a
 curl agent.connect.nginx.com/nginx-agent/install | DATAPLANE_KEY="<data-plane-key>" sh -s -- -y
 ```
 
-- `<data-plane-key>`: The data plane key value.
+- `<data-plane-key>`: Replace with the actual data plane key value.
+- `-y`: An argument passed to the installation script. `-y` automatically answers "yes" to any prompts that require user interaction.
 
 <br>
 

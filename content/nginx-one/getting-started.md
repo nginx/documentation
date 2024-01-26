@@ -64,6 +64,7 @@ Once you've enabled NGINX One, the first thing to do is to add the NGINX instanc
    ```
 
    - `<data-plane-key>`: Replace with the actual data plane key value.
+   - `-y`: An argument passed to the installation script. `-y` automatically answers "yes" to any prompts that require user interaction.
 
    <br>
 
