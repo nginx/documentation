@@ -70,10 +70,12 @@ Once you've enabled NGINX One, the first thing to do is to add the NGINX instanc
 
    <br>
 
-   <details open>
+   Make sure your Linux version supports the NGINX Agent. Select the following link to view the supported distributions:
+
+   <details closed>
    <summary><span style="background-color: #eef2f7; color: #008000; padding: 5px; border-radius: 5px;"><i class="fa-solid fa-list-alt"></i> NGINX Agent: Supported Distributions</span></summary>
 
-   Make sure your Linux version supports the NGINX Agent. The NGINX Agent is compatible with the following Linux distributions.
+   The NGINX Agent is compatible with the following Linux distributions.
 
    Related guide: [NGINX Agent: Technical Specifications](https://docs.nginx.com/nginx-agent/).
 
