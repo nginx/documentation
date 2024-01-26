@@ -109,7 +109,7 @@ To register your containerized NGINX Agent with NGINX One:
 
     - `<nginx-image-with-nginx-agent>`: Replace with name of the Docker image that has the NGINX Agent.
 
-1. Within the docker container, modify the **/etc/nginx-agent/nginx-agent.conf** file. Add the following settings with your actual data plane key value.
+1. Within the Docker container, modify the **/etc/nginx-agent/nginx-agent.conf** file. Add the following settings with your actual data plane key value.
 
     ```yaml
     server:
