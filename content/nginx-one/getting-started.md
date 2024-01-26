@@ -26,14 +26,16 @@ authors: []
 
 This guide provides step-by-step instructions on how to activate and start using NGINX One. NGINX One is a management console for monitoring and managing NGINX data plane deployments.
 
-## Step 1: Enable the NGINX One Service on F5 Distributed Cloud {#enable-nginx-one}
+## How to Get Started with NGINX One
+
+### Enable the NGINX One Service on F5 Distributed Cloud {#enable-nginx-one}
 
 1. Log in to the [F5 Distributed Cloud Console](https://www.f5.com/cloud/products/distributed-cloud-console).
 1. Select the **NGINX One** service on the dashboard.
 1. Select **Enable Service**.
 1. After the service has been enabled, select **Visit Service** to load the NGINX One console.
 
-## Step 2: Add NGINX Instances
+### Add NGINX Instances
 
 Once you've enabled NGINX One, the first thing to do is to add the NGINX instances you want to monitor.
 
@@ -80,7 +82,7 @@ Once you've enabled NGINX One, the first thing to do is to add the NGINX instanc
 
    </details> 
 
-## Step 3: View Data Plane Metrics with the NGINX One Dashboard
+### View Data Plane Metrics with the NGINX One Dashboard
 
 Once your NGINX instances have registered with NGINX One, you’ll want to keep track of how they're doing. The NGINX One Dashboard is designed for this purpose, offering a user-friendly interface to help you easily monitor your instances. Here’s how to get the insights you need:
 
