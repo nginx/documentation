@@ -25,19 +25,19 @@ authors: []
 
 ---
 
-## How to Add Instances to NGINX One
+## How to add instances to NGINX One
 
 This guide provides easy instructions for adding your NGINX data plane instances to NGINX One using the web interface. Additionally, it provides optional steps on how to configure the NGINX Agent in a containerized environment, should you need that.
 
 To add your NGINX data plane instances to NGINX One with the web interface, follow these steps:
 
-### Log In to NGINX One
+### Log in to NGINX One
 
 
 1. Log in to the [F5 Distributed Cloud Console](https://www.f5.com/cloud/products/distributed-cloud-console).
 1. Select the **NGINX One** service on the dashboard.
 
-### Add an Instance
+### Add an instance
 
 If this is your first time accessing the NGINX console, select **Add Instance** on the welcome screen. 
 
@@ -45,7 +45,7 @@ If this is your first time accessing the NGINX console, select **Add Instance** 
 
 If you've added instances before and now you want to add more, select **Instances** on the console's left menu, then select **Add Instance**.
 
-### Generate a Data Plane Key
+### Generate a data plane key
 
 A data plane key is a security token that ensures only trusted NGINX instances can register and communicate with NGINX One. 
 
@@ -95,7 +95,7 @@ Related guide: [NGINX Agent: Technical Specifications](https://docs.nginx.com/ng
 <br>
 
 
-#### Configuring a Containerized NGINX Agent {#configure-containerized-nginx-agent}
+#### Configuring a containerized NGINX Agent {#configure-containerized-nginx-agent}
 
 This section assumes you've already installed the NGINX Agent in a container environment. For guidance on how to do this, refer to the [NGINX Agent in a Container Environment guide](https://docs.nginx.com/nginx-management-suite/nginx-agent/nginx-agent-in-container/).
 
