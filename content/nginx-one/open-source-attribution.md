@@ -32,6 +32,6 @@ You'll find information about each project, including license details and source
 
 We thank the open source community for their essential role in our product's development.
 
-## Open Source Attribution
+## Open source attribution
 
 ...

@@ -27,13 +27,13 @@ authors: []
 
 In this guide, we'll show you how to authenticate API requests with F5 Distributed Cloud. There are two options for authentication: API Token or API Certificate. Both methods ensure secure access to your data.
 
-## Getting Ready
+## Getting ready
 
 Before you begin, make sure you have either an API Token or API Certificate for authentication. You can get these from the F5 Distributed Cloud Console. Visit the following link for instructions:
 
 - [F5 Distributed Cloud User Guide: Managing User Credentials](https://docs.cloud.f5.com/docs/how-to/user-mgmt/credentials)
 
-## Authentication Methods
+## Authentication methods
 
 You can authenticate API requests in two ways: using an API Token or an API Certificate. Below are examples of how to do this with curl, but you can also use other tools like Postman.
 
@@ -66,7 +66,7 @@ For definitions of terms such as _'tenant'_ and _'namespace'_ used in the follow
    - `<api-creds>`: The path to your certificate file. It's best to use the full path of the certificate.
    - `<password>` Your certificate password. 
 
-## Constructing a Request
+## Constructing a request
 
 NGINX One API requests should follow this URL format:
 
@@ -86,7 +86,7 @@ curl https://<tenant>.console.ves.volterra.io/api/nginx/one/namespaces/default/d
 ```
 
 
-## Further Reading
+## Further reading
 
 - [NGINX One API Reference]({{< relref "nginx-one/reference/api/nginx-one-api-reference.md" >}})
 - [F5 Distributed Cloud API Documentation](https://docs.cloud.f5.com/docs/api)

@@ -27,7 +27,7 @@ authors: []
 NGINX One helps users manage multiple NGINX deployments across multiple locations and environments. Traditionally, overseeing these deployments has been a time-consuming and demanding job. With NGINX One, you can monitor and manage your NGINX fleet from an intuitive, centralized console. This console gives insights into the configuration and performance of your NGINX instances, highlights critical vulnerabilities, shows the status of SSL certificates, and more.
 
 
-## Benefits and Key Features
+## Benefits and key features
 
 NGINX One delivers these key advantages:
 
@@ -41,6 +41,6 @@ NGINX One delivers these key advantages:
 
 - **Real-Time Alerts**: Receive immediate notifications about urgent issues.
 
-## Legal Notice: Licensing Agreements for NGINX Products
+## Legal notice: Licensing agreements for NGINX Products
 
 Please note that the use of the NGINX One is governed by our End User Service Agreement (EUSA). For [NGINX Plus]({{< relref "/nginx" >}}), usage is subject to the End User License Agreement (EULA). Open source projects, including [NGINX Agent](https://github.com/nginx/agent) and [NGINX OSS](https://github.com/nginx/nginx), are covered under their respective licenses.
