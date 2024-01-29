@@ -101,15 +101,30 @@ This section assumes you've already installed the NGINX Agent in a container env
 
 To register your containerized NGINX Agent with NGINX One:
 
-1. Start the NGINX Agent by running the Docker image. This action creates an NGINX Agent configuration file name **nginx-agent.conf** in the **etc/nginx-agent** directory inside the container.
+1. Start the NGINX Agent by running the Docker image.
 
-    ``` bash
+    ``` shell
     docker run -d <nginx-image-with-nginx-agent>
     ```
 
-    - `<nginx-image-with-nginx-agent>`: Enter the name of the Docker image that has the NGINX Agent.
+    - `<nginx-image-with-nginx-agent>`: Enter the name of the Docker image with the NGINX Agent.
 
-2. Within the Docker container, update the **/etc/nginx-agent/nginx-agent.conf** file by adding or updating the following settings: 
+2. Verify the NGINX Agent is running:
+
+    ```shell
+    sudo systemctl status nginx-agent
+    ```
+
+    You should see a response similar to the following example:
+
+    ```text
+    ● nginx-agent.service - NGINX Agent
+    Loaded: loaded (/etc/systemd/system/nginx-agent.service; enabled; vendor preset: enabled)
+    Active: active (running) since Sun 2024-01-29 09:36:15 UTC; 1h 47min ago
+    ...
+    ```
+
+3. Within the Docker container, modify the **/etc/nginx-agent/nginx-agent.conf** file by adding or updating the following settings: 
 
     ```yaml
     server:
@@ -124,12 +139,12 @@ To register your containerized NGINX Agent with NGINX One:
 
     - `<data-plane-key>`: Enter the actual data plane key value.
 
-3. Run the Docker container with the updated NGINX Agent settings. Afterward, you should see the newly registered instance in NGINX One.
+4. Run the Docker container with the updated NGINX Agent settings. Afterward, you should see the newly registered instance in NGINX One.
 
-    ```bash
+    ```shell
     docker run -d \
     --mount type=bind,source="$(pwd)"/nginx-agent.conf,target=/etc/nginx-agent/nginx-agent.conf,readonly \
     <nginx-image-with-nginx-agent>
     ```
 
-    - `<nginx-image-with-nginx-agent>`: Enter the name of the Docker image that has the NGINX Agent.
+    - `<nginx-image-with-nginx-agent>`: Enter the name of the Docker image with the NGINX Agent.
