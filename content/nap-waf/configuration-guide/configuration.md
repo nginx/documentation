@@ -5404,7 +5404,7 @@ then the claims can be:
 
 ```
 claims['scope'] = "top-level:read" 
-claims['roles'] = "[inventory-manager", "price-editor]" # the whole array is presented as a string
+claims['roles'] = "["inventory-manager", "price-editor]" # the whole array is presented as a string
 claims['address.country'] = "US" 
 claims['company'] = null # does not exist 
 claims['address'] = "{ \"address\": { .... } }" # JSON structs can be accessed using the dot "." notation
