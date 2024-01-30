@@ -171,8 +171,8 @@ To register your containerized NGINX Agent with NGINX One:
       grpcPort: 443
 
     tls:
-      enable: True
-      skip_verify: False
+      enable: true
+      skip_verify: false
     ```
 
     </details>
