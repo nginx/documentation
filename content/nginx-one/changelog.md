@@ -24,6 +24,6 @@ versions: []
 authors: []
 ---
 
-### February 5, 2024
+### February 6, 2024
 
 Welcome to the NGINX One Early Access (EA) preview! Give it a try. If you find any issues, please let us know by [raising a support ticket](http//add-link-here).
