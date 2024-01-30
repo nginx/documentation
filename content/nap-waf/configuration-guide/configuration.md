@@ -5341,23 +5341,30 @@ The `authorization-rules` entity consists of the following two mandatory fields:
 Here is an example of declarative policy using an `authorization-rules` entity under the access profile:
 
 ```json
-"urls": [
-{    
-    "name": "/api/v3/items/*",    
-    "accessProfile": {
-        "name: my_jwt"
-    },
-    "authorization-rules": # Contains a list of conditions referencing "claims[]" from the access token all of which must be satisfied.
-    {
-    "name": "auth_scope",
-    "condition": "claims['scope'].contains('pet:read') and claims['scope'].contains('pet:write')",
-    "name": "auth_role",
-    "condition": "claims['roles'].contains('admin') or claims['roles'].contains('inventory-manager')",
-    "name": "auth_email",
-    "condition": "claims['email'].endsWith('petshop.com')"
-    }
-  }
-]
+{
+    "urls": [
+        {
+            "name": "/api/v3/shops/items/*",
+            "accessProfile": {
+                "name": "my_jwt"
+            },
+            "authorizationRules": [
+                {
+                    "condition": "claims['scope'].contains('pet:read') and claims['scope'].contains('pet:write')",
+                    "name": "auth_scope"
+                },
+                {
+                    "condition": "claims['roles'].contains('admin') or claims['roles'].contains('inventory-manager')",
+                    "name": "auth_roles"
+                },
+                {
+                    "condition": "claims['email'].endsWith('petshop.com')",
+                    "name": "auth_email"
+                }
+            ]
+        }
+    ]
+}
 ``` 
 
 #### Authorization-Rules Condition Syntax Usage
