@@ -5262,7 +5262,7 @@ Access Profile example:
 
 Refer to the following example where all access profile properties are configured to enforce specific settings within the App Protect policy. In this instance, we have established an access profile named "**access_profile_jwt**" located in the **authorization header**. The "maximumLength" for the token is defined as **2000**, and "verifyDigitalSignature" is set to **true**.
 
-JWKs file, this file is responsible for the most important enforcement in a JWT (signature validation).
+The JWKs file is responsible for signature validation, which is the most important enforcement in a JWT.
 
 ```shell
 {
