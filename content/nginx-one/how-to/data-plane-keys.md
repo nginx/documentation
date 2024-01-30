@@ -77,10 +77,28 @@ curl agent.connect.nginx.com/nginx-agent/install | DATAPLANE_KEY="<data-plane-ke
 
 ## How to revoke a Data Plane key
 
-You can you revoke a key before it expires.  Revoking a key will disconnect any associated NGINX instances from the NGINX One console.
+You can you revoke a key before it expires.  Revoking a key will disconnect any associated NGINX instances from the NGINX One console. The key object will remain in the console until it is deleted.
+
+1. Expand the **Manage** menu in the left side navigation menu and then select **Data Plane Keys**. 
+1. Ensure **Active Keys** has been selected from towards the top of the main panel.
+1. Search for your key
+   - You can use the Search box found on the right side of the main menu and all or part of the key name. 
+   or
+   - Review the displayed keys and navigate to the next page using the < > symbols in the bottom right of the main panel.
+1. Once you have located the target key select the ellipsis (3 dots) on the far right from the key name and select **Revoke**.
+1. In the next window confirm the data plane key name is correct and select **Revoke**
 
 ## How to delete a Data Plane key
 
 Prior to deleting a key it must be revoked.
+
+1. Expand the **Manage** menu in the left side navigation menu and then select **Data Plane Keys**. 
+1. Ensure **Revoked Keys** has been selected from towards the top of the main panel.
+1. Search for your key
+   - You can use the Search box found on the right side of the main menu and all or part of the key name. 
+   or
+   - Review the displayed keys and navigate to the next page using the < > symbols in the bottom right of the main panel.
+1. Once you have located the target key select the ellipsis (3 dots) on the far right from the key name and select **Revoke**.
+1. In the next window confirm the data plane key name is correct and select **Delete**
 
 
