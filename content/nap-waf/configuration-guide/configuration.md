@@ -5278,7 +5278,7 @@ The JWKs file is responsible for signature validation, which is the most importa
             "keyFiles": [
                {
                   "contents":83tOMhTyzDh3XTBEt2hr26F7jSeniC7TTIxmMgDdtYzRMwdb1X<SNIP>I45kpKlUBDZD/QwER\,  # using more than one key is not supported.
-                  "fileName": "JWKSFile.json" # this file is responsible for the most important enforcement in a JWT (signature validation).
+                 "fileName": "JWKFile.json"
                }
             ],
             "location": {
