@@ -7,8 +7,6 @@ tags: [ "docs" ]
 docs: "DOCS-1055"
 ---
 
-{{<custom-styles>}}
-
 {{< shortversions "1.3.0" "latest" "acmvers" >}}
 
 ## Overview

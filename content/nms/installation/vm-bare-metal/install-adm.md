@@ -25,8 +25,6 @@ authors: []
 layout: adm-eos
 ---
 
-{{< custom-styles >}}
-
 ---
 
 ## Before You Begin

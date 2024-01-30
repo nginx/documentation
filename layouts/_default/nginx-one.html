@@ -1,0 +1,30 @@
+{{ define "main" }}
+<div class="row flex-xl-nowrap">
+  <nav class="sidenav overflow-auto col-md-3 d-none d-xl-block d-print-none">
+  <!-- sidebar start -->
+  <div id="sidebar" class="sidebar" aria-label="Sidebar navigation">
+    <h3>
+        <a class="sidebar-title" href="{{.FirstSection.Permalink}}" alt="{{.FirstSection.Title}}">{{ if .Params.logo }}<img
+                class="card-img-top" src="{{ .Site.BaseURL}}/images/icons/{{ .Params.logo }}"
+                alt="{{.FirstSection.Title}}">{{end}}
+            {{.FirstSection.Title}}</a>
+    </h3>
+    <ul>
+        Coming soon!
+    </ul>
+    <!-- close sidebar div-->
+    </div>
+  </nav>
+  <main class="content col-xl-9 d-block" role="main">
+    <div class="list-page">
+        <div class="col-md-12 col-xl-12 py-md-3 pl-md-5">
+            <div class="page-header list">
+                <h1 class="bd-title">
+                    Coming soon: NGINX One
+                </h1>
+                <p>With NGINX One, you can harness the full value of NGINX with our data delivery and optimization capabilities. You can easily monitor your infrastructure, address security vulnerabilities, and assess the health of your NGINX deployments—all from a single console.<br><br> Join us at <a href="https://www.f5.com/appworld">F5 AppWorld</a> in San Jose, CA from February 6-8, 2024, to learn more about NGINX One and the future of the NGINX product portfolio.</p>
+            </div>
+        </div>
+  </main>
+</div>
+{{ end }}

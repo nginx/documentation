@@ -22,8 +22,6 @@ aliases:
 - /nim/how-to/count-nginx-plus-instances/
 ---
 
-{{< custom-styles >}}
-
 <style>
 h2 {
   border-top: 1px solid #ccc;

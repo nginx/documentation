@@ -14,8 +14,6 @@ doctypes: ["task"]
 docs: "DOCS-996"
 ---
 
-{{<custom-styles>}}
-
 {{< shortversions "2.6.0" "latest" "nimvers" >}}
 
 ## Overview

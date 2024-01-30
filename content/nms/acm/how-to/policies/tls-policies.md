@@ -9,8 +9,6 @@ doctypes: ["task"]
 docs: "DOCS-926"
 ---
 
-{{<custom-styles>}}
-
 {{< shortversions "1.1.0" "latest" "acmvers" >}}
 
 ## Overview

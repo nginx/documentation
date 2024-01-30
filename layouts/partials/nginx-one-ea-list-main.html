@@ -9,6 +9,10 @@
                     {{ .Description | markdownify }}
                 </p>
             {{ end}}
+            <blockquote class="caution">
+                <div><i class="fa-solid fa-flask"></i> <strong>Early Access Preview</strong><br><br> NGINX One is currently available in Early Access. This preview version is for evaluation and testing purposes only and should not be used in production environments.
+                </div>
+            </blockquote> 
             {{ if .Content }}
                 <p>
                     {{ .Content | markdownify }}
@@ -29,20 +33,9 @@
                         <i class="fas fa-{{if eq .Kind "page"}}file-alt{{else}}book{{end}} fa-2x card-img-top"></i>
                         <a href="{{ if .Params.url}}{{ .Params.url}}{{else}}{{ .Permalink }}{{end}}">{{ .Title }}</a>
                     </h3>
-                    {{ if eq .Title "API Connectivity Manager" }}
-                    <p class="card-text">
-                        <div>
-                            <i class="fa-solid fa-triangle-exclamation"></i><strong>This product is End of Sale.</strong> See our <a href="https://my.f5.com/manage/s/article/K000137989">End of Sale announcement</a> for more details.
-                        </div> 
-                    </p>
-                    {{ end }}
-                    {{ if eq .Title "App Delivery Manager" }}
-                    <p class="card-text">
-                        <div>
-                            <i class="fa-solid fa-triangle-exclamation"></i><strong> This product is End of Software Development.</strong> See our <a href="https://my.f5.com/manage/s/article/K8986#link_03">Product Support Policies</a> for more details.
-                        </div> 
-                    </p>
-                    {{ end }}
+                    {{/*}}<p class="card-text">
+                        {{ if .Description }}{{ .Description | markdownify }}{{ end }}    
+                    </p>{{*/}}
             
             </div>
             </div>

@@ -17,8 +17,6 @@ docs: "DOCS-892"
 
 ---
 
-{{< custom-styles >}}
-
 {{< shortversions "1.0.0" "latest" "acmvers" >}}
 
 ## Overview

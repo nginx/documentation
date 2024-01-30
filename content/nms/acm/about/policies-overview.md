@@ -15,8 +15,6 @@ docs: "DOCS-932"
 
 ---
 
-{{< custom-styles >}}
-
 {{< shortversions "1.1.0" "latest" "acmvers" >}}
 
 ## Overview

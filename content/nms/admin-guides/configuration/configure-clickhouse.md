@@ -21,8 +21,6 @@ aliases:
 - /nginx-management-suite/admin-guides/configuration/prerequisites/configure-clickhouse/
 ---
 
-{{<custom-styles>}}
-
 ## Overview
 
 Follow the steps in this guide to update the `/etc/nms/nms.conf` file if you used a custom address, username, or password or enabled TLS when installing ClickHouse. NGINX Management Suite requires this information to connect to ClickHouse.

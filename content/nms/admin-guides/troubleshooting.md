@@ -24,8 +24,6 @@ versions: []
 authors: []
 ---
 
-{{< custom-styles >}}
-
 ## System returns "502 Upstream Unavailable" after installation</summary>
 
 #### Description

@@ -27,8 +27,6 @@ authors: []
 
 {{< shortversions "1.0.0" "latest" "secvers" >}}
 
-{{<custom-styles>}}
-
 ## Overview
 
 You can use NGINX Management Suite Security Monitoring to monitor NGINX App Protect WAF instances. The Security Monitoring analytics dashboards and security logs provide protection insights and help you analyze possible threats or identify opportunities to tune your security policies.

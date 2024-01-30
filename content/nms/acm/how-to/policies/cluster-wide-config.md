@@ -16,8 +16,6 @@ versions: []
 
 ---
 
-{{<custom-styles>}}
-
 ## Overview
 
 {{< include "acm/how-to/policies-proxy-cluster-intro" >}}

@@ -24,18 +24,16 @@ versions: []
 authors: []
 ---
 
-{{< custom-styles >}}
-
 This guide provides step-by-step instructions on how to activate and start using NGINX One. NGINX One is a management console for monitoring and managing NGINX data plane deployments.
 
-## Step 1: Enable the NGINX One Service on F5 Distributed Cloud
+## Step 1: Enable the NGINX One service on F5 Distributed Cloud
 
 1. Log in to the [F5 Distributed Cloud Console](https://www.f5.com/cloud/products/distributed-cloud-console).
 2. Find and select the **NGINX One** service on the dashboard.
 3. Select **Enable Service**.
 4. After the service has been enabled, select **Visit Service** to load the NGINX One console.
 
-## Step 2: Add NGINX Instances
+## Step 2: Add NGINX instances
 
 Once you've enabled NGINX One, the first thing to do is to add the NGINX instances you want to monitor.
 
@@ -44,14 +42,14 @@ Once you've enabled NGINX One, the first thing to do is to add the NGINX instanc
 
    Alternatively, if you've already created a data plane key that you want to reuse, select **Use existing key**, then paste the key's value in the **Data Plane Key** box.
 
+   {{<important>}}
+   Data plane keys are not saved and are displayed only once when you generate them. You should save this key in a secure location for future reference.
+   {{</important>}}
    {{<note>}}
    Data plane keys expire after one year. This is the default setting if you don't specify an expiration time when you create a key. If necessary, you can update the data plane key later to extend its expiration.
 
    Revoking a data plane key will disconnect the associated NGINX instances from NGINX One.
    {{</note>}}
-   {{<important>}}
-   Data plane keys are not saved and are displayed only once when you generate them. You should save this key in a secure location for future reference.
-   {{</important>}}
 
    <br>
    {{< img src="nginx-one/images/generate-data-plane-key.png" width="732" height="316">}}
@@ -59,8 +57,10 @@ Once you've enabled NGINX One, the first thing to do is to add the NGINX instanc
 3. **Install NGINX Agent on the NGINX instances you want to monitor**. After providing a data plane key, you'll see a curl command similar to the following example. Copy and run this command on each NGINX instance you want to connect to NGINX One.
 
    ```shell
-   curl agent.connect.nginx.com/nginx-agent/install | DATAPLANE_KEY="DTROJy0El8ArZ/oTtYQoAUFRvO8Zm5jG9EXAMPLEKEY=" sh -s -- -y
+   curl agent.connect.nginx.com/nginx-agent/install | DATAPLANE_KEY="<data-plane-key>" sh -s -- -y
    ```
+
+   - `<data-plane-key>`: The data plane key value.
 
    <br>
 
@@ -74,7 +74,7 @@ Once you've enabled NGINX One, the first thing to do is to add the NGINX instanc
    {{< include "nginx-one/nginx-agent/nginx-agent-tech-specs.md" >}}
    </details>
 
-## Step 3: View Data Plane Metrics with the NGINX One Dashboard
+## Step 3: View data plane metrics with the NGINX One dashboard
 
 Once your NGINX instances have registered with NGINX One, you’ll want to keep track of how they're doing. The NGINX One Dashboard is designed for this purpose, offering a user-friendly interface to help you easily monitor your instances. Here’s how to get the insights you need:
 
@@ -84,7 +84,7 @@ Once your NGINX instances have registered with NGINX One, you’ll want to keep 
    - **Instance Availability**: See how many of your NGINX instances are online, offline, or unavailable.
    - **NGINX Versions by Instance**: Check the NGINX versions you're running across different instances.
    - **Operating Systems**: Know the operating systems your instances are running on.
-   - **Certificates**: Track the status of your SSL certificates – which are expiring soon, which are still valid.
+   - **Certificates**: Track the status of your SSL certificates – see which are expiring soon, and which are still valid.
    - **Config Recommendations**: View the type and number of configuration suggestions for optimizing your instance setups.
    - **CVEs**: Assess the severity and quantity of identified Common Vulnerabilities and Exposures in your instances.
    - **CPU Utilization**: Monitor CPU usage trends and identify instances with high CPU consumption.

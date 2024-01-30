@@ -25,8 +25,6 @@ authors: []
 layout: acm-eos
 ---
 
-{{< custom-styles >}}
-
 ---
 
 ## Before You Begin

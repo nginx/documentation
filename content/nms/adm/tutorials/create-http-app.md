@@ -8,8 +8,6 @@ tags: ["docs"]
 docs: "DOCS-1158"
 ---
 
-{{< custom-styles >}}
-
 ## Objective
 
 The App team wants to provide external access to their custom app which has two instances running on their internal network. External access will be provided from http://www.example.com. The two instances of their app are available at the following internal IP addresses:

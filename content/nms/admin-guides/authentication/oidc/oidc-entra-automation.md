@@ -16,8 +16,6 @@ aliases:
 - /nginx-instance-manager/admin-guide/oidc-entra-automation/
 ---
 
-{{< custom-styles >}}
-
 <style>
 h2 {
   border-top: 1px solid #ccc;

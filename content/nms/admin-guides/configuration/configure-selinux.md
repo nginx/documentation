@@ -18,8 +18,6 @@ aliases:
 - /nginx-instance-manager/admin-guide/getting-started/selinux-guide/
 ---
 
-{{< custom-styles >}}
-
 {{< shortversions "2.0.0" "latest" "nimvers" >}}
 
 ## Overview
