@@ -5327,7 +5327,8 @@ Please note that the access profile cannot be deleted if it is in use in any URL
 
 ### Authorization Rules in Access Profile
 
-A new entity named as `authorization-rules` is introduced under the access profile. This entity encompasses an authorization condition essential for "Claims" validation, enabling access to a specific URL based on claims of a JWT.
+### Authorization Rules in URLs
+A new entity named as `authorizationRules` is introduced under the URL. This entity encompasses an authorization condition essential for "Claims" validation, enabling access to a specific URL based on claims of a JWT.
 
 The `authorization-rules` entity consists of the following two mandatory fields:
 - `name`: a unique descriptive name for the condition predicate
