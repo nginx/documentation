@@ -5334,6 +5334,11 @@ The `authorization-rules` entity consists of the following two mandatory fields:
 - `name`: a unique descriptive name for the condition predicate
 - `condition`: a boolean expression that defines the conditions for granting access to the URL
 
+### Authorization Rules in URLs
+A new entity named as `authorizationRules` is introduced under the URL. This entity encompasses an authorization condition essential for "Claims" validation, enabling access to a specific URL based on claims of a JWT.
+The `authorization-rules` entity consists of the following two mandatory fields:
+- `name`: a unique descriptive name for the condition predicate
+- `condition`: a boolean expression that defines the conditions for granting access to the URL
 Here is an example of declarative policy using an `authorization-rules` entity under the access profile:
 
 ```json
