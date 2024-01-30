@@ -5325,7 +5325,6 @@ The next step to configure JWT is to define the URL settings. Add the access pro
 
 Please note that the access profile cannot be deleted if it is in use in any URL.
 
-### Authorization Rules in Access Profile
 
 ### Authorization Rules in URLs
 A new entity named as `authorizationRules` is introduced under the URL. This entity encompasses an authorization condition essential for "Claims" validation, enabling access to a specific URL based on claims of a JWT.
