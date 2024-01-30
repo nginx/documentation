@@ -5196,11 +5196,11 @@ The JSON Web Token consists of three parts: the **Header**, **Claims** and **Sig
 
     ```json
     {
-    "sub": "1234567890",
-    "name": "John Doe",
-    "iat": 1654591231,
-    "nbf": 1654607591,
-    "exp": 1654608348
+        "sub": "1234567890",
+        "name": "John Doe",
+        "iat": 1654591231,
+        "nbf": 1654607591,
+        "exp": 1654608348
     }
     ```
     In the example above, the payload contains several claims:
@@ -5329,16 +5329,16 @@ Please note that the access profile cannot be deleted if it is in use in any URL
 ### Authorization Rules in URLs
 A new entity named as `authorizationRules` is introduced under the URL. This entity encompasses an authorization condition essential for "Claims" validation, enabling access to a specific URL based on claims of a JWT.
 
-The `authorization-rules` entity consists of the following two mandatory fields:
+The `authorizationRules` entity consists of the following two mandatory fields:
 - `name`: a unique descriptive name for the condition predicate
 - `condition`: a boolean expression that defines the conditions for granting access to the URL
 
 ### Authorization Rules in URLs
 A new entity named as `authorizationRules` is introduced under the URL. This entity encompasses an authorization condition essential for "Claims" validation, enabling access to a specific URL based on claims of a JWT.
-The `authorization-rules` entity consists of the following two mandatory fields:
+The `authorizationRules` entity consists of the following two mandatory fields:
 - `name`: a unique descriptive name for the condition predicate
 - `condition`: a boolean expression that defines the conditions for granting access to the URL
-Here is an example of declarative policy using an `authorization-rules` entity under the access profile:
+Here is an example of declarative policy using an `authorizationRules` entity under the access profile:
 
 ```json
 {
@@ -5367,9 +5367,9 @@ Here is an example of declarative policy using an `authorization-rules` entity u
 }
 ``` 
 
-#### Authorization-Rules Condition Syntax Usage
+#### AuthorizationRules Condition Syntax Usage
 
-The `authorization-rules` use a Boolean expression to articulate the conditions for granting access to the URL. The conditions use the same syntax as in [Policy Override Rules](#override-rules) with one additional attribute **"claims"**.
+The `authorizationRules` use a Boolean expression to articulate the conditions for granting access to the URL. The conditions use the same syntax as in [Policy Override Rules](#override-rules) with one additional attribute **"claims"**.
 
 #### Claims Attribute
 
@@ -5379,7 +5379,7 @@ A few points to remember regarding JWT claims:
 - Please note that at the moment, accessing individual cells within JSON arrays isn't possible. Instead, the entire array gets serialized as a string, and its elements can be evaluated using string operators like "contains".
 - While it's technically feasible to consolidate all conditions into one with "and" between them, it's not recommended. Dividing them into multiple conditions enhances the readability and clarity of the policy, particularly when explaining the reasons for authorization failure.
 
-For the full reference of authorization-rules condition syntax and usage see the NGINX App Protect WAF [Declarative Policy guide]({{< relref "/nap-waf/declarative-policy/policy.md" >}}/#policy/override-rules).
+For the full reference of authorizationRules condition syntax and usage see the NGINX App Protect WAF [Declarative Policy guide]({{< relref "/nap-waf/declarative-policy/policy.md" >}}/#policy/override-rules).
 
 See below example for JWT claims:
  
