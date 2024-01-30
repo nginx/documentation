@@ -113,7 +113,7 @@ To register your containerized NGINX Agent with NGINX One:
     ```
 
     <details open>
-    <summary>Example nginx-agent.conf</summary>
+    <summary><i class="fas fa-file"></i> Example nginx-agent.conf</summary>
 
     ``` yaml
     # 
@@ -177,7 +177,7 @@ To register your containerized NGINX Agent with NGINX One:
 
     </details>
 
-1. Start the Docker container, mounting the **nginx-agent.conf** file on the host to the specified path inside the container:
+2. Start the Docker container, mounting the **nginx-agent.conf** file on the host to the specified path inside the container:
 
     ```shell
     docker run \
