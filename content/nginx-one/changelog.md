@@ -35,5 +35,3 @@ We're excited to introduce NGINX One, an exciting addition to our suite of NGINX
 **Getting Started**
 
 To help you get started, take a look at the [Getting Started Guide]({{< relref "/nginx-one/getting-started.md" >}}). This guide will walk you through the initial setup and key features so you can start using NGINX One right away.
-
-
