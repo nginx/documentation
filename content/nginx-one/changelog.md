@@ -24,6 +24,14 @@ versions: []
 authors: []
 ---
 
-### February 5, 2024
+Stay up-to-date with what's new and improved in NGINX One.
 
-Welcome to the NGINX One Early Access (EA) preview! Give it a try. If you find any issues, please let us know by [raising a support ticket](http//add-link-here).
+## February 6, 2024
+
+**Welcome to the NGINX One EA preview!**
+
+We're excited to introduce NGINX One, an exciting addition to our suite of NGINX products. Designed with efficiency and ease of use in mind, NGINX One offers an innovative approach to managing your NGINX instances.
+
+**Getting Started**
+
+To help you get started, take a look at the [Getting Started Guide]({{< relref "/nginx-one/getting-started.md" >}}). This guide will walk you through the initial setup and key features so you can start using NGINX One right away.
