@@ -76,13 +76,7 @@ Once you've enabled NGINX One, the first thing to do is to add the NGINX instanc
 
    {{< include "nginx-one/nginx-agent/nginx-agent-tech-specs.md" >}}
 
-   </details> 
-   </span>
-
-      {{< include "nginx-one/nginx-agent/nginx-agent-tech-specs.md" >}}
-
-
-   </details> 
+   </details>
 
 ### View data plane metrics with the NGINX One dashboard
 
