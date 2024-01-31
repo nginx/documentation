@@ -6,7 +6,7 @@ docs:
 | Distribution                 | Version              | Architecture    |
 |------------------------------|----------------------|-----------------|
 | AlmaLinux                    | 8, 9                 | x86_64, aarch64 |
-| Alpine Linux                 | 3.16 - 3.19          | x86_64, aarch64 |
+| Alpine Linux                 | 3.16 - 3.18          | x86_64, aarch64 |
 | Amazon Linux                 | 2023                 | x86_64, aarch64 |
 | Amazon Linux 2               | LTS                  | x86_64, aarch64 |
 | CentOS                       | 7.4+                 | x86_64, aarch64 |

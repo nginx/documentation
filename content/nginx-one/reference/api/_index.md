@@ -1,6 +1,6 @@
 ---
 title: NGINX One API
-description: NGINX One API reference documentation
+description: 
 draft: false
 weight: 100
 url: /nginx-one/reference/api
