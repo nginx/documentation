@@ -76,8 +76,13 @@ Revoking a data plane key will disconnect the associated NGINX instances from NG
 
 After you enter a data plane key, a curl command like the one shown below will appear. Copy this command and run it on each NGINX instance to install the NGINX Agent. Once the NGINX Agent is installed, it typically registers with NGINX One within a few seconds.
 
-{{< include "nginx-one/nginx-agent/nginx-agent-curl.md" >}}
+``` shell
+curl agent.connect.nginx.com/nginx-agent/install | DATAPLANE_KEY="<data-plane-key>" sh -s -- -y
+```
 
+- `<data-plane-key>`: Replace with the actual data plane key value.
+- `-y`: An argument passed to the installation script. `-y` automatically answers "yes" to any prompts that require user interaction.
+- 
 <br>
 
 <details open>
