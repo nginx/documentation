@@ -64,7 +64,7 @@ Once you've enabled NGINX One, the first thing to do is to add the NGINX instanc
 
    <br>
 
-   Make sure your Linux version supports the NGINX Agent. For supported distributions, click the following link.
+   Make sure your Linux version supports the NGINX Agent installation script. For supported distributions, click the following link.
 
    <details closed>
    <summary><i class="fa-solid fa-circle-info"></i> NGINX Agent: Supported distributions </summary>
