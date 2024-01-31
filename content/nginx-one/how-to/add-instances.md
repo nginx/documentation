@@ -113,7 +113,7 @@ To register your containerized NGINX Agent with NGINX One:
    ```yaml
     server:
       token: "<data-plane-key>"
-      host: agent.connect.nginxlab.net
+      host: agent.connect.nginx.com
       grpcPort: 443
     ```
 
@@ -172,7 +172,7 @@ To register your containerized NGINX Agent with NGINX One:
 
     server:
       token: "<data-plane-key>"
-      host: agent.connect.nginxlab.net
+      host: agent.connect.nginx.com
       grpcPort: 443
 
     tls:
