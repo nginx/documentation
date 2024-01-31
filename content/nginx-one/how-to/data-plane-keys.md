@@ -34,20 +34,22 @@ When adding a new or existing NGINX instances to the NGINX One console you will 
 
 ### How to generate a new Data Plane key in NGINX One
 
-1. Expand the **Manage** menu in the left side navigation menu and then select **Data Plane Keys**. 
-1. Ensure **Active Keys** has been selected from towards the top of the main menu.
-1. Select **Add Data Plane Key** listed just under **Active Keys**.  
-1. In the **Name** field enter your desired data plane key name and set your expiration date.  
+1. From the Distributed Cloud Console Home dashboard select the **NGINX One** tile.
+2. Expand the **Manage** menu in the left side navigation menu and then select **Data Plane Keys**. 
+3. Ensure **Active Keys** has been selected from towards the top of the main menu.
+4. Select **Add Data Plane Key** listed just under **Active Keys**.  
+5. In the **Name** field enter your desired data plane key name and set your expiration date.  
    1. The expiration date defaults to one year from the creation date, one year is the maximum duration period.
-1. Select **Generate**.
-1. A new pop up will display with your Data Plane key value. Be sure to copy this value and store it in a secure location.
-1. Select **Close** when complete.
+6. Select **Generate**.
+7. A new pop up will display with your Data Plane key value. Be sure to copy this value and store it in a secure location.
+8. Select **Close** when complete.
 
 ## How to add a new Instance and generate a new Data Plane key
 
-1. Expand the **Manage** menu in the left side navigation menu and then select **Instances**. 
-1. Select **Add Instance**.
-1. Enable the radio button for **Generate new key** and select **Generate Data Plane Key**.
+1. From the Distributed Cloud Console Home menu select the NGINX One tile.
+2. 1. Expand the **Manage** menu in the left side navigation menu and then select **Instances**. 
+3. Select **Add Instance**.
+4. Enable the radio button for **Generate new key** and select **Generate Data Plane Key**.
    1. Copy and save the new data plane key to a secure location
    2. Copy the sample curl command which will contain the newly created data plane key value.
    3. Select Done when ready to continue.
@@ -88,17 +90,12 @@ You can you revoke a key before it expires.  Revoking a key will disconnect any 
 1. Once you have located the target key select the ellipsis (3 dots) on the far right from the key name and select **Revoke**.
 1. In the next window confirm the data plane key name is correct and select **Revoke**
 
+{{< note >}}Sorting any of the columns such as **UUID** or **Status** is enabled once you select the column and move to the right corner of the same column.{{< /note >}}
+
 ## How to delete a Data Plane key
 
-Prior to deleting a key it must be revoked.
+You must use the API in order to delete a key.  Prior to deleting a key it must be revoked which can be completed in the NGINX one console or using the API.
 
-1. Expand the **Manage** menu in the left side navigation menu and then select **Data Plane Keys**. 
-1. Ensure **Revoked Keys** has been selected from towards the top of the main panel.
-1. Search for your key
-   - You can use the Search box found on the right side of the main menu and all or part of the key name. 
-   or
-   - Review the displayed keys and navigate to the next page using the < > symbols in the bottom right of the main panel.
-1. Once you have located the target key select the ellipsis (3 dots) on the far right from the key name and select **Revoke**.
-1. In the next window confirm the data plane key name is correct and select **Delete**
+
 
 
