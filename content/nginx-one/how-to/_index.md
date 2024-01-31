@@ -1,7 +1,7 @@
 ---
-description: 
-title: Reference
-weight: 1000
+description:
+title: How To
+weight: 200
 url: /nginx-one/reference/
 layout: "nginx-one-ea-list"
 ---
