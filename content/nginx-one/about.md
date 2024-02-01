@@ -16,31 +16,28 @@ docs: "DOCS-000"
 # Taxonomies
 # These are pre-populated with all available terms for your convenience.
 # Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
 doctypes: ["reference"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
+journeys: ["researching", "getting started"]
 personas: ["devops", "netops", "secops", "support"]
 versions: []
 authors: []
 ---
 
-NGINX One helps users manage multiple NGINX deployments across multiple locations and environments. Traditionally, overseeing these deployments has been a time-consuming and demanding job. With NGINX One, you can monitor and manage your NGINX fleet from an intuitive, centralized console. This console gives insights into the configuration and performance of your NGINX instances, highlights critical vulnerabilities, shows the status of SSL certificates, and more.
+NGINX One simplifies the management of your NGINX fleet across different locations and environments. Overseeing NGINX deployments traditionally demanded a lot of time and effort. Now, with NGINX One, you can easily monitor and manage your NGINX fleet from a single, intuitive console. This console provides insights into the configuration and performance of your NGINX instances, highlights critical vulnerabilities, shows the status of SSL certificates, and more.
 
 
 ## Benefits and key features
 
-NGINX One delivers these key advantages:
+NGINX One offers the following key benefits:
 
-- **All-in-One Control**: Monitor and manage all your NGINX deployments from one central console.
+- **Centralized control**: Keep an eye on and manage all your NGINX instances from a single console.
+- **Enhanced monitoring and risk detection**: Automatically detect critical vulnerabilities (CVEs), verify SSL certificate statuses, and identify security issues in NGINX configurations.
+- **Performance optimization**: Track your NGINX versions and receive recommendations for tuning your configurations for better performance.
+- **Graphical metrics display**: View the performance of your NGINX instances at a glance with a dashboard that presents a clear, graphical overview of key metrics, including instance availability, version distribution, system health, and utilization trends.
+- **Real-time alerts**: Get alerts about critical issues.
 
-- **Enhanced Monitoring and Risk Detection**: Automatically identify critical vulnerabilities (CVEs), check the status of SSL certificates, and identify security issues in NGINX configurations.
 
-- **Optimized Performance**: Monitor your installed NGINX versions and get advice on how to optimize your NGINX configurations.
+## Legal notice: Licensing agreements for NGINX products
 
-- **Graphical Metrics Display**: View the performance metrics of NGINX instances in a graphical format for straightforward analysis.
+Please be aware that using NGINX One is subject to our End User Service Agreement (EUSA). For [NGINX Plus]({{< relref "/nginx" >}}), the use is governed by the End User License Agreement (EULA). Open source projects, such as [NGINX Agent](https://github.com/nginx/agent) and [NGINX OSS](https://github.com/nginx/nginx), fall under their specific licenses. For more details on these licenses, please follow the links provided.
 
-- **Real-Time Alerts**: Receive immediate notifications about urgent issues.
-
-## Legal notice: Licensing agreements for NGINX Products
-
-Please note that the use of the NGINX One is governed by our End User Service Agreement (EUSA). For [NGINX Plus]({{< relref "/nginx" >}}), usage is subject to the End User License Agreement (EULA). Open source projects, including [NGINX Agent](https://github.com/nginx/agent) and [NGINX OSS](https://github.com/nginx/nginx), are covered under their respective licenses.
