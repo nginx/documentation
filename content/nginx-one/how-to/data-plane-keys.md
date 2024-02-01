@@ -92,14 +92,14 @@ If you need to deactivate a data plane key before its expiration date, follow th
 4. A confirmation dialog will appear. Select **Revoke** to confirm.
 
 
-### Deleting a data plane key
+### Deleting a data plane key (API only)
 
-In this Early Access release, you need to use the NGINX One API to delete a data plane key. However, before you can delete a key, it must be revoked. You can revoke a key either through the NGINX One console, as explained above, or by using the REST API.
+In this Early Access release, you need to use the NGINX One REST API to delete a data plane key. However, before you can delete a key, it must be revoked. You can revoke a key either through the NGINX One console, as explained above, or by using the REST API.
 
-Related guides:
+To delete a data plane key using the NGINX One REST API, see these guides:
 
-- [Authenticating with the NGINX One REST API]({{< relref "nginx-one/reference/api/nginx-one-api-authentication.md" >}})
-- [NGINX One API reference: Delete a data plane key]({{< relref "nginx-one/reference/api/nginx-one-api-reference.md#operation/deleteDataPlaneKey" >}})
+- [Authenticate with the NGINX One REST API]({{< relref "nginx-one/reference/api/nginx-one-api-authentication.md" >}})
+- [Delete a data plane key: NGINX One API Reference]({{< relref "nginx-one/reference/api/nginx-one-api-reference.md#operation/deleteDataPlaneKey" >}})
 
 
 
