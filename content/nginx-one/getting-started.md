@@ -29,7 +29,30 @@ h2 {
   margin-top: 20px;
   padding-top: 20px;
 }
+table {
+ width: 100%;
+ border-collapse: collapse;
+}
+th, td {
+ padding: 8px;
+ text-align: left;
+}
+th {
+ background-color: #CCEAD7 ; /* Soft teal */
+ /* Or use background-color: #8FD8D2; for a light blue-green */
+ color: #333; /* Dark text for readability */
+}
+tr:nth-child(even) {
+ background-color: #f9f9f9;
+}
+tr:nth-child(odd) {
+ background-color: #ffffff;
+}
+th, td {
+ border: none;
+}
 </style>
+
 
 This guide provides step-by-step instructions on how to activate and start using NGINX One. NGINX One is a management console for monitoring and managing NGINX data plane instances.
 
@@ -95,32 +118,47 @@ Make sure your Linux operating system is listed below. The installation script f
 
 ## View instance metrics with the NGINX One dashboard
 
-Once your NGINX instances have registered with NGINX One, you’ll want to keep track of how they're doing. The NGINX One Dashboard is designed for this purpose, offering a user-friendly interface to help you easily monitor your instances. Here’s how to get the insights you need:
+After connecting your NGINX instances to NGINX One, you can monitor their performance and health. The NGINX One Dashboard is designed for this purpose, offering an easy-to-use interface.
 
-1. **Access the dashboard**. [Log in to NGINX One console](https://nginxone-team.staging.volterra.us/web/nginx/console/overview/dashboard). Once you log in, you'll find yourself on the dashboard by default. Here, you can see an overview of your NGINX data plane's health and performance, and other details.
+### Log in to NGINX One 
 
-1. **Understand your metrics**. The dashboard is split into sections showing different metrics:
-   - **Instance availability**: See how many of your NGINX instances are online, offline, or unavailable.
-   - **NGINX versions by instance**: Check the NGINX versions you're running across different instances.
-   - **Operating systems**: Know the operating systems your instances are running on.
-   - **Certificates**: Track the status of your SSL certificates – see which are expiring soon, and which are still valid.
-   - **Config recommendations**: View the type and number of configuration suggestions for optimizing your instance setups.
-   - **CVEs**: Assess the severity and quantity of identified Common Vulnerabilities and Exposures in your instances.
-   - **CPU utilization**: Monitor CPU usage trends and identify instances with high CPU consumption.
-   - **Memory utilization**: Observe memory usage patterns and spot instances with significant memory utilization.
-   - **Disk space utilization**: Keep an eye on disk space consumption and pinpoint instances with nearly full storage volumes.
-   - **Unsuccessful response codes**: Identify instances with high numbers of HTTP server errors and review their error codes.
-   - **Top network usage**: Examine the network usage and bandwidth consumption of your instances.
+{{< include "nginx-one/xc-console/login.md" >}}
 
-1. **Drill down into specifics**.
-   - For details about a metric, such as viewing expiring certificates, select the corresponding link in the card. You'll be taken to an overview page with more information.
 
-1. **Refine metric timeframe**
-   - You can view utilization metrics for different time periods. The initial setting displays data for the past hour. To change this, select the drop-down menu and choose the time interval you need.
+### Overview of the NGINX One dashboard
 
-   <span style="display: inline-block; margin-top: 30px;">
-   {{< img src="nginx-one/images/nginx-one-dashboard.png">}}
-   </span>
+Navigating the dashboard:
+
+- **Drill down into specifics**: For in-depth information on a specific metric, like expiring certificates, click on the relevant link in the metric's card to go to a detailed overview page.
+- **Refine metric timeframe**: Metrics show the last hour's data by default. To view data from a different period, select the time interval you want from the drop-down menu.
+
+<span style="display: inline-block; margin-top: 20px; margin-bottom: 50px;">
+{{< img src="nginx-one/images/nginx-one-dashboard.png">}}
+</span>
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+NGINX One dashboard metrics
+| Metric | Description | Details |
+|---|---|---|
+| **Instance availability** | Understand the operational status of your NGINX instances. | - `Online`: The NGINX instance is actively connected and functioning properly. <br> - `Offline`: The NGINX Agent is connected but the NGINX instance isn't running. <br> - `Unavailable`: The connection between the NGINX Agent and NGINX One has been lost. <br> - `Unknown`: The current state can't be determined at the moment. |
+| **NGINX versions by instance** | See which NGINX versions are in use across your instances. | |
+| **Operating systems** | Find out which operating systems your instances are running on. | |
+| **Certificates** | Monitor the status of your SSL certificates to know which are expiring soon and which are still valid. | |
+| **Config recommendations** | Get configuration recommendations to optimize your instances' settings. | |
+| **CVEs (Common Vulnerabilities and Exposures)** | Evaluate the severity and number of potential security threats in your instances. | - `Major`: Indicates a high-severity threat that needs immediate attention. <br> - `Medium`: Implies a moderate threat level. <br> - `Minor` and `Low`: Represent less critical issues that still require monitoring. <br> - `Other`: Encompasses any threats that don't fit the standard categories. |
+| **CPU utilization** | Track CPU usage trends and pinpoint instances with high CPU demand. | |
+| **Memory utilization** | Watch memory usage patterns to identify instances using significant memory. | |
+| **Disk space utilization** | Monitor how much disk space your instances are using and identify those nearing capacity. | |
+| **Unsuccessful response codes** | Look for instances with a high number of HTTP server errors and investigate their error codes. | |
+| **Top network usage** | Review the network usage and bandwidth consumption of your instances. | |
+{{</bootstrap-table>}}
+
+
+
+
+
+
+
 
 
 
