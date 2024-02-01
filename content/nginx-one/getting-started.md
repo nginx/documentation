@@ -90,7 +90,7 @@ Data plane keys are displayed only once and cannot be retrieved later. Be sure t
 
 Data plane keys expire after one year. You can change this expiration date later by editing the key.
 
-Revoking a data plane key will disconnect any instances that were registered with that key.
+Revoking a data plane key disconnects all instances that were registered with that key.
 {{</important>}}
 
 
