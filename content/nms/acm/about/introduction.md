@@ -11,7 +11,7 @@ You can use the API Connectivity Manager API to connect, secure, and govern your
 
 ## API Connectivity Manager Key Features
 
-The API Connectiviy Manager module provides the following features:
+The API Connectivity Manager module provides the following features:
 
 - [Create and manage isolated workspaces]({{< relref "/nms/acm/how-to/infrastructure/manage-api-infrastructure.md#create-a-workspace">}})
 - [Create and manage API infrastructure]({{< relref "/nms/acm/how-to/infrastructure/manage-api-infrastructure.md#add-an-environment">}}) in isolated workspaces

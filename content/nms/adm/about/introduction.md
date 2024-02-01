@@ -12,7 +12,7 @@ The App Delivery Manager module provides an abstraction over the NGINX configura
 This app-centric view addresses the following concerns:
 
 * **Complexity**: Managing, maintaining, validating, and applying large sets of individual configurations from different sources.
-* **Fragility:** Teams can validate and test configurations before placing them into production, making it easier to fail fast and ensuring that production user traffic keeps flowing.
+* **Fragility:** Teams can validate and test configurations before placing them into production, making it easier to fail fast, and making sure that production user traffic keeps flowing.
 * **Safety:** Various business units can be given fine-grain ownership over configuration elements, when necessary.
 * **Self-Service:** By isolating app teams from one another, you can allow each team to independently deploy and update the configuration for their apps without requiring intervention. This removes artificial gates that previously prevented teams from quickly delivering their updated apps and allows for the integration of the CI/CD process into their development workflow.
 
