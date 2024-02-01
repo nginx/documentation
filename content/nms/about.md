@@ -50,6 +50,7 @@ The Security Monitoring module provides the following features:
 - In-depth security log details to help with analyzing possible threats and making policy decisions
 
 ---
+
 ## What's Next?
 
 - [Review the Technical Specifications]({{< relref "/nms/tech-specs.md">}})

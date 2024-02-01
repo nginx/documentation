@@ -1,6 +1,6 @@
 ---
 title: "Working with Use Case Templates"
-weight: 300
+weight: 200
 toc: true
 draft: false
 tags: ["docs"]

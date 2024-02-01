@@ -1,7 +1,7 @@
 ---
 title: "Web Interface JSON Schema Support "
 description: "Overview of what parts of JSON schema are supported by the NGINX Management Suite App Delivery Manager web interface."
-weight: 500
+weight: 400
 toc: true
 draft: false
 tags: ["docs"]
