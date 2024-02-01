@@ -31,7 +31,7 @@ h2 {
 }
 </style>
 
-This guide provides step-by-step instructions on how to activate and start using NGINX One. NGINX One is a management console for monitoring and managing NGINX data plane deployments.
+This guide provides step-by-step instructions on how to activate and start using NGINX One. NGINX One is a management console for monitoring and managing NGINX data plane instances.
 
 ## Enable the NGINX One service {#enable-nginx-one}
 
