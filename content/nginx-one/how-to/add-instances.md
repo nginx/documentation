@@ -8,7 +8,7 @@ draft: false
 # The description text appears in search results and at the top of the doc.
 description: ""
 # Assign weights in increments of 100
-weight: 
+weight: 100
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
@@ -34,8 +34,7 @@ To add your NGINX data plane instances to NGINX One with the web interface, foll
 ### Log in to NGINX One
 
 
-1. Log in to the [F5 Distributed Cloud Console](https://www.f5.com/cloud/products/distributed-cloud-console).
-1. Select the **NGINX One** service on the dashboard.
+{{< include "nginx-one/xc-console/login.md" >}}
 
 ### Add an instance
 
