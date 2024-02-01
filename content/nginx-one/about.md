@@ -39,5 +39,4 @@ NGINX One offers the following key benefits:
 
 ## Legal notice: Licensing agreements for NGINX products
 
-Please be aware that using NGINX One is subject to our End User Service Agreement (EUSA). For [NGINX Plus]({{< relref "/nginx" >}}), the use is governed by the End User License Agreement (EULA). Open source projects, such as [NGINX Agent](https://github.com/nginx/agent) and [NGINX OSS](https://github.com/nginx/nginx), fall under their specific licenses. For more details on these licenses, please follow the links provided.
-
+Using NGINX One is subject to our End User Service Agreement (EUSA). For [NGINX Plus]({{< relref "/nginx" >}}), usage is governed by the End User License Agreement (EULA). Open source projects, including [NGINX Agent](https://github.com/nginx/agent) and [NGINX OSS](https://github.com/nginx/nginx), are covered under their respective licenses. For more details on these licenses, follow the provided links.
