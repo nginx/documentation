@@ -27,19 +27,15 @@ authors: []
 
 ## Overview
 
-The NGINX Management Suite includes several modules for managing your NGINX instances:
+NGINX Management Suite can be configured using a file. The default configuration file is located on the path **/etc/nms/nms.conf**.
 
-- Instance Manager: This module allows you to manage multiple NGINX instances, whether they're running on-premises, in the cloud, or in containers. With Instance Manager, you can perform tasks such as installing, configuring, and upgrading NGINX instances, as well as monitoring their health and performance.
-- API Connectivity Manager: This module provides a centralized interface for managing APIs that are exposed by NGINX instances. With API Connectivity Manager, you can create, publish, and secure APIs, as well as monitor their usage and performance.
-- App Delivery Manager: This module enables you to manage the delivery of applications that are hosted on NGINX instances. With App Delivery Manager, you can perform tasks such as deploying applications, managing SSL certificates, and configuring load balancing and caching.
+**nms.conf** is a YAML configuration file used by NGINX Management Suite. This file contains settings and options that determine how the software works. 
 
-To configure NGINX Management Suite, you can edit the default configuration file located at `/etc/nms/nms.conf`.
+The options in the file include settings for the user and group that non-privileged processes should run as; the CA cert file used for TLS server; the URL for NGINX Management Suite; the choice of whether the software should run in development mode or daemon mode; the root directory for Dqlite data; as well as various settings pertaining to logging, modules, and services.
 
-The `nms.conf` file is a configuration file, written in YAML format, used by NGINX Management Suite. This file contains settings and options that determine how the software works. The options in the file include settings for the user and group that non-privileged processes should run as; the CA cert file used for TLS server; the URL for NGINX Management Suite; the choice of whether the software should run in development mode or daemon mode; the root directory for Dqlite data; as well as various settings pertaining to logging, modules, and services.
+## Example configuration
 
-## Example nms.conf
-
-The following example `nms.conf` file displays the configurable options, including their usage, placement, and default values. 
+This example **nms.conf** file displays the configurable options, including their usage, placement, and default values. 
 
 ```yaml
 # Sets non-privileged processes to run as a specified user.
