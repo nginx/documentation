@@ -30,7 +30,7 @@ Stay up-to-date with what's new and improved in NGINX One.
 
 **Welcome to the NGINX One EA preview!**
 
-We're excited to introduce NGINX One, an exciting addition to our suite of NGINX products. Designed with efficiency and ease of use in mind, NGINX One offers an innovative approach to managing your NGINX instances.
+We're thrilled to introduce NGINX One, an exciting addition to our suite of NGINX products. Designed with efficiency and ease of use in mind, NGINX One offers an innovative approach to managing your NGINX instances.
 
 **Getting Started**
 
