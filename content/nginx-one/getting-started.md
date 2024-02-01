@@ -67,7 +67,7 @@ Data plane keys are displayed only once and cannot be retrieved later. Be sure t
 
 Data plane keys expire after one year. You can change this expiration date later by editing the key.
 
-Revoking a data plane key will disconnect any NGINX instances that registered using that key from NGINX One.
+Revoking a data plane key will disconnect any instances that registered with that key.
 {{</important>}}
 
 
@@ -97,30 +97,30 @@ Make sure your Linux operating system is listed below. The installation script f
 
 Once your NGINX instances have registered with NGINX One, you’ll want to keep track of how they're doing. The NGINX One Dashboard is designed for this purpose, offering a user-friendly interface to help you easily monitor your instances. Here’s how to get the insights you need:
 
-1. **Access the Dashboard**. [Log in to NGINX One console](https://nginxone-team.staging.volterra.us/web/nginx/console/overview/dashboard). After logging in, you'll find yourself on the dashboard by default. This is where you can get an overview of your NGINX data plane's health and performance.
+1. **Access the dashboard**. [Log in to NGINX One console](https://nginxone-team.staging.volterra.us/web/nginx/console/overview/dashboard). Once you log in, you'll find yourself on the dashboard by default. Here, you can see an overview of your NGINX data plane's health and performance, and other details.
 
-1. **Understand Your Metrics**. The dashboard is split into sections showing different metrics:
-   - **Instance Availability**: See how many of your NGINX instances are online, offline, or unavailable.
-   - **NGINX Versions by Instance**: Check the NGINX versions you're running across different instances.
-   - **Operating Systems**: Know the operating systems your instances are running on.
+1. **Understand your metrics**. The dashboard is split into sections showing different metrics:
+   - **Instance availability**: See how many of your NGINX instances are online, offline, or unavailable.
+   - **NGINX versions by instance**: Check the NGINX versions you're running across different instances.
+   - **Operating systems**: Know the operating systems your instances are running on.
    - **Certificates**: Track the status of your SSL certificates – see which are expiring soon, and which are still valid.
-   - **Config Recommendations**: View the type and number of configuration suggestions for optimizing your instance setups.
+   - **Config recommendations**: View the type and number of configuration suggestions for optimizing your instance setups.
    - **CVEs**: Assess the severity and quantity of identified Common Vulnerabilities and Exposures in your instances.
-   - **CPU Utilization**: Monitor CPU usage trends and identify instances with high CPU consumption.
-   - **Memory Utilization**: Observe memory usage patterns and spot instances with significant memory utilization.
-   - **Disk Space Utilization**: Keep an eye on disk space consumption and pinpoint instances with nearly full storage volumes.
-   - **Unsuccessful Response Codes**: Identify instances with high numbers of HTTP server errors and review their error codes.
-   - **Top Network Usage**: Examine the network usage and bandwidth consumption of your instances.
+   - **CPU utilization**: Monitor CPU usage trends and identify instances with high CPU consumption.
+   - **Memory utilization**: Observe memory usage patterns and spot instances with significant memory utilization.
+   - **Disk space utilization**: Keep an eye on disk space consumption and pinpoint instances with nearly full storage volumes.
+   - **Unsuccessful response codes**: Identify instances with high numbers of HTTP server errors and review their error codes.
+   - **Top network usage**: Examine the network usage and bandwidth consumption of your instances.
 
-1. **Drill Down Into Specifics**.
+1. **Drill down into specifics**.
    - For details about a metric, such as viewing expiring certificates, select the corresponding link in the card. You'll be taken to an overview page with more information.
 
-1. **Refine Metric Timeframe**
-   - You have the option to view utilization metrics over various intervals. The initial setting displays data for the past hour. To change this, select the drop-down menu and choose your desired time period.
+1. **Refine metric timeframe**
+   - You can view utilization metrics for different time periods. The initial setting displays data for the past hour. To change this, select the drop-down menu and choose the time interval you need.
 
-   <br>
+   <span style="display: inline-block; margin-top: 30px;">
    {{< img src="nginx-one/images/nginx-one-dashboard.png">}}
-   <br>
+   </span>
 
 
 
