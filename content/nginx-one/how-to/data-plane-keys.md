@@ -24,13 +24,26 @@ versions: []
 authors: []
 ---
 
-## Data Plane keys in NGINX One
+<style>
+h2 {
+  margin-top: 20px;
+  padding-top: 20px;
+}
+</style>
 
-Adding instances to NGINX One requires a Data Plane key. The NGINX One administrator can create one key to be used for all instances or create unique keys for each instance or any variation of instance groups sizes or individual instances. When a key is generated the value is only displayed once, at the time of creation.  If this value is lost a new key will have to be generated. There is no automated download of the key in this process. The key should be stored in a secure location and access to the key should be limited to those that will be managing instances connected to NGINX One.
+## About data plane keys
 
-## When to use a data plane key
+### Overview
 
-When adding a new or existing NGINX instances to the NGINX One console you will have to provide a data plane key.  It is possible to use the same key value for all instances or you can create unique keys for groups of instances in your environment. A data plane key can be generated while adding a new instance or as a stand alone action. When adding a new instance the NGINX One console will provide the preferred curl command syntax for adding your NGINX instance to the NGINX One console.
+Data plane keys are required for registering NGINX instances with NGINX One. These keys serve as secure tokens, ensuring that only authorized NGINX instances can connect to NGINX One. You have the flexibility to create a single key for multiple instances, or to create a unique key for each instance.
+
+### Key generation and management
+
+When a data plane key is generated, its value is displayed only once at the time of creation. If this key is lost, there's no way to retrieve it. It's important to securely store the key and limit access to those managing instances connected to NGINX One.
+
+Data plane keys expire after one year. You can change this expiration date later by editing the key.
+
+If you revoke a data plane key, NGINX One will disconnect any instances that registered with that key.
 
 ## How to create a data plane key
 
@@ -55,7 +68,7 @@ To create a new key for connecting your NGINX instances to NGINX One, follow the
 
 {{< include "nginx-one/xc-console/login.md" >}}
 
-### Revoke a Data Plane Key
+### Revoking a data plane key
 
 If you need to deactivate a data plane key before its expiration date, follow these steps. Once revoked, the key will no longer connect any NGINX instances to NGINX One. The key will still be visible in the console until you delete it.
 
@@ -65,10 +78,14 @@ If you need to deactivate a data plane key before its expiration date, follow th
 4. A confirmation dialog will appear. Select **Revoke** to confirm.
 
 
-### How to delete a Data Plane key
+### Deleting a data plane key
 
-You must use the API in order to delete a key.  Prior to deleting a key it must be revoked which can be completed in the NGINX one console as noted earlier in this article or using the API.
+In this Early Access release, you need to use the NGINX One API to delete a data plane key. However, before you can delete a key, it must be revoked. You can revoke a key either through the NGINX One console, as explained above, or by using the REST API.
 
+Related guides:
+
+- [Authenticating with the NGINX One REST API]({{< relref "nginx-one/reference/api/nginx-one-api-authentication.md" >}})
+- [NGINX One API reference: Delete a data plane key]({{< relref "nginx-one/reference/api/nginx-one-api-reference.md#operation/deleteDataPlaneKey" >}})
 
 
 
