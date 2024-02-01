@@ -5207,7 +5207,7 @@ If the matching override rule is called "usa-only":
           "name":"usa-only"
           }
      },
-     "description":"Trying to access special""
+     "description":"Trying to access special"
 },
 
 ```
