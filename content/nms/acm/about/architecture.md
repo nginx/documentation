@@ -4,7 +4,7 @@ date: 2021-12-21T12:00:00-07:00
 draft: false
 description: "Learn about the NGINX Management Suite API Connectivity Manager architecture."
 # Assign weights in increments of 100
-weight: 100
+weight: 400
 toc: true
 tags: [ "docs" ]
 # Taxonomies

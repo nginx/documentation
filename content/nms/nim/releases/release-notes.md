@@ -1346,7 +1346,7 @@ This release includes the following updates:
   
   If you have multiple Docker containers on your data plane host, each container registers with Instance Manager as unique.
   
-  Refer to the [NGINX Agent Docker Support]({{< relref "/nms/nginx-agent/nginx-agent-in-container.md" >}}) guide for details.
+  Refer to the [NGINX Agent Container Support](https://docs.nginx.com/nginx-agent/installation-upgrade/container-environments/docker-support/) guide for details.
   
   {{< note >}}Containerizing the NGINX Agent is supported only with Docker at the moment. Look for additional container support in future releases of Instance Manager.{{< /note >}}
   

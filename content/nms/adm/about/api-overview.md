@@ -1,7 +1,7 @@
 ---
 title: API Design
 description: Overview of the NGINX Management Suite App Delivery Manager module.
-weight: 100
+weight: 700
 toc: true
 draft: false
 tags: ["docs"]
