@@ -1,7 +1,7 @@
 ---
 title: "RBAC"
 description: "Learn how role-based access control (RBAC) is applied to NGINX Management Suite App Delivery Manager."
-weight: 600
+weight: 300
 toc: true
 draft: false
 tags: ["docs"]

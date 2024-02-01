@@ -1,7 +1,7 @@
 ---
 title: Template API Reference
 description: Learn how to customize and extend App Delivery Manager's built-in templates using a specialized set of utility functions and variables.
-weight: 200
+weight: 600
 toc: true
 draft: false
 tags: ["docs"]

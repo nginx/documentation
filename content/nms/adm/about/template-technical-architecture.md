@@ -1,7 +1,7 @@
 ---
 title: "Template Technical Architecture"
 description: "This document gives an overview of how base and use case templates work in the NGINX Management Suite App Delivery Manager module. It gives instructions and practical guidance on how to customize these templates and use them effectively."
-weight: 100
+weight: 500
 toc: true
 draft: false
 tags: ["docs"]
