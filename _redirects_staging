@@ -116,6 +116,10 @@
 /nginx-management-suite/adm/tutorials/usecase-templates/ /nginx-management-suite/adm/about/template-overview/ 301
 /nginx-management-suite/nms/admin-guides/authentication/oidc/oidc-azure/ /nginx-management-suite/nms/admin-guides/authentication/oidc/oidc-entra/ 301
 /nginx-management-suite/nms/admin-guides/authentication/oidc/oidc-azure-automation/ /nginx-management-suite/nms/admin-guides/authentication/oidc/oidc-entra-automation/ 301
+/nginx-management-suite/nginx-agent/configure-nginx-agent-group/ /nginx-agent/configuration/configure-nginx-agent-group/ 301
+/nginx-management-suite/nginx-agent/encrypt-nginx-agent-comms/ /nginx-agent/configuration/encrypt-communication/ 301
+/nginx-management-suite/nginx-agent/nginx-agent-docker-support/ /nginx-agent/installation-upgrade/container-environments/docker-support/ 301
+/nginx-management-suite/nginx-agent/nginx-agent-in-container/ /nginx-agent/installation-upgrade/container-environments/docker-images/ 301
 
 # NGINX Plus redirects
 /install-community-modules /nginx/admin-guide/installing-nginx/installing-nginx-plus/#installing-nginx-community-modules 301

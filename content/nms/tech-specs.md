@@ -148,24 +148,3 @@ The following sizing recommendations are the minimum sizing guidelines for Insta
 ### Supported Distributions
 
 The NGINX Agent can run on most environments. For the supported distributions, see the [NGINX Agent Technical Specs](https://docs.nginx.com/nginx-agent/technical-specifications/) guide.
-
-### Supported Deployment Environments {#agent-environments}
-
-You can deploy the NGINX Agent in the following environments:
-
-- Bare Metal
-- Container
-- Public Cloud: AWS, Google Cloud Platform, and Microsoft Azure
-- Virtual Machine
-
-### Supported NGINX Versions
-
-The NGINX Agent works with all versions of NGINX OSS and NGINX Plus.
-
-### Sizing Recommendations
-
-{{< include "tech-specs/agent-sizing-recommendations.md" >}}
-
-### Logging
-
-The NGINX Agent utilizes log files and formats to collect metrics. Increasing the log formats and instance counts will result in increased log file sizes. To prevent system storage issues due to a growing log directory, it is recommended to add a separate partition for `/var/log/nginx-agent` and enable [log rotation](http://nginx.org/en/docs/control.html#logs).
