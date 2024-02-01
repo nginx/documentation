@@ -24,11 +24,11 @@ versions: []
 authors: []
 ---
 
-The NGINX One glossary is a short dictionary of terminology used by NGINX One and F5 Distributed Cloud.
+This glossary defines terms used in NGINX One and F5 Distributed Cloud.
 
 ## Namespace
 
-In the context of F5 Distributed Cloud, namespaces group a tenant’s configuration objects and can be thought of as administrative domains. All objects of the same kind must have unique names within a given namespace, and the namespaces themselves must be unique within a tenant. Namespaces provide isolation within a tenant, ensuring objects in one namespace cannot be referred to by another.
+In F5 Distributed Cloud, a namespace groups a tenant's configuration objects, similar to administrative domains. Every object within a namespace must have a unique name, and each namespace must be unique to its tenant. This setup ensures isolation, preventing cross-reference of objects between namespaces.
 
 Related guide: [F5 Distributed Cloud: Core Concepts](https://docs.cloud.f5.com/docs/ves-concepts/core-concepts)
 
