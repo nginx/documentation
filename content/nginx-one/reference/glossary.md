@@ -1,5 +1,5 @@
 ---
-title: "NGINX One Glossary"
+title: "NGINX One glossary"
 date: 2024-01-24T11:55:26-08:00
 # Change draft status to false to publish doc
 draft: false

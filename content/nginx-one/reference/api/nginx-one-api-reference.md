@@ -1,5 +1,5 @@
 ---
-title: "NGINX One API Reference"
+title: "NGINX One API reference"
 date: 2023-12-07T13:17:06-08:00
 # Change draft status to false to publish doc
 draft: false

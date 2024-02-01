@@ -1,5 +1,5 @@
 ---
-title: "NGINX One Open Source Attribution"
+title: "NGINX One open source attribution"
 date: 2024-01-10T13:07:31-08:00
 # Change draft status to false to publish doc
 draft: false
