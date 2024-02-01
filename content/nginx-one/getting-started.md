@@ -38,9 +38,9 @@ th, td {
  text-align: left;
 }
 th {
- background-color: #CCEAD7 ; /* Soft teal */
+ background-color: #00A980 ; /* Soft teal */
  /* Or use background-color: #8FD8D2; for a light blue-green */
- color: #333; /* Dark text for readability */
+ color: white; /* Dark text for readability */
 }
 tr:nth-child(even) {
  background-color: #f9f9f9;
@@ -106,14 +106,13 @@ curl agent.connect.nginx.com/nginx-agent/install | DATAPLANE_KEY="<data-plane-ke
 - The `-y` option automatically confirms any prompts during installation.
 
 <span style="display: inline-block; margin-top: 10px;" >
-<details open>
-<summary><span style="background-color: #eef2f7; color: #008000; padding: 5px; border-radius: 5px;"><i class="fa-solid fa-list-alt"></i> NGINX Agent installation script: supported distributions</span></summary>
 
-Make sure your Linux operating system is listed below. The installation script for the NGINX Agent is compatible with these distributions and versions.
+<i class="fa fa-check-circle" aria-hidden="true"></i> Make sure your Linux operating system is listed below. The installation script for the NGINX Agent is compatible with these distributions and versions.
+
+ **NGINX Agent installation script: supported distributions**
 
 {{< include "nginx-one/nginx-agent/nginx-agent-tech-specs.md" >}}
 
-</details> 
 </span>
 
 ## View instance metrics with the NGINX One dashboard
@@ -137,20 +136,21 @@ Navigating the dashboard:
 </span>
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-NGINX One dashboard metrics
+**NGINX One dashboard metrics**
 | Metric | Description | Details |
 |---|---|---|
-| **Instance availability** | Understand the operational status of your NGINX instances. | - `Online`: The NGINX instance is actively connected and functioning properly. <br> - `Offline`: The NGINX Agent is connected but the NGINX instance isn't running. <br> - `Unavailable`: The connection between the NGINX Agent and NGINX One has been lost. <br> - `Unknown`: The current state can't be determined at the moment. |
-| **NGINX versions by instance** | See which NGINX versions are in use across your instances. | |
-| **Operating systems** | Find out which operating systems your instances are running on. | |
-| **Certificates** | Monitor the status of your SSL certificates to know which are expiring soon and which are still valid. | |
-| **Config recommendations** | Get configuration recommendations to optimize your instances' settings. | |
-| **CVEs (Common Vulnerabilities and Exposures)** | Evaluate the severity and number of potential security threats in your instances. | - `Major`: Indicates a high-severity threat that needs immediate attention. <br> - `Medium`: Implies a moderate threat level. <br> - `Minor` and `Low`: Represent less critical issues that still require monitoring. <br> - `Other`: Encompasses any threats that don't fit the standard categories. |
-| **CPU utilization** | Track CPU usage trends and pinpoint instances with high CPU demand. | |
-| **Memory utilization** | Watch memory usage patterns to identify instances using significant memory. | |
-| **Disk space utilization** | Monitor how much disk space your instances are using and identify those nearing capacity. | |
-| **Unsuccessful response codes** | Look for instances with a high number of HTTP server errors and investigate their error codes. | |
-| **Top network usage** | Review the network usage and bandwidth consumption of your instances. | |
+| <i class="fas fa-heartbeat"></i> **Instance availability** | Understand the operational status of your NGINX instances. | - **Online**: The NGINX instance is actively connected and functioning properly. <br> - **Offline**: The NGINX Agent is connected but the NGINX instance isn't running. <br> - **Unavailable**: The connection between the NGINX Agent and NGINX One has been lost. <br> - **Unknown**: The current state can't be determined at the moment. |
+| <i class="fas fa-code-branch"></i> **NGINX versions by instance** | See which NGINX versions are in use across your instances. | |
+| <i class="fas fa-desktop"></i> **Operating systems** | Find out which operating systems your instances are running on. | |
+| <i class="fas fa-certificate"></i> **Certificates** | Monitor the status of your SSL certificates to know which are expiring soon and which are still valid. | |
+| <i class="fas fa-cogs"></i> **Config recommendations** | Get configuration recommendations to optimize your instances' settings. | |
+| <i class="fas fa-shield-alt"></i> **CVEs (Common Vulnerabilities and Exposures)** | Evaluate the severity and number of potential security threats in your instances. | - **Major**: Indicates a high-severity threat that needs immediate attention. <br> - **Medium**: Implies a moderate threat level. <br> - **Minor** and **Low**: Represent less critical issues that still require monitoring. <br> - **Other**: Encompasses any threats that don't fit the standard categories. |
+| <i class="fas fa-microchip"></i> **CPU utilization** | Track CPU usage trends and pinpoint instances with high CPU demand. | |
+| <i class="fas fa-memory"></i> **Memory utilization** | Watch memory usage patterns to identify instances using significant memory. | |
+| <i class="fas fa-hdd"></i> **Disk space utilization** | Monitor how much disk space your instances are using and identify those nearing capacity. | |
+| <i class="fas fa-exclamation-triangle"></i> **Unsuccessful response codes** | Look for instances with a high number of HTTP server errors and investigate their error codes. | |
+| <i class="fas fa-tachometer-alt"></i> **Top network usage** | Review the network usage and bandwidth consumption of your instances. | |
+
 {{</bootstrap-table>}}
 
 
