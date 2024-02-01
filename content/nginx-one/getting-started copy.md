@@ -2,7 +2,7 @@
 title: "Getting Started with NGINX One"
 date: 2024-01-17T10:18:02-08:00
 # Change draft status to false to publish doc
-draft: false
+draft: true
 # Description
 # Add a short description (150 chars) for the doc. Include keywords for SEO. 
 # The description text appears in search results and at the top of the doc.
@@ -24,35 +24,34 @@ versions: []
 authors: []
 ---
 
-<style>
-h2 {
-  border-top: 1px solid #ccc;
-  margin-top:50px;
-  padding-top: 50px;
-}
-</style>
-
 This guide provides step-by-step instructions on how to activate and start using NGINX One. NGINX One is a management console for monitoring and managing NGINX data plane deployments.
 
-## Enable the NGINX One service {#enable-nginx-one}
+## How to get started with NGINX One
 
-To get started using NGINX One, enable the service on F5 Distributed Cloud.
+### Enable the NGINX One Service on F5 Distributed Cloud {#enable-nginx-one}
 
 1. Log in to the [F5 Distributed Cloud Console](https://www.f5.com/cloud/products/distributed-cloud-console).
 1. Select the **NGINX One** service on the dashboard.
 1. Select **Enable Service**.
 1. After the service has been enabled, select **Visit Service** to load the NGINX One console.
 
-## Add your NGINX instances to NGINX One
+## How to add instances to NGINX One
 
-Next, add your NGINX instances to NGINX One. You'll need to create a data plane key and then install the NGINX Agent on each instance you want to monitor. 
+This guide provides easy instructions for adding your NGINX data plane instances to NGINX One using the web interface. Additionally, it provides optional steps on how to configure the NGINX Agent in a containerized environment, should you need that.
+
+To add your NGINX data plane instances to NGINX One with the web interface, follow these steps:
+
+### Log in to NGINX One
+
+
+1. Log in to the [F5 Distributed Cloud Console](https://www.f5.com/cloud/products/distributed-cloud-console).
+1. Select the **NGINX One** service on the dashboard.
 
 ### Add an instance
 
 Depending on whether this is your first time using the NGINX One console or you've used it before, follow the appropriate steps to add an instance:
 
-- **For first-time users:** On the welcome screen, select **Add Instance**.
-- **For returning users:** If you've added instances previously and want to add more, select **Instances** on the left menu, then select **Add Instance**.
+{{< include "nginx-one/instances/add-instances.md" >}}
 
 ### Generate a data plane key {#generate-data-plane-key}
 
@@ -61,6 +60,7 @@ A data plane key is a security token that ensures only trusted NGINX instances c
 To generate a data plane key:
 
 - **For a new key:** In the **Add Instance** pane, select **Generate Data Plane Key**. Be sure to copy and store this key securely. It is displayed *only once* and cannot be retrieved later.
+
 - **To reuse an existing key:** If you already have a data plane key and want to use it again, select **Use existing key**. Then, enter the key's value in the **Data Plane Key** box.
 
 {{<important>}}
@@ -72,6 +72,12 @@ Data plane keys expire after one year. You can change this expiration date later
 
 Revoking a data plane key will disconnect any NGINX instances that registered using that key from NGINX One.
 {{</note>}}
+
+### Install NGINX Agent
+
+The section is informative but could be more streamlined for clarity and easier navigation, especially for users less familiar with technical procedures. Here's a revised version:
+
+---
 
 ### Install NGINX Agent
 
@@ -95,7 +101,7 @@ Make sure your Linux operating system is listed below. The installation script f
 </details> 
 </span>
 
-## View instance metrics with the NGINX One dashboard
+### View data plane metrics with the NGINX One dashboard
 
 Once your NGINX instances have registered with NGINX One, you’ll want to keep track of how they're doing. The NGINX One Dashboard is designed for this purpose, offering a user-friendly interface to help you easily monitor your instances. Here’s how to get the insights you need:
 
