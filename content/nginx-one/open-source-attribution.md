@@ -2,7 +2,7 @@
 title: "NGINX One open source attribution"
 date: 2024-01-10T13:07:31-08:00
 # Change draft status to false to publish doc
-draft: false
+draft: true
 # Description
 # Add a short description (150 chars) for the doc. Include keywords for SEO. 
 # The description text appears in search results and at the top of the doc.
