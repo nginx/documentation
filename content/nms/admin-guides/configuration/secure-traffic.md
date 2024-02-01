@@ -32,7 +32,7 @@ aliases:
 
 {{< important >}}A management server should **NEVER** be exposed to the public internet. You can mitigate exposure with the settings described here, but these are not a substitute for preventing unneeded exposure.{{< /important >}}
 
-{{< see-also >}}For instructions on configuring TLS settings for the NGINX Agent, refer to the [NGINX Agent TLS Settings]({{< relref "/nms/nginx-agent/encrypt-nginx-agent-comms.md" >}}) guide.{{< /see-also >}}
+{{< see-also >}}For instructions on configuring TLS settings for the NGINX Agent, refer to the [NGINX Agent TLS Settings](https://docs.nginx.com/nginx-agent/configuration/encrypt-communication/) guide.{{< /see-also >}}
 
 ## NGINX Proxy SSL Termination
 
@@ -322,7 +322,7 @@ Modify the following example according to your needs. There are many ways to gen
 
 6. Modify the `nginx-agent.conf` file to resemble the following example. Note the TLS options that are configured. The specified cert and key tell the NGINX Agent to use client cert authentication with the NGINX proxy on the NGINX Management Suite. The `ca.pem` is included as the certificate authority that the agent will use to verify the NGINX Management Suite's server certificate. If the CA is trusted by the OS, you can omit the ca option. Update the server `host` to the NGINX Management Suite address.
 
-    {{< see-also >}}For additional information about TLS configurations for the NGINX Agent, refer to the [NGINX Agent TLS Settings]({{< relref "/nms/nginx-agent/encrypt-nginx-agent-comms.md" >}}) topic. {{< /see-also >}}
+    {{< see-also >}}For additional information about TLS configurations for the NGINX Agent, refer to the [NGINX Agent TLS Settings](https://docs.nginx.com/nginx-agent/configuration/encrypt-communication/) topic. {{< /see-also >}}
 
     <details>
         <summary>/etc/nginx-agent/nginx-agent.conf</summary>
