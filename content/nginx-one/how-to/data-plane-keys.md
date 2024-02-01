@@ -62,6 +62,20 @@ To create a new key for connecting your NGINX instances to NGINX One, follow the
 5. A confirmation screen will show your new data plane key. Be sure to copy and store this key securely. It is displayed *only once* and cannot be retrieved later.
 6. Select **Close** to complete the process.
 
+## How to update the expiration date
+
+### Log in to NGINX One
+
+{{< include "nginx-one/xc-console/login.md" >}}
+
+### Edit the data plane key
+
+1. On the left menu, select **Data Plane Keys**.
+2. Find the key you want to edit in the list.
+3. Next to the key name, in the **Actions** column, select the ellipsis (three dots) and then select **Edit Key**.
+4. Set a new expiration date for the key. The longest duration for a key is one year.
+5. Select **Save**.
+
 ## How to revoke and delete a data plane key
 
 ### Log in to NGINX One
