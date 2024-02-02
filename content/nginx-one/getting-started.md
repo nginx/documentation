@@ -38,15 +38,14 @@ th, td {
  text-align: left;
 }
 th {
- background-color: #00A980 ; /* Soft teal */
- /* Or use background-color: #8FD8D2; for a light blue-green */
- color: white; /* Dark text for readability */
-}
-.table-striped > tbody > tr:nth-of-type(even) {
- background-color: #f9f9f9;
+ background-color: #289951 ; /* Sea green */
+ color: white; /* White text for readability */
 }
 .table-striped > tbody > tr:nth-of-type(odd) {
-  background-color: #ffffff; /* Replace with your desired color */
+  background-color: #fff; /* White */
+}
+.table-striped > tbody > tr:nth-of-type(even) {
+ background-color: #f9f9f9; /* Light gray */
 }
 th, td {
  border: none;
