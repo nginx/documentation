@@ -97,12 +97,32 @@ Data plane keys expire after one year. You can change this expiration date later
 
 After entering your data plane key, you'll see a `curl` command similar to the one below. Copy and run this command on each NGINX instance to install the NGINX Agent. Once installed, the NGINX Agent typically registers with NGINX One within a few seconds.
 
-``` shell
-curl agent.connect.nginx.com/nginx-agent/install | DATAPLANE_KEY="<data-plane-key>" sh -s -- -y
-```
+To install the NGINX Agent on an NGINX instance:
 
-- Replace `<data-plane-key>` with your actual data plane key.
-- The `-y` option automatically confirms any prompts during installation.
+1. **Check if NGINX is running and start it if it's not:**
+
+    First, see if NGINX is running:
+    
+    ```shell
+    sudo systemctl status nginx
+    ```
+
+    If the status isn't `Active`, go ahead and start NGINX:
+
+    ```shell
+    sudo systemctl start nginx
+    ```
+
+2. **Install NGINX Agent:**
+
+    Next, use the `curl` command provided to you to install the NGINX Agent:
+
+    ``` shell
+    curl agent.connect.nginx.com/nginx-agent/install | DATAPLANE_KEY="<data-plane-key>" sh -s -- -y
+    ```
+
+   - Replace `<data-plane-key>` with your actual data plane key.
+   - The `-y` option automatically confirms any prompts during installation.
 
 <span style="display: inline-block; margin-top: 20px;" >
 
