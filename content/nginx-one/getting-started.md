@@ -42,11 +42,11 @@ th {
  /* Or use background-color: #8FD8D2; for a light blue-green */
  color: white; /* Dark text for readability */
 }
-tr:nth-child(even) {
+.table-striped > tbody > tr:nth-of-type(even) {
  background-color: #f9f9f9;
 }
-tr:nth-child(odd) {
- background-color: #ffffff;
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #ffffff; /* Replace with your desired color */
 }
 th, td {
  border: none;
