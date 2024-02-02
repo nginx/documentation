@@ -43,12 +43,44 @@
     pre {
         white-space: pre-wrap;
     }
+    html {
+        scroll-behavior: auto;
+    }
+    .sidebar {
+        padding-left: 15px;
+        padding-top: 20px;
+    }
 
 </style>
+<div class="row flex-xl-nowrap">
+    <nav class="overflow-auto col-md-2 d-none d-xl-block d-print-none align-top">
+        <div id="sidebar" class="sidebar" aria-label="Sidebar navigation"  >
+            <h3>
+                <a class="sidebar-title" href="http://docs.nginx.com/nginx-one/" alt="NGINX One"><img class="card-img-top" src="http://docs.nginx.com/images/icons/NGINX-One-product-icon.svg" alt="NGINX One">
+                    NGINX One</a>
+            </h3>
+            <ul>
+            
+            
+                
+                
+                <li class="nginx-toc-link l1">
+                    <a data-menu-id="/nginx-one/" href="http://docs.nginx.com/nginx-one/about/"><i class="fa-solid fa-rotate-left"></i> Return to NGINX One Docs</a>
+                </li>       
+        </div>
+    </nav>
+    <main class="content col-xl-6 d-block align-top" role="main">
+        <blockquote class="caution">
+            <div>
+                <i class="fa-solid fa-flask"></i> <strong>Early Access Preview</strong><br><br> NGINX One is currently available in Early Access. This preview version is for evaluation and testing purposes only and should not be used in production environments.
+            </div>
+        </blockquote>
+    </main>
+</div>
 <!--Use wide page layout for the API reference pages-->
-<div class="nginx-docs-api-container">     
-    <div id="api-component">
-      {{ .Content}}
+    <div class="nginx-docs-api-container">     
+        <div id="api-component">
+        {{ .Content}}
+        </div>
     </div>
-  </div>
 {{ end }}
