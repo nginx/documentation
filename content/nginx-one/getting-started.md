@@ -38,7 +38,7 @@ th, td {
  text-align: left;
 }
 th {
- background-color: #289951 ; /* Sea green */
+ background-color: #289951 ; /* Dark green */
  color: white; /* White text for readability */
 }
 .table-striped > tbody > tr:nth-of-type(odd) {
