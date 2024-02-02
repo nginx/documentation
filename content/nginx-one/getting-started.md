@@ -104,7 +104,7 @@ curl agent.connect.nginx.com/nginx-agent/install | DATAPLANE_KEY="<data-plane-ke
 - Replace `<data-plane-key>` with your actual data plane key.
 - The `-y` option automatically confirms any prompts during installation.
 
-<span style="display: inline-block; margin-top: 10px;" >
+<span style="display: inline-block; margin-top: 20px;" >
 
 <i class="fa fa-check-circle" aria-hidden="true"></i> Make sure your Linux operating system is listed below. The installation script for the NGINX Agent is compatible with these distributions and versions.
 
