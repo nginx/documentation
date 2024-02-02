@@ -110,7 +110,7 @@ curl agent.connect.nginx.com/nginx-agent/install | DATAPLANE_KEY="<data-plane-ke
 
  **NGINX Agent installation script: supported distributions**
 
-{{< include "nginx-one/nginx-agent/nginx-agent-tech-specs.md" >}}
+{{< include "nginx-one/nginx-agent/nginx-agent-install-script-specs.md" >}}
 
 </span>
 
