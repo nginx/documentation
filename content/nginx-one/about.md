@@ -23,7 +23,7 @@ versions: []
 authors: []
 ---
 
-NGINX One simplifies the management of your NGINX fleet across different locations and environments. Overseeing NGINX deployments traditionally demanded a lot of time and effort. Now, with NGINX One, you can easily monitor and manage your NGINX fleet from a single, intuitive console. This console provides insights into the configuration and performance of your NGINX instances, highlights critical vulnerabilities, shows the status of SSL certificates, and more.
+NGINX One simplifies the management of your NGINX fleet across different locations and environments. With the NGINX One cloud console, you can easily monitor and manage your NGINX fleet from a single location. The intuitive console lets you oversee the configuration and performance of your NGINX instances, identify critical vulnerabilities, view the status of SSL certificates, and more.
 
 
 ## Benefits and key features
