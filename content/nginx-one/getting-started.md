@@ -61,7 +61,7 @@ This guide provides step-by-step instructions on how to activate and start using
 To get started using NGINX One, enable the service on F5 Distributed Cloud.
 
 1. Log in to the [F5 Distributed Cloud Console](https://www.f5.com/cloud/products/distributed-cloud-console).
-1. Select the **NGINX One** service on the dashboard.
+1. Select **NGINX One** from the list of services.
 1. Select **Enable Service**.
 1. After the service has been enabled, select **Visit Service** to load the NGINX One console.
 
@@ -117,7 +117,7 @@ curl agent.connect.nginx.com/nginx-agent/install | DATAPLANE_KEY="<data-plane-ke
 
 ## View instance metrics with the NGINX One dashboard
 
-After connecting your NGINX instances to NGINX One, you can monitor their performance and health. The NGINX One Dashboard is designed for this purpose, offering an easy-to-use interface.
+After connecting your NGINX instances to NGINX One, you can monitor their performance and health. The NGINX One dashboard is designed for this purpose, offering an easy-to-use interface.
 
 ### Log in to NGINX One 
 
