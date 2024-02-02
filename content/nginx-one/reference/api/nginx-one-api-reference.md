@@ -19,11 +19,11 @@ docs: "DOCS-000"
 # Taxonomies
 # These are pre-populated with all available terms for your convenience.
 # Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
+categories: ["installation", "platform management", "security", "analytics"]
 doctypes: ["reference"]
 journeys: ["researching", "getting started", "using"]
 personas: ["devops", "netops", "secops", "support"]
-versions: ["<version>"]
+versions: []
 authors: []
 ---
 
