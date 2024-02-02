@@ -44,7 +44,6 @@ Read the release notes for information about the latest features and changes, re
 
 - [Instance Manager Release Notes]({{< relref "/nms/nim/releases/release-notes.md" >}})
 - [API Connectivity Manager Release Notes]({{< relref "/nms/acm/releases/release-notes.md" >}})
-- [App Delivery Manager Release Notes]({{< relref "/nms/adm/releases/release-notes.md" >}})
 - [Security Monitoring Module]({{< relref "/nms/security/releases/release-notes.md" >}})
 
 #### Tech Specs {#tech-specs}
