@@ -85,13 +85,13 @@ To generate a data plane key:
 - **For a new key:** In the **Add Instance** pane, select **Generate Data Plane Key**.
 - **To reuse an existing key:** If you already have a data plane key and want to use it again, select **Use existing key**. Then, enter the key's value in the **Data Plane Key** box.
 
-{{<important>}}
+{{<call-out "tip" "Data plane key guidelines">}}
 Data plane keys are displayed only once and cannot be retrieved later. Be sure to copy and store this key securely.
 
 Data plane keys expire after one year. You can change this expiration date later by editing the key.
 
 Revoking a data plane key disconnects all instances that were registered with that key.
-{{</important>}}
+{{</call-out>}}
 
 
 ### Install NGINX Agent
