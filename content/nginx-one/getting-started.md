@@ -120,8 +120,8 @@ After connecting your NGINX instances to NGINX One, you can monitor their perfor
 
 ### Log in to NGINX One 
 
-{{< include "nginx-one/xc-console/login.md" >}}
-
+1. Log in to the [F5 Distributed Cloud Console](https://www.f5.com/cloud/products/distributed-cloud-console).
+1. Select **NGINX One > Visit Service**.
 
 ### Overview of the NGINX One dashboard
 
