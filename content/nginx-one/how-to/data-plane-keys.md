@@ -33,8 +33,6 @@ h2 {
 
 ## About data plane keys
 
-### Overview
-
 Data plane keys are required for registering NGINX instances with NGINX One. These keys serve as secure tokens, ensuring that only authorized NGINX instances can connect to and communicate with  NGINX One. You have the flexibility to create a single key for multiple instances, or to create a unique key for each instance.
 
 {{<call-out "caution" "Data plane key guidelines">}}
