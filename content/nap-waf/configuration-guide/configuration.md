@@ -5190,25 +5190,25 @@ If the matching override rule is called "usa-only":
 
 ```shell
 {
-     "enforcementState":{
-          "isBlocked":true,
-          "isAlarmed":true,
-          "rating":4,
-          "attackType":[
-               {
-                    "name":"ATTACK_TYPE_FORCEFUL_BROWSING"
-               }
-          ]
-     },
-     "violation":{
-          "name":"VIOL_RULE"
-     },
-     "policyEntity":{
-          "override-rule":{
-          "name":"usa-only"
-          }
-     },
-     "description":"Trying to access special"
+    "enforcementState": {
+        "isBlocked": true,
+        "isAlarmed": true,
+        "rating": 4,
+        "attackType": [
+            {
+                "name": "ATTACK_TYPE_FORCEFUL_BROWSING"
+            }
+        ]
+    },
+    "violation": {
+        "name": "VIOL_RULE"
+    },
+    "policyEntity": {
+        "override-rule": {
+            "name": "usa-only"
+        }
+    },
+    "description": "Trying to access special"
 },
 
 ```
