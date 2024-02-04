@@ -5304,7 +5304,7 @@ In the "override-rules" section there is one override rule named "myFirstRule." 
 
 In simpler terms, when someone tries to access the web application from Israel ('IL'), the security policy will be adjusted to allow the access but in a more transparent manner, meaning it won't block the access but may monitor it differently.
 
-```shell
+```json
 {
     "policy": {
         "name": "override_rule_example",
