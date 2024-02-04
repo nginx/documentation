@@ -5078,7 +5078,7 @@ Here is an example of a declarative policy using an override rules entity:
         }
       },
         "name": "usa-only",
-        "condition": "geolocation != ‘US’",
+        "condition": "geolocation != 'US'",
                 "actionType": "violation",
                 "violation": {
                     "block": true,
