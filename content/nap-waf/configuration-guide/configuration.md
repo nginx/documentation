@@ -242,6 +242,7 @@ In addition the Strict Policy also **blocks** the following:
 
 In addition, the Strict policy also enables the following features in **alarm only** mode:
 - **Data Guard**: masking Credit Card Number (CCN), US Social Security Number (SSN) and custom patterns found in HTTP responses.
+
 - **HTTP response data leakage signatures**: preventing exfiltration of sensitive information from the servers.
 - **More restrictive limitations**: mainly sizing and parsing of JSON and XML payloads.
 - **Cookie attribute insertion**: the Strict policy adds the **Secure** and **SameSite=lax** attributes to every cookie set by the application server. These attributes are enforced by the browsers and protect against session hijacking and CSRF attacks respectively.
