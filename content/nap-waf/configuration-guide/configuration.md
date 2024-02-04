@@ -5164,7 +5164,7 @@ Here are some key points to remember regarding the Override Rules feature:
 
 ### Override Rules Logging & Reporting
 
-If a request matches an override rule, the `json_log` field will include a new block named 'overrideRule'. However, if no rules match the request, the log will not contain any related information. When the ’actionType’ flag is set to "replace-policy", the 'originalPolicyName' field in the log will reflect the name of the original policy name (the one that contains override rules), and the `policy_name` field will reflect the policy that was enforced.
+If a request matches an override rule, the `json_log` field will include a new block named 'overrideRule'. However, if no rules match the request, the log will not contain any related information. When the 'actionType' flag is set to "replace-policy", the 'originalPolicyName' field in the log will reflect the name of the original policy name (the one that contains override rules), and the `policy_name` field will reflect the policy that was enforced.
 
 For example, if the matching override rule is called "login_page":
 
