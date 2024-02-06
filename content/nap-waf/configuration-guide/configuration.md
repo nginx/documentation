@@ -57,7 +57,7 @@ The following security features are supported in NGINX App Protect WAF. We show 
 |Threat Campaigns | These are patterns that detect all the known attack campaigns. They are very accurate and have almost no false positives, but are very specific and do not detect malicious traffic that is not part of those campaigns. The default policy enables threat campaigns but it is possible to disable it through the respective violation. | 
 |HTTP Compliance | All HTTP protocol compliance checks are enabled by default except for GET with body and POST without body. It is possible to enable any of these two. Some of the checks enabled by default can be disabled, but others, such as bad HTTP version and null in request are performed by the NGINX parser and NGINX App Protect WAF only reports them. These checks cannot be disabled. | 
 |Evasion Techniques | All evasion techniques are enabled by default and each can be disabled. These include directory traversal, bad escaped character and more. | 
-|Data Guard | Detects and masks credit card and/or US social security numbers in responses. Disabled by default but can be enabled. | 
+|Data Guard | Detects and masks Credit Card Number (CCN) and/or U.S. Social Security Number (SSN) and/or custom patterns in HTTP responses. Disabled by default but can be enabled. |
 |Parameter parsing | Support only auto-detect parameter value type and acts according to the result: plain alphanumeric string, XML or JSON. | 
 |Disallowed meta characters | Detected in parameter names, parameter values, URLs, headers and in JSON and XML content. Metacharacters indicate suspicious traffic, but not necessarily an actual threat. It is the combination of meta characters, attack signatures and other violations that indicates an actual threat that should be blocked and this is determined by Violation Rating. See section below. | 
 |Disallowed file type extension | Support any file type. Default includes a predefined list of file types.  See Disallowed File Types list below. | 
@@ -241,7 +241,8 @@ In addition the Strict Policy also **blocks** the following:
 {{< note >}} Other violations, specifically attack signatures and metacharacters, which are more prone to false positives, still have only Alarm turned on, without blocking, contributing to the Violation Rating as in the Default policy.{{< /note >}}
 
 In addition, the Strict policy also enables the following features in **alarm only** mode:
-- **Data Guard**: masking Credit Card and US Social Security numbers found in HTTP responses.
+- **Data Guard**: masking Credit Card Number (CCN), US Social Security Number (SSN) and custom patterns found in HTTP responses.
+
 - **HTTP response data leakage signatures**: preventing exfiltration of sensitive information from the servers.
 - **More restrictive limitations**: mainly sizing and parsing of JSON and XML payloads.
 - **Cookie attribute insertion**: the Strict policy adds the **Secure** and **SameSite=lax** attributes to every cookie set by the application server. These attributes are enforced by the browsers and protect against session hijacking and CSRF attacks respectively.
@@ -822,7 +823,7 @@ In this example, only high accuracy signatures are configured to be enforced, bu
 }
 ~~~
 
-Since the “All Signatures” set is not included in the default policy, turning OFF both alarm and block has no effect because all the other sets with alarm turned ON (and high accuracy signatures with block enabled) are still in place and a signature that is a member of multiple sets behaves in accordance with the strict settings of all sets it belongs to. The only way to remove signature sets is to remove or disable sets that are part of the [default policy](#signature-sets-in-default-policy).
+Since the "All Signatures" set is not included in the default policy, turning OFF both alarm and block has no effect because all the other sets with alarm turned ON (and high accuracy signatures with block enabled) are still in place and a signature that is a member of multiple sets behaves in accordance with the strict settings of all sets it belongs to. The only way to remove signature sets is to remove or disable sets that are part of the [default policy](#signature-sets-in-default-policy).
 
 For example, in the below default policy, even though All Signature's Alarm/Block settings are set to false, we cannot ignore all attack signatures enforcement as some of the signature sets will be enabled in their strict policy. If the end users want to remove a specific signature set then they must explicitly mention it under the [strict policy](#the-strict-policy).
 
@@ -1136,7 +1137,7 @@ In this example we disable both alarm and blocking.
 
 #### Data Guard - Blocking
 
-Data Guard is a security feature that can be used to prevent the leakage of sensitive information from an application. This could be credit card numbers or Social Security numbers (CCN, SSN, etc.). Once this feature is enabled, sensitive data is either blocked or masked, depending on the configuration.
+Data Guard is a security feature that can be used to prevent the leakage of sensitive information from an application. This could be credit card numbers (CCN) or Social Security numbers (SSN) or custom patterns. Once this feature is enabled, sensitive data is either blocked or masked, depending on the configuration.
 
 In this example, we enable the data guard violation in blocking mode. In the detailed configuration, we enable enforcement of data guard and specify which items are being protected against information leakage. Note that if blocking is enabled, data masking will have no effect in this case.
 
@@ -1202,6 +1203,44 @@ In this example, we enable data guard in alarm mode. In the detailed configurati
 }
 ~~~
 
+### Partial Masking of Data using Data Guard 
+Here is an example showing partial masking on custom patterns. Custom patterns are specified in `customPatternsList`, number of unmasked leading and trailing characters are defined in `firstCustomCharactersToExpose` and `lastCustomCharactersToExpose` parameters.
+
+```json
+{
+    "policy": {
+        "name": "custom_pattern_mask_policy",
+        "template": { "name": "POLICY_TEMPLATE_NGINX_BASE" },
+        "applicationLanguage": "utf-8",
+        "enforcementMode": "blocking",
+        "blocking-settings": {
+            "violations": [
+                {
+                    "name": "VIOL_DATA_GUARD",
+                    "alarm": true,
+                    "block": false
+                }
+            ]
+        },
+        "data-guard": {
+            "enabled": true,
+            "maskData": true,
+            "creditCardNumbers": false,
+            "usSocialSecurityNumbers": true,
+            "enforcementMode": "ignore-urls-in-list",
+            "enforcementUrls": [],
+            "customPatterns": true,
+            "firstCustomCharactersToExpose": 2,
+            "lastCustomCharactersToExpose": 4,
+            "customPatternsList": [
+               "....-....-....-....",
+               "siteTk_[0-9]+"
+            ]
+        }
+    }
+}
+```
+
 #### File Types
 
 A user can enable/disable specific file types in the policy.
@@ -1257,7 +1296,7 @@ All Response Signatures are attack signatures detected on the response side, in 
 
 Restrict Response Signatures enhancement assists the users in saving time by limiting the search for response signatures to a specified amount. You can enable the signature verification in the response by setting the `responseCheck` parameter to true. However, the restriction of certain signatures is set in the policy and then enforced by the App Protect.
 
-In the policy base template under the “filetypes” section, make sure you enable the `responseCheck` attribute for `responseCheckLength` to work properly. The default value of `responseCheck` parameter is set to false. 
+In the policy base template under the "filetypes" section, make sure you enable the `responseCheck` attribute for `responseCheckLength` to work properly. The default value of `responseCheck` parameter is set to false. 
 
 The `responseCheckLength` parameter refers to the number of uncompressed bytes in the response body prefix that are examined for signatures. The `responseCheckLength` field will be added with the default value of **20000** bytes which means that the first 20,000 bytes of the response body will undergo signature verification. 
 
@@ -4630,7 +4669,7 @@ You can enable GraphQL on App Protect with minimum effort by using the following
 3. Optionally, if the app that uses this policy serves only GraphQL traffic, then delete the wildcard URL "*" from the policy so that requests to any URL other than **/graphql** will trigger a violation. In the example below we assume this is the case.
 4. Update the `nginx.conf` file. To enforce GraphQL settings, update the `app_protect_policy_file` field with the GraphQL policy name in `nginx.conf` file. Perform nginx reload once `nginx.conf` file is updated to enforce the GraphQL settings.
 
-In the following policy example, the GraphQL “policy name” i.e. “graphql_policy”, and graphql “urls” settings are defined.
+In the following policy example, the GraphQL "policy name" i.e. "graphql_policy", and graphql "urls" settings are defined.
 
 ```shell
 {
@@ -4998,7 +5037,7 @@ Here is an example of a declarative policy using an override rules entity:
       {
         "name": "login_page",
         "condition": "method == 'POST' and not parameters['ref'].lower().matches('example') and uri.contains('/login/')",
-        "extendsPolicy": false,
+        "actionType": "replace-policy",
         "override": {
           "policy": {
             "name": "login_page_block_redirect",
@@ -5025,7 +5064,7 @@ Here is an example of a declarative policy using an override rules entity:
       {
         "name": "api-strict",
         "condition": "uri.contains('api4') and not (clientIp.matches('fd00:1::/48') or userAgent.lower().startsWith('Mozilla'))",
-        "extendsPolicy": false,
+        "actionType": "replace-policy",
         "override": {
           "$ref": "file:///NginxStrictPolicy.json"
         }
@@ -5033,29 +5072,43 @@ Here is an example of a declarative policy using an override rules entity:
       {
         "name": "strict-post",
         "condition": "method.matches('POST') and (cookies['sessionToken'] != 'c2Vzc2lvblRva2Vu' or headers['Content-Encoding'] == 'gzip')",
-        "extendsPolicy": false,
+        "actionType": "replace-policy",
         "override": {
           "$ref": "file:///NginxStrictPolicy.json"
         }
-      }
+      },
+        "name": "usa-only",
+        "condition": "geolocation != 'US'",
+                "actionType": "violation",
+                "violation": {
+                    "block": true,
+                    "alarm": true,
+                    "attackType": {
+                           "name": "Forceful Browsing"
+                       },
+                    "description": "Attempt to access from outside the USA",
+                    "rating": 4
+                }
+        }        
     ]
   }
 }
 ```
 
-The above "override_rules_example" policy contains four override rules:
+The above "override_rules_example" policy contains five override rules:
 
 1. The **"localhost-log-only"** rule applies to the requests with a user agent header starting with "curl", a host header containing "localhost", and a client IP address set to 127.0.0.1. It switches the enforcement mode to "transparent" without blocking the request. The remaining policy settings remain unchanged. This type of override rule is an example of an **Inline Policy Reference**.
-2. The **"login_page"** rule is triggered by POST requests to URIs containing "/login/". Since the "extendsPolicy" field is set to false, it overrides the policy with a new one named "login_page_block_redirect". This new policy is independent of the "override_rules_example" policy. It enables all signature sets and redirects the user to a rejection page. This is another example of an **Inline Policy Reference** with a different condition.
-3. The **"api-strict"** rule is applied for requests with "api4" in the URI, except for client IP addresses matching the "fd00:1::/48" range and user agents starting with "Mozilla". It references an external policy file named "NginxStrictPolicy.json" located at "/etc/app_protect/conf/" to override the current policy. The extendsPolicy is set to false and the external policy can be specified using a reference to its file using **$ref**. The file is the JSON policy source of that policy. This type of policy switching is known as **External Policy Reference**.
+2. The **"login_page"** rule is triggered by POST requests to URIs containing "/login/". Since the "actionType" field is set to "replace-policy", it overrides the policy with a new one named "login_page_block_redirect". This new policy is independent of the "override_rules_example" policy. It enables all signature sets and redirects the user to a rejection page. This is another example of an **Inline Policy Reference** with a different condition.
+3. The **"api-strict"** rule is applied for requests with "api4" in the URI, except for client IP addresses matching the "fd00:1::/48" range and user agents starting with "Mozilla". It references an external policy file named "NginxStrictPolicy.json" located at "/etc/app_protect/conf/" to override the current policy. The "actionType" field is set to "replace-policy" and the external policy can be specified using a reference to its file using **$ref**. The file is the JSON policy source of that policy. This type of policy switching is known as **External Policy Reference**.
 4. The **"strict-post"** rule is triggered when POST requests include a session token in the cookies that is not equal to "c2Vzc2lvblRva2Vu" or when the "gzip" value is found in the content-encoding headers. This rule follows a similar approach to referencing an external policy file, just like the **api-strict** rule mentioned above.
+5. The **"usa-only"** rule is triggered when a request coming from a country other than the USA. The actionType is set to "violation", meaning that `VIOL_RULE` violation is triggered for such a request. This violation will block and mark the request as illegal with regard to the "block" and "alarm" attributes. There is no change in policy for this rule. For more details about **Geolocation** feature, see [Geolocation in Policy Override Rules Conditions](#geolocation-in-policy-override-rules-conditions).
 
-These four rules demonstrate how the override rules feature allows for customization and the ability to modify specific aspects of the original policy based on predefined conditions.
+These five rules demonstrate how the override rules feature allows for customization and the ability to modify specific aspects of the original policy based on predefined conditions.
 
 
 {{< note >}}
-- By default, the extendsPolicy field is configured to true.
-- External references are supported regardless of whether the extendsPolicy field is set to true or false.
+- By default, the actionType field is configured to "extend-policy".
+- External references are supported for any policy reference.
 {{< /note >}}
 
 ### Condition Syntax Usage
@@ -5079,7 +5132,7 @@ For example:
       {
         "name": "this_rule_will_match",
         "condition": "uri.contains('api')",
-        "extendsPolicy": false,
+        "actionType": "replace-policy",
         "override": {
           "$ref": "file:///NginxStrictPolicy.json"
         }
@@ -5087,7 +5140,7 @@ For example:
       {
         "name": "non_matching_rule",
         "condition": "uri.contains('api') and not clientIp == '192.168.0.10'",
-        "extendsPolicy": true,
+        "actionType": "extend-policy",
         "override": {
           "policy": {
             "enforcementMode": "transparent"
@@ -5111,7 +5164,7 @@ Here are some key points to remember regarding the Override Rules feature:
 
 ### Override Rules Logging & Reporting
 
-If a request matches an override rule, the `json_log` field will include a new block named 'overrideRule'. However, if no rules match the request, the log will not contain any related information. When the 'extendsPolicy' flag is set to false, the 'originalPolicyName' field in the log will reflect the name of the original policy name (the one that contains override rules), and the `policy_name` field will reflect the policy that was enforced.
+If a request matches an override rule, the `json_log` field will include a new block named 'overrideRule'. However, if no rules match the request, the log will not contain any related information. When the 'actionType' flag is set to "replace-policy", the 'originalPolicyName' field in the log will reflect the name of the original policy name (the one that contains override rules), and the `policy_name` field will reflect the policy that was enforced.
 
 For example, if the matching override rule is called "login_page":
 
@@ -5133,11 +5186,38 @@ json_log will have:
  
 ```
 
+If the matching override rule is called "usa-only":
+
+```shell
+{
+    "enforcementState": {
+        "isBlocked": true,
+        "isAlarmed": true,
+        "rating": 4,
+        "attackType": [
+            {
+                "name": "ATTACK_TYPE_FORCEFUL_BROWSING"
+            }
+        ]
+    },
+    "violation": {
+        "name": "VIOL_RULE"
+    },
+    "policyEntity": {
+        "override-rule": {
+            "name": "usa-only"
+        }
+    },
+    "description": "Trying to access special"
+},
+
+```
+
 ### Errors and Warnings
 
 #### Missing Policy Name
 
-Every policy must have a name, including a policy used for overriding in case extendsPolicy is false. If the policy 'name' is not provided in the override section, an error message will be displayed indicating the missing policy 'name' within that specific override rule. For instance, in the override rule below, the policy name is not specified.
+Every policy must have a name if actionType is either "extend-policy" or "replace-policy". If the policy 'name' is not provided in the override section, an error message will be displayed indicating the missing policy 'name' within that specific override rule. For instance, in the override rule below, the policy name is not specified.
 
 
 Example of Missing policy 'name':
@@ -5147,7 +5227,7 @@ Example of Missing policy 'name':
     {
         "name": "example-rule",
         "condition": "uri.contains('127')",
-        "extendsPolicy": false,
+        "actionType": "replace-policy",
         "override": {
             "policy": {
                 "name": "policy_name",  <--- the missing part
@@ -5173,6 +5253,83 @@ Example of Cyclic Override Rule error:
 ```shell
 "error_message": "Failed to import an override policy: Cyclic override-rules detected."
 ```
+
+## Geolocation
+
+### Overview
+
+Geolocation refers to the process of assessing or determining the geographic location of an object. This feature helps in identifying the geographic location of a client or web application user.
+
+In NGINX App Protect WAF, the Enforcer will look up the client IP address in the Geolocation file included in the app protect package, and extract the corresponding [ISO 3166](https://www.iso.org/obp/ui/#search) two-letter code, representing the country. For instance, "IL" denotes Israel. This information is denoted as "geolocation" in the condition and is also included in the request reporting.
+
+### Disallowing Application Use in Certain Geolocations
+
+For applications protected by app protect, you can use Geolocation enforcement to restrict or allow application use in specific countries. You can adjust the lists of which countries or locations are allowed or disallowed in a app protect security policy. If the user tries to access the web application from a location that is not allowed, the `VIOL_GEOLOCATION` violation will be triggered. By default, all locations are allowed, and the alarm and block flags are enabled.
+
+Requests from certain locations, such as RFC-1918 addresses or unassigned global addresses, do not include a valid country code. The geolocation is shown as **N/A** in both the request and the list of geolocations. You have the option to disallow N/A requests whose country of origination is unknown.
+
+For example, in the policy provided below, within the "disallowed-geolocations" section, "countryCode": IL and "countryName": Israel have been included.  This signifies that requests originating from these locations will raise an alarm, trigger the `VIOL_GEOLOCATION` violation and will be blocked.
+
+
+```shell
+"general": {
+         "customXffHeaders": [],
+         "trustXff": true
+      },
+"disallowed-geolocations" : [
+         {
+            "countryCode" : "IL",
+            "countryName" : "Israel"
+         }
+      ],
+"blocking-settings": {
+      "violations": [
+       {
+          "name": "VIOL_GEOLOCATION",
+          "alarm": true,
+          "block": true
+        }
+    ]
+}
+
+```
+
+### Geolocation in Policy Override Rules Conditions
+
+The below example represents a security policy for a web application. The policy named as "override_rule_example" is based on a template called "POLICY_TEMPLATE_NGINX_BASE." The policy is set to operate in "blocking" mode, which means it will prevent certain activities.
+
+There's a specific configuration under "general" that deals with custom headers for cross-origin requests, specifically the "xff" header. The policy is configured to trust this header.
+
+In the "override-rules" section there is one override rule named "myFirstRule." This rule is set up to trigger when the geolocation of a request is identified as 'IL' (Israel). When this condition is met, the action taken is to extend the policy, but with a change in enforcement mode to "transparent."
+
+In simpler terms, when someone tries to access the web application from Israel ('IL'), the security policy will be adjusted to allow the access but in a more transparent manner, meaning it won't block the access but may monitor it differently.
+
+```json
+{
+    "policy": {
+        "name": "override_rule_example",
+        "template": { "name": "POLICY_TEMPLATE_NGINX_BASE" },
+        "enforcementMode": "blocking",
+        "general": {
+             "customXffHeaders": ["xff"],
+             "trustXff": true
+         },
+         "override-rules": [
+            {
+                "name": "myFirstRule",
+                "condition": "geolocation == 'IL'",
+                "actionType": "extend-policy",
+                "override": {
+                    "policy": {
+                        "enforcementMode": "transparent"
+                    }
+                }
+            }
+        ]
+    }
+}
+```
+
 
 ## JSON Web Token Protection
 
@@ -5265,8 +5422,8 @@ Refer to the following example where all access profile properties are configure
             "enforceValidityPeriod": false,
             "keyFiles": [
                {
-                  "contents": "{\r\n  \"keys\": [\r\n    {\r\n      \"alg\": \"RS256\",\r\n      \"e\": \"AQAB\",\r\n      \"kid\": \"1234\",\r\n      \"kty\": \"RSA\",\r\n      \"n\": \"tSbi8WYTScbuM4fe5qe4l60A2SG5oo3u5JDBtH_dPJTeQICRkrgLD6oyyHJc9BCe9abX4FEq_Qd1SYHBdl838g48FWblISBpn9--B4D9O5TPh90zAYP65VnViKun__XHGrfGT65S9HFykvo2KxhtxOFAFw0rE6s5nnKPwhYbV7omVS71KeT3B_u7wHsfyBXujr_cxzFYmyg165Yx9Z5vI1D-pg4EJLXIo5qZDxr82jlIB6EdLCL2s5vtmDhHzwQSdSOMWEp706UgjPl_NFMideiPXsEzdcx2y1cS97gyElhmWcODl4q3RgcGTlWIPFhrnobhoRtiCZzvlphu8Nqn6Q\",\r\n      \"use\": \"sig\",\r\n      \"x5c\": [\r\n        \"MIID1zCCAr+gAwIBAgIJAJ/bOlwBpErqMA0GCSqGSIb3DQEBCwUAMIGAMQswCQYDVQQGEwJpbDEPMA0GA1UECAwGaXNyYWVsMRAwDgYDVQQHDAd0ZWxhdml2MRMwEQYDVQQKDApmNW5ldHdvcmtzMQwwCgYDVQQLDANkZXYxDDAKBgNVBAMMA21heDEdMBsGCSqGSIb3DQEJARYOaG93ZHlAbWF0ZS5jb20wIBcNMjIxMTA3MTM0ODQzWhgPMjA1MDAzMjUxMzQ4NDNaMIGAMQswCQYDVQQGEwJpbDEPMA0GA1UECAwGaXNyYWVsMRAwDgYDVQQHDAd0ZWxhdml2MRMwEQYDVQQKDApmNW5ldHdvcmtzMQwwCgYDVQQLDANkZXYxDDAKBgNVBAMMA21heDEdMBsGCSqGSIb3DQEJARYOaG93ZHlAbWF0ZS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC1JuLxZhNJxu4zh97mp7iXrQDZIbmije7kkMG0f908lN5AgJGSuAsPqjLIclz0EJ71ptfgUSr9B3VJgcF2XzfyDjwVZuUhIGmf374HgP07lM+H3TMBg/rlWdWIq6f/9ccat8ZPrlL0cXKS+jYrGG3E4UAXDSsTqzmeco/CFhtXuiZVLvUp5PcH+7vAex/IFe6Ov9zHMVibKDXrljH1nm8jUP6mDgQktcijmpkPGvzaOUgHoR0sIvazm+2YOEfPBBJ1I4xYSnvTpSCM+X80UyJ16I9ewTN1zHbLVxL3uDISWGZZw4OXirdGBwZOVYg8WGuehuGhG2IJnO+WmG7w2qfpAgMBAAGjUDBOMB0GA1UdDgQWBBSHykVOY3Q1bWmwFmJbzBkQdyGtkTAfBgNVHSMEGDAWgBSHykVOY3Q1bWmwFmJbzBkQdyGtkTAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQCgcgp72Xw6qzbGLHyNMaCm9A6smtquKTdFCXLWVSOBix6WAJGPv1iKOvvMNF8ZV2RU44vS4Qa+o1ViBN8DXuddmRbShtvxcJzRKy1I73szZBMlZL6euRB1KN4m8tBtDj+rfKtPpheMtwIPbiukRjJrzRzSz3LXAAlxEIEgYSifKpL/okYZYRY6JF5PwSR0cvrfe/qa/G2iYF6Ps7knxy424RK6gpMbnhxb2gdhLPqDE50uxkr6dVHXbc85AuwAi983tOMhTyzDh3XTBEt2hr26F7jSeniC7TTIxmMgDdtYzRMwdb1XbubdtzUPnB/SW7jemK9I45kpKlUBDZD/QwER\"\r\n      ]\r\n    }\r\n  ]\r\n}",  # there can be more than one key file in the policy JSON schema, but we support only one for now.
-                  "fileName": "JWKFile.json"
+                  "contents": "{\r\n  \"keys\": [\r\n    {\r\n      \"alg\": \"RS256\",\r\n      \"e\": \"AQAB\",\r\n      \"kid\": \"1234\",\r\n      \"kty\": \"RSA\",\r\n      \"n\": \"tSbi8WYTScbuM4fe5qe4l60A2SG5oo3u5JDBtH_dPJTeQICRkrgLD6oyyHJc9BCe9abX4FEq_Qd1SYHBdl838g48FWblISBpn9--B4D9O5TPh90zAYP65VnViKun__XHGrfGT65S9HFykvo2KxhtxOFAFw0rE6s5nnKPwhYbV7omVS71KeT3B_u7wHsfyBXujr_cxzFYmyg165Yx9Z5vI1D-pg4EJLXIo5qZDxr82jlIB6EdLCL2s5vtmDhHzwQSdSOMWEp706UgjPl_NFMideiPXsEzdcx2y1cS97gyElhmWcODl4q3RgcGTlWIPFhrnobhoRtiCZzvlphu8Nqn6Q\",\r\n      \"use\": \"sig\",\r\n      \"x5c\": [\r\n        \"MIID1zCCAr+gAwIBAgIJAJ/bOlwBpErqMA0GCSqGSIb3DQEBCwUAMIGAMQswCQYDVQQGEwJpbDEPMA0GA1UECAwGaXNyYWVsMRAwDgYDVQQHDAd0ZWxhdml2MRMwEQYDVQQKDApmNW5ldHdvcmtzMQwwCgYDVQQLDANkZXYxDDAKBgNVBAMMA21heDEdMBsGCSqGSIb3DQEJARYOaG93ZHlAbWF0ZS5jb20wIBcNMjIxMTA3MTM0ODQzWhgPMjA1MDAzMjUxMzQ4NDNaMIGAMQswCQYDVQQGEwJpbDEPMA0GA1UECAwGaXNyYWVsMRAwDgYDVQQHDAd0ZWxhdml2MRMwEQYDVQQKDApmNW5ldHdvcmtzMQwwCgYDVQQLDANkZXYxDDAKBgNVBAMMA21heDEdMBsGCSqGSIb3DQEJARYOaG93ZHlAbWF0ZS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC1JuLxZhNJxu4zh97mp7iXrQDZIbmije7kkMG0f908lN5AgJGSuAsPqjLIclz0EJ71ptfgUSr9B3VJgcF2XzfyDjwVZuUhIGmf374HgP07lM+H3TMBg/rlWdWIq6f/9ccat8ZPrlL0cXKS+jYrGG3E4UAXDSsTqzmeco/CFhtXuiZVLvUp5PcH+7vAex/IFe6Ov9zHMVibKDXrljH1nm8jUP6mDgQktcijmpkPGvzaOUgHoR0sIvazm+2YOEfPBBJ1I4xYSnvTpSCM+X80UyJ16I9ewTN1zHbLVxL3uDISWGZZw4OXirdGBwZOVYg8WGuehuGhG2IJnO+WmG7w2qfpAgMBAAGjUDBOMB0GA1UdDgQWBBSHykVOY3Q1bWmwFmJbzBkQdyGtkTAfBgNVHSMEGDAWgBSHykVOY3Q1bWmwFmJbzBkQdyGtkTAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQCgcgp72Xw6qzbGLHyNMaCm9A6smtquKTdFCXLWVSOBix6WAJGPv1iKOvvMNF8ZV2RU44vS4Qa+o1ViBN8DXuddmRbShtvxcJzRKy1I73szZBMlZL6euRB1KN4m8tBtDj+rfKtPpheMtwIPbiukRjJrzRzSz3LXAAlxEIEgYSifKpL/okYZYRY6JF5PwSR0cvrfe/qa/G2iYF6Ps7knxy424RK6gpMbnhxb2gdhLPqDE50uxkr6dVHXbc85AuwAi983tOMhTyzDh3XTBEt2hr26F7jSeniC7TTIxmMgDdtYzRMwdb1XbubdtzUPnB/SW7jemK9I45kpKlUBDZD/QwER\"\r\n      ]\r\n    }\r\n  ]\r\n}",  # there can be more only one JWKs file (contents) in the policy JSON schema, however, the total amount of JWK in the JWKs is limited to 10. 
+                  "fileName": "JWKSFile.json" 
                }
             ],
             "location": {
@@ -5309,7 +5466,7 @@ Refer to the following example where all access profile properties are configure
 
 ### Access Profile in URL Settings
 
-The next step to configure JWT is to define the URL settings. Add the access Profile name that you defined previously under the access profiles in the "name" field. From the previous example, we associate the access profile "**access_profile_jwt**" with the "name": **/jwt** in the URLs section to become effective, which means URLs with /jwt name are permitted for this feature and will be used for all JWT API requests.
+The next step to configure JWT is to define the URL settings. Add the access profile name that you defined previously under the access profiles in the "name" field. From the previous example, we associate the access profile "**access_profile_jwt**" with the "name": **/jwt** in the URLs section to become effective, which means URLs with /jwt name are permitted for this feature and will be used for all JWT API requests.
 
 Please note that the access profile cannot be deleted if it is in use in any URL.
 
@@ -5332,7 +5489,7 @@ If the request doesn't align with a URL associated with an Access Profile, an at
 
 NGINX App Protect WAF introduces three new violations specific to JWT: `VIOL_ACCESS_INVALID`, `VIOL_ACCESS_MISSING` and `VIOL_ACCESS_MALFORMED`. 
 
-Under the “blocking-settings,” user can either enable or disable these violations. Note that these violations will be enabled by default. The details regarding logs will be recorded in the security log.
+Under the "blocking-settings," user can either enable or disable these violations. Note that these violations will be enabled by default. The details regarding logs will be recorded in the security log.
 
 See the below example for these violations.
 
@@ -5608,6 +5765,7 @@ The following violations are supported and can be enabled by turning on the **al
 |VIOL_FILETYPE | Illegal file type | Alarm | The system checks that the requested file type is configured as a valid file type, or not configured as an invalid file type, within the security policy. | Only for disallowed file types. | 
 |VIOL_FILE_UPLOAD | Disallowed file upload content detected | Alarm | The system checks that the file upload content is not a binary executable file format. | The check must be enabled for parameters of data type file upload | 
 |VIOL_FILE_UPLOAD_IN_BODY | Disallowed file upload content detected in body | Alarm | The system checks that the file upload content is not a binary executable file format. | The check must be enabled for URLs | 
+|VIOL_GEOLOCATION | Disallowed Geolocations | Alarm & Block | This violation will be triggered when an attempt is made to access the web application from a restricted location. | |
 |VIOL_GRAPHQL_MALFORMED | Malformed GraphQL data | Alarm & Block | This violation will be issued when the traffic expected to be GraphQL doesn't comply to the GraphQL syntax. The specifics of the syntax that will be enforced in App Protect is detailed in the enforcing section. The violation details will note the error.| In case of tolerate parser warning turned on, missing closing bracket of the JSON should not issue a violation. | 
 |VIOL_GRAPHQL_FORMAT | GraphQL format data does not comply with format settings | Alarm & Block | This violation will be issued when the GraphQL profile settings are not satisfied, for example the length is too long, depth is too deep, a specific value is too long or too many batched queries. <br> The violation details will note what happened and the found length, depth or which value is too long and by what. <br> The depth violation is not learnable. The reason is that we don't know the actual depth of the query - we stop parsing at the max depth. <br> Note that the values will be used on the variables JSON part as well as the query. In a way, we can see these values as a JSON profile attributes just for the variables. | |
 |VIOL_GRAPHQL_INTROSPECTION_QUERY| GraphQL introspection Query | Alarm & Block | This violation will be issued when an introspection query was seen. |  |
@@ -5645,6 +5803,7 @@ The following violations are supported and can be enabled by turning on the **al
 |VIOL_RATING_NEED_EXAMINATION | Request needs further examination | Disabled | The combination of violations could not determine whether the request is a threat or violations are false positives thus requiring more examination. | For VR = 3 | 
 |VIOL_REQUEST_LENGTH | Illegal request length | Alarm | The system checks that the request length does not exceed the  acceptable length specified in the security policy per the requested file type. | In * file type entity. This check is disabled by default. | 
 |VIOL_REQUEST_MAX_LENGTH | Request length exceeds defined buffer size | Alarm & Block| The system checks that the request length is not larger than the maximum memory buffer size. Note that this protects NGINX App Protect WAF from consuming too much memory across all security policies which are active on the device. | Default is 10MB | 
+|VIOL_RULE | Actionable override rule was triggered. | Disabled |A policy override rule with an action was triggered.| |
 |VIOL_THREAT_CAMPAIGN | Threat Campaign detected | Alarm & Block | The system examines the HTTP message for known threat campaigns by matching it against known attack patterns. |  | 
 |VIOL_URL | Illegal URL | Alarm | The system checks that the requested URL is configured as a valid URL, or not configured as an invalid URL, within the security policy. |  | 
 |VIOL_URL_CONTENT_TYPE | Illegal request content type | Alarm | The URL in the security policy has a `Header-Based Content Profiles` setting that disallows the request because the specified HTTP header or the default is set to `disallow`. |  | 
@@ -6158,7 +6317,7 @@ This guide assumes that you have some familiarity with various Layer 7 (L7) Hype
 |Illegal request | A request which violates a security policy | 
 |Legal request | A request which has not violated the security policy. | 
 |Loosening | The process of adapting a security policy to allow specific entities such as File Types, URLs, and Parameters. The term also applies to attack signatures, which can be manually disabled — effectively removing the signature from triggering any violations. | 
-|Parameters | Parameters consist of “name=value” pairs, such as OrderID=10. The parameters appear in the query string and/or POST data of an HTTP request. Consequently, they are of particular interest to NGINX App Protect WAF because they represent inputs to the web application. | 
+|Parameters | Parameters consist of "name=value" pairs, such as OrderID=10. The parameters appear in the query string and/or POST data of an HTTP request. Consequently, they are of particular interest to NGINX App Protect WAF because they represent inputs to the web application. | 
 |TPS/RPS | Transactions per second (TPS)/requests per second (RPS). In NGINX App Protect WAF, these terms are used interchangeably. | 
 |Tuning | Making manual changes to an existing security policy to reduce false positives and increase the policy’s security level. | 
 |URI/URL | The Uniform Resource Identifier (URI) specifies the name of a web object in a request. A Uniform Resource Locator (URL) specifies the location of an object on the Internet. For example, in the web address, `http://www.siterequest.com/index.html`, index.html is the URI, and the URL is `http://www.siterequest.com/index.html`. In NGINX App Protect WAF, the terms URI and URL are used interchangeably. | 
