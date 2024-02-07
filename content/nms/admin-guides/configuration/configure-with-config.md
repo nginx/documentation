@@ -31,7 +31,6 @@ The NGINX Management Suite includes several modules for managing your NGINX inst
 
 - Instance Manager: This module allows you to manage multiple NGINX instances, whether they're running on-premises, in the cloud, or in containers. With Instance Manager, you can perform tasks such as installing, configuring, and upgrading NGINX instances, as well as monitoring their health and performance.
 - API Connectivity Manager: This module provides a centralized interface for managing APIs that are exposed by NGINX instances. With API Connectivity Manager, you can create, publish, and secure APIs, as well as monitor their usage and performance.
-- App Delivery Manager: This module enables you to manage the delivery of applications that are hosted on NGINX instances. With App Delivery Manager, you can perform tasks such as deploying applications, managing SSL certificates, and configuring load balancing and caching.
 
 To configure NGINX Management Suite, you can edit the default configuration file located at `/etc/nms/nms.conf`.
 
