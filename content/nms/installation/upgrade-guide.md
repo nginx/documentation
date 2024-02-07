@@ -44,7 +44,6 @@ Read the release notes for information about the latest features and changes, re
 
 - [Instance Manager Release Notes]({{< relref "/nms/nim/releases/release-notes.md" >}})
 - [API Connectivity Manager Release Notes]({{< relref "/nms/acm/releases/release-notes.md" >}})
-- [App Delivery Manager Release Notes]({{< relref "/nms/adm/releases/release-notes.md" >}})
 - [Security Monitoring Module]({{< relref "/nms/security/releases/release-notes.md" >}})
 
 #### Tech Specs {#tech-specs}
@@ -99,15 +98,6 @@ We recommend upgrading NGINX Management Suite in a test environment before upgra
 - [Upgrade API Connectivity Manager on a virtual machine or bare metal]({{< relref "/nms/installation/vm-bare-metal/install-acm.md#upgrade-acm" >}})
 - [Upgrade API Connectivity Manager from a Helm Chart]({{< relref "/nms/installation/kubernetes/deploy-api-connectivity-manager.md#upgrade-acm-helm" >}})
 - [Upgrade API Connectivity Manager in an offline environment]({{< relref "/nms/installation/vm-bare-metal/offline-install-guide.md#upgrade-acm-offline" >}})
-### App Delivery Manager
-
-{{< include "nms/EOS/adm-eos.md" >}}
-
-{{< beta-badge >}}
-
-- [Upgrade App Delivery Manager on a virtual machine or bare metal]({{< relref "/nms/installation/vm-bare-metal/install-adm.md#upgrade-adm" >}})
-- [Upgrade App Delivery Manager from a Helm Chart]({{< relref "/nms/installation/kubernetes/deploy-app-delivery-manager.md#upgrade-adm-helm" >}})
-- [Upgrade App Delivery Manager in an offline environment]({{< relref "/nms/installation/vm-bare-metal/offline-install-guide.md#upgrade-adm-offline" >}})
 
 ### Security Monitoring
 

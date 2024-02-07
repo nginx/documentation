@@ -33,7 +33,6 @@ If you are using an older version of a module, you might need to upgrade to an i
 
 - [Instance Manager]({{< relref "/nms/nim/releases/release-notes.md" >}})
 - [API Connectivity Manager]({{< relref "/nms/acm/releases/release-notes.md" >}})
-- [App Delivery Manager]({{< relref "/nms/adm/releases/release-notes.md" >}})
 - [NGINX App Protect WAF]({{< relref "/nap-waf/releases/_index.md" >}})
 
 ### Supported Linux Distributions {#supported-distributions}
@@ -114,20 +113,6 @@ The following sizing recommendations are the minimum sizing guidelines for Insta
 ### Developer Portal Supported Distributions {#dev-portal-supported-distributions}
 
 {{< include "tech-specs/acm-dev-portal-supported-distros.md" >}}
-
----
-
-## App Delivery Manager
-
-{{< include "nms/EOS/adm-eos.md" >}}
-
-{{< beta-badge >}}
-
-### Dependencies with Instance Manager
-
-{{< include "tech-specs/adm-nim-dependencies.md" >}}
-
-{{< important >}} If you're [installing App Delivery Manager in an offline environment]({{< relref "/nms/installation/vm-bare-metal/offline-install-guide.md" >}}) and the minimum required version of Instance Manager is not installed, the App Delivery Manager installer will exit. You'll need to [install Instance Manager manually]({{< relref "/nms/installation/vm-bare-metal/offline-install-guide.md#install-nim-offline" >}}) before installing App Delivery Manager.{{< /important >}}
 
 ---
 
