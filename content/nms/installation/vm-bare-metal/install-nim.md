@@ -159,5 +159,4 @@ Complete the following steps for each data plane instance you want to manage usi
 ### Install Other NGINX Management Suite Modules
 
 - [Install API Connectivity Manager]({{< relref "/nms/installation/vm-bare-metal/install-acm.md" >}})
-- [Install App Delivery Manager]({{< relref "/nms/installation/vm-bare-metal/install-adm.md" >}})
 - [Install Security Monitoring]({{< relref "/nms/installation/vm-bare-metal/install-security-monitoring.md" >}})

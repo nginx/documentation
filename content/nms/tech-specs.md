@@ -116,20 +116,6 @@ The following sizing recommendations are the minimum sizing guidelines for Insta
 
 ---
 
-## App Delivery Manager
-
-{{< include "nms/EOS/adm-eos.md" >}}
-
-{{< beta-badge >}}
-
-### Dependencies with Instance Manager
-
-{{< include "tech-specs/adm-nim-dependencies.md" >}}
-
-{{< important >}} If you're [installing App Delivery Manager in an offline environment]({{< relref "/nms/installation/vm-bare-metal/offline-install-guide.md" >}}) and the minimum required version of Instance Manager is not installed, the App Delivery Manager installer will exit. You'll need to [install Instance Manager manually]({{< relref "/nms/installation/vm-bare-metal/offline-install-guide.md#install-nim-offline" >}}) before installing App Delivery Manager.{{< /important >}}
-
----
-
 ## Security Monitoring Module {#security-monitoring}
 
 ### Dependencies with Instance Manager
