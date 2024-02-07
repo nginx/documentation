@@ -33,7 +33,6 @@ If you are using an older version of a module, you might need to upgrade to an i
 
 - [Instance Manager]({{< relref "/nms/nim/releases/release-notes.md" >}})
 - [API Connectivity Manager]({{< relref "/nms/acm/releases/release-notes.md" >}})
-- [App Delivery Manager]({{< relref "/nms/adm/releases/release-notes.md" >}})
 - [NGINX App Protect WAF]({{< relref "/nap-waf/releases/_index.md" >}})
 
 ### Supported Linux Distributions {#supported-distributions}
