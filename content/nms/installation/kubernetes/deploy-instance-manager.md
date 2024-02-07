@@ -380,4 +380,3 @@ For guidance on how to create a support package containing system and service de
 ### Deploy Other NGINX Management Suite Modules
 
 - [Deploy API Connectivity Manager on Kubernetes]({{< relref "/nms/installation/kubernetes/deploy-api-connectivity-manager.md" >}})
-- [Deploy App Delivery Manager on Kubernetes]({{< relref "/nms/installation/kubernetes/deploy-app-delivery-manager.md" >}})

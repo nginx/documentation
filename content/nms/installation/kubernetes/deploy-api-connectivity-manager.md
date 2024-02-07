@@ -219,9 +219,3 @@ Refer to the [Add a License]({{< relref "/nms/installation/add-license.md" >}}) 
 For guidance on how to create a support package containing system and service details to share with NGINX Customer Support, refer to the guide [Create a Support Package from a Helm Installation]({{< relref "/nms/support/k8s-support-package.md" >}}).
 
 ---
-
-## What's Next
-
-### Deploy Other NGINX Management Suite Modules
-
-- [Deploy App Delivery Manager on Kubernetes]({{< relref "/nms/installation/kubernetes/deploy-app-delivery-manager.md" >}})
