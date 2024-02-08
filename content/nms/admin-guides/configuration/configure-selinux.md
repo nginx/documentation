@@ -93,19 +93,7 @@ To use the SELinux policy that's included with NGINX Management Suite, take the 
     sudo restorecon -F -R /var/lib/nms/modules/acm.json
     ```
 
-1. (App Delivery Manager) If you installed App Delivery Manager, run the following additional commands to restore the default SELinux labels for the following files and directories:
-
-    {{< beta-badge >}}
-
-    ```bash
-    sudo semodule -n -i /usr/share/selinux/packages/nms-adm.pp
-    sudo /usr/sbin/load_policy
-    sudo restorecon -F -R /usr/bin/nms-adm
-    sudo restorecon -F -R /usr/lib/systemd/system/nms-adm.service
-    sudo restorecon -F -R /var/lib/nms/modules/adm.json
-    ```
-
-2. Restart the NGINX Management Suite services:
+1. Restart the NGINX Management Suite services:
 
     ```bash
     sudo systemctl restart nms
