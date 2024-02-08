@@ -27,11 +27,17 @@ authors: []
 
 ## Overview
 
-NGINX Management Suite can be configured using a file. The default configuration file is located on the path **/etc/nms/nms.conf**.
+You can configure NGINX Management Suite using a file, which is located at **/etc/nms/nms.conf** by default.
 
-**nms.conf** is a YAML configuration file used by NGINX Management Suite. This file contains settings and options that determine how the software works. 
+Examples of settings and options include:
 
-The options in the file include settings for the user and group that non-privileged processes should run as; the CA cert file used for TLS server; the URL for NGINX Management Suite; the choice of whether the software should run in development mode or daemon mode; the root directory for Dqlite data; as well as various settings pertaining to logging, modules, and services.
+- The certificate authority (CA) file used for TLS
+- The URL for NGINX Management Suite
+- The root directory for Dqlite data
+- If NGINX Management Suite should run in development or daemon mode
+- Additional settings related to logging, modules and services
+
+These options can be set for the user and group that non-privileged processes should use.
 
 ## Example configuration
 
