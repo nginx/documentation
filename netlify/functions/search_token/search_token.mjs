@@ -1,5 +1,7 @@
 import axios from "axios"
 
+console.log("Log for force redeploy");
+
 async function getSearchToken(r, ctx) {
     const response = await axios({
         url: r.uri,
