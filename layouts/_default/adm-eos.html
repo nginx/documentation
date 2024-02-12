@@ -1,15 +1,15 @@
 {{ define "main" }}
-<div class="row flex-xl-nowrap">
-  <nav class="sidenav overflow-auto col-md-3 d-none d-xl-block d-print-none align-top">
+<div class="row" style="max-width: calc(100% + 30px) !important; flex-wrap: nowrap;">
+  <nav class="sidenav overflow-auto col-md-3 d-none d-xl-block d-print-none align-top" style="width: 25%;">
     {{ partial "sidebar.html" . }}
   </nav>
   
   {{if (.Params.catalog) }}
-  <main class="content col-xl-6 d-block align-top" role="main">
+  <main class="content content-has-toc" role="main">
   {{ else if and (gt .WordCount 200 ) (.Params.toc) }}
-  <main class="content col-xl-6 d-block align-top" role="main">
+  <main class="content col d-block align-top content-has-toc" role="main">
   {{ else }}
-  <main class="content col-xl-9 d-block align-top" role="main">
+  <main class="content col d-block align-top content-no-toc" role="main">
   {{ end }}
 
     <blockquote class="warning">
@@ -33,7 +33,7 @@
   </main>
   {{ if and (gt .WordCount 200 ) (.Params.toc) }}
     {{ if (add  (len (findRE "<h3" .Content)) (len (findRE "<h2" .Content))) }}
-      <div class="col-md-3 d-none d-xl-block d-print-none nginx-toc align-top">
+      <div class="col-md-3 d-none d-xl-block d-print-none nginx-toc align-top" style="width: 50%;">
       {{ partial "toc.html" . }}
       </div>
     {{ end }}

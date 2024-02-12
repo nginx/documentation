@@ -1,86 +1,104 @@
 {{ define "main" }}
 
 <style>
-    .nginx-docs-api-container {
-        width: calc(100% + 30px);
-        margin-left: -15px;
-    }
-    .menu-content {
-        top: 0 !important;
-        height: 100% !important;
-    } 
-    .bCOLCR {
-        background: #e6e6e6;
-    }
-    .fTsuzH {
-        background-color: #e6e6e6;
-    }
-    .fgRoXk {
-        background-color: #FAFAFA;
-    }
-    #api-component > api-container > redoc {
-        background-color: #e6e6e6;
-    }
-    div.sc-jSFjdj.sc-gKAaRy.dYGhuI.fTsuzH > div > h3 {
-        color: #000000;
-    }
-    div.sc-dvUynV.fgRoXk.redoc-wrap {
-        margin-left: -15px;
-        margin-right: -15px;
-    }
-    .gKPxXE .collapser {
-        background-color: transparent!important;
-    }
-    div > div.sc-jSFjdj.sc-gKAaRy.dYGhuI.fTsuzH > div.sc-EZqKI.iONckA > button:hover {
-        background-color: #003963;
-    }
-    div > div.sc-giAqHp.hIuvjA > button:hover {
-        color: #003963;
-    }
-    .nginx-docs-api-container button:hover {
-        background-color: rgb(237, 237, 237);
-    }
-    pre {
-        white-space: pre-wrap;
-    }
-    html {
-        scroll-behavior: auto;
-    }
-    .sidebar {
-        padding-left: 15px;
-        padding-top: 20px;
-    }
+  .nginx-docs-api-container {
+    z-index: 0 !important;
+    max-width: calc(100% + 2.4rem);
+  }
 
+  @media (min-width: 768px) {
+    .nginx-docs-api-container {
+      z-index: 0 !important;
+      max-width: calc(75% + 2.4rem);
+    }
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .menu-content {
+    top: 0 !important;
+    height: 100% !important;
+  }
+  .bCOLCR {
+    background: #e6e6e6;
+  }
+  .fTsuzH {
+    background-color: #e6e6e6;
+  }
+  .fgRoXk {
+    background-color: #fafafa;
+  }
+  #api-component > api-container > redoc {
+    background-color: #e6e6e6;
+  }
+  div.sc-jSFjdj.sc-gKAaRy.dYGhuI.fTsuzH > div > h3 {
+    color: #000000;
+  }
+  div.sc-dvUynV.fgRoXk.redoc-wrap {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+  .gKPxXE .collapser {
+    background-color: transparent !important;
+  }
+  div
+    > div.sc-jSFjdj.sc-gKAaRy.dYGhuI.fTsuzH
+    > div.sc-EZqKI.iONckA
+    > button:hover {
+    background-color: #003963;
+  }
+  div > div.sc-giAqHp.hIuvjA > button:hover {
+    color: #003963;
+  }
+  .nginx-docs-api-container button:hover {
+    background-color: rgb(237, 237, 237);
+  }
+  pre {
+    white-space: pre-wrap;
+  }
 </style>
-<div class="row flex-xl-nowrap">
-    <nav class="overflow-auto col-md-2 d-none d-xl-block d-print-none align-top">
-        <div id="sidebar" class="sidebar" aria-label="Sidebar navigation"  >
-            <h3>
-                <a class="sidebar-title" href="http://docs.nginx.com/nginx-one/" alt="NGINX One"><img class="card-img-top" src="http://docs.nginx.com/images/icons/NGINX-One-product-icon.svg" alt="NGINX One">
-                    NGINX One</a>
-            </h3>
-            <ul>
-            
-            
-                
-                
-                <li class="nginx-toc-link l1">
-                    <a data-menu-id="/nginx-one/" href="http://docs.nginx.com/nginx-one/about/"><i class="fa-solid fa-rotate-left"></i> Return to NGINX One Docs</a>
-                </li>       
-        </div>
-    </nav>
-    <main class="content col-xl-6 d-block align-top" role="main">
-        <blockquote class="caution">
-            <div>
-                <i class="fa-solid fa-flask"></i> <strong>Early Access Preview</strong><br><br> NGINX One is currently available in Early Access. This preview version is for evaluation and testing purposes only and should not be used in production environments.
-            </div>
-        </blockquote>
-    </main>
-</div>
 <!--Use wide page layout for the API reference pages-->
-    <div class="nginx-docs-api-container">     
-        <div id="api-component">
-        {{ .Content}}
-        </div>
-    </div>
+<div
+  class="row flex-md-nowrap"
+  style="
+    position: relative;
+    flex-wrap: nowrap;
+    margin-right: 9px;
+    max-width: calc(100% + 9px);
+  "
+>
+  <nav
+    class="sidenav overflow-auto col-md-3 d-none d-md-block d-print-none sidebar-toggle-hidden-width"
+    style="width: 25%; border-right: 1px solid #e6e6e6"
+    ;
+  >
+    {{ partial "sidebar.html" . }}
+  </nav>
+  <div class="nginx-docs-api-container">
+    {{ if eq .FirstSection.Title "NGINX One" }}
+    <blockquote
+      class="caution"
+      style="
+        margin: 0;
+        border: none;
+        border-bottom: 1px solid orange;
+        width: 100%;
+        border-radius: 0;
+      "
+    >
+      <div>
+        <i class="fa-solid fa-flask"></i> <strong>Early Access Preview</strong
+        ><br /><br />
+        NGINX One is currently available in Early Access. This preview version
+        is for evaluation and testing purposes only and should not be used in
+        production environments.
+      </div>
+    </blockquote>
+    {{ end }}
+
+    <div id="api-component">{{ .Content}}</div>
+  </div>
+</div>
 {{ end }}
