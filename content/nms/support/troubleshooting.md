@@ -17,8 +17,6 @@ aliases:
 - /nginx-instance-manager/support/troubleshooting/
 ---
 
-{{< custom-styles >}}
-
 ---
 
 ## Platform and Module Troubleshooting Guides

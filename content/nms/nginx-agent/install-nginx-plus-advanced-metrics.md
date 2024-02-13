@@ -25,8 +25,6 @@ authors: []
 
 ---
 
-{{<custom-styles>}}
-
 ## Overview
 
 The NGINX Plus metrics module is a dynamic module that you can install on your NGINX Plus data plane instances. The metrics module reports advanced, app-centric metrics and dimensions like “application name” or “gateway” to the NGINX Agent, which then aggregates and publishes the data to the NGINX Management Suite. Advanced, app-centric metrics are used by particular NGINX Management Suite modules, such as API Connectivity Manager, for features associated with HTTP requests.

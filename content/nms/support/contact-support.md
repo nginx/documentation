@@ -25,8 +25,6 @@ aliases:
 - /nginx-instance-manager/support/contact-support/
 ---
  
-{{< custom-styles >}}
-
 ## Support Policy
 
 NGINX Management Suite adheres to the support policy detailed at [nginx.com/support](https://nginx.com/support).

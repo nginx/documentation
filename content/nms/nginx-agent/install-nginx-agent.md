@@ -25,8 +25,6 @@ aliases:
 - /getting-started/installation/install-nginx-agent/
 ---
 
-{{<custom-styles>}}
-
 ## Prerequisites
 
 This section lists the prerequisites for installing and configuring NGINX Agent. Follow the steps below to complete the requirements:

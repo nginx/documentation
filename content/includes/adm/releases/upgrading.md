@@ -4,7 +4,6 @@ docs: DOCS-1293
 
 ### Upgrading from previous Early Access releases
 
-{{< custom-styles >}}
 <style>
 ul#reinstall_app_delivery_manager {
   margin: 0 0 10px 0px;

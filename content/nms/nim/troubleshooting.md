@@ -24,8 +24,6 @@ versions: []
 authors: []
 ---
 
-{{< custom-styles >}}
-
 ## New NGINX instances don't show up in Instance Manager
 
 #### Description

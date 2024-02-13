@@ -9,8 +9,6 @@ toc: true
 docs: "DOCS-847"
 categories: ["analytics"]
 ---
-{{<custom-styles>}}
-
 {{< shortversions "2.1.0" "latest" "nimvers" >}}
 
 ## Overview

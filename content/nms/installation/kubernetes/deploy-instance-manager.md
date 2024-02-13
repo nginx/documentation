@@ -27,8 +27,6 @@ aliases:
 
 ---
 
-{{<custom-styles>}}
-
 ## Overview
 
 This guide provides a step-by-step tutorial on how to set up Instance Manager on a Kubernetes cluster. Learn how to download and load Docker images, customize your deployment, and install the Helm chart.

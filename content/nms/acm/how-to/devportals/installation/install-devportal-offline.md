@@ -23,8 +23,6 @@ weight: 30
 docs: "DOCS-1215"
 ---
 
-{{< custom-styles >}}
-
 {{< dev-portal-dedicated-host >}}
 
 

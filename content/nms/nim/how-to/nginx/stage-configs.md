@@ -25,8 +25,6 @@ authors: []
 
 ---
 
-{{< custom-styles >}}
-
 ## Overview
 
 With Instance Manager, you can easily pre-configure and stage NGINX configuration files, so you can quickly publish them to individual NGINX instances or instance groups whenever you're ready.

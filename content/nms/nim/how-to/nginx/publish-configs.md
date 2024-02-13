@@ -28,8 +28,6 @@ aliases:
 - /nim/how-to/publish-configs/
 ---
 
-{{< custom-styles >}}
-
 ## Overview
 
 With Instance Manager, you can easily edit and publish NGINX configurations to your NGINX and NGINX Plus instances. As you edit your configurations, the NGINX config analyzer will automatically detect and highlight errors, ensuring accuracy and reliability.

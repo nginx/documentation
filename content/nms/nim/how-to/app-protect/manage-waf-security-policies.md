@@ -21,8 +21,6 @@ doctypes: ["task"]
 
 ---
 
-{{<custom-styles>}}
-
 ## Overview
 
 NGINX Management Suite Instance Manager provides the ability to manage the configuration of NGINX App Protect WAF instances either by the user interface or the REST API. This includes editing, updating, and deploying security policies, log profiles, attack signatures, and threat campaigns to individual instances and/or instance groups.
