@@ -1,5 +1,4 @@
 # Redirects for specific pages or sections
-/nginx-agent/changelog/ https://github.com/nginx/agent/releases 301
 /nginx-app-protect/* /nginx-app-protect-waf/:splat 301
 
 # NGINX App Protect WAF redirects
