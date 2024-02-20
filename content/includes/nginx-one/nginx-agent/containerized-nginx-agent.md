@@ -1,5 +1,5 @@
 ---
-docs:
+docs: "DOCS-1407"
 ---
 
 <! -- This doc is a WIP. Do not publish -->
