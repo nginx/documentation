@@ -4,7 +4,7 @@ categories:
 - releases
 date: "2021-04-14T13:32:41+00:00"
 description: ""
-docs: DOS-650
+docs: DOCS-650
 doctypes:
 - concept
 draft: false

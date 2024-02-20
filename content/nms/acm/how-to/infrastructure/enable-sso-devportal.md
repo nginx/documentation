@@ -12,7 +12,6 @@ docs: "DOCS-928"
 # Remove all terms that do not apply.
 categories: ["API Connectivity Manager", "policies", "OIDC", "developer portal"]
 doctypes: ["task"]
-docs: 
 aliases:
 - /acm/how-to/setup-oidc-devportal/
 

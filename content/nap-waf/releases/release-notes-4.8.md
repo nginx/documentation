@@ -3,8 +3,8 @@ authors: []
 categories:
 - releases
 date: "2021-04-14T13:32:41+00:00"
-description: ""
-docs: DOCS-1360
+description: "NGINX App Protect WAF Release 4.8"
+docs: "DOCS-1391"
 doctypes:
 - concept
 draft: false
@@ -25,7 +25,7 @@ personas:
 roles:
 - admin
 - user
-title: NGINX App Protect WAF Release 4.8
+title: "NGINX App Protect WAF Release 4.8"
 toc: true
 versions:
 - "4.8"
