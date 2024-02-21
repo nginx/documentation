@@ -267,18 +267,15 @@ To restore NGINX Management Suite and the installed modules deployed in the same
 1. Copy the extracted backup scripts to your working directory:
 
     - For NGINX Management Suite and API Connectivity Manager, copy`k8s-restore.sh` from the `nms-<version>/charts/nms-hybrid/backup-restore/` directory.
-    - (Optional) For App Delivery Management, copy `k8s-restore-adm.sh` from the `nms-<version>/charts/nms-adm/backup-restore/`directory.
 
     ```bash
     cp nms-<version>/nms/charts/nms-hybrid/backup-restore/k8s-restore.sh .
-    cp nms-<version>/nms/charts/nms-adm/backup-restore/k8s-restore-adm.sh .
     ```
 
 2. Make the scripts executable:
 
     ```bash
     chmod +x k8s-restore.sh
-    chmod +x k8s-restore-adm.sh
     ```
 
 3. Copy your k8s-backup-<timestamp>.tar.gz file to the same directory as the k8s-restore.sh script.
@@ -302,11 +299,9 @@ To restore NGINX Management Suite and the installed modules into a different Kub
 1. Copy the extracted backup scripts to your working directory:
 
     - For NGINX Management Suite and API Connectivity Manager, copy`k8s-restore.sh` from the `nms-<version>/charts/nms-hybrid/backup-restore/` directory.
-    - (Optional) For App Delivery Management, copy `k8s-restore-adm.sh` from the `nms-<version>/charts/nms-adm/backup-restore/`directory.
 
     ```bash
     cp nms-<version>/nms/charts/nms-hybrid/backup-restore/k8s-restore.sh .
-    cp nms-<version>/nms/charts/nms-adm/backup-restore/k8s-restore-adm.sh .
     ```
 
 2. Make the scripts executable:

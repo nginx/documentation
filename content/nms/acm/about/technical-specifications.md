@@ -4,7 +4,26 @@ weight: 200
 docs: "DOCS-000"
 ---
 
+### Dependencies with Instance Manager
+
+{{< include "tech-specs/acm-nim-dependencies.md" >}}
+
+{{< important >}} If you're [installing API Connectivity Manager in an offline environment]({{< relref "/nms/installation/vm-bare-metal/offline-install-guide.md#install-acm-offline" >}}) and the minimum required version of Instance Manager is not installed, the API Connectivity Manager installer will exit. You'll need to [install Instance Manager manually]({{< relref "/nms/installation/vm-bare-metal/offline-install-guide.md#install-nim-offline" >}}) before installing API Connectivity Manager.{{< /important >}}
+
+### API Connectivity Manager Supported NGINX Versions {#acm-supported-nginx}
+
+{{< include "tech-specs/acm-supported-nginx.md" >}}
+
+### Developer Portal Supported Distributions {#dev-portal-supported-distributions}
+
+{{< include "tech-specs/acm-dev-portal-supported-distros.md" >}}
+
+---
+
 ## Supported Linux Distributions
+
+{{< call-out "note" "API Connectivity Manager" >}}Make sure you review the [supported distributions for the Developer Portal](#dev-portal-supported-distributions) host before installing the API Connectivity Manager module. There is a slight difference between the supported distributions in that list and this one.
+{{< /call-out >}}
 
 API Connectivity Manager supports the following Linux distributions:
 
@@ -21,8 +40,7 @@ API Connectivity Manager supports the following Linux distributions:
 {{</bootstrap-table>}}
 {{< raw-html>}}</div>{{</raw-html>}}
 
-{{< call-out "note" "API Connectivity Manager" >}}Make sure you review the [supported distributions for the Developer Portal]({{< relref "/tech-specs.md#dev-portal-supported-distributions" >}}) host before installing the API Connectivity Manager module. There is a slight difference between the supported distributions in that list and this one.
-{{< /call-out >}}
+
 
 ## Supported NGINX Versions
 
