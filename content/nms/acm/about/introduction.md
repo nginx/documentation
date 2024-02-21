@@ -21,3 +21,14 @@ The API Connectivity Manager module provides the following features:
 - [Onboard APIs to an API Gateway]({{< relref "/nms/acm/how-to/infrastructure/publish-developer-portal.md#add-an-api-doc" >}}) and [publish API documentation]({{< relref "/nms/acm/how-to/infrastructure/publish-developer-portal.md#publish-the-api-documentation-and-api-proxy" >}}) to the Developer Portal
 - [Apply policies to API proxies]({{< relref "/nms/acm/how-to/policies/manage-policies.md#configure-proxy-policies" >}}) to provide custom quality of service for individual applications
 - [Issue API keys]({{< relref "/nms/acm/how-to/infrastructure/enable-sso-devportal" >}}) or basic authentication credentials for access to the API
+
+## Supported NGINX Versions
+
+API Connectivity Manager supports the following NGINX versions:
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Module                                      | Version                        | NGINX OSS                  | NGINX Plus         |
+|---------------------------------------------|--------------------------------|----------------------------|--------------------|
+| API Connectivity Manager - Management Plane | 1.9.0 and later<hr>1.4.0-1.8.0<hr>1.0.0–1.3.1 | 1.18–1.25.1<hr>1.18–1.25.1<hr>1.18–1.21.6 | R24–R30<hr>R24–R29<hr>R24–R27 |
+| API Connectivity Manager - Data Plane and Dev Portal | 1.9.0 and later<hr>1.7.0-1.8.0<hr>1.4.0-1.6.0<hr>1.0.0–1.3.1 | <i class="fa-solid fa-ban" style="color: red"></i> Not supported<hr><i class="fa-solid fa-ban" style="color: red"></i> Not supported<hr><i class="fa-solid fa-ban" style="color: red"></i> Not supported<hr><i class="fa-solid fa-ban" style="color: red"></i> Not supported | R26–R30<hr>R26–R29<hr>R24–R28<hr>R21–R27 | 4.0.0 | 
+{{</bootstrap-table>}}
