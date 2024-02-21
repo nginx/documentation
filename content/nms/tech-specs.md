@@ -32,7 +32,6 @@ If you are using an older version of a module, you might need to upgrade to an i
 **Module release notes**:
 
 - [Instance Manager]({{< relref "/nms/nim/releases/release-notes.md" >}})
-- [API Connectivity Manager]({{< relref "/nms/acm/releases/release-notes.md" >}})
 - [NGINX App Protect WAF]({{< relref "/nap-waf/releases/_index.md" >}})
 
 ### Supported Linux Distributions {#supported-distributions}
@@ -40,9 +39,6 @@ If you are using an older version of a module, you might need to upgrade to an i
 {{< include "tech-specs/nms-supported-distros.md" >}}
 
 <br>
-
-{{< call-out "note" "API Connectivity Manager" >}}Make sure you review the [supported distributions for the Developer Portal](#dev-portal-supported-distributions) host before installing the API Connectivity Manager module. There is a slight difference between the supported distributions in that list and this one.
-{{< /call-out >}}
 
 ### Supported Deployment Environments {#supported-environments}
 
@@ -93,26 +89,6 @@ The following sizing recommendations are the minimum sizing guidelines for Insta
 ### Support for NGINX App Protect WAF
 
 {{< include "tech-specs/nim-app-protect-support.md" >}}
-
----
-
-## API Connectivity Manager {#acm-tech-specs}
-
-{{< include "nms/EOS/acm-eos.md" >}}
-
-### Dependencies with Instance Manager
-
-{{< include "tech-specs/acm-nim-dependencies.md" >}}
-
-{{< important >}} If you're [installing API Connectivity Manager in an offline environment]({{< relref "/nms/installation/vm-bare-metal/offline-install-guide.md#install-acm-offline" >}}) and the minimum required version of Instance Manager is not installed, the API Connectivity Manager installer will exit. You'll need to [install Instance Manager manually]({{< relref "/nms/installation/vm-bare-metal/offline-install-guide.md#install-nim-offline" >}}) before installing API Connectivity Manager.{{< /important >}}
-
-### API Connectivity Manager Supported NGINX Versions {#acm-supported-nginx}
-
-{{< include "tech-specs/acm-supported-nginx.md" >}}
-
-### Developer Portal Supported Distributions {#dev-portal-supported-distributions}
-
-{{< include "tech-specs/acm-dev-portal-supported-distros.md" >}}
 
 ---
 
