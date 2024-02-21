@@ -1,7 +1,7 @@
 ---
 title: "Technical Specifications"
 weight: 200
-docs: "DOCS-000"
+docs: "DOCS-1470"
 ---
 
 ### Dependencies with Instance Manager
