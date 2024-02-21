@@ -41,9 +41,6 @@ If you are using an older version of a module, you might need to upgrade to an i
 
 <br>
 
-{{< call-out "note" "API Connectivity Manager" >}}Make sure you review the [supported distributions for the Developer Portal](#dev-portal-supported-distributions) host before installing the API Connectivity Manager module. There is a slight difference between the supported distributions in that list and this one.
-{{< /call-out >}}
-
 ### Supported Deployment Environments {#supported-environments}
 
 You can deploy the NGINX Management Suite gateway in the following environments:
