@@ -6,7 +6,7 @@ weight: 400
 toc: true
 tags: [ "docs" ]
 doctypes: ["reference"]
-docs: "DOCS-000"
+docs: "DOCS-1387"
 
 ---
 The Instance Manager Dashboard provides a high-level overview of the health and performance of your NGINX instances. It offers a central location to identify, diagnose, and resolve issues in your data plane, understand how deployments impact the performance of individual instances, and identify trends in your data plane over time.

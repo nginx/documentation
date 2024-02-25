@@ -8,7 +8,7 @@ categories:
 - analytics
 description: These release notes contain information about new features, improvements,
   known issues, and bug fixes in the NGINX Controller Application Delivery Module.
-docs: DOCS-1128
+docs: "DOCS-1388"
 doctypes:
 - reference
 draft: false
@@ -29,7 +29,7 @@ roles:
 - read-only
 tags:
 - docs
-title: Release Notes 3.22.7
+title: "Release Notes 3.22.7"
 toc: true
 weight: 90
 ---

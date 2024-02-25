@@ -10,6 +10,52 @@ docs: "DOCS-938"
 
 ---
 
+## 2.15.1
+
+February 14, 2024
+
+### Upgrade Paths {#2-15-1-upgrade-paths}
+
+Instance Manager  supports upgrades from these previous versions:
+
+- 2.12.0 - 2.15.0
+
+If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+{{< see-also >}}
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< /see-also >}}
+
+<br>
+
+<details closed>
+<summary><i class="fa-solid fa-circle-exclamation"></i> Support for NGINX App Protect WAF</summary>
+
+{{< include "tech-specs/nim-app-protect-support.md" >}}
+
+</details>
+
+
+### What's New{#2-15-1-whats-new}
+This release includes the following updates:
+
+- {{% icon-feature %}} **Stability and performance improvements**<a name="2-15-1-whats-new-Stability-and-performance-improvements-"></a>
+
+  This release includes stability and performance improvements.
+  
+
+### Resolved Issues{#2-15-1-resolved-issues}
+This release fixes the following issues. Select an issue's ID link to view its details.
+
+- {{% icon-resolved %}} Helm chart backup and restore is broken in NIM 2.15.0 [(44758)]({{< relref "/nms/nim/releases/known-issues.md#44758" >}})<a name="2-15-1-resolved-issues-Helm-chart-backup-and-restore-is-broken-in-NIM-2-15-0"></a>
+- {{% icon-resolved %}} Unable to use NMS Predefined Log Profiles for NAP 4.7 [(44759)]({{< relref "/nms/nim/releases/known-issues.md#44759" >}})<a name="2-15-1-resolved-issues-Unable-to-use-NMS-Predefined-Log-Profiles-for-NAP-4-7"></a>
+
+### Known Issues{#2-15-1-known-issues}
+
+You can find information about known issues in the [Known Issues]({{< relref "/nms/nim/releases/known-issues.md" >}}) topic.
+
+---
+
 ## 2.15.0
 
 December 12, 2023
@@ -1346,7 +1392,7 @@ This release includes the following updates:
   
   If you have multiple Docker containers on your data plane host, each container registers with Instance Manager as unique.
   
-  Refer to the [NGINX Agent Docker Support]({{< relref "/nms/nginx-agent/nginx-agent-in-container.md" >}}) guide for details.
+  Refer to the [NGINX Agent Docker Support](https://docs.nginx.com/nginx-agent/installation-upgrade/container-environments/docker-support/) guide for details.
   
   {{< note >}}Containerizing the NGINX Agent is supported only with Docker at the moment. Look for additional container support in future releases of Instance Manager.{{< /note >}}
   

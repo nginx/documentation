@@ -1,5 +1,6 @@
 import axios from "axios"
-// import { getSecrets, NetlifySecrets } from "@netlify/functions";
+
+console.log("Log for force redeploy");
 
 export default async (req) => {
     const { next_run } = await req.json()

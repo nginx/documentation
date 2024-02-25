@@ -1,7 +1,7 @@
 ---
-title: Learn about Policies
+title: Available Policies
 description: Learn about the policies available for use in NGINX Management Suite API Connectivity Manager.
-weight: 200
+weight: 500
 draft: false
 toc: true
 tags: [ "docs" ]

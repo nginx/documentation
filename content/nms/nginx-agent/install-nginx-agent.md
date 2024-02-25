@@ -77,6 +77,14 @@ You can choose one of the following two methods to install the NGINX Agent on yo
 - Install via the NGINX Management Suite API Gateway
 - Install from packages downloaded from [MyF5 Customer Portal](https://account.f5.com/myf5) or from your NGINX/F5 sales team.
 
+{{< note >}} You can also install NGINX Agent in the following ways: 
+
+- From the [GitHub releases](https://docs.nginx.com/nginx-agent/installation-upgrade/installation-github/) 
+- From the [NGINX Repository](https://docs.nginx.com/nginx-agent/installation-upgrade/installation-oss/)
+- From the [NGINX Plus Repository](https://docs.nginx.com/nginx-agent/installation-upgrade/installation-plus/).
+
+{{< /note >}}
+
 ### Install using the API
 
 {{< include "agent/installation/install-agent-api.md" >}}
@@ -476,10 +484,17 @@ For additional information on using NGINX with SELinux, refer to the guide [Usin
 
 {{< important >}}By default, communication between the NGINX Agent and NGINX Management Suite is unsecured.{{< /important >}}
 
-For instructions on how configure mTLS to secure communication between the NGINX Agent and NGINX Management Suite, see [NGINX Agent TLS Settings]({{< relref "/nms/nginx-agent/encrypt-nginx-agent-comms.md" >}}).
+For instructions on how configure mTLS to secure communication between the NGINX Agent and NGINX Management Suite, see [NGINX Agent TLS Settings](https://docs.nginx.com/nginx-agent/configuration/encrypt-communication/).
 
 ---
 
 ## NGINX Metrics
 
 After you register an NGINX instance with NGINX Management Suite, the NGINX Agent will collect and report metrics. For more information about the metrics that are reported, see [Overview: Instance Metrics]({{< relref "/nms/nim/about/overview-metrics.md" >}}).
+
+## Container Support
+NGINX Agent is a companion daemon for NGINX Open Source or NGINX Plus instances and must run in the same container to work. The NGINX Agent repository includes [Dockerfiles](https://github.com/nginx/agent/tree/main/scripts/docker) that can be used to build custom container images. Images are created with an NGINX Open Source or NGINX Plus instance and are available for various operating systems.
+
+See the requirements and supported operating systems in the [NGINX Agent Technical Specifications](https://docs.nginx.com/nginx-agent/technical-specifications/) topic.
+
+See the [Build Container Images](https://docs.nginx.com/nginx-agent/installation-upgrade/container-environments/docker-images/) topic for instructions on building container images.

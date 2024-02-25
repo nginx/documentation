@@ -12,7 +12,7 @@ weight: 1
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1113"
+docs: "DOCS-1081"
 # Taxonomies
 # These are pre-populated with all available terms for your convenience.
 # Remove all terms that do not apply.
@@ -380,4 +380,3 @@ For guidance on how to create a support package containing system and service de
 ### Deploy Other NGINX Management Suite Modules
 
 - [Deploy API Connectivity Manager on Kubernetes]({{< relref "/nms/installation/kubernetes/deploy-api-connectivity-manager.md" >}})
-- [Deploy App Delivery Manager on Kubernetes]({{< relref "/nms/installation/kubernetes/deploy-app-delivery-manager.md" >}})
