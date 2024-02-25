@@ -5564,7 +5564,7 @@ If the request doesn't align with a URL associated with an Access Profile, an at
 
 2. There are more or less than two dots in the token - `VIOL_ACCESS_MALFORMED` is detected when enforced on URL with access profile.
 
-3. Base64 decoding failure - `VIOL_ACCESS_MALFORMED` is detected JWT parts fail base64 URL decoding. `VIOL_PARAMETER_BASE64` is detected when enforced with access profile. 
+3. Base64 decoding failure - `VIOL_ACCESS_MALFORMED` is detected when JWT parts fail base64 URL decoding.  
 
 4. JSON parsing failure - `VIOL_ACCESS_MALFORMED` is detected when enforced on URL with access profile.
 
