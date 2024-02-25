@@ -1,3 +1,7 @@
+---
+docs: "DOCS-1409"
+---
+
  
 {{< eol-call-out "warning" "End of Sale Notice:" >}}
 F5 NGINX is announcing the **End of Sale (EoS)** for NGINX Management Suite API Connectivity Manager Module, **effective January 1, 2024**.

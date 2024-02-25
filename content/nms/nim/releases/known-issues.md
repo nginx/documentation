@@ -18,6 +18,49 @@ categories: ["known issues"]
 ## 2.15.0
 December 12, 2023
 
+### {{% icon-resolved %}} Unable to use NMS Predefined Log Profiles for NAP 4.7 {#44759}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44759 | Fixed in Instance Manager 2.15.1   |
+
+{{</bootstrap-table>}}
+#### Description
+The predefined NGINX Management Suite Log Profiles are incompatible with NGINX App Protect 4.7.
+
+#### Workaround
+
+To use the NGINX Management Suite predefined log profiles with NGINX App Protect 4.7 follow these steps:
+
+1. Retrieve the content of the NMS predefined log profile through the NMS Log Profile APIs, accessible in the (Manage WAF Security Policies and Security Log Profiles) section.
+1. Decode the content obtained in the previous step using base64 encoding.
+1. Modify the "max_request_size" and "max_message_size" values within the decoded content to the following:
+  
+    **"max_request_size": "2k", "max_message_size": "32k"**
+
+1. Create a custom log profile using the NMS Log Profile APIs, incorporating the base64 encoded content from the adjusted configuration.
+1. Update your NGINX configuration to reference the new custom log profile in the NGINX App Protect log profile directive.
+
+---
+
+### {{% icon-resolved %}} Helm chart backup and restore is broken in NIM 2.15.0 {#44758}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 44758 | Fixed in Instance Manager 2.15.1   |
+
+{{</bootstrap-table>}}
+#### Description
+Helm backup and restore will not run in 2.15.0 due to an underlying change in the dqlite client. Customers are advised to upgrade to 2.15.1. 
+
+#### Workaround
+
+Upgrade to NGINX Instance Manager 2.15.1.
+
+---
+
 ### {{% icon-bug %}} Some NGINX Management Suite features not available after adding license {#44698}
 
 {{<bootstrap-table "table table-striped table-bordered">}}

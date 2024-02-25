@@ -108,26 +108,6 @@ API Connectivity Manager comes pre-configured with roles suitable for API Owners
 
 ---
 
-### App Delivery Manager
-
-{{< include "admin-guides/rbac/features/app-delivery-manager.md" >}}
-
-
-#### Endpoints
-
-Explore the API endpoints for App Delivery Manager by going to **https://<NMS_FQDN>/ui/docs/App-Delivery-Manager**. Replace `<NMS_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Management Suite host, which is the complete domain name specific to your system.
-
----
-
-### Security Monitoring
-
-{{< include "admin-guides/rbac/features/security-monitoring.md" >}}
-
-
-#### Endpoints
-
-Explore the API endpoints for Security Monitoring by going to **https://<NMS_FQDN>/ui/docs**. Replace `<NMS_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Management Suite host, which is the complete domain name specific to your system.
-
 ## Next Steps {#next-steps}
 
 In the following topics, you'll learn how to add users and set up authentication methods such as basic authentication and OpenID Connect (OIDC). Once you've added users, you can create roles and assign them to individuals or user groups to provide access to specific features.

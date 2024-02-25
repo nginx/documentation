@@ -1,6 +1,8 @@
 # Redirects for specific pages or sections
-/nginx-agent/changelog/ https://github.com/nginx/agent/releases 301
 /nginx-app-protect/* /nginx-app-protect-waf/:splat 301
+
+# NGINX App Protect WAF redirects
+/nginx-app-protect-waf/admin-guide/install-for-controller/ /nginx-controller/admin-guides/install/install-for-controller/ 301
 
 # NGINX Amplify redirects
 /nginx-amplify/install-manage-amp-agent/ /nginx-amplify/nginx-amplify-agent/install/ 301
@@ -80,6 +82,7 @@
 /nginx-management-suite/acm/how-to/policies/configure-proxy-buffers/ /nginx-management-suite/acm/how-to/policies/http-backend-configuration/#buffers
 /nginx-management-suite/acm/how-to/publish-developer-portal/ /nginx-management-suite/acm/how-to/devportals/publish-to-devportal/
 /nginx-management-suite/acm/how-to/enable-sso-devportal/ /nginx-management-suite/acm/how-to/infrastructure/enable-sso-devportal/
+/nginx-management-suite/adm/* /nginx-management-suite/ 301
 /nginx-management-suite/admin-guides/installation/on-prem/install-guide/ /nginx-management-suite/installation/vm-bare-metal/ 301
 /nginx-management-suite/admin-guides/installation/on-prem/offline-install-guide/ /nginx-management-suite/installation/vm-bare-metal/offline-install-guide/ 301
 /nginx-management-suite/admin-guides/installation/kubernetes/enable-modules-for-existing-deployments/ /nginx-management-suite/installation/kubernetes/ 301
@@ -113,6 +116,10 @@
 /nginx-management-suite/adm/tutorials/usecase-templates/ /nginx-management-suite/adm/about/template-overview/ 301
 /nginx-management-suite/nms/admin-guides/authentication/oidc/oidc-azure/ /nginx-management-suite/nms/admin-guides/authentication/oidc/oidc-entra/ 301
 /nginx-management-suite/nms/admin-guides/authentication/oidc/oidc-azure-automation/ /nginx-management-suite/nms/admin-guides/authentication/oidc/oidc-entra-automation/ 301
+/nginx-management-suite/nginx-agent/configure-nginx-agent-group/ /nginx-agent/configuration/configure-nginx-agent-group/ 301
+/nginx-management-suite/nginx-agent/encrypt-nginx-agent-comms/ /nginx-agent/configuration/encrypt-communication/ 301
+/nginx-management-suite/nginx-agent/nginx-agent-docker-support/ /nginx-agent/installation-upgrade/container-environments/docker-support/ 301
+/nginx-management-suite/nginx-agent/nginx-agent-in-container/ /nginx-agent/installation-upgrade/container-environments/docker-images/ 301
 
 # NGINX Plus redirects
 /install-community-modules /nginx/admin-guide/installing-nginx/installing-nginx-plus/#installing-nginx-community-modules 301

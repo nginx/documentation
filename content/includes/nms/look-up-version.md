@@ -16,12 +16,6 @@ To see which version of an NGINX Management Suite module is installed, run the f
   yum info nms-api-connectivity-manager
   ```
 
-- App Delivery Manager:
-
-  ```bash
-  yum info nms-app-delivery-manager
-  ```
-
 - Security Monitoring module:
 
   ```bash
@@ -42,12 +36,6 @@ To see which version of an NGINX Management Suite module is installed, run the f
 
   ```bash
   dpkg -s nms-api-connectivity-manager
-  ```
-
-- App Delivery Manager:
-
-  ```bash
-  dpkg -s nms-app-delivery-manager
   ```
 
 - Security Monitoring module:

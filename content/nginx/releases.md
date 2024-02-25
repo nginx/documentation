@@ -100,6 +100,20 @@ NGINX Plus R31 is supported on:
 
 More information: [Announcing NGINX Plus R31](https://www.nginx.com/blog/nginx-plus-r31-released/)
 
+<span id="r31_p1"></span>
+### NGINX Plus R31 Update
+
+This is an improvement release for NGINX Plus R31.
+
+NGINX Plus R31 P1<br/>
+_14 February 2024_
+
+* Security: a segmentation fault might occur in a worker process if HTTP/3 was used ([CVE-2024-24989](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-24989), [CVE-2024-24990](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-24990))
+
+* Management module: fixed a potential crash that might happen while using a system resolver
+
+More information: [Updating NGINX for the Vulnerabilities in the HTTP/3 Module](https://www.nginx.com/blog/updating-nginx-for-the-vulnerabilities-in-the-http-3-module/)
+
 
 <span id="r30"></span>
 ## NGINX Plus Release 30 (R30)
@@ -179,6 +193,15 @@ _11 October 2023_
 * Additional protection against HTTP/2 Rapid Reset Attack vulnerability ([CVE-2023-44487](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-44487)) that may affect NGINX only when it is configured with the [keepalive requests](https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_requests) value substantially higher than the default value. Limitations in HTTP/2 protocol allow clients to produce a higher RPS rate than expected from a configured HTTP/2 [max concurrent streams](https://nginx.org/en/docs/http/ngx_http_v2_module.html#http2_max_concurrent_streams) setting which can be exploited to trigger a Denial-of-Service attack.
 
 More information: [HTTP/2 Rapid Reset Attack Impacting NGINX Products](https://www.nginx.com/blog/http-2-rapid-reset-attack-impacting-f5-nginx-products/)
+
+
+<span id="r30_p2"></span>
+NGINX Plus R30 P2<br/>
+_14 February 2024_
+
+* Security: a segmentation fault might occur in a worker process if HTTP/3 was used ([CVE-2024-24990](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-24990))
+
+More information: [Updating NGINX for the Vulnerabilities in the HTTP/3 Module](https://www.nginx.com/blog/updating-nginx-for-the-vulnerabilities-in-the-http-3-module/)
 
 
 <span id="r29"></span>

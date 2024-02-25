@@ -2,10 +2,6 @@
 docs: DOCS-1290
 ---
 
----
-docs:
----
-
 ```json
 {
   "name": "petstore-proxy",

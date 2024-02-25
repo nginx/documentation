@@ -265,7 +265,7 @@ gunzip nginx-plus-certs.gz
 
 <div data-proofer-ignore>
 
-Install NGINX App Protect on a host accessible by your NGINX Controller instance by following the appropriate steps for your operating system in the [Using NGINX App Protect with NGINX Controller](https://docs.nginx.com/nginx-app-protect/admin-guide/install-for-controller/) guide.
+Install NGINX App Protect on a host accessible by your NGINX Controller instance by following the appropriate steps for your operating system in the [Using NGINX App Protect with NGINX Controller]({{< relref "controller/admin-guides/install/install-for-controller.md" >}}) guide.
 
 {{< note >}}
 If you install NGINX App Protect by using any of the OS-specific install guides, **do not make changes to the `nginx.conf` file**.  

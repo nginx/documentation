@@ -100,7 +100,7 @@ Do not push configuration changes to the impacted instance, or any instance grou
 
 To install the NGINX Plus metrics module from NGINX Management Suite, use a command-line tool like `curl` or `wget`. 
 
-We highly recommend that you encrypt all traffic between NGINX Agent and NGINX Management Suite. You can find instructions in the [Encrypt Agent Communications]({{< relref "encrypt-nginx-agent-comms" >}}) guide. 
+We highly recommend that you encrypt all traffic between NGINX Agent and NGINX Management Suite. You can find instructions in the [Encrypt Agent Communications](https://docs.nginx.com/nginx-agent/configuration/encrypt-communication/) guide. 
 
 If your NGINX Management Suite deployment is non-production and doesn't have valid TLS certificates, you will need to use the tool's "insecure" option to complete the installation.
 

@@ -161,12 +161,6 @@ When you license an NGINX Management Suite module, you gain access to the full r
 
 <br>
 
-#### App Delivery Manager
-
-{{< include "admin-guides/rbac/features/app-delivery-manager.md" >}}
-
-<br>
-
 #### Security Monitoring
 
 {{< include "admin-guides/rbac/features/security-monitoring.md" >}}

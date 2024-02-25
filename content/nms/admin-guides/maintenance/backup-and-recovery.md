@@ -34,7 +34,6 @@ To complete the instructions in this guide, you need the following:
 
 - An installed version of Instance Manager
 - (optional) An installed version of API Connectivity Manager
-- (optional) An installed version of App Delivery Manager
 - An installed version of SQLite. Refer to the [Install SQLite]({{< relref "/nms/admin-guides/maintenance/sqlite-installation.md" >}}) guide for installation instructions.
 - The NGINX Management Suite services must be running:
 
@@ -141,33 +140,6 @@ By default, the data for modules isn't included in backups for NGINX Management 
 
     <br>
 
-    To back up and restore data for **App Delivery Manager**, uncomment the following lines, like so:
-
-    {{< beta-badge >}}
-
-    <details open>
-    <summary>backup.sh: enable backups for App Delivery Manager</summary>
-
-    ```text
-    ## Back up App Delivery Manager
-    # Uncomment the following line to back up App Delivery Manager.
-    ./backup-adm.sh
-    ```
-
-    </details>
-
-    <details open>
-    <summary>restore.sh: enable restore for App Delivery Manager</summary>
-
-    ```text
-    ## Restore the App Delivery Manager database.
-    # Uncomment the following line to restore App Delivery Manager.
-    ./restore-adm.sh
-    ```
-
-    </details>
-
-
 3. To create a backup, run the back up script:
 
     ```bash
@@ -200,7 +172,6 @@ To complete the instructions in this guide, you need the following:
 
 - An installed version of NGINX Management Suite and Instance Manager
 - (optional) An installed version of API Connectivity Manager
-- (optional) An installed version of App Delivery Manager
 - An installed version of SQLite. Refer to the [Install SQLite]({{< relref "/nms/admin-guides/maintenance/sqlite-installation.md" >}}) guide for installation instructions.
 
 
@@ -239,16 +210,13 @@ To complete the instructions in this guide, you need the following:
 
     To back up and restore NGINX Management Suite in a Kubernetes cluster, you need to install the `utility` pod in your Kubernetes cluster. Optionally, for each module you want to back up and restore, you need to configure the `utility` pod accordingly:
 
-    1. Update your [Helm Deployment values.yaml file]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md#configure-chart" >}}), add the `utility: true` line to enable the utility pod, and the required sections under `nmsModules` to enable the modules you want to back up and restore. For example, if you have API Connectivity Manager and App Delivery Manager installed, add the following:
+    1. Update your [Helm Deployment values.yaml file]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md#configure-chart" >}}), add the `utility: true` line to enable the utility pod, and the required sections under `nmsModules` to enable the modules you want to back up and restore. For example, if you have API Connectivity Manager installed, add the following:
 
         ```yaml
         global:
             utility: true
             nmsModules :
                 nsm—acm:
-                    enabled: true
-                    addClaimsToUtility: true
-                nms—adm :
                     enabled: true
                     addClaimsToUtility: true
         ```
@@ -270,31 +238,20 @@ To back up NGINX Management Suite deployed in a Kubernetes cluster, follow these
 
 1. Copy the extracted backup scripts to your working directory:
     - For NGINX Management Suite and API Connectivity Manager, copy`k8s-backup.sh` from the `nms-<version>/charts/nms-hybrid/backup-restore/` directory.
-    - (Optional) For App Delivery Manager, copy `k8s-backup-adm.sh` from the `nms-<version>/charts/nms-adm/backup-restore/`directory.
-
-
+ 
     ```bash
     cp nms-<version>/charts/nms-hybrid/backup-restore/k8s-backup.sh .
     cp nms-<version>/charts/nms-adm/backup-restore/k8s-backup-adm.sh .
     ```
 
-2. Make the scripts executable:
+1. Make the scripts executable:
 
     ```bash
     chmod +x k8s-backup.sh
     chmod +x k8s-backup-adm.sh
     ```
 
-3. (Optional) For App Delivery Manager modules, uncomment the related section in the `k8s-backup.sh` script as follows:
-
-    ```bash
-    ##  Back up App Delivery Manager
-    # Uncomment the following lines to back up App Delivery Manager.
-    export PACKAGE_DIR NMS_HELM_NAMESPACE
-    ./k8s-backup-adm.sh
-    ```
-
-4. Run the backup script:
+1. Run the backup script:
 
     ```bash
     ./k8s-backup.sh
@@ -310,18 +267,15 @@ To restore NGINX Management Suite and the installed modules deployed in the same
 1. Copy the extracted backup scripts to your working directory:
 
     - For NGINX Management Suite and API Connectivity Manager, copy`k8s-restore.sh` from the `nms-<version>/charts/nms-hybrid/backup-restore/` directory.
-    - (Optional) For App Delivery Management, copy `k8s-restore-adm.sh` from the `nms-<version>/charts/nms-adm/backup-restore/`directory.
 
     ```bash
     cp nms-<version>/nms/charts/nms-hybrid/backup-restore/k8s-restore.sh .
-    cp nms-<version>/nms/charts/nms-adm/backup-restore/k8s-restore-adm.sh .
     ```
 
 2. Make the scripts executable:
 
     ```bash
     chmod +x k8s-restore.sh
-    chmod +x k8s-restore-adm.sh
     ```
 
 3. Copy your k8s-backup-<timestamp>.tar.gz file to the same directory as the k8s-restore.sh script.
@@ -345,11 +299,9 @@ To restore NGINX Management Suite and the installed modules into a different Kub
 1. Copy the extracted backup scripts to your working directory:
 
     - For NGINX Management Suite and API Connectivity Manager, copy`k8s-restore.sh` from the `nms-<version>/charts/nms-hybrid/backup-restore/` directory.
-    - (Optional) For App Delivery Management, copy `k8s-restore-adm.sh` from the `nms-<version>/charts/nms-adm/backup-restore/`directory.
 
     ```bash
     cp nms-<version>/nms/charts/nms-hybrid/backup-restore/k8s-restore.sh .
-    cp nms-<version>/nms/charts/nms-adm/backup-restore/k8s-restore-adm.sh .
     ```
 
 2. Make the scripts executable:
