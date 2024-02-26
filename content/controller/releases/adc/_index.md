@@ -7,5 +7,4 @@ menu:
 title: NGINX Controller Application Delivery Module
 weight: 50
 url: /nginx-controller/releases/adc/
-layout: "ctlr-eos-list"
 ---

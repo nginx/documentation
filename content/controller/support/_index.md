@@ -6,6 +6,5 @@ menu:
 title: Support
 weight: 500
 url: /nginx-controller/support/
-layout: "ctlr-eos-list"
 ---
 

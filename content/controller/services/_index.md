@@ -7,5 +7,4 @@ menu:
 title: Services
 weight: 150
 url: /nginx-controller/services/
-layout: "ctlr-eos-list"
 ---

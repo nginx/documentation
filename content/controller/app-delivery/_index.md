@@ -8,5 +8,4 @@ menu:
 title: Application Delivery
 weight: 152
 url: /nginx-controller/app-delivery/
-layout: "ctlr-eos-list"
 ---

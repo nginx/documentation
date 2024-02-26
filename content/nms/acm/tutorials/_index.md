@@ -4,5 +4,4 @@ title: Tutorials
 weight: 600
 draft: false
 url: /nginx-management-suite/acm/tutorials/
-layout: "acm-eos-list"
 ---

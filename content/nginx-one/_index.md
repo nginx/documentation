@@ -1,11 +1,10 @@
 ---
 title: NGINX One
-description: 
+description:
 url: /nginx-one/
-layout: "nginx-one-ea-list"
 cascade:
   logo: "NGINX-One-product-icon.svg"
-  layout: "nginx-one-ea"
+  type: "nginx-one-ea"
 ---
 
 

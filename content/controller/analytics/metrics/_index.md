@@ -7,5 +7,4 @@ menu:
 title: Metrics
 weight: 150
 url: /nginx-controller/analytics/metrics/
-layout: "ctlr-eos-list"
 ---

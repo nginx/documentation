@@ -7,5 +7,4 @@ menu:
 title: Data Explorer
 weight: 120
 url: /nginx-controller/analytics/data-explorer/
-layout: "ctlr-eos-list"
 ---

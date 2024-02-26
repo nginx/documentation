@@ -7,5 +7,4 @@ menu:
 title: NGINX Controller API Management Module
 weight: 100
 url: /nginx-controller/releases/apim/
-layout: "ctlr-eos-list"
 ---

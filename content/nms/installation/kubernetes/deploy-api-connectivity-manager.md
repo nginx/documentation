@@ -4,7 +4,7 @@ date: 2023-05-09T13:34:26-07:00
 # Change draft status to false to publish doc.
 draft: false
 # Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
+# Add a short description (150 chars) for the doc. Include keywords for SEO.
 # The description text appears in search results and at the top of the doc.
 description: "The guide provides step-by-step instructions to deploy NGINX API Connectivity Manager on Kubernetes using a Helm chart."
 # Assign weights in increments of 100
@@ -13,7 +13,7 @@ toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
 docs: "DOCS-1276"
-layout: "acm-eos"
+type: "acm-eos"
 # Taxonomies
 # These are pre-populated with all available terms for your convenience.
 # Remove all terms that do not apply.
@@ -164,7 +164,7 @@ To enable the API Connectivity Manager Module, take the following steps:
        - name: regcred
        acm:
            image:
-               repository: <my-docker-registry:port>/nms-acm 
+               repository: <my-docker-registry:port>/nms-acm
                tag: <version>
    ```
 

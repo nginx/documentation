@@ -6,5 +6,4 @@ menu:
 title: Maintenance
 weight: 250
 url: /nginx-controller/platform/maintenance/
-layout: "ctlr-eos-list"
 ---
