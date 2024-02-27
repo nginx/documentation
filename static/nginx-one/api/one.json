@@ -79,6 +79,26 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         }
       },
@@ -142,7 +162,7 @@
         }
       }
     },
-    "/data-plane-keys/{data_plane_key_uuid}": {
+    "/data-plane-keys/{data_plane_key_id}": {
       "get": {
         "tags": [
           "Data Plane Key"
@@ -167,6 +187,26 @@
                   "DataPlaneKeys": {
                     "$ref": "#/components/examples/DataPlaneKey"
                   }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -201,6 +241,16 @@
           },
           "409": {
             "description": "Cannot delete an active data plane key. Revoke the key first, then try deleting it again.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
             "content": {
               "application/json": {
                 "schema": {
@@ -286,7 +336,7 @@
         }
       }
     },
-    "/data-plane-keys/{data_plane_key_uuid}/revoke": {
+    "/data-plane-keys/{data_plane_key_id}/revoke": {
       "put": {
         "tags": [
           "Data Plane Key"
@@ -324,6 +374,16 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         }
       }
@@ -343,6 +403,26 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/InstanceSummary"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -394,11 +474,31 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         }
       }
     },
-    "/instances/{instanceUUID}/cves": {
+    "/instances/{instanceObjectID}/cves": {
       "get": {
         "tags": [
           "Instances"
@@ -408,7 +508,7 @@
         "operationId": "listInstanceSecurityAdvisories",
         "parameters": [
           {
-            "$ref": "#/components/parameters/InstanceUUID"
+            "$ref": "#/components/parameters/InstanceObjectID"
           }
         ],
         "responses": {
@@ -425,8 +525,28 @@
               }
             }
           },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "404": {
             "description": "The NGINX instance with the specified UUID was not found. Check that the UUID provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
             "content": {
               "application/json": {
                 "schema": {
@@ -438,7 +558,7 @@
         }
       }
     },
-    "/instances/{instanceUUID}": {
+    "/instances/{instanceObjectID}": {
       "get": {
         "tags": [
           "Instances"
@@ -448,7 +568,7 @@
         "operationId": "getInstance",
         "parameters": [
           {
-            "$ref": "#/components/parameters/InstanceUUID"
+            "$ref": "#/components/parameters/InstanceObjectID"
           }
         ],
         "responses": {
@@ -462,8 +582,28 @@
               }
             }
           },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "404": {
             "description": "The NGINX instance with the specified UUID was not found. Check that the UUID provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
             "content": {
               "application/json": {
                 "schema": {
@@ -483,15 +623,35 @@
         "operationId": "deleteInstance",
         "parameters": [
           {
-            "$ref": "#/components/parameters/InstanceUUID"
+            "$ref": "#/components/parameters/InstanceObjectID"
           }
         ],
         "responses": {
           "204": {
             "description": "Successfully deleted the NGINX instance."
           },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "404": {
             "description": "The NGINX instance with the specified UUID was not found. Check that the UUID provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
             "content": {
               "application/json": {
                 "schema": {
@@ -503,7 +663,7 @@
         }
       }
     },
-    "/instances/{instanceUUID}/config-report": {
+    "/instances/{instanceObjectID}/config-report": {
       "get": {
         "tags": [
           "Instances"
@@ -513,7 +673,7 @@
         "operationId": "getInstanceConfigReport",
         "parameters": [
           {
-            "$ref": "#/components/parameters/InstanceUUID"
+            "$ref": "#/components/parameters/InstanceObjectID"
           }
         ],
         "responses": {
@@ -539,11 +699,21 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         }
       }
     },
-    "/instances/{instanceUUID}/config": {
+    "/instances/{instanceObjectID}/config": {
       "get": {
         "tags": [
           "Instances"
@@ -553,7 +723,7 @@
         "operationId": "getInstanceConfig",
         "parameters": [
           {
-            "$ref": "#/components/parameters/InstanceUUID"
+            "$ref": "#/components/parameters/InstanceObjectID"
           }
         ],
         "responses": {
@@ -567,8 +737,28 @@
               }
             }
           },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "404": {
             "description": "The NGINX instance with the specified UUID was not found. Check that the UUID provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
             "content": {
               "application/json": {
                 "schema": {
@@ -899,7 +1089,7 @@
       "FilterFieldDataPlaneKeys": {
         "name": "filter_fields",
         "in": "query",
-        "description": "Filter options for data plane keys; used in conjunction with other filter parameters having the same array length.\n\nWhen filtering on `status`, only the following `filter_values` are supported:\n  * revoked\n  * valid\n",
+        "description": "Filter options for data plane keys; used in conjunction with other filter parameters having the same array length.\n\nWhen filtering on `status`, only the following `filter_values` are supported:\n  * revoked\n  * expired\n  * valid\n",
         "schema": {
           "type": "array",
           "items": {
@@ -936,13 +1126,12 @@
         }
       },
       "DataPlaneKeyUUID": {
-        "name": "data_plane_key_uuid",
+        "name": "data_plane_key_id",
         "in": "path",
         "schema": {
-          "type": "string",
-          "format": "uuid"
+          "$ref": "#/components/schemas/DataPlaneKeyObjectID"
         },
-        "description": "The unique identifier (UUID) for the data plane key.\n",
+        "description": "A globally unique identifier for the data plane key.\n",
         "required": true
       },
       "FilterFieldInstances": {
@@ -993,14 +1182,13 @@
           }
         }
       },
-      "InstanceUUID": {
-        "name": "instanceUUID",
+      "InstanceObjectID": {
+        "name": "instanceObjectID",
         "in": "path",
         "schema": {
-          "type": "string",
-          "format": "uuid"
+          "$ref": "#/components/schemas/InstanceObjectID"
         },
-        "description": "The unique identifier (UUID) for the NGINX instance.\n",
+        "description": "A globally unique identifier for the NGINX instance.\n",
         "required": true
       }
     },
@@ -1009,9 +1197,11 @@
         "type": "string",
         "description": "Keywords for data plane key filters.\nWhen filtering on `status`, only the following `filter_values` are supported:\n  * revoked\n  * valid\n",
         "enum": [
+          "name",
           "status"
         ],
         "x-enum-varnames": [
+          "filter_name_data_plane_key_name",
           "filter_name_data_plane_key_status"
         ]
       },
@@ -1019,9 +1209,7 @@
         "type": "object",
         "description": "Outlines pagination details for list responses, including total results, start index, and items per page.",
         "required": [
-          "count",
-          "start_index",
-          "items_per_page"
+          "count"
         ],
         "properties": {
           "count": {
@@ -1043,6 +1231,16 @@
           "items_per_page": 100
         }
       },
+      "DataPlaneKeyObjectID": {
+        "description": "A globally unique identifier for the data plane key.",
+        "type": "string",
+        "format": "object_id",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
+      },
       "DataPlaneKey": {
         "type": "object",
         "description": "Represents a data plane key with details such as UUID, name, and timestamps.",
@@ -1056,9 +1254,7 @@
         ],
         "properties": {
           "uuid": {
-            "description": "The unique identifier (UUID) for the data plane key.",
-            "type": "string",
-            "format": "uuid"
+            "$ref": "#/components/schemas/DataPlaneKeyObjectID"
           },
           "name": {
             "description": "The name given to the data plane key.",
@@ -1113,6 +1309,33 @@
           }
         ]
       },
+      "Error": {
+        "description": "This object contains details about the errors that are returned when API requests fail.",
+        "type": "object",
+        "required": [
+          "message",
+          "request_id",
+          "timestamp"
+        ],
+        "properties": {
+          "message": {
+            "description": "The error message describing the problem.",
+            "type": "string"
+          },
+          "request_id": {
+            "description": "The unique identifier of the API request that failed.",
+            "type": "string"
+          },
+          "timestamp": {
+            "description": "The date and time (in UTC) when the error happened.",
+            "type": "string"
+          },
+          "detail": {
+            "description": "Additional information about the error, if available.",
+            "type": "string"
+          }
+        }
+      },
       "DataPlaneKeyRequest": {
         "type": "object",
         "description": "Request structure for creating a new data plane key.",
@@ -1145,9 +1368,7 @@
             "type": "string"
           },
           "uuid": {
-            "description": "The unique identifier (UUID) for the data plane key.",
-            "type": "string",
-            "format": "uuid"
+            "$ref": "#/components/schemas/DataPlaneKeyObjectID"
           },
           "key": {
             "description": "The data plane key value. Save this key somewhere secure as it isn't saved and is shown only once.",
@@ -1157,33 +1378,6 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the data plane key will expire."
-          }
-        }
-      },
-      "Error": {
-        "description": "This object contains details about the errors that are returned when API requests fail.",
-        "type": "object",
-        "required": [
-          "message",
-          "request_id",
-          "timestamp"
-        ],
-        "properties": {
-          "message": {
-            "description": "The error message describing the problem.",
-            "type": "string"
-          },
-          "request_id": {
-            "description": "The unique identifier of the API request that failed.",
-            "type": "string"
-          },
-          "timestamp": {
-            "description": "The date and time (in UTC) when the error happened.",
-            "type": "string"
-          },
-          "detail": {
-            "description": "Additional information about the error, if available.",
-            "type": "string"
           }
         }
       },
@@ -1240,8 +1434,8 @@
             "type": "integer"
           },
           "display": {
-            "type": "string",
-            "description": "A user-friendly label for the category count, intended for display purposes where a more descriptive or readable format is preferred."
+            "description": "A user-friendly label for the category count, intended for display purposes where a more descriptive or readable format is preferred.",
+            "type": "string"
           }
         }
       },
@@ -1385,7 +1579,7 @@
       },
       "FilterNameInstances": {
         "type": "string",
-        "description": "Keywords for filtering instances.\n\nWhen filtering on `instance_status`, only the following `filter_values` are supported:\n  * online\n  * offline\n  * unavailable\n  * unknown\nWhen filtering on `cert_status`, only the following `filter_values` are supported:\n  * valid\n  * expired\n  * expiring\n",
+        "description": "Keywords for instance filters.\n\nWhen filtering on `instance_status`, only the following `filter_values` are supported:\n  * online\n  * offline\n  * unavailable\n  * unknown\nWhen filtering base on `cert_status`, only the following `filter_values` are supported:\n  * valid\n  * expired\n  * expiring\n",
         "enum": [
           "hostname",
           "nginx_version",
@@ -1404,6 +1598,16 @@
           "filter_name_cve_severity",
           "filter_name_config_recommendation"
         ]
+      },
+      "InstanceObjectID": {
+        "description": "A globally unique identifier for the NGINX instance.",
+        "type": "string",
+        "format": "object_id",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
       },
       "NginxBuild": {
         "description": "The build details for the NGINX binary, including its configuration parameters.\n",
@@ -1502,9 +1706,7 @@
         ],
         "properties": {
           "uuid": {
-            "description": "The unique identifier (UUID) for the NGINX instance.",
-            "type": "string",
-            "format": "uuid"
+            "$ref": "#/components/schemas/InstanceObjectID"
           },
           "hostname": {
             "description": "The name of the host system where the NGINX instance is running.",
@@ -1523,9 +1725,7 @@
             "type": "string"
           },
           "key_uuid": {
-            "description": "The unique identifier (UUID) of the data plane key used in the most recent connection. This field can be empty if the data plane key has been deleted.\n",
-            "format": "uuid",
-            "type": "string"
+            "$ref": "#/components/schemas/DataPlaneKeyObjectID"
           },
           "nginx_build": {
             "$ref": "#/components/schemas/NginxBuild"
@@ -1604,7 +1804,7 @@
             {
               "agent_version": "v2.30.3",
               "hostname": "4d116619f106",
-              "key_uuid": "fee8a1ad-a658-403c-8b5d-134a50581bdf",
+              "key_uuid": "key_Tet21AeYTHCj7taOwVfzyw",
               "last_reported": "2023-12-06T22:37:24.120114Z",
               "nginx_build": {
                 "conf_path": "/etc/nginx/nginx.conf",
@@ -1614,7 +1814,7 @@
               "registered_at": "2023-12-06T22:37:24.120114Z",
               "status": "unknown",
               "system_id": "b2c0b6a8-8b6a-3a8f-a541-17d8899c119a",
-              "uuid": "b5174026-f5dd-427f-beea-22995b7d93e6"
+              "uuid": "inst_-uvR3F2TQGm18jnl7bpaGw"
             }
           ]
         }
@@ -1773,7 +1973,7 @@
             }
           ],
           "hostname": "4d116619f106",
-          "key_uuid": "fee8a1ad-a658-403c-8b5d-134a50581bdf",
+          "key_uuid": "key_wN3IhLCmR3qmwybG_6ptEg",
           "last_reported": "2023-12-06T22:37:24.120114Z",
           "nginx_build": {
             "conf_path": "/etc/nginx/nginx.conf",
@@ -2008,7 +2208,7 @@
             "example": "plus.upstream.response.count"
           },
           "aggr": {
-            "description": "The aggregation function applied to the metric. \n",
+            "description": "The aggregation function applied to the metric.\n",
             "type": "string",
             "enum": [
               "AVG",
@@ -2255,7 +2455,7 @@
           "rel": {
             "type": "string",
             "example": "/api/v1/monitor/catalogs/dimensions/system_id",
-            "description": "The complete path fragment of a URI that, when combined with a base URL, can be used to construct a query to the dimension resource. \n"
+            "description": "The complete path fragment of a URI that, when combined with a base URL, can be used to construct a query to the dimension resource.\n"
           }
         }
       }
@@ -2263,16 +2463,25 @@
     "examples": {
       "DataPlaneKeys": {
         "value": {
+          "count": 2,
+          "start_index": 1,
+          "items_per_page": 100,
           "items": [
             {
               "expires_at": "2023-12-01T00:00:00Z",
+              "modified_at": "2023-11-01T00:00:00Z",
+              "created_at": "2023-10-01T00:00:00Z",
+              "revoked": false,
               "name": "my-data-plane-key",
-              "uuid": "c51f9b68-c436-4a69-9aa4-c01fd89895b0"
+              "uuid": "key_wN3IhLCmR3qmwybG_6ptEg"
             },
             {
               "expires_at": "2023-12-01T00:00:00Z",
+              "modified_at": "2023-11-01T00:00:00Z",
+              "created_at": "2023-10-01T00:00:00Z",
+              "revoked": false,
               "name": "my-data-plane-key",
-              "uuid": "c0fd9d55-7b4b-43aa-aa44-7289cc5b3a5c"
+              "uuid": "key_Tet21AeYTHCj7taOwVfzyw"
             }
           ]
         }
@@ -2288,28 +2497,40 @@
           "expires_at": "2023-12-01T00:00:00Z",
           "key": "AVQFrgADVFpJ9qvI7BX1+OlHUxdZRMsSCm4Q35CrqAQ=",
           "name": "my-data-plane-key",
-          "uuid": "c51f9b68-c436-4a69-9aa4-c01fd89895b0"
+          "uuid": "key_Tet21AeYTHCj7taOwVfzyw"
         }
       },
       "DataPlaneKey": {
         "value": {
           "expires_at": "2023-12-01T00:00:00Z",
+          "modified_at": "2023-11-01T00:00:00Z",
+          "created_at": "2023-10-01T00:00:00Z",
+          "revoked": false,
           "name": "my-data-plane-key",
-          "uuid": "c51f9b68-c436-4a69-9aa4-c01fd89895b0"
+          "uuid": "key_wN3IhLCmR3qmwybG_6ptEg"
         }
       }
     }
   },
   "x-tagGroups": [
     {
-      "name": "ext-openapi",
+      "name": "Manage Data Plane Keys",
       "tags": [
-        "Data Plane Key",
-        "Instances",
+        "Data Plane Key"
+      ]
+    },
+    {
+      "name": "Manage NGINX Instances",
+      "tags": [
+        "Instances"
+      ]
+    },
+    {
+      "name": "Monitor NGINX Instances``",
+      "tags": [
         "Metrics",
         "Catalogs"
-      ],
-      "description": "Keep track of how your NGINX instances are performing by querying for system metrics. Refine your insights by applying specific dimensions."
+      ]
     }
   ]
 }
