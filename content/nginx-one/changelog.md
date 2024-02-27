@@ -29,11 +29,11 @@ Stay up-to-date with what's new and improved in NGINX One.
 ## February 29, 2024 - v0.20240227.1192838615
 ### Breaking Change
 
-- API responses now utilizes "object_id" instead of uuid, example **key_1mp6W5pqRxSZJugJN-yA8g**. Following object prefix has been added: 
-  - **key_** for data-plane-keys
-  - **inst_** for NGINX instances
-  - **nc_** for NGINX configurations
-- Correspondingly, JSON key **uuid** in return objects has been updated to **object_id**.
+- API responses now use "object_id" instead of "uuid". For example, **key_1mp6W5pqRxSZJugJN-yA8g**. We've introduced specific prefixes for different types of objects:
+  - Use **key_** for data-plane keys.
+  - Use **inst_** for NGINX instances.
+  - Use **nc_** for NGINX configurations.
+- Likewise, we've updated the JSON key from **uuid** to **object_id** in response objects.
 
 ## February 6, 2024
 
