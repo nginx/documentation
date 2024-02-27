@@ -27,6 +27,7 @@ authors: []
 Stay up-to-date with what's new and improved in NGINX One.
 
 ## February 29, 2024 - v0.20240227.1192838615
+
 ### Breaking Change
 
 - API responses now use "object_id" instead of "uuid". For example, **key_1mp6W5pqRxSZJugJN-yA8g**. We've introduced specific prefixes for different types of objects:
