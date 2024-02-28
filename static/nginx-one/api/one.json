@@ -172,7 +172,7 @@
         "operationId": "getDataPlaneKey",
         "parameters": [
           {
-            "$ref": "#/components/parameters/DataPlaneKeyUUID"
+            "$ref": "#/components/parameters/DataPlaneKeyParamObjectID"
           }
         ],
         "responses": {
@@ -222,7 +222,7 @@
         "operationId": "deleteDataPlaneKey",
         "parameters": [
           {
-            "$ref": "#/components/parameters/DataPlaneKeyUUID"
+            "$ref": "#/components/parameters/DataPlaneKeyParamObjectID"
           }
         ],
         "responses": {
@@ -230,7 +230,7 @@
             "description": "Successfully deleted the data plane key."
           },
           "404": {
-            "description": "The data plane key with the specified UUID was not found. Check that the UUID provided is correct and corresponds to an existing resource.",
+            "description": "The data plane key with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
             "content": {
               "application/json": {
                 "schema": {
@@ -270,7 +270,7 @@
         "operationId": "updateDataPlaneKey",
         "parameters": [
           {
-            "$ref": "#/components/parameters/DataPlaneKeyUUID"
+            "$ref": "#/components/parameters/DataPlaneKeyParamObjectID"
           }
         ],
         "requestBody": {
@@ -314,7 +314,7 @@
             }
           },
           "404": {
-            "description": "The data plane key with the specified UUID was not found. Check that the UUID provided is correct and corresponds to an existing resource.",
+            "description": "The data plane key with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
             "content": {
               "application/json": {
                 "schema": {
@@ -346,7 +346,7 @@
         "operationId": "revokeDataPlaneKey",
         "parameters": [
           {
-            "$ref": "#/components/parameters/DataPlaneKeyUUID"
+            "$ref": "#/components/parameters/DataPlaneKeyParamObjectID"
           }
         ],
         "responses": {
@@ -366,7 +366,7 @@
             }
           },
           "404": {
-            "description": "The data plane key with the specified UUID was not found. Check that the UUID provided is correct and corresponds to an existing resource.",
+            "description": "The data plane key with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
             "content": {
               "application/json": {
                 "schema": {
@@ -508,7 +508,7 @@
         "operationId": "listInstanceSecurityAdvisories",
         "parameters": [
           {
-            "$ref": "#/components/parameters/InstanceObjectID"
+            "$ref": "#/components/parameters/InstanceParamObjectID"
           }
         ],
         "responses": {
@@ -536,7 +536,7 @@
             }
           },
           "404": {
-            "description": "The NGINX instance with the specified UUID was not found. Check that the UUID provided is correct and corresponds to an existing resource.",
+            "description": "The NGINX instance with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
             "content": {
               "application/json": {
                 "schema": {
@@ -568,7 +568,7 @@
         "operationId": "getInstance",
         "parameters": [
           {
-            "$ref": "#/components/parameters/InstanceObjectID"
+            "$ref": "#/components/parameters/InstanceParamObjectID"
           }
         ],
         "responses": {
@@ -593,7 +593,7 @@
             }
           },
           "404": {
-            "description": "The NGINX instance with the specified UUID was not found. Check that the UUID provided is correct and corresponds to an existing resource.",
+            "description": "The NGINX instance with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
             "content": {
               "application/json": {
                 "schema": {
@@ -623,7 +623,7 @@
         "operationId": "deleteInstance",
         "parameters": [
           {
-            "$ref": "#/components/parameters/InstanceObjectID"
+            "$ref": "#/components/parameters/InstanceParamObjectID"
           }
         ],
         "responses": {
@@ -641,7 +641,7 @@
             }
           },
           "404": {
-            "description": "The NGINX instance with the specified UUID was not found. Check that the UUID provided is correct and corresponds to an existing resource.",
+            "description": "The NGINX instance with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
             "content": {
               "application/json": {
                 "schema": {
@@ -673,7 +673,7 @@
         "operationId": "getInstanceConfigReport",
         "parameters": [
           {
-            "$ref": "#/components/parameters/InstanceObjectID"
+            "$ref": "#/components/parameters/InstanceParamObjectID"
           }
         ],
         "responses": {
@@ -691,7 +691,7 @@
             }
           },
           "404": {
-            "description": "The NGINX instance with the specified UUID was not found. Check that the UUID provided is correct and corresponds to an existing resource.",
+            "description": "The NGINX instance with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
             "content": {
               "application/json": {
                 "schema": {
@@ -723,7 +723,7 @@
         "operationId": "getInstanceConfig",
         "parameters": [
           {
-            "$ref": "#/components/parameters/InstanceObjectID"
+            "$ref": "#/components/parameters/InstanceParamObjectID"
           }
         ],
         "responses": {
@@ -748,7 +748,7 @@
             }
           },
           "404": {
-            "description": "The NGINX instance with the specified UUID was not found. Check that the UUID provided is correct and corresponds to an existing resource.",
+            "description": "The NGINX instance with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1125,7 +1125,7 @@
           }
         }
       },
-      "DataPlaneKeyUUID": {
+      "DataPlaneKeyParamObjectID": {
         "name": "data_plane_key_id",
         "in": "path",
         "schema": {
@@ -1182,7 +1182,7 @@
           }
         }
       },
-      "InstanceObjectID": {
+      "InstanceParamObjectID": {
         "name": "instanceObjectID",
         "in": "path",
         "schema": {
@@ -1243,9 +1243,9 @@
       },
       "DataPlaneKey": {
         "type": "object",
-        "description": "Represents a data plane key with details such as UUID, name, and timestamps.",
+        "description": "Represents a data plane key with details such as object_id, name, and timestamps.",
         "required": [
-          "uuid",
+          "object_id",
           "name",
           "revoked",
           "expires_at",
@@ -1253,7 +1253,7 @@
           "modified_at"
         ],
         "properties": {
-          "uuid": {
+          "object_id": {
             "$ref": "#/components/schemas/DataPlaneKeyObjectID"
           },
           "name": {
@@ -1359,7 +1359,7 @@
         "description": "Response structure containing details of the created or retrieved data plane key.",
         "required": [
           "key",
-          "uuid",
+          "object_id",
           "expires_at"
         ],
         "properties": {
@@ -1367,7 +1367,7 @@
             "description": "The name to be give to the new data plane key.",
             "type": "string"
           },
-          "uuid": {
+          "object_id": {
             "$ref": "#/components/schemas/DataPlaneKeyObjectID"
           },
           "key": {
@@ -1696,7 +1696,7 @@
         "type": "object",
         "description": "Summary information about a NGINX instance.",
         "required": [
-          "uuid",
+          "object_id",
           "hostname",
           "system_id",
           "agent_version",
@@ -1705,7 +1705,7 @@
           "status"
         ],
         "properties": {
-          "uuid": {
+          "object_id": {
             "$ref": "#/components/schemas/InstanceObjectID"
           },
           "hostname": {
@@ -1724,7 +1724,7 @@
             "description": "The version of the NGINX Agent.",
             "type": "string"
           },
-          "key_uuid": {
+          "key_object_id": {
             "$ref": "#/components/schemas/DataPlaneKeyObjectID"
           },
           "nginx_build": {
@@ -1804,7 +1804,7 @@
             {
               "agent_version": "v2.30.3",
               "hostname": "4d116619f106",
-              "key_uuid": "key_Tet21AeYTHCj7taOwVfzyw",
+              "key": "key_Tet21AeYTHCj7taOwVfzyw",
               "last_reported": "2023-12-06T22:37:24.120114Z",
               "nginx_build": {
                 "conf_path": "/etc/nginx/nginx.conf",
@@ -1814,7 +1814,7 @@
               "registered_at": "2023-12-06T22:37:24.120114Z",
               "status": "unknown",
               "system_id": "b2c0b6a8-8b6a-3a8f-a541-17d8899c119a",
-              "uuid": "inst_-uvR3F2TQGm18jnl7bpaGw"
+              "object_id": "inst_-uvR3F2TQGm18jnl7bpaGw"
             }
           ]
         }
@@ -1841,6 +1841,16 @@
           }
         }
       },
+      "CertificateObjectID": {
+        "description": "A globally unique identifier for the certificates.",
+        "type": "string",
+        "format": "object_id",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
+      },
       "CertAssociation": {
         "type": "object",
         "description": "Details for a certificate that's associated with an instance.",
@@ -1859,11 +1869,8 @@
             "type": "string",
             "description": "A friendly name for the certificate."
           },
-          "uid": {
-            "type": "string",
-            "description": "The unique identifier assigned to the certificate for identification and management purposes.",
-            "format": "uuid",
-            "example": "6692f820-c15c-4286-a405-38806b22064f"
+          "object_id": {
+            "$ref": "#/components/schemas/CertificateObjectID"
           },
           "paths": {
             "type": "array",
@@ -1973,7 +1980,7 @@
             }
           ],
           "hostname": "4d116619f106",
-          "key_uuid": "key_wN3IhLCmR3qmwybG_6ptEg",
+          "key": "key_wN3IhLCmR3qmwybG_6ptEg",
           "last_reported": "2023-12-06T22:37:24.120114Z",
           "nginx_build": {
             "conf_path": "/etc/nginx/nginx.conf",
@@ -1990,7 +1997,7 @@
           "registered_at": "2023-12-06T22:37:24.120114Z",
           "status": "unknown",
           "system_id": "b2c0b6a8-8b6a-3a8f-a541-17d8899c119a",
-          "uuid": "b5174026-f5dd-427f-beea-22995b7d93e6"
+          "object_id": "b5174026-f5dd-427f-beea-22995b7d93e6"
         }
       },
       "NginxConfigProblem": {
@@ -2045,6 +2052,16 @@
               "$ref": "#/components/schemas/NginxConfigProblem"
             }
           }
+        }
+      },
+      "NginxConfigObjectID": {
+        "description": "A globally unique identifier for the NGINX Config object.",
+        "type": "string",
+        "format": "object_id",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
         }
       },
       "FileData": {
@@ -2116,15 +2133,13 @@
         "type": "object",
         "description": "Details of an NGINX configuration, including its unique identifier, the main configuration path, and the configuration directories.\n",
         "required": [
-          "uuid",
+          "object_id",
           "conf_path",
           "configs"
         ],
         "properties": {
-          "uuid": {
-            "description": "A unique identifier for the NGINX configuration.",
-            "type": "string",
-            "format": "uuid"
+          "object_id": {
+            "$ref": "#/components/schemas/NginxConfigObjectID"
           },
           "conf_path": {
             "type": "string",
@@ -2473,7 +2488,7 @@
               "created_at": "2023-10-01T00:00:00Z",
               "revoked": false,
               "name": "my-data-plane-key",
-              "uuid": "key_wN3IhLCmR3qmwybG_6ptEg"
+              "object_id": "key_wN3IhLCmR3qmwybG_6ptEg"
             },
             {
               "expires_at": "2023-12-01T00:00:00Z",
@@ -2481,7 +2496,7 @@
               "created_at": "2023-10-01T00:00:00Z",
               "revoked": false,
               "name": "my-data-plane-key",
-              "uuid": "key_Tet21AeYTHCj7taOwVfzyw"
+              "object_id": "key_Tet21AeYTHCj7taOwVfzyw"
             }
           ]
         }
@@ -2497,7 +2512,7 @@
           "expires_at": "2023-12-01T00:00:00Z",
           "key": "AVQFrgADVFpJ9qvI7BX1+OlHUxdZRMsSCm4Q35CrqAQ=",
           "name": "my-data-plane-key",
-          "uuid": "key_Tet21AeYTHCj7taOwVfzyw"
+          "object_id": "key_Tet21AeYTHCj7taOwVfzyw"
         }
       },
       "DataPlaneKey": {
@@ -2507,7 +2522,7 @@
           "created_at": "2023-10-01T00:00:00Z",
           "revoked": false,
           "name": "my-data-plane-key",
-          "uuid": "key_wN3IhLCmR3qmwybG_6ptEg"
+          "object_id": "key_wN3IhLCmR3qmwybG_6ptEg"
         }
       }
     }

@@ -26,7 +26,7 @@ authors: []
 
 Stay up-to-date with what's new and improved in NGINX One.
 
-## February 29, 2024 - v0.20240227.1192838615
+## February 28, 2024 - v0.20240228.1194299632
 
 ### Breaking Change
 
