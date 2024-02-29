@@ -35,8 +35,6 @@ weight: 150
 Mar 6, 2024
 
 
-### New Features
-
 ### Supported Packages
 
 #### App Protect
@@ -88,7 +86,5 @@ Mar 6, 2024
 - 10479 Fixed - octal normalization not handled correctly(CSS decoded as hex value).
 - 10460 Fixed - Connection failure between nginx worker to bd in large event message.
 - 10251 Fixed - when updating NAP on Ubuntu 22.04 v4.6 to a newer version, the user gets an error calling config_set_compiler
-- 10512 Fixed - Base64 auto-detect leads to false postive in some requests.
+- 10512 Fixed - Base64 auto-detect leads to false positives in some requests.
 
-
-### **Important Notes**
