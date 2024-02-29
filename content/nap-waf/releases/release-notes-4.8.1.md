@@ -29,7 +29,7 @@ title: "NGINX App Protect WAF Release 4.8.1"
 toc: true
 versions:
 - "4.8.1"
-weight: 160
+weight: 150
 ---
 
 Mar 6, 2024
