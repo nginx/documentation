@@ -81,10 +81,7 @@ Mar 6, 2024
 
 
 ### Resolved Issues
-
-- 10522 Fixed - In some non-content-type requests(JSON type) some signatures was not detected correctly
-- 10479 Fixed - octal normalization not handled correctly(CSS decoded as hex value).
+- Bug fixes and security enhancements.
 - 10460 Fixed - Connection failure between nginx worker to bd in large event message.
 - 10251 Fixed - when updating NAP on Ubuntu 22.04 v4.6 to a newer version, the user gets an error calling config_set_compiler
-- 10512 Fixed - Base64 auto-detect leads to false positives in some requests.
 
