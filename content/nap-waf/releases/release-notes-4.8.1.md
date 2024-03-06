@@ -4,7 +4,7 @@ categories:
 - releases
 date: "2021-04-14T13:32:41+00:00"
 description: "NGINX App Protect WAF Release 4.8.1"
-docs: "DOCS-1391"
+docs: "DOCS-1477"
 doctypes:
 - concept
 draft: false
