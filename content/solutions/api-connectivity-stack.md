@@ -39,7 +39,7 @@ NGINX Management Suite Security Monitoring provides global visibility into your 
 ### (Optional) Install the API Connectivity Manager module
 NGINX Management Suite API Connectivity Manger makes it easy to manage, govern, and secure API gateways deployed across multi-cloud and hybrid environments. Install this module if you want  centralized management for your NGINX Plus API gateways.
 
-- [Install on virtual machine or bare metal]({{< ref "/nms/installation/vm-bare-metal/install-acm" >}})
+- [Install on virtual machine or bare metal]({{< ref "/nms/acm/how-to/install-acm.md" >}})
 - [Install in Kubernetes using Helm]({{< ref "/nms/installation/kubernetes/deploy-api-connectivity-manager" >}})
 
 ### Install NGINX Plus as an API Gateway
