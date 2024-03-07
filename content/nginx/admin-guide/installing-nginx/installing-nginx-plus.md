@@ -145,9 +145,13 @@ NGINX Plus can be installed on Amazon Linux 2 LTS (x86_64, aarch64).
 
 NGINX Plus can be installed on the following versions of CentOS/Oracle Linux/RHEL:
 
-* CentOS 7.4+ (x86_64, aarch64)
-* Oracle Linux 7.4+ (x86_64)
-* Red Hat Enterprise Linux 7.4+ (x86_64, aarch64)
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Distribution                       | Version        | Architecture           |
+|------------------------------------|----------------|------------------------|
+| CentOS                             | 7.4+           | x86_64, aarch64        |
+| Oracle Linux                       | 7.4+           | x86_64                 |
+| Red Hat Enterprise Linux           | 7.4+           | x86_64, aarch64        |
+{{</bootstrap-table>}}
 
 1.  If you have older NGINX Plus package installed, it is recommended backing up the configuration and log files. See "[Upgrading NGINX Plus](#upgrade)" for details.
 
@@ -235,10 +239,14 @@ NGINX Plus can be installed on the following versions of CentOS/Oracle Linux/RH
 
 NGINX Plus can be installed on the following versions of CentOS/RHEL:
 
-* Red Hat Enterprise Linux 8.1+ (x86_64, aarch64, s390x)
-* Oracle Linux 8.1+ (x86_64, aarch64)
-* AlmaLinux 8.6+ (x86_64, aarch64)
-* Rocky Linux 8.6+ (x86_64, aarch64)
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Distribution                       | Version        | Architecture           |
+|------------------------------------|----------------|------------------------|
+| Red Hat Enterprise Linux           | 8.1+           | x86_64, aarch64, s390x |
+| Oracle Linux                       | 8.1+           | x86_64, aarch64        |
+| AlmaLinux                          | 8.6+           | x86_64, aarch64        |
+| Rocky Linux                        | 8.6+           | x86_64, aarch64        |
+{{</bootstrap-table>}}
 
 1.  If you have older NGINX Plus package installed, it is recommended backing up the configuration and log files. See "[Upgrading NGINX Plus](#upgrade)" for details.
 
@@ -308,10 +316,14 @@ NGINX Plus can be installed on the following versions of CentOS/RHEL:
 
 NGINX Plus can be installed on the following versions of CentOS/RHEL:
 
-* Red Hat Enterprise Linux 9.0+ (x86_64, aarch64, s390x)
-* Oracle Linux 9 (x86_64)
-* AlmaLinux 9 (x86_64, aarch64)
-* Rocky Linux 9 (x86_64, aarch64)
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Distribution                       | Version        | Architecture           |
+|------------------------------------|----------------|------------------------|
+| Red Hat Enterprise Linux           | 9.0+           | x86_64, aarch64, s390x |
+| Oracle Linux                       | 9              | x86_64                 |
+| AlmaLinux                          | 9              | x86_64, aarch64        |
+| Rocky Linux                        | 9              | x86_64, aarch64        |
+{{</bootstrap-table>}}
 
 1.  If you have older NGINX Plus package installed, it is recommended backing up the configuration and log files. See "[Upgrading NGINX Plus](#upgrade)" for details.
 
@@ -381,11 +393,14 @@ NGINX Plus can be installed on the following versions of CentOS/RHEL:
 
 NGINX Plus can be installed on the following versions of Debian or Ubuntu:
 
-* Debian 11 (x86_64, aarch64)
-* Debian 12 (x86_64, aarch64)
-* Ubuntu 20.04 LTS ("Focal") (x86_64, aarch64, s390x)
-* Ubuntu 22.04 LTS ("Jammy") (x86_64, aarch64, s390x)
-
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Distribution  | Version   | Codename     | Architecture           |
+|---------------|-----------|--------------|------------------------|
+| Debian        | 11        | Bullseye     | x86_64, aarch64        |
+| Debian        | 12        | Bookworm     | x86_64, aarch64        |
+| Ubuntu        | 20.04 LTS | Focal        | x86_64, aarch64, s390x |
+| Ubuntu        | 22.04 LTS | Jammy        | x86_64, aarch64, s390x |
+{{</bootstrap-table>}}
 
 1.  If you have older NGINX Plus package installed, it is recommended backing up the configuration and log files. See "[Upgrading NGINX Plus](#upgrade)" for details.
 
@@ -515,8 +530,12 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
 
 NGINX Plus can be installed on the following versions of FreeBSD:
 
-* FreeBSD 12.1+ (amd64)
-* FreeBSD 13 (amd64)
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Distribution      | Version        | Architecture      |
+|-------------------|----------------|-------------------|
+| FreeBSD           | 12.1+          | amd64             |
+| FreeBSD           | 13             | amd64             |
+{{</bootstrap-table>}}
 
 To install NGINX Plus on FreeBSD:
 
@@ -588,7 +607,14 @@ To install NGINX Plus on FreeBSD:
 <span id="install_suse"></span>
 ## Installing NGINX Plus on SUSE Linux Enterprise Server
 
-NGINX Plus can be installed on SUSE Linux Enterprise Server 12 SP5 (x86_64), 15 SP2 (x86_64).
+NGINX Plus can be installed on the following versions of SUSE Linux Enterprise Server:
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Distribution                 | Version        | Architecture      |
+|------------------------------|----------------|-------------------|
+| SUSE Linux Enterprise Server | 12 SP5         | x86_64            |
+| SUSE Linux Enterprise Server | 15 SP2         | x86_64            |
+{{</bootstrap-table>}}
 
 To install NGINX Plus on SLES:
 
@@ -663,10 +689,15 @@ To install NGINX Plus on SLES:
 ## Installing NGINX Plus on Alpine Linux
 
 NGINX Plus can be installed on the following versions of Alpine Linux:
-* 3.15 (x86_64, aarch64)
-* 3.16 (x86_64, aarch64)
-* 3.17 (x86_64, aarch64)
-* 3.18 (x86_64, aarch64)
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Distribution      | Version        | Architecture      |
+|-------------------|----------------|-------------------|
+| Alpine Linux      | 3.15           | x86_64, aarch64   |
+| Alpine Linux      | 3.16           | x86_64, aarch64   |
+| Alpine Linux      | 3.17           | x86_64, aarch64   |
+| Alpine Linux      | 3.18           | x86_64, aarch64   |
+{{</bootstrap-table>}}
 
 To install NGINX Plus on Alpine Linux:
 
