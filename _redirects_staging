@@ -82,7 +82,7 @@
 /nginx-management-suite/acm/how-to/policies/configure-proxy-buffers/ /nginx-management-suite/acm/how-to/policies/http-backend-configuration/#buffers
 /nginx-management-suite/acm/how-to/publish-developer-portal/ /nginx-management-suite/acm/how-to/devportals/publish-to-devportal/
 /nginx-management-suite/acm/how-to/enable-sso-devportal/ /nginx-management-suite/acm/how-to/infrastructure/enable-sso-devportal/
-/nginx-management-suite/adm/* /nginx-management-suite/ 301
+/nginx-management-suite/adm/* 410
 /nginx-management-suite/admin-guides/installation/on-prem/install-guide/ /nginx-management-suite/installation/vm-bare-metal/ 301
 /nginx-management-suite/admin-guides/installation/on-prem/offline-install-guide/ /nginx-management-suite/installation/vm-bare-metal/offline-install-guide/ 301
 /nginx-management-suite/admin-guides/installation/kubernetes/enable-modules-for-existing-deployments/ /nginx-management-suite/installation/kubernetes/ 301
@@ -103,6 +103,7 @@
 /nginx-management-suite/nim/how-to/nginx/count-nginx-plus-instances/ /nginx-management-suite/nim/how-to/usage-tracking/count-nginx-plus-instances/ 301
 /nginx-management-suite/admin-guides/installation/offline-install-guide/ /nginx-management-suite/installation/vm-bare-metal/offline-install-guide/ 301
 /nms/installation/vm-bare-metal/ /nginx-management-suite/installation/vm-bare-metal/ 301
+/nginx-management-suite/installation/vm-bare-metal/install-acm 301 /nginx-management-suite/acm/how-to/install-acm/
 /nginx-management-suite/overview/ /nginx-management-suite/about/ 301
 /nginx-management-suite/admin-guides/installation/ /nginx-management-suite/installation/ 301
 /nginx-management-suite/admin-guides/access-control/set-up-rbac/ /nginx-management-suite/nms/admin-guides/rbac/rbac-getting-started/ 301
