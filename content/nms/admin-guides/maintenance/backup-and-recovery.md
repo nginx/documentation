@@ -37,7 +37,7 @@ To complete the instructions in this guide, you need the following:
 - An installed version of SQLite. Refer to the [Install SQLite]({{< relref "/nms/admin-guides/maintenance/sqlite-installation.md" >}}) guide for installation instructions.
 - The NGINX Management Suite services must be running:
 
-    ```bash
+    ```shell
     sudo systemctl start nms
     ```
 
@@ -48,13 +48,13 @@ To run the backup and restore scripts, you need to set their permissions to make
 1. Open a secure shell (SSH) connection to the NGINX Management Suite host and log in.
 2. Change to the directory where the scripts are located:
 
-    ```bash
+    ```shell
     cd /etc/nms/scripts
     ```
 
 3. Run the following commands to make the scripts executable:
 
-    ```bash
+    ```shell
     sudo chmod +x backup.sh
     sudo chmod +x restore.sh
     sudo chmod +x backup-acm.sh
@@ -73,7 +73,7 @@ To back up the NGINX Management Suite configuration files, secrets, and database
 1. Open a secure shell (SSH) connection to the NGINX Management Suite host and log in.
 2. To back up NGINX Management Suite, run the following commands:
 
-    ```bash
+    ```shell
     cd /etc/nms/scripts
     sudo ./backup.sh
     ```
@@ -85,80 +85,8 @@ To restore NGINX Management Suite:
 1. Open a secure shell (SSH) connection to the NGINX Management Suite host and log in.
 2. To restore NGINX Management Suite, run the following commands:
 
-    ```bash
+    ```shell
     cd /etc/nms/scripts
-    sudo ./restore.sh /tmp/nms-backup-<DATETIME>.tgz
-    ```
-
----
-
-### Back Up and Restore Individual Modules
-
-By default, the data for modules isn't included in backups for NGINX Management Suite. If you'd like to back up the module data, follow these steps:
-
-1. Open a secure shell (SSH) connection to the NGINX Management Suite host and log in.
-2. Edit the `backup.sh` and `restore.sh` scripts and uncomment the commands in the relevant sections.
-
-    To back up and restore data for **API Connectivity Manager**, uncomment the following lines, like so:
-
-    <details open>
-    <summary>backup.sh: enable backups for API Connectivity Manager</summary>
-
-    ```text
-    ## Back up API Connectivity Manager
-    # Uncomment the following line to back up API Connectivity Manager.
-    ./backup-acm.sh
-    ```
-
-    Uncomment the following section as well:
-
-    ```text
-	## Back up API Connectivity Manager
-	# Uncomment the following line to back up API Connectivity Manager.
-	ACM_ACTIVE=$(systemctl is-active --quiet nms-acm)
-	IS_ACM_ACTIVE=$?
-	if [ $IS_ACM_ACTIVE -ne 0 ]; then
-	    echo "You need to start the required NGINX Management Suite services before running the backup script."
-	    echo "Please ensure the following nms service is running:"
-	    echo "nms-acm"
-	    exit 1
-	fi
-    ```
-
-    </details>
-
-    <details open>
-    <summary>restore.sh: enable restore for API Connectivity Manager</summary>
-
-    ```text
-    ## Restore the API Connectivity Manager database.
-    # Uncomment the following line to restore API Connectivity Manager.
-    ./restore-acm.sh
-    ```
-
-    </details>
-
-    <br>
-
-3. To create a backup, run the back up script:
-
-    ```bash
-    sudo ./backup.sh
-    ```
-
-4. To restore from a backup:
-
-    - Run `sudo rm -rf /var/lib/nms/dqlite/*` to remove the existing database files.
-
-    - Make sure the NGINX Management Suite service is stopped
-
-    ```bash
-    sudo systemctl stop nms
-    ```
-
-    - Run the restore script:
-
-    ```bash
     sudo ./restore.sh /tmp/nms-backup-<DATETIME>.tgz
     ```
 
@@ -182,7 +110,7 @@ To complete the instructions in this guide, you need the following:
 
     To confirm that the root user has access to the Kubernetes API, execute the following command:
 
-    ```bash
+    ```shell
     sudo kubectl -n nms get pods
     ```
 
@@ -192,13 +120,13 @@ To complete the instructions in this guide, you need the following:
 
     - To back up NGINX Management Suite:
 
-        ```bash
+        ```shell
         sudo KUBECONFIG=/etc/kubernetes/admin.conf ./k8s-backup.sh
         ```
 
     - To restore NGINX Management Suite:
 
-        ```bash
+        ```shell
         sudo KUBECONFIG=/etc/kubernetes/admin.conf ./k8s-restore.sh -i <path to backup file> -r
         ```
 
@@ -225,7 +153,7 @@ To complete the instructions in this guide, you need the following:
 
     3. Download the NGINX Management Suite Helm chart for your currently installed version of NGINX Management Suite:
 
-        ```bash
+        ```shell
         helm repo add nginx-stable https://helm.nginx.com/stable
         helm repo update
         helm pull nginx-stable/nms
@@ -239,21 +167,21 @@ To back up NGINX Management Suite deployed in a Kubernetes cluster, follow these
 1. Copy the extracted backup scripts to your working directory:
     - For NGINX Management Suite and API Connectivity Manager, copy`k8s-backup.sh` from the `nms-<version>/charts/nms-hybrid/backup-restore/` directory.
  
-    ```bash
+    ```shell
     cp nms-<version>/charts/nms-hybrid/backup-restore/k8s-backup.sh .
     cp nms-<version>/charts/nms-adm/backup-restore/k8s-backup-adm.sh .
     ```
 
 1. Make the scripts executable:
 
-    ```bash
+    ```shell
     chmod +x k8s-backup.sh
     chmod +x k8s-backup-adm.sh
     ```
 
 1. Run the backup script:
 
-    ```bash
+    ```shell
     ./k8s-backup.sh
     ```
     {{< note >}}The backup script does not need the utility pod or sudo permissions to create a backup.{{< /note >}}
@@ -268,13 +196,13 @@ To restore NGINX Management Suite and the installed modules deployed in the same
 
     - For NGINX Management Suite and API Connectivity Manager, copy`k8s-restore.sh` from the `nms-<version>/charts/nms-hybrid/backup-restore/` directory.
 
-    ```bash
+    ```shell
     cp nms-<version>/nms/charts/nms-hybrid/backup-restore/k8s-restore.sh .
     ```
 
 2. Make the scripts executable:
 
-    ```bash
+    ```shell
     chmod +x k8s-restore.sh
     ```
 
@@ -282,7 +210,7 @@ To restore NGINX Management Suite and the installed modules deployed in the same
 
 4. Run the restore script:
 
-    ```bash
+    ```shell
     sudo ./k8s-restore.sh -r -i k8s-backup-<timestamp>.tar.gz
     ```
     {{< note >}}The restore script [needs root access]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md#root-access" >}}) to Kubernetes for the restore operation.{{< /note >}}
@@ -300,13 +228,13 @@ To restore NGINX Management Suite and the installed modules into a different Kub
 
     - For NGINX Management Suite and API Connectivity Manager, copy`k8s-restore.sh` from the `nms-<version>/charts/nms-hybrid/backup-restore/` directory.
 
-    ```bash
+    ```shell
     cp nms-<version>/nms/charts/nms-hybrid/backup-restore/k8s-restore.sh .
     ```
 
 2. Make the scripts executable:
 
-    ```bash
+    ```shell
     chmod +x k8s-restore.sh
     chmod +x k8s-restore-adm.sh
     ```
@@ -315,7 +243,7 @@ To restore NGINX Management Suite and the installed modules into a different Kub
 
 4. Run the restore script:
 
-    ```bash
+    ```shell
     sudo ./k8s-restore.sh -r -i k8s-backup-<timestamp>.tar.gz -d
     ```
     {{< note >}}The restore script [needs root access]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md#root-access" >}}) to Kubernetes for the restore operation.{{< /note >}}
@@ -324,7 +252,7 @@ To restore NGINX Management Suite and the installed modules into a different Kub
 
 The restore script will only restore the databases and core secrets. If you want to restore the user passwords too, run the following commands:
 
-  ```bash
+  ```shell
   cd nms-<version>/secrets
   kubectl -n nms apply -f nms-auth.json
   kubectl -n nms delete pod apigw-<hash>
@@ -340,6 +268,6 @@ For instructions on how to back up and restore the ClickHouse database, please r
 
 To check your ClickHouse version, run the following command:
 
-``` bash
+```shell
 clickhouse-server --version
 ```
