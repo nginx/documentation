@@ -80,7 +80,7 @@
 /nginx-management-suite/acm/how-to/policies/configure-proxy-buffers/ /nginx-management-suite/acm/how-to/policies/http-backend-configuration/#buffers
 /nginx-management-suite/acm/how-to/publish-developer-portal/ /nginx-management-suite/acm/how-to/devportals/publish-to-devportal/
 /nginx-management-suite/acm/how-to/enable-sso-devportal/ /nginx-management-suite/acm/how-to/infrastructure/enable-sso-devportal/
-/nginx-management-suite/adm/* 410
+/nginx-management-suite/adm/ 410
 /nginx-management-suite/admin-guides/installation/on-prem/install-guide/ /nginx-management-suite/installation/vm-bare-metal/ 301
 /nginx-management-suite/admin-guides/installation/on-prem/offline-install-guide/ /nginx-management-suite/installation/vm-bare-metal/offline-install-guide/ 301
 /nginx-management-suite/admin-guides/installation/kubernetes/enable-modules-for-existing-deployments/ /nginx-management-suite/installation/kubernetes/ 301
