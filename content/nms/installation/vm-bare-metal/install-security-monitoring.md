@@ -164,4 +164,4 @@ To set up your NGINX App Protect WAF data plane instances for use with Security 
 
 ### Install Other NGINX Management Suite Modules
 
-- [Install API Connectivity Manager]({{< relref "/nms/installation/vm-bare-metal/install-acm.md" >}})
+- [Install API Connectivity Manager]({{< relref "/nms/acm/how-to/install-acm.md" >}})
