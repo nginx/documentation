@@ -32,4 +32,4 @@ When you're ready to merge a PR, run through this checklist and mark each step a
   - @nginxinc/nap-docs-approvers: add for NGINX App Protect docs.
   - @nginxinc/plus-docs-approvers: add for NGINX OSS and NGINX Plus docs.
 
-- [ ] Share the PR for review in the `#docops-mr-reviews` channel in Slack.
+- [ ] Share the PR for review in the [`#nginx-doc-reviews`](https://f5.enterprise.slack.com/archives/C04PYFULN91) channel in Slack.
