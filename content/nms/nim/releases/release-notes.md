@@ -1322,11 +1322,11 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **New events for NGINX processes and configuration rollbacks**<a name="2-2-0-whats-new-New-events-for-NGINX-processes-and-configuration-rollbacks"></a>
 
-    Now, you can use the [NGINX Instance Manager Events API]({{< relref "nms/nim/how-to/view-events-metrics.md" >}}) or [web interface]({{< relref "nms/nim/how-to/view-events-metrics.md" >}}) to view events when NGINX instances start and reload or when a configuration is rolled back.
+    Now, you can use the [NGINX Instance Manager Events API]({{< relref "nms/nim/how-to/monitoring/view-events-metrics.md" >}}) or [web interface]({{< relref "nms/nim/how-to/monitoring/view-events-metrics.md" >}}) to view events when NGINX instances start and reload or when a configuration is rolled back.
   
 - {{% icon-feature %}} **Filter events and metrics with custom date and time ranges**<a name="2-2-0-whats-new-Filter-events-and-metrics-with-custom-date-and-time-ranges"></a>
 
-  Now you can filter [events]({{< relref "/nms/nim/how-to/view-events-metrics" >}}) and [metrics]({{< relref "/nms/nim/how-to/view-events-metrics" >}}) using a custom date and time range. Select **Custom time range** in the filter list, then specify the date and time range you want to use.
+  Now you can filter [events]({{< relref "/nms/nim/how-to/monitoring/view-events-metrics" >}}) and [metrics]({{< relref "/nms/nim/how-to/monitoring/view-events-metrics" >}}) using a custom date and time range. Select **Custom time range** in the filter list, then specify the date and time range you want to use.
   
 - {{% icon-feature %}} **Role-based access control added to Events and Metrics pages**<a name="2-2-0-whats-new-Role-based-access-control-added-to-Events-and-Metrics-pages"></a>
 
@@ -1400,7 +1400,7 @@ This release includes the following updates:
 
   The metrics pages in the web interface have been revised and improved.
   
-  See the [View Metrics]({{< relref "/nms/nim/how-to/view-events-metrics" >}}) topic to get started.
+  See the [View Metrics]({{< relref "/nms/nim/how-to/monitoring/view-events-metrics" >}}) topic to get started.
   
 - {{% icon-feature %}} **New RBAC lets you limit access to NGINX Instance Manager features**<a name="2-1-0-whats-new-New-RBAC-lets-you-limit-access-to-NGINX-Instance-Manager-features"></a>
 
@@ -1416,7 +1416,7 @@ This release includes the following updates:
 
   Now you can use the Instance Manager API or web interface to view events for your NGINX instances.
   
-  See the [View Events]({{< relref "/nms/nim/how-to/view-events-metrics" >}}) and [View Events (API)]({{< relref "/nms/nim/how-to/view-events-metrics" >}}) topics for instructions.
+  See the [View Events]({{< relref "/nms/nim/how-to/monitoring/view-events-metrics" >}}) and [View Events (API)]({{< relref "/nms/nim/how-to/monitoring/view-events-metrics" >}}) topics for instructions.
   
 - {{% icon-feature %}} **Deploy NGINX Instance Manager on Kubernetes using a helm chart**<a name="2-1-0-whats-new-Deploy-NGINX-Instance-Manager-on-Kubernetes-using-a-helm-chart"></a>
 

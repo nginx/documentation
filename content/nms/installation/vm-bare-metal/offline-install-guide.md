@@ -253,7 +253,7 @@ Refer to the [Add a License]({{< relref "/nms/installation/add-license.md" >}}) 
 
 ## CVE Checking {#cve-check}
 
-Instance Manager connects to the Internet to get a list of the current CVEs (Common Vulnerabilities and Exposures) to use with the [scan function]({{< relref "/nms/nim/how-to/nginx/scan-instances.md" >}}). To manually update the CVE list, download and overwrite the `cve.xml` file in the `/usr/share/nms` directory.
+Instance Manager connects to the Internet to get a list of the current CVEs (Common Vulnerabilities and Exposures) to use with the [scan function]({{< relref "/nms/nim/how-to/monitoring/scan-instances.md" >}}). To manually update the CVE list, download and overwrite the `cve.xml` file in the `/usr/share/nms` directory.
 
 To download the CVE file, take the following steps:
 

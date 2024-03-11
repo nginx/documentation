@@ -1,5 +1,5 @@
 ---
-title: Manage App Protect Configurations
-weight: 200
-url: /nginx-management-suite/nim/how-to/app-protect/
+title: App Protect Configs
+weight: 1000
+url: /nginx-management-suite/nim/how-to/manage-app-protect/
 ---

@@ -3,7 +3,7 @@ title: "View Events and Metrics"
 description: "Learn how to view events and metrics in NGINX Management Suite Instance Manager."
 date: 2022-03-18T12:00:00-07:00
 draft: false
-weight: 800
+weight: 10
 doctypes: task
 toc: true
 docs: "DOCS-847"

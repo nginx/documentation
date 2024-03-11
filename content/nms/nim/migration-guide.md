@@ -4,7 +4,7 @@ date: 2021-12-21T12:00:00-07:00
 draft: false
 description: "Follow the instructions in this guide to migrate from Instance Manager v1 to v2."
 # Assign weights in increments of 100
-weight: 1
+weight: 10000
 toc: true
 tags: [ "beta", "docs" ]
 # Taxonomies

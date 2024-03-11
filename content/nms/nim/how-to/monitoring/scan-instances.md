@@ -21,7 +21,7 @@ tags:
 
 toc: true
 versions: []
-weight: 110
+weight: 20
 docs: "DOCS-828"
 aliases:
 - /nginx-instance-manage/tutorials/scan/
@@ -302,7 +302,7 @@ The result looks similar to the following:
 
 #### Description
 
-- When [scanning for NGINX instances]({{< relref "/nms/nim/how-to/nginx/scan-instances.md" >}}), the NGINX version is reported as `undefined` when NGINX App Protect is installed.
+- When [scanning for NGINX instances]({{< relref "/nms/nim/how-to/monitoring/scan-instances.md" >}}), the NGINX version is reported as `undefined` when NGINX App Protect is installed.
 
 #### Resolution
 

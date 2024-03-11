@@ -8,7 +8,7 @@ draft: false
 # The description text appears in search results and at the top of the doc.
 description: "This topic describes possible issues users might encounter when using Instance Manager. When possible, suggested workarounds are provided."
 # Assign weights in increments of 100
-weight: 1000
+weight: 9999
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
@@ -82,7 +82,7 @@ Ensure there isn't a process bound to port `80` or `443`.
 
 #### Description
 
-When [scanning for NGINX instances]({{< relref "/nms/nim/how-to/nginx/scan-instances" >}}), the NGINX version is reported as `undefined` when NGINX App protect is installed.
+When [scanning for NGINX instances]({{< relref "/nms/nim/how-to/monitoring/scan-instances" >}}), the NGINX version is reported as `undefined` when NGINX App protect is installed.
 
 #### Resolution
 
