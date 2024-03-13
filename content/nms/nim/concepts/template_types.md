@@ -26,7 +26,7 @@ authors: []
 
 ## Overview
 
-- **Template**: A set of files for defining NGINX instance configurations. It consists of:
+- **Template (or "use case template" in the REST API)**: A set of files for defining NGINX instance configurations. It consists of:
    - **Go template file(s)** (`.tmpl`): Define NGINX configurations and parameters.
    - **JSON schema file(s)** (`.json`): Create a dynamic user interface (UI) and validation rules for input parameters.
    - **Auxiliary files**: Support files like MIME types and certificates.
