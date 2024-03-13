@@ -1,6 +1,6 @@
 ---
-title: "Working with Templates"
-date: 2024-03-08T13:31:21-08:00
+title: "Manage NGINX Configs with Templates"
+date: 2024-03-12T15:51:04-07:00
 # Change draft status to false to publish doc.
 draft: false
 # Description
@@ -8,7 +8,7 @@ draft: false
 # The description text appears in search results and at the top of the doc.
 description: ""
 # Assign weights in increments of 100
-weight: 
+weight: 300
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below

@@ -19,7 +19,7 @@ tags:
 title: Add Tags to Instances
 toc: true
 versions: []
-weight: 650
+weight: 10
 docs: "DOCS-829"
 aliases:
 - /nginx-instance-manager/tutorials/tagging/

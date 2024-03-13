@@ -1,5 +1,5 @@
 ---
-title: "Working with Instance Groups"
+title: "Manage Instance Groups"
 date: 2022-07-20T16:10:04-07:00
 # Change draft status to false to publish doc.
 draft: false
@@ -8,7 +8,7 @@ draft: false
 # The description text appears in search results and at the top of the doc.
 description: "Learn how to use NGINX Management Suite Instance Manager to create instance groups, which you can use to manage multiple NGINX instances as a single entity."
 # Assign weights in increments of 100
-weight: 600
+weight: 20
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below

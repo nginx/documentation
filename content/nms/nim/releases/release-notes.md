@@ -296,7 +296,7 @@ This release includes the following updates:
   
 - {{% icon-feature %}} **Use NGINX Plus Health Checks to easily track NGINX Plus Usage with NGINX Instance Manager**<a name="2-13-0-whats-new-Use-NGINX-Plus-Health-Checks-to-easily-track-NGINX-Plus-Usage-with-NGINX-Instance-Manager"></a>
 
-  The NGINX Plus Health Check feature now allows you to monitor the count of both NGINX Plus and NGINX App Protect instances that you've deployed. You can view this information in the "NGINX Plus" area of the "Instance Manager" web interface, or through the `/inventory` API. For guidance on how to set this up, refer to the following documentation: [View Count of NGINX Plus Instances]({{< relref "nms/nim/how-to/usage-tracking/count-nginx-plus-instances.md" >}}).
+  The NGINX Plus Health Check feature now allows you to monitor the count of both NGINX Plus and NGINX App Protect instances that you've deployed. You can view this information in the "NGINX Plus" area of the "Instance Manager" web interface, or through the `/inventory` API. For guidance on how to set this up, refer to the following documentation: [View Count of NGINX Plus Instances]({{< relref "nms/nim/how-to/monitoring/count-nginx-plus-instances.md" >}}).
   
 - {{% icon-feature %}} **Improved log output for better JSON parsing**<a name="2-13-0-whats-new-Improved-log-output-for-better-JSON-parsing"></a>
 
@@ -1081,7 +1081,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Track NGINX Plus usage over time**<a name="2-5-0-whats-new-Track-NGINX-Plus-usage-over-time"></a>
 
-  When viewing your NGINX Plus instances in the Instnace Manager web interface, you can set a date and time filter to review the [NGINX Plus instance count]({{< relref "nms/nim/how-to/usage-tracking/count-nginx-plus-instances.md" >}}) for a specific period. Also, you can use the Instance Manager REST API to view the lowest, highest, and average number of NGINX Plus instances over time.
+  When viewing your NGINX Plus instances in the Instnace Manager web interface, you can set a date and time filter to review the [NGINX Plus instance count]({{< relref "nms/nim/how-to/monitoring/count-nginx-plus-instances.md" >}}) for a specific period. Also, you can use the Instance Manager REST API to view the lowest, highest, and average number of NGINX Plus instances over time.
   
 - {{% icon-feature %}} **New helm charts for each release of Instance Manager**<a name="2-5-0-whats-new-New-helm-charts-for-each-release-of-Instance-Manager"></a>
 
@@ -1136,7 +1136,7 @@ This release includes the following updates:
   
 - {{% icon-feature %}} **See which of your NGINX Plus instances have NGINX App Protect installed**<a name="2-4-0-whats-new-See-which-of-your-NGINX-Plus-instances-have-NGINX-App-Protect-installed"></a>
 
-  Now, when you [view your NGINX Plus inventory]({{< relref "nms/nim/how-to/usage-tracking/count-nginx-plus-instances.md" >}}), you can see which instances have [NGINX App Protect](https://www.nginx.com/products/nginx-app-protect/) installed. NGINX App Protect is a modern app‑security solution that works seamlessly in DevOps environments as a robust WAF or app‑level DoS defense, helping you deliver secure apps from code to customer.
+  Now, when you [view your NGINX Plus inventory]({{< relref "nms/nim/how-to/monitoring/count-nginx-plus-instances.md" >}}), you can see which instances have [NGINX App Protect](https://www.nginx.com/products/nginx-app-protect/) installed. NGINX App Protect is a modern app‑security solution that works seamlessly in DevOps environments as a robust WAF or app‑level DoS defense, helping you deliver secure apps from code to customer.
   
 
 ### Changes in Default Behavior{#2-4-0-changes-in-behavior}
@@ -1255,7 +1255,7 @@ This release includes the following updates:
   
 - {{% icon-feature %}} **Track the details for your NGINX Plus instances**<a name="2-3-0-whats-new-Track-the-details-for-your-NGINX-Plus-instances"></a>
 
-   Easily track your NGINX Plus instances from the new NGINX Plus inventory list page. [View the current count for all your NGINX Plus instances]({{< relref "nms/nim/how-to/usage-tracking/count-nginx-plus-instances.md" >}}), as well as each instance's hostname, UID, version, and the last time each instance was reported to Instance Manager. Select the `Export` button to export the list of NGINX Plus instances to a `.csv` file.
+   Easily track your NGINX Plus instances from the new NGINX Plus inventory list page. [View the current count for all your NGINX Plus instances]({{< relref "nms/nim/how-to/monitoring/count-nginx-plus-instances.md" >}}), as well as each instance's hostname, UID, version, and the last time each instance was reported to Instance Manager. Select the `Export` button to export the list of NGINX Plus instances to a `.csv` file.
   
 - {{% icon-feature %}} **Explore events in NGINX Instance Manager with the Events Catalogs API**<a name="2-3-0-whats-new-Explore-events-in-NGINX-Instance-Manager-with-the-Events-Catalogs-API"></a>
 
@@ -1539,7 +1539,7 @@ This release includes the following updates:
   
 - {{% icon-feature %}} **New architecture!**<a name="2-0-0-whats-new-New-architecture!"></a>
 
-  We redesigned and improved the architecture of Instance Manager! Because of these changes, upgrading to version 2.0 is different. Make sure to read the [Migration Guide]({{< relref "/nms/nim/migration-guide.md" >}}) for instructions.
+  We redesigned and improved the architecture of Instance Manager! Because of these changes, upgrading to version 2.0 is different. Make sure to read the [Migration Guide]({{< relref "/nms/nim/previous-versions/migration-guide.md" >}}) for instructions.
   
 - {{% icon-feature %}} **Improved user access control**<a name="2-0-0-whats-new-Improved-user-access-control"></a>
 

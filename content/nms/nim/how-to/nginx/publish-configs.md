@@ -16,7 +16,7 @@ personas:
 - support
 tags:
 - docs
-title: Publish Configuration Files
+title: Publish NGINX Configs
 toc: true
 versions: []
 weight: 200

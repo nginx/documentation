@@ -1,5 +1,5 @@
 ---
-title: "Stage Configuration Files"
+title: "Stage NGINX Configs"
 date: 2023-03-01T16:15:11-08:00
 # Change draft status to false to publish doc.
 draft: false
@@ -8,7 +8,7 @@ draft: false
 # The description text appears in search results and at the top of the doc.
 description: "Learn how to pre-configure and stage NGINX configuration files with NGINX Management Suite Instance Manager for quick publishing to NGINX instances or instance groups."
 # Assign weights in increments of 100
-weight: 120
+weight: 100
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
@@ -29,7 +29,7 @@ authors: []
 
 With Instance Manager, you can easily pre-configure and stage NGINX configuration files, so you can quickly publish them to individual NGINX instances or instance groups whenever you're ready.
 
-{{<see-also>}}For instructions on creating and working with instance groups, refer to the topic [Working with instance groups]({{< relref "/nms/nim/how-to/nginx/manage-instance-groups.md" >}}).{{</see-also>}}
+{{<see-also>}}For instructions on creating and working with instance groups, refer to the topic [Working with instance groups]({{< relref "/nms/nim/how-to/instance-groups/manage-instance-groups.md" >}}).{{</see-also>}}
 
 ---
 

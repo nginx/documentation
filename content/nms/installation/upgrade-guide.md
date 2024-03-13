@@ -28,7 +28,7 @@ This guide explains how to upgrade the NGINX Management Suite modules, NGINX Age
 
 <br>
 
-{{<see-also>}}If you're upgrading from Instance Manager v1.x, follow the steps in the [migration guide]({{< relref "/nms/nim/migration-guide.md" >}}) to get started. It is not possible to upgrade directly from Instance Manager v1.x to v2.x.{{</see-also>}}
+{{<see-also>}}If you're upgrading from Instance Manager v1.x, follow the steps in the [migration guide]({{< relref "/nms/nim/previous-versions/migration-guide.md" >}}) to get started. It is not possible to upgrade directly from Instance Manager v1.x to v2.x.{{</see-also>}}
 
 ---
 

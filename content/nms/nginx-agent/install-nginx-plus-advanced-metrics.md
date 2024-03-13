@@ -133,4 +133,4 @@ After you install the NGINX Plus metrics module, run the command below to start 
 sudo systemctl start nginx-agent
 ```
 
-After completing the steps in this guide, you will start to see app-centric metrics displayed in the NGINX Management Suite user interface. You can also collect metrics by using the REST API. To learn more, refer to [Using the Metrics API]({{< relref "/nms/nim/tutorials/metrics-api" >}}).
+After completing the steps in this guide, you will start to see app-centric metrics displayed in the NGINX Management Suite user interface. You can also collect metrics by using the REST API. To learn more, refer to [Using the Metrics API]({{< relref "/nms/nim/tutorials/metrics/metrics-api" >}}).

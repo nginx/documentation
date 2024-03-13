@@ -1,9 +1,8 @@
-
 ---
 description: "Learn how to edit and publish NGINX configuration files with a version control system using NGINX Management Suite Instance Manager."
-title: Publish Configuration Files with Version Control System
+title: Use Version Control to Update NGINX Configs
 toc: true
-weight: 250
+weight: 400
 docs: "DOCS-1348"
 ---
 

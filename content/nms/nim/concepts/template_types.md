@@ -1,5 +1,5 @@
 ---
-title: "Template Concepts"
+title: "Types of Templates"
 date: 2024-03-11T14:03:20-07:00
 # Change draft status to false to publish doc
 draft: false
@@ -24,7 +24,7 @@ versions: []
 authors: []
 ---
 
-## Glossary
+## Overview
 
 - **Template**: A set of files for defining NGINX instance configurations. It consists of:
    - **Go template file(s)** (`.tmpl`): Define NGINX configurations and parameters.
@@ -35,6 +35,12 @@ authors: []
 
 - **Augment template**: Additional templates that customize your NGINX configuration with specific features or settings like security enhancements or traffic management strategies. For example, adding OIDC authentication.
 
+### Related Terminology
+
 - **Target**: The NGINX instance, group of instances, or staged configuration where the template configurations are applied.
 
 - **Template submission**: In the UI, a "Template Submission" is a summary of your most recent base and auxiliary templates, the parameters you entered, and the target(s) where they were applied.
+
+## Getting Started
+
+- [Link to how-to topics](link)
