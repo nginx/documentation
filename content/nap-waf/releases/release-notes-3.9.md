@@ -57,6 +57,7 @@ In this release, support for NGINX App Protect WAF is added to NGINX Plus R26.
 - app-protect-26+3.780.1-1.el7.ngx.x86_64.rpm 
 
 ##### RHEL 8.1+
+
 - app-protect-26+3.780.1-1.el8.ngx.x86_64.rpm
 
 ### Resolved Issues

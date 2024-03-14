@@ -21,7 +21,7 @@ personas: ["Platform Ops", "Infra Admins"]
 
 Use the Request Correlation ID policy to add a unique identifier to each request that enters an application. With the Correlation ID policy, you can trace end-to-end transactions moving through components in a distributed system. This policy is applied by default and usually uses `x-correlation-id` as the default HTTP header name. However, you can also provide a custom header value if needed.
 
-#### Intended Audience
+### Intended Audience
 
 {{< include "acm/how-to/policies/infra-admin-persona.md">}}
 
@@ -39,13 +39,15 @@ To apply the policy or make changes to it, here's what you need to do:
 
 ## Policy Settings
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field            | Type   | Possible Values                | Description                                                  | Required | Default Value      |
 |------------------|--------|--------------------------------|--------------------------------------------------------------|----------|--------------------|
 | `httpHeaderName` | string | Example:<br>`x-correlation-id` | The HTTP header name to use when passing the correlation ID. | YES      | `x-correlation-id` |
+
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ---
 
@@ -61,13 +63,15 @@ You can apply this policy using either the web interface or the REST API. The po
 
 To create a Request Correlation ID policy using the REST API, send an HTTP `POST` request to the Environment endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                                            |
 |--------|---------------------------------------------------------------------|
 | `POST` | `/infrastructure/workspaces/{workspace}/environments/{environment}` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <details open>
 <summary>JSON request</summary>

@@ -69,18 +69,21 @@ Create a common conf for headers:
     <summary>/etc/nginx/http_headers.conf</summary>
 
 {{<fa "download">}} {{< link "/nim/previous-versions/static/previous-versions/v1/getting-started/encrypt/http_headers.conf" "http_headers.conf">}}
+
 ```nginx
 # /etc/nginx/http_headers.conf
 add_header X-Frame-Options SAMEORIGIN;
 
 # vim: syntax=nginx
 ```
+
 </details>
 
 <details>
     <summary>/etc/nginx/https_headers.conf</summary>
 
 {{<fa "download">}} {{< link "/nim/previous-versions/static/previous-versions/v1/getting-started/encrypt/https_headers.conf" "https_headers.conf">}}
+
 ```nginx
 # /etc/nginx/https_headers.conf
 include http_headers.conf;
@@ -88,7 +91,7 @@ include http_headers.conf;
 # enable the longer max-age above after you test your configuration
 add_header Strict-Transport-Security "max-age=86400; includeSubdomains";
 
-# Enable Content Security Policy 
+# Enable Content Security Policy
 add_header Content-Security-Policy "default-src 'self'; font-src *;img-src * data:; script-src *; style-src *";
 
 # Enable X-XSS protection
@@ -99,6 +102,7 @@ add_header Referrer-Policy "strict-origin";
 
 # vim: syntax=nginx
 ```
+
 </details><br/>
 
 And use this in the confs for the NGINX proxy:
@@ -107,6 +111,7 @@ And use this in the confs for the NGINX proxy:
     <summary>/etc/nginx/conf.d/default.conf</summary>
 
 {{<fa "download">}} {{< link "/nim/previous-versions/static/previous-versions/v1/getting-started/encrypt/default.conf" "default.conf">}}
+
 ```nginx
 http {
     include http_headers.conf;
@@ -138,6 +143,7 @@ http {
 
 # vim: syntax=nginx
 ```
+
 </details><br/>
 
 ### Upstreams {#common-upstreams}
@@ -148,6 +154,7 @@ The examples below make reference to an upstream group nginx-manager_servers. Yo
     <summary>/etc/nginx/conf.d/nginx-manager-upstreams.conf</summary>
 
 {{<fa "download">}} {{< link "nim/previous-versions/static/previous-versions/v1/examples/nginx-manager/nginx-manager-upstreams.conf" "nginx-manager-upstreams.conf">}}
+
 ```nginx
 # nginx-manager-upstreams.conf
 # Upstreams for NGINX Instance Manager Server API/UI
@@ -160,6 +167,7 @@ upstream nginx-manager_servers {
 
 # vim: syntax=nginx
 ```
+
 </details><br/>
 
 ### Status Page {#common-status}
@@ -170,42 +178,43 @@ NGINX Plus uses a status page. The following example shows a default configurati
   <summary>/etc/nginx/conf.d/status-api.conf</summary>
 
 {{<fa "download">}} {{< link "nim/previous-versions/static/previous-versions/v1/examples/nginx-manager/status-api.conf" "status-api.conf">}}
+
 ```nginx
-# This sample NGINX Plus configuration enables the NGINX Plus API, for live 
-# activity monitoring and the built-in dashboard, dynamic configuration of 
-# upstream groups, and key-value stores. Keep in mind that any features 
-# added to the API in future NGINX Plus releases are enabled 
+# This sample NGINX Plus configuration enables the NGINX Plus API, for live
+# activity monitoring and the built-in dashboard, dynamic configuration of
+# upstream groups, and key-value stores. Keep in mind that any features
+# added to the API in future NGINX Plus releases are enabled
 # automatically by this file.
 # Created in May 2018 by NGINX, Inc. for NGINX Plus R14 and later.
 
-# Documentation: 
+# Documentation:
 # https://docs.nginx.com/nginx/admin-guide/monitoring/live-activity-monitoring/
 # https://www.nginx.com/blog/live-activity-monitoring-nginx-plus-3-simple-steps
 
-# To conform with the conventional configuration scheme, place this file in 
-# the /etc/nginx/conf.d directory and add an 'include' directive that 
-# references it in the main configuration file, /etc/nginx/nginx.conf, 
+# To conform with the conventional configuration scheme, place this file in
+# the /etc/nginx/conf.d directory and add an 'include' directive that
+# references it in the main configuration file, /etc/nginx/nginx.conf,
 # either by name or with a wildcard expression. Then confirm and reload
 # the configuration, for example with this command:
 #
 #     nginx -t && nginx -s reload
 
-# Additional directives are required in other parts of the 
+# Additional directives are required in other parts of the
 # configuration:
 #
-# To collect metrics for an HTTP or TCP/UDP virtual server, you must 
-# include the 'status_zone' directive in its 'server' block. See: 
+# To collect metrics for an HTTP or TCP/UDP virtual server, you must
+# include the 'status_zone' directive in its 'server' block. See:
 # http://nginx.org/r/status_zone
 #
-# Similarly, to collect metrics for an upstream server group, you 
+# Similarly, to collect metrics for an upstream server group, you
 # must include the 'zone' directive in the 'upstream' block. See:
 # http://nginx.org/r/zone
 #
 # For more information and instructions, see:
 # https://docs.nginx.com/nginx/admin-guide/monitoring/live-activity-monitoring#status_data
 
-# It is recommended to restrict access to the NGINX Plus API so 
-# that only authorized users can view metrics and configuration, change 
+# It is recommended to restrict access to the NGINX Plus API so
+# that only authorized users can view metrics and configuration, change
 # configuration, or both. Here are a few options:
 #
 # (1) Configure your firewall to limit access to port 8080.
@@ -213,22 +222,22 @@ NGINX Plus uses a status page. The following example shows a default configurati
 # (2) Use SSL/TLS client certificates. See:
 #    https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/
 #
-# (3) Enable HTTP Basic authentication (RFC 7617) by uncommenting the 
-#    'auth_basic*' directives in the 'server' block below. You can add users 
-#    with an htpasswd generator, which is readily available, or reuse an 
-#    existing htpasswd file (from an Apache HTTP Server, for example). See: 
+# (3) Enable HTTP Basic authentication (RFC 7617) by uncommenting the
+#    'auth_basic*' directives in the 'server' block below. You can add users
+#    with an htpasswd generator, which is readily available, or reuse an
+#    existing htpasswd file (from an Apache HTTP Server, for example). See:
 #    http://nginx.org/en/docs/http/ngx_http_auth_basic_module.html
 #
-# (4) Enable access from a defined network and disable it from all others, 
+# (4) Enable access from a defined network and disable it from all others,
 #    by uncommenting the 'allow' and 'deny' directives in the 'server' block
-#    below and specifying the appropriate network ranges. See: 
+#    below and specifying the appropriate network ranges. See:
 #    http://nginx.org/en/docs/http/ngx_http_access_module.html
 #
 # You can create further restrictions on write operations, to distinguish
 # between users with read permission and those who can change configuration.
-# Uncomment the sample 'limit_except' directive in the 'location api' 
-# block below. In addition to the HTTP Basic authentication shown, other 
-# authentication schemes are supported. See: 
+# Uncomment the sample 'limit_except' directive in the 'location api'
+# block below. In addition to the HTTP Basic authentication shown, other
+# authentication schemes are supported. See:
 # http://nginx.org/r/limit_except
 
 server {
@@ -236,7 +245,7 @@ server {
     listen 8080;
 
     access_log off; # Don't log access here (test env)
-    
+
     # Uncomment to use HTTP Basic authentication; see (3) above
     #auth_basic "NGINX Plus API";
     #auth_basic_user_file /etc/nginx/users;
@@ -245,7 +254,7 @@ server {
     #allow 10.0.0.0/8;
     #deny all;
 
-    # Conventional location for accessing the NGINX Plus API 
+    # Conventional location for accessing the NGINX Plus API
     location /api/ {
         # Enable in read-write mode
         api write=on;
@@ -260,7 +269,7 @@ server {
     location /nginx_status {
         stub_status;
     }
-    
+
     # Conventional location of the NGINX Plus dashboard
     location = /dashboard.html {
         root /usr/share/nginx/html;
@@ -285,6 +294,7 @@ server {
 
 # vim: syntax=nginx
 ```
+
 </details><br/>
 
 ### Stub Page {#common-stub}
@@ -315,6 +325,7 @@ server {
 
 # vim: syntax=nginx
 ```
+
 </details>
 
 {{%heading "ssl"%}}
@@ -322,6 +333,7 @@ server {
 ## SSL Termination {#ssl-termination}
 
 Configure either NGINX Open Source or NGINX Plus for SSL Termination. You can use either of the two methods:
+
 - native SSL in the Instance Manager config files or
 - use a proxy in the front end to provide SSL Termination
 
@@ -333,6 +345,7 @@ Modify the /etc/nginx-manager/nginx-manager.conf file to include SSL certificate
     <summary>/etc/nginx-manager/nginx-manager.conf</summary>
 
 {{<fa "download">}} {{< link "/nim/previous-versions/static/previous-versions/v1/getting-started/encrypt/noauth/nginx-manager.conf" "nginx-manager.conf">}}
+
 ```yaml {hl_lines=[15,17]}
 #
 # /etc/nginx-manager/nginx-manager.conf
@@ -352,6 +365,7 @@ cert: /etc/ssl/nginx-manager/nginx-manager.crt
 # path to x.509 certificate key file (optional)
 key: /etc/ssl/nginx-manager/nginx-manager.key
 ```
+
 </details><br/>
 
 ### NGINX Proxy SSL Termination {#nginx-ssl-termination}
@@ -367,6 +381,7 @@ Configure the SSL certificate and key inside the NGINX configuration as you norm
     <summary>/etc/nginx/conf.d/nginx-manager-noauth.conf</summary>
 
 {{<fa "download">}} [nginx-manager-noauth.conf](/nim/previous-versions/static/previous-versions/v1/examples/nginx-manager/nginx-manager-noauth.conf)
+
 ```nginx {hl_lines=[7,9,"17-18","21-23","25-27","33-34"]}
 # nginx-manager-noauth.conf
 # Proxy UI/API with no auth to 127.0.0.1 on nginx-manager
@@ -375,7 +390,7 @@ Configure the SSL certificate and key inside the NGINX configuration as you norm
 server {
     listen          88;
     listen          443 http2 ssl;
-    
+
     server_name     nginx-manager.example.com;
     status_zone     nginx-manager_noauth_https;
 
@@ -408,6 +423,7 @@ server {
 
 # vim: syntax=nginx
 ```
+
 </details>
 
 {{%/tab%}}
@@ -419,6 +435,7 @@ server {
     <summary>/etc/nginx/conf.d/nginx-manager-noauth.conf</summary>
 
 {{<fa "download">}} [nginx-manager-noauth.conf](/nim/previous-versions/static/previous-versions/v1/getting-started/encrypt/nginx-manager-noauth.conf)
+
 ```nginx {hl_lines=[7,9,"16-17","20-22","24-26","31-32"]}
 # nginx-manager-noauth.conf
 # Proxy UI/API with no auth to 127.0.0.1 on nginx-manager
@@ -427,7 +444,7 @@ server {
 server {
     listen          88;
     listen          443 http2 ssl;
-    
+
     server_name     nginx-manager.example.com;
 
     # Optional log locations
@@ -458,6 +475,7 @@ server {
 
 # vim: syntax=nginx
 ```
+
 </details>
 
 {{%/tab%}}
@@ -491,6 +509,7 @@ Use the following as an example and modify according to your needs. There are ma
     <summary>make_certs.sh</summary>
 
 {{<fa "download">}} {{<link "nim/previous-versions/static/previous-versions/v1/getting-started/quickstart/make_certs.sh" "make_certs.sh">}}
+
 ```bash
 #!/bin/bash
 
@@ -619,6 +638,7 @@ make_server
 make_agent
 
 ```
+
 </details><br/>
 
 3. Put the following OpenSSL cnf files in the same directory.
@@ -627,7 +647,8 @@ make_agent
     <summary>ca.cnf</summary>
 
 {{<fa "download">}} {{< link "nim/previous-versions/static/previous-versions/v1/getting-started/quickstart/ca.cnf" "ca.cnf">}}
-```
+
+```none
 [req]
 default_bits        = 4096
 distinguished_name  = req_distinguished_name
@@ -653,13 +674,15 @@ DNS.1 = nginx-manager_ca.example.com
 DNS.2 = localhost
 IP.1 = 127.0.0.1
 ```
+
 </details>
 
 <details>
     <summary>ca-intermediate.cnf</summary>
 
 {{<fa "download">}} {{< link "nim/previous-versions/static/previous-versions/v1/getting-started/quickstart/ca-intermediate.cnf" "ca-intermediate.cnf">}}
-```
+
+```none
 [req]
 default_bits        = 4096
 distinguished_name  = req_distinguished_name
@@ -685,13 +708,15 @@ DNS.1 = nginx-manager_ca_int.example.com
 DNS.2 = localhost
 IP.1 = 127.0.0.1
 ```
+
 </details>
 
 <details>
     <summary>server.cnf</summary>
 
 {{<fa "download">}} {{< link "nim/previous-versions/static/previous-versions/v1/getting-started/quickstart/server.cnf" "server.cnf">}}
-```
+
+```none
 [req]
 prompt             = no
 default_bits       = 4096
@@ -717,13 +742,15 @@ DNS.3 = nginx-manager
 DNS.4 = localhost
 IP.1 = 127.0.0.1
 ```
+
 </details>
 
 <details>
     <summary>agent.cnf</summary>
 
 {{<fa "download">}} {{< link "nim/previous-versions/static/previous-versions/v1/getting-started/quickstart/agent.cnf" "agent.cnf">}}
-```
+
+```none
 [req]
 prompt             = no
 default_bits       = 2048
@@ -747,6 +774,7 @@ DNS.1 = agent.example.com
 DNS.2 = *.example.com
 
 ```
+
 </details><br/>
 
 4. Make the script executable and run the script to generate the certificates.
@@ -791,6 +819,7 @@ Setup the nginx-manager to utilize the server.crt,key and ca from above. Edit th
     <summary>/etc/nginx-agent/nginx-manager.conf</summary>
 
 {{<fa "download">}} {{< link "/nim/previous-versions/static/previous-versions/v1/getting-started/encrypt/noauth/nginx-manager.conf" "nginx-manager.conf">}}
+
 ```yaml {hl_lines=[15,17,19]}
 #
 # /etc/nginx-manager/nginx-manager.conf
@@ -820,6 +849,7 @@ log:
 metrics:
     storage_path: /var/nginx-manager/
 ```
+
 </details>
 
 Restarting the nginx-manager will pickup the encryption options but you also need to update all the nginx-agent endpoints to utilize certificates.
@@ -830,6 +860,7 @@ In our nginx1 example instance, modify the nginx-agent.conf file to resemble the
     <summary>/etc/nginx-agent/nginx-agent.conf</summary>
 
 {{<fa "download">}} {{< link "/nim/previous-versions/static/previous-versions/v1/getting-started/encrypt/noauth/nginx-agent.conf" "nginx-agent.conf">}}
+
 ```yaml {hl_lines=[8,13,15,17,19]}
 #
 # /etc/nginx-agent/nginx-agent.conf
@@ -874,6 +905,7 @@ nginx:
   # specify plus status api url (see nginx.org/r/api)
   plus_api: "http://localhost:8080/api"
 ```
+
 </details>
 
 Restart the agent and you should have gRPC utilizing client authentication. This setup also forces you to use SSL for the UI/API (server-side SSL only).
@@ -888,6 +920,7 @@ Configure the nginx-manager to only listen on 127.0.0.1 and use unencrypted comm
     <summary>/etc/nginx-agent/nginx-manager.conf</summary>
 
 {{<fa "download">}} {{< link "/nim/previous-versions/static/previous-versions/v1/getting-started/encrypt/offload/nginx-manager.conf" "nginx-manager.conf">}}
+
 ```yaml {hl_lines=[8]}
 #
 # /etc/nginx-manager/nginx-manager.conf
@@ -917,6 +950,7 @@ log:
 metrics:
     storage_path: /var/nginx-manager/
 ```
+
 </details>
 
 Configure the NGINX Plus instance running on the nginx-manager with a grpc conf similar to the following example. Reload nginx (systemctl reload nginx) and now nginx should be listening on 10443 for grpc(s) communication. Note the options to verify client and for the depth in the example below.
@@ -931,6 +965,7 @@ Configure the NGINX Plus instance running on the nginx-manager with a grpc conf 
     <summary>/etc/nginx/conf.d/nginx-manager-grpc.conf</summary>
 
 {{<fa "download">}} [nginx-manager-grpc.conf](/nim/previous-versions/static/previous-versions/v1/examples/nginx-manager/nginx-manager-grpc.conf)
+
 ```nginx {hl_lines=["29-31"]}
 # nginx-manager-grpc.conf
 # nginx-manager-grpc.conf
@@ -944,9 +979,9 @@ log_format grpc_json escape=json '{"timestamp":"$time_iso8601","client":"$remote
                                   '"rx-bytes":$request_length,"tx-bytes":$bytes_sent}';
 
 map $upstream_trailer_grpc_status $grpc_status {
-    default $upstream_trailer_grpc_status; # We normally expect to receive 
+    default $upstream_trailer_grpc_status; # We normally expect to receive
                                            # grpc-status as a trailer
-    ''      $sent_http_grpc_status;        # Else use the header, regardless of 
+    ''      $sent_http_grpc_status;        # Else use the header, regardless of
                                            # who generated it
 }
 
@@ -1005,12 +1040,14 @@ server {
 
 # vim: syntax=nginx
 ```
+
 </details>
 
 <details>
     <summary>/etc/nginx/conf.d/errors.grpc_conf</summary>
 
 {{<fa "download">}} [errors.grpc_conf](/nim/previous-versions/static/previous-versions/v1/examples/nginx-manager/errors.grpc_conf)
+
 ```nginx
 # Standard HTTP-to-gRPC status code mappings
 # Ref: https://github.com/grpc/grpc/blob/master/doc/http-grpc-status-mapping.md
@@ -1128,6 +1165,7 @@ location @grpc_unauthenticated {
 
 # vim: syntax=nginx
 ```
+
 </details><br/>
 
 {{%/tab%}}
@@ -1139,6 +1177,7 @@ Enable the stream module if it's not already enabled in the `nginx.conf` configu
     <summary>/etc/nginx/nginx.conf</summary>
 
 {{<fa "download">}} [nginx.conf](/nim/previous-versions/static/previous-versions/v1/getting-started/encrypt/nginx.conf)
+
 ```nginx {hl_lines=["33-35"]}
 user nginx;
 worker_processes auto;
@@ -1176,6 +1215,7 @@ stream {
     include /etc/nginx/stream.conf.d/*.conf;
 }
 ```
+
 </details>
 
 Create a `stream.conf.d` directory and add the following file to the directory.
@@ -1184,6 +1224,7 @@ Create a `stream.conf.d` directory and add the following file to the directory.
     <summary>/etc/nginx/stream.conf.d/nginx-grpc-stream.conf</summary>
 
 {{<fa "download">}} [nginx-grpc-stream.conf](/nim/previous-versions/static/previous-versions/v1/getting-started/encrypt/nginx-grpc-stream.conf)
+
 ```nginx
 # nginx-grpc-stream.conf
 
@@ -1202,6 +1243,7 @@ server {
 
 # vim: syntax=nginx
 ```
+
 </details><br/>
 
 {{%/tab%}}
@@ -1213,6 +1255,7 @@ On our example nginx-1.example.com instance, edit the nginx-agent.conf to resemb
     <summary>/etc/nginx-agent/nginx-agent.conf</summary>
 
 {{<fa "download">}} {{< link "/nim/previous-versions/static/previous-versions/v1/getting-started/encrypt/nginx-agent.conf" "nginx-agent.conf">}}
+
 ```yaml {hl_lines=[8,13,15,17,19]}
 #
 # /etc/nginx-agent/nginx-agent.conf
@@ -1257,6 +1300,7 @@ nginx:
   # specify plus status api url (see nginx.org/r/api)
   plus_api: "http://localhost:8080/api"
 ```
+
 </details>
 
 Restart the agent and verify through the logs, or by using the browser interface or API,  that we can receive metrics and configuration data. Client cert authentication is now taking place through the NGINX proxy.
@@ -1273,6 +1317,7 @@ Edit the nginx-manager.conf to resemble the following example to secure traffic.
     <summary>/etc/nginx-agent/nginx-manager.conf</summary>
 
 {{<fa "download">}} {{< link "/nim/previous-versions/static/previous-versions/v1/getting-started/encrypt/nginx-manager.conf" "nginx-manager.conf">}}
+
 ```yaml {hl_lines=[8,15,17,19]}
 #
 # /etc/nginx-manager/nginx-manager.conf
@@ -1302,6 +1347,7 @@ log:
 metrics:
     storage_path: /var/nginx-manager/
 ```
+
 </details>
 
 Restarting the nginx-manager now enables secure communication but only internally. Configure the nginx plus instance with a conf file similar to the example below to listen on 10443 for grpcs traffic. Note the proxy option to use grpcs instead of grpc here. You don't need the grpc crt, key, and ca options here but they're listed and commented in case you want to leverage multiple certificates that differ on the internal leg.
@@ -1310,6 +1356,7 @@ Restarting the nginx-manager now enables secure communication but only internall
     <summary>/etc/nginx/conf.d/nginx-manager-grpc.conf</summary>
 
 {{<fa "download">}} {{< link "nim/previous-versions/static/previous-versions/v1/examples/nginx-manager/nginx-manager-grpc.conf" "nginx-manager-grpc.conf">}}
+
 ```nginx {hl_lines=[37,"39-41","43-45","47-49","51-53"]}
 # nginx-manager-grpc.conf
 # Proxy grpc through tcp 10002 to 127.0.0.1 on nginx-manager
@@ -1322,9 +1369,9 @@ log_format grpc_json escape=json '{"timestamp":"$time_iso8601","client":"$remote
                                   '"rx-bytes":$request_length,"tx-bytes":$bytes_sent}';
 
 map $upstream_trailer_grpc_status $grpc_status {
-    default $upstream_trailer_grpc_status; # We normally expect to receive 
+    default $upstream_trailer_grpc_status; # We normally expect to receive
                                            # grpc-status as a trailer
-    ''      $sent_http_grpc_status;        # Else use the header, regardless of 
+    ''      $sent_http_grpc_status;        # Else use the header, regardless of
                                            # who generated it
 }
 
@@ -1375,7 +1422,7 @@ server {
 
     # Error responses
     include conf.d/errors.grpc_conf; # gRPC-compliant error responses
-    default_type application/grpc;   # Ensure gRPC for all error responses    
+    default_type application/grpc;   # Ensure gRPC for all error responses
 }
 
 upstream nginx-manager_grpc_servers {
@@ -1386,12 +1433,14 @@ upstream nginx-manager_grpc_servers {
 
 # vim: syntax=nginx
 ```
+
 </details>
 
 <details>
     <summary>/etc/nginx/conf.d/errors.grpc_conf</summary>
 
 {{<fa "download">}} {{< link "nim/previous-versions/static/previous-versions/v1/examples/nginx-manager/errors.grpc_conf" "errors.grpc_conf">}}
+
 ```nginx
 # Standard HTTP-to-gRPC status code mappings
 # Ref: https://github.com/grpc/grpc/blob/master/doc/http-grpc-status-mapping.md
@@ -1509,6 +1558,7 @@ location @grpc_unauthenticated {
 
 # vim: syntax=nginx
 ```
+
 </details><br/>
 
 Reload the NGINX server (`systemctl reload nginx`) and the new configuration should take effect. Finally, go to your NGINX instance and edit the `nginx-agent.conf` file to resemble the following example (`nginx-1.example.com` in our example).
@@ -1517,6 +1567,7 @@ Reload the NGINX server (`systemctl reload nginx`) and the new configuration sho
     <summary>/etc/nginx-agent/nginx-agent.conf</summary>
 
 {{<fa "download">}} {{< link "/nim/previous-versions/static/previous-versions/v1/getting-started/encrypt/nginx-agent.conf" "nginx-agent.conf">}}
+
 ```yaml {hl_lines=[8,13,15,17,19]}
 #
 # /etc/nginx-agent/nginx-agent.conf
@@ -1561,6 +1612,7 @@ nginx:
   # specify plus status api url (see nginx.org/r/api)
   plus_api: "http://localhost:8080/api"
 ```
+
 </details><br/>
 
 {{%heading "grpc"%}}
@@ -1589,9 +1641,9 @@ log_format grpc_json escape=json '{"timestamp":"$time_iso8601","client":"$remote
                                   '"rx-bytes":$request_length,"tx-bytes":$bytes_sent}';
 
 map $upstream_trailer_grpc_status $grpc_status {
-    default $upstream_trailer_grpc_status; # We normally expect to receive 
+    default $upstream_trailer_grpc_status; # We normally expect to receive
                                            # grpc-status as a trailer
-    ''      $sent_http_grpc_status;        # Else use the header, regardless of 
+    ''      $sent_http_grpc_status;        # Else use the header, regardless of
                                            # who generated it
 }
 
@@ -1618,7 +1670,7 @@ server {
 
     # Error responses
     include conf.d/errors.grpc_conf; # gRPC-compliant error responses
-    default_type application/grpc;   # Ensure gRPC for all error responses  
+    default_type application/grpc;   # Ensure gRPC for all error responses
 }
 
 upstream nginx-manager_grpc_servers {
@@ -1630,6 +1682,7 @@ upstream nginx-manager_grpc_servers {
 
 # vim: syntax=nginx
 ```
+
 </details>
 
 <details>
@@ -1754,6 +1807,7 @@ location @grpc_unauthenticated {
 
 # vim: syntax=nginx
 ```
+
 </details>
 
 {{%/tab%}}
@@ -1763,6 +1817,7 @@ location @grpc_unauthenticated {
     <summary>/etc/nginx/conf.d/nginx-manager-grpc-ssl.conf</summary>
 
 {{<fa "download">}} [nginx-manager-grpc-ssl.conf](/nim/previous-versions/static/previous-versions/v1/getting-started/encrypt/nginx-manager-grpc-ssl.conf)
+
 ```nginx {hl_lines=["6-9","11-16","18-21","23-26","28-30",37,"39-40","42-44","46-48","51-52","55-57"]}
 # nginx-manager-grpc-ssl.conf
 # Proxy grpc through tcp 10443 with TLS encryption to local server name on nginx-manager
@@ -1775,9 +1830,9 @@ log_format grpc_json escape=json '{"timestamp":"$time_iso8601","client":"$remote
                                   '"rx-bytes":$request_length,"tx-bytes":$bytes_sent}';
 
 map $upstream_trailer_grpc_status $grpc_status {
-    default $upstream_trailer_grpc_status; # We normally expect to receive 
+    default $upstream_trailer_grpc_status; # We normally expect to receive
                                            # grpc-status as a trailer
-    ''      $sent_http_grpc_status;        # Else use the header, regardless of 
+    ''      $sent_http_grpc_status;        # Else use the header, regardless of
                                            # who generated it
 }
 
@@ -1803,7 +1858,7 @@ server {
     access_log          /var/log/nginx/nginx-manager-grpc-access.log grpc_json; # Alternate log location and format
 
     ssl_certificate     /etc/ssl/nginx-manager/public.grpc.crt;   # This cert matches the one in nginx-agent.conf
-    ssl_certificate_key /etc/ssl/nginx-manager/public.grpc.key;   
+    ssl_certificate_key /etc/ssl/nginx-manager/public.grpc.key;
 
     ssl_session_cache shared:SSL:10m;
     ssl_session_timeout 24h;
@@ -1820,7 +1875,7 @@ server {
 
     # Error responses
     include conf.d/errors.grpc_conf; # gRPC-compliant error responses
-    default_type application/grpc;   # Ensure gRPC for all error responses   
+    default_type application/grpc;   # Ensure gRPC for all error responses
 
 }
 
@@ -1832,6 +1887,7 @@ upstream nginx-manager_grpc_servers {
 
 # vim: syntax=nginx
 ```
+
 </details>
 
 <details>
@@ -1956,6 +2012,7 @@ location @grpc_unauthenticated {
 
 # vim: syntax=nginx
 ```
+
 </details>
 
 {{%/tab%}}
@@ -1967,6 +2024,7 @@ To encrypt the internal traffic on the server (only needed if you plan to expose
     <summary>/etc/nginx-manager/nginx-manager.conf</summary>
 
 {{<fa "download">}} [nginx-manager.conf](/nim/previous-versions/static/previous-versions/v1/getting-started/encrypt/nginx-manager.conf)
+
 ```yaml {hl_lines=[8,15,17,19]}
 #
 # /etc/nginx-manager/nginx-manager.conf
@@ -1996,12 +2054,14 @@ log:
 metrics:
     storage_path: /var/nginx-manager/
 ```
+
 </details>
 
 <details>
     <summary>/etc/nginx/conf.d/nginx-manager-grpc-mtls.conf</summary>
 
 {{<fa "download">}} [nginx-manager-grpc-mtls.conf](/nim/previous-versions/static/previous-versions/v1/getting-started/encrypt/nginx-manager-grpc-mtls.conf)
+
 ```nginx {hl_lines=["6-9","11-16","18-21","23-26","28-30","37-39","41-43",45,"47-48","51-54","57-59"]}
 # nginx-manager-grpcs-mtls.conf
 # Proxy grpc through tcp 10443 with TLS encryption to local server name on nginx-manager
@@ -2014,9 +2074,9 @@ log_format grpc_json escape=json '{"timestamp":"$time_iso8601","client":"$remote
                                   '"rx-bytes":$request_length,"tx-bytes":$bytes_sent}';
 
 map $upstream_trailer_grpc_status $grpc_status {
-    default $upstream_trailer_grpc_status; # We normally expect to receive 
+    default $upstream_trailer_grpc_status; # We normally expect to receive
                                            # grpc-status as a trailer
-    ''      $sent_http_grpc_status;        # Else use the header, regardless of 
+    ''      $sent_http_grpc_status;        # Else use the header, regardless of
                                            # who generated it
 }
 
@@ -2050,7 +2110,7 @@ server {
     access_log          /var/log/nginx/nginx-manager-grpc-access.log grpc_json;   # Alternate log location and format
 
     ssl_certificate     /etc/ssl/nginx-manager/public.grpc.crt;   # This cert matches the one in nginx-agent.conf
-    ssl_certificate_key /etc/ssl/nginx-manager/public.grpc.key;   
+    ssl_certificate_key /etc/ssl/nginx-manager/public.grpc.key;
 
     location / {
         grpc_pass                       grpcs://nginx-manager_grpc_servers;   # Adjust to grpcs for SSL
@@ -2061,7 +2121,7 @@ server {
 
     # Error responses
     include conf.d/errors.grpc_conf; # gRPC-compliant error responses
-    default_type application/grpc;   # Ensure gRPC for all error responses  
+    default_type application/grpc;   # Ensure gRPC for all error responses
 
 }
 
@@ -2073,12 +2133,14 @@ upstream nginx-manager_grpc_servers {
 
 # vim: syntax=nginx
 ```
+
 </details>
 
 <details>
     <summary>/etc/nginx/conf.d/errors.grpc_conf</summary>
 
 {{<fa "download">}} [errors.grpc_conf](/nim/previous-versions/static/previous-versions/v1/examples/nginx-manager/errors.grpc_conf)
+
 ```nginx
 # Standard HTTP-to-gRPC status code mappings
 # Ref: https://github.com/grpc/grpc/blob/master/doc/http-grpc-status-mapping.md
@@ -2196,6 +2258,7 @@ location @grpc_unauthenticated {
 
 # vim: syntax=nginx
 ```
+
 </details>
 
 {{%/tab%}}

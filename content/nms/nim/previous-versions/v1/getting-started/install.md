@@ -40,6 +40,7 @@ This document helps you get NGINX Instance Manager up and running.
 ## Install Server {#install-server}
 
 You can choose one of the following two options:
+
 - Use the public NGINX repositories with a certificate and key or internal package management system (like Red Hat Satellite)
 - Use the packages directly by downloading them from the myF5 portal or from  NGINX/F5 sales team.
 
@@ -66,8 +67,8 @@ This method allows you to use a simple `yum` or `apt-get` install and use the `n
 1. Create the /etc/ssl/nginx directory
 
 ```bash
-$ sudo mkdir /etc/ssl/nginx
-$ cd /etc/ssl/nginx
+sudo mkdir /etc/ssl/nginx
+cd /etc/ssl/nginx
 ```
 
 2. Log in to MyF5 Customer Portal and download your nginx-manager-repo.crt and nginx-manager-repo.key files. You should rename nginx-repo.cer and nginx-repo.key (or similar name) to the suggested names.
@@ -75,8 +76,8 @@ $ cd /etc/ssl/nginx
 3. Copy the files to the /etc/ssl/nginx/ directory.
 
 ```bash
-$ sudo cp nginx-*.crt /etc/ssl/nginx/nginx-repo.crt
-$ sudo cp nginx-*.key /etc/ssl/nginx/nginx-repo.key
+sudo cp nginx-*.crt /etc/ssl/nginx/nginx-repo.crt
+sudo cp nginx-*.key /etc/ssl/nginx/nginx-repo.key
 ```
 
 4. Install the required certificate authority dependencies.
@@ -85,16 +86,16 @@ $ sudo cp nginx-*.key /etc/ssl/nginx/nginx-repo.key
 {{%tab name="CentOS, RHEL, and rpm-based distributions"%}}
 
 ```bash
-$ sudo yum install ca-certificates
+sudo yum install ca-certificates
 ```
 
 {{%/tab%}}
 {{%tab name="Debian, Ubuntu, and deb-based distributions"%}}
 
 ```bash
-$ sudo apt-get install apt-transport-https lsb-release ca-certificates
-$ sudo wget https://nginx.org/keys/nginx_signing.key
-$ sudo apt-key add nginx_signing.key
+sudo apt-get install apt-transport-https lsb-release ca-certificates
+sudo wget https://nginx.org/keys/nginx_signing.key
+sudo apt-key add nginx_signing.key
 ```
 
 {{%/tab%}}
@@ -106,15 +107,16 @@ $ sudo apt-key add nginx_signing.key
 {{%tab name="CentOS, RHEL, and rpm-based distributions"%}}
 
 ```bash
-$ sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/instance-manager.repo
+sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/instance-manager.repo
 ```
+
 {{%/tab%}}
 {{%tab name="Debian, Ubuntu, and deb-based distributions"%}}
 
 ```bash
-$ printf "deb https://pkgs.nginx.com/instance-manager/debian stable nginx-plus\n" | sudo tee /etc/apt/sources.list.d/instance-manager.list
-$ sudo wget -q -O /etc/apt/apt.conf.d/90pkgs-nginx https://cs.nginx.com/static/files/90pkgs-nginx
-$ sudo apt-get update
+printf "deb https://pkgs.nginx.com/instance-manager/debian stable nginx-plus\n" | sudo tee /etc/apt/sources.list.d/instance-manager.list
+sudo wget -q -O /etc/apt/apt.conf.d/90pkgs-nginx https://cs.nginx.com/static/files/90pkgs-nginx
+sudo apt-get update
 ```
 
 ```bash
@@ -134,21 +136,21 @@ $ cat /etc/apt/apt.conf.d/90pkgs-nginx
 {{%tab name="CentOS, RHEL, and rpm-based distributions"%}}
 
 ```bash
-$ sudo yum install -y nginx-manager
+sudo yum install -y nginx-manager
 ```
 
 If you have a signing key error, run the following:
 
 ```bash
-$ curl -o /tmp/nginx_signing.key https://nginx.org/keys/nginx_signing.key
-$ sudo rpmkeys --import /tmp/nginx_signing.key
+curl -o /tmp/nginx_signing.key https://nginx.org/keys/nginx_signing.key
+sudo rpmkeys --import /tmp/nginx_signing.key
 ```
 
 {{%/tab%}}
 {{%tab name="Debian, Ubuntu, and deb-based distributions"%}}
 
 ```bash
-$ sudo apt-get install -y nginx-manager
+sudo apt-get install -y nginx-manager
 ```
 
 {{%/tab%}}
@@ -166,13 +168,13 @@ You will need the packages for NGINX Instance Manager. Download them directly fr
 1. Installation.
 
 ```bash
-$ sudo yum -y --nogpgcheck install /home/user/nginx-manager-1.0.1-1.x86_64.rpm
+sudo yum -y --nogpgcheck install /home/user/nginx-manager-1.0.1-1.x86_64.rpm
 ```
 
 2. Upgrades.
 
 ```bash
-$ sudo yum -y --nogpgcheck upgrade /home/user/nginx-manager-1.0.2-1.x86_64.rpm
+sudo yum -y --nogpgcheck upgrade /home/user/nginx-manager-1.0.2-1.x86_64.rpm
 ```
 
 {{%/tab%}}
@@ -181,13 +183,13 @@ $ sudo yum -y --nogpgcheck upgrade /home/user/nginx-manager-1.0.2-1.x86_64.rpm
 1. Installation.
 
 ```bash
-$ sudo apt-get -y install /home/user/nginx-manager_1.0.0-1_amd64.deb
+sudo apt-get -y install /home/user/nginx-manager_1.0.0-1_amd64.deb
 ```
 
 2. Upgrades.
 
 ```bash
-$ sudo apt-get -y upgrade /home/user/nginx-manager_1.0.2-1_amd64.deb
+sudo apt-get -y upgrade /home/user/nginx-manager_1.0.2-1_amd64.deb
 ```
 
 {{%/tab%}}
@@ -260,7 +262,7 @@ NGINX Instance Manager also has an SELinux policy module that can be installed o
 ### Install SELinux Policy Module {#selinux-server}
 
 ```bash
-$ sudo yum install -y nginx-manager_selinux
+sudo yum install -y nginx-manager_selinux
 ```
 
 ### Add ports for Instance Manager SELinux context {#selinux-ports-add}
@@ -270,15 +272,15 @@ Instance Manager uses the nginx-manager_t context in the policy module, and you 
 To add a port to the nginx-manager context, you can use a similar command to one below that adds 10000 and 11000:
 
 ```bash
-$ sudo semanage port -a -t nginx_manager_port_t -p tcp 10000
-$ sudo semanage port -a -t nginx_manager_port_t -p tcp 11000
+sudo semanage port -a -t nginx_manager_port_t -p tcp 10000
+sudo semanage port -a -t nginx_manager_port_t -p tcp 11000
 ```
 
 If you already have defined the port context, replace `-a` with `-m`:
 
 ```bash
-$ sudo semanage port -m -t nginx_manager_port_t -p tcp 10000
-$ sudo semanage port -m -t nginx_manager_port_t -p tcp 11000
+sudo semanage port -m -t nginx_manager_port_t -p tcp 10000
+sudo semanage port -m -t nginx_manager_port_t -p tcp 11000
 ```
 
 ### Remove ports for Instance Manager SELinux context {#selinux-ports-remove}
@@ -286,8 +288,8 @@ $ sudo semanage port -m -t nginx_manager_port_t -p tcp 11000
 If you remove nginx-manager-selinux you should also remove the ports using a command similar to the one below:
 
 ```bash
-$ sudo semanage port -d -t nginx_manager_port_t 10000
-$ sudo semanage port -d -t nginx_manager_port_t 11000
+sudo semanage port -d -t nginx_manager_port_t 10000
+sudo semanage port -d -t nginx_manager_port_t 11000
 ```
 
 ## Start and Enable NGINX Instance Manager Server {{%heading "start-server"%}}
@@ -300,20 +302,20 @@ For systemd systems, perform the following steps:
 1. Start the NGINX Instance Manager Server.
 
 ```bash
-$ sudo systemctl start nginx-manager
+sudo systemctl start nginx-manager
 ```
 
 2. Enable the NGINX Instance Manager Server to start on boot.
 
 ```bash
-$ sudo systemctl enable nginx-manager
+sudo systemctl enable nginx-manager
 ```
 
 {{%/tab%}}
 {{%tab name="upstart"%}}
 
 ```bash
-$ sudo initctl start nginx-manager
+sudo initctl start nginx-manager
 ```
 
 {{%/tab%}}
@@ -327,11 +329,11 @@ Point your browser to the FQDN and port you configured Instance Manager on. If y
 
 ## Access the Swagger-UI API {#access-server-api}
 
-To access the swagger-ui page, simply append '/swagger-ui' to the end of the URL. For example, the server above would be http://nginx-manager.example.com:11000/swagger-ui.
+To access the swagger-ui page, simply append '/swagger-ui' to the end of the URL. For example, the server above would be <http://nginx-manager.example.com:11000/swagger-ui>.
 
 ## Access the metrics endpoint {#access-server-metrics}
 
-To access metrics through Grafana or Prometheus, configure the data source as a Prometheus endpoint and add '/metrics' to the end of the URL. For example, the server above would be http://nginx-manager.example.com:11000/metrics.
+To access metrics through Grafana or Prometheus, configure the data source as a Prometheus endpoint and add '/metrics' to the end of the URL. For example, the server above would be <http://nginx-manager.example.com:11000/metrics>.
 
 {{%heading "configure"%}}
 

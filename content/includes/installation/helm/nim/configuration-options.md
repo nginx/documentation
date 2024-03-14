@@ -6,8 +6,8 @@ The following table lists the configurable parameters and default values for the
 
 To modify a configuration for an existing release, run the `helm upgrade` command and use `-f <my-values-file>`, where `my-values-file` is a path to a values file with your desired configuration.
 
-{{% table %}}
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+
 | Parameter | Description | Default |
 |:-----------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------|
 | `nms-hybrid.adminPasswordHash`                        | The hashed value of the password for the  admin user.<br>To generate the hash using `openssl`, run a command similar to the following example: `openssl passwd -1 "YouPassword123#"` | N/A |
@@ -111,8 +111,8 @@ To modify a configuration for an existing release, run the `helm upgrade` comman
 | `nms-hybrid.utility.image.tag`                        | Tag used for pulling images from registry. | `latest` |
 | `nms-hybrid.utility.image.pullPolicy`                 | Image pull policy. | `IfNotPresent` |
 | `nms-hybrid.nic`                                      | To enable NGINX Ingress Controller Virtual Server | See [NGINX Ingress Controller Virtual Server](#nginx-ingress-controller-virtual-server) for details |
+
 {{</bootstrap-table>}}
-{{% /table %}}
 
 ##### Instance Manager Dqlite Storage Configuration
 

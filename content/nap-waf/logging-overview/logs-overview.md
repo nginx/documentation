@@ -37,6 +37,7 @@ weight: 510
 ## App Protect Logging Overview
 
 There are 3 types of logs that App Protect on NGINX generates:
+
 - [Security log or Request log]({{< relref "/nap-waf/logging-overview/security-log" >}}): The HTTP requests and how App Protect processed them, including violations and signatures found.
 - [Operation logs]({{< relref "/nap-waf/logging-overview/operation-logs" >}}): Events such as startup, shutdown and reconfiguration.
 - [Debug logs]({{< relref "/nap-waf/logging-overview/debug-logs" >}}): technical messages at different levels of severity used to debug and resolve incidents and error behaviors.
@@ -47,13 +48,14 @@ Note that NGINX does not have audit logs in the sense of who did what. This can 
 
 App Protect uses its own logging mechanism for request logging rather than NGINX's access logging mechanism (which is NGINX's default logging mechanism).
 
-{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
-|Type | Log Configuration | Configuration contexts | File Destination | Syslog Destination | 
-| ---| ---| ---| ---| --- | 
-|Security | `app_protect_security_log` directive referencing `security_log.json` file | `nginx.conf`: http, server, location | Yes, either `stderr`, or an absolute path to a local file are supported | Yes | 
-|Operation | `error_log` directive, part of core NGINX | `nginx.conf` - global | Yes, NGINX error log | Yes, NGINX error log | 
-|Debug | `/etc/app_protect/bd/logger.cfg.` Log file name is the redirection in the invocation of the bd command line in the start script | Global (not part of nginx.conf) | Yes. Log file is in `/var/log/app_protect` default debug directory.  No file rotation currently | No | 
-{{</bootstrap-table>}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
+|Type | Log Configuration | Configuration contexts | File Destination | Syslog Destination |
+| ---| ---| ---| ---| --- |
+|Security | `app_protect_security_log` directive referencing `security_log.json` file | `nginx.conf`: http, server, location | Yes, either `stderr`, or an absolute path to a local file are supported | Yes |
+|Operation | `error_log` directive, part of core NGINX | `nginx.conf` - global | Yes, NGINX error log | Yes, NGINX error log |
+|Debug | `/etc/app_protect/bd/logger.cfg.` Log file name is the redirection in the invocation of the bd command line in the start script | Global (not part of nginx.conf) | Yes. Log file is in `/var/log/app_protect` default debug directory.  No file rotation currently | No |
+
+{{</bootstrap-table>}}
 
 ## Log Rotate
 
@@ -62,22 +64,26 @@ If you already have logrotate running, NGINX App Protect WAF log files will be r
 To install logrotate:
 
 For CentOS:
+
   ```shell
   sudo yum install logrotate
   ```
 
 For Debian / Ubuntu:
+
   ```shell
   sudo apt-get install logrotate
   ```
 
 For Alpine:
+
   ```shell
   sudo apk add logrotate
   ```
 
 By default the logrotate configuration file included in NGINX App Protect WAF is:
-```
+
+```none
 /var/log/app_protect/*.log {
         size 1M
         copytruncate
@@ -101,8 +107,10 @@ All logs in the `/var/log/app_protect/` folder will be rotated, including the se
 Example of configuring security log to be under `/var/log/app_protect/`:
 
 In `/etc/nginx/nginx.conf`:
-  ```
+
+  ```none
   app_protect_security_log_enable on;
   app_protect_security_log "/opt/app_protect/share/defaults/log_illegal.json" /var/log/app_protect/security.log;
   ```
+
 {{< note >}} The log rotation policy is provided as a default policy. Users can customize to adapt to their need. {{< /note >}}

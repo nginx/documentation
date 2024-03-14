@@ -67,9 +67,10 @@ The NGINX App Protect DoS package has the following dependencies:
 
 See the NGINX Plus full list of prerequisites for more details. NGINX App Protect DoS can be installed as a module to an existing NGINX Plus installation or as a complete NGINX Plus with App Protect DoS installation in a clean environment or to a system with NGINX App Protect WAF.
 
-{{< note >}} 
+{{< note >}}
+
 - gRPC and HTTP/2 protection require active monitoring of the protected service. The directive `app_protect_dos_monitor` is mandatory for the attack to be detected.
-- TLS fingerprint feature is not used in CentOS 7.4 and RHEL 7 / UBI 7 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher. 
+- TLS fingerprint feature is not used in CentOS 7.4 and RHEL 7 / UBI 7 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
 - Monitor directive `app_protect_dos_monitor` with proxy_protocol parameter can not be configured on Ubuntu 18.04. As a result, gRPC and HTTP/2 DoS protection for proxy_protocol configuration is not supported.
 {{< /note >}}
 
@@ -119,6 +120,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```
 
 7. In case of fresh installation, update the repository and install the most recent version of the NGINX Plus App Protect DoS package (which includes NGINX Plus):
+
     ```shell
     sudo yum install app-protect-dos
     ```
@@ -135,13 +137,14 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo yum install app-protect-dos-27+2.4.0
     ```
 
-8. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus): 
+8. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):
 
     ```shell
     sudo yum remove nginx-plus
     sudo yum install app-protect-dos
     sudo systemctl start nginx
     ```
+
     {{< note >}} Make sure to restore configuration from `/etc/nginx-plus-backup` back to `/etc/nginx-plus`.{{< /note >}}
 
 9. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
@@ -183,7 +186,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     ```shell
     module app-protect-dos 2.0;
-    require { 
+    require {
         type unconfined_t;
         type unconfined_service_t;
         type httpd_t;
@@ -206,7 +209,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     ```shell
     sudo checkmodule -M -m -o app-protect-dos.mod app-protect-dos.te
-    sudo semodule_package -o app-protect-dos.pp -m app-protect-dos.mod 
+    sudo semodule_package -o app-protect-dos.pp -m app-protect-dos.mod
     sudo semodule -i app-protect-dos.pp;
     ```
 
@@ -225,6 +228,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```shell
     sudo systemctl start nginx
     ```
+
 ## RHEL 7.4+ Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
@@ -257,22 +261,23 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 6. Enable Yum repositories to pull App Protect dependencies:
 
     If you have a RHEL subscription:
-    
+
     ```shell
-     sudo subscription-manager repos --enable rhel-*-optional-rpms \ 
-                                     --enable rhel-*-extras-rpms \ 
+     sudo subscription-manager repos --enable rhel-*-optional-rpms \
+                                     --enable rhel-*-extras-rpms \
                                      --enable rhel-ha-for-rhel-*-server-rpms
      yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     ```
 
-    If you get network error https://access.redhat.com/articles/1320623 run following to resolve
+    If you get "network error https://access.redhat.com/articles/1320623" run following to resolve
+
     ```shell
     subscription-manager release --set=7Server
-    subscription-manager repos --disable=rhel-7-server-eus-optional-rpms  
+    subscription-manager repos --disable=rhel-7-server-eus-optional-rpms
     ```
 
     If you don’t have a RHEL subscription, you can pull the dependencies from the CentOS repository: Create a new repository centos.repo in `/etc/yum.repos.d/` with the content:
-   
+
     ```shell
     [centos]
     name=CentOS-7
@@ -302,6 +307,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```
 
 8. In case of fresh installation, update the repository and install the most recent version of the NGINX Plus App Protect DoS package (which includes NGINX Plus):
+
     ```shell
     sudo yum install app-protect-dos
     ```
@@ -318,13 +324,14 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo yum install app-protect-dos-27+2.4.0
     ```
 
-9. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus): 
+9. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):
 
     ```shell
     sudo yum remove nginx-plus
     sudo yum install app-protect-dos
     sudo systemctl start nginx
     ```
+
     {{< note >}} Make sure to restore configuration from `/etc/nginx-plus-backup` back to `/etc/nginx-plus`.{{< /note >}}
 
 10. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
@@ -366,7 +373,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     ```shell
     module app-protect-dos 2.0;
-    require { 
+    require {
         type unconfined_t;
         type unconfined_service_t;
         type httpd_t;
@@ -408,7 +415,8 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```shell
     sudo systemctl start nginx
     ```
-## RHEL 8+ / Rocky Linux 8 Installation 
+
+## RHEL 8+ / Rocky Linux 8 Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -440,7 +448,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 6. Enable Yum repositories to pull NGINX App Protect dependencies:
 
     If you have a RHEL subscription:
-    
+
     ```shell
     sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
     sudo yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
@@ -454,11 +462,13 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```
 
 8. In case of fresh installation, update the repository and install the most recent version of the NGINX Plus App Protect DoS package (which includes NGINX Plus):
+
     ```shell
     sudo yum install app-protect-dos
     ```
 
     For L4 accelerated mitigation feature (RHEL 8.6+):
+
     ```shell
     sudo yum install app-protect-dos-ebpf
     ```
@@ -468,7 +478,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
    - `nginx-app-protect-dos` and `nginx` needs to run with root privileges.
    - `nginx-app-protect-dos` service executes the command: `ulimit -l unlimited`.
     {{< /note >}}
-   
+
     Alternatively, you can use the following command to list available versions:
 
     ```shell
@@ -481,13 +491,14 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo yum install app-protect-dos-27+2.4.0
     ```
 
-9. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus): 
+9. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):
 
     ```shell
     sudo yum remove nginx-plus
     sudo yum install app-protect-dos
     sudo systemctl start nginx
     ```
+
     {{< note >}} Make sure to restore configuration from `/etc/nginx-plus-backup` back to `/etc/nginx-plus`.{{< /note >}}
 
 10. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
@@ -535,7 +546,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     ```shell
     module app-protect-dos 2.0;
-    require { 
+    require {
         type unconfined_t;
         type unconfined_service_t;
         type httpd_t;
@@ -645,35 +656,40 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 5. Install apt utils:
 
     For Debian:
+
     ```shell
     sudo apt-get install apt-transport-https lsb-release ca-certificates wget gnupg2 debian-archive-keyring
     ```
 
     For Ubuntu:
+
     ```shell
     sudo apt-get install apt-transport-https lsb-release ca-certificates wget gnupg2 ubuntu-keyring
     ```
-    
+
     {{< note >}}In case the apt installation or database update fails due to release info change, run the below command before you install.{{< /note >}}
 
     ```shell
     sudo apt-get update --allow-releaseinfo-change
     ```
-    
+
 6. Download and add the NGINX signing key:
 
     ```shell
     sudo wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | sudo gpg --dearmor | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
     ```
+
 7. Add NGINX Plus and NGINX App Protect DoS repository:
 
     For Debian:
+
     ```shell
     printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-plus.list
     printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/debian `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
     ```
-    
+
     For Ubuntu:
+
     ```shell
     printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-plus.list
     printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
@@ -684,6 +700,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```shell
     sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
     ```
+
 9. In case of fresh Installation, update the repository and install the most recent version of the NGINX Plus App Protect DoS package (which includes NGINX Plus):
 
     ```shell
@@ -711,8 +728,8 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo apt-cache policy app-protect-dos
     ```
 
-    Finally, install a specific version from the output of command above. 
-    
+    Finally, install a specific version from the output of command above.
+
     For example for Debian 10:
 
     ```shell
@@ -807,10 +824,11 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     nginx-repo.crt
     ```
 
-3. Upload `nginx-repo.key` to `/etc/apk/cert.key` and `nginx-repo.crt` to `/etc/apk/cert.pem`. 
+3. Upload `nginx-repo.key` to `/etc/apk/cert.key` and `nginx-repo.crt` to `/etc/apk/cert.pem`.
    Make sure that files do not contain other certificates and keys, as Alpine Linux does not support mixing client certificates for different repositories.
 
 4. Add the NGINX public signing key to the directory `/etc/apk/keys`:
+
     ```shell
     sudo wget -O /etc/apk/keys/nginx_signing.rsa.pub  https://cs.nginx.com/static/keys/nginx_signing.rsa.pub
     ```
@@ -848,29 +866,30 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```
 
     For L4 accelerated mitigation feature:
+
     ```shell
     sudo sudo apk add app-protect-dos-ebpf
     ```
 
    {{< note >}}
    L4 accelerated mitigation feature:
-   - `nginx-app-protect-dos` and `nginx` needs to run with root privileges.  
+   - `nginx-app-protect-dos` and `nginx` needs to run with root privileges.
    {{< /note >}}
-    
+
     Alternatively, to install a specific version, use the following commands to update and list available versions:
 
-    ```shell    
+    ```shell
     sudo apk update
     sudo apk info app-protect-dos
     ```
 
     Finally, install a specific version from the output of command above. For example:
 
-    ```shell    
+    ```shell
     sudo apk add nginx-plus app-protect-dos=27+2.4.0-r1
     ```
 
-10. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):  
+10. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):
 
     ```shell
     sudo apk update
@@ -983,7 +1002,7 @@ You need root permissions to execute the following steps.
                 proxy_pass http://1.2.3.4:80;
             }
         }
- 
+
         # gRPC server with ssl
         server {
             default_type    application/grpc;
@@ -1015,34 +1034,38 @@ You need root permissions to execute the following steps.
         keepalive_timeout   65;
     }
 
-{{< important >}} 
+{{< important >}}
 Make sure to replace upstream and proxy pass directives in this example with relevant application backend settings.
 {{< /important >}}
 
 5. For L4 accelerated mitigation feature:<br />
    Need to replace from the `nginx.conf` file the line:<br />
-   ```nginx   
+
+   ```nginx
    user nginx;
    ```
+
    to
-   ```nginx   
+
+   ```nginx
    user root;
    ```
-   
+
 6. In the same directory create an `entrypoint.sh` file with executable permissions, with the following content:
 
     For CentOS 7 / UBI 7:
+
     ```shell
     #!/usr/bin/env bash
-    
+
     USER=nginx
     LOGDIR=/var/log/adm
-    
+
     # prepare environment
     mkdir -p /var/run/adm /tmp/cores ${LOGDIR}
     chmod 755 /var/run/adm /tmp/cores ${LOGDIR}
     chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
-    
+
     LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/rpm/lib64
     export LD_LIBRARY_PATH
 
@@ -1053,17 +1076,18 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     ```
 
     For Alpine / Debian / Ubuntu / UBI 8:
+
     ```shell
     #!/usr/bin/env bash
-    
+
     USER=nginx
     LOGDIR=/var/log/adm
-    
+
     # prepare environment
     mkdir -p /var/run/adm /tmp/cores ${LOGDIR}
     chmod 755 /var/run/adm /tmp/cores ${LOGDIR}
     chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
-    
+
     # run processes
     /bin/su -s /bin/bash -c "/usr/bin/adminstall --daemons 1 --memory 200 > ${LOGDIR}/adminstall.log 2>&1" ${USER}
     /usr/sbin/nginx -g 'daemon off;' &
@@ -1071,16 +1095,17 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     ```
 
     For Alpine / Debian / Ubuntu / UBI 8 with L4 accelerated mitigation feature:
+
     ```shell
     #!/usr/bin/env bash
-   
+
     LOGDIR=/var/log/adm
-    
+
     # prepare environment
     mkdir -p /var/run/adm /tmp/cores ${LOGDIR}
     chmod 755 /var/run/adm /tmp/cores ${LOGDIR}
     chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
-    
+
     # run processes
     /bin/su -s /bin/bash -c "ulimit -l unlimited && /usr/bin/adminstall -e > ${LOGDIR}/admd.log 2>&1" ${USER}
     /usr/sbin/nginx -g 'daemon off;' &
@@ -1092,13 +1117,15 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     ```shell
     docker build --no-cache -t app-protect-dos .
     ```
+
     The `--no-cache` option tells Docker to build the image from scratch and ensures the installation of the latest version of NGINX Plus and NGINX App Protect DoS. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the Docker cache.
 
     For L4 accelerated mitigation feature:
-    
+
    ```shell
     docker build --no-cache --privileged -t app-protect-dos .
     ```
+
     The `--privileged` grants the Docker container root capabilities to all devices on the host system.
 
 8. Verify that the `app-protect-dos` image was created successfully with the docker images command:
@@ -1128,24 +1155,24 @@ FROM centos:7.4.1708
 # Download certificate and key from the customer portal (https://my.f5.com)
 # and copy to the build context:
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
- 
+
 # Install prerequisite packages:
 RUN yum -y install wget ca-certificates epel-release
- 
+
 # Add NGINX Plus and  NGINX App Protect DoS repo to Yum:
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-7.4.repo
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-7.repo
- 
+
 # Install NGINX App Protect DoS:
 RUN yum -y install app-protect-dos \
     && yum clean all \
     && rm -rf /var/cache/yum \
     && rm -rf /etc/ssl/nginx
- 
+
 # Copy configuration files:
 COPY nginx.conf /etc/nginx/
 COPY entrypoint.sh  /root/
- 
+
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
 
@@ -1153,11 +1180,11 @@ CMD /root/entrypoint.sh && tail -f /dev/null
 
 ```Dockerfile
 FROM registry.access.redhat.com/ubi7:7.6
- 
+
 # Download certificate and key from the customer portal (https://my.f5.com)
 # and copy to the build context:
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
- 
+
 # Setup the Redhat subscription
 RUN subscription-manager register --force --org=${RHEL_ORG} --activationkey=${RHEL_ACTIVATION_KEY}
 RUN subscription-manager refresh
@@ -1165,39 +1192,40 @@ RUN subscription-manager attach --auto
 
 # Install prerequisite packages:
 RUN yum -y install wget ca-certificates
-  
+
 # Install dependencies
 RUN subscription-manager repos --enable rhel-*-optional-rpms \
                                --enable rhel-*-extras-rpms \
                                --enable rhel-ha-for-rhel-*-server-rpms
-RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm 
+RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
 # Add NGINX Plus and NGINX App Protect DoS repo to Yum:
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-7.4.repo
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-7.repo
- 
+
 # Install NGINX App Protect DoS:
 RUN yum -y install app-protect-dos \
     && yum clean all \
     && rm -rf /var/cache/yum \
     && rm -rf /etc/ssl/nginx
- 
+
 # Copy configuration files:
 COPY nginx.conf /etc/nginx/
 COPY entrypoint.sh  /root/
- 
+
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
+
 ### RHEL 8 / Rocky Linux 8 Docker Deployment Example
 
 ```Dockerfile
 # For UBI 8
 FROM registry.access.redhat.com/ubi8:8.5
- 
+
 # Download certificate and key from the customer portal (https://my.f5.com)
 # and copy to the build context:
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
- 
+
 # Setup the Redhat subscription
 RUN subscription-manager register --force --org=${RHEL_ORG} --activationkey=${RHEL_ACTIVATION_KEY}
 RUN subscription-manager refresh
@@ -1206,24 +1234,24 @@ RUN subscription-manager attach --auto
 # Install dependencies
 RUN subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
 RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
- 
+
 # Install prerequisite packages:
 RUN yum -y install wget ca-certificates
- 
+
 # Add NGINX Plus and NGINX App Protect DoS repo to Yum:
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.4.repo
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-8.repo
- 
+
 # Install NGINX App Protect DoS:
 RUN yum -y install app-protect-dos \
     && yum clean all \
     && rm -rf /var/cache/yum \
     && rm -rf /etc/ssl/nginx
- 
+
 # Copy configuration files:
 COPY nginx.conf /etc/nginx/
 COPY entrypoint.sh  /root/
- 
+
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
 
@@ -1239,10 +1267,10 @@ FROM debian:${OS_CODENAME}
 # Download certificate and key from the customer portal (https://my.f5.com)
 # and copy to the build context:
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
- 
+
 # Install prerequisite packages:
 RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2 debian-archive-keyring
- 
+
 # Download and add the NGINX signing key:
 RUN wget https://cs.nginx.com/static/keys/nginx_signing.key && apt-key add nginx_signing.key
 RUN wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
@@ -1250,20 +1278,20 @@ RUN wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmo
 # Add NGINX Plus and NGINX App Protect DoS repository:
 RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list
 RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
- 
+
 # Download the apt configuration to `/etc/apt/apt.conf.d`:
 RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
- 
+
 # Update the repository and install the most recent version of the NGINX App Protect package (which includes NGINX Plus):
 RUN apt-get update && apt-get install -y app-protect-dos
- 
+
 # Remove nginx repository key/cert from docker
 RUN rm -rf /etc/ssl/nginx
- 
+
 # Copy configuration files:
 COPY nginx.conf /etc/nginx/
 COPY entrypoint.sh  /root/
- 
+
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
 
@@ -1272,37 +1300,37 @@ CMD /root/entrypoint.sh && tail -f /dev/null
 ```Dockerfile
 
 ARG OS_CODENAME
-# Where OS_CODENAME can be: bionic/focal/jammy 
+# Where OS_CODENAME can be: bionic/focal/jammy
 
 FROM ubuntu:${OS_CODENAME}
 
 # Download certificate and key from the customer portal (https://my.f5.com)
 # and copy to the build context:
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
- 
+
 # Install prerequisite packages:
 RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2 ubuntu-keyring
- 
+
 # Download and add the NGINX signing key:
 RUN wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
 
 # Add NGINX Plus and NGINX App Protect DoS repository:
 RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg]https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list
 RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
- 
+
 # Download the apt configuration to `/etc/apt/apt.conf.d`:
 RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
- 
+
 # Update the repository and install the most recent version of the NGINX App Protect DoS package (which includes NGINX Plus):
 RUN apt-get update && apt-get install -y app-protect-dos
- 
+
 # Remove nginx repository key/cert from docker
 RUN rm -rf /etc/ssl/nginx
- 
+
 # Copy configuration files:
 COPY nginx.conf /etc/nginx/
 COPY entrypoint.sh /root/
- 
+
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
 
@@ -1327,7 +1355,7 @@ RUN printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc
 # Add NGINX App Protect DoS repository:
 RUN printf "https://pkgs.nginx.com/app-protect-dos/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
 
-# Add prerequisite packages 
+# Add prerequisite packages
 RUN apk update && apk add bash
 
 # Update the repository and install the most recent version of the NGINX App Protect DoS package (which includes NGINX Plus):
@@ -1368,60 +1396,60 @@ You need root permissions to execute the following steps.
     error_log /var/log/nginx/error.log error;
     worker_rlimit_nofile 65535;
     working_directory /tmp/cores;
-    
+
     load_module modules/ngx_http_app_protect_module.so;
     load_module modules/ngx_http_app_protect_dos_module.so;
-    
+
     events {
         worker_connections 65535;
-        
+
     }
-    
+
     http {
         include         /etc/nginx/mime.types;
-    
+
         log_format log_napd ', vs_name_al=$app_protect_dos_vs_name, ip=$remote_addr, tls_fp=$app_protect_dos_tls_fp, '
                             'outcome=$app_protect_dos_outcome, reason=$app_protect_dos_outcome_reason, '
                             'ip_tls=$remote_addr:$app_protect_dos_tls_fp, ';
-    
+
         app_protect_dos_security_log_enable on;
         app_protect_dos_security_log "/etc/app_protect_dos/log-default.json" /var/log/adm/logger.log;
         #app_protect_dos_security_log "/etc/app_protect_dos/log-default.json" syslog:server=1.2.3.4:5261;
-    
+
         # HTTP/1 server
         server {
             default_type        application/octet-stream;
             listen              80 reuseport;
             server_name         serv80;
             proxy_http_version  1.1;
-    
+
             app_protect_policy_file "/etc/app_protect/conf/NginxDefaultPolicy.json";
             app_protect_security_log_enable on;
-    
+
             set $loggable '0';
             access_log /var/log/nginx/access.log log_napd if=$loggable;
             #access_log syslog:server=1.1.1.1:5561 log_napd if=$loggable;
             app_protect_dos_policy_file "/etc/app_protect_dos/BADOSDefaultPolicy.json";
-    
+
             location / {
                 app_protect_enable on;
                 app_protect_name "serv80";
                 client_max_body_size 0;
-    
+
                 app_protect_dos_enable on;
                 app_protect_dos_name "serv80";
                 app_protect_dos_monitor uri=http://serv80/;
-    
+
                 proxy_pass http://1.2.3.4:80;
             }
         }
-    
+
         # gRPC server with ssl
         server {
             default_type    application/grpc;
             listen          443 http2 ssl reuseport;
             server_name     serv_grpc;
-    
+
             # TLS config
             ssl_certificate      /etc/ssl/certs/grpc.example.com.crt;
             ssl_certificate_key  /etc/ssl/private/grpc.example.com.key;
@@ -1429,11 +1457,11 @@ You need root permissions to execute the following steps.
             ssl_session_timeout  5m;
             ssl_ciphers          HIGH:!aNULL:!MD5;
             ssl_protocols        TLSv1.2 TLSv1.3;
-    
+
             set $loggable '0';
             access_log /var/log/nginx/access.log log_napd if=$loggable;
             #access_log syslog:server=1.1.1.1:5561 log_napd if=$loggable;
-    
+
             location / {
                 app_protect_dos_enable on;
                 app_protect_dos_name "serv_grpc";
@@ -1441,7 +1469,7 @@ You need root permissions to execute the following steps.
                 grpc_pass grpc://1.2.3.4:1001;
             }
         }
-    
+
         sendfile            on;
         tcp_nopush          on;
         keepalive_timeout   65;
@@ -1454,22 +1482,26 @@ Make sure to replace upstream and proxy pass directives in this example with rel
 
 5. For L4 accelerated mitigation feature: <br />
    Need to remove from the`nginx.conf` file the the line:<br />
-   ```nginx   
+
+   ```nginx
    user nginx;
    ```
+
    to
-   ```nginx   
+
+   ```nginx
    user root;
    ```
 
 6. In the same directory create an `entrypoint.sh` file with executable permissions, with the following content:
 
    For CentOS 7 / UBI 7:
+
      ```shell
      #!/usr/bin/env bash
     USER=nginx
     LOGDIR=/var/log/adm
-    
+
     # prepare environment
     mkdir -p /var/run/adm /tmp/cores ${LOGDIR}
     chmod 755 /var/run/adm /tmp/cores ${LOGDIR}
@@ -1477,7 +1509,7 @@ Make sure to replace upstream and proxy pass directives in this example with rel
 
     LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/rpm/lib64
     export LD_LIBRARY_PATH
-    
+
     # run processes
     /bin/su -s /bin/bash -c "/usr/bin/adminstall > ${LOGDIR}/adminstall.log 2>&1" ${USER}/bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' ${USER}
     /bin/su -s /bin/bash -c "/usr/share/ts/bin/bd-socket-plugin tmm_count 4 proc_cpuinfo_cpu_mhz 2000000 total_xml_memory 307200000 total_umu_max_size 3129344 sys_max_account_id 1024 no_static_config 2>&1 > /var/log/app_protect/bd-socket-plugin.log &" ${USER}
@@ -1486,16 +1518,17 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     ```
 
    For Alpine / Debian / Ubuntu / UBI 8:
+
      ```shell
      #!/usr/bin/env bash
     USER=nginx
     LOGDIR=/var/log/adm
-    
+
     # prepare environment
     mkdir -p /var/run/adm /tmp/cores ${LOGDIR}
     chmod 755 /var/run/adm /tmp/cores ${LOGDIR}
     chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
-    
+
     # run processes
     /bin/su -s /bin/bash -c "/usr/bin/adminstall > ${LOGDIR}/adminstall.log 2>&1" ${USER}/bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' ${USER}
     /bin/su -s /bin/bash -c "/usr/share/ts/bin/bd-socket-plugin tmm_count 4 proc_cpuinfo_cpu_mhz 2000000 total_xml_memory 307200000 total_umu_max_size 3129344 sys_max_account_id 1024 no_static_config 2>&1 > /var/log/app_protect/bd-socket-plugin.log &" ${USER}
@@ -1505,15 +1538,16 @@ Make sure to replace upstream and proxy pass directives in this example with rel
 
 
    For Alpine / Debian / Ubuntu / UBI8 with L4 accelerated mitigation feature:
+
     ```shell
     #!/usr/bin/env bash
     LOGDIR=/var/log/adm
-    
+
     # prepare environment
     mkdir -p /var/run/adm /tmp/cores ${LOGDIR}
     chmod 755 /var/run/adm /tmp/cores ${LOGDIR}
     chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
-    
+
     # run processes
     /bin/su -s /bin/bash -c "ulimit -l unlimited && /usr/bin/adminstall -e > ${LOGDIR}/admd.log 2>&1" ${USER}
     /bin/su -s /bin/bash -c "/usr/share/ts/bin/bd-socket-plugin tmm_count 4 proc_cpuinfo_cpu_mhz 2000000 total_xml_memory 307200000 total_umu_max_size 3129344 sys_max_account_id 1024 no_static_config 2>&1 > /var/log/app_protect/bd-socket-plugin.log &" ${USER}
@@ -1534,6 +1568,7 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     ```shell
     docker build --build-arg RHEL_ORGANIZATION=${RHEL_ORGANIZATION} --build-arg RHEL_ACTIVATION_KEY=${RHEL_ACTIVATION_KEY} --no-cache -t app-protect-dos .
     ```
+
     The `--no-cache` option tells Docker to build the image from scratch and ensures the installation of the latest version of NGINX Plus and NGINX App Protect DoS. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the Docker cache.
 
    For L4 accelerated mitigation feature:
@@ -1541,6 +1576,7 @@ Make sure to replace upstream and proxy pass directives in this example with rel
    ```shell
    docker build --build-arg RHEL_ORGANIZATION=${RHEL_ORGANIZATION} --build-arg RHEL_ACTIVATION_KEY=${RHEL_ACTIVATION_KEY} --no-cache --privileged -t app-protect-dos .±
     ```
+
    The `--privileged` grants the Docker container root capabilities to all devices on the host system
 
 
@@ -1549,11 +1585,13 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     ```shell
     docker images app-protect-dos
     ```
+
 10. Create a container based on this image, for example, `my-app-protect-dos` container:
 
     ```shell
     docker run --name my-app-protect-dos -p 80:80 -d app-protect-dos
     ```
+
 11. Verify that the `my-app-protect-dos` container is up and running with the `docker ps` command:
 
     ```shell
@@ -1565,30 +1603,30 @@ Make sure to replace upstream and proxy pass directives in this example with rel
 ```Dockerfile
 # For CentOS 7:
 FROM centos:7.4.1708
- 
+
 # Download certificate and key from the customer portal (https://my.f5.com)
 # and copy to the build context:
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
- 
+
 # Install prerequisite packages:
 RUN yum -y install wget ca-certificates epel-release
- 
+
 # Add NGINX Plus, NGINX App Protect DoS and NGINX App Protect repo to Yum:
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-7.4.repo
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-7.repo
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-7.repo
- 
+
 # Install NGINX App Protect DoS and NGINX App Protect:
 RUN yum -y install app-protect-dos app-protect\
     && yum clean all \
     && rm -rf /var/cache/yum \
     && rm -rf /etc/ssl/nginx
- 
- 
+
+
 # Copy configuration files:
 COPY nginx.conf custom_log_format.json /etc/nginx/
 COPY entrypoint.sh  /root/
- 
+
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
 
@@ -1597,40 +1635,40 @@ CMD /root/entrypoint.sh && tail -f /dev/null
 ```Dockerfile
 # For Red Hat 7.4+:
 FROM registry.access.redhat.com/rhel7:7.4
- 
+
 # Download certificate and key from the customer portal (https://my.f5.com)
 # and copy to the build context:
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
- 
+
 # Setup the Red Hat subscription
 RUN subscription-manager register --force --org=${RHEL_ORG} --activationkey=${RHEL_ACTIVATION_KEY}
 RUN subscription-manager refresh
 RUN subscription-manager attach --auto
- 
+
 # Install prerequisite packages
 RUN yum -y install wget ca-certificates
- 
+
 # Install dependencies
 RUN subscription-manager repos --enable rhel-*-optional-rpms \
                                --enable rhel-*-extras-rpms \
                                --enable rhel-ha-for-rhel-*-server-rpms
-RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm 
- 
+RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
 # Add NGINX Plus, NGINX App Protect DoS and NGINX App Protect repo to Yum:
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-7.4.repo
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-7.repo
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-7.repo
- 
+
 # Install NGINX App Protect DoS and NGINX App Protect:
 RUN yum -y install app-protect-dos app-protect\
     && yum clean all \
     && rm -rf /var/cache/yum \
     && rm -rf /etc/ssl/nginx
- 
+
 # Copy configuration files:
 COPY nginx.conf custom_log_format.json /etc/nginx/
 COPY entrypoint.sh  /root/
- 
+
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
 
@@ -1642,35 +1680,35 @@ ARG OS_CODENAME
 # Where OS_CODENAME can be: buster/bullseye
 
 FROM debian:${OS_CODENAME}
- 
+
 # Download certificate and key from the customer portal (https://my.f5.com)
 # and copy to the build context:
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
- 
+
 # Install prerequisite packages:
 RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2 debian-archive-keyring
- 
+
 # Download and add the NGINX signing key:
 RUN wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
- 
+
 # Add NGINX Plus, NGINX App Protect and NGINX App Protect DoS repository:
 RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list
 RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
 RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect.list
- 
+
 # Download the apt configuration to `/etc/apt/apt.conf.d`:
 RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
- 
+
 # Update the repository and install the most recent version of the NGINX App Protect DoS and NGINX App Protect package (which includes NGINX Plus):
 RUN apt-get update && apt-get install -y app-protect-dos app-protect
- 
+
 # Remove nginx repository key/cert from docker
 RUN rm -rf /etc/ssl/nginx
- 
+
 # Copy configuration files:
 COPY nginx.conf custom_log_format.json /etc/nginx/
 COPY entrypoint.sh  /root/
- 
+
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
 
@@ -1679,40 +1717,40 @@ CMD /root/entrypoint.sh && tail -f /dev/null
 ```Dockerfile
 
 ARG OS_CODENAME
-# Where OS_CODENAME can be: bionic/focal/jammy 
+# Where OS_CODENAME can be: bionic/focal/jammy
 
 FROM ubuntu:${OS_CODENAME}
 
 ARG DEBIAN_FRONTEND=noninteractive
- 
+
 # Download certificate and key from the customer portal (https://my.f5.com)
 # and copy to the build context:
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
- 
+
 # Install prerequisite packages:
 RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2 ubuntu-keyring
- 
+
 # Download and add the NGINX signing key:
 RUN wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
- 
+
 # Add NGINX Plus, NGINX App Protect and NGINX App Protect DoS repository:
 RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list
 RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
 RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect.list
- 
+
 # Download the apt configuration to `/etc/apt/apt.conf.d`:
 RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
- 
+
 # Update the repository and install the most recent version of the NGINX App Protect DoS and NGINX App Protect package (which includes NGINX Plus):
 RUN apt-get update && apt-get install -y app-protect-dos app-protect
- 
+
 # Remove nginx repository key/cert from docker
 RUN rm -rf /etc/ssl/nginx
- 
+
 # Copy configuration files:
 COPY nginx.conf custom_log_format.json /etc/nginx/
 COPY entrypoint.sh /root/
- 
+
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
 
@@ -1747,22 +1785,24 @@ In summary, NGINX App Protect DoS Arbitrator acts as a central coordinator to ma
    ```shell
    docker pull docker-registry.nginx.com/nap-dos/app_protect_dos_arb:latest
    ```
+
 2. Create a container based on this image, for example, `app-protect-dos-arb` container:
 
    ```shell
    docker run --name app_protect_dos_arb -p 3000:3000 -d docker-registry.nginx.com/nap-dos/app_protect_dos_arb
    ```
+
 3. Verify that the `app-protect-dos-arb` container is up and running with the `docker ps` command.
 
 4. DNS records are required for NGINX App Protect DoS Arbitrator to work properly and be accessible by NGINX App Protect DoS servers. Ensure that the `svc-appprotect-dos-arb` or configured Arbitrator FQDN (with `app_protect_dos_arb_fqdn` directive) has a valid DNS resolution.
-This step is necessary only for VM/Docker deployments with arbitrator. When the arbitrator is in the same Kubernetes namespace as NGINX App Protect DoS, this step is not needed. 
+This step is necessary only for VM/Docker deployments with arbitrator. When the arbitrator is in the same Kubernetes namespace as NGINX App Protect DoS, this step is not needed.
 
 ### Multi-VM Deployment
 
 The Arbitrator service is standalone. Once it is down, it can be seamlessly re-started. It will immediately recover all the needed information from NGINX App Protect DoS instances that communicate to it every 10 sec. It’s downtime is around 10-20 seconds which  will not affect the NGINX App Protect DoS working.
 
-NGINX App Protect DoS Arbitrator service connects to port 3000 and can be seen under App Protect DoS instances. All modules try to connect to this service automatically. If it’s not accessible, each instance works in standalone mode.  
- 
+NGINX App Protect DoS Arbitrator service connects to port 3000 and can be seen under App Protect DoS instances. All modules try to connect to this service automatically. If it’s not accessible, each instance works in standalone mode.
+
 There is no such option for authentications between NGINX App Protect DoS servers and Arbitrator service like MTLS or password . Currently Arbitrator service is not exposed outside of the namespace. It is customers responsibility to isolate it from outside. It is applicable to any deployment of Arbitrator, not only to multi-VM.
 
 ## Post-Installation Checks
@@ -1794,6 +1834,7 @@ You can run the following commands to ensure that NGINX App Protect DoS enforcem
     2020/09/07 15:33:44 [notice] 9310#9310: start worker process 9311
     PID <9311>, WORKER <0>, Function adm_ngx_init_process, line 684, version: 22+1.19.4-1.el7.ngx
     ```
+
 3. Check that by applying an attack, the attacker IP addresses are blocked while the good traffic pass through:
 
     a. Simulate good traffic:
@@ -1817,7 +1858,7 @@ You can run the following commands to ensure that NGINX App Protect DoS enforcem
    ab -B ${BAD_IP1} -l -r -n 1000000 -c 150 -d -H "Host: evil.net" -H "Pragma: no-cache" -H "Cache-Control: no-cache" -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" -H "Upgrade-Insecure-Requests: 1" -H "User-Agent: WireXBot" -H "x-requested-with:" -H "Referer: http://10.0.2.1/none.html" -H "Accept-Encoding: gzip, deflate" -H "Accept-Language: en-US" http://${VS}/ &
    ab -B ${BAD_IP2} -l -r -n 1000000 -c 150 -d -H "Host: evil.net" -H "Pragma: no-cache" -H "Cache-Control: no-cache" -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" -H "Upgrade-Insecure-Requests: 1" -H "User-Agent: WireXBot" -H "x-requested-with:" -H "Referer: http://10.0.2.1/none.html" -H "Accept-Encoding: gzip, deflate" -H "Accept-Language: en-US" http://${VS}/ &
    ab -B ${BAD_IP3} -l -r -n 1000000 -c 150 -d -s 10 -H "Host: evil.net" -H "Pragma: no-cache" -H "Cache-Control: no-cache" -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" -H "Upgrade-Insecure-Requests: 1" -H "User-Agent: WireXBot" -H "x-requested-with:" -H "Referer: http://10.0.2.1/none.html" -H "Accept-Encoding: gzip, deflate" -H "Accept-Language: en-US" http://${VS}/
- 
+
     killall ab
     done
     ```
@@ -1860,6 +1901,7 @@ semanage port -a -t syslogd_port_t -p tcp 35514
 ```
 
 Review the syslog ports by entering the following command:
+
 ```shell
 semanage port -l | grep syslog
 ```
@@ -1893,10 +1935,10 @@ spec:
     metadata:
       labels:
         app: appprotect-dos
-    spec:     
+    spec:
     containers:
     - name: centos-bados
-      image: example.com/centos_app_protect_dos_r24:latest       
+      image: example.com/centos_app_protect_dos_r24:latest
       imagePullPolicy: Always
       resources:
         requests:
@@ -1929,13 +1971,13 @@ spec:
           mountPath: /shared/
         - name: conf
           mountPath: /etc/nginx/nginx.conf
-          subPath: nginx.conf   
+          subPath: nginx.conf
         - name: root-script
           mountPath: /root/entrypoint.sh
           subPath: entrypoint.sh
         - name: log-default
           mountPath: /etc/app_protect_dos/log-default.json
-          subPath: log-default.json         
+          subPath: log-default.json
     volumes:
     - name: shared
       persistentVolumeClaim:
@@ -1977,7 +2019,7 @@ spec:
     - name: app
       port: 80
       protocol: TCP
-      nodePort: 80  
+      nodePort: 80
   selector:
     app: appprotect-dos
   type: NodePort
@@ -2001,12 +2043,12 @@ spec:
 #!/usr/bin/env bash
 USER=nginx
 LOGDIR=/var/log/adm
-    
+
 # prepare environment
 mkdir -p /var/run/adm /tmp/cores ${LOGDIR}
 chmod 755 /var/run/adm /tmp/cores ${LOGDIR}
 chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
-    
+
 # run processes
 /bin/su -s /bin/bash -c "/usr/bin/adminstall --daemons 1 --memory 200 > ${LOGDIR}/adminstall.log 2>&1" ${USER}
 /usr/sbin/nginx -g 'daemon off;' &
@@ -2014,6 +2056,7 @@ chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
 ```
 
 `install.sh`:
+
 ```shell
 #!/bin/bash
 set -ex
@@ -2033,34 +2076,34 @@ worker_processes 1;
 error_log /var/log/nginx/error.log debug;
 worker_rlimit_nofile 65535;
 working_directory /tmp/cores;
-    
+
 load_module modules/ngx_http_app_protect_dos_module.so;
- 
+
 events {
     worker_connections  65535;
 }
 http {
     include         /etc/nginx/mime.types;
     default_type    application/octet-stream;
-     
+
     log_format log_napd ', vs_name_al=$app_protect_dos_vs_name, ip=$remote_addr, tls_fp=$app_protect_dos_tls_fp, '
                         'outcome=$app_protect_dos_outcome, reason=$app_protect_dos_outcome_reason, '
                         'ip_tls=$remote_addr:$app_protect_dos_tls_fp, ';
- 
+
     app_protect_dos_security_log_enable on;
     app_protect_dos_security_log "/etc/app_protect_dos/log-default.json" /var/log/adm/logger.log;
     # app_protect_dos_security_log "/etc/app_protect_dos/log-default.json" syslog:server=1.2.3.4:5261;
- 
+
     server {
         listen 80 reuseport;
         server_name serv;
- 
+
         set $loggable '0';
         access_log /var/log/nginx/access.log log_napd if=$loggable;
         # access_log syslog:server=1.1.1.1:5561 log_napd if=$loggable;
- 
+
         app_protect_dos_policy_file "/etc/app_protect_dos/BADOSDefaultPolicy.json";
- 
+
         location / {
             app_protect_dos_enable on;
             app_protect_dos_name "serv";
@@ -2068,28 +2111,28 @@ http {
             proxy_pass http://1.2.3.4:80;
         }
     }
- 
+
     server {
         listen 8090;
         server_name probe;
- 
+
         app_protect_dos_liveness on;    # uri:/app_protect_dos_liveness port:8090
         app_protect_dos_readiness on;   # uri:/app_protect_dos_readiness port:8090
- 
+
         location / {
             proxy_pass http://localhost:8091;
         }
     }
- 
+
     server {
         listen 8091;
         return 503;
     }
- 
+
     sendfile            on;
     tcp_nopush          on;
     keepalive_timeout   65;
-}          
+}
 ```
 
 #### App Protect DoS arb
@@ -2144,7 +2187,7 @@ spec:
       port: 3000
       protocol: TCP
       targetPort: 3000
-  clusterIP: None 
+  clusterIP: None
 ```
 
 `install_appprotect-arb.sh`:
@@ -2168,4 +2211,4 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 kubectl create ns appprotect-dos-wp-diff
 ${DIR}/appprotect-dos/install.sh
 ${DIR}/appprotect-dos-arb/install_appprotect-dos-arb.sh
-``` 
+```

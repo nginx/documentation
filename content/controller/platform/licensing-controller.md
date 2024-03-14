@@ -90,19 +90,19 @@ To delete a license using the [NGINX Controller REST API]({{< relref "/controlle
 
 ## License Features
 
-* When you license NGINX Controller, you have full access to all of the features included in the license.
+- When you license NGINX Controller, you have full access to all of the features included in the license.
 
-* If you haven't licensed NGINX Controller, or if your license has expired, you can still access the following restricted set of features using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}):
+- If you haven't licensed NGINX Controller, or if your license has expired, you can still access the following restricted set of features using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}):
 
-  * Log in and out of NGINX Controller
-  * Manage licenses
-  * Manage users
-  * Manage user groups
-  * Manage roles
-  * Manage integration accounts
-  * Manage support bundles
-  * Manage backups
-  * View alerts
+  - Log in and out of NGINX Controller
+  - Manage licenses
+  - Manage users
+  - Manage user groups
+  - Manage roles
+  - Manage integration accounts
+  - Manage support bundles
+  - Manage backups
+  - View alerts
 
 &nbsp;
 

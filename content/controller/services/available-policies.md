@@ -30,8 +30,8 @@ weight: 130
 
 NGINX Controller provides a set of policies that allow you to protect and secure your services (APIs for API Management module deployments, and Apps for App Delivery module deployments) and their data. The available policies fall under two basic categories:
 
-* Authentication policies
-* Rate Limiting policies
+- Authentication policies
+- Rate Limiting policies
 
 ## Authentication Policies
 

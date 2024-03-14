@@ -107,7 +107,7 @@ To complete the steps in this section, you need the following:
    In the example output above, `nginx-devportal-api` is the image name and `1.5.0` is the tag for the first image. For the second image `nginx-devportal-apigw` is the image name and `1.5.0-r28` is the tag (where `1.5.0` is the release version and `r28` is the NGINX Plus version). The image names or tags could be different depending on the product version you downloaded from MyF5.
    {{</important>}}
 
-   ### (Optional) Build the API Gateway Container Image {#build-apigw-docker-image}
+### (Optional) Build the API Gateway Container Image {#build-apigw-docker-image}
    {{< note >}}
    This is step is only required for versions of API Connectivity Manager Developer Portal prior to `1.5.0` or if you require a specific release of NGINX Plus that is not provided on MyF5.
    {{< /note >}}
@@ -115,6 +115,7 @@ To complete the steps in this section, you need the following:
    <summary><i class="fa-solid fa-circle-info"></i> Build the API Gateway Container Image</summary>
    {{< include "installation/helm/acm/dev-portal-helm-configurations/build-helm-devportal-apigw-image.md">}}
    </details>
+
 ---
 
 ## Push Images to Private Registry {#push-images-private-registry}

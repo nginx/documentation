@@ -72,6 +72,6 @@ December 30, 2020
 
 ### Known Issues
 
-#### 3014 - HTTP2 browser traffic is classified as bot.
+#### 3014 - HTTP2 browser traffic is classified as bot
 
 - Workaround - Disable bot defense in policies used on HTTP2 locations.

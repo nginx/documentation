@@ -59,6 +59,7 @@ The supported shell is `bash`.
 The following table lists the arguments you can use with the support package script.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Short | Long                      | Description                                                         | Example                                  | Default                               |
 | ----- | ------------------------- | ------------------------------------------------------------------- | ---------------------------------------- | ------------------------------------- |
 | `-h`  | `--help`                  | Prints information about the script arguments to stdout.            | `--help`                                 | N/A                                   |

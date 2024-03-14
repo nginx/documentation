@@ -56,13 +56,15 @@ Take the steps in this section if you want to restrict access to APIs to clients
 
 Send a `POST` request to add the basic authentication policy to the API Proxy.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method   | Endpoint                                                |
 |----------|---------------------------------------------------------|
 | `POST`   | `/services/workspaces/<SERVICE_WORKSPACE_NAME>/proxies` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 {{< note >}} To include sensitive data in Proxy `GET` requests, provide the query parameter `includes=sensitivedata`; otherwise, the response will have this data redacted. {{< /note >}}
 
@@ -92,8 +94,9 @@ Send a `POST` request to add the basic authentication policy to the API Proxy.
 }
 ```
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field                                                      | Type | Possible Values      | Description                                                                                          | Required | Default value |
 |------------------------------------------------------------|----------|----------------------|------------------------------------------------------------------------------------------------------|----------|---------------|
 | `credentialForward`                                        | boolean  | `true/false`         | If the basic auth credentials are proxy-forwarded to the backend service in the HTTP header.         | No       | `False`       |
@@ -101,8 +104,9 @@ Send a `POST` request to add the basic authentication policy to the API Proxy.
 | `data.clientID`                                            | string   | Example: `ClientA`   | Identifies the client who is holding the basic authentication credentials.                           | Yes      | N/A           |
 | `data.username`                                            | string   | Example: `UserA`     | The value of the client's password.                                                                  | Yes      | N/A           |
 | `data.password`                                            | string   | Example: `secret123` | The value of the client's username.                                                                  | Yes      | N/A           |
+
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 {{%/tab%}}
 {{%tab name="UI"%}}

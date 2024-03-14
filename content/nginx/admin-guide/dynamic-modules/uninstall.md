@@ -65,9 +65,9 @@ After uninstalling the package, you will need to disable the module in NGINX Plu
 <span id="info"></span>
 ## More Info
 
-* [NGINX Module Reference](https://nginx.org/en/docs/)
+- [NGINX Module Reference](https://nginx.org/en/docs/)
 
-* [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
 
-* [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
 

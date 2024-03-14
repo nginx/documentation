@@ -41,9 +41,9 @@ To access the **Default Agent Settings** page:
 
 On the **Default Agent Settings** page, you can set the following default settings for the NGINX Controller Agent:
 
-* **NGINX configuration file analysis**. This setting is enabled by default.
-* **Periodic NGINX configuration syntax checking with "nginx -t"**. This setting is disabled by default.
-* **Analyzing SSL certs**. This setting is enabled by default.
+- **NGINX configuration file analysis**. This setting is enabled by default.
+- **Periodic NGINX configuration syntax checking with "nginx -t"**. This setting is disabled by default.
+- **Analyzing SSL certs**. This setting is enabled by default.
 
 ## Enable /api Location
 
@@ -85,10 +85,10 @@ hostname = myhostname1
 
 The hostname should be real. The NGINX Controller Agent won't start unless a valid hostname is defined. The following *are not* valid hostnames:
 
-* localhost
-* localhost.localdomain
-* localhost6.localdomain6
-* ip6-localhost
+- localhost
+- localhost.localdomain
+- localhost6.localdomain6
+- ip6-localhost
 
 {{< note >}}
 
@@ -212,10 +212,10 @@ To change the log level for the NGINX Controller Agent:
 1. Edit the `[loggers]` section of the NGINX Controller Agent configuration file -- `/etc/controller-agent/agent.conf`.
 1. Set the `level` to one of the following:
 
-   * error
-   * info
-   * debug
-   * trace
+   - error
+   - info
+   - debug
+   - trace
 
     ```plaintext
     [loggers]
@@ -227,7 +227,7 @@ To change the log level for the NGINX Controller Agent:
 
 ## What's Next
 
-* [Set up Metrics Collection]({{< relref "/controller/admin-guides/config-agent/configure-metrics-collection.md" >}})
+- [Set up Metrics Collection]({{< relref "/controller/admin-guides/config-agent/configure-metrics-collection.md" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

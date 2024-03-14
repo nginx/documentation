@@ -98,14 +98,14 @@ For the NGINX Agent to run properly, NGINX Plus **must** be running as the same 
 1. Ensure the ports NGINX is listening to are all above 1000: Check the NGINX `default.conf` file (usually `/etc/nginx/conf.d/default.conf`) and make sure that the `listen` values are all over `1000`.
 1. (CentOS/RHEL) If you're installing the Controller Agent as a non-root user on CentOS or RHEL, make these additional changes:
 
-    * In in the `[Service]` section of `/lib/systemd/system/nginx.service`, set the location for the `PIDfile` to:
+    - In in the `[Service]` section of `/lib/systemd/system/nginx.service`, set the location for the `PIDfile` to:
 
        ```nginx
        [Service]
        PIDFile=/var/tmp/nginx.pid
        ```
 
-    * In `/etc/nginx/nginx.conf`, set the `pid` directive to:
+    - In `/etc/nginx/nginx.conf`, set the `pid` directive to:
 
         ```nginx
         pid        /var/tmp/nginx.pid;

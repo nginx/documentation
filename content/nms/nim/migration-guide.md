@@ -31,7 +31,7 @@ To complete this tutorial, you need the following:
 - A host with Instance Manager v1 installed that's managing NGINX instances.
 
   {{< note >}}You'll need to install Instance Manager v2 on this same host in coexistence with Instance Manager v1. This allows you to migrate the managed NGINX instances to the newer version Verify that the host meets the [technical requirements for Instance Manager v2]({{< relref "/nms/tech-specs.md" >}}).
-  
+
   The package name for Instance Manager changed from `nginx-manager` to `nms-instance-manager`. You can run these packages in parallel.{{< /note >}}
 
 ## Migrate Instance Manager
@@ -73,6 +73,7 @@ Begin the migration process by installing Instance Manager v2.
    Refer to the following table for mapping Instance Manager v1 properties to their v2 equivalents. For Instance Manager v2, the properties are split between Instance Manager's configuration file (`nms.conf`) and the NGINX proxy instance's configuration (`nms-http.conf`).
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Instance Manager v1 property | Instance Manager v2 equivalent | Configuration file                |
 | ---------------------------------- | ------------------------------------ | --------------------------------- |
 | `beacon.address`                   | DEPRECATED                           | N/A                               |
@@ -109,6 +110,7 @@ Begin the migration process by installing Instance Manager v2.
 | `scanner.tcp_timeout`              | DEPRECATED                           | N/A                               |
 | `server_name`                      | `server.server_name`                 | _/etc/nginx/conf.d/nms-http.conf_ |
 | `skip_validation`                  | DEPRECATED                           | N/A                               |
+
 {{</bootstrap-table>}}
 
 {{< important >}}The default `dpm_grpc_addr` value uses Unix domain sockets. We advise against replacing the default value.
@@ -151,7 +153,7 @@ To uninstall Instance Manager v1, take the following steps:
     {{%tab name="CentOS, RHEL, and RPM-Based"%}}
 
   ```bash
-  sudo yum remove nginx-manager 
+  sudo yum remove nginx-manager
   ```
 
     {{%/tab%}}

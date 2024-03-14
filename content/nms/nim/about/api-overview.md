@@ -22,7 +22,7 @@ aliases:
 
 ## Introduction
 
-NGINX Management Suite Instance Manager provides a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API that uses standard authentication methods, HTTP response codes, and verbs.   
+NGINX Management Suite Instance Manager provides a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API that uses standard authentication methods, HTTP response codes, and verbs.
 
 ## Object Model
 
@@ -37,13 +37,13 @@ The Instance Manager REST API allows you to manage Instance Manager objects and 
 - Manage certificates.
 - Create users, roles, and role permissions to manage RBAC.
 
-## API Reference Documentation 
+## API Reference Documentation
 
 {{< include "nim/how-to-access-api-docs.md" >}}
 
 ## Authentication
 
-Instance Manager supports authentication by using basic authentication or a JSON Web Token (JWT). You can get a JWT by logging in with an OpenID Connect (OIDC) Identity Provider. 
+Instance Manager supports authentication by using basic authentication or a JSON Web Token (JWT). You can get a JWT by logging in with an OpenID Connect (OIDC) Identity Provider.
 
 For more information about the available authentication options for NGINX Management Suite, refer to [Set Up Authentication]({{< relref "/nms/admin-guides/authentication/basic-authentication.md" >}}).
 
@@ -54,11 +54,11 @@ For more information about the available authentication options for NGINX Manage
 
 ### JSON Web Token
 
-If your organization is using OIDC, you will be prompted to log in with your Identity Provider the first time you attempt to reach an API. After authenticating, you can request a JWT to use in subsequent API calls. 
+If your organization is using OIDC, you will be prompted to log in with your Identity Provider the first time you attempt to reach an API. After authenticating, you can request a JWT to use in subsequent API calls.
 
 {{<note>}}The means of requesting a token varies according to the Identity Provider; if you're not sure which provider your organization uses, check with your system administrator or technical support team. {{</note>}}
 
-The JWT should be sent as a "bearer" token using the "Authorization" request header field with the "Bearer" authentication scheme, as shown in the example below. 
+The JWT should be sent as a "bearer" token using the "Authorization" request header field with the "Bearer" authentication scheme, as shown in the example below.
 
 ```[bash]
 curl -X GET "https://<NMS_FQDN>/api/platform/<API_VERSION>/systems" -H "Authorization: Bearer xxxxx.yyyyy.zzzzz"
@@ -66,8 +66,8 @@ curl -X GET "https://<NMS_FQDN>/api/platform/<API_VERSION>/systems" -H "Authoriz
 
 ## Usage
 
-You can use tools such as `curl` or [Postman](https://www.postman.com) to interact with the Instance Manager REST API.  
-The API URL follows the format `https://<NMS_FQDN>/api/platform/<API_VERSION>`. 
+You can use tools such as `curl` or [Postman](https://www.postman.com) to interact with the Instance Manager REST API.
+The API URL follows the format `https://<NMS_FQDN>/api/platform/<API_VERSION>`.
 
 {{<note>}}When making API calls by using `curl`, Postman, or any other tool, you will need to provide your authentication information with each call. {{</note>}}
 
@@ -75,25 +75,26 @@ You can also use the "Try it Out" function in the API Reference docs to send a c
 
 To do so, take the steps below:
 
-1. Select the endpoint and action that you want to send. For example: `POST /infrastructure/workspaces`. 
+1. Select the endpoint and action that you want to send. For example: `POST /infrastructure/workspaces`.
 2. Select the **Try it Out** button.
-3. If the endpoint accepts parameters, replace the placeholder examples in the request body with your desired values. 
-4. Select the **Execute** button to send the request. 
+3. If the endpoint accepts parameters, replace the placeholder examples in the request body with your desired values.
+4. Select the **Execute** button to send the request.
 5. When the request completes, the response appears in the UI.
 
 ## Errors and Response Codes
 
-Instance Manager uses standard HTTP response codes to indicate whether an API request succeeds or fails. Codes in the `2xx` range mean the request succeeded. Codes in the `400` range mean the request failed due to the reason(s) indicated in the response message. Common reasons for `4xx` responses are: 
+Instance Manager uses standard HTTP response codes to indicate whether an API request succeeds or fails. Codes in the `2xx` range mean the request succeeded. Codes in the `400` range mean the request failed due to the reason(s) indicated in the response message. Common reasons for `4xx` responses are:
 
-- requests where required information is missing; 
-- lack of or incorrect authentication credentials; and 
-- requests that refer to resources that do not exist or are in use by other resources.   
+- requests where required information is missing;
+- lack of or incorrect authentication credentials; and
+- requests that refer to resources that do not exist or are in use by other resources.
 
 **HTTP Status Codes**
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Response Code | Meaning |
 |---------------|---------|
-| 200           | Success: The request was received. |  
+| 200           | Success: The request was received. |
 | 201           | Success: Created the requested resource. |
 | 202           | Success: The request was accepted and configuration is in process. |
 | 204           | Success: Deleted the requested resource. |
@@ -101,6 +102,7 @@ Instance Manager uses standard HTTP response codes to indicate whether an API re
 | 401           | Unauthorized: You are not logged in or do not have permission to access the requested resource. |
 | 404           | Not found: The requested resource does not exist. |
 | 409           | Conflict: The requested resource already exists or is referenced by another resource. |
+
 {{< /bootstrap-table >}}
 
 ## Encoding
@@ -111,11 +113,12 @@ All JSON-formatted data is expected to be encoded using UTF-8. If you do not spe
 
 ## Pagination
 
-Top-level Instance Manager API endpoints support fetching information about multiple resources ("lists"). Such requests may return large data sets (for example, `GET /events` and `GET /instances`). In these cases, you can define the size of the data set returned for each call and navigate amongst the pages of data by sending subsequent calls. 
+Top-level Instance Manager API endpoints support fetching information about multiple resources ("lists"). Such requests may return large data sets (for example, `GET /events` and `GET /instances`). In these cases, you can define the size of the data set returned for each call and navigate amongst the pages of data by sending subsequent calls.
 
 ### Parameters
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Name| Format| Type| Description | Default value|
 |:---|---|---|--------|--------|
 |`page`|integer|query| page number | `1`|
@@ -126,9 +129,9 @@ Top-level Instance Manager API endpoints support fetching information about mult
 
 ## Versioning
 
-Each major version of the Instance Manager API is backward-compatible with the previous releases in that version. 
-The introduction of backward-incompatible changes to the Instance Manager API constitutes a major version change. 
-This will be represented in the `<version>` section of the API URI. 
+Each major version of the Instance Manager API is backward-compatible with the previous releases in that version.
+The introduction of backward-incompatible changes to the Instance Manager API constitutes a major version change.
+This will be represented in the `<version>` section of the API URI.
 
 For example, to use a v2 API, you would send requests to `https://<NMS_FQDN>/api/platform/v2`.
 

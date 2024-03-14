@@ -67,11 +67,13 @@ curl -X POST "https://<NGINX-INSTANCE-MANAGER-FQDN>/api/platform/v1/roles" -H "a
 ```
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Parameter          | Type | Description                                                                                                                                                                                                                        |
 |--------------------|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `permissions.access` | string    | The access level determines the role's ability to access a path or object.<br><br>The options are:<br><br>&#8226;&nbsp;READ: has read-only access (HTTP, GET requests)<br><br>&#8226;&nbsp;WRITE: has read and write access (POST, PUT, PATCH, DELETE requests)          |
 | `permissions.scope`  | string    | Sets the scope the role has access to.<br><br>The options are:<br><br>&#8226;&nbsp;SETTINGS: has access to the Instance Manager settings APIs, including license, users, and roles<br><br>&#8226;&nbsp;INSTANCE-MANAGEMENT: has access to to the instance management APIs |
 | `permissions.tags`   | string    | Tags are matched to resources in the API to determine access privileges. Tags can only be used with the INSTANCE-MANAGEMENT scope.                                                                                                 |
+
 {{</bootstrap-table>}}
 
 The example above defines a role with `READ` permission for instances with the `env:prod` tag and `WRITE` permission for instances with the `env:dev` tag.

@@ -3,6 +3,7 @@ docs: DOCS-1245
 ---
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | User  | Module                   | Feature               | Description         | Access&nbsp;Type |
 |-------|--------------------------|-----------------------|-----------------------------------------------------------------------------------|-------------|
 | admin | NGINX&nbsp;Management&nbsp;Suite&nbsp;Settings                | Licensing                    | Allows access to view and manage licenses          | CRUD |
@@ -17,4 +18,5 @@ docs: DOCS-1245
 | admin | Instance Manager         | Security Policies     | Allows access to view and manage NGINX App Protect Policies                       | CRUD |
 | admin | Instance Manager         | Security Log Profiles | Allows access to view and manage NGINX App Protect Log Profiles                   | CRUD |
 | admin | Security Monitoring      | Security&nbsp;Monitoring | Allows access to the Security Monitoring dashboard and APIs                       | CRUD |
+
 {{</bootstrap-table>}}

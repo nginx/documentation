@@ -78,8 +78,8 @@ After installation you will need to enable and configure the module in NGINX Plu
 <span id="info"></span>
 ## More Info
 
-* [NGINX RTMP Module Reference](https://github.com/arut/nginx-rtmp-module)
+- [NGINX RTMP Module Reference](https://github.com/arut/nginx-rtmp-module)
 
-* [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
 
-* [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})

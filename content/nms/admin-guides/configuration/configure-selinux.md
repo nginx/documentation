@@ -176,10 +176,10 @@ sudo setsebool -P httpd_can_network_connect 1
 
 ## Recommended Resources
 
-- https://man7.org/linux/man-pages/man8/selinux.8.html
-- https://www.redhat.com/en/topics/linux/what-is-selinux
-- https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/using_selinux
-- https://wiki.centos.org/HowTos/SELinux
-- https://wiki.gentoo.org/wiki/SELinux
-- https://opensource.com/business/13/11/selinux-policy-guide
-- https://www.nginx.com/blog/using-nginx-plus-with-selinux/
+- <https://man7.org/linux/man-pages/man8/selinux.8.html>
+- <https://www.redhat.com/en/topics/linux/what-is-selinux>
+- <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/using_selinux>
+- <https://wiki.centos.org/HowTos/SELinux>
+- <https://wiki.gentoo.org/wiki/SELinux>
+- <https://opensource.com/business/13/11/selinux-policy-guide>
+- <https://www.nginx.com/blog/using-nginx-plus-with-selinux/>

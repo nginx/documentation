@@ -46,16 +46,20 @@ Complete the following prerequisites before proceeding with this guide:
 1. Use the [Attack Signature Report Tool](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#attack-signature-report-tool) to generate a Signature Report file. The filename must be `signature-report.json`.
 
     Example:
+
     ```bash
     sudo /opt/app_protect/bin/get-signatures -o ./signature-report.json
     ```
+
 1. Open an SSH connection to the management plane host and log in.
 1. Replace the `signature-report.json` on your NGINX Management Suite's control plane at `/usr/share/nms/sigdb/signature-report.json` with the newly generated Signature Report.
 
     Example:
+
     ```bash
     sudo scp /path/to/signature-report.json {user}@{host}:/usr/share/nms/sigdb/signature-report.json
     ```
+
 1. Restart the NGINX Management Suite services:
 
     ```bash

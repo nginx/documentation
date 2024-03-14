@@ -91,7 +91,7 @@ The expiring or expired certificates can be updated with new certificates by sel
 
 To replace a certificate using the web interface, take the following steps.
 
-#### Web Interface
+### Web Interface
 
 1. Open the Instance Manager web interface and log in.
 2. Under **Modules**, select **Instance Manager**.
@@ -102,7 +102,7 @@ To replace a certificate using the web interface, take the following steps.
 
 <br>
 
-#### API
+### API
 
 Alternatively, to replace a certificate using the Instance Manager API, send a PUT request similar to the following example to the Certificates API endpoint.
 
@@ -118,7 +118,7 @@ curl -X PUT "https://nginx-manager.example.com/api/v0/certificates/pem_cert_with
 
 ## Delete Managed Certificates {#delete-certs}
 
-#### Web Interface
+### Web Interface
 
 To delete a certificate using the web interface, take the following steps.
 
@@ -129,7 +129,7 @@ To delete a certificate using the web interface, take the following steps.
 
 <br>
 
-#### API
+### API
 
 To delete a certificate using the Instance Manager API, send a DELETE request similar to the following example to the
 Certificates API endpoint.
@@ -142,7 +142,7 @@ curl -X DELETE "https://nginx-manager.example.com/api/v0/certificates/pem_cert_w
 
 ## Rotate Encryption Keys {#rotate-encryption-keys}
 
-To manage certificates securely, you should rotate the encryption keys regularly or when a key has been compromised. 
+To manage certificates securely, you should rotate the encryption keys regularly or when a key has been compromised.
 
 {{< important>}} You must stop the `nms-core` service to rotate keys. Stopping this service is disruptive, so you should plan a downtime window for the rotation.{{< /important >}}
 

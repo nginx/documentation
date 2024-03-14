@@ -44,7 +44,7 @@ Debug log settings determine the minimum log level and the internal App Protect 
 
 The logging configuration file is located in: `/etc/app_protect/bd/logger.cfg` and contains the App Protect modules for logging and debugging.
 
-~~~
+```none
 ################################################################################################
 #
 #                                        Logger configuration file
@@ -74,30 +74,30 @@ The logging configuration file is located in: `/etc/app_protect/bd/logger.cfg` a
 #
 #       errors.log = 2 , debug.log = 3 (see /ts/agent/log.cfg)
 #
-~~~
+```
 
 ### Enabling Debug Logging
 
 To add a module for logging:
 
-~~~
+```none
 #       MODULE = <module_name>;
 #       LOG_LEVEL = <log level 1> | <log level 2> | ... | <log level n>;
 #       FILE = <file number> (recommended 2 always);
 #
 #       Use # to comment out lines.
-~~~
+```
 
 For example:
 
-~~~
+```none
 MODULE=IO_PLUGIN;
 LOG_LEVEL=TS_INFO | TS_DEBUG;
 FILE = 2;
-~~~
+```
 
-~~~
+```none
 MODULE = ALL;
 LOG_LEVEL = TS_ERR | TS_CRIT | TS_WARNING | TS_NOTICE;
 FILE=2;
-~~~
+```

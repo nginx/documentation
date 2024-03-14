@@ -81,6 +81,7 @@ We will use centos7 as an example, but Ubuntu and other distributions that suppo
 ```bash
 sudo vim nginx.repo
 ```
+
 Add the following lines and save the file:
 
 ```text
@@ -208,6 +209,7 @@ CMD ["/usr/local/bin/cmd.sh"]
     <summary>systemd.sh</summary>
 
 {{<fa "download">}} {{<link "/tutorials/containers/systemd.sh" "systemd.sh">}}
+
 ```bash
 #!/bin/bash
 set -eux
@@ -236,6 +238,7 @@ echo "$HOSTNAME"
 # Nothing below the exec line
 exec "${COMPASS_SYSTEMD}"
 ```
+
 </details><br/>
 
 6. Build the Dockerfile:
@@ -276,6 +279,7 @@ We will use centos7 as an example, but Ubuntu and other distributions that suppo
 ```bash
 sudo vim nginx.repo
 ```
+
 Add the following lines and save the file:
 
 ```text

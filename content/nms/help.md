@@ -22,7 +22,7 @@ NGINX Management Suite is a family of management plane solutions that enable gov
 
 - **Security Monitoring:** Monitor NGINX App Protect WAF instances,  analyze possible threats and identify opportunities for tuning your security policies.
 
-##  Documentation Sections
+## Documentation Sections
 
 The documentation for NGINX Management Suite is divided into the following sections:
 

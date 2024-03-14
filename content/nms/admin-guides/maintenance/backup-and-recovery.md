@@ -41,7 +41,7 @@ To complete the instructions in this guide, you need the following:
     sudo systemctl start nms
     ```
 
-**Make Scripts Executable**
+### Make Scripts Executable
 
 To run the backup and restore scripts, you need to set their permissions to make them executable.
 
@@ -104,6 +104,7 @@ To complete the instructions in this guide, you need the following:
 
 
 <a name="root-access"></a>
+
 - Root Access
 
     The Kubernetes backup and restore scripts for NGINX Management Suite are executed using `sudo` and use the Kubernetes command `kubectl` internally to access the Kubernetes API. It is necessary to ensure the target Kubernetes cluster is accessible to the root user.
@@ -118,13 +119,13 @@ To complete the instructions in this guide, you need the following:
 
     If the root user does not have the required access, you will need to configure the root user to have Kubernetes API access, or provide the script with the location of the Kubernetes configuration via the environment variable `KUBECONFIG`. For example:
 
-    - To back up NGINX Management Suite:
+  - To back up NGINX Management Suite:
 
         ```shell
         sudo KUBECONFIG=/etc/kubernetes/admin.conf ./k8s-backup.sh
         ```
 
-    - To restore NGINX Management Suite:
+  - To restore NGINX Management Suite:
 
         ```shell
         sudo KUBECONFIG=/etc/kubernetes/admin.conf ./k8s-restore.sh -i <path to backup file> -r
@@ -166,7 +167,7 @@ To back up NGINX Management Suite deployed in a Kubernetes cluster, follow these
 
 1. Copy the extracted backup scripts to your working directory:
     - For NGINX Management Suite and API Connectivity Manager, copy`k8s-backup.sh` from the `nms-<version>/charts/nms-hybrid/backup-restore/` directory.
- 
+
     ```shell
     cp nms-<version>/charts/nms-hybrid/backup-restore/k8s-backup.sh .
     cp nms-<version>/charts/nms-adm/backup-restore/k8s-backup-adm.sh .
@@ -184,6 +185,7 @@ To back up NGINX Management Suite deployed in a Kubernetes cluster, follow these
     ```shell
     ./k8s-backup.sh
     ```
+
     {{< note >}}The backup script does not need the utility pod or sudo permissions to create a backup.{{< /note >}}
 
 5. The command will ask for the NGINX Management Suite namespace. The script will create a backup archive in the same directory called `k8s-backup-<timestamp>.tar.gz`.
@@ -213,6 +215,7 @@ To restore NGINX Management Suite and the installed modules deployed in the same
     ```shell
     sudo ./k8s-restore.sh -r -i k8s-backup-<timestamp>.tar.gz
     ```
+
     {{< note >}}The restore script [needs root access]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md#root-access" >}}) to Kubernetes for the restore operation.{{< /note >}}
 
 5. The script will ask for the NGINX Management Suite namespace. Once the namespace has been provided, the script will consume the specified backup archive.
@@ -246,6 +249,7 @@ To restore NGINX Management Suite and the installed modules into a different Kub
     ```shell
     sudo ./k8s-restore.sh -r -i k8s-backup-<timestamp>.tar.gz -d
     ```
+
     {{< note >}}The restore script [needs root access]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md#root-access" >}}) to Kubernetes for the restore operation.{{< /note >}}
 
 5. The script will ask for the NGINX Management Suite namespace. Once the namespace has been provided, the script will consume the specified backup archive.

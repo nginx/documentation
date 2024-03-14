@@ -55,24 +55,31 @@ This disallowed using NGINX App protect DoS for Denial of Service (DoS) protecti
 #### App Protect DoS
 
 ##### CentOS 7.4+ / RHEL 7.4+ / UBI7
+
 - app-protect-dos-28+3.1.7-1.el7.ngx.x86_64.rpm
 
 ##### RHEL 8 / UBI8
+
 - app-protect-dos-28+3.1.7-1.el8.ngx.x86_64.rpm
 
 ##### Debian 11
+
 - app-protect-dos_28+3.1.7-1~bullseye_amd64.deb
 
 ##### Ubuntu 18.04
+
 - app-protect-dos_28+3.1.7-1~bionic_amd64.deb
 
 ##### Ubuntu 20.04
+
 - app-protect-dos_28+3.1.7-1~focal_amd64.deb
 
 ##### Alpine 3.15
+
 - app-protect-dos-28.3.1.7-r1.apk
 
 #### NGINX Plus
+
 - NGINX Plus R28
 
 
@@ -85,6 +92,7 @@ This disallowed using NGINX App protect DoS for Denial of Service (DoS) protecti
 - If NGINX App Protect WAF is installed, app protect should be disabled for the location of DoS Live Activity Monitoring API.
 
     For example:
+
     ```shell
     location /api {
     app_protect_enable off;
@@ -96,6 +104,7 @@ This disallowed using NGINX App protect DoS for Denial of Service (DoS) protecti
 Port configuration should correspond to the port the server listens to.
 
     For example:
+
     ```shell
         server {
             listen 8080;

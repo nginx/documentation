@@ -17,10 +17,10 @@ When used with a FIPS 140-2 validated build of OpenSSL operating in FIPS mode, N
 
 Several operating system vendors have obtained FIPS 140-2 Level 1 validation for the OpenSSL Cryptographic Module shipped with their respective operating systems:
 
-* [Canonical Ltd.: Ubuntu 18.04 OpenSSL Cryptographic Module](https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4540)
-* [Oracle Corporation: Oracle OpenSSL FIPS Provider](https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4506)
-* [Red Hat, Inc.: Red Hat Enterprise Linux 7 NSS Cryptographic Module](https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4498)
-* [SUSE, LLC: SUSE Linux Enterprise Server Kernel Crypto API Cryptographic Module](https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4508)
+- [Canonical Ltd.: Ubuntu 18.04 OpenSSL Cryptographic Module](https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4540)
+- [Oracle Corporation: Oracle OpenSSL FIPS Provider](https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4506)
+- [Red Hat, Inc.: Red Hat Enterprise Linux 7 NSS Cryptographic Module](https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4498)
+- [SUSE, LLC: SUSE Linux Enterprise Server Kernel Crypto API Cryptographic Module](https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4508)
 
 NGINX Plus uses the OpenSSL cryptographic module exclusively for all operations relating to the decryption and encryption of SSL/TLS and HTTP/2 traffic. 
 
@@ -30,17 +30,17 @@ When NGINX Plus is executed on an operating system where a FIPS‑validated Ope
 
 This statement uses the following terms:
 
-* **Cryptographic module**: The OpenSSL software, comprised of libraries of FIPS‑validated algorithms that can be used by other applications.
+- **Cryptographic module**: The OpenSSL software, comprised of libraries of FIPS‑validated algorithms that can be used by other applications.
 
-* **Cryptographic boundary**: The operational functions that use FIPS‑validated algorithms. For NGINX Plus, the cryptographic boundary includes all functionality that is implemented by the [http_ssl](http://nginx.org/en/docs/http/ngx_http_ssl_module.html), [http_v2](http://nginx.org/en/docs/http/ngx_http_v2_module.html), [stream_ssl](http://nginx.org/en/docs/stream/ngx_stream_ssl_module.html), and [mail_ssl](http://nginx.org/en/docs/mail/ngx_mail_ssl_module.html) modules. These modules implement SSL and TLS operations for inbound and outbound connections which use HTTP, HTTP/2, TCP, and mail protocols.
+- **Cryptographic boundary**: The operational functions that use FIPS‑validated algorithms. For NGINX Plus, the cryptographic boundary includes all functionality that is implemented by the [http_ssl](http://nginx.org/en/docs/http/ngx_http_ssl_module.html), [http_v2](http://nginx.org/en/docs/http/ngx_http_v2_module.html), [stream_ssl](http://nginx.org/en/docs/stream/ngx_stream_ssl_module.html), and [mail_ssl](http://nginx.org/en/docs/mail/ngx_mail_ssl_module.html) modules. These modules implement SSL and TLS operations for inbound and outbound connections which use HTTP, HTTP/2, TCP, and mail protocols.
 
-* **NGINX Plus**: The NGINX Plus software application developed by NGINX, Inc. and delivered in binary format from NGINX servers.
+- **NGINX Plus**: The NGINX Plus software application developed by NGINX, Inc. and delivered in binary format from NGINX servers.
 
-* **FIPS mode**: When the operating system is configured to run in FIPS mode, the OpenSSL cryptographic module operates in a mode that has been validated to be in compliance with FIPS 140-2 Level 2. Most operating systems do not run in FIPS mode by default, so explicit configuration is necessary to enable FIPS mode.
+- **FIPS mode**: When the operating system is configured to run in FIPS mode, the OpenSSL cryptographic module operates in a mode that has been validated to be in compliance with FIPS 140-2 Level 2. Most operating systems do not run in FIPS mode by default, so explicit configuration is necessary to enable FIPS mode.
 
-* **FIPS validated**: A component of the OpenSSL cryptographic module (the OpenSSL FIPS Object Module) is formally validated by an authorized certification laboratory. The validation holds if the module is built from source with no modifications to the source or build process. The implementation of FIPS mode that is present in operating system vendors’ distributions of OpenSSL contains this validated module.
+- **FIPS validated**: A component of the OpenSSL cryptographic module (the OpenSSL FIPS Object Module) is formally validated by an authorized certification laboratory. The validation holds if the module is built from source with no modifications to the source or build process. The implementation of FIPS mode that is present in operating system vendors’ distributions of OpenSSL contains this validated module.
 
-* **FIPS compliant**: NGINX Plus is compliant with FIPS 140-2 Level 1 within the cryptographic boundary when used with a FIPS‑validated OpenSSL cryptographic module on an operating system running in FIPS mode.
+- **FIPS compliant**: NGINX Plus is compliant with FIPS 140-2 Level 1 within the cryptographic boundary when used with a FIPS‑validated OpenSSL cryptographic module on an operating system running in FIPS mode.
 
 ## Verification of Correct Operation of NGINX Plus
 
@@ -123,14 +123,14 @@ server {
 If necessary, you can generate a self‑signed certificate for test purposes:
 
 ```shell
-$ mkdir -p /etc/nginx/ssl
-$ openssl req -newkey rsa:2048 -nodes -keyout /etc/nginx/ssl/test.key -x509 -days 365 -out /etc/nginx/ssl/test.crt
+mkdir -p /etc/nginx/ssl
+openssl req -newkey rsa:2048 -nodes -keyout /etc/nginx/ssl/test.key -x509 -days 365 -out /etc/nginx/ssl/test.crt
 ```
 
 Verify that you can access the website using HTTPS from a remote host. Connect to the NGINX IP address using the `openssl s_client` command, and enter the HTTP message `GET /`:
 
 ```shell
-$ (echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443
+(echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443
 ```
 
 Use `openssl s_client` for this test because it unambiguously confirms which SSL/TLS cipher was negotiated in the connection. After some debugging information (including the cipher selected), the body of the default “Welcome to nginx!” greeting page is displayed.
@@ -142,7 +142,7 @@ FIPS 140-2 disallows the use of some cryptographic algorithms, including the Cam
 #### RC4-MD5
 
 ```shell
-$ (echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443 -cipher RC4-MD5
+(echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443 -cipher RC4-MD5
 ```
 
 This cipher is insecure and is disabled by NGINX Plus by default. The SSL handshake always fails.
@@ -150,7 +150,7 @@ This cipher is insecure and is disabled by NGINX Plus by default. The SSL hands
 #### CAMELLIA-SHA
 
 ```shell
-$ (echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443 -cipher CAMELLIA256-SHA
+(echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443 -cipher CAMELLIA256-SHA
 ```
  
 This cipher is considered secure but is not permitted by the FIPS standard. The SSL handshake fails if the target system is compliant with FIPS 140-2, and succeeds otherwise.
@@ -160,7 +160,7 @@ Note that if you attempt to issue the client request on a host running in FIPS m
 #### AES256-SHA
 
 ```shell
-$ (echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443 -cipher AES256-SHA
+(echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443 -cipher AES256-SHA
 ```
 
 This cipher is considered secure by NGINX Plus and is permitted by FIPS 140-2. The SSL handshake succeeds.
@@ -179,14 +179,14 @@ When FIPS mode is enabled on the host operating system, the two ciphers that use
 
 When you configure NGINX Plus with the `ssl_ciphers ALL` directive, NGINX Plus presents all the relevant ciphers available in the OpenSSL cryptographic module to the client. FIPS mode disables the following ciphers:
  
-* `TLS_ECDH_anon_WITH_RC4_128_SHA`
-* `TLS_ECDHE_RSA_WITH_RC4_128_SHA`
-* `TLS_RSA_WITH_CAMELLIA_128_CBC_SHA`
-* `TLS_RSA_WITH_CAMELLIA_256_CBC_SHA`
-* `TLS_RSA_WITH_IDEA_CBC_SHA`
-* `TLS_RSA_WITH_RC4_128_MD5`
-* `TLS_RSA_WITH_RC4_128_SHA`
-* `TLS_RSA_WITH_SEED_CBC_SHA`
+- `TLS_ECDH_anon_WITH_RC4_128_SHA`
+- `TLS_ECDHE_RSA_WITH_RC4_128_SHA`
+- `TLS_RSA_WITH_CAMELLIA_128_CBC_SHA`
+- `TLS_RSA_WITH_CAMELLIA_256_CBC_SHA`
+- `TLS_RSA_WITH_IDEA_CBC_SHA`
+- `TLS_RSA_WITH_RC4_128_MD5`
+- `TLS_RSA_WITH_RC4_128_SHA`
+- `TLS_RSA_WITH_SEED_CBC_SHA`
 
 ## Conclusion
 

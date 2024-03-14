@@ -88,6 +88,7 @@ NGINX Plus R19 and later
 #### 1341 - Syslog Clock
 
 The time stamps in the NGINX and NGINX App Protect WAF log messages are presented in the local time zone of your machine. If you would like to see this in a different time zone, for example UTC, you must change the local time zone. On most systems this can be done using the command:
+
 ```shell
 sudo datetimectl set-timezone Etc/UTC
 ```

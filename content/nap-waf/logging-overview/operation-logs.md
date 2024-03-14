@@ -42,11 +42,12 @@ The operation logs consists of system operational and health events. The events 
 
 ### Events
 
-{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
-|Event Type | Level | Meaning | 
-| ---| ---| --- | 
-|App Protect Connected | Notice | A worker successfully connected to NGINX App Protect WAF Enforcer.<br> The **mode** attribute should be **operational** unless there is an ongoing problem. | 
-{{</bootstrap-table>}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
+|Event Type | Level | Meaning |
+| ---| ---| --- |
+|App Protect Connected | Notice | A worker successfully connected to NGINX App Protect WAF Enforcer.<br> The **mode** attribute should be **operational** unless there is an ongoing problem. |
+
+{{</bootstrap-table>}}
 
 
 ```json
@@ -60,11 +61,12 @@ The operation logs consists of system operational and health events. The events 
 ```
 
 
-{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
-|Event Type | Level | Meaning | 
-| ---| ---| --- | 
-|App Protect Connection Failure | Error | A worker attempted to connect to NGINX App Protect WAF but the operation failed.<br> The **mode** should be **failure**. | 
-{{</bootstrap-table>}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
+|Event Type | Level | Meaning |
+| ---| ---| --- |
+|App Protect Connection Failure | Error | A worker attempted to connect to NGINX App Protect WAF but the operation failed.<br> The **mode** should be **failure**. |
+
+{{</bootstrap-table>}}
 
 
 ```json
@@ -78,11 +80,12 @@ The operation logs consists of system operational and health events. The events 
 ```
 
 
-{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
-|Event Type | Level | Meaning | 
-| ---| ---| --- | 
-|App Protect Disconnected | Error | Engine disconnected from Worker (socket closed).<br>The **mode** should be **failure**. | 
-{{</bootstrap-table>}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
+|Event Type | Level | Meaning |
+| ---| ---| --- |
+|App Protect Disconnected | Error | Engine disconnected from Worker (socket closed).<br>The **mode** should be **failure**. |
+
+{{</bootstrap-table>}}
 
 
 ```json
@@ -95,11 +98,12 @@ The operation logs consists of system operational and health events. The events 
 }
 ```
 
-{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
-|Event Type | Level | Meaning | 
-| ---| ---| --- | 
-|App Protect  Resource Exception | Warning | Resource, as measured by the Worker, exceeded limits (above high threshold).<br>**Mode** should be **failure**. It may have already been in this mode because there are other resources that had exceeded their limits. | 
-{{</bootstrap-table>}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
+|Event Type | Level | Meaning |
+| ---| ---| --- |
+|App Protect  Resource Exception | Warning | Resource, as measured by the Worker, exceeded limits (above high threshold).<br>**Mode** should be **failure**. It may have already been in this mode because there are other resources that had exceeded their limits. |
+
+{{</bootstrap-table>}}
 
 
 ```json
@@ -115,11 +119,12 @@ The operation logs consists of system operational and health events. The events 
 }
 ```
 
-{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
-|Event Type | Level | Meaning | 
-| ---| ---| --- | 
-|App Protect Resource Reverted to Normal | Warning | Resource, as measured by the Worker, went back to normal range (below low threshold).<br> **Mode** should be **operational**, unless there are other resources which are still out of limits. | 
-{{</bootstrap-table>}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
+|Event Type | Level | Meaning |
+| ---| ---| --- |
+|App Protect Resource Reverted to Normal | Warning | Resource, as measured by the Worker, went back to normal range (below low threshold).<br> **Mode** should be **operational**, unless there are other resources which are still out of limits. |
+
+{{</bootstrap-table>}}
 
 
 ```json
@@ -135,11 +140,12 @@ The operation logs consists of system operational and health events. The events 
 }
 ```
 
-{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
-|Event Type | Level | Meaning | 
-| ---| ---| --- | 
-|Configuration Error | Error | There were errors in the AppProtect directives in the `nginx.conf` file. This is issued if the directive was spelled correctly, otherwise NGINX core will issue an error.<br> This event occurs before configuration_load_start and means there will be no configuration load.<br>       This event is generated only on configuration reload. It cannot be generated on first configuration as there is no error log configured yet. | 
-{{</bootstrap-table>}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
+|Event Type | Level | Meaning |
+| ---| ---| --- |
+|Configuration Error | Error | There were errors in the AppProtect directives in the `nginx.conf` file. This is issued if the directive was spelled correctly, otherwise NGINX core will issue an error.<br> This event occurs before configuration_load_start and means there will be no configuration load.<br>       This event is generated only on configuration reload. It cannot be generated on first configuration as there is no error log configured yet. |
+
+{{</bootstrap-table>}}
 
 
 ```json
@@ -150,11 +156,12 @@ The operation logs consists of system operational and health events. The events 
 }
 ```
 
-{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
-|Event Type | Level | Meaning | 
-| ---| ---| --- | 
-|Configuration Load Start | Notice | App Protect configuration load process started. The configuration consists of all the policies, security log configurations and global settings. These all are part of the config set file generated by the module and passed to the Policy Compiler. The path to this file in included in the event message.<br> This event is generated only on configuration reload. It cannot be generated on first configuration as there is no error log configured yet. | 
-{{</bootstrap-table>}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
+|Event Type | Level | Meaning |
+| ---| ---| --- |
+|Configuration Load Start | Notice | App Protect configuration load process started. The configuration consists of all the policies, security log configurations and global settings. These all are part of the config set file generated by the module and passed to the Policy Compiler. The path to this file in included in the event message.<br> This event is generated only on configuration reload. It cannot be generated on first configuration as there is no error log configured yet. |
+
+{{</bootstrap-table>}}
 
 
 ```json
@@ -164,11 +171,12 @@ The operation logs consists of system operational and health events. The events 
 }
 ```
 
-{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
-|Event Type | Level | Meaning | 
-| ---| ---| --- | 
-|Configuration Load Failure | Error | There was an error in one of the configuration files: file not found, failed to compile, or the configuration failed to load to the engine. | 
-{{</bootstrap-table>}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
+|Event Type | Level | Meaning |
+| ---| ---| --- |
+|Configuration Load Failure | Error | There was an error in one of the configuration files: file not found, failed to compile, or the configuration failed to load to the engine. |
+
+{{</bootstrap-table>}}
 
 ```json
 {
@@ -184,11 +192,12 @@ The operation logs consists of system operational and health events. The events 
 }
 ```
 
-{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
-|Event Type | Level | Meaning | 
-| ---| ---| --- | 
-|Configuration Load Success | Notice | The WAF configuration process ended successfully: all policies, log configuration and global settings were loaded to NGINX App Protect WAF and all traffic will be handled by this configuration.<br>The "error_message" contains warnings.<br>This event is generated also on the initial configuration (when NGINX starts).<br>Also includes the signature update version which reflects the date the package was released and the exact revision time in datetime format that also includes the time of day, thus compatible with the revision date time in the WAF policy `signature-requirements` element. | 
-{{</bootstrap-table>}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
+|Event Type | Level | Meaning |
+| ---| ---| --- |
+|Configuration Load Success | Notice | The WAF configuration process ended successfully: all policies, log configuration and global settings were loaded to NGINX App Protect WAF and all traffic will be handled by this configuration.<br>The "error_message" contains warnings.<br>This event is generated also on the initial configuration (when NGINX starts).<br>Also includes the signature update version which reflects the date the package was released and the exact revision time in datetime format that also includes the time of day, thus compatible with the revision date time in the WAF policy `signature-requirements` element. |
+
+{{</bootstrap-table>}}
 
 ```json
 {

@@ -67,6 +67,7 @@ Note: Adding the audit log option will log every API call made to the API. It is
     <summary>/etc/nginx-manager/nginx-manager.conf</summary>
 
 {{<fa "download">}} {{<link "/nim/previous-versions/static/previous-versions/v1/getting-started/auth/audit/nginx-manager.conf" "nginx-manager.conf">}}
+
 ```yaml {hl_lines=[36]}
 #
 # /etc/nginx-manager/nginx-manager.conf
@@ -107,6 +108,7 @@ audit_log: /var/log/nginx-manager/audit.log
 
 # vim: syntax=nginx
 ```
+
 </details><br/>
 
 ### Upstreams {#common-upstreams}
@@ -117,6 +119,7 @@ The examples below make reference to an upstream group nginx-manager_servers. Yo
     <summary>/etc/nginx/conf.d/nginx-manager-upstreams.conf</summary>
 
 {{<fa "download">}} {{<link "nim/previous-versions/static/previous-versions/v1/examples/nginx-manager/nginx-manager-upstreams.conf" "nginx-manager-upstreams.conf">}}
+
 ```nginx
 # nginx-manager-upstreams.conf
 # Upstreams for NGINX Instance Manager Server API/UI
@@ -129,6 +132,7 @@ upstream nginx-manager_servers {
 
 # vim: syntax=nginx
 ```
+
 </details><br/>
 
 ### Status Page {#common-status}
@@ -139,6 +143,7 @@ NGINX Plus uses a status page. The following example shows a default configurati
   <summary>/etc/nginx/conf.d/status-api.conf</summary>
 
 {{<fa "download">}} {{<link "nim/previous-versions/static/previous-versions/v1/examples/nginx-manager/status-api.conf" "status-api.conf">}}
+
 ```nginx
 # This sample NGINX Plus configuration enables the NGINX Plus API, for live 
 # activity monitoring and the built-in dashboard, dynamic configuration of 
@@ -254,6 +259,7 @@ server {
 
 # vim: syntax=nginx
 ```
+
 </details><br/>
 
 ### Stub Page {#common-stub}
@@ -266,6 +272,7 @@ Please note: You need to compile NGINX Open Source with the --with-http_stub_sta
     <summary>/etc/nginx/conf.d/stub-status.conf</summary>
 
 {{<fa "download">}} {{<link "nim/previous-versions/static/previous-versions/v1/getting-started/encrypt/stub-status.conf" "stub-status.conf">}}
+
 ```nginx
 # ngx_http_stub_status_module (Available in NGINX F/OSS)
 # provides Basic Status information http://nginx.org/en/docs/http/ngx_http_stub_status_module.html
@@ -283,6 +290,7 @@ server {
 
 # vim: syntax=nginx
 ```
+
 </details><br/>
 
 ## Basic Authentication {#basic-auth}
@@ -347,6 +355,7 @@ server {
 }
 # vim: syntax=nginx
 ```
+
 </details><br/>
 
 {{%/tab%}}
@@ -402,6 +411,7 @@ server {
 }
 # vim: syntax=nginx
 ```
+
 </details><br/>
 
 {{%/tab%}}
@@ -419,6 +429,7 @@ Below is an example NGINX conf for using JWT.
     <summary>/etc/nginx/conf.d/nginx-manager-jwt.conf</summary>
 
 {{<fa "download">}} {{<link "nim/previous-versions/static/previous-versions/v1/examples/nginx-manager/nginx-manager-jwt.conf">}}
+
 ```nginx {hl_lines=["7-11","15-17","44-46","48-50",52,"59-62",64]}
 # nginx-manager-jwt.conf
 # Proxy API with JWT to 127.0.0.1 on nginx-manager
@@ -490,6 +501,7 @@ server {
 
 # vim: syntax=nginx
 ```
+
 </details><br/>
 
 ## OpenID Connect/OAuth2 {#oidc-auth}
@@ -513,6 +525,7 @@ Hints:
     <summary>/etc/nginx/conf.d/nginx-manager-oauth.conf</summary>
 
 {{<fa "download">}} {{<link "nim/previous-versions/static/previous-versions/v1/examples/nginx-manager/nginx-manager-oauth.conf" "nginx-manager-oauth.conf">}}
+
 ```nginx {hl_lines=["8-9","14-15","37-38","40-41",47,"49-51",53]}
 # nginx-manager-oauth.conf
 # Proxy UI/API with Oauth2/OIDC to 127.0.0.1 on nginx-manager
@@ -572,6 +585,7 @@ server {
 
 # vim: syntax=nginx
 ```
+
 </details><br/>
 
 ## gRPC Metadata {#grpc-metadata}
@@ -586,6 +600,7 @@ Enabling rate-limiting can help mitigate and prevent DDoS attacks and should be 
     <summary>/etc/nginx/conf.d/nginx-manager-jwt.conf</summary>
 
 {{<fa "download">}} {{<link "nim/previous-versions/static/previous-versions/v1/examples/nginx-manager/nginx-manager-jwt.conf" "nginx-manager-jwt.conf">}}
+
 ```nginx {hl_lines=[13,52]}
 # nginx-manager-jwt.conf
 # Proxy API with JWT to 127.0.0.1 on nginx-manager
@@ -657,6 +672,7 @@ server {
 
 # vim: syntax=nginx
 ```
+
 </details><br/>
 
 ## Role Based Access Control {#rbac}
@@ -673,10 +689,11 @@ Roles and access control work with tagging (introduced in version 1.0) that allo
 
 Under Settings, you can access the `Users` and `Roles` tabs. Navigate to `Roles` and you can configure a new Role.
 You can assign the following fields:
-  - Role Name: The name of the Role used.
-  - Display Name: A longer name that can help identify the role (optional).
-  - Access Level: (Read Only, Regular (read/write), or Admin (full access to everything, no limits))
-  - Tags: What tags the Role has access to (this is ignored for Admin roles).
+
+- Role Name: The name of the Role used.
+- Display Name: A longer name that can help identify the role (optional).
+- Access Level: (Read Only, Regular (read/write), or Admin (full access to everything, no limits))
+- Tags: What tags the Role has access to (this is ignored for Admin roles).
 
 Roles are a construct of a name, access type and one or more tags.
 
@@ -684,10 +701,11 @@ Roles are a construct of a name, access type and one or more tags.
 
 Also under Settings, you can access the `Users` tab to add users and associate them with a role.
 You can assign the following fields:
-  - User Name: exact `$username` header that matches the User
-  - Display Name: A longer name that can help identify the user (optional)
-  - Email: Email for the user (reserved for future use)
-  - Role: Matches a Role you have created (create the Role first)
+
+- User Name: exact `$username` header that matches the User
+- Display Name: A longer name that can help identify the user (optional)
+- Email: Email for the user (reserved for future use)
+- Role: Matches a Role you have created (create the Role first)
 
 ### Enabling RBAC {#enablerbac}
 
@@ -703,6 +721,7 @@ To enable rbac, add and enable the following variable in the `nginx-manager.conf
     <summary>/etc/nginx-manager/nginx-manager.conf</summary>
 
 {{<fa "download">}} {{<link "nim/previous-versions/static/previous-versions/v1/getting-started/auth/nginx-manager.conf" "nginx-manager.conf">}}
+
 ```yaml {hl_lines=["32-33"]}
 #
 # /etc/nginx-manager/nginx-manager.conf
@@ -743,6 +762,7 @@ audit_log: /var/log/nginx-manager/audit.log
 
 # vim: syntax=nginx
 ```
+
 </details><br/>
 
 Then restart the nginx-manager service.

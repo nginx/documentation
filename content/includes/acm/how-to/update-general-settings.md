@@ -1,5 +1,6 @@
 #
    {{<bootstrap-table "table table-striped table-bordered">}}
+
    | Variable                                                          | Description                                                          |
    |-------------------------------------------------------------------|----------------------------------------------------------------------|
    | (Optional) Select the token to return to the client upon login    | Options: <br> - id_token <br> - none                                 |
@@ -8,7 +9,9 @@
    | Add Authorization Parameter                                       | - add parameter key <br> - add value <br> - add type (Query or Path) |
    | Add Token Parameter                                               | - add parameter key <br> - add value <br> - add type (Query or Path) |
    | Add Logout Parameter                                              | - add parameter key <br> - add value <br> - add type (Query or Path) |
-   {{</bootstrap-table>}}
-   
+
+
+ {{</bootstrap-table>}}
+
    <!-- Do not remove. Keep this code at the bottom of the include -->
    <!-- DOCS-1009 -->

@@ -24,16 +24,18 @@ The OpenAPI Specification (OAS) allows you to specify authentication and authori
 
 Listed below are the OAS security schemes that API Connectivity Manager supports.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | OAS&nbsp;Authorization&nbsp;Schemes | ACM&nbsp;Supported&nbsp;Schemes |
 |---|---|
 | Basic Authentication | <i class="fa-solid fa-check" style="color: green"></i> Supported <br><br>APIs with this scheme expect credentials to be included in the HTTP Authorization request header. |
 | API Key Authentication | <i class="fa-solid fa-check" style="color: green"></i> Supported <br><br>The API Key security scheme uses a unique API key to authenticate requests. With this scheme, the API expects the API key to be passed as a query parameter or header in the HTTP request. |
 | OAuth2 JWT Assertion | <i class="fa-solid fa-ban" style="color: red"></i> Not supported|
 | OAuth2 Token Introspection |<i class="fa-solid fa-ban" style="color: red"></i> Not supported |
+
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 
 ---
@@ -58,8 +60,9 @@ With Basic Authentication, API owners can restrict access to their APIs by requi
 
 ### Basic Authentication Scheme Definition
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field                                           | Type | Required      | Valid Value(s)                                                                                                                                                                           | Description | Default |
 |-------------------------------------------------|----------|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|---------|
 | `type`                  | `string`  | True   | `http` | The type of the security scheme.       | `N/A`  |
@@ -72,7 +75,7 @@ With Basic Authentication, API owners can restrict access to their APIs by requi
 
 
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 
 ### Configure Basic Authentication Scheme
@@ -146,8 +149,9 @@ The API Key Authentication security scheme uses a unique API key to authenticate
 
 ### API Key Scheme Definition
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field                                           | Type | Required      | Valid Value(s)                                                                                                                                                                           | Description | Default |
 |-------------------------------------------------|----------|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|---------|
 | `type`                  | `string`  | True   | `apiKey` | The type of the security scheme.       | `N/A`  |
@@ -161,13 +165,13 @@ The API Key Authentication security scheme uses a unique API key to authenticate
 
 
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ### Configure API Key Authentication Scheme
 
 To configure the API Key Authentication security scheme, take the following steps:
 
-1. Create an API spec with the `apiKey` security scheme configured. In the following example, take a look at how `ExampleApiKeyAuth` is configured in `component.securitySchemes`. 
+1. Create an API spec with the `apiKey` security scheme configured. In the following example, take a look at how `ExampleApiKeyAuth` is configured in `component.securitySchemes`.
 
    ```bash
    POST https://{{NMS-FQDN}}/api/acm/v1/services/workspaces/{{proxyworkspacename}}/api-docs
@@ -180,7 +184,7 @@ To configure the API Key Authentication security scheme, take the following step
 
    </details>
 
-2. Create a proxy with `specRef` referencing the spec from step 1. See the following example for how your proxy request body should look with `apikey-authn` configured on the policy. 
+2. Create a proxy with `specRef` referencing the spec from step 1. See the following example for how your proxy request body should look with `apikey-authn` configured on the policy.
 
    Note, since the referenced spec uses the API Key Authentication security scheme, you need to include the required API key within the POST/PUT request body.
 

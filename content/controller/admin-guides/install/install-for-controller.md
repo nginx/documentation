@@ -333,6 +333,7 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
       sudo apt-get update
       sudo apt-get install nginx-plus-module-appprotect
       ```
+
       To install a specific version based on the NGINX Plus version, for example `r25`, follow these steps:
 
       ```shell
@@ -450,6 +451,7 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
       sudo apt-get update
       sudo apt-get install app-protect
       ```
+
       To install a specific version based on the NGINX Plus version, for example `r25`, follow these steps:
 
       ```shell
@@ -496,7 +498,7 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/ad
 
 16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/admin-guide/install#ubuntu-1804" >}}).
 
-   **Note:** Ubuntu 20.04 activates __AppArmor__ by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment. 
+   **Note:** Ubuntu 20.04 activates **AppArmor** by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment. 
 
 {{%/tab%}}
 

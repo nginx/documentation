@@ -3,7 +3,7 @@ title: "JWT Examples"
 draft: true
 ---
 
-# Examples for Instance Manager Server UI/API and gRPC
+## Examples for Instance Manager Server UI/API and gRPC
 
 NGINX Plus conf files for proxying traffic to the NGINX Instance Manager Server.  By default, Instance Manager runs on 127.0.0.1 (not external).
 NGINX Plus is included for use to front end NGINX Instance Manager for more advanced use cases and to provide authentication options.
@@ -13,20 +13,20 @@ Change the port in the appropriate conf file and adjust firewall and selinux rul
 These are suggestions only, for help configuring authentication, please reach out to your account team.
 NGINX offers Professional Service engagements to ensure authentication is setup correctly, securely and quickly.
 
-## nginx-manager-jwt-index.html
+### nginx-manager-jwt-index.html
 
 This is just a demo html page to help understand the Clain values and information, it has no other purpose.
 
-## api_secret.jwk
+### api_secret.jwk
 
 JWT Key for nginx-manager-jwt.conf.  DO NOT USE IN PROD but fine for internal testing pipelines.
 From Alan Murphy simple JWT Demo in show-demos. <https://github.com/nginxinc/show-demos/blob/master/alan-simple-jwt-example/api_secret.jwk>
 
-## uid-111.jwt and uid-222.jwt
+### uid-111.jwt and uid-222.jwt
 
 JWTs for uid 111 and 222 from the same repo as above to test with if needed.  You can use these to test uid matching.
 
-## Testing
+### Testing
 
 You can test with a curl command similar to the one below to pass in "111 UID" JWT as an argument
 

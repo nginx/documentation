@@ -32,7 +32,7 @@ versions:
 weight: 730
 ---
 
-December 15, 2021 
+December 15, 2021
 
 ### New Features
 
@@ -74,6 +74,6 @@ December 15, 2021
 - 5096 Fixed - signatureOverrides were not allowed to be defined on cookies.
 - 5112 Fixed - Violation Rating score is higher than expected in some of the cases.
 
-##### Important Note
-This version introduces a new value `SECURITY_WAF_VIOLATION_TRANSPARENT_MODE` for `outcome_reason` field in the security log. This new value is for future compatibility and it should be ignored for now. 
+### Important Note
+This version introduces a new value `SECURITY_WAF_VIOLATION_TRANSPARENT_MODE` for `outcome_reason` field in the security log. This new value is for future compatibility and it should be ignored for now.
 

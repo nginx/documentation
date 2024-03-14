@@ -4,7 +4,7 @@ date: 2024-01-29T15:13:58-08:00
 # Change draft status to false to publish doc
 draft: false
 # Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
+# Add a short description (150 chars) for the doc. Include keywords for SEO.
 # The description text appears in search results and at the top of the doc.
 description: ""
 # Assign weights in increments of 100
@@ -38,10 +38,10 @@ Stay up-to-date with what's new and improved in NGINX One.
 
 ## February 6, 2024
 
-**Welcome to the NGINX One EA preview!**
+### Welcome to the NGINX One EA preview
 
 We're thrilled to introduce NGINX One, an exciting addition to our suite of NGINX products. Designed with efficiency and ease of use in mind, NGINX One offers an innovative approach to managing your NGINX instances.
 
-**Getting Started**
+### Getting Started
 
 To help you get started, take a look at the [Getting Started Guide]({{< relref "/nginx-one/getting-started.md" >}}). This guide will walk you through the initial setup and key features so you can start using NGINX One right away.

@@ -19,9 +19,9 @@ SSL termination means that NGINX Plus acts as the server-side SSL endpoint for 
 
 ## Prerequisites
 
-*   <a href="../../../releases/#r6">NGINX Plus R6</a>NGINX Plus or later
-*   A load-balanced [upstream group]({{< relref "../load-balancer/tcp-udp-load-balancer.md" >}}) with several TCP servers
-*   SSL certificates and a private key (obtained or self-generated)
+- <a href="../../../releases/#r6">NGINX Plus R6</a>NGINX Plus or later
+- A load-balanced [upstream group]({{< relref "../load-balancer/tcp-udp-load-balancer.md" >}}) with several TCP servers
+- SSL certificates and a private key (obtained or self-generated)
 
 ## Obtaining SSL Certificates
 

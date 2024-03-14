@@ -42,15 +42,15 @@ To complete the steps in this guide, you need the following:
 
 **Note:** The following procedure reflects the OneLogin GUI at the time of publication, but the GUI is subject to change. Use this guide as a reference and adapt to the current OneLogin GUI as necessary.
 
-Create a new application for NGINX Plus in the OneLogin GUI: 
+Create a new application for NGINX Plus in the OneLogin GUI:
 
-1. Log in to your OneLogin account at **https://**_domain_**.onelogin.com**, where _domain_ is the domain you chose when you created your account. 
+1. Log in to your OneLogin account at **https://**_domain_**.onelogin.com**, where _domain_ is the domain you chose when you created your account.
 
 2. Click <span style="white-space: nowrap; background-color:#000000; color:white;"> Applications </span> in the title bar and then click the <span style="white-space: nowrap; background-color:#1694c1; color:white;"> Add App </span> button in the upper right corner of the window that opens.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/07/OneLogin-SSO_Add-App-button.png" width="1024" height="306" class="aligncenter size-full wp-image-62013" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="https://www.nginx.com/wp-content/uploads/2019/07/OneLogin-SSO_Add-App-button.png" alt="" width="1024" height="306" class="aligncenter size-full wp-image-62013" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-3. On the **Find Applications** page that opens, type <span style="color:#666666; font-weight:bolder; white-space: nowrap;">OpenID Connect</span> in the search box. Click on the **OpenID Connect (OIDC)** row that appears. 
+3. On the **Find Applications** page that opens, type <span style="color:#666666; font-weight:bolder; white-space: nowrap;">OpenID Connect</span> in the search box. Click on the **OpenID Connect (OIDC)** row that appears.
 
    <img src="https://www.nginx.com/wp-content/uploads/2019/07/OneLogin-SSO_Find-Applications-page.png" alt="" width="1024" height="344" class="aligncenter size-full wp-image-62012" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
@@ -60,10 +60,10 @@ Create a new application for NGINX Plus in the OneLogin GUI:
 
 5. When the save completes, a new set of choices appears in the left navigation bar. Click **Configuration**. In the **Redirect URI's** field, type the URI of the NGINX Plus instance including the port number, and ending in **/\_codexch** (in this guide it is <span style="color:#666666; font-weight:bolder; white-space: nowrap;">https://my-nginx.example.com:443/_codexch</span>). Then click the <span style="white-space: nowrap; background-color:#1694c1; color:white;"> Save </span> button.
 
-   **Notes:** 
-   
-   * For production, we strongly recommend that you use SSL/TLS (port 443).
-   * The port number is mandatory even when you're using the default port for HTTP (80) or HTTPS (443).
+   **Notes:**
+
+   - For production, we strongly recommend that you use SSL/TLS (port 443).
+   - The port number is mandatory even when you're using the default port for HTTP (80) or HTTPS (443).
 
    <img src="https://www.nginx.com/wp-content/uploads/2019/07/OneLogin-SSO_Configuration-tab.png" alt="" width="1024" height="576" class="aligncenter size-full wp-image-62010" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
@@ -90,7 +90,7 @@ Take the steps in this section to set up NGINX Plus as the OpenID Connect Clien
    git clone https://github.com/nginxinc/nginx-openid-connect.git
    ```
 
-1. Run the *configure.sh* script to update the NGINX configuration files with the values for your OneLogin application.
+1. Run the _configure.sh_ script to update the NGINX configuration files with the values for your OneLogin application.
 
     For example:
 
@@ -102,7 +102,7 @@ Take the steps in this section to set up NGINX Plus as the OpenID Connect Clien
         https://<domain>.onelogin.com/oidc/2/.well-known/openid-configuration
     ```
 
-2. In the `frontend.conf` file, update the **my_backend** upstream with the address of the application that you want to add OIDC authorization to. 
+2. In the `frontend.conf` file, update the **my_backend** upstream with the address of the application that you want to add OIDC authorization to.
 
     For example:
 
@@ -113,7 +113,7 @@ Take the steps in this section to set up NGINX Plus as the OpenID Connect Clien
     }
     ```
 
-3. In the *openid_connect.server_conf* file, add the [`proxy_set_header`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) directive to the `/_jwks_uri` and `/_token` locations to `Accept-Encoding "gzip"`, as shown below.
+3. In the _openid_connect.server_conf_ file, add the [`proxy_set_header`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) directive to the `/_jwks_uri` and `/_token` locations to `Accept-Encoding "gzip"`, as shown below.
 
     ```Nginx configuration file
     ...
@@ -129,7 +129,7 @@ Take the steps in this section to set up NGINX Plus as the OpenID Connect Clien
     ...
     ```
 
-4. Copy the following files to the */etc/nginx/conf.d* directory on the host machine where NGINX Plus is installed:
+4. Copy the following files to the _/etc/nginx/conf.d_ directory on the host machine where NGINX Plus is installed:
 
    - `frontend.conf`
    - `openid_connect.js`
@@ -155,6 +155,6 @@ Refer to the [Troubleshooting](https://github.com/nginxinc/nginx-openid-connect#
 
 ### Revision History
 
-* Version 3 (May 2022) - Updates OneLogin's OpenId Connect API endpoints from version 1 to version 2
-* Version 2 (March 2020) – Updates to _Configuring NGINX Plus_ section 
-* Version 1 (July 2019) – Initial version (NGINX Plus Release 18)
+- Version 3 (May 2022) - Updates OneLogin's OpenId Connect API endpoints from version 1 to version 2
+- Version 2 (March 2020) – Updates to _Configuring NGINX Plus_ section
+- Version 1 (July 2019) – Initial version (NGINX Plus Release 18)

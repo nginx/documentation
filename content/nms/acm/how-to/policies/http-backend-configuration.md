@@ -33,7 +33,7 @@ The backend configuration policy provides the ability to configure:
 
 Later sections of this guide will cover each of these areas in turn.
 
-#### Intended Audience
+### Intended Audience
 
 {{< include "acm/how-to/policies/api-owner-persona.md">}}
 
@@ -59,7 +59,7 @@ To apply the policy or make changes to it, here's what you need to do:
 
 ---
 
-## Target Backend Service 
+## Target Backend Service
 
 It is possible to target specific backend services with a backend configuration policy through the use of labels. Backend services whose label matches that configured in the backend configuration policy target backend policy label will have that configuration applied. If no target backend policy label is provided, the backend configuration policy will be applied to all backend services with the label is set as default.
 
@@ -72,13 +72,15 @@ Take the steps in this section to configure a backend configuration policy for s
 
 Send a `POST` request to add a load balancer configuration to the API Proxy through the backend-config policy.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method   | Endpoint                                                |
 |----------|---------------------------------------------------------|
 | `POST`   | `/services/workspaces/<SERVICE_WORKSPACE_NAME>/proxies` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ```json
 {
@@ -98,14 +100,15 @@ Send a `POST` request to add a load balancer configuration to the API Proxy thro
 }
 ```
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field                      | Type    | Possible Values         | Description                                                                                                                                                        | Required      | Default value |
 |----------------------------|---------|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|---------------|
 | `targetBackendPolicyLabel` | string  | Example: `petstore-api` | Target backend labels for policy application. If not supplied this backend service configuration would be applied to the default backend service of the API proxy. | No            | `default`     |
 
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 {{%/tab%}}
 {{%tab name="UI"%}}
@@ -125,7 +128,7 @@ Send a `POST` request to add a load balancer configuration to the API Proxy thro
 
 ## Load Balancing
 
-Six load balancing options are available; round robin (default), least connections, least response time, hashed key value, IP hash, or random. 
+Six load balancing options are available; round robin (default), least connections, least response time, hashed key value, IP hash, or random.
 
 ### Balancing Algorithms
 
@@ -166,13 +169,15 @@ Follow the steps in this section to configure request load balancing across back
 
 Send a `POST` request to add a load balancer configuration to the API Proxy through the backend-config policy.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method   | Endpoint                                                |
 |----------|---------------------------------------------------------|
 | `POST`   | `/services/workspaces/<SERVICE_WORKSPACE_NAME>/proxies` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ```json
 {
@@ -183,10 +188,10 @@ Send a `POST` request to add a load balancer configuration to the API Proxy thro
                "loadBalancing": {
                   "algorithm": "ROUND_ROBIN",
                   "leastTimeMeasurement": "HEADER",
-                  "hashKey": "$request_uri",        
-                  "consistentHashing": true,        
-                  "randomTwo": true,                
-                  "randomMethod": "LEAST_CONN"      
+                  "hashKey": "$request_uri",
+                  "consistentHashing": true,
+                  "randomTwo": true,
+                  "randomMethod": "LEAST_CONN"
                }
             }
          }
@@ -195,8 +200,9 @@ Send a `POST` request to add a load balancer configuration to the API Proxy thro
 }
 ```
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field                  | Type    | Possible Values                                                                      | Description                                                                                                                                                       | Required      | Default value |
 |------------------------|---------|--------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|---------------|
 | `algorithm`            | string  | One of: <br>[`ROUND_ROBIN`, `LEAST_CONN`, `LEAST_TIME`, `HASH`, `IP_HASH`, `RANDOM`] | The load balancing algorithm to use. Default `ROUND_ROBIN` is used without any configuration.                                                                     | No            | `ROUND_ROBIN` |
@@ -207,7 +213,7 @@ Send a `POST` request to add a load balancer configuration to the API Proxy thro
 | `randomMethod`         | string  | One of: <br>[`LEAST_CONN`, `LEAST_TIME`, `LAST_TIME_HEADER`, `LEAST_TIME_LAST_BYTE`] | Optional configuration option for `RANDOM` algorithm. Specifies which load balancing algorithm to use for a randomly selected server.                             | No            | `LEAST_CONN`  |
 
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 {{%/tab%}}
 {{%tab name="UI"%}}
@@ -246,13 +252,15 @@ Follow the steps in this section to configure HTTP keepalives for your backend s
 
 Send a `POST` request to add a keepalive connection configuration to the API Proxy through the backend-config policy.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method   | Endpoint                                                |
 |----------|---------------------------------------------------------|
 | `POST`   | `/services/workspaces/<SERVICE_WORKSPACE_NAME>/proxies` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ```json
 {
@@ -271,8 +279,9 @@ Send a `POST` request to add a keepalive connection configuration to the API Pro
 }
 ```
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field                      | Type    | Possible Values | Description                                                                                                                                                                                                                                                              | Required | Default value |
 |----------------------------|---------|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|---------------|
 | `keepCacheConnectionAlive` | integer | integer >= `1`  | Activates the cache for connections to upstream servers. Sets the maximum number of idle keepalive connections to upstream servers that are preserved in the cache of each worker process. When this number is exceeded, the least recently used connections are closed. | No       | `32`          |
@@ -281,7 +290,7 @@ Send a `POST` request to add a keepalive connection configuration to the API Pro
 | `keepAliveTimeout`         | string  | Example: `60s`  | Sets a timeout during which an idle keepalive connection to an upstream server will stay open. Follows NGINX configuration time measurement units syntax.                                                                                                                | No       | `60s`         |
 
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 {{%/tab%}}
 {{%tab name="UI"%}}
@@ -333,13 +342,15 @@ This section explains how to configure connection settings for your backend serv
 
 Send a `POST` request to add request settings configuration to the API Proxy through the backend-config policy.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method   | Endpoint                                                |
 |----------|---------------------------------------------------------|
 | `POST`   | `/services/workspaces/<SERVICE_WORKSPACE_NAME>/proxies` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ```json
 {
@@ -347,7 +358,7 @@ Send a `POST` request to add request settings configuration to the API Proxy thr
       "backend-config" : [
          {
             "action" : {
-               "clientMaxBodySize" : "2m",               
+               "clientMaxBodySize" : "2m",
                "connectTimeout": "30s",
                "readTimeout": "30s",
                "sendTimeout": "30s"
@@ -358,8 +369,9 @@ Send a `POST` request to add request settings configuration to the API Proxy thr
 }
 ```
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field               | Type    | Possible Values | Description                                                                                                                    | Required | Default value |
 |---------------------|---------|-----------------|--------------------------------------------------------------------------------------------------------------------------------|----------|---------------|
 | `clientMaxBodySize` | string  | Example: `2m`   | Sets the maximum allowed size of the client request body. Follows NGINX configuration file measurement units syntax.           | No       | N/A           |
@@ -368,7 +380,7 @@ Send a `POST` request to add request settings configuration to the API Proxy thr
 | `sendTimeout`       | string  | Example: `30s`  | Sets a timeout for transmitting a request to the proxied server. Follows NGINX configuration time measurement units syntax.    | No       | N/A           |
 
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 {{%/tab%}}
 {{%tab name="UI"%}}
@@ -404,13 +416,15 @@ Follow the steps in this section to configure a queue for your backend service t
 
 Send a `POST` request to add a queue configuration to the API Proxy through the backend-config policy.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method   | Endpoint                                                |
 |----------|---------------------------------------------------------|
 | `POST`   | `/services/workspaces/<SERVICE_WORKSPACE_NAME>/proxies` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ```json
 {
@@ -429,15 +443,16 @@ Send a `POST` request to add a queue configuration to the API Proxy through the 
 }
 ```
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field                 | Type    | Possible Values | Description                                                                                                                    | Required | Default value |
 |-----------------------|---------|-----------------|--------------------------------------------------------------------------------------------------------------------------------|----------|---------------|
 | `maxNumberOfRequests` | integer | Example: `10`   | Maximum number of requests that can be in the queue at the same time. If not set then no queue will be configured.             | Yes      | N/A           |
 | `timeout`             | string  | Example: `60s`  | Sets a timeout for establishing a connection with a proxied server. Follows NGINX configuration time measurement units syntax. | No       | `60s`         |
 
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 {{%/tab%}}
 {{%tab name="UI"%}}
@@ -481,7 +496,7 @@ If you get the error `[emerg] \"proxy_busy_buffers_size\"` `must be less than th
 
 ```text
 proxy busy buffers size : 16 KB
-proxy buffer number     : 8 
+proxy buffer number     : 8
 proxy buffer size       : 4 KB
 total buffer size       : 32 KB
 
@@ -498,7 +513,7 @@ True: Valid proxy buffer number & size configuration
 
 ```text
 proxy busy buffers size : 16 KB
-proxy buffer number     : 2 
+proxy buffer number     : 2
 proxy buffer size       : 2k
 total buffer size       : 8 KB
 
@@ -539,13 +554,15 @@ Follow the steps in this section to configure buffers for your backend service t
 
 Send a `POST` request to add a buffer configuration to the API Proxy through the backend-config policy.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method   | Endpoint                                                |
 |----------|---------------------------------------------------------|
 | `POST`   | `/services/workspaces/<SERVICE_WORKSPACE_NAME>/proxies` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ```json
 {
@@ -564,15 +581,16 @@ Send a `POST` request to add a buffer configuration to the API Proxy through the
 }
 ```
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field    | Type    | Possible Values | Description                                                                                                                                                          | Required | Default value |
 |----------|---------|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|---------------|
 | `number` | integer | integer >= `2`  | Sets the number of buffers used for reading a response from the proxied server for a single connection.                                                              | Yes      | N/A           |
 | `size`   | string  | size >= `1K`    | Sets the size of the buffers used for reading a response from the proxied server for a single connection. Follows NGINX configuration file measurement units syntax. | Yes      | `60s`         |
 
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 {{%/tab%}}
 {{%tab name="UI"%}}
@@ -610,13 +628,15 @@ Folow the steps in this section to configure session cookies for your backend se
 
 Send a `POST` request to add a session cookie configuration to the API Proxy through the backend-config policy. If any configuration parameters are omitted, the corresponding fields are not set.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method   | Endpoint                                                |
 |----------|---------------------------------------------------------|
 | `POST`   | `/services/workspaces/<SERVICE_WORKSPACE_NAME>/proxies` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ```json
 {
@@ -640,8 +660,9 @@ Send a `POST` request to add a session cookie configuration to the API Proxy thr
 }
 ```
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field        | Type    | Possible Values                       | Description                                                                                                                                                                           | Required | Default value |
 |--------------|---------|---------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|---------------|
 | `name`       | string  | Example: `auth_cookie`                | Sets the name of the cookie to be set or inspected.                                                                                                                                   | Yes      | N/A           |
@@ -653,7 +674,7 @@ Send a `POST` request to add a session cookie configuration to the API Proxy thr
 | `sameSite`   | string  | One of: <br>[`STRICT`, `LAX`, `NONE`] | Adds the `SameSite` attribute to the cookie.                                                                                                                                          | No       | N/A           |
 
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 {{%/tab%}}
 {{%tab name="UI"%}}
@@ -671,7 +692,7 @@ Send a `POST` request to add a session cookie configuration to the API Proxy thr
    1. Set the **Domain Name** (optional).
    1. Enable the **HTTP Only** toggle to add the HttpOnly attribute to the cookie (optional).
    1. Enable the **Secure** toggle to add the Secure attribute to the cookie (optional).
-   1. Set the **Same Site** attribute value (optional). 
+   1. Set the **Same Site** attribute value (optional).
 1. Select **Add** to apply the backend configuration policy to the Proxy. Then select **Save & Publish** to deploy the configuration to the API Proxy.
 
 {{%/tab%}}
@@ -683,7 +704,7 @@ Send a `POST` request to add a session cookie configuration to the API Proxy thr
 
 Allows proxying requests with [NTLM Authentication](https://en.wikipedia.org/wiki/Integrated_Windows_Authentication). The upstream connection is bound to the client connection once the client sends a request with the `Authorization` header field value starting with `Negotiate` or `NTLM`. Further client requests will be proxied through the same upstream connection, keeping the authentication context.  When enabled, the HTTP Protocol version is set to 1.1.
 
-### Configuring NTLM Authentication 
+### Configuring NTLM Authentication
 
 Follow the steps in this section to configure session cookies for your backend service targets.
 
@@ -692,13 +713,15 @@ Follow the steps in this section to configure session cookies for your backend s
 
 Send a `POST` request to enable NTLM authentication for the API Proxy through the backend-config policy.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method   | Endpoint                                                |
 |----------|---------------------------------------------------------|
 | `POST`   | `/services/workspaces/<SERVICE_WORKSPACE_NAME>/proxies` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ```json
 {
@@ -714,14 +737,15 @@ Send a `POST` request to enable NTLM authentication for the API Proxy through th
 }
 ```
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field             | Type    | Possible Values | Description                                         | Required | Default value |
 |-------------------|---------|-----------------|-----------------------------------------------------|----------|---------------|
 | `enableNTLMAuthn` | boolean | `true/false`    | Enables proxying requests with NTLM Authentication. | No       | `false`       |
 
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 {{%/tab%}}
 {{%tab name="UI"%}}

@@ -4,7 +4,7 @@ date: 2024-01-17T10:18:02-08:00
 # Change draft status to false to publish doc
 draft: false
 # Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
+# Add a short description (150 chars) for the doc. Include keywords for SEO.
 # The description text appears in search results and at the top of the doc.
 description: ""
 # Assign weights in increments of 100
@@ -66,7 +66,7 @@ To get started using NGINX One, enable the service on F5 Distributed Cloud.
 
 ## Add your NGINX instances to NGINX One
 
-Next, add your NGINX instances to NGINX One. You'll need to create a data plane key and then install the NGINX Agent on each instance you want to monitor. 
+Next, add your NGINX instances to NGINX One. You'll need to create a data plane key and then install the NGINX Agent on each instance you want to monitor.
 
 ### Add an instance
 
@@ -77,7 +77,7 @@ Depending on whether this is your first time using the NGINX One console or you'
 
 ### Generate a data plane key {#generate-data-plane-key}
 
-A data plane key is a security token that ensures only trusted NGINX instances can register and communicate with NGINX One. 
+A data plane key is a security token that ensures only trusted NGINX instances can register and communicate with NGINX One.
 
 To generate a data plane key:
 
@@ -102,7 +102,7 @@ To install the NGINX Agent on an NGINX instance:
 1. **Check if NGINX is running and start it if it's not:**
 
     First, see if NGINX is running:
-    
+
     ```shell
     sudo systemctl status nginx
     ```
@@ -128,7 +128,7 @@ To install the NGINX Agent on an NGINX instance:
 
 <i class="fa fa-check-circle" aria-hidden="true"></i> Make sure your Linux operating system is listed below. The installation script for the NGINX Agent is compatible with these distributions and versions.
 
- **NGINX Agent installation script: supported distributions**
+#### NGINX Agent installation script: supported distributions
 
 {{< include "nginx-one/nginx-agent/nginx-agent-install-script-specs.md" >}}
 
@@ -138,7 +138,7 @@ To install the NGINX Agent on an NGINX instance:
 
 After connecting your NGINX instances to NGINX One, you can monitor their performance and health. The NGINX One dashboard is designed for this purpose, offering an easy-to-use interface.
 
-### Log in to NGINX One 
+### Log in to NGINX One
 
 1. Log in to the [F5 Distributed Cloud Console](https://www.f5.com/cloud/products/distributed-cloud-console).
 1. Select **NGINX One > Visit Service**.

@@ -172,7 +172,7 @@ Take the following steps to copy an embedded config database backup file from an
 
 ## What's Next
 
-* [Backup & Restore the Metrics Database]({{< relref "/controller/admin-guides/backup-restore/backup-restore-metrics-db.md" >}})
+- [Backup & Restore the Metrics Database]({{< relref "/controller/admin-guides/backup-restore/backup-restore-metrics-db.md" >}})
 
 {{< versions "3.12" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

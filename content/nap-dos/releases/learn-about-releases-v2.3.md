@@ -49,24 +49,31 @@ May 9, 2022
 #### App Protect DoS
 
 ##### CentOS 7.4+ / RHEL 7.4+ / UBI7
+
 - app-protect-dos-26+2.3.46-1.el7.ngx.el7.ngx.x86_64.rpm
 
 ##### RHEL 8 / UBI8
+
 - app-protect-dos-26+2.3.46-1.el8.ngx.el8.ngx.x86_64.rpm
 
 ##### Debian 10
+
 - app-protect-dos_26+2.3.46-1~buster_amd64.deb
 
 ##### Ubuntu 18.04
+
 - app-protect-dos_26+2.3.46-1~bionic_amd64.deb
 
 ##### Ubuntu 20.04
+
 - app-protect-dos_26+2.3.46-1~focal_amd64.deb
 
 ##### Alpine 3.15
+
 - app-protect-dos-26.2.3.48-r1.apk
 
 #### NGINX Plus
+
 - NGINX Plus R26
 
 ### Resolved Issues
@@ -79,6 +86,7 @@ May 9, 2022
 Port configuration should correspond to the port the server listens to.
 
     For example:
+
     ```shell
         server {
             listen 8080;

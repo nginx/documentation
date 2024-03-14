@@ -22,23 +22,23 @@ The instructions in this document apply to both Ping Identity's on‑premises an
 
 The instructions assume you have the following:
 
-* A running deployment of PingFederate or PingOne for Enterprise, and a Ping Identity account. For installation and configuration instructions, see the documentation for [PingFederate](https://docs.pingidentity.com/bundle/pingfederate-93/page/tau1564002955783.html) or [PingOne for Enterprise](https://docs.pingidentity.com/bundle/pingone/page/fjn1564020491958-1.html).
-* An NGINX Plus subscription and <span style="white-space: nowrap;">NGINX Plus R15</span> or later. For installation instructions, see the [NGINX Plus Admin Guide](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
-* The NGINX JavaScript module (njs), required for handling the interaction between NGINX Plus and the IdP. After installing NGINX Plus, install the module with the command for your operating system.
+- A running deployment of PingFederate or PingOne for Enterprise, and a Ping Identity account. For installation and configuration instructions, see the documentation for [PingFederate](https://docs.pingidentity.com/bundle/pingfederate-93/page/tau1564002955783.html) or [PingOne for Enterprise](https://docs.pingidentity.com/bundle/pingone/page/fjn1564020491958-1.html).
+- An NGINX Plus subscription and <span style="white-space: nowrap;">NGINX Plus R15</span> or later. For installation instructions, see the [NGINX Plus Admin Guide](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
+- The NGINX JavaScript module (njs), required for handling the interaction between NGINX Plus and the IdP. After installing NGINX Plus, install the module with the command for your operating system.
 
    For Debian and Ubuntu:
 
    ```none 
-   $ sudo apt install nginx-plus-module-njs 
+   sudo apt install nginx-plus-module-njs 
    ```
    
    For CentOS, RHEL, and Oracle Linux:
  
    ```shell
-   $ sudo yum install nginx-plus-module-njs
+   sudo yum install nginx-plus-module-njs
    ```
     
-* The following directive included in the top-level ("main") configuration context in **/etc/nginx/nginx.conf**, to load the NGINX JavaScript module:
+- The following directive included in the top-level ("main") configuration context in **/etc/nginx/nginx.conf**, to load the NGINX JavaScript module:
 
    ```nginx
    load_module modules/ngx_http_js_module.so;
@@ -80,8 +80,8 @@ Create a new application for NGINX Plus:
 
       **Notes:**	
       
-      * For production, we strongly recommend that you use SSL/TLS (port 443). 
-      * The port number is mandatory even when you're using the default port for HTTP (80) or HTTPS (443).
+      - For production, we strongly recommend that you use SSL/TLS (port 443). 
+      - The port number is mandatory even when you're using the default port for HTTP (80) or HTTPS (443).
 
    <img src="https://www.nginx.com/wp-content/uploads/2020/01/PingIdentity-SSO_section3.png" alt="" width="1024" height="781" class="aligncenter size-full" />
 
@@ -111,8 +111,8 @@ Create a new application for NGINX Plus:
     <span id="ping-client-id-secrets"></span>
 12. On the page that opens, make note of the values in the following fields on the **Details** tab. You will add them to the NGINX Plus configuration in [Step 4 of _Configuring NGINX Plus_](#nginx-plus-variables).
 
-    * **CLIENT ID** (in the screenshot, <span style="white-space: nowrap; color:#666666; font-weight:bolder;">28823604-83c5-4608-88da-c73fff9c607a</span>)
-    *  **CLIENT SECRETS** (in the screenshot, <span style="white-space: nowrap; color:#666666; font-weight:bolder;">7GMKILBofxb...</span>); click on the eye icon to view the actual value
+    - **CLIENT ID** (in the screenshot, <span style="white-space: nowrap; color:#666666; font-weight:bolder;">28823604-83c5-4608-88da-c73fff9c607a</span>)
+    - **CLIENT SECRETS** (in the screenshot, <span style="white-space: nowrap; color:#666666; font-weight:bolder;">7GMKILBofxb...</span>); click on the eye icon to view the actual value
 
     <img src="https://www.nginx.com/wp-content/uploads/2020/01/PingIdentity-SSO_My-Applications-Details.png" alt="" width="1024" height="963" class="aligncenter size-full" />
 
@@ -124,14 +124,14 @@ Configure NGINX Plus as the OpenID Connect relying party:
 1. Create a clone of the [<span style="white-space: nowrap; font-weight:bold;">nginx-openid-connect</span>](https://github.com/nginxinc/nginx-openid-connect) GitHub repository.
 
    ```shell
-   $ git clone https://github.com/nginxinc/nginx-openid-connect
+   git clone https://github.com/nginxinc/nginx-openid-connect
    ```
    
 2. Copy these files from the clone to **/etc/nginx/conf.d**:
 
-   * **frontend.conf**
-   * **openid\_connect.js**
-   * **openid\_connect.server\_conf**
+   - **frontend.conf**
+   - **openid\_connect.js**
+   - **openid\_connect.server\_conf**
 
    <span id="nginx-plus-urls"></span>
 3. Get the URLs for the authorization endpoint, token endpoint, and JSON Web Key (JWK) file from the Ping Identity configuration. Run the following `curl` command in a terminal, piping the output to the indicated `python` command to output the entire configuration in an easily readable format. We've abridged the output to show only the relevant fields. 
@@ -156,21 +156,21 @@ Configure NGINX Plus as the OpenID Connect relying party:
    <span id="nginx-plus-variables"></span>
 4. In your preferred text editor, open **/etc/nginx/conf.d/frontend.conf**. Change the second parameter of each of the following [set](http://nginx.org/en/docs/http/ngx_http_rewrite_module.html#set) directives to the specified value:
 
-   * `set $oidc_authz_endpoint` – Value of `authorization_endpoint` from [Step 3](#nginx-plus-urls) (in this guide, `https://sso.connect.pingidentity.com/sso/as/authorization.oauth2`)
-   * `set $oidc_token_endpoint` – Value of `token_endpoint` from [Step 3](#nginx-plus-urls) (in this guide, `https://sso.connect.pingidentity.com/sso/as/token.oauth2`)
-   * `set $oidc_client` – Value in the **CLIENT ID** field in [Step 12 of _Configuring PingFederate or PingOne for Enterprise_](#ping-client-id-secrets) (in this guide, <span style="white-space: nowrap;">`28823604-83c5-4608-88da-c73fff9c607a`</span>)
-   * `set $oidc_client_secret` – Value in the **CLIENT SECRETS** field in [Step 12 of _Configuring PingFederate or PingOne for Enterprise_](#ping-client-id-secrets) (in this guide, `7GMKILBofxb...`)  
-   * `set $oidc_hmac_key` – A unique, long, and secure phrase
+   - `set $oidc_authz_endpoint` – Value of `authorization_endpoint` from [Step 3](#nginx-plus-urls) (in this guide, `https://sso.connect.pingidentity.com/sso/as/authorization.oauth2`)
+   - `set $oidc_token_endpoint` – Value of `token_endpoint` from [Step 3](#nginx-plus-urls) (in this guide, `https://sso.connect.pingidentity.com/sso/as/token.oauth2`)
+   - `set $oidc_client` – Value in the **CLIENT ID** field in [Step 12 of _Configuring PingFederate or PingOne for Enterprise_](#ping-client-id-secrets) (in this guide, <span style="white-space: nowrap;">`28823604-83c5-4608-88da-c73fff9c607a`</span>)
+   - `set $oidc_client_secret` – Value in the **CLIENT SECRETS** field in [Step 12 of _Configuring PingFederate or PingOne for Enterprise_](#ping-client-id-secrets) (in this guide, `7GMKILBofxb...`)  
+   - `set $oidc_hmac_key` – A unique, long, and secure phrase
 
 5. Configure the JWK file. The procedure depends on which version of NGINX Plus you are using.
 
-   * In <span style="white-space: nowrap;">NGINX Plus R17</span> and later, NGINX Plus can read the JWK file directly from the URL reported as `jwks_uri` in [Step 3](#nginx-plus-urls). Change **/etc/nginx/conf.d/frontend.conf** as follows:
+   - In <span style="white-space: nowrap;">NGINX Plus R17</span> and later, NGINX Plus can read the JWK file directly from the URL reported as `jwks_uri` in [Step 3](#nginx-plus-urls). Change **/etc/nginx/conf.d/frontend.conf** as follows:
 
       1. Comment out (or remove) the [auth_jwt_key_file](http://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_file) directive.
       2. Uncomment the [auth_jwt_key_request](http://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_request) directive. (Its parameter, `/_jwks_uri`, refers to the value of the `$oidc_jwt_keyfile` variable, which you set in the next step.) 
       3. Change the second parameter of the `set $oidc_jwt_keyfile` directive to the value reported in the `jwks_uri` field in [Step 3](#nginx-plus-urls) (in this guide, `https://sso.connect.pingidentity.com/sso/as/jwks`).
 
-   * In <span style="white-space: nowrap;">NGINX Plus R16</span> and earlier, the JWK file must be on the local disk. (You can also use this method with <span style="white-space: nowrap;">NGINX Plus R17</span> and later if you wish.)
+   - In <span style="white-space: nowrap;">NGINX Plus R16</span> and earlier, the JWK file must be on the local disk. (You can also use this method with <span style="white-space: nowrap;">NGINX Plus R17</span> and later if you wish.)
 
       1. Copy the JSON contents from the JWK file named in the `jwks_uri` field in [Step 3](#nginx-plus-urls) (in this guide, `https://sso.connect.pingidentity.com/sso/as/jwks`) to a local file (for example, `/etc/nginx/my_ping_identity_jwk.json`). 
       2. In **/etc/nginx/conf.d/frontend.conf**, change the second parameter of the <span style="white-space: nowrap;">`set $oidc_jwt_keyfile`</span> directive to the local file path.
@@ -191,5 +191,5 @@ See the [**Troubleshooting**](https://github.com/nginxinc/nginx-openid-connect#t
 
 ### Revision History
 
-* Version 2 (March 2020) – Updates to _Configuring NGINX Plus_ section 
-* Version 1 (January 2020) – Initial version (NGINX Plus Release 20)
+- Version 2 (March 2020) – Updates to _Configuring NGINX Plus_ section 
+- Version 1 (January 2020) – Initial version (NGINX Plus Release 20)

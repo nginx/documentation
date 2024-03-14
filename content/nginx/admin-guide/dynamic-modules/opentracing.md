@@ -28,6 +28,7 @@ weight: 100
    ```shell
    yum install nginx-plus-module-opentracing
    ```
+
    {{< note >}}the OpenTracing module cannot be installed on CentOS 6, Oracle Linux 6, and RHEL 6. {{< /note >}}
 
    For Amazon Linux 2023, AlmaLinux, Rocky Linux:
@@ -47,6 +48,7 @@ weight: 100
    ```shell
    zypper install nginx-plus-module-opentracing
    ```
+
    {{< note >}} the OpenTracing module cannot be installed on SLES 12. {{< /note >}}
 
    For Alpine:
@@ -77,6 +79,7 @@ After installation you will need to enable and configure the module in NGINX Plu
 2. Perform additional configuration as required by the [module](https://github.com/opentracing-contrib/nginx-opentracing). You will also need to [install a tracer](https://github.com/opentracing-contrib/nginx-opentracing#building-from-source) (“portable binary plugin”) for your selected service.
 
 3. Test the configuration and reload NGINX Plus to enable the module:
+
    ```shell
    nginx -t && nginx -s reload
    ```
@@ -85,8 +88,8 @@ After installation you will need to enable and configure the module in NGINX Plu
 <span id="info"></span>
 ## More Info
 
-* [NGINX plugin for OpenTracing Reference](https://github.com/opentracing-contrib/nginx-opentracing)
+- [NGINX plugin for OpenTracing Reference](https://github.com/opentracing-contrib/nginx-opentracing)
 
-* [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
 
-* [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})

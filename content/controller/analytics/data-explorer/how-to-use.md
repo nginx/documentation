@@ -113,6 +113,7 @@ Next to the [time range](#time-range) selector, you'll find the `Compare To` lis
 {{< img src="/controller/analytics/data-explorer/images/data-explorer_comparison.png">}}
 
 {{< note >}}
+
 - When comparison is turned on for a data series, the data have the suffix "Compare" in their names.
 - If there is no data available for a comparison period, the comparison data series is not shown.
 - When a Group By dimension is applied, data comparisons are made only with the top-10 data series and not with the "Other" series, if there is one. See the [Group By](#group-by) section for a discussion of the top-10 and "Other" series.

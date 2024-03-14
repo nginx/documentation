@@ -136,7 +136,7 @@ To add a user to NGINX Management Suite:
 1. On the **Create User** form, enter the details for the user:
 
    - **Username**: A unique name to identify the user. For example, "jon-manzana".
-   - **Email**: The user's email address. For example, "j.manzana@acmecorp.com".
+   - **Email**: The user's email address. For example, "<j.manzana@acmecorp.com>".
    - **First Name**: The user's first name. For example, "Jon".
    - **Last Name**: The user's last name. For example, "Manzana".
    - **Description**: An optional brief description of the user. For example, "Sr. Infrastructure Administrator".

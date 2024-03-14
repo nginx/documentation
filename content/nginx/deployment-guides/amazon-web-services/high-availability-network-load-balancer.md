@@ -35,14 +35,14 @@ NGINX Plus is complementary to NLB. Operating at Layer 7 (the application laye
 
 NGINX Plus provides both reverse‑proxy features and load‑balancing features, including:
 
-* [Full‑featured HTTP, TCP, and UDP load balancing](https://www.nginx.com/products/nginx/load-balancing/)
-* [Intelligent session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence)
-* [High‑performance reverse proxy]({{< relref "../../admin-guide/web-server/reverse-proxy.md" >}})
-* [Caching and offload of dynamic and static content]({{< relref "../../admin-guide/content-cache/content-caching.md" >}})
-* [Adaptive streaming to deliver audio and video to any device](https://www.nginx.com/products/nginx/streaming-media/)
-* [Application-aware health checks](https://www.nginx.com/products/nginx/load-balancing/#health-checks) and [high availability](https://www.nginx.com/products/nginx/high-availability/)
-* [Advanced activity monitoring available via a dashboard or API](https://www.nginx.com/products/nginx/live-activity-monitoring/)
-* [Management and real‑time configuration changes with DevOps‑friendly tools](https://www.nginx.com/products/nginx/load-balancing/#load-balancing-api)
+- [Full‑featured HTTP, TCP, and UDP load balancing](https://www.nginx.com/products/nginx/load-balancing/)
+- [Intelligent session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence)
+- [High‑performance reverse proxy]({{< relref "../../admin-guide/web-server/reverse-proxy.md" >}})
+- [Caching and offload of dynamic and static content]({{< relref "../../admin-guide/content-cache/content-caching.md" >}})
+- [Adaptive streaming to deliver audio and video to any device](https://www.nginx.com/products/nginx/streaming-media/)
+- [Application-aware health checks](https://www.nginx.com/products/nginx/load-balancing/#health-checks) and [high availability](https://www.nginx.com/products/nginx/high-availability/)
+- [Advanced activity monitoring available via a dashboard or API](https://www.nginx.com/products/nginx/live-activity-monitoring/)
+- [Management and real‑time configuration changes with DevOps‑friendly tools](https://www.nginx.com/products/nginx/load-balancing/#load-balancing-api)
 
 <span id="overview"></span>
 ## Solution Overview
@@ -62,12 +62,12 @@ In this guide, the target group consists of two NGINX Plus load balancer instan
 
 These instructions assume you have the following:
 
-* [An AWS account](http://docs.aws.amazon.com/AmazonSimpleDB/latest/DeveloperGuide/AboutAWSAccounts.html).
-* Six EC2 instances, four running NGINX Open Source and two running NGINX Plus. You need a subscription for each NGINX Plus instance, either paid or a [30‑day free trial](https://www.nginx.com/free-trial-request).
+- [An AWS account](http://docs.aws.amazon.com/AmazonSimpleDB/latest/DeveloperGuide/AboutAWSAccounts.html).
+- Six EC2 instances, four running NGINX Open Source and two running NGINX Plus. You need a subscription for each NGINX Plus instance, either paid or a [30‑day free trial](https://www.nginx.com/free-trial-request).
   
   The [Appendix](#appendix) provides instructions for creating instances with the expected names, and installing and configuring the NGINX software.
    
-* Familiarity with NGINX and NGINX Plus configuration syntax. Complete configuration snippets are provided, but not analyzed in detail.
+- Familiarity with NGINX and NGINX Plus configuration syntax. Complete configuration snippets are provided, but not analyzed in detail.
 
 
 <span id="nlb-configure"></span>
@@ -75,18 +75,18 @@ These instructions assume you have the following:
 
 With NGINX Open Source and NGINX Plus installed and configured on the EC2 instances (see the [Appendix](#appendix)), we’re ready to configure an AWS NLB for a highly available, all‑active NGINX Plus setup.
 
-* [Allocating an Elastic IP Address](#nlb-eip)
-* [Creating an AWS NLB](#nlb-create)
-* [Configuring the AWS NLB Routing Options](#nlb-routing-options)
-* [Registering Instances in the Target Group](#nlb-register-instances)
-* [Launching the AWS NLB](#nlb-launch)
+- [Allocating an Elastic IP Address](#nlb-eip)
+- [Creating an AWS NLB](#nlb-create)
+- [Configuring the AWS NLB Routing Options](#nlb-routing-options)
+- [Registering Instances in the Target Group](#nlb-register-instances)
+- [Launching the AWS NLB](#nlb-launch)
 
 <span id="nlb-eip"></span>
 ### Allocating an Elastic IP Address
 
 The first step is to allocate an Elastic IP address, which becomes the fixed IP address for your AWS NLB. (While using an Elastic IP address is optional, we strongly recommend that you do so. With a dynamic IP address, the AWS NLB might not remain reachable if you reconfigure or restart it.) 
 
-1. Log in to the [AWS Management Console](https://console.aws.amazon.com/ec2/) for EC2 (**https://console.aws.amazon.com/ec2/**).  
+1. Log in to the [AWS Management Console](https://console.aws.amazon.com/ec2/) for EC2 (**<https://console.aws.amazon.com/ec2/>**).  
 
 2. In the left navigation bar, select **Elastic IPs**, then click either of the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Allocate new address </span> buttons.  
 
@@ -116,15 +116,15 @@ The new Elastic IP address appears on the **Elastic IPs** dashboard.
    <a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-load-balancer-types.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-load-balancer-types.png" alt="" width="1024" height="330" class="aligncenter size-full wp-image-54849" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 3. In the **Step 1: Configure Load Balancer** window that opens, enter the following values:
-   * In the **Basic Configuration** section:  
-        * **Name** – Name of your AWS NLB (<span style="color:#666666; font-weight:bolder">aws-nlb-lb</span> in this guide). 
-        * **Scheme** – <span style="color:#666666; font-weight:bolder">internet-facing</span>.
-   * In the **Listeners** section:  
-        * **Load Balancer Protocol** – <span style="color:#666666; font-weight:bolder">TCP</span> (the only available option).  
-        * **Load Balancer Port** – Port on which your AWS NLB listens for incoming connections. In this guide, and for most web applications, it is port <span style="color:#666666; font-weight:bolder">80</span>.  
-   * In the **Availability Zones** section, the zones that host the EC2 instances to which your AWS NLB routes traffic. Click the radio button in the leftmost column of the appropriate row:  
-        * If you set up your instances with the instructions in [Creating Amazon EC2 Instances for NGINX Open Source and NGINX Plus]({{< relref "ec2-instances-for-nginx.md" >}}), select the default subnet within the default [Amazon Virtual Private Cloud](https://aws.amazon.com/vpc/) (VPC) to target a single availability zone.  
-        * If you set up your instances using our scripts for [Packer and Terraform](#create-instances-automated), use the <span style="white-space: nowrap; font-weight:bold;">aws-nlb-subnet</span> within the <span style="white-space: nowrap; font-weight:bold;">aws-nlb-vpc</span> VPC to target a single availability zone.
+   - In the **Basic Configuration** section:  
+        - **Name** – Name of your AWS NLB (<span style="color:#666666; font-weight:bolder">aws-nlb-lb</span> in this guide). 
+        - **Scheme** – <span style="color:#666666; font-weight:bolder">internet-facing</span>.
+   - In the **Listeners** section:  
+        - **Load Balancer Protocol** – <span style="color:#666666; font-weight:bolder">TCP</span> (the only available option).  
+        - **Load Balancer Port** – Port on which your AWS NLB listens for incoming connections. In this guide, and for most web applications, it is port <span style="color:#666666; font-weight:bolder">80</span>.  
+   - In the **Availability Zones** section, the zones that host the EC2 instances to which your AWS NLB routes traffic. Click the radio button in the leftmost column of the appropriate row:  
+        - If you set up your instances with the instructions in [Creating Amazon EC2 Instances for NGINX Open Source and NGINX Plus]({{< relref "ec2-instances-for-nginx.md" >}}), select the default subnet within the default [Amazon Virtual Private Cloud](https://aws.amazon.com/vpc/) (VPC) to target a single availability zone.  
+        - If you set up your instances using our scripts for [Packer and Terraform](#create-instances-automated), use the <span style="white-space: nowrap; font-weight:bold;">aws-nlb-subnet</span> within the <span style="white-space: nowrap; font-weight:bold;">aws-nlb-vpc</span> VPC to target a single availability zone.
 
    <a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-load-balancer-configure.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-load-balancer-configure.png" alt="" width="1024" height="921" class="aligncenter size-full wp-image-54848" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
@@ -139,28 +139,28 @@ In the **Step 2: Configure Routing** window that opens, you create a _target gro
 
 1. In the **Target group** section, select or enter the following values:
 
-    * **Target group** – <span style="color:#666666; font-weight:bolder">New target group</span>  
-    * **Name** – Name of the target group (for this guide, <span style="color:#666666; font-weight:bolder">aws-nlb-tg</span>)  
-    * **Protocol** – <span style="color:#666666; font-weight:bolder">TCP</span> (the only available option)  
-    * **Port** – The port you specified for the **Load Balancer Port** field in Step 3 of the [previous section](#nlb-create) (<span style="color:#666666; font-weight:bolder">80</span> in this guide)  
-    * **Target type** – <span style="color:#666666; font-weight:bolder">instance</span>  
+    - **Target group** – <span style="color:#666666; font-weight:bolder">New target group</span>  
+    - **Name** – Name of the target group (for this guide, <span style="color:#666666; font-weight:bolder">aws-nlb-tg</span>)  
+    - **Protocol** – <span style="color:#666666; font-weight:bolder">TCP</span> (the only available option)  
+    - **Port** – The port you specified for the **Load Balancer Port** field in Step 3 of the [previous section](#nlb-create) (<span style="color:#666666; font-weight:bolder">80</span> in this guide)  
+    - **Target type** – <span style="color:#666666; font-weight:bolder">instance</span>  
 
 2. In the **Health checks** section, open the **Advanced health check settings** subsection and enter the following values:
 
-    * **Protocol** – Protocol the AWS NLB uses when sending health checks. This guide uses <span style="color:#666666; font-weight:bolder">TCP</span>, which means the AWS NLB makes a health check by attempting to open a TCP connection on the port specified in the next field.  
-    * **Port** – Port on the target instances to which the AWS NLB sends health checks. In this guide, we're selecting <span style="color:#666666; font-weight:bolder">traffic port</span> to send health checks to the same port as regular traffic.  
-    * **Healthy threshold** – Number of consecutive health checks an unhealthy instance must pass to be considered healthy.  
-    * **Unhealthy threshold** – Number of consecutive health checks a healthy instance must fail to be considered unhealthy.  
-    * **Timeout** – Number of seconds the AWS NLB waits for a response to the health check before considering the instance unhealthy.  
-    * **Interval** – Number of seconds between health checks.  
+    - **Protocol** – Protocol the AWS NLB uses when sending health checks. This guide uses <span style="color:#666666; font-weight:bolder">TCP</span>, which means the AWS NLB makes a health check by attempting to open a TCP connection on the port specified in the next field.  
+    - **Port** – Port on the target instances to which the AWS NLB sends health checks. In this guide, we're selecting <span style="color:#666666; font-weight:bolder">traffic port</span> to send health checks to the same port as regular traffic.  
+    - **Healthy threshold** – Number of consecutive health checks an unhealthy instance must pass to be considered healthy.  
+    - **Unhealthy threshold** – Number of consecutive health checks a healthy instance must fail to be considered unhealthy.  
+    - **Timeout** – Number of seconds the AWS NLB waits for a response to the health check before considering the instance unhealthy.  
+    - **Interval** – Number of seconds between health checks.  
 
    <a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-load-balancer-routing.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-load-balancer-routing.png" alt="" width="1024" height="840" class="aligncenter size-full wp-image-54847" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
    If you want to use HTTP‑based health checks, select <span style="color:#666666; font-weight:bolder">HTTP</span> or <span style="color:#666666; font-weight:bolder">HTTPS</span> in the **Protocol** field instead of <span style="color:#666666; font-weight:bolder">TCP</span>. Two additional fields open (not shown in the screenshot):  
 
-    * **Path** – The path to which the AWS NLB sends a `GET` request as the health check.  
+    - **Path** – The path to which the AWS NLB sends a `GET` request as the health check.  
 
-    * **Success codes** – Range of HTTP response codes the AWS NLB accepts as indicating a successful health check.  
+    - **Success codes** – Range of HTTP response codes the AWS NLB accepts as indicating a successful health check.  
 
 3. Click the <span style="background-color:#cccccc; font-weight:bolder; white-space: nowrap;"> Next: Register Targets </span> button in the lower‑right corner of the window.
 
@@ -213,13 +213,13 @@ In the **Step 4: Review** window that opens:
 
 This Appendix provides links to instructions for creating EC2 instances with the names used in this guide, and then installing and configuring NGINX Open Source and NGINX Plus on them: 
 
-* [Creating EC2 Instances and Installing the NGINX Software](#create-instance-install-nginx)  
-* [Configuring NGINX Open Source on the Web Servers](#configure-web-servers)
-* [Configuring NGINX Plus on the Load Balancers](#configure-load-balancers)    
+- [Creating EC2 Instances and Installing the NGINX Software](#create-instance-install-nginx)  
+- [Configuring NGINX Open Source on the Web Servers](#configure-web-servers)
+- [Configuring NGINX Plus on the Load Balancers](#configure-load-balancers)    
 
 As an alternative to creating and configuring instances individually, you can use our Packer and Terraform scripts to completely automate the process:
 
-* [Automating Instance Setup with Packer and Terraform](#create-instances-automated)  
+- [Automating Instance Setup with Packer and Terraform](#create-instances-automated)  
 
 After completing the instructions, you have completed the prerequisites for this guide and can continue to [Configuring an AWS Network Load Balancer](#nlb-configure).
 
@@ -234,17 +234,17 @@ The deployment in this guide uses six EC2 instances: two instances running NGINX
 
 Assign the following names to the instances, and then install the indicated NGINX software. The screenshot below shows the resulting **Instances** table.
 
-* Four NGINX Open Source instances:  
-    * App 1:  
-        * <span style="color:#666666; font-weight:bolder">ngx-oss-app1-1</span>  
-        * <span style="color:#666666; font-weight:bolder">ngx-oss-app1-2</span>  
-    * App 2:  
-        * <span style="color:#666666; font-weight:bolder">ngx-oss-app2-1</span>  
-        * <span style="color:#666666; font-weight:bolder">ngx-oss-app2-2</span>  
+- Four NGINX Open Source instances:  
+  - App 1:  
+    - <span style="color:#666666; font-weight:bolder">ngx-oss-app1-1</span>  
+    - <span style="color:#666666; font-weight:bolder">ngx-oss-app1-2</span>  
+  - App 2:  
+    - <span style="color:#666666; font-weight:bolder">ngx-oss-app2-1</span>  
+    - <span style="color:#666666; font-weight:bolder">ngx-oss-app2-2</span>  
 
-* Two NGINX Plus instances:  
-    * <span style="color:#666666; font-weight:bolder">ngx-plus-1</span>  
-    * <span style="color:#666666; font-weight:bolder">ngx-plus-2</span> 
+- Two NGINX Plus instances:  
+  - <span style="color:#666666; font-weight:bolder">ngx-plus-1</span>  
+  - <span style="color:#666666; font-weight:bolder">ngx-plus-2</span> 
 
 <a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-instances-summary.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-instances-summary.png" alt="" width="1024" height="263" class="aligncenter size-full wp-image-54856" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
@@ -259,12 +259,12 @@ For the purposes of this guide, you configure the NGINX Open Source instances as
 
 Repeat the instructions on all four web servers: 
 
-* Running App 1:  
-   * <span style="color:#666666; font-weight:bolder">ngx-oss-app1-1</span>  
-   * <span style="color:#666666; font-weight:bolder">ngx-oss-app1-2</span>  
-* Running App 2:  
-   * <span style="color:#666666; font-weight:bolder">ngx-oss-app2-1</span>  
-   * <span style="color:#666666; font-weight:bolder">ngx-oss-app2-2</span>  
+- Running App 1:  
+  - <span style="color:#666666; font-weight:bolder">ngx-oss-app1-1</span>  
+  - <span style="color:#666666; font-weight:bolder">ngx-oss-app1-2</span>  
+- Running App 2:  
+  - <span style="color:#666666; font-weight:bolder">ngx-oss-app2-1</span>  
+  - <span style="color:#666666; font-weight:bolder">ngx-oss-app2-2</span>  
 
 <span id="configure-load-balancers"></span>
 ### Configuring NGINX Plus on the Load Balancers
@@ -290,13 +290,13 @@ To run the scripts, follow these instructions:
 
 2. Clone or download the scripts from our [GitHub repository](https://github.com/nginxinc/NGINX-Demos/tree/master/aws-nlb-ha-asg):
 
-   * The scripts in <span style="white-space: nowrap; font-weight:bold;">packer/ngx-oss</span> are for creating an Ubuntu AMI running open source NGINX.  
-   * The scripts in <span style="white-space: nowrap; font-weight:bold;">packer/ngx-plus</span> are for creating an AWS Linux AMI running NGINX Plus.  
-   * The scripts in **terraform** are for launching and configuring the two NGINX Plus load balancer instances and the four NGINX Open Source web server instances.  
+   - The scripts in <span style="white-space: nowrap; font-weight:bold;">packer/ngx-oss</span> are for creating an Ubuntu AMI running open source NGINX.  
+   - The scripts in <span style="white-space: nowrap; font-weight:bold;">packer/ngx-plus</span> are for creating an AWS Linux AMI running NGINX Plus.  
+   - The scripts in **terraform** are for launching and configuring the two NGINX Plus load balancer instances and the four NGINX Open Source web server instances.  
 
 3. Set your AWS credentials in the Packer and Terraform scripts:
 
-   * For Packer, set your credentials in the `variables` block in <span style="text-decoration: underline;">both</span> <span style="white-space: nowrap; font-weight:bold;">packer/ngx-oss/packer.json</span> and <span style="white-space: nowrap; font-weight:bold;">packer/ngx-plus/packer.json</span>:
+   - For Packer, set your credentials in the `variables` block in <span style="text-decoration: underline;">both</span> <span style="white-space: nowrap; font-weight:bold;">packer/ngx-oss/packer.json</span> and <span style="white-space: nowrap; font-weight:bold;">packer/ngx-plus/packer.json</span>:
 
      ```none
      "variables": {
@@ -306,7 +306,7 @@ To run the scripts, follow these instructions:
      }
      ```
 
-   * For Terraform, set your credentials in **terraform/provider.tf**:
+   - For Terraform, set your credentials in **terraform/provider.tf**:
 
      ```none
      provider "aws" {
@@ -321,8 +321,8 @@ To run the scripts, follow these instructions:
 5. Run the `setup.sh` script:
 
    ```shell
-   $ chmod +x setup.sh
-   $ ./setup.sh
+   chmod +x setup.sh
+   ./setup.sh
    ```
 
 The script launches two NGINX Plus load balancer instances and four NGINX web server instances and configures the appropriate settings on each instance to run the guide.
@@ -330,15 +330,15 @@ The script launches two NGINX Plus load balancer instances and four NGINX web s
 If you want to delete the infrastructure created by Terraform, run the `cleanup.sh` script.
 
 ```shell
-$ chmod +x cleanup.sh
-$ ./cleanup.sh
+chmod +x cleanup.sh
+./cleanup.sh
 ```
 
 ### Revision History
 
-* Version 5 (March 2020) – Fix link missed in Version 4
-* Version 4 (November 2019) – Change link to GitHub repo for automated setup
-* Version 3 (April 2019) – Modularization of Appendix
-* Version 2 (April 2018) – Revisions to Appendix 
-* Version 1 (November 2017) – Initial version (NGINX Plus Release 13)
+- Version 5 (March 2020) – Fix link missed in Version 4
+- Version 4 (November 2019) – Change link to GitHub repo for automated setup
+- Version 3 (April 2019) – Modularization of Appendix
+- Version 2 (April 2018) – Revisions to Appendix 
+- Version 1 (November 2017) – Initial version (NGINX Plus Release 13)
  

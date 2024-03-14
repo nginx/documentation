@@ -32,13 +32,13 @@ If you are using these instructions to satisfy the prerequisites for one of our 
 1. Open a connection to the NGINX Open Source instance and change the directory to **/**etc/nginx/conf.d**:
 
    ```shell
-   $ cd /etc/nginx/conf.d
+   cd /etc/nginx/conf.d
    ```
    
 2. Rename **default.conf** to **default.conf.bak** so that NGINX Plus does not use it.
 
    ```shell
-   $ mv default.conf default.conf.bak
+   mv default.conf default.conf.bak
    ```
 
 3. Create a new file called **app.conf** with the following contents.  
@@ -199,13 +199,13 @@ Repeat these instructions on each instance. Alternatively, you can configure one
 1. Open a connection to the NGINX Plus instance and change the directory to **/**etc/nginx/conf.d**:
 
    ```shell
-   $ cd /etc/nginx/conf.d
+   cd /etc/nginx/conf.d
    ```
 
 2. Rename **default.conf** to **default.conf.bak** so that NGINX Plus does not use it.
 
    ```shell
-   $ mv default.conf default.conf.bak
+   mv default.conf default.conf.bak
    ```
 
 3. Create a new file called **lb.conf** with the following contents.  
@@ -261,6 +261,7 @@ Repeat these instructions on each instance. Alternatively, you can configure one
        }
    }
    ```
+
     Directive documentation: [api](https://nginx.org/en/docs/http/ngx_http_api_module.html#api), [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen), [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location), [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass), [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header), [return](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#return), [root](https://nginx.org/en/docs/http/ngx_http_core_module.html#root), [server](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) (upstream),[server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) (virtual), [server_name](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name), [status_zone](https://nginx.org/en/docs/http/ngx_http_status_module.html#status_zone), [upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream), [zone](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone)
 
 4. Include the following directive in the top‑level ("main") context in **/etc/nginx/nginx.conf**, if it does not already appear there.
@@ -273,5 +274,5 @@ Repeat these instructions on each instance. Alternatively, you can configure one
    
 ### Revision History
 
-* Version 2 (April 2019) – Generalized instructions for use with deployment guides
-* Version 1 (April 2018) – Initial version
+- Version 2 (April 2019) – Generalized instructions for use with deployment guides
+- Version 1 (April 2018) – Initial version

@@ -18,6 +18,7 @@ The Open Source Subscription bundle by F5 NGINX provides access to the following
 - [NGINX App Protect WAF and DoS](https://www.nginx.com/products/nginx-app-protect/)
 
 It also includes commercial support for:
+
 - [NGINX Open Source](https://www.nginx.org)
 - [NGINX Plus](https://www.nginx.com/products/nginx/)
 - [NGINX Management Suite Instance Manager](https://www.nginx.com/products/nginx-management-suite/instance-manager/)

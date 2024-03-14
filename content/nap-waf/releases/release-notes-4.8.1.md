@@ -81,6 +81,7 @@ Mar 6, 2024
 
 
 ### Resolved Issues
+
 - 10460 Fixed - Connection failure between nginx worker and enforcer in large event message.
 - 10251 Fixed - when updating NAP on Ubuntu 22.04 v4.6 to a newer version, the user gets an error calling config_set_compiler
 - Bug fixes and security enhancements.

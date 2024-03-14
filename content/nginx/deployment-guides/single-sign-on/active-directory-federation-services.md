@@ -20,23 +20,23 @@ This guide explains how to enable single sign-on (SSO) for applications being pr
 
 The instructions assume you have the following:
 
-* A running deployment of AD FS, either on‑premises or in Azure.
-* An NGINX Plus subscription and <span style="white-space: nowrap;">NGINX Plus R15</span> or later. For installation instructions, see the [NGINX Plus Admin Guide](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
-* The [NGINX JavaScript module](https://www.nginx.com/blog/introduction-nginscript/) (njs), required for handling the interaction between NGINX Plus and the IdP. After installing NGINX Plus, install the module with the command for your operating system.
+- A running deployment of AD FS, either on‑premises or in Azure.
+- An NGINX Plus subscription and <span style="white-space: nowrap;">NGINX Plus R15</span> or later. For installation instructions, see the [NGINX Plus Admin Guide](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
+- The [NGINX JavaScript module](https://www.nginx.com/blog/introduction-nginscript/) (njs), required for handling the interaction between NGINX Plus and the IdP. After installing NGINX Plus, install the module with the command for your operating system.
 
    For Debian and Ubuntu:
 
    ```none 
-   $ sudo apt install nginx-plus-module-njs 
+   sudo apt install nginx-plus-module-njs 
    ```
    
    For CentOS, RHEL, and Oracle Linux:
  
    ```shell
-   $ sudo yum install nginx-plus-module-njs
+   sudo yum install nginx-plus-module-njs
    ```
     
-* The following directive included in the top-level ("main") configuration context in **/etc/nginx/nginx.conf**, to load the NGINX JavaScript module:
+- The following directive included in the top-level ("main") configuration context in **/etc/nginx/nginx.conf**, to load the NGINX JavaScript module:
 
    ```nginx
    load_module modules/ngx_http_js_module.so;
@@ -64,8 +64,8 @@ Create an AD FS application for NGINX Plus:
    
       **Notes:**
 
-      * For production, we strongly recommend that you use SSL/TLS (port 443).
-      * The port number is mandatory even when you're using the default port for HTTP (80) or HTTPS (443).
+      - For production, we strongly recommend that you use SSL/TLS (port 443).
+      - The port number is mandatory even when you're using the default port for HTTP (80) or HTTPS (443).
 
 3. Click the <span style="background-color:#e1e1e1; white-space: nowrap; font-weight: bolder"> Next > </span> button.
 
@@ -87,15 +87,15 @@ Configure NGINX Plus as the OpenID Connect relying party:
 1. Create a clone of the [<span style="white-space: nowrap; font-weight:bold;">nginx-openid-connect</span>](https://github.com/nginxinc/nginx-openid-connect) GitHub repository.
 
    ```shell
-   $ git clone https://github.com/nginxinc/nginx-openid-connect
+   git clone https://github.com/nginxinc/nginx-openid-connect
    ```
    
 2. Copy these files from the clone to **/etc/nginx/conf.d**:
 
-   * **frontend.conf**
-   * **openid\_connect.js**
-   * **openid\_connect.server\_conf**
-   * **openid\_connect\_configuration.conf**
+   - **frontend.conf**
+   - **openid\_connect.js**
+   - **openid\_connect.server\_conf**
+   - **openid\_connect\_configuration.conf**
 
    <span id="nginx-plus-urls"></span>
 3. Get the URLs for the authorization endpoint, token endpoint, and JSON Web Key (JWK) file from the AD FS configuration. Run the following `curl` command in a terminal, piping the output to the indicated `python` command to output the entire configuration in an easily readable format. We've abridged the output to show only the relevant fields. 
@@ -116,24 +116,24 @@ Configure NGINX Plus as the OpenID Connect relying party:
    <span id="nginx-plus-variables"></span>
 4. In your preferred text editor, open **/etc/nginx/conf.d/frontend.conf**. Change the "default" parameter value of each of the following [map](https://nginx.org/en/docs/http/ngx_http_map_module.html#map) directives to the specified value:
 
-   * `map $host $oidc_authz_endpoint` – Value of `authorization_endpoint` from [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<ADFS-server-address>/oidc/adfs/auth`</span>)
-   * `map $host $oidc_token_endpoint` – Value of `token_endpoint` from [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<ADFS-server-address>/oidc/adfs/token`</span>)
-   * `map $host $oidc_client` – Value in the **Client ID** field from [Step 3 of _Configuring AD FS_](#ad-fs-server-application) (in this guide, <span style="white-space: nowrap;">`3e23f0eb-9329-46ff-9d37-6ad24afdfaeb`</span>)
-   * `map $host $oidc_client_secret` – Value in the **Client secret** field from [Step 4 of _Configuring AD FS_](#ad-fs-configure-application-credentials) (in this guide, <span style="white-space: nowrap;">`NUeuULtSCjgXTGSkq3ZwEeCOiig4-rB2XiW_W`</span>)
-   * `map $host $oidc_hmac_key` – A unique, long, and secure phrase
+   - `map $host $oidc_authz_endpoint` – Value of `authorization_endpoint` from [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<ADFS-server-address>/oidc/adfs/auth`</span>)
+   - `map $host $oidc_token_endpoint` – Value of `token_endpoint` from [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<ADFS-server-address>/oidc/adfs/token`</span>)
+   - `map $host $oidc_client` – Value in the **Client ID** field from [Step 3 of _Configuring AD FS_](#ad-fs-server-application) (in this guide, <span style="white-space: nowrap;">`3e23f0eb-9329-46ff-9d37-6ad24afdfaeb`</span>)
+   - `map $host $oidc_client_secret` – Value in the **Client secret** field from [Step 4 of _Configuring AD FS_](#ad-fs-configure-application-credentials) (in this guide, <span style="white-space: nowrap;">`NUeuULtSCjgXTGSkq3ZwEeCOiig4-rB2XiW_W`</span>)
+   - `map $host $oidc_hmac_key` – A unique, long, and secure phrase
 
 5. Configure the JWK file. The procedure depends on which version of NGINX Plus you are using.
 
-   * In <span style="white-space: nowrap;">NGINX Plus R17</span> and later, NGINX Plus can read the JWK file directly from the URL reported as `jwks_uri` in [Step 3](#nginx-plus-urls). Change **/etc/nginx/conf.d/frontend.conf** as follows:
+   - In <span style="white-space: nowrap;">NGINX Plus R17</span> and later, NGINX Plus can read the JWK file directly from the URL reported as `jwks_uri` in [Step 3](#nginx-plus-urls). Change **/etc/nginx/conf.d/frontend.conf** as follows:
 
       1. Comment out (or remove) the [auth_jwt_key_file](http://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_file) directive.
       2. Uncomment the [auth_jwt_key_request](http://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_request) directive. (Its parameter, `/_jwks_uri`, refers to the value of the `$oidc_jwt_keyfile` variable, which you set in the next step.) 
       3. Change the second parameter of the `set $oidc_jwt_keyfile` directive to the value reported in the `jwks_uri` field in [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<ADFS-server-address>/oidc/adfs/certs`</span>).
 
-   * In <span style="white-space: nowrap;">NGINX Plus R16</span> and earlier, the JWK file must be on the local disk. (You can also use this method with <span style="white-space: nowrap;">NGINX Plus R17</span> and later if you wish.)
+   - In <span style="white-space: nowrap;">NGINX Plus R16</span> and earlier, the JWK file must be on the local disk. (You can also use this method with <span style="white-space: nowrap;">NGINX Plus R17</span> and later if you wish.)
 
        1. Copy the JSON contents from the JWK file named in the `jwks_uri` field in [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<ADFS-server-address>/oidc/adfs/certs`</span>) to a local file (for example, `/etc/nginx/my_adfs_jwk.json`). 
-      2. In **/etc/nginx/conf.d/frontend.conf**, change the second parameter of the <span style="white-space: nowrap;">`set $oidc_jwt_keyfile`</span> directive to the local file path.
+       2. In **/etc/nginx/conf.d/frontend.conf**, change the second parameter of the <span style="white-space: nowrap;">`set $oidc_jwt_keyfile`</span> directive to the local file path.
 
 6. Confirm that the user named by the [user](http://nginx.org/en/docs/ngx_core_module.html#user) directive in the NGINX Plus configuration (in **/etc/nginx/nginx.conf** by convention) has read permission on the JWK file.
 
@@ -151,5 +151,5 @@ See the [**Troubleshooting**](https://github.com/nginxinc/nginx-openid-connect#t
 
 ### Revision History
 
-* Version 2 (March 2020) – Updates to _Configuring NGINX Plus_ section
-* Version 1 (December 2019) – Initial version (NGINX Plus Release 20)
+- Version 2 (March 2020) – Updates to _Configuring NGINX Plus_ section
+- Version 1 (December 2019) – Initial version (NGINX Plus Release 20)

@@ -77,17 +77,18 @@ Take the following steps to create an Identity Provider:
         
         {{< note >}} 
 Keys must be between 8 and 256 characters and alphanumeric.
- - Hyphens '-' and underscores '_' are allowed.
- - Other special characters are not allowed.
+
+- Hyphens '-' and underscores '_' are allowed.
+- Other special characters are not allowed.
         {{< /note >}}
 
     b. **JWT**:
 
       Create a new JWT Client Group by choosing one of the following options:
 
-      - Paste the contents of a `.jwk` file into the text box
+  - Paste the contents of a `.jwk` file into the text box
 
-      - Provide the URL of the `.jwk` file's location. NGINX Controller fetches the URL, caches it, and refreshes the cache every 12 hours. If the cache cannot be refreshed, the previous version of the `.jwk` is used.
+  - Provide the URL of the `.jwk` file's location. NGINX Controller fetches the URL, caches it, and refreshes the cache every 12 hours. If the cache cannot be refreshed, the previous version of the `.jwk` is used.
   
 8. Select **Create**.
 

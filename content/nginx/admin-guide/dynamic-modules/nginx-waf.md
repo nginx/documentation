@@ -82,14 +82,14 @@ After installation you will need to enable and configure the module in NGINX Plu
 <span id="info"></span>
 ## More Info
 
-* [ModSecurity Documentation](https://github.com/SpiderLabs/ModSecurity/wiki)
+- [ModSecurity Documentation](https://github.com/SpiderLabs/ModSecurity/wiki)
 
-* [NGINX ModSecurity WAF Technical Specifications](https://docs.nginx.com/nginx-waf/technical-specs/)
+- [NGINX ModSecurity WAF Technical Specifications](https://docs.nginx.com/nginx-waf/technical-specs/)
 
-* [Installing and Configuring NGINX ModSecurity WAF](https://docs.nginx.com/nginx-waf/admin-guide/nginx-plus-modsecurity-waf-installation-logging/)
+- [Installing and Configuring NGINX ModSecurity WAF](https://docs.nginx.com/nginx-waf/admin-guide/nginx-plus-modsecurity-waf-installation-logging/)
 
-* [Using the ModSecurity Rules from Trustwave SpiderLabs with the NGINX ModSecurity WAF](https://docs.nginx.com/nginx-waf/admin-guide/nginx-plus-modsecurity-waf-trustwave-spiderlabs-rules/)
+- [Using the ModSecurity Rules from Trustwave SpiderLabs with the NGINX ModSecurity WAF](https://docs.nginx.com/nginx-waf/admin-guide/nginx-plus-modsecurity-waf-trustwave-spiderlabs-rules/)
 
-* [Using the OWASP CRS with the NGINX ModSecurity WAF](https://docs.nginx.com/nginx-waf/admin-guide/nginx-plus-modsecurity-waf-owasp-crs/)
+- [Using the OWASP CRS with the NGINX ModSecurity WAF](https://docs.nginx.com/nginx-waf/admin-guide/nginx-plus-modsecurity-waf-owasp-crs/)
 
-* [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})

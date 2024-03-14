@@ -1,20 +1,20 @@
 ---
-title: 
+title:
 # Remove or set to false to turn off the right-hand in-page ToC
 toc: true
-# Add a short description (150 chars or less) for the doc. Include keywords for SEO. 
+# Add a short description (150 chars or less) for the doc. Include keywords for SEO.
 # The description text appears in search results and at the top of the doc.
 description: ""
 # Assign weights in increments of 100
 # Lower numbers appear higher in the document list
-weight: 
+weight:
 tags: [ "docs" ]
 ---
 
 ## Overview
 
-<!-- 
-If your topic is for a global policy, add the following include: 
+<!--
+If your topic is for a global policy, add the following include:
 
 {{< include "acm/how-to/policies-intro" >}}
 
@@ -61,8 +61,9 @@ Add the high-level steps the user must take to apply the policy. For example:
 
 The following table lists the configurable settings and their default values for the policy.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field        | Datatype | Possible Values     | Description                                        | Required | Default               |
 |--------------|----------|---------------------|----------------------------------------------------|----------|-----------------------|
 | `users.id`   | integer  | A unique int >= 1   | Description for value.                             | Yes      | System assigned       |
@@ -70,7 +71,7 @@ The following table lists the configurable settings and their default values for
 | `user.age`   | integer  | 1–110               | Description for the value                          | Yes      |                       |
 
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ---
 
@@ -84,13 +85,15 @@ The following table lists the configurable settings and their default values for
 
 To create an XYZ policy using the REST API, send an HTTP `POST` request to the Add-Endpoint-Name-Here endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Method | Endpoint            |
 |--------|---------------------|
 | `POST` | `/path/to/endpoint` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <details open>
 <summary>JSON request</summary>

@@ -80,8 +80,8 @@ After installation you will need to enable and configure the module in NGINX Plu
 <span id="info"></span>
 ## More Info
 
-* [NDK Module Reference](https://github.com/vision5/ngx_devel_kit)
+- [NDK Module Reference](https://github.com/vision5/ngx_devel_kit)
 
-* [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
 
-* [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})

@@ -54,7 +54,8 @@ To complete the steps in this guide, you need the following:
 Local dependencies are common Linux packages like `curl` or `openssl`, which most Linux distributions include by default. These dependencies are installed automatically by your package manager when installing an NGINX Management Suite module. Without internet access, you need to ensure that your package manager can use a local package repository, such as your distribution DVD/ISO image or internal network mirror. Refer to your Linux distribution documentation for more details.
 
 {{< note >}}**RedHat on AWS**: If you're using Amazon Web Services and, for security reasons, you can't attach remote or local RedHat package repositories, you can download the necessary packages on another RedHat machine and copy them to your machine. To do this, you can use the `yumdownloader` utility:
-https://access.redhat.com/solutions/10154.{{< / note >}}
+<https://access.redhat.com/solutions/10154>.
+{{< / note >}}
 
 ### Download and Install External Dependencies
 
@@ -205,7 +206,7 @@ To upgrade Instance Manager to a newer version, take the following steps:
    ```bash
    sudo systemctl restart nms
    ```
-   
+
    NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
 
 {{%/tab%}}
@@ -262,13 +263,13 @@ To download the CVE file, take the following steps:
     ```bash
     sudo chmod 777 /usr/share/nms/cve.xml
     ```
-    
+
 2. Download the CVE file:
 
     ```bash
     sudo curl -s http://hg.nginx.org/nginx.org/raw-file/tip/xml/en/security_advisories.xml > /usr/share/nms/cve.xml
     ```
-    
+
 3. Change permissions of the CVE file:
 
     ```bash

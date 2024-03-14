@@ -23,7 +23,7 @@ This policy specifies how the API gateway will intercept HTTP errors from the ba
 The client will receive the Custom Status and Error Message in JSON format, instead of the standard HTTP error coming from the backend.
 The Error Response Format policy is applied by default to any new environment.
 
-#### Intended Audience
+### Intended Audience
 
 {{< include "acm/how-to/policies/infra-admin-persona.md">}}
 
@@ -48,6 +48,7 @@ Either `errorMessage` or `errorMessageBody` must be provided for each error code
 {{< /note >}}
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field                  | Type    | Possible Values                    | Description                                                                                                         | Required | Default Value |
 |------------------------|---------|------------------------------------|---------------------------------------------------------------------------------------------------------------------|----------|---------------|
 | `errorCode`            | int     | In range `400-599`                 | The error code that needs to be used by the NGINX data-plane to return to the user.                                 | Yes      | N/A           |
@@ -71,9 +72,11 @@ You can apply this policy using the web interface or the REST API.
 To create an Error Response Format policy using the REST API, send an HTTP `POST` request to the environment endpoint.
 
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                                            |
 |--------|---------------------------------------------------------------------|
 | `POST` | `/infrastructure/workspaces/{workspace}/environments/{environment}` |
+
 {{</bootstrap-table>}}
 
 <details open>
@@ -111,7 +114,7 @@ This JSON example defines an Error Response policy.
 To add an Error Response Format policy using the web interface:
 
 1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in. Then, from the Launchpad menu, select **API Connectivity Manager**.
-1. On the left menu, select **Infrastructure**. 
+1. On the left menu, select **Infrastructure**.
 1. Choose the workspace that includes the environment for the cluster you want to add the policy to.
 1. Select the environment.
 1. In the list of clusters, locate the cluster you want to add the policy to. On the **Actions** menu (represented by an ellipsis, `...`), select **Edit Advanced Config**.
@@ -119,7 +122,7 @@ To add an Error Response Format policy using the web interface:
 1. From the list of policies, locate the **Error Response Format** policy, then select **Add Policy** from the **Actions** menu (represented by an ellipsis, `...`).
 1. Configure the associated **Error Code**, **Error Message** and **Error Message Body** for each error code.
 1. Additional entries can be created by selecting “Add Error Code” at the bottom of the table.
-1. Select **Add** to apply the policy to the cluster. 
+1. Select **Add** to apply the policy to the cluster.
 1. Select **Save and Submit** to deploy the configuration.
 
 {{%/tab%}}

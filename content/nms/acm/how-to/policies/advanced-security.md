@@ -22,7 +22,7 @@ personas: ["devops"]
 Use the *Advanced Security* policy to add a pre-defined NGINX App Protect to your deployment. Doing so will apply the rules specified in the policy to your APIs.
 This will allow enforcement of rules to *Block* or *Monitor* security events triggering those violations set out in the policy.
 
-#### Intended Audience
+### Intended Audience
 
 {{< include "acm/how-to/policies/infra-admin-persona.md">}}
 {{< include "acm/how-to/policies/api-owner-persona.md">}}
@@ -80,14 +80,16 @@ There are two methods available to enable adding an *Advanced Security* policy t
 
 To create an *Advanced Security* policy using the REST API, send an HTTP `POST` or `PUT` request to the *Environments* endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                           |
 |--------|----------------------------------------------------|
 | `POST` | `/infrastructure/workspaces/{infra-workspace}/environments` |
 | `PUT` | `/infrastructure/workspaces/{infra-workspace}/environments/{environment-name}` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <details open>
 <summary>JSON request</summary>
@@ -105,6 +107,7 @@ To create an *Advanced Security* policy using the REST API, send an HTTP `POST` 
   }
 }
 ```
+
 </details>
 
 {{%/tab%}}
@@ -114,6 +117,7 @@ To create an *Advanced Security* policy using the REST API, send an HTTP `POST` 
 To create an *Advanced Security* policy using the web interface:
 
 {{< include "acm/webui-acm-login.md" >}}
+
 1. On the left menu, select **Infrastructure**.
 2. Select a workspace in the list that contains the Environment you want to update.
 3. On the workspace overview page, on the **Environments** tab, locate the Environment you want to update and select it.
@@ -121,7 +125,7 @@ To create an *Advanced Security* policy using the web interface:
 5. On the **API Gateway** overview page, find and select the **Manage** button and select it.
 6. On the *Advanced > Global Policies* page, locate **Advanced Security Policy**. Select the **Actions** menu (represented by an ellipsis, `...`), then select **Add Policy**.
 7. On the *Advanced Security Policy* form, complete the necessary fields:
-8. 
+8.
    - **Choose a NAP Policy Reference**: Specify the name of the policy you want to apply from the dropdown
 
 9. Select **Add**/**Save** to apply the policy to the Environment.
@@ -143,14 +147,16 @@ To create an *Advanced Security* policy using the web interface:
 
 To create an *Advanced Security* policy using the REST API, send an HTTP `POST` or `PUT` request to the Proxies endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                           |
 |--------|----------------------------------------------------|
 | `POST` | `/services/workspaces/{service-workspace}/proxies` |
 | `PUT` | `/services/workspaces/{service-workspace}/proxies/{proxy-name}` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <details open>
 <summary>JSON request</summary>
@@ -169,6 +175,7 @@ To create an *Advanced Security* policy using the REST API, send an HTTP `POST` 
   }
 }
 ```
+
 </details>
 
 {{%/tab%}}
@@ -178,6 +185,7 @@ To create an *Advanced Security* policy using the REST API, send an HTTP `POST` 
 To create an *Advanced Security* policy using the web interface:
 
 {{< include "acm/webui-acm-login.md" >}}
+
 1. On the left menu, select **Services**.
 2. Select a workspace in the list that contains the *Proxy* you want to update.
 3. On the workspace overview page, on the **API Proxies** tab, locate the *Proxy* you want to update and Select the **Actions** menu (represented by an ellipsis, `...`) and select **Edit proxy**

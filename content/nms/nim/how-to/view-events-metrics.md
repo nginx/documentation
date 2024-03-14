@@ -114,6 +114,7 @@ curl -X GET --url "https://<NMS_FQDN>/api/platform/v1/analytics/events" -H "Auth
 	}]
 }
 ```
+
 </details>
 
 ### Filter Events with Query Parameters
@@ -139,6 +140,7 @@ The `startTime` parameter can use the keyword `now` to signify the timestamp at 
 Timestamps relative to `now` can be passed by subtracting a period of time from the current time, for example `now-3h` or `now-30m`
 
 For example:
+
 ```bash
 curl -X GET --url "https://<NMS_FQDN>/api/platform/v1/analytics/events?startTime=now-3h" -H "Authorization: Bearer xxxxx.yyyyy.zzzzz"
 ```
@@ -255,6 +257,7 @@ curl -X GET --url "https://<NMS_FQDN>/api/platform/v1/analytics/events/7cb91de6-
     "timestamp": "2022-03-21T14:33:37Z"
 }
 ```
+
 </details>
 ---
 

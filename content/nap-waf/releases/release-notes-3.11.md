@@ -74,11 +74,11 @@ This release includes updated signatures for the [Anti Automation]({{< relref "/
 
 ##### Oracle Linux 8.1+
 
- - app-protect-27+3.954.0-1.el8.ngx.x86_64.rpm
+- app-protect-27+3.954.0-1.el8.ngx.x86_64.rpm
 
- #### NGINX Plus
+#### NGINX Plus
  
- - NGINX Plus R27
+- NGINX Plus R27
 
 ### Resolved Issues
 

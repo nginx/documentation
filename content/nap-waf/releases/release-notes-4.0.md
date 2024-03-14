@@ -82,9 +82,9 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 
 - app-protect-28+4.2.0-1.el8.ngx.x86_64.rpm
 
- #### NGINX Plus
+#### NGINX Plus
  
- - NGINX Plus R28
+- NGINX Plus R28
 
 ### Resolved Issues
 
