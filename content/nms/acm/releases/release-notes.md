@@ -12,6 +12,55 @@ categories: ["release notes"]
 
 ---
 
+## 1.9.2
+
+March 14, 2024
+
+### Upgrade Paths {#1-9-2-upgrade-paths}
+
+API Connectivity Manager  supports upgrades from these previous versions:
+
+- 1.6.0 - 1.9.1
+
+If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+{{< see-also >}}
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
+{{< /see-also >}}
+
+<br>
+
+<details closed>
+<summary><i class="fa-solid fa-circle-exclamation"></i> Dependencies with Instance Manager</summary>
+
+{{< include "tech-specs/acm-nim-dependencies.md" >}}
+
+</details>
+
+
+### What's New{#1-9-2-whats-new}
+This release includes the following updates:
+
+- {{% icon-feature %}} **JWT claim names can be created with URL syntax**<a name="1-9-2-whats-new-JWT-claim-names-can-be-created-with-URL-syntax"></a>
+
+  You can now use a URL syntax for your JWT claim names.
+
+- {{% icon-feature %}} **Stability and performance improvements**<a name="1-9-2-whats-new-Stability-and-performance-improvements"></a>
+
+  This release includes stability and performance improvements.
+
+
+### Resolved Issues{#1-9-2-resolved-issues}
+This release fixes the following issues. Select an issue's ID link to view its details.
+
+- {{% icon-resolved %}} JWT tokens are overwritten when multiple proxies are assigned to one gateway [(44636)]({{< relref "/nms/acm/releases/known-issues.md#44636" >}})<a name="1-9-2-resolved-issues-JWT-tokens-are-overwritten-when-multiple-proxies-are-assigned-to-one-gateway"></a>
+
+### Known Issues{#1-9-2-known-issues}
+
+You can find information about known issues in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
+
+---
+
 ## 1.9.1
 
 October 05, 2023
@@ -771,7 +820,7 @@ This release includes the following updates:
 
   Developer Portals can support multiple deployment patterns. The portal backend API service can be scaled to multiple hosts and can be load-balanced using host IP addresses or internal DNS.
 
-   To support the deployment patterns, `configs -> proxyConfig -> backends` object has been introduced in the Portal Proxy runtime. The existing `backend` object in the `proxyCluster` object of the Portal Proxy runtime is being deprecated and will not be available in the next major release version.
+  To support the deployment patterns, `configs -> proxyConfig -> backends ` object has been introduced in the Portal Proxy runtime. The existing `backend` object in the `proxyCluster` object of the Portal Proxy runtime is being deprecated and will not be available in the next major release version.
 
 
 ### Resolved Issues{#1-2-0-resolved-issues}
@@ -845,7 +894,7 @@ August 18, 2022
 
 API Connectivity Manager  supports upgrades from these previous versions:
 
-- 1.0.0 - 1.0.0
+- 1.0.0
 
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
@@ -901,6 +950,15 @@ You can find information about known issues in the [Known Issues]({{< relref "/n
 ## 1.0.0
 
 July 19, 2022
+
+
+<details closed>
+<summary><i class="fa-solid fa-circle-exclamation"></i> Dependencies with Instance Manager</summary>
+
+{{< include "tech-specs/acm-nim-dependencies.md" >}}
+
+</details>
+
 
 ### What's New{#1-0-0-whats-new}
 This release includes the following updates:

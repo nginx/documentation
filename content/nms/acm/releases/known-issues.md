@@ -14,6 +14,50 @@ doctypes: ["reference"]
 
 ---
 
+## 1.9.2
+March 14, 2024
+
+### {{% icon-bug %}} Helm chart backup and restore is broken {#44766}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Issue ID       | Status |
+|----------------|--------|
+| 44766 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+Helm backup and restore will not run in ACM-1.9.1 on NMS-2.15.x due to an underlying change in the dqlite client.
+
+#### Workaround
+
+None
+
+---
+
+
+## 1.9.1
+October 05, 2023
+
+### {{% icon-resolved %}} JWT tokens are overwritten when multiple proxies are assigned to one gateway {#44636}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Issue ID       | Status |
+|----------------|--------|
+| 44636 | Fixed in API Connectivity Manager 1.9.2   |
+
+{{</bootstrap-table>}}
+#### Description
+When multiple API proxies, each with its own JSON Web Token Assertion policy, are assigned to one gateway, the directives are overwritten by one another.
+
+#### Workaround
+
+None
+
+---
+
+
 ## 1.9.0
 September 07, 2023
 
@@ -356,15 +400,13 @@ When configuring a TLS backend policy in the web interface, the new `enableSNI` 
 
 Use the NGINX Management Suite API Connectivity Manager REST API to send a PUT request to the following endpoint, providing the correct values for `enableSNI` and `proxyServerName`. Both values must match.
 
-
+{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
 {{<bootstrap-table "table">}}
-
 | Method | Endpoint                                                                             |
 |--------|--------------------------------------------------------------------------------------|
 | PUT    | `/infrastructure/workspaces/{{infraWorkspaceName}}/environments/{{environmentName}}` |
-
 {{</bootstrap-table>}}
-
+{{< raw-html>}}</div>{{</raw-html>}}
 
 ---
 
@@ -412,15 +454,13 @@ The Developer Portal backend information may be inadvertently updated in the fol
 
   Use the NGINX Management Suite API Connectivity Manager REST API to send a PUT request to the following endpoint with the correct backend settings for each Developer Portal cluster:
 
-
+  {{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
   {{<bootstrap-table "table">}}
-
   | Method | Endpoint                                                                             |
   |--------|--------------------------------------------------------------------------------------|
   | PUT    | `/infrastructure/workspaces/{{infraWorkspaceName}}/environments/{{environmentName}}` |
-
- {{</bootstrap-table>}}
-
+  {{</bootstrap-table>}}
+  {{< raw-html>}}</div>{{</raw-html>}}
 
 - Workaround for scenario #2
 
@@ -428,15 +468,13 @@ The Developer Portal backend information may be inadvertently updated in the fol
 
   If you have more than one Developer Portal cluster, use the NGINX Management Suite API Connectivity Manager REST API to send a PUT request to the following endpoint with the correct backend settings for each cluster:
 
-
+  {{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
   {{<bootstrap-table "table">}}
-
   | Method | Endpoint                                                                             |
   |--------|--------------------------------------------------------------------------------------|
   | PUT    | `/infrastructure/workspaces/{{infraWorkspaceName}}/environments/{{environmentName}}` |
-
- {{</bootstrap-table>}}
-
+  {{</bootstrap-table>}}
+  {{< raw-html>}}</div>{{</raw-html>}}
 
 ---
 
