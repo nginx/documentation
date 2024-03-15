@@ -41,10 +41,6 @@ Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgr
 ### What's New{#1-9-2-whats-new}
 This release includes the following updates:
 
-- {{% icon-feature %}} **JWT claim names can be created with URL syntax**<a name="1-9-2-whats-new-JWT-claim-names-can-be-created-with-URL-syntax"></a>
-
-  You can now use a URL syntax for your JWT claim names.
-
 - {{% icon-feature %}} **Stability and performance improvements**<a name="1-9-2-whats-new-Stability-and-performance-improvements"></a>
 
   This release includes stability and performance improvements.
