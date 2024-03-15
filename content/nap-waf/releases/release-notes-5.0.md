@@ -7,7 +7,7 @@ description: ""
 docs: DOCS-1377
 doctypes:
 - concept
-draft: false
+draft: true
 journeys:
 - researching
 - getting started
