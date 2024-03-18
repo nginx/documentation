@@ -39,7 +39,7 @@ Configuration templates include these components:
   
 - **JSON schema files (.json)**: These outline the parameters' validation, guiding user input to ensure correct data types and formats, enhancing the interface experience.
 
-- **Auxiliary files**: Additional necessary files, like JavaScript for functionality or certificates, supplement the templates for a complete NGINX configuration.
+- **Auxiliary files**: Additional required files, such as JavaScript for functional scripts, MIME types for content identification, and certificates for security.
 
 ### Types of templates
 
