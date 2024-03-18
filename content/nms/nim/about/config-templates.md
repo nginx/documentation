@@ -47,7 +47,7 @@ There are two types of configuration templates:
 
 - **Base templates**: Standalone templates that produce a full NGINX configuration, serving as the deployment foundation.
 
-- **Augment templates**: Extensions to base templates, they add functionalities or segments to the configuration, such as caching or OIDC authentication.
+- **Augment templates**: Extensions to base templates, they add functionalities like caching or OIDC authentication, or segments like location or server blocks.
 
 
 ## Target
