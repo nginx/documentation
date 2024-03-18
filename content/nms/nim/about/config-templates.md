@@ -1,5 +1,5 @@
 ---
-title: "Types of Templates"
+title: "Understanding Configuration Templates"
 date: 2024-03-11T14:03:20-07:00
 # Change draft status to false to publish doc
 draft: false
@@ -68,12 +68,12 @@ Template Submission in Instance Manager is the process of deploying an NGINX con
 
 Key aspects of Template Submission include:
 
-- **Snapshot Creation**: Upon submission, a snapshot of the template along with the provided parameters is created. This ensures that each submission is preserved for future reference, enabling easy tracking and modifications if necessary.
+- **Snapshot creation**: Upon submission, a snapshot of the template along with the provided parameters is created. This ensures that each submission is preserved for future reference, enabling easy tracking and modifications if necessary.
 
-- **Target Application**: The user specifies the target (an individual NGINX instance, an instance group, or a staged config) where the generated configuration will be applied. This step determines where the configuration will take effect, directly impacting the operation of the specified NGINX environment.
+- **Target application**: The user specifies the target (an individual NGINX instance, an instance group, or a staged config) where the generated configuration will be applied. This step determines where the configuration will take effect, directly impacting the operation of the specified NGINX environment.
 
-- **Flexibility and Control**: Users have the flexibility to create new configurations, modify existing ones, or apply additional functionalities through augment templates. This provides granular control over how NGINX instances are configured and managed.
+- **Flexibility and control**: Users have the flexibility to create new configurations, modify existing ones, or apply additional functionalities through augment templates. This provides granular control over how NGINX instances are configured and managed.
 
-- **Validation and Testing**: For submissions aimed at a staged config, there's an opportunity to validate and test the configuration before live deployment. This minimizes risks and ensures stability in the production environment.
+- **Validation and testing**: For submissions aimed at a staged config, there's an opportunity to validate and test the configuration before live deployment. This minimizes risks and ensures stability in the production environment.
 
-Template Submission is fundamental for operationalizing templates within the Instance Manager, bridging the gap between configuration design and implementation.
+Template submission is fundamental for operationalizing templates within Instance Manager, bridging the gap between configuration design and implementation.
