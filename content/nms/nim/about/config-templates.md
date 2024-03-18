@@ -24,7 +24,7 @@ versions: []
 authors: []
 ---
 
-## Overview
+## Config Templates
 Instance Manager configuration templates simplify the creation and standardization of NGINX configurations using Go templating. Configuration templates allow administrators to quickly and easily generate customized NGINX configurations for different environments without requiring an in-depth knowledge of NGINX syntax.
 
 Templates accelerate setup, ensure NGINX configurations are consistent and compliant with best practices, and enable teams to manage segments independently, fostering self-service within organizations.
