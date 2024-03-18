@@ -24,14 +24,14 @@ versions: []
 authors: []
 ---
 
-## Configuration Templates
+## Overview
 Instance Manager configuration templates simplify the creation and standardization of NGINX configurations using Go templating. Configuration templates allow administrators to quickly and easily generate customized NGINX configurations for different environments without requiring an in-depth knowledge of NGINX syntax.
 
 Templates accelerate setup, ensure NGINX configurations are consistent and compliant with best practices, and enable teams to manage segments independently, fostering self-service within organizations.
 
 You can customize configuration templates through both the web interface or REST API. Teams can adapt existing templates or create new ones based on their needs.
 
-### Components
+### Template components
 
 Configuration templates include these components:
 
@@ -41,7 +41,7 @@ Configuration templates include these components:
 
 - **Auxiliary files**: Additional necessary files, like JavaScript for functionality or certificates, supplement the templates for a complete NGINX configuration.
 
-### Types of Templates
+### Types of templates
 
 There are two types of configuration templates:
 
@@ -62,9 +62,9 @@ There are three types of targets:
 
 3. **Staged config**: Acts as a preliminary holding area for configurations before they're deployed. This step enables thorough testing and validation, minimizing potential disruptions upon live deployment.
 
-## Template Submission
+## Template submission
 
-Template Submission in Instance Manager is the process of deploying an NGINX configuration generated from a template to a specified target. It's a crucial step that actualizes the theoretical design of a template into a active, functioning NGINX configuration. This process involves taking the parameters filled out by the user, combining them with the chosen template (either a Base Template or one or more Augment Templates), and applying the resulting configuration to the intended NGINX environment.
+Template submission in Instance Manager is the process of deploying an NGINX configuration generated from a template to a specified target. It's a crucial step that actualizes the theoretical design of a template into a active, functioning NGINX configuration. This process involves taking the parameters filled out by the user, combining them with the chosen template (either a base template or one or more augment templates), and applying the resulting configuration to the intended NGINX environment.
 
 Key aspects of Template Submission include:
 
