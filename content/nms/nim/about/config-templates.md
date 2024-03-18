@@ -66,7 +66,7 @@ There are three types of targets:
 
 Template submission in Instance Manager is the process of deploying an NGINX configuration generated from a template to a specified target. It's a crucial step that actualizes the theoretical design of a template into a active, functioning NGINX configuration. This process involves taking the parameters filled out by the user, combining them with the chosen template (either a base template or one or more augment templates), and applying the resulting configuration to the intended NGINX environment.
 
-Key aspects of Template Submission include:
+Key aspects of template submission include:
 
 - **Snapshot creation**: Upon submission, a snapshot of the template along with the provided parameters is created. This ensures that each submission is preserved for future reference, enabling easy tracking and modifications if necessary.
 
