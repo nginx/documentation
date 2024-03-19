@@ -1,0 +1,116 @@
+---
+authors: []
+categories:
+- releases
+date: "2021-04-14T13:32:41+00:00"
+description: ""
+docs: DOCS-000
+doctypes:
+- concept
+draft: false
+journeys:
+- researching
+- getting started
+- using
+- self service
+menu:
+  docs:
+    parent: R 5
+    weight: 45
+personas:
+- devops
+- netops
+- secops
+- support
+roles:
+- admin
+- user
+title: NGINX App Protect WAF Release 5.0
+toc: true
+versions:
+- "5.0"
+weight: 1000
+---
+
+March 19, 2024
+
+### New Features
+
+{{< note >}}
+These features are only available in NGINX App Protect WAF version 5.0 and above. Attempting to install this update over an earlier version is not supported.
+{{< /note >}}
+
+In this release, NGINX App Protect WAF supports NGINX Open Source 1.25.4 and NGINX Plus R31 P1.
+
+- [New deployment types]({{< relref "/nap-waf/v5/admin-guide/overview.md#deployment-types" >}})
+- [Security policy and logging profile bundles]({{< relref "/nap-waf/v5/admin-guide/compiler.md" >}})
+
+### Supported Packages
+
+#### App Protect Module for NGINX Open Source
+
+##### Alpine Linux 3.16 / Alpine Linux 3.17
+
+- app-protect-module-oss-1.25.4.4.815.0-r1.apk
+
+##### Debian 11
+
+- app-protect-module-oss_1.25.4+4.815.0-1~bullseye_amd64.deb
+
+##### Debian 12
+
+- app-protect-module-oss_1.25.4+4.815.0-1~bookworm_amd64.deb
+
+##### Ubuntu 20.04
+
+- app-protect-module-oss_1.25.4+4.815.0-1~focal_amd64.deb
+
+##### Ubuntu 22.04
+
+- app-protect-module-oss_1.25.4+4.815.0-1~jammy_amd64.deb
+
+##### RHEL 7.4+ / CentOS 7.4+ / Amazon Linux 2
+
+- app-protect-module-oss-1.25.4+4.815.0-1.el7.ngx.x86_64.rpm
+
+##### RHEL 8.1+ / Oracle Linux 8.1+
+
+- app-protect-module-oss-1.25.4+4.815.0-1.el8.ngx.x86_64.rpm
+
+##### RHEL 9+
+
+- app-protect-module-oss-1.25.4+4.815.0-1.el9.ngx.x86_64.rpm
+
+#### App Protect Module for NGINX Plus
+
+##### Alpine Linux 3.16 / Alpine Linux 3.17
+
+- app-protect-module-plus-31.4.815.0-r1.apk
+
+##### Debian 11
+
+- app-protect-module-plus_31+4.815.0-1~bullseye_amd64.deb
+
+##### Debian 12
+
+- app-protect-module-plus_31+4.815.0-1~bookworm_amd64.deb
+
+##### Ubuntu 20.04
+
+- app-protect-module-plus_31+4.815.0-1~focal_amd64.deb
+
+##### Ubuntu 22.04
+
+- app-protect-module-plus_31+4.815.0-1~jammy_amd64.deb
+
+##### RHEL 7.4+ / CentOS 7.4+ / Amazon Linux 2
+
+- app-protect-module-plus-31+4.815.0-1.el7.ngx.x86_64.rpm
+
+##### RHEL 8.1+ / Oracle Linux 8.1+
+
+- app-protect-module-plus-31+4.815.0-1.el8.ngx.x86_64.rpm
+
+##### RHEL 9+
+
+- app-protect-module-plus-31+4.815.0-1.el9.ngx.x86_64.rpm

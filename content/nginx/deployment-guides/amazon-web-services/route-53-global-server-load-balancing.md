@@ -21,14 +21,14 @@ The [Appendix](#appendix) provides instructions for creating EC2 instances with 
 
 [NGINX Plus](http://www.nginx.com/products/nginx) is the commercially supported version of the [NGINX Open Source](https://nginx.org/en) software. NGINX Plus is a complete application delivery platform, extending the power of NGINX with a host of enterprise‑ready capabilities that enhance an AWS application server deployment and are instrumental to building web applications at scale:
 
-* [Full‑featured HTTP, TCP, and UDP load balancing](https://www.nginx.com/products/nginx/load-balancing/)
-* [Intelligent session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence)
-* [High‑performance reverse proxy]({{< relref "../../admin-guide/web-server/reverse-proxy.md" >}})
-* [Caching and offload of dynamic and static content]({{< relref "../../admin-guide/content-cache/content-caching.md" >}})
-* [Adaptive streaming to deliver audio and video to any device](https://www.nginx.com/products/nginx/streaming-media/)
-* [Application-aware health checks](https://www.nginx.com/products/nginx/load-balancing/#health-checks) and [high availability](https://www.nginx.com/products/nginx/high-availability/)
-* [Advanced activity monitoring available via a dashboard or API](https://www.nginx.com/products/nginx/live-activity-monitoring/)
-* [Management and real‑time configuration changes with DevOps‑friendly tools](https://www.nginx.com/products/nginx/load-balancing/#load-balancing-api)
+- [Full‑featured HTTP, TCP, and UDP load balancing](https://www.nginx.com/products/nginx/load-balancing/)
+- [Intelligent session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence)
+- [High‑performance reverse proxy]({{< relref "../../admin-guide/web-server/reverse-proxy.md" >}})
+- [Caching and offload of dynamic and static content]({{< relref "../../admin-guide/content-cache/content-caching.md" >}})
+- [Adaptive streaming to deliver audio and video to any device](https://www.nginx.com/products/nginx/streaming-media/)
+- [Application-aware health checks](https://www.nginx.com/products/nginx/load-balancing/#health-checks) and [high availability](https://www.nginx.com/products/nginx/high-availability/)
+- [Advanced activity monitoring available via a dashboard or API](https://www.nginx.com/products/nginx/live-activity-monitoring/)
+- [Management and real‑time configuration changes with DevOps‑friendly tools](https://www.nginx.com/products/nginx/load-balancing/#load-balancing-api)
 
 <span id="topology"></span>
 ## Topology for Global Load Balancing with Amazon Route 53 and NGINX Plus
@@ -52,10 +52,10 @@ Health checks are an integral feature of the configuration. Route 53 monitors t
 
 The instructions assume you have the following:
 
-* [An AWS account](http://docs.aws.amazon.com/AmazonSimpleDB/latest/DeveloperGuide/AboutAWSAccounts.html).
-* An NGINX Plus subscription, either [purchased](https://www.nginx.com/products/pricing/#nginx-plus) or a <span style="white-space: nowrap;">[free 30-day trial](https://www.nginx.com/free-trial-request/)</span>.
-* Familiarity with NGINX and NGINX Plus configuration syntax. Complete configuration snippets are provided, but not analyzed in detail.
-* Eight EC2 instances, four in each of two regions.  The [Appendix](#appendix) provides instructions for creating instances with the expected names, and installing and configuring NGINX Plus and NGINX Open Source as appropriate.
+- [An AWS account](http://docs.aws.amazon.com/AmazonSimpleDB/latest/DeveloperGuide/AboutAWSAccounts.html).
+- An NGINX Plus subscription, either [purchased](https://www.nginx.com/products/pricing/#nginx-plus) or a <span style="white-space: nowrap;">[free 30-day trial](https://www.nginx.com/free-trial-request/)</span>.
+- Familiarity with NGINX and NGINX Plus configuration syntax. Complete configuration snippets are provided, but not analyzed in detail.
+- Eight EC2 instances, four in each of two regions.  The [Appendix](#appendix) provides instructions for creating instances with the expected names, and installing and configuring NGINX Plus and NGINX Open Source as appropriate.
 
 <span id="gslb"></span>
 ## Configuring Global Server Load Balancing
@@ -64,10 +64,10 @@ With the [required AWS configuration](#prereqs) in place, we're ready to configu
 
 Complete step‑by‑step instructions are provided in the following sections:
 
-* [Creating a Hosted Zone](#hosted-zone)
-* [Linking the Domain to EC2 Instances](#link-instances)
-* [Configuring Health Checks for Route 53 Failover](#route-53-health-checks)
-* [Configuring NGINX Plus Application Health Checks](#nginx-plus-health-checks)
+- [Creating a Hosted Zone](#hosted-zone)
+- [Linking the Domain to EC2 Instances](#link-instances)
+- [Configuring Health Checks for Route 53 Failover](#route-53-health-checks)
+- [Configuring NGINX Plus Application Health Checks](#nginx-plus-health-checks)
 
 <span id="hosted-zone"></span>
 ### Creating a Hosted Zone
@@ -122,21 +122,21 @@ Create records sets for your domain:
 
 4. Fill in the fields in the **Create Record Set** column:
 
-    * **Name** – You can leave this field blank, but for this guide we are setting the name to <span style="color:#666666; font-weight:bolder; white-space: nowrap;">www.nginxroute53.com</span>.
-    * **Type** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">A – IPv4 address</span>.
-    * **Alias** – <span style="color:#666666; font-weight:bolder;">No</span>.
-    * **TTL (Seconds)** – <span style="color:#666666; font-weight:bolder;">60</span>.
+    - **Name** – You can leave this field blank, but for this guide we are setting the name to <span style="color:#666666; font-weight:bolder; white-space: nowrap;">www.nginxroute53.com</span>.
+    - **Type** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">A – IPv4 address</span>.
+    - **Alias** – <span style="color:#666666; font-weight:bolder;">No</span>.
+    - **TTL (Seconds)** – <span style="color:#666666; font-weight:bolder;">60</span>.
 
         **Note**: Reducing TTL from the default of <span style="color:#666666; font-weight:bolder;">300</span> in this way can decrease the time that it takes for Route 53 to fail over when both NGINX Plus load balancers in the region are down, but there is always a delay of about two minutes regardless of the TTL setting. This is a built‑in limitation of Route 53.
 
-    * **Value** – [Elastic IP addresses](#elastic-ip) of the NGINX Plus load balancers in the first region [in this guide, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West (Oregon)</span>].
-    * **Routing Policy** – <span style="color:#666666; font-weight:bolder;">Latency</span>.
+    - **Value** – [Elastic IP addresses](#elastic-ip) of the NGINX Plus load balancers in the first region [in this guide, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West (Oregon)</span>].
+    - **Routing Policy** – <span style="color:#666666; font-weight:bolder;">Latency</span>.
 
 5. A new area opens when you select <span style="color:#666666; font-weight:bolder;">Latency</span>. Fill in the fields as indicated (see the figure below):
 
-    * **Region** – Region to which the load balancers belong (in this guide, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">us-west-2</span>).
-    * **Set ID** – Identifier for this group of load balancers (in this guide, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LBs</span>).
-    * **Associate with Health Check** – <span style="color:#666666; font-weight:bolder;">No</span>.
+    - **Region** – Region to which the load balancers belong (in this guide, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">us-west-2</span>).
+    - **Set ID** – Identifier for this group of load balancers (in this guide, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LBs</span>).
+    - **Associate with Health Check** – <span style="color:#666666; font-weight:bolder;">No</span>.
 
     When you complete all fields, the tab looks like this:
 
@@ -160,9 +160,9 @@ To trigger failover between AWS regions, we next configure health checks in Rout
 We create health checks both for each NGINX Plus load balancer individually and for the load balancers in each region as a pair. Then we update the record sets created in the previous section to refer to the health checks.
 
 
-* [Configuring Route 53 Health Checks for Individual Load Balancers](#route-53-health-checks-individual)
-* [Configuring Route 53 Health Checks for the Paired Load Balancers in Each Region](#route-53-health-checks-pair)
-* [Modifying Record Sets to Associate Them with the Newly Defined Health Checks](#route-53-health-checks-record-sets)
+- [Configuring Route 53 Health Checks for Individual Load Balancers](#route-53-health-checks-individual)
+- [Configuring Route 53 Health Checks for the Paired Load Balancers in Each Region](#route-53-health-checks-pair)
+- [Modifying Record Sets to Associate Them with the Newly Defined Health Checks](#route-53-health-checks-record-sets)
 
 <span id="route-53-health-checks-individual"></span>
 #### Configuring Route 53 Health Checks for Individual Load Balancers
@@ -173,11 +173,11 @@ We create health checks both for each NGINX Plus load balancer individually and
 
 2. Click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create health check </span> button. In the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Configure health check</span> form that opens, specify the following values, then click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Next </span> button.
 
-   * **Name** – Identifier for an NGINX Plus load balancer instance, for example <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 1</span>.
-   * **What to monitor** – <span style="color:#666666; font-weight:bolder;">Endpoint</span>.
-   * **Specify endpoint by** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">IP address</span>.
-   * **IP address** – The [elastic IP address](#elastic-ip) of the NGINX Plus load balancer.
-   * **Port** – The port advertised to clients for your domain or web service (the default is <span style="color:#666666; font-weight:bolder;">80</span>).
+   - **Name** – Identifier for an NGINX Plus load balancer instance, for example <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 1</span>.
+   - **What to monitor** – <span style="color:#666666; font-weight:bolder;">Endpoint</span>.
+   - **Specify endpoint by** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">IP address</span>.
+   - **IP address** – The [elastic IP address](#elastic-ip) of the NGINX Plus load balancer.
+   - **Port** – The port advertised to clients for your domain or web service (the default is <span style="color:#666666; font-weight:bolder;">80</span>).
 
    <img src="https://cdn-1.wp.nginx.com/wp-content/uploads/2016/10/aws-route53-configure-health-check.png" alt="Screenshot of Amazon Route 53 interface for configuring health checks, during configuration of AWS global load balancing (GLB) with NGINX Plus" style="border:2px solid #666666; padding:2px; margin:2px;" />
     
@@ -196,10 +196,10 @@ We create health checks both for each NGINX Plus load balancer individually and
 
 2. In the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Configure health check</span> form that opens, specify the following values, then click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Next </span> button.
 
-   * **Name** – Identifier for the pair of NGINX Plus load balancers in the first region, for example <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LBs</span>.
-   * **What to monitor** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Status of other health checks </span>.
-   * **Health checks to monitor** – The health checks of the two US West load balancers (add them one after the other by clicking in the box and choosing them from the drop‑down menu as shown).
-   * **Report healthy when** – <span style="color:#666666; font-weight:bolder;">at least 1 of 2 selected health checks are healthy</span> (the choices in this field are obscured in the screenshot by the drop‑down menu).
+   - **Name** – Identifier for the pair of NGINX Plus load balancers in the first region, for example <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LBs</span>.
+   - **What to monitor** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Status of other health checks </span>.
+   - **Health checks to monitor** – The health checks of the two US West load balancers (add them one after the other by clicking in the box and choosing them from the drop‑down menu as shown).
+   - **Report healthy when** – <span style="color:#666666; font-weight:bolder;">at least 1 of 2 selected health checks are healthy</span> (the choices in this field are obscured in the screenshot by the drop‑down menu).
 
    <img src="https://cdn-1.wp.nginx.com/wp-content/uploads/2016/10/aws-route53-configure-health-check-status-others.png" alt="Screenshot of Amazon Route 53 interface for configuring a health check of combined other health checks, during configuration of global server load balancing (GSLB) with NGINX Plus" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
@@ -246,7 +246,7 @@ These instructions assume that you have configured NGINX Plus on two EC2 instan
 2. Change directory to **/etc/nginx/conf.d**.
 
    ```shell
-   $ cd /etc/nginx/conf.d
+   cd /etc/nginx/conf.d
    ```
 
 3. Edit the <span style="white-space: nowrap; font-weight:bold;">west-lb1.conf</span> file and add the **@healthcheck** location to set up health checks.
@@ -271,13 +271,14 @@ These instructions assume that you have configured NGINX Plus on two EC2 instan
        }
    }
    ```
+
    Directive documentation: [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location), [proxy_connect_timeout](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_connect_timeout), [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass), [proxy_read_timeout](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout), [server virtual](https://nginx.org/en/docs/http/ngx_http_core_module.html#server), [server upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server), [upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream), [zone](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone)
 
 4. Verify the validity of the NGINX configuration and load it.
 
    ```shell
-   $ nginx -t
-   $ nginx -s reload
+   nginx -t
+   nginx -s reload
    ```
 
 5. Repeat Steps 1 through 4 for the other three load balancers (<span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 2</span>, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US East LB 1</span>, and <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US East LB2</span>).
@@ -289,10 +290,10 @@ These instructions assume that you have configured NGINX Plus on two EC2 instan
 
 The instructions in this Appendix explain how to create EC2 instances with the names used in this guide, and then install and configure NGINX Open Source and NGINX Plus on them: 
 
-* [Creating EC2 Instances and Installing the NGINX Software](#create-instance-install-nginx) 
-* [Configuring Elastic IP Addresses](#elastic-ip)
-* [Configuring NGINX Open Source on the Backend Servers](#configure-backend-servers)  
-* [Configuring NGINX Plus on the Load Balancers](#configure-load-balancers)  
+- [Creating EC2 Instances and Installing the NGINX Software](#create-instance-install-nginx) 
+- [Configuring Elastic IP Addresses](#elastic-ip)
+- [Configuring NGINX Open Source on the Backend Servers](#configure-backend-servers)  
+- [Configuring NGINX Plus on the Load Balancers](#configure-load-balancers)  
 
 <span id="create-instance-install-nginx"></span>
 ### Creating EC2 Instances and Installing the NGINX Software
@@ -305,29 +306,29 @@ Step‑by‑step instructions for creating EC2 instances and installing NGINX so
 
 Assign the following names to the instances, and then install the indicated NGINX software. 
 
-* In the first region, which is <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West (Oregon)</span> in this guide:
+- In the first region, which is <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West (Oregon)</span> in this guide:
 
-   * Two load balancer instances running NGINX Plus:
+  - Two load balancer instances running NGINX Plus:
 
-      * <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 1</span>
-      * <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 2</span>
+    - <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 1</span>
+    - <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 2</span>
 
-   * Two backend instances running NGINX Open Source:
+  - Two backend instances running NGINX Open Source:
 
          * <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Backend 1</span>
-      * <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Backend 2</span>
+    - <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Backend 2</span>
 
-* In the second region, which is <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US East (N. Virginia)</span> in this guide:
+- In the second region, which is <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US East (N. Virginia)</span> in this guide:
 
-   * Two load balancer instances running NGINX Plus:
+  - Two load balancer instances running NGINX Plus:
 
-      * <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US East LB 1</span>
-      * <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US East LB 2</span>
+    - <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US East LB 1</span>
+    - <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US East LB 2</span>
 
-   * Two backend instances running NGINX Open Source:
+  - Two backend instances running NGINX Open Source:
 
          * <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Backend 3</span>
-      * <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Backend 4</span>
+    - <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Backend 4</span>
 
 Here's the **Instances** tab after we create the four instances in the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">N. Virginia</span> region.
 
@@ -350,8 +351,8 @@ Perform these steps on all eight instances.
 
 3. Associate the elastic IP address with an EC2 instance:
 
-   * Right‑click in the IP address' row and select <span style="background-color:#666666; color:white; white-space: nowrap;"> Associate Address </span> from the drop‑down menu that appears.
-   * In the window that pops up, click in the **Instance** field and select an instance from the drop‑down menu.
+   - Right‑click in the IP address' row and select <span style="background-color:#666666; color:white; white-space: nowrap;"> Associate Address </span> from the drop‑down menu that appears.
+   - In the window that pops up, click in the **Instance** field and select an instance from the drop‑down menu.
 
    Confirm your selection by clicking the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Associate </span> button.
 
@@ -371,14 +372,14 @@ Perform these steps on all four backend servers: <span style="color:#666666; fon
 1. Connect over SSH to the instance (or return to the terminal you left open after installing NGINX Open Source) and change directory to and change directory to your root directory. For the instance in this guide, it is **/home/ubuntu**.
 
    ```shell
-   $ cd /home/ubuntu
+   cd /home/ubuntu
    ```
 
 2. Create a directory called **public_html** and change directory to it.
 
    ```shell
-   $ mkdir public_html
-   $ cd public_html
+   mkdir public_html
+   cd public_html
    ```
 
 3. Using your preferred text editor, create a new file called **index.html** and add this text to it:
@@ -390,13 +391,13 @@ Perform these steps on all four backend servers: <span style="color:#666666; fon
 4. Change directory to **/etc/nginx/conf.d**.
 
    ```shell
-   $ cd /etc/nginx/conf.d
+   cd /etc/nginx/conf.d
    ```
 
 5. Rename **default.conf** to **default.conf.bak** so that NGINX Plus does not load it.
 
    ```shell
-   $ mv default.conf default.conf.bak
+   mv default.conf default.conf.bak
    ```
 
 6. Create a new file called **backend.conf** and add this text, which defines the docroot for this web server:
@@ -406,13 +407,14 @@ Perform these steps on all four backend servers: <span style="color:#666666; fon
        root /home/ubuntu/public_html;
    }
    ```
+
    Directive documentation: [root](https://nginx.org/en/docs/http/ngx_http_core_module.html#root), [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server)
    
 7. Verify the validity of the NGINX configuration and load it.
 
    ```shell
-   $ nginx -t
-   $ nginx -s reload
+   nginx -t
+   nginx -s reload
    ```
 
 <span id="configure-load-balancers"></span>
@@ -425,21 +427,21 @@ Perform these steps on all four backend servers: <span style="color:#666666; fon
 1. Connect over SSH to the instance (or return to the terminal you left open after installing NGINX Plus) and change directory to **/etc/nginx/conf.d**.
 
    ```shell
-   $ cd /etc/nginx/conf.d
+   cd /etc/nginx/conf.d
    ```
 
 3. Rename **default.conf** to **default.conf.bak** so that NGINX Plus does not load it.
 
    ```shell
-   $ mv default.conf default.conf.bak
+   mv default.conf default.conf.bak
    ```
 
 4. Create a new file containing the following text, which configures load balancing of the two backend servers in the relevant region. The filename on each instance is:
 
-   * For <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 1</span> – <span style="font-weight:bold; white-space: nowrap;">west-lb1.conf</span>
-   * For <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 2</span> – <span style="font-weight:bold; white-space: nowrap;">west-lb2.conf</span>
-   * For <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US East LB 1</span> – <span style="font-weight:bold; white-space: nowrap;">east-lb1.conf</span>
-   * For <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 2</span> – <span style="font-weight:bold; white-space: nowrap;">east-lb2.conf</span>
+   - For <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 1</span> – <span style="font-weight:bold; white-space: nowrap;">west-lb1.conf</span>
+   - For <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 2</span> – <span style="font-weight:bold; white-space: nowrap;">west-lb2.conf</span>
+   - For <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US East LB 1</span> – <span style="font-weight:bold; white-space: nowrap;">east-lb1.conf</span>
+   - For <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 2</span> – <span style="font-weight:bold; white-space: nowrap;">east-lb2.conf</span>
 
    In the `server` directives in the `upstream` block, substitute the public DNS names of the backend instances in the region; to learn them, see the **Instances** tab in the EC2 Dashboard.
 
@@ -454,13 +456,14 @@ Perform these steps on all four backend servers: <span style="color:#666666; fon
        }
    }
    ```
+
    Directive documentation: [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location), [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass), [server virtual](https://nginx.org/en/docs/http/ngx_http_core_module.html#server), [server upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server), [upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream)
    
 5. Verify the validity of the NGINX configuration and load it.
 
    ```shell
-   $ nginx -t
-   $ nginx -s reload
+   nginx -t
+   nginx -s reload
    ```
 
 8. To test that the configuration is working correctly, for each load balancer enter its public DNS name in the address field of your web browser. As you access the load balancer repeatedly, the content of the page alternates between "This is Backend 1" and "This is Backend 2" in your first region, and "This is Backend 3" and "This is Backend 4" in the second region.
@@ -471,7 +474,7 @@ Return to main instructions, [Configuring Global Server Load Balancing](#gslb)
 
 ### Revision History
 
-* Version 3 (April 2018) – Reorganization of Appendix 
-* Version 2 (January 2017) – Clarified information about root permissions; miscellaneous fixes (NGINX Plus Release 11)
-* Version 1 (October 2016) – Initial version (NGINX Plus Release 10)
+- Version 3 (April 2018) – Reorganization of Appendix 
+- Version 2 (January 2017) – Clarified information about root permissions; miscellaneous fixes (NGINX Plus Release 11)
+- Version 1 (October 2016) – Initial version (NGINX Plus Release 10)
 

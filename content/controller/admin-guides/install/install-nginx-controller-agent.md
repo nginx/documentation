@@ -42,9 +42,9 @@ You can use the NGINX Controller Agent to monitor your systems with the NGINX Co
 
 ## Objectives
 
-* Install the NGINX Controller Agent
-* Upgrade the NGINX Controller Agent to a newer version
-* Uninstall the NGINX Controller Agent
+- Install the NGINX Controller Agent
+- Upgrade the NGINX Controller Agent to a newer version
+- Uninstall the NGINX Controller Agent
 
 ## Install the NGINX Controller Agent
 
@@ -165,10 +165,10 @@ Take the following steps to uninstall the Controller Agent and delete an instanc
 
 ## What's Next
 
-* [Customize how the NGINX Controller Agent collects metrics]({{< relref "/controller/admin-guides/config-agent/configure-the-agent.md" >}})
-* [Start or Stop the Agent Service]({{< relref "/controller/admin-guides/install/agent-restart.md" >}})
-* [Manage your NGINX Instances]({{< relref "/controller/infrastructure/instances/manage-instances.md" >}})
-* [Manage Locations for your Instances]({{< relref "/controller/infrastructure/locations/manage-locations.md" >}})
+- [Customize how the NGINX Controller Agent collects metrics]({{< relref "/controller/admin-guides/config-agent/configure-the-agent.md" >}})
+- [Start or Stop the Agent Service]({{< relref "/controller/admin-guides/install/agent-restart.md" >}})
+- [Manage your NGINX Instances]({{< relref "/controller/infrastructure/instances/manage-instances.md" >}})
+- [Manage Locations for your Instances]({{< relref "/controller/infrastructure/locations/manage-locations.md" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

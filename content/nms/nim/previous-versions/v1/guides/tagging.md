@@ -24,11 +24,12 @@ docs: "DOCS-634"
 
 This document explains how to use tagging with NGINX Instance Manager.
 
-# {{%heading "tagging"%}}
+{{%heading "tagging"%}}
 
 ## How it works {#how-it-works}
 
 Tagging is a feature designed to help group a larger number of instances within NGINX Instance Manager. Tagging serves three purposes:
+
 1. Provide labeling to groups of instances for similar configurations.
 2. Enable OpenID Connect users to limit access to groups of instances.
 3. Provide a way to group metrics based on a tag.

@@ -34,7 +34,7 @@ weight: 120
 
 ## Before You Begin
 
-* Before you can set up metrics collection, you first need to [install and start the NGINX Controller Agent]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}}), so that the Agent can start pushing aggregated data to NGINX Controller.
+- Before you can set up metrics collection, you first need to [install and start the NGINX Controller Agent]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}}), so that the Agent can start pushing aggregated data to NGINX Controller.
 
 ## Objectives
 
@@ -165,8 +165,8 @@ To send the NGINX logs to both the existing logging facility and the NGINX Contr
 
 ## What's Next
 
-* [Overview: NGINX Metrics and Metadata]({{< relref "/controller/analytics/metrics/overview-metrics-metadata.md" >}})
-* [What to check if the Controller Agent isn't reporting metrics]({{< relref "/controller/support/troubleshooting-controller.md#troubleshooting-metrics" >}})
+- [Overview: NGINX Metrics and Metadata]({{< relref "/controller/analytics/metrics/overview-metrics-metadata.md" >}})
+- [What to check if the Controller Agent isn't reporting metrics]({{< relref "/controller/support/troubleshooting-controller.md#troubleshooting-metrics" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

@@ -187,13 +187,13 @@ Listen         Local Address
 
 Increase the value of the `net.core.somaxconn` kernel parameter from its default value (`128`) to a value high enough for a large burst of traffic. In this example, it's increased to `4096`.
 
-*   For FreeBSD, run the command:
+- For FreeBSD, run the command:
 
     ```none
     sudo sysctl kern.ipc.somaxconn=4096
     ```
 
-*   For Linux:
+- For Linux:
     1. Run the command:
 
        ```none

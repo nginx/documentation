@@ -49,6 +49,7 @@ We currently offer 64bit (x86_64 and amd64) binaries and packages that can run o
 ## Install Agent {#install-agent}
 
 The most difficult part is getting the packages onto your installed OS. You can choose one of the following two options:
+
 - Use the public NGINX repositories with a certificate and key or an internal package management system (e.g. Red Hat Satellite)
 - Use the packages directly by downloading them from the myF5 portal or from your NGINX/F5 sales team.
 
@@ -116,6 +117,7 @@ sudo apt-key add nginx_signing.key
 ```bash
 sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-agent.repo
 ```
+
 {{%/tab%}}
 {{%tab name="Debian, Ubuntu, and deb-based distributions"%}}
 

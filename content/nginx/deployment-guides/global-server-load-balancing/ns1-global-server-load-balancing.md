@@ -21,9 +21,9 @@ The agent periodically queries the NGINX Plus API for several metrics that it u
 
 The agent supports the following capabilities:
 
-   * Remote health checks, so clients are not directed to an unavailable (down or otherwise unreachable) PoP
-   * Local capacity checks, so clients are not directed to a PoP without enough healthy servers
-   * Central capacity balancing, so clients are balanced across PoPs according to the current load at each PoP, and traffic is drained from PoPs that are overloaded
+- Remote health checks, so clients are not directed to an unavailable (down or otherwise unreachable) PoP
+- Local capacity checks, so clients are not directed to a PoP without enough healthy servers
+- Central capacity balancing, so clients are balanced across PoPs according to the current load at each PoP, and traffic is drained from PoPs that are overloaded
 
 The solution functions alongside other NS1 capabilities, such as geo‑proximal routing which directs each client to the closest PoP.
 
@@ -32,23 +32,23 @@ The solution functions alongside other NS1 capabilities, such as geo‑proximal 
 
 [NGINX Plus](http://www.nginx.com/products/nginx) is the commercially supported version of [NGINX Open Source](https://nginx.org/en). NGINX Plus is a complete application delivery platform, extending the power of NGINX with a host of enterprise‑ready capabilities that are instrumental to building web applications at scale:
 
-* [Full‑featured HTTP, TCP, and UDP load balancing](https://www.nginx.com/products/nginx/load-balancing/)
-* [Intelligent session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence)
-* [High‑performance reverse proxy]({{< relref "../../admin-guide/web-server/reverse-proxy.md" >}})
-* [Caching and offload of dynamic and static content]({{< relref "../../admin-guide/content-cache/content-caching.md" >}})
-* [Adaptive streaming to deliver audio and video to any device](https://www.nginx.com/products/nginx/streaming-media/)
-* [Application-aware health checks](https://www.nginx.com/products/nginx/load-balancing/#health-checks) and [high availability](https://www.nginx.com/products/nginx/high-availability/)
-* [Advanced activity monitoring available via a dashboard or API](https://www.nginx.com/products/nginx/live-activity-monitoring/)
-* [Management and real‑time configuration changes with DevOps‑friendly tools](https://www.nginx.com/products/nginx/load-balancing/#load-balancing-api)
+- [Full‑featured HTTP, TCP, and UDP load balancing](https://www.nginx.com/products/nginx/load-balancing/)
+- [Intelligent session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence)
+- [High‑performance reverse proxy]({{< relref "../../admin-guide/web-server/reverse-proxy.md" >}})
+- [Caching and offload of dynamic and static content]({{< relref "../../admin-guide/content-cache/content-caching.md" >}})
+- [Adaptive streaming to deliver audio and video to any device](https://www.nginx.com/products/nginx/streaming-media/)
+- [Application-aware health checks](https://www.nginx.com/products/nginx/load-balancing/#health-checks) and [high availability](https://www.nginx.com/products/nginx/high-availability/)
+- [Advanced activity monitoring available via a dashboard or API](https://www.nginx.com/products/nginx/live-activity-monitoring/)
+- [Management and real‑time configuration changes with DevOps‑friendly tools](https://www.nginx.com/products/nginx/load-balancing/#load-balancing-api)
 
 <span id="prereqs"></span>
 ## Prerequisites
 
-* A registered domain name
-* An NS1 account
-* Three or more deployed NGINX Plus instances, each with:
-   * The <span style="white-space: nowrap;">NGINX Plus API</span> [enabled](https://docs.nginx.com/nginx/admin-guide/monitoring/live-activity-monitoring/#configuring-the-api)
-   * Go 1.7 or later [installed](https://golang.org/doc/install)
+- A registered domain name
+- An NS1 account
+- Three or more deployed NGINX Plus instances, each with:
+  - The <span style="white-space: nowrap;">NGINX Plus API</span> [enabled](https://docs.nginx.com/nginx/admin-guide/monitoring/live-activity-monitoring/#configuring-the-api)
+  - Go 1.7 or later [installed](https://golang.org/doc/install)
 
 <span id="ns1-setup"></span>
 ## Setting Up NS1
@@ -71,10 +71,10 @@ The solution functions alongside other NS1 capabilities, such as geo‑proximal 
 
 5. The **Add Record** window pops up. Enter the following values:
 
-   * **Record Type** – <span style="color:#666666; font-weight:bolder; font-family:helvetica;">A</span> (the default).
-   * <span style="color:#666666; font-family:helvetica;">name</span> – Leave blank unless you are creating the ``A`` record for a subdomain.
-   * **TTL** – <span style="color:#666666; font-weight:bolder; font-family:helvetica;">3600</span> is the default, which we are not changing.
-   * **ANSWERS** – The public IP address of the first NGINX Plus instance. To add each of the other instances, click the <span style="color:#ea1f71; font-family:helvetica; white-space: nowrap;">Add Answer</span> button. (In this guide we're using private IP addresses in the 10.0.0.0/8 range as examples.)
+   - **Record Type** – <span style="color:#666666; font-weight:bolder; font-family:helvetica;">A</span> (the default).
+   - <span style="color:#666666; font-family:helvetica;">name</span> – Leave blank unless you are creating the ``A`` record for a subdomain.
+   - **TTL** – <span style="color:#666666; font-weight:bolder; font-family:helvetica;">3600</span> is the default, which we are not changing.
+   - **ANSWERS** – The public IP address of the first NGINX Plus instance. To add each of the other instances, click the <span style="color:#ea1f71; font-family:helvetica; white-space: nowrap;">Add Answer</span> button. (In this guide we're using private IP addresses in the 10.0.0.0/8 range as examples.)
 
    Click the <span style="background-color:#ea1f71; color:white; font-family:helvetica; white-space: nowrap;"> Save All Changes </span> button. 
 
@@ -93,13 +93,13 @@ The solution functions alongside other NS1 capabilities, such as geo‑proximal 
    
 9. Click a value in the <span style="background-color:#e8ebed; font-family:helvetica; white-space: nowrap;"> GEOGRAPHICAL </span> section of the <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> SETTING </span> column and specify the location of the NGINX Plus instance. Begin by choosing one of the several types of codes that NS1 offers for identifying locations:
 
-   * **Canadian province(s)** – Two‑letter codes for Canadian provinces
-   * **Country/countries** – Two‑letter codes for nations and territories
-   * **Geographic region(s)** – Identifiers like <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">US-WEST</span> and <span style="color:#666666; font-weight:bolder; font-family:helvetica;">ASIAPAC</span>
-   * **ISO region code** – Identification codes for nations and territories as defined in [ISO 3166](https://www.iso.org/iso-3166-country-codes.html)
-   * **Latitude** – Degrees, minutes, and seconds of latitude (northern or southern hemisphere)
-   * **Longitude** – Degrees, minutes, and seconds of longitude (eastern or western hemisphere)
-   * **US State(s)** – Two‑letter codes for US states
+   - **Canadian province(s)** – Two‑letter codes for Canadian provinces
+   - **Country/countries** – Two‑letter codes for nations and territories
+   - **Geographic region(s)** – Identifiers like <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">US-WEST</span> and <span style="color:#666666; font-weight:bolder; font-family:helvetica;">ASIAPAC</span>
+   - **ISO region code** – Identification codes for nations and territories as defined in [ISO 3166](https://www.iso.org/iso-3166-country-codes.html)
+   - **Latitude** – Degrees, minutes, and seconds of latitude (northern or southern hemisphere)
+   - **Longitude** – Degrees, minutes, and seconds of longitude (eastern or western hemisphere)
+   - **US State(s)** – Two‑letter codes for US states
 
    In this guide we're using **Country/countries** codes. For the first NGINX Plus instance, we select <span style="color:#666666; font-weight:bolder; font-family:helvetica;">Americas > Northern America > United States (US)</span> and click the <span style="background-color:#ea1f71; color:white; font-family:helvetica;"> Ok </span> button. 
    
@@ -115,9 +115,9 @@ The solution functions alongside other NS1 capabilities, such as geo‑proximal 
 
 12. In the **Add Filters** window that pops up, click the plus sign (+) on the button for each filter you want to apply. In this guide, we're configuring the filters in this order:
 
-    * <span style="color:#666666; font-weight:bolder; font-family:helvetica;">Up</span> in the <span style="background-color:#28ccbb; color:white; font-weight:bolder; font-family:helvetica;"> HEALTHCHECKS </span> section  
-    * <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">Geotarget Country</span> in the <span style="background-color:#28ccbb; color:white; font-weight:bolder; font-family:helvetica;;"> GEOGRAPHIC </span> section
-    * <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">Select First N</span> in the <span style="background-color:#28ccbb; color:white; font-weight:bolder; font-family:helvetica; white-space: nowrap;"> TRAFFIC MANAGEMENT </span> section
+    - <span style="color:#666666; font-weight:bolder; font-family:helvetica;">Up</span> in the <span style="background-color:#28ccbb; color:white; font-weight:bolder; font-family:helvetica;"> HEALTHCHECKS </span> section  
+    - <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">Geotarget Country</span> in the <span style="background-color:#28ccbb; color:white; font-weight:bolder; font-family:helvetica;;"> GEOGRAPHIC </span> section
+    - <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">Select First N</span> in the <span style="background-color:#28ccbb; color:white; font-weight:bolder; font-family:helvetica; white-space: nowrap;"> TRAFFIC MANAGEMENT </span> section
 
     Click the <span style="background-color:#ea1f71; color:white; font-family:helvetica; white-space: nowrap;"> Save Filter Chain </span>  button.
 
@@ -134,9 +134,9 @@ In this section we install and configure the NS1 agent on the same hosts as our 
 
    On the next page (**Create Feed from NSONE Data Feed API v1**), create a data feed for the instance. Because the **Name** field is just for internal use, any value is fine. The value in the **Label** field is used in the YAML configuration file for the instance (see Step 4 below). We're specifying labels that indicate the country (using the ISO 3166 codes) in which the instance is running:
 
-   * <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">us-nginxgslb-datafeed</span> for instance 1 in the US
-   * <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">de-nginxgslb-datafeed</span> for instance 2 in Germany
-   * <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">sg-nginxgslb-datafeed</span> for instance 3 in Singapore 
+   - <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">us-nginxgslb-datafeed</span> for instance 1 in the US
+   - <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">de-nginxgslb-datafeed</span> for instance 2 in Germany
+   - <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">sg-nginxgslb-datafeed</span> for instance 3 in Singapore 
 
    After creating the three feeds, note the value in the **Feeds URL** field on the <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> INTEGRATIONS </span> tab. The final element of the URL is the ``<NS1-data-source-ID>`` you will specify in the YAML configuration file in Step 4. In the third screenshot in the [NS1 documentation](https://help.ns1.com/hc/en-us/articles/360020474154), for example, it is <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">e566332c5d22c6b66aeaa8837eae90ac</span>.
 
@@ -187,9 +187,9 @@ In this section we install and configure the NS1 agent on the same hosts as our 
 
 In this section we describe how to verify that NS1 correctly redistributes traffic to an alternate PoP when the PoP nearest to the client is not operational (in the setup in this guide, each of the three NGINX Plus instances corresponds to a PoP). There are three ways to indicate to NS1 that a PoP is down:
 
-* [Change the status of the NGINX Plus instance](#verify-when-status-down) to <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">Down</span> in the NS1 ``A`` record
-* [Take down the servers in the proxied upstream group](#verify-when-upstream-down)
-* [Cause traffic to exceed a configured threshold](#verify-when-over-threshold)
+- [Change the status of the NGINX Plus instance](#verify-when-status-down) to <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">Down</span> in the NS1 ``A`` record
+- [Take down the servers in the proxied upstream group](#verify-when-upstream-down)
+- [Cause traffic to exceed a configured threshold](#verify-when-over-threshold)
 
 <span id="verify-when-status-down"></span>
 ### Verifying Traffic Redistribution when an NGINX Plus Instance Is Marked Down
@@ -365,9 +365,9 @@ First we perform these steps to create the shed filter:
 
 7. In the **Answer Metadata** window that opens, set values for the following metadata. In each case, click the icon in the <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> FEED </span> column of the metadata's row, then select or enter the indicated value in the <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> AVAILABLE </span> column. (For testing purposes, we're setting very small values for the watermarks so that the threshold is exceeded very quickly.) 
 
-   * **Active connections** – <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">us-nginxgslb-datafeed</span>
-   * **High watermark** – <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">5</span>
-   * **Low watermark** – <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">2</span>
+   - **Active connections** – <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">us-nginxgslb-datafeed</span>
+   - **High watermark** – <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">5</span>
+   - **Low watermark** – <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">2</span>
 
    After setting all three, click the <span style="background-color:#ea1f71; color:white; font-family:helvetica;"> Ok </span> button. (The screenshot shows the window just before this action.)
 
@@ -393,9 +393,9 @@ We run the following commands on a host located in the US.
 
    On the command line:
    
-      * <span style="white-space: nowrap;">``<NS1-API-key>``</span> and <span style="white-space: nowrap;">``<NS1-data-source-ID>``</span> are the same values we included in the YAML file in Step 4 of [Installing the NS1 Agent](#agent-install) and used in Step 2 of [Verifying Traffic Redistribution When an Upstream Group Is Down](#verify-when-upstream-down).
+      - <span style="white-space: nowrap;">``<NS1-API-key>``</span> and <span style="white-space: nowrap;">``<NS1-data-source-ID>``</span> are the same values we included in the YAML file in Step 4 of [Installing the NS1 Agent](#agent-install) and used in Step 2 of [Verifying Traffic Redistribution When an Upstream Group Is Down](#verify-when-upstream-down).
 
-      * <span style="white-space: nowrap;">``<NS1-feed-ID>``</span> is the ID assigned by NS1 to the **us-nginxgslb-datafeed** data feed. It was reported as <span style="white-space: nowrap;">``<Feed-ID>``</span> in the ``id`` field of the output in Step 2 in [Verifying Traffic Redistribution When an Upstream Group Is Down](#verify-when-upstream-down). (It also appears in that field in the following output.)
+      - <span style="white-space: nowrap;">``<NS1-feed-ID>``</span> is the ID assigned by NS1 to the **us-nginxgslb-datafeed** data feed. It was reported as <span style="white-space: nowrap;">``<Feed-ID>``</span> in the ``id`` field of the output in Step 2 in [Verifying Traffic Redistribution When an Upstream Group Is Down](#verify-when-upstream-down). (It also appears in that field in the following output.)
 
    The relevant field in the output is ``connections`` in the ``data`` section, and in this example it indicates there is one active connection.
 
@@ -480,5 +480,5 @@ We run the following commands on a host located in the US.
 
 ### Revision History
 
-* Version 1 (September 2019) – Initial version (NGINX Plus Release 19)
+- Version 1 (September 2019) – Initial version (NGINX Plus Release 19)
 

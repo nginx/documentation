@@ -49,21 +49,27 @@ December 29, 2021
 #### App Protect DoS
 
 ##### CentOS 7.4+ / RHEL 7.4+ / UBI7
+
 - app-protect-dos-25+2.1.8-1.el7.ngx.el7.ngx.x86_64.rpm
 
 ##### RHEL 8 / UBI8
+
 - app-protect-dos-25+2.1.8-1.el8.ngx.el8.ngx.x86_64.rpm
 
 ##### Debian 10
+
 - app-protect-dos_25+2.1.8-1~buster_amd64.deb
 
 ##### Ubuntu 18.04
+
 - app-protect-dos_25+2.1.8-1~bionic_amd64.deb
 
 ##### Ubuntu 20.04
+
 - app-protect-dos_25+2.1.8-1~focal_amd64.deb
 
 #### NGINX Plus
+
 - NGINX Plus R25
 
 ### Resolved Issues

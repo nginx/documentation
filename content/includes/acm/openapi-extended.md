@@ -18,53 +18,54 @@ API Connectivity Manager now also supports server URL templating in the global U
 <summary>Example JSON</summary>
 
 ```json
-"servers": [  
-  {  
-    "url": "https://{server}.example.com/api/{version}",  
-    "variables": {  
-      "version": {  
-        "default": "v1"  
-      },  
-      "server": {  
-        "default": "staging"  
-      }  
-    },  
-    "x-acm-append-rule": "NONE",  
-    "x-acm-strip-basepath": false,  
-    "x-acm-backends": [  
-      {  
-        "serviceName": "pets-backend",  
-        "serviceVersion": "pets-backend-v1",  
-        "serviceLabel": "default",  
-        "contextRoot": "/dev",  
-        "upstreams": [  
-          {  
-            "url": "https://gecho1.null.ie",  
-            "maxFails": 10,  
-            "maxConnections": 5,  
-            "failTimeout": "5s",  
-            "slowStart": "10s"  
-          },  
-          {  
-            "url": "https://gecho2.null.ie",  
-            "maxFails": 5,  
-            "maxConnections": 8,  
-            "failTimeout": "15s",  
-            "slowStart": "3s"  
-          },  
-          {  
-            "url": "https://gecho3.null.ie",  
-            "maxFails": 7,  
-            "maxConnections": 33,  
-            "failTimeout": "35s",  
-            "slowStart": "1s"  
-          }  
-        ]  
-      }  
-    ]  
-  }  
+"servers": [
+  {
+    "url": "https://{server}.example.com/api/{version}",
+    "variables": {
+      "version": {
+        "default": "v1"
+      },
+      "server": {
+        "default": "staging"
+      }
+    },
+    "x-acm-append-rule": "NONE",
+    "x-acm-strip-basepath": false,
+    "x-acm-backends": [
+      {
+        "serviceName": "pets-backend",
+        "serviceVersion": "pets-backend-v1",
+        "serviceLabel": "default",
+        "contextRoot": "/dev",
+        "upstreams": [
+          {
+            "url": "https://gecho1.null.ie",
+            "maxFails": 10,
+            "maxConnections": 5,
+            "failTimeout": "5s",
+            "slowStart": "10s"
+          },
+          {
+            "url": "https://gecho2.null.ie",
+            "maxFails": 5,
+            "maxConnections": 8,
+            "failTimeout": "15s",
+            "slowStart": "3s"
+          },
+          {
+            "url": "https://gecho3.null.ie",
+            "maxFails": 7,
+            "maxConnections": 33,
+            "failTimeout": "35s",
+            "slowStart": "1s"
+          }
+        ]
+      }
+    ]
+  }
 ],
 ```
+
 </details>
 
 &nbsp;
@@ -73,17 +74,17 @@ API Connectivity Manager now also supports server URL templating in the global U
 ### Server URL Templating
 
 ```json
-"servers": [  
-  {  
-    "url": "https://{server}.example.com/api/{version}",  
-    "variables": {  
-      "version": {  
-        "default": "v1"  
-      },  
-      "server": {  
-        "default": "staging"  
-      }  
-    },  
+"servers": [
+  {
+    "url": "https://{server}.example.com/api/{version}",
+    "variables": {
+      "version": {
+        "default": "v1"
+      },
+      "server": {
+        "default": "staging"
+      }
+    },
 ```
 
 In the above section, we can see how server URL templating will make substitutions with a matching value from the variables section of the server object in the specification.
@@ -94,25 +95,26 @@ This section explains how to create a backend target for our API Gateway configu
 An API Gateway can have multiple *Backends* which can each contain multiple upstream servers.
 
 ```json
-"x-acm-backends": [  
-      {  
-        "serviceName": "pets-backend",  
-        "serviceVersion": "pets-backend-v1",  
-        "serviceLabel": "default",  
-        "contextRoot": "/dev",  
-        "upstreams": [  
-          {  
-            "url": "https://server.example.com",  
-            "maxFails": 10,  
-            "maxConnections": 5,  
-            "failTimeout": "5s",  
-            "slowStart": "10s"  
+"x-acm-backends": [
+      {
+        "serviceName": "pets-backend",
+        "serviceVersion": "pets-backend-v1",
+        "serviceLabel": "default",
+        "contextRoot": "/dev",
+        "upstreams": [
+          {
+            "url": "https://server.example.com",
+            "maxFails": 10,
+            "maxConnections": 5,
+            "failTimeout": "5s",
+            "slowStart": "10s"
           },
 ```
 
 In the above example, we can see how to create a single *Backend* with a single upstream server.
 
 {{<bootstrap-table "table">}}
+
 | Variable       | Purpose                                                                                                                                                                                                                                   | Required | Default | Context  |
 |----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|---------|----------|
 | serviceName    | provides a human-readable identifier to the Backend                                                                                                                                                                                       | true     | none    | Backend  |
@@ -125,6 +127,7 @@ In the above example, we can see how to create a single *Backend* with a single 
 | maxConnections | limits the maximum `_number_` of simultaneous active connections to the proxied server                                                                                                                                                    | false    | 0       | Upstream |
 | failTimeout    | sets the time during which the specified number of unsuccessful attempts to communicate with the server should happen to consider the server unavailable and the period of time the server will be considered unavailable.                | false    | 10s     | Upstream |
 | slowStart      | sets the `_time during which the server will recover its weight from zero to a nominal value, when an unhealthy server becomes healthy, or when the server becomes available after being unavailable.           | false    | none    | Upstream |
+
 {{</bootstrap-table>}}
 
 All values supplied in the OAS Specification are only modifiable through the OAS Specification and not through the API or UI, this means that the OAS Specification is the source of truth for all values supplied within it.
@@ -134,13 +137,14 @@ If values are omitted from the OAS Schema then they may be added or modified via
 It is possible to modify the basepath provided using two additional extensions:
 `x-acm-append-rule` and `x-acm-strip-basepath`.
 
-`x-acm-append-rule` is a legacy configuration option that was used to either prepend or append the version field from the `info` section to your API basepath, going forward the basepath should be added explicitly to the global server URL section in exactly the manner in which it is to be used, for example: https://myserver.host.com/api/v1
+`x-acm-append-rule` is a legacy configuration option that was used to either prepend or append the version field from the `info` section to your API basepath, going forward the basepath should be added explicitly to the global server URL section in exactly the manner in which it is to be used, for example: <https://myserver.host.com/api/v1>
 
 `x-acm-append-rule` defaults to `NONE` and the version field in the `info` section is only used as the document version metadata in favor of explicitly adding the version to the server URL. `x-acm-append-rule` should ONLY be used for legacy deployments that used a value other than `NONE`
 
 `x-acm-strip-basepath` is a boolean value that denotes whether to strip the basepath from the request URI before proxying the request to the backend servers.
 
 {{<bootstrap-table "table">}}
+
 | Incoming URI          | basePath | stripBasepath | Context Root | Proxied URI            |
 |-----------------------|----------|---------------|--------------|------------------------|
 | /api/v1/customers     | /api/v1  | false         | /            | /api/v1/customers      |
@@ -148,4 +152,5 @@ It is possible to modify the basepath provided using two additional extensions:
 | /api/v1/customers/123 | /api/v1  | true          | /            | /customers/123         |
 | /api/v1/customers     | /api/v1  | false         | /prod        | /prod/api/v1/customers |
 | /api/v1/customers     | /api/v1  | true          | /prod        | /prod/customers        |
+
 {{</bootstrap-table>}}

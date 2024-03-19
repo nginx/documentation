@@ -80,15 +80,15 @@ curl --location --request POST 'https://{{nms-fqdn}}/api/acm/v1/services/workspa
 
 ## Variables
 
-The examples provided in these guides use a set of common variables. 
-You should replace these variables -- or define a set of values for them in your API client -- with information relevant to your environment before trying to use them. 
+The examples provided in these guides use a set of common variables.
+You should replace these variables -- or define a set of values for them in your API client -- with information relevant to your environment before trying to use them.
 The variables used in the examples are described in the table below.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-hover table-bordered" >}}
 |Variable | Definition |
 |---|-------|
-| `nms-fqdn`| The fully-qualified domain name (FQDN) or IP address of the host running NGINX Management Suite.<br>This is also referred to as the "management plane" host. | 
+| `nms-fqdn`| The fully-qualified domain name (FQDN) or IP address of the host running NGINX Management Suite.<br>This is also referred to as the "management plane" host. |
 | `backendIp` | The IP address or hostname of a backend server running an API service. |
 | `nginxInstance` | The IP address or hostname of an NGINX data plane instance. |
 | `devPortalIp` | The IP address or hostname of the instance hosting the Developer Portal. |
@@ -105,5 +105,6 @@ The variables used in the examples are described in the table below.
 | `portalInstanceGroupName` | The resource name of the Developer Portal. |
 | `portalClusterHostname` | The hostname for the Developer Portal. |
 | `clusterName` | The proxy cluster name for the Developer Portal or API Gateway. |
+
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+

@@ -4,7 +4,7 @@ date: 2023-05-17T15:05:59-07:00
 # Change draft status to false to publish doc
 draft: false
 # Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
+# Add a short description (150 chars) for the doc. Include keywords for SEO.
 # The description text appears in search results and at the top of the doc.
 description: "This topic describes possible issues users might encounter when using Instance Manager. When possible, suggested workarounds are provided."
 # Assign weights in increments of 100
@@ -26,11 +26,11 @@ authors: []
 
 ## New NGINX instances don't show up in Instance Manager
 
-#### Description
+### Description
 
 After installing NGINX and the NGINX Agent on an instance, the instance is not returned when calling `GET https://hostname/api/platform/v1/systems`.
 
-#### Resolution
+### Resolution
 
 The NGINX service must be running **before** you start the NGINX Agent.
 
@@ -44,7 +44,7 @@ The NGINX service must be running **before** you start the NGINX Agent.
 
 ## (RHEL 8) NGINX doesn't start after upgrading NGINX OSS
 
-#### Description
+### Description
 
 In some cases, after upgrading NGINX OSS on RHEL 8, the NGINX service may not start and returns an error similar to the following:
 
@@ -59,7 +59,7 @@ The error log may include entries similar to the following example:
 22022/05/12 16:18:34 [emerg] 70092#70092: bind() to 0.0.0.0:80 failed (98: Address already in use)
 ```
 
-#### Resolution
+### Resolution
 
 Ensure there isn't a process bound to port `80` or `443`.
 
@@ -80,11 +80,11 @@ Ensure there isn't a process bound to port `80` or `443`.
 
 ## Scan reports NGINX versions as `undefined` when NGINX App Protect is enabled
 
-#### Description
+### Description
 
 When [scanning for NGINX instances]({{< relref "/nms/nim/how-to/monitoring/scan-instances" >}}), the NGINX version is reported as `undefined` when NGINX App protect is installed.
 
-#### Resolution
+### Resolution
 
 This behavior is **by design**. As a security precaution when NGINX App Protect is installed, the NGINX server does not report its version in any HTTP headers. The **NGINX Plus** and **Instances** pages in the web interface will continue to report the NGINX and NGINX App Protect versions.
 
@@ -92,11 +92,11 @@ This behavior is **by design**. As a security precaution when NGINX App Protect 
 
 ## The NGINX Agent does not reconnect after a containerized Instance Manager with no persistent volumes is restarted
 
-#### Description
+### Description
 
 If Instance Manager is restarted without any persistent volumes configured, the NGINX Agent won't reconnect automatically.
 
-#### Resolution
+### Resolution
 
 When Instance Manager is restarted, its internal API gateway may be assigned a new IP address.
 
@@ -108,11 +108,11 @@ To learn more, refer to the [NGINX Agent documentation]({{< relref "/nms/nginx-a
 
 ## "Public Key Not Available" error when upgrading Instance Manager on a Debian-based system
 
-#### Description
+### Description
 
 When attempting to upgrade Instance Manager on a Debian-based system, the command `sudo apt-get update` may return the error “public key is not available,” preventing the NGINX Agent from being updated. To resolve this issue, you need to update the public key first.
 
-#### Workaround
+### Workaround
 
 To manually update the public key, take the following steps:
 
@@ -140,7 +140,7 @@ To manually update the public key, take the following steps:
 
 ## Publishing to an instance or instance group returns error "outside the allowed directory list"
 
-#### Description
+### Description
 
 If an instance or instance group's configuration references an aux file (for example, an SSL certificate) that is not in the expected allowed directory, publishing the config will fail. The same can happen when a certificate is assigned a file path outside the allowed directory. In both cases, the system returns an error similar to the following:
 
@@ -148,7 +148,7 @@ If an instance or instance group's configuration references an aux file (for exa
 Config apply failed (write): the file <filename> is outside the allowed directory list.
 ```
 
-#### Resolution
+### Resolution
 
 For a failure when publishing of a configuration, move the aux file to the allowed directory and update the configuration; for example, use `/etc/nginx/` for certificates.
 

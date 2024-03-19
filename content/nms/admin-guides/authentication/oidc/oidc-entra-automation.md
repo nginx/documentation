@@ -130,6 +130,7 @@ Additionally, you will need to complete the following steps:
 ## Get an Access Token from Microsoft Entra
 
 1. Send a POST request to the Microsoft Entra token endpoint, for example:
+
     ```bash
     https://login.microsoftonline.com/<your-azure-tenant-id>/oauth2/v2.0/token
     ```

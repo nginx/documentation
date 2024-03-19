@@ -35,7 +35,7 @@ This release includes the following updates:
 - {{% icon-feature %}} **Stability and performance improvements**<a name="1-7-1-whats-new-Stability-and-performance-improvements"></a>
 
   This release includes stability and performance improvements.
-  
+
 
 ### Known Issues{#1-7-1-known-issues}
 
@@ -65,7 +65,7 @@ This release has the following changes in default behavior:
 - {{% icon-feature %}} **Security Monitoring backend service**<a name="1-7-0-changes-in-behavior-Security-Monitoring-backend-service"></a>
 
   The backend for Security Monitoring is now served by the `nms-sm` process instead of `nms-core`. The `nms-sm` process must be started after installation of the `nms-sm` package.
-  
+
 
 ### Known Issues{#1-7-0-known-issues}
 
@@ -122,7 +122,7 @@ This release includes the following updates:
 - {{% icon-feature %}} **Improved security monitoring with violation and signature details**<a name="1-5-0-whats-new-Improved-security-monitoring-with-violation-and-signature-details"></a>
 
   This release adds violation and signature details to Security Monitoring. This information helps you identify false positives and gain a more comprehensive understanding of violations, allowing you to fine-tune your security policies and optimize your threat detection.
-  
+
 
 ### Known Issues{#1-5-0-known-issues}
 
@@ -152,7 +152,7 @@ This release includes the following updates:
 - {{% icon-feature %}} **View violation context for requests in Event logs**<a name="1-4-0-whats-new-View-violation-context-for-requests-in-Event-logs"></a>
 
   You can now view the request entity and its associated details that triggered a WAF violation from the event logs.
-  
+
 
 ### Changes in Default Behavior{#1-4-0-changes-in-behavior}
 This release has the following changes in default behavior:
@@ -160,7 +160,7 @@ This release has the following changes in default behavior:
 - {{% icon-feature %}} **Update to the Signature context pie chart**<a name="1-4-0-changes-in-behavior-Update-to-the-Signature-context-pie-chart"></a>
 
   The Signature context pie chart now shows information related to signature-based violations in requests and URIs, in addition to the already available header, parameter, and cookie information.
-  
+
 
 ### Known Issues{#1-4-0-known-issues}
 
@@ -190,7 +190,7 @@ This release includes the following updates:
 - {{% icon-feature %}} **Top Signatures section added to the Main tab**<a name="1-3-0-whats-new-Top-Signatures-section-added-to-the-Main-tab"></a>
 
   The "Top Signatures" section is now available in the "Main" tab of the Security Monitoring module dashboard.
-  
+
 
 ### Security Updates{#1-3-0-security-updates}
 
@@ -203,22 +203,22 @@ This release includes the following security updates:
 - {{% icon-resolved %}} **Instance Manager vulnerability CVE-2023-1550**<a name="1-3-0-security-updates-Instance-Manager-vulnerability-CVE-2023-1550"></a>
 
   NGINX Agent inserts sensitive information into a log file ([CVE-2023-1550](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-1550)). An authenticated attacker with local access to read NGINX Agent log files may gain access to private keys. This issue is exposed only when the non-default trace-level logging is enabled.
-  
+
   NGINX Agent is included with NGINX Instance Manager, and used in conjunction with API Connectivity Manager and the Security Monitoring module.
-  
+
   This issue has been classified as [CWE-532: Insertion of Sensitive Information into Log File](https://cwe.mitre.org/data/definitions/532.html).
-  
-  **Mitigation**
-    
-  - Avoid configuring trace-level logging in the NGINX Agent configuration file. For more information, refer to the [Configuring the NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent.md#configuring-the-nginx-agent ">}}) section of NGINX Management Suite documentation. If trace-level logging is required, ensure only trusted users have access to the log files.
-  
-  **Fixed in**
-  
-  - NGINX Agent 2.23.3
-  - Instance Manager 2.9.0
-  
-  For more information, refer to the MyF5 article [K000133135](https://my.f5.com/manage/s/article/K000133135).
- 
+
+#### Mitigation
+
+- Avoid configuring trace-level logging in the NGINX Agent configuration file. For more information, refer to the [Configuring the NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent.md#configuring-the-nginx-agent ">}}) section of NGINX Management Suite documentation. If trace-level logging is required, ensure only trusted users have access to the log files.
+
+#### Fixed in
+
+- NGINX Agent 2.23.3
+- Instance Manager 2.9.0
+
+For more information, refer to the MyF5 article [K000133135](https://my.f5.com/manage/s/article/K000133135).
+
 
 ### Changes in Default Behavior{#1-3-0-changes-in-behavior}
 This release has the following changes in default behavior:
@@ -226,11 +226,11 @@ This release has the following changes in default behavior:
 - {{% icon-feature %}} **Improved error message when NGNIX Management Suite server is not running**<a name="1-3-0-changes-in-behavior-Improved-error-message-when-NGNIX-Management-Suite-server-is-not-running"></a>
 
   The Security Monitoring module now displays the message "Upstream unavailable" when the NGINX Management Suite server is not running, instead of the previous message "Oops something went wrong."
-  
+
 - {{% icon-feature %}} **Single quotes are automatically escaped in filtered values**<a name="1-3-0-changes-in-behavior-Single-quotes-are-automatically-escaped-in-filtered-values"></a>
 
   Single quotes in filtered values are automatically escaped to ensure that the data is parsed correctly.
-  
+
 
 ### Known Issues{#1-3-0-known-issues}
 
@@ -260,9 +260,9 @@ This release includes the following updates:
 - {{% icon-feature %}} **Get the latest Signature and Geolocation Databases**<a name="1-2-0-whats-new-Get-the-latest-Signature-and-Geolocation-Databases"></a>
 
   [Update the Signature database]({{< relref "/nms/security/how-to/update-signatures" >}}) to get the latest attack signature details.
-  
+
   [Update the Geolocation Database]({{< relref "/nms/security/how-to/update-geo-db" >}}) to get the most accurate mapping of IP address to Geolocation.
-  
+
 
 ### Resolved Issues{#1-2-0-resolved-issues}
 This release fixes the following issues. Select an issue's ID link to view its details.
@@ -297,11 +297,11 @@ This release has the following changes in default behavior:
 - {{% icon-feature %}} **Removal of Total Requests count**<a name="1-1-0-changes-in-behavior-Removal-of-Total-Requests-count"></a>
 
   The Total Requests count was removed from the Security Monitoring dashboards, to avoid customer confusion, as the value didn't convey different configuration scenarios for NGINX App Protect on NGINX instances.
-  
+
 - {{% icon-feature %}} **Removal of WAF PASSED requests count**<a name="1-1-0-changes-in-behavior-Removal-of-WAF-PASSED-requests-count"></a>
 
   The count of WAF `PASSED` requests was removed from the Security Monitoring dashboards to avoid customer confusion, as it counted only requests with violations and not all requests filtered by NGINX App Protect WAF.
-  
+
 
 ### Known Issues{#1-1-0-known-issues}
 
@@ -320,14 +320,14 @@ This release includes the following updates:
 - {{% icon-feature %}} **Introducing the NGINX Management Suite Security Monitoring module**<a name="1-0-0-whats-new-Introducing-the-NGINX-Management-Suite-Security-Monitoring-module"></a>
 
   Use the NGINX Management Suite Security Monitoring module to monitor the NGINX App Protect WAF protection of your apps and APIs. View protection insights for analyzing possible threats and tuning policies.
-  
+
   The Security Monitoring module includes the following:
-  
+
   - Informative dashboards that provide valuable protection insights
   - In-depth security log details to help with analyzing possible threats and making policy decisions
-  
+
   Refer to the [Installation Guide]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}) to get started.
-  
+
 
 ### Known Issues{#1-0-0-known-issues}
 

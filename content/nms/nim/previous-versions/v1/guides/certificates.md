@@ -24,7 +24,7 @@ docs: "DOCS-630"
 
 This document explains how to scan for expired certificates with NGINX Instance Manager.
 
-# {{%heading "certificate-scanning"%}}
+{{%heading "certificate-scanning"%}}
 
 ## How it works {#cert-scan}
 

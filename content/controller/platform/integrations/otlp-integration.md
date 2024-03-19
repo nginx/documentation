@@ -27,7 +27,7 @@ The server should expose the OTLP receiver.
 The forwarder produces an OTLP protocol `ExportMetricsServiceRequest` message with the following restrictions:
 
 - every metric is mapped to `Gauge`.
-- unit is set to `1 `(no unit).
+- unit is set to `1`(no unit).
 - the `ResourceMetrics` fields for `SchemaUrl` and `Resource` are empty.
 - the `InstrumentationLibraryMetric` fields for `InstrumentationLibrary` and `SchemaUrl` are empty.
 

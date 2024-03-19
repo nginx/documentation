@@ -46,6 +46,7 @@ Performing the security bundle compilation on Instance Manager (precompiled publ
 - The bundles produced by Instance Manager can be reused by multiple NGINX App Protect WAF instances, instead of each instance having to perform the compilation separately.
 
 However, if you prefer to maintain policy compilation on the NGINX App Protect WAF instance, that is supported with the following limitation:
+
 - Instance Manager does not publish JSON policies to the NGINX App Protect WAF instance. JSON policies referenced in an NGINX configuration must already exist on the NGINX App Protect WAF instance. 
 
 The example [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) context below enables NGINX App Protect WAF and tells NGINX where to find the compiled security bundle:

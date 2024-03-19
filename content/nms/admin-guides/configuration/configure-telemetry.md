@@ -33,6 +33,7 @@ By sharing this telemetry data, we can improve NGINX Management Suite and provid
 The table below shows the captured data points, the trigger conditions, and their respective purposes. We may add additional data points in the future.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | <div style="width:250px">Data Point</div>            | Triggering Event                            | Purpose |
 |--------------------------|------------------------------------|-------|
 | Installation | The first time NGINX Management Suite processes are started. | To measure the time it takes to install and start using NGINX Management Suite. |
@@ -40,6 +41,7 @@ The table below shows the captured data points, the trigger conditions, and thei
 | Start/Stop processes | When any NGINX Management Suite processes are started or stopped. | To gauge how often users upgrade NGINX Management Suite or troubleshoot issues. This information helps F5 Support diagnose issues. |
 | Adding Data Plane(s)      | When NGINX Agent registers with NGINX Management Suite for the first time. No data about the data plane is sent, just that an NGINX Agent registered with the platform. | To understand the frequency and quantity of data planes being added to NGINX Management Suite. This information helps inform our scale and performance targets and helps F5 Support diagnose issues. |
 | Product Usage | Data is sent daily or when Send Usage is selected from the Licenses page in the web interface or initiated using the API. (Requires a [JWT license]({{< relref "/nms/installation/add-license.md#jwt-license" >}}).) | To track and report commercial usage in accordance with entitlement and Flexible Consumption Program (FCP) requirements. |
+
 {{</bootstrap-table>}}
 
 ---

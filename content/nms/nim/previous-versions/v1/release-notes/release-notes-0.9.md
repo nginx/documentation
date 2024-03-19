@@ -42,11 +42,13 @@ March 22, 2021
 ### Supported Versions
 
 NGINX Plus Versions:
+
 - R21
 - R22
 - R23
 
 NGINX Open Source Versions:
+
 - 1.16
 - 1.18
 - 1.19
@@ -67,11 +69,11 @@ Everything is new, as v0.9.0 is our first public release.
 
 NGINX Instance Manager version 0.9.0 includes the following features:
 
-  - Support for NGINX Open Source
-  - Scanning tool for existing web servers
-  - Configuration editor
-  - Analyzer functionality
-  - Advanced authentication options
+- Support for NGINX Open Source
+- Scanning tool for existing web servers
+- Configuration editor
+- Analyzer functionality
+- Advanced authentication options
 
 #### Support for NGINX Open Source
 

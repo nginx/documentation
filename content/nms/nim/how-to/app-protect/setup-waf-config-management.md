@@ -60,6 +60,7 @@ For more information about the WAF compiler, refer to the [Security Bundle Compi
 The following table shows the NGINX App Protect WAF Release version and its corresponding WAF compiler version:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | NGINX App Protect WAF Release version | WAF Compiler               |
 |---------------------------------------|----------------------------|
 | NGINX App Protect WAF 4.8.1           | nms-nap-compiler-v4.815.0  |
@@ -73,11 +74,13 @@ The following table shows the NGINX App Protect WAF Release version and its corr
 | NGINX App Protect WAF 4.1.0           | nms-nap-compiler-v4.100.1  |
 | NGINX App Protect WAF 4.0.0           | nms-nap-compiler-v4.2.0    |
 | NGINX App Protect WAF 3.12.2          | nms-nap-compiler-v3.1088.2 |
+
 {{</bootstrap-table>}}
 
 <br>
 
 {{<note>}}
+
 - The install commands in this guide use an example version to show the correct command format.
 
   Be sure to replace the version string in the example with the correct version to suit your needs.
@@ -96,7 +99,9 @@ sudo apt-get install nms-nap-compiler-v4.815.0
 ```
 
 {{<note>}}
+
 - If you want to have more than one version of the `nms-nap-compiler` installed on your system at once, you'll need to append `-o Dpkg::Options::="--force-overwrite"` to the `nms-nap-compiler` installation commands after your initial `nms-nap-compiler` installation. For example, the installation command would look like this:
+
 ```bash
 sudo apt-get install nms-nap-compiler-v4.815.0 -o Dpkg::Options::="--force-overwrite"
 ```
@@ -394,6 +399,7 @@ To ensure that the dashboards show the most up-to-date information, you need to 
 
 ## Setup Compiler Resource Pruning
 You can configure the following compiler resources to prune automatically:
+
 - Compiled Security Policies
 - Compiled Security Log Profiles
 - Attack Signatures
@@ -519,14 +525,16 @@ You can query the Instance Manager REST API to verify the following information:
 - NGINX App Protect WAF running status
 - Total number of instances with NGINX App Protect WAF installed, out of the total number of NGINX instances
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                     |
 |--------|------------------------------|
 | GET    | `/api/platform/v1/instances` |
 | GET    | `/api/platform/v1/systems`   |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 - Send an HTTP `GET` request to the `/api/platform/v1/systems` endpoint to find out what version of NGINX App Protect is running. This response will also show the Threat Campaign and Attack Signature package versions running on each instance.
 
@@ -873,15 +881,16 @@ Additional example configurations tailored for NGINX features can be found in th
 
 {{< see-also >}}{{< include "nim/how-to-access-nim-api.md" >}}{{< /see-also >}}
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                                            |
 |--------|---------------------------------------------------------------------|
 | GET    | `/api/platform/v1/systems/{systemUID}/instances`                    |
 | POST   | `/api/platform/v1/security/{systemUID}/instances/{nginxUID}/config` |
 
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 1. Send an HTTP `GET` request to the `/api/platform/v1/systems/{systemUID}/instances` endpoint. This returns a list of all instances from which you can find the unique identifier (UID) of the instance that you want to update.
 1. Add the desired configurations to your `nginx.conf` file, or to any other configuration file that's within the context defined in the NGINX Agent `config_dirs` setting.
@@ -1034,7 +1043,7 @@ Examples:
 
 Configure NGINX Agent on your NGINX App Protect WAF instance with settings similar to the following example:
 
-*/etc/nginx-agent/nginx-agent.conf*
+"/etc/nginx-agent/nginx-agent.conf"
 
 ```yaml
 # path to aux file dirs can also be added

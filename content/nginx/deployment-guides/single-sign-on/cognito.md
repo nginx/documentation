@@ -21,23 +21,23 @@ This guide explains how to enable single sign‑on (SSO) for applications being 
 
 The instructions assume you have the following:
 
-* An [AWS account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/).
-* An NGINX Plus subscription and <span style="white-space: nowrap;">NGINX Plus R15</span> or later. For installation instructions, see the [NGINX Plus Admin Guide](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
-* The [NGINX JavaScript module](https://www.nginx.com/blog/introduction-nginscript/) (njs), required for handling the interaction between NGINX Plus and the IdP. After installing NGINX Plus, install the module with the command for your operating system.
+- An [AWS account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/).
+- An NGINX Plus subscription and <span style="white-space: nowrap;">NGINX Plus R15</span> or later. For installation instructions, see the [NGINX Plus Admin Guide](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
+- The [NGINX JavaScript module](https://www.nginx.com/blog/introduction-nginscript/) (njs), required for handling the interaction between NGINX Plus and the IdP. After installing NGINX Plus, install the module with the command for your operating system.
 
    For Debian and Ubuntu:
 
    ```none 
-   $ sudo apt install nginx-plus-module-njs 
+   sudo apt install nginx-plus-module-njs 
    ```
    
    For CentOS, RHEL, and Oracle Linux:
  
    ```shell
-   $ sudo yum install nginx-plus-module-njs
+   sudo yum install nginx-plus-module-njs
    ```
     
-* The following directive included in the top-level ("main") configuration context in **/etc/nginx/nginx.conf**, to load the NGINX JavaScript module:
+- The following directive included in the top-level ("main") configuration context in **/etc/nginx/nginx.conf**, to load the NGINX JavaScript module:
 
    ```nginx
    load_module modules/ngx_http_js_module.so;
@@ -99,8 +99,8 @@ Create a new application for NGINX Plus in the Cognito GUI:
 
        **Notes:** 
      
-       * For production, we strongly recommend that you use SSL/TLS (port 443).
-       * The port number is mandatory even when you're using the default port for HTTP (80) or HTTPS (443).
+       - For production, we strongly recommend that you use SSL/TLS (port 443).
+       - The port number is mandatory even when you're using the default port for HTTP (80) or HTTPS (443).
        
     3. In the **OAuth 2.0** section, click the <span style="white-space: nowrap; font-weight:bold;">Authorization code grant</span> checkbox under <span style="white-space: nowrap; font-weight:bold;">Allowed OAuth Flows</span> and the **email**, **openid**, and **profile** checkboxes under <span style="white-space: nowrap; font-weight:bold;">Allowed OAuth Scopes</span>.
     4. Click the <span style="background-color:#479bd4; color:white; white-space: nowrap;"> Save changes </span> button.
@@ -120,25 +120,25 @@ Configure NGINX Plus as the OpenID Connect relying party:
 1. Create a clone of the [<span style="white-space: nowrap; font-weight:bold;">nginx-openid-connect</span>](https://github.com/nginxinc/nginx-openid-connect) GitHub repository.
 
    ```shell
-   $ git clone https://github.com/nginxinc/nginx-openid-connect
+   git clone https://github.com/nginxinc/nginx-openid-connect
    ```
    
 2. Copy these files from the clone to **/etc/nginx/conf.d**:
 
-   * **frontend.conf**
-   * **openid_connect.js**
-   * **openid_connect.server\_conf**
+   - **frontend.conf**
+   - **openid_connect.js**
+   - **openid_connect.server\_conf**
 
    <span id="nginx-plus-variables"></span>
 3. In your preferred text editor, open **/etc/nginx/conf.d/frontend.conf**. Change the second parameter of each of the following [set](http://nginx.org/en/docs/http/ngx_http_rewrite_module.html#set) directives to the specified value.
 
    The `<My-Cognito-Domain-Name>` variable is the full value in the **Domain prefix** field in [Step 13 of _Configuring Amazon Cognito_](#cognito-domain-name). In this guide it is <span style="color:#666666; font-weight:bolder; white-space: nowrap;">https://my-nginx-plus.auth.us-east-2.amazoncognito.com</span>. 
 
-   * `set $oidc_authz_endpoint` – `<My-Cognito-Domain-Name>/oauth2/authorize`
-   * `set $oidc_token_endpoint` – `<My-Cognito-Domain-Name>/oauth2/token`
-   * `set $oidc_client` – Value in the <span style="white-space: nowrap; font-weight:bold;">App client id</span> field from [Step 11 of _Configuring Amazon Cognito_](#cognito-app-client-id-secret) (in this guide, `2or4cs8bjo1lkbq6143tqp6ist`)
-   * `set $oidc_client_secret` – Value in the <span style="white-space: nowrap; font-weight:bold;">App client secret</span> field from [Step 11 of _Configuring Amazon Cognito_](#cognito-app-client-id-secret) (in this guide, `1k63m3nrcnu...`)  
-   * `set $oidc_hmac_key` – A unique, long, and secure phrase
+   - `set $oidc_authz_endpoint` – `<My-Cognito-Domain-Name>/oauth2/authorize`
+   - `set $oidc_token_endpoint` – `<My-Cognito-Domain-Name>/oauth2/token`
+   - `set $oidc_client` – Value in the <span style="white-space: nowrap; font-weight:bold;">App client id</span> field from [Step 11 of _Configuring Amazon Cognito_](#cognito-app-client-id-secret) (in this guide, `2or4cs8bjo1lkbq6143tqp6ist`)
+   - `set $oidc_client_secret` – Value in the <span style="white-space: nowrap; font-weight:bold;">App client secret</span> field from [Step 11 of _Configuring Amazon Cognito_](#cognito-app-client-id-secret) (in this guide, `1k63m3nrcnu...`)  
+   - `set $oidc_hmac_key` – A unique, long, and secure phrase
 
 4. Configure the JWK file. The file's URL is 
 
@@ -146,8 +146,8 @@ Configure NGINX Plus as the OpenID Connect relying party:
    
    where 
 
-   * _region_ is the same AWS region name as in the <span style="white-space: nowrap;">`<My-Cognito-Domain-Name>`</span> variable used in [Step 3](#nginx-plus-variables)
-   * _User-Pool-ID_ is the value in the **Pool Id** field in [Step 8 of _Configuring Amazon Cognito_](#cognito-pool-id)
+   - _region_ is the same AWS region name as in the <span style="white-space: nowrap;">`<My-Cognito-Domain-Name>`</span> variable used in [Step 3](#nginx-plus-variables)
+   - _User-Pool-ID_ is the value in the **Pool Id** field in [Step 8 of _Configuring Amazon Cognito_](#cognito-pool-id)
 
    In this guide, the URL is 
    
@@ -155,15 +155,15 @@ Configure NGINX Plus as the OpenID Connect relying party:
 
    The method for configuring the JWK file depends on which version of NGINX Plus you are using:
 
-   * In <span style="white-space: nowrap;">NGINX Plus R17</span> and later, NGINX Plus can read the JWK file directly. Change **/etc/nginx/conf.d/frontend.conf** as follows:
+   - In <span style="white-space: nowrap;">NGINX Plus R17</span> and later, NGINX Plus can read the JWK file directly. Change **/etc/nginx/conf.d/frontend.conf** as follows:
 
       1. Comment out (or remove) the [auth_jwt_key_file](http://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_file) directive.   
       2. Uncomment the [auth_jwt_key_request](http://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_request) directive. (Its parameter, `/_jwks_uri`, refers to the value of the `$oidc_jwt_keyfile` variable, which you set in the next step.) 
       3. Change the second parameter of the `set $oidc_jwt_keyfile` directive to the URL of the JWK file (`https://cognito-idp.../.well-known/jwks.json`).
 
-   * In <span style="white-space: nowrap;">NGINX Plus R16</span> and earlier, the JWK file must be on the local disk. (You can also use this method with <span style="white-space: nowrap;">NGINX Plus R17</span> and later if you wish.)
+   - In <span style="white-space: nowrap;">NGINX Plus R16</span> and earlier, the JWK file must be on the local disk. (You can also use this method with <span style="white-space: nowrap;">NGINX Plus R17</span> and later if you wish.)
 
-      1. Copy the JSON contents from the JWK file (**https://cognito-idp.../.well-known/jwks.json**) to a local file (for example, **/etc/nginx/my\_cognito\_jwk.json**). 
+      1. Copy the JSON contents from the JWK file (**<https://cognito-idp.../.well-known/jwks.json>**) to a local file (for example, **/etc/nginx/my\_cognito\_jwk.json**). 
       2. In **/etc/nginx/conf.d/frontend.conf**, change the second parameter of the `set $oidc_jwt_keyfile` directive to the local file path.
 
 5. At the time of publication, Cognito does not support the OpenID  **offline_access** scope. Open **/etc/nginx/conf.d/openid\_connect.server\_conf** in a text editor and remove `+offline_access` from the list of scopes on line 10, so that it looks like this:
@@ -188,4 +188,4 @@ See the [**Troubleshooting**](https://github.com/nginxinc/nginx-openid-connect#t
 
 ### Revision History
 
-* Version 1 (March 2020) – Initial version (NGINX Plus Release 20)
+- Version 1 (March 2020) – Initial version (NGINX Plus Release 20)

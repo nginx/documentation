@@ -239,6 +239,7 @@ When updating Instance Group NGINX config using the UI or API, only the currentl
 reconnected Instance should get NGINX config updated automatically to the last "successful" published NGINX config.
 
 A NGINX config update to Instance Group is considered "successful" with one of the following conditions:
+
 - Instance Group does not have a member Instance online
 - Any Instance Group member reported "successful" to the NGINX config update
 
@@ -249,5 +250,6 @@ Check the Instance details page for the last NGINX config publish status.
 ### Common Usage of Instance Groups
 
 Instance Groups can be used for the following workflows:
+
 - Preset NGINX config for new Instances, i.e. containerized Instances
 - Group permissions for a set of Instances that share the same NGINX config

@@ -4,7 +4,7 @@ date: 2022-06-17T14:33:02-07:00
 # Change draft status to false to publish doc.
 draft: false
 # Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
+# Add a short description (150 chars) for the doc. Include keywords for SEO.
 # The description text appears in search results and at the top of the doc.
 description: "This topic explains what SCIM support is available for automating the management of user identity lifecycles."
 # Assign weights in increments of 100
@@ -59,7 +59,8 @@ The SCIM endpoints listed below follow the specification outlined in the [SCIM E
 
 <br>
 
-{{% table %}}
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+
 | Endpoint | Method | Description |
 | --- | --- | ----------- |
 | `/api/scim/v2/Users` | POST | Adds a new IDP User. |
@@ -70,7 +71,8 @@ The SCIM endpoints listed below follow the specification outlined in the [SCIM E
 | `/api/scim/v2/Users` | GET | Gets all the IDP Groups. Pagination params are supported as per SCIM standard. |
 | `/api/scim/v2/Groups/{groupID}` | PUT | Updates an existing User Group. |
 | `/api/scim/v2/Groups/{groupID}` | DELETE | Deletes an existing User Group. |
-{{% /table %}}
+
+{{</bootstrap-table>}}
 </details>
 
 ## Request and Response Schemas

@@ -46,6 +46,7 @@ This document helps you get NGINX Instance Manager up and running for a demo or 
 ## Install Server {#install-server}
 
 You can choose one of the following two options:
+
 - Use the public NGINX repositories with a certificate and key or internal package management system (like Red Hat Satellite)
 - Use the packages directly by downloading them from the myF5 portal or from  NGINX/F5 sales team.
 
@@ -130,7 +131,7 @@ sudo mv nginx-instance-manager.lic /etc/nginx-manager
    For example, since we will use NGINX Plus reverse proxy on the same host machine, the following file will listen on `127.0.0.1` localhost IP and use the default ports of `11000` for the user interface and API and `10000` for gRPC.
 
 ```bash
-# vim or use your own editor here. 
+# vim or use your own editor here.
 sudo vim /etc/nginx-manager/nginx-manager.conf
 ```
 
@@ -138,6 +139,7 @@ sudo vim /etc/nginx-manager/nginx-manager.conf
     <summary>/etc/nginx-manager/nginx-manager.conf</summary>
 
 {{<fa "download">}} {{<link "getting-started/quickstart/nginx-manager.conf" "nginx-manager.conf">}}
+
 ```yaml {hl_lines=["5-7"]}
 #
 # /etc/nginx-manager/nginx-manager.conf
@@ -159,6 +161,7 @@ metrics:
     storage_path: /var/nginx-manager/
 license: /etc/nginx-manager/nginx-manager.lic
 ```
+
 </details>
 
 ## Install NGINX as a proxy server for Instance Manager {#install-proxy}
@@ -206,6 +209,7 @@ Use the following as an example and modify it according to your needs. There are
     <summary>make_certs.sh</summary>
 
 {{<fa "download">}} {{<link "getting-started/quickstart/make_certs.sh" "make_certs.sh">}}
+
 ```bash
 #!/bin/bash
 
@@ -334,6 +338,7 @@ make_server
 make_agent
 
 ```
+
 </details><br/>
 
 3. Put the following OpenSSL cnf files in the same directory.
@@ -342,7 +347,8 @@ make_agent
     <summary>ca.cnf</summary>
 
 {{<fa "download">}} {{<link "getting-started/quickstart/ca.cnf" "ca.cnf">}}
-```
+
+```none
 [req]
 default_bits        = 4096
 distinguished_name  = req_distinguished_name
@@ -368,13 +374,15 @@ DNS.1 = nginx-manager_ca.example.com
 DNS.2 = localhost
 IP.1 = 127.0.0.1
 ```
+
 </details>
 
 <details>
     <summary>ca-intermediate.cnf</summary>
 
 {{<fa "download">}} {{<link "getting-started/quickstart/ca-intermediate.cnf" "ca-intermediate.cnf">}}
-```
+
+```none
 [req]
 default_bits        = 4096
 distinguished_name  = req_distinguished_name
@@ -400,13 +408,15 @@ DNS.1 = nginx-manager_ca_int.example.com
 DNS.2 = localhost
 IP.1 = 127.0.0.1
 ```
+
 </details>
 
 <details>
     <summary>server.cnf</summary>
 
 {{<fa "download">}} {{<link "getting-started/quickstart/server.cnf" "server.cnf">}}
-```
+
+```none
 [req]
 prompt             = no
 default_bits       = 4096
@@ -432,13 +442,15 @@ DNS.3 = nginx-manager
 DNS.4 = localhost
 IP.1 = 127.0.0.1
 ```
+
 </details>
 
 <details>
     <summary>agent.cnf</summary>
 
 {{<fa "download">}} {{<link "getting-started/quickstart/agent.cnf" "agent.cnf">}}
-```
+
+```none
 [req]
 prompt             = no
 default_bits       = 2048
@@ -462,6 +474,7 @@ DNS.1 = agent.example.com
 DNS.2 = *.example.com
 
 ```
+
 </details><br/>
 
 4. Make the script executable and run the script to generate the certificates.
@@ -517,6 +530,7 @@ ls -lh /etc/ssl/nginx-manager
     <summary>/etc/nginx/conf.d/nginx-manager-https.conf</summary>
 
 {{<fa "download">}} {{<link "getting-started/quickstart/nginx-manager-https.conf" "nginx-manager-https.conf">}}
+
 ```nginx
 # nginx-manager-https.conf
 # Proxy UI/API with no auth to 127.0.0.1 on nginx-manager
@@ -556,12 +570,14 @@ server {
 
 # vim: syntax=nginx
 ```
+
 </details>
 
 <details>
     <summary>/etc/nginx/conf.d/nginx-manager-upstreams.conf</summary>
 
 {{<fa "download">}} {{<link "/examples/nginx-manager/nginx-manager-upstreams.conf" "nginx-manager-upstreams.conf">}}
+
 ```nginx
 # nginx-manager-upstreams.conf
 # Upstreams for NGINX nginx-manager API/UI
@@ -573,12 +589,14 @@ upstream nginx-manager_servers {
 
 # vim: syntax=nginx
 ```
+
 </details>
 
 <details>
     <summary>/etc/nginx/conf.d/nginx-manager-grpc.conf</summary>
 
 {{<fa "download">}} {{<link "/examples/nginx-manager/nginx-manager-grpc.conf" "nginx-manager-grpc.conf">}}
+
 ```nginx
 # nginx-manager-grpc.conf
 # * Proxy grpc through tcp 10443 to 127.0.0.1 on nginx-manager
@@ -652,12 +670,14 @@ upstream nginx-manager_grpc_servers {
 
 # vim: syntax=nginx
 ```
+
 </details>
 
 <details>
     <summary>/etc/nginx/conf.d/errors.grpc_conf</summary>
 
 {{<fa "download">}} {{<link "/examples/nginx-manager/errors.grpc_conf" "errors.grpc_conf">}}
+
 ```nginx
 # Standard HTTP-to-gRPC status code mappings
 # Ref: https://github.com/grpc/grpc/blob/master/doc/http-grpc-status-mapping.md
@@ -775,12 +795,14 @@ location @grpc_unauthenticated {
 
 # vim: syntax=nginx
 ```
+
 </details>
 
 <details>
     <summary>/etc/nginx/conf.d/status-api.conf</summary>
 
 {{<fa "download">}} {{<link "/examples/nginx-manager/status-api.conf" "status-api.conf">}}
+
 ```nginx
 # status-api.conf
 # This sample NGINX Plus configuration enables the NGINX Plus API, for live
@@ -898,6 +920,7 @@ server {
 
 # vim: syntax=nginx
 ```
+
 </details><br/>
 
 3. Replace the `default.conf` hello world page with a blank file
@@ -1058,6 +1081,7 @@ sudo rpmkeys --import /tmp/nginx_signing.key
     <summary>/etc/nginx-agent/nginx-agent.conf</summary>
 
 {{<fa "download">}} {{<link "getting-started/quickstart/nginx-agent.conf" "nginx-agent.conf">}}
+
 ```yaml
 #
 # /etc/nginx-agent/nginx-agent.conf
@@ -1083,6 +1107,7 @@ metrics_poll_interval: 1000ms
 # exclude_logs: /var/log/nginx/skipthese*,/var/log/nginx/special-access.log
 
 ```
+
 </details><br/>
 
 4. Install Selinux Module (Optional) {#agent-selinux}

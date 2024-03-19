@@ -49,27 +49,35 @@ September 21, 2022
 #### App Protect DoS
 
 ##### CentOS 7.4+ / RHEL 7.4+ / UBI7
+
 - app-protect-dos-27+3.0.3-1.el7.ngx.el7.ngx.x86_64.rpm
 
 ##### RHEL 8 / UBI8
+
 - app-protect-dos-27+3.0.3-1.el8.ngx.el8.ngx.x86_64.rpm
 
 ##### Debian 10
+
 - app-protect-dos_27+3.0.3-1~buster_amd64.deb
 
 ##### Debian 11
+
 - app-protect-dos_27+3.0.3-1~bullseye_amd64.deb
 
 ##### Ubuntu 18.04
+
 - app-protect-dos_27+3.0.3-1~bionic_amd64.deb
 
 ##### Ubuntu 20.04
+
 - app-protect-dos_27+3.0.3-1~focal_amd64.deb
 
 ##### Alpine 3.15
+
 - app-protect-dos-27.3.0.3-r1.apk
 
 #### NGINX Plus
+
 - NGINX Plus R27
 
 
@@ -82,6 +90,7 @@ Installing NGINX App Protect DoS with L4 (eBPF) mitigation behind L4/L7 load bal
 - If NGINX App Protect WAF is installed, app protect should be disabled for the location of DoS Live Activity Monitoring API.
 
     For example:
+
     ```shell
     location /api {
     app_protect_enable off;
@@ -93,6 +102,7 @@ Installing NGINX App Protect DoS with L4 (eBPF) mitigation behind L4/L7 load bal
 Port configuration should correspond to the port the server listens to.
 
     For example:
+
     ```shell
         server {
             listen 8080;

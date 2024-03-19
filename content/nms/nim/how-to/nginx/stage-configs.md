@@ -4,7 +4,7 @@ date: 2023-03-01T16:15:11-08:00
 # Change draft status to false to publish doc.
 draft: false
 # Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
+# Add a short description (150 chars) for the doc. Include keywords for SEO.
 # The description text appears in search results and at the top of the doc.
 description: "Learn how to pre-configure and stage NGINX configuration files with NGINX Management Suite Instance Manager for quick publishing to NGINX instances or instance groups."
 # Assign weights in increments of 100
@@ -111,13 +111,15 @@ With the Instance Manager REST API, you can add a commit hash to NGINX configura
 
 To add a commit hash to a new or staged staged config using the REST API, send an HTTP `POST` or `PUT` request to the Configs endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint   |
 |--------|------------|
 | `POST` or `PUT` | `/configs` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <br>
 
@@ -169,25 +171,29 @@ This JSON defines an NGINX configuration with the following settings:
 
 To view a staged config, send an HTTP `GET` request to the Configs endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                |
 |--------|-------------------------|
 | `GET`  | `/configs/{config_uid}` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <br>
 
 To view a staged config with a version-controlled hash, send an HTTP `GET` request to the Configs endpoint and specify the `externalID`.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                            |
 |--------|-------------------------------------|
 | `GET`  | `/configs/{config_uid}?externalId={commit_hash}` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <details open>
 <summary>JSON response</summary>

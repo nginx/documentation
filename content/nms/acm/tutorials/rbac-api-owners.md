@@ -127,7 +127,7 @@ To add users, take the following steps:
 1. On the **Create User** form, enter the details for the user:
 
    - **Username**: A unique name to identify the user. For example, "jane-smith".
-   - **Email**: The user's email address. For example, "j.smith@acmecorp.com".
+   - **Email**: The user's email address. For example, "<j.smith@acmecorp.com>".
    - **First Name**: The user's first name. For example, "Jane".
    - **Last Name**: The user's last name. For example, "Smith".
    - **Description**: An optional brief description of the user. For example, "Senior Software Engineer".

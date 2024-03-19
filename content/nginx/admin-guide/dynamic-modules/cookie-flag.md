@@ -37,6 +37,7 @@ weight: 100
    ```shell
    zypper install nginx-plus-module-cookie-flag
    ```
+
    For Alpine:
 
    ```shell
@@ -61,8 +62,8 @@ weight: 100
 <span id="info"></span>
 ## More Info
 
-* [NGINX Module Reference for Adding Cookie Flag](https://github.com/AirisX/nginx_cookie_flag_module)
+- [NGINX Module Reference for Adding Cookie Flag](https://github.com/AirisX/nginx_cookie_flag_module)
 
-* [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
 
-* [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})

@@ -30,7 +30,7 @@ This document explains how to use metrics and analytics in NGINX Instance Manage
 2. Install NGINX or NGINX Plus and the NGINX Agent.
 3. Start and Enable Instance Manager.
 
-# {{%heading "metrics"%}}
+{{%heading "metrics"%}}
 
 ## Accessing metrics externally {#access-metrics}
 

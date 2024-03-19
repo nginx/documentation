@@ -32,7 +32,7 @@ If you are using an older version of a module, you might need to upgrade to an i
 **Module release notes**:
 
 - [Instance Manager]({{< relref "/nms/nim/releases/release-notes.md" >}})
-- [NGINX App Protect WAF]({{< relref "/nap-waf/releases/_index.md" >}})
+- [NGINX App Protect WAF]({{< relref "/nap-waf/v4/releases/_index.md" >}})
 
 ### Supported Linux Distributions {#supported-distributions}
 

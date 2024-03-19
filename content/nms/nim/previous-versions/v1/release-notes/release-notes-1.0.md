@@ -232,11 +232,13 @@ This release includes fixes for the following issues. You can search by the issu
     - `basic_status_url` -> `stub_status`
     - `plus_api_url` -> `plus_api`
     - Change the format of any tags to a yaml list. An example of the new format is below.
+
       ```yaml
       tags:
         - Development
         - test
       ```
+
   - Edit the `nginx-manager.conf` file manually and replace the following option names:
     - `bind-address` -> `bind_address`
     - `grpc-port` -> `grpc_port`

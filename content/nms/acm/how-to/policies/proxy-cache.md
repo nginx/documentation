@@ -4,7 +4,7 @@ date: 2023-04-04T18:28:15-07:00
 draft: false
 description: "Learn how to use NGINX Management Suite API Connectivity Manager to enable and configure caching to improve the performance of your API gateway proxy."
 # Assign weights in increments of 100
-weight: 
+weight:
 toc: true
 tags: [ "docs" ]
 docs: "DOCS-1190"
@@ -30,7 +30,7 @@ By default, the API Gateway caches all responses to requests made with the HTTP 
 
 Fine-tune the cache for further improvements in performance by instructing it to use conditional GET requests when refreshing content from origin servers, set a minimum request number to cache content, enable background update, and cache lock.
 
-#### Intended Audience
+### Intended Audience
 
 {{< include "acm/how-to/policies/api-owner-persona.md">}}
 
@@ -48,8 +48,9 @@ Fine-tune the cache for further improvements in performance by instructing it to
 
 The following table lists the configurable settings and their default values for the policy.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field        | Datatype | Possible Values     | Description                                        | Required | Default               |
 |--------------|----------|---------------------|----------------------------------------------------|----------|-----------------------|
 | `httpMethods`   | array  | GET, HEAD, POST  | HTTP request methods to cache. | No | GET, HEAD |
@@ -66,7 +67,7 @@ The following table lists the configurable settings and their default values for
 | `cacheLock.timeout`   | string  | 1s (available units - s, m, h) | Sets a timeout for cacheLock; When the time expires, the request will be passed to the proxied server, however, the response will not be cached. | No | 5s |
 
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ---
 
@@ -80,13 +81,15 @@ The following table lists the configurable settings and their default values for
 
 To apply the Proxy Cache policy using the REST API, send an HTTP `POST` request to the Proxies endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Method | Endpoint            |
 |--------|---------------------|
 | `POST` | `/services/workspaces/{workspaceName}/proxies` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <details open>
 <summary>JSON request</summary>

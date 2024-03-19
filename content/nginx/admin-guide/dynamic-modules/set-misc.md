@@ -88,8 +88,8 @@ After installation you will need to enable and configure the module in NGINX Plu
 <span id="info"></span>
 ## More Info
 
-* [NGINX `ngx_set_misc` Module Reference](https://github.com/openresty/set-misc-nginx-module)
+- [NGINX `ngx_set_misc` Module Reference](https://github.com/openresty/set-misc-nginx-module)
 
-* [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
 
-* [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})

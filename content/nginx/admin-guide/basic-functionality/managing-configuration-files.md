@@ -37,10 +37,10 @@ include conf.d/exchange-enhanced;
 
 A few top‑level directives, referred to as _contexts_, group together the directives that apply to different traffic types:
 
-*   [events](https://nginx.org/en/docs/ngx_core_module.html#events) – General connection processing
-*   [http](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) – HTTP traffic
-*   [mail](https://nginx.org/en/docs/mail/ngx_mail_core_module.html#mail) – Mail traffic
-*   [stream](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#stream) – TCP and UDP traffic
+- [events](https://nginx.org/en/docs/ngx_core_module.html#events) – General connection processing
+- [http](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) – HTTP traffic
+- [mail](https://nginx.org/en/docs/mail/ngx_mail_core_module.html#mail) – Mail traffic
+- [stream](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#stream) – TCP and UDP traffic
 
 Directives placed outside of these contexts are said to be in the _main_ context.
 

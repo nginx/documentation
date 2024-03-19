@@ -4,7 +4,7 @@ date: 2022-12-14T16:28:20-08:00
 # Change draft status to false to publish doc
 draft: false
 # Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
+# Add a short description (150 chars) for the doc. Include keywords for SEO.
 # The description text appears in search results and at the top of the doc.
 description: "The guide provides step-by-step instructions to deploy NGINX Instance Manager on Kubernetes using a Helm chart."
 # Assign weights in increments of 100
@@ -45,8 +45,9 @@ Helm charts are pre-configured packages of Kubernetes resources that can easily 
 
 To deploy Instance Manager using a Helm chart, you need the following:
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Requirements                                                                        | Notes                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Private&nbsp;Docker&nbsp;registry&nbsp;                                             | You need to have an externally-accessible [private Docker registry](https://docs.docker.com/registry/deploying/) to which you can push the container images.                                                                                                                                                                                                                                                            |
@@ -56,8 +57,9 @@ To deploy Instance Manager using a Helm chart, you need the following:
 | Helm 3.10.0 or later                                                                | https://helm.sh/docs/intro/install/                                                                                                                                                                                                                                                                                                                                                                                     |
 | OpenSSL 1.1.1 or later                                                              | https://www.openssl.org/source/                                                                                                                                                                                                                                                                                                                                                                                         |
 | `tar` 1.20 or later                                                                 | <p>The `tar` archiving tool is usually installed by default. To see which version of `tar` you have installed, run `tar --version`. </p> <p>If `tar` is not installed or the version is too old, follow the instructions for your Linux distribution to install a supported version from a package manager such as YUM (CentOS, RHEL) or APT (Debian, Ubuntu). </p>                                                     |
+
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ---
 
@@ -182,7 +184,7 @@ To push the Docker images to your private registry, take the following steps:
      ```bash
     docker tag nms-apigw:2.9.1 myregistryhost:5000/nms-apigw:2.9.1
     ...
-    ```   
+    ```
 
 1. Push the images to your private registry:
 
@@ -199,7 +201,7 @@ To push the Docker images to your private registry, take the following steps:
      ```bash
     docker push myregistryhost:5000/nms-apigw:2.9.1
     ...
-    ```   
+    ```
 
 ---
 
@@ -252,7 +254,7 @@ A Helm `values.yaml` file is a configuration file you can use to customize the i
 
 ---
 
-## Manage Network Policies 
+## Manage Network Policies
 
 To enforce existing network policies for NGINX Management Suite, Kubernetes must have a [network plugin](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/) installed before helm chart installation.
 
@@ -274,7 +276,7 @@ To disable the existing network policies, update the `values.yaml` file as shown
 ```yaml
  networkPolicies:
 	 # Setting this to true enables network policies for NGINX Management Suite.
-	 enabled: false  
+	 enabled: false
 ```
 
 ---

@@ -24,6 +24,7 @@ weight: 100
    ```shell
    yum install nginx-plus-module-geoip
    ```
+
    {{< note >}} Only 7.x version of CentOS, Oracle Linux, and RHEL is supported. {{< /note >}}
 
 
@@ -38,6 +39,7 @@ weight: 100
    ```shell
    zypper install nginx-plus-module-geoip
    ```
+
    For Alpine:
 
    ```shell
@@ -72,14 +74,14 @@ After installation you will need to enable and configure the module in NGINX Plu
 <span id="info"></span>
 ## More Info
 
-* [GeoIP2 Dynamic Module Installation Instructions]({{< relref "geoip2.md" >}})
+- [GeoIP2 Dynamic Module Installation Instructions]({{< relref "geoip2.md" >}})
 
-* [Restricting Access by Geographical Location]({{< relref "../security-controls/controlling-access-by-geoip.md" >}})
+- [Restricting Access by Geographical Location]({{< relref "../security-controls/controlling-access-by-geoip.md" >}})
 
-* [ngx_http_geoip_module Module Reference](https://nginx.org/en/docs/http/ngx_http_geoip_module.html)
+- [ngx_http_geoip_module Module Reference](https://nginx.org/en/docs/http/ngx_http_geoip_module.html)
 
-* [ngx_stream_geoip_module Module Reference](https://nginx.org/en/docs/stream/ngx_stream_geoip_module.html)
+- [ngx_stream_geoip_module Module Reference](https://nginx.org/en/docs/stream/ngx_stream_geoip_module.html)
 
-* [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
 
-* [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})

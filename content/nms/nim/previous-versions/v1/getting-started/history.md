@@ -57,7 +57,7 @@ NGINX Instance Manager is a centralized control plane for NGINX data plane insta
 
 If another tool can provide functionality, we utilize it first before building it into Instance Manager directly. This allows immediate functionality and flexibility for you to choose the tools you want to use. As we learn more about required functions, we will build more into the server.
 
-### Playing well with others.
+### Playing well with others
 
 Instance Manager does not expect to be the single source of truth. You likely have something else (perhaps git) functioning as your source of conf files. Instance Manager will respect any other tool owning the configuration files and expects changes to happen outside of Instance Manager.
 

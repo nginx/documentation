@@ -50,6 +50,7 @@ Complete the following prerequisites before proceeding with this guide:
 1. Replace the `GeoLite2-Country.mmdb` present on your NGINX Management Suite's Control Plane at `/usr/share/nms/geolite2/GeoLite2-Country.mmdb` with the newly downloaded GeoLite2 Country database.
 
     Example:
+
     ```bash
     sudo scp /path/to/GeoLite2-Country.mmdb {user}@{host}:/usr/share/nms/geolite2/GeoLite2-Country.mmdb
     ```

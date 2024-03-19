@@ -30,7 +30,7 @@ This document explains how to use scan in NGINX Instance Manager.
 2. Install NGINX or NGINX Plus and the NGINX Agent.
 3. Start and Enable Instance Manager.
 
-# {{%heading "scan"%}}
+{{%heading "scan"%}}
 
 {{<note>}}
 To update the CVE List manually or offline, refer to the [offline]({{<relref "offline.md#cve-check">}}) guide.

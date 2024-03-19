@@ -9,6 +9,7 @@ The following table shows the available API Proxy Policies you can use when crea
 - <i class="fa-solid fa-circle-check center"></i> = Applied by default
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Policy&nbsp;Name                                                                                                                  | HTTP&nbsp;Proxy                                 | gRPC&nbsp;Proxy                                 | Applied&nbsp;On | Description                                                                                                                                          |
 | --------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [Access Control Routing]({{< relref "/nms/acm/how-to/policies/access-control-routing" >}})                                            | <i class="fa-solid fa-check center"></i>        | <i class="fa-solid fa-x"></i>                   | Inbound         | Restrict access to your application servers based on JWT claims or header values.                                                                    |
@@ -27,6 +28,7 @@ The following table shows the available API Proxy Policies you can use when crea
 | [Proxy Cache]({{< relref "/nms/acm/how-to/policies/proxy-cache" >}})  | <i class="fa-solid fa-check center"></i>        | <i class="fa-solid fa-x"></i>                   | Outbound        | Enable and configure caching to improve the performance of your API gateway proxy.                                                                   |
 | [Proxy Request Headers]({{< relref "/nms/acm/how-to/policies/proxy-request-headers" >}})                                              | <i class="fa-solid fa-circle-check center"></i> | <i class="fa-solid fa-circle-check center"></i> | Backend         | Configure the headers to pass to the backend API service.                                                                                            |
 | [Rate Limit]({{< relref "/nms/acm/how-to/policies/rate-limit" >}})                                                                        | <i class="fa-solid fa-check center"></i>        | <i class="fa-solid fa-check center"></i>        | Inbound         | Add rate limits to limit incoming requests and secure API workloads.                                                                                 |
+
 {{</bootstrap-table>}}
 
 <!-- Do not remove. Keep this code at the bottom of the include -->

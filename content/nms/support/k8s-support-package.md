@@ -84,6 +84,7 @@ The following table lists the arguments you can use with the Kubernetes support 
 | `-xd` | `--exclude_databases`  | Exclude Dqlite database backup data.                       | `-xd`         | `False`  |
 | `-xt` | `--exclude_timeseries` | Exclude ClickHouse time series data.                       | `-xt`         | `False`  |
 | `-m`  | `--modules`            | Include specific modules in Dqlite database backup data.   | `-m acm`      | `False`  |
+
 {{</bootstrap-table>}}
 
 ---

@@ -12,6 +12,7 @@ To use an embedded PostgreSQL database, you need the following:
 Set the following configuration options to use an embedded PostgreSQL database:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Parameter                              | Value           |
 | -------------------------------------- | --------------- |
 | `api.db.external`                      | `false`         |
@@ -22,4 +23,5 @@ Set the following configuration options to use an embedded PostgreSQL database:
 | `api.persistence.claims.existingClaim` | `false`         |
 | `api.persistence.claims.size`          | `250Mi`         |
 | `api.persistence.enabled`              | `true`          |
+
 {{% /bootstrap-table %}}

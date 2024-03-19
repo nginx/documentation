@@ -26,9 +26,11 @@ To upgrade Instance Manager in an offline environment, take the following steps:
 {{</tabs>}}
 
 {{< note >}}
-Note, if any NGINX Management Suite modules are installed, one of more of them may need to be upgraded to remain compatible with NGINX Instance Manager. The table of compatible versions can be found here: 
-   * Security Monitoring: https://docs.nginx.com/nginx-management-suite/security/releases/release-notes/
-   * API Connectivity Manager: https://docs.nginx.com/nginx-management-suite/acm/releases/release-notes/{{< /note >}}
+Note, if any NGINX Management Suite modules are installed, one of more of them may need to be upgraded to remain compatible with NGINX Instance Manager. The table of compatible versions can be found here:
+
+- Security Monitoring: <https://docs.nginx.com/nginx-management-suite/security/releases/release-notes/>
+- API Connectivity Manager: <https://docs.nginx.com/nginx-management-suite/acm/releases/release-notes/>
+{{< /note >}}
 
 
 3. Restart the NGINX Management Suite services:

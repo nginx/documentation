@@ -19,9 +19,9 @@ NGINX Plus is often deployed in a high‑availability (HA) cluster of two or mo
 
 To configure this feature:
 
-1.  [Install](#in_detail1) the **nginx-sync** package on the primary machine
-2.  [Grant](#in_detail2) the primary machine ssh access as `root` to the peer machines
-3.  [Create](#in_detail3) the configuration file **/etc/nginx-sync.conf** on the primary machine:
+1. [Install](#in_detail1) the **nginx-sync** package on the primary machine
+2. [Grant](#in_detail2) the primary machine ssh access as `root` to the peer machines
+3. [Create](#in_detail3) the configuration file **/etc/nginx-sync.conf** on the primary machine:
 
     ```none
     NODES="node2.example.com node3.example.com node4.example.com"
@@ -29,15 +29,15 @@ To configure this feature:
     EXCLUDE="default.conf"
     ```
 
-4.  [Run](#in_detail4) the `nginx-sync.sh` command on the primary node to push the configuration files name in `CONFPATHS` to the specified `NODES`, omitting configuration files named in `EXCLUDE`.
+4. [Run](#in_detail4) the `nginx-sync.sh` command on the primary node to push the configuration files name in `CONFPATHS` to the specified `NODES`, omitting configuration files named in `EXCLUDE`.
 
 `nginx-sync.sh` includes a number of safety checks:
 
-* Verifies system prerequisites before proceeding
-* Validates the local (primary) configuration (`nginx -t`) and exits if that fails
-* Creates remote backup of the configuration on each peer
-* Pushes the primary configuration to the peers using `rsync`, validates configuration on the peers (`nginx -t`), and if successful reloads NGINX Plus on the peers (`service nginx reload`)
-* If any step fails, rolls back to the backup on the peers
+- Verifies system prerequisites before proceeding
+- Validates the local (primary) configuration (`nginx -t`) and exits if that fails
+- Creates remote backup of the configuration on each peer
+- Pushes the primary configuration to the peers using `rsync`, validates configuration on the peers (`nginx -t`), and if successful reloads NGINX Plus on the peers (`service nginx reload`)
+- If any step fails, rolls back to the backup on the peers
 
 
 <span id="instructions"></span>
@@ -48,25 +48,25 @@ To configure this feature:
 
 Install the NGINX Synchronization module package `nginx-sync` on the Primary machine. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
-*   For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
+- For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
     ```shell
     sudo yum install nginx-sync
     ```
 
-*   For Amazon Linux 2023, AlmaLinux, Rocky Linux:
+- For Amazon Linux 2023, AlmaLinux, Rocky Linux:
 
     ```shell
     sudo dnf install nginx-sync
     ```
 
-*   For Ubuntu or Debian:
+- For Ubuntu or Debian:
 
     ```shell
     sudo apt-get install nginx-sync
     ```
 
-*   For SLES:
+- For SLES:
 
     ```shell
     sudo zypper install nginx-sync
@@ -91,20 +91,20 @@ This procedure enables the `root` user on the primary node to ssh to the `root` 
    ```shell
    ip addr
 
-   1: lo:  mtu 65536 qdisc noqueue state UNKNOWN group default 
+   1: lo:  mtu 65536 qdisc noqueue state UNKNOWN group default
       link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
       inet 127.0.0.1/8 scope host lo
          valid_lft forever preferred_lft forever
-      inet6 ::1/128 scope host 
+      inet6 ::1/128 scope host
          valid_lft forever preferred_lft forever
 
    2: eth0:  mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
       link/ether 52:54:00:34:6c:35 brd ff:ff:ff:ff:ff:ff
       inet 192.168.1.2/24 brd 192.168.1.255 scope global eth0
          valid_lft forever preferred_lft forever
-      inet6 fe80::5054:ff:fe34:6c35/64 scope link 
+      inet6 fe80::5054:ff:fe34:6c35/64 scope link
          valid_lft forever preferred_lft forever
-   ```      
+   ```
 
 3. On each peer node, append the public key to `root`’s **authorized_keys** file. The `from=192.168.1.2` prefix restricts access to only the IP address of the primary node:
 
@@ -121,13 +121,13 @@ This procedure enables the `root` user on the primary node to ssh to the `root` 
 
 5. Reload `sshd` on each peer (but not the primary) to allow SSH key authentication
 
-   * for Amazon Linux, AlmaLinux, CentOS, Oracle Linux, RHEL, Rocky Linux:
+   - for Amazon Linux, AlmaLinux, CentOS, Oracle Linux, RHEL, Rocky Linux:
 
    ```shell
    sudo systemctl restart sshd
    ```
 
-   * for Ubuntu, Debian, SLES:
+   - for Ubuntu, Debian, SLES:
 
    ```shell
    sudo systemctl restart ssh
@@ -156,25 +156,29 @@ Use a space or newline character to separate the items in each list:
 
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Parameter                | Description                                                                          |
 | ------------------------ | -------------------------------------------------------------------------------------|
 | `NODES`                  | List of peers that receive the configuration from the primary.                       |
 | `CONFPATHS`              | List of files and directories to distribute from the primary to the peers.           |
 | `EXCLUDE`                | (Optional) List of configuration files on the primary not to distribute to the peers.|
+
 {{</bootstrap-table>}}
 
 #### Advanced Parameters
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Parameter                | Description                                                                            | Default                 |
 | ------------------------ | ---------------------------------------------------------------------------------------|-------------------------|
 | `BACKUPDIR`              | Location of backup on each peer                                                        | **/var/lib/nginx-sync** |
 | `DIFF`                   | Location of `diff` binary                                                              | **/usr/bin/diff**       |
 | `LOCKFILE`               | Location of the lock file used to ensure only one `nginx-sync` operation runs at a time| **/tmp/nginx-sync.lock**|
 | `NGINX`                  | Location of the **nginx-plus** binary                                                  | **/usr/sbin/nginx**     |
-| `POSTSYNC`               | Space-separated list of file substitutions to make on each remote node in the format: </br>**'\<filename\>\|\<sed-expression\>'**<br/> The substitution is applied in place: </br>**sed -i' ' \<sed-expression\> \<filename\>** </br> For example, to substitute the IP address of *node2.example.com* (*192.168.2.2*) for the IP address of *node1.example.com* (*192.168.2.1*) in *keepalived.conf*:</br> **POSTSYNC="/etc/keepalived/keepalived.conf\|'s/192\.168\.2\.1/192.168.2.2/'"** |   |                      |
+| `POSTSYNC`               | Space-separated list of file substitutions to make on each remote node in the format: </br>`'\<filename\>\|\<sed-expression\>'`<br/> The substitution is applied in place: </br>`sed -i' ' \<sed-expression\> \<filename\>` </br> For example, to substitute the IP address of *node2.example.com* (*192.168.2.2*) for the IP address of *node1.example.com* (*192.168.2.1*) in *keepalived.conf*:</br> `POSTSYNC="/etc/keepalived/keepalived.conf\|'s/192\.168\.2\.1/192.168.2.2/'"` |   |
 | `RSYNC`                  | Location of the `rsync` binary                                                         | **/usr/bin/rsync**      |
 | `SSH`                    | Location of the `ssh` binary                                                           | **/usr/bin/ssh**        |
+
 {{</bootstrap-table>}}
 
 <span id="in_detail4"></span>
@@ -182,10 +186,10 @@ Use a space or newline character to separate the items in each list:
 
 Back up the configuration before testing.
 
-* Synchronize configuration and reload NGINX Plus on the peers – `nginx-sync.sh`
-* Display usage information – `nginx-sync.sh -h`
-* Compare configuration between the primary and a peer – `nginx-sync.sh -c <peer-node>`
-* Compare configuration on the primary to all peers – `nginx-sync.sh -C`
+- Synchronize configuration and reload NGINX Plus on the peers – `nginx-sync.sh`
+- Display usage information – `nginx-sync.sh -h`
+- Compare configuration between the primary and a peer – `nginx-sync.sh -c <peer-node>`
+- Compare configuration on the primary to all peers – `nginx-sync.sh -C`
 
 
 <span id="faq"></span>
@@ -203,7 +207,7 @@ Therefore, assume that users who gain `root` access on the primary node also hav
 <span id="faq2"></span>
 ### How Do I Synchronize Configuration if the Primary Fails?
 
-If the primary fails and will not soon return to service, you need to promote a peer to operate as primary by following the instructions in [Installation](#instructions). This involves 
+If the primary fails and will not soon return to service, you need to promote a peer to operate as primary by following the instructions in [Installation](#instructions). This involves
 
 1. [Installing the `nginx-sync.sh` script](#in_detail1)
 2. [Granting SSH access to the remaining peers](#in_detail2)
@@ -221,6 +225,7 @@ When the node recovers, its configuration is out of date. You can display the co
 ```shell
 nginx-sync.sh -c node2.example.com -d
 ```
+
 The output of the command:
 
 ```diff

@@ -224,7 +224,7 @@ echo 'DB_PATH="/var/lib/nginx-devportal"' | sudo tee -a /etc/nginx-devportal/dev
 
 ---
 
-## Secure Developer Portal API communication.
+## Secure Developer Portal API communication
 
 Depending on your [deployment pattern for the Developer Portal]({{< relref "/nms/acm/how-to/infrastructure/configure-devportal-backend.md" >}}), you may have either a single host installation(default) or a multi-host installation for high availability. We recommend using mTLS for the communication between the NGINX reverse proxy and the Developer Portal APIs to provide maximum security.
 
@@ -245,6 +245,7 @@ Depending on your [deployment pattern for the Developer Portal]({{< relref "/nms
    ```shell
    sudo systemctl restart nginx-devportal
    ```
+
 1. If mTLS is configured on your Developer Portal service, you must add a TLS Backend Policy to both;
    - The Developer Portal Cluster (Used for communication from users to the Developer Portal API)
    - The Developer Portal Internal Cluster (For communication from the API Connectivity Manager to your Devportal Portal API to publish and maintain information)

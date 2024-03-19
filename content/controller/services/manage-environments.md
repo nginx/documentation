@@ -33,8 +33,8 @@ If you prefer, you can use the NGINX Controller API to create and manage Environ
 
 ## Objective
 
-* Create an Environment
-* View, edit, and delete environments
+- Create an Environment
+- View, edit, and delete environments
 
 ## About Environments
 
@@ -71,11 +71,11 @@ To view, edit, and delete environments:
 
 ## What's Next
 
-* [Give Users and Roles access to your Environment]({{< relref "/controller/platform/access-management/manage-users.md" >}})
-* [Create or Upload Certificates]({{< relref "/controller/services/manage-certs.md#create-a-cert" >}})
-* [Create a Gateway]({{< relref "/controller/services/manage-gateways.md#create-a-gateway" >}})
-* [Create an Application]({{< relref "/controller/app-delivery/manage-apps.md#create-an-app" >}})
-* [Create App Components]({{< relref "/controller/app-delivery/manage-apps.md#create-a-component" >}})
+- [Give Users and Roles access to your Environment]({{< relref "/controller/platform/access-management/manage-users.md" >}})
+- [Create or Upload Certificates]({{< relref "/controller/services/manage-certs.md#create-a-cert" >}})
+- [Create a Gateway]({{< relref "/controller/services/manage-gateways.md#create-a-gateway" >}})
+- [Create an Application]({{< relref "/controller/app-delivery/manage-apps.md#create-an-app" >}})
+- [Create App Components]({{< relref "/controller/app-delivery/manage-apps.md#create-a-component" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

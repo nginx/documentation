@@ -62,6 +62,7 @@ When enabling WAF to protect your Apps, you can either add your own custom Secur
 A Security Strategy is a logical container for multiple Security Policies. In a Security Strategy, you can reference a Security Policy that represents a security risk profile. For example, you can map low- or high-risk security profiles to different Security Strategies as you deem fit for your Apps' specific use case or organizational needs.
 
 When you enable security on the App Component, you can specify the Security Strategy to protect it. You can use the same Security Strategy across multiple app components. The Security Policy referenced in the Security Strategy detects and protects against malicious traffic to the App Component.
+
 - **App Component** references **Security Strategy**; 
 - **Security Strategy** references **Security Policy**.
 

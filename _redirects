@@ -2,7 +2,14 @@
 /nginx-app-protect/* /nginx-app-protect-waf/:splat 301
 
 # NGINX App Protect WAF redirects
-/nginx-app-protect-waf/admin-guide/install-for-controller/ /nginx-controller/admin-guides/install/install-for-controller/ 301
+/nginx-app-protect-waf/admin-guide/nap/install-for-controller/ /nginx-controller/admin-guides/install/install-for-controller/ 301
+/nginx-app-protect-waf/admin-guide/* /nginx-app-protect-waf/v4/admin-guide/:splat 301
+/nginx-app-protect-waf/configuration-guide/* /nginx-app-protect-waf/v4/configuration-guide/:splat 301
+/nginx-app-protect-waf/declarative-policy/* /nginx-app-protect-waf/v4/declarative-policy/:splat 301
+/nginx-app-protect-waf/logging-overview/* /nginx-app-protect-waf/v4/logging-overview/:splat 301
+/nginx-app-protect-waf/troubleshooting-guide/* /nginx-app-protect-waf/v4/troubleshooting-guide/:splat 301
+/nginx-app-protect-waf/releases/* /nginx-app-protect-waf/v4/releases/:splat 301
+
 
 # NGINX Amplify redirects
 /nginx-amplify/install-manage-amp-agent/ /nginx-amplify/nginx-amplify-agent/install/ 301
@@ -80,7 +87,7 @@
 /nginx-management-suite/acm/how-to/policies/configure-proxy-buffers/ /nginx-management-suite/acm/how-to/policies/http-backend-configuration/#buffers
 /nginx-management-suite/acm/how-to/publish-developer-portal/ /nginx-management-suite/acm/how-to/devportals/publish-to-devportal/
 /nginx-management-suite/acm/how-to/enable-sso-devportal/ /nginx-management-suite/acm/how-to/infrastructure/enable-sso-devportal/
-/nginx-management-suite/adm/* / 410
+/nginx-management-suite/adm/* /index.html 410
 /nginx-management-suite/admin-guides/installation/on-prem/install-guide/ /nginx-management-suite/installation/vm-bare-metal/ 301
 /nginx-management-suite/admin-guides/installation/on-prem/offline-install-guide/ /nginx-management-suite/installation/vm-bare-metal/offline-install-guide/ 301
 /nginx-management-suite/admin-guides/installation/kubernetes/enable-modules-for-existing-deployments/ /nginx-management-suite/installation/kubernetes/ 301

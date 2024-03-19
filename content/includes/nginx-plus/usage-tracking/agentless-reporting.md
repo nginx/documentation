@@ -10,13 +10,13 @@ If NGINX instance reporting is not configured or NGINX Plus cannot provide its u
 
 Parameters customization can be done with the [`ngx_mgmt_module`](https://nginx.org/en/docs/ngx_mgmt_module.html#mgmt) module, in particular if you need to:
 
-* use mTLS for enhanced security (recommended)
+- use mTLS for enhanced security (recommended)
 
-* define a custom resolver
+- define a custom resolver
 
-* use an IP address or a different hostname to identify NGINX Instance Manager
+- use an IP address or a different hostname to identify NGINX Instance Manager
 
-* specify other custom parameters such as reporting time, path to the reporting file, etc.
+- specify other custom parameters such as reporting time, path to the reporting file, etc.
 
 
 ## Enabling Mutual Client Certificate Auth Setup (mTLS)
@@ -46,6 +46,7 @@ It is highly recommended to secure and authorize NGINX Plus instance with NGINX 
        #...
    }
    ```
+
    While the server certificate is a public entity and is sent to NMS, the private key is a secure entity and should be stored in a file with restricted access.
 
 
@@ -122,9 +123,9 @@ mgmt {
 
 There are several ways to configure the address of NGINX Instance Manager:
 
-* (recommended) add an `A` record to your local DNS that will associate the default hostname with the IP address of the system running NGINX Instance Manager
+- (recommended) add an `A` record to your local DNS that will associate the default hostname with the IP address of the system running NGINX Instance Manager
 
-* set the address with the `endpoint` parameter of the [`usage_report `](https://nginx.org/en/docs/ngx_mgmt_module.html#usage_report) directive, by default the address is `nginx-mgmt.local`:
+- set the address with the `endpoint` parameter of the [`usage_report`](https://nginx.org/en/docs/ngx_mgmt_module.html#usage_report) directive, by default the address is `nginx-mgmt.local`:
 
    ```nginx
    mgmt {
@@ -133,6 +134,7 @@ There are several ways to configure the address of NGINX Instance Manager:
        #...
    }
    ```
+
   If the name resolves into several IP addresses, the first IP address will be used.
 
 ## Configuration Example

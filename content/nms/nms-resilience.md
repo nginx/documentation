@@ -63,7 +63,7 @@ If an NGINX Management Suite platform service fails or the node hosting the pod 
 
 In an environment with the following specifications, we observed the following recovery times:
 
-**Environment**
+### Environment
 
 - AWS EC2 Kubernetes v1.24 cluster
 
@@ -79,12 +79,13 @@ In an environment with the following specifications, we observed the following r
 
 - ClickHouse pod as defined in the [NGINX Management Suite helm chart]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md">}})
 
-**Recovery Times**
+### Recovery Times
 
 The time it took for the [Pod condition](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-conditions)
 to transition from `PodScheduled` to `Ready`:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Pod          | Transition from `PodScheduled` to `Ready` |
 |--------------|-------------------------------------------|
 | apigw        | 2.2 seconds                               |
@@ -93,6 +94,7 @@ to transition from `PodScheduled` to `Ready`:
 | integrations | 2.2 seconds                               |
 | ingestion    | 1.6 seconds                               |
 | clickhouse   | 17.75 seconds                             |
+
 {{</bootstrap-table>}}
 
 <br>
@@ -100,11 +102,13 @@ to transition from `PodScheduled` to `Ready`:
 The recovery time for the DPM (Data Plane Manager) pod depends the number of NGINX data plane instances managed by NGINX Management Suite.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Managed data plane instances | Average DPM recovery time |
 |------------------------------|---------------------------|
 | 0 managed instances          | 3.95 seconds              |
 | 250 managed instances        | 4.1 seconds               |
 | 500 managed instances        | 5.45 seconds              |
+
 {{</bootstrap-table>}}
 
 ---
@@ -115,9 +119,11 @@ With NGINX Management Suite modules installed, the time it took for the [Pod con
 to transition from `PodScheduled` to `Ready`:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Module                      | Pod          | Transition from `PodScheduled` to `Ready` |
 |-----------------------------|--------------|-------------------------------------------|
 | API Connectivity Manager    | acm          | 4.2 seconds                               |
+
 {{</bootstrap-table>}}
 
 ---

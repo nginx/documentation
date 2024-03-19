@@ -39,13 +39,15 @@ To apply the policy or make changes to it, here's what you need to do:
 
 ## Policy Settings
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field            | Type   | Possible Values                | Description                                                  | Required | Default Value      |
 |------------------|--------|--------------------------------|--------------------------------------------------------------|----------|--------------------|
 | `invalidHeadersBehaviour` | string | Example:<br>`ALLOW_ALL` | This can be set to `IGNORE_ALL` (the default behavior for NGINX), `ALLOW_UNDERSCORE`, or `ALLOW_ALL` | YES      | `ALLOW_ALL` |
+
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ---
 
@@ -61,13 +63,15 @@ You can apply this policy using either the web interface or the REST API. Config
 
 To create a Request Correlation ID policy using the REST API, send an HTTP `POST` request to the Environment endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                                            |
 |--------|---------------------------------------------------------------------|
 | `POST` | `/infrastructure/workspaces/{workspace}/environments/{environment}` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <details open>
 <summary>JSON request</summary>

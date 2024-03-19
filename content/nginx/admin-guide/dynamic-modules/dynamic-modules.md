@@ -17,15 +17,17 @@ NGINX Plus uses a modular architecture. New features and functionality can be ad
 
 <img src="https://www.nginx.com/wp-content/uploads/2020/03/NGINX-Plus_dynamic-module-plug-ins.png" alt="NGINX Plus allows features to be plugged in on demand" width="500" height="500" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-*Dynamic modules plug into NGINX Plus to provide additional functionality*
+{{<note>}}
+Dynamic modules plug into NGINX Plus to provide additional functionality.
+{{</note>}}
 
 NGINX maintains a repository of dynamic modules for NGINX Plus. All modules in our repository are fully tested and certified for correct interoperation with NGINX Plus.
 
-There are many additional third‑party modules that are not included in the repository, but can be found in community projects like [awesome-nginx]((https://github.com/agile6v/awesome-nginx#third-party-modules). You can [compile](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/#install_modules_oss) many of them as dynamic modules.
+There are many additional third‑party modules that are not included in the repository, but can be found in community projects like [awesome-nginx](https://github.com/agile6v/awesome-nginx#third-party-modules). You can [compile](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/#install_modules_oss) many of them as dynamic modules.
 
 
 <span id="getting_started"></span>
-## Getting Started with the Dynamic Modules Repository 
+## Getting Started with the Dynamic Modules Repository
 
 You can access and download the modules in the NGINX Plus dynamic modules repository using standard package management tools such as `apt` and `yum`. For example, to install njs dynamic modules for Debian and Ubuntu, run the command:
 
@@ -42,28 +44,28 @@ load_module modules/ngx_stream_js_module.so;
 
 For module‑specific instructions, see the list of modules in the same section of the NGINX Plus Admin Guide as this article:
 
-* [Brotli]({{< relref "brotli.md" >}})
-* [Cookie-Flag]({{< relref "cookie-flag.md" >}})
-* [Encrypted-Session]({{< relref "encrypted-session.md" >}})
-* [FIPS Status Check]({{< relref "fips.md" >}})
-* [GeoIP]({{< relref "geoip.md" >}})
-* [GeoIP2]({{< relref "geoip2.md" >}})
-* [Headers-More]({{< relref "headers-more.md" >}})
-* [HTTP Substitutions Filter]({{< relref "http-substitutions-filter.md" >}})
-* [Image-Filter]({{< relref "image-filter.md" >}})
-* [Lua]({{< relref "lua.md" >}})
-* [njs Scripting Language]({{< relref "nginscript.md" >}})
-* [NGINX ModSecurity WAF]({{< relref "nginx-waf.md" >}})
-* [NGINX Developer Kit]({{< relref "ndk.md" >}})
-* [OpenTelemetry]({{< relref "opentelemetry.md" >}})
-* [OpenTracing]({{< relref "opentracing.md" >}})
-* [Phusion Passenger Open Source]({{< relref "passenger-open-source.md" >}})
-* [Perl]({{< relref "perl.md" >}})
-* [Prometheus-njs]({{< relref "prometheus-njs.md" >}})
-* [RTMP]({{< relref "rtmp.md" >}})
-* [Set-Misc]({{< relref "set-misc.md" >}})
-* [SPNEGO]({{< relref "spnego.md" >}})
-* [XSLT]({{< relref "xslt.md" >}})
+- [Brotli]({{< relref "brotli.md" >}})
+- [Cookie-Flag]({{< relref "cookie-flag.md" >}})
+- [Encrypted-Session]({{< relref "encrypted-session.md" >}})
+- [FIPS Status Check]({{< relref "fips.md" >}})
+- [GeoIP]({{< relref "geoip.md" >}})
+- [GeoIP2]({{< relref "geoip2.md" >}})
+- [Headers-More]({{< relref "headers-more.md" >}})
+- [HTTP Substitutions Filter]({{< relref "http-substitutions-filter.md" >}})
+- [Image-Filter]({{< relref "image-filter.md" >}})
+- [Lua]({{< relref "lua.md" >}})
+- [njs Scripting Language]({{< relref "nginscript.md" >}})
+- [NGINX ModSecurity WAF]({{< relref "nginx-waf.md" >}})
+- [NGINX Developer Kit]({{< relref "ndk.md" >}})
+- [OpenTelemetry]({{< relref "opentelemetry.md" >}})
+- [OpenTracing]({{< relref "opentracing.md" >}})
+- [Phusion Passenger Open Source]({{< relref "passenger-open-source.md" >}})
+- [Perl]({{< relref "perl.md" >}})
+- [Prometheus-njs]({{< relref "prometheus-njs.md" >}})
+- [RTMP]({{< relref "rtmp.md" >}})
+- [Set-Misc]({{< relref "set-misc.md" >}})
+- [SPNEGO]({{< relref "spnego.md" >}})
+- [XSLT]({{< relref "xslt.md" >}})
 
 
 <span id="prereq"></span>
@@ -80,7 +82,9 @@ To see the list of available modules, run this command (for Debian and Ubuntu):
 ```shell
 apt-cache search nginx-plus-module
 ```
+
 The output of the command:
+
 ```shell
 nginx-plus-module-geoip - NGINX Plus, provided by NGINX, Inc. (GeoIP dynamic modules)
 nginx-plus-module-geoip-dbg - Debugging symbols for the nginx-plus-module-geoip
@@ -110,7 +114,7 @@ Click the module box on that page and then the **GET MODULE** button.
 <span id="caveats"></span>
 ### Caveats
 
-Some modules are not available for certain OS versions because of OS limitations. For details, see the [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}}). 
+Some modules are not available for certain OS versions because of OS limitations. For details, see the [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}}).
 
 
 <span id="compile"></span>
@@ -128,7 +132,7 @@ To uninstall a dynamic module, please follow the [Uninstalling a dynamic module]
 <span id="info"></span>
 ## See Also
 
-* [Installing NGINX Plus]({{< relref "../installing-nginx/installing-nginx-plus.md" >}})
+- [Installing NGINX Plus]({{< relref "../installing-nginx/installing-nginx-plus.md" >}})
 
-* [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
 

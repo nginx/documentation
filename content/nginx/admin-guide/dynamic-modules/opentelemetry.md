@@ -48,6 +48,7 @@ The module provides [OpenTelemetry](https://opentelemetry.io/) distributed traci
    ```shell
    zypper install nginx-plus-module-otel
    ```
+
    For Alpine:
 
    ```shell
@@ -111,6 +112,7 @@ otel_exporter {
     batch_count 4;
 }
 ```
+
 <br>
 
 <span id="otel_service_name"></span>
@@ -153,6 +155,7 @@ server {
     }
 }
 ```
+
 <br>
 
 <span id="otel_trace_context"></span>
@@ -171,6 +174,7 @@ Specifies how to propagate [traceparent/tracestate](https://www.w3.org/TR/trace-
 - `propagate` &mdash; updates the existing context (combines `extract` and `inject`). 
 - `ignore` &mdash; skips context headers processing. 
 <br>
+
 <br>
 
 <span id="otel_span_name"></span>
@@ -189,7 +193,7 @@ Defines the name of the OTel [span](https://opentelemetry.io/docs/concepts/obser
 <span id="otel_span_attr"></span>
 ### `otel_span_attr`
 
-**Syntax:** ` otel_span_attr` <i>name</i> <i>value</i>;
+**Syntax:** `otel_span_attr` <i>name</i> <i>value</i>;
 
 **Default:** &mdash;
 
@@ -303,8 +307,8 @@ http {
 <span id="info"></span>
 ## More Info
 
-* [NGINX OpenTelemetry module on GitHub](https://github.com/nginxinc/nginx-otel)
+- [NGINX OpenTelemetry module on GitHub](https://github.com/nginxinc/nginx-otel)
 
-* [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
 
-* [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})

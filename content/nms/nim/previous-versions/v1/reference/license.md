@@ -29,7 +29,7 @@ EULA for trials
 {{<fa "download">}} {{<link "nim/previous-versions/static/previous-versions/v1/examples/EULA/EULA-TRIAL">}}
 
 EULA for F5 Products
-{{<fa "download">}} {{<link "https://www.f5.com/pdf/customer-support/end-user-license-agreement.pdf">}}
+{{<fa "download">}} {{<link "<https://www.f5.com/pdf/customer-support/end-user-license-agreement.pdf">}}>
 
 ## Support {#support}
 

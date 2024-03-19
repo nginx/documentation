@@ -22,7 +22,7 @@ docs: "DOCS-632"
 
 {{%heading "overview"%}}
 
-# {{%heading "offline"%}}
+{{%heading "offline"%}}
 
 NGINX Instance Manager is designed to run without internet access in most cases.
 
@@ -39,7 +39,7 @@ We do connect to the internet to get a list of the current CVEs to use with the 
 Download the cve file
 
 ```bash
-$ curl -s http://hg.nginx.org/nginx.org/raw-file/tip/xml/en/security_advisories.xml > /usr/share/nginx-manager/cve.xml
+curl -s http://hg.nginx.org/nginx.org/raw-file/tip/xml/en/security_advisories.xml > /usr/share/nginx-manager/cve.xml
 ```
 
 Rerun the scan. If it is not picked up, you may need to restart the nginx-manager service; however, NGINX Instance Manager is designed to check the internet for a copy and then use the local copy if it cannot be found. Run the curl command and change the location it writes to, then copy the file into that directory on the nginx-manager server. This updated the CVE list for NGINX Scan functions.

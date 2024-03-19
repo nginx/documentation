@@ -1,6 +1,6 @@
 ---
 title: "Add a License"
-description: "Learn how to license NGINX Management Suite using a JWT or S/MIME license, explore the features accessible in licensed and unlicensed modes, and troubleshoot common issues associated with license upload and entitlement retrieval." 
+description: "Learn how to license NGINX Management Suite using a JWT or S/MIME license, explore the features accessible in licensed and unlicensed modes, and troubleshoot common issues associated with license upload and entitlement retrieval."
 date: 2021-12-21T12:00:00-07:00
 draft: false
 weight: 400
@@ -14,7 +14,7 @@ aliases:
 
 ## Overview
 
-NGINX Management Suite offers several features that do not require a license; however, most features require a valid license to use. The [License Comparison](#license-comparison) section below provides more details about the included features and their license requirements. 
+NGINX Management Suite offers several features that do not require a license; however, most features require a valid license to use. The [License Comparison](#license-comparison) section below provides more details about the included features and their license requirements.
 
 Trial licenses, subscription licenses, and licenses under the Flexible Consumption Program (FCP) are available through [MyF5](https://my.f5.com).
 
@@ -125,15 +125,17 @@ The following tables show which features are available when NGINX Management Sui
 
 ### Unlicensed Mode Features
 
-The NGINX Management Suite features listed in the table below are available without a license. 
+The NGINX Management Suite features listed in the table below are available without a license.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Feature                       | Description                                                                    | Access Type |
 |-------------------------------|--------------------------------------------------------------------------------|-------------|
 | Licensing                     | View and manage licenses.                                                      | CRUD        |
 | NGINX&nbsp;Plus&nbsp;Counting | View the number of registered NGINX Plus instances and track Kubernetes usage. | CRUD        |
 | Scan                          | Permits scanning for NGINX instances.                                          | READ        |
 | User Management               | Create, configure, and manage roles, users, and user groups.                   | CRUD        |
+
 {{</bootstrap-table>}}
 
 ### Licensed Mode Features

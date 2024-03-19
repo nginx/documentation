@@ -30,7 +30,7 @@ This document explains how to use the analyzer in NGINX Instance Manager.
 2. Install NGINX or NGINX Plus and the NGINX Agent.
 3. Start and Enable Instance Manager.
 
-# {{%heading "analyzer"%}}
+{{%heading "analyzer"%}}
 
 ## Analyzer from the UI {#analyzer-ui}
 

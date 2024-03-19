@@ -14,9 +14,9 @@ weight: 600
 <span id="prereq"></span>
 ## Prerequisites
 
-* Docker installation
-* Docker Hub account (NGINX Open Source)
-* *nginx-repo.crt* and *nginx-repo.key* files, Dockerfile for Docker image creation (NGINX Plus)
+- Docker installation
+- Docker Hub account (NGINX Open Source)
+- *nginx-repo.crt* and *nginx-repo.key* files, Dockerfile for Docker image creation (NGINX Plus)
 
 
 <span id="docker_oss"></span>
@@ -27,15 +27,16 @@ You can create an NGINX instance in a Docker container using the NGINX Open Sour
 1. Launch an instance of NGINX running in a container and using the default NGINX configuration with the following command:
 
     ```shell
-    $ docker run --name mynginx1 -p 80:80 -d nginx
+    docker run --name mynginx1 -p 80:80 -d nginx
     ```
+
     where:
 
-    * `mynginx1` is the name of the created container based on the NGINX image
+    - `mynginx1` is the name of the created container based on the NGINX image
 
-    * the `-d` option specifies that the container runs in detached mode: the container continues to run until stopped but does not respond to commands run on the command line.
+    - the `-d` option specifies that the container runs in detached mode: the container continues to run until stopped but does not respond to commands run on the command line.
 
-    * the `-p` option tells Docker to map the ports exposed in the container by the NGINX image (port `80`) to the specified port on the Docker host. The first parameter specifies the port in the Docker host, the second parameter is mapped to the port exposed in the container
+    - the `-p` option tells Docker to map the ports exposed in the container by the NGINX image (port `80`) to the specified port on the Docker host. The first parameter specifies the port in the Docker host, the second parameter is mapped to the port exposed in the container
 
     The command returns the long form of the container ID: `fcd1fb01b14557c7c9d991238f2558ae2704d129cf9fb97bb4fadf673a58580d`. This form of ID is used in the name of log files.
 
@@ -49,6 +50,7 @@ You can create an NGINX instance in a Docker container using the NGINX Open Sour
         ... PORTS              NAMES
         ... 0.0.0.0:80->80/tcp mynginx1
     ```
+
 This command also allows viewing the port mappings set in the previous step: the `PORTS` field in the output reports that port `80` on the Docker host is mapped to port `80` in the container.
 
 <span id="docker_plus"></span>
@@ -71,14 +73,15 @@ To generate an NGINX Plus image:
 
 2. As with NGINX Open Source, default NGINX Plus image has the same default settings:
 
-    * access and error logs are linked to the Docker log collector
-    * no volumes are specified: a Dockerfile can be used to create base images from which you can create new images with volumes specified, or volumes can be specified manually:
+    - access and error logs are linked to the Docker log collector
+    - no volumes are specified: a Dockerfile can be used to create base images from which you can create new images with volumes specified, or volumes can be specified manually:
 
     ```dockerfile
     VOLUME /usr/share/nginx/html
     VOLUME /etc/nginx
     ```
-    * no files are copied from the Docker host as a container is created: you can add `COPY` definitions to each Dockerfile, or the image you create can be used as the basis for another image
+
+    - no files are copied from the Docker host as a container is created: you can add `COPY` definitions to each Dockerfile, or the image you create can be used as the basis for another image
 
 3. Log in to [MyF5 Customer Portal](https://account.f5.com/myf5) and download your *nginx-repo.crt* and *nginx-repo.key* files. For a trial of NGINX Plus, the files are provided with your trial package.
 
@@ -87,7 +90,7 @@ To generate an NGINX Plus image:
 5. Create a Docker image, for example, `nginxplus` (note the final period in the command).
 
     ```shell
-    $ docker build  --no-cache --secret id=nginx-key,src=nginx-repo.key --secret id=nginx-crt,src=nginx-repo.crt -t nginxplus .
+    docker build  --no-cache --secret id=nginx-key,src=nginx-repo.key --secret id=nginx-crt,src=nginx-repo.crt -t nginxplus .
     ```
 
     The `--no-cache` option tells Docker to build the image from scratch and ensures the installation of the latest version of NGINX Plus. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses the version of NGINX Plus from the previously built image from the Docker cache.
@@ -103,7 +106,7 @@ To generate an NGINX Plus image:
 7. Create a container based on this image, for example, `mynginxplus` container:
 
     ```shell
-    $ docker run --name mynginxplus -p 80:80 -d nginxplus
+    docker run --name mynginxplus -p 80:80 -d nginxplus
     ```
 
 8. Verify that the `mynginxplus` container is up and running with the `docker ps` command:
@@ -125,9 +128,9 @@ NGINX Plus containers are controlled and managed in the same way as NGINX Open S
 
 Content served by NGINX and NGINX configuration files can be managed in several ways:
 
-* files are maintained on the Docker host
-* files are copied from the Docker host to a container
-* files are maintained in the container
+- files are maintained on the Docker host
+- files are copied from the Docker host to a container
+- files are maintained in the container
 
 
 <span id="manage_host"></span>
@@ -142,6 +145,7 @@ $ docker run --name mynginx2 \
    -p 80:80 \
    -d nginxplus
 ```
+
 Any change made to the files in the local directories `/var/www and /var/nginx/conf` on the Docker host are reflected in the directories `/usr/share/nginx/html` and `/etc/nginx` in the container. The `readonly` option means these directories can be changed only on the Docker host, not from within the container.
 
 
@@ -164,13 +168,13 @@ COPY conf /etc/nginx
 Create NGINX image by running the command from the directory where the Dockerfile is located. The period (“.”) at the end of the command defines the current directory as the build context, which contains the Dockerfile and the directories to be copied:
 
 ```shell
-$ docker build -t mynginx_image1 .
+docker build -t mynginx_image1 .
 ```
 
 Create a container `mynginx3` based on the `mynginx_image1` image:
 
 ```shell
-$ docker run --name mynginx3 -p 80:80 -d mynginx_image1
+docker run --name mynginx3 -p 80:80 -d mynginx_image1
 ```
 
 To make changes to the files in the container, use a helper container as described in the next section.
@@ -194,13 +198,13 @@ As SSH cannot be used to access the NGINX container, to edit the content or conf
 2. Create the new NGINX image by running the following command:
 
     ```shell
-    $ docker build -t mynginx_image2 .
+    docker build -t mynginx_image2 .
     ```
 
 3. Create an NGINX container `mynginx4` based on the `mynginx_image2` image:
 
     ```shell
-    $ docker run --name mynginx4 -p 80:80 -d mynginx_image2
+    docker run --name mynginx4 -p 80:80 -d mynginx_image2
     ```
 
 4. Start a helper container `mynginx4_files` that has a shell, providing access the content and configuration directories of the `mynginx4` container we just created:
@@ -209,22 +213,23 @@ As SSH cannot be used to access the NGINX container, to edit the content or conf
     $ docker run -i -t --volumes-from mynginx4 --name mynginx4_files debian /bin/bash
     root@b1cbbad63dd1:/#
     ```
+
     where:
-    * the new `mynginx4_files` helper container runs in the foreground with a persistent standard input (the `-i` option) and a tty (the `-t` option). All volumes defined in `mynginx4` are mounted as local directories in the helper container.
-    * the `debian` argument means that the helper container uses the Debian image from Docker Hub. Because the NGINX image also uses Debian, it is most efficient to use Debian for the helper container, rather than having Docker load another operating system
-    * the `/bin/bash` argument means that the bash shell runs in the helper container, presenting a shell prompt that you can use to modify files as needed
+    - the new `mynginx4_files` helper container runs in the foreground with a persistent standard input (the `-i` option) and a tty (the `-t` option). All volumes defined in `mynginx4` are mounted as local directories in the helper container.
+    - the `debian` argument means that the helper container uses the Debian image from Docker Hub. Because the NGINX image also uses Debian, it is most efficient to use Debian for the helper container, rather than having Docker load another operating system
+    - the `/bin/bash` argument means that the bash shell runs in the helper container, presenting a shell prompt that you can use to modify files as needed
 
 To start and stop the container, run the commands:
 
 ```shell
-$ docker start mynginx4_files
-$ docker stop mynginx4_files
+docker start mynginx4_files
+docker stop mynginx4_files
 ```
 
 To exit the shell but leave the container running, press `Ctrl+p` followed by `Ctrl+q`. To regain shell access to a running container, run this command:
 
 ```shell
-$ docker attach mynginx4_files
+docker attach mynginx4_files
 ```
 
 To exit the shell and terminate the container, run the `exit` command.
@@ -241,7 +246,7 @@ You can use default logging or customize logging.
 By default, the NGINX image is configured to send NGINX [access log](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log) and [error log](https://nginx.org/en/docs/ngx_core_module.html#error_log) to the Docker log collector. This is done by linking them to `stdout` and `stderr`: all messages from both logs are then written to the file `/var/lib/docker/containers/container-ID/container-ID-json.log` on the Docker host. The container‑ID is the long‑form ID returned when you [create a container](#docker_oss_image). To display the long form ID, run the command:
 
 ```shell
-$ docker inspect --format '{{ .Id }}' container-name
+docker inspect --format '{{ .Id }}' container-name
 ```
 
 You can use both the Docker command line and the Docker Engine API to extract the log messages.
@@ -249,13 +254,13 @@ You can use both the Docker command line and the Docker Engine API to extract th
 To extract log messages from the command line, run the command:
 
 ```shell
-$ docker logs container-name
+docker logs container-name
 ```
 
 To extract log messages using the Docker Remote API, send a `GET` request using the Docker Unix sock:
 
 ```shell
-$ curl --unix-sock /var/run/docker-sock http://localhost/containers/container-name/logs?stdout=1&stderr=1
+curl --unix-sock /var/run/docker-sock http://localhost/containers/container-name/logs?stdout=1&stderr=1
 ```
 
 To include only access log messages in the output, include only `stdout=1`. To limit the output to error log messages, include only `stderr=1`. For other available options, see [Get container logs](https://docs.docker.com/engine/api/v1.39/#operation/ContainerLogs) section of the [Docker Engine API](https://docs.docker.com/engine/api/v1.39/) documentation.
@@ -286,11 +291,11 @@ Since there is no direct access to the command line of the NGINX container, NGIN
 To reload the NGINX configuration, send the `HUP` signal to Docker:
 
 ```shell
-$ docker kill -s HUP container-name
+docker kill -s HUP container-name
 ```
 
 To restart NGINX, run this command to restart the container:
 
 ```shell
-$ docker restart container-name
+docker restart container-name
 ```

@@ -103,7 +103,7 @@ Lightweight, heterogeneous application environments are becoming an increasingly
 Using NGINX and NGINX Plus in front of an application container has become a common way to free applications from the burden of HTTP traffic management, and to protect the application from unexpected spikes of user traffic, malicious behavior, denial‑of‑service (DoS) attacks, and more. Unbundling real‑world, external HTTP traffic from the actual application allows the developer to fully focus on the application logic, and leave the web acceleration and fundamental HTTP traffic security tasks to NGINX or NGINX Plus.
 
 <span id="resources"></span>
-##Resources
+## Resources
 
-*   [NGINX support](https://uwsgi-docs.readthedocs.io/en/latest/Nginx.html) in the uWSGI project documentation
-*   [How to use Django with uWSGI](https://docs.djangoproject.com/en/1.11/howto/deployment/wsgi/uwsgi/) in the Django project documentation
+- [NGINX support](https://uwsgi-docs.readthedocs.io/en/latest/Nginx.html) in the uWSGI project documentation
+- [How to use Django with uWSGI](https://docs.djangoproject.com/en/1.11/howto/deployment/wsgi/uwsgi/) in the Django project documentation

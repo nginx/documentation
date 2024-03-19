@@ -100,10 +100,12 @@ Take the steps in this section if you would like to restrict access to Advanced 
             }
         ]
 ```
+
     {{%/tab%}}
 {{</tabs>}}
 
 {{< note >}} 
+
 - Any requests which do not match a specified condition will be allowed to access the API Gateway or Developer Portal. Adding a rule with no route or HTTP method specified means that
 - Adding multiple match conditions in a rule requires that all conditions are matched in order to access the API.
 - Adding the same configuration of route and HTTP method to multiple rules will be treated as an OR condition.
