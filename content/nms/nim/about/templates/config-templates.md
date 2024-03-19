@@ -8,7 +8,7 @@ draft: false
 # The description text appears in search results and at the top of the doc.
 description: ""
 # Assign weights in increments of 100
-weight: 
+weight: 100
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
@@ -32,9 +32,17 @@ Templates accelerate setup, ensure NGINX configurations are consistent and compl
 
 You can customize configuration templates through both the Instance Manager web interface or REST API. Teams can adapt existing templates or create new ones based on their needs.
 
-### Template components
+### Types of templates {#template-types}
 
-Configuration templates include these components:
+There are two types of configuration templates:
+
+- **Base templates**: A base template can generate a complete NGINX configuration on its own. It provides the foundational structure and settings necessary for an NGINX instance to function. Base templates define the core aspects of the configuration, such as server directives, locations, and other fundamental settings that are essential for the NGINX server's operation. These templates serve as the starting point for creating a fully operational NGINX configuration, to which additional functionalities or customizations can be added, often through augment templates.
+
+- **Augment templates**: An augment template adds specific functionalities or configuration segments to an existing NGINX configuration, enhancing or modifying it without replacing the entire setup. These templates can introduce new features like caching mechanisms, OIDC authentication, or detailed configuration for specific location or server blocks. Augment templates are used in conjunction with a base template or applied to an already existing NGINX configuration to extend its capabilities or adjust its behavior according to specific requirements.
+
+### Template artifacts {#template-components}
+
+Configuration templates comprise these key components:
 
 - **Template files (.tmpl)**: Go templating language files that define the structure and parameters of the NGINX configuration.
   
@@ -42,13 +50,7 @@ Configuration templates include these components:
 
 - **Auxiliary files**: Additional support files required for the configuration, such as JavaScript files for functionality, certificates for security, README.md files that provide an overview and usage instructions for the templates, and any other necessary resources.
 
-### Types of templates
-
-There are two types of configuration templates:
-
-- **Base templates**: A base template can generate a complete NGINX configuration on its own. It provides the foundational structure and settings necessary for an NGINX instance to function. Base templates define the core aspects of the configuration, such as server directives, locations, and other fundamental settings that are essential for the NGINX server's operation. These templates serve as the starting point for creating a fully operational NGINX configuration, to which additional functionalities or customizations can be added, often through augment templates.
-
-- **Augment templates**: An augment template adds specific functionalities or configuration segments to an existing NGINX configuration, enhancing or modifying it without replacing the entire setup. These templates can introduce new features like caching mechanisms, OIDC authentication, or detailed configuration for specific location or server blocks. Augment templates are used in conjunction with a base template or applied to an already existing NGINX configuration to extend its capabilities or adjust its behavior according to specific requirements.
+Detailed information about these template components can be found in [Template Artifacts]({{< relref "nms/nim/about/templates/template-artifacts.md" >}}).
 
 ## Target
 
