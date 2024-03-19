@@ -52,7 +52,7 @@ NGINX Management Suite Instance Manager makes it easy to inventory, configure, m
 NGINX App Protect WAF is a lightweight, platform-agnostic WAF that protects applications and APIs from layer 7 attacks. You can manage WAFs using the Instance Manager module and visualize them using the Security Monitoring module. 
 
 1. [Download your credentials from MyF5](https://my.f5.com/), including your NGINX Plus Certificate and public key (`nginx-repo.crt` and `nginx-repo.key`).
-2. Follow the instructions in the [NGINX App Protect WAF installation guide]({{< relref "/nap-waf/admin-guide/install.md" >}}) for your Linux distribution.
+2. Follow the instructions in the [NGINX App Protect WAF installation guide]({{< relref "/nap-waf/v4/admin-guide/install.md" >}}) for your Linux distribution.
 3. Follow the instructions in the [Security Monitoring installation guide]({{< relref "/nms/security/how-to/set-up-app-protect-instances.md">}}) to use App Protect WAF with NGINX Management Suite.
 
 {{<note>}}NGINX App Protect WAF can only be deployed on NGINX Plus.{{</note>}}.

@@ -2,7 +2,14 @@
 /nginx-app-protect/* /nginx-app-protect-waf/:splat 301
 
 # NGINX App Protect WAF redirects
-/nginx-app-protect-waf/admin-guide/install-for-controller/ /nginx-controller/admin-guides/install/install-for-controller/ 301
+/nginx-app-protect-waf/admin-guide/nap/install-for-controller/ /nginx-controller/admin-guides/install/install-for-controller/ 301
+/nginx-app-protect-waf/admin-guide/* /nginx-app-protect-waf/v4/admin-guide/:splat 301
+/nginx-app-protect-waf/configuration-guide/* /nginx-app-protect-waf/v4/configuration-guide/:splat 301
+/nginx-app-protect-waf/declarative-policy/* /nginx-app-protect-waf/v4/declarative-policy/:splat 301
+/nginx-app-protect-waf/logging-overview/* /nginx-app-protect-waf/v4/logging-overview/:splat 301
+/nginx-app-protect-waf/troubleshooting-guide/* /nginx-app-protect-waf/v4/troubleshooting-guide/:splat 301
+/nginx-app-protect-waf/releases/* /nginx-app-protect-waf/v4/releases/:splat 301
+
 
 # NGINX Amplify redirects
 /nginx-amplify/install-manage-amp-agent/ /nginx-amplify/nginx-amplify-agent/install/ 301

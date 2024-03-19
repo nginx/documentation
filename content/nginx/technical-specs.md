@@ -86,16 +86,16 @@ NGINX Plus is available in binary form only; it is not available in source form
 Except as specified below, dynamic modules are supported on the [same distributions as NGINX Plus](#supported-distributions).
 
 ### AppProtect
-
-- FreeBSD: Not supported
-- Oracle/AlmaLinux/Rocky Linux: Not supported
-- RHEL 9: Not supported
-- RHEL 7, RHEL 8,: x86_64 only
-- Debian 11: x86_64 only
-- Ubuntu 20.04: x86_64 only
+- AlmaLinux/Rocky Linux: Not supported
+- Alpine Linux 3.16, Alpine Linux 3.17: x86_64 only
 - Amazon Linux 2: x86_64 only
 - Amazon Linux 2023: Not supported
-- Alpine Linux: Not supported
+- CentOS 7.4+: x86_64 only
+- Debian 11, Debian 12: x86_64 only
+- FreeBSD: Not supported
+- Oracle Linux 8: x86_64 only
+- RHEL 7, RHEL 8, RHEL 9: x86_64 only
+- Ubuntu 20.04, Ubuntu 22.04: x86_64 only
 
 ### Brotli
 

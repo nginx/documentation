@@ -36,7 +36,7 @@ To complete the steps in this guide, you need the following:
 - API Connectivity Manager is installed, licensed, and running.
 - You have one or more [Environments with an API Gateway]({{< relref "/nms/acm/getting-started/add-api-gateway" >}}).
 - You have [published one or more API Gateways]({{< relref "/nms/acm/getting-started/publish-api-proxy" >}}).
-- You have [installed and set up NGINX App Protect]({{< relref "/nap-waf/admin-guide/install-nms" >}}).
+- You have [installed and set up NGINX App Protect]({{< relref "/nap-waf/v4/admin-guide/install-nms" >}}).
 - NGINX Management Suite Security Monitoring is [installed]({{< relref "/nms/installation/vm-bare-metal/_index.md#install-nms-modules" >}}) and running.
 
 ---
