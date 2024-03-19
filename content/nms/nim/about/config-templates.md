@@ -25,34 +25,34 @@ authors: []
 ---
 
 ## Config Templates
-Instance Manager configuration templates use [Go templating <i class="fas fa-external-link-alt"></i>](https://pkg.go.dev/text/template) to simplify the creation and standardization of NGINX configurations. Configuration templates allow administrators to quickly and easily generate customized NGINX configurations for different environments without requiring an in-depth knowledge of NGINX syntax.
+
+NGINX Instance Manager configuration templates use [Go templating <i class="fas fa-external-link-alt"></i>](https://pkg.go.dev/text/template) to simplify the creation and standardization of NGINX configurations. Configuration templates allow administrators to quickly and easily generate customized NGINX configurations for different environments without requiring an in-depth knowledge of NGINX syntax.
 
 Templates accelerate setup, ensure NGINX configurations are consistent and compliant with best practices, and enable teams to manage segments independently, fostering self-service within organizations.
 
-You can customize configuration templates through both the web interface or REST API. Teams can adapt existing templates or create new ones based on their needs.
+You can customize configuration templates through both the Instance Manager web interface or REST API. Teams can adapt existing templates or create new ones based on their needs.
 
 ### Template components
 
 Configuration templates include these components:
 
-- **Template files (.tmpl)**: Written in Go templating language, these define the configuration structure with placeholders for user inputs, shaping the final NGINX directives.
+- **Template files (.tmpl)**: Go templating language files that define the structure and parameters of the NGINX configuration.
   
-- **JSON schema files (.json)**: These outline the parameters' validation, guiding user input to ensure correct data types and formats, enhancing the interface experience.
+- **JSON schema files (.json)**: Files that specify the validation rules for the parameters, guiding user input and ensuring correct data types and formats.
 
-- **Auxiliary files**: Additional required files, such as JavaScript for functional scripts, MIME types for content identification, and certificates for security.
+- **Auxiliary files**: Additional support files required for the configuration, such as JavaScript files for functionality, certificates for security, README.md files that provide an overview and usage instructions for the templates, and any other necessary resources.
 
 ### Types of templates
 
 There are two types of configuration templates:
 
-- **Base templates**: Standalone templates that produce a full NGINX configuration, serving as the deployment foundation.
+- **Base templates**: A base template can generate a complete NGINX configuration on its own. It provides the foundational structure and settings necessary for an NGINX instance to function. Base templates define the core aspects of the configuration, such as server directives, locations, and other fundamental settings that are essential for the NGINX server's operation. These templates serve as the starting point for creating a fully operational NGINX configuration, to which additional functionalities or customizations can be added, often through augment templates.
 
-- **Augment templates**: Extensions to base templates, they add functionalities like caching or OIDC authentication, or segments like location or server blocks.
-
+- **Augment templates**: An augment template adds specific functionalities or configuration segments to an existing NGINX configuration, enhancing or modifying it without replacing the entire setup. These templates can introduce new features like caching mechanisms, OIDC authentication, or detailed configuration for specific location or server blocks. Augment templates are used in conjunction with a base template or applied to an already existing NGINX configuration to extend its capabilities or adjust its behavior according to specific requirements.
 
 ## Target
 
-The "target" in templating specifies where the template-generated configuration will be applied. This concept is essential for using templates effectively, as it determines the deployment and management locations for generated configurations.
+A target in the context of NGINX configuration templates refers to the specific NGINX environment or server where the generated configuration from a template—whether a base template, an augment template, or a combination of both—is applied. Targets can be individual NGINX instances, groups of instances managed together as an instance group, or a staged configuration area where configurations are tested and validated before being deployed to production environments. Understanding and specifying the correct target is essential for ensuring that the configuration is applied to the intended NGINX server(s) or environment, resulting in the desired changes or enhancements in functionality.
 
 There are three types of targets:
 
@@ -64,7 +64,9 @@ There are three types of targets:
 
 ## Template submission
 
-Template submission in Instance Manager is the process of deploying an NGINX configuration generated from a template to a specified target. It's a crucial step that actualizes the theoretical design of a template into a active, functioning NGINX configuration. This process involves taking the parameters filled out by the user, combining them with the chosen template (either a base template or one or more augment templates), and applying the resulting configuration to the intended NGINX environment.
+A template submission is the process of applying a configuration generated from a template to a specified target within the NGINX environment. It involves selecting a template—either a base template for creating a new configuration or an augment template for adding to or modifying an existing configuration—filling out the required parameters based on the template's structure, and then deploying this configuration to the chosen target. This target could be an individual NGINX instance, a group of instances, or a staged configuration setting for testing purposes. 
+
+Template submission effectively bridges the gap between configuration design and implementation, turning theoretical designs into operational reality within the NGINX infrastructure.
 
 Key aspects of template submission include:
 
@@ -76,4 +78,3 @@ Key aspects of template submission include:
 
 - **Validation and testing**: For submissions aimed at a staged config, there's an opportunity to validate and test the configuration before live deployment. This minimizes risks and ensures stability in the production environment.
 
-Template submission is fundamental for operationalizing templates within Instance Manager, bridging the gap between configuration design and implementation.
