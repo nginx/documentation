@@ -1,5 +1,5 @@
 ---
-title: "Template Artifacts"
+title: "Template Resource Files"
 date: 2024-03-19T12:23:28-07:00
 # Change draft status to false to publish doc
 draft: false
@@ -24,13 +24,13 @@ versions: []
 authors: []
 ---
 
-## Introduction to Template Artifacts
+## Config Template, Schema, and README Files
 
 
-This following table outlines the key components, known as template artifacts, involved in creating NGINX configurations using NGINX Instance Manager. Each artifact plays a distinct role in the configuration process, ranging from defining the structure and behavior of the NGINX server to validating the input parameters provided by users. The table categorizes these artifacts into configuration files (identified by their **.tmpl** extension and specific types), associated schema files that establish rules for data validation, and auxiliary documentation through **README.md** files, which offer comprehensive guidance on template usage and functionality.
+This following table outlines the key template resource files involved in creating NGINX configurations using NGINX Instance Manager. Each resource plays a distinct role in the configuration process, ranging from defining the structure and behavior of the NGINX server to validating the input parameters provided by users. The table categorizes these resources into configuration files (identified by their **.tmpl** extension and specific types), associated schema files that establish rules for data validation, and auxiliary documentation through **README.md** files, which offer comprehensive guidance on template usage and functionality.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Config File            | Applicable&nbsp;Type(s) | Schema File                                       | Purpose                                                                                                              |
+| Config File            | Applicable&nbsp;Type(s) | Schema File(s)                                       | Purpose                                                                                                              |
 |------------------------|--------------------|---------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
 | **base.tmpl**            | base               | **main.json**<br>**http.json**<br>**http-server.json**<br>**http-upstream.json**<br>**location.json**<br>**stream.json**<br>**stream-server.json**<br>**stream-upstream.json**                                         | <p>Required for templates designated as base. The schema files are optional if no user inputs are needed.</p> <p>Includes all directives required to produce a full NGINX configuration (for example, **main**, **http**, and **stream**). Additionally, this file should incorporate specific Go templating language commands that allow for the dynamic insertion of configuration details into the appropriate sections or directive blocks.
 | **main.tmpl**            | augment            | **main.json**                             | Contains configuration and schema inputs for the **main** directive block. The schema file is optional if no user inputs are needed. See the full [alphabetical list of directives](https://nginx.org/en/docs/dirindex.html)         |
@@ -43,6 +43,8 @@ This following table outlines the key components, known as template artifacts, i
 | **stream&#8209;upstream.tmpl** | augment            | **stream&#8209;upstream.json**                  | Contains configuration and schema inputs for the [stream upstream directive](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#upstream) block. The schema file is optional if no user inputs are needed. |
 | **README.md**            | base, augment      | n/a                                               | Provides documentation, usage instructions, and an overview of the template.                                        |
 {{</bootstrap-table>}}
+
+<br>
 
 ## Example: Enabling OIDC with templating and schema validation
 
@@ -123,6 +125,6 @@ This example shows how NGINX can be configured to use OIDC for authentication ba
 
     - **OIDC object validation**: Within `templateInput`, there's a specific object named `oidc` meant to configure OIDC-related settings. The schema for the `oidc` object includes a boolean property named `enabled`. This property controls whether OIDC authentication is turned on (`true`) or off (`false`) for the NGINX configuration being generated.
 
-    - **Input-validation for "oidc" object**: The `main.json` provides rules for validating the `oidc` object's inputs. For example, the `enabled` property within the `oidc` object must be a boolean. This ensures that the template receives correctly typed and structured data to generate the configuration correctly.
+    - **Input-validation for `oidc` object**: The `main.json` provides rules for validating the `oidc` object's inputs. For example, the `enabled` property within the `oidc` object must be a boolean. This ensures that the template receives correctly typed and structured data to generate the configuration correctly.
 
     - **Required properties**: The schema declares that within the `oidc` object, the `enabled` property is mandatory (`"required": ["enabled"]`). This means that any input provided for the `oidc` object must include a clear true/false value for `enabled`.

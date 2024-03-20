@@ -40,9 +40,9 @@ There are two types of configuration templates:
 
 - **Augment templates**: An augment template adds specific functionalities or configuration segments to an existing NGINX configuration, enhancing or modifying it without replacing the entire setup. These templates can introduce new features like caching mechanisms, OIDC authentication, or detailed configuration for specific location or server blocks. Augment templates are used in conjunction with a base template or applied to an already existing NGINX configuration to extend its capabilities or adjust its behavior according to specific requirements.
 
-### Template artifacts {#template-components}
+### Template resource files {#template-resources}
 
-Configuration templates comprise these key components:
+Configuration templates comprise these key resource files:
 
 - **Template files (.tmpl)**: Go templating language files that define the structure and parameters of the NGINX configuration.
   
@@ -50,7 +50,7 @@ Configuration templates comprise these key components:
 
 - **Auxiliary files**: Additional support files required for the configuration, such as JavaScript files for functionality, certificates for security, README.md files that provide an overview and usage instructions for the templates, and any other necessary resources.
 
-Detailed information about these template components can be found in [Template Artifacts]({{< relref "nms/nim/about/templates/template-artifacts.md" >}}).
+For detailed information about these resources, refer to [Template Resource Files]({{< relref "nms/nim/about/templates/template-artifacts.md" >}}).
 
 ## Target
 
