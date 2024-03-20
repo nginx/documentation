@@ -35,15 +35,6 @@ weight: 100
 
 - Refer to [Manage Your App Protect WAF Configs]({{< relref "/nms/nim/how-to/app-protect/setup-waf-config-management.md" >}}) for installation instructions.
 
-
----
-
-## Using Advanced Security with NGINX Management Suite API Connectivity Manager
-
-[API Connectivity Manager's]({{< relref "/nms/about.md#api-connectivity-manager" >}}) Advanced Security policy allows you to use an NGINX App Protect WAF policy created using Instance Manager and add it to your Environment by using the Advanced Security policy in API Connectivity Manager. 
-
-- For more information, see the [API Connectivity Manager Advanced Security]({{< relref "/nms/acm/how-to/policies/advanced-security.md" >}}) documentation.
-
 ---
 
 ## Using Security Monitoring with NGINX Management Suite

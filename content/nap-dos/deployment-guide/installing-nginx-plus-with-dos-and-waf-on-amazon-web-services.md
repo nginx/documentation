@@ -84,7 +84,7 @@ To quickly set up an environment with NGINX Plus, NGINX App Protect WAF and NGIN
 	/etc/init.d/nginx status
 	```
 
-  See [NGINX Plus on the AWS Cloudç](https://www.nginx.com/resources/datasheets/nginx-quick-start-guide-for-aws/) deployment guide for details.
+  See [NGINX Plus on the AWS Cloud](https://www.nginx.com/resources/datasheets/nginx-quick-start-guide-for-aws/) deployment guide for details.
 
 6. Verify latest NGINX PLUS / NGINX App Protect DoS / NGINX App Protect WAF packages are installed on EC2 after its first start:
 
