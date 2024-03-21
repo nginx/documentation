@@ -110,7 +110,6 @@ To modify a configuration for an existing release, run the `helm upgrade` comman
 | `nms-hybrid.utility.image.repository`                 | Repository name and path for the `utility` image. | `utility` |
 | `nms-hybrid.utility.image.tag`                        | Tag used for pulling images from registry. | `latest` |
 | `nms-hybrid.utility.image.pullPolicy`                 | Image pull policy. | `IfNotPresent` |
-| `nms-hybrid.nic`                                      | To enable NGINX Ingress Controller Virtual Server | See [NGINX Ingress Controller Virtual Server](#nginx-ingress-controller-virtual-server) for details |
 
 {{</bootstrap-table>}}
 
@@ -158,34 +157,3 @@ tolerations:
 ```
 
 For more information, refer to the official Kubernetes [Taints and Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) documentation.
-
-##### NGINX Ingress Controller Virtual Server
-
-Example snippet to enable a NGINX Ingress Controller Virtual Server with Instance Manager service as an upstream.
-
-```yaml
-nic:
-  # set to true to configure NGINX Ingress Controller VirtualServer.
-  enabled: true
-  # Optional. Defaults to "nms" otherwise.
-  name: nms
-  # required
-  host: hello.example.com
-  # Optional
-  httpSnippets:
-  # Optional
-  serverSnippets:
-  # Optional
-  ingressClassName: nginx
-  # Optional. A default upstream to NGINX Instance Manager APIGW service is created for you.
-  # If you have a need to configure other upstreams, list here.
-  upstreams: []
-  # Optional
-  routes:
-    - path: /
-      action:
-        proxy:
-          upstream: ${NGINX_Instance_Manager_Service_Name}
-  # Optional
-  policies: []
-```
