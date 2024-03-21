@@ -7,7 +7,7 @@ This table summarizes the nginx.conf directives for NGINX App Protect WAF functi
 |Directive Name | Syntax | Functionality | nginx.conf Contexts | Example | 
 | ---| ---| ---| ---| --- | 
 |load_module | load_module <library_file_path> | NGINX directive to load the App Protect module. It must be invoked with the App Protect library path | Global | load_module modules/ngx_http_app_protect_module.so | 
-|app_protect_enforcer_address | <hostname/ip>:<port> | The Enforcer service address. | Global | app_protect_enforcer_address 127.0.0.1:50000; |
+|app_protect_enforcer_address | <hostname/ip>:<port> | The Enforcer service address. | HTTP | app_protect_enforcer_address 127.0.0.1:50000; |
 |app_protect_enable | app_protect_enable on &#124; off | Whether to enable App Protect at the respective context. If not present, inherits from the parent context | HTTP, Server, Location | app_protect_enable on | 
 |app_protect_policy_file | app_protect_policy_file <file_path> | Set a App Protect policy configuring behavior for the respective context. | HTTP, Server, Location | app_protect_policy_file /config/waf/strict_policy.tgz | 
 |app_protect_security_log_enable | app_protect_security_log_enable on &#124; off | Whether to enable the App Protect per-request log at the respective context. | HTTP, Server, Location | app_protect_security_log_enable on | 
