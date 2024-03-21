@@ -32,19 +32,19 @@ NGINX Instance Manager uses [Go templating](https://pkg.go.dev/text/template) to
 
 Configuration templates come in two types:
 
-- **Base Templates**: A base template is a comprehensive set of instructions used to generate a complete NGINX configuration. It includes all the necessary directives and parameters to create a functional server configuration from scratch. Essentially, it’s the foundational configuration on which your server operates.
+- **Base templates**: A base template is a comprehensive set of instructions used to generate a complete NGINX configuration. It includes all the necessary directives and parameters to create a functional server configuration from scratch. Essentially, it’s the foundational configuration on which your server operates.
 
-- **Augment Templates**: An augment template modifies or adds to an existing NGINX configuration. It's used to introduce specific functionality, features, or settings without altering the underlying base template. Augment templates allow for customization and enhancement of server configurations by overlaying additional directives onto the base setup.
+- **Augment templates**: An augment template modifies or adds to an existing NGINX configuration. It's used to introduce specific functionality, features, or settings without altering the underlying base template. Augment templates allow for customization and enhancement of server configurations by overlaying additional directives onto the base setup.
 
 ### Template Resource Files {#template-resources}
 
 Configuration templates include the following components:
 
-- **Template Files (.tmpl)**: Written in Go's templating language, these files define the NGINX configuration's structure and parameters.
+- **Template files (.tmpl)**: Written in Go's templating language, these files define the NGINX configuration's structure and parameters.
   
-- **JSON Schema Files (.json)**: These files create the rules for validating user inputs and generate dynamic web forms for data entry.
+- **JSON schema files (.json)**: These files create the rules for validating user inputs and generate dynamic web forms for data entry.
 
-- **Auxiliary Files**: Additional files required for configuration, such as JavaScript for added functionality, security certificates, or documentation (README.md). These files support the main configuration and provide necessary context or capabilities.
+- **Auxiliary files**: Additional files required for configuration, such as JavaScript for added functionality, security certificates, or documentation (README.md). These files support the main configuration and provide necessary context or capabilities.
 
 To learn more about the resources mentioned, refer to the [Template Resource Files]({{< relref "nms/nim/about/templates/template-artifacts.md" >}}) topic.
 
@@ -56,7 +56,7 @@ There are three types of targets:
 
 1. **Individual NGINX instance**: Targets a single server, allowing for precise configuration updates or replacements.
 
-2. **Instance Group**: A collection of NGINX instances managed as a single group. Applying a template to an instance group ensures uniform configuration across all its servers.
+2. **Instance group**: A collection of NGINX instances managed as a single group. Applying a template to an instance group ensures uniform configuration across all its servers.
 
 3. **Staged config**: A staging area for configurations before deployment, allowing for testing and validation to minimize potential disruptions upon live deployment.
 

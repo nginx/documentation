@@ -25,55 +25,88 @@ authors: []
 
 ---
 
-## Overview
+## Create a Config Template
 
-Briefly describe the goal of this document, that is, what the user will learn or accomplish by reading what follows.
+Config templates in NGINX Instance Manager allow you to predefine and standardize configurations for your NGINX instances. By creating a template, you can streamline the deployment process and ensure consistency across your environments. This guide walks you through creating a new template from scratch or importing an exiting template from an archive.
 
-Introduce and explain any new concepts the user may need to understand before proceeding.
+### Create a Config Template from Scratch
 
-## Before You Begin
+To create a new config template:
 
-To complete the instructions in this guide, you need the following:
+1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Management Suite host, and log in.
+2. From the Launchpad menu, choose **Instance Manager**.
+3. In the left navigation pane, select **Templates > Overview**.
+4. On the Config Templates "Overview" page, select **Create**.
+5. In the **Create Template** dialog:
+    - Select **New** to start a fresh template.
+    - Enter a unique and descriptive name for your template in the **Name** field.
+    - (Optional) Provide a description in the **Description** field to give more context about the template's purpose or usage.
+    - Choose the template's **State** to indicate its readiness:
+        - **Draft**: Indicates that the template is still under development, editable, and not finalized for use.
+        - **Ready for Use**: Means the template is finalized, locked from further editing, and ready to be applied or submitted.
+    - Specify the **Type** of template you are creating:
+        - **Base**: Select this option if the template will serve as a comprehensive starting point, containing all the directives needed for a standalone NGINX configuration.
+        - **Augment**: Choose this if the template will add to or enhance an existing configuration by introducing additional directives or settings.
+6. Click **Submit** to create the template.
 
-1. Provide any prerequisites here.
-2. Format as a numbered or bulleted list as appropriate.
-3. Keep the list entries grammatically parallel.1. Provide any prerequisites here.
+Remember that a base template is required to build a full configuration, whereas augment templates are used to extend or modify this base configuration as needed. You can find more about these template types in the topic [Understanding Configuration Templates]({{< relref "nms/nim/about/templates/config-templates.md" >}}).
 
-## Goal 1 - write as a verb phrase
+### Import a Config Template from an Archive
 
-Add introductory text. Say what the user will be doing.
+When importing a config template from an archive, ensure your `.tar.gz` file adheres to the following structure:
 
-To do xzy, take the following steps:
+- Each template must be in its own directory within the archive.
+- Directories should contain all related template files (.tmpl for templates, .json for JSON schemas) and a `meta.json` file that includes metadata such as the template's name, description, author, type, and unique identifier (UID).
 
-1. This is where you provide the steps that the user must take to accomplish the goal.
+Optionally, you can sign your archive with a digital signature for verification upon import. This process involves creating a cryptographic hash of the archive file and signing it with a private key.
 
-    ```bash
-    code examples should be nested within the list
-    ```
+#### Required archive structure
 
-2. Format as numbered lists.
+``` text
+<archive-name>.tar.gz
+│
+├── <template-name>/
+│   ├── <template-files>.tmpl
+│   ├── <validation-files>.json
+│   └── meta.json
+│
+├── <another-template-name>/
+│   ├── <template-files>.tmpl
+│   ├── <validation-files>.json
+│   └── meta.json
+│
+└── ...
+```
 
-    {{< note >}}Add notes like this.{{</note>}}
+#### Example meta.json file
 
-3. If there is only one step, you don't need to format it as a numbered list.
+``` json
+{
+  "meta_version_num": 1,
+  "name": "example_template",
+  "description": "This is an example NGINX template.",
+  "author": "Your Name",
+  "type": "base",  // Could be "base" or "augment"
+  "uid": "unique-identifier-uuid-goes-here"
+}
+```
 
-## Goal 2 - write as a verb phrase
+_Replace the placeholder values with the actual details of your template._
 
-## Goal 3  - write as a verb phrase
+<br>
 
-## Discussion
+To import an existing template from a `.tar.gz` archive file:
 
-Use the discussion section to expand on the information presented in the steps above.
+1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Management Suite host, and log in.
+2. From the Launchpad menu, choose **Instance Manager**.
+3. In the left navigation pane, select **Templates > Overview**.
+4. On the Config Templates "Overview" page, select **Create**.
+5. In the **Create Template** dialog, select **Import**.
+6. Drag and drop your `.tar.gz` archive file onto the web form or select **Browse** to find and select your file.
+7. Once the file is uploaded, select **Parse** to inspect the archive.
+8. If an error message appears indicating the archive is unsigned, and you recognize and trust the source of the file, select the checkbox **Allow Signature Bypass**.
+9. Select **Import** to finish importing the templates.
 
-This section contains the "why" information.
+{{<warning>}}<i class="fa fa-exclamation-triangle" aria-hidden="true" aria-label="Warning"></i> Make sure you validate the source of the archive before bypassing the signature requirement to maintain the security of your system.{{</warning>}}
 
-This information lives at the end of the document so that users who just want to follow the steps don't have to scroll through a wall of explanatory text to find them.
 
-## Verification
-
-Explain how the user can verify the steps completed successfully.
-
-## What's Next
-
-- Provide up to 5 links to related topics (optional).
-- Format as a bulleted list.
