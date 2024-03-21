@@ -32,9 +32,9 @@ NGINX Instance Manager uses [Go templating](https://pkg.go.dev/text/template) to
 
 Configuration templates come in two types:
 
-- **Base Templates**: These are standalone templates that provide all the necessary settings for an NGINX instance to run. They formulate the fundamental structure of the NGINX configuration, including server directives, locations, and other key settings.
+- **Base Templates**: A base template is a comprehensive set of instructions used to generate a complete NGINX configuration. It includes all the necessary directives and parameters to create a functional server configuration from scratch. Essentially, it’s the foundational configuration on which your server operates.
 
-- **Augment Templates**: These templates add functionality or segments to an NGINX configuration. They can introduce new capabilities like caching, OIDC authentication, or segment or break out specific configuration content like location blocks or server blocks.
+- **Augment Templates**: An augment template modifies or adds to an existing NGINX configuration. It's used to introduce specific functionality, features, or settings without altering the underlying base template. Augment templates allow for customization and enhancement of server configurations by overlaying additional directives onto the base setup.
 
 ### Template Resource Files {#template-resources}
 
@@ -50,7 +50,7 @@ To learn more about the resources mentioned, refer to the [Template Resource Fil
 
 ## Target
 
-A target in the context of NGINX configuration templates refers to the location where the generated configuration is applied. Targets can be individual NGINX instances, groups of instances managed as an instance group, or a staged configuration that can be tested and validated before being deployed to production environments.
+A target refers to the specific NGINX server instance, instance group, or staged config where a template (base or augment) is intended to be applied. It's the designated location or context within which the generated configuration will be active and operational.
 
 There are three types of targets:
 
@@ -62,14 +62,10 @@ There are three types of targets:
 
 ## Template submission
 
-Template submission involves applying a template-generated configuration to a chosen target in the NGINX environment. This process starts with selecting a template, either a base template for a new setup and/or an augment template for updates. Augment templates can be used in combination with the base template to add new features or segments when generating configurations, or to update an existing configuration. Then, you fill in the needed parameters and deploy the configuration to your target.
-
-Template submission effectively bridges the gap between configuration design and operational use.
+Template submission involves applying a set of configurations (derived from base and/or augment templates) to a target. This action takes the parameters defined in the templates, generates the final NGINX configuration, and deploys it to the specified target. Template submission effectively bridges the gap between configuration design and operational use.
 
 Key aspects of template submission include:
 
-- **Snapshot creation**: When a template is submitted, a snapshot of the template and the provided parameters is saved. This helps keep a record of what was submitted and makes it easy to review and make changes in the future if needed.
+- **Snapshots**: Snapshots are created when templates are submitted. Snapshots capture the state of the template and its inputs at the time of submission. This includes all the settings, parameters, and the structure defined in both base and augment templates. By creating a snapshot, NGINX Instance Manager preserves a record of the exact configuration applied to a target at a specific point in time. This is crucial for auditing purposes, rollback scenarios, and understanding the evolution of a server's configuration.
 
-- **Target application**: Users can choose where the generated configuration will take effect--on an individual NGINX instance, an instance group, or a staged config.
-
-- **Flexibility and control**: Users can create new configurations with base templates or they can add additional functionalities or segments with augment templates.
+- **Target application**: When submitting a template, it's important to specify the target accurately. The target is the NGINX instance, instance group, or staged config where the generated configuration will be applied. Misidentifying the target can lead to configurations being deployed to unintended environments, potentially causing disruptions.
