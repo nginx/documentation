@@ -62,7 +62,7 @@ To add resource files to a template:
 2. In the config editor, select **Add file**.
 3. Choose the type of file you want to add to the template. Depending on the file type, you'll be presented with a list of file options to choose from.
 4. Select the file names you want to add to your template.
-5. After selecting all the necessary files, click **Add** to include in the template.
+5. After selecting all the necessary files, click **Add** to include them in the template.
 6. The selected files will now appear in the template's directory structure on the left side of the editor. Select a file to edit its contents in the editing pane.
 8. Make your changes and select **Save** to update the template with your configurations.
 
