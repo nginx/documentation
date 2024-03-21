@@ -32,9 +32,9 @@ NGINX Instance Manager uses [Go templating](https://pkg.go.dev/text/template) to
 
 Configuration templates come in two types:
 
-- **Base templates**: A base template is a comprehensive set of instructions used to generate a complete NGINX configuration. It includes all the necessary directives and parameters to create a functional server configuration from scratch. Essentially, it’s the foundational configuration on which your server operates.
+- **Base templates**: A base template is a comprehensive set of instructions used to generate a complete NGINX configuration. It includes all the necessary directives and parameters to create a functional NGINX configuration from scratch. Essentially, it’s the foundational configuration on which your NGINX instance operates.
 
-- **Augment templates**: An augment template modifies or adds to an existing NGINX configuration. It's used to introduce specific functionality, features, or settings without altering the underlying base template. Augment templates allow for customization and enhancement of server configurations by overlaying additional directives onto the base setup.
+- **Augment templates**: An augment template modifies or adds to an existing NGINX configuration. It's used to introduce specific functionality, features, or settings without altering the underlying base template. Augment templates allow for customization and enhancement of NGINX configurations by overlaying additional directives onto the base setup.
 
 ### Template Resource Files {#template-resources}
 
