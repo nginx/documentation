@@ -27,7 +27,7 @@ authors: []
 ## Config Template, Schema, and README Files
 
 
-The following table outlines the key template resource files involved in creating NGINX configurations using NGINX Instance Manager. Each resource plays a distinct role in the configuration process, ranging from defining the structure and behavior of the NGINX configuration to validating the input parameters provided by users. 
+The following table outlines the key template resource files involved in creating NGINX configurations using NGINX Instance Manager. Each resource plays a distinct role in the configuration process, ranging from defining the structure and parameters of the NGINX configuration to validating the input provided by users. 
 
 The table categorizes these resources into configuration files (identified by their **.tmpl** extension and specific types), associated schema files that establish rules for data validation, and auxiliary documentation through **README.md** files, which offer comprehensive guidance on template usage and functionality.
 
