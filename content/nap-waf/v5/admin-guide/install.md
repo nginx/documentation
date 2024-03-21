@@ -781,8 +781,6 @@ services:
       - /opt/app_protect/bd_config:/opt/app_protect/bd_config
       - /opt/app_protect/config:/opt/app_protect/config
       - /etc/app_protect/conf:/etc/app_protect/conf
-      - /conf/nginx.conf:/etc/nginx/nginx.conf # based on the provided example
-      - /conf/default.conf:/etc/nginx/conf.d/default.conf # based on the provided example
     restart: always
     network_mode: none
     depends_on:
