@@ -55,9 +55,9 @@ This guide covers the following resource files for creating templates:
 
 <br>
 
-## Example: Enabling OIDC with templating and validation
+## Example: Enable OIDC with main.tmpl
 
-This example shows how NGINX can be configured to use OIDC for authentication based on a template and validated user input. Using this setup, administrators can enable or disable OIDC authentication without having to dive too deep into NGINX configuration files. By using templating and schema validation, this approach simplifies configuration, making it more accessible and error-proof.
+This example shows how to enable OIDC authentication in NGINX using a config template and user input. This templated approach with JSON schema validation simplifies updating the NGINX configuration and reduces the risk of errors.
 
 - **main.tmpl**
 
