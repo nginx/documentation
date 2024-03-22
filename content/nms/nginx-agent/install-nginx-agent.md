@@ -89,10 +89,6 @@ You can choose one of the following two methods to install the NGINX Agent on yo
 
 {{< include "agent/installation/install-agent-api.md" >}}
 
-### Install from Package Files
-
-{{< include "agent/installation/install-agent-package.md" >}}
-
 ---
 
 ## Enable and Start NGINX Agent

@@ -25,7 +25,7 @@ roles:
 title: Using NGINX App Protect WAF with NGINX Management Suite
 toc: true
 versions:
-- "4.6"
+- "4.6+"
 weight: 100
 ---
 
@@ -34,15 +34,6 @@ weight: 100
 [NGINX Management Suite Instance Manager]({{< relref "/nms/about.md#instance-manager" >}}) provides a centralized interface where you can create, modify, and publish policies, attack signatures, and threat campaigns for NGINX App Protect WAF. You can use Instance Manager to deploy configuration updates to one, some, or all your NGINX App Protect WAF data plane instances simultaneously. 
 
 - Refer to [Manage Your App Protect WAF Configs]({{< relref "/nms/nim/how-to/app-protect/setup-waf-config-management.md" >}}) for installation instructions.
-
-
----
-
-## Using Advanced Security with NGINX Management Suite API Connectivity Manager
-
-[API Connectivity Manager's]({{< relref "/nms/about.md#api-connectivity-manager" >}}) Advanced Security policy allows you to use an NGINX App Protect WAF policy created using Instance Manager and add it to your Environment by using the Advanced Security policy in API Connectivity Manager. 
-
-- For more information, see the [API Connectivity Manager Advanced Security]({{< relref "/nms/acm/how-to/policies/advanced-security.md" >}}) documentation.
 
 ---
 

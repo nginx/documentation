@@ -158,7 +158,7 @@ Navigating the dashboard:
 **NGINX One dashboard metrics**
 | Metric | Description | Details |
 |---|---|---|
-| <i class="fas fa-heartbeat"></i> **Instance availability** | Understand the operational status of your NGINX instances. | - **Online**: The NGINX instance is actively connected and functioning properly. <br> - **Offline**: The NGINX Agent is connected but the NGINX instance isn't running. <br> - **Unavailable**: The connection between the NGINX Agent and NGINX One has been lost. <br> - **Unknown**: The current state can't be determined at the moment. |
+| <i class="fas fa-heartbeat"></i> **Instance availability** | Understand the operational status of your NGINX instances. | - **Online**: The NGINX instance is actively connected and functioning properly. <br> - **Offline**: The NGINX Agent is connected but the NGINX instance isn't running, isn't installed, or can't communicate with the NGINX Agent. <br> - **Unavailable**: The connection between the NGINX Agent and NGINX One has been lost or the instance has been decommissioned. <br> - **Unknown**: The current state can't be determined at the moment. |
 | <i class="fas fa-code-branch"></i> **NGINX versions by instance** | See which NGINX versions are in use across your instances. | |
 | <i class="fas fa-desktop"></i> **Operating systems** | Find out which operating systems your instances are running on. | |
 | <i class="fas fa-certificate"></i> **Certificates** | Monitor the status of your SSL certificates to know which are expiring soon and which are still valid. | |

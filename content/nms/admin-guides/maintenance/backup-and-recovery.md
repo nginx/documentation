@@ -59,8 +59,6 @@ To run the backup and restore scripts, you need to set their permissions to make
     sudo chmod +x restore.sh
     sudo chmod +x backup-acm.sh
     sudo chmod +x restore-acm.sh
-    sudo chmod +x backup-adm.sh
-    sudo chmod +x restore-adm.sh
     sudo chmod +x support-package.sh
     ```
 
@@ -170,14 +168,12 @@ To back up NGINX Management Suite deployed in a Kubernetes cluster, follow these
 
     ```shell
     cp nms-<version>/charts/nms-hybrid/backup-restore/k8s-backup.sh .
-    cp nms-<version>/charts/nms-adm/backup-restore/k8s-backup-adm.sh .
     ```
 
 1. Make the scripts executable:
 
     ```shell
     chmod +x k8s-backup.sh
-    chmod +x k8s-backup-adm.sh
     ```
 
 1. Run the backup script:
@@ -239,7 +235,6 @@ To restore NGINX Management Suite and the installed modules into a different Kub
 
     ```shell
     chmod +x k8s-restore.sh
-    chmod +x k8s-restore-adm.sh
     ```
 
 3. Copy your k8s-backup-<timestamp>.tar.gz file to the same directory as the k8s-restore.sh script.
