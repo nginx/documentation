@@ -154,7 +154,7 @@ To preview, generate, and submit a config from a template:
 
 ## Additional Resources
 
-- **[Understand Config Configuration Templates]({{< relref "nms/nim/about/templates/config-templates.md" >}})**: Learn about the config template types, targets for publication, and the template submission process.
+- **[Understand Config Templates]({{< relref "nms/nim/about/templates/config-templates.md" >}})**: Learn about the config template types, targets for publication, and the template submission process.
   
 - **[Template Resource Files]({{< relref "nms/nim/about/templates/template-artifacts.md" >}})**: Learn about template resource files, including config template files, JSON schemas, and auxiliary files.
   
