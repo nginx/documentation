@@ -1,5 +1,5 @@
 ---
-title: "Understanding Configuration Templates"
+title: "Understanding Config Templates"
 date: 2024-03-11T14:03:20-07:00
 # Change draft status to false to publish doc
 draft: false
@@ -24,11 +24,11 @@ versions: []
 authors: []
 ---
 
-## Config Templates
+## Config templates
 
 NGINX Instance Manager uses [Go templating](https://pkg.go.dev/text/template) to simplify creating and standardizing NGINX configurations. These config templates create an abstraction layer for NGINX configuration files, enabling users to provide parameters to generate a working configuration without needing a deep knowledge of NGINX syntax. These templates simplify configuring NGINX, enforce best practices for configurations, and enable self-service permissions for app development.
 
-### Types of Templates {#template-types}
+### Types of templates {#template-types}
 
 Configuration templates come in two types:
 
@@ -36,7 +36,7 @@ Configuration templates come in two types:
 
 - **Augment templates**: An augment template modifies or adds to an existing NGINX configuration. It's used to introduce specific functionality, features, or settings without altering the underlying base template. Augment templates allow for customization and enhancement of NGINX configurations by overlaying additional directives onto the base setup.
 
-### Template Resource Files {#template-resources}
+### Template resource files {#template-resources}
 
 Configuration templates include the following components:
 
@@ -69,3 +69,13 @@ Key aspects of template submission include:
 - **Snapshots**: Snapshots are created when templates are submitted. Snapshots capture the state of the template and its inputs at the time of submission. This includes all the settings, parameters, and the structure defined in both base and augment templates. By creating a snapshot, NGINX Instance Manager preserves a record of the exact configuration applied to a target at a specific point in time. This is crucial for auditing purposes, rollback scenarios, and understanding the evolution of a server's configuration.
 
 - **Target application**: When submitting a template, it's important to specify the target accurately. The target is the NGINX instance, instance group, or staged config where the generated configuration will be applied. Misidentifying the target can lead to configurations being deployed to unintended environments, potentially causing disruptions.
+
+---
+
+## Additional Resources
+
+- **[Template Resource Files]({{< relref "nms/nim/about/templates/template-artifacts.md" >}})**: Learn about template resource files, including config template files, JSON schemas, and auxiliary files.
+  
+- **[JSON Schemas for Template Inputs]({{< relref "nms/nim/about/templates/json-schema-reference.md" >}})**: JSON schemas for the dynamic web form builder, used for template input and validation.
+
+- **[Manage NGINX Configs with Config Templates]({{< relref "nms/nim/how-to/nginx/manage-nginx-configs-with-templates.md" >}})**: Learn how to create and import config templates, as well as generate and deploy NGINX configurations.

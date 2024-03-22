@@ -49,7 +49,7 @@ To create a new config template:
         - **Augment**: Choose this if the template will add to or enhance an existing configuration by introducing additional directives or settings.
 6. Click **Submit** to create the template.
 
-After creating a template, you'll need to add various resource files to define its structure and behavior:
+After creating a template, you'll need to add resource files to define its structure and behavior:
 
 - **Config File (.tmpl)**: This is the core template file that defines the structure and parameters of your NGINX configuration. If you're creating a base template, you'll add a **base.tmpl** file. For augment templates, select the appropriate augment file that corresponds to the functionality you wish to include.
 - **JSON Schema File (.json)**: JSON schema files are necessary for creating the dynamic web forms in the UI that users will interact with. These schemas define the valid format and type of user inputs for the template.
@@ -129,33 +129,33 @@ To import an existing template from a `.tar.gz` archive file:
 
 --- 
 
-## Preview and Generate a Config from a Template
+## Preview, Generate, and Submit a Config from a Template
 
-Previewing a config from a template allows you to see how your NGINX configurations will look before they go live. This step helps ensure that your configurations are correctly set up and include all necessary inputs and augmentations. By previewing, you can avoid errors that might disrupt your service when the configurations are published.
+Previewing a config from a template lets you see how your NGINX configurations will look before publishing them. During this step, you'll make sure all the inputs and augmentations are correct. Once you're satisfied with the preview, you can generate the config and submit it.
 
-To preview and generate a config from a template:
+To preview, generate, and submit a config from a template:
 
 1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Management Suite host, and log in.
-2. From the Launchpad menu, choose **Instance Manager**.
-3. In the left navigation pane, select **Templates > Overview**.
-4. On the Config Templates "Overview" page, find the template you want to use and select the ellipsis (three dots) in the **Actions** column. Then choose **Preview and Generate**.
-5. In the **Preview and Generate Config** dialog, proceed through the forms in sequence, selecting **Next** to move forward:
-    - **Choose Publish Options**: Decide where to publish the template by selecting one of the following targets:
-      - **Publish to an Instance**: If you want the configuration to apply to a single NGINX instance.
+2. Select **Instance Manager** from the LaunchPad.
+3. On the left sidebar, select **Templates > Overview**.
+4. Locate the desired template on the "Overview" page and select the ellipsis (three dots) in the **Actions** column, then select **Preview and Generate**.
+5. Complete the forms on the **Preview and Generate Config** dialog in sequence, selecting **Next** to move forward:
+    - **Choose Publish Options**: Specify where to publish the template by selecting either:
+      - **Publish to an Instance**: To apply the configuration to a single NGINX instance.
       - **Publish to an Instance Group**: To apply the configuration to multiple instances managed as an instance group.
-      - **Save to a Staged Config**: If you prefer to stage the configuration for future deployment.
+      - **Save to a Staged Config**: To stage the configuration for future deployment.
       - **Save as a New Staged Config**: To create a brand new staged configuration for later use.
-    - **Augments** (Optional): If you are working with a base configuration, you can include additional augment templates for enhanced functionality.
+    - **Augments** (Optional): Include any augment templates needed to enhance a base configuration with additional features.
     - **Base and Augment Inputs**: Enter the required configuration inputs for the chosen templates.
-    - **Preview Config**: Use the dropdown to select and review how each configuration file will appear after generation.
-6. After reviewing and confirming that the configurations are correct, select **Publish**. If you've published to an instance or instance group, the submission will be listed on the **Templates > Template Submissions** page for tracking and management.
+    - **Preview Config**: Use the filename dropdown to review the output for each configuration.
+6. After verifying the configurations, select **Publish**. If you've published to an instance or instance group, the template submission will tracked on the **Templates > Template Submissions** page.
 
 ---
 
 ## Additional Resources
 
-- **[Understanding Configuration Templates]({{< relref "nms/nim/about/templates/config-templates.md" >}})**: Learn about the different types of templates, the available targets for publishing, and the template submission process.
+- **[Understand Config Configuration Templates]({{< relref "nms/nim/about/templates/config-templates.md" >}})**: Learn about the config template types, targets for publication, and the template submission process.
   
-- **[Template Resource Files]({{< relref "nms/nim/about/templates/template-artifacts.md" >}})**: Learn about the template resource files, including config template files, JSON schemas, and auxiliary files.
+- **[Template Resource Files]({{< relref "nms/nim/about/templates/template-artifacts.md" >}})**: Learn about template resource files, including config template files, JSON schemas, and auxiliary files.
   
-- **[JSON Schemas for Dynamic Web Forms]({{< relref "nms/nim/about/templates/json-schema-reference.md" >}})**: A reference for the supported JSON schema features used to create dynamic web forms for user input and validation.
+- **[JSON Schemas for Template Inputs]({{< relref "nms/nim/about/templates/json-schema-reference.md" >}})**: JSON schemas for the dynamic web form builder, used for template input and validation.

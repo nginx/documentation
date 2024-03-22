@@ -121,7 +121,9 @@ This example shows how NGINX can be configured to use OIDC for authentication ba
    }
    ```
 
-   An explanation of the JSON schema settings:
+  <br>
+
+  An explanation of the JSON schema settings:
 
     - **Root property for `templateInput`**: The JSON schema defines a root property named `templateInput`. This property is necessary because it contains all the customizable parameters the user can provide for the template. The schema specifies that `templateInput` can be either an object (which holds configuration parameters) or null (indicating the absence of such parameters).
 
@@ -130,3 +132,13 @@ This example shows how NGINX can be configured to use OIDC for authentication ba
     - **Input-validation for `oidc` object**: The `main.json` provides rules for validating the `oidc` object's inputs. For example, the `enabled` property within the `oidc` object must be a boolean. This ensures that the template receives correctly typed and structured data to generate the configuration correctly.
 
     - **Required properties**: The schema declares that within the `oidc` object, the `enabled` property is mandatory (`"required": ["enabled"]`). This means that any input provided for the `oidc` object must include a clear true/false value for `enabled`.
+
+---
+
+## Additional Resources
+
+- **[Understand Config Configuration Templates]({{< relref "nms/nim/about/templates/config-templates.md" >}})**: Learn about the config template types, targets for publication, and the template submission process.
+  
+- **[JSON Schemas for Template Inputs]({{< relref "nms/nim/about/templates/json-schema-reference.md" >}})**: JSON schemas for the dynamic web form builder, used for template input and validation.
+
+- **[Manage NGINX Configs with Config Templates]({{< relref "nms/nim/how-to/nginx/manage-nginx-configs-with-templates.md" >}})**: Learn how to create and import config templates, as well as generate and deploy NGINX configurations.
