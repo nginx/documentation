@@ -26,23 +26,30 @@ authors: []
 
 ## Config Template, Schema, and README Files
 
+NGINX Instance Manager uses [Go templating](https://pkg.go.dev/text/template) and JSON schemas to create flexible and robust NGINX configuration templates. This allows users to efficiently customize and validate configurations without needing expert knowledge of NGINX syntax.
 
-The following table outlines the key template resource files involved in creating NGINX configurations using NGINX Instance Manager. Each resource plays a distinct role in the configuration process, ranging from defining the structure and parameters of the NGINX configuration to validating the input provided by users. 
+{{<call-out "tip" "Enhanced templating with Sprig">}}<i class="fas fa-code-branch"></i>
+ Go templating in Instance Manager includes support for the [Sprig function library](https://masterminds.github.io/sprig/), offering a wide range of additional functions that can be used in templates for advanced operations like string manipulation, data conversion, mathematics, and more. {{</call-out>}}
 
-The table categorizes these resources into configuration files (identified by their **.tmpl** extension and specific types), associated schema files that establish rules for data validation, and auxiliary documentation through **README.md** files, which offer comprehensive guidance on template usage and functionality.
+This guide covers the following resource files for creating templates:
+
+- **Config files** (`*.tmpl`), which are Go templates that define the NGINX configuration's structure and parameters.
+- **Schema files** (`*.json`), which are JSON schemas specifing the rules for input validation and providing the structure for dynamic web forms.
+- **README.md** files, which document the template's purpose, usage, and capabilities.
+
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Config File            | Applicable&nbsp;Type(s) | Schema File(s)                                       | Purpose                                                                                                              |
 |------------------------|--------------------|---------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
-| **base.tmpl**            | base               | **main.json**<br>**http.json**<br>**http-server.json**<br>**http-upstream.json**<br>**location.json**<br>**stream.json**<br>**stream-server.json**<br>**stream-upstream.json**                                         | <p>Required for templates designated as base. The schema files are optional if no user inputs are needed.</p> <p>Includes all directives required to produce a full NGINX configuration (for example, **main**, **http**, and **stream**). Additionally, this file should incorporate specific Go templating language commands that allow for the dynamic insertion of configuration details into the appropriate sections or directive blocks.
-| **main.tmpl**            | augment            | **main.json**                             | Contains configuration and schema inputs for the **main** directive block. The schema file is optional if no user inputs are needed. See the full [alphabetical list of directives](https://nginx.org/en/docs/dirindex.html)         |
-| **http.tmpl**            | augment            | **http.json**                             | Contains configuration and schema inputs for the [HTTP directive](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) block. The schema file is optional if no user inputs are needed.|
-| **http-server.tmpl**     | augment            | **http-server.json**                      | Contains configuration and schema inputs for the [HTTP server directive](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) block. The schema file is optional if no user inputs are needed. |
-| **http-upstream.tmpl**   | augment            | **http-upstream.json**                    | Contains configuration and schema inputs for the [HTTP upstream directive](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream) block. The schema file is optional if no user inputs are needed. |
-| **location.tmpl**        | augment            | **location.json**                         | Contains configuration and schema inputs for the [HTTP server location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) directive block. The schema file is optional if no user inputs are needed. |
-| **stream.tmpl**          | augment            | **stream.json**                           | Contains configuration and schema inputs for the [stream directive](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#stream) block. The schema file is optional if no user inputs are needed. |
-| **stream-server.tmpl**   | augment            | **stream-server.json**                    | Contains configuration and schema inputs for the [stream server directive](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#server) block. The schema file is optional if no user inputs are needed. |
-| **stream&#8209;upstream.tmpl** | augment            | **stream&#8209;upstream.json**                  | Contains configuration and schema inputs for the [stream upstream directive](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#upstream) block. The schema file is optional if no user inputs are needed. |
+| **base.tmpl**            | base               | **main.json**<br>**http.json**<br>**http-server.json**<br>**http-upstream.json**<br>**location.json**<br>**stream.json**<br>**stream-server.json**<br>**stream-upstream.json**                                         | <p>Required for templates designated as base. The schema files are optional for templates that don't require user inputs.</p><p>The template file should include all directives needed to create a complete NGINX configuration, such as **main**, **http**, and **stream**. Also, it should have specific Go templating language commands to insert dynamic configuration details into the right sections or directive blocks.</p>
+| **main.tmpl**            | augment            | **main.json**                             | Contains configuration and schema inputs for the **main** directive block. The schema file is optional for templates that don't require user inputs. See the full [alphabetical list of directives](https://nginx.org/en/docs/dirindex.html)         |
+| **http.tmpl**            | augment            | **http.json**                             | Contains configuration and schema inputs for the [HTTP directive](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) block. The schema file is optional for templates that don't require user inputs.|
+| **http-server.tmpl**     | augment            | **http-server.json**                      | Contains configuration and schema inputs for the [HTTP server directive](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) block. The schema file is optional for templates that don't require user inputs. |
+| **http-upstream.tmpl**   | augment            | **http-upstream.json**                    | Contains configuration and schema inputs for the [HTTP upstream directive](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream) block. The schema file is optional for templates that don't require user inputs. |
+| **location.tmpl**        | augment            | **location.json**                         | Contains configuration and schema inputs for the [HTTP server location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) directive block. The schema file is optional for templates that don't require user inputs. |
+| **stream.tmpl**          | augment            | **stream.json**                           | Contains configuration and schema inputs for the [stream directive](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#stream) block. The schema file is optional for templates that don't require user inputs. |
+| **stream-server.tmpl**   | augment            | **stream-server.json**                    | Contains configuration and schema inputs for the [stream server directive](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#server) block. The schema file is optional for templates that don't require user inputs. |
+| **stream&#8209;upstream.tmpl** | augment            | **stream&#8209;upstream.json**                  | Contains configuration and schema inputs for the [stream upstream directive](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#upstream) block. The schema file is optional for templates that don't require user inputs. |
 | **README.md**            | base, augment      | n/a                                               | Provides documentation, usage instructions, and an overview of the template.                                        |
 {{</bootstrap-table>}}
 
@@ -54,7 +61,7 @@ This example shows how NGINX can be configured to use OIDC for authentication ba
 
 - **main.tmpl**
 
-   In the following example, the **main.tmpl** template checks if OIDC (OpenID Connect) authentication should be enabled for the NGINX configuration based on the user's input. If the input specifies that OIDC is enabled, the template instructs NGINX to load a specific module (**ngx_http_js_module.so**) that's necessary for OIDC functionality.
+   A template file, **main.tmpl**, checks if OIDC (OpenID Connect) authentication should be enabled in the NGINX configuration based on user input. If the input enables OIDC, the template instructs NGINX to load the **ngx_http_js_module.so** module necessary for OIDC functionality.
 
    ``` go
    {{$input := .}}
@@ -77,7 +84,7 @@ This example shows how NGINX can be configured to use OIDC for authentication ba
 
 - **main.json**
 
-   The following **main.json** acts as a blueprint for validating the structure and data types of user inputs provided to **main.tmpl**, with a particular emphasis on correctly configuring OIDC authentication by ensuring the enabled property within the "oidc" object is properly defined and used. The root property for **templateInput** is required and will be validated when analyzing a template.
+   A JSON schema file, **main.json**, validates user inputs for **main.tmpl**, ensuring that the **oidc** object's **enabled** property is correctly defined and used. The **templateInput** root property is required and will be validated when analyzing the template.
 
    ``` json
    {
@@ -137,7 +144,7 @@ This example shows how NGINX can be configured to use OIDC for authentication ba
 
 ## Additional Resources
 
-- **[Understand Config Templates]({{< relref "nms/nim/about/templates/config-templates.md" >}})**: Learn about the config template types, targets for publication, and the template submission process.
+- **[Understand Config Configuration Templates]({{< relref "nms/nim/about/templates/config-templates.md" >}})**: Learn about the config template types, targets for publication, and the template submission process.
   
 - **[JSON Schemas for Template Inputs]({{< relref "nms/nim/about/templates/json-schema-reference.md" >}})**: JSON schemas for the dynamic web form builder, used for template input and validation.
 
