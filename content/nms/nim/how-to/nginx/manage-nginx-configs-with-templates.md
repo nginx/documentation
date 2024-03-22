@@ -69,7 +69,7 @@ To add resource files to a template:
 {{<call-out "tip" "See Also" >}}<i class="fa-regular fa-lightbulb" aria-hidden="true" aria-label="Tip"></i>
 You can find more information about template types, template resource files, and JSON schema features in the [Additional Resources](#additional-resources) section.{{</call-out>}}
 
-### Import a Config Template from an Archive
+### Import Config Templates from an Archive
 
 When importing a config template from an archive, ensure your `.tar.gz` file adheres to the following structure:
 
