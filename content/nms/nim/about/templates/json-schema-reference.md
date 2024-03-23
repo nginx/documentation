@@ -26,7 +26,7 @@ authors: []
 
 ## Overview
 
-NGINX Instance Manager's dynamic web form builder uses JSON schemas to guide and validate user inputs for creating NGINX configurations. This approach simplifies the configuration process by providing a structured and intuitive input method, ensuring that the entered parameters adhere to NGINX configuration requirements. 
+The NGINX Instance Manager’s web form builder uses JSON schemas to guide and validate user inputs when creating NGINX configurations from templates. This structured input method simplifies the configuration process and ensures adherence to NGINX configuration requirements.
 
 ## JSON Schema
 
@@ -34,16 +34,17 @@ JSON Schema is a standard explained in detail at [json-schema.org](https://json-
 
 In NGINX Instance Manager, we support a specific set of common features from the JSON Schema:
 
-- **Type**: This defines the kind of data a field can hold. More information is available at [Type Definitions](https://json-schema.org/understanding-json-schema/reference/type.html). Currently, our support is for fields that can either be a `string` or an array with just one `string`. Exceptionally, we also handle fields defined with two types, where one is `null` (like `["object", "null"]`). Here, we ignore the `null` and focus on the other type. This approach matches the needs of our backend, which also uses JSON Schema. Supported types include:
+- **Type**: This defines the kind of data a field can hold. More information is available at [Type Definitions](https://json-schema.org/understanding-json-schema/reference/type.html).
+
+  Supported types include:
   - [Boolean](#boolean-field): True or false values.
   - [String](#string-field): Text.
   - [Numeric](#numeric-field): Numbers, both whole and decimal.
   - [Object](#object-field): Structures with named properties.
   - [Array](#array-field): Lists of items.
-- **Title**: A clear, friendly name for a form field, telling users what information is needed. For more on this, visit [Generic Keywords](https://json-schema.org/understanding-json-schema/reference/generic.html).
-- **Description**: Helps users understand what to enter into a field. See [Generic Keywords](https://json-schema.org/understanding-json-schema/reference/generic.html) for additional details.
 
-This chosen set of JSON Schema features makes the dynamic form builder in NGINX Instance Manager straightforward to use while covering the usual needs for configuring NGINX. It helps make the configuration process clearer and reduces mistakes, allowing users to configure and manage NGINX instances with ease.
+- **Title**: A descriptive, user-friendly name for each form field, indicating the required information. For further details, refer to [Generic Keywords](https://json-schema.org/understanding-json-schema/reference/generic.html).
+- **Description**: Text that assists users in filling out fields by providing guidance on what information should be entered. For more information, refer to [Generic Keywords](https://json-schema.org/understanding-json-schema/reference/generic.html).
 
 ### Boolean field
 
