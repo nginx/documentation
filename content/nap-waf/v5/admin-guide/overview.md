@@ -29,7 +29,7 @@ title: NGINX App Protect WAF Administration Guide
 toc: true
 versions:
 - "5.0"
-weight: 310
+weight: 100
 ---
 
 ## Introduction

@@ -29,7 +29,7 @@ title: Installing NGINX App Protect WAF
 toc: true
 versions:
 - "5.0"
-weight: 320
+weight: 200
 ---
 
 ## Prerequisites
