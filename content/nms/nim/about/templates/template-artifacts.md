@@ -90,6 +90,7 @@ This example shows how to enable OIDC authentication in NGINX using a config tem
    {
      "$schema": "https://json-schema.org/draft/2020-12/schema",
      "type": "object",
+     "title": "Main inputs",
      "properties": {
    	"templateInput": {
    	  "type": [
