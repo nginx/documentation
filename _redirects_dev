@@ -142,5 +142,5 @@
 /nginx-agent/* https://dev--agent-public-docs.netlify.app/nginx-agent/:splat 200!
 /nginx-amplify/* https://dev--amplify-public-docs.netlify.app/nginx-amplify/:splat 200!
 /nginx-ingress-controller/* https://development--nginx-kubernetes-ingress.netlify.app/nginx-ingress-controller/:splat 200!
-/nginx-service-mesh/* https://development--mesh-public-docs.netlify.app/nginx-service-mesh/:splat 200!
+#/nginx-service-mesh/* https://development--mesh-public-docs.netlify.app/nginx-service-mesh/:splat 200!
 /nginx-gateway-fabric/* https://development--nginx-gateway-fabric.netlify.app/nginx-gateway-fabric/:splat 200!
