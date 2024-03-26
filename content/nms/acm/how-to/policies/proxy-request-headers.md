@@ -1,14 +1,15 @@
 ---
-Title: "Proxy Request Headers"
-draft: false
-description: Learn how to use NGINX Management Suite API Connectivity Manager to set request headers to send to your backend services.
-weight: 1100
+description: Learn how to use NGINX Management Suite API Connectivity Manager to set
+  request headers to send to your backend services.
+docs: DOCS-1129
+doctypes:
+- API Connectivity Manager
+- api management
+- reference
+tags:
+- docs
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1129"
-doctypes: ["API Connectivity Manager", "api management", "reference"]
-journeys: ["using"]
-personas: ["API owners"]
+weight: 1100
 ---
 
 ## Overview

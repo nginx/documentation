@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 The following violations are supported and can be enabled by turning on the **alarm** and/or **block** flags.
 
 

@@ -1,26 +1,8 @@
 ---
-authors: []
-categories:
-- analytics
-date: "2020-10-26T15:32:41-06:00"
 description: Learn how to view, add, mute, and delete Alerts.
 docs: DOCS-521
 doctypes:
 - concept
-draft: false
-journeys:
-- researching
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
-- read-only
 tags:
 - docs
 title: Manage Alerts
@@ -30,7 +12,7 @@ weight: 200
 
 ## Overview
 
-[Alerts]({{< relref "/controller/analytics/alerts/about-alerts.md" >}}) are notifications about the NGINX Controller system and your applications' performance. 
+[Alerts]({{< relref "/controller/analytics/alerts/about-alerts.md" >}}) are notifications about the NGINX Controller system and your applications' performance.
 
 [Alert rules]({{< relref "/controller/analytics/alerts/about-alerts.md#alert-rules" >}}) let you specify what you want to be alerted about. This includes which metrics you want to monitor; the trigger conditions and threshold to meet; the instance(s) to monitor; and the email address(es) to use for notifications.
 
@@ -42,26 +24,26 @@ To add an alert rule:
 1. On the Analytics menu, select **Alerts > Alert Rules**.
 1. Select **Create Alert Rule**.
 1. Define your alert rule by providing the following information:
-   
+
    - Name
    - (Optional) Display Name
    - Metric
    - Condition, Threshold, and Time Period
    - Filter
    - (Optional) Breakout
-   - Email Notification Address(es): 
-     
+   - Email Notification Address(es):
+
      - Select the desired address(es) from the list provided, or
-     - Select **Manage Email Addresses** to add a new address, then take the steps below: 
+     - Select **Manage Email Addresses** to add a new address, then take the steps below:
 
        1. Select **Add Email Address**.
-       1. Provide the desired email address. 
+       1. Provide the desired email address.
        1. Select the submit (plus sign) icon.
        1. Select **Done** to close the Manage Email Addresses panel.
 
        {{<note>}}You will need to verify the email address before it can begin receiving alerts.{{</note>}}
 
-1. (Optional) Select **Mute Alert Rule** if you want to create the alert rule but not receive any associated notifications.     
+1. (Optional) Select **Mute Alert Rule** if you want to create the alert rule but not receive any associated notifications.
 1. Select **Create**.
 
 ## View Alerts
@@ -84,7 +66,7 @@ To edit an alert:
 1. Make the desired changes to the alert rule, then select **Save**.
 
 {{< important >}}
-When you edit an alert rule, any ongoing alerts which previously met that rule will expire immediately.  
+When you edit an alert rule, any ongoing alerts which previously met that rule will expire immediately.
 
 If the threshold is still exceeded in the new alert rule configuration, new alerts will be triggered.
 {{< /important >}}

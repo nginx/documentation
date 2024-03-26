@@ -1,19 +1,16 @@
 ---
-title: "Cluster-Wide Config"
-date: 2023-02-10T12:00:00-07:00
-draft: false
-description: "Learn how to configure the Cluster-Wide Config settings to fine tune and control proxy cluster's behavior with performance enhancing configurations."
-# Assign weights in increments of 100
-weight: 498
+description: Learn how to configure the Cluster-Wide Config settings to fine tune
+  and control proxy cluster's behavior with performance enhancing configurations.
+docs: DOCS-1160
+doctypes:
+- API Connectivity Manager
+- api management
+- concept
+tags:
+- docs
+title: Cluster-Wide Config
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1160"
-doctypes: ["API Connectivity Manager", "api management", "concept"]
-journeys: ["getting started", "using"]
-personas: ["Platform Ops", "Infra Admins"]
-versions: []
-
+weight: 498
 ---
 
 ## Overview

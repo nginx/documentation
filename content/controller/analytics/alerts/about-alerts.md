@@ -1,22 +1,8 @@
 ---
-authors: []
-categories:
-- analytics
-date: "2020-12-29T13:23:21-07:00"
 description: Learn about NGINX Controller Alerts and Notifications.
 docs: DOCS-520
 doctypes:
 - concept
-draft: false
-journeys:
-- researching
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
 tags:
 - docs
 title: About Alerts

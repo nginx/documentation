@@ -1,28 +1,15 @@
 ---
-title: "Working with Resource Groups"
-# Change draft status to false to publish doc.
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO.
-# The description text appears in search results and at the top of the doc.
-description: "Learn how to use NGINX Management Suite Instance Manager to create  resource groups. These groups are used to manage multiple resources like instances, instance groups, and certificates as a single RBAC permission object."
-# Assign weights in increments of 100
-weight: 300
-docs: "DOCS-1271"
+description: Learn how to use NGINX Management Suite Instance Manager to create  resource
+  groups. These groups are used to manage multiple resources like instances, instance
+  groups, and certificates as a single RBAC permission object.
+docs: DOCS-1271
+doctypes:
+- tutorial
+tags:
+- docs
+title: Working with Resource Groups
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["infrastructure", "Resource Groups", "rbac"]
-doctypes: ["tutorial"]
-journeys: ["using"]
-personas: ["devops", "netops", "secops"]
-versions: []
-authors: []
-aliases:
-- /nim/how-to/manage-resource-groups/
+weight: 300
 ---
 
 {{< shortversions "2.12.0" "latest" "nimvers" >}}

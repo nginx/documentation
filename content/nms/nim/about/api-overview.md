@@ -1,21 +1,13 @@
 ---
-title: "API Overview"
-date: 2021-12-21T12:00:00-07:00
-description: "This topic gives an overview of the Instance Manager API."
-# Assign weights in increments of 100
-weight: 200
-draft: false
+description: This topic gives an overview of the Instance Manager API.
+docs: DOCS-798
+doctypes:
+- reference
+tags:
+- docs
+title: API Overview
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["api management"]
-doctypes: ["reference"]
-docs: "DOCS-798"
-aliases:
-- /nginx-instance-manager/getting-started/api-overview/
-- /nginx-instance-manager/about/api-overview/
+weight: 200
 ---
 
 {{< shortversions "2.0.0" "latest" "nimvers" >}}

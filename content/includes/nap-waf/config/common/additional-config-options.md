@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 #### XFF Headers and Trust
 
 XFF trust is disabled by default but can be enabled.

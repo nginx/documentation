@@ -9,8 +9,6 @@ toc: true
 weight: 400
 ---
 
-
-
 <span id="intro"></span>
 ## Introduction
 
@@ -31,7 +29,7 @@ NGINX and NGINX Plus can authenticate each request to your website with an exte
     ```
 
     Skip this step for NGINX Plus as it already includes the auth_request module.
-    
+
 2. In the location that requires request authentication, specify the [auth_request](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html#auth_request) directive in which specify an internal location where an authorization subrequest will be forwarded to:
 
     ```nginx

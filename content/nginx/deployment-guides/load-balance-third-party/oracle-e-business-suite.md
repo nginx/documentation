@@ -9,7 +9,6 @@ toc: true
 weight: 100
 ---
 
-
 This deployment guide explains how to use NGINX Plus to load balance traffic across a pool of <span style="white-space: nowrap;">Oracle E-Business Suite (EBS) 12</span> servers. It provides complete instructions for configuring NGINX Plus as required.
 
 <span id="about-nginx"></span>

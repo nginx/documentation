@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1300"
+docs: DOCS-1300
 ---
 
 The NGINX Management Suite platform includes the following features:

@@ -1,6 +1,6 @@
 ---
-description: This chapter describes how to configure different types of health checks
-  for UDP servers in a load‑balanced upstream server group.
+description: "This chapter describes how to configure different types of health checks\
+  \ for UDP servers in a load\u2011balanced upstream server group."
 docs: DOCS-421
 doctypes:
 - task
@@ -8,7 +8,6 @@ title: UDP Health Checks
 toc: true
 weight: 500
 ---
-
 
 <span id="prereq"></span>
 ## Prerequisites
@@ -27,7 +26,7 @@ weight: 500
     }
     ```
 
-- You have configured a server that passes UDP datagrams to the upstream server group:  
+- You have configured a server that passes UDP datagrams to the upstream server group:
 
     ```nginx
     stream {

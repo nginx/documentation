@@ -1,19 +1,16 @@
 ---
-title: "OAS Security Schemes"
-date: 2023-06-22T18:20:41+01:00
-draft: false
-description: "NGINX Management Suite API Connectivity Manager lets you secure APIs with OpenAPI Spec (OAS) security schemes. This tutorial provides step-by-step instructions for setting up basic authentication and API key authentication security schemes to secure your APIs and control access to authorized users or applications."
-weight: 200
+description: NGINX Management Suite API Connectivity Manager lets you secure APIs
+  with OpenAPI Spec (OAS) security schemes. This tutorial provides step-by-step instructions
+  for setting up basic authentication and API key authentication security schemes
+  to secure your APIs and control access to authorized users or applications.
+docs: DOCS-1246
+doctypes:
+- tutorial
+tags:
+- docs
+title: OAS Security Schemes
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1246"
-categories: ["api management"]
-doctypes: ["tutorial"]
-journeys: ["using", "self service"]
-personas: [ "secops"]
-versions: []
-authors: []
-
+weight: 200
 ---
 
 ## Overview

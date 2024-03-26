@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1404"
+docs: DOCS-1404
 ---
 
 For JWT licenses, make sure to allow inbound and outbound access on port 443 to the following URLs:

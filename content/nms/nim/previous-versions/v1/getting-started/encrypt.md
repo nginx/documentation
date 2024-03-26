@@ -1,21 +1,13 @@
 ---
-title: "Encryption"
-date: 2020-12-27T20:56:49-07:00
-draft: false
-description: "An NGINX Instance Manager encryption document."
-# Assign weights in increments of 100
-weight: 500
+description: An NGINX Instance Manager encryption document.
+docs: DOCS-625
+doctypes:
+- tutorial
+tags:
+- docs
+title: Encryption
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "security"]
-doctypes: ["tutorial"]
-journeys: ["getting started", "using"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-docs: "DOCS-625"
+weight: 500
 ---
 
 {{< include "nim/previous-versions/old-version-warning.md" >}}

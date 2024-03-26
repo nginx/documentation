@@ -10,7 +10,6 @@ toc: true
 weight: 100
 ---
 
-
 <span id="install"></span>
 ## Installation
 
@@ -19,7 +18,7 @@ weight: 100
 2. Install the Perl module package `nginx-plus-module-perl`.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
-  
+
    ```shell
    yum install nginx-plus-module-perl
    ```
@@ -31,13 +30,13 @@ weight: 100
    ```
 
    For Debian/Ubuntu:
-  
+
    ```shell
    apt-get install nginx-plus-module-perl
    ```
 
    For SLES:
-  
+
    ```shell
    zypper install nginx-plus-module-perl
    ```

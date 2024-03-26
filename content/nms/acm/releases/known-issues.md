@@ -1,12 +1,16 @@
 ---
-title: "Known Issues"
-description: "This document is a summary of the known issues in NGINX Management Suite API Connectivity Manager. Fixed issues are removed after **45 days**. <p>We recommend upgrading to the latest version of API Connectivity Manager to take advantage of new features, improvements, and bug fixes.</p>"
-weight: 200
+description: This document is a summary of the known issues in NGINX Management Suite
+  API Connectivity Manager. Fixed issues are removed after **45 days**. <p>We recommend
+  upgrading to the latest version of API Connectivity Manager to take advantage of
+  new features, improvements, and bug fixes.</p>
+docs: DOCS-930
+doctypes:
+- reference
+tags:
+- docs
+title: Known Issues
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-930"
-categories: ["known issues"]
-doctypes: ["reference"]
+weight: 200
 ---
 
 {{<rn-styles>}}
@@ -35,7 +39,6 @@ None
 
 ---
 
-
 ## 1.9.1
 October 05, 2023
 
@@ -56,7 +59,6 @@ When multiple API proxies, each with its own JSON Web Token Assertion policy, ar
 None
 
 ---
-
 
 ## 1.9.0
 September 07, 2023
@@ -80,7 +82,6 @@ Example OpenAPI security requirement with empty security object:
 ```
 
 ---
-
 
 ## 1.8.0
 July 27, 2023
@@ -131,7 +132,6 @@ In the Instance Manager **Certificates and Keys** web interface, you can delete 
 You can delete the Environment using the API if it cannot be modified or deleted using the web interface.
 
 ---
-
 
 ## 1.7.0
 June 21, 2023
@@ -192,7 +192,6 @@ It is not possible to remove resources from API Connectivity Manager which have 
 
 ---
 
-
 ## 1.6.0
 May 11, 2023
 
@@ -231,7 +230,6 @@ For example, `/api/v1/shops/{shopID}`
 The API won’t match on the above route.
 
 ---
-
 
 ## 1.5.0
 March 28, 2023
@@ -304,7 +302,6 @@ Toggle the TLS setting in the web interface when removing the TLS policy from an
 
 ---
 
-
 ## 1.4.0
 January 23, 2023
 
@@ -366,7 +363,6 @@ After onboarding the instance as usual, push the existing configuration again to
 
 ---
 
-
 ## 1.3.0
 December 12, 2022
 
@@ -427,7 +423,6 @@ When using JWT authentication with advanced routes, a JWT token that is provided
 Pass the JWT token as a header instead of providing the JWT token as a query parameter.
 
 ---
-
 
 ## 1.2.0
 October 18, 2022
@@ -568,7 +563,6 @@ Assign a minimum of READ access on the LICENSING feature to all new roles
 
 ---
 
-
 ## 1.1.0
 August 18, 2022
 
@@ -635,7 +629,6 @@ Rate limit policy cannot be applied with the OAuth2 JWT assertion policy.
 Enums cannot be set for path or query parameters while applying advanced routing. A list of specific values cannot be specified for their advanced routing parameters.
 
 ---
-
 
 ## 1.0.0
 July 19, 2022

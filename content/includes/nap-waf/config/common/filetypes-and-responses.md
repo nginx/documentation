@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 A user can enable/disable specific file types in the policy.
 
 In this example, we enable the file type violation in blocking mode. In the detailed configuration, we allow the \* wildcard entity which would allow all file types by default. In the last section, we explicitly disable the `bat` file type. This is an example of allowing all, but specifically blocking (via deny list) certain items.  You may add as many file types as you wish, each declared in its own curly brackets, along with the `"allowed": false` directive.

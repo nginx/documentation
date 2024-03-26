@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 The gRPC Content Profile contains all the definitions for protecting a gRPC service. It is similar in nature to the **JSON and XML profiles** handling JSON and XML traffic respectively. Roughly it includes:
 - **The IDL files** of the protected gRPC service. This is essential for App Protect to be able to parse the API messages and determine whether they are legal and what needs to be inspected for security. [For more info regarding including an external file]({{< relref "#including-an-external-json-schema-file" >}}).
 - **Security enforcement**: whether to detect signatures and/or metacharacters and optionally an exception (a.k.a override) list of signatures that need to be disabled in the context of this profile.

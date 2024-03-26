@@ -1,30 +1,14 @@
 ---
-categories:
-- installation
-date: "2021-12-21T12:00:00-07:00"
-description: Complete the steps in this guide to install NGINX Management Suite modules directly from package files in environments without Internet access.
+description: Complete the steps in this guide to install NGINX Management Suite modules
+  directly from package files in environments without Internet access.
+docs: DOCS-803
 doctypes:
 - tutorial
-draft: false
-journeys:
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
 tags:
 - docs
 title: Offline Installation Guide
 toc: true
-versions: []
 weight: 300
-docs: "DOCS-803"
-aliases:
-- /nginx-instance-manager/getting-started/installation/offline-install/
-- /nginx-instance-manager/installation/offline-install-guide/
-- /installation/offline-install-guide/
 ---
 
 ## Overview

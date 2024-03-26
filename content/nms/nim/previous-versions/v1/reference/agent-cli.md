@@ -1,13 +1,9 @@
 ---
-categories:
-- beta
-- reference
 description: Man page and instructions for using the NGINX Agent CLI
+docs: DOCS-635
 draft: true
 title: Agent CLI Reference
 toc: true
-categories: ["reference"]
-docs: "DOCS-635"
 ---
 
 {{< include "nim/previous-versions/old-version-warning.md" >}}

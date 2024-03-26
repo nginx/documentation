@@ -1,21 +1,8 @@
 ---
-authors: []
-categories:
-- security
-- analytics
-date: "2021-12-13T13:26:26-07:00"
 description: Learn about the NGINX Controller Application Security metrics and events.
 docs: DOCS-480
 doctypes:
 - reference
-draft: false
-journeys:
-- researching
-- getting started
-- using
-personas:
-- secops
-- support
 tags:
 - docs
 title: App Security Metrics

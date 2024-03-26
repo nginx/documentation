@@ -1,11 +1,13 @@
 ---
-title: "Known Issues"
-description: "This document lists and describes the known issues and possible workarounds in NGINX Management Suite Instance Manager. Fixed issues are removed after **45 days**."
-weight: 200
+description: This document lists and describes the known issues and possible workarounds
+  in NGINX Management Suite Instance Manager. Fixed issues are removed after **45
+  days**.
+docs: DOCS-937
+tags:
+- docs
+title: Known Issues
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-937"
-categories: ["known issues"]
+weight: 200
 ---
 
 {{<rn-styles>}}
@@ -120,7 +122,6 @@ With the introduction of Instance Manager 2.15, we are expanding the features av
 Terminate the license applied previously. Re-apply the license.
 
 ---
-
 
 ## 2.14.0
 October 16, 2023
@@ -284,7 +285,6 @@ An upgrade to NGINX Agent v2.30 or later is required for instances to stream mem
 
 ---
 
-
 ## 2.13.1
 September 05, 2023
 
@@ -318,7 +318,6 @@ kubectl -n nms scale --replicas=1 deployment.apps/dpm
 ```
 
 ---
-
 
 ## 2.13.0
 August 28, 2023
@@ -411,7 +410,6 @@ The reporting of severities has been disabled in NGINX App Protect 4.4. As a res
 If `precompiled_publication` is set to `true`, NGINX Management Suite may incorrectly report the version of Attack Signatures (AS) and Threat Campaigns (TC) that you previously installed on the NAP WAF instance.
 
 ---
-
 
 ## 2.12.0
 July 20, 2023
@@ -562,7 +560,6 @@ Choose a less verbose logging level, such as warning, error, or info.
 
 ---
 
-
 ## 2.11.0
 June 12, 2023
 
@@ -682,7 +679,6 @@ When updating Attack Signatures or Threat Campaign packages on multiple instance
 Update the Attack Signatures or Threat Campaigns package one instance at a time.
 
 ---
-
 
 ## 2.10.0
 April 26, 2023
@@ -890,7 +886,6 @@ Adjust the config_reload_monitoring_period parameter to a value that suits your 
 
 ---
 
-
 ## 2.9.1
 April 06, 2023
 
@@ -911,7 +906,6 @@ When you use OIDC-based authentication in NGINX Management Suite, if the identit
 To resolve this issue, please update the email addresses in your identity provider and ensure that all addresses are properly formatted. Once the email addresses are correctly formatted, users will be able to view the list of Users in the NGINX Management Suite.
 
 ---
-
 
 ## 2.9.0
 March 21, 2023
@@ -947,7 +941,6 @@ Attempting to install NGINX Agent on FreeBSD fails with an error message: "error
 If you are using FreeBSD, you can download the NGINX Agent from [https://github.com/nginx/agent/releases/tag/v2.23.2]( https://github.com/nginx/agent/releases/tag/v2.23.2) or use a previously installed version.
 
 ---
-
 
 ## 2.8.0
 January 30, 2023
@@ -1109,7 +1102,6 @@ Select the hostname to open the instance details page to view the full informati
 
 ---
 
-
 ## 2.7.0
 December 20, 2022
 
@@ -1211,7 +1203,6 @@ To manually update the public key, take the following steps:
     ```
 
 ---
-
 
 ## 2.6.0
 November 17, 2022
@@ -1409,7 +1400,6 @@ For example, in the NGINX App Protect WAF JSON declarative policy, these referen
 
 ---
 
-
 ## 2.5.0
 October 04, 2022
 
@@ -1474,7 +1464,6 @@ systemctl restart nms-dpm
 
 ---
 
-
 ## 2.3.0
 June 30, 2022
 
@@ -1526,7 +1515,6 @@ filterBy=<dimension-name>!= ''
 
 ---
 
-
 ## 2.2.0
 May 25, 2022
 
@@ -1547,7 +1535,6 @@ When adding certificates, an internal error (error code: 134018) is returned if 
 Use a name that is 255 or fewer characters.
 
 ---
-
 
 ## 2.1.0
 April 05, 2022
@@ -1597,7 +1584,6 @@ sudo systemctl restart nginx-agent
 ```
 
 ---
-
 
 ## 2.0.0
 December 21, 2021

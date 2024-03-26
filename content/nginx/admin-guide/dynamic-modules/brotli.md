@@ -62,7 +62,7 @@ Install the Brotli module package `nginx-plus-module-brotli`.
    ```
 
 - for SLES 15:
-   
+
    ```shell
    zypper install nginx-plus-module-brotli
    ```
@@ -77,7 +77,7 @@ Install the Brotli module package `nginx-plus-module-brotli`.
 
 ## Configuration
 
-After installation you will need to enable and configure Brotli modules in NGINX Plus configuration file **nginx.conf**. 
+After installation you will need to enable and configure Brotli modules in NGINX Plus configuration file **nginx.conf**.
 
 1. Enable dynamic loading of Brotli modules with the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directives specified in the top-level (“`main`”) context:
 

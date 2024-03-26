@@ -1,30 +1,10 @@
 ---
-authors: []
-categories:
-- releases
-date: "2021-04-14T13:32:41+00:00"
-description: ""
+description: ''
 docs: DOCS-1347
 doctypes:
 - concept
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect WAF Release 4.6
 toc: true
-versions:
-- "4.6"
 weight: 180
 ---
 
@@ -33,7 +13,7 @@ October 17, 2023
 This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#anti-automation-bot-mitigation" >}}) (bot defense):
 
 - Added the following Crawler bot signature: CheckMarkNetwork, FileHound, ReverseEngineeringBot, University Of Edinburgh, Audisto, crawler eb germany, FAST Enterprise, AASA-Bot, Neticle, newslookup-bot, MYIP.MS, Boomtrain Content Bot, Ads Standards Bot, Seamless Link Tester, CMS detector bot, Aesop, BullsEye, Drip, EyeNetIE Scanner, IIS bot, OWLer, RetrevoPageAnalyzer, criteo-crawler, trafilatura
-- Added the following HTTP Library bot signatures: libtorrent, Apache-HttpAsyncClient, RobotsTxtParser-VIPnytt, OpenAI Python Library, OpenAPI Generator, ServiceNow Http Client, CarrierWave 
+- Added the following HTTP Library bot signatures: libtorrent, Apache-HttpAsyncClient, RobotsTxtParser-VIPnytt, OpenAI Python Library, OpenAPI Generator, ServiceNow Http Client, CarrierWave
 - Added the following Service Agent bot signatures: Symbolicator, admantx-sap, SISTRIX Optimizer, anomify.ai ssl_check, CyberPatrol SiteCat Webbot, DaniBot, SiteMonitor Enterprise, GumGum
 - Added the following Vulnerability Scanner bot signatures: interact.sh bot, AcuMonitor bot, interact.sh 2 bot 
 - Added the following Exploit Tool bot signatures: feroxbuster, WebApp Attacker 

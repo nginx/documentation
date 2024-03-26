@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 Concurrent NGINX reloads are enqueued and so are the entailed invocations to apreload by the NGINX App Protect WAF module.
 
 However, when invoking apreload directly, it is possible to invoke it while the previous invocation is still in progress. In this case, apreload will wait until the current invocation completes. The new invocation will bring a new configuration and the most recent configuration will only happen when the previous one is loaded.

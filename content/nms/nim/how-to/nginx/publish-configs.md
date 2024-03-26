@@ -1,31 +1,14 @@
 ---
-categories:
-- installation
-- configuration
-description: "Learn how to edit and publish NGINX configuration files using NGINX Management Suite Instance Manager."
+description: Learn how to edit and publish NGINX configuration files using NGINX Management
+  Suite Instance Manager.
+docs: DOCS-822
 doctypes:
 - tutorial
-draft: false
-journeys:
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
 tags:
 - docs
 title: Publish Configuration Files
 toc: true
-versions: []
 weight: 200
-docs: "DOCS-822"
-aliases:
-- /nginx-instance-manager/tutorials/config-templates/
-- /nginx-instance-manager/how-to/analyze-configs/
-- /nginx-instance-manager/how-to/publish-configs/
-- /nim/how-to/publish-configs/
 ---
 
 ## Overview

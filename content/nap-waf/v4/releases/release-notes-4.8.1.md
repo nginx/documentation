@@ -1,34 +1,10 @@
 ---
-authors: []
-categories:
-- releases
-date: "2021-04-14T13:32:41+00:00"
-description: "NGINX App Protect WAF Release 4.8.1"
-docs: "DOCS-1477"
+description: NGINX App Protect WAF Release 4.8.1
+docs: DOCS-1477
 doctypes:
 - concept
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: Releases
-    weight: 45
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
-title: "NGINX App Protect WAF Release 4.8.1"
+title: NGINX App Protect WAF Release 4.8.1
 toc: true
-versions:
-- "4.8.1"
 weight: 150
 ---
 
@@ -67,7 +43,7 @@ Mar 6, 2024
 
 - app-protect-31+4.815.0-1.el8.ngx.x86_64.rpm
 
-##### RHEL 9+ 
+##### RHEL 9+
 
 - app-protect-31+4.815.0-1.el9.ngx.x86_64.rpm
 

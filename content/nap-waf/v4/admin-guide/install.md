@@ -1,31 +1,11 @@
 ---
-authors: []
-categories:
-- administration guide
-date: "2021-04-14T13:32:41+00:00"
-description: This guide explains how to deploy NGINX App Protect WAF v4 as well as upgrade
-  App Protect and the App Protect signature sets.
+description: This guide explains how to deploy NGINX App Protect WAF v4 as well as
+  upgrade App Protect and the App Protect signature sets.
 docs: DOCS-646
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect WAF Administration Guide
 toc: true
-versions:
-- "4.7"
 weight: 100
 ---
 
@@ -817,7 +797,7 @@ If a user other than **nginx** is to be used, note the following:
     ```shell
     sudo yum install app-protect-selinux
     ```
-    
+
     If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/v4/troubleshooting-guide/troubleshooting#selinux" >}}).
 
 14. To enable the NGINX/App Protect WAF service start at boot, run the command:
@@ -2215,7 +2195,7 @@ You can run the following commands to ensure that NGINX App Protect WAF enforcem
     packages.
 
     The number `471859200` should be enough for most use cases, you may need to use a bigger number if the number of profiles is large, or large json/xml schemas are used in the policy.
-   
+
 5. If there are additional problems, refer to the [Troubleshooting Guide]({{< relref "/nap-waf/v4/troubleshooting-guide/troubleshooting#app-protect-troubleshooting-overview" >}}).
 
 

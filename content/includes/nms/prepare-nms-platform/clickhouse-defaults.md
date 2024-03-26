@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1335"
+docs: DOCS-1335
 ---
 
 #

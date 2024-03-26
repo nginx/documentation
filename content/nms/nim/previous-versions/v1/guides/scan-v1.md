@@ -1,21 +1,13 @@
 ---
-title: "Scan"
-date: 2020-12-17T11:52:09-07:00
-draft: false
-description: "NGINX Scan Documentation"
-# Assign weights in increments of 100
-weight: 300
+description: NGINX Scan Documentation
+docs: DOCS-633
+doctypes:
+- tutorial
+tags:
+- docs
+title: Scan
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "analytics"]
-doctypes: ["tutorial"]
-journeys: ["getting started", "using"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-docs: "DOCS-633"
+weight: 300
 ---
 
 {{< include "nim/previous-versions/old-version-warning.md" >}}

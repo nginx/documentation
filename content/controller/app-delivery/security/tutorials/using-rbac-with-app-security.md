@@ -1,35 +1,12 @@
 ---
-authors: []
-categories:
-- installation
-- platform management
-- load balancing
-- api management
-- service mesh
-- security
-- analytics
-date: "2022-03-14T18:39:24Z"
 description: How to use Role Based Access Control with App Security.
 docs: DOCS-845
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- renewing
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
 tags:
 - docs
 title: Using RBAC with the App Security Add-On
 toc: true
-versions: []
 weight: 400
 ---
 

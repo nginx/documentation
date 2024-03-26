@@ -1,14 +1,15 @@
 ---
-Title: "API Key Authentication"
-draft: false
-description: Learn how to use NGINX Management Suite API Connectivity Manager to secure API Gateways by applying an API key authentication policy.
-weight: 400
+description: Learn how to use NGINX Management Suite API Connectivity Manager to secure
+  API Gateways by applying an API key authentication policy.
+docs: DOCS-1117
+doctypes:
+- API Connectivity Manager
+- api management
+- concept
+tags:
+- docs
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1117"
-doctypes: ["API Connectivity Manager", "api management", "concept"]
-journeys: ["getting started", "using"]
-personas: ["secops"]
+weight: 400
 ---
 
 ## Overview

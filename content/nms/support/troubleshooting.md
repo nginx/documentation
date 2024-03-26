@@ -1,20 +1,15 @@
 ---
-title: "Troubleshooting Guides"
-date: 2021-12-21T12:00:00-07:00
-draft: false
-description: "This guide explains how to determine, diagnose, and fix issues you might encounter when using Instance Manager."
-# Assign weights in increments of 100
-weight: 100
+description: This guide explains how to determine, diagnose, and fix issues you might
+  encounter when using Instance Manager.
+docs: DOCS-819
+doctypes:
+- reference
+- task
+tags:
+- docs
+title: Troubleshooting Guides
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["support"]
-doctypes: ["reference", "task"]
-docs: "DOCS-819"
-aliases:
-- /nginx-instance-manager/support/troubleshooting/
+weight: 100
 ---
 
 ---
@@ -39,7 +34,6 @@ View the known issues and possible workarounds in the NGINX Management Suite mod
 - [Security Monitoring]({{< relref "/nms/security/releases/known-issues.md" >}})
 
 ---
-
 
 ## Check Installed Module Version {#check-module-version}
 

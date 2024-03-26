@@ -1,6 +1,6 @@
 ---
-title: "Instance Manager Examples"
 draft: true
+title: Instance Manager Examples
 ---
 
 ## Examples for Instance Manager Server UI/API and gRPC

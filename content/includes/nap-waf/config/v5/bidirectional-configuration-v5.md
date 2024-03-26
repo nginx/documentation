@@ -1,6 +1,7 @@
 ---
 docs: DOCS-1368
 ---
+
 The only configuration related to streaming is the IDL file or more specifically the `rpc` declaration. The keyword `stream` indicates that the message on the respective side is streaming. <br> <br>For example:
 
 #### Client Stream

@@ -9,8 +9,6 @@ toc: true
 weight: 100
 ---
 
-
-
 This article explains how to configure high availability of NGINX Plus instances in on‑premises deployment with a solution based on [keepalived](https://www.keepalived.org/).
 
 > **Note:** This solution is designed to work in environments where IP addresses can be controlled through standard operating system calls, and often does not work in cloud environments where IP addresses are controlled through interfacing with the cloud infrastructure. For information about making NGINX Plus highly available in cloud environments, see the [Deployment Guides]({{< relref "/nginx/deployment-guides/_index.md" >}}).
@@ -23,10 +21,10 @@ This article explains how to configure high availability of NGINX Plus instance
 The [keepalived open source project](http://www.keepalived.org/) includes three components:
 
 - The `keepalived` daemon for Linux servers.
-- An implementation of the [Virtual Router Redundancy Protocol](https://tools.ietf.org/html/rfc5798) (VRRP) to manage virtual routers (virtual IP addresses, or _VIPs_). 
+- An implementation of the [Virtual Router Redundancy Protocol](https://tools.ietf.org/html/rfc5798) (VRRP) to manage virtual routers (virtual IP addresses, or _VIPs_).
 
    VRRP ensures that there is a primary node at all times. The backup node listens for VRRP advertisement packets from the primary node. If it does not receive an advertisement packet for a period longer than three times the configured advertisement interval, the backup node takes over as primary and assigns the configured VIPs to itself.
-- A health‑check facility to determine whether a service (for example, a web server, PHP backend, or database server) is up and operational. 
+- A health‑check facility to determine whether a service (for example, a web server, PHP backend, or database server) is up and operational.
 
    If a service on the primary node fails the configured number of health checks, `keepalived` reassigns the virtual IP address from the primary node to the backup (passive) node.
 
@@ -178,7 +176,7 @@ If your cluster is using version 1.1 of the <span style="white-space: nowrap;">
 touch /var/run/keepalived-manual-failover
 ```
 
-This command creates a file checked by the script defined in a `vrrp_script  
+This command creates a file checked by the script defined in a `vrrp_script
 chk_manual_failover` block. If the file exists, `keepalived` lowers the priority of the primary node, which causes the backup node to take over the VIP.
 
 
@@ -322,7 +320,7 @@ tcpdump: listening on eth0, link-type EN10MB (Ethernet), capture size 65535 byte
         192.168.100.101: VRRPv2 , Advertisement , vrid 51, prio 151,
         authtype simple , intvl 1s, length 20, addrs: 192.168.100.150 auth
         "f8f0e511"
-```        
+```
 
 Several fields in the output are useful for debugging:
 

@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 The Strict Policy is recommended as a starting point for applications requiring a higher level of security. Just like all other policies it is based on the base template, so it detects and blocks everything the default policy does. It can be found in: `/etc/app_protect/conf/NginxStrictPolicy.json`.
 
 In addition the Strict Policy also **blocks** the following:

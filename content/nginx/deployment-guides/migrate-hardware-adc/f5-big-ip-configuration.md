@@ -9,7 +9,6 @@ toc: true
 weight: 100
 ---
 
-
 NGINX Plus provides a flexible replacement for traditional hardware‑based [application delivery controllers](https://www.nginx.com/resources/glossary/application-delivery-controller/) (ADCs). NGINX Plus is a small software package that can be installed just about anywhere – on bare metal, a virtual machine, or a container, and on‑premises or in public, private, and hybrid clouds – while providing the same level of application delivery, high availability, and security offered by legacy ADCs. This guide explains how to migrate an <span style="white-space: nowrap;">F5 BIG-IP</span> Local Traffic Manager (LTM) configuration to the NGINX Plus software application delivery platform, and covers the most commonly used features and configurations to get you started quickly on your migration.
 
 NGINX Plus and <span style="white-space: nowrap;">BIG-IP LTM</span> both act as a full reverse proxy and load balancer, so that the client sees the load balancer as the application and the backend servers see the load balancer as the client. This allows for great control and fine‑grained manipulation of the traffic. This guide focuses on basic load balancing. For information on extending the configuration with Layer 7 logic and scripting, see the post about [migrating Layer 7 logic](https://www.nginx.com/blog/migrating-layer7-logic-f5-irules-citrix-policies-nginx-plus/) on the NGINX blog. It covers features such as content switching and request routing, rewriting, and redirection.
@@ -101,7 +100,7 @@ In addition to these networking concepts, there are two other important technolo
   <span style="white-space: nowrap;">BIG-IP LTM</span> uses a built‑in HA mechanism to handle the failover.
 
   For [on‑premises deployments]({{< relref "../../admin-guide/high-availability/ha-keepalived.md" >}}), NGINX Plus uses a separate software package called <span style="white-space: nowrap; font-weight:bold;">**nginx-ha-keepalived**</span> to handle the VIP and the failover process for an active‑passive pair of NGINX Plus servers. The package implements the VRRP protocol to handle the VIP. Limited [active‑active]({{< relref "../../admin-guide/high-availability/ha-keepalived-nodes.md" >}}) scenarios are also possible with the <span style="white-space: nowrap; font-weight:bold;">nginx-ha-keepalived</span> package.
-  
+
   Solutions for high availability of NGINX Plus in cloud environments are also available, including these:
 
   - [Active‑Active HA for NGINX Plus on AWS Using AWS Network Load Balancer]({{< relref "../amazon-web-services/high-availability-network-load-balancer.md" >}})
@@ -111,10 +110,10 @@ In addition to these networking concepts, there are two other important technolo
 <span id="converting"></span><span id="convert-configuration"></span>
 ## Converting F5 BIG-IP LTM Load-Balancer Configuration to NGINX Plus
 
-- [Virtual Servers](#virtual-servers) 
+- [Virtual Servers](#virtual-servers)
 - [SSL/TLS Offload (Termination and Proxy)](#ssl-offload)
 - [Session Persistence](#session-persistence)
-- [Keepalive Connections](#keepalive-connections) 
+- [Keepalive Connections](#keepalive-connections)
 - [Monitors (Health Checks)](#health-checks)
 
 F5 <span style="white-space: nowrap;">BIG-IP LTM</span> offers three methods for configuration:
@@ -127,7 +126,7 @@ Ultimately all changes made via the GUI or API are translated to a TMSH CLI comm
 
 With NGINX Plus, configuration is stored in a straightforward text file which can be accessed directly or managed using traditional on‑box tools or configuration management and orchestration tools such as [Ansible](https://www.nginx.com/blog/announcing-unified-ansible-role-nginx-nginx-plus/), [Chef](https://www.nginx.com/blog/installing-nginx-nginx-plus-chef/), and [Puppet](https://www.nginx.com/blog/installing-nginx-nginx-plus-puppet/).
 
-Although the examples in this guide use only IP addresses to identify virtual servers, with NGINX Plus both the listening IP address:port combination and the `Host` header can be used to select the appropriate `server` block to process a request. Include the [server_name](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name) directive in that block to specify the values to match in the `Host` header. 
+Although the examples in this guide use only IP addresses to identify virtual servers, with NGINX Plus both the listening IP address:port combination and the `Host` header can be used to select the appropriate `server` block to process a request. Include the [server_name](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name) directive in that block to specify the values to match in the `Host` header.
 
 The list of parameters to the `server_name` directive can include multiple hostnames, wildcards, and regular expressions. You can include multiple `server_name` directives and multiple listening IP address‑port combinations within one NGINX Plus `server` block. For more information on using `Host` and the `server_name` directive instead of IP addresses, see [Server names](https://nginx.org/en/docs/http/server_names.html) at **nginx.org**.
 
@@ -181,9 +180,9 @@ There are two methods for handling SSL/TLS traffic on a load balancer instance, 
 #### BIG-IP LTM
 
 - SSL/TLS Termination and Proxy: Creating SSL/TLS Virtual Server and Pool Members
-  
+
    ```none
-   # create pool ssl_test_pool members add { 10.10.10.10:443 10.10.10.20:443 } 
+   # create pool ssl_test_pool members add { 10.10.10.10:443 10.10.10.20:443 }
    # create virtual test_ssl_virtual { destination 192.168.10.10:443 pool ssl_test_pool source-address-translation { type automap } ip-protocol tcp profiles add { http } }
    # save /sys config
    ```
@@ -195,7 +194,7 @@ There are two methods for handling SSL/TLS traffic on a load balancer instance, 
    # modify virtual test_ssl_virtual profiles add { test_ssl_client_profile }
    # save /sys config
    ```
-   
+
 - SSL/TLS Proxy: Creating a Server SSL/TLS Profile
 
    ```none
@@ -213,12 +212,12 @@ There are two methods for handling SSL/TLS traffic on a load balancer instance, 
         server 10.10.10.10:443;
         server 10.10.10.20:443;
    }
-        
+
    server {
         listen 192.168.10.10:443 ssl;
         ssl_certificate     /etc/nginx/ssl/test.crt;
         ssl_certificate_key /etc/nginx/ssl/test.key;
-      
+
         location / {
             proxy_pass http://ssl_test_pool;
         }
@@ -231,12 +230,12 @@ There are two methods for handling SSL/TLS traffic on a load balancer instance, 
    upstream ssl_test_pool {
         server 10.10.10.10:443;
    }
-  
+
    server {
         listen 192.168.10.10:443 ssl;
         ssl_certificate     /etc/nginx/ssl/test.crt;
         ssl_certificate_key /etc/nginx/ssl/test.key;
-      
+
         location / {
             proxy_pass https://ssl_test_pool;
             proxy_ssl_certificate /etc/nginx/ssl/client.pem;
@@ -248,10 +247,10 @@ There are two methods for handling SSL/TLS traffic on a load balancer instance, 
             proxy_ssl_verify_depth 2;
         }
    }
-   ```        
+   ```
 
    Directive documentation: [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen), [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location), [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass), [proxy_ssl*](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_certificate), [server virtual](https://nginx.org/en/docs/http/ngx_http_core_module.html#server), [server upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server), [ssl_certificate and ssl_certificate_key](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate), [upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream)
-   
+
 <span id="session-persistence"></span>
 ### Session Persistence
 
@@ -298,7 +297,7 @@ One method that is simple to configure and handles failover well for NGINX Plus
    ```
 
    Directive documentation: [server](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server), [`sticky cookie`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#sticky), [upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream)
-   
+
 #### Source IP Address-Based Session Persistence
 
 Another form of session persistence is based on the source IP address recorded in the request packet (the IP address of the client making the request). For each request the load balancer calculates a hash on the IP address, and sends the request to the backend server that is associated with that hash. Because the hash for a given IP address is always the same, all requests with the hash go to the same server. (For more details on the NGINX Plus implementation, see [Choosing an NGINX Plus Load Balancing Technique](https://www.nginx.com/blog/choosing-nginx-plus-load-balancing-techniques/#ip-hash) on our blog).
@@ -306,10 +305,10 @@ Another form of session persistence is based on the source IP address recorded i
 - BIG-IP LTM
 
    ```none
-   # modify virtual test_virtual { persist replace-all-with {source_addr} } 
+   # modify virtual test_virtual { persist replace-all-with {source_addr} }
    # save /sys config
    ```
-   
+
 - NGINX Plus
 
    ```nginx
@@ -321,7 +320,7 @@ Another form of session persistence is based on the source IP address recorded i
    ```
 
    Directive documentation: [ip_hash](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#ip_hash), [server](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server), [upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream)
-   
+
 #### Token-Based Session Persistence
 
 Another method for session persistence takes advantage of a cookie or other token created within the session by the backend server, such as a `jsessionid`. To manage `jsessionid` creation and tracking, NGINX Plus creates a table in memory matching the cookie value with a specific backend server.
@@ -343,8 +342,8 @@ Another method for session persistence takes advantage of a cookie or other toke
    ```
 
    Directive documentation: [server](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server), [`sticky learn`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#sticky), [upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream)
-   
-<span id="keepalive-connections"></span> 
+
+<span id="keepalive-connections"></span>
 ### Keepalive Connections
 
 Typically, a separate HTTP session is created and destroyed for every connection. This can be fine for short‑lived connections, like requesting a small amount of content from a web server, but it can be highly inefficient for long‑lived connections. Constantly creating and destroying sessions and connections can create high load for both the application server and client, slowing down page load and hurting the overall perception of the website or application's performance. HTTP keepalive connections, which instruct the load balancer to keep connections open for a session, are a necessary performance feature for web pages to load more quickly.
@@ -369,7 +368,7 @@ upstream test_pool {
 
 Directive documentation: [keepalive](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive), [server](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server), [upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream)
 
-<span id="health-checks"></span> 
+<span id="health-checks"></span>
 ### Monitors (Health Checks)
 
 F5 <span style="white-space: nowrap;">BIG-IP LTM</span> uses the term _monitor_ to refer to the process of verifying that a server is functioning correctly, while NGINX Plus uses [_health check_](https://www.nginx.com/products/nginx/load-balancing/#health-checks). In an <span style="white-space: nowrap;">BIG-IP LTM</span> configuration, the monitor is associated directly with a pool and applied to each node in the pool, whereas NGINX Plus places the health check in a `location` block.
@@ -416,9 +415,9 @@ Here we put together the configuration entities, combining everything required t
 ### BIG-IP LTM
 
 ```none
- # create pool test_pool members add { 10.10.10.10:80 10.10.10.20:80 } 
+ # create pool test_pool members add { 10.10.10.10:80 10.10.10.20:80 }
  # create virtual test_virtual { destination 192.168.10.10:80 pool test_pool source-address-translation { type automap } ip-protocol tcp profiles add { http } }
- # create pool ssl_test_pool members add { 10.10.10.10:443 10.10.10.20:443 } 
+ # create pool ssl_test_pool members add { 10.10.10.10:443 10.10.10.20:443 }
  # create virtual test_ssl_virtual { destination 192.168.10.10:443 pool ssl_test_pool source-address-translation { type automap } ip-protocol tcp profiles add { http } }
  # create profile client-ssl test_ssl_client_profile cert test.crt key test.key
  # modify virtual test_ssl_virtual profiles add { test_ssl_client_profile }
@@ -428,7 +427,7 @@ Here we put together the configuration entities, combining everything required t
  # modify virtual test_virtual { persist replace-all-with { test_bigip_cookie } }
  # modify virtual test_ssl_virtual { persist replace-all-with { test_bigip_cookie } }
  # modify virtual test_virtual profiles add { oneconnect }
- # modify virtual test_ssl_virtual profiles add { oneconnect } 
+ # modify virtual test_ssl_virtual profiles add { oneconnect }
  # create monitor http test_monitor defaults-from http send "GET /index.html HTTP/1.0\r\n\r\n" interval 5 timeout 20
  # modify pool test_pool monitor test_monitor
  # create monitor https test_ssl_monitor defaults-from https send "GET /index.html HTTP/1.0\r\n\r\n" interval 5 timeout 20
@@ -467,31 +466,31 @@ upstream ssl_test_pool {
 server {
     listen 192.168.10.10:80 default_server;
     proxy_set_header Host $host;
-    
+
     location / {
          proxy_pass http://test_pool;
          health_check;
          proxy_http_version 1.1;
     }
-    
+
     location ~ /favicon.ico {
         root /usr/share/nginx/images;
     }
 }
-    
+
 server {
     listen 192.168.10.10:443 ssl default_server;
     ssl_certificate     test.crt;
     ssl_certificate_key test.key;
     proxy_set_header    Host $host;
-    
+
     location / {
         proxy_pass https://ssl_test_pool;
         proxy_http_version 1.1;
         proxy_set_header Connection "";
         health_check;
     }
-        
+
     location ~ /favicon.ico {
         root /usr/share/nginx/images;
     }
@@ -501,7 +500,7 @@ server {
     listen 8080;
     status_zone status-page;
     root /usr/share/nginx/html;
-    
+
     location /api {
         api write=on;
         # directives controlling access, such as 'allow' and 'deny'
@@ -514,8 +513,8 @@ server {
     # Redirect requests made to the old (pre-R14) dashboard
     location = /status.html {
         return 301 /dashboard.html;
-    }  
-      
+    }
+
     location ~ /favicon.ico {
         root /usr/share/nginx/images;
     }

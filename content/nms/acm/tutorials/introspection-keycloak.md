@@ -1,17 +1,14 @@
 ---
-title: "OAuth2 Introspection with Keycloak"
-date: 2022-10-11T15:21:02+01:00
-draft: false
-description: "Learn how to set up an NGINX Management Suite API Connectivity Manager OAuth2 Introspection policy with Keycloak as the authorization server."
-# Assign weights in increments of 100
-weight: 400
+description: Learn how to set up an NGINX Management Suite API Connectivity Manager
+  OAuth2 Introspection policy with Keycloak as the authorization server.
+docs: DOCS-954
+doctypes:
+- tutorial
+tags:
+- docs
+title: OAuth2 Introspection with Keycloak
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-954"
-categories: ["api management", "security"]
-doctypes: ["tutorial"]
-journeys: ["researching", "getting started", "using"]
-personas: ["secops"]
+weight: 400
 ---
 
 ## Overview

@@ -1,8 +1,9 @@
 ---
-title: Using the ModSecurity Rules from Trustwave SpiderLabs with the NGINX ModSecurity WAF 
-weight: 300
+docs: DOCS-728
+title: Using the ModSecurity Rules from Trustwave SpiderLabs with the NGINX ModSecurity
+  WAF
 toc: true
-docs: "DOCS-728"
+weight: 300
 ---
 
 {{< important >}}
@@ -42,7 +43,7 @@ As noted above, this chapter builds on [Installing the NGINX ModSecurity WAF]({{
 - You don’t need to download rules onto individual NGINX Plus instances, because the NGINX ModSecurity WAF dynamic module downloads them automatically when the `SecRemoteRules` directive is included in the NGINX ModSecurity WAF configuration (see [Step 3](#waf-trustwave_configure-your-server) in the next section).
 - You enable and disable rules -- a significant part of the configuration process -- with a GUI on the Dashboard instead of in NGINX ModSecurity WAF configuration files.
 
-To configure the Trustwave Rules for the demo application, first create a profile (or use the default one) that includes selected rules for protecting the application. The following instructions use the Dashboard's Configuration Wizard to create a profile. You then modify the local NGINX ModSecurity WAF configuration to make the NGINX ModSecurity WAF dynamic module download and apply the rules. 
+To configure the Trustwave Rules for the demo application, first create a profile (or use the default one) that includes selected rules for protecting the application. The following instructions use the Dashboard's Configuration Wizard to create a profile. You then modify the local NGINX ModSecurity WAF configuration to make the NGINX ModSecurity WAF dynamic module download and apply the rules.
 
 Detailed instructions for using the Dashboard are not provided here. For more information, log in to the Dashboard and access the Dashboard FAQ.
 
@@ -108,10 +109,10 @@ Currently, the only way to download the Trustwave Rules is with the `SecRemoteRu
 
 - Every time you reload the NGINX Plus configuration or restart NGINX Plus, the rules are freshly downloaded from a remote server. To control what happens when the download fails, for example when connectivity to the remote server is lost, include the [`SecRemoteRulesFailAction`](https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual-(v2.x)#SecRemoteRulesFailAction) directive in the NGINX ModSecurity WAF configuration. The `SecRemoteRulesFailAction` directive must appear above the `SecRemoteRules` directives in a NGINX ModSecurity WAF configuration file.
 
-   The directive supports two values: 
-   
+   The directive supports two values:
+
   - `Abort` forces the reload or restart of NGINX Plus to fail when the download of rules fails
-  - `Warn` lets NGINX Plus reload or restart successfully but with _no remote rules_ enabled 
+  - `Warn` lets NGINX Plus reload or restart successfully but with _no remote rules_ enabled
 
 - Downloading the rules takes some time, which delays the reload or restart operation.
 

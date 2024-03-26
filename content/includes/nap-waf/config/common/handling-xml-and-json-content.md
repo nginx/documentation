@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 #### XML and JSON Content Profiles
 
 By default every request with a Content-Type header containing XML or JSON is expected to have an XML or JSON body, respectively. Consequently, a series of checks are performed to ensure that the body is indeed well-formed as XML or JSON, and certain restrictions are enforced on the size and content of that body. These restrictions are specified in **XML and JSON profiles**. These configuration structures are associated with URLs and optionally also with Parameters, in case parameters that are known to have XML or JSON values are defined. One of the most powerful restrictions in a JSON profile is enforcing a schema with which the content must comply. This will be detailed in the next section.

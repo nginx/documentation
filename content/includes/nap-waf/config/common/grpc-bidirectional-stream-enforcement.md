@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 #### Client Request Flow
 
 Bidirectional Enforcement is per message; each message is buffered and processed (doing all the inspection actions according to the policy: signatures, metacharacters, and other violations) on its own. The following section provides more details on receiving a client event:

@@ -1,5 +1,5 @@
 ---
-description:
+description: null
 docs: DOCS-470
 doctypes:
 - concept
@@ -7,7 +7,6 @@ title: NGINX Plus FIPS Compliance
 toc: true
 weight: 600
 ---
-
 
 When used with a FIPS 140-2 validated build of OpenSSL operating in FIPS mode, NGINX Plus is compliant with the requirements of FIPS 140-2 (Level 1) with respect to the decryption and encryption of SSL/TLS‑encrypted network traffic.
 
@@ -22,7 +21,7 @@ Several operating system vendors have obtained FIPS 140-2 Level 1 validation fo
 - [Red Hat, Inc.: Red Hat Enterprise Linux 7 NSS Cryptographic Module](https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4498)
 - [SUSE, LLC: SUSE Linux Enterprise Server Kernel Crypto API Cryptographic Module](https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4508)
 
-NGINX Plus uses the OpenSSL cryptographic module exclusively for all operations relating to the decryption and encryption of SSL/TLS and HTTP/2 traffic. 
+NGINX Plus uses the OpenSSL cryptographic module exclusively for all operations relating to the decryption and encryption of SSL/TLS and HTTP/2 traffic.
 
 When NGINX Plus is executed on an operating system where a FIPS‑validated OpenSSL cryptographic module is present and FIPS mode is enabled, NGINX Plus is compliant with FIPS 140-2 with respect to the decryption and encryption of SSL/TLS and HTTP/2 traffic.
 
@@ -79,7 +78,7 @@ $ openssl md5 /dev/null
 Error setting digest md5
 140647163811744:error:060800A3:digital envelope routines:EVP_DigestInit _ex:disabled for fips:digest.c:251:
 ```
- 
+
 If OpenSSL is not running in FIPS mode, the MD5 hash functions normally:
 
 ```shell
@@ -90,7 +89,7 @@ MD5(/dev/null)= d41d8cd98f00b204e9800998ecf8427e
 ### Step 3: Install NGINX Plus on the Operating System
 
 Follow the [NGINX documentation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/) to install NGINX Plus on the host operating system, either directly from the [NGINX Plus repository](https://account.f5.com/myf5), or by downloading the **nginx-plus** package (**rpm** or **deb** package) onto another system and manually installing it on the host operating system.
- 
+
 **Verify that NGINX Plus is correctly installed**: Run the following command to confirm that NGINX Plus is installed and is using the expected OpenSSL cryptographic module:
 
 ```shell
@@ -107,12 +106,12 @@ Observe that the version number of the OpenSSL library includes the `–fips` su
 ```nginx
 server {
     listen 443 ssl;
- 
+
     ssl_certificate     /etc/nginx/ssl/test.crt;
     ssl_certificate_key /etc/nginx/ssl/test.key;
- 
+
     ssl_protocols   	TLSv1 TLSv1.1 TLSv1.2;
- 
+
     location / {
         root   /usr/share/nginx/html;
         index  index.html index.htm;
@@ -138,7 +137,7 @@ Use `openssl s_client` for this test because it unambiguously confirms which SSL
 ### Step 4: Verify Compliance with FIPS 140-2
 
 FIPS 140-2 disallows the use of some cryptographic algorithms, including the Camellia block cipher. We can test compliance with FIPS 140-2 by issuing SSL/TLS requests with known ciphers on another (non-FIPS-mode) server:
- 
+
 #### RC4-MD5
 
 ```shell
@@ -146,17 +145,17 @@ FIPS 140-2 disallows the use of some cryptographic algorithms, including the Cam
 ```
 
 This cipher is insecure and is disabled by NGINX Plus by default. The SSL handshake always fails.
- 
+
 #### CAMELLIA-SHA
 
 ```shell
 (echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443 -cipher CAMELLIA256-SHA
 ```
- 
+
 This cipher is considered secure but is not permitted by the FIPS standard. The SSL handshake fails if the target system is compliant with FIPS 140-2, and succeeds otherwise.
- 
+
 Note that if you attempt to issue the client request on a host running in FIPS mode, it fails because the OpenSSL client cannot use this cipher.
- 
+
 #### AES256-SHA
 
 ```shell
@@ -168,17 +167,17 @@ This cipher is considered secure by NGINX Plus and is permitted by FIPS 140-2. 
 ## Which Ciphers Are Disabled in FIPS Mode?
 
 The FIPS 140-2 standard only permits a [subset of the typical SSL and TLS ciphers](https://csrc.nist.gov/csrc/media/publications/fips/140/2/final/documents/fips1402annexa.pdf).
- 
+
 In the following test, the ciphers presented by NGINX Plus are surveyed using the [Qualys SSL server test](https://www.ssllabs.com/ssltest). In its default configuration, with the `ssl_ciphers HIGH:!aNULL:!MD5` directive, NGINX Plus presents the following ciphers to SSL/TLS clients:
 
 <a href="https://www.nginx.com/wp-content/uploads/2019/07/NGINX-Plus-ciphers_nonFIPS.png"><img src="https://www.nginx.com/wp-content/uploads/2019/07/NGINX-Plus-ciphers_nonFIPS.png" alt="Ciphers presented by NGINX Plus to clients when in non-FIPS mode" width="1024" height="521" class="aligncenter size-full wp-image-62740" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 When FIPS mode is enabled on the host operating system, the two ciphers that use the Camellia block cipher (`TLS_RSA_WITH_CAMELLIA_128_CBC_SHA` and `TLS_RSA_WITH_CAMELLIA_256_CBC_SHA`) are removed:
- 
+
 <a href="https://www.nginx.com/wp-content/uploads/2019/07/NGINX-Plus-ciphers_FIPS.png"><img src="https://www.nginx.com/wp-content/uploads/2019/07/NGINX-Plus-ciphers_FIPS.png" alt="Ciphers presented by NGINX Plus to clients when in FIPS mode" width="1024" height="466" class="aligncenter size-full wp-image-62738" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 When you configure NGINX Plus with the `ssl_ciphers ALL` directive, NGINX Plus presents all the relevant ciphers available in the OpenSSL cryptographic module to the client. FIPS mode disables the following ciphers:
- 
+
 - `TLS_ECDH_anon_WITH_RC4_128_SHA`
 - `TLS_ECDHE_RSA_WITH_RC4_128_SHA`
 - `TLS_RSA_WITH_CAMELLIA_128_CBC_SHA`
@@ -193,5 +192,5 @@ When you configure NGINX Plus with the `ssl_ciphers ALL` directive, NGINX Plus
 NGINX Plus can be used to decrypt and encrypt SSL/TLS‑encrypted network traffic in deployments that require FIPS 140-2 Level 1 compliance.
 
 The process described above may be used to verify that NGINX Plus is operating in conformance with the FIPS 140-2 Level 1 standard.
- 
+
 

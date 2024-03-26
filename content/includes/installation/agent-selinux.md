@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1403"
+docs: DOCS-1403
 ---
 
 ```bash

@@ -1,34 +1,10 @@
 ---
-authors: []
-categories:
-- access log
-date: "2021-04-14T13:32:41+00:00"
 description: Learn about NGINX App Protect DoS Deployment.
 docs: DOCS-666
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: deployment-guide
-    weight: 45
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect DoS Deployment
 toc: true
-versions:
-- "4.3"
 weight: 100
 ---
 

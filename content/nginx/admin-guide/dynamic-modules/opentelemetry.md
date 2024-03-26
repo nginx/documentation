@@ -9,7 +9,6 @@ toc: true
 weight: 100
 ---
 
-
 <span id="overview"></span>
 ## Module Overview
 
@@ -26,7 +25,7 @@ The module provides [OpenTelemetry](https://opentelemetry.io/) distributed traci
 2. Install the OpenTelemetry module package `nginx-plus-module-otel`.
 
    For CentOS, Oracle Linux, and RHEL:
-   
+
    ```shell
    yum install nginx-plus-module-otel
    ```
@@ -36,15 +35,15 @@ The module provides [OpenTelemetry](https://opentelemetry.io/) distributed traci
    ```shell
    dnf install nginx-plus-module-otel
    ```
-   
+
    For Debian and Ubuntu:
-   
+
    ```shell
    apt-get install nginx-plus-module-otel
    ```
 
    For SLES:
-   
+
    ```shell
    zypper install nginx-plus-module-otel
    ```
@@ -97,10 +96,10 @@ After installation you will need to enable and configure the module in NGINX Plu
 
 Specifies OTel data export parameters:
 
-- `endpoint` &mdash; the address of OTLP/gRPC endpoint that will accept telemetry data. 
-- `interval` &mdash; the maximum interval between two exports, by default is 5 seconds. 
-- `batch_size` &mdash; the maximum number of spans to be sent in one batch per worker, by default is `512`. 
-- `batch_count` &mdash; the number of pending batches per worker, spans exceeding the limit are dropped, by default is `4`. 
+- `endpoint` &mdash; the address of OTLP/gRPC endpoint that will accept telemetry data.
+- `interval` &mdash; the maximum interval between two exports, by default is 5 seconds.
+- `batch_size` &mdash; the maximum number of spans to be sent in one batch per worker, by default is `512`.
+- `batch_count` &mdash; the number of pending batches per worker, spans exceeding the limit are dropped, by default is `4`.
 
 **Example:**
 
@@ -169,10 +168,10 @@ server {
 
 Specifies how to propagate [traceparent/tracestate](https://www.w3.org/TR/trace-context/#design-overview) headers:
 
-- `extract` &mdash; uses an existing trace context from the request, so that the identifiers of a [trace](#var_otel_trace_id) and the [parent span](#var_otel_parent_id) are inherited from the incoming request. 
-- `inject` &mdash; adds a new context to the request, overwriting existing headers, if any. 
-- `propagate` &mdash; updates the existing context (combines `extract` and `inject`). 
-- `ignore` &mdash; skips context headers processing. 
+- `extract` &mdash; uses an existing trace context from the request, so that the identifiers of a [trace](#var_otel_trace_id) and the [parent span](#var_otel_parent_id) are inherited from the incoming request.
+- `inject` &mdash; adds a new context to the request, overwriting existing headers, if any.
+- `propagate` &mdash; updates the existing context (combines `extract` and `inject`).
+- `ignore` &mdash; skips context headers processing.
 <br>
 
 <br>
@@ -199,7 +198,7 @@ Defines the name of the OTel [span](https://opentelemetry.io/docs/concepts/obser
 
 **Context:** [`http`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http), [`server`](https://nginx.org/en/docs/http/ngx_http_core_module.html#server), [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location)
 
-Adds a custom OTel span attribute. The value can contain variables. 
+Adds a custom OTel span attribute. The value can contain variables.
 <br>
 
 

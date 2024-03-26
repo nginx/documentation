@@ -1,21 +1,13 @@
 ---
-title: "Certificates"
-date: 2021-06-09T11:52:09-07:00
-draft: false
-description: "NGINX Instance Manager Certificate Scanning Documentation"
-# Assign weights in increments of 100
-weight: 300
+description: NGINX Instance Manager Certificate Scanning Documentation
+docs: DOCS-630
+doctypes:
+- tutorial
+tags:
+- docs
+title: Certificates
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation"]
-doctypes: ["tutorial"]
-journeys: ["getting started", "using"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-docs: "DOCS-630"
+weight: 300
 ---
 
 {{< include "nim/previous-versions/old-version-warning.md" >}}

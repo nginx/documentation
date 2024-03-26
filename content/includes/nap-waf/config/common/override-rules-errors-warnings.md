@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 #### Missing Policy Name
 
 Every policy must have a name if actionType is either "extend-policy" or "replace-policy". If the policy 'name' is not provided in the override section, an error message will be displayed indicating the missing policy 'name' within that specific override rule. For instance, in the override rule below, the policy name is not specified.

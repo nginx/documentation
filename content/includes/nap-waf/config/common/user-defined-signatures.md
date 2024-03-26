@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 Another useful expansion to the customization capabilities is the ability to create user-defined signatures. This capability allows the user to define new signatures, configure how they behave in terms of enforcement, and categorize them in user-defined signature sets (using tags) for ease of management.
 
 The process of creating and implementing a user policy that contains user-defined signatures is a three-fold process:

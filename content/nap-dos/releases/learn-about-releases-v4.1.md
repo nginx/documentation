@@ -1,38 +1,14 @@
 ---
-authors: []
-categories:
-- releases
-date: "2021-04-14T13:32:41+00:00"
-description: ""
+description: ''
 docs: DOCS-1203
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: Releases
-    weight: 45
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect DoS Release 4.1
 toc: true
-versions:
-- "4.1"
 weight: 110
 ---
 
-Here you can find the release information for NGINX App Protect DoS v4.1. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications. 
+Here you can find the release information for NGINX App Protect DoS v4.1. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
 
 ## Release 4.1
 
@@ -55,7 +31,7 @@ In this release, NGINX App Protect DoS supports NGINX Plus R29.
 
 ##### RHEL 8 and Rocky Linux 8
 
-- app-protect-dos-29+4.1.2-1.el8.ngx.x86_64.rpm  
+- app-protect-dos-29+4.1.2-1.el8.ngx.x86_64.rpm
 
 ##### Debian 11
 
@@ -71,7 +47,7 @@ In this release, NGINX App Protect DoS supports NGINX Plus R29.
 
 ##### Alpine 3.15
 
-- app-protect-dos-29.4.1.2-r1.apk      
+- app-protect-dos-29.4.1.2-r1.apk
 
 #### NGINX Plus
 

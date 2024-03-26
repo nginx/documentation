@@ -1,32 +1,9 @@
 ---
-authors: []
-categories:
-- installation
-- analytics
-date: "2020-10-26T15:32:41-06:00"
 description: How to install, upgrade, and uninstall the NGINX Controller Agent.
 docs: DOCS-254
 doctypes:
 - tutorial
 - troubleshooting
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: Installation
-    weight: 40
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 tags:
 - docs
 title: Install NGINX Controller Agent

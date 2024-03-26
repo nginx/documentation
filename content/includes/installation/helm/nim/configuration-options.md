@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1321"
+docs: DOCS-1321
 ---
 
 The following table lists the configurable parameters and default values for the NGINX Management Suite platform when installing from a Helm chart.

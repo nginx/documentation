@@ -28,7 +28,7 @@ HTTP Basic authentication can also be combined with other access restriction met
 To create username-password pairs, use a password file creation utility, for example, <span style="white-space: nowrap;">`apache2-utils`</span> or <span style="white-space: nowrap;">`httpd-tools`</span>
 
 1. Verify that <span style="white-space: nowrap;">`apache2-utils`</span> (Debian, Ubuntu) or <span style="white-space: nowrap;">`httpd-tools`</span> (RHEL/CentOS/Oracle Linux) is installed.
-2. Create a password file and a first user. Run the `htpasswd` utility with the <span style="white-space: nowrap;">`-c`</span> flag (to create a new file), the file pathname as the first argument, and the username as the second argument:  
+2. Create a password file and a first user. Run the `htpasswd` utility with the <span style="white-space: nowrap;">`-c`</span> flag (to create a new file), the file pathname as the first argument, and the username as the second argument:
 
     ```shell
     sudo htpasswd -c /etc/apache2/.htpasswd user1
@@ -36,7 +36,7 @@ To create username-password pairs, use a password file creation utility, for exa
 
     Press Enter and type the password for **user1** at the prompts.
 
-3. Create additional user-password pairs. Omit the <span style="white-space: nowrap;">`-c`</span> flag because the file already exists:  
+3. Create additional user-password pairs. Omit the <span style="white-space: nowrap;">`-c`</span> flag because the file already exists:
 
     ```shell
     sudo htpasswd /etc/apache2/.htpasswd user2
@@ -68,7 +68,7 @@ To create username-password pairs, use a password file creation utility, for exa
     ```nginx
     location /api {
         auth_basic           "Administrator’s Area";
-        auth_basic_user_file /etc/apache2/.htpasswd; 
+        auth_basic_user_file /etc/apache2/.htpasswd;
     }
     ```
 
@@ -114,7 +114,7 @@ HTTP basic authentication can be effectively combined with access restriction by
     ```nginx
     location /api {
         #...
-        satisfy all;    
+        satisfy all;
 
         deny  192.168.1.2;
         allow 192.168.1.1/24;
@@ -147,7 +147,7 @@ http {
             deny  all;
 
             auth_basic           "Administrator’s Area";
-            auth_basic_user_file /etc/apache2/.htpasswd; 
+            auth_basic_user_file /etc/apache2/.htpasswd;
         }
     }
 }

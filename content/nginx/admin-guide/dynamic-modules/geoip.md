@@ -20,7 +20,7 @@ weight: 100
 2. Install the GeoIP module package `nginx-plus-module-geoip`.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
-   
+
    ```shell
    yum install nginx-plus-module-geoip
    ```
@@ -29,13 +29,13 @@ weight: 100
 
 
    For Debian and Ubuntu:
-   
+
    ```shell
    apt-get install nginx-plus-module-geoip
    ```
 
    For SLES:
-   
+
    ```shell
    zypper install nginx-plus-module-geoip
    ```

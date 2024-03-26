@@ -1,19 +1,14 @@
 ---
-categories:
-  - reference
-date: "2020-11-5T14:03:41-06:00"
-description: "Represents the state of the NGINX Controller Platform REST API."
-# Doctypes: reference and tags: api must be set to load the ReDoc js
+description: Represents the state of the NGINX Controller Platform REST API.
+docs: DOCS-1278
 doctypes:
-  - reference
-tags:
-  - api
+- reference
 layout: redoc-single
-title: "Platform API"
+tags:
+- api
+title: Platform API
 toc: false
 weight: 100
-docs: "DOCS-1278"
-collapseSidebar: true
 ---
 
 {{< openapi spec="/controller/api/reference/ctlr-platform-openapi.json" >}}

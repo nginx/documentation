@@ -9,9 +9,6 @@ toc: true
 weight: 200
 ---
 
-
-
-
 NGINX and NGINX Plus are similar to other services in that they use a text‑based configuration file written in a particular format. By default the file is named **nginx.conf** and for NGINX Plus is placed in the <span style="white-space: nowrap;">**/etc/nginx**</span> directory. (For NGINX Open Source , the location depends on the package system used to install NGINX and the operating system. It is typically one of <span style="white-space: nowrap;">**/usr/local/nginx/conf**</span>, <span style="white-space: nowrap;">**/etc/nginx**</span>, or <span style="white-space: nowrap;">**/usr/local/etc/nginx**</span>.)
 
 ## Directives
@@ -63,18 +60,18 @@ events {
 }
 
 http {
-    # Configuration specific to HTTP and affecting all virtual servers  
+    # Configuration specific to HTTP and affecting all virtual servers
 
     server {
-        # configuration of HTTP virtual server 1       
+        # configuration of HTTP virtual server 1
         location /one {
             # configuration for processing URIs starting with '/one'
         }
         location /two {
             # configuration for processing URIs starting with '/two'
         }
-    } 
-    
+    }
+
     server {
         # configuration of HTTP virtual server 2
     }
@@ -83,7 +80,7 @@ http {
 stream {
     # Configuration specific to TCP/UDP and affecting all virtual servers
     server {
-        # configuration of TCP virtual server 1 
+        # configuration of TCP virtual server 1
     }
 }
 ```

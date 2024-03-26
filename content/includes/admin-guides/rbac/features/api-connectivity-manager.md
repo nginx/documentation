@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1297"
+docs: DOCS-1297
 ---
 
 API Connectivity Manager includes the following features:

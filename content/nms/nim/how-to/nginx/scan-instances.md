@@ -1,32 +1,13 @@
 ---
-title: Scan NGINX Instances for CVEs
-categories:
-- installation
-- analytics
-date: "2021-12-21T12:00:00-07:00"
 description: Follow the steps in this guide to scan for and discover NGINX instances.
+docs: DOCS-828
 doctypes:
 - tutorial
-draft: false
-journeys:
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
 tags:
 - docs
-
+title: Scan NGINX Instances for CVEs
 toc: true
-versions: []
 weight: 110
-docs: "DOCS-828"
-aliases:
-- /nginx-instance-manage/tutorials/scan/
-- /nginx-instance-manager/how-to/scan-instances/
-- /nim/how-to/scan-instances
 ---
 
 <style>

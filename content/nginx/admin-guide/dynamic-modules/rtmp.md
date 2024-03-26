@@ -9,7 +9,6 @@ toc: true
 weight: 100
 ---
 
-
 <span id="install"></span>
 ## Installation
 
@@ -18,7 +17,7 @@ weight: 100
 2. Install the RTMP Media Streaming module package `nginx-plus-module-rtmp`.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
-   
+
    ```shell
    yum install nginx-plus-module-rtmp
    ```
@@ -30,13 +29,13 @@ weight: 100
    ```
 
    For Debian and Ubuntu:
-   
+
    ```shell
    apt-get install nginx-plus-module-rtmp
    ```
 
    For SLES:
-   
+
    ```shell
    zypper install nginx-plus-module-rtmp
    ```

@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1331"
+docs: DOCS-1331
 ---
 
 To publish a staged configuration to an NGINX instance or instance group:

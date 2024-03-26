@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 JSON Web Token (JWT) is a compact and self-contained way to represent information between two parties in a JSON (JavaScript Object Notation) format and is commonly used for authentication and authorization. With NGINX App Protect now it is possible to control access to its application using JWT validation. NGINX App Protect WAF validates the authenticity and well-formedness of JWTs coming from a client, denying access to the service exclusively when the validation process fails. JWT is mainly used for API access. 
 
 When a user logs in to a web application, they might receive a JWT, which can then be included in subsequent requests to the server. The server can validate the JWT to ensure that the user is authenticated to access the requested resources.

@@ -1,29 +1,14 @@
 ---
-categories:
-- certificates
-- services
-description: This guide explains how to add, update, and delete certificates and identify certificates that are expiring or have expired.
+description: This guide explains how to add, update, and delete certificates and identify
+  certificates that are expiring or have expired.
+docs: DOCS-821
 doctypes:
 - tutorial
-draft: false
-journeys:
-- using
-personas:
-- devops
-- netops
-- secops
-- support
 tags:
 - docs
 title: Add, Delete, or Replace Certificates
 toc: true
-versions: []
 weight: 650
-docs: "DOCS-821"
-aliases:
-- /nginx-instance-manager/tutorials/certificates/
-- /nginx-instance-manager/how-to/manage-certificates/
-- /nim/how-to/manage-certificates/
 ---
 
 {{< shortversions "2.0.0" "latest" "nimvers" >}}

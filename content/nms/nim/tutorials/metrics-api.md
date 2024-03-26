@@ -1,34 +1,14 @@
 ---
-authors: []
-categories:
-- analytics
-date: "2021-12-21T12:00:00-07:00"
 description: Tips and tricks for using the Metrics API query parameters to refine
   your data.
+docs: DOCS-825
 doctypes:
 - tutorial
-draft: false
-journeys:
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
-- read-only
 tags:
 - docs
 title: Using the Metrics API
 toc: true
 weight: 300
-docs: "DOCS-825"
-aliases:
-- /nginx-instance-manager/tutorials/monitoring/metrics-api/
-- /nginx-instance-manager/tutorials/metrics-api/
 ---
 
 {{< shortversions "2.0.0" "latest" "nimvers" >}}

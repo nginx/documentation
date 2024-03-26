@@ -1,27 +1,14 @@
 ---
-title: "Health Check"
-date: 2023-02-07T16:13:37-08:00
-# Change draft status to false to publish doc
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO.
-# The description text appears in search results and at the top of the doc.
-description: "Learn how to create, configure, and implement health check policies for your HTTP and gRPC API Proxies using NGINX Management Suite API Connectivity Manager."
-# Assign weights in increments of 100
-weight: 610
+description: Learn how to create, configure, and implement health check policies for
+  your HTTP and gRPC API Proxies using NGINX Management Suite API Connectivity Manager.
+docs: DOCS-1125
+doctypes:
+- reference
+tags:
+- docs
+title: Health Check
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1125"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "security", "analytics"]
-doctypes: ["reference"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
+weight: 610
 ---
 
 ## Overview

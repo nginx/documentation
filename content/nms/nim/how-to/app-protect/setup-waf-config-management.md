@@ -1,17 +1,14 @@
 ---
-title: "Manage Your App Protect WAF Configs"
-date: 2022-11-14T12:00:00-07:00
-description: "Learn how to use NGINX Management Suite Instance Manager to secure your applications with NGINX App Protect WAF security policies."
-# Assign weights in increments of 100
-weight: 100
-draft: false
+description: Learn how to use NGINX Management Suite Instance Manager to secure your
+  applications with NGINX App Protect WAF security policies.
+docs: DOCS-996
+doctypes:
+- task
+tags:
+- docs
+title: Manage Your App Protect WAF Configs
 toc: true
-tags: ["docs"]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-doctypes: ["task"]
-docs: "DOCS-996"
+weight: 100
 ---
 
 {{< shortversions "2.6.0" "latest" "nimvers" >}}

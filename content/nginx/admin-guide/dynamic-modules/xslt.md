@@ -9,7 +9,6 @@ toc: true
 weight: 100
 ---
 
-
 <span id="install"></span>
 ## Installation
 
@@ -18,7 +17,7 @@ weight: 100
 2. Install the XSLT module package `nginx-plus-module-xslt`.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
-   
+
    ```shell
    yum install nginx-plus-module-xslt
    ```
@@ -36,7 +35,7 @@ weight: 100
    ```
 
    For SLES:
-   
+
    ```shell
    zypper install nginx-plus-module-xslt
    ```

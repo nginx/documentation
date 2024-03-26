@@ -1,30 +1,10 @@
 ---
-authors: []
-categories:
-- releases
-date: "2021-04-14T13:32:41+00:00"
-description: ""
+description: ''
 docs: DOCS-652
 doctypes:
 - concept
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect WAF Release 1.3
 toc: true
-versions:
-- "1.3"
 weight: 1000
 ---
 

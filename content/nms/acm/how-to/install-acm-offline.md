@@ -1,5 +1,5 @@
 ---
-title: "Offline Installation Guide"
+title: Offline Installation Guide
 ---
 
 ## Install or Upgrade API Connectivity Manager {#install-or-upgrade-acm-offline}
@@ -13,7 +13,7 @@ title: "Offline Installation Guide"
 ### Install API Connectivity Manager {#install-acm}
 
 {{< important >}}
-API Connectivity Manager requires Instance Manager to be installed first. 
+API Connectivity Manager requires Instance Manager to be installed first.
 
 Before you begin:
 
@@ -64,7 +64,7 @@ To install API Connectivity Manager, take the following steps:
 4. Restart the NGINX web server:
 
    ```bash
-   sudo systemctl restart nginx  
+   sudo systemctl restart nginx
    ```
 
 ### Post-Installation Steps {#acm-post-install-steps}
@@ -117,7 +117,7 @@ To upgrade API Connectivity Manager to a newer version, take the following steps
     NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
 
 4. Restart the API Connectivity Manager service:
-   
+
    ```bash
     sudo systemctl restart nms-acm
     ```
@@ -138,7 +138,7 @@ The API Connectivity Manager data plane requires [NGINX Plus R24](https://docs.n
 1. Log in to MyF5 and download your `nginx-repo.crt` and `nginx-repo.key` files.
 2. Copy the `nginx-repo.crt` and `nginx-repo.key` files to the `/etc/ssl/nginx/` directory:
 
-    ```bash 
+    ```bash
     sudo cp nginx-repo.crt /etc/ssl/nginx/
     sudo cp nginx-repo.key /etc/ssl/nginx/
     ```

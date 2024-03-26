@@ -1,10 +1,10 @@
 ---
-title: "Introduction"
+docs: DOCS-1385
+title: Introduction
 weight: 100
-docs: "DOCS-1385"
 ---
 
-[API Connectivity Manager]({{< relref "/nms/acm/">}}) enables self-service and automation of API delivery. API Connectivity Manager allows you to deploy, configure, secure, monitor, and govern API gateways at scale. 
+[API Connectivity Manager]({{< relref "/nms/acm/">}}) enables self-service and automation of API delivery. API Connectivity Manager allows you to deploy, configure, secure, monitor, and govern API gateways at scale.
 
 The API Connectivity Manager module provides a [REST API]({{< relref "/nms/acm/about/api-overview">}}) that uses standard authentication methods, HTTP response codes, and verbs.
 

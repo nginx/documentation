@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 The do-nothing in urlContentProfiles allows the user to avoid inspecting or parsing the content in a policy, and instead handle the request's header according to the specifications outlined in the security policy.
 
 In this example, we configure do-nothing content types for a specific user-defined URL:

@@ -1,7 +1,5 @@
 ---
-date: "2021-09-01T10:36:18-07:00"
 docs: DOCS-567
-draft: false
 title: Syslog Integration
 weight: 30
 ---

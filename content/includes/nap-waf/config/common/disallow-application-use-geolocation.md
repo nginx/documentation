@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 For applications protected by app protect, you can use Geolocation enforcement to restrict or allow application use in specific countries. You can adjust the lists of which countries or locations are allowed or disallowed in a app protect security policy. If the user tries to access the web application from a location that is not allowed, the `VIOL_GEOLOCATION` violation will be triggered. By default, all locations are allowed, and the alarm and block flags are enabled.
 
 Requests from certain locations, such as RFC-1918 addresses or unassigned global addresses, do not include a valid country code. The geolocation is shown as **N/A** in both the request and the list of geolocations. You have the option to disallow N/A requests whose country of origination is unknown.

@@ -1,9 +1,10 @@
 ---
-title: "Release Notes"
-description: "These release notes list and describe the new features, enhancements, and resolved issues in NGINX Management Suite Instance Manager."
-weight: 100
+description: These release notes list and describe the new features, enhancements,
+  and resolved issues in NGINX Management Suite Instance Manager.
+docs: DOCS-938
+title: Release Notes
 toc: true
-docs: "DOCS-938"
+weight: 100
 ---
 
 {{<rn-styles>}}

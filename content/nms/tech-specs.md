@@ -1,16 +1,12 @@
 ---
-date: "2021-12-21T12:00:00-07:00"
+description: This document outlines the requirements for the NGINX Management Suite
+  and NGINX Agent, such as compatible platforms, hardware specifications, sizing advice,
+  compatible web browsers, and more.
+docs: DOCS-805
 doctypes: reference
-draft: false
 title: Technical Specifications
-description: This document outlines the requirements for the NGINX Management Suite and NGINX Agent, such as compatible platforms, hardware specifications, sizing advice, compatible web browsers, and more.
 toc: true
 weight: 20
-docs: "DOCS-805"
-aliases:
-- /nginx-instance-manager/getting-started/technical-specifications/
-- /nginx-instance-manager/about/technical-specifications/
-
 ---
 
 ## Overview

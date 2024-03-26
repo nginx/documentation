@@ -10,16 +10,15 @@ toc: true
 weight: 100
 ---
 
-
 <span id="install"></span>
 ## Installation
 
 1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
 2. Install the njs module package `nginx-plus-module-njs`.
- 
+
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
-   
+
    ```shell
    yum install nginx-plus-module-njs
    ```
@@ -29,15 +28,15 @@ weight: 100
    ```shell
    dnf install nginx-plus-module-njs
    ```
-   
+
    For Debian and Ubuntu:
-   
+
    ```shell
    apt-get install nginx-plus-module-njs
    ```
 
    For SLES:
-   
+
    ```shell
    zypper install nginx-plus-module-njs
    ```

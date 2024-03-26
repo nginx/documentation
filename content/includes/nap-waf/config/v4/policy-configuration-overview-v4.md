@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 The NGINX App Protect WAF security policy configuration uses the declarative format based on a pre-defined base template. The policy is represented in a JSON file which you can edit to add, modify and remove security capabilities with respect to the base template. The way the policy is integrated into the NGINX configuration is via referencing the JSON file (using the full path) in the `nginx.conf` file.
 
 {{< note >}}NGINX App Protect WAF provides a [JSON Schema](https://json-schema.org/) which can be used to validate a JSON policy file to ensure file format compliance. The schema file can be generated using a script once NGINX App Protect WAF is installed: `sudo /opt/app_protect/bin/generate_json_schema.pl`. This script will output the schema to a file named `policy.json` into the current working directory. Once the schema file is generated, you can use validation tools such as [AJV](https://ajv.js.org/standalone.html) to validate a JSON policy file.{{< /note >}}

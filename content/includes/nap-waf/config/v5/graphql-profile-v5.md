@@ -1,6 +1,7 @@
 ---
 docs: DOCS-1368
 ---
+
 The GraphQL Profile defines the GraphQL properties that are enforced by the security policy. 
 
 The profile can be added by the security engineers to make sure that GraphQL apps are bound to the same security settings defined in the profile. Different GraphQL apps can have different profiles based on the security needs.

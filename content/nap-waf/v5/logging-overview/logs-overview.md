@@ -1,35 +1,12 @@
 ---
-aliases:
-- /troubleshooting/
-authors: []
-categories:
-- logs-overview
-date: "2021-04-14T13:32:41+00:00"
 description: Learn the types of logs available in NGINX App Protect WAF v5.
 docs: DOCS-1374
 doctypes:
 - concept
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect WAF Logs Overview
 toc: true
-versions:
-- "5.0"
 weight: 1010
 ---
-
 
 ## Log Types
 

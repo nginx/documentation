@@ -1,20 +1,13 @@
 ---
-title: "Architecture Overview"
-date: 2021-12-21T12:00:00-07:00
-draft: false
-description: "Learn about the NGINX Management Suite API Connectivity Manager architecture."
-# Assign weights in increments of 100
-weight: 400
+description: Learn about the NGINX Management Suite API Connectivity Manager architecture.
+docs: DOCS-892
+doctypes:
+- concept
+tags:
+- docs
+title: Architecture Overview
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["api connectivity manager"]
-doctypes: ["concept"]
-journeys: ["researching", "getting started"]
-docs: "DOCS-892"
-
+weight: 400
 ---
 
 {{< shortversions "1.0.0" "latest" "acmvers" >}}

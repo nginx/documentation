@@ -1,6 +1,7 @@
 ---
 docs: DOCS-1368
 ---
+
 {{< note >}}
 This section assumes that you built a customized compiler image - `waf-compiler-1.0.0:custom`.
 {{< /note >}}

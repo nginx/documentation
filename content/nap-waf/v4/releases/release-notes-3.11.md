@@ -1,34 +1,14 @@
 ---
-authors: []
-categories:
-- releases
-date: "2021-04-14T13:32:41+00:00"
-description: ""
+description: ''
 docs: DOCS-891
 doctypes:
 - concept
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect WAF Release 3.11
 toc: true
-versions:
-- "3.11"
 weight: 660
 ---
 
-June 28, 2022 
+June 28, 2022
 
 In this release, support for NGINX App Protect WAF is added to NGINX Plus R27.
 
@@ -73,7 +53,7 @@ This release includes updated signatures for the [Anti Automation]({{< relref "/
 - app-protect-27+3.954.0-1.el8.ngx.x86_64.rpm
 
 #### NGINX Plus
- 
+
 - NGINX Plus R27
 
 ### Resolved Issues

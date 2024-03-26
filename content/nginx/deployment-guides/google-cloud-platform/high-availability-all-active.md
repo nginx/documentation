@@ -9,8 +9,6 @@ toc: true
 weight: 100
 ---
 
-
-
 This deployment guide explains how to create and configure the initial components for an all‑active, high‑availability deployment of NGINX Plus on Google Compute Engine (GCE), the Google Cloud Platform (GCP) product for running workloads on virtual machines (VMs). Multiple instances of NGINX Plus in active pairs load balance incoming connections across multiple application environments.
 
 

@@ -1,6 +1,7 @@
 ---
 docs: DOCS-1368
 ---
+
 The Strict Policy is recommended as a starting point for applications requiring a higher level of security. Just like all other policies it is based on the base template, so it detects and blocks everything the default policy does.
 To obtain the Strict Policy, execute the following command:
 

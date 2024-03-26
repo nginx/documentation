@@ -1,18 +1,16 @@
 ---
-title: "Cluster Zone Sync"
-date: 2023-02-10T12:00:00-07:00
-draft: false
-description: "Learn how to configure the Cluster Zone Sync policy to enable runtime state sharing between the instances belonging to a proxy cluster."
-# Assign weights in increments of 100
-weight: 499
+description: Learn how to configure the Cluster Zone Sync policy to enable runtime
+  state sharing between the instances belonging to a proxy cluster.
+docs: DOCS-1159
+doctypes:
+- API Connectivity Manager
+- api management
+- concept
+tags:
+- docs
+title: Cluster Zone Sync
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1159"
-doctypes: ["API Connectivity Manager", "api management", "concept"]
-journeys: ["getting started", "using"]
-personas: ["Platform Ops", "Infra Admins"]
-versions: []
-authors: []
+weight: 499
 ---
 
 ## Overview

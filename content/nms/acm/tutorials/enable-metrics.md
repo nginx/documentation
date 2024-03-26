@@ -1,10 +1,12 @@
 ---
-title: "Enable Metrics"
-description: "Learn how to enable and use metrics for NGINX Management Suite API Connectivity Manager."
-weight: 100
+description: Learn how to enable and use metrics for NGINX Management Suite API Connectivity
+  Manager.
+docs: DOCS-1055
+tags:
+- docs
+title: Enable Metrics
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1055"
+weight: 100
 ---
 
 {{< shortversions "1.3.0" "latest" "acmvers" >}}

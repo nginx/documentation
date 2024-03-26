@@ -1,27 +1,14 @@
 ---
-title: "Proxy Response Headers"
-date: 2023-02-28T12:47:15-08:00
-# Change draft status to false to publish doc
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO.
-# The description text appears in search results and at the top of the doc.
-description: "Learn how to use NGINX Management Suite API Connectivity Manager to set response headers to send to your clients."
-# Assign weights in increments of 100
-weight: 1150
+description: Learn how to use NGINX Management Suite API Connectivity Manager to set
+  response headers to send to your clients.
+docs: DOCS-1135
+doctypes:
+- reference
+tags:
+- docs
+title: Proxy Response Headers
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1135"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "security", "analytics"]
-doctypes: ["reference"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
+weight: 1150
 ---
 
 ## Overview

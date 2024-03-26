@@ -1,21 +1,15 @@
 ---
-title: "Enable Single Sign-On for Developer Portal"
-date: 2021-12-21T12:00:00-07:00
-description: "Learn how to enable Single Sign-On for Developer Portal."
-# Assign weights in increments of 100
-weight: 400
+description: Learn how to enable Single Sign-On for Developer Portal.
+docs: DOCS-928
+doctypes:
+- task
+tags:
+- docs
+title: Enable Single Sign-On for Developer Portal
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-928"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["API Connectivity Manager", "policies", "OIDC", "developer portal"]
-doctypes: ["task"]
-aliases:
-- /acm/how-to/setup-oidc-devportal/
-
+weight: 400
 ---
+
 {{< raw-html >}}
 <style>
     h2 {

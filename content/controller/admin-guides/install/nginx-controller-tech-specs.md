@@ -1,30 +1,8 @@
 ---
-authors: []
-categories:
-- installation
-date: "2020-10-26T15:32:41-06:00"
 description: Guidelines and recommendations for configuring NGINX Controller.
 docs: DOCS-256
 doctypes:
 - reference
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: Installation
-    weight: 10
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 tags:
 - docs
 title: NGINX Controller Tech Specs

@@ -1,34 +1,14 @@
 ---
-authors: []
-categories:
-- releases
-date: "2021-04-14T13:32:41+00:00"
-description: ""
+description: ''
 docs: DOCS-660
 doctypes:
 - concept
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect WAF Release 3.3
 toc: true
-versions:
-- "3.3"
 weight: 770
 ---
 
-July 7, 2021 
+July 7, 2021
 
 ### New Features
 
@@ -74,6 +54,6 @@ July 7, 2021
 
 ### Known Issues
 
-#### 4347 - Missing dependency of python3 for Alpine Linux 
+#### 4347 - Missing dependency of python3 for Alpine Linux
 
 - Workaround - run `apk add python3` before installing NGINX App Protect WAF on Alpine Linux

@@ -1,38 +1,14 @@
 ---
-authors: []
-categories:
-- releases
-date: "2021-04-14T13:32:41+00:00"
-description: ""
+description: ''
 docs: DOCS-672
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: Releases
-    weight: 45
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect DoS Release 1.0
 toc: true
-versions:
-- "1.0"
 weight: 260
 ---
 
-Here you can find the release information for NGINX App Protect DoS v1. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications. 
+Here you can find the release information for NGINX App Protect DoS v1. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
 
 ## Release 1.0
 
@@ -55,7 +31,7 @@ July 6, 2021
 
 #### Use Cases
 
-#### Application Types 
+#### Application Types
 
 - Traditional HTML-based web applications
 - XML-based web services

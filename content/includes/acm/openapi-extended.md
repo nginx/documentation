@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1340"
+docs: DOCS-1340
 ---
 
 ### Uploading an OAS Schema

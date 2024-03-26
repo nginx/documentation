@@ -9,7 +9,6 @@ toc: true
 weight: 200
 ---
 
-
 <span id="intro"></span>
 ## Introduction
 
@@ -370,7 +369,7 @@ stream {
         server backup1.example.com:12345 backup;
         server backup2.example.com:12345 backup;
     }
-    
+
     server {
         # Server that proxies connections to the upstream group
         proxy_pass appservers;
@@ -401,9 +400,9 @@ To pass a configuration command to NGINX, send an API command by any method, for
 For example, to add a new server to the server group, send a `POST` request:
 
 ```shell
-curl -X POST -d '{ \ 
-   "server": "appserv3.example.com:12345", \ 
-   "weight": 4 \ 
+curl -X POST -d '{ \
+   "server": "appserv3.example.com:12345", \
+   "weight": 4 \
  }' -s 'http://127.0.0.1/api/6/stream/upstreams/appservers/servers'
 ```
 
@@ -432,26 +431,26 @@ stream {
         server backend2.example.com:12345 max_fails=2 fail_timeout=30s;
         server backend3.example.com:12345 max_conns=3;
     }
-    
+
     upstream dns_servers {
         least_conn;
         server 192.168.136.130:53;
         server 192.168.136.131:53;
         server 192.168.136.132:53;
     }
-    
+
     server {
         listen        12345;
         proxy_pass    stream_backend;
         proxy_timeout 3s;
         proxy_connect_timeout 1s;
     }
-    
+
     server {
         listen     53 udp;
         proxy_pass dns_servers;
     }
-    
+
     server {
         listen     12346;
         proxy_pass backend4.example.com:12346;

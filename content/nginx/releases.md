@@ -12,10 +12,10 @@ weight: 300
 <span id="support"></span>
 ## Support for Current and Previous Releases
 
-NGINX provides technical support for NGINX Plus releases for 24 months from the initial date of each release. 
-With each new NGINX Plus release, the previously released version enters End of Software Development (EoSD). 
-We do not issue updates for releases that have reached EoSD. For this reason, we advise customers to run the most recent release. 
-The initial release dates for NGINX Plus are noted in this document. 
+NGINX provides technical support for NGINX Plus releases for 24 months from the initial date of each release.
+With each new NGINX Plus release, the previously released version enters End of Software Development (EoSD).
+We do not issue updates for releases that have reached EoSD. For this reason, we advise customers to run the most recent release.
+The initial release dates for NGINX Plus are noted in this document.
 New releases are announced on the [NGINX Product Support Announcements](https://interact.f5.com/Customer-Preference-Center.html) mailing list.
 
 <span id="r31"></span>
@@ -393,7 +393,7 @@ NGINX Plus R26 is a feature release:
 
 - JWT key caching with the
 [`auth_jwt_key_cache`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_cache) directive
- 
+
 - Enhanced ALPN support with the [`ssl_alpn`](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_alpn) directive for stream, and the `$ssl_alpn_protocol` variable for [HTTP](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#var_ssl_alpn_protocol) and [stream](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#var_ssl_alpn_protocol)
 
 - The [`$ssl_curve`](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#var_ssl_curve) variable that returns the negotiated curve used for SSL handshake key exchange process
@@ -459,7 +459,7 @@ NGINX Plus R25 is a feature release:
 
   - now it is possible to have multiple [auth_jwt_key_file](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_file) and [auth_jwt_key_request](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_request) directives within the same context
 
-  - asymmetric RSA-OAEP cryptographic algorithms for JWE 
+  - asymmetric RSA-OAEP cryptographic algorithms for JWE
 
 - API version 7: HTTP status code statistics are now collected per-code, in addition to aggregation per-class, for [upstreams](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream), [server zones](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_server_zone), and [location zones](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_location_zone)
 
@@ -658,7 +658,7 @@ NGINX Plus R22 is a feature release:
 - Client certificate OCSP validation
 - Realtime [limit_conn](https://nginx.org/en/docs/stream/ngx_stream_limit_conn_module.html) and [limit_req](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html) dashboard charts
 - [Delay](https://nginx.org/en/docs/http/ngx_http_core_module.html#auth_delay) on authentication failure
- 
+
 NGINX Plus R22 is supported on:
 
 - Alpine Linux 3.9, 3.10, 3.11
@@ -674,7 +674,7 @@ NGINX Plus R22 is supported on:
 **Notes:**
 
 - Alpine 3.8 is no longer supported
- 
+
 More information: [Announcing NGINX Plus R22](https://www.nginx.com/blog/nginx-plus-r22-released/)
 
 <span id="r21"></span>
@@ -685,7 +685,7 @@ _Based on NGINX Open Source 1.17.9_
 NGINX Plus R21 is a feature release:
 
 - Support for a variable parameter to the [grpc_pass](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_pass) directive enables dynamic gRPC routing
- 
+
 NGINX Plus R21 is supported on:
 
 - Alpine Linux 3.8, 3.9, 3.10, 3.11
@@ -707,7 +707,7 @@ NGINX Plus R21 is supported on:
   - CentOS/Oracle Linux/RHEL 6.5+ (x86_64 still supported)
   - Debian 9, 10 (x86_64 still supported)
   - Ubuntu 16.04 LTS  (x86_64, aarch64, ppc64le still supported)
- 
+
 More information: [Announcing NGINX Plus R21](https://www.nginx.com/blog/nginx-plus-r21-released/)
 
 <span id="r20"></span>
@@ -779,7 +779,7 @@ NGINX Plus R19 is supported on:
 - Debian 10 is new in this release
 - Ubuntu 14.04 LTS and 18.10 are no longer supported
 - Ubuntu 19.04 is new in this release
- 
+
 More information: [Announcing NGINX Plus R19](https://www.nginx.com/blog/nginx-plus-r19-released/)
 
 <span id="r18"></span>
@@ -790,17 +790,17 @@ _Based on NGINX Open Source 1.15.10_
 NGINX Plus R18 is a feature release:
 
 - Dynamic SSL certificate loading, either from [file](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate) or from [key-value](https://nginx.org/en/docs/http/ngx_http_keyval_module.html) storage (for the latter case, prefix the variable with `data:`)
-- New features in [OpenID Connect reference implementation](https://github.com/nginxinc/nginx-openid-connect): opaque session tokens as a browser cookie, refresh tokens to refresh expired ID tokens without user interaction, and a logout URL  
+- New features in [OpenID Connect reference implementation](https://github.com/nginxinc/nginx-openid-connect): opaque session tokens as a browser cookie, refresh tokens to refresh expired ID tokens without user interaction, and a logout URL
 - Additional logic for verifying arbitrary variables in active health checks (new `require` parameter to [match](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#match) directive)
 - Wildcard support for [listen](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#listen) directive means same [zone_sync](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html#zone_sync) configuration can now be used for all instances in a cluster
 - Port ranges supported for [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive
 - For TCP/UDP, existing connections to proxied upstream server can be explicitly closed after server is removed from upstream group due to health check failure, API call, or re-resolve action (new [proxy_session_drop](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_session_drop) directive)
 - New variable, [$upstream_bytes_sent](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_bytes_sent), contains number of bytes sent to an upstream server
 - New or updated dynamic modules:
-  - [Brotli](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/brotli/) (New): General‑purpose, lossless data compression algorithm 
-  - [OpenTracing](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/opentracing/) (New): Ability to instrument NGINX Plus with OpenTracing‑compliant requests for a range of distributed tracing services, such as Datadog, Jaeger, and Zipkin 
+  - [Brotli](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/brotli/) (New): General‑purpose, lossless data compression algorithm
+  - [OpenTracing](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/opentracing/) (New): Ability to instrument NGINX Plus with OpenTracing‑compliant requests for a range of distributed tracing services, such as Datadog, Jaeger, and Zipkin
   - [Lua](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/lua//) (Updated): Scripting language for NGINX Plus, updated to use LuaJIT 2.1
-  - [NGINX JavaScript](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/nginscript/) (Updated): JavaScript module for NGINX Plus, updated to version [0.3.0](https://nginx.org/en/docs/njs/changes.html#njs0.3.0) 
+  - [NGINX JavaScript](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/nginscript/) (Updated): JavaScript module for NGINX Plus, updated to version [0.3.0](https://nginx.org/en/docs/njs/changes.html#njs0.3.0)
 
 NGINX Plus R18 is supported on:
 
@@ -825,7 +825,7 @@ More information: [Announcing NGINX Plus R18](https://www.nginx.com/blog/nginx-p
 
 ### NGINX Plus R18 Update
 
-This is a bug‑fix release for NGINX Plus R18.  
+This is a bug‑fix release for NGINX Plus R18.
 
 NGINX Plus R18 P1<br/>
 _6 August 2019_
@@ -879,7 +879,7 @@ More information: [Announcing NGINX Plus R17](https://www.nginx.com/blog/nginx-p
 <span id="r16"></span>
 ## NGINX Plus Release 16 (R16)
 _5 September 2018_<br/>
-_Based on NGINX Open Source 1.15.2_ 
+_Based on NGINX Open Source 1.15.2_
 
 NGINX Plus R16 is a feature release:
 
@@ -892,7 +892,7 @@ NGINX Plus R16 is a feature release:
 - Support for [AWS PrivateLink](https://aws.amazon.com/privatelink/), Amazon's technology for creating secure tunnels into a VPC
 - opaque session token support in the [OpenID Connect reference implementation](https://github.com/nginxinc/nginx-openid-connect)
 - New [$ssl_preread_protocol](https://nginx.org/en/docs/stream/ngx_stream_ssl_preread_module.html#var_ssl_preread_protocol) variable to distinguish between SSL/TLS and other protocols when forwarding traffic using a TCP ([stream](https://nginx.org/en/docs/stream/ngx_stream_core_module.html)) proxy
-- New [Encrypted Session](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/encrypted-session/) dynamic module 
+- New [Encrypted Session](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/encrypted-session/) dynamic module
 - The NGINX JavaScript module has been updated:
   - Single object (`r`) is used to access both request and response attributes associated with each HTTP request
   - New language support: `bytesFrom()`, `padStart()`, `padEnd()`, `getrandom()`, `getentropy()`, and binary literals
@@ -920,7 +920,7 @@ More information: [Announcing NGINX Plus R16](https://www.nginx.com/blog/nginx-p
 
 ### NGINX Plus R16 Update
 
-This is a bug‑fix release for NGINX Plus R16.  
+This is a bug‑fix release for NGINX Plus R16.
 
 NGINX Plus R16 P1<br/>
 _30 October 2018_
@@ -965,13 +965,13 @@ NGINX Plus R15 is supported on:
 - Ubuntu 17.04 is no longer supported
 - nginScript is now known as the NGINX JavaScript module
 - The NGINX Plus API version has been incremented to 3; all previous versions of the NGINX Plus API are still supported
-- This is the last release to support the deprecated dynamic (on-the-fly) reconfiguration and extended status APIs (see our [transition guide](https://www.nginx.com/blog/transitioning-to-nginx-plus-api-configuration-monitoring/) for details) 
+- This is the last release to support the deprecated dynamic (on-the-fly) reconfiguration and extended status APIs (see our [transition guide](https://www.nginx.com/blog/transitioning-to-nginx-plus-api-configuration-monitoring/) for details)
 
 More information: [Announcing NGINX Plus R15](https://www.nginx.com/blog/nginx-plus-r15-released/)
 
 ### NGINX Plus R15 Updates
 
-These are bug‑fix releases for NGINX Plus R15.  
+These are bug‑fix releases for NGINX Plus R15.
 
 NGINX Plus R15 P2<br/>
 _30 October 2018_
@@ -986,7 +986,7 @@ _12 April 2018_
 
 <span id="r14"></span>
 ## NGINX Plus Release 14 (R14)
-_12 December 2017_  
+_12 December 2017_
 _NGINX Open Source build 1.13.7_
 
 NGINX Plus R14 is a feature release:
@@ -1015,9 +1015,9 @@ NGINX Plus R14 is supported on:
 
 **Notes:**
 
-- Debian 7.0 is no longer supported 
+- Debian 7.0 is no longer supported
 - Ubuntu 17.10 is new in this release
-- The Upstream Conf and Extended Status APIs were deprecated in [NGINX Plus R13](#r13); support will continue only through NGINX Plus R15 (see our [transition guide](https://www.nginx.com/blog/transitioning-to-nginx-plus-api-configuration-monitoring/) for details)    
+- The Upstream Conf and Extended Status APIs were deprecated in [NGINX Plus R13](#r13); support will continue only through NGINX Plus R15 (see our [transition guide](https://www.nginx.com/blog/transitioning-to-nginx-plus-api-configuration-monitoring/) for details)
 
 More information: [Announcing NGINX Plus R14](https://www.nginx.com/blog/nginx-plus-r14-released/)
 
@@ -1029,7 +1029,7 @@ NGINX Plus R14 P1<br/>
 _25 January 2018_
 
 - Live activity monitoring: Reinstated some missing tooltips for the dashboard
-- NGINX Plus API: HTTP Basic Authentication support for read‑write mode   
+- NGINX Plus API: HTTP Basic Authentication support for read‑write mode
 
 <span id="r13"></span>
 ## NGINX Plus Release 13 (R13)
@@ -1059,7 +1059,7 @@ NGINX Plus R13 is supported on:
 
 **Notes:**
 
-- CentOS/Oracle Linux/RHEL 5.10+ is no longer supported 
+- CentOS/Oracle Linux/RHEL 5.10+ is no longer supported
 - Ubuntu 12.04 LTS and 16.10 are no longer supported
 - Ubuntu 17.04 is new in this release
 - The `sticky_cookie_insert` directive (deprecated in [NGINX Plus R2](#r2)) has been removed
@@ -1114,7 +1114,7 @@ More information: [Announcing NGINX Plus R12](https://www.nginx.com/blog/nginx
 
 ### NGINX Plus R12 Updates
 
-These are bug‑fix releases for NGINX Plus R12.  
+These are bug‑fix releases for NGINX Plus R12.
 
 NGINX Plus R12 P3<br/>
 _29 June 2017_
@@ -1156,7 +1156,7 @@ NGINX Plus R11 is supported on:
 - SLES 12, 12 SP1
 - Ubuntu 12.04 LTS, 14.04 LTS, 16.04 LTS, 16.10
 
-**Notes:** 
+**Notes:**
 
 - FreeBSD 11.0 is new in this release
 - Ubuntu 16.10 is new in this release
@@ -1198,7 +1198,7 @@ NGINX Plus R10 is supported on:
 - SLES 12, 12 SP1
 - Ubuntu 12.04 LTS, 14.04 LTS, 16.04 LTS
 
-**Notes:** 
+**Notes:**
 
 - Ubuntu 15.10 is no longer supported
 - NGINX Plus R10 is the last release to include the `nginx-plus-extras` package; if using this package, migrate to the `nginx-plus` package and then install the needed [dynamic modules](https://www.nginx.com/products/dynamic-modules)
@@ -1208,7 +1208,7 @@ More information: [Announcing NGINX Plus R10](https://www.nginx.com/blog/nginx-
 <span id="r9"></span>
 ## NGINX Plus Release 9 (R9)
 _12 April 2016_<br/>
-_Based on NGINX Open Source 1.9.13_ 
+_Based on NGINX Open Source 1.9.13_
 
 NGINX Plus R9 is a feature release:
 
@@ -1217,7 +1217,7 @@ NGINX Plus R9 is a feature release:
   - [nginx-plus-module-image-filter](https://nginx.org/en/docs/http/ngx_http_image_filter_module.html)
   - [nginx-plus-module-perl](https://nginx.org/en/docs/http/ngx_http_perl_module.html)
   - [nginx-plus-module-xslt](https://nginx.org/en/docs/http/ngx_http_xslt_module.html)
-    
+
   The third‑party modules supported in this release:
 
   - [nginx-plus-module-headers-more](https://github.com/openresty/headers-more-nginx-module)
@@ -1259,18 +1259,18 @@ More information: [Announcing NGINX Plus R9](https://www.nginx.com/blog/nginx-
 
 ### NGINX Plus R9 Updates
 
-This is a bug‑fix release for NGINX Plus R9.  
+This is a bug‑fix release for NGINX Plus R9.
 
 NGINX Plus R9 P1<br/>
 _25 May 2016_
 
-- Segmentation fault might occur when writing a client request body to a temporary file 
+- Segmentation fault might occur when writing a client request body to a temporary file
 - Specially crafted request might cause NGINX worker process to crash due to a NULL pointer dereference ([CVE-2016-4450](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-4450))
 
 <span id="r8"></span>
 ## NGINX Plus Release 8 (R8)
 _19 January 2016_<br/>
-_Based on NGINX Open Source 1.9.9_ 
+_Based on NGINX Open Source 1.9.9_
 
 NGINX Plus R8 is a feature release:
 
@@ -1305,7 +1305,7 @@ More information: [Announcing NGINX Plus R8](https://www.nginx.com/blog/nginx-
 
 ### NGINX Plus R8 Updates
 
-These are bug‑fix releases for NGINX Plus R8.  
+These are bug‑fix releases for NGINX Plus R8.
 
 NGINX Plus R8 P3<br/>
 _24 February 2016_
@@ -1326,7 +1326,7 @@ _26 January 2016_
 <span id="r7"></span>
 ## NGINX Plus Release 7 (R7)
 _15 September 2015_<br/>
-_Based on NGINX Open Source 1.9.4_ 
+_Based on NGINX Open Source 1.9.4_
 
 NGINX Plus R7 is a feature release:
 
@@ -1415,7 +1415,7 @@ More information: [Announcing NGINX Plus Release 6 with Enhanced Load Balancin
 <span id="r5"></span>
 ## NGINX Plus Release 5 (R5)
 _2 December 2014_<br/>
-_Based on NGINX Open Source 1.7.7_ 
+_Based on NGINX Open Source 1.7.7_
 
 NGINX Plus R5 is a feature release:
 
@@ -1525,19 +1525,19 @@ NGINX Plus R2 is a feature release:
 
 ### NGINX Plus R2 Updates
 
-Security Update to NGINX Plus Release R2  
+Security Update to NGINX Plus Release R2
 _21 March 2014_<br/>
 _Based on NGINX Open Source 1.5.7‑4_
 
 - Fixes vulnerability in experimental SPDY implementation in NGINX Open Source 1.5.7‑3 and earlier.
 
-Functional Update to NGINX Plus R2  
+Functional Update to NGINX Plus R2
 _5 March 2014_<br/>
 _Based on NGINX Open Source 1.5.7‑3_
 
 - NGINX Plus now correctly applies the value set with the [client_max_body_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size) directive when processing HTTP requests that contain chunk‑encoded body data.
 
-Functional Update to NGINX Plus R2  
+Functional Update to NGINX Plus R2
 _13 February 2014_<br/>
 _Based on NGINX Open Source 1.5.7‑2_
 

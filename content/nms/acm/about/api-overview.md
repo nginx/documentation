@@ -1,14 +1,12 @@
 ---
-title: "API Overview"
-date: 2021-12-21T12:00:00-07:00
-description: "This topic gives an overview of the NGINX Management Suite API Connectivity Manager API."
-# Assign weights in increments of 100
-weight: 300
+description: This topic gives an overview of the NGINX Management Suite API Connectivity
+  Manager API.
+docs: DOCS-929
+tags:
+- docs
+title: API Overview
 toc: true
-tags: [ "docs" ]
-versions: []
-docs: "DOCS-929"
-
+weight: 300
 ---
 
 {{< shortversions "1.1.0" "latest" "acmvers" >}}

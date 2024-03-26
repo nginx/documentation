@@ -1,30 +1,10 @@
 ---
-authors: []
-categories:
-- releases
-date: "2021-04-14T13:32:41+00:00"
-description: ""
+description: ''
 docs: DOCS-658
 doctypes:
 - concept
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect WAF Release 3.1
 toc: true
-versions:
-- "3.1"
 weight: 790
 ---
 
@@ -32,7 +12,7 @@ March 31, 2021
 
 ### New Features
 
-- [User-Defined Browser Control]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#user-defined-browser-control" >}}) 
+- [User-Defined Browser Control]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#user-defined-browser-control" >}})
 - [CSRF Protection Using Origin Validation]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#csrf-protection-using-origin-validation" >}})
 - [Clickjacking Protection]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#clickjacking-protection" >}})
 - [Log Rotate]({{< relref "/nap-waf/v4/admin-guide/install.md#log-rotate" >}})

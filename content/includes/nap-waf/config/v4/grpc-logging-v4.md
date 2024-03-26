@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 Security log for gRPC requests has unique fields: `uri`, `grpc_method`, and `grpc_service`. Also, since the content of gRPC requests is binary (Protocol Buffers), it is better transferred in Base64 encoding. Hence, it is recommended to use the `headers` and `request_body_base64` fields instead of the `request` field. A new predefined log format called `grpc` should be used in all gRPC locations that also use policies with gRPC Content Profiles.
 The `grpc` format also contains the above new gRPC fields (`grpc_service` and `grpc_method`). See [Available Security Log Attributes]({{< relref "/nap-waf/v4/logging-overview/security-log#available-security-log-attributes" >}}).
 

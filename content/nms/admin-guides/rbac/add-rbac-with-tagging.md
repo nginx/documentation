@@ -1,17 +1,15 @@
 ---
-title: "(Deprecated) Set Up RBAC with Tagging"
-description: "Deprecated in Instance Manager 2.1.0. This topic explains how to set up role-based access control with tags in Instance Manager."
-date: 2021-12-21T12:00:00-07:00
-draft: true
-weight: 1000
+description: Deprecated in Instance Manager 2.1.0. This topic explains how to set
+  up role-based access control with tags in Instance Manager.
+docs: DOCS-790
 doctypes: task
+draft: true
+tags:
+- docs
+- deprecated
+title: (Deprecated) Set Up RBAC with Tagging
 toc: true
-tags: ["docs", "deprecated"]
-
-docs: "DOCS-790"
-aliases:
-- /nginx-instance-manager/admin-guide/add-rbac-with-tagging/
-- /nginx-instance-manager/admin-guide/rbac/add-rbac-with-tagging/
+weight: 1000
 ---
 
 {{< shortversions "2.0.0" "2.0.1" "nimvers" >}}

@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1034"
+docs: DOCS-1034
 ---
 
 To upgrade the NGINX Agent, take the following steps:
@@ -30,7 +30,7 @@ To upgrade the NGINX Agent, take the following steps:
 
       ```bash
       sudo apt-get update
-      sudo apt-get install -y --only-upgrade nginx-agent -o Dpkg::Options::="--force-confold" 
+      sudo apt-get install -y --only-upgrade nginx-agent -o Dpkg::Options::="--force-confold"
       ```
 
 1. Start the NGINX Agent:

@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1351"
+docs: DOCS-1351
 ---
 
 You can track NGINX Plus instances using an [HTTP Health Check]({{< relref "nginx/admin-guide/load-balancer/http-health-check" >}}) without installing NGINX Agent. This involves updating the NGINX Plus configuration file. Follow these steps:
@@ -42,7 +42,7 @@ You can track NGINX Plus instances using an [HTTP Health Check]({{< relref "ngin
             proxy_pass https://receiver;
 
             # REQUIRED: If using NGINX APP PROTECT (NAP) on this instance, set nap=active on the following line:
-            proxy_set_header Nginx-Usage "Version=$nginx_version;Hostname=$hostname;uuid=$nginx_uuid;nap=inactive"; 
+            proxy_set_header Nginx-Usage "Version=$nginx_version;Hostname=$hostname;uuid=$nginx_uuid;nap=inactive";
 
             health_check uri=/api/nginx-usage interval=1800s;       # DO NOT MODIFY
             proxy_ssl_certificate     $repo_crt;                    # DO NOT MODIFY

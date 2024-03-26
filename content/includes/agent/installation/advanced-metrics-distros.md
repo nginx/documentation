@@ -2,7 +2,6 @@
 docs: DOCS-1305
 ---
 
-
 The NGINX Plus metrics module works with the following Linux distributions:
 
 {{<bootstrap-table "table table-striped table-bordered">}}

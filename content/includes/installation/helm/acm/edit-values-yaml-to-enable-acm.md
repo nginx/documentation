@@ -18,7 +18,7 @@ To enable the API Connectivity Manager Module, take the following steps:
        - name: regcred
        acm:
            image:
-               repository: <my-docker-registry>/nms-acm 
+               repository: <my-docker-registry>/nms-acm
                tag: <version>
    ```
 

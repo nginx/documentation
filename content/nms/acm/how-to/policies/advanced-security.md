@@ -1,14 +1,17 @@
 ---
-title: "Advanced Security"
-draft: false
-description: "Learn how to add an NGINX App Protect WAF policy to your environment by using the Advanced Security policy in NGINX Management Suite API Connectivity Manager."
-docs: "DOCS-1264"
-weight: 350
+description: Learn how to add an NGINX App Protect WAF policy to your environment
+  by using the Advanced Security policy in NGINX Management Suite API Connectivity
+  Manager.
+docs: DOCS-1264
+doctypes:
+- API Connectivity Manager
+- api management
+- concept
+tags:
+- docs
+title: Advanced Security
 toc: true
-tags: [ "docs" ]
-doctypes: ["API Connectivity Manager", "api management", "concept"]
-journeys: ["getting started", "using"]
-personas: ["devops"]
+weight: 350
 ---
 
 ## Overview

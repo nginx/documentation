@@ -1,30 +1,10 @@
 ---
-authors: []
-categories:
-- releases
-date: "2021-04-14T13:32:41+00:00"
-description: ""
+description: ''
 docs: DOCS-994
 doctypes:
 - concept
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect WAF Release 4.0
 toc: true
-versions:
-- "4.0"
 weight: 410
 ---
 
@@ -79,7 +59,7 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 - app-protect-28+4.2.0-1.el8.ngx.x86_64.rpm
 
 #### NGINX Plus
- 
+
 - NGINX Plus R28
 
 ### Resolved Issues

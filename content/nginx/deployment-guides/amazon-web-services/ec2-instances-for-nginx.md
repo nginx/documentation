@@ -9,8 +9,6 @@ toc: true
 weight: 600
 ---
 
-
-
 These instructions explain how to create instances in the Amazon Elastic Compute Cloud (EC2) environment suitable for running NGINX Open Source and NGINX Plus.
 
 For NGINX Plus, a faster alternative is to purchase a prebuilt Amazon Machine Image (AMI) in the AWS Marketplace. Several operating systems are available, including Amazon Linux, Red Hat Enterprise Linux, and Ubuntu. For instructions, see [Installing NGINX Plus AMIs on Amazon EC2]({{< relref "../../admin-guide/installing-nginx/installing-nginx-plus-amazon-web-services.md" >}}).

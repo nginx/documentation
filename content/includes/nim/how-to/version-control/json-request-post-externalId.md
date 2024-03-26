@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1326"
+docs: DOCS-1326
 ---
 
 ```json

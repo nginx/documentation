@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1409"
+docs: DOCS-1409
 ---
 
  

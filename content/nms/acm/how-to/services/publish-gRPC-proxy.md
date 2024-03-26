@@ -1,17 +1,14 @@
 ---
-title: "Publish a gRPC API Proxy"
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO.
-# The description text appears in search results and at the top of the doc.
-description: "Learn how to use NGINX Management Suite API Connectivity Manager to publish a gRPC Proxy and manage traffic to gRPC services."
-# Assign weights in increments of 100
-weight: 300
+description: Learn how to use NGINX Management Suite API Connectivity Manager to publish
+  a gRPC Proxy and manage traffic to gRPC services.
+docs: DOCS-997
+doctypes:
+- task
+tags:
+- docs
+title: Publish a gRPC API Proxy
 toc: true
-categories: ["API Connectivity Manager", "API Proxy", "gRPC"]
-doctypes: ["task"]
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-997"
+weight: 300
 ---
 
 {{< shortversions "1.2.0" "latest" "acmvers" >}}

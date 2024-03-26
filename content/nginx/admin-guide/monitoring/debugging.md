@@ -220,7 +220,7 @@ http {
 <span id="coredump"></span>
 ## Enabling Core Dumps
 
-A core dump file can help identify and fix problems that are causing NGINX to crash. A core dump file may contain sensitive information such as passwords and private keys, so ensure that they are treated securely. 
+A core dump file can help identify and fix problems that are causing NGINX to crash. A core dump file may contain sensitive information such as passwords and private keys, so ensure that they are treated securely.
 
 In order to create a core dump file, they must be enabled in both the operating system and the NGINX configuration file.
 
@@ -357,7 +357,7 @@ The configuration dump can be obtained with a GDB script provided that your NGIN
     nginx -V 2>&1 | grep -- '--with-debug'
     ```
 
-2. Obtain the PID of NGINX worker process:  
+2. Obtain the PID of NGINX worker process:
 
     ```shell
     ps axu | grep nginx
@@ -375,7 +375,7 @@ The configuration dump can be obtained with a GDB script provided that your NGIN
     set $cd = ngx_cycle->config_dump
     set $nelts = $cd.nelts
     set $elts = (ngx_conf_dump_t*)($cd.elts)
-    while ($nelts-- > 0) 
+    while ($nelts-- > 0)
     set $name = $elts[$nelts]->name.data
     printf "Dumping %s to nginx_conf.txt\n", $name
     append memory nginx_conf.txt \

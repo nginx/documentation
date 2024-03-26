@@ -9,7 +9,6 @@ toc: true
 weight: 100
 ---
 
-
 <span id="overview"></span>
 ## Overview
 
@@ -56,7 +55,7 @@ http {
         server backend2.example.com;
         server 192.0.0.1 backup;
     }
-    
+
     server {
         location / {
             proxy_pass http://backend;
@@ -244,7 +243,7 @@ NGINX Plus supports three session persistence methods. The methods are set with 
 
     The mandatory `lookup` parameter specifies how to search for existing sessions. In our example, existing sessions are searched in the cookie `EXAMPLECOOKIE` sent by the client.
 
-    The mandatory `zone` parameter specifies a shared memory zone where all information about sticky sessions is kept. In our example, the zone is named **client_sessions** and is `1` megabyte in size.   
+    The mandatory `zone` parameter specifies a shared memory zone where all information about sticky sessions is kept. In our example, the zone is named **client_sessions** and is `1` megabyte in size.
 
     This is a more sophisticated session persistence method than the previous two as it does not require keeping any cookies on the client side: all info is kept server‑side in the shared memory zone.
 
@@ -346,9 +345,9 @@ http {
 }
 ```
 
-In the example, the `resolve` parameter to the `server` directive tells NGINX Plus to periodically re‑resolve the **backend1.example.com** and **backend2.example.com** domain names into IP addresses. 
+In the example, the `resolve` parameter to the `server` directive tells NGINX Plus to periodically re‑resolve the **backend1.example.com** and **backend2.example.com** domain names into IP addresses.
 
-The [`resolver`](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive defines the IP address of the DNS server to which NGINX Plus sends requests (here, `10.0.0.1`). By default, NGINX Plus re‑resolves DNS records at the frequency specified by time‑to‑live (TTL) in the record, but you can override the TTL value with the `valid` parameter; in the example it is `300` seconds, or `5` minutes. 
+The [`resolver`](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive defines the IP address of the DNS server to which NGINX Plus sends requests (here, `10.0.0.1`). By default, NGINX Plus re‑resolves DNS records at the frequency specified by time‑to‑live (TTL) in the record, but you can override the TTL value with the `valid` parameter; in the example it is `300` seconds, or `5` minutes.
 
 The optional `ipv6=off` parameter means only IPv4 addresses are used for load balancing, though resolving of both IPv4 and IPv6 addresses is supported by default.
 
@@ -423,13 +422,13 @@ http {
         server exchange1.example.com;
         server exchange2.example.com;
     }
-    
+
     server {
         listen              443 ssl;
         ssl_certificate     /etc/nginx/ssl/company.com.crt;
         ssl_certificate_key /etc/nginx/ssl/company.com.key;
         ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
-       
+
         location / {
             proxy_pass         https://exchange;
             proxy_http_version 1.1;

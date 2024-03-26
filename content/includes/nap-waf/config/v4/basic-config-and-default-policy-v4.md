@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 The base template is the common starting point to any policy you write. The default policy just reflects that template without any further modifications, thus we use the terms **base template** and **default policy** interchangeably. The default policy can be found in: `/etc/app_protect/conf/NginxDefaultPolicy.json`.
 
 The default policy enforces violations by **Violation Rating**, the App Protect computed assessment of the risk of the request based on the triggered violations.

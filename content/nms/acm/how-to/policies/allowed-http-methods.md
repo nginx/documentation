@@ -1,14 +1,16 @@
 ---
-title: "Allowed HTTP Methods"
-draft: false
-description: Learn how to block unwelcome requests to an endpoint by using the Allowed HTTP Methods policy in NGINX Management Suite API Connectivity Manager.
-weight: 350
+description: Learn how to block unwelcome requests to an endpoint by using the Allowed
+  HTTP Methods policy in NGINX Management Suite API Connectivity Manager.
+docs: DOCS-1121
+doctypes:
+- API Connectivity Manager
+- api management
+- concept
+tags:
+- docs
+title: Allowed HTTP Methods
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1121"
-doctypes: ["API Connectivity Manager", "api management", "concept"]
-journeys: ["getting started", "using"]
-personas: ["devops"]
+weight: 350
 ---
 
 ## Overview

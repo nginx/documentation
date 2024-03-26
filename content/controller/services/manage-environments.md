@@ -1,21 +1,8 @@
 ---
-authors: []
-categories:
-- services
-- environment
-date: "2020-10-26T15:32:41-06:00"
 description: Create and manage environments to use with your apps, gateways, and certs.
 docs: DOCS-372
 doctypes:
 - tutorial
-draft: false
-journeys:
-- researching
-- using
-personas:
-- devops
-roles:
-- admin
 tags:
 - docs
 title: Manage Environments

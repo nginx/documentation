@@ -1,30 +1,10 @@
 ---
-authors: []
-categories:
-- releases
-date: "2021-04-14T13:32:41+00:00"
-description: ""
+description: ''
 docs: DOCS-1172
 doctypes:
 - concept
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect WAF Release 4.2
 toc: true
-versions:
-- "4.2"
 weight: 310
 ---
 
@@ -33,8 +13,8 @@ March 29, 2023
 This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#anti-automation-bot-mitigation" >}}) (bot defense):
 
 - Added the following Site Monitor bot signatures: 404enemy, Munin Monitor
-- Added the following Spam Bot bot signatures: 01h4x, AIBOT 
-- Added the following Service Agent bot signatures: 404checker, Adyen, Autohost Threat Intel API, Paystack, Pixalate, PureRef, TwilioProxy, SpamExperts 
+- Added the following Spam Bot bot signatures: 01h4x, AIBOT
+- Added the following Service Agent bot signatures: 404checker, Adyen, Autohost Threat Intel API, Paystack, Pixalate, PureRef, TwilioProxy, SpamExperts
 - Added the following Crawler bot signatures: FullStoryBot, GeedoBot, infoobot, IonCrawl, MuscatFerret Crawler, NETVIBES Crawler, SeobilityBot, SMTBot, Summify, WEDOS Crawler, Yahoo Ad monitoring
 - Added the following RSS Reader bot signatures: Feed Wrangler, flusio, Page2RSS, Unread RSS Reader
 - Added the following Vulnerability Scanner bot signature: Node.js, zerodium Tester
@@ -88,7 +68,7 @@ convert-policy now writes these elements in the correct order. Importing a polic
 
 - 7939 Fixed - Requests blocked due to `VIOL_ATTACK_SIGNATURE` although all signatures disabled.
 
-- 7199 Fixed - Alignment of notification and availability of NGINX App Protect Signature updates. 
+- 7199 Fixed - Alignment of notification and availability of NGINX App Protect Signature updates.
 
 
 ### **Important Note**

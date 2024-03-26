@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1407"
+docs: DOCS-1407
 ---
 
 <! -- This doc is a WIP. Do not publish -->
@@ -10,8 +10,8 @@ This section assumes you've already installed the NGINX Agent in a container env
 
 To register your containerized NGINX Agent with NGINX One:
 
-1. On your local host, create an **nginx-agent.conf** file similar to the following example. 
-   
+1. On your local host, create an **nginx-agent.conf** file similar to the following example.
+
    In the `server` block, replace `<data-plane-key>` with the actual data plane key you generated in NGINX One.
 
    ```yaml
@@ -25,14 +25,14 @@ To register your containerized NGINX Agent with NGINX One:
     <summary><i class="fas fa-file"></i> Example nginx-agent.conf</summary>
 
     ``` yaml
-    # 
+    #
     # /etc/nginx-agent/nginx-agent.conf
     #
     # Configuration file for NGINX Agent.
     #
-    # This file is to track NGINX Agent configuration values that are meant to be statically set. There  
+    # This file is to track NGINX Agent configuration values that are meant to be statically set. There
     # are additional NGINX Agent configuration values that are set via the API and NGINX Agent install script
-    # which can be found in /var/lib/nginx-agent/agent-dynamic.conf. 
+    # which can be found in /var/lib/nginx-agent/agent-dynamic.conf.
 
     log:
       # set log level (panic, fatal, error, info, debug, trace; default "info")
@@ -67,11 +67,11 @@ To register your containerized NGINX Agent with NGINX One:
       # The port at which NGINX Agent accepts remote connections
       # The API address and port allow for remote management of NGINX and NGINX Agent
       #
-      # ~~~ WARNING ~~~ 
+      # ~~~ WARNING ~~~
       # Set API address to allow remote management
       # host: agent.connect.nginxlab.net
-      # 
-      # Set this value to a secure port number to prevent information leaks. 
+      #
+      # Set this value to a secure port number to prevent information leaks.
       # port: 8038
 
     server:

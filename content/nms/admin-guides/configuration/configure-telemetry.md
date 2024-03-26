@@ -1,21 +1,18 @@
 ---
-title: "Configure Telemetry"
-date: 2023-06-06T15:09:35Z
-draft: false
-description: "The NGINX Management Suite platform has the option to share telemetry data with F5 NGINX. This data provides valuable insights into software usage and adoption, which F5 NGINX uses to inform product development and support our customers worldwide in maximizing their success with the platform.  In this document, you will find an overview of the transmitted data, instructions for enabling or disabling the feature, and instructions for configuring firewalls."
-# Assign weights in increments of 100
-weight: 260
+description: The NGINX Management Suite platform has the option to share telemetry
+  data with F5 NGINX. This data provides valuable insights into software usage and
+  adoption, which F5 NGINX uses to inform product development and support our customers
+  worldwide in maximizing their success with the platform.  In this document, you
+  will find an overview of the transmitted data, instructions for enabling or disabling
+  the feature, and instructions for configuring firewalls.
+docs: DOCS-1269
+doctypes:
+- task
+tags:
+- docs
+title: Configure Telemetry
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1269"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "analytics"]
-doctypes: ["task"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
+weight: 260
 ---
 
 ## Telemetry Data and Purpose

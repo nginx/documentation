@@ -1,6 +1,6 @@
 ---
-title: "JWT Examples"
 draft: true
+title: JWT Examples
 ---
 
 ## Examples for Instance Manager Server UI/API and gRPC

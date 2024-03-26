@@ -1,21 +1,13 @@
 ---
-title: "Analyzer"
-date: 2020-12-17T11:52:09-07:00
-draft: false
-description: "NGINX Analyzer Documentation"
-# Assign weights in increments of 100
-weight: 300
+description: NGINX Analyzer Documentation
+docs: DOCS-629
+doctypes:
+- tutorial
+tags:
+- docs
+title: Analyzer
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "analytics"]
-doctypes: ["tutorial"]
-journeys: ["getting started", "using"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-docs: "DOCS-629"
+weight: 300
 ---
 
 {{< include "nim/previous-versions/old-version-warning.md" >}}

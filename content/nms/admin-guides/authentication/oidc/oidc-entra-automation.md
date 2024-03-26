@@ -1,19 +1,14 @@
 ---
-title: "Set up OIDC for automated services using Microsoft Entra"
-description: "Learn how to configure OpenID Connect (OIDC) for automation services, using Microsoft Entra as the identity provider."
-weight: 300
+description: Learn how to configure OpenID Connect (OIDC) for automation services,
+  using Microsoft Entra as the identity provider.
+docs: DOCS-1197
+doctypes:
+- tutorial
+tags:
+- docs
+title: Set up OIDC for automated services using Microsoft Entra
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "security"]
-doctypes: ["tutorial"]
-journeys: ["getting started", "using"]
-personas: ["devops", "netops", "secops"]
-docs: "DOCS-1197"
-aliases:
-- /nginx-instance-manager/admin-guide/oidc-entra-automation/
+weight: 300
 ---
 
 <style>
@@ -28,11 +23,11 @@ h2 {
 
 ## Overview
 
-Complete the steps in this guide to secure Instance Manager with OpenID Connect (OIDC) using the client credential code flow method and Microsoft Entra (AD) as the identity provider for use with automation, such as in CI/CD pipelines. 
+Complete the steps in this guide to secure Instance Manager with OpenID Connect (OIDC) using the client credential code flow method and Microsoft Entra (AD) as the identity provider for use with automation, such as in CI/CD pipelines.
 
 ## Before you begin
 
-First, secure Instance Manager with OpenID Connect (OIDC) using Microsoft Entra (AD) as the identity provider. To do so, complete the steps in the [Set up OIDC Authentication with Microsoft Entra]({{< relref "/nms/admin-guides/authentication/oidc/oidc-entra.md" >}}) guide. After following the steps in that guide, you'll have a registered application (named "Instance Manager" in the guide's example) in Microsoft Entra and a client ID and secret that you can use to configure automation. 
+First, secure Instance Manager with OpenID Connect (OIDC) using Microsoft Entra (AD) as the identity provider. To do so, complete the steps in the [Set up OIDC Authentication with Microsoft Entra]({{< relref "/nms/admin-guides/authentication/oidc/oidc-entra.md" >}}) guide. After following the steps in that guide, you'll have a registered application (named "Instance Manager" in the guide's example) in Microsoft Entra and a client ID and secret that you can use to configure automation.
 
 ## Configure Azure
 
@@ -105,7 +100,7 @@ Additionally, you will need to complete the following steps:
     ```
 
 1. In the same file, uncomment the map sections corresponding to OIDC with Microsoft Entra:
-    
+
     ```nginx
     ...
     # Enable when using OIDC with Microsoft Entra
@@ -156,7 +151,7 @@ Additionally, you will need to complete the following steps:
     ```
 
     PAYLOAD:
-    
+
     ```json
     {
         "aud": "api://f834b49c-a56e-4fde-9caa-641-bOc26fb8a",

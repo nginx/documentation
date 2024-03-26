@@ -1,14 +1,15 @@
 ---
-Title: "Basic Authentication"
-draft: false
-description: Learn how to use NGINX Management Suite API Connectivity Manager to secure API Gateways by applying a basic authentication policy.
-weight: 450
+description: Learn how to use NGINX Management Suite API Connectivity Manager to secure
+  API Gateways by applying a basic authentication policy.
+docs: DOCS-1118
+doctypes:
+- API Connectivity Manager
+- api management
+- concept
+tags:
+- docs
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1118"
-doctypes: ["API Connectivity Manager", "api management", "concept"]
-journeys: ["getting started", "using"]
-personas: ["secops"]
+weight: 450
 ---
 
 ## Overview

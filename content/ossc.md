@@ -1,12 +1,12 @@
 ---
-title: "Open Source Components"
-docs: "DOCS-1343"
-type: ossc
-_build: 
-  render: always
+_build:
   list: never
+  render: always
 display_breadcrumb: false
+docs: DOCS-1343
+title: Open Source Components
 ---
+
 {{<rn-styles>}}
 
 The NGINX Docs website is made possible thanks to many contributors, which also includes the tools used to build it. We would like to draw attention to the maintainers of the following libraries, which are used to create the NGINX Docs:

@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 NGINX App Protect WAF introduces four new violations specific to GraphQL: `VIOL_GRAPHQL_FORMAT`, `VIOL_GRAPHQL_MALFORMED`, `VIOL_GRAPHQL_INTROSPECTION_QUERY` and `VIOL_GRAPHQL_ERROR_RESPONSE`. <br>
 
 Under the "blocking-settings," user can either enable or disable these violations. Note that these violations will be enabled by default. Any changes to these violation settings here will override the default settings. The details regarding logs will be recorded in the security log. <br>

@@ -1,16 +1,14 @@
 ---
-title: "NGINX Management Suite Resiliency"
-date: 2023-03-13T08:29:53-07:00
-draft: false
-description: "NGINX Management Suite installed on Kubernetes provides control plane resilience through fault tolerance and automated recovery."
-weight: 30
+description: NGINX Management Suite installed on Kubernetes provides control plane
+  resilience through fault tolerance and automated recovery.
+docs: DOCS-1161
+doctypes:
+- concept
+tags:
+- docs
+title: NGINX Management Suite Resiliency
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1161"
-categories: ["installation", "platform management"]
-doctypes: ["concept"]
-journeys: ["researching", "getting started", "using"]
-personas: ["devops", "netops", "secops", "support"]
+weight: 30
 ---
 
 ## Overview

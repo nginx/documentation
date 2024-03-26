@@ -1,26 +1,9 @@
 ---
-authors: []
-categories:
-- services
-- apps
-- security
-date: null
 description: How to tune WAF for your App.
 docs: DOCS-486
 doctypes:
 - concept
 - reference
-draft: false
-journeys:
-- researching
-- using
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
 tags:
 - task
 title: Manage WAF Tuning for App Components

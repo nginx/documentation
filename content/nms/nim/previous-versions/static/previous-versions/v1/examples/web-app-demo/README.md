@@ -1,6 +1,6 @@
 ---
-title: "Demonstration Examples"
 draft: true
+title: Demonstration Examples
 ---
 
 ## Examples for Demonstrations

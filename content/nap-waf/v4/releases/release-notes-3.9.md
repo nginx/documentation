@@ -1,36 +1,16 @@
 ---
-authors: []
-categories:
-- releases
-date: "2021-04-14T13:32:41+00:00"
-description: ""
+description: ''
 docs: DOCS-838
 doctypes:
 - concept
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect WAF Release 3.9
 toc: true
-versions:
-- "3.9"
 weight: 710
 ---
 
-February 15, 2022 
+February 15, 2022
 
-In this release, support for NGINX App Protect WAF is added to NGINX Plus R26. 
+In this release, support for NGINX App Protect WAF is added to NGINX Plus R26.
 
 ### Supported Packages
 
@@ -50,7 +30,7 @@ In this release, support for NGINX App Protect WAF is added to NGINX Plus R26.
 
 ##### CentOS 7.4+ / RHEL 7.4+ / Amazon Linux 2
 
-- app-protect-26+3.780.1-1.el7.ngx.x86_64.rpm 
+- app-protect-26+3.780.1-1.el7.ngx.x86_64.rpm
 
 ##### RHEL 8.1+
 

@@ -1,17 +1,12 @@
 ---
-title: "Uninstall Guide"
-description: "This guide explains how to uninstall NGINX Management Suite, including Instance Manager and API Connectivity Manager."
-date: 2021-12-21T12:00:00-07:00
-draft: false 
-weight: 1000 
+description: This guide explains how to uninstall NGINX Management Suite, including
+  Instance Manager and API Connectivity Manager.
+docs: DOCS-804
 doctypes: task
+title: Uninstall Guide
 toc: true
-docs: "DOCS-804"
-aliases:
-- /nginx-instance-manager/getting-started/installation/uninstall-guide/
-- /nginx-instance-manager/installation/uninstall-guide/
+weight: 1000
 ---
-
 
 ## NGINX Management Suite {#uninstall-nms}
 

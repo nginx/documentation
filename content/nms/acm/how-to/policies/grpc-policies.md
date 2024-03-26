@@ -1,16 +1,13 @@
 ---
-Title: "gRPC Policies"
-description: "Learn how to use NGINX Management Suite API Connectivity Manager to configure policies for your gRPC API Gateway."
-# Assign weights in increments of 100
-weight: 600
+description: Learn how to use NGINX Management Suite API Connectivity Manager to configure
+  policies for your gRPC API Gateway.
+docs: DOCS-1084
+doctypes:
+- task
+tags:
+- docs
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["API Connectivity Manager", "policies"]
-doctypes: ["task"]
-docs: "DOCS-1084"
+weight: 600
 ---
 
 {{< shortversions "1.3.0" "latest" "acmvers" >}}

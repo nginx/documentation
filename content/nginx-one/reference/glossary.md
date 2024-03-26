@@ -1,27 +1,13 @@
 ---
-title: "NGINX One glossary"
-date: 2024-01-24T11:55:26-08:00
-# Change draft status to false to publish doc
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: ""
-# Assign weights in increments of 100
-weight: 1000
+description: ''
+docs: DOCS-1396
+doctypes:
+- reference
+tags:
+- docs
+title: NGINX One glossary
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1396"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management"]
-doctypes: ["reference"]
-journeys: ["researching", "getting started"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
+weight: 1000
 ---
 
 This glossary defines terms used in NGINX One and F5 Distributed Cloud.

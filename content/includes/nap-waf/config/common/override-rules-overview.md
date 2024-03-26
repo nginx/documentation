@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 The **Override Rules** feature allows overriding of the **default policy** settings. Each override rule consists of a condition followed by changes to the original policy applied to requests that meet the respective condition. This feature provides the ability to include the override rules within a declarative policy such that all incoming requests are verified against those rules.
 
 With this enhancement, users now have more control over how a unique policy setting is applied to incoming requests with a specific method, source IP address, header or URI value through one or multiple unique override rules. Each override rule possesses a unique name and specific conditions that are matched against incoming traffic from a specific client side. The structure of these override rules adheres to the JSON schema defined by the declarative policy.

@@ -1,35 +1,13 @@
 ---
-authors: []
-categories:
-- administration guide
-date: "2021-04-14T13:32:41+00:00"
-description: This guide describes the steps to install the NGINX App Protect WAF v5 for host-based NGINX setups.
+description: This guide describes the steps to install the NGINX App Protect WAF v5
+  for host-based NGINX setups.
 docs: DOCS-1363
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: R 5
-    weight: 45
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: Installing NGINX App Protect WAF
 toc: true
 versions:
 - "5.0"
-weight: 200
 ---
 
 ## Prerequisites
@@ -61,7 +39,7 @@ If not already installed, `nginx` or `nginx-plus` will be installed automaticall
 
 #### Common steps for NGINX Open Source and NGINX Plus
 
-1. Upload **nginx-repo.key** to **/etc/apk/cert.key** and **nginx-repo.crt** to **/etc/apk/cert.pem**. Make sure that files do not contain other certificates and keys: Alpine Linux does not support mixing client certificates for different repositories. 
+1. Upload **nginx-repo.key** to **/etc/apk/cert.key** and **nginx-repo.crt** to **/etc/apk/cert.pem**. Make sure that files do not contain other certificates and keys: Alpine Linux does not support mixing client certificates for different repositories.
 
 2. Install prerequisite packages:
 
@@ -242,7 +220,7 @@ If not already installed, `nginx` or `nginx-plus` will be installed automaticall
     sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
     ```
 
-7. Verify that the downloaded file contains the proper key: 
+7. Verify that the downloaded file contains the proper key:
 
     ```shell
     gpg --dry-run --quiet --no-keyring --import --import-options import-show /usr/share/keyrings/nginx-archive-keyring.gpg
@@ -621,7 +599,7 @@ If not already installed, `nginx` or `nginx-plus` will be installed automaticall
     sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
     ```
 
-7. Verify that the downloaded file contains the proper key: 
+7. Verify that the downloaded file contains the proper key:
 
     ```shell
     gpg --dry-run --quiet --no-keyring --import --import-options import-show /usr/share/keyrings/nginx-archive-keyring.gpg
@@ -738,7 +716,7 @@ Set up the directories with the correct ownership for NGINX App Protect WAF v5 s
 Create Directories:
 
 ```shell
-sudo mkdir -p /opt/app_protect/config /opt/app_protect/bd_config 
+sudo mkdir -p /opt/app_protect/config /opt/app_protect/bd_config
 ```
 
 Set Ownership:

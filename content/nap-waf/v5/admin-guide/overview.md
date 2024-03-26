@@ -1,30 +1,8 @@
 ---
-authors: []
-categories:
-- administration guide
-date: "2021-04-14T13:32:41+00:00"
 description: This guide explains how to deploy NGINX App Protect WAF v5.
 docs: DOCS-1362
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: R 5
-    weight: 45
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect WAF Administration Guide
 toc: true
 versions:

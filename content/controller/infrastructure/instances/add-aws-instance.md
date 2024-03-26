@@ -1,21 +1,8 @@
 ---
-authors: []
-categories:
-- installation
-- infrastructure
-date: "2020-10-26T15:32:41-06:00"
 description: Learn how to deploy an AWS NGINX instance using NGINX Controller.
 docs: DOCS-768
 doctypes:
 - tutorial
-draft: false
-journeys:
-- getting started
-- using
-personas:
-- devops
-roles:
-- admin
 tags:
 - docs
 title: Add an AWS NGINX Instance

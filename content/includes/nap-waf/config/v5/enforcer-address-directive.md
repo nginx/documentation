@@ -1,6 +1,7 @@
 ---
 docs: DOCS-1368
 ---
+
 NGINX App Protect WAF v5 introduces a new directive, in addition to those specified in the [NGINX App Protect WAF Configuration Guide]({{< relref "/nap-waf/v5/configuration-guide/configuration.md#directives" >}}).
 
 {{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 

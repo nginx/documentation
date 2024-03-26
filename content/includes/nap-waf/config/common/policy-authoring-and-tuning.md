@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 The policy JSON file specifies the settings that are different from the base template, such as enabling more signatures, disabling some violations, adding server technologies, etc. These will be shown in the next sections.
 
 There are two ways to tune those settings:

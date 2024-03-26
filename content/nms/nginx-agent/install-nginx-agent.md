@@ -1,28 +1,14 @@
 ---
-title: Install and Configure NGINX Agent
-description: 'Follow the instructions in this guide to install and configure the NGINX Agent on your data plane systems.'
-categories:
-- installation
-date: "2021-12-21T12:00:00-07:00"
+description: Follow the instructions in this guide to install and configure the NGINX
+  Agent on your data plane systems.
+docs: DOCS-800
 doctypes:
 - tutorial
-draft: false
-journeys:
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
 tags:
 - docs
+title: Install and Configure NGINX Agent
 toc: true
-versions: []
 weight: 100
-docs: "DOCS-800"
-aliases:
-- /getting-started/installation/install-nginx-agent/
 ---
 
 ## Prerequisites

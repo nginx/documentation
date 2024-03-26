@@ -1,24 +1,10 @@
 ---
-title: "Release Notes 1.0"
-date: 2021-06-28T10:46:11-07:00
-draft: false
+description: Release information for NGINX Instance Manager, v1.0. Lists of new features
+  and known issues are provided.
+docs: DOCS-641
+title: Release Notes 1.0
 toc: true
-description: "Release information for NGINX Instance Manager, v1.0. Lists of new features and known issues are provided."
 weight: 500
-categories: ["support", "known issues", "release notes"]
-versions: ["v1"]
-docs: "DOCS-641"
-aliases:
-    - /v1/releases/release-notes-1.0.0/
-    - /v1/releases/release-notes-1.0.1/
-    - /v1/releases/release-notes-1.0.2/
-    - /v1/releases/release-notes-1.0.3/
-    - /v1/releases/release-notes-1.0.4/
-    - /releases/release-notes-1.0.0/
-    - /releases/release-notes-1.0.1/
-    - /releases/release-notes-1.0.2/
-    - /releases/release-notes-1.0.3/
-    - /releases/release-notes-1.0.4/
 ---
 
 ## NGINX Instance Manager Version 1.0.4
@@ -247,23 +233,23 @@ This release includes fixes for the following issues. You can search by the issu
     - `storage-path` -> `storage_path`
     - `audit-log` -> `audit_log`
   <br/><br/>
-  
+
 - *SELinux fixed for nginx-agent (544)*:
   <br/><br/>
   SELinux was missing 2 contexts for the Nginx-agent selinux package. This release adds them so the module can be used without troubleshooting and customizing for standard environments.<br/>
-  
+
 - *Scan not working for CIDR and ranges (562)*:
   <br/><br/>
   Scan didn’t work when using a 31 or 32 mask in the UI. Scan also didn’t work with port ranges, which are not present in the API. This has been fixed.<br/>
-  
+
 - *Version displayed under settings (579)*:
   <br/><br/>
   NGINX Instance Manager displays the version running in the UI under settings.<br/>
-  
+
 - *Memory Leak in NGINX Agent (592)*:
   <br/><br/>
   The agent had a memory leak that would cause memory consumption to grow over time. This issue has been fixed.<br/>
-  
+
 - *Updated grpc timeouts for proxying nginx-agent (637)*:
   <br/><br/>
   Using NGINX to proxy grpc connections would timeout if the body_size or timeout was exceeded. The recommended settings for grpc proxying are not updated in the documentation.<br/><br/>
