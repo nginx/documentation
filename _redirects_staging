@@ -16,7 +16,7 @@
 /nginx-amplify/install-manage-amp-agent/configuring-agent/ /nginx-amplify/nginx-amplify-agent/install/configuring-amplify-agent/ 301
 /nginx-amplify/install-manage-amp-agent/installing-agent/ /nginx-amplify/nginx-amplify-agent/install/installing-amplify-agent/ 301
 /nginx-amplify/install-manage-amp-agent/uninstalling-agent/ /nginx-amplify/nginx-amplify-agent/install/uninstalling-amplify-agent/ 301
-/nginx-amplify/install-manage-amp-agent/updating-agent/ /nginx-amplify/nginx-amplify-agent/install/updating-amplify-agent/ 301 
+/nginx-amplify/install-manage-amp-agent/updating-agent/ /nginx-amplify/nginx-amplify-agent/install/updating-amplify-agent/ 301
 /nginx-amplify/install-manage-amp-agent/using-agent-docker/ /nginx-amplify/nginx-amplify-agent/install/using-amplify-agent-docker/ 301
 
 /nginx-amplify/install-manage-nginx-agent/installing-agent/ /nginx-agent/install/installing-nginx-agent/ 301
@@ -110,10 +110,9 @@
 /nginx-management-suite/nim/how-to/nginx/count-nginx-plus-instances/ /nginx-management-suite/nim/how-to/usage-tracking/count-nginx-plus-instances/ 301
 /nginx-management-suite/admin-guides/installation/offline-install-guide/ /nginx-management-suite/installation/vm-bare-metal/offline-install-guide/ 301
 /nms/installation/vm-bare-metal/ /nginx-management-suite/installation/vm-bare-metal/ 301
-/nginx-management-suite/installation/vm-bare-metal/install-acm 301 /nginx-management-suite/acm/how-to/install-acm/
+/nginx-management-suite/installation/vm-bare-metal/install-acm /nginx-management-suite/acm/how-to/install-acm/ 301
 /nginx-management-suite/overview/ /nginx-management-suite/about/ 301
 /nginx-management-suite/admin-guides/installation/ /nginx-management-suite/installation/ 301
-/nginx-management-suite/admin-guides/access-control/set-up-rbac/ /nginx-management-suite/nms/admin-guides/rbac/rbac-getting-started/ 301
 /nginx-management-suite/admin-guides/access-control/configure-authentication/ /nginx-management-suite/admin-guides/authentication/basic-authentication/ 301
 /nginx-management-suite/admin-guides/access-control/oidc-azure/ /nginx-management-suite/admin-guides/authentication/oidc/oidc-azure/ 301
 /nginx-management-suite/admin-guides/access-control/oidc-azure-automation/ /nginx-management-suite/admin-guides/authentication/oidc/oidc-azure-automation/ 301
