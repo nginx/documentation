@@ -29,7 +29,7 @@ title: Deploying NGINX App Protect WAF on Kubernetes
 toc: true
 versions:
 - "5.0"
-weight: 350
+weight: 400
 ---
 
 ## Prerequisites

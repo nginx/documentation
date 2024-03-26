@@ -29,7 +29,7 @@ title: NGINX App Protect WAF Compiler
 toc: true
 versions:
 - "5.0"
-weight: 375
+weight: 500
 ---
 
 ## Overview
