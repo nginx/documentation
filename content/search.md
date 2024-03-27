@@ -1,7 +1,8 @@
 ---
-_build:
-  list: never
-  render: always
 title: Search Results
-url: search.html
+type: search
+_build:
+  render: always
+  list: never
+url: 'search.html'
 ---
