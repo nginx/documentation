@@ -178,7 +178,7 @@ Configure NGINX Plus to use Microsoft Entra as the identity provider.
     #
     # Adapted from: https://github.com/nginxinc/nginx-openid-connect/blob/main/openid_connect_configuration.conf
     #
-    # NOTE: This requires NGINX Plus with the NJS module installed and enabled
+    # NOTE: This requires NGINX Plus with the njs module installed and enabled
     # NOTE: The entries below need to be updated with values relevant to your environment and IdP
     #
     #       SERVER_FQDN is the Fully Qualified Domain Name of this server, e.g., nms.example.com
@@ -337,7 +337,7 @@ Configure NGINX Plus to use Microsoft Entra as the identity provider.
     # package management during upgrades
 
     # NOTE: enabling OIDC authentication requires using NGINX Plus
-    #       with NJS installed and the module loaded in the config
+    #       with njs installed and the module loaded in the config
 
    # Enable when using OIDC
    log_format oidc_jwt '$remote_addr - $jwt_claim_sub [$time_local] "$request" '

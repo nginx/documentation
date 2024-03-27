@@ -28,7 +28,7 @@ To complete the steps in this guide, you need the following:
 - [NGINX Plus](https://www.nginx.com/products/nginx/) with a valid subscription.
 - The [NGINX JavaScript module](https://www.nginx.com/products/nginx/modules/nginx-javascript/) (`njs`) -- the `njs` module handles the interaction between NGINX Plus and Auth0.
 
-## Install NGINX Plus and the NJS Module {#install-nginx-plus-njs}
+## Install NGINX Plus and the njs Module {#install-nginx-plus-njs}
 
 1. If you do not already have NGINX Plus installed, follow the steps in the [NGINX Plus Admin Guide](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/) to do so.
 2. Install the NGINX JavaScript module by following the steps in the [`njs` installation guide](https://nginx.org/en/docs/njs/install.html).

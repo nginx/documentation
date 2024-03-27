@@ -454,7 +454,7 @@ Below are examples of how to configure various NGINX features with NGINX App Pro
 
 {{< include "nap-waf/config/common/configure-nginx-mirror.md" >}}
 
-### Configure NJS
+### Configure njs
 
 {{< include "nap-waf/config/common/configure-njs.md" >}}
 
