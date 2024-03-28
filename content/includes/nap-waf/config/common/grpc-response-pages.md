@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 A gRPC error response page is returned when a request is blocked. The default page returns gRPC status code `UNKNOWN` (numeric value of 2) and a short textual message that includes the support ID. You can customize any of these two by configuring a custom gRPC response page in your policy.
 
 ```json

@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 Global configuration consists of a series of `nginx.conf` directives at the `http` context controlling aspects that are not specific to a specific application.
 
 When applied to a cluster, all cluster members will get the same globals as expected.

@@ -10,7 +10,6 @@ toc: true
 weight: 100
 ---
 
-
 <span id="prereq"></span>
 ## Prerequisites
 
@@ -25,7 +24,7 @@ weight: 100
 Install the Set-Misc module package `nginx-plus-module-set-misc`.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
-      
+
    ```shell
    yum install nginx-plus-module-set-misc
    ```
@@ -37,13 +36,13 @@ Install the Set-Misc module package `nginx-plus-module-set-misc`.
    ```
 
    For Debian and Ubuntu:
-   
+
    ```shell
    apt-get install nginx-plus-module-set-misc
    ```
 
    For SLES:
-   
+
    ```shell
    zypper install nginx-plus-module-set-misc
    ```
@@ -73,7 +72,7 @@ After installation you will need to enable and configure the module in NGINX Plu
    load_module modules/ndk_http_module.so;
    load_module modules/ngx_http_set_misc_module.so;
    ```
-   
+
    {{< note >}} The directives must be in this order. {{< /note >}}
 
 2. Perform additional configuration as required by the [module](https://github.com/openresty/set-misc-nginx-module).

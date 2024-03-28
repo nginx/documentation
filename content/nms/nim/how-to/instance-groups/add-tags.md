@@ -1,30 +1,13 @@
 ---
-categories:
-- installation
-date: "2021-12-21T12:00:00-07:00"
-description: 'Follow the steps in this guide to create tags for organizing your instances.'
+description: Follow the steps in this guide to create tags for organizing your instances.
+docs: DOCS-829
 doctypes:
 - tutorial
-draft: false
-journeys:
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
 tags:
 - docs
 title: Add Tags to Instances
 toc: true
-versions: []
-weight: 10
-docs: "DOCS-829"
-aliases:
-- /nginx-instance-manager/tutorials/tagging/
-- /nginx-instance-manager/how-to/add-tags/
-- /nim/how-to/add-tags/
+weight: 650
 ---
 
 {{< shortversions "2.0.0" "latest" "nimvers" >}}

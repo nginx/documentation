@@ -1,8 +1,8 @@
 ---
+docs: DOCS-726
 title: Installing the NGINX ModSecurity WAF
-weight: 100
 toc: true
-docs: "DOCS-726"
+weight: 100
 ---
 
 {{< important >}}
@@ -44,7 +44,7 @@ To install the NGINX ModSecurity WAF dynamic module, perform the following steps
       ```none
       sudo apt-get clean ; sudo apt-get update
       ```
-      
+
     - Red Hat Enterprise Linux (RHEL) and CentOS systems:
 
       ```none
@@ -58,7 +58,7 @@ To install the NGINX ModSecurity WAF dynamic module, perform the following steps
       ```none
       sudo apt-get install nginx-plus-module-modsecurity
       ```
-      
+
     - RHEL and CentOS systems:
 
       ```none

@@ -8,7 +8,6 @@ toc: true
 weight: 600
 ---
 
-
 [NGINX Plus](https://www.nginx.com/products/nginx/), the high‑performance application delivery platform, load balancer, and web server, is available as the Docker container.
 
 <span id="prereq"></span>
@@ -40,13 +39,13 @@ You can create an NGINX instance in a Docker container using the NGINX Open Sour
 
     The command returns the long form of the container ID: `fcd1fb01b14557c7c9d991238f2558ae2704d129cf9fb97bb4fadf673a58580d`. This form of ID is used in the name of log files.
 
-2. Verify that the container was created and is running with the `docker ps` command: 
+2. Verify that the container was created and is running with the `docker ps` command:
 
     ```shell
     $ docker ps
-    CONTAINER ID  IMAGE         COMMAND               CREATED         STATUS        ...  
-    fcd1fb01b145  nginx:latest  "nginx -g 'daemon of  16 seconds ago  Up 15 seconds ... 
-    
+    CONTAINER ID  IMAGE         COMMAND               CREATED         STATUS        ...
+    fcd1fb01b145  nginx:latest  "nginx -g 'daemon of  16 seconds ago  Up 15 seconds ...
+
         ... PORTS              NAMES
         ... 0.0.0.0:80->80/tcp mynginx1
     ```
@@ -113,9 +112,9 @@ To generate an NGINX Plus image:
 
     ```shell
     $ docker ps
-    CONTAINER ID  IMAGE             COMMAND               CREATED         STATUS        ...  
-    eb7be9f439db  nginxplus:latest  "nginx -g 'daemon of  1 minute ago    Up 15 seconds ... 
-    
+    CONTAINER ID  IMAGE             COMMAND               CREATED         STATUS        ...
+    eb7be9f439db  nginxplus:latest  "nginx -g 'daemon of  1 minute ago    Up 15 seconds ...
+
         ... PORTS              NAMES
         ... 0.0.0.0:80->80/tcp mynginxplus
     ```

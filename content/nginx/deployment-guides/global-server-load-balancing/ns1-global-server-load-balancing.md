@@ -9,8 +9,6 @@ toc: true
 weight: 100
 ---
 
-
-
 Global server load balancing (GSLB) refers to the intelligent distribution of traffic across server resources located in multiple points of presence (PoPs). GSLB is most commonly implemented by controlling the responses to DNS requests, directing each user to the most appropriate destination IP address based on the availability, performance, and proximity of each PoP.
 
 Many DNS providers offer some form of GSLB. [NS1](https://www.ns1.com) has one of the most advanced solutions available as a service, with a rich API that PoPs can use to dynamically inform the NS1 servers about their availability and current loads.
@@ -76,7 +74,7 @@ The solution functions alongside other NS1 capabilities, such as geo‑proximal 
    - **TTL** – <span style="color:#666666; font-weight:bolder; font-family:helvetica;">3600</span> is the default, which we are not changing.
    - **ANSWERS** – The public IP address of the first NGINX Plus instance. To add each of the other instances, click the <span style="color:#ea1f71; font-family:helvetica; white-space: nowrap;">Add Answer</span> button. (In this guide we're using private IP addresses in the 10.0.0.0/8 range as examples.)
 
-   Click the <span style="background-color:#ea1f71; color:white; font-family:helvetica; white-space: nowrap;"> Save All Changes </span> button. 
+   Click the <span style="background-color:#ea1f71; color:white; font-family:helvetica; white-space: nowrap;"> Save All Changes </span> button.
 
    <img src="https://www.nginx.com/wp-content/uploads/2019/09/NS1_Add-Record-popup.png" alt="Screenshot of NS1 GUI: Add Record popup" width="612" height="882" class="aligncenter size-full wp-image-63025" />
 
@@ -85,12 +83,12 @@ The solution functions alongside other NS1 capabilities, such as geo‑proximal 
    <img src="https://www.nginx.com/wp-content/uploads/2019/09/NS1_2-Records.png" alt="Screenshot of NS1 GUI: NS and A records for nginxgslb.cf" width="1024" height="377" class="aligncenter size-full wp-image-63024" />
 
 7. The window that opens shows details for the ``A`` record. The IP addresses of the NGINX Plus instances appear in the **Ungrouped Answers** section. Click the stacked dots icon at the right end of the field for the first address (10.10.10.1 in this guide) and select <span style="color:#ea1f71; font-family:helvetica; white-space: nowrap;">Edit Answer Metadata</span>.
-  
+
    <img src="https://www.nginx.com/wp-content/uploads/2019/09/NS1_3-Answers.png" alt="Screenshot of NS1 GUI: list of answers for nginxgslb.cf" width="1024" height="393" class="aligncenter size-full wp-image-63023" />
 
-8. In the **Answer Metadata** window that pops up, click <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> Up/down </span> in the <span style="background-color:#e8ebed; font-family:helvetica; white-space: nowrap;"> STATUS </span> section of the <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> SETTING </span> column, if it is not already selected. Click the **Select** box in the <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> AVAILABLE </span> column, and then select either <span style="color:#666666; font-weight:bolder; font-family:helvetica">Up</span> or <span style="color:#666666; font-weight:bolder; font-family:helvetica">Down</span> from the drop‑down menu. In this guide we're selecting <span style="color:#666666; font-weight:bolder; font-family:helvetica">Up</span> to indicate that the NGINX Plus instance is operational. 
+8. In the **Answer Metadata** window that pops up, click <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> Up/down </span> in the <span style="background-color:#e8ebed; font-family:helvetica; white-space: nowrap;"> STATUS </span> section of the <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> SETTING </span> column, if it is not already selected. Click the **Select** box in the <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> AVAILABLE </span> column, and then select either <span style="color:#666666; font-weight:bolder; font-family:helvetica">Up</span> or <span style="color:#666666; font-weight:bolder; font-family:helvetica">Down</span> from the drop‑down menu. In this guide we're selecting <span style="color:#666666; font-weight:bolder; font-family:helvetica">Up</span> to indicate that the NGINX Plus instance is operational.
    <img src="https://www.nginx.com/wp-content/uploads/2019/09/NS1_Answer-Metadata-STATUS.png" alt="Screenshot of NS1 GUI: setting STATUS answer metadata" width="1024" height="1105" class="aligncenter size-full wp-image-63022" />
-   
+
 9. Click a value in the <span style="background-color:#e8ebed; font-family:helvetica; white-space: nowrap;"> GEOGRAPHICAL </span> section of the <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> SETTING </span> column and specify the location of the NGINX Plus instance. Begin by choosing one of the several types of codes that NS1 offers for identifying locations:
 
    - **Canadian province(s)** – Two‑letter codes for Canadian provinces
@@ -101,13 +99,13 @@ The solution functions alongside other NS1 capabilities, such as geo‑proximal 
    - **Longitude** – Degrees, minutes, and seconds of longitude (eastern or western hemisphere)
    - **US State(s)** – Two‑letter codes for US states
 
-   In this guide we're using **Country/countries** codes. For the first NGINX Plus instance, we select <span style="color:#666666; font-weight:bolder; font-family:helvetica;">Americas > Northern America > United States (US)</span> and click the <span style="background-color:#ea1f71; color:white; font-family:helvetica;"> Ok </span> button. 
-   
+   In this guide we're using **Country/countries** codes. For the first NGINX Plus instance, we select <span style="color:#666666; font-weight:bolder; font-family:helvetica;">Americas > Northern America > United States (US)</span> and click the <span style="background-color:#ea1f71; color:white; font-family:helvetica;"> Ok </span> button.
+
     <img src="https://www.nginx.com/wp-content/uploads/2019/09/NS1_Answer-Metadata-GEOGRAPHICAL.png" alt="Screenshot of NS1 GUI: setting GEOGRAPHICAL answer metadata" width="1024" height="1024" class="aligncenter size-full wp-image-63021" />
 
-10. Repeat Steps 7–9 for both of the other two NGINX Plus instances. For the country in Step 9, we're selecting <span style="color:#666666; font-weight:bolder; font-family:helvetica;">Europe > Western Europe > Germany (DE)</span> for NGINX Plus instance 2 and <span style="color:#666666; font-weight:bolder; font-family:helvetica;">Asia > South‑Eastern Asia > Singapore (SG)</span> for NGINX Plus instance 3. 
+10. Repeat Steps 7–9 for both of the other two NGINX Plus instances. For the country in Step 9, we're selecting <span style="color:#666666; font-weight:bolder; font-family:helvetica;">Europe > Western Europe > Germany (DE)</span> for NGINX Plus instance 2 and <span style="color:#666666; font-weight:bolder; font-family:helvetica;">Asia > South‑Eastern Asia > Singapore (SG)</span> for NGINX Plus instance 3.
 
-    When finished with both instances, on the details page for the ``A`` record click the <span style="background-color:#ea1f71; color:white; font-family:helvetica; white-space: nowrap;"> Save Record </span> button. 
+    When finished with both instances, on the details page for the ``A`` record click the <span style="background-color:#ea1f71; color:white; font-family:helvetica; white-space: nowrap;"> Save Record </span> button.
 
 11. Click the <span style="background-color:#ea1f71; color:white; font-family:helvetica; white-space: nowrap;"> Create Filter Chain </span> button to create a filter chain based on the **Up/Down** and **Country/countries** metadata (for an overview of filter chains, see the [NS1 documentation](https://ns1.com/ns1-filter-chain)).
 
@@ -115,7 +113,7 @@ The solution functions alongside other NS1 capabilities, such as geo‑proximal 
 
 12. In the **Add Filters** window that pops up, click the plus sign (+) on the button for each filter you want to apply. In this guide, we're configuring the filters in this order:
 
-    - <span style="color:#666666; font-weight:bolder; font-family:helvetica;">Up</span> in the <span style="background-color:#28ccbb; color:white; font-weight:bolder; font-family:helvetica;"> HEALTHCHECKS </span> section  
+    - <span style="color:#666666; font-weight:bolder; font-family:helvetica;">Up</span> in the <span style="background-color:#28ccbb; color:white; font-weight:bolder; font-family:helvetica;"> HEALTHCHECKS </span> section
     - <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">Geotarget Country</span> in the <span style="background-color:#28ccbb; color:white; font-weight:bolder; font-family:helvetica;;"> GEOGRAPHIC </span> section
     - <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">Select First N</span> in the <span style="background-color:#28ccbb; color:white; font-weight:bolder; font-family:helvetica; white-space: nowrap;"> TRAFFIC MANAGEMENT </span> section
 
@@ -128,7 +126,7 @@ The solution functions alongside other NS1 capabilities, such as geo‑proximal 
 
 In this section we install and configure the NS1 agent on the same hosts as our NGINX Plus instances. We also create an NS1 _data feed_ for each agent, which enables it to send status information about its paired NGINX Plus instance to NS1 via the NS1 API.
 
-1. Follow the instructions in the [NS1 documentation](https://help.ns1.com/hc/en-us/articles/360020474154) to set up and connect a separate data feed for each of the three NGINX Plus instances, which NS1 calls _answers_. 
+1. Follow the instructions in the [NS1 documentation](https://help.ns1.com/hc/en-us/articles/360020474154) to set up and connect a separate data feed for each of the three NGINX Plus instances, which NS1 calls _answers_.
 
    On the first page (**Configure a new data source from NSONE Data Feed API v1**) specify a name for the _data source_, which is the administrative container for the data feeds you will be creating. Use the same name each of the three times you go through the instructions. We're naming the data source <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">NGINX-GSLB</span>.
 
@@ -136,11 +134,11 @@ In this section we install and configure the NS1 agent on the same hosts as our 
 
    - <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">us-nginxgslb-datafeed</span> for instance 1 in the US
    - <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">de-nginxgslb-datafeed</span> for instance 2 in Germany
-   - <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">sg-nginxgslb-datafeed</span> for instance 3 in Singapore 
+   - <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">sg-nginxgslb-datafeed</span> for instance 3 in Singapore
 
    After creating the three feeds, note the value in the **Feeds URL** field on the <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> INTEGRATIONS </span> tab. The final element of the URL is the ``<NS1-data-source-ID>`` you will specify in the YAML configuration file in Step 4. In the third screenshot in the [NS1 documentation](https://help.ns1.com/hc/en-us/articles/360020474154), for example, it is <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">e566332c5d22c6b66aeaa8837eae90ac</span>.
 
-2. Follow the instructions in the [NS1 documentation](https://help.ns1.com/hc/en-us/articles/360017341694-Creating-managing-API-keys) to create an NS1 API key for the agent, if you have not already. (To access **Account Settings** in Step 1, click your username in the upper right corner of the NS1 title bar.) We're naming the app <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">NGINX-GSLB</span>. Make note of the key value – you'll specify it as ``<NS1-API-key>`` in the YAML configuration file in Step 4. To see the actual hexadecimal value, click on the circled letter **i** in the **API Key** field. 
+2. Follow the instructions in the [NS1 documentation](https://help.ns1.com/hc/en-us/articles/360017341694-Creating-managing-API-keys) to create an NS1 API key for the agent, if you have not already. (To access **Account Settings** in Step 1, click your username in the upper right corner of the NS1 title bar.) We're naming the app <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">NGINX-GSLB</span>. Make note of the key value – you'll specify it as ``<NS1-API-key>`` in the YAML configuration file in Step 4. To see the actual hexadecimal value, click on the circled letter **i** in the **API Key** field.
 
 3. On each NGINX Plus host, clone the [GitHub repo](https://github.com/nginxinc/nginx-ns1-gslb) for the NS1 agent.
 
@@ -170,13 +168,13 @@ In this section we install and configure the NS1 agent on the same hosts as our 
        feed_name: "<xx>-nginxgslb-datafeed"
    ```
 
-   The ``hosts`` section configures the agent to run on the same host as the NGINX Plus instance from which it collects metrics – in this guide, localhost. Because localhost is identified by its IP address (127.0.0.1) in the ``host`` field, hostname resolution is unnecessary and ``resolve`` is set to ``false``. The agent gathers metrics from the <span style="white-space: nowrap;">NGINX Plus API</span> (the ``/api`` endpoint) on port 8000. 
+   The ``hosts`` section configures the agent to run on the same host as the NGINX Plus instance from which it collects metrics – in this guide, localhost. Because localhost is identified by its IP address (127.0.0.1) in the ``host`` field, hostname resolution is unnecessary and ``resolve`` is set to ``false``. The agent gathers metrics from the <span style="white-space: nowrap;">NGINX Plus API</span> (the ``/api`` endpoint) on port 8000.
 
    In the ``nsone`` section, include the ``<NS1-API-key>`` and ``<NS1-data-source-ID>`` values you noted in Step 2 and Step 1, respectively.
 
    In the ``services`` section, we're specifying [upstream_groups](https://github.com/nginxinc/nginx-ns1-gslb/tree/master/configs#services) as the method for the NS1 agent to use, meaning that it collects metrics about the upstream group that the NGINX Plus instance is load balancing – ``my_backend``, as specified in the ``name`` field of the ``feeds`` section. The ``threshold`` field defines how many servers in the upstream group must be healthy for the backend app to be considered up, and the ``sampling_type`` field tells the agent to collect the sum of active connections to backend servers. (We're leaving actual setup of the backend app and the configuration file for the NGINX Plus instance as exercises for the reader.)
 
-   The agent configuration is the same for each of the paired agents and NGINX Plus instances, except for the value in the ``feed_name`` field (see Step 1 for the feed names). If you choose to configure a different upstream group for each instance, also change the value in the ``name`` field. 
+   The agent configuration is the same for each of the paired agents and NGINX Plus instances, except for the value in the ``feed_name`` field (see Step 1 for the feed names). If you choose to configure a different upstream group for each instance, also change the value in the ``name`` field.
 
    For details about all fields in the configuration file, see the documentation in our [GitHub repo](https://github.com/nginxinc/nginx-ns1-gslb/blob/master/configs/README.md).
 
@@ -223,13 +221,13 @@ Here we verify that NS1 switches over to the next‑nearest NGINX Plus instance
    Name:	nginxgslb.cf
    Address: 10.10.10.2
    ```
-   
+
 <span id="verify-when-upstream-down"></span>
 ### Verifying Traffic Redistribution When an Upstream Group Is Down
 
 With our NGINX Plus instances (answers) connected to NS1 data feeds (see Step 2 in [Installing the NS1 Agent](#agent-install)), we can verify that NS1 redistributes traffic correctly when it receives data from the agent indicating that an upstream group is down. In the following example, it's the **my_backend** group that goes down, as reported in the <span style="font-weight: bold; white-space: nowrap;">us-nginxgslb-datafeed</span> feed.
 
-We run the following commands on a host located in the US. 
+We run the following commands on a host located in the US.
 
 1. Query the <span style="white-space: nowrap;">NGINX Plus API</span> to verify that the current status is ``up`` for the **my_backend** upstream group being proxied by the NGINX Plus instance in the US:
 
@@ -243,7 +241,7 @@ We run the following commands on a host located in the US.
 
    On the command line, <span style="white-space: nowrap;">``<NS1-API-key>``</span> and <span style="white-space: nowrap;">``<NS1-data-source-ID>``</span> are the same values we included in the YAML file in Step 4 of [Installing the NS1 Agent](#agent-install).
 
-   The output includes a ``destinations`` entry for each data feed, so we search for the one where the ``label`` field says <span style="white-space: nowrap;">``us-nginxgslb-datafeed``</span>, and verify that the ``up`` field in that entry says ``true``. 
+   The output includes a ``destinations`` entry for each data feed, so we search for the one where the ``label`` field says <span style="white-space: nowrap;">``us-nginxgslb-datafeed``</span>, and verify that the ``up`` field in that entry says ``true``.
 
     ```shell
    $ curl -X GET -H 'X-NSONE-Key: <NS1-API-key>' https://api.nsone.net/v1/data/feeds/<NS1-data-source-ID> | python -m json.tool
@@ -345,13 +343,13 @@ First we perform these steps to create the shed filter:
 
 1. Navigate to the details page of the ``A`` record for **nginxgslb.cf** under the <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> ZONES </span> tab, if it is not already open. Click the <span style="background-color:#ea1f71; color:white; font-family:helvetica; white-space: nowrap;"> Edit Filter Chain </span> button.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/09/NS1_Edit-Filter-Chain.png" alt="Screenshot of NS1 GUI: clicking Edit Filter Chain button" width="1024" height="664" class="aligncenter size-full wp-image-63018" /> 
+   <img src="https://www.nginx.com/wp-content/uploads/2019/09/NS1_Edit-Filter-Chain.png" alt="Screenshot of NS1 GUI: clicking Edit Filter Chain button" width="1024" height="664" class="aligncenter size-full wp-image-63018" />
 
 2. In the **Add Filters** window that opens, click the plus sign (+) on the box labeled **Shed Load** in the <span style="background-color:#28ccbb; color:white; font-family:helvetica; white-space: nowrap;"> HEALTHCHECKS </span> section.
-	
-   <img src="https://www.nginx.com/wp-content/uploads/2019/09/NS1_Add-Filters-Shed-Load.png" alt="Screenshot of NS1 GUI: clicking Shed Load button on Add Filters page" width="1022" height="701" class="aligncenter size-full wp-image-63017" />	
 
-3. The **Shed Load** filter is added as the fourth (lowest) box in the **Active Filters** section. Move it to be third by clicking and dragging it above the <span style="white-space: nowrap; font-weight:bold;">Select First N</span> box. 
+   <img src="https://www.nginx.com/wp-content/uploads/2019/09/NS1_Add-Filters-Shed-Load.png" alt="Screenshot of NS1 GUI: clicking Shed Load button on Add Filters page" width="1022" height="701" class="aligncenter size-full wp-image-63017" />
+
+3. The **Shed Load** filter is added as the fourth (lowest) box in the **Active Filters** section. Move it to be third by clicking and dragging it above the <span style="white-space: nowrap; font-weight:bold;">Select First N</span> box.
 
 4. Click the <span style="background-color:#ea1f71; color:white; font-family:helvetica; white-space: nowrap;"> Save Filter Chain </span> button.
 
@@ -359,11 +357,11 @@ First we perform these steps to create the shed filter:
 
    <img src="https://www.nginx.com/wp-content/uploads/2019/09/NS1_Shed-Load-Active-connections.png" alt="Screenshot of NS1 GUI: selecting Active connections for shed filter" width="1024" height="959" class="aligncenter size-full wp-image-63016" />
 
-6. In the **Ungrouped Answers** section, click the stacked dots icon at the right end of the field for the US‑based NGINX Plus instance (10.10.10.1) and select <span style="color:#ea1f71; font-family:helvetica; white-space: nowrap;">Edit Answer Metadata</span>. 
+6. In the **Ungrouped Answers** section, click the stacked dots icon at the right end of the field for the US‑based NGINX Plus instance (10.10.10.1) and select <span style="color:#ea1f71; font-family:helvetica; white-space: nowrap;">Edit Answer Metadata</span>.
 
    <img src="https://www.nginx.com/wp-content/uploads/2019/09/NS1_Edit-Answer-Metadata-connections.png" alt="Screenshot of NS1 GUI: clicking Edit Answer Metadata button for shed filter" width="1024" height="204" class="aligncenter size-full wp-image-63015" />
 
-7. In the **Answer Metadata** window that opens, set values for the following metadata. In each case, click the icon in the <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> FEED </span> column of the metadata's row, then select or enter the indicated value in the <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> AVAILABLE </span> column. (For testing purposes, we're setting very small values for the watermarks so that the threshold is exceeded very quickly.) 
+7. In the **Answer Metadata** window that opens, set values for the following metadata. In each case, click the icon in the <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> FEED </span> column of the metadata's row, then select or enter the indicated value in the <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> AVAILABLE </span> column. (For testing purposes, we're setting very small values for the watermarks so that the threshold is exceeded very quickly.)
 
    - **Active connections** – <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">us-nginxgslb-datafeed</span>
    - **High watermark** – <span style="color:#666666; font-weight:bolder; font-family:helvetica; white-space: nowrap;">5</span>
@@ -375,11 +373,11 @@ First we perform these steps to create the shed filter:
 
 #### Testing the Threshold
 
-With the shed filter in place, we're ready to verify that NS1 shifts traffic to the next‑nearest NGINX Plus instance when the number of active connections on the nearest instance exceeds the high watermark (upper threshold) of 5. As noted in Step 7 just above, we've set a very small value so we can quickly see the effect when it's exceeded. With the low watermark setting of 2, NS1 will start shifting traffic probabilistically when there are three active connections and definitely when there are five or more connections. 
+With the shed filter in place, we're ready to verify that NS1 shifts traffic to the next‑nearest NGINX Plus instance when the number of active connections on the nearest instance exceeds the high watermark (upper threshold) of 5. As noted in Step 7 just above, we've set a very small value so we can quickly see the effect when it's exceeded. With the low watermark setting of 2, NS1 will start shifting traffic probabilistically when there are three active connections and definitely when there are five or more connections.
 
 We have written a script that continuously simulates more than four simultaneous connections. We have also configured the backend app to perform a sleep, so that the connections stay open long enough for the agent to report the number of active connections to NS1 before they close.
 
-We run the following commands on a host located in the US. 
+We run the following commands on a host located in the US.
 
 1. Query the <span style="white-space: nowrap;">NGINX Plus API</span> for the number of active connections:
 
@@ -392,7 +390,7 @@ We run the following commands on a host located in the US.
 2. Query the NS1 API to learn the number of active connections the NS1 agent has reported to NS1. (For details about this API call, see the [NS1 documentation](https://ns1.com/api#getget-data-feed-details). If the page doesn't scroll automatically to the relevant section, search for "Get data feed details".)
 
    On the command line:
-   
+
       - <span style="white-space: nowrap;">``<NS1-API-key>``</span> and <span style="white-space: nowrap;">``<NS1-data-source-ID>``</span> are the same values we included in the YAML file in Step 4 of [Installing the NS1 Agent](#agent-install) and used in Step 2 of [Verifying Traffic Redistribution When an Upstream Group Is Down](#verify-when-upstream-down).
 
       - <span style="white-space: nowrap;">``<NS1-feed-ID>``</span> is the ID assigned by NS1 to the **us-nginxgslb-datafeed** data feed. It was reported as <span style="white-space: nowrap;">``<Feed-ID>``</span> in the ``id`` field of the output in Step 2 in [Verifying Traffic Redistribution When an Upstream Group Is Down](#verify-when-upstream-down). (It also appears in that field in the following output.)

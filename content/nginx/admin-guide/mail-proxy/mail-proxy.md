@@ -9,8 +9,6 @@ toc: true
 weight: 100
 ---
 
-
-
 This article will explain how to configure NGINX Plus or NGINX Open Source as a proxy for a mail server or an external mail service.
 
 ## Introduction
@@ -86,7 +84,7 @@ In the NGINX configuration file:
         listen    25;
         protocol  smtp;
         smtp_auth login plain cram-md5;
-    } 
+    }
 
     server {
         listen    110;

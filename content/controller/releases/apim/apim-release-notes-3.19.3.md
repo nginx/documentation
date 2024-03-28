@@ -1,11 +1,11 @@
 ---
-description: These release notes contain information about new features, improvements, known issues, and bug fixes in the NGINX Controller API Management Module.
+description: These release notes contain information about new features, improvements,
+  known issues, and bug fixes in the NGINX Controller API Management Module.
 docs: DOCS-887
 title: Release Notes 3.19.3
 toc: true
 weight: 94
 ---
-
 
 +++
 
@@ -32,7 +32,7 @@ Take note of the following considerations when upgrading to this version of the 
 This release fixes the following issues. To view the history for an issue, search the NGINX Docs website for the issue ID.
 
 - Managed instances go offline or become unresponsive after registering an NGINX Plus R25 instance with NGINX Controller (33356)
-  
+
 ## Supported NGINX Plus Versions
 
 This version of NGINX Controller works with the following NGINX Plus versions:

@@ -1,20 +1,8 @@
 ---
-authors: []
-categories:
-- installation
 description: Follow these steps to license your NGINX Controller.
 docs: DOCS-787
 doctypes:
 - task
-draft: false
-journeys:
-- getting started
-- using
-- renewing
-personas:
-- devops
-roles:
-- admin
 tags:
 - docs
 title: License NGINX Controller
@@ -140,7 +128,7 @@ If NGINX Controller appears to be unlicensed after a version upgrade, try the fo
 
 - [Re-upload your NGINX Controller license]({{< relref "/controller/platform/licensing-controller.md#add-or-update-a-license" >}}).
 - [Restore the NGINX Controller database from a backup]({{< relref "/controller/admin-guides/backup-restore/_index.md" >}}).
-  
+
 &nbsp;
 
 ---

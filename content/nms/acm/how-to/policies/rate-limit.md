@@ -1,13 +1,18 @@
 ---
-title: "Rate Limiting"
-description: Learn how to use the NGINX Management Suite API Connectivity Manager Rate Limiting policy to protect backend servers. The Rate Limiting policy lets you limit connections and the rate of requests based on request URI, client IP address, or authenticated clients.
-weight: 1300
+description: Learn how to use the NGINX Management Suite API Connectivity Manager
+  Rate Limiting policy to protect backend servers. The Rate Limiting policy lets you
+  limit connections and the rate of requests based on request URI, client IP address,
+  or authenticated clients.
+docs: DOCS-1251
+doctypes:
+- API Connectivity Manager
+- api management
+- task
+tags:
+- docs
+title: Rate Limiting
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1251"
-doctypes: ["API Connectivity Manager", "api management", "task"]
-journeys: ["getting started", "using"]
-personas: ["netops", "secops"]
+weight: 1300
 ---
 
 ## Overview

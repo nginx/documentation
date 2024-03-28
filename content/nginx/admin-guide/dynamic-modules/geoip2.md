@@ -10,7 +10,6 @@ toc: true
 weight: 100
 ---
 
-
 <span id="info"></span>
 ## Module Info
 
@@ -25,7 +24,7 @@ weight: 100
 2. Install the GeoIP2 module package `nginx-plus-module-geoip2`.
 
    For CentOS, Oracle Linux, and RHEL:
-   
+
    ```shell
    yum install nginx-plus-module-geoip2
    ```

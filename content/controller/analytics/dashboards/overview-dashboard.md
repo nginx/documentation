@@ -1,28 +1,9 @@
 ---
-aliases:
-- /analytics/overview-dashboard/
-authors: []
-categories:
-- installation
-- platform management
-- load balancing
-- analytics
-date: "2020-10-26T15:32:41-06:00"
-description: Learn about the Dashboards that displays cumulative metrics for your NGINX Instances.
+description: Learn about the Dashboards that displays cumulative metrics for your
+  NGINX Instances.
 docs: DOCS-528
 doctypes:
 - task
-draft: false
-journeys:
-- using
-personas:
-- devops
-- netops
-- support
-roles:
-- admin
-- user
-- read-only
 tags:
 - docs
 title: Analytics Overview

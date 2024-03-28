@@ -1,15 +1,14 @@
 ---
-date: "2021-06-08T12:00:00-07:00"
+description: NGINX Management Suite brings together advanced features into a single
+  platform, making it easy for organizations to configure, monitor, and troubleshoot
+  NGINX instances; manage and govern APIs; optimize load balancing for apps; and enhance
+  overall security.
+docs: DOCS-905
 doctypes:
-- reference
-- troubleshooting
-draft: false
+- concept
 title: About
-description: NGINX Management Suite brings together advanced features into a single platform, making it easy for organizations to configure, monitor, and troubleshoot NGINX instances; manage and govern APIs; optimize load balancing for apps; and enhance overall security.
 toc: true
 weight: 10
-docs: "DOCS-905"
-doctypes: ["concept"]
 ---
 
 Explore the topics below to find out what the NGINX Management Suite modules have to offer.
@@ -18,9 +17,9 @@ Explore the topics below to find out what the NGINX Management Suite modules hav
 
 ## Instance Manager {#instance-manager}
 
-[Instance Manager]({{< relref "/nms/nim/">}}) allows you to configure, scale, and manage NGINX Open Source and NGINX Plus instances. 
+[Instance Manager]({{< relref "/nms/nim/">}}) allows you to configure, scale, and manage NGINX Open Source and NGINX Plus instances.
 
-The Instance Manager module was initially developed as a [REST API]({{< relref "/nms/nim/about/api-overview">}}) that uses standard authentication methods, HTTP response codes, and verbs. The Instance Manager REST API allows you to access all of the module's features, manage Instance Manager objects and the NGINX Management Suite platform programmatically, view metrics, edit configurations, manage certificates, create users, and more. 
+The Instance Manager module was initially developed as a [REST API]({{< relref "/nms/nim/about/api-overview">}}) that uses standard authentication methods, HTTP response codes, and verbs. The Instance Manager REST API allows you to access all of the module's features, manage Instance Manager objects and the NGINX Management Suite platform programmatically, view metrics, edit configurations, manage certificates, create users, and more.
 
 The Instance Manager features available through NGINX Management Suite's web interface are built on top of this REST API.
 

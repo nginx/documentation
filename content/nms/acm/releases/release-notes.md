@@ -1,11 +1,12 @@
 ---
-title: "Release Notes"
-description: "These release notes list and describe the new features, enhancements, and resolved issues in NGINX Management Suite API Connectivity Manager."
-weight: 100
+description: These release notes list and describe the new features, enhancements,
+  and resolved issues in NGINX Management Suite API Connectivity Manager.
+docs: DOCS-931
+tags:
+- docs
+title: Release Notes
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-931"
-categories: ["release notes"]
+weight: 100
 ---
 
 {{<rn-styles>}}

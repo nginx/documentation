@@ -1,30 +1,15 @@
 ---
-categories:
-- installation
-- security
-date: "2021-12-21T12:00:00-07:00"
-description: 'This document provides guidance on securing client connections to NGINX Management Suite as well as securing the traffic between the NGINX Management Suite management plane and NGINX data planes. '
+description: 'This document provides guidance on securing client connections to NGINX
+  Management Suite as well as securing the traffic between the NGINX Management Suite
+  management plane and NGINX data planes. '
+docs: DOCS-794
 doctypes:
 - tutorial
-draft: false
-journeys:
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
 tags:
 - docs
 title: Secure Client Access and Network Traffic
 toc: true
-versions: []
 weight: 600
-docs: "DOCS-794"
-aliases:
-- /nginx-instance-manager/admin-guide/encrypt/
-- /nginx-instance-manager/admin-guide/secure-traffic/
 ---
 
 {{< shortversions "2.0.0" "latest" "nimvers" >}}
@@ -333,9 +318,9 @@ Modify the following example according to your needs. There are many ways to gen
     #
     # Configuration file for NGINX Agent.
     #
-    # This file is to track agent configuration values that are meant to be statically set. There  
+    # This file is to track agent configuration values that are meant to be statically set. There
     # are additional agent configuration values that are set via the API and agent install script
-    # which can be found in /var/lib/nginx-agent/agent-dynamic.conf. 
+    # which can be found in /var/lib/nginx-agent/agent-dynamic.conf.
 
     # specify the server grpc port to connect to
     server:

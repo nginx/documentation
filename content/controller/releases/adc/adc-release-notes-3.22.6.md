@@ -1,32 +1,9 @@
 ---
-categories:
-- installation
-- infrastructure
-- platform management
-- services
-- security
-- analytics
 description: These release notes contain information about new features, improvements,
   known issues, and bug fixes in the NGINX Controller Application Delivery Module.
 docs: DOCS-1086
 doctypes:
 - reference
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- renewing
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
-- read-only
 tags:
 - docs
 title: Release Notes 3.22.6

@@ -1,34 +1,10 @@
 ---
-authors: []
-categories:
-- access log
-date: "2021-04-14T13:32:41+00:00"
 description: Learn about NGINX App Protect DoS Directives and Policy.
 docs: DOCS-667
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: directives-and-policy
-    weight: 45
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect DoS Directives and Policy
 toc: true
-versions:
-- "4.3"
 weight: 120
 ---
 

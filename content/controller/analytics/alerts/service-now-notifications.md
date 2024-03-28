@@ -1,28 +1,8 @@
 ---
-aliases:
-- analytics/alerts/configure-notifications/
-authors: []
-categories:
-- analytics
-date: "2020-10-26T15:32:41-06:00"
 description: Set up Alerts Integration with ServiceNow. Deprecated in v3.13.
 docs: DOCS-523
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
-- read-only
 tags:
 - docs
 - deprecated
@@ -30,7 +10,6 @@ title: ServiceNow Alerts Integration
 toc: true
 weight: 600
 ---
-
 
 ## ServiceNow Alert Integration
 
@@ -58,9 +37,9 @@ The ServiceNow integration sends all notifications from NGINX Controller to the 
    - **Controller email** - The email that you use to log in to Controller.
    - **Controller password** - The password that you use to log in to Controller.
    - **Controller port** - The port on which NGINX Controller is running; the default is 80.
-   - **Company name** - The name of your company; this is used to create the ServiceNow transport.  
+   - **Company name** - The name of your company; this is used to create the ServiceNow transport.
 <br>
-4. Watch Controller alerts come through as incidents in ServiceNow. 
+4. Watch Controller alerts come through as incidents in ServiceNow.
 
     Mapping of Controller Alerts to ServiceNow Priority:
 

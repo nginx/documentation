@@ -9,7 +9,6 @@ toc: true
 weight: 100
 ---
 
-
 <span id="intro"></span>
 ## Overview
 
@@ -31,7 +30,7 @@ http {
 
 Then include the [`proxy_cache`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache) directive in the context (protocol type, virtual server, or location) for which you want to cache server responses, specifying the zone name defined by the `keys_zone` parameter to the `proxy_cache_path` directive (in this case, `mycache`):
 
-```nginx    
+```nginx
 http {
     # ...
     proxy_cache_path /data/nginx/cache keys_zone=mycache:10m;
@@ -161,7 +160,7 @@ Let’s set up a configuration that identifies requests that use the HTTP `PURGE
 
 When the `proxy_cache_purge` directive is configured, you need to send a special cache‑purge request to purge the cache. You can issue purge requests using a range of tools, including the `curl` command as in this example:
 
-```none    
+```none
 $ curl -X PURGE -D – "https://www.example.com/*"
 HTTP/1.1 204 No Content
 Server: nginx/1.15.0

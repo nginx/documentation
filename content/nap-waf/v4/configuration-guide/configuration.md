@@ -1,32 +1,11 @@
 ---
-aliases:
-- /configuration/
-authors: []
-categories:
-- configuration guide
-date: "2021-04-14T13:32:41+00:00"
-description: This guide explains the NGINX App Protect WAF security features and how to use them.
+description: This guide explains the NGINX App Protect WAF security features and how
+  to use them.
 docs: DOCS-647
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect WAF Configuration Guide
 toc: true
-versions:
-- "4.7"
 weight: 200
 ---
 
@@ -36,9 +15,9 @@ This guide explains the NGINX App Protect WAF security features and how to use t
 
 For more information on the NGINX App Protect WAF security features, see [NGINX App Protect WAF Terminology](#nginx-app-protect-waf-terminology).
 
-{{< important >}} 
+{{< important >}}
 When configuring NGINX App Protect WAF, `app_protect_enable` should always be enabled in a `proxy_pass` location. If configuration returns static content, the user must add a location which enables App Protect, and proxies the request via `proxy_pass` to the internal static content location. An example can be found in [Configure Static Location](#configure-static-location).
-{{< /important >}} 
+{{< /important >}}
 
 ## Supported Security Policy Features
 {{< include "nap-waf/config/common/supported-security-policy-features.md" >}}
@@ -99,7 +78,7 @@ See [signature sets](#signature-sets) for configuring the signature sets include
 
 {{< include "nap-waf/config/common/signature-sets.md" >}}
 
-### Partial Masking of Data using Data Guard 
+### Partial Masking of Data using Data Guard
 {{< include "nap-waf/config/common/partial-masking-of-data.md" >}}
 
 #### File Types
@@ -243,7 +222,7 @@ See [signature sets](#signature-sets) for configuring the signature sets include
 
 {{< include "nap-waf/config/v4/bidirectional-configuration-v4.md" >}}
 
-### gRPC Bidirectional Streaming Enforcement 
+### gRPC Bidirectional Streaming Enforcement
 
 {{< include "nap-waf/config/common/grpc-bidirectional-stream-enforcement.md" >}}
 
@@ -257,7 +236,7 @@ See [signature sets](#signature-sets) for configuring the signature sets include
 ### Slow POST Attacks
 {{< include "nap-waf/config/common/grpc-slow-post-attacks.md" >}}
 
-### Handling Slow POST Attacks 
+### Handling Slow POST Attacks
 
 {{< include "nap-waf/config/common/grpc-handling-slow-post-attacks.md" >}}
 
@@ -296,7 +275,7 @@ See [signature sets](#signature-sets) for configuring the signature sets include
 ### Define URL settings
 {{< include "nap-waf/config/common/graphql-define-url-settings.md" >}}
 
-### Associating GraphQL Profiles with URL 
+### Associating GraphQL Profiles with URL
 {{< include "nap-waf/config/common/associating-graphql-profiles.md" >}}
 
 ### GraphQL Response Pages
@@ -313,7 +292,7 @@ See [signature sets](#signature-sets) for configuring the signature sets include
 
 {{< include "nap-waf/config/v4/condition-syntax-usage-v4.md" >}}
 
-### First Match Principle 
+### First Match Principle
 
 {{< include "nap-waf/config/common/first-match-principle.md" >}}
 
@@ -475,7 +454,7 @@ Below are examples of how to configure various NGINX features with NGINX App Pro
 
 {{< include "nap-waf/config/common/configure-nginx-mirror.md" >}}
 
-### Configure NJS
+### Configure njs
 
 {{< include "nap-waf/config/common/configure-njs.md" >}}
 

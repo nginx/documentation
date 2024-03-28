@@ -1,14 +1,15 @@
 ---
-Title: "HTTP Backend Configuration"
-draft: false
-description: Learn how to use the F5 NGINX Management Suite API Connectivity Manager to manage HTTP API Gateways by applying a backend configuration policy.
-weight: 650
+description: Learn how to use the F5 NGINX Management Suite API Connectivity Manager
+  to manage HTTP API Gateways by applying a backend configuration policy.
+docs: DOCS-1141
+doctypes:
+- API Connectivity Manager
+- api management
+- concept
+tags:
+- docs
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1141"
-doctypes: ["API Connectivity Manager", "api management", "concept"]
-journeys: ["getting started", "using"]
-personas: ["secops"]
+weight: 650
 ---
 
 ## Overview

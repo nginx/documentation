@@ -1,15 +1,15 @@
 ---
+docs: DOCS-729
 title: Technical Specifications
-weight: 300
 toc: true
-docs: "DOCS-729"
+weight: 300
 ---
 
 {{< important >}}
 {{% modsec-eol-notice %}}
 {{< /important >}}
 
-NGINX ModSecurity WAF is a module for NGINX Plus. 
+NGINX ModSecurity WAF is a module for NGINX Plus.
 
 ## Supported Distributions
 
@@ -31,7 +31,7 @@ NGINX ModSecurity WAF is a module for NGINX Plus.
 
 - 6.5+ (x86_64)
 - 7.4+ (x86_64)
-- 8.0+ (x86_64)  
+- 8.0+ (x86_64)
 
 ### Debian
 
@@ -68,7 +68,7 @@ NGINX ModSecurity WAF is a module for NGINX Plus.
 
 **Note:** CentOS/Oracle/Red Hat Enterprise Linux 6.5 users please see [this advisory](https://www.nginx.com/blog/nginx-se-linux-changes-upgrading-rhel-6-6/) when upgrading to version 6.6.
 
-**Note:** i386 and x86_64 support only, no aarch64 or ppc64le 
+**Note:** i386 and x86_64 support only, no aarch64 or ppc64le
 
 ## Supported Deployment Environments
 

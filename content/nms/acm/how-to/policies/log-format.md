@@ -1,14 +1,16 @@
 ---
-Title: "Log Format"
-draft: false
-description: "As an Infrastructure Administrator, use this guide to implement a standard log format for all environments hosting APIs."
-weight: 700
+description: As an Infrastructure Administrator, use this guide to implement a standard
+  log format for all environments hosting APIs.
+docs: DOCS-1127
+doctypes:
+- API Connectivity Manager
+- api management
+- task
+- reference
+tags:
+- docs
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1127"
-doctypes: ["API Connectivity Manager", "api management", "task", "reference"]
-journeys: ["getting started", "using"]
-personas: ["Platform Ops", "Infra Admins"]
+weight: 700
 ---
 
 ## Overview

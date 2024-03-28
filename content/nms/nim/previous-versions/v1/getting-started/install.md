@@ -1,22 +1,13 @@
 ---
-title: "Server Install and Configuration"
-date: 2020-12-27T20:56:49-07:00
-draft: false
-description: "An NGINX Instance Manager installation document."
-# Assign weights in increments of 100
-weight: 200
+description: An NGINX Instance Manager installation document.
+docs: DOCS-627
+doctypes:
+- tutorial
+tags:
+- docs
+title: Server Install and Configuration
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management"]
-doctypes: ["tutorial"]
-journeys: ["getting started", "using"]
-personas: ["devops", "netops", "secops", "support"]
-versions: ["v1"]
-docs: "DOCS-627"
-
+weight: 200
 ---
 
 {{< include "nim/previous-versions/old-version-warning.md" >}}

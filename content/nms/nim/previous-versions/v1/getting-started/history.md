@@ -1,21 +1,13 @@
 ---
-title: "About Us"
-date: 2020-12-30T20:56:49-07:00
-draft: false
-description: "NGINX Instance Manager history."
-# Assign weights in increments of 100
-weight: 400
+description: NGINX Instance Manager history.
+docs: DOCS-626
+doctypes:
+- tutorial
+tags:
+- docs
+title: About Us
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["platform management"]
-doctypes: ["tutorial"]
-journeys: ["getting started", "using"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-docs: "DOCS-626"
+weight: 400
 ---
 
 {{< include "nim/previous-versions/old-version-warning.md" >}}

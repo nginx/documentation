@@ -9,8 +9,6 @@ toc: true
 weight: 100
 ---
 
-
-
 <span id="live-activity-monitoring"></span>
 
 This article describes how to configure and use runtime monitoring services in NGINX Plus: the interactive Dashboard and NGINX Plus REST API.

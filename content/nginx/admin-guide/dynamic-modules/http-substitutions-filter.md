@@ -9,7 +9,6 @@ toc: true
 weight: 100
 ---
 
-
 <span id="install"></span>
 ## Installation
 
@@ -28,7 +27,7 @@ weight: 100
    ```shell
    dnf install nginx-plus-module-subs-filter
    ```
-   
+
    For Debian and Ubuntu:
 
    ```shell

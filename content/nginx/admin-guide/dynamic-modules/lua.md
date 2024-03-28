@@ -1,5 +1,5 @@
 ---
-description:
+description: null
 docs: DOCS-391
 doctypes:
 - task
@@ -7,7 +7,6 @@ title: Lua
 toc: true
 weight: 100
 ---
-
 
 Integrate Lua co-routines into the NGINX event-processing model with the community-authored Lua dynamic module.
 
@@ -25,7 +24,7 @@ Integrate Lua co-routines into the NGINX event-processing model with the communi
    Install the Lua module package `nginx-plus-module-lua`.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
-   
+
    ```shell
    yum install nginx-plus-module-lua
    ```
@@ -37,13 +36,13 @@ Integrate Lua co-routines into the NGINX event-processing model with the communi
    ```
 
    For Debian and Ubuntu:
-   
+
    ```shell
    apt-get install nginx-plus-module-lua
    ```
 
    For SLES:
-   
+
    ```shell
    zypper install nginx-plus-module-lua
    ```
@@ -73,7 +72,7 @@ After installation you will need to enable and configure the module in NGINX Plu
    load_module modules/ndk_http_module.so;
    load_module modules/ngx_http_lua_module.so;
    ```
-   
+
    {{< note >}} The directives must be in this order. {{< /note >}}
 
 2. Perform additional configuration as required by the [module](https://github.com/openresty/lua-nginx-module).

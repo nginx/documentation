@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 There are three violations that are specific to gRPC. They are all enabled in the default policy. See also the [Violations](#violations) section. 
 
 - `VIOL_GRPC_MALFORMED`: This violation is issued when a gRPC message cannot be parsed according to its expected definition. This violation **blocks** in the default policy.

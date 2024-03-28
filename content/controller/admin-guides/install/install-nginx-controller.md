@@ -1,27 +1,8 @@
 ---
-aliases:
-- /admin-guides/install/install/
-authors: []
-categories:
-- installation
-date: "2020-10-26T15:32:41-06:00"
 description: This guide explains how to install and update NGINX Controller.
 docs: DOCS-255
 doctypes:
 - tutorial
-draft: false
-journeys:
-- getting started
-menu:
-  docs:
-    parent: Installation
-    weight: 30
-personas:
-- devops
-- netops
-- secops
-roles:
-- admin
 tags:
 - docs
 title: Install NGINX Controller
@@ -162,7 +143,7 @@ th {
 |-----------------------|--------------------|
 | v3.x                  | v1.15.5 |
 
-The [Kubernetes Pod DNS config](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-dns-config) has a limit of six configured DNS search domain names. This is also the [`glibc` limit](https://man7.org/linux/man-pages/man5/resolv.conf.5.html). 
+The [Kubernetes Pod DNS config](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-dns-config) has a limit of six configured DNS search domain names. This is also the [`glibc` limit](https://man7.org/linux/man-pages/man5/resolv.conf.5.html).
 
 In NGINX Controller, Core-DNS creates three search domains that are determined at run-time and not in `/etc/resolv.conf`:
 
@@ -418,7 +399,7 @@ If NGINX Controller isn't working how you expect, see the knowledge base article
 
 ### Create a Support Package
 
-You can create a support package for NGINX Controller that you can use to diagnose issues. 
+You can create a support package for NGINX Controller that you can use to diagnose issues.
 
 {{< note >}}
 You will need to provide a support package if you open a ticket with NGINX Support via the [MyF5 Customer Portal](https://account.f5.com/myf5).

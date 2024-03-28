@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1071"
+docs: DOCS-1071
 ---
 
 The NGINX Management Suite gateway supports the following Linux distributions:

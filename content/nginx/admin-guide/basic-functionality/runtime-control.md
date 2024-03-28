@@ -9,7 +9,6 @@ toc: true
 weight: 100
 ---
 
-
 This section describes the processes that NGINX starts at run time and how to control them.
 
 ## Master and Worker Processes

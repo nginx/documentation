@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 Anti Automation provides basic bot protection by detecting bot signatures and clients that falsely claim to be browsers or search engines. The `bot-defense` section in the policy is enabled by default. Anti Automation encompasses both Bot Signatures and Header Anomalies, each of which can be disabled separately.
 
 As new bot signatures are identified, they will be accessible for [download and installation]({{< ref "/nap-waf/v4/admin-guide/install.md#updating-app-protect-bot-signatures" >}}) so that your system will always have the most up-to-date protection. You can update the bot signatures without updating the App Protect release. Similarly, you can update App Protect without altering the bot signature package, unless you upgrade to a new NGINX Plus release.

@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 {{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
 |Setting | JSON Property in Policy | Support in NGINX App Protect WAF | Value in Default Profile | 
 | ---| ---| ---| --- | 

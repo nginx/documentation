@@ -10,8 +10,6 @@ toc: true
 weight: 100
 ---
 
-
-
 > **Note**: The module was deprecated in <a href="../../../releases/#r23">Release 23</a> and removed in <a href="../../../releases/#r26">Release 26</a>. The [`proxy_cookie_flags`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cookie_flags) directive implements native support for setting cookie flags and replaces the module. See [Native Method for Setting Cookie Flags](https://www.nginx.com/blog/nginx-plus-r23-released#cookie-flags) for details.
 
 
@@ -21,19 +19,19 @@ weight: 100
 1. Install the Cookie-Flag module.
 
    For Amazon Linux, CentOS, Oracle Linux, and RHEL:
-   
+
    ```shell
    yum install nginx-plus-module-cookie-flag
    ```
-   
+
    For Debian and Ubuntu:
-   
+
    ```shell
    apt-get install nginx-plus-module-cookie-flag
    ```
 
    For SLES:
-   
+
    ```shell
    zypper install nginx-plus-module-cookie-flag
    ```

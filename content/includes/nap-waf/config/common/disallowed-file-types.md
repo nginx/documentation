@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 The following file types are disallowed by default:
 
 * bak, bat, bck, bkp, cfg, conf, config, ini, log, old, sav, save, temp, tmp

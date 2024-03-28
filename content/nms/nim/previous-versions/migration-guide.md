@@ -1,21 +1,15 @@
 ---
-title: "Migration Guide"
-date: 2021-12-21T12:00:00-07:00
-draft: false
-description: "Follow the instructions in this guide to migrate from Instance Manager v1 to v2."
-# Assign weights in increments of 100
-weight: 10000
+description: Follow the instructions in this guide to migrate from Instance Manager
+  v1 to v2.
+docs: DOCS-801
+doctypes:
+- task
+tags:
+- beta
+- docs
+title: Migration Guide
 toc: true
-tags: [ "beta", "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation"]
-doctypes: ["task"]
-docs: "DOCS-801"
-aliases:
-- /nginx-instance-manager/getting-started/installation/migration/
-- /nginx-instance-manager/installation/migration-guide/
+weight: 1
 ---
 
 {{< shortversions "2.0.0" "latest" "nimvers" >}}

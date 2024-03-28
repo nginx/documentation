@@ -1,23 +1,8 @@
 ---
-authors: []
-categories:
-- services
-- gateways
-- app management
-date: "2020-10-26T15:32:41-06:00"
 description: Create, view, and edit Gateways.
 docs: DOCS-373
 doctypes:
 - tutorial
-draft: false
-journeys:
-- using
-- renewing
-personas:
-- devops
-- netops
-roles:
-- admin
 tags:
 - docs
 title: Manage Gateways

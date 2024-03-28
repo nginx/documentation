@@ -22,7 +22,7 @@ The NGINX ModSecurity web application firewall (WAF) is built on ModSecurity 3.0
 2. Install the NGINX ModSecurity WAF module package `nginx-plus-module-modsecurity`.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
-   
+
    ```shell
    yum install nginx-plus-module-modsecurity
    ```
@@ -36,7 +36,7 @@ The NGINX ModSecurity web application firewall (WAF) is built on ModSecurity 3.0
    ```
 
    For Debian and Ubuntu:
-   
+
    ```shell
    apt-get install nginx-plus-module-modsecurity
    ```
@@ -44,7 +44,7 @@ The NGINX ModSecurity web application firewall (WAF) is built on ModSecurity 3.0
    {{< note >}} aarch64 and ppc64le is currently not supported for Ubuntu.{{< /note >}}
 
    For SLES:
-   
+
    ```shell
    zypper install nginx-plus-module-modsecurity
    ```

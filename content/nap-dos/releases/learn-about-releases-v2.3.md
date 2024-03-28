@@ -1,38 +1,14 @@
 ---
-authors: []
-categories:
-- releases
-date: "2021-04-14T13:32:41+00:00"
-description: ""
+description: ''
 docs: DOCS-856
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: Releases
-    weight: 45
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect DoS Release 2.3
 toc: true
-versions:
-- "2.3"
 weight: 170
 ---
 
-Here you can find the release information for NGINX App Protect DoS v2.3. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications. 
+Here you can find the release information for NGINX App Protect DoS v2.3. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
 
 ## Release 2.3
 
@@ -82,7 +58,7 @@ May 9, 2022
 
 ### Important Notes
 
-- Misconfiguration of `app_protect_dos_monitor` potentially can cause a false attack declaration. 
+- Misconfiguration of `app_protect_dos_monitor` potentially can cause a false attack declaration.
 Port configuration should correspond to the port the server listens to.
 
     For example:
@@ -98,7 +74,7 @@ Please note that the above syntax for the Monitor directive is old but still sup
 
 The new syntax for the Monitor directive is as stated below, where **protocol** and **timeout** arguments are optional and default. Refer to [Learn about Directives and Policy](/nginx-app-protect-dos/directives-and-policy/learn-about-directives-and-policy/#monitor-directive-app_protect_dos_monitor) for more details on Monitor directive new syntax.
 
-For example: 
+For example:
 
 `app_protect_dos_monitor uri=myservice.com:8080/ protocol=http1 timeout=5;`
 <br><br>

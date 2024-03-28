@@ -9,8 +9,6 @@ toc: true
 weight: 1100
 ---
 
-
-
 This section describes how to create a denylist or allowlist of specific client IP addresses, which denies or allows them access to your site, and how to dynamically maintain the list of addresses.
 
 <span id="overview"></span>
@@ -29,7 +27,7 @@ NGINX Plus <a href="../../../releases/#r13">Release 13</a> and later, NGINX P
 <span id="setup"></span>
 ## Setup
 
-First, enable the database for storing the list of denylisted and allowlisted IP addresses. 
+First, enable the database for storing the list of denylisted and allowlisted IP addresses.
 
 1. In NGINX Plus configuration file, include the [keyval_zone](https://nginx.org/en/docs/http/ngx_http_keyval_module.html#keyval_zone) directive in the [http](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) context to create a memory zone for storing keys and values. This sample directive creates a 1‑MB zone called **one**.
 
@@ -84,7 +82,7 @@ First, enable the database for storing the list of denylisted and allowlisted IP
 
             allow 127.0.0.1;
             deny  all;
-            
+
             limit_except GET {
                 auth_basic "NGINX Plus API";
                 auth_basic_user_file /path/to/passwd/file;
@@ -103,7 +101,7 @@ First, enable the database for storing the list of denylisted and allowlisted IP
       "10.0.0.4": "0"
     }' -s http://www.example.com/api/6/http/keyvals/one
    ```
-   
+
    If you have specified matching of IP addresses against network ranges (with the `type=ip` parameter of the [keyval_zone](https://nginx.org/en/docs/http/ngx_http_keyval_module.html#keyval_zone) directive), send the `POST` command with the network range specified in CIDR notation:
 
    ```shell
@@ -120,13 +118,13 @@ First, enable the database for storing the list of denylisted and allowlisted IP
 
    - Looks up the first parameter (here, `$remote_addr`, preset to the client's IP address) in the key‑value database specified by the `zone=` parameter (here, **one**).
 
-   - If a key in the database exactly matches `$remote_addr`, sets the second parameter (here, `$target`) to the value corresponding to the key. In our example, the value is `1` for denylisted addresses or `0` for allowlisted addresses. 
+   - If a key in the database exactly matches `$remote_addr`, sets the second parameter (here, `$target`) to the value corresponding to the key. In our example, the value is `1` for denylisted addresses or `0` for allowlisted addresses.
 
    ```nginx
    http {
         # ...
         keyval_zone zone=one:1m type=ip state=one.keyval;
-        keyval $remote_addr $target zone=one; # Client address is the key, 
+        keyval $remote_addr $target zone=one; # Client address is the key,
                                               # $target is the value;
     }
    ```
@@ -164,18 +162,18 @@ All of the following examples operate on the **one** zone, which is accessible a
    ```shell
    curl -X POST -d '{"10.0.0.5": "1"}' -s 'http://www.example.com/api/6/http/keyvals/one'
    ```
- 
+
 - To delete an entry:
 
    ```shell
    curl -X PATCH -d '{"10.0.0.4":null}' -s 'http://www.example.com/api/6/http/keyvals/one'
    ```
-   
+
 
 <span id="example"></span>
 ## Full Example
 
-The full NGINX Plus configuration: 
+The full NGINX Plus configuration:
 
 ```nginx
 http {
@@ -192,7 +190,7 @@ http {
 
             allow 127.0.0.1;
             deny  all;
-        
+
             limit_except GET {
                 auth_basic "NGINX Plus API";
                 auth_basic_user_file /path/to/passwd/file;
@@ -217,7 +215,7 @@ This configuration:
 - Enables a simple rule to check for the resulting value: if the value of `$target` is `1` (address is denylisted), return `403 (Forbidden)` to the client.
 
 
-The following `curl` command populates the empty keyval zone **one** with IP addresses that are denylisted (value is `1`) or allowlisted (value is `0`): 
+The following `curl` command populates the empty keyval zone **one** with IP addresses that are denylisted (value is `1`) or allowlisted (value is `0`):
 
 ```shell
 $ curl -X POST -d '{

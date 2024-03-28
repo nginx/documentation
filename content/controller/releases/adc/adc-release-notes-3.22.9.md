@@ -34,7 +34,7 @@ This release includes the following updates:
 - {{% icon-feature %}} **Support for NGINX Plus R30**<a name="3-22-9-whats-new-Support-for-NGINX-Plus-R30"></a>
 
   NGINX Controller Application Delivery module 3.22.9 fully supports NGINX Plus R30
-  
+
 
 ### Changes in Behavior{#3-22-9-changes-in-behavior}
 This release has the following changes in default behavior:
@@ -42,16 +42,16 @@ This release has the following changes in default behavior:
 - {{% icon-feature %}} **Kubernetes certificates valid for 2 years**<a name="3-22-9-changes-in-behavior-Kubernetes-certificates-valid-for-2-years"></a>
 
   {{< important >}}
-  The Kubernetes certificates will now default to a 2-year validity, instead of the 1-year validity they had until now. 
-  
-  This default can be overridden during product updates by setting the `CTR_CERT_RENEWAL_PERIOD` environment variable. For example: 
-  
+  The Kubernetes certificates will now default to a 2-year validity, instead of the 1-year validity they had until now.
+
+  This default can be overridden during product updates by setting the `CTR_CERT_RENEWAL_PERIOD` environment variable. For example:
+
   ```shell
   ./update.sh -e CTR_CERT_RENEWAL_PERIOD=3650
   ```
-  
+
   {{< /important >}}
-  
+
 
 ### Known Issues{#3-22-9-known-issues}
 
@@ -98,31 +98,31 @@ The following issues are known to be present in this release. Look for updates t
 
   The `js_include` directive was deprecated in version 0.4.0 of the NGINX njs module and removed in version 0.7.1. You should use the `js_import` directive instead.
 
-  NGINX ADC Controller 3.22.2 now writes the `js_import` directive when required. You should confirm that your NGINX Plus installations use njs module 0.4.0 or later, otherwise errors may occur. 
-  
+  NGINX ADC Controller 3.22.2 now writes the `js_import` directive when required. You should confirm that your NGINX Plus installations use njs module 0.4.0 or later, otherwise errors may occur.
+
   **Workaround**
 
   Upgrade the njs module to version 0.4.0 or higher. See the [njs module installation instructions](https://nginx.org/en/docs/njs/install.html) for more information.
-  
+
 - **Configuring components with an empty workload group can return the wrong HTTP status code (32373)**
 
   If a component is configured without referencing any gateways and with an empty workload group, the HTTP status code returned will be 500 (Internal Server Error).  Instead, it should return status code 400 (Bad Request).
 
 - **Agent binding error occurs when creating BIG-IP Component (33934)**
 
-  BIG-IP Component creation fails with the following error: 
-  
+  BIG-IP Component creation fails with the following error:
+
   ``` text
-  Failed testing config before applying: nginx: 
-  the configuration file /etc/nginx/nginx.conf syntax is ok 
-  nginx: [emerg] bind() to <IP>:20001 failed (99: Cannot assign requested address) 
+  Failed testing config before applying: nginx:
+  the configuration file /etc/nginx/nginx.conf syntax is ok
+  nginx: [emerg] bind() to <IP>:20001 failed (99: Cannot assign requested address)
   nginx: configuration file /etc/nginx/nginx.conf test failed
   ```
 
 - **Gateway update fails when a Published API is associated with multiple gateways, and Authentication is enabled in the associated component (34027)**
 
   When a Published API is created with multiple gateways, and Authentication is enabled in the associated component, the update to any associated gateway will fail with an error similar to the following:
-  
+
   ```text
   Failed testing config before applying
   ```

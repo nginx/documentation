@@ -1,13 +1,11 @@
 ---
-Title: "Access Control Lists"
-date: 2022-09-28T11:08:41+01:00
-description: "Learn how to protect your upstream TCP application servers by denying/allowing access from certain client IP addresses, CIDR blocks, client IDs or JWT Claims."
-# Assign weights in increments of 100
-weight: 200
+description: Learn how to protect your upstream TCP application servers by denying/allowing
+  access from certain client IP addresses, CIDR blocks, client IDs or JWT Claims.
+docs: DOCS-950
+tags:
+- docs
 toc: true
-tags: ["docs"]
-docs: "DOCS-950"
-version: []
+weight: 200
 ---
 
 ## Overview

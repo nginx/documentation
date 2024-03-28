@@ -1,15 +1,7 @@
 ---
-categories:
-- app management
-date: "2021-12-13T15:08:15-07:00"
 docs: DOCS-340
 doctypes:
 - concept
-journeys:
-- researching
-- using
-personas:
-- appdev
 tags:
 - docs
 title: About Snippets

@@ -1,32 +1,11 @@
 ---
-aliases:
-- /configuration/
-authors: []
-categories:
-- configuration guide
-date: "2021-04-14T13:32:41+00:00"
-description: This guide explains the NGINX App Protect WAF security features and how to use them.
+description: This guide explains the NGINX App Protect WAF security features and how
+  to use them.
 docs: DOCS-1368
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect WAF Configuration Guide
 toc: true
-versions:
-- "5.0"
 weight: 200
 ---
 
@@ -153,7 +132,7 @@ app_protect_policy_file /policies_mount/new_default_policy.tgz;
 
 {{< include "nap-waf/config/common/signature-sets.md" >}}
 
-### Partial Masking of Data using Data Guard 
+### Partial Masking of Data using Data Guard
 
 {{< include "nap-waf/config/common/partial-masking-of-data.md" >}}
 
@@ -267,7 +246,7 @@ app_protect_policy_file /policies_mount/new_default_policy.tgz;
 
 {{< include "nap-waf/config/v5/bidirectional-configuration-v5.md" >}}
 
-### gRPC Bidirectional Streaming Enforcement 
+### gRPC Bidirectional Streaming Enforcement
 
 {{< include "nap-waf/config/common/grpc-bidirectional-stream-enforcement.md" >}}
 
@@ -281,7 +260,7 @@ app_protect_policy_file /policies_mount/new_default_policy.tgz;
 ### Slow POST Attacks
 {{< include "nap-waf/config/common/grpc-slow-post-attacks.md" >}}
 
-### Handling Slow POST Attacks 
+### Handling Slow POST Attacks
 
 {{< include "nap-waf/config/common/grpc-handling-slow-post-attacks.md" >}}
 
@@ -323,7 +302,7 @@ app_protect_policy_file /policies_mount/new_default_policy.tgz;
 
 {{< include "nap-waf/config/common/graphql-define-url-settings.md" >}}
 
-### Associating GraphQL Profiles with URL 
+### Associating GraphQL Profiles with URL
 
 {{< include "nap-waf/config/common/associating-graphql-profiles.md" >}}
 
@@ -341,7 +320,7 @@ app_protect_policy_file /policies_mount/new_default_policy.tgz;
 
 {{< include "nap-waf/config/v5/condition-syntax-usage-v5.md" >}}
 
-### First Match Principle 
+### First Match Principle
 
 {{< include "nap-waf/config/common/first-match-principle.md" >}}
 
@@ -479,7 +458,7 @@ Below are examples of how to configure various NGINX features with NGINX App Pro
 
 {{< include "nap-waf/config/common/configure-nginx-mirror.md" >}}
 
-### Configure NJS
+### Configure njs
 
 {{< include "nap-waf/config/common/configure-njs.md" >}}
 

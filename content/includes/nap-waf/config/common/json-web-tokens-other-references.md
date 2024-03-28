@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 For more information about JSON Web Token (JWT) see below reference links:
 
 - [The definition of the JSON Web Token (JWT)](https://datatracker.ietf.org/doc/html/rfc7519)

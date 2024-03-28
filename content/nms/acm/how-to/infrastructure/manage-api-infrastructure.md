@@ -1,16 +1,14 @@
 ---
-date: 2022-07-13T13:11:00-06:00
-description: 'Learn how to use NGINX Management Suite API Connectivity Manager to manage your API infrastructure.'
+description: Learn how to use NGINX Management Suite API Connectivity Manager to manage
+  your API infrastructure.
+docs: DOCS-924
 doctypes:
 - task
 tags:
 - docs
 title: Manage API Infrastructure
 toc: true
-categories: ["api management"]
-versions: []
 weight: 100
-docs: "DOCS-924"
 ---
 
 {{< shortversions "1.1.0" "latest" "acmvers" >}}

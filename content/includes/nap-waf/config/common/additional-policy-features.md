@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 {{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
 |Feature | Description | 
 | ---| --- | 

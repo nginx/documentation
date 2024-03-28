@@ -1,11 +1,9 @@
 ---
+description: Reference for licensing NGINX Instance Manager.
+docs: DOCS-637
 title: License Reference
-description: "Reference for licensing NGINX Instance Manager."
-draft: false
-weight: 300
 toc: true
-categories: ["reference"]
-docs: "DOCS-637"
+weight: 300
 ---
 
 {{< include "nim/previous-versions/old-version-warning.md" >}}

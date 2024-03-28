@@ -1,34 +1,10 @@
 ---
-authors: []
-categories:
-- live activity monitoring
-date: "2021-04-14T13:32:41+00:00"
-description: "Learn about the NGINX App Protect DoS Live Activity Monitoring."
-docs: "DOCS-1389"
+description: Learn about the NGINX App Protect DoS Live Activity Monitoring.
+docs: DOCS-1389
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: monitoring
-    weight: 45
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
-title: "NGINX App Protect DoS Live Activity Monitoring"
+title: NGINX App Protect DoS Live Activity Monitoring
 toc: true
-versions:
-- "4.3"
 weight: 140
 ---
 

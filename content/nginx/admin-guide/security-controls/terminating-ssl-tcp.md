@@ -9,7 +9,6 @@ toc: true
 weight: 200
 ---
 
-
 This article explains how to set up SSL termination for NGINX Plus and a load-balanced group of servers that accept TCP connections.
 
 

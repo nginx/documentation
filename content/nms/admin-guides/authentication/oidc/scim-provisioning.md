@@ -1,28 +1,14 @@
 ---
-title: "Provision Users and Groups with SCIM"
-date: 2022-06-17T14:33:02-07:00
-# Change draft status to false to publish doc.
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO.
-# The description text appears in search results and at the top of the doc.
-description: "This topic explains what SCIM support is available for automating the management of user identity lifecycles."
-# Assign weights in increments of 100
-weight: 500
+description: This topic explains what SCIM support is available for automating the
+  management of user identity lifecycles.
+docs: DOCS-918
+doctypes:
+- task
+tags:
+- docs
+title: Provision Users and Groups with SCIM
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-918"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "user access", "platform management", "api management", "security"]
-doctypes: ["task"]
-journeys: ["getting started", "using"]
-personas: ["devops", "netops", "secops"]
-versions: []
-authors: ["Patrick Phrem"]
-
+weight: 500
 ---
 
 <style>

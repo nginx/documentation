@@ -1,11 +1,12 @@
 ---
+description: Learn how to get up and running with NGINX Management Suite API Connectivity
+  Manager.
+docs: DOCS-939
+tags:
+- docs
 title: Get Started
-date: 2022-07-19
-description: Learn how to get up and running with NGINX Management Suite API Connectivity Manager.
-weight: 10
 toc: true
-tags: ["docs"]
-docs: "DOCS-939"
+weight: 10
 ---
 
 <style>

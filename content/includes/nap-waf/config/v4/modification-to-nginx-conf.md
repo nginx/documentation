@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 When both `nginx.conf` file and App Protect configurations are modified, apreload enforces only the App Protect configurations but nginx reload enforces both.
 
 For apreload, use the following command:

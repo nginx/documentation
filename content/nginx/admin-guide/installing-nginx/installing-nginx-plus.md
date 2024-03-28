@@ -9,7 +9,6 @@ toc: true
 weight: 100
 ---
 
-
 This article explains how to install NGINX Plus on Amazon Linux, AlmaLinux, CentOS, Debian, FreeBSD, Oracle Linux, Rocky Linux, Red Hat Enterprise Linux (RHEL), SUSE Linux Enterprise Server (SLES), and Ubuntu.
 
 <span id="prereq"></span>

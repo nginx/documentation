@@ -1,27 +1,14 @@
 ---
-title: "Install or Upgrade the Developer Portal"
-date: 2023-04-06T11:59:50-07:00
-# Change draft status to false to publish doc
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Follow the steps in this guide to install or upgrade the Developer Portal for NGINX Management Suite API Connectivity Manager."
-# Assign weights in increments of 100
-weight: 10
+description: Follow the steps in this guide to install or upgrade the Developer Portal
+  for NGINX Management Suite API Connectivity Manager.
+docs: DOCS-1214
+doctypes:
+- tutorial
+tags:
+- docs
+title: Install or Upgrade the Developer Portal
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1214"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["tutorial"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
+weight: 10
 ---
 
 ---
@@ -217,7 +204,7 @@ echo 'DB_PATH="/var/lib/nginx-devportal"' | sudo tee -a /etc/nginx-devportal/dev
    ```
 
 3. Restart the Developer Portal service:
-  
+
    ```bash
    sudo systemctl restart nginx-devportal.service
    ```

@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 When configuring handling of parameters, it is a bit different from other configurations we have dealt with earlier, where we enable a violation and configure its details. With parameters, there are a number of independent violations that need to be enabled on their own, as well as a parameter section to define further customization. The full list of parameter violations can be extracted from the above violation list.
 
 

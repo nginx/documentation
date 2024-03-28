@@ -1,30 +1,10 @@
 ---
-authors: []
-categories:
-- releases
-date: "2021-04-14T13:32:41+00:00"
-description: ""
+description: ''
 docs: DOCS-1252
 doctypes:
 - concept
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect WAF Release 4.4
 toc: true
-versions:
-- "4.4"
 weight: 200
 ---
 
@@ -43,7 +23,7 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 
 ### New Feature
 
-- [Override Rules]({{< relref  "/nap-waf/v4/configuration-guide/configuration.md#override-rules" >}}) 
+- [Override Rules]({{< relref  "/nap-waf/v4/configuration-guide/configuration.md#override-rules" >}})
 
 ### Supported Packages
 
@@ -86,7 +66,7 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 - 8477 Fixed - TCP connections in the CLOSE_WAIT state for specific types of requests.
 
 ### **Important Notes**
- 
+
 - There is a limitation when using [Override Rules]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#override-rules" >}}) with gRPC. The Override Rules do not provide support for gRPC traffic. If the Override Rules are configured to match gRPC traffic, it will result in the blocking of such traffic.
- 
+
 - Starting with the upcoming release version of NGINX Plus R30, Ubuntu 18.04 will no longer be supported and will be deprecated.

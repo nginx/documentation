@@ -1,21 +1,13 @@
 ---
-title: "Quick Start"
-date: 2021-06-07T20:56:49-07:00
-draft: false
-description: "An NGINX Instance Manager quick start document."
-# Assign weights in increments of 100
-weight: 100
+description: An NGINX Instance Manager quick start document.
+docs: DOCS-628
+doctypes:
+- tutorial
+tags:
+- docs
+title: Quick Start
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management"]
-doctypes: ["tutorial"]
-journeys: ["getting started", "using"]
-personas: ["devops", "netops", "secops", "support"]
-versions: ["v1"]
-docs: "DOCS-628"
+weight: 100
 ---
 
 {{< include "nim/previous-versions/old-version-warning.md" >}}

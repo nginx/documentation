@@ -1,16 +1,12 @@
 ---
-title: "Set Up an API Gateway Environment"
-date: 2022-07-15T10:24:20-06:00
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO.
-# The description text appears in search results and at the top of the doc.
-description: "Learn how to use NGINX Management Suite API Connectivity Manager to configure an API Gateway."
-# Assign weights in increments of 100
-weight: 100
+description: Learn how to use NGINX Management Suite API Connectivity Manager to configure
+  an API Gateway.
+docs: DOCS-921
+tags:
+- docs
+title: Set Up an API Gateway Environment
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-921"
+weight: 100
 ---
 
 {{< shortversions "1.1.0" "latest" "acmvers" >}}

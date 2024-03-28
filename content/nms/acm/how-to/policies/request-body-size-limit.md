@@ -1,27 +1,14 @@
 ---
-title: "Request Body Size Limit"
-date: 2023-02-06T12:00:00-07:00
-# Change draft status to false to publish doc
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO.
-# The description text appears in search results and at the top of the doc.
-description: "Learn how to configure the Request Policy Size Limit policy to prevent Denial of Service (DoS) and other types of attacks."
-# Assign weights in increments of 100
-weight: 1200
+description: Learn how to configure the Request Policy Size Limit policy to prevent
+  Denial of Service (DoS) and other types of attacks.
+docs: DOCS-1122
+doctypes:
+- task
+tags:
+- docs
+title: Request Body Size Limit
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1122"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "api management", "security"]
-doctypes: ["task"]
-journeys: ["using"]
-personas: ["Platform Ops", "Infra Admins"]
-versions: []
-authors: []
+weight: 1200
 ---
 
 ## Overview

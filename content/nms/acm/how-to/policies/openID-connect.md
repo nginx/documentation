@@ -1,14 +1,17 @@
 ---
-title: "OpenID Connect Relying Party Policy"
-draft: false
-description: "As an Infrastructure Administrator, use this guide to configure OpenID Connect policy to enable Single Sign On for the gateways."
-weight: 910
+description: As an Infrastructure Administrator, use this guide to configure OpenID
+  Connect policy to enable Single Sign On for the gateways.
+docs: DOCS-1134
+doctypes:
+- API Connectivity Manager
+- API management
+- task
+- reference
+tags:
+- docs
+title: OpenID Connect Relying Party Policy
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1134"
-doctypes: ["API Connectivity Manager", "API management", "task", "reference"]
-journeys: ["getting started", "using"]
-personas: ["Platform Ops", "Infra Admins"]
+weight: 910
 ---
 
 ---

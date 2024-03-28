@@ -1,14 +1,15 @@
 ---
-Title: "OAuth2 JWT Assertion"
-draft: false
-description: Learn how to use NGINX Management Suite API Connectivity Manager to secure API Gateways by applying an OAuth2 JSON Web Token (JWT) Assertion policy.
-weight: 900
+description: Learn how to use NGINX Management Suite API Connectivity Manager to secure
+  API Gateways by applying an OAuth2 JSON Web Token (JWT) Assertion policy.
+docs: DOCS-1119
+doctypes:
+- API Connectivity Manager
+- api management
+- concept
+tags:
+- docs
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1119"
-doctypes: ["API Connectivity Manager", "api management", "concept"]
-journeys: ["getting started", "using"]
-personas: ["secops"]
+weight: 900
 ---
 
 ## Overview

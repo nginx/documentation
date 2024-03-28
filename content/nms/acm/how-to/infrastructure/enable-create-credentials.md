@@ -1,17 +1,14 @@
 ---
-title: "Enable Creating Credentials on the Developer Portal"
-date: 2022-09-07T12:00:00-07:00
-description: "Follow the steps in this guide to allow users to create credentials as a self-service workflow on the Developer Portal."
-# Assign weights in increments of 100
-weight: 400
+description: Follow the steps in this guide to allow users to create credentials as
+  a self-service workflow on the Developer Portal.
+docs: DOCS-947
+doctypes:
+- task
+tags:
+- docs
+title: Enable Creating Credentials on the Developer Portal
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["API Connectivity Manager", "Developer Portal", "Create Credentials", "Try It Out"]
-doctypes: ["task"]
-docs: "DOCS-947"
+weight: 400
 ---
 
 {{< raw-html >}}
@@ -100,9 +97,9 @@ To enable the Credentials endpoint on the API Connectivity Manager host, take th
             proxy_pass http://acm-api-service/api/acm/v1/devportal/credentials;
     }
     ```
-  
+
 1. Save the changes.
-  
+
 1. Reload NGINX on the API Connectivity Manager host:
 
     ```bash

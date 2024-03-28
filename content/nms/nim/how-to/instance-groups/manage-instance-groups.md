@@ -1,29 +1,14 @@
 ---
-title: "Manage Instance Groups"
-date: 2022-07-20T16:10:04-07:00
-# Change draft status to false to publish doc.
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Learn how to use NGINX Management Suite Instance Manager to create instance groups, which you can use to manage multiple NGINX instances as a single entity."
-# Assign weights in increments of 100
-weight: 20
+description: Learn how to use NGINX Management Suite Instance Manager to create instance
+  groups, which you can use to manage multiple NGINX instances as a single entity.
+docs: DOCS-935
+doctypes:
+- tutorial
+tags:
+- docs
+title: Working with Instance Groups
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-935"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["infrastructure", "instance groups"]
-doctypes: ["tutorial"]
-journeys: ["using"]
-personas: ["devops", "netops", "secops"]
-versions: []
-authors: []
-aliases:
-- /nim/how-to/manage-instance-groups/
+weight: 600
 ---
 
 ## Overview
@@ -220,7 +205,7 @@ If the instance group you deleted was specified in the `agent-dynamic.conf` file
 See [Set Up RBAC]({{< relref "/nms/admin-guides/rbac/rbac-getting-started.md" >}}), for detail information on setting up role-based access control (RBAC) for Instance Groups.
 
 {{<note>}}
-Members of Instance Group automatically inherit role-based access control (RBAC) permissions from their parent.  
+Members of Instance Group automatically inherit role-based access control (RBAC) permissions from their parent.
 {{</note>}}
 
 ## Publishing to Instance Groups

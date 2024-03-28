@@ -1,21 +1,9 @@
 ---
-authors: []
-categories:
-- installation
-- infrastructure
-date: "2020-12-17T12:33:15-08:00"
 description: Learn how to deploy an Azure NGINX instance using NGINX Controller.
 docs: DOCS-769
 doctypes:
 - beta
 - tutorial
-draft: false
-journeys:
-- getting started
-personas:
-- devops
-roles:
-- admin
 tags:
 - docs
 title: Add an Azure NGINX Instance

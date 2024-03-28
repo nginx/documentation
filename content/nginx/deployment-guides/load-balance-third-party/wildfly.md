@@ -10,7 +10,6 @@ toc: true
 weight: 100
 ---
 
-
 This deployment guide explains how to use NGINX Open Source and NGINX Plus to load balance HTTP and HTTPS traffic across a pool of Wildfly (JBoss) application servers. It provides complete instructions for configuring NGINX Open Source or NGINX Plus as required.
 
 

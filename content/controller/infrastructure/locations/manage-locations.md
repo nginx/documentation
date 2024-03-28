@@ -1,22 +1,8 @@
 ---
-authors: []
-categories:
-- infrastructure
-date: "2020-10-26T15:32:41-06:00"
 description: Create and manage Locations for your NGINX Instances.
 docs: DOCS-778
 doctypes:
 - tutorial
-draft: false
-journeys:
-- using
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
 tags:
 - docs
 title: Manage Locations

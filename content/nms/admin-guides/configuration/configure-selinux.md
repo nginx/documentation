@@ -1,21 +1,14 @@
 ---
-title: "Configure SELinux"
-date: 2021-12-21T12:00:00-07:00
-draft: false
-description: "Learn how to load the provided NGINX Management Suite SELinux policy to secure your NGINX Management Suite deployment."
-# Assign weights in increments of 100
-weight: 250
+description: Learn how to load the provided NGINX Management Suite SELinux policy
+  to secure your NGINX Management Suite deployment.
+docs: DOCS-796
+doctypes:
+- task
+tags:
+- docs
+title: Configure SELinux
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["security"]
-doctypes: ["task"]
-docs: "DOCS-796"
-aliases:
-- /nginx-instance-manager/admin-guide/selinux-guide/
-- /nginx-instance-manager/admin-guide/getting-started/selinux-guide/
+weight: 250
 ---
 
 {{< shortversions "2.0.0" "latest" "nimvers" >}}
@@ -35,7 +28,7 @@ The scope of the SELinux policy allows NGINX Management Suite to perform all ope
 To complete this tutorial, take the following preparatory steps:
 
 1. Enable SELinux on your system.
-2. Install the following tools: `load_policy`, `semodule`, and `restorecon`.  
+2. Install the following tools: `load_policy`, `semodule`, and `restorecon`.
 3. [Install NGINX Management Suite]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}) with SELinux module files in place.
 
 {{< important >}}SELinux can be configured to use `permissive` mode. In `permissive` mode, policy violations are logged instead of enforced. Make sure you know which mode your SELinux configuration uses.{{< /important >}}

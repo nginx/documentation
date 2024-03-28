@@ -1,15 +1,12 @@
 ---
-title: "Add a License"
-description: "Learn how to license NGINX Management Suite using a JWT or S/MIME license, explore the features accessible in licensed and unlicensed modes, and troubleshoot common issues associated with license upload and entitlement retrieval."
-date: 2021-12-21T12:00:00-07:00
-draft: false
-weight: 400
+description: Learn how to license NGINX Management Suite using a JWT or S/MIME license,
+  explore the features accessible in licensed and unlicensed modes, and troubleshoot
+  common issues associated with license upload and entitlement retrieval.
+docs: DOCS-789
 doctypes: task
+title: Add a License
 toc: true
-docs: "DOCS-789"
-categories: ["configuration", "installation"]
-aliases:
-- /nginx-instance-manager/admin-guide/add-license/
+weight: 400
 ---
 
 ## Overview

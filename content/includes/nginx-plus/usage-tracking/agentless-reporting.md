@@ -1,12 +1,12 @@
 ---
-docs: "DOCS-1408"
+docs: DOCS-1408
 ---
 
 Since <a href="../../../releases/#r31">Release 31</a>, NGINX Plus provides a built-in support for reporting of your NGINX Plus instances to NGINX Instance Manager without the need of installing NGINX Agent or tuning HTTP Health checks. If you participate in the [F5 Flex Consumption Program](https://www.f5.com/products/get-f5/flex-consumption-program), you will no longer need to manually track your NGINX Plus instances.
 
 Usage reporting is enabled by default. At each startup, NGINX Plus attempts to discover NGINX Instance Manager via a DNS lookup of the `nginx-mgmt.local` hostname. Then NGINX Plus establishes a TLS connection to NGINX Instance Manager and every `30` minutes reports its version number, hostname, and identifier.
 
-If NGINX instance reporting is not configured or NGINX Plus cannot provide its usage information to NGINX Instance Manager, a warning message will be logged. 
+If NGINX instance reporting is not configured or NGINX Plus cannot provide its usage information to NGINX Instance Manager, a warning message will be logged.
 
 Parameters customization can be done with the [`ngx_mgmt_module`](https://nginx.org/en/docs/ngx_mgmt_module.html#mgmt) module, in particular if you need to:
 
@@ -61,7 +61,7 @@ It is highly recommended to secure and authorize NGINX Plus instance with NGINX 
    }
    ```
 
-   Full configuration: 
+   Full configuration:
 
    ```nginx
    mgmt {
@@ -90,7 +90,7 @@ It is highly recommended to secure and authorize NGINX Plus instance with NGINX 
 
 ## Specifying a custom resolver
 
-If there is a custom DNS server in your corporate network, you can specify its address with the [`resolver`](https://nginx.org/en/docs/ngx_mgmt_module.html#resolver) directive in the [`mgmt`](https://nginx.org/en/docs/ngx_mgmt_module.html#mgmt) block: 
+If there is a custom DNS server in your corporate network, you can specify its address with the [`resolver`](https://nginx.org/en/docs/ngx_mgmt_module.html#resolver) directive in the [`mgmt`](https://nginx.org/en/docs/ngx_mgmt_module.html#mgmt) block:
 
 ```nginx
 mgmt {

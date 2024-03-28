@@ -1,26 +1,9 @@
 ---
-authors: []
-categories:
-- installation
-- platform management
-date: "2021-12-01T17:32:41-06:00"
 description: Learn how to safely change the management IP of NGINX Controller.
 docs: DOCS-779
 doctypes:
 - task
 - tutorial
-draft: false
-journeys:
-- researching
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-roles:
-- admin
-- user
 tags:
 - docs
 title: Changing the IP address
@@ -127,7 +110,7 @@ To change the IP of a single node:
 1. Reboot the node.
 
 1. Run the following command (only required if smtp was affected by the IP change):
-   
+
    ```bash
    opt/nginx-controller/helper.sh configsmtp <smtp_host> <smtp_port> false <do-not-reply-email>
    ```

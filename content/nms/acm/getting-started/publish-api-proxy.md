@@ -1,17 +1,12 @@
 ---
-title: "Publish an API Proxy"
-date: 2022-07-15T10:23:41-06:00
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO.
-# The description text appears in search results and at the top of the doc.
-description: "Learn how to use NGINX Management Suite API Connectivity Manager to publish an API Proxy."
-# Assign weights in increments of 100
-weight: 300
+description: Learn how to use NGINX Management Suite API Connectivity Manager to publish
+  an API Proxy.
+docs: DOCS-923
+tags:
+- docs
+title: Publish an API Proxy
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-923"
-
+weight: 300
 ---
 
 {{< shortversions "1.1.0" "latest" "acmvers" >}}

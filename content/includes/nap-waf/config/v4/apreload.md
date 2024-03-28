@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 Apreload is a new configuration tool where the NGINX App Protect WAF can be configured without having to reload NGINX if only the App Protect configuration is changed and the `nginx.conf` file remains unchanged. Apreload does not affect the existing NGINX reload process and it functions in the same manner as before.
 
 #### Some Conditions Required for Apreload to Work:

@@ -1,19 +1,14 @@
 ---
-title: "Proxy Cache"
-date: 2023-04-04T18:28:15-07:00
-draft: false
-description: "Learn how to use NGINX Management Suite API Connectivity Manager to enable and configure caching to improve the performance of your API gateway proxy."
-# Assign weights in increments of 100
-weight:
+description: Learn how to use NGINX Management Suite API Connectivity Manager to enable
+  and configure caching to improve the performance of your API gateway proxy.
+docs: DOCS-1190
+doctypes:
+- reference
+tags:
+- docs
+title: Proxy Cache
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1190"
-categories: ["installation", "platform management", "load balancing", "api management", "security", "analytics"]
-doctypes: ["reference"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
+weight: null
 ---
 
 ## Overview

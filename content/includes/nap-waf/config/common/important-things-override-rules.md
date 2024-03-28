@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 Here are some key points to remember regarding the Override Rules feature:
 
 - To ensure efficient compilation time and optimal resource allocation for policies, there are limitations in place. Currently, policies have a maximum limit of 10 rules and a maximum of 5 clauses in a condition. These limitations help maintain better performance and manageability. A compilation error will not occur if a policy file contains more than 5 clauses or 10 overrides.

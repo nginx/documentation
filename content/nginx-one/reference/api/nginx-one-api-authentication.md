@@ -1,28 +1,13 @@
 ---
-title: "Authentication"
-date: 2023-12-07T13:12:49-08:00
-# Change draft status to false to publish doc.
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: ""
-# Assign weights in increments of 100
-weight: 10
+description: ''
+docs: DOCS-1397
+doctypes:
+- task
+tags:
+- docs
+title: Authentication
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1397"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["platform management", "security", "analytics"]
-doctypes: ["task"]
-journeys: ["getting started", "using"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
-
+weight: 10
 ---
 
 In this guide, we'll show you how to authenticate API requests with F5 Distributed Cloud. There are two options for authentication: API Token or API Certificate. Both methods ensure secure access to your data.
@@ -43,7 +28,7 @@ For definitions of terms such as _'tenant'_ and _'namespace'_ used in the follow
 
 <br>
 
-1. **API Token Authentication**: An API token grants a user access to the NGINX One REST API. The user's role determines the permissions associated with the API token. Include the token in the Authorization request header. 
+1. **API Token Authentication**: An API token grants a user access to the NGINX One REST API. The user's role determines the permissions associated with the API token. Include the token in the Authorization request header.
 
    Here's how to use an API token to authenticate a request to the F5 Distributed Cloud API. This example request lists tenant namespaces for organization plans:
 
@@ -53,7 +38,7 @@ For definitions of terms such as _'tenant'_ and _'namespace'_ used in the follow
    ```
 
    - `<tenant>`: Your tenant name for organization plans.
-   - `<token-value>` Your API Token. 
+   - `<token-value>` Your API Token.
 
 2. **API Certificate Authentication**: Include the client certificate and password in the request. For organization plans:
 
@@ -64,7 +49,7 @@ For definitions of terms such as _'tenant'_ and _'namespace'_ used in the follow
 
    - `<tenant>`: Your tenant name for organization plans.
    - `<api-creds>`: The path to your certificate file. It's best to use the full path of the certificate.
-   - `<password>` Your certificate password. 
+   - `<password>` Your certificate password.
 
 ## Constructing a request
 

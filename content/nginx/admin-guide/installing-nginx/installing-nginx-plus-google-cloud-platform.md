@@ -9,7 +9,6 @@ toc: true
 weight: 400
 ---
 
-
 [NGINX Plus](https://www.nginx.com/products/nginx/), the high‑performance application delivery platform, load balancer, and web server, is available on the Google Cloud Platform as a virtual machine (VM) image. The VM image contains the latest version of NGINX Plus, optimized for use with the Google Cloud Platform Compute Engine.
 
 

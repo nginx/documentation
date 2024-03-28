@@ -1,12 +1,14 @@
 ---
-title: "Release Notes"
-description: "These release notes list and describe the new features, enhancements, and resolved issues in the NGINX Management Suite Security Monitoring module."
-weight: 100
+description: These release notes list and describe the new features, enhancements,
+  and resolved issues in the NGINX Management Suite Security Monitoring module.
+docs: DOCS-1078
+doctypes:
+- reference
+tags:
+- docs
+title: Release Notes
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1078"
-categories: ["release notes"]
-doctypes: ["reference"]
+weight: 100
 ---
 
 {{<rn-styles>}}

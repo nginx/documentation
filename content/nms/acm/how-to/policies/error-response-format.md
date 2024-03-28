@@ -1,14 +1,17 @@
 ---
-title: "Error Response Format"
-draft: false
-description: Learn how to use the NGINX Management Suite API Connectivity Manager to configure the Error Response Format policy that customizes HTTP error codes and messages.
-weight: 550
+description: Learn how to use the NGINX Management Suite API Connectivity Manager
+  to configure the Error Response Format policy that customizes HTTP error codes and
+  messages.
+docs: DOCS-1345
+doctypes:
+- API Connectivity Manager
+- api management
+- task
+tags:
+- docs
+title: Error Response Format
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1345"
-doctypes: ["API Connectivity Manager", "api management", "task"]
-journeys: ["getting started", "using"]
-personas: ["Platform Ops", "Infra Admins"]
+weight: 550
 ---
 
 ## Overview

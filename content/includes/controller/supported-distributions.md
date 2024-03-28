@@ -1,3 +1,7 @@
+---
+docs: DOCS-323
+---
+
 NGINX Controller, the NGINX Controller Agent, and the NGINX Controller Application Security Add-on support the following distributions and architectures.
 
 {{< see-also >}}Refer to the [NGINX Plus Technical Specifications](https://docs.nginx.com/nginx/technical-specs/) guide for the distributions that NGINX Plus supports.{{< /see-also >}}

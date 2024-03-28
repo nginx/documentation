@@ -1,9 +1,8 @@
 ---
-title: "Back up and recovery"
+title: Back up and recovery
 ---
 
-
-By default, the data for API Connectivity Manager isn't included in [backups for NGINX Management Suite]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md">}}). 
+By default, the data for API Connectivity Manager isn't included in [backups for NGINX Management Suite]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md">}}).
 
 To back up module data, follow these steps:
 
@@ -57,7 +56,7 @@ To back up module data, follow these steps:
     sudo systemctl stop nms
     sudo rm -rf /var/lib/nms/dqlite/*
     ```
-    
+
     Run the restore script:
 
     ```shell

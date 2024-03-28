@@ -1,10 +1,12 @@
 ---
-title: "Amazon Web Services Deployment Guide"
-description: "Learn how to set up the base infrastructure required to deploy NGINX Management Suite API Connectivity Manager in Amazon Web Services (AWS)."
-weight: 300
+description: Learn how to set up the base infrastructure required to deploy NGINX
+  Management Suite API Connectivity Manager in Amazon Web Services (AWS).
+docs: DOCS-896
+tags:
+- docs
+title: Amazon Web Services Deployment Guide
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-896"
+weight: 300
 ---
 
 {{< shortversions "1.1.0" "latest" "acmvers" >}}

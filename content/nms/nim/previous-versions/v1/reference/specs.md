@@ -1,11 +1,9 @@
 ---
+description: NGINX Instance Manager Technical Specifications.
+docs: DOCS-639
 title: Technical Specifications
-description: "NGINX Instance Manager Technical Specifications."
-draft: false
-weight: 300
 toc: true
-categories: ["reference"]
-docs: "DOCS-639"
+weight: 300
 ---
 
 {{< include "nim/previous-versions/old-version-warning.md" >}}

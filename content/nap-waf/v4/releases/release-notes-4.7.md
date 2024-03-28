@@ -1,30 +1,10 @@
 ---
-authors: []
-categories:
-- releases
-date: "2021-04-14T13:32:41+00:00"
-description: ""
+description: ''
 docs: DOCS-1360
 doctypes:
 - concept
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect WAF Release 4.7
 toc: true
-versions:
-- "4.7"
 weight: 170
 ---
 
@@ -65,7 +45,7 @@ In this release, NGINX App Protect WAF supports NGINX Plus R31.
 
 - app-protect-31+4.641.0-1.el8.ngx.x86_64.rpm
 
-##### RHEL 9+ 
+##### RHEL 9+
 
 - app-protect-31+4.641.0-1.el9.ngx.x86_64.rpm
 
@@ -86,7 +66,7 @@ In this release, NGINX App Protect WAF supports NGINX Plus R31.
 ### Resolved Issues
 
 - 9065 Fixed - Increasing the limit for "max_request_size" in log configuration from 2k to 10k. The default will change from "any" to 2k to maintain the old behaviour.
-- 9297 Fixed - Add new limit from `responseCheckLength` to response ingress event handling in order to reduce the memory used for buffering. 
+- 9297 Fixed - Add new limit from `responseCheckLength` to response ingress event handling in order to reduce the memory used for buffering.
 
 ### Limitation
 

@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 There are different ways of referencing OpenAPI Specification files. The configuration is similar to [External References](#external-references).
 
 {{< note >}} Any update of an OpenAPI Specification file referenced in the policy will not trigger a policy compilation. This action needs to be done actively by reloading the NGINX configuration. {{< /note >}}

@@ -1,18 +1,14 @@
 ---
+description: Learn about the policies available for use in NGINX Management Suite
+  API Connectivity Manager.
+docs: DOCS-932
+doctypes:
+- conceptual
+tags:
+- docs
 title: Available Policies
-description: Learn about the policies available for use in NGINX Management Suite API Connectivity Manager.
-weight: 500
-draft: false
 toc: true
-tags: [ "docs" ]
-categories: ["API Connectivity Manager"]
-doctypes: ["conceptual"]
-journeys: ["researching", "getting started", "using", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
-docs: "DOCS-932"
-
+weight: 500
 ---
 
 {{< shortversions "1.1.0" "latest" "acmvers" >}}

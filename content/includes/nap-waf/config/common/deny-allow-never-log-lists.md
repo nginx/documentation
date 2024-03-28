@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 It is possible to define IP addresses or ranges for which the traffic will always be allowed or denied or never logged despite the rest of the configuration settings in the policy.
 
 1. **Always Allowed** (`"blockRequests": "never"`) - requests from this IP range will be passed even if they have blocking violations.

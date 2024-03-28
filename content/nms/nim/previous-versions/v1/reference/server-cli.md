@@ -1,16 +1,9 @@
 ---
-categories:
-- beta
-- reference
-description: Man page and instructions for using the NGINX Instance Manager CLI
-draft: true
+description: Man page and instructions for using the NGINX Instance Manager CLI.
+docs: DOCS-638
 title: Server CLI Reference
-description: "Man page and instructions for using the NGINX Instance Manager CLI."
-draft: false
-weight: 300
 toc: true
-categories: ["reference"]
-docs: "DOCS-638"
+weight: 300
 ---
 
 {{< include "nim/previous-versions/old-version-warning.md" >}}

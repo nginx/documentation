@@ -1,34 +1,10 @@
 ---
-authors: []
-categories:
-- access log
-date: "2021-04-14T13:32:41+00:00"
 description: Learn about the NGINX App Protect DoS Request Log Mechanism.
 docs: DOCS-668
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: monitoring
-    weight: 45
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect DoS Access Log Request Mechanism
 toc: true
-versions:
-- "4.3"
 weight: 160
 ---
 

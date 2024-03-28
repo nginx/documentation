@@ -9,7 +9,6 @@ toc: true
 weight: 500
 ---
 
-
 This article explains how to use NGINX or NGINX Plus as an application gateway with uWSGI and Django.
 
 <span id="intro"></span>
@@ -91,7 +90,7 @@ http {
 }
 ```
 
-Notice that the configuration defines an upstream called **django**. The port number on the server in the group, 29000, matches the one the uWSGI server binds to, as specified by the `socket` argument in the sample `uwsgi` command. 
+Notice that the configuration defines an upstream called **django**. The port number on the server in the group, 29000, matches the one the uWSGI server binds to, as specified by the `socket` argument in the sample `uwsgi` command.
 
 Serving of static content is offloaded to NGINX or NGINX Plus, which serves it directly from **/var/django/projects/myapp/static**. Traffic to the application at **/main** is proxied and bridged from HTTP to the uwsgi protocol and passed to the Django app running inside a uWSGI application container.
 

@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 The Policy Converter tool `/opt/app_protect/bin/convert-policy` is used for converting XML formatted ASM and Advanced WAF policies to JSON. The converted JSON policy is based on the NGINX App Protect WAF policy base template and contains the minimal diff to it in JSON declarative policy format.
 
 Elements in the XML policy that are not supported in the NGINX App Protect WAF environment will generate warnings. Note that any configuration that is invalid or irrelevant to the NGINX App Protect WAF environment is removed from the exported declarative policy.

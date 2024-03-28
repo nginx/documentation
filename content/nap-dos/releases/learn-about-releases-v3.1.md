@@ -1,38 +1,14 @@
 ---
-authors: []
-categories:
-- releases
-date: "2021-04-14T13:32:41+00:00"
-description: ""
+description: ''
 docs: DOCS-995
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: Releases
-    weight: 45
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect DoS Release 3.1
 toc: true
-versions:
-- "3.1"
 weight: 140
 ---
 
-Here you can find the release information for NGINX App Protect DoS v3.1. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications. 
+Here you can find the release information for NGINX App Protect DoS v3.1. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
 
 ## Release 3.1
 
@@ -100,7 +76,7 @@ This disallowed using NGINX App protect DoS for Denial of Service (DoS) protecti
     }
     ```
 
-- Misconfiguration of `app_protect_dos_monitor` potentially can cause a false attack declaration. 
+- Misconfiguration of `app_protect_dos_monitor` potentially can cause a false attack declaration.
 Port configuration should correspond to the port the server listens to.
 
     For example:

@@ -1,13 +1,12 @@
 ---
-title: "Install the API Connectivity Stack"
-date: 2023-05-08T12:00:00-07:00
-description: "This article explains how to download and install the products in the [F5 NGINX API Connectivity Stack](https://www.nginx.com/solutions/api-connectivity-stack/)."
-# Assign weights in increments of 100
-weight: 200
+description: This article explains how to download and install the products in the
+  [F5 NGINX API Connectivity Stack](https://www.nginx.com/solutions/api-connectivity-stack/).
+docs: DOCS-1442
+tags:
+- docs
+title: Install the API Connectivity Stack
 toc: true
-tags: [ "docs" ]
-versions: []
-docs: "DOCS-1442"
+weight: 200
 ---
 
 ## Overview
@@ -47,7 +46,7 @@ NGINX Plus can act as an API gateway for monolithic applications and microservic
 
 1.	[Download your credentials from MyF5](https://my.f5.com/), including your NGINX Plus Certificate and public key (`nginx-repo.crt` and `nginx-repo.key`).
 2.	Follow the instructions in the [NGINX Plus installation guide]({{< ref "installing-nginx-plus" >}}) to install it on a [supported operating system]({{< ref "nginx/technical-specs" >}})
-3.	[Install and configure NGINX Agent]({{< ref "install-nginx-agent" >}}) on your NGINX Plus instance. 
+3.	[Install and configure NGINX Agent]({{< ref "install-nginx-agent" >}}) on your NGINX Plus instance.
 
 If you plan to use API Connectivity Manager to manage NGINX Plus as an API Gateway, refer to the instructions about [how to set up an API gateway environment]({{< ref "add-api-gateway" >}}).
 
@@ -59,7 +58,7 @@ NGINX App Protect WAF is a lightweight, platform-agnostic WAF that protects appl
 3.  Follow the instructions in the [Security Monitoring installation guide]({{< ref "set-up-app-protect-instances">}}) to use App Protect WAF with NGINX Management Suite.
 
 ### (Optional) Install NGINX App Protect DoS
-NGINX App Protect DoS provides comprehensive protection against Layer 7 denial-of-service attacks on your apps and APIs. 
+NGINX App Protect DoS provides comprehensive protection against Layer 7 denial-of-service attacks on your apps and APIs.
 
 {{<note>}}The Instance Manager and Security Monitoring modules do not support App Protect DoS.{{</note>}}
 

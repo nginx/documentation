@@ -1,15 +1,16 @@
 ---
-title: "CORS"
-draft: false
-description: "Learn how to use NGINX Management Suite API Connectivity Manager to handle Cross-Origin Resource Sharing for your backend services."
-# Assign weights in increments of 100
-weight: 500
+description: Learn how to use NGINX Management Suite API Connectivity Manager to handle
+  Cross-Origin Resource Sharing for your backend services.
+docs: DOCS-1130
+doctypes:
+- API Connectivity Manager
+- api management
+- reference
+tags:
+- docs
+title: CORS
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1130"
-doctypes: ["API Connectivity Manager", "api management", "reference"]
-journeys: ["using"]
-personas: ["API owners"]
+weight: 500
 ---
 
 ## Overview

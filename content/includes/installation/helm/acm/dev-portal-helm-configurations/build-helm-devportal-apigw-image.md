@@ -80,7 +80,7 @@ Create a Dockerfile similar to the following example:
         lsb-release \
     && rm -rf /root/.gnupg \
     && rm -rf /etc/apt/sources.list.d/nginx-plus.list /etc/apt/sources.list.d/nms.list /etc/apt/apt.conf.d/90pkgs-nginx \
-    && rm -rf /var/lib/apt/lists/* 
+    && rm -rf /var/lib/apt/lists/*
 
     COPY /entrypoint.sh /
 

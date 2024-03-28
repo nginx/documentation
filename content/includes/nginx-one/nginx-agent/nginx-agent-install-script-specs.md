@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1406"
+docs: DOCS-1406
 ---
 
 {{<bootstrap-table "table table-striped table-bordered">}}

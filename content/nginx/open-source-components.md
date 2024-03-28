@@ -9,7 +9,6 @@ toc: true
 weight: 500
 ---
 
-
 Open source components included in the NGINX Plus (package name is `nginx-plus`) are:
 
 
@@ -18,7 +17,7 @@ Open source components included in the NGINX Plus (package name is `nginx-plus`)
   Homepage: <https://nginx.org>
 
   Copyright © 2002-2021 Igor Sysoev
-  
+
   Copyright © 2011-2023 NGINX, Inc.
 
   All rights reserved.
@@ -78,7 +77,7 @@ OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
   - `@babel-core`, Babel compiler core (7.23.2)
-    
+
     Homepage: <https://github.com/babel/babel/tree/master/packages/babel-core>
 
     Copyright © 2014-present Sebastian McKenzie and other contributors

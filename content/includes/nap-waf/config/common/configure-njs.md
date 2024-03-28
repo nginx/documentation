@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 ```nginx
 load_module modules/ngx_http_app_protect_module.so;
 load_module modules/ngx_http_js_module.so;

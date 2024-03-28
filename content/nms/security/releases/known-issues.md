@@ -1,11 +1,13 @@
 ---
-title: "Known Issues"
-description: "This document lists and describes the known issues and possible workarounds in the NGINX Management Suite Security Monitoring module. Fixed issues are removed after **45 days**."
-weight: 200
+description: This document lists and describes the known issues and possible workarounds
+  in the NGINX Management Suite Security Monitoring module. Fixed issues are removed
+  after **45 days**.
+docs: DOCS-1077
+tags:
+- docs
+title: Known Issues
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1077"
-categories: ["known issues"]
+weight: 200
 ---
 
 {{<rn-styles>}}
@@ -36,7 +38,6 @@ Reload the page in the browser to resolve this issue.
 
 ---
 
-
 ## 1.5.0
 June 12, 2023
 
@@ -53,7 +54,6 @@ June 12, 2023
 Using an empty string as a key or value results in an empty dataset.
 
 ---
-
 
 ## 1.0.0
 November 17, 2022

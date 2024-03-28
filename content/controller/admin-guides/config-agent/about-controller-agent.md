@@ -1,25 +1,8 @@
 ---
-authors: []
-categories:
-- installation
-date: "2020-10-26T15:32:41-06:00"
 description: Learn about the NGINX Controller Agent.
 docs: DOCS-508
 doctypes:
 - concept
-draft: false
-journeys:
-- researching
-- getting started
-menu:
-  docs:
-    parent: Configure NGINX Controller Agent
-    weight: 60
-personas:
-- devops
-- support
-roles:
-- admin
 tags:
 - docs
 title: Get to Know the NGINX Controller Agent

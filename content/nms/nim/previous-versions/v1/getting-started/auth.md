@@ -1,21 +1,13 @@
 ---
-title: "Authentication"
-date: 2020-12-27T20:56:49-07:00
-draft: false
-description: "An NGINX Instance Manager authentication document."
-# Assign weights in increments of 100
-weight: 500
+description: An NGINX Instance Manager authentication document.
+docs: DOCS-624
+doctypes:
+- tutorial
+tags:
+- docs
+title: Authentication
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "security"]
-doctypes: ["tutorial"]
-journeys: ["getting started", "using"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-docs: "DOCS-624"
+weight: 500
 ---
 
 {{< include "nim/previous-versions/old-version-warning.md" >}}
@@ -145,41 +137,41 @@ NGINX Plus uses a status page. The following example shows a default configurati
 {{<fa "download">}} {{<link "nim/previous-versions/static/previous-versions/v1/examples/nginx-manager/status-api.conf" "status-api.conf">}}
 
 ```nginx
-# This sample NGINX Plus configuration enables the NGINX Plus API, for live 
-# activity monitoring and the built-in dashboard, dynamic configuration of 
-# upstream groups, and key-value stores. Keep in mind that any features 
-# added to the API in future NGINX Plus releases are enabled 
+# This sample NGINX Plus configuration enables the NGINX Plus API, for live
+# activity monitoring and the built-in dashboard, dynamic configuration of
+# upstream groups, and key-value stores. Keep in mind that any features
+# added to the API in future NGINX Plus releases are enabled
 # automatically by this file.
 # Created in May 2018 by NGINX, Inc. for NGINX Plus R14 and later.
 
-# Documentation: 
+# Documentation:
 # https://docs.nginx.com/nginx/admin-guide/monitoring/live-activity-monitoring/
 # https://www.nginx.com/blog/live-activity-monitoring-nginx-plus-3-simple-steps
 
-# To conform with the conventional configuration scheme, place this file in 
-# the /etc/nginx/conf.d directory and add an 'include' directive that 
-# references it in the main configuration file, /etc/nginx/nginx.conf, 
+# To conform with the conventional configuration scheme, place this file in
+# the /etc/nginx/conf.d directory and add an 'include' directive that
+# references it in the main configuration file, /etc/nginx/nginx.conf,
 # either by name or with a wildcard expression. Then confirm and reload
 # the configuration, for example with this command:
 #
 #     nginx -t && nginx -s reload
 
-# Additional directives are required in other parts of the 
+# Additional directives are required in other parts of the
 # configuration:
 #
-# To collect metrics for an HTTP or TCP/UDP virtual server, you must 
-# include the 'status_zone' directive in its 'server' block. See: 
+# To collect metrics for an HTTP or TCP/UDP virtual server, you must
+# include the 'status_zone' directive in its 'server' block. See:
 # http://nginx.org/r/status_zone
 #
-# Similarly, to collect metrics for an upstream server group, you 
+# Similarly, to collect metrics for an upstream server group, you
 # must include the 'zone' directive in the 'upstream' block. See:
 # http://nginx.org/r/zone
 #
 # For more information and instructions, see:
 # https://docs.nginx.com/nginx/admin-guide/monitoring/live-activity-monitoring#status_data
 
-# It is recommended to restrict access to the NGINX Plus API so 
-# that only authorized users can view metrics and configuration, change 
+# It is recommended to restrict access to the NGINX Plus API so
+# that only authorized users can view metrics and configuration, change
 # configuration, or both. Here are a few options:
 #
 # (1) Configure your firewall to limit access to port 8080.
@@ -187,22 +179,22 @@ NGINX Plus uses a status page. The following example shows a default configurati
 # (2) Use SSL/TLS client certificates. See:
 #    https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/
 #
-# (3) Enable HTTP Basic authentication (RFC 7617) by uncommenting the 
-#    'auth_basic*' directives in the 'server' block below. You can add users 
-#    with an htpasswd generator, which is readily available, or reuse an 
-#    existing htpasswd file (from an Apache HTTP Server, for example). See: 
+# (3) Enable HTTP Basic authentication (RFC 7617) by uncommenting the
+#    'auth_basic*' directives in the 'server' block below. You can add users
+#    with an htpasswd generator, which is readily available, or reuse an
+#    existing htpasswd file (from an Apache HTTP Server, for example). See:
 #    http://nginx.org/en/docs/http/ngx_http_auth_basic_module.html
 #
-# (4) Enable access from a defined network and disable it from all others, 
+# (4) Enable access from a defined network and disable it from all others,
 #    by uncommenting the 'allow' and 'deny' directives in the 'server' block
-#    below and specifying the appropriate network ranges. See: 
+#    below and specifying the appropriate network ranges. See:
 #    http://nginx.org/en/docs/http/ngx_http_access_module.html
 #
 # You can create further restrictions on write operations, to distinguish
 # between users with read permission and those who can change configuration.
-# Uncomment the sample 'limit_except' directive in the 'location api' 
-# block below. In addition to the HTTP Basic authentication shown, other 
-# authentication schemes are supported. See: 
+# Uncomment the sample 'limit_except' directive in the 'location api'
+# block below. In addition to the HTTP Basic authentication shown, other
+# authentication schemes are supported. See:
 # http://nginx.org/r/limit_except
 
 server {
@@ -210,7 +202,7 @@ server {
     listen 8080;
 
     access_log off; # Don't log access here (test env)
-    
+
     # Uncomment to use HTTP Basic authentication; see (3) above
     #auth_basic "NGINX Plus API";
     #auth_basic_user_file /etc/nginx/users;
@@ -219,7 +211,7 @@ server {
     #allow 10.0.0.0/8;
     #deny all;
 
-    # Conventional location for accessing the NGINX Plus API 
+    # Conventional location for accessing the NGINX Plus API
     location /api/ {
         # Enable in read-write mode
         api write=on;
@@ -234,7 +226,7 @@ server {
     location /nginx_status {
         stub_status;
     }
-    
+
     # Conventional location of the NGINX Plus dashboard
     location = /dashboard.html {
         root /usr/share/nginx/html;
@@ -337,7 +329,7 @@ server {
     ssl_protocols   TLSv1.2 TLSv1.3;
     ssl_ciphers EECDH+CHACHA20:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;
     ssl_prefer_server_ciphers   off;
-    
+
     location / {
         proxy_pass http://nginx-manager_servers;
         health_check uri=/swagger-ui/;
@@ -393,7 +385,7 @@ server {
     ssl_protocols   TLSv1.2 TLSv1.3;
     ssl_ciphers EECDH+CHACHA20:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;
     ssl_prefer_server_ciphers   off;
-    
+
     location / {
         proxy_pass http://nginx-manager_servers;
         health_check uri=/swagger-ui/;
@@ -457,7 +449,7 @@ server {
     server_name nginx-manager.example.com;
 
     # Optional log locations
-    # error_log /var/log/nginx/nginx-manager-jwt-error.log debug; # Reduce severity level as required   
+    # error_log /var/log/nginx/nginx-manager-jwt-error.log debug; # Reduce severity level as required
 
     # SSL certificates must be valid for the FQDN and placed in the correct directories
     ssl_certificate             /etc/ssl/nginx-manager/nginx-manager.crt;
@@ -471,7 +463,7 @@ server {
     ssl_protocols   TLSv1.2 TLSv1.3;
     ssl_ciphers EECDH+CHACHA20:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;
     ssl_prefer_server_ciphers   off;
-    
+
     # Could change to /api for multiple methods of auth
     location / {
         # JWT validation
@@ -532,7 +524,7 @@ Hints:
 # Include the nginx-manager-upstreams.conf for the proxy_pass to work
 # Use files from <https://github.com/nginxinc/nginx-openid-connect> to complete
 # Ensure you have permissions set in the directories
-# Ensure you have included load_module modules/ngx_http_js_module.so; in nginx.conf 
+# Ensure you have included load_module modules/ngx_http_js_module.so; in nginx.conf
 
 log_format main_jwt '$remote_addr - $jwt_claim_sub [$time_local] "$request" $status '
                     '$body_bytes_sent "$http_referrer" "$http_user_agent" "$http_x_forwarded_for"';
@@ -628,7 +620,7 @@ server {
     server_name nginx-manager.example.com;
 
     # Optional log locations
-    # error_log /var/log/nginx/nginx-manager-jwt-error.log debug; # Reduce severity level as required   
+    # error_log /var/log/nginx/nginx-manager-jwt-error.log debug; # Reduce severity level as required
 
     # SSL certificates must be valid for the FQDN and placed in the correct directories
     ssl_certificate             /etc/ssl/nginx-manager/nginx-manager.crt;
@@ -642,7 +634,7 @@ server {
     ssl_protocols   TLSv1.2 TLSv1.3;
     ssl_ciphers EECDH+CHACHA20:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;
     ssl_prefer_server_ciphers   off;
-    
+
     # Could change to /api for multiple methods of auth
     location / {
         # JWT validation

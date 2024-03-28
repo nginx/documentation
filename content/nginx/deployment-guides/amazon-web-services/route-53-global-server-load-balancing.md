@@ -9,7 +9,6 @@ toc: true
 weight: 300
 ---
 
-
 This deployment guide explains how to configure global server load balancing (GSLB) of traffic for web domains hosted in Amazon [Elastic Compute Cloud](https://aws.amazon.com/ec2/) (EC2). For high availability and improved performance, you set up multiple backend servers (web servers, application servers, or both) for a domain in two or more AWS regions. Within each region, NGINX Plus load balances traffic across the backend servers.
 
 The AWS Domain Name System (DNS) service, [Amazon Route 53](https://aws.amazon.com/route53/), performs global server load balancing by responding to a DNS query from a client with the DNS record for the region that is closest to the client and hosts the domain. For best performance and predictable failover between regions, "closeness" is measured in terms of network latency rather than the actual geographic location of the client.
@@ -37,7 +36,7 @@ The setup for global server load balancing (GSLB) in this guide combines Amazon 
 
 **Note:** [Global server load balancing](https://www.nginx.com/resources/glossary/global-server-load-balancing/) is also sometimes called _global load balancing_ (GLB). The terms are used interchangeably in this guide.
 
-<img src="https://www.nginx.com/wp-content/uploads/2019/05/aws-route-53_topology.png" alt="Diagram showing a topology for global server load balancing (GSLB). Eight backend servers, four in each of two regions, host the content for a domain. Two NGINX Plus load balancers in each region route traffic to the backend servers. For each client requesting DNS information for the domain, Amazon Route 53 provides the DNS record for the region closest to the client." style="border:2px solid #666666; padding:2px; margin:2px;" /> 
+<img src="https://www.nginx.com/wp-content/uploads/2019/05/aws-route-53_topology.png" alt="Diagram showing a topology for global server load balancing (GSLB). Eight backend servers, four in each of two regions, host the content for a domain. Two NGINX Plus load balancers in each region route traffic to the backend servers. For each client requesting DNS information for the domain, Amazon Route 53 provides the DNS record for the region closest to the client." style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 Route 53 is a Domain Name System (DNS) service that performs global server load balancing by routing each request to the AWS region closest to the requester's location. This guide uses two regions: <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West (Oregon)</span> and <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US East (N. Virginia)</span>.
 
@@ -84,7 +83,7 @@ Create a _hosted zone_, which basically involves designating a domain name to be
 
 3. Depending on your history working with Route 53 instances, you might see the **Route 53 Dashboard**. Navigate to the **Registered domains** tab, shown here:
 
-    <img src="https://cdn-1.wp.nginx.com/wp-content/uploads/2016/10/aws-route53-registered-domains-tab.png" alt="Screenshot showing the Route 53 Registered domains tab during configuration of NGINX GSLB (global server load balancing)" style="border:2px solid #666666; padding:2px; margin:2px;" /> 
+    <img src="https://cdn-1.wp.nginx.com/wp-content/uploads/2016/10/aws-route53-registered-domains-tab.png" alt="Screenshot showing the Route 53 Registered domains tab during configuration of NGINX GSLB (global server load balancing)" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
     If you see the Route 53 home page instead, access the **Registered domains** tab by clicking the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Get started now </span> button under <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Domain registration</span>.
 
@@ -140,7 +139,7 @@ Create records sets for your domain:
 
     When you complete all fields, the tab looks like this:
 
-    <img src="https://cdn-1.wp.nginx.com/wp-content/uploads/2016/10/aws-route53-create-record-set-completed.png" alt="Screenshot showing a completed Route 53 record set during configuration of global server load balancing (GSLB) with NGINX Plus" style="border:2px solid #666666; padding:2px; margin:2px;" /> 
+    <img src="https://cdn-1.wp.nginx.com/wp-content/uploads/2016/10/aws-route53-create-record-set-completed.png" alt="Screenshot showing a completed Route 53 record set during configuration of global server load balancing (GSLB) with NGINX Plus" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 6. Click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create </span> button.
 
@@ -180,7 +179,7 @@ We create health checks both for each NGINX Plus load balancer individually and
    - **Port** – The port advertised to clients for your domain or web service (the default is <span style="color:#666666; font-weight:bolder;">80</span>).
 
    <img src="https://cdn-1.wp.nginx.com/wp-content/uploads/2016/10/aws-route53-configure-health-check.png" alt="Screenshot of Amazon Route 53 interface for configuring health checks, during configuration of AWS global load balancing (GLB) with NGINX Plus" style="border:2px solid #666666; padding:2px; margin:2px;" />
-    
+
 3. On the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Get notified when health check fails</span> screen that opens, set the **Create alarm** radio button to **Yes** or **No** as appropriate, then click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create health check </span> button.
 
    <img src="https://cdn-1.wp.nginx.com/wp-content/uploads/2016/10/aws-route53-get-notified-health-check.png" alt="Screenshot of Route 53 configuration screen for enabling notifications of failed health checks, during configuration of Route 53 global load balancing (GLB) with NGINX Plus" style="border:2px solid #666666; padding:2px; margin:2px;" />
@@ -257,12 +256,12 @@ These instructions assume that you have configured NGINX Plus on two EC2 instan
        server <public DNS name of Backend 2>; # Backend 2
        zone backend-servers 64k;
    }
-   
+
    server {
        location / {
            proxy_pass http://backend-servers;
        }
-       
+
        location @healthcheck {
            proxy_pass http://backend-servers;
            proxy_connect_timeout 1s;
@@ -288,23 +287,23 @@ These instructions assume that you have configured NGINX Plus on two EC2 instan
 <span id="appendix"></span>
 ## Appendix
 
-The instructions in this Appendix explain how to create EC2 instances with the names used in this guide, and then install and configure NGINX Open Source and NGINX Plus on them: 
+The instructions in this Appendix explain how to create EC2 instances with the names used in this guide, and then install and configure NGINX Open Source and NGINX Plus on them:
 
-- [Creating EC2 Instances and Installing the NGINX Software](#create-instance-install-nginx) 
+- [Creating EC2 Instances and Installing the NGINX Software](#create-instance-install-nginx)
 - [Configuring Elastic IP Addresses](#elastic-ip)
-- [Configuring NGINX Open Source on the Backend Servers](#configure-backend-servers)  
-- [Configuring NGINX Plus on the Load Balancers](#configure-load-balancers)  
+- [Configuring NGINX Open Source on the Backend Servers](#configure-backend-servers)
+- [Configuring NGINX Plus on the Load Balancers](#configure-load-balancers)
 
 <span id="create-instance-install-nginx"></span>
 ### Creating EC2 Instances and Installing the NGINX Software
 
-The deployment in this guide uses eight EC2 instances, four in each of two AWS regions. In each region, two instances run NGINX Plus to load balance traffic to the backend (NGINX Open Source) web servers running on the other two instances. 
+The deployment in this guide uses eight EC2 instances, four in each of two AWS regions. In each region, two instances run NGINX Plus to load balance traffic to the backend (NGINX Open Source) web servers running on the other two instances.
 
 Step‑by‑step instructions for creating EC2 instances and installing NGINX software are provided in our deployment guide, [Creating Amazon EC2 Instances for NGINX Open Source and NGINX Plus]({{< relref "ec2-instances-for-nginx.md" >}}).
 
 **Note:** When installing NGINX Open Source or NGINX Plus, you connect to each instance over SSH. To save time, leave the SSH connection to each instance open after installing the software, for reuse when you configure it with the instructions in the sections below.
 
-Assign the following names to the instances, and then install the indicated NGINX software. 
+Assign the following names to the instances, and then install the indicated NGINX software.
 
 - In the first region, which is <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West (Oregon)</span> in this guide:
 
@@ -409,7 +408,7 @@ Perform these steps on all four backend servers: <span style="color:#666666; fon
    ```
 
    Directive documentation: [root](https://nginx.org/en/docs/http/ngx_http_core_module.html#root), [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server)
-   
+
 7. Verify the validity of the NGINX configuration and load it.
 
    ```shell
@@ -420,7 +419,7 @@ Perform these steps on all four backend servers: <span style="color:#666666; fon
 <span id="configure-load-balancers"></span>
 ### Configuring NGINX Plus on the Load Balancers
 
-Perform these steps on all four backend servers: <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 1</span>, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 2</span>, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US East LB 1</span>, and <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 2</span>. 
+Perform these steps on all four backend servers: <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 1</span>, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 2</span>, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US East LB 1</span>, and <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 2</span>.
 
 **Note:** Some commands require `root` privilege. If appropriate for your environment, prefix commands with the `sudo` command.
 
@@ -458,7 +457,7 @@ Perform these steps on all four backend servers: <span style="color:#666666; fon
    ```
 
    Directive documentation: [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location), [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass), [server virtual](https://nginx.org/en/docs/http/ngx_http_core_module.html#server), [server upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server), [upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream)
-   
+
 5. Verify the validity of the NGINX configuration and load it.
 
    ```shell
@@ -474,7 +473,7 @@ Return to main instructions, [Configuring Global Server Load Balancing](#gslb)
 
 ### Revision History
 
-- Version 3 (April 2018) – Reorganization of Appendix 
+- Version 3 (April 2018) – Reorganization of Appendix
 - Version 2 (January 2017) – Clarified information about root permissions; miscellaneous fixes (NGINX Plus Release 11)
 - Version 1 (October 2016) – Initial version (NGINX Plus Release 10)
 

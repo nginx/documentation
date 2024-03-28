@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 A new directive `app_protect_custom_log_attribute` will be added to the `nginx.conf` file. You can set this directive at all scopes: http, server and location. The setting at the location scope overrides the setting in the server and/or http scopes and the server scope overrides the http scope. The `app_protect_custom_log_attribute` directive syntax will consist of a **name/value** or **key/value** pair i.e. "app_protect_custom_log_attribute <name> <value>". 
 
 Example Configuration:

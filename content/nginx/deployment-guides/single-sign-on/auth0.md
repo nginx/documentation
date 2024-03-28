@@ -1,5 +1,4 @@
 ---
-date: "2022-04-29T14:31:21-06:00"
 description: Learn how to enable single sign-on (SSO) with [Auth0](https://auth0.com/)
   for applications proxied by NGINX Plus.
 docs: DOCS-884
@@ -27,9 +26,9 @@ To complete the steps in this guide, you need the following:
 
 - An Auth0 tenant with administrator privileges.
 - [NGINX Plus](https://www.nginx.com/products/nginx/) with a valid subscription.
-- The [NGINX JavaScript module](https://www.nginx.com/products/nginx/modules/nginx-javascript/) (`njs`) -- the `njs` module handles the interaction between NGINX Plus and Auth0. 
+- The [NGINX JavaScript module](https://www.nginx.com/products/nginx/modules/nginx-javascript/) (`njs`) -- the `njs` module handles the interaction between NGINX Plus and Auth0.
 
-## Install NGINX Plus and the NJS Module {#install-nginx-plus-njs}
+## Install NGINX Plus and the njs Module {#install-nginx-plus-njs}
 
 1. If you do not already have NGINX Plus installed, follow the steps in the [NGINX Plus Admin Guide](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/) to do so.
 2. Install the NGINX JavaScript module by following the steps in the [`njs` installation guide](https://nginx.org/en/docs/njs/install.html).
@@ -51,23 +50,23 @@ Take the steps in this section to create a new application for NGINX Plus.
 1. Select **Applications > Applications** from the sidebar menu.
 1. On the **Applications** page, select the **Create Application** button.
 1. In the **Create application** window, provide the information listed below and then select **Create**.
-    
-    - **Name**: A name for the application, for example "nginx-plus-app". 
-    - **Application Type**: **Regular Web Applications** 
-     
+
+    - **Name**: A name for the application, for example "nginx-plus-app".
+    - **Application Type**: **Regular Web Applications**
+
     {{< img src="/img/sso/auth0/sso-auth0-create-app.png" alt="image showing the Create application window in the Auth0 dashboard" >}}
 
 ### Set up the Web Application {#web-app-setup}
 
 In this section, you'll set up a web application that follows the Auth0 [Authorization Code Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow).
 
-1. On the **Application** page in the [Auth0 dashboard](https://manage.auth0.com/), select your web application. 
-1. Select the **Settings** tab for your application. 
+1. On the **Application** page in the [Auth0 dashboard](https://manage.auth0.com/), select your web application.
+1. Select the **Settings** tab for your application.
 1. Make note of the Client ID and Client Secret displayed in the **Basic Information** section.
 
     {{< img src="/img/sso/auth0/sso-auth0-app.png" alt="image showing the basic information section of the web application settings in the Auth0 dashboard" >}}
 
-1. In the **Application URIs** section, provide  the URI of the NGINX Plus instance in the **Allowed Callback URLs** field. 
+1. In the **Application URIs** section, provide  the URI of the NGINX Plus instance in the **Allowed Callback URLs** field.
 
     - The URL must include the port number and end in **/_codexch**. In our example, we used the URL `http://nginx-plus-app:8010/_codexch`.
     - The port is always required, even if you use the default port for HTTP (`80`) or HTTPS (`443`).
@@ -75,16 +74,16 @@ In this section, you'll set up a web application that follows the Auth0 [Authori
 
     {{< img src="/img/sso/auth0/sso-auth0-app-settings.png" alt="image showing the Application URIs settings in the Auth0 dashboard" >}}
 
-1. In the **Advanced Settings** section, select the **Endpoints** tab. 
+1. In the **Advanced Settings** section, select the **Endpoints** tab.
 1. Make note of the **OpenID Configuration** URL.
-   
+
    {{< img src="/img/sso/auth0/sso-auth0-app-advanced-settings.png" alt="image showing the Advanced Application Settings section of the Auth0 dashboard" >}}
 
 1. Select **Save Changes**.
 
 ### Set up Authentication {#authn-setup}
 
-{{< note >}}For the purposes of this guide, we will add a new Auth0 user database and user account to use for testing. 
+{{< note >}}For the purposes of this guide, we will add a new Auth0 user database and user account to use for testing.
 
 You can set up authentication using any of the available [Auth0 identity providers](https://auth0.com/docs/authenticate/identity-providers). {{< /note >}}
 
@@ -94,14 +93,14 @@ To set up a new user database and add a user account to it, take the steps below
 1. Select the **Create DB Connection** button.
 1. Provide a **Name** for the database connection, then select **Create**.
 1. On the **Database** page, select the **Applications** tab. Then, select the toggle button next to the [application you created earlier](#create-a-new-auth0-application).
-    
+
     {{< img src="/img/sso/auth0/sso-auth0-db-app.png" alt="image showing the Applications settings for an OIDC Authentication database in the Auth0 dashboard" >}}
 
 1. In the sidebar menu, select **User Management > Users**.
 1. On the **Users** page, select the **Create User** button.
 1. In the **Create user** window, provide the following information, then select **Create**.
-    - **Email**: user's email 
-    - **Password**: a password for the user account 
+    - **Email**: user's email
+    - **Password**: a password for the user account
     - **Connection**: select your **database** from the list.
 
     {{< img src="/img/sso/auth0/sso-auth0-create-user.png" alt="image showing the Create User settings window in the Auth0 dashboard" >}}
@@ -114,13 +113,13 @@ Take the steps in this section to set up NGINX Plus as the OpenID Connect relyi
 
 ### Configure NGINX OpenID Connect {#nginx-plus-oidc-config}
 
-1. Clone the [nginx-openid-connect](https://github.com/nginxinc/nginx-openid-connect) GitHub repository, or download the repo files. 
+1. Clone the [nginx-openid-connect](https://github.com/nginxinc/nginx-openid-connect) GitHub repository, or download the repo files.
 
    ```bash
    git clone https://github.com/nginxinc/nginx-openid-connect.git
    ```
- 
-1. Run the *configure.sh* script, which will update the NGINX configuration files with the values for your Auth0 application. 
+
+1. Run the *configure.sh* script, which will update the NGINX configuration files with the values for your Auth0 application.
 
     For example:
 
@@ -132,10 +131,10 @@ Take the steps in this section to set up NGINX Plus as the OpenID Connect relyi
         https://<example>.us.auth0.com/.well-known/openid-configuration
     ```
 
-1. In the `frontend.conf` file, update the **my_backend** upstream with the address of the application that you want to add OIDC authorization to. 
+1. In the `frontend.conf` file, update the **my_backend** upstream with the address of the application that you want to add OIDC authorization to.
 
     For example:
-    
+
     ```Nginx configuration file
     upstream my_backend {
         zone my_backend 64k;
@@ -167,12 +166,12 @@ Take the steps in this section to set up NGINX Plus as the OpenID Connect relyi
    - `openid_connect_configuration.conf`
 
 1. Reload the NGINX configuration:
-    
+
     ```bash
     sudo nginx -s reload
     ```
 
-## Test the Setup 
+## Test the Setup
 
 1. In a browser, enter the address of your NGINX Plus instance. You should be directed to the Auth0 login page, as shown in the example below.
 

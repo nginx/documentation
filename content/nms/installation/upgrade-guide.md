@@ -1,25 +1,14 @@
 ---
-title: "Upgrade Guide"
-date: 2022-03-30T14:13:00-07:00
-description: "This guide explains how to upgrade the NGINX Management Suite modules, NGINX Agent, and NGINX Plus."
-# Assign weights in increments of 100
-weight: 500
-draft: false
+description: This guide explains how to upgrade the NGINX Management Suite modules,
+  NGINX Agent, and NGINX Plus.
+docs: DOCS-920
+doctypes:
+- tutorial
+tags:
+- docs
+title: Upgrade Guide
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-920"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation"]
-doctypes: ["tutorial"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
-aliases:
-- /nginx-instance-manager/installation/upgrade-guide/
+weight: 500
 ---
 
 ## Overview

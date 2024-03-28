@@ -1,14 +1,17 @@
 ---
-title: "Request Correlation ID"
-draft: false
-description: Learn how to use API Connectivity Manager's Request Correlation ID policy to add a unique identifier to each request entering your app, which you can use to trace end-to-end transactions in a distributed system.
-weight: 1300
+description: Learn how to use API Connectivity Manager's Request Correlation ID policy
+  to add a unique identifier to each request entering your app, which you can use
+  to trace end-to-end transactions in a distributed system.
+docs: DOCS-1120
+doctypes:
+- API Connectivity Manager
+- api management
+- task
+tags:
+- docs
+title: Request Correlation ID
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1120"
-doctypes: ["API Connectivity Manager", "api management", "task"]
-journeys: ["getting started", "using"]
-personas: ["Platform Ops", "Infra Admins"]
+weight: 1300
 ---
 
 ## Overview

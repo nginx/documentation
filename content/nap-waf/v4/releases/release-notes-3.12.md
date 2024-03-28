@@ -1,30 +1,10 @@
 ---
-authors: []
-categories:
-- releases
-date: "2021-04-14T13:32:41+00:00"
-description: ""
+description: ''
 docs: DOCS-943
 doctypes:
 - concept
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect WAF Release 3.12
 toc: true
-versions:
-- "3.12"
 weight: 640
 ---
 
@@ -89,7 +69,7 @@ In NGINX App Protect WAF versions prior to 3.12, the default value for `relax_un
 For more information, refer to article on [relax_unicode_in_json](https://support.f5.com/csp/article/K58055038).
 
 - When upgrading the NGINX App Protect WAF deployments on Virtual Machines (VM), where the upgrade includes a NGINX Plus release upgrade as well, customers might witness some error messages about the upgrade failure. <br>
-Customers are advised to ignore these messages and continue with the [upgrade procedure]({{< relref "/nap-waf/v4/admin-guide/install.md#upgrading-app-protect" >}}) as described in the NGINX App Protect WAF Admin guide. 
+Customers are advised to ignore these messages and continue with the [upgrade procedure]({{< relref "/nap-waf/v4/admin-guide/install.md#upgrading-app-protect" >}}) as described in the NGINX App Protect WAF Admin guide.
 Additional NGINX restart might be required in order to complete the upgrade procedure. The issue is fixed as a part of release 3.12 and upgrades from this release onwards should not encounter this issue.
 
 - Adaptive Violation Rating (AdVR) capability is offered as Tech Preview for Ubuntu 20.04 (Focal Fossa) Operating System (OS). Customers who wish to evaluate this capability are encouraged to contact their local F5 App Protect WAF representative for more details.

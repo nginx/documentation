@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 Here is an example showing partial masking on custom patterns. Custom patterns are specified in `customPatternsList`, number of unmasked leading and trailing characters are defined in `firstCustomCharactersToExpose` and `lastCustomCharactersToExpose` parameters.
 
 ```json

@@ -1,28 +1,14 @@
 ---
-title: "Create and Manage Roles"
-date: 2023-08-03T10:50:23-07:00
-# Change draft status to false to publish doc.
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Learn how to easily create and manage user roles with NGINX Management Suite to tailor access according to your needs."
-# Assign weights in increments of 100
-weight: 200
+description: Learn how to easily create and manage user roles with NGINX Management
+  Suite to tailor access according to your needs.
+docs: DOCS-1272
+doctypes:
+- task
+tags:
+- docs
+title: Create and Manage Roles
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1272"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["task"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
-
+weight: 200
 ---
 
 <style>

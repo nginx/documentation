@@ -1,19 +1,18 @@
 ---
-title: "View Events and Metrics"
-description: "Learn how to view events and metrics in NGINX Management Suite Instance Manager."
-date: 2022-03-18T12:00:00-07:00
-draft: false
-weight: 10
+description: Learn how to view events and metrics in NGINX Management Suite Instance
+  Manager.
+docs: DOCS-847
 doctypes: task
+title: View Events and Metrics
 toc: true
-docs: "DOCS-847"
-categories: ["analytics"]
+weight: 800
 ---
+
 {{< shortversions "2.1.0" "latest" "nimvers" >}}
 
 ## Overview
 
-NGINX Management Suite Instance Manager provides events and metrics data for your instances. You can access this information in the user interface, or by using the REST API. 
+NGINX Management Suite Instance Manager provides events and metrics data for your instances. You can access this information in the user interface, or by using the REST API.
 
 {{<note>}}This topic provides examples for using the REST API to view, sort, and filter Events data that can be applied across the NGINX Management Suite REST API.{{</note>}}
 
@@ -179,7 +178,7 @@ curl -X GET --url "https://<NMS_FQDN>/api/platform/v1/analytics/events?filter=ca
 
 Events can be sorted based on any of their dimensions with the `orderBy` query parameter.
 
-`orderBy` dimensions are separated by commas and can optionally given an order. 
+`orderBy` dimensions are separated by commas and can optionally given an order.
 
 ```bash
 curl -X GET --url "https://<NMS_FQDN>/api/platform/v1/analytics/events?orderBy=timestamp DESC,id" -H "Authorization: Bearer xxxxx.yyyyy.zzzzz"
@@ -260,7 +259,6 @@ curl -X GET --url "https://<NMS_FQDN>/api/platform/v1/analytics/events/7cb91de6-
 
 </details>
 ---
-
 
 ## View Metrics in the User Interface
 

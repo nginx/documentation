@@ -1,24 +1,14 @@
 ---
-title: "Manage WAF Security Policies and Security Log Profiles"
-date: 2022-12-15T21:43:51-07:00
-# Change draft status to false to publish doc.
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO.
-# The description text appears in search results and at the top of the doc.
-description: "Learn how to use NGINX Management Suite Instance Manager to manage NGINX App Protect WAF security policies and security log profiles."
-# Assign weights in increments of 100
-weight: 200
+description: Learn how to use NGINX Management Suite Instance Manager to manage NGINX
+  App Protect WAF security policies and security log profiles.
+docs: DOCS-1105
+doctypes:
+- task
+tags:
+- docs
+title: Manage WAF Security Policies and Security Log Profiles
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1105"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: [ "security" ]
-doctypes: ["task"]
-
+weight: 200
 ---
 
 ## Overview

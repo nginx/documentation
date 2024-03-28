@@ -1,12 +1,13 @@
 ---
-Title: "TLS Policies"
-description: "Learn how to use NGINX Management Suite API Connectivity Manager to secure communications by applying TLS policies."
-weight: 1400
+description: Learn how to use NGINX Management Suite API Connectivity Manager to secure
+  communications by applying TLS policies.
+docs: DOCS-926
+doctypes:
+- task
+tags:
+- docs
 toc: true
-tags: [ "docs" ]
-categories: ["API Connectivity Manager", "Developer Portal", "TLS"]
-doctypes: ["task"]
-docs: "DOCS-926"
+weight: 1400
 ---
 
 {{< shortversions "1.1.0" "latest" "acmvers" >}}

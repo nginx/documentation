@@ -9,7 +9,6 @@ toc: true
 weight: 900
 ---
 
-
 This article explains how to encrypt HTTP traffic between NGINX and a upstream group or a proxied server.
 
 

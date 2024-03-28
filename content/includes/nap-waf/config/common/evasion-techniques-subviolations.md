@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 The following table specifies the Evasion Techniques sub-violation settings. All are supported in NGINX App Protect WAF.
 
 {{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 

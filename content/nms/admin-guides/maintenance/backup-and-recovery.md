@@ -1,19 +1,12 @@
 ---
-title: "Back Up and Recovery"
-date: 2022-12-13T13:17:52-08:00
-# Change draft status to false to publish doc.
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO.
-# The description text appears in search results and at the top of the doc.
-description: "Follow the steps in this guide to back up and restore the essential system files for the NGINX Management Suite platform and modules."
-# Assign weights in increments of 100
-weight: 1
+description: Follow the steps in this guide to back up and restore the essential system
+  files for the NGINX Management Suite platform and modules.
+docs: DOCS-1098
+tags:
+- docs
+title: Back Up and Recovery
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1098"
-
+weight: 1
 ---
 
 ## Overview

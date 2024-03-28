@@ -1,14 +1,13 @@
 ---
-description: Take the steps in this guide to deploy NGINX App Protect WAF as a datapath instance for use with NGINX Controller.
+description: Take the steps in this guide to deploy NGINX App Protect WAF as a datapath
+  instance for use with NGINX Controller.
 docs: DOCS-645
 doctypes:
 - task
-draft: false
 title: Using NGINX App Protect WAF with NGINX Controller
 toc: true
 weight: 500
 ---
-
 
 **Note:** Refer to the [NGINX Controller Technical Specifications]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md" >}}) guide to find out which distributions are supported for use with NGINX Controller and NGINX Controller Agent.
 
@@ -252,7 +251,7 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/v4
       ps -ef | grep bd
       ```
 
-      **Note:**  If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, also verify that `bd_agent` is running: 
+      **Note:**  If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, also verify that `bd_agent` is running:
 
       ```shell
       ps -ef | grep bd_agent
@@ -341,7 +340,7 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/v4
             25+3.760.0-1~buster 500
             25+3.733.0-1~buster 500
             25+3.671.0-1~buster 500
-               
+
       sudo apt-get install  nginx-plus-module-appprotect=25+3.671.0-1~buster
       ```
 
@@ -372,7 +371,7 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/v4
       ps -ef | grep bd
       ```
 
-    **Note:** If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, also verify that the `bd_agent` is running: 
+    **Note:** If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, also verify that the `bd_agent` is running:
 
       ```shell
       ps -ef | grep bd_agent
@@ -459,7 +458,7 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/v4
          25+3.760.0-1~bionic 500
          25+3.733.0-1~bionic 500
          25+3.671.0-1~bionic 500
-      
+
       sudo apt-get install app-protect=25+3.671.0-1~bionic
       ```
 
@@ -490,7 +489,7 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/v4
       ps -ef | grep bd
       ```
 
-      **Note:**  If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, also verify that `bd_agent` is running: 
+      **Note:**  If you plan to use this instance with Controller ADC Agent 3.20.1 or Controller APIM Agent 3.19.2, also verify that `bd_agent` is running:
 
       ```shell
       ps -ef | grep bd_agent
@@ -498,7 +497,7 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/v4
 
 16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/v4/admin-guide/install#ubuntu-1804" >}}).
 
-   **Note:** Ubuntu 20.04 activates **AppArmor** by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment. 
+   **Note:** Ubuntu 20.04 activates **AppArmor** by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
 
 {{%/tab%}}
 
@@ -525,7 +524,7 @@ Otherwise, complete the tasks in the NGINX Controller [Add an NGINX App Protect 
 
 ## Use NGINX App Protect WAF with NGINX Controller
 
-**Note:** When configuring NGINX App Protect WAF as a datapath instance for NGINX Controller, **you should not modify the `nginx.conf` file**. The `nginx.conf` file will be automatically updated when enabling WAF on a Component in NGINX Controller. 
+**Note:** When configuring NGINX App Protect WAF as a datapath instance for NGINX Controller, **you should not modify the `nginx.conf` file**. The `nginx.conf` file will be automatically updated when enabling WAF on a Component in NGINX Controller.
 
 Refer to the following NGINX Controller user guides for further information about how to secure your apps and/or APIs with NGINX Controller:
 

@@ -1,21 +1,13 @@
 ---
-title: "Using Containers"
-date: 2020-12-27T20:56:49-07:00
-draft: false
-description: "Steps on using Instance Manager with Containers"
-# Assign weights in increments of 100
-weight: 400
+description: Steps on using Instance Manager with Containers
+docs: DOCS-642
+doctypes:
+- tutorial
+tags:
+- docs
+title: Using Containers
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["examples"]
-doctypes: ["tutorial"]
-journeys: ["getting started", "using"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-docs: "DOCS-642"
+weight: 400
 ---
 
 {{< include "nim/previous-versions/old-version-warning.md" >}}
@@ -196,7 +188,7 @@ COPY stub-status.conf /etc/nginx/conf.d/stub-status.conf
 COPY systemd.sh /usr/local/bin/cmd.sh
 # Set executable bit on script
 RUN chmod +x /usr/local/bin/cmd.sh
-    
+
 # EXPOSE ports, HTTP 80, HTTPS 443 and, Nginx status page 8080
 EXPOSE 80
 STOPSIGNAL SIGRTMIN+3
@@ -384,7 +376,7 @@ COPY stub-status.conf /etc/nginx/conf.d/stub-status.conf
 COPY systemd.sh /usr/local/bin/cmd.sh
 # Set executable bit on script
 RUN chmod +x /usr/local/bin/cmd.sh
-    
+
 # EXPOSE ports, HTTP 80, HTTPS 443 and, Nginx status page 8080
 EXPOSE 80
 STOPSIGNAL SIGRTMIN+3
@@ -438,13 +430,13 @@ server {
 
 ```bash
 #!/bin/bash
-  
+
 # turn on bash's job control
 set -m
-  
+
 # Start the primary process and put it in the background
 /nginx -g 'daemon off;' &
-  
+
 # Start the helper process
 ./nginx-agent
 

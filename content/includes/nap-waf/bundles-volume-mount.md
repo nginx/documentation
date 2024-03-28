@@ -1,6 +1,7 @@
 ---
 docs: DOCS-1364
 ---
+
 To work with custom policy and logging profile bundles, these files must be accessible to the `waf-config-mgr` container.
 
 1. **Assumption**: Your bundle files are in `/bundles` on the host machine.

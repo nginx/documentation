@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 There are different implementations based on the type of references that are being made.
 
 #### URL Reference

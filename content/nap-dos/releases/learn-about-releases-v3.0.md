@@ -1,38 +1,14 @@
 ---
-authors: []
-categories:
-- releases
-date: "2021-04-14T13:32:41+00:00"
-description: ""
+description: ''
 docs: DOCS-946
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: Releases
-    weight: 45
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect DoS Release 3.0
 toc: true
-versions:
-- "3.0"
 weight: 150
 ---
 
-Here you can find the release information for NGINX App Protect DoS v3.0. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications. 
+Here you can find the release information for NGINX App Protect DoS v3.0. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
 
 ## Release 3.0
 
@@ -42,7 +18,7 @@ September 21, 2022
 
 - L4 mitigation (with eBPF)
 - DoS Live Activity Monitoring with requests mitigation graphs
-- DoS Live Activity Monitoring support for multi-instances NGINX App Protect DoS setups (multi-VMs, multi-replicas) 
+- DoS Live Activity Monitoring support for multi-instances NGINX App Protect DoS setups (multi-VMs, multi-replicas)
 
 ### Supported Packages
 
@@ -98,7 +74,7 @@ Installing NGINX App Protect DoS with L4 (eBPF) mitigation behind L4/L7 load bal
     }
     ```
 
-- Misconfiguration of `app_protect_dos_monitor` potentially can cause a false attack declaration. 
+- Misconfiguration of `app_protect_dos_monitor` potentially can cause a false attack declaration.
 Port configuration should correspond to the port the server listens to.
 
     For example:

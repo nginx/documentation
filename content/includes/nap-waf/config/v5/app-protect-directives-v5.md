@@ -1,6 +1,7 @@
 ---
 docs: DOCS-1368
 ---
+
 This table summarizes the nginx.conf directives for NGINX App Protect WAF functionality.
 
 {{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 

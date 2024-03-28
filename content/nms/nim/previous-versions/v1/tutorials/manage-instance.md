@@ -1,24 +1,13 @@
 ---
-categories:
-- examples
 description: Steps on Adding an NGINX Instance to Instance Manager Management
+docs: DOCS-643
 doctypes:
 - tutorial
 draft: true
-journeys:
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
 tags:
 - docs
 title: Manage an NGINX Instance
 toc: true
-versions: []
-docs: "DOCS-643"
 ---
 
 {{< include "nim/previous-versions/old-version-warning.md" >}}

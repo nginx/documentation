@@ -1,34 +1,9 @@
 ---
-authors: []
-categories:
-- installation
-- infrastructure
-- platform management
-- services
-- security
-- analytics
-date: "2020-10-26T15:32:41-06:00"
 description: These release notes contain information about new features, improvements,
   known issues, and bug fixes in the NGINX Controller Application Delivery Module.
 docs: DOCS-363
 doctypes:
 - reference
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- renewing
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
-- read-only
 tags:
 - docs
 title: Release Notes 3.20.0

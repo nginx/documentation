@@ -1,26 +1,8 @@
 ---
-aliases:
-- /analytics/data-explorer/how-to-use
-- /analytics/data-explorer/how-to-use.md
-authors: []
-categories:
-- analytics
-date: "2021-04-23T15:32:41-06:00"
 description: Use the Data Explorer to examine the metrics that NGINX Controller collects.
 docs: DOCS-529
 doctypes:
 - task
-draft: false
-journeys:
-- using
-personas:
-- devops
-- netops
-- support
-roles:
-- admin
-- user
-- read-only
 tags:
 - docs
 title: How To Use the Data Explorer

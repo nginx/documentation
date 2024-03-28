@@ -1,25 +1,8 @@
 ---
-authors: []
-categories:
-- platform management
-- analytics
 description: Customize the NGINX Controller Agent configuration.
 docs: DOCS-510
 doctypes:
 - tutorial
-draft: false
-journeys:
-- using
-menu:
-  docs:
-    parent: Configure NGINX Controller Agent
-    weight: 70
-personas:
-- devops
-- netops
-- secops
-roles:
-- admin
 tags:
 - docs
 title: Configure the NGINX Controller Agent
@@ -98,7 +81,7 @@ Alternatively, you can define an alias for the host in the NGINX Controller user
 
 {{< /note >}}
 
-## Preserving the UUID across OS upgrades 
+## Preserving the UUID across OS upgrades
 
 The UUID is generated based on a combination of the hostname and underlying OS functions. An upgrade to the OS may lead to a new UUID and cause previously registered agents to be offline.
 

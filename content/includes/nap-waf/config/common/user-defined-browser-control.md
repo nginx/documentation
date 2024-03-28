@@ -1,6 +1,7 @@
 ---
 docs: DOCS-647
 ---
+
 The User-Defined Browser Control feature allows a user to define new custom browsers, and create a list of allowed or disallowed browsers (both user-defined and factory preset browsers) used by the client application. It mainly provides the opportunity:
 1. To detect browsers that are not among the factory supported ones so that they can be verified they are indeed browsers using the anti-automation feature.
 2. To be able to block access to specific browsers types and versions that the application does not support. This is not a security feature but rather a means to provide a smooth user experience.

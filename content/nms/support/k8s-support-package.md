@@ -1,22 +1,15 @@
 ---
-title: "Create a Support Package from a Helm Installation"
-date: 2021-12-21T12:00:00-07:00
-draft: false
-description: "This guide outlines the steps for creating a support package from a Helm installation to aid in troubleshooting error scenarios."
-# Assign weights in increments of 100
-weight: 200
+description: This guide outlines the steps for creating a support package from a Helm
+  installation to aid in troubleshooting error scenarios.
+docs: DOCS-1123
+doctypes:
+- reference
+- task
+tags:
+- docs
+title: Create a Support Package from a Helm Installation
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["support"]
-doctypes: ["reference", "task"]
-journeys: ["using", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-docs: "DOCS-1123"
-aliases:
-- /nginx-instance-manager/support/k8s-support-package/
+weight: 200
 ---
 
 {{< shortversions "2.5.0" "latest" "nimvers" >}}

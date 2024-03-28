@@ -1,15 +1,15 @@
 ---
-doctypes:
-- reference
-- troubleshooting
-title: Help
-description: NGINX Management Suite documentation and help.
-toc: false
-docs: "DOCS-898"
 _build:
   list: never
   publishResources: true
   render: always
+description: NGINX Management Suite documentation and help.
+docs: DOCS-898
+doctypes:
+- reference
+- troubleshooting
+title: Help
+toc: false
 ---
 
 ## Overview

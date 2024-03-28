@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1328"
+docs: DOCS-1328
 ---
 
 The following table lists the parameters to include when adding version control identifiers to a config:

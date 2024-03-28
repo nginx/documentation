@@ -9,7 +9,6 @@ toc: true
 weight: 100
 ---
 
-
 This section describes how to configure an HTTPS server on NGINX and NGINX Plus.
 
 <span id="setup"></span>
@@ -153,7 +152,7 @@ If the server certificate and the bundle have been concatenated in the wrong ord
 SSL_CTX_use_PrivateKey_file(" ... /www.example.com.key") failed
    (SSL: error:0B080074:x509 certificate routines:
     X509_check_private_key:key values mismatch)
-```    
+```
 
 The error happens because NGINX has tried to use the private key with the bundle’s first certificate instead of the server certificate.
 
@@ -307,7 +306,7 @@ therefore SNI is not available
 ## Compatibility Notes
 
 - The SNI support status has been shown by the <span style="white-space: nowrap;">`-V`</span> switch since versions 0.8.21 and 0.7.62.
- 
+
 - The `ssl` parameter to the [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive has been supported since version 0.7.14. Prior to version 0.8.21 it could only be specified along with the `default` parameter.
 
 - SNI has been supported since version 0.5.23.
