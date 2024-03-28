@@ -156,6 +156,6 @@ To preview, generate, and submit a config from a template:
 
 - **[Understand Config Templates]({{< relref "nms/nim/about/templates/config-templates.md" >}})**: Learn about the config template types, targets for publication, and the template submission process.
   
-- **[Template Resource Files]({{< relref "nms/nim/about/templates/template-artifacts.md" >}})**: Learn about template resource files, including config template files, JSON schemas, and auxiliary files.
+- **[Template Resource Files]({{< relref "nms/nim/about/templates/template-resources.md" >}})**: Learn about template resource files, including config template files, JSON schemas, and auxiliary files.
   
 - **[JSON Schemas for Template Inputs]({{< relref "nms/nim/about/templates/json-schema-reference.md" >}})**: JSON schemas for the dynamic web form builder, used for template input and validation.

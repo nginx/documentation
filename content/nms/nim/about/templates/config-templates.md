@@ -49,7 +49,7 @@ Configuration templates include the following components:
 
 - **Auxiliary files**: Additional files required for configuration, such as JavaScript for added functionality, security certificates, or documentation (README.md). These files support the main configuration and provide necessary context or capabilities.
 
-To learn more about the resources mentioned, refer to the [Template Resource Files]({{< relref "nms/nim/about/templates/template-artifacts.md" >}}) topic.
+To learn more about the resources mentioned, refer to the [Template Resource Files]({{< relref "nms/nim/about/templates/template-resources.md" >}}) topic.
 
 ## Target
 
@@ -77,8 +77,6 @@ Key aspects of template submission include:
 
 ## Additional Resources
 
-- **[Template Resource Files]({{< relref "nms/nim/about/templates/template-artifacts.md" >}})**: Learn about template resource files, including config template files, JSON schemas, and auxiliary files.
-  
 - **[JSON Schemas for Template Inputs]({{< relref "nms/nim/about/templates/json-schema-reference.md" >}})**: JSON schemas for the dynamic web form builder, used for template input and validation.
 
 - **[Manage NGINX Configs with Config Templates]({{< relref "nms/nim/how-to/nginx/manage-nginx-configs-with-templates.md" >}})**: Learn how to create and import config templates, as well as generate and deploy NGINX configurations.

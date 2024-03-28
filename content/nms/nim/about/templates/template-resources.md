@@ -37,6 +37,7 @@ This guide covers the following resource files for creating templates:
 - **Schema files** (`*.json`), which are JSON schemas specifing the rules for input validation and providing the structure for dynamic web forms.
 - **README.md** files, which document the template's purpose, usage, and capabilities.
 
+If you're creating templates from scratch, the following table lists the acceptable template and schama filenames to use:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Config File            | Applicable&nbsp;Type(s) | Schema File(s)                                       | Purpose                                                                                                              |

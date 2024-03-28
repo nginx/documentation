@@ -196,6 +196,6 @@ In NGINX Instance Manager, we support a specific set of common features from the
 
 - **[Understand Config Templates]({{< relref "nms/nim/about/templates/config-templates.md" >}})**: Learn about the config template types, targets for publication, and the template submission process.
   
-- **[Template Resource Files]({{< relref "nms/nim/about/templates/template-artifacts.md" >}})**: Learn about template resource files, including config template files, JSON schemas, and auxiliary files.
+- **[Template Resource Files]({{< relref "nms/nim/about/templates/template-resources.md" >}})**: Learn about template resource files, including config template files, JSON schemas, and auxiliary files.
   
 - **[Manage NGINX Configs with Config Templates]({{< relref "nms/nim/how-to/nginx/manage-nginx-configs-with-templates.md" >}})**: Learn how to create and import config templates, as well as generate and deploy NGINX configurations.
