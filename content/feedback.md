@@ -1,4 +1,5 @@
 ---
+type: feedback
 _build:
   list: never
   render: always
