@@ -152,6 +152,12 @@ To preview, generate, and submit a config from a template:
 
 ---
 
+## Editing a Template Submission
+
+Steps coming
+
+---
+
 ## Additional Resources
 
 - **[Understand Config Templates]({{< relref "nms/nim/about/templates/config-templates.md" >}})**: Learn about the config template types, targets for publication, and the template submission process.
