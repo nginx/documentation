@@ -156,9 +156,10 @@ To preview, generate, and submit a config from a template:
 ## Editing a Template Submission
 
 {{<call-out "important" "Existing configs will be overwritten" >}}
-When you edit a template submission, it is important to note that the current NGINX configuration, alongside all previous submissions and inputs for your target, will be replaced. This ensures that your NGINX instances reflect the most recent configurations based on your latest template submission.
-
+When you edit a template submission, it is important to note that the current NGINX configuration, alongside all previous template submissions and inputs for your target, will be replaced. This ensures that your NGINX instances reflect the most recent configurations based on your latest template submission.
 {{</call-out>}}
+
+When managing your NGINX configurations, you might find that certain parameters need updating to keep up with changing requirements. Rather than creating a new template submission for every minor adjustment, you have the flexibility to edit the latest template submission. This process allows you to modify the existing inputs to the preferred settings, providing a streamlined approach to configuration management.
 
 To edit a template submission:
 
