@@ -32,17 +32,17 @@ The F5 Global Default Base template simplifies NGINX configuration by abstractin
 
 The default base template comprises several core components, each serving a specific role in the configuration process:
 
-1. **Base Template (`base.tmpl`)**: Establishes fundamental settings like user context, worker processes, and logging. It includes blocks for **main**, **HTTP**, and **stream** configurations and conditionally loads additional modules based on provided inputs.
+1. **Base template (`base.tmpl`)**: Establishes fundamental settings like user context, worker processes, and logging. It includes blocks for **main**, **HTTP**, and **stream** configurations and conditionally loads additional modules based on provided inputs.
 
-2. **HTTP Server Inputs (`http-server.json`)**: Defines parameters for HTTP server block configurations, including server names, facilitating the creation of customized server blocks within the HTTP context.
+2. **HTTP Server inputs (`http-server.json`)**: Defines parameters for HTTP server block configurations, including server names, facilitating the creation of customized server blocks within the HTTP context.
 
-3. **Location Inputs (`location.json`)**: Outlines parameters for configuring location blocks, allowing detailed customization of routing and request handling within server blocks.
+3. **Location inputs (`location.json`)**: Outlines parameters for configuring location blocks, allowing detailed customization of routing and request handling within server blocks.
 
-4. **Stream Upstream Inputs (`stream-upstream.json`)** and **HTTP Upstream Inputs (`http-upstream.json`)**: Provide schemas for upstream configurations in both HTTP and stream contexts, specifying upstream names and enabling dynamic generation of upstream blocks.
+4. **Stream Upstream inputs (`stream-upstream.json`)** and **HTTP Upstream Inputs (`http-upstream.json`)**: Provide schemas for upstream configurations in both HTTP and stream contexts, specifying upstream names and enabling dynamic generation of upstream blocks.
 
 5. **Module Options (`main.json`)**: Offers options for module loading, including conditions to exclude specific modules, ensuring flexibility in module management and error prevention during configuration testing.
 
-6. **Stream Server Inputs (`stream-server.json`)**: Describes parameters for stream server configurations, including UDP settings, ports, and proxy pass details, supporting the generation of stream server blocks tailored to specific requirements.
+6. **Stream Server inputs (`stream-server.json`)**: Describes parameters for stream server configurations, including UDP settings, ports, and proxy pass details, supporting the generation of stream server blocks tailored to specific requirements.
 
 ## Template Customization and Usage
 

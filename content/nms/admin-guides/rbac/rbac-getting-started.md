@@ -96,8 +96,6 @@ API Connectivity Manager comes pre-configured with roles suitable for API Owners
 
 {{<see-also>}}The tutorial [Set Up RBAC for Infra Admins]({{< relref "/nms/acm/tutorials/rbac-infra-admins.md">}}) provides an example of how to configure RBAC for Infrastructure Administrators.{{</see-also>}}
 
----
-
 ## Next Steps {#next-steps}
 
 In the following topics, you'll learn how to add users and set up authentication methods such as basic authentication and OpenID Connect (OIDC). Once you've added users, you can create roles and assign them to individuals or user groups to provide access to specific features.
