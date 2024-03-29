@@ -137,7 +137,7 @@ To preview, generate, and submit a config from a template:
 
 1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Management Suite host, and log in.
 2. Select **Instance Manager** from the LaunchPad.
-3. On the left sidebar, select **Templates > Overview**.
+3. On the left sidebar, select **Templates**.
 4. Locate the desired template on the "Overview" page and select the ellipsis (three dots) in the **Actions** column, then select **Preview and Generate**.
 5. Complete the forms on the **Preview and Generate Config** dialog in sequence, selecting **Next** to move forward:
     - **Choose Publish Options**: Specify where to publish the template by selecting either:
@@ -148,13 +148,30 @@ To preview, generate, and submit a config from a template:
     - **Augments** (Optional): Include any augment templates needed to enhance a base configuration with additional features.
     - **Base and Augment Inputs**: Enter the required configuration inputs for the chosen templates.
     - **Preview Config**: Use the filename dropdown to review the output for each configuration.
-6. After verifying the configurations, select **Publish**. If you've published to an instance or instance group, the template submission will tracked on the **Templates > Template Submissions** page.
+6. After verifying the configurations, select **Publish**. If you've published to an instance or instance group, the template submission will tracked on the **Template Submissions** page.
+7. Once the submission is accepted and confirmed, select **Close and Exit**.
 
 ---
 
 ## Editing a Template Submission
 
-Steps coming
+{{<call-out "important" "Existing configs will be overwritten" >}}
+When you edit a template submission, it is important to note that the current NGINX configuration, alongside all previous submissions and inputs for your target, will be replaced. This ensures that your NGINX instances reflect the most recent configurations based on your latest template submission.
+
+{{</call-out>}}
+
+To edit a template submission:
+
+1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Management Suite host, and log in.
+2. Select **Instance Manager** from the LaunchPad.
+3. On the left sidebar, select **Template Submissions** to view a list of all template submissions.
+4. Locate and select the template submission you want to edit.
+5. Select the tab that corresponds to the type of target for your template submission: **Instances**, **Instance Groups**, or **Staged Configs**.
+6. Find the template target you intend to edit. Select the ellipsis (three dots) in the **Actions** column next to the target, then select **Edit Submission**.
+7. Complete the forms on the **Preview and Generate Config** dialog in sequence, selecting **Next** to move forward. As you proceed, update any existing inputs to the new settings you wish to apply.
+8. When you reach the **View Changes** section, you have the opportunity to compare the previous submission against the new one. Use the **Diff Mode** option to view differences either side-by-side or inline.
+9. After you verify the configurations are correct, select **Publish** to update the template submission with your changes and publish the config.
+10. Once the updated submission is successfully accepted and confirmed, select **Close and Exit** to complete the editing process.
 
 ---
 
