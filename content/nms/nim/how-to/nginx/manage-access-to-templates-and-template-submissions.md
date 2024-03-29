@@ -1,5 +1,5 @@
 ---
-title: "Manage User Access to Templates and Template Submissions"
+title: "RBAC for Templates and Template Submissions"
 date: 2024-03-29T09:35:06-07:00
 # Change draft status to false to publish doc
 draft: false
@@ -23,6 +23,8 @@ personas: ["devops", "netops", "secops", "support"]
 versions: []
 authors: []
 ---
+
+By following the steps in this guide, administrators can set permissions for templates and template submissions using RBAC. This access control includes permissions for creating, reading, updating, and deleting these items, allowing for a secure and orderly management of NGINX configurations.
 
 ## Before You Begin
 
@@ -52,5 +54,4 @@ To complete these steps, you need administrator access.
 6. **Review and Save Changes:**
    - After assigning roles and permissions, select **Save** to apply the changes.
 
-**Conclusion:**
-By following these steps, administrators can control who has access to templates and template submissions in NGINX Instance Manager. This control includes permissions for creating, reading, updating, and deleting these items, allowing for a secure and orderly management of NGINX configurations.
+
