@@ -27,7 +27,7 @@ authors: []
 
 ## Create a Config Template
 
-Config templates in NGINX Instance Manager allow you to predefine and standardize configurations for your NGINX instances. By creating a template, you can streamline the deployment process and ensure consistency across your environments. This guide walks you through creating a new template from scratch or importing an exiting template from an archive.
+Config templates in NGINX Instance Manager allow you to predefine and standardize configurations for your NGINX instances. By creating a template, you can streamline the deployment process and ensure consistency across your environments. This guide walks you through creating a new template from scratch or importing an existing template from an archive, generating and deploying a configuration to a designated target, and modifying an existing template submission.
 
 ### Create a Config Template from Scratch
 
