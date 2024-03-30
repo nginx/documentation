@@ -24,7 +24,7 @@ versions: []
 authors: []
 ---
 
-By following the steps in this guide, administrators can set permissions for templates and template submissions using RBAC. This access control includes permissions for creating, reading, updating, and deleting these items, allowing for a secure and orderly management of NGINX configurations.
+With RBAC, administrators can control who can create, read, update, and delete templates and template submissions. This ensures secure management of NGINX configurations and their deployments.
 
 ## Before You Begin
 
