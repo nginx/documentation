@@ -1,5 +1,5 @@
 ---
-title: "RBAC for Templates and Template Submissions"
+title: "Access Control for Templates and Template Submissions"
 date: 2024-03-29T09:35:06-07:00
 # Change draft status to false to publish doc
 draft: false
@@ -24,7 +24,7 @@ versions: []
 authors: []
 ---
 
-With RBAC, administrators can control who can create, read, update, and delete templates and template submissions. This ensures secure management of NGINX configurations and their deployments.
+With role-based access control (RBAC), administrators can determine who can create, read, update, and delete templates and template submissions. This access control lets you securely manage your NGINX configurations and their deployments.
 
 ## Before You Begin
 
