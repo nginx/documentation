@@ -44,8 +44,12 @@ To complete these steps, you need administrator access.
 3. **Navigate to User Management:**
    - Select **Users** from the left navigation menu to manage individual users or **User Groups** for managing access at a group level.
 
-4. **Manage Permissions for Resource Objects:**
-   - If necessary, [create or edit roles]({{< relref "/nms/admin-guides/rbac/create-roles.md" >}}) to specify access to different resource objects like Templates and Template Submissions. This may involve defining CRUD permissions specific to the needs of managing NGINX configurations.
+4. **Define Access to Templates and Template Submissions:**
+   - To ensure proper management of NGINX configurations, [create or edit roles]({{< relref "/nms/admin-guides/rbac/create-roles.md" >}}) to specify access to Templates and Template Submissions. This may involve defining CRUD permissions specific to the needs of managing NGINX configurations.
+
+   - Restricting access to Templates is essential for overseeing who has the authority to create and modify templates. This responsibility generally falls to individuals in administrative roles who have a comprehensive understanding of NGINX configurations.
+   
+   - Restricting access to Template Submissions limits who can make changes to submitted template inputs. For example, this role could be allocated to application development teams, enabling them to deploy and self-manage their application's settings.
 
 5. **Assign or Modify Roles:**
    - For individual users, select a user from the list and click **Edit User**. For user groups, select a group and click **Edit**.
