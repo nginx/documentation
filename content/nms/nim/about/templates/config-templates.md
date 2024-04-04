@@ -37,7 +37,7 @@ Configuration templates come in two types:
 
 - **Base templates**: A base template is a comprehensive set of instructions used to generate a complete NGINX configuration. It includes all the necessary directives and parameters to create a functional NGINX configuration from scratch. Essentially, it’s the foundational configuration on which your NGINX instance operates.
 
-- **Augment templates**: An augment template modifies or adds to an existing NGINX configuration. It's used to introduce specific functionality, features, or settings without altering the underlying base template. Augment templates allow for customization and enhancement of NGINX configurations by overlaying additional directives onto the base setup.
+- **Augment templates**: Augment templates add functionality or modifications to NGINX configurations, or they can be used to compartmentalize configuration elements (such as location blocks or servers) for RBAC purposes. Augment templates can be combined with a base template or applied to an existing configuration.
 
 ### Template resource files {#template-resources}
 
@@ -65,13 +65,15 @@ There are three types of targets:
 
 ## Template submission
 
-Template submission involves applying a set of configurations (derived from base and/or augment templates) to a target. This action takes the parameters defined in the templates, generates the final NGINX configuration, and deploys it to the specified target. Template submission effectively bridges the gap between configuration design and operational use.
+Template submission involves applying a set of configurations (derived from base and/or augment templates) to a target. This action takes the parameters defined in the templates, generates the final NGINX configuration, and deploys it to the specified target. RBAC plays a pivotal role here, determining who can submit and modify template submissions. Template submission effectively bridges the gap between configuration design and operational use.
 
 Key aspects of template submission include:
 
 - **Snapshots**: Snapshots are created when templates are submitted. Snapshots capture the state of the template and its inputs at the time of submission. This includes all the settings, parameters, and the structure defined in both base and augment templates. By creating a snapshot, NGINX Instance Manager preserves a record of the exact configuration applied to a target at a specific point in time. This is crucial for auditing purposes, rollback scenarios, and understanding the evolution of a server's configuration.
 
 - **Target application**: When submitting a template, it's important to specify the target accurately. The target is the NGINX instance, instance group, or staged config where the generated configuration will be applied. Misidentifying the target can lead to configurations being deployed to unintended environments, potentially causing disruptions.
+
+- **Role-based access control (RBAC)** With RBAC, administrators can limit who can create and modify template submissions based on team roles or individual responsibilities, ensuring only authorized users can change NGINX configurations.
 
 ---
 
