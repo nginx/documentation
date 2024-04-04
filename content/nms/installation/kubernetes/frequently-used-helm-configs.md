@@ -85,7 +85,7 @@ To use NGINX Plus for the API Gateway, take the following steps:
 
 1. Build your own Docker image for NGINX Plus API Gateway by providing your `nginx-repo.crt` and `nginx-repo.key`. Download the certificate (nginx-repo.crt) and key (nginx-repo.key) from the [MyF5 website](https://my.f5.com) and add them to your build context.
 
-    You can use the following example Docker image and the instructions within it. In this example, we use `apigw:<version>` as the base image, obtained when we completed the [Downloaded and extracted the Helm package]({{< relref " /nms/installation/kubernetes/deploy-instance-manager.md#download-helm-package" >}}), which we've extended to use NGINX Plus instead of NGINX OSS.
+    You can use the following example Docker image and the instructions within it. In this example, we use `apigw:<version>` as the base image, obtained when we completed the [Downloaded and extracted the Helm package]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md#download-helm-package" >}}), which we've extended to use NGINX Plus instead of NGINX OSS.
 
     <br>
 
