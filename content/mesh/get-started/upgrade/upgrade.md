@@ -5,7 +5,7 @@ toc: true
 description: "This guide explains how to upgrade NGINX Service Mesh using nginx-meshctl."
 weight: 200
 categories: ["tasks"]
-docs: "DOCS-700"
+docs: "DOCS-1482"
 ---
 
 You can upgrade to the latest mesh version from the version immediately before it (for example, from v1.6.0 to v1.7.0). NGINX Service Mesh doesn't support skipping versions.
