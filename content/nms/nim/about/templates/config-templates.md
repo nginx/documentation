@@ -76,7 +76,7 @@ Key aspects of template submission include:
 
 - **Target application**: When submitting a template, it's important to specify the target accurately. The target is the NGINX instance, instance group, or staged config where the generated configuration will be applied. Misidentifying the target can lead to configurations being deployed to unintended environments, potentially causing disruptions.
 
-- **Role-based access control (RBAC)** With RBAC, administrators can limit who can create and modify template submissions based on team roles or individual responsibilities, ensuring only authorized users can change NGINX configurations.
+- **Role-based access control (RBAC)**: With RBAC, administrators can limit who can create and modify template submissions based on team roles or individual responsibilities, ensuring only authorized users can change NGINX configurations.
 
 ---
 

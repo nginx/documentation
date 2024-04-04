@@ -59,7 +59,7 @@ The F5 Global Default Base template makes managing NGINX configurations easier b
 
 ## Augmenting the F5 global default base template
 
-Using augment templates in NGINX Instance Manager, administrators and developers can customize NGINX configurations beyond the foundational settings of the F5 Global Default Base template. Augment let you add specific functionality, like OIDC authentication, and segment configuration elements like location blocks or server directives. Augment templates can be combined with a base template to build upon it or applied directly to an existing NGINX configuration.
+Using augment templates in NGINX Instance Manager, administrators and developers can customize NGINX configurations beyond the foundational settings of the F5 Global Default Base template. You can use the augment template to add specific features like OIDC authentication, or compartmentalize configuration elements like location and server blocks. Augment templates can be combined with a base template to build upon it or applied directly to an existing NGINX configuration.
 
 ### Understanding augment templates
 
