@@ -1,21 +1,16 @@
+Here's your document with headings adjusted to sentence case:
+
 ---
-title: "F5 Global Default Base Template"
+
+---
+title: "F5 global default base template"
 date: 2024-03-28T14:22:17-07:00
-# Change draft status to false to publish doc
 draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
 description: ""
-# Assign weights in increments of 100
 weight: 110
 toc: true
 tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
 docs: "DOCS-000"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
 categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
 doctypes: ["reference"]
 journeys: ["researching", "getting started", "using", "renewing", "self service"]
@@ -28,77 +23,75 @@ authors: []
 
 The F5 Global Default Base template simplifies NGINX configuration by abstracting complex directives into input-validated parameters, allowing users to quickly generate full NGINX configurations. It incorporates various modular components and injectable templates for augmenting functionality, enabling a versatile foundation for managing complex configurations through a simplified interface.
 
-## Key Components
+## Key components
 
 The default base template comprises several core components, each serving a specific role in the configuration process:
 
 1. **Base template (`base.tmpl`)**: Establishes fundamental settings like user context, worker processes, and logging. It includes blocks for **main**, **HTTP**, and **stream** configurations and conditionally loads additional modules based on provided inputs.
 
-2. **HTTP Server inputs (`http-server.json`)**: Defines parameters for HTTP server block configurations, including server names, facilitating the creation of customized server blocks within the HTTP context.
+2. **HTTP server inputs (`http-server.json`)**: Defines parameters for HTTP server block configurations, including server names, facilitating the creation of customized server blocks within the HTTP context.
 
 3. **Location inputs (`location.json`)**: Outlines parameters for configuring location blocks, allowing detailed customization of routing and request handling within server blocks.
 
-4. **Stream Upstream inputs (`stream-upstream.json`)** and **HTTP Upstream Inputs (`http-upstream.json`)**: Provide schemas for upstream configurations in both HTTP and stream contexts, specifying upstream names and enabling dynamic generation of upstream blocks.
+4. **Stream upstream inputs (`stream-upstream.json`)** and **HTTP upstream inputs (`http-upstream.json`)**: Provide schemas for upstream configurations in both HTTP and stream contexts, specifying upstream names and enabling dynamic generation of upstream blocks.
 
-5. **Module Options (`main.json`)**: Offers options for module loading, including conditions to exclude specific modules, ensuring flexibility in module management and error prevention during configuration testing.
+5. **Module options (`main.json`)**: Offers options for module loading, including conditions to exclude specific modules, ensuring flexibility in module management and error prevention during configuration testing.
 
-6. **Stream Server inputs (`stream-server.json`)**: Describes parameters for stream server configurations, including UDP settings, ports, and proxy pass details, supporting the generation of stream server blocks tailored to specific requirements.
+6. **Stream server inputs (`stream-server.json`)**: Describes parameters for stream server configurations, including UDP settings, ports, and proxy pass details, supporting the generation of stream server blocks tailored to specific requirements.
 
-## Template Customization and Usage
+## Template customization and usage
 
 The template uses JSON schema files to validate the input and provide a user-friendly interface for customizing NGINX configurations. Each schema corresponds to a different configuration aspect, allowing users to define server, location, and upstream settings without editing NGINX config files directly.
 
-### Conditional Module Loading
+### Conditional module loading
 
 A key feature of the template is its ability to conditionally load modules based on user inputs, optimizing the configuration by including only necessary modules. This approach not only streamlines the configuration process but also enhances the performance and security of NGINX instances.
 
-### Dynamic Configuration Generation
+### Dynamic configuration generation
 
 The template dynamically generates configuration blocks for HTTP and stream contexts, incorporating server blocks, location directives, upstream configurations, and proxy pass settings based on the provided inputs. This modular and dynamic approach facilitates the rapid deployment of customized NGINX configurations, catering to a wide range of deployment scenarios.
 
-### Simplified Configuration Management
+### Simplified configuration management
 
 The F5 Global Default Base template makes managing NGINX configurations easier by abstracting the complexity of the configuration syntax and offering a modular approach to customization. This advancement makes it accessible to users with varying levels of expertise, enabling them to efficiently manage and deploy NGINX instances.
 
 ---
 
-## Augmenting the F5 Global Default Base Template
+## Augmenting the F5 global default base template
 
-Augment templates play a crucial role in extending the capabilities of the F5 Global Default Base template, allowing for the addition of specific functionalities and the customization of configuration segments beyond the base setup. This section outlines the process and benefits of using augment templates within NGINX Instance Manager.
+Using augment templates in NGINX Instance Manager, administrators and developers can customize NGINX configurations beyond the foundational settings of the F5 Global Default Base template. Augment let you add specific functionality, like OIDC authentication, and segment configuration elements like location blocks or server directives. Augment templates can be combined with a base template to build upon it or applied directly to an existing NGINX configuration.
 
-### Understanding Augment Templates
+### Understanding augment templates
 
 Augment templates are designed to add specific features or modify existing configurations generated by the base template. They can be categorized into two main types:
 
-- **Feature Augments**: Add specific features such as caching, authentication, or rate limiting to the NGINX configuration.
-- **Segment Augments**: Modify or add configuration segments, such as additional server blocks, location directives, or upstream definitions.
+- **Feature augments**: Add specific features such as caching, authentication, or rate limiting to the NGINX configuration.
+- **Segment augments**: Modify or add configuration segments, such as additional server blocks, location directives, or upstream definitions.
 
-### How to Use Augment Templates
+### How to use augment templates
 
-1. **Identify Needs**: Determine the additional functionalities or configuration segments needed beyond the base template. This could include specific NGINX modules, security enhancements, or custom routing requirements.
+1. **Identify needs**: Determine the additional functionalities or configuration segments needed beyond the base template. This could include specific NGINX modules, security enhancements, or custom routing requirements.
 
-2. **Select or Create Augments**: Choose from existing augment templates provided by NGINX Instance Manager or create custom augment templates to meet your specific needs. Custom augment templates can be developed by defining JSON schemas and corresponding `.tmpl` files, similar to the base template.
+2. **Select or create augments**: Choose from existing augment templates provided by NGINX Instance Manager or create custom augment templates to meet your specific needs. Custom augment templates can be developed by defining JSON schemas and corresponding `.tmpl` files, similar to the base template.
 
-3. **Apply Augments**: Through the NGINX Instance Manager interface, apply the selected augment templates to your NGINX configuration. This can be done by specifying the augment templates to be included during the configuration generation process.
+3. **Apply augments**: Through the NGINX Instance Manager interface, apply the selected augment templates to your NGINX configuration. This can be done by specifying the augment templates to be included during the configuration generation process.
 
-4. **Customize Inputs**: Provide any required inputs for the augment templates. This may involve specifying parameters such as paths, server names, or authentication keys, depending on the functionality being added.
+4. **Customize inputs**: Provide any required inputs for the augment templates. This may involve specifying parameters such as paths, server names, or authentication keys, depending on the functionality being added.
 
-5. **Generate and Deploy**: Once the augment templates and their inputs have been defined, generate the final NGINX configuration. Review the generated configuration to ensure it meets your requirements before deploying it to your NGINX instances.
+5. **Generate and deploy**: Once the augment templates and their inputs have been defined, generate the final NGINX configuration. Review the generated configuration to ensure it meets your requirements before deploying it to your NGINX instances.
 
-### Benefits of Using Augment Templates
+### Benefits of using augment templates
 
 - **Modularity**: Augment templates allow for a modular approach to configuring NGINX, enabling users to mix and match features as needed without altering the base configuration.
 - **Flexibility**: By separating specific functionalities into augment templates, configurations can be easily customized and updated to adapt to changing requirements.
 - **Simplification**: Augments abstract the complexity of NGINX configuration directives, offering a simplified interface for adding features and making modifications.
 - **Reusability**: Augment templates can be reused across different NGINX configurations, promoting consistency and efficiency in managing NGINX instances.
 
-### Best Practices for Augmenting Configurations
+### Best practices for augmenting configurations
 
-- **Test Augments Separately**: Before applying augment templates to production configurations, test them in a separate environment to ensure they function as expected.
+- **Test augments separately**: Before applying augment templates to production configurations, test them in a separate environment to ensure they function as expected.
 - **Documentation**: Document the purpose and inputs of custom augment templates to facilitate understanding and usage by other team members.
 
 ### Conclusion
 
 Augment templates enhance the F5 Global Default Base template by providing a mechanism to add specific features and customize NGINX configurations efficiently. By leveraging these templates, users can create highly tailored NGINX setups that meet their unique requirements, all while maintaining the simplicity and modularity afforded by the NGINX Instance Manager's templating system.
-
-
