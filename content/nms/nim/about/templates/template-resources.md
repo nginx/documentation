@@ -39,6 +39,7 @@ This guide covers the following resource files for creating templates:
 
 If you're creating templates from scratch, the following table lists the acceptable template and schama filenames to use:
 
+{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Config File            | Applicable&nbsp;Type(s) | Schema File(s)                                       | Purpose                                                                                                              |
 |------------------------|--------------------|---------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
@@ -53,6 +54,7 @@ If you're creating templates from scratch, the following table lists the accepta
 | **stream&#8209;upstream.tmpl** | augment            | **stream&#8209;upstream.json**                  | Contains configuration and schema inputs for the [stream upstream directive](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#upstream) block. The schema file is optional for templates that don't require user inputs. |
 | **README.md**            | base, augment      | n/a                                               | Provides documentation, usage instructions, and an overview of the template.                                        |
 {{</bootstrap-table>}}
+{{< raw-html>}}</div>{{</raw-html>}}
 
 <br>
 
