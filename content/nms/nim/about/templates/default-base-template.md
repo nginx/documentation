@@ -66,13 +66,14 @@ Augment templates add specific features or modify existing configurations genera
 
 ### How to use augment templates
 
-{{<call-out "tip" "Deploying config templates">}}For instructions on setting up and deploying config templates, including augment templates, see [Manage NGINX Configs with Templates]({{< relref "/nms/nim/how-to/nginx/manage-nginx-configs-with-templates.md" >}}).{{</call-out>}}
+{{<call-out "tip" "Deploying config templates">}}<i class="far fa-file-code" aria-hidden="true"></i>
+ For instructions on setting up and deploying config templates, including augment templates, see [Manage NGINX Configs with Templates]({{< relref "/nms/nim/how-to/nginx/manage-nginx-configs-with-templates.md" >}}).{{</call-out>}}
 
 1. **Identify needs**: Determine the additional functionalities or configuration segments needed beyond the base template. This could include specific NGINX modules, security enhancements, or custom routing requirements.
 
 2. **Select or create augments**: Choose from existing augment templates provided by NGINX Instance Manager or create custom augment templates to meet your specific needs. Custom augment templates can be developed by defining JSON schemas and corresponding `.tmpl` files, similar to the base template.
 
-3. **Apply augments**: Through the NGINX Instance Manager interface, apply the selected augment templates to your NGINX configuration. This can be done by specifying the augment templates to be included during the [configuration generation process]({{< relref "/nms/nim/how-to/nginx/manage-nginx-configs-with-templates.md" >}}).
+3. **Apply augments**: Use the NGINX Instance Manager interface to apply the selected augment templates to your NGINX configuration. This can be done by specifying the augment templates to be included when [previewing and generating the config]({{< relref "/nms/nim/how-to/nginx/manage-nginx-configs-with-templates.md#preview-generate-config" >}}).
 
 4. **Customize inputs**: Provide any required inputs for the augment templates. This may involve specifying parameters such as paths, server names, or authentication keys, depending on the functionality being added.
 

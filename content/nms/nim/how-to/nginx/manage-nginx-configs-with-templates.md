@@ -129,7 +129,7 @@ To import an existing template from a `.tar.gz` archive file:
 
 --- 
 
-## Preview, Generate, and Submit a Config from a Template
+## Preview, Generate, and Submit a Config from a Template {#preview-generate-config}
 
 Previewing a config from a template lets you see how your NGINX configurations will look before publishing them. During this step, you'll make sure all the inputs and augmentations are correct. Once you're satisfied with the preview, you can generate the config and submit it.
 
