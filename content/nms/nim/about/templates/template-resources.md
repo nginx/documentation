@@ -4,7 +4,7 @@ date: 2024-03-19T12:23:28-07:00
 # Change draft status to false to publish doc
 draft: false
 # Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
+# Add a short description (150 chars) for the doc. Include keywords for SEO.
 # The description text appears in search results and at the top of the doc.
 description: ""
 # Assign weights in increments of 100
@@ -39,8 +39,7 @@ This guide covers the following resource files for creating templates:
 
 If you're creating templates from scratch, the following table lists the acceptable template and schama filenames to use:
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<bootstrap-table "table table-responsive table-striped table-bordered">}}
 | Config File            | Applicable&nbsp;Type(s) | Schema File(s)                                       | Purpose                                                                                                              |
 |------------------------|--------------------|---------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
 | **base.tmpl**            | base               | **main.json**<br>**http.json**<br>**http-server.json**<br>**http-upstream.json**<br>**location.json**<br>**stream.json**<br>**stream-server.json**<br>**stream-upstream.json**                                         | <p>Required for templates designated as base. The schema files are optional for templates that don't require user inputs.</p><p>The template file should include all directives needed to create a complete NGINX configuration, such as **main**, **http**, and **stream**. Also, it should have specific Go templating language commands to insert dynamic configuration details into the right sections or directive blocks.</p><p>Example for **main** directive block:<br>`{{ $input.ExecTemplateAugments "main" }}`</p>
@@ -54,7 +53,6 @@ If you're creating templates from scratch, the following table lists the accepta
 | **stream&#8209;upstream.tmpl** | augment            | **stream&#8209;upstream.json**                  | Contains configuration and schema inputs for the [stream upstream directive](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#upstream) block. The schema file is optional for templates that don't require user inputs. |
 | **README.md**            | base, augment      | n/a                                               | Provides documentation, usage instructions, and an overview of the template.                                        |
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
 
 <br>
 
@@ -149,7 +147,7 @@ This example shows how to enable OIDC authentication in NGINX using a config tem
 ## Additional Resources
 
 - **[Understand Config Templates]({{< relref "nms/nim/about/templates/config-templates.md" >}})**: Learn about the config template types, targets for publication, and the template submission process.
-  
+
 - **[JSON Schemas for Template Inputs]({{< relref "nms/nim/about/templates/json-schema-reference.md" >}})**: JSON schemas for the dynamic web form builder, used for template input and validation.
 
 - **[Manage NGINX Configs with Config Templates]({{< relref "nms/nim/how-to/nginx/manage-nginx-configs-with-templates.md" >}})**: Learn how to create and import config templates, as well as generate and deploy NGINX configurations.
