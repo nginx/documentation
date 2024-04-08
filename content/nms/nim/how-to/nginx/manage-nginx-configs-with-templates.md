@@ -76,8 +76,6 @@ When importing a config template from an archive, ensure your `.tar.gz` file adh
 - Each template must be in its own directory within the archive.
 - Directories should contain all related template files (.tmpl for templates, .json for JSON schemas) and a `meta.json` file that includes metadata such as the template's name, description, author, type, and unique identifier (UID).
 
-Optionally, you can sign your archive with a digital signature for verification upon import. This process involves creating a cryptographic hash of the archive file and signing it with a private key.
-
 #### Required archive structure
 
 ``` text
