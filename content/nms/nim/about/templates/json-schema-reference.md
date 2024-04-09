@@ -43,9 +43,9 @@ In NGINX Instance Manager, we support a specific set of common features from the
   - [Object](#object-field): Structures with named properties.
   - [Array](#array-field): Lists of items.
 
-- **Title**: A descriptive, user-friendly name for each form field, indicating the required information. For further details, refer to [Generic Keywords](https://json-schema.org/understanding-json-schema/reference/generic.html).
+- **Title**: A descriptive, user-friendly name for each form field that lets users know what's required. For further details, refer to [Generic Keywords](https://json-schema.org/understanding-json-schema/reference/generic.html).
 
-- **Description**: Text that assists users in filling out fields by providing guidance on what information should be entered. For more information, refer to [Generic Keywords](https://json-schema.org/understanding-json-schema/reference/generic.html).
+- **Description**: Text to help guide users on what to enter in the form fields. For details, see [Generic Keywords](https://json-schema.org/understanding-json-schema/reference/generic.html).
 
 {{< call-out "tip" "Writing effective JSON schema titles and descriptions" >}}<i class="fa-regular fa-pen-to-square"></i> The **title** and **description** fields are a key part of the user experience for templates. We recommend making sure that your title and description fields are predictably formatted and provide clear, concise guidance to the user.{{</call-out>}}
 
