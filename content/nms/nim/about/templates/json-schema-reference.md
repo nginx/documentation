@@ -47,7 +47,7 @@ In NGINX Instance Manager, we support a specific set of common features from the
 
 - **Description**: Text to help guide users on what to enter in the form fields. For details, see [Generic Keywords](https://json-schema.org/understanding-json-schema/reference/generic.html).
 
-- **Examples**: Sample inputs that show how to fill out form fields correctly. Providing examples within a JSON schema helps ensure accurate analysis during testing.
+- **Examples**: Examples show what valid data looks like so anyone filling out the form knows what to enter. You should give at least one example so users understand the schema's purpose and requirements. More information can be found at [Generic Keywords](https://json-schema.org/understanding-json-schema/reference/generic.html).
 
 {{< call-out "tip" "Writing effective JSON schema titles and descriptions" >}}<i class="fa-regular fa-pen-to-square"></i> The **title** and **description** fields are a key part of the user experience for templates. We recommend making sure that your title and description fields are predictably formatted and provide clear, concise guidance to the user.{{</call-out>}}
 
@@ -70,7 +70,7 @@ In NGINX Instance Manager, we support a specific set of common features from the
         "serverName": {
           "title": "Server name",
           "type": "string",
-          "description": "Specifies the name for the HTTP server.",
+          "description": "Specifies the HTTP server name.",
           "examples": [
             "foo.com"
           ]
@@ -78,7 +78,7 @@ In NGINX Instance Manager, we support a specific set of common features from the
         "id": {
 			  "title": "Server ID",
 			  "type": "string",
-			  "description": "Case-sensitive, alphanumeric ID  used for specifying augment placement.",
+			  "description": "Case-sensitive, alphanumeric ID used for specifying augment placement.",
 			  "examples": [
 				"main_server"
 			  ]
