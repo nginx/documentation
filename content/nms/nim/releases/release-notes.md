@@ -11,6 +11,58 @@ weight: 100
 
 ---
 
+## 2.16.0
+
+April 18, 2024
+
+### Upgrade Paths {#2-16-0-upgrade-paths}
+
+Instance Manager  supports upgrades from these previous versions:
+
+- 2.13.0 - 2.15.1
+
+If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+{{< see-also >}}
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< /see-also >}}
+
+<br>
+
+<details closed>
+<summary><i class="fa-solid fa-circle-exclamation"></i> Support for NGINX App Protect WAF</summary>
+
+{{< include "tech-specs/nim-app-protect-support.md" >}}
+
+</details>
+
+
+### What's New{#2-16-0-whats-new}
+
+This release includes the following updates:
+
+- {{% icon-feature %}} **Stability and performance improvements**<a name="2-16-0-whats-new-Stability-and-performance-improvements-"></a>
+
+  This release includes stability and performance improvements.
+
+- {{% icon-feature %}} **Introducing configuration templates for simplifying NGINX configurations and self-service workflows**<a name="2-16-0-whats-new-config-templates"></a>
+
+  This release of NGINX Instance Manager introduces [Config Templates]({{< relref "nms/nim/about/templates/config-templates.md" >}}). These templates use Go templating to make it easier to set up and standardize NGINX configurations. Now, you don't need to know all the details of NGINX syntax to create a working configuration. Just provide the required inputs for a template, and the system will do the rest. This makes setting up NGINX simpler and helps you follow best practices. To provide more control over your configurations, augment templates let you modify only specific segments of your NGINX configuration. This, when combined with [RBAC for template submissions]({{< relref "nms/nim/how-to/nginx/manage-access-to-templates-and-template-submissions.md" >}}), enables self-service workflows. Look for pre-built templates for common scenarios in our GitHub repositories soon.
+
+### Changes in Default Behavior{#2-16-0-changes-in-behavior}
+
+This release has the following changes in default behavior:
+
+- {{% icon-feature %}} **Change in NGINX Agent upgrade behavior**
+
+  Starting from version v2.31.0, the NGINX Agent will automatically restart itself during an upgrade.
+
+### Known Issues{#2-16-0-known-issues}
+
+You can find information about known issues in the [Known Issues]({{< relref "/nms/nim/releases/known-issues.md" >}}) topic.
+
+---
+
 ## 2.15.1
 
 February 14, 2024
