@@ -1,12 +1,11 @@
 ---
-description: This guide explains how to add, update, and delete certificates and identify
-  certificates that are expiring or have expired.
+description: This guide provides instructions on adding, managing, updating, deleting, and converting remote certificates.
 docs: DOCS-821
 doctypes:
 - tutorial
 tags:
 - docs
-title: Add, Delete, or Replace Certificates
+title: Add, Delete, Replace, or Convert Certificates
 toc: true
 weight: 650
 ---
@@ -92,7 +91,7 @@ To replace a certificate using the web interface, take the following steps.
 Alternatively, to replace a certificate using the Instance Manager API, send a PUT request similar to the following example to the Certificates API endpoint.
 
 ```bash
-curl -X PUT "https://nginx-manager.example.com/api/v0/certificates/pem_cert_with_ca" -H  "accept: application/json" -H "Content-Type: application/json" -d "{  \"name\": \"pem_cert_with_ca\",  \"certPEMDetails\": {  \"type\": \"PEM\",  \"privateKey\": \"-----BEGIN PRIVATE KEY-----<base64-encoded blob>-----END PRIVATE KEY-----\",  \"publicCert\": \"-----BEGIN CERTIFICATE-----<base64-encoded blob>-----END CERTIFICATE-----\",  \"password\": \"\",  \"caCerts\": [\"-----BEGIN CERTIFICATE-----<base64-encoded blob>-----END CERTIFICATE-----\"]},  \"instanceRefs\": [\"/api/platform/v1/systems/56926426-c8c6-1c4e-95b4-418d4a817b42/instances/1de809e5-c186-5367-9957-25dfab5354f5\"]}"
+curl -X PUT "https://nginx-manager.example.com/api/platform/v1/certs/pem_cert_with_ca" -H  "accept: application/json" -H "Content-Type: application/json" -d "{  \"name\": \"pem_cert_with_ca\",  \"certPEMDetails\": {  \"type\": \"PEM\",  \"privateKey\": \"-----BEGIN PRIVATE KEY-----<base64-encoded blob>-----END PRIVATE KEY-----\",  \"publicCert\": \"-----BEGIN CERTIFICATE-----<base64-encoded blob>-----END CERTIFICATE-----\",  \"password\": \"\",  \"caCerts\": [\"-----BEGIN CERTIFICATE-----<base64-encoded blob>-----END CERTIFICATE-----\"]},  \"instanceRefs\": [\"/api/platform/v1/systems/56926426-c8c6-1c4e-95b4-418d4a817b42/instances/1de809e5-c186-5367-9957-25dfab5354f5\"]}"
 ```
 
 <br>
@@ -120,10 +119,28 @@ To delete a certificate using the Instance Manager API, send a DELETE request si
 Certificates API endpoint.
 
 ```bash
-curl -X DELETE "https://nginx-manager.example.com/api/v0/certificates/pem_cert_with_ca" -H  "accept: application/json"
+curl -X DELETE "https://nginx-manager.example.com/api/platform/v1/certs/pem_cert_with_ca" -H  "accept: application/json"
 ```
 
 <br>
+
+---
+
+<br>
+
+## Convert Remote Cerificates to Managed Certificates
+
+### API
+
+To convert a remote certificate to a managed certificate using the Instance Manager API, send a PUT request to the Certificates API endpoint that includes both the public cert and private key, similar to the following example:
+
+```bash
+curl -X PUT "https://nginx-manager.example.com/api/platform/v1/certs/pem_cert_with_ca" -H  "accept: application/json" -H "Content-Type: application/json" -d "{  \"name\": \"pem_cert_with_ca\",  \"certPEMDetails\": {  \"type\": \"PEM\",  \"privateKey\": \"-----BEGIN PRIVATE KEY-----<base64-encoded blob>-----END PRIVATE KEY-----\",  \"publicCert\": \"-----BEGIN CERTIFICATE-----<base64-encoded blob>-----END CERTIFICATE-----\",  \"password\": \"\",  \"caCerts\": [\"-----BEGIN CERTIFICATE-----<base64-encoded blob>-----END CERTIFICATE-----\"]},  \"instanceRefs\": []}"
+```
+
+<br>
+
+---
 
 ## Rotate Encryption Keys {#rotate-encryption-keys}
 

@@ -3,9 +3,10 @@ title: "Release Notes 1.4.0"
 date: ""
 draft: false
 toc: true
-description: Release information for NGINX Service Mesh, a configurable, low‑latency infrastructure layer designed to handle a high volume of network‑based interprocess communication among application infrastructure services using application programming interfaces (APIs).  Lists of new features and known issues are provided.
+description: "Release information for NGINX Service Mesh, a configurable, low‑latency infrastructure layer designed to handle a high volume of network‑based interprocess communication among application infrastructure services using application programming interfaces (APIs).  Lists of new features and known issues are provided."
 weight: -1400
 categories: ["reference"]
+docs: "DOCS-1488"
 ---
 
 ## NGINX Service Mesh Version 1.4.0

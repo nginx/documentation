@@ -5,7 +5,7 @@ toc: true
 description: "This topic explains how to uninstall NGINX Service Mesh using nginx-meshctl."
 weight: 200
 categories: ["tasks"]
-docs: "DOCS-699"
+docs: "DOCS-1481"
 ---
 
 ## Uninstall
