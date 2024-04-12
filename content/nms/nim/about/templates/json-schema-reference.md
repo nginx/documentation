@@ -93,7 +93,9 @@ In NGINX Instance Manager, we support a specific set of common features from the
 
 <br>
 
-## Type Definitions
+## Type-Specific Features
+
+Each data type in a JSON schema comes with its own set of features that define how the data can be structured and validated. Understanding these features is important for building robust and user-friendly web forms in NGINX Instance Manager. This section explains the characteristics and functionality of each data type so you can use the schema's capabilities for accurate data representation and validation.
 
 ### Boolean field
 
@@ -101,6 +103,7 @@ In NGINX Instance Manager, we support a specific set of common features from the
 - **Usage**: Toggles or binary choices in configurations.
 - **Full spec**: https://json-schema.org/understanding-json-schema/reference/boolean.html
 - **Example**:
+
   ```json
   {
     "isDevelopment": {
@@ -118,6 +121,7 @@ In NGINX Instance Manager, we support a specific set of common features from the
 #### Examples
 
 - Regular string field with pattern and length constraints:
+
   ```json
   {
     "test": {
@@ -131,6 +135,7 @@ In NGINX Instance Manager, we support a specific set of common features from the
   ```
 
 - String Select field with enumerated values:
+
   ```json
   {
     "method": {
@@ -141,6 +146,7 @@ In NGINX Instance Manager, we support a specific set of common features from the
   ```
 
 - String MultiSelect field within an array:
+
   ```json
   {
     "method": {
@@ -162,6 +168,7 @@ In NGINX Instance Manager, we support a specific set of common features from the
 #### Examples
 
 - Regular numeric field with validation criteria:
+
   ```json
   {
     "proxyTimeout": {
@@ -175,6 +182,7 @@ In NGINX Instance Manager, we support a specific set of common features from the
   ```
 
 - Numeric Select field for predefined numerical values:
+
   ```json
   {
     "proxyTimeout": {
@@ -185,6 +193,7 @@ In NGINX Instance Manager, we support a specific set of common features from the
   ```
 
 - Numeric MultiSelect field within an array:
+
   ```json
   {
     "proxyTimeout": {
@@ -203,6 +212,7 @@ In NGINX Instance Manager, we support a specific set of common features from the
 - **Usage**: Complex configurations involving nested parameters.
 - **Full spec**: https://json-schema.org/understanding-json-schema/reference/object.html
 - **Example**:
+
   ```json
   {
     "server": {
@@ -223,6 +233,7 @@ In NGINX Instance Manager, we support a specific set of common features from the
 - **Usage**: Lists or collections of configuration items.
 - **Full spec**: https://json-schema.org/understanding-json-schema/reference/array.html
 - **Example**:
+ 
   ```json
   {
     "headers": {

@@ -1,0 +1,3151 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "NGINX One Spec",
+    "description": "The API Reference documentation for NGINX One",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "/api/nginx/one/namespaces/default"
+    },
+    {
+      "url": "/api/v1/namespaces/{namespace}",
+      "variables": {
+        "namespace": {
+          "default": "default"
+        }
+      }
+    }
+  ],
+  "tags": [
+    {
+      "name": "Data Plane Key",
+      "description": "The `DataPlaneKey` object represents a secure token required to establish a connection between your NGINX instances and NGINX One. \nAs a fundamental security measure, the data plane key ensures that only trusted NGINX instances can register and communicate with NGINX One. \n\nData plane keys expire after one year. This is the default setting if you don't specify an expiration time when you create a key. \nIf necessary, you can update the data plane key later to extend its expiration.\n\nRevoking a data plane key will disconnect the associated NGINX instances from NGINX One.\n\n**IMPORTANT** Data plane keys are not saved and are displayed only once when you generate them. You should save this key in a secure location for future reference.\n",
+      "x-displayName": "Data Plane Key"
+    },
+    {
+      "name": "Instances",
+      "description": "The `Instance` object represents an active NGINX installation. \nYou can access detailed information about each NGINX instance, including its configuration analysis, security advisories, and operational status.\n",
+      "x-displayName": "Instances"
+    },
+    {
+      "name": "Feature Flags",
+      "description": "Get details about which feature flags are enabled in the NGINX One console. \nFeature flags are used to toggle the availability of application features or modules without changing code.\n",
+      "x-displayName": "Feature Flags"
+    },
+    {
+      "name": "Metrics",
+      "description": "Get system metrics for your NGINX data plane instances. These metrics are collected by the NGINX Agent and reported to NGINX One.\n",
+      "x-displayName": "Metrics"
+    },
+    {
+      "name": "Catalogs",
+      "description": "Get details about the available metrics and dimensions in the Metrics and Dimensions catalogs.\n",
+      "x-displayName": "Catalogs"
+    }
+  ],
+  "paths": {
+    "/data-plane-keys": {
+      "get": {
+        "tags": [
+          "Data Plane Key"
+        ],
+        "summary": "List all data plane keys",
+        "description": "Returns a list of data plane keys for your tenant namespace. \nThis list provides important information such as each key's name, when it was created, and when it will expire.\n",
+        "operationId": "listDataPlaneKeys",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldDataPlaneKeys"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of data plane keys.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataPlaneKeyListResponse"
+                },
+                "examples": {
+                  "DataPlaneKeys": {
+                    "$ref": "#/components/examples/DataPlaneKeys"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Data Plane Key"
+        ],
+        "x-nginx-one-action": "create",
+        "x-nginx-one-entity": "data plane key",
+        "summary": "Create a data plane key",
+        "description": "Creates a unique data plane key that you can use to register NGINX instances with NGINX One.\n\n**IMPORTANT**: Save the data plane key somewhere secure for reference. The key is displayed only once and cannot be retrieved again.\n",
+        "operationId": "createDataPlaneKey",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DataPlaneKeyCreateRequest"
+              },
+              "examples": {
+                "DataPlaneKeyCreateRequest": {
+                  "$ref": "#/components/examples/DataPlaneKeyRequest"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully created the data plane key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataPlaneKeyResponse"
+                },
+                "examples": {
+                  "DataPlaneKeyResponse": {
+                    "$ref": "#/components/examples/DataPlaneKeyResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data-plane-keys/{data_plane_key_id}": {
+      "get": {
+        "tags": [
+          "Data Plane Key"
+        ],
+        "summary": "Retrieve a data plane key",
+        "description": "Retrieves the details for an existing data plane key.\n",
+        "operationId": "getDataPlaneKey",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/DataPlaneKeyParamObjectID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the details of the data plane key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataPlaneKey"
+                },
+                "examples": {
+                  "DataPlaneKeys": {
+                    "$ref": "#/components/examples/DataPlaneKey"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Data Plane Key"
+        ],
+        "x-nginx-one-action": "delete",
+        "x-nginx-one-entity": "data plane key",
+        "summary": "Delete a data plane key",
+        "description": "Deletes a data plane key.\n",
+        "operationId": "deleteDataPlaneKey",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/DataPlaneKeyParamObjectID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully deleted the data plane key."
+          },
+          "404": {
+            "description": "The data plane key with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Cannot delete an active data plane key. Revoke the key first, then try deleting it again.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Data Plane Key"
+        ],
+        "x-nginx-one-action": "update",
+        "x-nginx-one-entity": "data plane key",
+        "summary": "Update a data plane key",
+        "description": "Updates an existing data plane key. \n\nYou can update the data plane key's name or extend its expiration date. It's not possible to update the expiration date for a data plane key that has expired.\n",
+        "operationId": "updateDataPlaneKey",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/DataPlaneKeyParamObjectID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DataPlaneKeyUpdateRequest"
+              },
+              "examples": {
+                "DataPlaneKeyUpdateRequest": {
+                  "$ref": "#/components/examples/DataPlaneKeyRequest"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated the data plane key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataPlaneKey"
+                },
+                "examples": {
+                  "DataPlaneKeys": {
+                    "$ref": "#/components/examples/DataPlaneKey"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The data plane key with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data-plane-keys/{data_plane_key_id}/revoke": {
+      "put": {
+        "tags": [
+          "Data Plane Key"
+        ],
+        "x-nginx-one-action": "revoke",
+        "x-nginx-one-entity": "data plane key",
+        "summary": "Revoke a data plane key",
+        "description": "Revoke an existing data plane key.\n\n**IMPORTANT**: When you revoke a data plane key, all NGINX instances registered with this key will be disconnected from NGINX One.\n",
+        "operationId": "revokeDataPlaneKey",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/DataPlaneKeyParamObjectID"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "The request to revoke the data plane key has been accepted and is being processed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataPlaneKey"
+                },
+                "examples": {
+                  "DataPlaneKeys": {
+                    "$ref": "#/components/examples/DataPlaneKey"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The data plane key with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/instances/summary": {
+      "get": {
+        "tags": [
+          "Instances"
+        ],
+        "summary": "Retrieve a summary for all instances",
+        "description": "Retrieve a comprehensive summary for all NGINX instances, which includes details such as:\n  * Certificate status and associations\n  * Operating system details\n  * Version of the NGINX Agent\n  * Overall system status\n",
+        "operationId": "listSummary",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the summary of NGINX instances.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstanceSummary"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/instances": {
+      "get": {
+        "tags": [
+          "Instances"
+        ],
+        "summary": "List all instances",
+        "operationId": "listInstances",
+        "description": "Returns a list of all NGINX instances, providing details such as:\n  * Unique identifiers for each instance\n  * Timestamps for key actions (like registration and last report)\n  * Information about the NGINX build\n  * Version of the NGINX Agent\n",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldInstances"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameInstances"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of instances.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstanceListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/instances/{instanceObjectID}/cves": {
+      "get": {
+        "tags": [
+          "Instances"
+        ],
+        "summary": "Retrieve an instance's security advisories (CVEs)",
+        "description": "Retrieves a list of the security advisories (CVEs) for an NGINX instance.",
+        "operationId": "listInstanceSecurityAdvisories",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/InstanceParamObjectID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of security advisories (CVEs).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NginxSecurityAdvisory"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX instance with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/instances/{instanceObjectID}": {
+      "get": {
+        "tags": [
+          "Instances"
+        ],
+        "summary": "Retrieve an instance",
+        "description": "Retrieve the details for an NGINX instance, including\n* Hostname\n* System status\n* Timestamps of key actions (registration, last reported, etc.)\n* NGINX build information\n* Certificate data\n* Operating system version\n* NGINX Agent version\n",
+        "operationId": "getInstance",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/InstanceParamObjectID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the details of the NGINX instance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstanceDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX instance with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Instances"
+        ],
+        "x-nginx-one-action": "delete",
+        "x-nginx-one-entity": "NGINX instance",
+        "summary": "Delete an instance",
+        "description": "Deletes an NGINX instance. Associations with certificates will be cleaned up.\n",
+        "operationId": "deleteInstance",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/InstanceParamObjectID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully deleted the NGINX instance."
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX instance with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/instances/{instanceObjectID}/config-report": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/InstanceParamObjectID"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Instances"
+        ],
+        "summary": "Retrieve analysis of an instance's configuration",
+        "description": "Analyzes the configuration of an NGINX instance and returns a detailed report.\nThe report includes insights, identified issues, and recommendations for optimizing and troubleshooting.\n",
+        "operationId": "getInstanceConfigReport",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the NGINX configuration analysis for the specified instance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NginxConfigReports"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX instance with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Instances"
+        ],
+        "x-nginx-one-action": "analyze",
+        "x-nginx-one-entity": "NGINX instance configuration",
+        "x-feature-flag": "config-publish",
+        "summary": "Analyze the provided configuration.",
+        "description": "Analyzes the provided configuration and returns a detailed report. The report includes insights, identified issues, and recommendations for optimizing and troubleshooting. The report is not stored, and is provided on the API response only.",
+        "operationId": "analyzeInstanceConfig",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NginxConfig"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully analyzed the provided NGINX configuration.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NginxConfigReports"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX instance with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Instances"
+        ],
+        "x-nginx-one-action": "analyze",
+        "x-nginx-one-entity": "NGINX instance configuration",
+        "x-feature-flag": "config-publish",
+        "summary": "Analyze the provided configuration.",
+        "description": "Analyze the configuration update to an NGINX instance. Additive update to the existing NginxConfig, omit `File.content` to delete the File.\nUse `config_version` of current NGINX instance config, a conflict is possible if the `config_version` does not match. Which could be an indication of out-of-band update to the NGINX instance configuration.\n",
+        "operationId": "analyzeInstanceConfigWithModify",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NginxConfig"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully analyzed the provided NGINX configuration.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NginxConfigReports"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX instance with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/instances/{instanceObjectID}/config": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/InstanceParamObjectID"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Instances"
+        ],
+        "summary": "Retrieve an instance's configuration details",
+        "description": "Returns the configuration details for an NGINX instance, including: \n* Main configuration path\n* Details about configuration files\n* Details about auxiliary files\n* Unique identifiers\n",
+        "operationId": "getInstanceConfig",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the configuration details for the specified NGINX instance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NginxConfig"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX instance with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Instances"
+        ],
+        "x-nginx-one-action": "create",
+        "x-nginx-one-entity": "NGINX instance configuration",
+        "x-feature-flag": "config-publish",
+        "summary": "Publish a configuration to an instance",
+        "description": "Publishes a configuration to an NGINX instance.",
+        "operationId": "publishInstanceConfig",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NginxConfig"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "The request to publish the configuration has been accepted and is being processed. To check the publication status, make a GET request to /instances/{instanceObjectID}/publications.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicationInstance"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX instance with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Instances"
+        ],
+        "x-nginx-one-action": "update",
+        "x-nginx-one-entity": "NGINX instance configuration",
+        "x-feature-flag": "config-publish",
+        "summary": "Publish a configuration to an instance",
+        "description": "Publishes a configuration update to an NGINX instance. Additive update to the existing NginxConfig, omit `File.content` to delete the File.\nUse `config_version` of current NGINX instance config, a conflict is possible if the `config_version` does not match. Which could be an indication of out-of-band update to the NGINX instance configuration.\n",
+        "operationId": "publishInstanceConfigWithModify",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NginxConfig"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "The request to publish the configuration has been accepted and is being processed. To check the publication status, make a GET request to /instances/{instanceObjectID}/publications.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicationInstance"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX instance with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/instances/{instanceObjectID}/publications": {
+      "get": {
+        "x-feature-flag": "config-publish",
+        "tags": [
+          "Instances"
+        ],
+        "summary": "Retrieve the publications for an instance",
+        "description": "Returns a list of all publications for a NGINX instance.",
+        "operationId": "listInstancePublications",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/InstanceParamObjectID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of all publications for the specified NGINX instance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PublicationInstance"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/instances/{instanceObjectID}/publications/{publicationObjectID}": {
+      "get": {
+        "x-feature-flag": "config-publish",
+        "tags": [
+          "Instances"
+        ],
+        "summary": "Retrieve a publication for an NGINX instance.",
+        "description": "Returns a specific publication for an NGINX instance. Only 5 previous entries of Publication are kept for each NGINX instance.",
+        "operationId": "getInstancePublication",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/InstanceParamObjectID"
+          },
+          {
+            "$ref": "#/components/parameters/PublicationParamObjectID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the specific Publication for the specified NGINX instance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicationInstance"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX instance or Publication with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/features": {
+      "get": {
+        "tags": [
+          "Feature Flags"
+        ],
+        "summary": "List all enabled feature flags",
+        "description": "Returns a list of all the enabled feature flags in the NGINX One console.",
+        "operationId": "getEnabledFeatureFlags",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of enabled feature flags.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FeatureFlagKey"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitor/metrics": {
+      "get": {
+        "tags": [
+          "Metrics"
+        ],
+        "summary": "Retrieve system metrics for instances",
+        "operationId": "queryMetrics",
+        "description": "Returns system metrics for NGINX instances based on query parameters.\n\nYou can filter metrics by name and timestamp, aggregate metrics over a configurable period of time, and group metrics by dimension.\n",
+        "parameters": [
+          {
+            "name": "names",
+            "in": "query",
+            "description": "Specify the metrics you want details for.\n\nUsage: \n* List multiple metric names as a comma-separated list.\n* You can aggregate metrics with `AVG`, `SUM`, `COUNT`, `MIN`, `MAX`, `RATE`.\n* Metrics with aggregates require a `start_time`.\n* If you combine aggregated and non-aggregated metrics in a single query, any `group_by` clause applies only to the aggregated metrics.\n",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "AVG(agent.cpu.system),SUM(plus.upstream.bytes_rcvd)"
+            }
+          },
+          {
+            "name": "group_by",
+            "in": "query",
+            "description": "Group the query results by the specified dimension(s).\n\nUsage:\n* List multiple dimensions as a comma-separated list.\n* For `group_by` to work, all metrics in the `names` parameter must be aggregated.\n",
+            "schema": {
+              "type": "string",
+              "example": "server_zone"
+            }
+          },
+          {
+            "name": "series_limit",
+            "in": "query",
+            "description": "Sets the maximum number of series that can be returned. \n\nUsage:\n* Must be used with `order_series_by`.\n* Cannot be used together with `dimensions`.\n* Requires exactly one `group_by` parameter.\n\n\nNotes:\n* Always returns an additional series with a dimension named `all`, aggregating the values of all metrics included in the results.\n* A series with a dimension named `other` may be returned, aggregating the values of metrics not included in the results.\n",
+            "schema": {
+              "type": "integer",
+              "example": 25
+            }
+          },
+          {
+            "name": "order_series_by",
+            "in": "query",
+            "description": "Sets the sort order of the metric series in your results.\n\nUsage:\n\n* Must be used with `series_limit`.\n",
+            "schema": {
+              "type": "string",
+              "default": "SUM DESC",
+              "example": "MAX DESC"
+            }
+          },
+          {
+            "name": "dimensions",
+            "in": "query",
+            "description": "List the dimensions to include in the response for each metric series.\n\nUsage:\n\n* List dimensions as a comma-separated list. Dimensions not specified in this parameter will be hidden in the results.\n* Cannot be used with `series_limit`.\n* If you specify dimensions in `group_by`, you don't need to list them again in `dimensions`. \nHowever, if you are using `group_by`, then any dimensions you list in `dimensions` must also be included in `group_by`.\n* To return a single series, specify the metric name with aggregation (for example, `AVG(agent.cpu.system)`) and leave the `dimensions` parameter empty. \n",
+            "schema": {
+              "type": "string",
+              "example": "server_zone,instance_group"
+            }
+          },
+          {
+            "name": "start_time",
+            "in": "query",
+            "description": "Sets the beginning of the time period for your metrics query (inclusive).\n\nUsage:\n* `start_time` is required if `end_time` is specified.\n* If `start_time` isn't provided, the API returns the latest metrics.\n* `start_time` is required for aggregated metrics in order to calculate the `resolution` (granularity).\n",
+            "schema": {
+              "$ref": "#/components/schemas/Time"
+            },
+            "example": "now-5h"
+          },
+          {
+            "name": "end_time",
+            "in": "query",
+            "description": "Sets the end point for the time period for your metrics query (non-inclusive).\n\nUsage:\n* Must be greater than `start_time`.\n* If `start_time` is specified and `end_time` is not, `end_time` defaults to the current time.\n",
+            "schema": {
+              "$ref": "#/components/schemas/Time"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Filters results based on key value pairs.\n\nUsage:\n* Format as one or more predicates in the form of `<key><operator><value>`.\n  * `<key>`: The dimension name you want to filter on.\n  * `<operator>`: The possible operators (`=`, `!=`, `<`, `<=`, `>`, `>=`, `in`, `not`) you can use for comparison or condition checking.\n  * `<value>`: The value of the dimension to filter against. Enclose `<value>` in single quotes `' '`.\n  * `<key>` and `<value>` are case sensitive.\n\nFor more complex filtering:\n\n* Combine predicates into logical expressions using `AND`, `OR`, and parentheses `( )`. \n* Use a wildcard `*` for matching partial values. \n",
+            "schema": {
+              "type": "string",
+              "example": "((server_zone!='server_zone_1' OR server_zone='server_zone_2') AND nginx_id in ('id1', 'id2')) AND (system.tags!='*tag1*')"
+            }
+          },
+          {
+            "name": "resolution",
+            "in": "query",
+            "description": "Specifies the level of granularity for time series data in your results. Applicable only for endpoints that return time series data.\n\nUsage: \n* Specify as a string with a number followed by a unit of time, such as `y` (years), `M` (months), `w` (weeks), `d` (days), `h` (hours), `m` (minutes) or `s` (seconds).\n* Metrics in `names` must be aggregated.\n* `start_time` is required.\n* If `resolution` is not set, the API returns the maximum resolution (`end_time` - `start_time`).\n",
+            "schema": {
+              "type": "string",
+              "example": "30s"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved system metrics.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricQueryResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested metric resource was not found. Check that the resource name provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitor/catalogs/metrics": {
+      "get": {
+        "tags": [
+          "Catalogs"
+        ],
+        "summary": "List all metrics",
+        "operationId": "listMetricsDescriptions",
+        "description": "Returns a list of all the metric resources in the Metrics Catalog. \nThis catalog provides detailed definitions of each metric, helping you to better understand the available metrics and refine your analytics queries. \n",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of metrics.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricsDescriptionsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitor/catalogs/metrics/{metricName}": {
+      "get": {
+        "tags": [
+          "Catalogs"
+        ],
+        "summary": "Retrieve a metric description",
+        "operationId": "getMetricDescription",
+        "description": "Retrieves detailed information about a metric resource in the Metrics Catalog.\nThis detailed view helps you see how a metric can be used for monitoring and analytics.\n\nThe response includes:\n* Name and description of the metric, explaining what it measures.\n* Applicable types of aggregations (for example `AVG`, `SUM`).\n* Categories to which the metric belongs, like 'nginx'.\n* Associated dimensions, showing different ways to analyze the metric.\n* Type and unit of the metric, such as 'incremental' and 'bytes'.\n",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "metricName",
+            "description": "The name of the metric resource you want details for. This name is used to identify the metric in the Metrics Catalog.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the details for the metric resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricDescriptionRecord"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested metric resource resource was not found. Check that the resource name provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitor/catalogs/dimensions": {
+      "get": {
+        "tags": [
+          "Catalogs"
+        ],
+        "summary": "List all dimensions",
+        "operationId": "listDimensionsDescriptions",
+        "description": "Returns a list of all the dimension resources in the Dimensions Catalog.\n\nDimensions let you categorize and filter metrics data. \nTo get detailed information about a particular dimension, use the [Retrieve a dimension description](#operation/getDimensionDescription) endpoint.\n",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of dimensions.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DimensionsDescriptionsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitor/catalogs/dimensions/{dimensionName}": {
+      "get": {
+        "tags": [
+          "Catalogs"
+        ],
+        "summary": "Retrieve a dimension description",
+        "operationId": "getDimensionDescription",
+        "description": "Retrieves the details for a specific dimension.\n",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "dimensionName",
+            "description": "The name of the dimension you want details for. This name is used to identify the dimension in the Dimensions Catalog.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the details for the dimension resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DimensionDescriptionRecord"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested dimension resource was not found. Check that the resource name provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "Paginated": {
+        "name": "paginated",
+        "in": "query",
+        "schema": {
+          "type": "boolean",
+          "default": true
+        },
+        "description": "A boolean indicating if the results should be presented as a paginated list. Defaults to `true`. \nWhen set to `false`, the results are returned as a condensed, non-paginated list.\n",
+        "required": false
+      },
+      "Limit": {
+        "name": "limit",
+        "in": "query",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "description": "An integer that specifies the maximum number of items to be returned. \nSetting this to `0` will result in no items being returned, but a total count will still be provided. \nThis parameter is not applicable if `paginated` is `false`.\n",
+        "required": false
+      },
+      "Offset": {
+        "name": "offset",
+        "in": "query",
+        "schema": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "description": "An integer that specifies the starting position of the results, starting at `1`.\nThis is parameter is not not applicable if `paginated` is `false`.\n"
+      },
+      "FilterFieldDataPlaneKeys": {
+        "name": "filter_fields",
+        "in": "query",
+        "description": "Filter options for data plane keys; used in conjunction with other filter parameters having the same array length.\n\nWhen filtering on `status`, only the following `filter_values` are supported:\n  * revoked\n  * expired\n  * valid\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/FilterNameDataPlaneKeys"
+          }
+        }
+      },
+      "FilterOperands": {
+        "name": "filter_ops",
+        "in": "query",
+        "description": "An array of strings defining the operands for filtering, to be used in conjunction with `filter_fields` and `filter_values`. \nAll filter parameters must have matching array lengths. Currently, the only supported operand is `\"IN\"`.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "IN"
+            ],
+            "x-enum-varnames": [
+              "filter_operand_in"
+            ]
+          }
+        }
+      },
+      "FilterValues": {
+        "name": "filter_values",
+        "in": "query",
+        "description": "An array of strings containing the keywords for filtering. \nMultiple keywords can be chained using the `|` character. \nEnsure this parameter's array length matches those of `filter_fields` and `filter_ops` for effective filtering.\nThe total length of the filter string should not exceed 1024 characters.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "value1|value2|value3",
+            "minLength": 1,
+            "maxLength": 1024
+          }
+        }
+      },
+      "DataPlaneKeyParamObjectID": {
+        "name": "data_plane_key_id",
+        "in": "path",
+        "schema": {
+          "$ref": "#/components/schemas/DataPlaneKeyObjectID"
+        },
+        "description": "A globally unique identifier for the data plane key.\n",
+        "required": true
+      },
+      "FilterFieldInstances": {
+        "name": "filter_fields",
+        "in": "query",
+        "description": "An array of strings indicating which fields to filter by (for example, `hostname`, `nginx_version`). This parameter works in conjunction with `filter_values` and `filter_ops`.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/FilterNameInstances"
+          }
+        }
+      },
+      "SortDirection": {
+        "name": "sort_dir",
+        "in": "query",
+        "description": "Sorting direction for the criteria and the resulting collection returned. Defaults to descending if not specified.\n",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "Ascending",
+            "Descending"
+          ],
+          "x-enum-varnames": [
+            "sort_dir_ascending",
+            "sort_dir_descending"
+          ]
+        }
+      },
+      "SortNameInstances": {
+        "name": "sort_instances",
+        "in": "query",
+        "description": "Sort instances by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "hostname",
+              "status",
+              "last_reported"
+            ],
+            "x-enum-varnames": [
+              "sort_name_instance_hostname",
+              "sort_name_instance_status",
+              "sort_name_instance_last_reported"
+            ]
+          }
+        }
+      },
+      "InstanceParamObjectID": {
+        "name": "instanceObjectID",
+        "in": "path",
+        "schema": {
+          "$ref": "#/components/schemas/InstanceObjectID"
+        },
+        "description": "A globally unique identifier for the NGINX instance.\n",
+        "required": true
+      },
+      "PublicationParamObjectID": {
+        "name": "publicationObjectID",
+        "in": "path",
+        "schema": {
+          "$ref": "#/components/schemas/PublicationObjectID"
+        },
+        "description": "A globally unique identifier for a Publication.\n",
+        "required": true
+      }
+    },
+    "schemas": {
+      "FilterNameDataPlaneKeys": {
+        "type": "string",
+        "description": "Keywords for data plane key filters.\nWhen filtering on `status`, only the following `filter_values` are supported:\n  * revoked\n  * valid\n",
+        "enum": [
+          "name",
+          "status"
+        ],
+        "x-enum-varnames": [
+          "filter_name_data_plane_key_name",
+          "filter_name_data_plane_key_status"
+        ]
+      },
+      "PaginationResponse": {
+        "type": "object",
+        "description": "Outlines pagination details for list responses, including total results, start index, and items per page.",
+        "required": [
+          "count"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "description": "The total number of results generated by the list or query operation. \nThis number might be greater than the number of displayed resources, such as when pagination is in effect.\n"
+          },
+          "start_index": {
+            "type": "integer",
+            "description": "The first result's starting position in the list. This is disregarded when `abridged=true`.\n"
+          },
+          "items_per_page": {
+            "type": "integer",
+            "description": "The number of items to display per page. This is disregarded when `abridged=true`.\n"
+          }
+        },
+        "example": {
+          "count": 1,
+          "start_index": 1,
+          "items_per_page": 100
+        }
+      },
+      "DataPlaneKeyObjectID": {
+        "description": "A globally unique identifier for the data plane key.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^key_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
+      },
+      "DataPlaneKey": {
+        "type": "object",
+        "description": "Represents a data plane key with details such as object_id, name, and timestamps.",
+        "required": [
+          "object_id",
+          "name",
+          "revoked",
+          "expires_at",
+          "created_at",
+          "modified_at"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/DataPlaneKeyObjectID"
+          },
+          "name": {
+            "description": "The name given to the data plane key.",
+            "type": "string"
+          },
+          "revoked": {
+            "description": "Indicates whether the data plane key has been revoked or not.",
+            "type": "boolean"
+          },
+          "revoked_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the data plane key was revoked."
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the data plane key expires."
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the data plane key was created."
+          },
+          "modified_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the data plane key was last modified."
+          }
+        }
+      },
+      "DataPlaneKeyListResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          },
+          {
+            "type": "object",
+            "description": "List of data plane keys.",
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "description": "An array of DataPlaneKey objects.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/DataPlaneKey"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "Error": {
+        "description": "This object contains details about the errors that are returned when API requests fail.",
+        "type": "object",
+        "required": [
+          "message",
+          "request_id",
+          "timestamp"
+        ],
+        "properties": {
+          "message": {
+            "description": "The error message describing the problem.",
+            "type": "string"
+          },
+          "request_id": {
+            "description": "The unique identifier of the API request that failed.",
+            "type": "string"
+          },
+          "timestamp": {
+            "description": "The date and time (in UTC) when the error happened.",
+            "type": "string"
+          },
+          "detail": {
+            "description": "Additional information about the error, if available.",
+            "type": "string"
+          }
+        }
+      },
+      "DataPlaneKeyCreateRequest": {
+        "type": "object",
+        "description": "Request structure for creating a new data plane key.",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "description": "Give the data plane key a name so you can tell it apart from others.",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Set an expiration date and time for the data plane key in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ. \nIf an expiration date isn't specified, the key will expire one year after it's created. \n\nYou can use the _Update a data plane key_ endpoint to extend the expiration date.\nIt's not possible to update the expiration date once the data plane key has expired.\n"
+          }
+        }
+      },
+      "DataPlaneKeyResponse": {
+        "type": "object",
+        "description": "Response structure containing details of the created or retrieved data plane key.",
+        "required": [
+          "key",
+          "object_id",
+          "expires_at"
+        ],
+        "properties": {
+          "name": {
+            "description": "The name to be give to the new data plane key.",
+            "type": "string"
+          },
+          "object_id": {
+            "$ref": "#/components/schemas/DataPlaneKeyObjectID"
+          },
+          "key": {
+            "description": "The data plane key value. Save this key somewhere secure as it isn't saved and is shown only once.",
+            "type": "string"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the data plane key will expire."
+          }
+        }
+      },
+      "DataPlaneKeyUpdateRequest": {
+        "type": "object",
+        "description": "Request structure for updating an existing data plane key.",
+        "properties": {
+          "name": {
+            "description": "Give the data plane key a new name so you can tell it apart from others.",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Adjust the expiration date and time for the data plane key in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ. \n\nIt's not possible to update the expiration date once the data plane key has expired.\n"
+          }
+        }
+      },
+      "CertificateStatus": {
+        "type": "string",
+        "description": "Status of the certificate:\n  * `valid` - The certificate is currently valid and operational.\n  * `expiring` -  The certificate will expire within the next 30 days. Consider renewing it to maintain uninterrupted service.\n  * `expired` - The certificate is no longer valid. Immediate renewal is recommended to ensure secure connections.\n",
+        "enum": [
+          "valid",
+          "expired",
+          "expiring"
+        ],
+        "x-enum-varnames": [
+          "certificate_status_valid",
+          "certificate_status_expired",
+          "certificate_status_expiring"
+        ]
+      },
+      "CertificateSummaryItem": {
+        "description": "summary information for certificate with certain status.",
+        "type": "object",
+        "required": [
+          "status",
+          "count",
+          "affected_instances"
+        ],
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/CertificateStatus"
+          },
+          "count": {
+            "description": "The total number of SSL certificates for each status category.",
+            "type": "integer"
+          },
+          "affected_instances": {
+            "description": "Indicates the total number of SSL/TLS certificates corresponding to the status provided.",
+            "type": "integer"
+          }
+        }
+      },
+      "SummaryDisplayCount": {
+        "description": "The name, the total count, and an optional user-friendly display name of the resource being summarized.",
+        "type": "object",
+        "required": [
+          "name",
+          "count"
+        ],
+        "properties": {
+          "name": {
+            "description": "Identifies the category of data being reported, such as an operating system, NGINX version, or another type.",
+            "type": "string"
+          },
+          "count": {
+            "description": "The number of resources matching the given type.",
+            "type": "integer"
+          },
+          "display": {
+            "description": "A user-friendly label for the category count, intended for display purposes where a more descriptive or readable format is preferred.",
+            "type": "string"
+          }
+        }
+      },
+      "OperatingSystemVersionSummary": {
+        "description": "An array summarizing the operating systems and their versions on the NGINX data plane.",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/SummaryDisplayCount"
+        }
+      },
+      "NGINXVersionSummary": {
+        "description": "An array summarizing the versions of NGINX installed across the NGINX data plane.",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/SummaryDisplayCount"
+        }
+      },
+      "StatusSummary": {
+        "description": "An overview of the status for each NGINX instance, indicating availability.",
+        "type": "object",
+        "required": [
+          "online",
+          "offline",
+          "unavailable"
+        ],
+        "properties": {
+          "online": {
+            "description": "The number of NGINX instances reporting as `online`.\nThe NGINX Agent is connected to NGINX One, and the NGINX instance is online.\n",
+            "type": "integer"
+          },
+          "offline": {
+            "description": "The number of NGINX instances reporting as `offline`.\nThe NGINX Agent is connected to NGINX One, but the NGINX instance is offline.\n",
+            "type": "integer"
+          },
+          "unavailable": {
+            "description": "The number of NGINX instances reporting as `unavailable`.\nThe NGINX Agent has lost connection to NGINX One, rendering the NGINX instance unavailable.\n",
+            "type": "integer"
+          }
+        }
+      },
+      "CveSeverityType": {
+        "type": "string",
+        "description": "Severity ratings:\n  * `major` - High severity.\n  * `medium` - Moderate severity.\n  * `minor` - Minor severity.\n  * `low` - Least severe.\n  * `other`  - Severity that does not fit the other categories.\n",
+        "enum": [
+          "major",
+          "medium",
+          "minor",
+          "low",
+          "other"
+        ]
+      },
+      "CveSummary": {
+        "description": "A summary of Common Vulnerabilities and Exposures (CVEs) across the NGINX data plane.",
+        "type": "object",
+        "required": [
+          "severity",
+          "count",
+          "affected_instances"
+        ],
+        "properties": {
+          "severity": {
+            "$ref": "#/components/schemas/CveSeverityType"
+          },
+          "count": {
+            "description": "The number of CVEs at each severity level.",
+            "type": "integer"
+          },
+          "affected_instances": {
+            "description": "The number of NGINX instances affected by each CVE.",
+            "type": "integer"
+          }
+        }
+      },
+      "RecommendationType": {
+        "type": "string",
+        "description": "Types of configuration recommendations:\n  * `best_practice` - Suggestions based on established best practices.\n  * `security` - Recommendations related to security.\n  * `optimization` - Advice for optimizing performance.\n  * `other` - Recommendations that do not fit the above categories.\n",
+        "enum": [
+          "best_practice",
+          "security",
+          "optimization",
+          "other"
+        ]
+      },
+      "IssueSummary": {
+        "description": "A summary of issue details from the configuration analysis report.",
+        "type": "object",
+        "required": [
+          "type",
+          "count",
+          "affected_instances"
+        ],
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/RecommendationType"
+          },
+          "count": {
+            "description": "The number of times this recommendation appears in the configuration analysis report.",
+            "type": "integer"
+          },
+          "affected_instances": {
+            "description": "The number of instances affected by this issue.",
+            "type": "integer"
+          }
+        }
+      },
+      "InstanceSummary": {
+        "description": "A summary of NGINX instances, including certificates, OS versions, NGINX versions, and status details.",
+        "type": "object",
+        "properties": {
+          "certs": {
+            "description": "An array detailing each certificate's status  across all NGINX instances.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CertificateSummaryItem"
+            }
+          },
+          "os": {
+            "$ref": "#/components/schemas/OperatingSystemVersionSummary"
+          },
+          "nginx_versions": {
+            "$ref": "#/components/schemas/NGINXVersionSummary"
+          },
+          "statuses": {
+            "$ref": "#/components/schemas/StatusSummary"
+          },
+          "cves": {
+            "description": "An array summarizing identified Common Vulnerabilities and Exposures (CVEs) across the NGINX data plane.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CveSummary"
+            }
+          },
+          "recommendations": {
+            "description": "An array summarizing the suggestions from the configuration analysis report.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IssueSummary"
+            }
+          }
+        }
+      },
+      "FilterNameInstances": {
+        "type": "string",
+        "description": "Keywords for instance filters.\n\nWhen filtering on `instance_status`, only the following `filter_values` are supported:\n  * online\n  * offline\n  * unavailable\n  * unknown\nWhen filtering base on `cert_status`, only the following `filter_values` are supported:\n  * valid\n  * expired\n  * expiring\n",
+        "enum": [
+          "hostname",
+          "nginx_version",
+          "os_version",
+          "instance_status",
+          "cert_status",
+          "cve_severity",
+          "config_recommendation",
+          "key_object_id",
+          "system_id"
+        ],
+        "x-enum-varnames": [
+          "filter_name_hostname",
+          "filter_name_nginx_version",
+          "filter_name_os_version",
+          "filter_name_instance_status",
+          "filter_name_cert_status",
+          "filter_name_cve_severity",
+          "filter_name_config_recommendation",
+          "filter_name_key_object_id",
+          "filter_name_system_id"
+        ]
+      },
+      "InstanceObjectID": {
+        "description": "A globally unique identifier for the NGINX instance.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^inst_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
+      },
+      "NginxBuild": {
+        "description": "The build details for the NGINX binary, including its configuration parameters.\n",
+        "type": "object",
+        "required": [
+          "version"
+        ],
+        "properties": {
+          "version": {
+            "description": "The version number of the base open-source NGINX.",
+            "type": "string"
+          },
+          "plus_release": {
+            "description": "The NGINX Plus release version, if applicable.",
+            "type": "string"
+          },
+          "conf_path": {
+            "description": "The absolute path to the NGINX configuration, as set by the `--conf-path` option during build time.",
+            "type": "string"
+          }
+        }
+      },
+      "CertificateInstanceSummary": {
+        "description": "A breakdown and tally of certificates, detailing the total count, number of expired certificates, certificates nearing expiration, and those that are valid.",
+        "type": "object",
+        "required": [
+          "total",
+          "expired",
+          "expiring",
+          "valid"
+        ],
+        "properties": {
+          "total": {
+            "description": "Total count of certificates across the NGINX data plane.",
+            "type": "integer"
+          },
+          "expired": {
+            "description": "The number of certificates that have expired and are no longer valid.",
+            "type": "integer"
+          },
+          "expiring": {
+            "description": "The number of certificates due to expire in the next 30 days.",
+            "type": "integer"
+          },
+          "valid": {
+            "description": "The number of certificates that are valid and in good standing.",
+            "type": "integer"
+          }
+        }
+      },
+      "CveDetails": {
+        "description": "CVEs details, including the type and count.\n",
+        "type": "object",
+        "required": [
+          "type",
+          "count"
+        ],
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/CveSeverityType"
+          },
+          "count": {
+            "description": "The total number of each CVE type.",
+            "type": "integer"
+          }
+        }
+      },
+      "IssueDetails": {
+        "description": "Issue details, including the type and count.\n",
+        "type": "object",
+        "required": [
+          "type",
+          "count"
+        ],
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/RecommendationType"
+          },
+          "count": {
+            "description": "The total number of issues identified for the specific recommendation type.",
+            "type": "integer"
+          }
+        }
+      },
+      "Instance": {
+        "type": "object",
+        "description": "Summary information about a NGINX instance.",
+        "required": [
+          "object_id",
+          "hostname",
+          "system_id",
+          "agent_version",
+          "registered_at",
+          "last_reported",
+          "status"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/InstanceObjectID"
+          },
+          "hostname": {
+            "description": "The name of the host system where the NGINX instance is running.",
+            "type": "string"
+          },
+          "system_id": {
+            "description": "The unique identifier assigned to the host system by the NGINX Agent.",
+            "type": "string"
+          },
+          "nginx_id": {
+            "description": "The unique identifier for the NGINX process on the host system, assigned by the NGINX Agent.",
+            "type": "string"
+          },
+          "agent_version": {
+            "description": "The version of the NGINX Agent.",
+            "type": "string"
+          },
+          "key_object_id": {
+            "$ref": "#/components/schemas/DataPlaneKeyObjectID"
+          },
+          "nginx_build": {
+            "$ref": "#/components/schemas/NginxBuild"
+          },
+          "os_version": {
+            "description": "The operating system's name and its and version or codename.\n",
+            "type": "string",
+            "example": "ubuntu_jammy"
+          },
+          "registered_at": {
+            "description": "The date and time when the NGINX instance first registered with NGINX One.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "last_reported": {
+            "description": "The date and time of the most recent report received from the NGINX Agent.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "type": "string",
+            "description": "The current operational status of the NGINX instance, with the following possible values:\n* `unknown` - The status of the NGINX instance cannot be determined at this moment.\n* `unavailable` - The NGINX Agent has lost connection to NGINX One, rendering the NGINX instance unavailable.\n* `offline` - The NGINX Agent is connected to NGINX One, but the NGINX instance is offline.\n* `online` - The NGINX Agent is connected to NGINX One, and the NGINX instance is online.\n",
+            "enum": [
+              "unknown",
+              "unavailable",
+              "offline",
+              "online"
+            ]
+          },
+          "cert_summary": {
+            "$ref": "#/components/schemas/CertificateInstanceSummary"
+          },
+          "cve_severity": {
+            "type": "array",
+            "description": "An array summarizing identified Common Vulnerabilities and Exposures (CVEs) across the NGINX data plane.",
+            "items": {
+              "$ref": "#/components/schemas/CveDetails"
+            }
+          },
+          "recommendations": {
+            "type": "array",
+            "description": "An array summarizing the suggestions from the configuration analysis report.",
+            "items": {
+              "$ref": "#/components/schemas/IssueDetails"
+            }
+          }
+        }
+      },
+      "InstanceListResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          },
+          {
+            "type": "object",
+            "description": "List of data plane instances.",
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "description": "An array of Instance objects.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Instance"
+                }
+              }
+            }
+          }
+        ],
+        "example": {
+          "count": 1,
+          "start_index": 1,
+          "items_per_page": 100,
+          "items": [
+            {
+              "agent_version": "v2.30.3",
+              "hostname": "4d116619f106",
+              "key": "key_Tet21AeYTHCj7taOwVfzyw",
+              "last_reported": "2023-12-06T22:37:24.120114Z",
+              "nginx_build": {
+                "conf_path": "/etc/nginx/nginx.conf",
+                "version": "1.25.3"
+              },
+              "nginx_id": "b636d4376dea15405589692d3c5d3869ff3a9b26b0e7bb4bb1aa7e658ace1437",
+              "registered_at": "2023-12-06T22:37:24.120114Z",
+              "status": "unknown",
+              "system_id": "b2c0b6a8-8b6a-3a8f-a541-17d8899c119a",
+              "object_id": "inst_-uvR3F2TQGm18jnl7bpaGw"
+            }
+          ]
+        }
+      },
+      "NginxSecurityAdvisory": {
+        "type": "object",
+        "description": "Details about a specific NGINX security advisory, including its severity, a link to more information, and a brief description.",
+        "properties": {
+          "id": {
+            "description": "The security advisory's unique identifier.",
+            "type": "string"
+          },
+          "severity": {
+            "description": "The urgency or impact level of the security advisory.\n\nSeverity ratings:\n* `major` - High severity.\n* `medium` - Moderate severity.\n* `minor` - Minor severity.\n* `low` - Least severe.\n* `other`  - Severity that does not fit the other categories.\n",
+            "type": "string"
+          },
+          "advisory": {
+            "description": "The URL to detailed information about the security advisory.",
+            "type": "string"
+          },
+          "info": {
+            "description": "A brief description of security advisory.",
+            "type": "string"
+          }
+        }
+      },
+      "CertificateObjectID": {
+        "description": "A globally unique identifier for the certificates.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^cert_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
+      },
+      "CertAssociation": {
+        "type": "object",
+        "description": "Details for a certificate that's associated with an instance.",
+        "required": [
+          "name",
+          "uid",
+          "paths",
+          "domain",
+          "not_before",
+          "not_after",
+          "status"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "A friendly name for the certificate."
+          },
+          "object_id": {
+            "$ref": "#/components/schemas/CertificateObjectID"
+          },
+          "paths": {
+            "type": "array",
+            "description": "The list of file system paths where the certificate is installed. \nSince a single certificate may be applied in multiple contexts, all relevant paths are included.\n",
+            "example": [
+              "/etc/ssl/cert.pem",
+              "/etc/ssl/cert.crt"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "domain": {
+            "type": "string",
+            "description": "Hostname or domain for the certificate. Usually the subject-alt-name (SAN) value for the certificate.",
+            "example": "nginx.com"
+          },
+          "status": {
+            "$ref": "#/components/schemas/CertificateStatus"
+          },
+          "not_before": {
+            "type": "string",
+            "format": "date-time",
+            "description": "the effective date of the certificate."
+          },
+          "not_after": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The expiration date for the certificate."
+          }
+        }
+      },
+      "OperatingSystem": {
+        "description": "Release details for the operating system.",
+        "type": "object",
+        "required": [
+          "name",
+          "id",
+          "codename",
+          "version",
+          "version_id"
+        ],
+        "properties": {
+          "name": {
+            "description": "The official name of the operating system release.",
+            "type": "string"
+          },
+          "id": {
+            "description": "The distinctive identifier for the operating system release.",
+            "type": "string"
+          },
+          "codename": {
+            "description": "The codename assigned to the operating system release.",
+            "type": "string"
+          },
+          "version": {
+            "description": "The version label for the operating system, which may include the name and version number or codename.",
+            "type": "string"
+          },
+          "version_id": {
+            "description": "The specific version number of the operating system release.",
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "Ubuntu",
+          "id": "ubuntu",
+          "codename": "bionic",
+          "version": "18.04.5 LTS (Bionic Beaver)",
+          "version_id": "18.04"
+        }
+      },
+      "InstanceDetails": {
+        "type": "object",
+        "description": "Detailed information about an NGINX instance.",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Instance"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "certs": {
+                "description": "An array detailing each certificate's information, including its friendly name, unique identifier, applicable file system paths, domain association, and validity dates. \nIt provides insights into the operational status of each certificate, such as whether it's currently valid, nearing expiration, or has already expired.\n",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CertAssociation"
+                }
+              },
+              "os": {
+                "$ref": "#/components/schemas/OperatingSystem"
+              }
+            }
+          }
+        ],
+        "example": {
+          "agent_version": "v2.30.3",
+          "certs": [
+            {
+              "domain": "test.com",
+              "name": "client",
+              "not_after": "2024-01-06T00:01:30Z",
+              "not_before": "2023-12-07T00:01:30Z",
+              "paths": [
+                "/etc/nginx/client.pem"
+              ],
+              "status": "expiring",
+              "uid": "5f13a59c-0f33-427a-a160-c6ef3209939b"
+            }
+          ],
+          "hostname": "4d116619f106",
+          "key": "key_wN3IhLCmR3qmwybG_6ptEg",
+          "last_reported": "2023-12-06T22:37:24.120114Z",
+          "nginx_build": {
+            "conf_path": "/etc/nginx/nginx.conf",
+            "version": "1.25.3"
+          },
+          "nginx_id": "b636d4376dea15405589692d3c5d3869ff3a9b26b0e7bb4bb1aa7e658ace1437",
+          "os": {
+            "codename": "jammy",
+            "id": "ubuntu",
+            "name": "Ubuntu",
+            "version": "22.04.3 LTS (Jammy Jellyfish)",
+            "version_id": "22.04"
+          },
+          "registered_at": "2023-12-06T22:37:24.120114Z",
+          "status": "unknown",
+          "system_id": "b2c0b6a8-8b6a-3a8f-a541-17d8899c119a",
+          "object_id": "inst_-uvR3F2TQGm18jnl7bpaGw"
+        }
+      },
+      "NginxConfigProblem": {
+        "type": "object",
+        "description": "Representation of a problem found during NGINX configuration analysis.",
+        "properties": {
+          "directive": {
+            "description": "Directive in the NGINX configuration where the issue is identified.",
+            "type": "string"
+          },
+          "file": {
+            "description": "File where the issue is detected.",
+            "type": "string"
+          },
+          "line": {
+            "description": "Line number in the configuration where the issue is found.",
+            "type": "integer"
+          }
+        }
+      },
+      "NginxConfigReport": {
+        "type": "object",
+        "description": "An analysis of the NGINX configuration, highlighting issues and their severity, and offering recommendations.",
+        "properties": {
+          "rule": {
+            "description": "The name of the configuration rule that was violated.",
+            "type": "string"
+          },
+          "info": {
+            "description": "A detailed description of the issue.",
+            "type": "string"
+          },
+          "severity": {
+            "description": "The severity level of the issue.",
+            "type": "string"
+          },
+          "category": {
+            "description": "Classification category of the issue.",
+            "type": "string"
+          },
+          "documentation": {
+            "description": "Links to documentation that can assist in resolving the identified issue.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "where": {
+            "description": "Specific locations in the configuration where issues were detected.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NginxConfigProblem"
+            }
+          }
+        }
+      },
+      "NginxConfigReports": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/NginxConfigReport"
+        }
+      },
+      "NginxConfigObjectID": {
+        "description": "A globally unique identifier for the NGINX Config object.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^nc_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
+      },
+      "FileData": {
+        "type": "object",
+        "description": "Details about a file, including its path, content, size, and last modified time.",
+        "required": [
+          "name",
+          "contents",
+          "size",
+          "mtime"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The file's absolute path.",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "contents": {
+            "type": "string",
+            "format": "byte",
+            "description": "The base64-encoded contents of the file.",
+            "maxLength": 3145728
+          },
+          "size": {
+            "type": "integer",
+            "description": "The size of the file, in bytes."
+          },
+          "mtime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp of the last modification made to the file."
+          }
+        }
+      },
+      "DirectoryWithFileContent": {
+        "type": "object",
+        "description": "Represents a directory and its contents, detailing the directory's full path, assigned permissions, last modified time, and the files within it.",
+        "required": [
+          "name",
+          "files"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The complete path of the directory."
+          },
+          "permissions": {
+            "type": "string",
+            "description": "The permissions for the directory."
+          },
+          "mtime": {
+            "type": "string",
+            "description": "The date and time when the directory was last modified.",
+            "format": "date-time"
+          },
+          "files": {
+            "type": "array",
+            "description": "The list of files in the directory.",
+            "items": {
+              "$ref": "#/components/schemas/FileData"
+            }
+          }
+        }
+      },
+      "NginxConfig": {
+        "type": "object",
+        "description": "Details of an NGINX configuration, including its unique identifier, the main configuration path, and the configuration directories.\n",
+        "required": [
+          "object_id",
+          "config_version",
+          "conf_path",
+          "configs"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/NginxConfigObjectID"
+          },
+          "config_version": {
+            "type": "string",
+            "description": "A hash that uniquely identifies the contents of the config object. Can be used to detect change when updating the NginxConfig.\n"
+          },
+          "conf_path": {
+            "type": "string",
+            "description": "The full path to the main NGINX configuration file. This corresponds to the `--conf-path` parameter used in the NGINX binary.\n",
+            "example": "/etc/nginx/nginx.conf."
+          },
+          "configs": {
+            "type": "array",
+            "description": "An array of directories containing NGINX configuration files.",
+            "items": {
+              "$ref": "#/components/schemas/DirectoryWithFileContent"
+            }
+          },
+          "aux": {
+            "type": "array",
+            "description": "An array of auxiliary directory contents related to the NGINX configuration.",
+            "items": {
+              "$ref": "#/components/schemas/DirectoryWithFileContent"
+            }
+          }
+        }
+      },
+      "PublicationObjectID": {
+        "description": "A globally unique identifier for the publication.",
+        "type": "string",
+        "format": "object_id",
+        "example": "pub_72pGHoGsSICL_THZrs964g",
+        "pattern": "^pub_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
+      },
+      "PublicationStatusCause": {
+        "description": "Cause of the failure, provided only if the status is `failed`.",
+        "type": "object",
+        "properties": {
+          "cause": {
+            "description": "Cause of the failure, detailed as follows:\n* `unknown` - The reason for the failure is not known.\n* `timeout` - The publication request reached its time limit without receiving a response from the NGINX Agent.\n* `remote` - The NGINX Agent reported a failure when trying to apply the configuration. See the message for more details.\n",
+            "type": "string",
+            "enum": [
+              "unknown",
+              "timeout",
+              "remote"
+            ],
+            "x-enum-varnames": [
+              "publication_instance_status_cause_unknown",
+              "publication_instance_status_cause_timeout",
+              "publication_instance_status_cause_remote"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "description": "more specific failure message from the agent."
+          }
+        }
+      },
+      "PublicationInstance": {
+        "description": "Details of a publication request for an NGINX instance.",
+        "required": [
+          "status",
+          "created_at",
+          "modified_at"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/PublicationObjectID"
+          },
+          "status": {
+            "description": "Publication status for the NGINX instance:\n* `pending` - The publication request has been accepted and is currently processing.\n* `failed` - The publication attempt failed.\n* `succeeded` - The publication was successful.\n",
+            "type": "string",
+            "enum": [
+              "pending",
+              "failed",
+              "succeeded"
+            ],
+            "x-enum-varnames": [
+              "publication_instance_status_pending",
+              "publication_instance_status_failed",
+              "publication_instance_status_succeeded"
+            ]
+          },
+          "status_cause": {
+            "$ref": "#/components/schemas/PublicationStatusCause"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the publication was created for the instance."
+          },
+          "modified_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the publication was last modified for the instance."
+          }
+        }
+      },
+      "FeatureFlagKey": {
+        "type": "string",
+        "description": "String representation of a feature flag key."
+      },
+      "MetricQueryResult": {
+        "type": "object",
+        "properties": {
+          "query_metadata": {
+            "$ref": "#/components/schemas/MetricQueryMetadata"
+          },
+          "metrics": {
+            "description": "An array of Metric objects, each including the name of the metric resource, aggregate function, and series details.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Metric"
+            }
+          },
+          "response_metadata": {
+            "$ref": "#/components/schemas/MetricResponseMetadata"
+          }
+        }
+      },
+      "MetricResponseMetadata": {
+        "description": "needs a description.",
+        "type": "object",
+        "properties": {
+          "warning": {
+            "description": "needs a description.",
+            "type": "string"
+          }
+        }
+      },
+      "MetricQueryMetadata": {
+        "description": "This object includes details about the time period and resolution (granularity) used in the metrics query.\n",
+        "type": "object",
+        "properties": {
+          "start_time": {
+            "description": "The beginning of the time period for the metrics query (inclusive).",
+            "type": "string",
+            "format": "date-time",
+            "example": "2019-08-07T09:57:36.088757764Z"
+          },
+          "end_time": {
+            "description": "The end point for the time period for the metrics query (non-inclusive).",
+            "type": "string",
+            "format": "date-time",
+            "example": "2019-08-07T09:57:36.088757764Z"
+          },
+          "resolution": {
+            "description": "The level of granularity for the time series data.",
+            "type": "string",
+            "example": "30m"
+          }
+        }
+      },
+      "Metric": {
+        "type": "object",
+        "description": "This object represents a metric, including the name of the metric resource, aggregate function, and series details.\n",
+        "properties": {
+          "name": {
+            "description": "The name of the metric resource.\n",
+            "type": "string",
+            "example": "plus.upstream.response.count"
+          },
+          "aggr": {
+            "description": "The aggregation function applied to the metric.\n",
+            "type": "string",
+            "enum": [
+              "AVG",
+              "COUNT",
+              "SUM",
+              "MAX",
+              "MIN",
+              "RATE"
+            ],
+            "example": "AVG"
+          },
+          "series": {
+            "description": "An array of data points aligned along one or more dimensions from the Dimensions Catalog.\n",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Series"
+            }
+          }
+        }
+      },
+      "Series": {
+        "description": "This object represents a set of data points aligned along one or more dimensions from the Dimensions Catalog.",
+        "type": "object",
+        "properties": {
+          "dimensions": {
+            "description": "This object represents a set of data points aligned along one or more dimensions from the Dimensions Catalog.\n",
+            "type": "object",
+            "additionalProperties": {
+              "description": "The names of the dimensions used in the metrics query.\n",
+              "type": "string"
+            },
+            "example": {
+              "server_zone": "prod_zone",
+              "instance_group": "prod"
+            }
+          },
+          "timestamps": {
+            "description": "An array of date-time strings that represent when each data point in the series was recorded.\n",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "example": [
+              "2019-08-07T09:57:30",
+              "2019-08-07T09:57:35"
+            ]
+          },
+          "values": {
+            "description": "An array of values for the metric recorded at each timestamp.\n",
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "example": [
+              4.2,
+              4.4
+            ]
+          }
+        }
+      },
+      "Time": {
+        "description": "Indicates a point in time.\n\nTime can be specified in two ways:\n* Using ISO 8601 format. For example, \"2019-08-07T09:57:36.088757764Z\".\n* As an offset from the current time. For the offset, use `+` or `-`, followed by a number and the appropriate time unit. The time unit can can be `y` (years), `M` (months), `w` (weeks), `d` (days), `h` (hours), `m` (minutes), or `s` (seconds). \nExample of an offset: \"now-3h\" (3 hours before now).\n",
+        "type": "string",
+        "example": "2019-08-07T09:57:36.088757764Z"
+      },
+      "MetricDescriptionResponse": {
+        "$ref": "#/components/schemas/MetricDescriptionRecord"
+      },
+      "MetricDescriptionRecord": {
+        "type": "object",
+        "required": [
+          "metadata"
+        ],
+        "properties": {
+          "name": {
+            "description": "The name of the metric resource.",
+            "type": "string",
+            "example": "nginx.http.request.bytes_sent"
+          },
+          "description": {
+            "description": "A description of what the metric measures.",
+            "type": "string",
+            "example": "Number of bytes sent to clients."
+          },
+          "unit": {
+            "description": "The measurement scale or data type for the metric's value.\n",
+            "type": "string",
+            "example": "bytes"
+          },
+          "aggregations": {
+            "description": "The supported aggregate functions for the metric.",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "AVG",
+                "COUNT",
+                "SUM",
+                "MAX",
+                "MIN",
+                "RATE"
+              ]
+            },
+            "example": [
+              "AVG",
+              "SUM"
+            ]
+          },
+          "type": {
+            "description": "The nature of the metric. Examples include `counter` (a cumulative metric that generally grows over time and can reset) and \n`gauge` (a value that can fluctuate, increasing or decreasing over time).\n",
+            "type": "string",
+            "enum": [
+              "counter",
+              "gauge",
+              "incremental"
+            ],
+            "example": "counter"
+          },
+          "categories": {
+            "description": "Categories are used to organize metrics into specific groups. For example, `nginx` or `system`.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "nginx"
+            ]
+          },
+          "dimensions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "description": "An array dimensions that apply to the metric resource. "
+          }
+        }
+      },
+      "MetricsDescriptionsResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "description": "An array of metric resource descriptions.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetricDescriptionRecord"
+            }
+          }
+        }
+      },
+      "DimensionDescriptionResponse": {
+        "$ref": "#/components/schemas/DimensionDescriptionRecord"
+      },
+      "DimensionDescriptionRecord": {
+        "type": "object",
+        "required": [
+          "metadata"
+        ],
+        "properties": {
+          "name": {
+            "description": "The name of the dimension resource.",
+            "type": "string",
+            "example": "instance"
+          },
+          "description": {
+            "description": "An explanation of what the dimension represents or measures in the context of the metric.",
+            "type": "string",
+            "example": "Instance name."
+          },
+          "type": {
+            "description": "The data type for the dimension. For example, `string`.",
+            "type": "string",
+            "enum": [
+              "string",
+              "int",
+              "list"
+            ],
+            "example": "string"
+          },
+          "metrics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "description": "An array of metrics that the dimension resource applies to."
+          }
+        }
+      },
+      "DimensionsDescriptionsResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "description": "An array of dimension resource descriptions.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DimensionDescriptionRecord"
+            }
+          }
+        }
+      },
+      "ResourceRef": {
+        "type": "object",
+        "required": [
+          "ref"
+        ],
+        "properties": {
+          "ref": {
+            "type": "string",
+            "example": "/monitor/catalogs/dimensions/system_id",
+            "description": "A URI that points directly to the resource within the API.\n"
+          },
+          "links": {
+            "$ref": "#/components/schemas/NamedLinks"
+          }
+        }
+      },
+      "NamedLinks": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/SelfLinks"
+          },
+          {
+            "type": "object",
+            "description": "Contains information about the resource being referred to, including the resource name and display name. \nThis information is useful for consumers of the API who may need to perform further processing.\n\nThis object is only present in responses.\n",
+            "properties": {
+              "name": {
+                "type": "string",
+                "example": "system_id",
+                "description": "The name of the resource.\n"
+              },
+              "display_name": {
+                "type": "string",
+                "example": "system ID",
+                "description": "A user-friendly display name for the resource."
+              }
+            }
+          }
+        ]
+      },
+      "SelfLinks": {
+        "type": "object",
+        "description": "This object represents links to a resource, including the complete API path fragment, the resource name, and the resource's user-friendly display name. \nThis object is used only in responses.\n",
+        "properties": {
+          "rel": {
+            "type": "string",
+            "example": "/api/v1/monitor/catalogs/dimensions/system_id",
+            "description": "The complete path fragment of a URI that, when combined with a base URL, can be used to construct a query to the dimension resource.\n"
+          }
+        }
+      }
+    },
+    "examples": {
+      "DataPlaneKeys": {
+        "value": {
+          "count": 2,
+          "start_index": 1,
+          "items_per_page": 100,
+          "items": [
+            {
+              "expires_at": "2023-12-01T00:00:00Z",
+              "modified_at": "2023-11-01T00:00:00Z",
+              "created_at": "2023-10-01T00:00:00Z",
+              "revoked": false,
+              "name": "my-data-plane-key",
+              "object_id": "key_wN3IhLCmR3qmwybG_6ptEg"
+            },
+            {
+              "expires_at": "2023-12-01T00:00:00Z",
+              "modified_at": "2023-11-01T00:00:00Z",
+              "created_at": "2023-10-01T00:00:00Z",
+              "revoked": false,
+              "name": "my-data-plane-key",
+              "object_id": "key_Tet21AeYTHCj7taOwVfzyw"
+            }
+          ]
+        }
+      },
+      "DataPlaneKeyRequest": {
+        "value": {
+          "name": "my-data-plane-key",
+          "expires_at": "2023-12-01T00:00:00Z"
+        }
+      },
+      "DataPlaneKeyResponse": {
+        "value": {
+          "expires_at": "2023-12-01T00:00:00Z",
+          "key": "AVQFrgADVFpJ9qvI7BX1+OlHUxdZRMsSCm4Q35CrqAQ=",
+          "name": "my-data-plane-key",
+          "object_id": "key_Tet21AeYTHCj7taOwVfzyw"
+        }
+      },
+      "DataPlaneKey": {
+        "value": {
+          "expires_at": "2023-12-01T00:00:00Z",
+          "modified_at": "2023-11-01T00:00:00Z",
+          "created_at": "2023-10-01T00:00:00Z",
+          "revoked": false,
+          "name": "my-data-plane-key",
+          "object_id": "key_wN3IhLCmR3qmwybG_6ptEg"
+        }
+      }
+    }
+  },
+  "x-tagGroups": [
+    {
+      "name": "Manage Data Plane Keys",
+      "tags": [
+        "Data Plane Key"
+      ]
+    },
+    {
+      "name": "Manage NGINX Instances",
+      "tags": [
+        "Instances",
+        "Feature Flags"
+      ]
+    },
+    {
+      "name": "Monitor NGINX Instances``",
+      "tags": [
+        "Metrics",
+        "Catalogs"
+      ]
+    }
+  ]
+}
