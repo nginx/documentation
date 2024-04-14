@@ -57,3 +57,9 @@ To complete these steps, you need administrator access.
 
 6. **Review and Save Changes:**
    - After assigning roles and permissions, select **Save** to apply the changes.
+
+---
+
+## Additional Resources
+
+{{< include "/nim/templates/additional-resources-links.md" >}}

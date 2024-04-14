@@ -48,7 +48,7 @@ Be sure to download and install the correct WAF compiler version for your enviro
 
 - Each NGINX App Protect version has a corresponding WAF compiler version. You must install the WAF compiler that matches the version of NGINX App Protect that you have running.
 - If you have different NGINX App Protect versions running, install the correct WAF compiler package for each on the management plane host. Instance Manager will use the correct WAF compiler for each version to bundle the security configurations.
-- You can create [instance groups]({{< relref "/nms/nim/how-to/instance-groups/manage-instance-groups" >}}) to keep track of and manage all instances that have the same version installed.
+- You can create [instance groups]({{< relref "/nms/nim/how-to/instances/manage-instance-groups" >}}) to keep track of and manage all instances that have the same version installed.
 
 For more information about the WAF compiler, refer to the [Security Bundle Compilation]({{< relref "/nms/nim/about/app-protect-waf-cm-overview#security-bundle" >}}) section of the Policy Configuration overview topic.
 

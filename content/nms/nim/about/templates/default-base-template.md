@@ -92,6 +92,9 @@ Augment templates add specific features or modify existing configurations genera
 - **Test augments separately**: Before applying augment templates to production configurations, test them in a separate environment to ensure they function as expected.
 - **Documentation**: Document the purpose and inputs of custom augment templates to facilitate understanding and usage by other team members.
 
+---
+
 ## Additional Resources
 
-- To Add
+{{< include "/nim/templates/additional-resources-links.md" >}}
+

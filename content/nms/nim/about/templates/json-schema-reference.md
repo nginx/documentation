@@ -254,8 +254,4 @@ Each data type in a JSON schema comes with its own set of features that define h
 
 ## Additional Resources
 
-- **[Understand Config Templates]({{< relref "nms/nim/about/templates/config-templates.md" >}})**: Learn about the config template types, targets for publication, and the template submission process.
-  
-- **[Template Resource Files]({{< relref "nms/nim/about/templates/template-resources.md" >}})**: Learn about template resource files, including config template files, JSON schemas, and auxiliary files.
-  
-- **[Manage NGINX Configs with Config Templates]({{< relref "nms/nim/how-to/nginx/manage-nginx-configs-with-templates.md" >}})**: Learn how to create and import config templates, as well as generate and deploy NGINX configurations.
+{{< include "/nim/templates/additional-resources-links.md" >}}

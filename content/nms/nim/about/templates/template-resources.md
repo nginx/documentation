@@ -2,7 +2,7 @@
 title: "Template Resource Files"
 date: 2024-03-19T12:23:28-07:00
 # Change draft status to false to publish doc
-draft: false
+draft: true
 # Description
 # Add a short description (150 chars) for the doc. Include keywords for SEO.
 # The description text appears in search results and at the top of the doc.
@@ -134,20 +134,16 @@ This example shows how to enable OIDC authentication in NGINX using a config tem
 
   An explanation of the JSON schema settings:
 
-    - **Root property for `templateInput`**: The JSON schema defines a root property named `templateInput`. This property is necessary because it contains all the customizable parameters the user can provide for the template. The schema specifies that `templateInput` can be either an object (which holds configuration parameters) or null (indicating the absence of such parameters).
+  - **Root property for `templateInput`**: The JSON schema defines a root property named `templateInput`. This property is necessary because it contains all the customizable parameters the user can provide for the template. The schema specifies that `templateInput` can be either an object (which holds configuration parameters) or null (indicating the absence of such parameters).
 
-    - **OIDC object validation**: Within `templateInput`, there's a specific object named `oidc` meant to configure OIDC-related settings. The schema for the `oidc` object includes a boolean property named `enabled`. This property controls whether OIDC authentication is turned on (`true`) or off (`false`) for the NGINX configuration being generated.
+  - **OIDC object validation**: Within `templateInput`, there's a specific object named `oidc` meant to configure OIDC-related settings. The schema for the `oidc` object includes a boolean property named `enabled`. This property controls whether OIDC authentication is turned on (`true`) or off (`false`) for the NGINX configuration being generated.
 
-    - **Input-validation for `oidc` object**: The `main.json` provides rules for validating the `oidc` object's inputs. For example, the `enabled` property within the `oidc` object must be a boolean. This ensures that the template receives correctly typed and structured data to generate the configuration correctly.
+  - **Input-validation for `oidc` object**: The `main.json` provides rules for validating the `oidc` object's inputs. For example, the `enabled` property within the `oidc` object must be a boolean. This ensures that the template receives correctly typed and structured data to generate the configuration correctly.
 
-    - **Required properties**: The schema declares that within the `oidc` object, the `enabled` property is mandatory (`"required": ["enabled"]`). This means that any input provided for the `oidc` object must include a clear true/false value for `enabled`.
+  - **Required properties**: The schema declares that within the `oidc` object, the `enabled` property is mandatory (`"required": ["enabled"]`). This means that any input provided for the `oidc` object must include a clear true/false value for `enabled`.
 
 ---
 
 ## Additional Resources
 
-- **[Understand Config Templates]({{< relref "nms/nim/about/templates/config-templates.md" >}})**: Learn about the config template types, targets for publication, and the template submission process.
-
-- **[JSON Schemas for Template Inputs]({{< relref "nms/nim/about/templates/json-schema-reference.md" >}})**: JSON schemas for the dynamic web form builder, used for template input and validation.
-
-- **[Manage NGINX Configs with Config Templates]({{< relref "nms/nim/how-to/nginx/manage-nginx-configs-with-templates.md" >}})**: Learn how to create and import config templates, as well as generate and deploy NGINX configurations.
+{{< include "/nim/templates/additional-resources-links.md" >}}
