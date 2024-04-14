@@ -148,10 +148,97 @@ After you've deleted the unneeded JSON schemas, the **Upstream Augment Template*
 - http-upstream.json
 - location.json
 
+## Step : Create the augment template
+
+1. On the **Templates > Overview** page, select **Upstream Augment Template**.
 
 
+**location.tmpl**
 
-## 
+``` go
+{{$augmentData := .AugmentData.V1}}
+{{$server := index .Args 0}}
+{{$location := index .Args 1}}
+{{$locationId := "" }}
+
+{{if and $location $location.templateInput}}
+  {{$locationId = $location.templateInput.id}}
+{{end}}
+
+{{/* Check to see if we have upstreamName for this location id */}}
+{{range $args := $augmentData.location.templateInput.locations}}
+  {{if (eq $args.targetId $locationId)}}
+    proxy_pass http://{{$args.upstreamName}};
+    {{break}}
+  {{end}}
+{{end}}
+```
+
+<br>
+
+**location.json**
+
+``` json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Location Inputs",
+  "type": "object",
+  "properties": {
+    "templateInput": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "locations": {
+          "type": "array",
+          "title": "Location List",
+          "items": {
+            "type": "object",
+            "properties": {
+              "targetId": {
+                "title": "Location Id",
+                "type": "string",
+                "description": "Case sensitive alphanumeric id used for specifying augment placement.",
+                "examples": [
+                  "main_location"
+                ]
+              },
+              "upstreamName": {
+                "type": "string",
+                "title": "Upstream Name",
+                "description": "Name of the target upstream. Must match exactly.",
+                "examples": [
+                  "upstream-1"
+                ]                
+              }
+            },
+            "required": ["targetId", "upstreamName"]
+          }
+        }
+      },
+      "required": ["locations"]
+    }
+  },
+  "required": []
+}
+```
+
+<br>
+
+**meta.json**
+
+``` json
+{
+  "meta_version_num": 1,
+  "name": "rr_aug_loc_proxy",
+  "description": "Tutorial augment template for location example",    
+  "type": "augment",
+  "uid": "6b48bb57-b2ca-40c7-a296-b1c11e3cf3d9"
+}
+```
+
+## Step : Generate the NGINX config
 
 
 ## Import template
