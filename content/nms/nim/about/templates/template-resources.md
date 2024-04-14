@@ -2,7 +2,7 @@
 title: "Template Resource Files"
 date: 2024-03-19T12:23:28-07:00
 # Change draft status to false to publish doc
-draft: true
+draft: false
 # Description
 # Add a short description (150 chars) for the doc. Include keywords for SEO.
 # The description text appears in search results and at the top of the doc.

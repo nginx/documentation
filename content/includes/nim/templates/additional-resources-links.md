@@ -18,7 +18,3 @@ docs:
 - **[Manage NGINX Configs with Config Templates]({{< relref "nms/nim/how-to/nginx/manage-nginx-configs-with-templates.md" >}})**: Learn how to create and import config templates, as well as generate and deploy NGINX configurations.
 
 - **[Access Control for Templates and Template Submissions]({{< relref "nms/nim/how-to/nginx/access-control-for-templates-and-template-submissions.md" >}})** - Learn how to apply role-based access control (RBAC) settings to templates and template submissions.
-
-**Tutorials**
-
-- **[Create an augment template for upstream settings]({{< relref "nms/nim/tutorials/templates/augment-http-upstream.md" >}})**: Learn how to create an augment template to allow specific individuals or teams to set the HTTP upstream servers.
