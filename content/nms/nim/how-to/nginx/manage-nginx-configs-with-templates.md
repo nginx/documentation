@@ -35,7 +35,7 @@ To create a new config template:
 
 1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Management Suite host, and log in.
 2. From the Launchpad menu, choose **Instance Manager**.
-3. In the left navigation pane, select **Templates > Overview**.
+3. In the left navigation pane, select **Templates**.
 4. On the Config Templates "Overview" page, select **Create**.
 5. In the **Create Template** dialog:
     - Select **New** to start a fresh template.

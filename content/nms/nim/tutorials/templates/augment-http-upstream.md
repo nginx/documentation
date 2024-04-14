@@ -41,24 +41,24 @@ To begin, make a clone of the F5 Global base template to work with.
 2. From the Launchpad menu, choose **Instance Manager**.
 3. In the left navigation pane, select **Templates > Overview**.
 4. Select the **F5 Global Default Base** template.
-5. Select **Save As** and enter a name for the cloned template. In this example, we'll call the cloned template *Upstream Augment Template*.
+5. Select **Save As** and enter a name for the cloned template. In this example, we'll call the cloned template **HTTP Upstream Base Template**.
 
 ## Step 2: Make the cloned template editable
 
-Because the F5 Global Default Base template's state is **Ready for Use**, any clones made of that template will have the same state. We want to make modifications to our cloned template, **Upstream Augment Template**, so we need to make that template editable.
+Because the F5 Global Default Base template's state is **Ready for Use**, any clones made of that template will have the same state. We want to make modifications to our cloned template, **HTTP Upstream Base Template**, so we need to make that template editable.
 
 To edit the metadata details for a template:
 
-1. On the **Templates > Overview** page, locate **Upstream Augment Template**. In the **Actions** column, select the ellipsis (three dots), then choose **Edit**.
+1. On the **Templates > Overview** page, locate **HTTP Upstream Base Template**. In the **Actions** column, select the ellipsis (three dots), then choose **Edit**.
 2. In the **Description** box, enter a new description for the template. For example, "Round-robin base template."
 3. Select **Draft** for the state.
 4. Select **Submit**.
 
 ## Step 3: Pare down the base template
 
-The Upstream Augment Template at this point includes more details than we require. For the purposes of this tutorial, we only want to create the HTTP upstreams, HTTP upstream servers with their ports, and leave the ExecTemplateAugments to injecting an augment template. This means we can remove extraneous settings like the advanced metrics module and stream block. 
+The HTTP Upstream Base Template at this point includes more details than we require. For the purposes of this tutorial, we only want to create the HTTP upstreams, HTTP upstream servers with their ports, and leave the ExecTemplateAugments to injecting an augment template. This means we can remove extraneous settings like the advanced metrics module and stream block. 
 
-1. On the **Templates > Overview** page, select **Upstream Augment Template**. This displays the templates files and their contents.
+1. On the **Templates > Overview** page, select **HTTP Upstream Base Template**. This displays the templates files and their contents.
 2. Select **base.tmpl**.
 3. Copy and paste the following contents into the base.tmpl file, then select **Save** (disk icon).
 
@@ -134,14 +134,14 @@ Since the base template has been paired down, we can remove the unrelated JSON s
 
 To delete the unneeded JSON schemas:
 
-1. On the **Templates > Overview** page, select **Upstream Augment Template**.
+1. On the **Templates > Overview** page, select **HTTP Upstream Base Template**.
 2. Select each of the following JSON schemas one-at-a-time, click **Delete** (trash can), and confirm the deletion:
 
    - **stream-server.json**
    - **stream-upstream.json**
    - **main.json**
 
-After you've deleted the unneeded JSON schemas, the **Upstream Augment Template** should include just these files:
+After you've deleted the unneeded JSON schemas, the **HTTP Upstream Base Template** should include just these files:
 
 - base.tmpl
 - http-server.json
@@ -150,8 +150,26 @@ After you've deleted the unneeded JSON schemas, the **Upstream Augment Template*
 
 ## Step : Create the augment template
 
-1. On the **Templates > Overview** page, select **Upstream Augment Template**.
+1. On the Config Templates "Overview" page, select **Create**.
+2. In the **Create Template** dialog:
+    - Select **New** to start a fresh template.
+    - Enter a unique and descriptive name for your template in the **Name** field. In this example, we'll call the template **HTTP Upstream Augment Template**.
+    - (Optional) Provide a description in the **Description** field to give more context about the template's purpose or usage.
+    - Select **Draft** for the template state. This indicates that the template is still under development, editable, and not finalized for use.
+    - Select **Augment** for the template type. Specify the 
+3. Click **Submit** to create the template.
 
+## Step : Add the augment template files
+
+Now, we'll add the following files to the augment template: **location.tmpl**, **location.json**, and **meta.json**. The contents for these files are provided below for you to copy and paste.
+
+1. On the **Templates > Overview** page, locate the newly created *HTTP Upstream Augment Template* template. In the **Actions** column, select the ellipsis (three dots), then choose **Edit Template Files**.
+2. In the config editor, select **Add file**.
+3. Choose the type of file you want to add to the template. Depending on the file type, you'll be presented with a list of file options to choose from.
+4. Select the file names you want to add to your template.
+5. After selecting all the necessary files, click **Add** to include them in the template.
+6. The selected files will now appear in the template's directory structure on the left side of the editor. Select a file to edit its contents in the editing pane.
+8. Make your changes and select **Save** to update the template with your configurations.
 
 **location.tmpl**
 
@@ -239,6 +257,21 @@ After you've deleted the unneeded JSON schemas, the **Upstream Augment Template*
 ```
 
 ## Step : Generate the NGINX config
+
+To preview, generate, and submit a config from a template:
+
+1. On the **Templates > Overview** page, locate the  created *HTTP Upstream Augment Template* template. select the ellipsis (three dots) in the **Actions** column, then select **Preview and Generate**.
+2. Complete the forms on the **Preview and Generate Config** dialog in sequence, selecting **Next** to move forward:
+    - **Choose Publish Options**: Specify where to publish the template by selecting either:
+      - **Publish to an Instance**: To apply the configuration to a single NGINX instance.
+      - **Publish to an Instance Group**: To apply the configuration to multiple instances managed as an instance group.
+      - **Save to a Staged Config**: To stage the configuration for future deployment.
+      - **Save as a New Staged Config**: To create a brand new staged configuration for later use.
+    - **Augments** (Optional): Include any augment templates needed to enhance a base configuration with additional features.
+    - **Base and Augment Inputs**: Enter the required configuration inputs for the chosen templates.
+    - **Preview Config**: Use the filename dropdown to review the output for each configuration.
+3. After verifying the configurations, select **Publish**. If you've published to an instance or instance group, the template submission will tracked on the **Template Submissions** page.
+4. Once the submission is accepted and confirmed, select **Close and Exit**.
 
 
 ## Import template
