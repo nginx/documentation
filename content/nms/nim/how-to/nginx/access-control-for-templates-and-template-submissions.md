@@ -62,4 +62,4 @@ To complete these steps, you need administrator access.
 
 ## Additional Resources
 
-{{< include "/nim/templates/additional-resources-links.md" >}}
+{{< include "nim/templates/additional-resources-links.md" >}}

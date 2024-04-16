@@ -177,4 +177,5 @@ To edit a template submission:
 
 ## Additional Resources
 
-{{< include "/nim/templates/additional-resources-links.md" >}}
+{{< include "nim/templates/additional-resources-links.md" >}}
+

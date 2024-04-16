@@ -82,4 +82,4 @@ Key aspects of template submission include:
 
 ## Additional resources
 
-{{< include "/nim/templates/additional-resources-links.md" >}}
+{{< include "nim/templates/additional-resources-links.md" >}}

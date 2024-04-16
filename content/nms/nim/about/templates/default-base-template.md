@@ -96,4 +96,4 @@ Augment templates add specific features or modify existing configurations genera
 
 ## Additional Resources
 
-{{< include "/nim/templates/additional-resources-links.md" >}}
+{{< include "nim/templates/additional-resources-links.md" >}}
