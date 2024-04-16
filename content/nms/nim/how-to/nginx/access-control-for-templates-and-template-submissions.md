@@ -1,5 +1,5 @@
 ---
-title: "Access Control for Templates and Template Submissions"
+title: "Control Access for Templates and Template Submissions"
 date: 2024-03-29T09:35:06-07:00
 # Change draft status to false to publish doc
 draft: false
@@ -47,9 +47,9 @@ To complete these steps, you need administrator access.
 4. **Define Access to Templates and Template Submissions:**
    - To ensure proper management of NGINX configurations, [create or edit roles]({{< relref "/nms/admin-guides/rbac/create-roles.md" >}}) to specify access to Templates and Template Submissions. This may involve defining CRUD permissions specific to the needs of managing NGINX configurations.
 
-   - Restricting access to Templates is essential for overseeing who has the authority to create and modify templates. This responsibility generally falls to individuals in administrative roles who have a comprehensive understanding of NGINX configurations.
-   
-   - Restricting access to Template Submissions limits who can make changes to submitted template inputs. For example, this role could be allocated to application development teams, enabling them to deploy and self-manage their application's settings.
+   - **Restricting access to Templates** is essential for controlling who can create and modify templates. This responsibility generally falls to administrators who have a comprehensive understanding of NGINX configurations.  
+
+   - **Restricting access to Template Submissions** limits who can change submitted template inputs. This role could be assigned to application development teams so they can deploy and manage their apps themselves.
 
 5. **Assign or Modify Roles:**
    - For individual users, select a user from the list and click **Edit User**. For user groups, select a group and click **Edit**.

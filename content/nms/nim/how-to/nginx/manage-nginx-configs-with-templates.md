@@ -29,46 +29,6 @@ authors: []
 
 Config templates in NGINX Instance Manager allow you to predefine and standardize configurations for your NGINX instances. By creating a template, you can streamline the deployment process and ensure consistency across your environments. This guide walks you through creating a new template from scratch or importing an existing template from an archive, generating and deploying a configuration to a designated target, and modifying an existing template submission.
 
-### Create a Config Template from Scratch
-
-To create a new config template:
-
-1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Management Suite host, and log in.
-2. From the Launchpad menu, choose **Instance Manager**.
-3. In the left navigation pane, select **Templates**.
-4. On the Config Templates "Overview" page, select **Create**.
-5. In the **Create Template** dialog:
-    - Select **New** to start a fresh template.
-    - Enter a unique and descriptive name for your template in the **Name** field.
-    - (Optional) Provide a description in the **Description** field to give more context about the template's purpose or usage.
-    - Choose the template's **State** to indicate its readiness:
-        - **Draft**: Indicates that the template is still under development, editable, and not finalized for use.
-        - **Ready for Use**: Means the template is finalized, locked from further editing, and ready to be applied or submitted.
-    - Specify the **Type** of template you are creating:
-        - **Base**: Select this option if the template will serve as a comprehensive starting point, containing all the directives needed for a standalone NGINX configuration.
-        - **Augment**: Choose this if the template will add to or enhance an existing configuration by introducing additional directives or settings.
-6. Click **Submit** to create the template.
-
-After creating a template, you'll need to add [resource files]({{< relref "/nms/nim/about/templates/template-resources.md" >}}) to define its structure and behavior:
-
-- **Config File (.tmpl)**: This is the core template file that defines the structure and parameters of your NGINX configuration. If you're creating a base template, you'll add a **base.tmpl** file. For augment templates, select the appropriate augment file that corresponds to the functionality you wish to include.
-- **JSON Schema File (.json)**: JSON schema files are necessary for creating the dynamic web forms in the UI that users will interact with. These schemas define the valid format and type of user inputs for the template.
-- **Aux File**: Aux files are additional resources necessary for the NGINX configuration to function properly. They may include JavaScript files, SSL certificates, MIME type definitions, and any other required configuration assets.
-- **Docs (README.md)**: Documentation files like **README.md** provide essential information, usage instructions, and a high-level description of what the template does and how to use it.
-
-To add resource files to a template:
-
-1. On the **Templates > Overview** page, locate the newly created template. In the **Actions** column, select the ellipsis (three dots), then choose **Edit Template Files**.
-2. In the config editor, select **Add file**.
-3. Choose the type of file you want to add to the template. Depending on the file type, you'll be presented with a list of file options to choose from.
-4. Select the file names you want to add to your template.
-5. After selecting all the necessary files, click **Add** to include them in the template.
-6. The selected files will now appear in the template's directory structure on the left side of the editor. Select a file to edit its contents in the editing pane.
-8. Make your changes and select **Save** to update the template with your configurations.
-
-{{<call-out "tip" "See Also" >}}<i class="fa-regular fa-lightbulb" aria-hidden="true" aria-label="Tip"></i>
-You can find more information about template types, template resource files, and JSON schema features in the [Additional Resources](#additional-resources) section.{{</call-out>}}
-
 ### Import Config Templates from an Archive
 
 When importing a config template from an archive, ensure your `.tar.gz` file adheres to the following structure:
@@ -124,6 +84,46 @@ To import an existing template from a `.tar.gz` archive file:
 9. Select **Import** to finish importing the templates.
 
 {{<warning>}}<i class="fa fa-exclamation-triangle" aria-hidden="true" aria-label="Warning"></i> Make sure you validate the source of the archive before bypassing the signature requirement to maintain the security of your system.{{</warning>}}
+
+### Create a Config Template from Scratch
+
+To create a new config template:
+
+1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Management Suite host, and log in.
+2. From the Launchpad menu, choose **Instance Manager**.
+3. In the left navigation pane, select **Templates**.
+4. On the Config Templates "Overview" page, select **Create**.
+5. In the **Create Template** dialog:
+    - Select **New** to start a fresh template.
+    - Enter a unique and descriptive name for your template in the **Name** field.
+    - (Optional) Provide a description in the **Description** field to give more context about the template's purpose or usage.
+    - Choose the template's **State** to indicate its readiness:
+        - **Draft**: Indicates that the template is still under development, editable, and not finalized for use.
+        - **Ready for Use**: Means the template is finalized, locked from further editing, and ready to be applied or submitted.
+    - Specify the **Type** of template you are creating:
+        - **Base**: Select this option if the template will serve as a comprehensive starting point, containing all the directives needed for a standalone NGINX configuration.
+        - **Augment**: Choose this if the template will add to or enhance an existing configuration by introducing additional directives or settings.
+6. Click **Submit** to create the template.
+
+After creating a template, you'll need to add [resource files]({{< relref "/nms/nim/about/templates/template-resources.md" >}}) to define its structure and behavior:
+
+- **Config File (.tmpl)**: This is the core template file that defines the structure and parameters of your NGINX configuration. If you're creating a base template, you'll add a **base.tmpl** file. For augment templates, select the appropriate augment file that corresponds to the functionality you wish to include.
+- **JSON Schema File (.json)**: JSON schema files are necessary for creating the dynamic web forms in the UI that users will interact with. These schemas define the valid format and type of user inputs for the template.
+- **Aux File**: Aux files are additional resources necessary for the NGINX configuration to function properly. They may include JavaScript files, SSL certificates, MIME type definitions, and any other required configuration assets.
+- **Docs (README.md)**: Documentation files like **README.md** provide essential information, usage instructions, and a high-level description of what the template does and how to use it.
+
+To add resource files to a template:
+
+1. On the **Templates > Overview** page, locate the newly created template. In the **Actions** column, select the ellipsis (three dots), then choose **Edit Template Files**.
+2. In the config editor, select **Add file**.
+3. Choose the type of file you want to add to the template. Depending on the file type, you'll be presented with a list of file options to choose from.
+4. Select the file names you want to add to your template.
+5. After selecting all the necessary files, click **Add** to include them in the template.
+6. The selected files will now appear in the template's directory structure on the left side of the editor. Select a file to edit its contents in the editing pane.
+8. Make your changes and select **Save** to update the template with your configurations.
+
+{{<call-out "tip" "See Also" >}}<i class="fa-regular fa-lightbulb" aria-hidden="true" aria-label="Tip"></i>
+You can find more information about template types, template resource files, and JSON schema features in the [Additional Resources](#additional-resources) section.{{</call-out>}}
 
 --- 
 

@@ -24,6 +24,14 @@ versions: []
 authors: []
 ---
 
+<style>
+  details {
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    padding: 10px 20px 10px 20px;
+  }
+</style>
+
 
 ## Overview
 
@@ -128,6 +136,7 @@ Remaining template lets you:
 - Create the upstream servers with their port
 - And leave the ExecTemplateAugments, which is the injectable for augment templates.
 
+
 ## Step 4: Remove unneeded template and JSON file
 
 Since the base template has been paired down, we can remove the unrelated JSON schemas that carried over from cloning the F5 Global Default Base template.
@@ -147,6 +156,166 @@ After you've deleted the unneeded JSON schemas, the **HTTP Upstream Base Templat
 - http-server.json
 - http-upstream.json
 - location.json
+
+## Step : Add upstream, server, and location IDs to JSON schemas
+
+Do this to give the base template "hooks" to inject the augments
+
+
+**http-upstream.json**
+
+``` json {linenos=table,hl_lines=["20-27"]}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HTTP Upstream Inputs",
+  "type": "object",
+  "properties": {
+    "templateInput": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "name": {
+          "title": "HTTP Upstream name",
+          "type": "string",
+          "description": "Specifies the name for the http upstream.",
+          "examples": [
+            "upstream-1"
+          ]
+        },
+        "id": {
+          "title": "Upstream ID",
+          "type": "string",
+          "description": "Case sensitive alphanumeric id used for specifying augment placement.",
+          "examples": [
+            "main_upstream"
+          ]
+        },
+        "servers": {
+          "type": "array",
+          "title": "Upstream servers",
+          "items": {
+            "type": "object",
+            "properties": {
+              "address": {
+                "title": "Upstream server address",
+                "type": "string",
+                "description": "Specifies the address for the upstream server.",
+                "examples": [
+                  "backend1.example.com",
+                  "192.0.0.1"
+                ]
+              },
+              "port": {
+                "type": "integer",
+                "title": "Upstream server port",
+                "description": "Specifies the port for the upstream server.",
+                "minimum": 1,
+                "maximum": 65535,
+                "examples": [
+                  80
+                ]
+              }
+            },
+            "required": [
+              "address"
+            ]
+          }
+        }
+      },
+      "required": [
+        "name",
+        "servers",
+        "id"
+      ]
+    }
+  },
+  "required": []
+}
+```
+
+**http-server.json**
+
+``` json {linenos=table,hl_lines=["20-28"]}
+  {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HTTP Server Inputs",
+  "type": "object",
+  "properties": {
+    "templateInput": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "serverName": {
+          "title": "Server name",
+          "type": "string",
+          "description": "Specifies the name for the http server.",
+          "examples": [
+            "foo.com"
+          ]
+        },
+        "id": {
+          "title": "Server ID",
+          "type": "string",
+          "description": "Case sensitive alphanumeric id used for specifying augment placement.",
+          "examples": [
+            "main_server"
+          ]
+        }
+      },
+      "required": [
+        "serverName",
+        "id"
+      ]
+    }
+  },
+  "required": []
+}
+```
+
+**location.json**
+
+``` json {linenos=table,hl_lines=["20-28"]}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Location Inputs",
+  "type": "object",
+  "properties": {
+    "templateInput": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "nameExpression": {
+          "title": "Location Name",
+          "type": "string",
+          "description": "Specifies the location's name expression.",
+          "examples": [
+            "/status"
+          ]
+        },
+        "id": {
+          "title": "Location ID",
+          "type": "string",
+          "description": "Case sensitive alphanumeric id used for specifying augment placement.",
+          "examples": [
+            "main_location"
+          ]
+        }
+      },
+      "required": [
+        "nameExpression",
+        "id"
+      ]
+    }
+  },
+  "required": []
+}
+```
 
 ## Step : Create the augment template
 
