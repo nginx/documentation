@@ -31,10 +31,11 @@ Config templates in NGINX Instance Manager allow you to predefine and standardiz
 
 ### Import Config Templates from an Archive
 
-When importing a config template from an archive, ensure your `.tar.gz` file adheres to the following structure:
+When importing a config template from an archive, ensure your `.tar.gz` file matches to the following structure:
 
 - Each template must be in its own directory within the archive.
-- Directories should contain all related template files (.tmpl for templates, .json for JSON schemas) and a `meta.json` file that includes metadata such as the template's name, description, author, type, and unique identifier (UID).
+- Directories should contain all related template files (.tmpl for templates, .json for JSON schemas).
+- Directories should have a `meta.json` file that includes metadata such as the template's name, description, author, type, and unique identifier (UID).
 
 #### Required archive structure
 

@@ -17,7 +17,7 @@ authors: []
 
 ## Overview
 
-The F5 Global Default Base template simplifies NGINX configuration by abstracting complex directives into input-validated parameters, allowing users to quickly generate full NGINX configurations. It incorporates various modular components and injectable templates for augmenting functionality, enabling a versatile foundation for managing complex configurations through a simplified interface.
+The F5 Global Default Base template simplifies NGINX configuration by abstracting complex directives into input-validated parameters, allowing users to quickly generate full NGINX configurations. The framework incorporates various modular components and injectable templates for augmenting functionality, enabling a versatile foundation for managing complex configurations through a simplified interface.
 
 ## Key components
 
