@@ -1,5 +1,5 @@
 ---
-title: "Set upstreams with an augment template"
+title: "Set round-robin upstreams with an augment template"
 date: 2024-03-12T16:01:58-07:00
 # Change draft status to false to publish doc
 draft: true
@@ -37,9 +37,8 @@ authors: []
 
 A base template makes all of the specified NGINX directive blocks accessible to users when modifying template submissions. This might be okay if you want people to make changes without being restricted. However, if you want only designated individuals or teams to edit specific HTTP servers or locations, perhaps as part of a self-service workflow, you can use augment templates to portion out (segment) parts of the NGINX config and role-based access control (RBAC) to assign permissions.
 
-An administrator has defined the upstream location in the base template. However, now we want to break the upstream location out of the base template so a specific team, like SRI, can edit these settings themselves. By breaking the location out of the base template, we're able add additional control over how can access it. In short, a base template makes all of the NGINX directive blocks accessible if there's no need for access control. However, if you want to restrict certain server or location blocs, you can create augments for those blocks and limit access with RBAC.
+An administrator has defined the upstream location in the base template. However, now we want to break the upstream location out of the base template so a specific team, like SRE, can edit these settings themselves. By breaking the location out of the base template, we're able add additional control over how can access it. In short, a base template makes all of the NGINX directive blocks accessible if there's no need for access control. However, if you want to restrict certain server or location blocs, you can create augments for those blocks and limit access with RBAC.
 
-Limitation: can't augment an augment. If you have an augment and want to update it, you have to update the augment directly. You can't create an augment to update an augment.
 
 ## Step 1: Clone the F5 Global Base template
 
