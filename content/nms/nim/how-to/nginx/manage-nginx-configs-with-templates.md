@@ -175,5 +175,7 @@ To edit a template submission:
 
 ---
 
+## Additional Templating Resources
+
 {{< include "nim/templates/additional-templating-resources.md" >}}
 

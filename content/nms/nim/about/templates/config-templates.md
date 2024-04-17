@@ -80,4 +80,6 @@ Key aspects of template submission include:
 
 ---
 
+## Additional Templating Resources
+
 {{< include "nim/templates/additional-templating-resources.md" >}}

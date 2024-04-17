@@ -60,4 +60,6 @@ To complete these steps, you need administrator access.
 
 ---
 
+## Additional Templating Resources
+
 {{< include "nim/templates/additional-templating-resources.md" >}}
