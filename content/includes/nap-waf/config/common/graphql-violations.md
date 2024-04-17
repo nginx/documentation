@@ -1,5 +1,5 @@
 ---
-docs: DOCS-647
+docs: "DOCS-1578"
 ---
 
 NGINX App Protect WAF introduces four new violations specific to GraphQL: `VIOL_GRAPHQL_FORMAT`, `VIOL_GRAPHQL_MALFORMED`, `VIOL_GRAPHQL_INTROSPECTION_QUERY` and `VIOL_GRAPHQL_ERROR_RESPONSE`. <br>
@@ -8,7 +8,7 @@ Under the "blocking-settings," user can either enable or disable these violation
 
 See also the [Violations](#violations) section for more details.
 
-While configuring GraphQL, since the GraphQL violations are enabled by default, you can change the GraphQL violations settings i.e. alarm: `true` and block: `false` under the "blocking settings". In this manner, the GraphQL profile detects violations but does not block the request. They may contribute to the Violation Rating, which, if raised above 3, will automatically block the request. 
+While configuring GraphQL, since the GraphQL violations are enabled by default, you can change the GraphQL violations settings i.e. alarm: `true` and block: `false` under the "blocking settings". In this manner, the GraphQL profile detects violations but does not block the request. They may contribute to the Violation Rating, which, if raised above 3, will automatically block the request.
 
 However, setting the alarm and block to `true` will enforce block settings and App Protect will block any violating requests.
 
@@ -46,6 +46,6 @@ See below example for more details:
                 "block": false
             }
         ]
-    } 
-}    
+    }
+}
 ```

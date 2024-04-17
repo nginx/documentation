@@ -1,5 +1,5 @@
 ---
-docs: DOCS-647
+docs: "DOCS-1543"
 ---
 
 The User-Defined Browser Control feature allows a user to define new custom browsers, and create a list of allowed or disallowed browsers (both user-defined and factory preset browsers) used by the client application. It mainly provides the opportunity:
@@ -37,28 +37,28 @@ Please note that:
 
 The following table specifies supported built-in (factory) browsers:
 
-{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
-|Declarative Name | Description | 
-| ---| --- | 
-|android | The native Android browser. | 
-|blackberry | The native Blackberry browser. | 
-|chrome | Chrome browser on Microsoft Windows. | 
-|chrome | Chrome browser on Android. | 
-|firefox | Firefox on Microsoft Windows. | 
-|firefox | Firefox on Android. | 
-|internet-explorer | Internet Explorer on Microsoft Windows. | 
-|internet-explorer | Internet Explorer on mobile devices. | 
-|opera | Opera Browser on Microsoft Windows. | 
-|opera | Opera Mini Browser. | 
-|opera | Opera on Mobile devices. | 
-|safari | Safari Browser on Microsoft Windows or Apple macOS. | 
-|safari | Safari Browser on Apple iOS and iPadOS devices. | 
-|edge | Microsoft Edge Browser. | 
-|uc | UC Browser. | 
-|puffin | Puffin Browser on Microsoft Windows. | 
-|puffin | Puffin Browser on Android devices. | 
-|puffin | Puffin Browser on iOS devices. | 
-{{</bootstrap-table>}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
+|Declarative Name | Description |
+| ---| --- |
+|android | The native Android browser. |
+|blackberry | The native Blackberry browser. |
+|chrome | Chrome browser on Microsoft Windows. |
+|chrome | Chrome browser on Android. |
+|firefox | Firefox on Microsoft Windows. |
+|firefox | Firefox on Android. |
+|internet-explorer | Internet Explorer on Microsoft Windows. |
+|internet-explorer | Internet Explorer on mobile devices. |
+|opera | Opera Browser on Microsoft Windows. |
+|opera | Opera Mini Browser. |
+|opera | Opera on Mobile devices. |
+|safari | Safari Browser on Microsoft Windows or Apple macOS. |
+|safari | Safari Browser on Apple iOS and iPadOS devices. |
+|edge | Microsoft Edge Browser. |
+|uc | UC Browser. |
+|puffin | Puffin Browser on Microsoft Windows. |
+|puffin | Puffin Browser on Android devices. |
+|puffin | Puffin Browser on iOS devices. |
+{{</bootstrap-table>}}
 
 
 ##### User-Defined Browser Control Enforcement
@@ -165,7 +165,7 @@ In the next example, the policy is configured with the following items:
         "bot-defense": {
             "settings" : {
                 "isEnabled": true
-            },   
+            },
             "mitigations": {
                 "classes": [
                     {

@@ -4,7 +4,7 @@ description: "How to Upgrade NGINX App Protect WAF on managed NGINX instances"
 weight: 600
 toc: true
 tags: [ "NGINX Management Suite" ]
-docs: "DOCS-1198"
+docs: "DOCS-1640"
 ---
 
 ## Overview

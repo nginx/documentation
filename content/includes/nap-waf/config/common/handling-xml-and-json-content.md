@@ -1,5 +1,5 @@
 ---
-docs: DOCS-647
+docs: "DOCS-1545"
 ---
 
 #### XML and JSON Content Profiles

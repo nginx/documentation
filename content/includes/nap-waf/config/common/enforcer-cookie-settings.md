@@ -1,10 +1,10 @@
 ---
-docs: DOCS-647
+docs: "DOCS-1608"
 ---
 
-NGINX App Protect WAF generates its own cookies and adds them on top of the application cookies. 
+NGINX App Protect WAF generates its own cookies and adds them on top of the application cookies.
 
-These are called Enforcer Cookies. 
+These are called Enforcer Cookies.
 
 You can control the attributes within these cookies:
 

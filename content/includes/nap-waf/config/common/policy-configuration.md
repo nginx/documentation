@@ -1,5 +1,5 @@
 ---
-docs: DOCS-647
+docs: "DOCS-1548"
 ---
 
 The NGINX App Protect WAF ships with two reference policies:

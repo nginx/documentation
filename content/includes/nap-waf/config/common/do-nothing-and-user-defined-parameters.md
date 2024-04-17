@@ -1,5 +1,5 @@
 ---
-docs: DOCS-647
+docs: "DOCS-1586"
 ---
 
 The do-nothing in urlContentProfiles allows the user to avoid inspecting or parsing the content in a policy, and instead handle the request's header according to the specifications outlined in the security policy.
@@ -85,13 +85,13 @@ The second parameter, `query`, is added to the policy just to avoid a false posi
                 "type": "explicit",
                 "valueType": "user-input",
                 "dataType": "alpha-numeric",
-                "signatureOverrides": [		
+                "signatureOverrides": [
                     {
                         "enabled": false,
                         "signatureId": 200002835
                     }
                 ]
-            }	    
+            }
         ]
     }
 }

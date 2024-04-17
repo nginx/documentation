@@ -1,11 +1,11 @@
 ---
-description: Learn about the NGINX App Protect WAF Troubleshooting Guide.
-docs: DOCS-665
+description: "Learn about the NGINX App Protect WAF Troubleshooting Guide."
 doctypes:
 - concept
-title: NGINX App Protect WAF Troubleshooting Guide
+title: "NGINX App Protect WAF Troubleshooting Guide"
 toc: true
 weight: 400
+docs: "DOCS-1645"
 ---
 
 ## Overview

@@ -1,5 +1,5 @@
 ---
-docs: DOCS-647
+docs: "DOCS-1523"
 ---
 
 Concurrent NGINX reloads are enqueued and so are the entailed invocations to apreload by the NGINX App Protect WAF module.

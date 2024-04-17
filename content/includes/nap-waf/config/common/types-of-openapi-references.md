@@ -1,5 +1,5 @@
 ---
-docs: DOCS-647
+docs: "DOCS-1636"
 ---
 
 There are different ways of referencing OpenAPI Specification files. The configuration is similar to [External References](#external-references).
@@ -160,7 +160,7 @@ paths:
           required: false
           allowEmptyValue: true
           schema:
-            type: string           
+            type: string
       responses:
         200:
           description: OK
@@ -213,11 +213,11 @@ Content of the file `ref.txt`:
 File reference refers to accessing local resources on the same machine. See the [File References](#file-reference) under the External References section for more details.
 
 ##### Example Configuration
-     
+
 In this example, we would like to add an OpenAPI Specification file reference to the default policy.
-     
+
 **Policy Configuration:**
-     
+
 ```json
 {
     "name": "openapi-file-reference-json",
@@ -279,7 +279,7 @@ Content of the referenced file `myapi2.json`:
 }
 ```
 
-In this case the following request will trigger an `Illegal repeated parameter name` violation, as the OpenAPI Specification doesn't allow repeated parameters. 
+In this case the following request will trigger an `Illegal repeated parameter name` violation, as the OpenAPI Specification doesn't allow repeated parameters.
 
 ```
 http://localhost/query?a=true&a=false

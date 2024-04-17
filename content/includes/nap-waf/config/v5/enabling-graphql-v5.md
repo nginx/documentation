@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1368
+docs: "DOCS-1626"
 ---
 
 This section describes how to configure GraphQL with minimal configuration. Refer to the following sections for GraphQL elements definitions and details about advanced configuration options.
@@ -8,7 +8,7 @@ This section describes how to configure GraphQL with minimal configuration. Refe
 
 GraphQL policy consists of three basic elements: GraphQL Profile, GraphQL Violations and GraphQL URL.
 
-You can enable GraphQL on App Protect by following these steps: 
+You can enable GraphQL on App Protect by following these steps:
 
 1. Create a GraphQL policy that includes the policy name. Note that GraphQL profile and GraphQL violation will be enabled by default in the default policy.
 You can enable GraphQL on App Protect with minimum effort by using the following GraphQL policy example.
@@ -53,7 +53,7 @@ In the following policy example, the GraphQL "policy name" i.e. "graphql_policy"
 }
 ```
 
-As described in point 4 above, here is an example `nginx.conf` file: 
+As described in point 4 above, here is an example `nginx.conf` file:
 
 ```nginx
 user nginx;
@@ -77,7 +77,7 @@ http {
     app_protect_policy_file app_protect_default_policy; # This is a reference to the policy file to use. If not defined, the default policy is used
     app_protect_security_log_enable on; # This section enables the logging capability
     app_protect_security_log log_default syslog:server=127.0.0.1:515; # This is where the remote logger is defined in terms of: logging options (defined in the referenced file), log server IP, log server port
-   
+
 
     server {
         listen       80;

@@ -1,5 +1,5 @@
 ---
-docs: DOCS-647
+docs: "DOCS-1604"
 ---
 
 It is possible to define IP addresses or ranges for which the traffic will always be allowed or denied or never logged despite the rest of the configuration settings in the policy.
@@ -69,7 +69,7 @@ The above configuration assumes the IP address represents the original requestor
 
 Here's an example of IPv6 notation with a single address and an IP subnet with a 120-bit prefix:
 
-The first address is a single IP address, because the mask is all f's. Since this is a default value, there is no need to specify the mask in this case. The second address is a subnet of 120 bits (out of the 128 of an IPv6 address). The trailing 8 bits (128-120) must be **zero** in both the mask and the address itself. 
+The first address is a single IP address, because the mask is all f's. Since this is a default value, there is no need to specify the mask in this case. The second address is a subnet of 120 bits (out of the 128 of an IPv6 address). The trailing 8 bits (128-120) must be **zero** in both the mask and the address itself.
 
 ```json
 {

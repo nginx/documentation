@@ -1,8 +1,8 @@
 ---
-docs: DOCS-647
+docs: "DOCS-1530"
 ---
 
-The GraphQL Profile defines the GraphQL properties that are enforced by the security policy. 
+The GraphQL Profile defines the GraphQL properties that are enforced by the security policy.
 
 The profile can be added by the security engineers to make sure that GraphQL apps are bound to the same security settings defined in the profile. Different GraphQL apps can have different profiles based on the security needs.
 
@@ -13,7 +13,7 @@ The GraphQL Profile includes:
 - **responseEnforcement**: whether to block Disallowed patterns and provide the list of patterns against the `disallowedPatterns` property.
 
 GraphQL profile example:
- 
+
 In the GraphQL profile example below, we changed the "defenseAttributes" to custom values. You can customize these values under the "defenseAttributes" property. Add a list of disallowed patterns to the "disallowedPatterns" field (for example, here we've added pattern1 and pattern2).
 
 ```shell

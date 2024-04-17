@@ -1,5 +1,5 @@
 ---
-docs: DOCS-647
+docs: "DOCS-1528"
 ---
 
 In order for NGINX App Protect WAF to load the new user-defined signatures, the user needs to add the directive: `app_protect_user_defined_signatures`. This directive can only be used (multiple times, if needed) in the http context in the nginx.conf file and cannot be used under the server or location contexts. This directive accepts the path of the user-defined signature definition file as an argument. To add multiple definition files, the user will need to add a directive per file. Note that if the file or directory is not accessible by the nginx user, an error message will be displayed, and the policy will fail to compile.

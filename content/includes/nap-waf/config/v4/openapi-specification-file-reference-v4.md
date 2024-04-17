@@ -1,5 +1,5 @@
 ---
-docs: DOCS-647
+docs: "DOCS-1534"
 ---
 
 The OpenAPI Specification defines the spec file format needed to describe RESTful APIs. The spec file can be written either in JSON or YAML. Using a spec file simplifies the work of implementing API protection. Refer to the OpenAPI Specification (formerly called Swagger) for details.
@@ -8,7 +8,7 @@ The simplest way to create an API protection policy is using an OpenAPI Specific
 * Methods
 * URLs
 * Parameters
-* JSON profiles 
+* JSON profiles
 
 An OpenAPI-ready policy template is provided with the NGINX App Protect WAF packages and is located in: `/etc/app_protect/conf/NginxApiSecurityPolicy.json`
 
