@@ -49,7 +49,7 @@ The template dynamically generates configuration blocks for HTTP and stream cont
 
 ---
 
-## Augmenting the F5 Global Default Base template
+## Augmenting the F5 Global Default Base template {#augmenting-global-default-base-template}
 
 Using augment templates in NGINX Instance Manager, administrators and developers can customize NGINX configurations beyond the foundational settings of the F5 Global Default Base template. You can use the augment template to add specific features like OIDC authentication, or segment (compartmentalize) configuration elements like location and server blocks. Augment templates can be combined with a base template to build upon it or applied directly to an existing NGINX configuration.
 
