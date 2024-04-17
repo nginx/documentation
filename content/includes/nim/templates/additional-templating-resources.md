@@ -2,6 +2,8 @@
 docs: DOCS-1500
 ---
 
+## Additional Templating Resources
+
 #### Concepts
 
 - **[Understand Config Templates]({{< relref "nms/nim/about/templates/config-templates.md" >}})**: Learn about config template types, publication targets, and the template submission process.

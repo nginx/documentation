@@ -252,6 +252,4 @@ Each data type in a JSON schema comes with its own set of features that define h
 
 ---
 
-## Additional Resources
-
-{{< include "nim/templates/additional-resources-links.md" >}}
+{{< include "nim/templates/additional-templating-resources.md" >}}

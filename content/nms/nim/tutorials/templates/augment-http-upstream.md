@@ -469,6 +469,4 @@ To preview, generate, and submit a config from a template:
 
 ---
 
-## Additional resources
-
-{{< include "nim/templates/additional-resources-links.md" >}}
+{{< include "nim/templates/additional-templating-resources.md" >}}

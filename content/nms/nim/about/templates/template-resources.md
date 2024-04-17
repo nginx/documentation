@@ -144,6 +144,4 @@ This example shows how to enable OIDC authentication in NGINX using a config tem
 
 ---
 
-## Additional Resources
-
-{{< include "nim/templates/additional-resources-links.md" >}}
+{{< include "nim/templates/additional-templating-resources.md" >}}
