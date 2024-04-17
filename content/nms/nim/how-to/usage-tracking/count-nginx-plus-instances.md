@@ -39,20 +39,27 @@ After you've installed NGINX Instance Manager, the next step involves configurin
 
 Select the tab that matches your preferred method for setting up reporting:
 
+- Configure native usage reporting (since NGINX Plus [Release 31]({{< relref "/nginx/releases.md#nginxplusrelease-31-r31" >}}))
 - Install NGINX Agent
 - Configure HTTP Health Check for NGINX Plus without NGINX Agent
 
 {{<tabs name="configure-reporting">}}
 
-{{%tab name="Install NGINX Agent"%}}
+{{%tab name="Native Usage Reporting"%}}
+
+{{< include "nginx-plus/usage-tracking/agentless-reporting.md" >}}
+
+{{%/tab%}}
+
+{{%tab name="NGINX Agent"%}}
 
 {{< include "nginx-plus/usage-tracking/install-nginx-agent.md" >}}
 
 {{%/tab%}}
 
-{{%tab name="Configure HTTP Health Check"%}}
+{{%tab name="HTTP Health Check"%}}
 
-{{<include "nginx-plus/usage-tracking/http-health-check.md" >}}
+{{< include "nginx-plus/usage-tracking/http-health-check.md" >}}
 
 {{%/tab%}}
 
