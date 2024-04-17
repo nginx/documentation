@@ -1,11 +1,11 @@
 ---
-description: Learn about the NGINX App Protect WAF Access Log Request Mechanism.
-docs: DOCS-910
+description: "Learn about the NGINX App Protect WAF Access Log Request Mechanism."
 doctypes:
 - concept
-title: NGINX App Protect WAF Access Log
+title: "NGINX App Protect WAF Access Log"
 toc: true
 weight: 550
+docs: "DOCS-1641"
 ---
 
 ## Access Logs

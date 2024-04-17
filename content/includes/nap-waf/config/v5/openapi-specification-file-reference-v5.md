@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1368
+docs: "DOCS-1632"
 ---
 
 The OpenAPI Specification defines the spec file format needed to describe RESTful APIs. The spec file can be written either in JSON or YAML. Using a spec file simplifies the work of implementing API protection. Refer to the OpenAPI Specification (formerly called Swagger) for details.
@@ -8,7 +8,7 @@ The simplest way to create an API protection policy is using an OpenAPI Specific
 * Methods
 * URLs
 * Parameters
-* JSON profiles 
+* JSON profiles
 
 To obtain an OpenAPI-ready policy template, execute the following command:
 

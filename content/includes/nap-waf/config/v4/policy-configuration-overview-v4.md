@@ -1,5 +1,5 @@
 ---
-docs: DOCS-647
+docs: "DOCS-1526"
 ---
 
 The NGINX App Protect WAF security policy configuration uses the declarative format based on a pre-defined base template. The policy is represented in a JSON file which you can edit to add, modify and remove security capabilities with respect to the base template. The way the policy is integrated into the NGINX configuration is via referencing the JSON file (using the full path) in the `nginx.conf` file.

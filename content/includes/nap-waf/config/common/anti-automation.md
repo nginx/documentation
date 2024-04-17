@@ -1,5 +1,5 @@
 ---
-docs: DOCS-647
+docs: "DOCS-1575"
 ---
 
 Anti Automation provides basic bot protection by detecting bot signatures and clients that falsely claim to be browsers or search engines. The `bot-defense` section in the policy is enabled by default. Anti Automation encompasses both Bot Signatures and Header Anomalies, each of which can be disabled separately.
@@ -8,7 +8,7 @@ As new bot signatures are identified, they will be accessible for [download and 
 
 #### Bot Signatures
 
-Bot Signatures provide basic bot protection by detecting bot signatures in the User-Agent header and URI. 
+Bot Signatures provide basic bot protection by detecting bot signatures in the User-Agent header and URI.
 Each bot signature belongs to a bot class. Search engine signatures such as `googlebot` are under the trusted_bots class, but App Protect performs additional checks of the trusted bot's authenticity. If these checks fail, it means that the respective client impersonated the search engine in the signature and it will be classified as class - `malicous_bot`, anomaly - `Search engine verification failed`, and the request will be blocked, irrespective of the class's mitigation actions configuration.
 An action can be configured for each bot class, or may also be configured per each bot signature individually:
 * `ignore`    - bot signature is ignored (disabled)
@@ -103,10 +103,10 @@ In this example, we override the action for a specific signature (python-request
 
 #### Bot Signatures Update File
 
-Starting with NGINX App Protect WAF release 4.7, the bot signature file `included_bot_signatures`, is located at the following path: `/opt/app-protect/var/update_files/bot_signatures/included_bot_signatures`. This will be part of the **app-protect-bot-signatures** package. 
+Starting with NGINX App Protect WAF release 4.7, the bot signature file `included_bot_signatures`, is located at the following path: `/opt/app-protect/var/update_files/bot_signatures/included_bot_signatures`. This will be part of the **app-protect-bot-signatures** package.
 
 This file contains an up-to-date list of all bot signatures that have been updated with the new bot signature package. This list is automatically generated as a part of the **app-protect-bot-signatures** package and follows a format similar to the README-style text file found in the attack signature. This file contains essential information which includes:
- 
+
 - Bot name
 - Bot type
 - Bot classification/category
@@ -116,23 +116,23 @@ This file contains an up-to-date list of all bot signatures that have been updat
 
 This is a list of the trusted bots that are currently part of the bot signatures. As the title suggests, these bot signatures belong to the `trusted-bot` class and currently all are search engines.
 
-{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
-|Bot Name | Description | 
-| ---| --- | 
-|Ask | [Ask.com engine](https://www.ask.com) | 
-|Baidu | [Baidu search engine](https://www.baidu.com/) | 
-|Baidu Image Spider | [Baidu search engine for images](https://image.baidu.com/) | 
-|Bing | [Microsoft Bing search engine](https://www.bing.com/) | 
-|BingPreview | [Microsoft Bing page snapshot generation engine](https://www.bing.com/) | 
-|Daum | [Daum search engine](https://www.daum.net/) | 
-|DuckDuckGo Bot | [DuckDuckGo search engine](https://duckduckgo.com/) | 
-|fastbot | [fastbot search engine](https://www.fastbot.de/) | 
-|Google | [Google search engine](https://www.google.com/) | 
-|MojeekBot | [Mojeek search engine](https://www.mojeek.com/) | 
-|Yahoo! Slurp | [Yahoo search engine](https://www.yahoo.com/) | 
-|Yandex | [Yandex search engine](https://yandex.com/) | 
-|YioopBot | [Yioop search engine](https://www.yioop.com/) | 
-{{</bootstrap-table>}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
+|Bot Name | Description |
+| ---| --- |
+|Ask | [Ask.com engine](https://www.ask.com) |
+|Baidu | [Baidu search engine](https://www.baidu.com/) |
+|Baidu Image Spider | [Baidu search engine for images](https://image.baidu.com/) |
+|Bing | [Microsoft Bing search engine](https://www.bing.com/) |
+|BingPreview | [Microsoft Bing page snapshot generation engine](https://www.bing.com/) |
+|Daum | [Daum search engine](https://www.daum.net/) |
+|DuckDuckGo Bot | [DuckDuckGo search engine](https://duckduckgo.com/) |
+|fastbot | [fastbot search engine](https://www.fastbot.de/) |
+|Google | [Google search engine](https://www.google.com/) |
+|MojeekBot | [Mojeek search engine](https://www.mojeek.com/) |
+|Yahoo! Slurp | [Yahoo search engine](https://www.yahoo.com/) |
+|Yandex | [Yandex search engine](https://yandex.com/) |
+|YioopBot | [Yioop search engine](https://www.yioop.com/) |
+{{</bootstrap-table>}}
 
 
 #### Header Anomalies
@@ -141,14 +141,14 @@ In addition to detecting Bot Signatures, by default NGINX App Protect WAF verifi
 Each request receives a score, is categorized by anomaly, and is enforced according to the default configured anomaly action:
 
 
-{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
-|Range | Anomaly | Action | Class | 
-| ---| ---| ---| --- | 
-|0-49 | None | None | Browser | 
-|50-99 | Suspicious HTTP Headers Presence or Order | Alarm | Suspicious Browser | 
-|100 and above | Invalid HTTP Headers Presence or Order | Block | Malicious Bot | 
-| Non Applicable | SEARCH_ENGINE_VERIFICATION_FAILED | Block | Malicious Bot | 
-{{</bootstrap-table>}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
+|Range | Anomaly | Action | Class |
+| ---| ---| ---| --- |
+|0-49 | None | None | Browser |
+|50-99 | Suspicious HTTP Headers Presence or Order | Alarm | Suspicious Browser |
+|100 and above | Invalid HTTP Headers Presence or Order | Block | Malicious Bot |
+| Non Applicable | SEARCH_ENGINE_VERIFICATION_FAILED | Block | Malicious Bot |
+{{</bootstrap-table>}}
 
 
 Notice that the default scores for each anomaly can be changed. In this example, we override the score and action of the default bot configuration:

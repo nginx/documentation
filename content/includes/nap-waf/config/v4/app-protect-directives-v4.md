@@ -1,19 +1,19 @@
 ---
-docs: DOCS-647
+docs: "DOCS-1520"
 ---
 
 This table summarizes the nginx.conf directives for NGINX App Protect WAF functionality.
 
-{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
-|Directive Name | Syntax | Functionality | nginx.conf Contexts | Example | 
-| ---| ---| ---| ---| --- | 
-|load_module | load_module <library_file_path> | NGINX directive to load the App Protect module. It must be invoked with the App Protect library path | Global | load_module modules/ngx_http_app_protect_module.so | 
-|app_protect_enable | app_protect_enable on &#124; off | Whether to enable App Protect at the respective context. If not present, inherits from the parent context | HTTP, Server, Location | app_protect_enable on | 
-|app_protect_policy_file | app_protect_policy_file <file_path> | Set a App Protect policy configuring behavior for the respective context. | HTTP, Server, Location | app_protect_policy_file /config/waf/strict_policy.json | 
-|app_protect_security_log_enable | app_protect_security_log_enable on &#124; off | Whether to enable the App Protect per-request log at the respective context. | HTTP, Server, Location | app_protect_security_log_enable on | 
-|app_protect_security_log | app_protect_security_log <file_path> <destination> | Specifies the per-request logging: what to log and where | HTTP, Server, Location | app_protect_security_log /config/waf/log_illegal.json syslog:localhost:522 | 
-|app_protect_custom_log_attribute | app_protect_custom_log_attribute <key_value> | Specifies the assigned location/server/http dimension of each request. | HTTP, Server, Location | app_protect_custom_log_attribute ‘environment' 'env1' | 
-{{</bootstrap-table>}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
+|Directive Name | Syntax | Functionality | nginx.conf Contexts | Example |
+| ---| ---| ---| ---| --- |
+|load_module | load_module <library_file_path> | NGINX directive to load the App Protect module. It must be invoked with the App Protect library path | Global | load_module modules/ngx_http_app_protect_module.so |
+|app_protect_enable | app_protect_enable on &#124; off | Whether to enable App Protect at the respective context. If not present, inherits from the parent context | HTTP, Server, Location | app_protect_enable on |
+|app_protect_policy_file | app_protect_policy_file <file_path> | Set a App Protect policy configuring behavior for the respective context. | HTTP, Server, Location | app_protect_policy_file /config/waf/strict_policy.json |
+|app_protect_security_log_enable | app_protect_security_log_enable on &#124; off | Whether to enable the App Protect per-request log at the respective context. | HTTP, Server, Location | app_protect_security_log_enable on |
+|app_protect_security_log | app_protect_security_log <file_path> <destination> | Specifies the per-request logging: what to log and where | HTTP, Server, Location | app_protect_security_log /config/waf/log_illegal.json syslog:localhost:522 |
+|app_protect_custom_log_attribute | app_protect_custom_log_attribute <key_value> | Specifies the assigned location/server/http dimension of each request. | HTTP, Server, Location | app_protect_custom_log_attribute ‘environment' 'env1' |
+{{</bootstrap-table>}}
 
 
 #### Horizontal Scaling
@@ -70,7 +70,7 @@ Starting with NGINX App Protect WAF release version 4.6, the [`app_protect_compr
 
 #### Handling Decompression
 
-Now by default the enforcer will decompress all the HTTP compressed payload request and will apply the enforcment. The supported compression algorithms for this feature are "**gzip**" and "**deflate**". There will be no decompression, if the compression method is not supported. 
+Now by default the enforcer will decompress all the HTTP compressed payload request and will apply the enforcment. The supported compression algorithms for this feature are "**gzip**" and "**deflate**". There will be no decompression, if the compression method is not supported.
 
 The 'Content-Encoding' header must match the compression algorithm used while sending compressed payload in a HTTP request, else the enfocer will fail to decompress the payload.
 

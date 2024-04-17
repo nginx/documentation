@@ -1,5 +1,5 @@
 ---
-docs: DOCS-647
+docs: "DOCS-1524"
 ---
 
 The Attack Signature Report tool `/opt/app_protect/bin/get-signatures` scans the system for attack signatures and generates a JSON report file that includes information about these signatures.

@@ -1,5 +1,5 @@
 ---
-docs: DOCS-647
+docs: "DOCS-1590"
 ---
 
 CSRF (Cross-Site Request Forgery) is an attack vector in which the victim user that visits a sensitive site such as a bank account, is lured to click on a malicious link attempting a fraudulent operation on that sensitive site. The link may be sent over email or in a hidden frame in another site. NGINX App Protect WAF provides protection against CSRF attacks by validating the Origin header for AJAX POST requests (default configuration).
@@ -17,7 +17,7 @@ Please note that:
 - Both `VIOL_CSRF` and `csrf-protection` settings need to be enabled for CSRF protection to be active. Disabling either setting will disable CSRF protection altogether.
 - Configuring `urls` is required only if there are external origins that have to be allowed.
 - `host-names` are internal, owned by the application and used by clients to reach it. The `crossDomainAllowedOrigin` in the `urls` are external domains, from other applications, that we wish to allow as origins.
- 
+
 ##### CSRF Enforcement
 
 If CSRF is enabled in the violation section and in the `csrf-protection` settings, when receiving a request to a URL that matches one of the `csrf-urls` and all its conditions: method and parameters (if applicable there), then the following conditions must be met:

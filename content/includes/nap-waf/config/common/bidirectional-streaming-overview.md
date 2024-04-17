@@ -1,8 +1,8 @@
 ---
-docs: DOCS-647
+docs: "DOCS-1565"
 ---
 
-A gRPC service can have a stream of messages on each side: client, server, or both. Bidirectional Streaming leverages HTTP/2 streaming capability, namely the ability to send multiple gRPC messages from either side ended by the message having the `END_STREAM` flag set to 1. 
+A gRPC service can have a stream of messages on each side: client, server, or both. Bidirectional Streaming leverages HTTP/2 streaming capability, namely the ability to send multiple gRPC messages from either side ended by the message having the `END_STREAM` flag set to 1.
 
 The Bidirectional Streaming will:
 

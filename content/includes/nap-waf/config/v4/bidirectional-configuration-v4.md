@@ -1,5 +1,5 @@
 ---
-docs: DOCS-647
+docs: "DOCS-1521"
 ---
 
 The only configuration related to streaming is the IDL file or more specifically the `rpc` declaration. The keyword `stream` indicates that the message on the respective side is streaming. <br> <br>For example:
@@ -49,20 +49,20 @@ message HelloReply {
 
 For enabling the gRPC capability, an HTTP/2 server definition needs to be applied with the `grpc_pass` location in the `nginx.conf` file. In addition, the `app_protect_policy_file` directive points to a policy specific to gRPC. All the gRPC messages will be logged in Security Log under the `log_grpc_all.json` file. For more details on how these requests are handled in gRPC, refer to the [gRPC Logging](#grpc-logging) section.
 
-```nginx 
+```nginx
 user nginx;
 worker_processes auto;
- 
+
 load_module modules/ngx_http_app_protect_module.so;
- 
+
 error_log /var/log/nginx/error.log debug;
 working_directory /tmp/cores;
 worker_rlimit_core 1000M;
- 
+
 events {
     worker_connections  1024;
 }
- 
+
 http {
     include       /etc/nginx/mime.types;
     default_type  application/octet-stream;

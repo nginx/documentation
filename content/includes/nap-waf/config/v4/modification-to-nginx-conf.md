@@ -1,5 +1,5 @@
 ---
-docs: DOCS-647
+docs: "DOCS-1635"
 ---
 
 When both `nginx.conf` file and App Protect configurations are modified, apreload enforces only the App Protect configurations but nginx reload enforces both.
@@ -15,7 +15,7 @@ Output:
 USAGE:
     /opt/app_protect/bin/apreload:
 
-Optional arguments with default values:  
+Optional arguments with default values:
   -apply
         Apply new configuration in enforcer (default true)
   -i string

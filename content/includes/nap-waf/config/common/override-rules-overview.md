@@ -1,5 +1,5 @@
 ---
-docs: DOCS-647
+docs: "DOCS-1553"
 ---
 
 The **Override Rules** feature allows overriding of the **default policy** settings. Each override rule consists of a condition followed by changes to the original policy applied to requests that meet the respective condition. This feature provides the ability to include the override rules within a declarative policy such that all incoming requests are verified against those rules.
@@ -80,7 +80,7 @@ Here is an example of a declarative policy using an override rules entity:
                     "description": "Attempt to access from outside the USA",
                     "rating": 4
                 }
-        }        
+        }
     ]
   }
 }

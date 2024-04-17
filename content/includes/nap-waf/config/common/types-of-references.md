@@ -1,5 +1,5 @@
 ---
-docs: DOCS-647
+docs: "DOCS-1601"
 ---
 
 There are different implementations based on the type of references that are being made.
@@ -8,7 +8,7 @@ There are different implementations based on the type of references that are bei
 
 URL reference is the method of referencing an external source by providing its full URL. This is a very useful method when trying to combine or consolidate parts of the policy that are present on different server machines.
 
-{{< note >}} You need to make sure that the server where the resource files are located is always available when you are compiling your policy. 
+{{< note >}} You need to make sure that the server where the resource files are located is always available when you are compiling your policy.
 {{< /note >}}
 
 ##### Example Configuration
@@ -167,15 +167,15 @@ File references refers to accessing local resources on the same machine, as oppo
 
 Here are some examples of the typical cases:
 
-{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
-|Link URL Format (examples) | File Path | Comment | 
-| ---| ---| --- | 
-|<file:///foo.json> | /etc/app_protect/conf/foo.json | Default directory assumed | 
-|<file://foo.json> | /etc/app_protect/conf/foo.json | Formally illegal, but tolerated as long as there is no trailing slash. | 
-|<file:///etc/app_protect/conf/foo.json> | /etc/app_protect/conf/foo.json | Full path, but still the default one | 
-|<file:///bar/foo.json> | /bar/foo.json | Non-default path | 
-|<file://etc/app_protect/conf/foo.json> | **Not accepted** | "etc" is interpreted as remote host name | 
-{{</bootstrap-table>}} 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
+|Link URL Format (examples) | File Path | Comment |
+| ---| ---| --- |
+|<file:///foo.json> | /etc/app_protect/conf/foo.json | Default directory assumed |
+|<file://foo.json> | /etc/app_protect/conf/foo.json | Formally illegal, but tolerated as long as there is no trailing slash. |
+|<file:///etc/app_protect/conf/foo.json> | /etc/app_protect/conf/foo.json | Full path, but still the default one |
+|<file:///bar/foo.json> | /bar/foo.json | Non-default path |
+|<file://etc/app_protect/conf/foo.json> | **Not accepted** | "etc" is interpreted as remote host name |
+{{</bootstrap-table>}}
 
 
 ##### Example Configuration

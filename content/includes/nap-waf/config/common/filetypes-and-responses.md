@@ -1,5 +1,5 @@
 ---
-docs: DOCS-647
+docs: "DOCS-1617"
 ---
 
 A user can enable/disable specific file types in the policy.
@@ -55,9 +55,9 @@ All Response Signatures are attack signatures detected on the response side, in 
 
 Restrict Response Signatures enhancement assists the users in saving time by limiting the search for response signatures to a specified amount. You can enable the signature verification in the response by setting the `responseCheck` parameter to true. However, the restriction of certain signatures is set in the policy and then enforced by the App Protect.
 
-In the policy base template under the "filetypes" section, make sure you enable the `responseCheck` attribute for `responseCheckLength` to work properly. The default value of `responseCheck` parameter is set to false. 
+In the policy base template under the "filetypes" section, make sure you enable the `responseCheck` attribute for `responseCheckLength` to work properly. The default value of `responseCheck` parameter is set to false.
 
-The `responseCheckLength` parameter refers to the number of uncompressed bytes in the response body prefix that are examined for signatures. The `responseCheckLength` field will be added with the default value of **20000** bytes which means that the first 20,000 bytes of the response body will undergo signature verification. 
+The `responseCheckLength` parameter refers to the number of uncompressed bytes in the response body prefix that are examined for signatures. The `responseCheckLength` field will be added with the default value of **20000** bytes which means that the first 20,000 bytes of the response body will undergo signature verification.
 
 Restrict Response Signature example:
 

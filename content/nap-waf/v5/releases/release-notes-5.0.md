@@ -1,9 +1,9 @@
 ---
 description: ''
-docs: DOCS-000
+docs: "DOCS-1643"
 doctypes:
 - concept
-title: NGINX App Protect WAF Release 5.0
+title: "NGINX App Protect WAF Release 5.0"
 toc: true
 weight: 1000
 ---

@@ -1,12 +1,12 @@
 ---
-docs: DOCS-1368
+docs: "DOCS-1620"
 ---
 
 NGINX App Protect WAF v5 introduces a new directive, in addition to those specified in the [NGINX App Protect WAF Configuration Guide]({{< relref "/nap-waf/v5/configuration-guide/configuration.md#directives" >}}).
 
-{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}} 
-|Directive Name | Syntax | Description | Default | 
-| ---| ---| ---| --- | 
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
+|Directive Name | Syntax | Description | Default |
+| ---| ---| ---| --- |
 |`app_protect_enforcer_address` | `<hostname/ip>:<port>` | The Enforcer service address. | None |
 {{</bootstrap-table>}}
 

@@ -1,10 +1,10 @@
 ---
-docs: DOCS-647
+docs: "DOCS-1557"
 ---
 
-A GraphQL error response page is returned when a request is blocked. This GraphQL response page, like other blocking response pages, can be customized, but the GraphQL JSON syntax must be preserved for them to be displayed correctly. The default page returns the GraphQL status code Blocking Response Page (BRP) and a short JSON error message which includes the support ID. 
+A GraphQL error response page is returned when a request is blocked. This GraphQL response page, like other blocking response pages, can be customized, but the GraphQL JSON syntax must be preserved for them to be displayed correctly. The default page returns the GraphQL status code Blocking Response Page (BRP) and a short JSON error message which includes the support ID.
 
-For example: 
+For example:
 
 ```shell
 "response-pages": [

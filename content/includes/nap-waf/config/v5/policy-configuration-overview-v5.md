@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1368
+docs: "DOCS-1628"
 ---
 
 The NGINX App Protect WAF security policy configuration uses the declarative format based on a pre-defined base template. The policy is represented in a JSON file which you can edit to add, modify and remove security capabilities with respect to the base template. The JSON file then should be compiled to a bundle file (`.tgz`) using the [NGINX App Protect WAF Compiler]({{< relref "/nap-waf/v5/admin-guide/compiler.md" >}}). The way the policy is integrated into the NGINX configuration is via referencing the bundle file (using the full path) in the `nginx.conf` file.
