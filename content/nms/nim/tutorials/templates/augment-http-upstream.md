@@ -35,6 +35,25 @@ authors: []
 
 ## Overview
 
+This tutorial will guide you through using NGINX Instance Manager's templating features so you can manage and apply configurations across multiple NGINX instances.
+
+By the end of this tutorial, you will learn how to:
+
+1. Create the {rr_base_template} base template as a starting point for configuring NGINX instances.
+2. Create the {rr_aug_loc_proxy} augment template to customize location blocks within your NGINX configuration, directing traffic to specified upstream servers and refining request handling.
+3. Understand the interplay between base and augment templates, and how they collectively form a dynamic and flexible configuration system.
+4. Apply template-driven configurations to real-world scenarios, streamlining your workflows and ensuring consistency across your environment.
+
+This tutorial assumes a basic understanding of NGINX configuration directives and principles. With the provided step-by-step instructions, sample configurations, and explanatory notes, you'll learn how to use templating for more effective NGINX management.
+
+**Example Use Case**
+
+Use an augment template to specify the upstream server locations for round-robin load balancing.
+
+---
+
+Feel free to adjust the wording to better fit the style and tone of your existing documentation. Once the overview is aligned with your vision, we can proceed to the next sections, or I can assist with any revisions needed here.
+
 A base template makes all of the specified NGINX directive blocks accessible to users when modifying template submissions. This might be okay if you want people to make changes without being restricted. However, if you want only designated individuals or teams to edit specific HTTP servers or locations, perhaps as part of a self-service workflow, you can use augment templates to portion out (segment) parts of the NGINX config and role-based access control (RBAC) to assign permissions.
 
 An administrator has defined the upstream location in the base template. However, now we want to break the upstream location out of the base template so a specific team, like SRE, can edit these settings themselves. By breaking the location out of the base template, we're able add additional control over how can access it. In short, a base template makes all of the NGINX directive blocks accessible if there's no need for access control. However, if you want to restrict certain server or location blocs, you can create augments for those blocks and limit access with RBAC.

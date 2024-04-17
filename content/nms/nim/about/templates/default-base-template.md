@@ -17,7 +17,7 @@ authors: []
 
 ## Overview
 
-The F5 Global Default Base template simplifies NGINX configuration by abstracting complex directives into input-validated parameters, allowing users to quickly generate full NGINX configurations. The framework incorporates various modular components and injectable templates for augmenting functionality, enabling a versatile foundation for managing complex configurations through a simplified interface.
+The F5 Global Default Base template is a **sample template** for configuring main, HTTP, and stream blocks. It's important to note that this template **doesn't produce a deployable NGINX configuration on its own**. Users should copy and modify this template as needed to create deployable configurations. For guidance on configuring base templates, [see the additional resources below](#additional-resources).
 
 ## Key components
 
@@ -41,15 +41,11 @@ The template uses JSON schema files to validate the input and provide a user-fri
 
 ### Conditional module loading
 
-A key feature of the template is its ability to conditionally load modules based on user inputs, optimizing the configuration by including only necessary modules. This approach not only streamlines the configuration process but also enhances the performance and security of NGINX instances.
+The template conditionally loads modules based on user inputs, optimizing the configuration by including only necessary modules. This makes the configuration process more efficient and enhances the performance and security of NGINX instances.
 
 ### Dynamic configuration generation
 
 The template dynamically generates configuration blocks for HTTP and stream contexts, incorporating server blocks, location directives, upstream configurations, and proxy pass settings based on the provided inputs. This modular and dynamic approach facilitates the rapid deployment of customized NGINX configurations, catering to a wide range of deployment scenarios.
-
-### Simplified configuration management
-
-The F5 Global Default Base template makes managing NGINX configurations easier by abstracting the complexity of the configuration syntax and offering a modular approach to customization. This advancement makes it accessible to users with varying levels of expertise, enabling them to efficiently manage and deploy NGINX instances.
 
 ---
 
@@ -94,6 +90,6 @@ Augment templates add specific features or modify existing configurations genera
 
 ---
 
-## Additional Resources
+## Additional Resources {#additional-resources}
 
 {{< include "nim/templates/additional-resources-links.md" >}}

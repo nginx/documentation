@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1500"
+docs: DOCS-1500
 ---
 
 #### Concepts
