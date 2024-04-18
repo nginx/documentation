@@ -11,6 +11,60 @@ weight: 100
 
 ---
 
+## 2.16.0
+
+April 18, 2024
+
+### Upgrade Paths {#2-16-0-upgrade-paths}
+
+Instance Manager  supports upgrades from these previous versions:
+
+- 2.13.0 - 2.15.1
+
+If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+{{< see-also >}}
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< /see-also >}}
+
+<br>
+
+<details closed>
+<summary><i class="fa-solid fa-circle-exclamation"></i> Support for NGINX App Protect WAF</summary>
+
+{{< include "tech-specs/nim-app-protect-support.md" >}}
+
+</details>
+
+
+### What's New{#2-16-0-whats-new}
+
+This release includes the following updates:
+
+- {{% icon-feature %}} **Stability and performance improvements**<a name="2-16-0-whats-new-Stability-and-performance-improvements-"></a>
+
+  This release includes stability and performance improvements.
+
+- {{% icon-feature %}} **Introducing configuration templates for simplifying NGINX configurations and self-service workflows**<a name="2-16-0-whats-new-config-templates"></a>
+
+  This release of NGINX Instance Manager introduces [Config Templates]({{< relref "nms/nim/about/templates/config-templates.md" >}}). These templates use Go templating to make it easier to set up and standardize NGINX configurations. Now, you don't need to know all the details of NGINX syntax to create a working configuration. Just provide the required inputs for a template, and the system will do the rest. This makes setting up NGINX simpler and helps you follow best practices. 
+  
+  To provide more control over your configurations, [augment templates]({{< relref "nms/nim/about/templates/default-base-template.md#augmenting-global-default-base-template" >}}) let you modify only specific segments of your NGINX configuration. This, when combined with [RBAC for template submissions]({{< relref "nms/nim/how-to/nginx/access-control-for-templates-and-template-submissions.md" >}}), enables self-service workflows. Look for pre-built templates for common scenarios in our GitHub repositories soon.
+
+### Changes in Default Behavior{#2-16-0-changes-in-behavior}
+
+This release has the following changes in default behavior:
+
+- {{% icon-feature %}} **Change in NGINX Agent upgrade behavior**
+
+  Starting from version v2.31.0, the NGINX Agent will automatically restart itself during an upgrade.
+
+### Known Issues{#2-16-0-known-issues}
+
+You can find information about known issues in the [Known Issues]({{< relref "/nms/nim/releases/known-issues.md" >}}) topic.
+
+---
+
 ## 2.15.1
 
 February 14, 2024
@@ -297,8 +351,8 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Use NGINX Plus Health Checks to easily track NGINX Plus Usage with NGINX Instance Manager**<a name="2-13-0-whats-new-Use-NGINX-Plus-Health-Checks-to-easily-track-NGINX-Plus-Usage-with-NGINX-Instance-Manager"></a>
 
-  The NGINX Plus Health Check feature now allows you to monitor the count of both NGINX Plus and NGINX App Protect instances that you've deployed. You can view this information in the "NGINX Plus" area of the "Instance Manager" web interface, or through the `/inventory` API. For guidance on how to set this up, refer to the following documentation: [View Count of NGINX Plus Instances]({{< relref "nms/nim/how-to/usage-tracking/count-nginx-plus-instances.md" >}}).
-
+  The NGINX Plus Health Check feature now allows you to monitor the count of both NGINX Plus and NGINX App Protect instances that you've deployed. You can view this information in the "NGINX Plus" area of the "Instance Manager" web interface, or through the `/inventory` API. For guidance on how to set this up, refer to the following documentation: [View Count of NGINX Plus Instances]({{< relref "nms/nim/how-to/monitoring/count-nginx-plus-instances.md" >}}).
+  
 - {{% icon-feature %}} **Improved log output for better JSON parsing**<a name="2-13-0-whats-new-Improved-log-output-for-better-JSON-parsing"></a>
 
   In the log output, extra whitespace has been removed, and brackets have been removed from the log `level` field. This results in clean, parsable log output, particularly when using JSON log encoding.
@@ -1082,8 +1136,8 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Track NGINX Plus usage over time**<a name="2-5-0-whats-new-Track-NGINX-Plus-usage-over-time"></a>
 
-  When viewing your NGINX Plus instances in the Instnace Manager web interface, you can set a date and time filter to review the [NGINX Plus instance count]({{< relref "nms/nim/how-to/usage-tracking/count-nginx-plus-instances.md" >}}) for a specific period. Also, you can use the Instance Manager REST API to view the lowest, highest, and average number of NGINX Plus instances over time.
-
+  When viewing your NGINX Plus instances in the Instnace Manager web interface, you can set a date and time filter to review the [NGINX Plus instance count]({{< relref "nms/nim/how-to/monitoring/count-nginx-plus-instances.md" >}}) for a specific period. Also, you can use the Instance Manager REST API to view the lowest, highest, and average number of NGINX Plus instances over time.
+  
 - {{% icon-feature %}} **New helm charts for each release of Instance Manager**<a name="2-5-0-whats-new-New-helm-charts-for-each-release-of-Instance-Manager"></a>
 
   Each release of Instance Manager now includes a helm chart, which you can use to easily [install Instance Manager on Kubernetes]({{< relref "nms/installation/kubernetes/deploy-instance-manager.md" >}}). You can download the helm charts from [MyF5](https://my.f5.com/manage/s/downloads).
@@ -1137,8 +1191,8 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **See which of your NGINX Plus instances have NGINX App Protect installed**<a name="2-4-0-whats-new-See-which-of-your-NGINX-Plus-instances-have-NGINX-App-Protect-installed"></a>
 
-  Now, when you [view your NGINX Plus inventory]({{< relref "nms/nim/how-to/usage-tracking/count-nginx-plus-instances.md" >}}), you can see which instances have [NGINX App Protect](https://www.nginx.com/products/nginx-app-protect/) installed. NGINX App Protect is a modern app‑security solution that works seamlessly in DevOps environments as a robust WAF or app‑level DoS defense, helping you deliver secure apps from code to customer.
-
+  Now, when you [view your NGINX Plus inventory]({{< relref "nms/nim/how-to/monitoring/count-nginx-plus-instances.md" >}}), you can see which instances have [NGINX App Protect](https://www.nginx.com/products/nginx-app-protect/) installed. NGINX App Protect is a modern app‑security solution that works seamlessly in DevOps environments as a robust WAF or app‑level DoS defense, helping you deliver secure apps from code to customer.
+  
 
 ### Changes in Default Behavior{#2-4-0-changes-in-behavior}
 This release has the following changes in default behavior:
@@ -1256,8 +1310,8 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Track the details for your NGINX Plus instances**<a name="2-3-0-whats-new-Track-the-details-for-your-NGINX-Plus-instances"></a>
 
-   Easily track your NGINX Plus instances from the new NGINX Plus inventory list page. [View the current count for all your NGINX Plus instances]({{< relref "nms/nim/how-to/usage-tracking/count-nginx-plus-instances.md" >}}), as well as each instance's hostname, UID, version, and the last time each instance was reported to Instance Manager. Select the `Export` button to export the list of NGINX Plus instances to a `.csv` file.
-
+   Easily track your NGINX Plus instances from the new NGINX Plus inventory list page. [View the current count for all your NGINX Plus instances]({{< relref "nms/nim/how-to/monitoring/count-nginx-plus-instances.md" >}}), as well as each instance's hostname, UID, version, and the last time each instance was reported to Instance Manager. Select the `Export` button to export the list of NGINX Plus instances to a `.csv` file.
+  
 - {{% icon-feature %}} **Explore events in NGINX Instance Manager with the Events Catalogs API**<a name="2-3-0-whats-new-Explore-events-in-NGINX-Instance-Manager-with-the-Events-Catalogs-API"></a>
 
   This release introduces a Catalogs API endpoint specifically for viewing NGINX Instance Manager events and corresponding information. You can access the endpoint at `/analytics/catalogs/events`.
@@ -1323,12 +1377,12 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **New events for NGINX processes and configuration rollbacks**<a name="2-2-0-whats-new-New-events-for-NGINX-processes-and-configuration-rollbacks"></a>
 
-    Now, you can use the [NGINX Instance Manager Events API]({{< relref "nms/nim/how-to/view-events-metrics.md" >}}) or [web interface]({{< relref "nms/nim/how-to/view-events-metrics.md" >}}) to view events when NGINX instances start and reload or when a configuration is rolled back.
-
+    Now, you can use the [NGINX Instance Manager Events API]({{< relref "nms/nim/how-to/monitoring/view-events-metrics.md" >}}) or [web interface]({{< relref "nms/nim/how-to/monitoring/view-events-metrics.md" >}}) to view events when NGINX instances start and reload or when a configuration is rolled back.
+  
 - {{% icon-feature %}} **Filter events and metrics with custom date and time ranges**<a name="2-2-0-whats-new-Filter-events-and-metrics-with-custom-date-and-time-ranges"></a>
 
-  Now you can filter [events]({{< relref "/nms/nim/how-to/view-events-metrics" >}}) and [metrics]({{< relref "/nms/nim/how-to/view-events-metrics" >}}) using a custom date and time range. Select **Custom time range** in the filter list, then specify the date and time range you want to use.
-
+  Now you can filter [events]({{< relref "/nms/nim/how-to/monitoring/view-events-metrics" >}}) and [metrics]({{< relref "/nms/nim/how-to/monitoring/view-events-metrics" >}}) using a custom date and time range. Select **Custom time range** in the filter list, then specify the date and time range you want to use.
+  
 - {{% icon-feature %}} **Role-based access control added to Events and Metrics pages**<a name="2-2-0-whats-new-Role-based-access-control-added-to-Events-and-Metrics-pages"></a>
 
   A warning message is shown when users try to view the Events and Metrics pages in the web interface if they don't have permission to access the Analytics feature. For instructions on assigning access to features using role-based access control (RBAC), see [Set Up RBAC]({{< relref "nms/admin-guides/rbac/rbac-getting-started.md" >}}).
@@ -1400,9 +1454,9 @@ This release includes the following updates:
 - {{% icon-feature %}} **Redesigned metrics views in the web interface**<a name="2-1-0-whats-new-Redesigned-metrics-views-in-the-web-interface"></a>
 
   The metrics pages in the web interface have been revised and improved.
-
-  See the [View Metrics]({{< relref "/nms/nim/how-to/view-events-metrics" >}}) topic to get started.
-
+  
+  See the [View Metrics]({{< relref "/nms/nim/how-to/monitoring/view-events-metrics" >}}) topic to get started.
+  
 - {{% icon-feature %}} **New RBAC lets you limit access to NGINX Instance Manager features**<a name="2-1-0-whats-new-New-RBAC-lets-you-limit-access-to-NGINX-Instance-Manager-features"></a>
 
   RBAC has been updated and improved. Add users to roles -- or add users to user groups if you're using an external identity provider -- to limit access to Instance Manager features.
@@ -1416,9 +1470,9 @@ This release includes the following updates:
 - {{% icon-feature %}} **View events for your NGINX instances**<a name="2-1-0-whats-new-View-events-for-your-NGINX-instances"></a>
 
   Now you can use the Instance Manager API or web interface to view events for your NGINX instances.
-
-  See the [View Events]({{< relref "/nms/nim/how-to/view-events-metrics" >}}) and [View Events (API)]({{< relref "/nms/nim/how-to/view-events-metrics" >}}) topics for instructions.
-
+  
+  See the [View Events]({{< relref "/nms/nim/how-to/monitoring/view-events-metrics" >}}) and [View Events (API)]({{< relref "/nms/nim/how-to/monitoring/view-events-metrics" >}}) topics for instructions.
+  
 - {{% icon-feature %}} **Deploy NGINX Instance Manager on Kubernetes using a helm chart**<a name="2-1-0-whats-new-Deploy-NGINX-Instance-Manager-on-Kubernetes-using-a-helm-chart"></a>
 
   We recommend using the Instance Manager helm chart to install Instance Manager on Kubernetes.
@@ -1540,8 +1594,8 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **New architecture!**<a name="2-0-0-whats-new-New-architecture!"></a>
 
-  We redesigned and improved the architecture of Instance Manager! Because of these changes, upgrading to version 2.0 is different. Make sure to read the [Migration Guide]({{< relref "/nms/nim/migration-guide.md" >}}) for instructions.
-
+  We redesigned and improved the architecture of Instance Manager! Because of these changes, upgrading to version 2.0 is different. Make sure to read the [Migration Guide]({{< relref "/nms/nim/previous-versions/migration-guide.md" >}}) for instructions.
+  
 - {{% icon-feature %}} **Improved user access control**<a name="2-0-0-whats-new-Improved-user-access-control"></a>
 
   Instance Manager 2.x. allows you to create user access controls with tags. Administrators can grant users read or write access to perform instance management tasks. And admins can grant or restrict access to the Settings options, such as managing licenses and creating users and roles. See the [Set up Authentication]({{< relref "/nms/admin-guides/authentication/basic-authentication.md#rbac" >}}) guide for more details.
