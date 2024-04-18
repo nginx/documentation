@@ -335,6 +335,10 @@ See [signature sets](#signature-sets) for configuring the signature sets include
 
 {{< include "nap-waf/config/v4/json-web-tokens-access-profile-v4.md" >}}
 
+### Authorization Rules in URLs
+
+{{< include "nap-waf/config/v4/json-web-tokens-auth-rules-urls.md" >}}
+
 ### Attack Signatures
 
 {{< include "nap-waf/config/common/json-web-tokens-attack-sigs.md" >}}
@@ -372,6 +376,45 @@ See [signature sets](#signature-sets) for configuring the signature sets include
 ### Logging and Reporting
 
 {{< include "nap-waf/config/common/custom-log-logging-reporting.md" >}}
+
+
+## Time-Based Signature Staging
+
+{{< include "nap-waf/config/common/time-based-sig-overview.md" >}}
+
+
+### Latest Signature Certification Time
+
+{{< include "nap-waf/config/common/time-based-sig-latest-cert-time.md" >}}
+
+
+### New Policy
+
+{{< include "nap-waf/config/common/time-based-sig-new-policy.md" >}}
+
+
+### Signature Update
+
+{{< include "nap-waf/config/common/time-based-sig-update-sig.md" >}}
+
+
+### Configuration
+
+#### Staging Certification Date-Time
+
+{{< include "nap-waf/config/common/time-based-sig-config.md" >}}
+
+
+### Enforcing the Modified Signatures After Testing Them
+
+{{< include "nap-waf/config/common/time-based-sig-enforce-mod-sig.md" >}}
+
+
+### Logging and Reporting
+
+{{< include "nap-waf/config/common/time-based-sig-log-report.md" >}}
+
+
 
 ## Directives
 

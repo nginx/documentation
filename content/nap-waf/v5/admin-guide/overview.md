@@ -53,6 +53,40 @@ NGINX App Protect WAF v5 enhances deployment speed through the pre-compilation o
 
 Use the [NGINX App Protect WAF Compiler]({{< relref "/nap-waf/v5/admin-guide/compiler.md" >}}) to transform security policies and logging profiles from JSON format into a consumable bundle files.
 
+## Transitioning from NGINX App Protect WAF v4 to v5
+
+Upgrading directly from v4 to v5 is not supported due to architectural changes in NGINX App Protect WAF v5.
+
+{{< note >}}
+We recommend that you deploy the NGINX App Protect WAF v5 in a staging environment.  Only after you compile policies with WAF compiler and test the enforcement should you transfer the traffic from the v4 to v5. This keeps the v4 deployment for backup.
+{{< /note >}}
+
+1. Back up your NGINX App Protect WAF configuration files, such as NGINX configurations, JSON policies, logging profiles, user-defined signatures, and global settings.
+
+1. Install NGINX App Protect WAF 5 (using either nginx OSS or nginx-plus based on the need of customer's application).
+   - [Installing NGINX App Protect WAF]({{<relref "/nap-waf/v5/admin-guide/install.md">}})
+   - [Deploying NGINX App Protect WAF on Docker]({{<relref "/nap-waf/v5/admin-guide/deploy-on-docker.md">}})
+   - [Deploying NGINX App Protect WAF on Kubernetes]({{<relref "/nap-waf/v5/admin-guide/deploy-on-kubernetes.md">}})
+ 
+1. Compile your `.json` policies and logging profiles to `.tgz` bundles using [compiler-image]({{<relref "/nap-waf/v5/admin-guide/compiler.md">}}) because NGINX App Protect WAF v5 supports policies and logging profiles in a compiled bundle format only.
+
+   {{< note >}}
+   If you were previously using a default [logging profile]({{<relref "/nap-waf/v5/admin-guide/deploy-on-docker.md#using-policy-and-logging-profile-bundles">}}) JSON like `/opt/app_protect/share/defaults/log_all.json`, you can replace it with the default constant such as `log_all`, and then you will not need to explicitly compile the logging profile into a bundle.
+
+   ```nginx
+   app_protect_security_log log_all /log_volume/security.log;
+   ```
+
+   {{< /note >}}
+
+1. Replace the `.json` references in nginx.conf with the above created `.tgz` [bundles]({{<relref "/nap-waf/v5/admin-guide/install.md#using-policy-and-logging-profile-bundles">}}).
+
+1. Make sure that `.tgz` bundles references are accessible to the `waf-config-mgr` container.
+
+1. Restart the deployment if it has already been initiated. Additionally, restart NGINX if utilizing the VM + containers deployment type.  After the migrations, check that the NGINX process is running in the NGINX error log and there are no issues.
+
+  
+
 ## Troubleshooting and FAQs
 
 See common deployment challenges and solutions to ensure a smooth setup process in the [Troubleshooting Guide]({{< relref "/nap-waf/v5/troubleshooting-guide/troubleshooting.md#nginx-app-protect-5" >}}).

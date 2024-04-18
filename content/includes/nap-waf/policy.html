@@ -305,83 +305,90 @@
 <td></td>
 </tr>
 <tr class="odd">
+<td><code>performStaging</code></td>
+<td>No</td>
+<td>boolean</td>
+<td>Determines staging handling for all applicable entities in the policy, such as signatures, URLs, parameters, and cookies. If disabled, all entities will be enforced and any violations triggered will be considered illegal.</td>
+<td></td>
+</tr>
+<tr class="even">
 <td><a href="#policy/response-pages">response-pages</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>The Security Policy has a default blocking response page that it returns to the client when the client request, or the web server response, is blocked by the security policy. You can change the way the system responds to blocked requests. All default response pages contain a variable, &lt;%TS.request.ID()%&gt;, that the system replaces with a support ID number when it issues the page.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/sensitive-parameters">sensitive-parameters</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>This section defines sensitive parameters. The contents of these parameters are not visible in logs nor in the user interfaces. Instead of actual values a string of asterisks is shown for these parameters. Use these parameters to protect sensitive user input, such as a password or a credit card number, in a validated request. A parameter name of "password" is always defined as sensitive by default.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/server-technologies">server-technologies</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>The server technology is a server-side application, framework, web server or operating system type that is configured in the policy in order to adapt the policy to the checks needed for the respective technology.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/signature-requirements">signature-requirements</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/signature-sets">signature-sets</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>Defines behavior when signatures found within a signature-set are detected in a request. Settings are culmulative, so if a signature is found in any set with block enabled, that signature will have block enabled.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/signature-settings">signature-settings</a></td>
 <td>Yes</td>
 <td>object</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/signatures">signatures</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>This section defines the properties of a signature on the policy.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/template">template</a></td>
 <td>Yes</td>
 <td>object</td>
 <td>Specifies the template to populate the default attributes of a new policy.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/threat-campaigns">threat-campaigns</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>This section defines the enforcement state for the threat campaigns in the security policy.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/urls">urls</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>In a security policy, you can manually specify the HTTP URLs that are allowed (or disallowed) in traffic to the web application being protected. When you create a security policy, wildcard URLs of * (representing all HTTP URLs) are added to the Allowed HTTP URLs lists.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/whitelist-ips">whitelist-ips</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>An IP address exception is an IP address that you want the system to treat in a specific way for a security policy. You can use the IP address exception feature to create exceptions for IP addresses of internal tools that your company uses, such as penetration tools, manual or automatic scanners, or web scraping tools. You can add an IP address exception and instruct the system how to handle traffic coming from that address.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/xml-profiles">xml-profiles</a></td>
 <td>Yes</td>
 <td>array of objects</td>
@@ -4154,11 +4161,19 @@
 <li>XPath Injection Signatures</li>
 </ul></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/signature-sets/signatureSet">signatureSet</a></td>
 <td>object</td>
 <td>Defines signature set.</td>
 <td></td>
+</tr>
+<tr class="even">
+<td><code>stagingCertificationDatetime</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li></li>
+</ul></td>
 </tr>
 </tbody>
 </table>
@@ -4460,6 +4475,20 @@
 <li>medium</li>
 </ul></td>
 </tr>
+<tr class="even">
+<td><code>signatureStaging</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>stagingCertificationDatetime</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li></li>
+</ul></td>
+</tr>
 </tbody>
 </table>
 <h2 id="policy/signatures">signatures</h2>
@@ -4492,12 +4521,18 @@
 <td></td>
 </tr>
 <tr class="odd">
+<td><code>performStaging</code></td>
+<td>boolean</td>
+<td>Specifies, if true, that the signature is in staging. The system does not enforce signatures in staging. Instead, the system records the request information and keeps it for a period of time (the Enforcement Readiness Period whose default time period is 7 days). Specifies, when false, that the staging feature is not in use, and that the system enforces the signatures' Learn/Alarm/Block settings immediately. (Blocking is performed only if the security policy's enforcement mode is Blocking.)</td>
+<td></td>
+</tr>
+<tr class="even">
 <td><code>signatureId</code></td>
 <td>integer</td>
 <td>The signature ID which identifies the signature.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>tag</code></td>
 <td>string</td>
 <td>The signature tag which, along with the signature name, identifies the signature.</td>
@@ -4587,54 +4622,60 @@
 <td></td>
 </tr>
 <tr class="odd">
+<td><a href="#policy/urls/authorizationRules">authorizationRules</a></td>
+<td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
 <td><code>canChangeDomainCookie</code></td>
 <td>boolean</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>clickjackingProtection</code></td>
 <td>boolean</td>
 <td>Specifies that the system adds the X-Frame-Options header to the domain URL's response header. This is done to protect the web application against clickjacking. Clickjacking occurs when an attacker lures a user to click illegitimate frames and iframes because the attacker hid them on legitimate visible website buttons. Therefore, enabling this option protects the web application from other web sites hiding malicious code behind them. The default is disabled. After you enable this option, you can select whether, and under what conditions, the browser should allow this URL to be rendered in a frame or iframe.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>disallowFileUploadOfExecutables</code></td>
 <td>boolean</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/urls/html5CrossOriginRequestsEnforcement">html5CrossOriginRequestsEnforcement</a></td>
 <td>object</td>
 <td>The system extracts the Origin (domain) of the request from the Origin header.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>isAllowed</code></td>
 <td>boolean</td>
 <td>If <em>true</em>, the URLs allowed by the security policy.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>mandatoryBody</code></td>
 <td>boolean</td>
 <td>A request body is mandatory. This is relevant for any method acting as POST.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/urls/metacharOverrides">metacharOverrides</a></td>
 <td>array of objects</td>
 <td>To allow or disallow specific meta characters in the name of this specific URL (and thus override the global meta character settings).</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>metacharsOnUrlCheck</code></td>
 <td>boolean</td>
 <td>Specifies, when true, that you want meta characters to be detected on this URL and possibly override the security policy settings of a meta character specifically for this URL. After you enable this setting, the system displays a list of meta characters.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>method</code></td>
 <td>string</td>
 <td>Unique ID of a URL with a protocol type and name. Select a Method for the URL to create an API endpoint: URL + Method.</td>
@@ -4681,19 +4722,19 @@
 <li>*</li>
 </ul></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/urls/methodOverrides">methodOverrides</a></td>
 <td>array of objects</td>
 <td>Specifies a list of methods that are allowed or disallowed for a specific URL. The list overrides the list of methods allowed or disallowed globally at the policy level.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>methodsOverrideOnUrlCheck</code></td>
 <td>boolean</td>
 <td>Specifies, when true, that you want methods to be detected on this URL and possibly override the security policy settings of a method specifically for this URL. After you enable this setting, the system displays a list of methods.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p><code>name</code></p></td>
 <td><p>string</p></td>
 <td><p>Specifies an HTTP URL that the security policy allows. The available types are:</p>
@@ -4717,19 +4758,19 @@
 <p><strong>Note</strong>: Wildcards do not match regular expressions. Do not use a regular expression as a wildcard.</p></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>operationId</code></td>
 <td>string</td>
 <td>The attribute operationId is used as an OpenAPI endpoint identifier.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/urls/positionalParameters">positionalParameters</a></td>
 <td>array of objects</td>
 <td>When checked (enabled), positional parameters are enabled in the URL.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>protocol</code></td>
 <td>string</td>
 <td>Specifies whether the protocol for the URL is HTTP or HTTPS.</td>
@@ -4738,13 +4779,13 @@
 <li>https</li>
 </ul></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/urls/signatureOverrides">signatureOverrides</a></td>
 <td>array of objects</td>
 <td>Array of signature overrides. Specifies attack signatures whose security policy settings are overridden for this URL, and which action the security policy takes when it discovers a request for this URL that matches these attack signatures.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>type</code></td>
 <td>string</td>
 <td>Determines the type of the <strong>name</strong> attribute. Only when setting the type to wildcard will the special wildcard characters in the name be interpreted as such.</td>
@@ -4753,16 +4794,47 @@
 <li>wildcard</li>
 </ul></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/urls/urlContentProfiles">urlContentProfiles</a></td>
 <td>array of objects</td>
 <td>Specifies how the system recognizes and enforces requests for this URL according to the requests' header content. The system automatically creates a default header-based content profile for HTTP, and you cannot delete it. However, requests for a URL may contain other types of content, such as JSON, XML, or other proprietary formats.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>wildcardOrder</code></td>
 <td>integer</td>
 <td>Specifies the order index for wildcard URLs matching. Wildcard URLs with lower wildcard order will get checked for a match prior to URLs with higher wildcard order.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="policy/urls/authorizationRules">authorizationRules</h3>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>condition</code></td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>name</code></td>
+<td>string</td>
+<td></td>
 <td></td>
 </tr>
 </tbody>
@@ -5654,6 +5726,7 @@
 <td>string</td>
 <td></td>
 <td><ul>
+<li>VIOL_ACCESS_UNAUTHORIZED</li>
 <li>VIOL_ACCESS_INVALID</li>
 <li>VIOL_ACCESS_MALFORMED</li>
 <li>VIOL_ACCESS_MISSING</li>
@@ -5717,6 +5790,7 @@
 <li>VIOL_XML_FORMAT</li>
 <li>VIOL_XML_MALFORMED</li>
 <li>VIOL_GEOLOCATION</li>
+<li>VIOL_WEBSOCKET_BAD_REQUEST</li>
 </ul></td>
 </tr>
 </tbody>

@@ -263,7 +263,7 @@ If not already installed, `nginx` or `nginx-plus` will be installed automaticall
 
     ```shell
     sudo apt-get update
-    sudo apt-get install app-protect-module-oss
+    sudo apt-get install app-protect-module-oss nginx=1.25.4-1~focal
     ```
 
 #### For NGINX Plus

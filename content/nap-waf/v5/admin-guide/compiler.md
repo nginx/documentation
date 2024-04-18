@@ -131,21 +131,18 @@ Compilation with global settings:
 
 ```shell
 docker run --rm \
- -g $(pwd)/global_settings.json \
  -v $(pwd):$(pwd) \
  waf-compiler-1.0.0:custom \
- -p $(pwd)/policy.json -o $(pwd)/compiled_policy.tgz
+ -g $(pwd)/global_settings.json -p $(pwd)/policy.json -o $(pwd)/compiled_policy.tgz
 ```
 
 Using `-include-source`, you can incorporate the source of the policy (as `policy.json`) or logging profile (as `logging_profile.json`) into the final bundle. This process transforms any configuration that relies on external references into an inline configuration within the bundled source. Furthermore, when `-include-source` is combined with `-full-export`, the policy.json within the bundle will contain the entire source policy, including any default settings from the base template.
 
 ```shell
 docker run --rm \
- -include-source -full-export \
- -g $(pwd)/global_settings.json \
  -v $(pwd):$(pwd) \
  waf-compiler-1.0.0:custom \
- -p $(pwd)/policy.json -o $(pwd)/compiled_policy.tgz
+ -include-source -full-export -g $(pwd)/global_settings.json -p $(pwd)/policy.json -o $(pwd)/compiled_policy.tgz
 ```
 
 ### Logging Profile Compilation

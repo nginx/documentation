@@ -282,7 +282,7 @@
                                     "type" : "integer"
                                  },
                                  "maxHeaders" : {
-                                    "default" : 20,
+                                    "default" : 30,
                                     "description" : "Defines maximum allowed number of headers in request.\nRelevant only for the 'Check maximum number of headers' sub-violation",
                                     "maximum" : 150,
                                     "minimum" : 1,
@@ -326,6 +326,7 @@
                                  },
                                  "name" : {
                                     "enum" : [
+                                       "VIOL_ACCESS_UNAUTHORIZED",
                                        "VIOL_ACCESS_INVALID",
                                        "VIOL_ACCESS_MALFORMED",
                                        "VIOL_ACCESS_MISSING",
@@ -388,7 +389,8 @@
                                        "VIOL_URL_METACHAR",
                                        "VIOL_XML_FORMAT",
                                        "VIOL_XML_MALFORMED",
-                                       "VIOL_GEOLOCATION"
+                                       "VIOL_GEOLOCATION",
+                                       "VIOL_WEBSOCKET_BAD_REQUEST"
                                     ],
                                     "type" : "string"
                                  }
@@ -2531,6 +2533,17 @@
                         "type" : "object"
                      },
                      {
+                        "properties" : {
+                           "contents" : {
+                              "type" : "string"
+                           }
+                        },
+                        "required" : [
+                           "contents"
+                        ],
+                        "type" : "object"
+                     },
+                     {
                         "$ref" : "#/definitions/reference"
                      }
                   ]
@@ -3013,6 +3026,11 @@
                   }
                ]
             },
+            "performStaging" : {
+               "default" : true,
+               "description" : "Determines staging handling for all applicable entities in the policy, such as signatures, URLs, parameters, and cookies. If disabled, all entities will be enforced and any violations triggered will be considered illegal.",
+               "type" : "boolean"
+            },
             "response-pages" : {
                "oneOf" : [
                   {
@@ -3392,6 +3410,12 @@
                                  }
                               },
                               "type" : "object"
+                           },
+                           "stagingCertificationDatetime" : {
+                              "enum" : [
+                                 ""
+                              ],
+                              "type" : "string"
                            }
                         },
                         "required" : [
@@ -3418,6 +3442,16 @@
                               "medium"
                            ],
                            "type" : "string"
+                        },
+                        "signatureStaging" : {
+                           "default" : true,
+                           "type" : "boolean"
+                        },
+                        "stagingCertificationDatetime" : {
+                           "enum" : [
+                              ""
+                           ],
+                           "type" : "string"
                         }
                      },
                      "type" : "object"
@@ -3441,6 +3475,11 @@
                            "name" : {
                               "description" : "The signature name which, along with the signature tag, identifies the signature.",
                               "type" : "string"
+                           },
+                           "performStaging" : {
+                              "default" : true,
+                              "description" : "Specifies, if true, that the signature is in staging.\nThe system does not enforce signatures in staging. Instead, the system records the request information and keeps it for a period of time\n(the Enforcement Readiness Period whose default time period is 7 days).\nSpecifies, when false, that the staging feature is not in use, and that the system enforces the signatures' Learn/Alarm/Block settings immediately.\n(Blocking is performed only if the security policy's enforcement mode is Blocking.)",
+                              "type" : "boolean"
                            },
                            "signatureId" : {
                               "description" : "The signature ID which identifies the signature.",
@@ -3540,6 +3579,23 @@
                               "default" : true,
                               "description" : "Specifies, when true, that you want attack signatures and threat campaigns to be detected on this URL and possibly override the security policy settings of an attack signature or threat campaign specifically for this URL. After you enable this setting, the system displays a list of attack signatures and threat campaigns.",
                               "type" : "boolean"
+                           },
+                           "authorizationRules" : {
+                              "items" : {
+                                 "properties" : {
+                                    "condition" : {
+                                       "type" : "string"
+                                    },
+                                    "name" : {
+                                       "type" : "string"
+                                    }
+                                 },
+                                 "required" : [
+                                    "name"
+                                 ],
+                                 "type" : "object"
+                              },
+                              "type" : "array"
                            },
                            "canChangeDomainCookie" : {
                               "default" : false,
