@@ -151,6 +151,8 @@ If not already installed, `nginx` or `nginx-plus` will be installed automaticall
 
     ```shell
     sudo yum install app-protect-module-oss
+    sudo apt-get install nginx=1.25.4-1~`lsb_release -cs` app-protect-module-oss 
+
     ```
 
     When prompted to accept the GPG key, verify that the fingerprint matches `573B FD6B 3D8F BC64 1079 A6AB ABF5 BD82 7BD9 BF62`, and if so, accept it.
@@ -263,7 +265,7 @@ If not already installed, `nginx` or `nginx-plus` will be installed automaticall
 
     ```shell
     sudo apt-get update
-    sudo apt-get install app-protect-module-oss nginx=1.25.4-1~focal
+    sudo apt-get install nginx=1.25.4-1~`lsb_release -cs` app-protect-module-oss
     ```
 
 #### For NGINX Plus
