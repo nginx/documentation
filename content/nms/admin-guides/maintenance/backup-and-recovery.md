@@ -4,24 +4,24 @@ description: Follow the steps in this guide to back up and restore the essential
 docs: DOCS-1098
 tags:
 - docs
-title: Back Up and Recovery
+title: Back up and recovery
 toc: true
 weight: 1
 ---
 
 ## Overview
 
-- NGINX Management Suite includes several scripts, which you can run to back up and restore the configuration files, secrets, and databases used by the NGINX Management Suite platform.
+- NGINX Management Suite includes several scripts for backing up and restoring the configuration files, secrets, and databases used by the platform.
 
-{{<important>}}The backup and recovery scripts are provided for reference and may need to be adapted to suit the requirements of your deployment.{{</important>}}
+{{<important>}}The back up and recovery scripts are provided for reference and may need to be changed for your deployment.{{</important>}}
 
 ---
 
 ## NGINX Management Suite deployed in a Virtual Machine or Bare Metal
 
-### Before You Begin
+### Before you begin
 
-{{<note>}}API Connectivity Manger users refer to [ACM Backup and Recovery]({{< relref "/nms/acm/how-to/backup-recovery.md" >}}) {{< /note >}}
+{{<note>}}API Connectivity Manger users refer to [ACM Back up and recovery]({{< relref "/nms/acm/how-to/backup-recovery.md" >}}) {{< /note >}}
 
 To complete the instructions in this guide, you need the following:
 
@@ -33,7 +33,7 @@ To complete the instructions in this guide, you need the following:
     sudo systemctl start nms
     ```
 
-### Make Scripts Executable
+### Make scripts executable
 
 To run the backup and restore scripts, you need to set their permissions to make them executable.
 
@@ -52,7 +52,7 @@ To run the backup and restore scripts, you need to set their permissions to make
     sudo chmod +x support-package.sh
     ```
 
-### Back Up and Restore NGINX Management Suite
+### Back up and restore NGINX Management Suite
 
 To back up the NGINX Management Suite configuration files, secrets, and databases:
 
@@ -80,9 +80,9 @@ To restore NGINX Management Suite:
 
 ## NGINX Management Suite and modules deployed in a Kubernetes Cluster
 
-### Before You Begin
+### Before you begin
 
-{{<note>}}API Connectivity Manger users refer to [ACM Backup and Recovery]({{< relref "/nms/acm/how-to/backup-recovery.md" >}}) {{< /note >}}
+{{<note>}}API Connectivity Manger users refer to [ACM Back up and recovery]({{< relref "/nms/acm/how-to/backup-recovery.md" >}}) {{< /note >}}
 
 To complete the instructions in this guide, you need the following:
 
@@ -137,14 +137,14 @@ To complete the instructions in this guide, you need the following:
 
     1. Download the NGINX Management Suite Helm chart for your currently installed version of NGINX Management Suite:
 
-    ```shell
-    helm repo add nginx-stable https://helm.nginx.com/stable
-    helm repo update
-    helm pull nginx-stable/nms
-    tar zxvf nms-<version>.tgz
-    ```
+        ```shell
+        helm repo add nginx-stable https://helm.nginx.com/stable
+        helm repo update
+        helm pull nginx-stable/nms
+        tar zxvf nms-<version>.tgz
+        ```
 
-### Back Up NGINX Management Suite
+### Back up NGINX Management Suite
 
 To back up NGINX Management Suite deployed in a Kubernetes cluster, follow these steps:
 
@@ -170,7 +170,7 @@ To back up NGINX Management Suite deployed in a Kubernetes cluster, follow these
 
 1. The command will ask for the NGINX Management Suite namespace. The script will create a backup archive in the same directory called `k8s-backup-<timestamp>.tar.gz`.
 
-### Full Restoration: Same Kubernetes Cluster
+### Full restoration to the same Kubernetes Cluster
 
 To restore NGINX Management Suite and the installed modules deployed in the same Kubernetes cluster, follow these steps:
 
@@ -201,7 +201,7 @@ To restore NGINX Management Suite and the installed modules deployed in the same
     {{< note >}}The script will use the utility pod to access all the mounted volumes to restore database directories and core-secrets; and kubectl to restore the k8s configmaps and secrets. Before starting the restoration, the script will stop all service pods and start the utility pod. After finishing the restore, it will stop the utility pod and start all service pods.{{< /note >}}
 
 
-### Data-only Restoration: Restoration to a Different Cluster
+### Data-only restoration to a different Kubernetes Cluster
 
 To restore NGINX Management Suite and the installed modules into a different Kubernetes cluster, follow these steps:
 
@@ -241,7 +241,7 @@ The restore script will only restore the databases and core secrets. If you want
 
 ## ClickHouse
 
-ClickHouse supports backup and restore on versions greater than v22.
+ClickHouse supports back up and restore on versions greater than v22.
 
 For instructions on how to back up and restore the ClickHouse database, please refer to [ClickHouse's documentation](https://clickhouse.com/docs/en/operations/backup).
 
