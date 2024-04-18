@@ -69,7 +69,8 @@ To back up module data, follow these steps:
 	ACM_ACTIVE=$(systemctl is-active --quiet nms-acm)
 	IS_ACM_ACTIVE=$?
 	if [ $IS_ACM_ACTIVE -ne 0 ]; then
-	    echo "You need to start the required NGINX Management Suite services before running the backup script."
+	    echo "You need to start the required NGINX Management Suite 
+        services before running the backup script."
 	    echo "Please ensure the following nms service is running:"
 	    echo "nms-acm"
 	    exit 1
@@ -90,7 +91,8 @@ To back up module data, follow these steps:
     ACM_ACTIVE=$(systemctl is-active --quiet nms-acm)
     IS_ACM_ACTIVE=$?
     if [ $IS_ACM_ACTIVE -eq 0 ]; then
-        echo "You need to stop the required NGINX Management Suite services before running the restore script."
+        echo "You need to stop the required NGINX Management Suite 
+        services before running the restore script."
         echo "Please ensure the following nms service is stopped:"
         echo "nms-acm"
         exit 1
