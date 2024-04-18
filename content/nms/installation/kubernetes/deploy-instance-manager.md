@@ -232,7 +232,7 @@ A Helm `values.yaml` file is a configuration file you can use to customize the i
                 tag: <version>
         utility:
             image:
-                repository: <my-docker-registry:port>/nms-integrations/nms-utility
+                repository: <my-docker-registry:port>/nms-utility
                 tag: <version>
     ```
 
