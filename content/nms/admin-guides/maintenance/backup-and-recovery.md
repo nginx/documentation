@@ -94,7 +94,7 @@ To complete the instructions in this guide, you need the following:
 
 - Root Access
 
-    The Kubernetes backup and restore scripts for NGINX Management Suite are executed using `sudo` and use the Kubernetes command `kubectl` internally to access the Kubernetes API. It is necessary to ensure the target Kubernetes cluster is accessible to the root user.
+    To back up and restore the NGINX Management Suite on Kubernetes, run the scripts as a superuser with `sudo`. These scripts use the `kubectl` command to interact with the Kubernetes API. It is necessary to ensure the target Kubernetes cluster is accessible to the root user.
 
     To confirm that the root user has access to the Kubernetes API, execute the following command:
 
@@ -104,7 +104,7 @@ To complete the instructions in this guide, you need the following:
 
     If the result is error-free and the output is the list of currently running pods/nodes the root user has the required access.
 
-    If the root user does not have the required access, you will need to configure the root user to have Kubernetes API access, or provide the script with the location of the Kubernetes configuration via the environment variable `KUBECONFIG`. For example:
+    If the root user does not have the required access, you will need to run the root user to have Kubernetes API access, or provide the script with the location of the Kubernetes configuration via the environment variable `KUBECONFIG`. For example:
 
   - To back up NGINX Management Suite:
   
@@ -133,8 +133,6 @@ To complete the instructions in this guide, you need the following:
 
     1. [Upgrade your NGINX Management Suite deployment]({{< relref "/nms/installation/kubernetes/deploy-instance-manager#helm-upgrade-nim" >}}) to apply the changes.
 
-    1. Scale up the `utility` pod in your Kubernetes cluster.
-
     1. Download the NGINX Management Suite Helm chart for your currently installed version of NGINX Management Suite:
 
         ```shell
@@ -148,7 +146,7 @@ To complete the instructions in this guide, you need the following:
 
 To back up NGINX Management Suite deployed in a Kubernetes cluster, follow these steps:
 
-1. From `nms-<version>.tgz` copy the extracted the backup script to your working directory:
+1. Copy the backup script `k8s-backup.sh` extracted from `nms-<version>.tgz` to your working directory:
 
     ```shell
     cp nms-<version>/charts/nms-hybrid/backup-restore/k8s-backup.sh .
@@ -166,7 +164,7 @@ To back up NGINX Management Suite deployed in a Kubernetes cluster, follow these
     ./k8s-backup.sh
     ```
 
-    {{< note >}}The backup script does not need the utility pod or sudo permissions to create a backup.{{< /note >}}
+    {{< note >}}The backup script does not need the `utility` pod or `sudo` permissions to create a backup.{{< /note >}}
 
 1. The command will ask for the NGINX Management Suite namespace. The script will create a backup archive in the same directory called `k8s-backup-<timestamp>.tar.gz`.
 
@@ -174,7 +172,7 @@ To back up NGINX Management Suite deployed in a Kubernetes cluster, follow these
 
 To restore NGINX Management Suite and the installed modules deployed in the same Kubernetes cluster, follow these steps:
 
-1.  From `nms-<version>.tgz` copy the extracted the restore script to your working directory:
+1.  Copy the restore script `k8s-restore.sh` extracted from `nms-<version>.tgz` to your working directory:
 
     ```shell
     cp nms-<version>/nms/charts/nms-hybrid/backup-restore/k8s-restore.sh .
@@ -196,16 +194,16 @@ To restore NGINX Management Suite and the installed modules deployed in the same
 
     {{< note >}}The restore script [needs root access]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md#root-access" >}}) to Kubernetes for the restore operation.{{< /note >}}
 
-1. The script will ask for the NGINX Management Suite namespace. Once the namespace has been provided, the script will consume the specified backup archive.
+1. The script will ask for the NGINX Management Suite namespace. Once the namespace has been provided, the script will use the specified backup archive.
 
-    {{< note >}}The script will use the utility pod to access all the mounted volumes to restore database directories and core-secrets; and kubectl to restore the k8s configmaps and secrets. Before starting the restoration, the script will stop all service pods and start the utility pod. After finishing the restore, it will stop the utility pod and start all service pods.{{< /note >}}
+    {{< note >}}The script will use the `utility` pod to access all the mounted volumes to restore database directories and core secrets; and `kubectl` to restore the Kubernetes configmaps and secrets. Before starting the restoration, the script will stop all service pods and start the `utility` pod. After finishing the restore, it will stop the `utility` pod and start all service pods.{{< /note >}}
 
 
 ### Data-only restoration to a different Kubernetes Cluster
 
 To restore NGINX Management Suite and the installed modules into a different Kubernetes cluster, follow these steps:
 
-1. Copy the extracted restore script to your working directory:
+1. Copy the restore script `k8s-restore.sh` extracted from `nms-<version>.tgz` to your working directory:
 
     ```shell
     cp nms-<version>/nms/charts/nms-hybrid/backup-restore/k8s-restore.sh .
@@ -227,7 +225,7 @@ To restore NGINX Management Suite and the installed modules into a different Kub
 
     {{< note >}}The restore script [needs root access]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md#root-access" >}}) to Kubernetes for the restore operation.{{< /note >}}
 
-5. The script will ask for the NGINX Management Suite namespace. Once the namespace has been provided, the script will consume the specified backup archive.
+1. The script will ask for the NGINX Management Suite namespace. Once the namespace has been provided, the script will use the specified backup archive.
 
 The restore script will only restore the databases and core secrets. If you want to restore the user passwords too, run the following commands:
 
@@ -241,7 +239,7 @@ The restore script will only restore the databases and core secrets. If you want
 
 ## ClickHouse
 
-ClickHouse supports back up and restore on versions greater than v22.
+ClickHouse supports backup and restore on versions greater than v22.
 
 For instructions on how to back up and restore the ClickHouse database, please refer to [ClickHouse's documentation](https://clickhouse.com/docs/en/operations/backup).
 
