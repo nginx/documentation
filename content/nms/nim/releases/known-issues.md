@@ -17,6 +17,25 @@ weight: 200
 
 ---
 
+## 2.16.0
+
+April 18, 2024
+
+### {{% icon-bug %}} REST API does not work until you log into the web interface first {#44877}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Issue ID       | Status |
+|----------------|--------|
+| 44877 | Open   |
+
+{{</bootstrap-table>}}
+
+#### Description
+If you get an "Error accessing resource: forbidden" message while using the NGINX Instance Manager REST API, try logging into the web interface. After logging in, you should be able to use the API.
+
+---
+
 ## 2.15.0
 December 12, 2023
 

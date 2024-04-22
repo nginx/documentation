@@ -261,6 +261,7 @@ core           app.kubernetes.io/name=core           4m47s
 dpm            app.kubernetes.io/name=dpm            4m47s
 ingestion      app.kubernetes.io/name=ingestion      4m47s
 integrations   app.kubernetes.io/name=integrations   4m47s
+utility        app.kubernetes.io/name=integrations   4m47s
 ```
 
 To disable the existing network policies, update the `values.yaml` file as shown below:

@@ -69,7 +69,7 @@ Ensure there isn't a process bound to port `80` or `443`.
 
 ### Description
 
-When [scanning for NGINX instances]({{< relref "/nms/nim/how-to/nginx/scan-instances" >}}), the NGINX version is reported as `undefined` when NGINX App protect is installed.
+When [scanning for NGINX instances]({{< relref "/nms/nim/how-to/monitoring/scan-instances" >}}), the NGINX version is reported as `undefined` when NGINX App protect is installed.
 
 ### Resolution
 

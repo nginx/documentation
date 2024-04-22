@@ -27,12 +27,12 @@ The Instance Manager features available through NGINX Management Suite's web int
 
 Instance Manager provides the following features:
 
-- [View metrics and information]({{< relref "/nms/nim/how-to/view-events-metrics">}}) about data plane host systems and NGINX instances
+- [View metrics and information]({{< relref "/nms/nim/how-to/monitoring/view-events-metrics">}}) about data plane host systems and NGINX instances
 - [View, edit, and publish NGINX configurations]({{< relref "/nms/nim/how-to/nginx/publish-configs">}})
 - [Save NGINX configurations]({{< relref "/nms/nim/how-to/nginx/publish-configs#stage-config">}}) for future deployment
 - [Analyze NGINX configurations]({{< relref "/nms/nim/how-to/nginx/publish-configs">}}) for syntactic errors before publishing them
-- [Scan the network]({{< relref "/nms/nim/how-to/nginx/scan-instances#scan-ui">}}) to find unmanaged NGINX instances.
-- [Manage certificates]({{< relref "/nms/nim/how-to/nginx/manage-certificates">}})
+- [Scan the network]({{< relref "/nms/nim/how-to/monitoring/scan-instances#scan-ui">}}) to find unmanaged NGINX instances.
+- [Manage certificates]({{< relref "/nms/nim/how-to/certificates/manage-certificates">}})
 - [Create users, roles, and role permissions]({{< relref "/nms/admin-guides/rbac/rbac-getting-started">}}) for role-based access control
 
 ---

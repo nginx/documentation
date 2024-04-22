@@ -16,7 +16,7 @@ weight: 300
 
 ## What Is a Resource Group?
 
-Resource groups are containers that can house various resources, such as instances, instance groups, and certificates, that you can manage collectively. With resource groups, you can set up RBAC permissions for multiple resources as one entity. This is different from [Instance Groups]({{< relref "nms/nim/how-to/nginx/manage-instance-groups.md" >}}), which act like a cluster where all instances must share the same configuration. Resource groups don't have this limitation. They function solely as an RBAC object, allowing you to manage multiple resources as if they were one item.
+Resource groups are containers that can house various resources, such as instances, instance groups, and certificates, that you can manage collectively. With resource groups, you can set up RBAC permissions for multiple resources as one entity. This is different from [Instance Groups]({{< relref "nms/nim/how-to/instances/manage-instance-groups.md" >}}), which act like a cluster where all instances must share the same configuration. Resource groups don't have this limitation. They function solely as an RBAC object, allowing you to manage multiple resources as if they were one item.
 
 
 ---

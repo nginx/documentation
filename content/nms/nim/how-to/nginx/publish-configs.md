@@ -6,7 +6,7 @@ doctypes:
 - tutorial
 tags:
 - docs
-title: Publish Configuration Files
+title: Publish NGINX Configs
 toc: true
 weight: 200
 ---
