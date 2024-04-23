@@ -26,20 +26,20 @@ authors: []
 
 <style>
   details {
-    border: 1px solid #ccc;
+    border: 1px dashed green;
     background-color: #f1f1f1;
-    padding: 10px 20px 10px 20px;
+    padding: 0px 15px 0px 15px;
   }
 </style>
 
 
 ## Overview
 
-This tutorial will guide you through using NGINX Instance Manager's templating features so you can manage and apply configurations across multiple NGINX instances.
+This tutorial will show you how to use base and augment templates to set upstream servers for round-robin load balancing.
 
 By the end of this tutorial, you will learn how to:
 
-1. Create the {rr_base_template} base template as a starting point for configuring NGINX instances.
+1. Create a pared-down {rr_base_template} base template as a starting point for configuring NGINX instances.
 2. Create the {rr_aug_loc_proxy} augment template to customize location blocks within your NGINX configuration, directing traffic to specified upstream servers and refining request handling.
 3. Understand the interplay between base and augment templates, and how they collectively form a dynamic and flexible configuration system.
 4. Apply template-driven configurations to real-world scenarios, streamlining your workflows and ensuring consistency across your environment.
@@ -67,24 +67,24 @@ To begin, make a clone of the F5 Global base template to work with.
 2. From the Launchpad menu, choose **Instance Manager**.
 3. In the left navigation pane, select **Templates > Overview**.
 4. Select the **F5 Global Default Base** template.
-5. Select **Save As** and enter a name for the cloned template. In this example, we'll call the cloned template **HTTP Upstream Base Template**.
+5. Select **Save As** and enter a name for the cloned template. In this example, we'll call the cloned template **round-robin-base-template**.
 
 ## Step 2: Make the cloned template editable
 
-Because the F5 Global Default Base template's state is **Ready for Use**, any clones made of that template will have the same state. We want to make modifications to our cloned template, **HTTP Upstream Base Template**, so we need to make that template editable.
+Because the F5 Global Default Base template's state is **Ready for Use**, any clones made of that template will have the same state. We want to make modifications to our cloned template, **Round-Robin Base Template**, so we need to make that template editable.
 
 To edit the metadata details for a template:
 
-1. On the **Templates > Overview** page, locate **HTTP Upstream Base Template**. In the **Actions** column, select the ellipsis (three dots), then choose **Edit**.
+1. On the **Templates > Overview** page, locate **round-robin-base-template**. In the **Actions** column, select the ellipsis (three dots), then choose **Edit**.
 2. In the **Description** box, enter a new description for the template. For example, "Round-robin base template."
 3. Select **Draft** for the state.
 4. Select **Submit**.
 
 ## Step 3: Pare down the base template
 
-The HTTP Upstream Base Template at this point includes more details than we require. For the purposes of this tutorial, we only want to create the HTTP upstreams, HTTP upstream servers with their ports, and leave the ExecTemplateAugments to injecting an augment template. This means we can remove extraneous settings like the advanced metrics module and stream block. 
+The Round-Robin Base Template at this point includes more details than we require. For the purposes of this tutorial, we only want to create the HTTP upstreams, HTTP upstream servers with their ports, and leave the ExecTemplateAugments to injecting an augment template. This means we can remove extraneous settings like the advanced metrics module and stream block. 
 
-1. On the **Templates > Overview** page, select **HTTP Upstream Base Template**. This displays the templates files and their contents.
+1. On the **Templates > Overview** page, select **round-robin-base-template**. This displays the templates files and their contents.
 2. Select **base.tmpl**.
 3. Copy and paste the following contents into the base.tmpl file, then select **Save** (disk icon).
 
@@ -140,15 +140,15 @@ The HTTP Upstream Base Template at this point includes more details than we requ
 
    <br>
 
-   <details open>
-   <summary>The differences between Round-Robin Base Template and F5 Global Default Base Template</summary>
+   <details closed>
+   <summary>Click to view the differences between the F5 Global Default Base Template and Round-Robin Base Template</summary>
 
    The following image shows what's been removed from the F5 Global Default Base Template to create the pared-down Round-Robin Base Template.
 
    {{<img src="/nim/templates/round-robin-base-template-diff.png" alt="API Connectivity Manager architecture" >}}
    </details>
 
-Remaining template lets you:
+The remaining template lets you:
 
 - Create the upstreams.
 - Create the upstream servers with their port
@@ -161,14 +161,14 @@ Since the base template has been paired down, we can remove the unrelated JSON s
 
 To delete the unneeded JSON schemas:
 
-1. On the **Templates > Overview** page, select **HTTP Upstream Base Template**.
+1. On the **Templates > Overview** page, select **Round-Robin Base Template**.
 2. Select each of the following JSON schemas one-at-a-time, click **Delete** (trash can), and confirm the deletion:
 
    - **stream-server.json**
    - **stream-upstream.json**
    - **main.json**
 
-After you've deleted the unneeded JSON schemas, the **HTTP Upstream Base Template** should include just these files:
+After you've deleted the unneeded JSON schemas, the **Round-Robin Base Template** should include just these files:
 
 - base.tmpl
 - http-server.json
@@ -181,6 +181,82 @@ Do this to give the base template "hooks" to inject the augments
 
 
 **http-upstream.json**
+
+``` json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HTTP Upstream Inputs",
+  "type": "object",
+  "properties": {
+    "templateInput": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "name": {
+          "title": "HTTP Upstream name",
+          "type": "string",
+          "description": "Specifies the name for the http upstream.",
+          "examples": [
+            "upstream-1"
+          ]
+        },
+        "id": {
+          "title": "Upstream ID",
+          "type": "string",
+          "description": "Case sensitive alphanumeric id used for specifying augment placement.",
+          "examples": [
+            "main_upstream"
+          ]
+        },
+        "servers": {
+          "type": "array",
+          "title": "Upstream servers",
+          "items": {
+            "type": "object",
+            "properties": {
+              "address": {
+                "title": "Upstream server address",
+                "type": "string",
+                "description": "Specifies the address for the upstream server.",
+                "examples": [
+                  "backend1.example.com",
+                  "192.0.0.1"
+                ]
+              },
+              "port": {
+                "type": "integer",
+                "title": "Upstream server port",
+                "description": "Specifies the port for the upstream server.",
+                "minimum": 1,
+                "maximum": 65535,
+                "examples": [
+                  80
+                ]
+              }
+            },
+            "required": [
+              "address"
+            ]
+          }
+        }
+      },
+      "required": [
+        "name",
+        "servers",
+        "id"
+      ]
+    }
+  },
+  "required": []
+}
+```
+
+<br>
+
+<details closed>
+<summary blah> Click to view the <b>http-upstream.json</b> inserted details. </summary>
 
 ``` json {linenos=table,hl_lines=["20-27"]}
 {
@@ -253,10 +329,14 @@ Do this to give the base template "hooks" to inject the augments
 }
 ```
 
+</details>
+
+<br>
+
 **http-server.json**
 
-``` json {linenos=table,hl_lines=["20-28"]}
-  {
+``` json
+{
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "HTTP Server Inputs",
   "type": "object",
@@ -294,7 +374,99 @@ Do this to give the base template "hooks" to inject the augments
 }
 ```
 
+<br>
+
+<details closed>
+<summary blah> Click to view the <b>http-server.json</b> inserted details. </summary>
+
+``` json {linenos=table,hl_lines=["20-28"]}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HTTP Server Inputs",
+  "type": "object",
+  "properties": {
+    "templateInput": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "serverName": {
+          "title": "Server name",
+          "type": "string",
+          "description": "Specifies the name for the http server.",
+          "examples": [
+            "foo.com"
+          ]
+        },
+        "id": {
+          "title": "Server ID",
+          "type": "string",
+          "description": "Case sensitive alphanumeric id used for specifying augment placement.",
+          "examples": [
+            "main_server"
+          ]
+        }
+      },
+      "required": [
+        "serverName",
+        "id"
+      ]
+    }
+  },
+  "required": []
+}
+```
+
+</details>
+
+<br>
+
 **location.json**
+
+``` json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Location Inputs",
+  "type": "object",
+  "properties": {
+    "templateInput": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "nameExpression": {
+          "title": "Location Name",
+          "type": "string",
+          "description": "Specifies the location's name expression.",
+          "examples": [
+            "/status"
+          ]
+        },
+        "id": {
+          "title": "Location ID",
+          "type": "string",
+          "description": "Case sensitive alphanumeric id used for specifying augment placement.",
+          "examples": [
+            "main_location"
+          ]
+        }
+      },
+      "required": [
+        "nameExpression",
+        "id"
+      ]
+    }
+  },
+  "required": []
+}
+```
+
+<br>
+
+<details closed>
+<summary blah> Click to view the <b>location.json</b> inserted details. </summary>
 
 ``` json {linenos=table,hl_lines=["20-28"]}
 {
@@ -334,6 +506,10 @@ Do this to give the base template "hooks" to inject the augments
   "required": []
 }
 ```
+
+</details>
+
+</br>
 
 ## Step : Create the augment template
 
