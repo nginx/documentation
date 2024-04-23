@@ -1,11 +1,11 @@
 {{ block "sidebar" . }}
 <!-- sidebar start -->
 <div id="sidebar-wrapper">
-    <div id="sidebar" class="sidebar" aria-label="Sidebar navigation">
- <!--       <button id="sidebar-toggle-button" title="Toggle sidebar navigation" role="button" aria-controls="sidebar-content">
-            <i class="fa fa-chevron-right sidebar-visible-collapsed"></i>
-            <i class="fa fa-chevron-left sidebar-visible-expanded"></i>
-        </button> -->
+     <div id="sidebar" class="sidebar" aria-label="Sidebar navigation">
+        <button id="sidebar-toggle-button" title="Toggle sidebar navigation" role="button" aria-controls="sidebar-content">
+           <i class="fa fa-chevron-right sidebar-visible-collapsed"></i>
+           <i class="fa fa-chevron-left sidebar-visible-expanded"></i>
+        </button>
         <div id="sidebar-content">
             <h3>
                 <a class="sidebar-title" href="{{.FirstSection.Permalink}}" alt="{{.FirstSection.Title}}">{{ if .Params.logo }}<img
@@ -78,7 +78,7 @@
                                                             <li class="nginx-toc-link l3 sidebar-il-border">
                                                                 <a data-menu-id="{{.RelPermalink}}" href="{{ .Permalink }}">{{ .Title }}</a>
                                                             </li>
-                                                        </ul>                                            
+                                                        </ul>
                                                         <!-- Create an accordion group for Level 3 sections -->
                                                         {{else}}
                                                         <div class="accordion" id="Accordion3">
@@ -134,7 +134,7 @@
                                                                                                     </li>
                                                                                                 </ul>
                                                                                                 <!-- Create an accordion group for Level 5sections -->
-                                                                                                {{else}}    
+                                                                                                {{else}}
                                                                                                 <div class="accordion" id="Accordion5">
                                                                                                     <div class="sidebar-l2-padding">
                                                                                                         <div class="accordion-group sidebar-il-border">
@@ -160,14 +160,14 @@
                                                                                 </div>
                                                                             </div>
                                                                             {{ end }}
-                                                                            {{ end }}  
+                                                                            {{ end }}
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         {{ end }}
-                                                    {{ end }}                                        
+                                                    {{ end }}
                                                     </div>
                                                 </div>
                                             </div>

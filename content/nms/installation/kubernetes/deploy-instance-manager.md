@@ -94,6 +94,7 @@ Take the following steps to download and extract the Helm page on your host:
     - `nms-dpm-<version>.tar.gz`
     - `nms-ingestion-<version>.tar.gz`
     - `nms-integrations-<version>.tar.gz`
+    - `nms-utility-<version>.tar.gz`
 
 ---
 
@@ -115,6 +116,7 @@ Take the following steps to download and extract the Helm page on your host:
    docker load -i nms-ingestion-<version>.tar.gz
    docker load -i nms-dpm-<version>.tar.gz
    docker load -i nms-integrations-<version>.tar.gz
+   docker load -i nms-utility-<version>.tar.gz
    ```
 
    This set of commands loads the Docker images from the specified `tar.gz` archives. Replace `<version>` with the product version you specified when downloading the Helm bundle.
@@ -161,6 +163,7 @@ To push the Docker images to your private registry, take the following steps:
     docker tag nms-dpm:<version> <my-docker-registry:port>/nms-dpm:<version>
     docker tag nms-ingestion:<version> <my-docker-registry:port>/nms-ingestion:<version>
     docker tag nms-integrations:<version> <my-docker-registry:port>/nms-integrations:<version>
+    docker tag nms-utility:<version> <my-docker-registry:port>/nms-utility:<version>
     ```
 
     For example:
@@ -178,6 +181,7 @@ To push the Docker images to your private registry, take the following steps:
     docker push <my-docker-registry:port>/nms-dpm:<version>
     docker push <my-docker-registry:port>/nms-ingestion:<version>
     docker push <my-docker-registry:port>/nms-integrations:<version>
+    docker push <my-docker-registry:port>/nms-utility:<version>
     ```
 
     For example:
@@ -226,6 +230,10 @@ A Helm `values.yaml` file is a configuration file you can use to customize the i
             image:
                 repository: <my-docker-registry:port>/nms-integrations
                 tag: <version>
+        utility:
+            image:
+                repository: <my-docker-registry:port>/nms-utility
+                tag: <version>
     ```
 
 
@@ -253,6 +261,7 @@ core           app.kubernetes.io/name=core           4m47s
 dpm            app.kubernetes.io/name=dpm            4m47s
 ingestion      app.kubernetes.io/name=ingestion      4m47s
 integrations   app.kubernetes.io/name=integrations   4m47s
+utility        app.kubernetes.io/name=integrations   4m47s
 ```
 
 To disable the existing network policies, update the `values.yaml` file as shown below:
