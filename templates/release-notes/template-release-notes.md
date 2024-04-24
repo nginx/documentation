@@ -1,44 +1,51 @@
-# Release Notes - {Product Name} {Release Number - 0.0.0}
+These release notes list and describe the new features, enhancements, and resolved issues in {Product Name}.
 
-> If you need more information about how to fill in this template, read the accompanying [guide](./guide-release-notes.md).
+## {version number}
 
-> This template includes writing instructions and boilerplate text that you can customize, use as-is, or completely replace with your own text. This text is indicated in {curly brackets}. Make sure you replace the placeholders with your own text.
-
-## {Optional: Release Notes Version - 0}
-## {Release Date - YYYY-MM-DD}
+{date}
 
 {Optional: High-level summary}
 
-### New features
+### (Optional) Upgrade Guide
 
-- **{Feature title}**
+  {Upgrade guide}
+
+### What's new
+
+- {%icon-feature %} **{Feature title}**
 
   {Feature description}
 
-### Improvements
+### (Optional) Changes to default behavior
 
-- **{Improvement title}**
+This release has the following changes to default behavior:
 
-  {Improvement description}
+- {%icon-feature %} **{Feature title}**
 
-### Bug fixes
+  {Feature description}
 
-- **{Bug fix title}**
+### (Optional) Resolved issues
 
-  {Bug fix description}
+This release fixes the following issues. Select an issue's ID link to view its details.
+
+- {%icon-resolved %} {Issue title} [(Issue ID)](https://example.com/issues/{Issue ID})
 
 ### Known issues
 
-- **{Known issue title}**
+You can find the list of known issues in the [Known issues](https://example.com/docs/known-issues) topic.
 
-  {Known issue description}
+### (Optional) Security updates
 
-### Optional: Deprecated features
+{{< important >}}
+For the protection of our customers, F5 NGINX doesn't disclose security issues until an investigation has occurred and a fix is available.
+{{< /important >}}
 
-- **{Deprecated feature title}**
+This release includes the following security updates:
 
-  {Deprecated feature description}
+- {%icon-resolved %} **{Security issue title} {CVE number}**
+
+   {security issue description}. {CVE link}.
 
 ---
 
-> Explore other templates from [The Good Docs Project](https://thegooddocsproject.dev/). Use our [feedback form](https://thegooddocsproject.dev/feedback/?template=Release%20notes) to give feedback on this template.
+

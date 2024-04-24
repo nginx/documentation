@@ -1,6 +1,6 @@
 # Release Notes Template Guide
 
-> Thank you for downloading this template from The Good Docs Project! Before using the template, read this template guide for information about how to complete each section. Want to explore more templates? Check them out in our [templates GitLab repository](https://gitlab.com/tgdp/templates).
+ Before using the template, read this template guide for information about how to complete each section.
 
 ## Introduction
 
@@ -8,10 +8,6 @@ Release notes communicate new features, improvements, bug fixes, and known issue
 This template guide and template are intended for customer-facing release notes, however, you can adapt it for internal release notes as needed.
 
 Stakeholders with both technical and non-technical backgrounds must understand what’s changed, and why those changes are important to the user.
-
-Many teams contribute to release notes, however, they must have a single owner.
-The owner can vary.
-In some organizations, the Product Manager writes the first draft and owns the release notes; in other organizations, the Marketing department or Technical Documentation team owns the release notes.
 
 Release notes are usually published at the same time as a product or feature release.
 
@@ -23,12 +19,12 @@ Release notes are important for the following reasons:
 - They help your stakeholders assess impacts that might occur during upgrades.
 - They provide a plain-language record of your software’s evolution. Stakeholders don’t have to read development-heavy changelogs to find out what’s changed and why it matters to them.
 
-The following table describes the differences between changelogs and release notes: 
+The following table describes the differences between changelogs and release notes:
 
 | Release Notes                                                                                                                                                                              | Changelogs                                                                                                                                                                                                                 |
 |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Customer focused                                                                                                                                                                           | Developer focused                                                                                                                                                                                                          |
-| Use plain language.                                                                                                                                                                        | Use technical language.                                                                                                                                                                                                    |   
+| Use plain language.                                                                                                                                                                        | Use technical language.                                                                                                                                                                                                    |
 | Typically requires research to understand the features, functionality, and user experience.                                                                                                | Typically a light effort as it is closely related to developers’ current work.                                                                                                                                             |
 | Describes the changes to features and functionality. <ul><li>Can include media to enhance descriptions.</li><li> Often includes links to the user documentation for more information.</li> | A reverse chronological list that describes code changes and their impact on the features. <ul><li>Can include links to merge requests, issue numbers, or commits.</li><li>Can list contributors to the release.</li></ul> |
 | Includes what changed and why.                                                                                                                                                             | Links to the developer who made the change and specific issues.                                                                                                                                                            |
@@ -38,14 +34,13 @@ The following table describes the differences between changelogs and release not
 
 The template includes the following sections common to release notes:
 
-- [Title](#about-the-title-section): Describes common conventions for titles and numbering in release notes.
-- [Release Notes version](#release-notes-version-optional) (optional): Include a document version number.
-- [High-level summary](#optional-high-level-summary) (optional): One to two sentences that highlight the most important items in the release notes.
-- [New features](#about-the-new-features-section): Describes new features and functionality.
-- [Improvements](#about-the-improvements-section): Describes updates to existing features and functionality.
-- [Bug fixes](#about-the-bug-fixes-section): Describes bug defects and their resolution.
-- [Known issues](#about-the-known-issues-section): Describes defects to be fixed in the future.
-- [Deprecated features](#about-the-deprecated-features-section) (optional): Describes features that will be removed from the software.
+- [Release Notes version](#release-notes-version): Include a document version number and a release date.
+- [High-level summary](#high-level-summary-optional) (optional): One to two sentences that highlight the most important items in the release notes.
+- [What's new](#about-the-new-features-section-optional) (optional): Describes new features and functionality.
+- [Changes to default behavior](#about-the-changes-to-default-behavior-section-optional) (optional): Describes changes to default behavior.
+- [Resolved issues](#about-the-resolved-issues-section-optional) (oprional): Lists the issues resolved in this release, if applicable.
+- [Known issues](#about-the-known-issues-section-optional): Provides a link to a list of known issues.
+- [Security updates](#about-the-security-updates-section-optional) (optional): Describes security updates in the release, if applicable.
 
 ## Release notes best practices
 - Write the release notes in a positive and friendly tone.
@@ -54,48 +49,41 @@ The template includes the following sections common to release notes:
 - Use plain language.
 - Write in the present tense, except when you describe bug fixes; use the past tense for bug fixes.
 
-## About the "Title" section
-The title of your release notes should correspond to a product release number. 
-This helps stakeholders identify which release the notes are describing. 
-Many teams use [semantic versioning](https://semver.org/) to number their releases. 
-This is usually shown as three numbers, separated by periods. 
+## Release Notes version
+Each main section of your release notes should correspond to a product release number.
+This helps stakeholders identify which release the notes are describing.
+We use [semantic versioning](https://semver.org/) to number our releases.
+This is usually shown as three numbers, separated by periods.
 For example, 1.3.2.
 
-If your organization publishes release notes off a release cycle, include the date in the title or subtitle.
-If you incorporate a date into your title, use the following format: YYYY-MM-DD.
+If the product publishes release notes off a release cycle, include the date in the subtitle, in `Month Day, Year` format.
 
-## Release Notes version (optional)
-
-If you must edit release notes after publication, some teams update the document version number.
-This template includes an optional space for a release notes version number.
 
 ## High-level summary (optional)
 
 A high-level summary can help stakeholders quickly understand the most important items in your release notes, especially if your notes are long.
 Keep the summary short.
-If your product team communicates frequently with stakeholders outside the release notes publication cycle, the summary might be redundant.
 
-## About the "New features" section
+## About the "New features" section (optional)
 
-List the most important features first. 
-What is important depends on your organization and stakeholder priorities. 
+List the most important features first.
+What is important depends on your organization and stakeholder priorities.
 Consider the features from the stakeholder’s point of view, and list new features that have the most impact on their experience first.
 
 When you write about new product features:
 
 1. Use an engaging, concise title to summarize the feature.
-2. Describe how the feature benefits the stakeholder. You might ask yourself, “Why is this valuable? How does it benefit the business?”
-3. Include screenshots or short videos if they help the stakeholder understand the feature.
-4. Link to the feature’s full documentation in the description. The description in this section  includes only a brief description. Link to the full documentation to provide a complete description, which becomes the source of truth.
+1. Describe how the feature benefits the stakeholder. You might ask yourself, “Why is this valuable? How does it benefit the business?”
+1. Link to the feature’s full documentation in the description. The description in this section  includes only a brief description. Link to the full documentation to provide a complete description, which becomes the source of truth.
 
 The following is an example of a new feature:
 
 - **Find Your Recent Transactions with Personal Log**
 
     Use Personal Log to quickly access your most recent transactions.
-When speaking with a customer, you can select the last five transactions that you accessed from a menu.
-You can also perform a more extensive search to find specific transactions you accessed in your queues. 
-See [Personal Log](http://example.com) for more information.
+   When speaking with a customer, you can select the last five transactions that you accessed from a menu.
+   You can also perform a more extensive search to find specific transactions you accessed in your queues.
+   See [Personal Log](http://example.com) for more information.
 
 The following formulas might be helpful when writing new features:
 
@@ -122,127 +110,75 @@ The following formulas might be helpful when writing new features:
     Software X now provides a Personal Log, so you can quickly access your most recent transactions.
     See [Personal Log](http://example.com) for more details.
 
-## About the "Improvements" section
 
-List the most important improvements first. 
-What is important depends on your organization and stakeholder priorities. 
-Consider the features from a stakeholder’s point of view and list the improvements that have the most impact on the stakeholder’s experience first.
+## About the "Changes to default behavior" section (optional)
 
-**_NOTE:_** Some organizations refer to this section as Enhancements.
+Changes to default behavior are changes that affect the way the software behaves, but are not new features or bug fixes.
+For example, if a default setting changes, you must communicate this to stakeholders.
 
-When you write about improvements:
+When you write about changes to default behavior:
 
-1. Use an engaging, concise title to summarize the feature.
-2. Describe how the feature benefits the stakeholder. You might ask yourself, “Why is this valuable? How does it benefit the business?”
-3. Include screenshots or short videos if they might help your audience.
-4. Link to the user documentation for the full description.
+1. Use an engaging, concise title to summarize the change.
+1. Describe how the change benefits the stakeholder. You might ask yourself, “Why is this valuable? How does it benefit the business?”
+1. Link to the feature’s full documentation in the description. The description in this section includes only a brief description. Link to the full documentation to provide a complete description, which becomes the source of truth.
 
-The following is an example of an improvement:
-- **Recommendations widget now offers an export function.**
+The following is an example of a change to default behavior:
 
-    In addition to viewing the Accept, Challenge, and Deny recommendations in a pie chart, you can now export the data. 
-Risk Analysts can manipulate this data to analyze the recommendations further. 
-See the [Recommendations Widget](http://example.com).
+- **New Default Setting for Notifications**
 
-The following formula might be helpful when writing about improvements:
+    Notifications are now enabled by default.
+    See [Notifications](http://example.com) for more information.
+
+The following formulas might be helpful when writing about changes to default behavior:
 
 **Formula 1:**
 
-- [ ] {Describe what was added, updated, or removed}.
-- [ ] {Describe the benefit}.
-- [ ] See {link to user documentation}.
+- [ ] The {application or feature} now…
+- [ ] …{describe the change}.
+- [ ] See {link} for more information.
 
     **If we were to apply this formula, using the previous example, it reads as follows:**
 
-    In addition to viewing the Accept, Challenge, and Deny recommendations in a pie chart, you can now export the data.
-    Risk Analysts can manipulate this data to analyze the recommendations further.
-    See the [Recommendations Widget](http://example.com).
+    The Notifications feature now enables notifications by default. This means you will receive notifications for all new transactions.
+    See [Notifications](http://example.com) for more information.
 
-## About the "Bug fixes" section
+## About the "Resolved issues" section (optional)
 
-Bug fixes describe what was fixed and why it was useful to the stakeholder. 
+Resolved issues describe what was fixed and why it was useful to the stakeholder.
 For example, if new fields are added to a database, you must find out how this helps stakeholders and communicate that information to them.
 
-When you write about bug fixes:
+When you write about resolved issues:
 
-1. Do not start each sentence with “Fixed the bug…”.
-2. Do not describe how the bug was fixed.
-3. Link to relevant documentation.
-4. Consider what the software did previously and what it does now.
-5. Optional: Include the issue number and link to it.
-**_NOTE:_** This depends on your organization. Some organizations do this for internal release notes only while others do this for external distributions. This can be useful if your stakeholder contacts your support team.
+1. Add the issue name (from the Known issues page).
+1. Do not describe the issue or the fix.
+1. Include the issue number and link to it in the Known issues list.
 
-The following is an example of a bug fix:
-- [JIRA-12345] Transactions in the Chargebacks queue are now sorted from newest to oldest. See [Chargebacks queue](http://example.com) for more information.
+The following is an example of a resolved issues:
 
-The following formulas might be helpful when writing about bug fixes:
+- Broken links in the user interface ([12345](http://example.com/known-issues/#12345))
 
-**Formula 1:**
+## About the "Known issues" section (optional)
 
-- [ ] [{Bug fix number}] If {the user or application performs an action}...
-- [ ] {describe how the software is fixed}.
+The Known issues section provides a link to a list of known issues. We usually don't list known issues in the release notes because they are already documented in the Known issues list.
 
-    **If we were to apply this formula, using the previous example, it reads as follows:**
+## About the "Security updates" section (optional)
 
-    [JIRA-12345] If you open the Chargebacks queue, transactions are now sorted from newest to oldest.
-    See [Chargebacks queue](http://example.com) for more information.
+The Security updates section lists resolved security updates in the release, if applicable.
 
-**Formula 2:**
-- [ ] [{Bug fix number}] The {application or feature} now…
-- [ ] {describe how the software is fixed}.
+When you write about security updates:
 
-    **If we were to apply this formula, using the previous example, it reads as follows:**
+1. Add the security issue name.
+1. Add the CVE number.
+1. Describe the security issue and how it was resolved.
+1. Link to the CVE number.
 
-    [JIRA-12345] The Chargebacks queue now sorts transactions from newest to oldest.
-    See [Chargebacks queue](http://example.com) for more information.
+The following is an example of a security update:
 
-## About the "Known issues" section
+- **Secure bag vulnerability CVE-2024-9999**
 
-A known issue is a technical issue that will not be resolved as part of the release. You must communicate these issues if they might impact your stakeholder’s experience.
+    A vulnerability in the coffee bag ([CVE-2024-9999](https://coffee-sec.org/CVE-2024-9999)) could allow an attacker to steal the coffee beans. This issue has been resolved in this release.
 
-When you write about a known issue:
-
-1. Describe the scenario or problem.
-2. Provide an example, if needed.
-3. Describe a workaround, if possible.
-4. Optional: Include a way for your stakeholders to contact you. Some organizations want the feedback, others don’t want to give stakeholders more ways to contact them.
-5. Optional: Include the issue number and its link so the stakeholder can track the progress of the issue.
-**_NOTE:_** This depends on your business. Some businesses do this for internal release notes only while others do this for external distributions. This can be useful if your stakeholders contact your support team.
-
-**The following is an example of a known issue:**
-
-* [Jira-00001] If you set the `refreshToken` to `true` and are migrating from version 5.x to 6.x, scheduled jobs will no longer work. 
-
-    JWT tokens generated prior to MySoftware 6.x is not compatible with the offline tokens used in MySoftware 6.x.
-To remedy this, each user must log out of MySoftware, then log back in.
-
-## About the "Deprecated features" section
-
-A deprecated feature is intended to be phased out of the software application. 
-Including deprecated features in release notes is optional. 
-Many organizations communicate deprecated features through other methods, such as application notifications, email, or other alerts.
-
-If you include deprecated features in your release notes, include the following information:
-
-1. The name of the feature and a link to the existing user documentation.
-2. Any action a stakeholder must take to preserve their data.
-3. Information about the feature that replaces the deprecated feature.
-4. The date when a deprecated feature is removed.
-5. Optional: Include the issue number and its link.
-**_NOTE:_** This depends on your business. Some businesses do this for internal release notes only while others do this for external distributions. This can be useful if your stakeholders contact your support team.
-
-**The following is an example of a deprecated feature:**
-
-* **[JIRA-56789] Recommendations widget**
-
-    The Advisory widget will replace the Recommendations widget in a future release. 
-The system will automatically migrate your data from the Recommendations widget to the Advisory widget.
-See the [Recommendations Widget (deprecated)](http://example.com).
 
 ## Additional Resources
 
 See “[How to write meaningful release notes](https://drive.google.com/file/d/1q5GVhFEcUFzYxSkeOvzAyN9Gh0xPbAI-/view)” for additional ideas.
-
----
-
-> Explore other templates from [The Good Docs Project](https://thegooddocsproject.dev/). Use our [feedback form](https://thegooddocsproject.dev/feedback/?template=Release%20notes%20guide) to give feedback on this template.
