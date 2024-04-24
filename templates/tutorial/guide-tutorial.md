@@ -4,8 +4,8 @@
 
 The tutorial template includes:
 
-* Placeholder text that you can replace with your own text. This text is indicated in {curly braces}.
-* Writing instructions, also in {curly braces}.
+- Placeholder text that you can replace with your own text. This text is indicated in {curly braces}.
+- Writing instructions, also in {curly braces}.
 
 ## Why do I need tutorials?
 
@@ -28,17 +28,17 @@ The table below identifies the differences between the two.
 
 ## Helpful tips when writing your tutorial 
 
-* Keep your tutorial focused. If needed, include links to other pieces of documentation that explain concepts or terms in more depth. Ideally, your tutorial should take 15 to 60 minutes to complete. 
-* Lengthy tutorials can overwhelm users. Consider condensing or removing steps or reevaluating the scope of the tutorial.
-* If users will copy and paste code samples, make sure they include the following:
-  * Any required `import` or `using` statements
-  * Code comments that explain what the code does 
+- Keep your tutorial focused. If needed, include links to other pieces of documentation that explain concepts or terms in more depth. Ideally, your tutorial should take 15 to 60 minutes to complete. 
+- Lengthy tutorials can overwhelm users. Consider condensing or removing steps or reevaluating the scope of the tutorial.
+- If users will copy and paste code samples, make sure they include the following:
+  - Any required `import` or `using` statements
+  - Code comments that explain what the code does 
 
 ## About the tutorial template 
 
 This tutorial can be used in one of two ways: 
-* For providing a walkthrough of a particular feature.
-* Walking users through completing a small project. 
+- For providing a walkthrough of a particular feature.
+- Walking users through completing a small project. 
 
 Ideally, your users have already completed a quickstart or "getting started" tutorial and have a general understanding of your product before they begin your tutorial.  
 
@@ -48,17 +48,17 @@ The overview section is important, as it can motivate your users to begin their 
 
 #### Learning objectives
 
-One of the first things users want to know when they begin a tutorial is, "What will I be able to do? What knowledge will I gain by completing this tutorial?" Well-written learning objectives can help to answer these questions. **Learning objectives** describe the specific skills or knowledge users will be able to demonstrate after completing your tutorial.
+One of the first things users want to know when they begin a tutorial is, "What will I be able to do? What knowledge will I gain by completing this tutorial?" Well-written learning objectives can help to answer these questions. **Learning objectives*- describe the specific skills or knowledge users will be able to demonstrate after completing your tutorial.
 
-Before you start writing your tutorial, develop some learning objectives. After you identify *what* skills and knowledge you want users to gain from your tutorial, you can start planning out the content itself, using the learning objectives to help you decide what topics are in scope, and which ones are out of scope. 
+Before you start writing your tutorial, develop some learning objectives. After you identify *what- skills and knowledge you want users to gain from your tutorial, you can start planning out the content itself, using the learning objectives to help you decide what topics are in scope, and which ones are out of scope. 
 
 Learning objectives usually start off with, "By the end of this tutorial, you will be able to..." and are followed by a phrase that starts with a verb like *design*, *assess*, or *develop*. If your tutorial includes more than one learning objective, consider presenting them as a bulleted list.
 
 Here are some examples:
 
-* By the end of this tutorial, you'll be able to define components in React.
-* By the end of this tutorial, you'll be able to perform common tasks in Google Drive, such as viewing, editing, and saving documents.
-* By the end of this tutorial, you'll be able to create a private channel in Slack.
+- By the end of this tutorial, you'll be able to define components in React.
+- By the end of this tutorial, you'll be able to perform common tasks in Google Drive, such as viewing, editing, and saving documents.
+- By the end of this tutorial, you'll be able to create a private channel in Slack.
 
 If you need help with creating learning objectives, consider using Arizona State University's [Learning Objectives Builder tool](https://teachonline.asu.edu/objectives-builder/).
 
@@ -71,9 +71,9 @@ It's important to mention the intended audience and any prerequisite knowledge i
 
 Here are some questions to think about as you plan your tutorial:
 
-* Is the tutorial intended for users looking to become more familiar with your product? Or is it for users who are already familiar with your product and are looking to build upon the skills they already have?
-* Is the tutorial intended for users with a certain level of technical knowledge? What technical knowledge should they know? 
-* Is it for a certain demographic, like senior-level database administrators who routinely complete certain tasks?
+- Is the tutorial intended for users looking to become more familiar with your product? Or is it for users who are already familiar with your product and are looking to build upon the skills they already have?
+- Is the tutorial intended for users with a certain level of technical knowledge? What technical knowledge should they know? 
+- Is it for a certain demographic, like senior-level database administrators who routinely complete certain tasks?
 
 ### About the "Background" section
 
@@ -91,7 +91,7 @@ This section helps readers avoid getting halfway through a tutorial and then dis
 
 The steps section is where you describe what the user needs to do to complete the tutorial. The template organizes steps in the following way:
 
-```
+
 1. {Write the command here. Start with a verb.}
 
    {Optional: Explanatory text}
@@ -100,12 +100,11 @@ The steps section is where you describe what the user needs to do to complete th
 
    {Optional: Result}
 
-```
 
 The first element is the step itself, like "Enter a name for your new repository." When writing steps, keep these tips in mind:
 
-* Start with an imperative verb. For example, "connect", "set up", or "arrange." Don't use the *-ing* form of the verb because it is harder to translate.
-* Express steps as a complete thought. Instead of saying, "Set up access", you might say, "Set up access to a Cloud Storage bucket."
+- Start with an imperative verb. For example, "connect", "set up", or "arrange." Don't use the *-ing- form of the verb because it is harder to translate.
+- Express steps as a complete thought. Instead of saying, "Set up access", you might say, "Set up access to a Cloud Storage bucket."
 
 Next, you may choose to add some additional information about the step. Continuing with the example, you might provide some best practices for creating memorable repository names.
 
@@ -117,17 +116,14 @@ The last, and optional, element in a step, is the result. Continuing with the ex
 
 Here is an example step:
 
-```
 1. Enter a name for your new repository.   
 
    Good repository names are short and self-explanatory. Avoid repository names with three or more words.
    
    After you click "Create repository", GitHub creates your repository and the main page for the repository is displayed.
-```
 
 If needed, you can add substeps below a primary step. Make sure to indent the substep one tab space over if you're using Markdown:
 
-```
 1. Create a new pull request.
 
    a. Navigate to the main page of your repository. 
@@ -137,7 +133,6 @@ If needed, you can add substeps below a primary step. Make sure to indent the su
       By default, all open pull requests are displayed.
 
    c. ....
-```
 
 If you're including code samples in your steps, make sure they are also indented correctly:
 
@@ -153,15 +148,15 @@ If you're including code samples in your steps, make sure they are also indented
 
 Here are some more tips to follow when writing procedural steps:
 
-* Remember to orient your users when guiding them through each step. If they need to open a particular file or dialog to complete the task, provide that information first.
-* Avoid writing procedures that are more than seven primary steps long.
-* Aim for no more than four substeps in any primary step.
+- Remember to orient your users when guiding them through each step. If they need to open a particular file or dialog to complete the task, provide that information first.
+- Avoid writing procedures that are more than seven primary steps long.
+- Aim for no more than four substeps in any primary step.
 
 ### About the "Summary" section
 
 In the summary section, you can list the knowledge and skills your users have gained by completing your tutorial. Try to avoid repeating the learning objectives you listed in the overview section word for word. 
 
-For example, if one of your learning objectives is "define components in React", you might specify *what* your users learned about defining components in React. Did they learn how to build different types of components? Or did they learn about all required functions needed to build a component? Think about some of the most important skills they gained and list them here. 
+For example, if one of your learning objectives is "define components in React", you might specify *what- your users learned about defining components in React. Did they learn how to build different types of components? Or did they learn about all required functions needed to build a component? Think about some of the most important skills they gained and list them here. 
 
 Listing the actual skills and knowledge your users gained can also help to motivate your users to continue using your product, or try other tutorials. 
 
