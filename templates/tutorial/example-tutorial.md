@@ -1,4 +1,3 @@
-Here's how you can integrate the additional points into your existing tutorial structure:
 # How to Make Coffee
 
 ## Overview
