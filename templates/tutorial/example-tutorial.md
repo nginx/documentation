@@ -19,9 +19,9 @@ You should know the basics of coffee beans, water, and heating methods. By the e
 ## What You Need
 
 - Fresh coffee beans
-- Burr grinder (e.g., Baratza Encore)
+- Burr grinder (for example, Baratza Encore)
 - Coffee filters
-- Coffee machine (e.g., Mocamaster Technivorm)
+- Coffee machine (for example, Moccamaster Technivorm)
 - Scale that measures in grams
 - Measuring cup that measures in milliliters
 - Coffee cup
