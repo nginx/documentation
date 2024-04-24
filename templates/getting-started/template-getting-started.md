@@ -9,6 +9,7 @@
 ## Overview
 
 This quickstart guides you through:
+
 - [Part 1](#part-1-task-name)
 - [Part 2](#part-2-task-name)
 - [Part n](#part-n-task-name)
