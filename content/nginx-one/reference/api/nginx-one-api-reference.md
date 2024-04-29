@@ -1,11 +1,11 @@
 ---
-description: ''
+description: ""
 docs: DOCS-1398
 doctypes:
-- reference
-layout: redoc-single
+  - reference
+type: redoc
 tags:
-- api
+  - api
 title: NGINX One API reference
 toc: false
 weight: null
