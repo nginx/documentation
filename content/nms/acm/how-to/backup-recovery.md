@@ -157,25 +157,17 @@ To complete the instructions in this guide, you need the following:
 
     If the root user does not have the required access, you will need to configure the root user to have Kubernetes API access, or provide the script with the location of the Kubernetes configuration via the environment variable `KUBECONFIG`. For example:
 
-  - To back up NGINX Management Suite:
-
    ```shell
-    sudo KUBECONFIG=/etc/kubernetes/admin.conf ./k8s-backup.sh
-     ```
+    KUBECONFIG=/etc/kubernetes/admin.conf
+    ```
 
-  - To restore NGINX Management Suite:
-
-   ```shell
-    sudo KUBECONFIG=/etc/kubernetes/admin.conf ./k8s-restore.sh -i <path to backup file> -r
-     ```
-
-    In the examples above, `/etc/kubernetes/admin.conf` is the default configuration location of a Kubernetes cluster. If the configuration location is different for the target Kubernetes cluster, update the commands above accordingly.
+    In the example above, `/etc/kubernetes/admin.conf` is the default configuration location of a Kubernetes cluster. If the configuration location is different for the target Kubernetes cluster, update the location accordingly.
 
 - Utility pod
 
     To back up and restore NGINX Management Suite in a Kubernetes cluster, you need to install the `utility` pod in your Kubernetes cluster. For each module you want to back up and restore, you need to configure the `utility` pod accordingly:
 
-    1. Update your [Helm Deployment values.yaml file]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md#configure-chart" >}}), add the `utility: true` line to enable the utility pod, and the required sections under `nmsModules` to  back up and restore API Connectivity Manager. Example below:
+    1. Update your [Helm Deployment values.yaml file]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md#configure-chart" >}}), add the `utility: true` line under `global` to enable the utility pod, and the required sections under `nmsModules` to  back up and restore API Connectivity Manager. Example below:
 
         ```yaml
         global:
@@ -246,8 +238,11 @@ To restore NGINX Management Suite and the installed modules deployed in the same
 1. Run the restore script:
 
     ```shell
-    sudo ./k8s-restore.sh -r -i k8s-backup-<timestamp>.tar.gz
+      sudo KUBECONFIG=/etc/kubernetes/admin.conf ./k8s-restore.sh -i k8s-backup-<timestamp>.tar.gz -r
     ```
+
+    In the command above, `/etc/kubernetes/admin.conf` is the default configuration location of a Kubernetes cluster. If the configuration location is different for the target Kubernetes cluster, update the command accordingly.
+
 
     {{< note >}}The restore script [needs root access]({{< relref "/nms/acm/how-to/backup-recovery.md#root-access" >}}) to Kubernetes for the restore operation.{{< /note >}}
 
@@ -279,8 +274,11 @@ To restore NGINX Management Suite and the installed modules into a different Kub
 1. Run the restore script:
 
     ```shell
-    sudo ./k8s-restore.sh -r -i k8s-backup-<timestamp>.tar.gz -d
+      sudo KUBECONFIG=/etc/kubernetes/admin.conf ./k8s-restore.sh -i k8s-backup-<timestamp>.tar.gz -r
     ```
+
+    In the command above, `/etc/kubernetes/admin.conf` is the default configuration location of a Kubernetes cluster. If the configuration location is different for the target Kubernetes cluster, update the command accordingly.
+
 
     {{< note >}}The restore script [needs root access]({{< relref "/nms/acm/how-to/backup-recovery.md#root-access" >}}) to Kubernetes for the restore operation.{{< /note >}}
 
