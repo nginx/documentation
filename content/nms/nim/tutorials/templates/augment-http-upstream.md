@@ -35,58 +35,41 @@ authors: []
 
 ## Overview
 
-This tutorial will show you how to use base and augment templates to set upstream servers for round-robin load balancing.
-
-By the end of this tutorial, you will learn how to:
-
-1. Create a pared-down {rr_base_template} base template as a starting point for configuring NGINX instances.
-2. Create the {rr_aug_loc_proxy} augment template to customize location blocks within your NGINX configuration, directing traffic to specified upstream servers and refining request handling.
-3. Understand the interplay between base and augment templates, and how they collectively form a dynamic and flexible configuration system.
-4. Apply template-driven configurations to real-world scenarios, streamlining your workflows and ensuring consistency across your environment.
-
-This tutorial assumes a basic understanding of NGINX configuration directives and principles. With the provided step-by-step instructions, sample configurations, and explanatory notes, you'll learn how to use templating for more effective NGINX management.
-
-**Example Use Case**
-
-Use an augment template to specify the upstream server locations for round-robin load balancing.
-
----
-
-Feel free to adjust the wording to better fit the style and tone of your existing documentation. Once the overview is aligned with your vision, we can proceed to the next sections, or I can assist with any revisions needed here.
-
-A base template makes all of the specified NGINX directive blocks accessible to users when modifying template submissions. This might be okay if you want people to make changes without being restricted. However, if you want only designated individuals or teams to edit specific HTTP servers or locations, perhaps as part of a self-service workflow, you can use augment templates to portion out (segment) parts of the NGINX config and role-based access control (RBAC) to assign permissions.
-
-An administrator has defined the upstream location in the base template. However, now we want to break the upstream location out of the base template so a specific team, like SRE, can edit these settings themselves. By breaking the location out of the base template, we're able add additional control over how can access it. In short, a base template makes all of the NGINX directive blocks accessible if there's no need for access control. However, if you want to restrict certain server or location blocs, you can create augments for those blocks and limit access with RBAC.
-
-
-## Step 1: Clone the F5 Global Base template
-
-To begin, make a clone of the F5 Global base template to work with.
+## Create a new base template
 
 1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Management Suite host, and log in.
 2. From the Launchpad menu, choose **Instance Manager**.
-3. In the left navigation pane, select **Templates > Overview**.
-4. Select the **F5 Global Default Base** template.
-5. Select **Save As** and enter a name for the cloned template. In this example, we'll call the cloned template **round-robin-base-template**.
+3. On the left navigation pane, select **Templates**.
+4. Select **Create**.
+5. Select **New**.
+6. Give the template a name. For this tutorial, we'll call the base template *Round Robin Base Template*.
+7. Optionally, provide a description for the template.
+8. Select **Draft** for the template status.
+9. Select **Base** for the for type.
+10. Select **Submit**.
 
-## Step 2: Make the cloned template editable
 
-Because the F5 Global Default Base template's state is **Ready for Use**, any clones made of that template will have the same state. We want to make modifications to our cloned template, **Round-Robin Base Template**, so we need to make that template editable.
 
-To edit the metadata details for a template:
+### Add the base template files
 
-1. On the **Templates > Overview** page, locate **round-robin-base-template**. In the **Actions** column, select the ellipsis (three dots), then choose **Edit**.
-2. In the **Description** box, enter a new description for the template. For example, "Round-robin base template."
-3. Select **Draft** for the state.
-4. Select **Submit**.
+1. On the **Template > Overview** page, select **Round Robin Base Template**.
+2. Add the config template file:
+   - Select **Add File**.
+   - Select **Config File > based.tmpl**.
+   - Select **Add**.
+3. Add the schema files:
+   - Select **Add File**.
+   - Select **Schema File > http-server.json, http-upstream, location.json**.
+   - Select **Add**.
 
-## Step 3: Pare down the base template
+Your template should now include the following files:
 
-The Round-Robin Base Template at this point includes more details than we require. For the purposes of this tutorial, we only want to create the HTTP upstreams, HTTP upstream servers with their ports, and leave the ExecTemplateAugments to injecting an augment template. This means we can remove extraneous settings like the advanced metrics module and stream block. 
+{{<img src="/nim/templates/round-robin-base-template-files.png" alt="List of template files including base.tmpl, http-server.json, http-upstream.json, and location.json" width="350" height="auto">}}
 
-1. On the **Templates > Overview** page, select **round-robin-base-template**. This displays the templates files and their contents.
-2. Select **base.tmpl**.
-3. Copy and paste the following contents into the base.tmpl file, then select **Save** (disk icon).
+### Add the base.tmpl file details
+
+1. In the template file list, select **base.tmpl**.
+2. Copy and paste the following contents into the **base.tmpl** file editor.
 
    ``` go
    {{/*
@@ -138,391 +121,307 @@ The Round-Robin Base Template at this point includes more details than we requir
    }
    ```
 
-   <br>
+3. Select **Save** (disk icon).
 
-   <details closed>
-   <summary>Click to view the differences between the F5 Global Default Base Template and Round-Robin Base Template</summary>
+### Add the http-server.json file details
 
-   The following image shows what's been removed from the F5 Global Default Base Template to create the pared-down Round-Robin Base Template.
+1. Select **http-server.json**.
+2. Copy and paste the following contents into the **http-server.json** file editor.
 
-   {{<img src="/nim/templates/round-robin-base-template-diff.png" alt="API Connectivity Manager architecture" >}}
-   </details>
-
-The remaining template lets you:
-
-- Create the upstreams.
-- Create the upstream servers with their port
-- And leave the ExecTemplateAugments, which is the injectable for augment templates.
-
-
-## Step 4: Remove unneeded template and JSON file
-
-Since the base template has been paired down, we can remove the unrelated JSON schemas that carried over from cloning the F5 Global Default Base template.
-
-To delete the unneeded JSON schemas:
-
-1. On the **Templates > Overview** page, select **Round-Robin Base Template**.
-2. Select each of the following JSON schemas one-at-a-time, click **Delete** (trash can), and confirm the deletion:
-
-   - **stream-server.json**
-   - **stream-upstream.json**
-   - **main.json**
-
-After you've deleted the unneeded JSON schemas, the **Round-Robin Base Template** should include just these files:
-
-- base.tmpl
-- http-server.json
-- http-upstream.json
-- location.json
-
-## Step : Add upstream, server, and location IDs to JSON schemas
-
-Do this to give the base template "hooks" to inject the augments
-
-
-**http-upstream.json**
-
-``` json
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "HTTP Upstream Inputs",
-  "type": "object",
-  "properties": {
-    "templateInput": {
-      "type": [
-        "object",
-        "null"
-      ],
+    ``` json
+    {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "HTTP Server Inputs",
+      "type": "object",
       "properties": {
-        "name": {
-          "title": "HTTP Upstream name",
-          "type": "string",
-          "description": "Specifies the name for the http upstream.",
-          "examples": [
-            "upstream-1"
+        "templateInput": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "serverName": {
+              "title": "Server name",
+              "type": "string",
+              "description": "Specifies the name for the http server.",
+              "examples": [
+                "foo.com"
+              ]
+            },
+            "id": {
+              "title": "Server ID",
+              "type": "string",
+              "description": "Case sensitive alphanumeric id used for specifying augment placement.",
+              "examples": [
+                "main_server"
+              ]
+            }
+          },
+          "required": [
+            "serverName",
+            "id"
           ]
-        },
-        "id": {
-          "title": "Upstream ID",
-          "type": "string",
-          "description": "Case sensitive alphanumeric id used for specifying augment placement.",
-          "examples": [
-            "main_upstream"
-          ]
-        },
-        "servers": {
-          "type": "array",
-          "title": "Upstream servers",
-          "items": {
-            "type": "object",
-            "properties": {
-              "address": {
-                "title": "Upstream server address",
-                "type": "string",
-                "description": "Specifies the address for the upstream server.",
-                "examples": [
-                  "backend1.example.com",
-                  "192.0.0.1"
-                ]
-              },
-              "port": {
-                "type": "integer",
-                "title": "Upstream server port",
-                "description": "Specifies the port for the upstream server.",
-                "minimum": 1,
-                "maximum": 65535,
-                "examples": [
-                  80
+        }
+      },
+      "required": []
+    }
+    ```
+
+3. Select **Save** (disk icon).
+
+
+### Add the http-upstream.json file details
+
+1. Select **http-upstream.json**.
+2. Copy and paste the following contents into the **http-upstream.json** file editor.
+
+    ``` json
+    {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "HTTP Upstream Inputs",
+      "type": "object",
+      "properties": {
+        "templateInput": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "name": {
+              "title": "HTTP Upstream name",
+              "type": "string",
+              "description": "Specifies the name for the http upstream.",
+              "examples": [
+                "upstream-1"
+              ]
+            },
+            "id": {
+              "title": "Upstream ID",
+              "type": "string",
+              "description": "Case sensitive alphanumeric id used for specifying augment placement.",
+              "examples": [
+                "main_upstream"
+              ]
+            },
+            "servers": {
+              "type": "array",
+              "title": "Upstream servers",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "address": {
+                    "title": "Upstream server address",
+                    "type": "string",
+                    "description": "Specifies the address for the upstream server.",
+                    "examples": [
+                      "backend1.example.com",
+                      "192.0.0.1"
+                    ]
+                  },
+                  "port": {
+                    "type": "integer",
+                    "title": "Upstream server port",
+                    "description": "Specifies the port for the upstream server.",
+                    "minimum": 1,
+                    "maximum": 65535,
+                    "examples": [
+                      80
+                    ]
+                  }
+                },
+                "required": [
+                  "address"
                 ]
               }
-            },
-            "required": [
-              "address"
-            ]
-          }
+            }
+          },
+          "required": [
+            "name",
+            "servers",
+            "id"
+          ]
         }
       },
-      "required": [
-        "name",
-        "servers",
-        "id"
-      ]
+      "required": []
     }
-  },
-  "required": []
-}
-```
+    ```
 
-<br>
+3. Select **Save** (disk icon).
 
-<details closed>
-<summary blah> Click to view the <b>http-upstream.json</b> inserted details. </summary>
+### Add the location.json file details
 
-``` json {linenos=table,hl_lines=["20-27"]}
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "HTTP Upstream Inputs",
-  "type": "object",
-  "properties": {
-    "templateInput": {
-      "type": [
-        "object",
-        "null"
-      ],
+1. Select **location.json**.
+2. Copy and paste the following contents into the **location.json** file editor.
+
+     ``` json
+    {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Location Inputs",
+      "type": "object",
       "properties": {
-        "name": {
-          "title": "HTTP Upstream name",
-          "type": "string",
-          "description": "Specifies the name for the http upstream.",
-          "examples": [
-            "upstream-1"
+        "templateInput": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "nameExpression": {
+              "title": "Location Name",
+              "type": "string",
+              "description": "Specifies the location's name expression.",
+              "examples": [
+                "/status"
+              ]
+            },
+            "id": {
+              "title": "Location ID",
+              "type": "string",
+              "description": "Case sensitive alphanumeric id used for specifying augment placement.",
+              "examples": [
+                "main_location"
+              ]
+            }
+          },
+          "required": [
+            "nameExpression",
+            "id"
           ]
-        },
-        "id": {
-          "title": "Upstream ID",
-          "type": "string",
-          "description": "Case sensitive alphanumeric id used for specifying augment placement.",
-          "examples": [
-            "main_upstream"
-          ]
-        },
-        "servers": {
-          "type": "array",
-          "title": "Upstream servers",
-          "items": {
-            "type": "object",
-            "properties": {
-              "address": {
-                "title": "Upstream server address",
-                "type": "string",
-                "description": "Specifies the address for the upstream server.",
-                "examples": [
-                  "backend1.example.com",
-                  "192.0.0.1"
-                ]
-              },
-              "port": {
-                "type": "integer",
-                "title": "Upstream server port",
-                "description": "Specifies the port for the upstream server.",
-                "minimum": 1,
-                "maximum": 65535,
-                "examples": [
-                  80
-                ]
+        }
+      },
+      "required": []
+    }
+    ```
+
+3. Select **Save** (disk icon).
+
+## Create the augment template
+
+1. On the **Templates > Overview** page, select **Create**.
+2. Select **New**.
+3. Give the template a name. For this tutorial, we'll call the augment template *Round Robin Augment Template*.
+4. Optionally, provide a description for the template.
+5. Select **Draft** for the template status.
+6. Select **Augment** for the for type.
+7. Select **Submit**.
+
+### Add the augment template files
+
+1. On the Template > Overview page, select Round Robin Augment Template.
+2. Add the config template file:
+   - Select **Add File**.
+   - Select **Config File > **location.tmpl**
+   - Select **Add**.
+3. Add the schema files:
+   - Select **Add File**.
+   - Select **Schema File > location.json, meta.json**.
+   - Select **Add**.
+
+Your template should now include the following files:
+
+{{<img src="/nim/templates/round-robin-augment-template-files.png" alt="List of template files including base.tmpl, http-server.json, http-upstream.json, and location.json" width="350" height="auto">}}
+
+### Add the location.tmpl details
+
+1. Select **location.tmpl**.
+2. Copy and paste the following contents into the **location.tmpl** file editor.
+
+    ``` go
+    {{$augmentData := .AugmentData.V1}}
+    {{$server := index .Args 0}}
+    {{$location := index .Args 1}}
+    {{$locationId := "" }}
+
+    {{if and $location $location.templateInput}}
+      {{$locationId = $location.templateInput.id}}
+    {{end}}
+
+    {{/* Check to see if we have upstreamName for this location ID */}}
+    {{range $args := $augmentData.location.templateInput.locations}}
+      {{if (eq $args.targetId $locationId)}}
+        proxy_pass http://{{$args.upstreamName}};
+        {{break}}
+      {{end}}
+    {{end}}
+    ```
+
+3. Select **Save** (disk icon).
+
+### Add the location.json details
+
+1. Select **location.json**.
+2. Copy and paste the following contents into the **location.json** file editor.
+
+    ``` json
+    {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Location Inputs",
+      "type": "object",
+      "properties": {
+        "templateInput": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "locations": {
+              "type": "array",
+              "title": "Location List",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "targetId": {
+                    "title": "Location ID",
+                    "type": "string",
+                    "description": "Case sensitive alphanumeric id used for specifying augment placement.",
+                    "examples": [
+                      "main_location"
+                    ]
+                  },
+                  "upstreamName": {
+                    "type": "string",
+                    "title": "Upstream Name",
+                    "description": "Name of the target upstream. Must match exactly.",
+                    "examples": [
+                      "upstream-1"
+                    ]                
+                  }
+                },
+                "required": ["targetId", "upstreamName"]
               }
-            },
-            "required": [
-              "address"
-            ]
-          }
+            }
+          },
+          "required": ["locations"]
         }
       },
-      "required": [
-        "name",
-        "servers",
-        "id"
-      ]
+      "required": []
     }
-  },
-  "required": []
-}
-```
+    ```
 
-</details>
+3. Select **Save** (disk icon).
 
-<br>
+## Generate the template submission
 
-**http-server.json**
-
-``` json
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "HTTP Server Inputs",
-  "type": "object",
-  "properties": {
-    "templateInput": {
-      "type": [
-        "object",
-        "null"
-      ],
-      "properties": {
-        "serverName": {
-          "title": "Server name",
-          "type": "string",
-          "description": "Specifies the name for the http server.",
-          "examples": [
-            "foo.com"
-          ]
-        },
-        "id": {
-          "title": "Server ID",
-          "type": "string",
-          "description": "Case sensitive alphanumeric id used for specifying augment placement.",
-          "examples": [
-            "main_server"
-          ]
-        }
-      },
-      "required": [
-        "serverName",
-        "id"
-      ]
-    }
-  },
-  "required": []
-}
-```
-
-<br>
-
-<details closed>
-<summary blah> Click to view the <b>http-server.json</b> inserted details. </summary>
-
-``` json {linenos=table,hl_lines=["20-28"]}
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "HTTP Server Inputs",
-  "type": "object",
-  "properties": {
-    "templateInput": {
-      "type": [
-        "object",
-        "null"
-      ],
-      "properties": {
-        "serverName": {
-          "title": "Server name",
-          "type": "string",
-          "description": "Specifies the name for the http server.",
-          "examples": [
-            "foo.com"
-          ]
-        },
-        "id": {
-          "title": "Server ID",
-          "type": "string",
-          "description": "Case sensitive alphanumeric id used for specifying augment placement.",
-          "examples": [
-            "main_server"
-          ]
-        }
-      },
-      "required": [
-        "serverName",
-        "id"
-      ]
-    }
-  },
-  "required": []
-}
-```
-
-</details>
-
-<br>
-
-**location.json**
-
-``` json
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Location Inputs",
-  "type": "object",
-  "properties": {
-    "templateInput": {
-      "type": [
-        "object",
-        "null"
-      ],
-      "properties": {
-        "nameExpression": {
-          "title": "Location Name",
-          "type": "string",
-          "description": "Specifies the location's name expression.",
-          "examples": [
-            "/status"
-          ]
-        },
-        "id": {
-          "title": "Location ID",
-          "type": "string",
-          "description": "Case sensitive alphanumeric id used for specifying augment placement.",
-          "examples": [
-            "main_location"
-          ]
-        }
-      },
-      "required": [
-        "nameExpression",
-        "id"
-      ]
-    }
-  },
-  "required": []
-}
-```
-
-<br>
-
-<details closed>
-<summary blah> Click to view the <b>location.json</b> inserted details. </summary>
-
-``` json {linenos=table,hl_lines=["20-28"]}
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Location Inputs",
-  "type": "object",
-  "properties": {
-    "templateInput": {
-      "type": [
-        "object",
-        "null"
-      ],
-      "properties": {
-        "nameExpression": {
-          "title": "Location Name",
-          "type": "string",
-          "description": "Specifies the location's name expression.",
-          "examples": [
-            "/status"
-          ]
-        },
-        "id": {
-          "title": "Location ID",
-          "type": "string",
-          "description": "Case sensitive alphanumeric id used for specifying augment placement.",
-          "examples": [
-            "main_location"
-          ]
-        }
-      },
-      "required": [
-        "nameExpression",
-        "id"
-      ]
-    }
-  },
-  "required": []
-}
-```
-
-</details>
-
-</br>
-
-## Step : Create the augment template
-
-1. On the Config Templates "Overview" page, select **Create**.
-2. In the **Create Template** dialog:
-    - Select **New** to start a fresh template.
-    - Enter a unique and descriptive name for your template in the **Name** field. In this example, we'll call the template **HTTP Upstream Augment Template**.
-    - (Optional) Provide a description in the **Description** field to give more context about the template's purpose or usage.
-    - Select **Draft** for the template state. This indicates that the template is still under development, editable, and not finalized for use.
-    - Select **Augment** for the template type. Specify the 
-3. Click **Submit** to create the template.
-
-## Step : Add the augment template files
+1. On the left navigation pane, select **Templates**.
+2. Find **Round Robin Base Template** in the list of templates. In the **Actions** column, select the ellipsis (three dots), then select **Preview and Generate**.
+3. Select the publication target:
+   - Select whether you're publishing the configuration to an instance, instance group, existing saved config, or saving as a new staged config.
+   - Then select the specific target instance, instance group, staged config. Or, if you're saving as a new staged config, provide the staged config name.
+   - Select **Next**.
+4. Include the *Round Robin Augment Template*:
+   - On the **Choose Augments** form, select **Round Robin Augment Template**.
+   - Select **Next**.
+5. Add HTTP Server(s):
+   - On the **HTTP Servers** form, select **Add HTTP Servers**.
+   - Provide a server name.
+   - Provide a server ID.
+   - Select **Next**.
+6. Add Round Robin Augment Template location inputs:
+   - On the **Round Robin Augment Template** form, specify the following:
+   - Provide a location ID.
+   - Provide an upstream name.
+   - Select **Next**.
+7. 
+---
 
 Now, we'll add the following files to the augment template: **location.tmpl**, **location.json**, and **meta.json**. The contents for these files are provided below for you to copy and paste.
 
@@ -532,7 +431,7 @@ Now, we'll add the following files to the augment template: **location.tmpl**, *
 4. Select the file names you want to add to your template.
 5. After selecting all the necessary files, click **Add** to include them in the template.
 6. The selected files will now appear in the template's directory structure on the left side of the editor. Select a file to edit its contents in the editing pane.
-8. Make your changes and select **Save** to update the template with your configurations.
+7. Make your changes and select **Save** to update the template with your configurations.
 
 **location.tmpl**
 
@@ -641,7 +540,7 @@ To preview, generate, and submit a config from a template:
 
 1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Management Suite host, and log in.
 2. From the Launchpad menu, choose **Instance Manager**.
-3. In the left navigation pane, select **Templates > Overview**.
+3. On the left navigation pane, select **Templates > Overview**.
 
 ---
 
