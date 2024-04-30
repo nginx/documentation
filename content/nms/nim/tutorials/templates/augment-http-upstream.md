@@ -27,7 +27,7 @@ authors: []
 <style>
   details {
     border: 1px dashed green;
-    background-color: #f1f1f1;
+    background-color: #f7f7f7;
     padding: 0px 15px 0px 15px;
   }
 </style>
@@ -62,9 +62,9 @@ authors: []
    - Select **Schema File > http-server.json, http-upstream, location.json**.
    - Select **Add**.
 
-Your template should now include the following files:
+Your base template should now include the following files:
 
-{{<img src="/nim/templates/round-robin-base-template-files.png" alt="List of template files including base.tmpl, http-server.json, http-upstream.json, and location.json" width="350" height="auto">}}
+{{<img src="/nim/templates/round-robin-base-template-files.png" alt="List of template files including base.tmpl, http-server.json, http-upstream.json, and location.json" width="300" height="auto">}}
 
 ### Add the base.tmpl file details
 
@@ -122,6 +122,14 @@ Your template should now include the following files:
    ```
 
 3. Select **Save** (disk icon).
+
+<details>
+<summary><i class="fas fa-code-compare"></i> Compare the Round Robin Base template with the F5 Global Default Base template.</summary>
+
+This screenshot shows the differences between the [F5 Global Default Base template]({{< relref "nms/nim/about/templates/default-base-template.md" >}}) and the Round Robin Base template. You can see which sections were kept and which were removed in the Round Robin Base template.
+
+{{<img src="/nim/templates/round-robin-base-template-diff.png" alt="Screenshot showing the configuration differences between the F5 Global Default Base template and the Round Robin Base template for an NGINX setup. This image highlights the removed sections in the Round Robin Base template by showing a side-by-side comparison with the Global Default Base template." width="auto" height="auto">}}
+</details>
 
 ### Add the http-server.json file details
 
@@ -298,7 +306,7 @@ Your template should now include the following files:
 
 1. On the **Templates > Overview** page, select **Create**.
 2. Select **New**.
-3. Give the template a name. For this tutorial, we'll call the augment template *Round Robin Augment Template*.
+3. Give the template a name. For this tutorial, we'll call the augment template *Location Proxy Augment*.
 4. Optionally, provide a description for the template.
 5. Select **Draft** for the template status.
 6. Select **Augment** for the for type.
@@ -306,7 +314,7 @@ Your template should now include the following files:
 
 ### Add the augment template files
 
-1. On the Template > Overview page, select Round Robin Augment Template.
+1. On the **Template > Overview** page, select **Location Proxy Template**.
 2. Add the config template file:
    - Select **Add File**.
    - Select **Config File > **location.tmpl**
@@ -316,9 +324,9 @@ Your template should now include the following files:
    - Select **Schema File > location.json, meta.json**.
    - Select **Add**.
 
-Your template should now include the following files:
+Your augment template should now include the following files:
 
-{{<img src="/nim/templates/round-robin-augment-template-files.png" alt="List of template files including base.tmpl, http-server.json, http-upstream.json, and location.json" width="350" height="auto">}}
+{{<img src="/nim/templates/round-robin-augment-template-files.png" alt="List of template files including base.tmpl, http-server.json, http-upstream.json, and location.json" width="300" height="auto">}}
 
 ### Add the location.tmpl details
 
@@ -407,16 +415,16 @@ Your template should now include the following files:
    - Select whether you're publishing the configuration to an instance, instance group, existing saved config, or saving as a new staged config.
    - Then select the specific target instance, instance group, staged config. Or, if you're saving as a new staged config, provide the staged config name.
    - Select **Next**.
-4. Include the *Round Robin Augment Template*:
-   - On the **Choose Augments** form, select **Round Robin Augment Template**.
+4. Include the *Location Proxy Template*:
+   - On the **Choose Augments** form, select **Location Proxy Template**.
    - Select **Next**.
 5. Add HTTP Server(s):
    - On the **HTTP Servers** form, select **Add HTTP Servers**.
    - Provide a server name.
    - Provide a server ID.
    - Select **Next**.
-6. Add Round Robin Augment Template location inputs:
-   - On the **Round Robin Augment Template** form, specify the following:
+6. Add Location Proxy Template location inputs:
+   - On the **Location Proxy Template** form, specify the following:
    - Provide a location ID.
    - Provide an upstream name.
    - Select **Next**.
