@@ -4,7 +4,7 @@ date: 2024-03-12T16:01:58-07:00
 # Change draft status to false to publish doc
 draft: true
 # Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
+# Enter a short description (150 chars) for the doc. Include keywords for SEO. 
 # The description text appears in search results and at the top of the doc.
 description: ""
 # Assign weights in increments of 100
@@ -173,6 +173,7 @@ This screenshot shows the differences between the [F5 Global Default Base templa
       },
       "required": []
     }
+
     ```
 
 3. Select **Save** (disk icon).
@@ -200,7 +201,7 @@ This screenshot shows the differences between the [F5 Global Default Base templa
               "type": "string",
               "description": "Specifies the name for the http upstream.",
               "examples": [
-                "upstream-1"
+                "upstream_1"
               ]
             },
             "id": {
@@ -252,6 +253,7 @@ This screenshot shows the differences between the [F5 Global Default Base templa
       },
       "required": []
     }
+
     ```
 
 3. Select **Save** (disk icon).
@@ -298,6 +300,7 @@ This screenshot shows the differences between the [F5 Global Default Base templa
       },
       "required": []
     }
+
     ```
 
 3. Select **Save** (disk icon).
@@ -350,6 +353,7 @@ Your augment template should now include the following files:
         {{break}}
       {{end}}
     {{end}}
+
     ```
 
 3. Select **Save** (disk icon).
@@ -390,7 +394,7 @@ Your augment template should now include the following files:
                     "title": "Upstream Name",
                     "description": "Name of the target upstream. Must match exactly.",
                     "examples": [
-                      "upstream-1"
+                      "upstream_1"
                     ]                
                   }
                 },
@@ -403,6 +407,7 @@ Your augment template should now include the following files:
       },
       "required": []
     }
+
     ```
 
 3. Select **Save** (disk icon).
@@ -413,145 +418,61 @@ Your augment template should now include the following files:
 2. Find **Round Robin Base Template** in the list of templates. In the **Actions** column, select the ellipsis (three dots), then select **Preview and Generate**.
 3. Select the publication target:
    - Select whether you're publishing the configuration to an instance, instance group, existing saved config, or saving as a new staged config.
-   - Then select the specific target instance, instance group, staged config. Or, if you're saving as a new staged config, provide the staged config name.
+   - Then select the specific target from the list. Or, if you're saving as a new staged config, provide the staged config name.
    - Select **Next**.
 4. Include the *Location Proxy Template*:
    - On the **Choose Augments** form, select **Location Proxy Template**.
    - Select **Next**.
 5. Add HTTP Server(s):
    - On the **HTTP Servers** form, select **Add HTTP Servers**.
-   - Provide a server name.
-   - Provide a server ID.
+   - Enter a server name (for example, **foo.com**).
+   - Enter a server ID (for example, **main_server**).
+   - Add at least one server:
+     - In the **Server Locations** pane, select **Add Server Location**.
+     - Enter a location name (for example, **/users**).
+     - Enter a location ID (for example, **users_proxy**).
+     - Select **Done**.
    - Select **Next**.
-6. Add Location Proxy Template location inputs:
-   - On the **Location Proxy Template** form, specify the following:
-   - Provide a location ID.
-   - Provide an upstream name.
+6. Add HTTP Upstream(s):
+   - On the **HTTP Upstreams** form, select **Add HTTP Upstreams**.
+   - Enter an HTTP upstream name (for example, **upstream_1**).
+   - Enter the upstream ID (for example, **users_upstream**).
+   - Add at least one upstream server:
+     - In the **Upstream Servers** pane, select **Add item**.
+     - Enter the upstream server address (for example, **backend1.example.com**)
+     - Enter the upstream server port (for example, **80**).
+     - Select **Done**.
    - Select **Next**.
-7. 
----
+7. Add Location Proxy Augment inputs.
+   - In the **Location Inputs > Location** List pane, select **Add item**.
+   - Enter the location ID, which **must be the same as the base template's HTTP Server location ID** (for example, use **users_proxy** as specified above in step 5).
+   - Enter the upstream name, which **must be the same as the base template's HTTP Upstream name** (for example, use **upstream_1** as specified above in step 6).
+   - Select **Next**.
+8. Preview and publish the config:
+ 
+    The config should looks like the following example:
 
-Now, we'll add the following files to the augment template: **location.tmpl**, **location.json**, and **meta.json**. The contents for these files are provided below for you to copy and paste.
+    (**Question**: how do you know the augment template is working correctly? I ran the steps above w/o selecting the augment template (skip step 4 and 7) and the resulting config looks identical as when I do select the augment template)
 
-1. On the **Templates > Overview** page, locate the newly created *HTTP Upstream Augment Template* template. In the **Actions** column, select the ellipsis (three dots), then choose **Edit Template Files**.
-2. In the config editor, select **Add file**.
-3. Choose the type of file you want to add to the template. Depending on the file type, you'll be presented with a list of file options to choose from.
-4. Select the file names you want to add to your template.
-5. After selecting all the necessary files, click **Add** to include them in the template.
-6. The selected files will now appear in the template's directory structure on the left side of the editor. Select a file to edit its contents in the editing pane.
-7. Make your changes and select **Save** to update the template with your configurations.
+    ```nginx
+    # ************************************************ IMPORTANT !! ************************************************
+    # This is a Template generated configuration. Updates should done through the Template
+    # Submissions workflow. Manual changes to this configuration can/will be overwritten
+    # __templateTag={"uid":"2625bc21-77cc-4774-a3ab-e1ccd51a64fa","file":"base.tmpl","name":"base"}
 
-**location.tmpl**
-
-``` go
-{{$augmentData := .AugmentData.V1}}
-{{$server := index .Args 0}}
-{{$location := index .Args 1}}
-{{$locationId := "" }}
-
-{{if and $location $location.templateInput}}
-  {{$locationId = $location.templateInput.id}}
-{{end}}
-
-{{/* Check to see if we have upstreamName for this location id */}}
-{{range $args := $augmentData.location.templateInput.locations}}
-  {{if (eq $args.targetId $locationId)}}
-    proxy_pass http://{{$args.upstreamName}};
-    {{break}}
-  {{end}}
-{{end}}
-```
-
-<br>
-
-**location.json**
-
-``` json
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Location Inputs",
-  "type": "object",
-  "properties": {
-    "templateInput": {
-      "type": [
-        "object",
-        "null"
-      ],
-      "properties": {
-        "locations": {
-          "type": "array",
-          "title": "Location List",
-          "items": {
-            "type": "object",
-            "properties": {
-              "targetId": {
-                "title": "Location Id",
-                "type": "string",
-                "description": "Case sensitive alphanumeric id used for specifying augment placement.",
-                "examples": [
-                  "main_location"
-                ]
-              },
-              "upstreamName": {
-                "type": "string",
-                "title": "Upstream Name",
-                "description": "Name of the target upstream. Must match exactly.",
-                "examples": [
-                  "upstream-1"
-                ]                
-              }
-            },
-            "required": ["targetId", "upstreamName"]
-          }
-        }
-      },
-      "required": ["locations"]
+    events {
+        worker_connections 1024;
     }
-  },
-  "required": []
-}
-```
 
-<br>
+    http {
+        upstream upstream_1 {
+            server backend1.example.com:80;
+        }
 
-**meta.json**
-
-``` json
-{
-  "meta_version_num": 1,
-  "name": "rr_aug_loc_proxy",
-  "description": "Tutorial augment template for location example",    
-  "type": "augment",
-  "uid": "6b48bb57-b2ca-40c7-a296-b1c11e3cf3d9"
-}
-```
-
-## Step : Generate the NGINX config
-
-To preview, generate, and submit a config from a template:
-
-1. On the **Templates > Overview** page, locate the  created *HTTP Upstream Augment Template* template. select the ellipsis (three dots) in the **Actions** column, then select **Preview and Generate**.
-2. Complete the forms on the **Preview and Generate Config** dialog in sequence, selecting **Next** to move forward:
-    - **Choose Publish Options**: Specify where to publish the template by selecting either:
-      - **Publish to an Instance**: To apply the configuration to a single NGINX instance.
-      - **Publish to an Instance Group**: To apply the configuration to multiple instances managed as an instance group.
-      - **Save to a Staged Config**: To stage the configuration for future deployment.
-      - **Save as a New Staged Config**: To create a brand new staged configuration for later use.
-    - **Augments** (Optional): Include any augment templates needed to enhance a base configuration with additional features.
-    - **Base and Augment Inputs**: Enter the required configuration inputs for the chosen templates.
-    - **Preview Config**: Use the filename dropdown to review the output for each configuration.
-3. After verifying the configurations, select **Publish**. If you've published to an instance or instance group, the template submission will tracked on the **Template Submissions** page.
-4. Once the submission is accepted and confirmed, select **Close and Exit**.
-
-
-## Import template
-
-1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Management Suite host, and log in.
-2. From the Launchpad menu, choose **Instance Manager**.
-3. On the left navigation pane, select **Templates > Overview**.
-
----
-
-## Additional Templating Resources
-
-{{< include "nim/templates/additional-templating-resources.md" >}}
+        server {
+            server_name foo.com;
+            location /users {
+            }
+        }
+    }
+    ```
