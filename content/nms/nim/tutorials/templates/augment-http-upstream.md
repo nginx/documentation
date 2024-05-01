@@ -1,5 +1,5 @@
 ---
-title: "Set round-robin upstreams with an augment template"
+title: "Set location proxy with an augment template"
 date: 2024-03-12T16:01:58-07:00
 # Change draft status to false to publish doc
 draft: false
