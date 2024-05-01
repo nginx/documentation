@@ -2,10 +2,10 @@
 description: Represents the state of the NGINX Controller Analytics REST API.
 docs: DOCS-1279
 doctypes:
-- reference
-layout: redoc-single
+  - reference
+type: redoc
 tags:
-- api
+  - api
 title: Analytics API
 toc: false
 weight: 200
