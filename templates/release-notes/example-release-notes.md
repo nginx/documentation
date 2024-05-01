@@ -7,7 +7,7 @@ April 18, 2024
 
 ### Upgrade guide
 
-If you are already using a previous version of Nbeamex coffe, please make sure to clean your grinder and coffee maker thoroughly before adding the new coffee beans. This will ensure that you get the best flavor from the new beans.
+If you are already using a previous version of Nbeamex coffee, please make sure to clean your grinder and coffee maker thoroughly before adding the new coffee beans. This will ensure that you get the best flavor from the new beans.
 
 {{< see-also >}}Please consult or [list of authorized retailers](https://nbeamex.com/retailers) to find the best coffee beans for your grinder.{{< /see-also >}}
 

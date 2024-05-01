@@ -21,45 +21,56 @@ The popularity of coffee and the rise of coffeehouses have influenced several so
 
 ## Use cases
 
-Here are some common use cases for coffee:
+There are many different ways to make coffee. In this section, you will learn about some popular methods of making coffee and the benefits each provides.
 
-1. Boosting energy: Coffee is often consumed to increase alertness and combat fatigue. It can provide a temporary energy boost, making it a popular choice for starting the day or staying awake during long periods of work or study.
+### French Press
 
-2. Enhancing focus and productivity: The caffeine in coffee can improve cognitive function, including focus, attention, and mental performance. Many people rely on coffee to help them concentrate and be more productive.
+Method: Coarsely ground coffee is steeped in hot water for a few minutes, then pressed to separate the grounds from the liquid.
 
-3. Socializing and relaxation: Coffee is often enjoyed in social settings, such as meeting friends at a café or having a coffee break with colleagues. It can create a relaxed and enjoyable atmosphere, facilitating conversations, and social interactions.
+Reasons to use:
 
-4. Enjoyment and taste: Coffee is appreciated for its rich flavors and aromas. Many people simply enjoy the taste of coffee and find pleasure in savoring different varieties and brewing methods.
+- Produces a full-bodied and rich flavor.
+- Allows for more control over the brewing process.
+- Easy to use and requires minimal equipment.
 
+### Espresso
 
-5. Health benefits: Coffee has been associated with various health benefits, such as reducing the risk of certain diseases like Parkinson's disease, type 2 diabetes, and liver disease. It also contains antioxidants that can contribute to overall well-being.
+Method: Highly pressurized hot water is forced through finely ground coffee, resulting in a concentrated and flavorful shot.
 
+Reasons to use:
 
-These are just a few examples of how coffee can be used and enjoyed. The specific use cases may vary depending on individual preferences and cultural practices.
+- Produces a strong and intense flavor.
+- Allows for the creation of various coffee-based drinks like lattes and cappuccinos.
+- Brews quickly, making it ideal for those who need a quick caffeine fix.
 
-## Related resources
+### Pour Over
 
-If you would like to dive deeper or try coffee for yourself,
-check out the following resources:
+Method: Hot water is poured over a filter containing medium-fine ground coffee, allowing it to slowly drip into a container.
+
+Reasons to use:
+
+- Produces a clean and bright flavor profile.
+- Offers precise control over the brewing process.
+- Showcases the unique characteristics of different coffee beans.
+
+## Conclusion
+
+This document provides an overview of coffee's history and presents a few popular methods for making coffee, including french press, espresso, and pour over. The methods described here are just a few examples of the ways you can make coffee. Other methods include Aeropress, Moka pot, and cold brew. Each method has its own unique characteristics and can result in different flavors and brewing experiences. 
+
+Experimenting with different brewing methods can be a fun way to explore the world of coffee.
+
+## Additional Resources
 
 How-to guides
 
-1.  Item 1
+- [Grind Coffee](../how-to/grind-coffee.md)
 
-2.  Item 2
+Tutorials
 
-Linked concepts
+- [How to Make Coffee](../tutorial/example-tutorial.md)
 
-1.  Concept 1
+Release Notes
 
-2.  Concept 2
-
-External resources
-
-1.  Resource 1
-
-2.  Resource 2
+- [Nbeamx Coffee Releases](../release-notes/example-release-notes.md)
 
 ---
-
-> Explore other templates from [The Good Docs Project](https://thegooddocsproject.dev/). Use our [feedback form](https://thegooddocsproject.dev/feedback/?template=Concept) to give feedback on this template.
