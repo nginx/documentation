@@ -416,14 +416,14 @@ Your augment template should now include the following files:
 
 1. On the left navigation pane, select **Templates**.
 2. Find **Round Robin Base Template** in the list of templates. In the **Actions** column, select the ellipsis (three dots), then select **Preview and Generate**.
-3. Select the publication target:
+3. **Select the publication target**:
    - Select whether you're publishing the configuration to an instance, instance group, existing saved config, or saving as a new staged config.
    - Then select the specific target from the list. Or, if you're saving as a new staged config, provide the staged config name.
    - Select **Next**.
-4. Include the *Location Proxy Template*:
+4. **Select the augment template**:
    - On the **Choose Augments** form, select **Location Proxy Template**.
    - Select **Next**.
-5. Add HTTP Server(s):
+5. **Add HTTP Server(s)**:
    - On the **HTTP Servers** form, select **Add HTTP Servers**.
    - Enter a server name (for example, **foo.com**).
    - Enter a server ID (for example, **main_server**).
@@ -433,7 +433,7 @@ Your augment template should now include the following files:
      - Enter a location ID (for example, **users_proxy**).
      - Select **Done**.
    - Select **Next**.
-6. Add HTTP Upstream(s):
+6. **Add HTTP Upstream(s)**:
    - On the **HTTP Upstreams** form, select **Add HTTP Upstreams**.
    - Enter an HTTP upstream name (for example, **upstream_1**).
    - Enter the upstream ID (for example, **users_upstream**).
@@ -443,7 +443,7 @@ Your augment template should now include the following files:
      - Enter the upstream server port (for example, **80**).
      - Select **Done**.
    - Select **Next**.
-7. Add Location Proxy Augment inputs.
+7. **Add Location Proxy Augment inputs**.
    - In the **Location Inputs > Location List** pane, select **Add item**.
    - Enter the location ID. 
      
@@ -451,7 +451,7 @@ Your augment template should now include the following files:
    - Enter the upstream name.
      {{<note>}}**The upstream name must match the HTTP Upstream name** specified in the base template (for example, use **upstream_1** as specified in step 6).{{</note>}}
    - Select **Next**.
-8. Preview the config:
+8. **Preview the config**:
  
     On the **Preview Config** page, the resulting config should similar to the following example:
 
