@@ -437,16 +437,19 @@ Your augment template should now include the following files:
    - On the **HTTP Upstreams** form, select **Add HTTP Upstreams**.
    - Enter an HTTP upstream name (for example, **upstream_1**).
    - Enter the upstream ID (for example, **users_upstream**).
-   - Add at least one upstream server:
+   - Add an upstream server:
      - In the **Upstream Servers** pane, select **Add item**.
      - Enter the upstream server address (for example, **backend1.example.com**)
      - Enter the upstream server port (for example, **80**).
      - Select **Done**.
    - Select **Next**.
 7. Add Location Proxy Augment inputs.
-   - In the **Location Inputs > Location** List pane, select **Add item**.
-   - Enter the location ID, which **must be the same as the base template's HTTP Server location ID** (for example, use **users_proxy** as specified above in step 5).
-   - Enter the upstream name, which **must be the same as the base template's HTTP Upstream name** (for example, use **upstream_1** as specified above in step 6).
+   - In the **Location Inputs > Location List** pane, select **Add item**.
+   - Enter the location ID. 
+     
+     {{<note>}}**The location ID must match the HTTP Server location ID** specified in the base template (for example, use **users_proxy** as specified in step 5).{{</note>}}
+   - Enter the upstream name.
+     {{<note>}}Note: **The upstream name must match the HTTP Upstream name** specified in the base template (for example, use **upstream_1** as specified in step 6).{{</note>}}
    - Select **Next**.
 8. Preview and publish the config:
  
