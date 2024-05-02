@@ -449,33 +449,38 @@ Your augment template should now include the following files:
      
      {{<note>}}**The location ID must match the HTTP Server location ID** specified in the base template (for example, use **users_proxy** as specified in step 5).{{</note>}}
    - Enter the upstream name.
-     {{<note>}}Note: **The upstream name must match the HTTP Upstream name** specified in the base template (for example, use **upstream_1** as specified in step 6).{{</note>}}
+     {{<note>}}**The upstream name must match the HTTP Upstream name** specified in the base template (for example, use **upstream_1** as specified in step 6).{{</note>}}
    - Select **Next**.
-8. Preview and publish the config:
+8. Preview the config:
  
-    The config should looks like the following example:
-
-    (**Question**: how do you know the augment template is working correctly? I ran the steps above w/o selecting the augment template (skip step 4 and 7) and the resulting config looks identical as when I do select the augment template)
+    On the **Preview Config** page, the resulting config should similar to the following example:
 
     ```nginx
-    # ************************************************ IMPORTANT !! ************************************************
-    # This is a Template generated configuration. Updates should done through the Template
-    # Submissions workflow. Manual changes to this configuration can/will be overwritten
-    # __templateTag={"uid":"2625bc21-77cc-4774-a3ab-e1ccd51a64fa","file":"base.tmpl","name":"base"}
-
+    # /******************************** !! IMPORTANT !! ********************************/
+    #   This is a Template generated configuration. Updates should done through the Template
+    #   Submissions workflow. Manual changes to this configuration can/will be overwritten.
+    # __templateTag={"uid":"9f309d78-cb15-4371-9811-a334ba8adc98","file":"base.tmpl","name":"Round Robin Augment Template"}
     events {
-        worker_connections 1024;
+    	worker_connections 1024;
     }
-
     http {
-        upstream upstream_1 {
-            server backend1.example.com:80;
-        }
+    	upstream upstream_1 {
+    		server backend1.example.com:80;
+    	}
+    	server {
+    		server_name foo.com;
+    		location /users {
+    			
+    # <<< BEGIN DO-NOT-EDIT location augment templates >>>
 
-        server {
-            server_name foo.com;
-            location /users {
-            }
-        }
+    			# __templateTag={"uid":"0555cd49-2a15-46b3-b93b-3c287d23d872","file":"location.tmpl","name":"Location Proxy Augment"}
+    			include /etc/nginx/augments/location/base_http-server1_loc1_9f309d78_0555cd49-2a15-46b3-b93b-3c287d23d872.conf;
+    			
+    # <<< END DO-NOT-EDIT location augment templates >>>
+
+    		}
+    	}
     }
     ```
+
+9. If the configuration looks correct, select **Publish** to deploy it.
