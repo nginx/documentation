@@ -59,7 +59,7 @@ authors: []
    - Select **Add**.
 3. Add the schema files:
    - Select **Add File**.
-   - Select **Schema File > http-server.json, http-upstream, location.json**.
+   - Select **Schema File**, then select **http-server.json, http-upstream, location.json**.
    - Select **Add**.
 
 Your base template should now include the following files:
@@ -427,7 +427,7 @@ Your augment template should now include the following files:
    - On the **HTTP Servers** form, select **Add HTTP Servers**.
    - Enter a server name (for example, **foo.com**).
    - Enter a server ID (for example, **main_server**).
-   - Add at least one server:
+   - Add a server location:
      - In the **Server Locations** pane, select **Add Server Location**.
      - Enter a location name (for example, **/users**).
      - Enter a location ID (for example, **users_proxy**).
