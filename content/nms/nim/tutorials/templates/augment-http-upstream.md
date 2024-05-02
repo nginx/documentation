@@ -55,7 +55,7 @@ authors: []
 1. On the **Template > Overview** page, select **Round Robin Base Template**.
 2. Add the config template file:
    - Select **Add File**.
-   - Select **Config File > based.tmpl**.
+   - Select **Config File > base.tmpl**.
    - Select **Add**.
 3. Add the schema files:
    - Select **Add File**.
@@ -320,11 +320,11 @@ This screenshot shows the differences between the [F5 Global Default Base templa
 1. On the **Template > Overview** page, select **Location Proxy Template**.
 2. Add the config template file:
    - Select **Add File**.
-   - Select **Config File > **location.tmpl**
+   - Select **Config File > location.tmpl**
    - Select **Add**.
 3. Add the schema files:
    - Select **Add File**.
-   - Select **Schema File > location.json, meta.json**.
+   - Select **Schema File > location.json**.
    - Select **Add**.
 
 Your augment template should now include the following files:
