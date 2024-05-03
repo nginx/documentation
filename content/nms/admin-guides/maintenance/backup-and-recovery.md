@@ -224,7 +224,7 @@ To restore NGINX Management Suite and the installed modules into a different Kub
 
 1. The script will ask for the NGINX Management Suite namespace. Once the namespace has been provided, the script will use the specified backup archive.
 
-The restore script will only restore the databases and core secrets. If you want to restore the user passwords too, run the following commands on the extracted `k8s-backup-<timestamp>.tar.gz` file:
+The restore script will only restore the databases and core secrets. If you want to restore the user passwords too, extract the `k8s-backup-<timestamp>.tar.gz` file  and run the following commands:
 
   ```shell
   cd k8s-backup-<version>/secrets
