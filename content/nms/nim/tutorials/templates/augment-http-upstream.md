@@ -69,241 +69,39 @@ Your base template should now include the following files:
 ### Add the base.tmpl file details
 
 1. In the template file list, select **base.tmpl**.
-2. Copy and paste the following contents into the **base.tmpl** file editor.
-
-   ``` go
-   {{/*
-       This is the simple base template that is composed after Main, Http and Stream
-       blocks are rendered. Injectables for L1 augments are included.
-   */}}
-   {{ $input := .}}
-   {{ $baseData := .Data.V1}}
-
-   {{/* L1 execute main.tmpl for all enabled use cases */}}
-   {{ $input.ExecTemplateAugments "main" }}
-   events {
-       worker_connections  1024;
-   }
-
-   http {
-       {{/* L1 execute http.tmpl for all enabled use cases */}}
-       {{ $input.ExecTemplateAugments "http" }}
-       {{ range $upstreamIndex, $upstream := $baseData.http.upstreams }}
-             upstream {{$upstream.templateInput.name}} {
-                 {{$upstreamTemplateInput := $upstream.templateInput}}
-                 {{range $serverIndex, $upstreamServer := $upstreamTemplateInput.servers}}
-                     {{$port := ""}}
-                     {{if $upstreamServer.port}}
-                         {{$port = (printf ":%0.f" $upstreamServer.port)}}
-                     {{end}}
-                     server {{$upstreamServer.address}}{{$port}};
-                 {{end}}
-
-                 {{/* L1 execute http-upstream.tmpl for all enabled use cases for the $upstream */}}
-                 {{ $input.ExecTemplateAugments "http-upstream" $upstream }}
-             }
-       {{end}}
-
-       {{ range $serverIndex, $server := $baseData.http.servers}}
-           server {
-               server_name {{$server.templateInput.serverName}};
-               {{ range $locationIndex, $location := $server.locations}}
-                   location {{$location.templateInput.nameExpression}} {
-                     {{/* L1 execute location.tmpl for all enabled use cases for the $location */}}
-                     {{$input.ExecTemplateAugments "location" $server $location}}
-                   }
-               {{end}}
-
-               {{/* L1 executes http-server.tmpl for all enabled use cases for the $server */}}
-               {{ $input.ExecTemplateAugments "http-server" $server }}
-           }
-       {{end}}
-   }
-   ```
-
+2. Copy and paste the following Go template into the **base.tmpl** file editor.
 3. Select **Save** (disk icon).
 
-<details>
-<summary><i class="fas fa-code-compare"></i> Compare the Round Robin Base template with the F5 Global Default Base template.</summary>
+{{< include "nim/templates/tutorial/reverse-proxy/base-template/base.md" >}}
 
-This screenshot shows the differences between the [F5 Global Default Base template]({{< relref "nms/nim/about/templates/default-base-template.md" >}}) and the Round Robin Base template. You can see which sections were kept and which were removed in the Round Robin Base template.
-
-{{<img src="/nim/templates/round-robin-base-template-diff.png" alt="Screenshot showing the configuration differences between the F5 Global Default Base template and the Round Robin Base template for an NGINX setup. This image highlights the removed sections in the Round Robin Base template by showing a side-by-side comparison with the Global Default Base template." width="auto" height="auto">}}
-</details>
 
 ### Add the http-server.json file details
 
 1. Select **http-server.json**.
-2. Copy and paste the following contents into the **http-server.json** file editor.
-
-    ``` json
-    {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "HTTP Server Inputs",
-      "type": "object",
-      "properties": {
-        "templateInput": {
-          "type": [
-            "object",
-            "null"
-          ],
-          "properties": {
-            "serverName": {
-              "title": "Server name",
-              "type": "string",
-              "description": "Specifies the name for the http server.",
-              "examples": [
-                "foo.com"
-              ]
-            },
-            "id": {
-              "title": "Server ID",
-              "type": "string",
-              "description": "Case sensitive alphanumeric id used for specifying augment placement.",
-              "examples": [
-                "main_server"
-              ]
-            }
-          },
-          "required": [
-            "serverName",
-            "id"
-          ]
-        }
-      },
-      "required": []
-    }
-
-    ```
-
+2. Copy and paste the following JSON schema into the **http-server.json** file editor.
 3. Select **Save** (disk icon).
+
+{{< include "nim/templates/tutorial/reverse-proxy/base-template/http-server.md" >}}
+
 
 
 ### Add the http-upstream.json file details
 
 1. Select **http-upstream.json**.
-2. Copy and paste the following contents into the **http-upstream.json** file editor.
-
-    ``` json
-    {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "HTTP Upstream Inputs",
-      "type": "object",
-      "properties": {
-        "templateInput": {
-          "type": [
-            "object",
-            "null"
-          ],
-          "properties": {
-            "name": {
-              "title": "HTTP Upstream name",
-              "type": "string",
-              "description": "Specifies the name for the http upstream.",
-              "examples": [
-                "upstream_1"
-              ]
-            },
-            "id": {
-              "title": "Upstream ID",
-              "type": "string",
-              "description": "Case sensitive alphanumeric id used for specifying augment placement.",
-              "examples": [
-                "main_upstream"
-              ]
-            },
-            "servers": {
-              "type": "array",
-              "title": "Upstream servers",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "address": {
-                    "title": "Upstream server address",
-                    "type": "string",
-                    "description": "Specifies the address for the upstream server.",
-                    "examples": [
-                      "backend1.example.com",
-                      "192.0.0.1"
-                    ]
-                  },
-                  "port": {
-                    "type": "integer",
-                    "title": "Upstream server port",
-                    "description": "Specifies the port for the upstream server.",
-                    "minimum": 1,
-                    "maximum": 65535,
-                    "examples": [
-                      80
-                    ]
-                  }
-                },
-                "required": [
-                  "address"
-                ]
-              }
-            }
-          },
-          "required": [
-            "name",
-            "servers",
-            "id"
-          ]
-        }
-      },
-      "required": []
-    }
-
-    ```
-
+2. Copy and paste the following JSON schema into the **http-upstream.json** file editor.
 3. Select **Save** (disk icon).
+
+{{< include "nim/templates/tutorial/reverse-proxy/base-template/http-upstream.md" >}}
+
 
 ### Add the location.json file details
 
 1. Select **location.json**.
-2. Copy and paste the following contents into the **location.json** file editor.
-
-     ``` json
-    {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "Location Inputs",
-      "type": "object",
-      "properties": {
-        "templateInput": {
-          "type": [
-            "object",
-            "null"
-          ],
-          "properties": {
-            "nameExpression": {
-              "title": "Location Name",
-              "type": "string",
-              "description": "Specifies the location's name expression.",
-              "examples": [
-                "/status"
-              ]
-            },
-            "id": {
-              "title": "Location ID",
-              "type": "string",
-              "description": "Case sensitive alphanumeric id used for specifying augment placement.",
-              "examples": [
-                "main_location"
-              ]
-            }
-          },
-          "required": [
-            "nameExpression",
-            "id"
-          ]
-        }
-      },
-      "required": []
-    }
-
-    ```
-
+2. Copy and paste the following JSON schema into the **location.json** file editor.
 3. Select **Save** (disk icon).
+
+{{< include "nim/templates/tutorial/reverse-proxy/base-template/location.md" >}}
+
 
 ## Create the augment template
 
@@ -335,82 +133,18 @@ Your augment template should now include the following files:
 
 1. Select **location.tmpl**.
 2. Copy and paste the following contents into the **location.tmpl** file editor.
-
-    ``` go
-    {{$augmentData := .AugmentData.V1}}
-    {{$server := index .Args 0}}
-    {{$location := index .Args 1}}
-    {{$locationId := "" }}
-
-    {{if and $location $location.templateInput}}
-      {{$locationId = $location.templateInput.id}}
-    {{end}}
-
-    {{/* Check to see if we have upstreamName for this location ID */}}
-    {{range $args := $augmentData.location.templateInput.locations}}
-      {{if (eq $args.targetId $locationId)}}
-        proxy_pass http://{{$args.upstreamName}};
-        {{break}}
-      {{end}}
-    {{end}}
-
-    ```
-
 3. Select **Save** (disk icon).
+
+{{< include "nim/templates/tutorial/reverse-proxy/augment-template/location-template.md" >}}
+
 
 ### Add the location.json details
 
 1. Select **location.json**.
 2. Copy and paste the following contents into the **location.json** file editor.
-
-    ``` json
-    {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "Location Inputs",
-      "type": "object",
-      "properties": {
-        "templateInput": {
-          "type": [
-            "object",
-            "null"
-          ],
-          "properties": {
-            "locations": {
-              "type": "array",
-              "title": "Location List",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "targetId": {
-                    "title": "Location ID",
-                    "type": "string",
-                    "description": "Case sensitive alphanumeric id used for specifying augment placement.",
-                    "examples": [
-                      "main_location"
-                    ]
-                  },
-                  "upstreamName": {
-                    "type": "string",
-                    "title": "Upstream Name",
-                    "description": "Name of the target upstream. Must match exactly.",
-                    "examples": [
-                      "upstream_1"
-                    ]                
-                  }
-                },
-                "required": ["targetId", "upstreamName"]
-              }
-            }
-          },
-          "required": ["locations"]
-        }
-      },
-      "required": []
-    }
-
-    ```
-
 3. Select **Save** (disk icon).
+
+{{< include "nim/templates/tutorial/reverse-proxy/augment-template/location-json.md" >}}
 
 ## Generate the template submission
 

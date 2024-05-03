@@ -1,0 +1,7 @@
+{
+  "meta_version_num": 1,
+  "name": "rr_aug_loc_proxy",
+  "description": "Tutorial augment template for location example",    
+  "type": "augment",
+  "uid": "6b48bb57-b2ca-40c7-a296-b1c11e3cf3d9"
+}
