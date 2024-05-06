@@ -39,15 +39,15 @@ Before installing the Nbeamex coffee maker, make sure you have:
 
 Follow these detailed steps to install your new coffee maker.
 
-## Prepare the installation area
+### Prepare the installation area
 
 Ensure the area is clean and close to an outlet.
 
-### Clear the countertop
+#### Clear the countertop
 
 Remove any items where the coffee maker will be placed.
 
-### Measure the space
+#### Measure the space
 
 Confirm the coffee maker fits in the designated area with adequate clearance.
 
