@@ -5,27 +5,19 @@
 
 ## Introduction
 
-Welcome to our project! This style guide is intended for use by project
-contributors, not necessarily end-users. It provides general guidance to anyone
-who contributes to the project's documentation.
+Welcome to our project! This style guide is intended for use by project contributors, not necessarily end-users. It provides general guidance to anyone who contributes to the project's documentation.
 
 ## Intended audience and scope
 
-This style guide is intended for use by any contributors that are writing
-documentation for F5 NGINX products, including software engineers. This guide
-can help project contributors to communicate clearly and consistently in the project's end-user documentation, API documentation, configuration files, and in-product user messages.
+This style guide is intended for use by any contributors that are writing documentation for F5 NGINX products, including software engineers. This guide can help project contributors to communicate clearly and consistently in the project's end-user documentation, API documentation, configuration files, and in-product user messages.
 
 ## Our preferred style guide
 
 This document contains guidelines specific to the the documentation of F5 NGINX products and open source projects. 
 
-F5 NGINX follows the [Microsoft style guide](https://learn.microsoft.com/en-us/style-guide/welcome/)
-for user-facing content and the Chicago Manual of Style](https://www.chicagomanualofstyle.org/home.html).
-Our project uses standard American spelling and our preferred dictionary is the
-[American Heritage Dictionary](https://ahdictionary.com/).
+F5 NGINX follows the [Microsoft style guide](https://learn.microsoft.com/en-us/style-guide/welcome/) for user-facing content and the Chicago Manual of Style](https://www.chicagomanualofstyle.org/home.html). Our project uses standard American spelling and our preferred dictionary is the [American Heritage Dictionary](https://ahdictionary.com/).
 
-When writing documentation for our project, align with the default guide's
-voice and tone.
+When writing documentation for our project, align with the default guide's voice and tone.
 
 ## F5 brand trademarks and product names
 
@@ -47,8 +39,7 @@ voice and tone.
 
 ## Glossary of preferred terms
 
-The table provides guidelines about the terms you should and should not use for
-consistency, listed in alphabetical order:
+The table provides guidelines about the terms you should and should not use for consistency, listed in alphabetical order:
 
 | Term | Notes | Explanation |
 |------|-------|-------------|
