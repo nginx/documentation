@@ -252,8 +252,7 @@ consistency, listed in alphabetical order:
 | quotation marks (titles/headings) | Do not use quotation marks in topic titles or section headings; recast or omit if needed. Also, apply appropriate tags to identify what the text represents (such as a log or error message, and so on) rather than using quotes to add emphasis or convey something about the text origin. You can use smart (straight) quotes in release notes, for table cell content (such as CLI syntax and related text in Known issues, and so on). Do not use curly quotes in content. ||
 | radio button | Don't use radio button. Refer to item by label. If necessary for clarity, use button or option. ||
 | Reboot, reset | Do not use. Use restart. See boot, boot up, reboot. ||
-| Receive String | Title caps when used as a setting. Lowercase (receive string) when used as an expression. ||
-| Referer | (industry standard when referencing the referer header.) ||
+| Referrer | (industry standard when referencing the referrer header.) ||
 | regular expression | Not RegExp. ||
 | Reject | See virtual server types. ||
 | reject-all | Also refer to catch-all. ||
@@ -270,8 +269,6 @@ consistency, listed in alphabetical order:
 | secure web gateway | Do not abbreviate generic references to the F5 offering. ||
 | sees | When referring to products, avoid as anthropomorphism. When referring to products, stay away from words like decides, knows, sees, listens, and hears. ||
 | select | Use instead of "click on" when referring to interaction with elements of a product user interface. ||
-| Send String | Send String when used as a setting. send string when used as an expression. ||
-| serial cable failover | Also refer to hardware failover. ||
 | server-side/server side | Hyphenate when used as an adjective. ||
 | Session Initiation Protocol (SIP) | Correct: a SIP client (pronounced sip). ||
 | shortcut menu | Don't use it. ||
@@ -279,7 +276,6 @@ consistency, listed in alphabetical order:
 | single quotes | In our docs, we don't use single quotes to mean apostrophes [ 'like this' ]. We use them only when they are required for syntax. ||
 | slash (“/” symbol) | When referencing the slash character (forward or backward) in content, specify the symbol by name (forward slash or back slash). You can also add the symbol if you feel that is helpful, though this is not required (/). Do not use oblique to mean slash. ||
 | slave/master | Do not use these terms if possible. Revise to secondary/primary, respectively. For more information, refer to K34150231: Exclusionary language in F5 products and documentation. ||
-| Slot 3 | Use same reference for other Slot numbers. ||
 | space | Do not use when referring to an input field or checkbox where the user needs to enter info. Recast to identify as a box. ||
 | SPDY | Correct: a SPDY profile (pronounced speedy). ||
 | spin up/spin down, spinning up/spinning down | Jargon, but becoming more widely used because of AWS. Do not use in our documentation without adding context on first reference. For example You can spin up (create additional virtual instances) or spin down (remove virtual instances) . . . . ||
@@ -290,7 +286,6 @@ consistency, listed in alphabetical order:
 | tap | Describes action of touching the hardware touchscreens in hardware documentation. Do not use in software documentation; use "select" instead. ||
 | tarball | tarball is defined as "files distributed as a tar archive"; a computer file format that can combine multiple files into a single, typically compressed, file. ||
 | TCP flag names | All caps. SYN, ACK, PSH, URG, FIN, etc. (Industry standard) ||
-| tenant | Use tenant only when referring to VELOS product user interface. Exception: Templates use the term, tenant. ||
 | tense | Strive to use the simple present tense rather than the past or future, unless necessary for clarity. Do not: The system will receive. Do: The system receives. Do not: The feature was introduced in NGINX Instance Manger 2.16. Do: The feature is introduced in NGINX Instance Manager 2.16. (Remember that for some users older versions are used in the present.) ||
 | text box | Use box. ||
 | that vs. which vs. who | Be careful. Don't use that when you mean who. Use that for objects and who for people. Also, make sure you don't mean which. That sets off essential clauses (containing information essential to the meaning of the sentence). Which sets off non-essential clauses (not containing information essential to the meaning of the sentence). Examples: The virtual servers that you configured are ready. (that you configuredis essential to distinguish them from virtual servers that you did not yet configure.) The virtual servers, which you configured, are ready. (which you formatted is not essential because you do not have any configured ones to distinguish the configured ones from. This is just extra, non-essential, information. Note: which and the clause it modifies are set off by commas because you could eliminate the clause without changing the meaning of the sentence. You can't do that with restrictive that clauses. ||
@@ -315,13 +310,10 @@ consistency, listed in alphabetical order:
 | virtual address | Use instead of virtual IP address or VIP. ||
 | virtual address vs. virtual IP address | Although this refers to the IP address part of a virtual server destination address, only use virtual address (which also reflects the GUI). ||
 | virtual edition/Virtual Edition | Use virtual edition as a generic term. For Virtual Edition, see VE. ||
-| Virtual eXtended LAN (VXLAN) | Also refer to VXLAN Tunnel Endpoint (VTEP) ||
 | Virtual Local Area Network (VLAN) | Do not spell out unless necessary to context. ||
 | Virtual Private Network (VPN) | Do not spell out unless necessary to context. ||
 | walk | Don't use. Anthropomorphism. Instead, try guides, leads, conducts, directs, shows… Example: The Setup utility guides you through a series of pages. ||
 | warning/caution | Caution is less severe than Warning. Use Caution when alerting that damage may occur, such as data loss. Use Warning as the severest form of advisory, reserved for when there's a hazard to personnel (such as you're being directed to install a server rack and there's a chance it may fall on you). ||
-| webtop | One word, lowercase. ||
-| WebUI | Do not use. Use Configuration utility. ||
 | wget | command.| |
 | Wget | program. | |
 | whether or not | Don't use whether or not something happens. Use whether. Also see if vs. whether. ||
@@ -333,7 +325,6 @@ consistency, listed in alphabetical order:
 | wish, desire | Do not use. Belongs in fairy tales. Use want, need, require, or prefer. ||
 | Wizard and wizard | When documenting the GUI, you can capitalize Wizard if appropriate, such as for the Network Access Setup Wizard. When writing about wizards in general, or when a page title of a dialog box or GUI does not show Wizard in uppercase format, you can leave wizard in lowercase format. ||
 | WWW or www | Do not include www. in web addresses In text, do not use WWW, but use Internet instead. Of course, you can use www as part of a URL. Although we're moving away from that, too. | |
-
 
 ---
 
