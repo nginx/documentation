@@ -119,10 +119,7 @@ consistency, listed in alphabetical order:
 | F5 recommends vs. We recommend | Do not use We recommend or it is recommended when referring to an F5 recommended guideline. If needed, use F5 recommends or, at present, writers are encouraged to state the specific action that the user should take when possible. ||
 | F5 Support | Use instead of F5 Technical Support or other variations thereof. ||
 | F5 Technical Support | Do not use. Use F5 Support. ||
-| F5 VNF Manager | This is an F5 product. The long version of the name is F5 Virtualized Network Functions Manager. ||
 | F5 XC Tech Docs | Use when linking to documents on the https://docs.cloud.f5.com/docs/ site. ||
-| f5site02, f5net.com | Important: For internal use and inclusion only (virtual machines/intranet). Do not publish F5 internal machines and domain names in external documentation. ||
-| Fast Feature or Fast template | F5 does not officially have a FAST feature, just FAST templates. But the term FAST feature is used in some places. ||
 | fetch | This can be a technical term; depending on context, it may relate to getting, reading, or moving data objects. ||
 | fictitious names (domains/companies) | When documenting example scenarios, unless it is a case study, and/or we have approval from the company to use their company name, we should use a generic fictitious approved name (such as ABC corporation or Company A or Company B). RE the GUI: Consult the legal team if your product team uses trademarked names (owned by others) in the GUI. ||
 | figure captions (graphics) | Ensure that text describing the graphic is precise, short, and describes the action or process shown in graphic; do not include illustration in the caption. AVOID: “Figure 2 Illustration of NGINX Instance Manager using XXX. Avoid using trademarks in diagrams; instead, ensure that the product name is called out in the topic body text and add the trademark as needed at first mention. ||
@@ -176,8 +173,6 @@ consistency, listed in alphabetical order:
 | IP addresses in examples | Be careful not to use example IP addresses that belong to another company. Refer to [RFC5737](https://www.ietf.org/rfc/rfc5737.txt) for a list of IP addresses that are approved for use in documentation and examples. ||
 | IPsec | Internet Protocol Security (IPsec), two caps. Note internal capitalization style of acronym. Do not use IPSec (three caps). ||
 | IPv4-in-IPv6 vs. IPv4 in IPv6 | You can hyphenate IPv4-in-IPv6 when used as an adjective, such as IPv4-in-IPv6 tunnels. Note that the internal v in IPv4 and IPv6 should remain in lowercase format. ||
-| iRule | The product name is iRules. You can refer to an individual iRule. Otherwise, always use iRules and otherwise avoid iRule, including use as modifier for a singular noun. For example use an iRules command rather than an iRule command. ||
-| iRules | Use when referring to the product and multiple coded rules. Omit iRules from the command name on subsequent mentions. For example, iRules is a product name and is therefore always singular. iRules is, not iRules are. ||
 | ISO 9001:2015 certification | For example: ISO 9001:2015 certified" or ISO 9001:2015 certification Don't use: ISO certified or ISO certification (Per: ISO - Certification, for questions about the use of ISO Certificate terms and logo, please contact the GS quality team at *qmt) ||
 | jargon | Jargon is the technical terminology or characteristic idiom of a special activity or group. Try hard to avoid it. Think about explaining something to a member of your family or a friend who doesn't know what you know. F5 products are highly technical, but strive to be as plainspoken as possible when describing or instructing. Spell out abbreviations on first use, use the clearest and easiest word to understand that will still accomplish the job, and so on. ||
 | kill | Avoid this term except in command line syntax, where it is a UNIX command for stopping processes. (It's actually an IEEE POSIX standard command.) Alternatives for describing the action are: § End the process § Interrupt the process § Quit the process § Shut down the process § Stop the process ||
@@ -186,7 +181,6 @@ consistency, listed in alphabetical order:
 | Latin | Don't use it [via, vice versa, id est, i.e., e.g., etc. ] EXCEPTION: Security Advisory Articles and vulnerabilities in release notes. ||
 | launch | As in launch a program. This is jargon. Use start instead. ||
 | layer 4 (L4) | Lowercase spelled out, capitalized in abbreviation. Use same reference for all layer numbers: layer 2, 3, 7, etc. layer 4-7 (L4-7) (no spaces) ||
-| LBH | This term is a hybrid of LOP/BuC ||
 | left-hand | See Page directions. ||
 | let | One of those weak, vague verbs we're supposed to avoid as much as possible: Allow, do, enable, let, perform; enter [usually implies type and press Enter], be, has, make, and do. Use direct, active verbs instead. ||
 | lets, allows | Avoid. These verbs are system-focused and not user-focused. They may be appropriate to employ in a description about the feature, but not when describing what a user can accomplish by using the feature. ||
@@ -207,7 +201,6 @@ consistency, listed in alphabetical order:
 | master | Do not use this term in documentation unless you are referring to/quoting specific command line syntax or process. For example: "The nginx master process...". Some possible alternatives, depending on your use case: primary, prime, principal, control, or, possibly, server. For more information, refer to K34150231: Exclusionary language in F5 products and documentation. ||
 | master/slave | Do not use these terms if possible. Revise to primary/secondary. ||
 | may/may not | Implies permission or uncertainty. Generally, use can indicate ability. ||
-| mBIP | Do not use in customer-facing documentation. ||
 | menu | In general, try to avoid discussing the UI. Use the label of the UI item instead unless there is a possibility for confusion. Do not use menu as a generic term. Most often the UI item is a list, not a menu. Never use "drop-down menu". ||
 | mouse | Don't use the word mouse when you mean cursor. ||
 | mouse over | We don't use mouseover, or mouse over, or mouse-over in our writing. If you need this concept, try a write-around: "when you move the cursor over..." or "hover over the system performance graph...". ||
@@ -235,8 +228,6 @@ consistency, listed in alphabetical order:
 | path name | Don't use it. Use path instead (see path). Don't use path name, but you can use file name. ||
 | percent (%) | Do not spell out percent. ||
 | perform | One of those weak, vague verbs we're supposed to avoid as much as possible: Allow, do, enable, let, perform; enter [usually implies type and press Enter], be, has, make and do. Use direct, active verbs instead: complete, follow the steps, finish… ||
-| Performance (HTTP) | See virtual server types. ||
-| Performance (Layer 4) | See virtual server types. ||
 | persist | When used as a transitive verb, as in use this command to persist connections to the server. Use the adjective form, persistent, whenever possible. So instead of saying to ensure the connections persist, say "To ensure persistent connections...." ||
 | please, thank you | Don't use please except where the user is asked to do something inconvenient or where the software is to blame for a situation. Use thank you only when user has provided info that is difficult or inconvenient to collect. ||
 | plug-in, plugin | Both variations (with and without hyphen) are acceptable as long as maintaining internal consistency throughout topic(s) and/or sections, and clear to audience. ||
@@ -251,7 +242,6 @@ consistency, listed in alphabetical order:
 | power off | Do not use.* Use *shut down* for *turn off*. ||
 | pre-logon | As a setting: Pre-Logon Sequence. ||
 | prepositions | Areas--Settings are in an area of the page.<br>Box -- Users type in a box. <br>Charts -- Charts show on a page; info is found in charts. <br>Check box -- (use rarely) We place a check in a checkbox (more common, select the checkbox) <br>Diagram -- Info or objects are in a diagram or in a figure <br>Headers -- Users hover over a header. <br>Legend -- Users find info in the legend for a figure. <br>List -- Select (without preposition) an item in a list. Select an option from a list; data appears in a list. <br>Menu bar -- Select something on a menu bar. <br>Menus -- Commands are on menus. Menus -- Choose commands from menus. (Note: most UI elements are not menus but lists. See menu.) <br>Navigation pane -- Select an item in/on the navigation pane. <br>Network -- Printers may be on a network. <br>Pages -- Information and controls are on a page. <br>Panels -- Refer to objects in a panel. <br>Popup window –-(use infrequently) Information and controls are on a popup window. <br>Tabs -- The Visual Policy Editor may open in a new tab; information is found or selected on a tab. <br>Tables -- Controls are in, and info listed in, tables; but you select an item from a table. <br>Toolbar -- Select something from a toolbar, or tell the user to select something on the toolbar. ||
-| Prerequisites (TBA) | Avoid restating prerequisite steps in the task area in topic-based authoring (TBA). Let your wording provide that info and direct the user to the topic that contains the instructions. Example: Before you can monitor user and session information, you must enable session awareness for the security policy. <br>If the task prerequisites are extensive, a separate topic may be useful. In an implementation, do not regard the previous task (within a series) as a prerequisite (the same principle applies to post-requisites). ||
 | private cloud | A cloud computing environment wholly dedicated to, and accessible only by a single group, or organization. Use instead of: bare metal on-prem. Also see public cloud. ||
 | procedure vs. step | Avoid referring to a procedure as a step(s). We can refer to a procedure as a task if appropriate. ||
 | pronouns | Second person (you, your) is preferred over third person (the user, the administrator) unless necessary to avoid confusion. Avoid we If possible, use F5 instead of we. Following MSG's Bias-free communications, use gender-neutral pronouns rather than he/she, his/hers, and him/her. If you can't write around using the pronoun, use their, theirs, they, or them for the gender-neutral singular and plural pronoun. ||
@@ -261,8 +251,7 @@ consistency, listed in alphabetical order:
 | quotation marks | In our docs, we don't typically use quotation marks except when quoting a source, or when they are required for syntax. ||
 | quotation marks (titles/headings) | Do not use quotation marks in topic titles or section headings; recast or omit if needed. Also, apply appropriate tags to identify what the text represents (such as a log or error message, and so on) rather than using quotes to add emphasis or convey something about the text origin. You can use smart (straight) quotes in release notes, for table cell content (such as CLI syntax and related text in Known issues, and so on). Do not use curly quotes in content. ||
 | radio button | Don't use radio button. Refer to item by label. If necessary for clarity, use button or option. ||
-| RADIUS | Do not spell out. ||
-| Reboot, reset | Do not use. Use restart. See boot, boot up, reboot. Exception: In VIPRION systems, you can use the bladectl command to reset the device, which is a forced restart that may result in loss of running memory. ||
+| Reboot, reset | Do not use. Use restart. See boot, boot up, reboot. ||
 | Receive String | Title caps when used as a setting. Lowercase (receive string) when used as an expression. ||
 | Referer | (industry standard when referencing the referer header.) ||
 | regular expression | Not RegExp. ||
