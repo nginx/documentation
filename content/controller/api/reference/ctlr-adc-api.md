@@ -1,12 +1,13 @@
 ---
-description: Represents the state of the NGINX Controller Application Delivery REST
+description:
+  Represents the state of the NGINX Controller Application Delivery REST
   API.
 docs: DOCS-1280
 doctypes:
-- reference
-layout: redoc-single
+  - reference
+type: redoc
 tags:
-- api
+  - api
 title: ADC API
 toc: false
 weight: 300
