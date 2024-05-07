@@ -2,7 +2,7 @@
 
 This document is a guide to the fundamental concepts of making and drinking coffee. 
 
-Coffee is a popular beverage prepared from roasted coffee beans, the seeds of berries from certain Coffea species. It is known for its stimulating effect due to its caffeine content, and is consumed globally in various forms like espresso, cappuccino, latte, and more.
+Coffee is a popular beverage prepared from roasted coffee beans, the seeds of berries from certain coffee species. It is known for its stimulating effect due to its caffeine content, and is consumed globally in various forms like espresso, cappuccino, latte, and more.
 
 By drinking coffee, you can enjoy a variety of benefits such as increased alertness, improved mood, and enhanced cognitive function.
 
