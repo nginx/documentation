@@ -116,9 +116,9 @@ consistency, listed in alphabetical order:
 | expand vs. flyout (BIG-IQ) | Do not use flyout. Write text to describe action for the user. Expand is OK. The panel expands to display the application’s properties. Dev-speak in BIG-IQ, but not used by writers. ||
 | expire | In GLOBAL-SITE and EDGE-FX documents, the term expire was used to take an object. It means to have the cache remove old content. We shouldn’t have any need to use it this way anymore, thank goodness, as these products are gone. ||
 | extraneous | Don’t use it. Use extra or unneeded instead. ||
-| F5 Networks (trademark practice) | You do not need to trademark F5 Networks as a unit; if needed, you can choose to trademark F5® at first mention. F5 NETWORKS® as a unit (with all CAPS) may be used with this trademark practice in Marketing documentation for design reasons, but is not necessary in TechComm documentation. For the latest trademarks and status, see the spreadsheet of US legal trademarks http://mainstreet/sites/legal/trademarks/default.aspx, or visit the f5.com trademark page. ||
-| F5 Networks resource URLs (reference) | Include the URL when possible and use the \<filepath> element to tag the address. Be sure to include the appropriate trademark in the URL name (unregistered trademark ™, or registered trademark ®, or service mark SM, and so on) at first mention as well. In a browser, open the F5 Downloads page (downloads.f5.com). If your system is yelling at you, contact F5 Networks Technical Support web site (f5.com/support/). The MyF5 web site (support.f5.com/kb/en-us.html) The F5 DevCentral web site (devcentral.f5.com/) For the latest trademarks and status, see f5.sharepoint.com/sites/bizops/legal/trademarks/SitePages/Home.aspx?wa=wsignin1. One or more of these URLs may not be appropriate in certain documentation; also, the language you use to refer to the URL resource may differ slightly depending on context. Defer to your editor for guidance. ||
-| F5 persona names | Do not refer to Olivia, David, and so forth in public-facing documentation. ||
+| F5 Networks (trademark practice) | Replace with "F5, Inc.". Visit the [trademarks page](https://www.f5.com/company/policies/trademarks) on f5.com for the latest guidance. ||
+| F5 web resource URLs (reference) | Include the full URL when possible instead of masking the destination URL. Be sure to include the trademark in the URL name (unregistered trademark ™, or registered trademark ®, or service mark SM) at first mention where appropriate. <br>For example: "In a browser, open the F5 Downloads page (https://downloads.f5.com)" or "the F5 DevCentral web site (https://devcentral.f5.com/)". ||
+| F5 persona names | Do not refer to internal personae in public-facing documentation. ||
 | F5 recommends vs. We recommend | Do not use We recommend or it is recommended when referring to an F5 recommended guideline. If needed, use F5 recommends or, at present, writers are encouraged to state the specific action that the user should take when possible. ||
 | F5 Support | Use instead of F5 Technical Support or other variations thereof. ||
 | F5 Technical Support | Do not use. Use F5 Support. ||
@@ -131,45 +131,38 @@ consistency, listed in alphabetical order:
 | figure captions (graphics) | Ensure that text describing the graphic is precise, short, and describes the action or process shown in graphic; do not include illustration in the caption. AVOID: “Figure 2 Illustration of NGINX Instance Manager using XXX. Avoid using trademarks in diagrams; instead, ensure that the product name is called out in the topic body text and add the trademark as needed at first mention. ||
 | figures/images (TBA) | For a figure (screenshot or graphic): Use the \<fig> content unit when you want to display a screenshot or a graphic on your topic. Within the \<fig> content unit, use the \<image> element to contain the actual graphic, and use the \<title> element to provide a caption. For an image, such as an icon or button: Use the \<image> element to include artwork or images in a topic. In most cases, the \<fig> and \<title> elements are used. ||
 | file name | File name is presented as two words, unless for commands/syntax or when matching the GUI, (representing variables) such as \<filename>. ||
-| Filter field (BIG-IQ) | Capitalize Filter; do not use the terms search bar or search field. ||
 | FIPS | Correct: FIPS hardware security module (HSM), FIPS HSM. ||
-| flathead screws | Mentioned in hardware documentation (one word with no hyphen). For example: M3 x 8mm. ||
-| flyout | Do not use. In the BIG-IQ interface, use the panel expands. ||
-| foo bar, foo, fu, fubar | Do not use; always replace with specific text. Watch for these in code samples, and do not use. ||
+| flyout | Do not use. When describing the user interface, state that the "panel expands". ||
+| foo bar, foo, fu, fubar | Do not use; always replace with specific text. Watch for these in code samples. ||
 | forward slash | We don’t call it a forward slash, just a slash. § In text, use as needed to match the UI, with no space on either side. Type the host name/IP address… § In syntax, the slash is used for web addresses: https://webmail.f5.com/exchange/ ||
 | Forwarding (IP) | See virtual server types. ||
 | Forwarding (Layer 2) | See virtual server types. ||
 | forwards | Use backward and forward, not backwards and forwards. ||
-| FTBU | Internal only short-hand for the First-Time Boot utility. NEVER used in our docs. And, as of 2002, the FTBU is now the Setup utility. ||
 | FTP | Do not spell out. ||
-| fu, fubar | Do not use; always replace with specific text. Watch for these in code samples and do not use. ||
+| fu, fubar | Do not use; always replace with specific text. Watch for these in code samples. ||
 | future releases and TBD | Do not use TBD in any content, including release notes. Do not reference future releases, such as This OID will be disabled in future releases. ||
-| G | Abbreviation forgiga, but in computer terminology represents 230, or 1,073,741,824 Correct: 4G ||
+| G | Abbreviation for "giga", but in computer terminology represents 230, or 1,073,741,824. Correct: 4G ||
 | Gateway ICMP | Also see ICMP ||
 | GbE and GigE | For a number plus GbE, such as 10GbE, the standard is no space. For a number plus GigE, such as 10 GigE, the standard includes a space. ||
-| gear icon (BIG-IQ) | In the BIG-IQ system GUI, a gear icon is associated with viewing the object’s properties. ||
+| gear icon | In a product's user interface, a gear icon may open an object’s properties or the system settings. Refer to the object by its purpose, not the icon, unless in a task step. For example "Select the gear icon to open the system settings menu." or "Open the System Settings menu." ||
 | geolocation vendor name (database) | Refer to geolocation vendor name as Digital Element versus parent company Digital Envoy. ||
 | gerunds | Do not use gerund forms in article titles or headings. Good: Provision your system Incorrect: Provisioning your system ||
-| graphics (see also figures/images) | You can review the image tag details (in oXygen/Text mode) to assess whether you need to update size parameters. The optimal width is 600px. Make sure the slash format is a forward slash (/) and only use 1 or an error will occur. Tip: Use your cursor to hover over the image file icon in Perforce to view the width and height details quickly. ||
 | grayed out | Don’t use it. Use unavailable. ||
 | group box | Do not refer to UI element names if possible. Instead use the label name. If necessary for clarity, use box. ||
 | GSLB | This is the abbreviation for global server load balancing (GSLB). It is a subset of DNS. ||
-| GUI | Do not use. Acronym for Graphical User Interface. Distinguish between tasks that they complete through the Configuration utility, or through command-line interfaces, such as bigpipe, tmsh, and so on. ||
+| GUI | Do not use. Acronym for Graphical User Interface. Use "user interface" instead. ||
 | hang | As in the system hangs or This hangs the system. OK in internal department stuff; but it’s slang, and we should do better in our docs. For a write-around, try fail to respond, as in: If the program fails to respond, restart the system. Other possible terms to use, depending on the circumstances, could be: § causes the system to jam/get stuck/stop processing. § If horrid: halt, stop or crash; or cause an error. ||
-| hardware security module (HSM) | For hardware documentation; use no hyphen, the abbreviation can be used after first mention in content. ||
 | hardware upgrade | Hardware upgrade is to install a system in place with a newer platform. For example: Check the version compatibility list before upgrading your software to make sure you do not need to perform a hardware upgrade as well. ||
 | has | One of those weak, vague verbs we’re supposed to avoid as much as possible: Allow, do, enable, let, perform, be, has, make, and do. Use direct, active verbs instead. ||
 | Headings | Use imperative verbs (formerly, MyF5 used gerunds) ||
 | hears | When referring to products, avoid it, it’s anthropomorphism. When referring to products, stay away from words like decides, knows, sees, listens, and hears. ||
 | help (capitalization style) | When referring to online help in our documentation, use lowercase format for instances of help as per legacy guidelines (unless specifically referring to the Help button). However, identify it as F5 online help in order to distinguish it from general instances of help as a verb and noun. ||
-| Herculon | Do not use for hardware (platforms) or software. It's OK to retain Herculon platform mentions in existing content. Beginning As of 9/2018, Herculon should not appear in new articles. ||
 | host name | Two words except when a parameter. ||
-| hover (BIG-IQ) | Use hover over not hover on nor hover in when describing this action. ||
-| HTTP request handler threads | Correct: numHttpRequestHandlerThreads. ||
+| hover (user interface) | Use "hover over" not "hover on" nor "hover in" when describing this action. ||
 | HTTP status codes | First mention: HTTP 200 status code (OK). Subsequent mention: HTTP 200 status code. HTTP status codes are grouped into five classes: 1xx (Informational): The request was received, continuing process 2xx (Success): The was successfully received, understood, and accepted 3xx (Redirection): Further action needs to be taken to complete the request 4xx (Client Error): The request contains bad syntax or cannot be fulfilled 5xx (Server Error): The server failed to fulfill an apparently valid request The following list is not exhaustive, but includes some common HTTP status codes: 100 Continue 101 Switching Protocols 200 OK 300 Multiple Choices 301 Moved Permanently 302 Found 304 Not Modified 307 Temporary Redirect 400 Bad Request 401 Not Authorized 403 Forbidden 404 Not Found 500 Internal Server Error 502 Bad Gateway 503 Service Unavailable 504 Gateway Timeout ||
 | HTTPS | All caps unless appearing in URL, where it should be lowercase. A a daemon: https ||
 | hyphens | You can use hyphens for compound words, to join prefixes to other words, or to show word breaks. Practice best judgment when employing them. In some instances, a hyphen may seem unnecessary as the compound word may be clear enough to the user and frequently presented without a hyphen, such as antivirus. In other cases, a term may look odd without it, so you may choose to include it for readability, such as pre-entrancy vs. preentrancy. Do not use hyphens to introduce list items in TBA content. ||
-| i.e. | Abbreviation for Latin. Don’t use it. This one means that is. ||
+| i.e. | Latin abbreviation for "that is" or "in other words". Don’t use it. ||
 | id | When you mean ID, in text, never use user id nor user Id. If you’re matching a UI that says one of these, talk to the Dev team about changing it to ID. ||
 | ID | When you mean identify, in text, never use ID, spell out the word. ||
 | if v. whether | In informal writing and speech, often used interchangeably but can have different meanings, so try to use the correct word. Use if when expressing a condition of uncertainty: You don't know If NGINX Management Suite includes Instance Manager. Use whether when you are showing that two (or more) alternatives are possible: Whether your NGINX Management Suite deployment includes Instance Manager and API Connectivity Manager. ||
@@ -183,22 +176,20 @@ consistency, listed in alphabetical order:
 | interoperate | Do not use. Recast to operate or clarify connecting relationships as needed. ||
 | IP address and MAC address | Specify whether referring to IP address or MAC address in content, rather than just address for clarity. IP and MAC are always capitalized. ||
 | IP addresses (general usage) | Internal IP addresses that include beginning ranges, such as 172.25, 172.26, 172.27, 172.28, 172.29, 172.30, 172.31, and 172.32 should not appear in external documentation. ||
-| IP addresses in Examples | Be careful not to use example IP addresses that belong to another company. You can use 165.160.15.20; this is the resolved address for www.siterequest.com (a.k.a www.f5.com). Or, check out RFC5737, http://www.ietf.org/rfc/rfc5737.txt , which has an updated list of IP addresses that are available for documentation and examples. ||
+| IP addresses in examples | Be careful not to use example IP addresses that belong to another company. Refer to [RFC5737](https://www.ietf.org/rfc/rfc5737.txt) for a list of IP addresses that are approved for use in documentation and examples. ||
 | IPsec | Internet Protocol Security (IPsec), two caps. Note internal capitalization style of acronym. Do not use IPSec (three caps). ||
 | IPv4-in-IPv6 vs. IPv4 in IPv6 | You can hyphenate IPv4-in-IPv6 when used as an adjective, such as IPv4-in-IPv6 tunnels. Note that the internal v in IPv4 and IPv6 should remain lowercase format. ||
 | iRule | The product name is iRules. You can refer to an individual iRule. Otherwise, always use iRules and otherwise avoid iRule, including use as modifier for a singular noun. For example use an iRules command rather than an iRule command. ||
 | iRules | Use when referring to the product and multiple coded rules. Omit iRules from the command name on subsequent mentions. For example, iRules is a product name and is therefore always singular. iRules is, not iRules are. ||
 | ISO 9001:2015 certification | For example: ISO 9001:2015 certified" or ISO 9001:2015 certification Don't use: ISO certified or ISO certification (Per: ISO - Certification, for questions about the use of ISO Certificate terms and logo, please contact the GS quality team at *qmt) ||
 | jargon | Jargon is the technical terminology or characteristic idiom of a special activity or group. Try hard to avoid it. Think about explaining something to a member of your family or a friend who doesn't know what you know. F5 products are highly technical, but strive to be as plainspoken as possible when describing or instructing. Spell out abbreviations on first use, use the clearest and easiest word to understand that will still accomplish the job, and so on. ||
-| Keps nuts | Mentioned in hardware documentation. For example: #8-32. ||
 | kill | Avoid this term except in command line syntax, where it is a UNIX command for stopping processes. (It's actually an IEEE POSIX standard command.) Alternatives for describing the action are: § End the process § Interrupt the process § Quit the process § Shut down the process § Stop the process ||
-| known issue | TC does not use this externally and abbreviates as KI. ||
+| known issue | Abbreviate as "KI" when using in public-facing documentation. ||
 | knows | When referring to products, avoid it; it’s anthropomorphism. When referring to products, stay away from words like decides, knows, sees, listens, and hears. Do not use possessive case for inanimate objects. ||
 | Latin | Don’t use it [via, vice versa, id est, i.e., e.g., etc. ] EXCEPTION: Security Advisory Articles and vulnerabilities in release notes. ||
 | launch | As in launch a program. This is jargon. Use start instead. ||
 | layer 4 (L4) | Lowercase spelled out, capitalized in abbreviation. Use same reference for all layer numbers: layer 2, 3, 7, etc. layer 4-7 (L4-7) (no spaces) ||
 | LBH | This term is a hybrid of LOP/BuC ||
-| lease pool | Exception: the leasepool command (This is an internal command that customers do not use.) ||
 | left-hand | See Page directions. ||
 | let | One of those weak, vague verbs we’re supposed to avoid as much as possible: Allow, do, enable, let, perform; enter [usually implies type and press Enter], be, has, make and do. Use direct, active verbs instead. ||
 | lets, allows | Avoid. These verbs are system-focused and not user-focused. They may be appropriate to employ in a description about the feature, but not when describing what a user can accomplish by using the feature. ||
@@ -216,45 +207,40 @@ consistency, listed in alphabetical order:
 | management interface | Synonymous for management port. ||
 | management port | Synonymous for management interface. ||
 | manually vs. “from scratch” | Use manually or specify when describing how to create a process from the beginning or at the start. Avoid from scratch to ensure clarity and prevent future localization issues. ||
-| master | Do not use this term in documentation unless you are referring to/quoting specific command line syntax [or a UI control]. Politically incorrect. If you are dealing with a UI that uses this term, you still need to use alternates in whatever description or procedures you write. Some possible choices, depending on your use: primary, prime, principal, controller, or possibly, server. In any article that retains the non-preferred terms, under the paragraph with the first usage, include the following note: Note: F5 is working to eliminate exclusionary language in our products and documentation. For more information, refer to K34150231: Exclusionary language in F5 products and documentation. ||
+| master | Do not use this term in documentation unless you are referring to/quoting specific command line syntax or process. For example: "The nginx master process...". Some possible alternatives, depending on your use case: primary, prime, principal, control, or, possibly, server. For more information, refer to K34150231: Exclusionary language in F5 products and documentation. ||
 | master/slave | Do not use these terms if possible. Revise to primary/secondary. ||
-| may/may | Implies permission, or uncertainty. Generally, use can to indicate able. MyF5 uses may to indicate permission or uncertainty and mightindicating a stronger uncertainty than may. ||
+| may/may not | Implies permission or uncertainty. Generally, use can indicate ability. ||
 | mBIP | Do not use in customer-facing documentation. ||
-| menu | In general, try to avoid discussing the UI. Use the label of the UI item instead unless there is a possibility for confusion. Do not use menu as a generic term. Most often the UI item is a list, not a menu. Never use drop-down menu in MyF5 documentation. ||
+| menu | In general, try to avoid discussing the UI. Use the label of the UI item instead unless there is a possibility for confusion. Do not use menu as a generic term. Most often the UI item is a list, not a menu. Never use "drop-down menu". ||
 | mouse | Don’t use the word mouse when you mean cursor. ||
-| mouse over | We don't use mouseover, or mouse over, or mouse-over in our writing. If you need this concept, try a write-around: when you move the cursor over.... BIG-IQ docs often use hover over. ||
+| mouse over | We don't use mouseover, or mouse over, or mouse-over in our writing. If you need this concept, try a write-around: "when you move the cursor over..." or "hover over the system performance graph...". ||
 | Move button and \<< >> symbols (GUI) | When referring to GUI settings, you can document the button as the Move button and follow with the icon symbols \<< or >> as appropriate, or opt to not include the button by name if appropriate. ||
 | multifactor authentication (MFA) | multifactor is one word ||
-| mutually exclusive | Be careful how you use this. PREFERRED: This option mutually excludes the from-group and to-group options. TECHCOMM STYLE: The from-group and to-group options are mutually exclusive.. NOT TECHCOMM STYLE: This option is mutually exclusive of the from-group and to-group options. ||
+| mutually exclusive | Be careful how you use this. PREFERRED: This option mutually excludes the from-group and to-group options. TECHCOMM STYLE: The from-group and to-group options are mutually exclusive. ||
 | My Support | two words, title caps ||
 | MyF5 | Do not use MyF5 Knowledge Base (MyF5) or MyF5 portal. ||
 | name server vs. nameserver | nameserver ||
-| Navigate to | Deprecated as of September 9, 2019. See Go to. ||
+| Navigate to | Replaces with "Go to". ||
 | net | Don’t use the word net to mean network. ||
 | network | Don’t use network as a verb. ||
 | network mask | In our documentation, a network mask is also known as: a netmask,subnet mask, and mask. Use network mask when possible. ||
 | Note style type | Use only these Note style types: Note, Important, Tip, and Warning. Caution and Attention note style types are not used unless in hardware documentation. We do not use Notice. ||
 | numbers and numerals | Spell out the number 0-9, for example, three computers one file; numbers are OK to use in numeric elements (<0); ordinal numbers use words, such as first, second, third. Our hardware documentation may present some exceptions to this guideline. ||
 | numeric ranges | Use a hyphen (or En dash if available) as opposed to writing to when possible to indicate a range between numbers. Use a hyphen as opposed to writing to when possible to indicate a range between numbers. Also use “between” when possible, and not from when referring the numeric range. MyF5 uses through instead of a hyphen in paragraph text (non-procedural writing or writing outside of titles, tables, headers, etc.) when indicating version ranges. NGINX Instance Manager 2.1 through 2.5. ||
-| on-screen | Do not use screen or variations for the Configuration utility or BIG-IQ interface. See page. Console screen is OK to use. ||
+| on-screen | Do not use screen or variations thereof when referring to the user interface. Use "page" instead. ||
 | once | For localization purposes, use only in the noun form (to mean one single time). Use when or after as appropriate. Not our style: Once you have completed this task, the configuration is complete. ||
 | operating system vs. operation system | Watch out! We run an operating system (OS) and perform an operation; do not use operation system for OS. ||
 | output | Is a great word as a noun or adjective, but a failure as a verb. Use write to, display on, print on, or print to instead. ||
 | page | Use instead of screen. ||
-| page breaks (FrameMaker docs) | Main issues: Avoid widows and orphan (headings and sentences) New H1 headings generally start on a new page (unless short) Try to keep bulleted lists and tables together Avoid multiple sequential pages of just a few lines Try to keep warnings and Important notes with procedures they refer to [nearly obsolete] ||
-| page directions | Use only when necessary (when a UI item is hard to find). Consider that, due to Responsive Web Design, the directions may not be applicable on all viewing devices. Use: at the top of the page at the bottom of the page on the right side of the page on the left side of the page Avoid right-hand, left-hand, above, below, and other variations ||
-| pan head screws | Mentioned in hardware documentation. For example: #8-32 No hyphen, OK as is. ||
+| page directions | Use only when necessary (when a UI item is hard to find). Consider that, due to Responsive Web Design, the directions may not be applicable on all viewing devices. <br>Use: at the top of the page, at the bottom of the page, on the right side of the page, on the left side of the page.<br>Avoid: right-hand, left-hand, above, below, and other variations ||
 | patch | Use when applying an engineering hotfix. For example: You can patch your system using hotfix files. ||
 | path | Try to avoid using it when referring to a directory structure. You may use path when you are referring to a DNS path. In DNS, path and directory structure are different things. Use path. ||
 | path name | Don’t use it. Use path instead (see path). Don’t use path name, but you can use file name. ||
-| peering | Another horrible term from EDGE-FX land. Meaning to set up as peer controllers. Just say no to peering. ||
 | percent (%) | Do not spell out percent. ||
 | perform | One of those weak, vague verbs we’re supposed to avoid as much as possible: Allow, do, enable, let, perform; enter [usually implies type and press Enter], be, has, make and do. Use direct, active verbs instead: complete, follow the steps, finish… ||
 | Performance (HTTP) | See virtual server types. ||
 | Performance (Layer 4) | See virtual server types. ||
 | persist | When used as a transitive verb, as in use this command to persist connections to the server. Use the adjective form, persistent, whenever possible. So instead of saying to ensure the connections persist, say "To ensure persistent connections...." ||
-| platform names | Platform names require internal spaces and no hyphens, typically. TECHCOMM STYLE: ARX 1500. ||
-| platform names (style) | Platform names require an internal space between the letter name and numbers but no hyphen. ARX 1500, not ARX-1500. ||
 | please, thank you | Don't use please except where the user is asked to do something inconvenient or where the software is to blame for a situation. Use thank you only when user has provided info that is difficult or inconvenient to collect. ||
 | plug-in, plugin | Both variations (with and without hyphen) are acceptable as long as maintaining internal consistency throughout topic(s) and/or sections, and clear to audience. ||
 | pointer | On the off chance that we’ll ever talk about a cursor, don’t use the word pointer when you mean cursor. ||
@@ -267,8 +253,8 @@ consistency, listed in alphabetical order:
 | possessives | Don’t do it with our trademarks. Do not use possessive case for inanimate objects. Do not use possessive constructions for product and company names, such as *NGINX's config* file. No possessive in trademarked words. For instance, you can’t have the *NGINX’s anything* but you can say the *NGINX instance’s* something. ||
 | power off | Do not use.* Use *shut down* for *turn off*. ||
 | pre-logon | As a setting: Pre-Logon Sequence. ||
-| prepositions | Areas—Settings are in an area of the page. Box—Users type in a box. Charts—charts show on a page; info is found in charts. Check box –rarely—we place a check in a check box. (more usual, select the check box) Diagram—info or objects are in a diagram or in a figure Headers—in BIG-IQ docs, we tell users to hover over a header. Legend—users find info in the legend for a figure. List—Select (without preposition) an item in a list. Select an option from a list; data appears in a list. Menu bar—Select something on a menu bar. Menus--Commands are on menus. Menus--Choose commands from menus. (Note: most UI elements are not menus but lists. See menu.) Navigation pane—Select an item in/on the navigation pane; we used to refer to the Main tab of the navigation pane. Network—Printers may be on a network. Pages—Information and controls are on a page. Panels—in BIG-IQ docs, refer to objects in a panel. Popup window–infrequently-Information and controls are on a popup window. Tabs–the Visual Policy Editor may open in a new tab; information is found or selected on a tab. Tables—controls are in, and info listed in tables; but you select an item from a table. Toolbar—select something from a toolbar, or tell the user to select something on the toolbar. ||
-| Prerequisites (TBA) | Avoid restating prerequisites in the Prerequisites template area in TBA. Let your wording provide that info, and remember that word does not show in output. Example: Before you can monitor user and session information, you must enable session awareness for the security policy. If the task prerequisites are extensive, a separate topic may be useful. In an implementation, do not regard the previous task (within a series) as a valid prerequisite (the same principle applies to post-requisites). ||
+| prepositions | Areas--Settings are in an area of the page.<br>Box -- Users type in a box. <br>Charts -- Charts show on a page; info is found in charts. <br>Check box -- (use rarely) We place a check in a check box (more common, select the check box) <br>Diagram -- Info or objects are in a diagram or in a figure <br>Headers -- Users hover over a header. <br>Legend -- Users find info in the legend for a figure. <br>List -- Select (without preposition) an item in a list. Select an option from a list; data appears in a list. <br>Menu bar -- Select something on a menu bar. <br>Menus -- Commands are on menus. Menus -- Choose commands from menus. (Note: most UI elements are not menus but lists. See menu.) <br>Navigation pane -- Select an item in/on the navigation pane. <br>Network -- Printers may be on a network. <br>Pages -- Information and controls are on a page. <br>Panels -- Refer to objects in a panel. <br>Popup window –-(use infrequently) Information and controls are on a popup window. <br>Tabs -- The Visual Policy Editor may open in a new tab; information is found or selected on a tab. <br>Tables -- Controls are in, and info listed in, tables; but you select an item from a table. <br>Toolbar -- Select something from a toolbar, or tell the user to select something on the toolbar. ||
+| Prerequisites (TBA) | Avoid restating prerequisite steps in the task area in topic-based authoring (TBA). Let your wording provide that info and direct the user to the topic that contains the instructions. Example: Before you can monitor user and session information, you must enable session awareness for the security policy. <br>If the task prerequisites are extensive, a separate topic may be useful. In an implementation, do not regard the previous task (within a series) as a prerequisite (the same principle applies to post-requisites). ||
 | private cloud | A cloud computing environment wholly dedicated to, and accessible only by, a single group or organization. Use instead of: bare metal on-prem Also see public cloud. ||
 | procedure vs. step | Avoid referring to a procedure as a step(s). We can refer to a procedure as a task if appropriate. ||
 | pronouns | Second person (you, your) is preferred over third person (the user, the administrator) unless necessary to avoid confusion. Avoid we If possible, use F5 instead of we. Following MSG's Bias-free communications, use gender neutral pronouns rather than he/she, his/hers, and him/her. If you can't write around using the pronoun, use their, theirs, they, or them for the gender-neutral singular and plural pronoun. ||
@@ -278,13 +264,11 @@ consistency, listed in alphabetical order:
 | QoS vs. QOS | Do not write as QOS regardless of the context; always document the abbreviation for Quality of Service as (QoS). ||
 | queuing vs. queueing | Use queuing, not queueing. ||
 | quotation marks | In our docs, we don’t typically use quotation marks except when quoting a source, or when they are required for syntax. ||
-| quotation marks (TBA) | Do not use quotation marks in TBA topic titles; recast or omit if needed. They break the builds so cannot be included. Also, apply appropriate tags to identify what the text represents (such as a log or error message, and so on) rather than using quotes to add emphasis or convey something about the text origin. You can use smart (straight) quotes in release notes that are in TBA topic form, for table cell content (such as CLI syntax and related text in Known issues, and so on). Do not use curly quotes in content. ||
+| quotation marks (titles/headings) | Do not use quotation marks in topic titles or section headings; recast or omit if needed. Also, apply appropriate tags to identify what the text represents (such as a log or error message, and so on) rather than using quotes to add emphasis or convey something about the text origin. You can use smart (straight) quotes in release notes, for table cell content (such as CLI syntax and related text in Known issues, and so on). Do not use curly quotes in content. ||
 | radio button | Don’t use radio button. Refer to item by label. If necessary for clarity, use button or option. ||
 | RADIUS | Do not spell out. ||
-| RAM Cache | The RAM Cache feature has phased out; what used to be RAM Cache-related (that was part of the standard LTM HTTP profile) is now in its own LTM profile known as a Web Acceleration profile. \<<further update in progress: Need current info on this>> ||
 | Reboot, reset | Do not use. Use restart. See boot, boot up, reboot. Exception: In VIPRION systems, you can use the bladectl command to reset the device, which is a forced restart that may result in loss of running memory. ||
 | Receive String | Title caps when used as a setting. Lowercase (receive string) when used as an expression. ||
-| references (to topics, guides) | Do not use cross-references in topics, except release notes (in appropriate topic). Only release notes can include guides for external reference and thus \<xref> tags. Additional \<cite> tags are not needed with \<xref> tags in release notes. ||
 | Referer | (industry standard when referencing the referer header.) ||
 | regular expression | Not RegExp. ||
 | Reject | See virtual server types. ||
@@ -292,17 +276,16 @@ consistency, listed in alphabetical order:
 | replace | To install a system in place of one with the same platform, due to failure or similar condition. For example: If your hardware fails, you can replace it if you have a support contract by calling F5 Support. ||
 | resource record | Not RR. ||
 | Result (TBA and GUI) | For GUI content, you can omit a Result step if you feel the result of the GUI steps would be obvious and expected for the user. ||
-| RFCs | As per TechComm writing guidelines, we avoid including Request for Comments (RFCs). If special exception warrants an RFC mention, limit to one reference per TBA topic (or content section in FrameMaker). (These cases should be discussed and agreed to first by the writing manager and editor.) ||
 | right-hand | See Page directions. ||
 | Role-based Access Control (RBAC) | Note the hyphen and acronym style. ||
 | root account | Use this version for general references; if referring to the UI, reflect how the UI refers to it. ||
 | scale (up, down, in out) | See Autoscaling. ||
-| screen | Do not use screen or variations for the Configuration utility or BIG-IQ interface. Use page instead. Console screen is OK to use. ||
+| screen | Do not use screen or variations thereof when referring to the product user interface. Use page instead. ||
 | screen trail vs. breadcrumbs (general GUI info) | When we discuss our F5 GUI menu bar screen trail – we are referring to what is also known as breadcrumbs (but do not use this term in content). ||
 | secure network address translation (SNAT) | SNAT is a noun. Do not use as a verb. You use SNAT to. You don't SNAT to. ||
 | secure web gateway | Do not abbreviate generic references to the F5 offering. ||
 | sees | When referring to products, avoid as anthropomorphism. When referring to products, stay away from words like decides, knows, sees, listens, and hears. ||
-| select | Use for check boxes (you select or clear a check box). Do not use for other UI items, such as lists. USG 7/24/2018: TechComm may want to use otherwise for particular cases. MyF5 does not. ||
+| select | Use instead of "click on" when referring to interaction with elements of a product user interface. ||
 | Send String | Send String when used as a setting. send string when used as an expression. ||
 | serial cable failover | Also refer to hardware failover. ||
 | server-side/server side | Hyphenate when used as an adjective. ||
@@ -311,7 +294,7 @@ consistency, listed in alphabetical order:
 | should | Should can be ambiguous. Avoid using it. Do not use should when you mean if. Don’t say, Should you decide to … just say If you decide to… . ||
 | single quotes | In our docs, we don’t use single quotes to mean apostrophes [ ‘like this’ ]. We use them only when they are required for syntax. ||
 | slash (“/” symbol) | When referencing the slash character (forward or backward) in content, specify the symbol by name (forward slash or back slash). You can also add the symbol if you feel that is helpful, though this is not required (/). Do not use oblique to mean slash. ||
-| slave/master | Do not use these terms if possible. Revise to secondary/primary, respectively. In any article that retains the non-preferred terms, under the paragraph with the first usage, include the following note: Note: F5 is working to eliminate exclusionary language in our products and documentation. For more information, refer to K34150231: Exclusionary language in F5 products and documentation. ||
+| slave/master | Do not use these terms if possible. Revise to secondary/primary, respectively. For more information, refer to K34150231: Exclusionary language in F5 products and documentation. ||
 | Slot 3 | Use same reference for other Slot numbers. ||
 | space | Do not use when referring to an input field or check box where the user needs to enter info. Recast to identify as a box. ||
 | SPDY | Correct: a SPDY profile (pronounced speedy). ||
@@ -319,18 +302,15 @@ consistency, listed in alphabetical order:
 | SSH | Do not spell out. ||
 | SSL | Do not spell out. ||
 | SSLi/SSL Intercept | For the SSL Intercept iRule. Spell out. Do not abbreviate except to match UI label. ||
-| subheadings, subsection titles (TBA) | Avoid; in topics: subheading and section titles typically are a flag that another topic is needed. If the topic content is answering more than one question, then another separate topic is warranted. If, however, the content subject matter is multi-tiered in its complexity, a subsection may be logical. ||
 | Sync-Failover (and Sync-Only) | Title capitalize and hyphenate to Sync-Failover unless referencing the option in tmsh; then lowercase and hyphenate as sync-failover. These guidelines apply to Sync-Only as well. ||
-| tap | Describes action of touching the hardware touchscreens in hardware documentation. ||
+| tap | Describes action of touching the hardware touchscreens in hardware documentation. Do not use in software documentation; use "select" instead. ||
 | tarball | tarball is defined as, files distributed as a tar archive; a computer file format that can combine multiple files into a single, typically compressed, file. ||
-| Task list (when & where) | If you have a separate Task summary topic, in that topic use the Task list section heading to introduce the hyperlink task list (lowercase listis correct). ||
-| Task summary (TBA) | A Task summary topic should not be used if only one task exists in the entire implementation (in turn, one task does not warrant an Implementation result). Task summary (lowercase summary) is correct; do not use Initial Cap style. MORE INFO: A standalone Task summary topic is not needed unless there are prerequisites to the overall implementation; in that case, some text describing the tasks is appropriate. Ideally, we would not use standalone Task summary topics when there are no prereqs. If Task summary is merely a section heading and in an Overview topic, then there does not need to be any text in the topic. ||
 | TCP flag names | All caps. SYN, ACK, PSH, URG, FIN, etc. (Industry standard) ||
 | tenant | Use tenant only when referring to VELOS product user interface. Exception: Templates use the term, tenant. ||
 | tense | Strive to use the simple present tense rather than the past or future, unless necessary for clarity. Do not: The system will receive. Do: The system receives. Do not: The feature was introduced in NGINX Instance Manger 2.16. Do: The feature is introduced in NGINX Instance Manager 2.16. (Remember that for some users older versions are used in the present.) ||
 | text box | Use box. ||
 | that vs. which vs. who | Be careful. Don’t use that when you mean who. Use that for objects and who for people. Also, make sure you don't mean which. That sets off essential clauses (containing information essential to the meaning of the sentence). Which sets off non-essential clauses (not containing information essential to the meaning of the sentence). Examples: The virtual servers that you configured are ready. (that you configuredis essential to distinguish them from virtual servers that you did not yet configure.) The virtual servers, which you configured, are ready. (which you formatted is not essential because you do not have any configured ones to distinguish the configured ones from. This is just extra, non-essential, information. Note: which and the clause it modifies are set off by commas because you could eliminate the clause without changing the meaning of the sentence. You can't do that with restrictive that clauses. ||
-| third-party trademarks | TechComm writers do not need to trademark third-party product names/companies in content such as topics help, or release notes (this is the current guideline since early 2011). In our copyright page, we include this statement: All other product and company names herein may be trademarks of their respective owners. Per Legal, reconfirmed 5/2013: "We should not mark third party TM. Why – because it is not required, and some third parties have guidelines explicitly requesting that their marks are not marked. If a specific vendor requests it, then we can. But generally, we should not.” ||
+| third-party trademarks | Writers do not need to trademark third-party product names/companies in content such as topics, help, or release notes. In our copyright page, we include this statement: All other product and company names herein may be trademarks of their respective owners. Rationale: It is not required, and some third parties have guidelines explicitly requesting that their marks are not marked. If a specific vendor requests it, then we can. But generally, we should not. ||
 | threshold event | We’re not using this term in the documentation. The occurrence of system performance crossing a threshold and now behaving in a manner of interest to whoever established the threshold. A threshold event is generally associated with a notification. ||
 | touchscreen | One word, used to describe new active screens in hardware displaying settings. ||
 | trademarks | Watch out for possessive—don’t do it in trademarks. For instance, you can’t have the *NGINX’s anything* but you can say the *NGINX instance's something*. Don’t hyphenate trademarks. ||
@@ -355,17 +335,17 @@ consistency, listed in alphabetical order:
 | Virtual Local Area Network (VLAN) | Do not spell out unless necessary to context. ||
 | Virtual Private Network (VPN) | Do not spell out unless necessary to context. ||
 | walk | Don't use. Anthropomorphism. Instead, try guides, leads, conducts, directs, shows… Example: The Setup utility guides you through a series of pages. ||
-| warning/caution | MyF5 does not use Caution or Warning heading notes. We use Important. However, if your situation requires you to use one of these, use the following guidance: Caution is less severe than Warning. Use Caution when alerting that damage may occur, such as data loss. Use Warning as the severest form of advisory, reserved for when there's a hazard to personnel (such as you're being directed to install a server rack and there's a chance it may fall on you). ||
+| warning/caution | Caution is less severe than Warning. Use Caution when alerting that damage may occur, such as data loss. Use Warning as the severest form of advisory, reserved for when there's a hazard to personnel (such as you're being directed to install a server rack and there's a chance it may fall on you). ||
 | webtop | One word, lowercase. ||
 | WebUI | Do not use. Use Configuration utility. ||
 | wget | command.| |
 | Wget | program. | |
 | whether or not | Don't use whether or not something happens. Use whether. Also see if v. whether. ||
-| whitelist and blacklist, whitelisting and blacklisting | Do not use these terms. Use the following substitutions: white list (noun) = allow list (noun) whitelist (verb) = allowlist (verb) whitelisted (adjective) = allowlisted (adjective) black list (noun) = deny list (noun) blacklist (verb) = denylist (verb) blacklisted (adjective) = denylisted (adjective) Note: Use the preferred terms for general references and wherever you can write around the UI and still be clear. If referring to UI element, label, or command-line output/command that uses the not-preferred term, for example White List, make sure to use the label as it appears to avoid confusing customers. In any article that retains the non-preferred terms, under the paragraph with the first usage, include the following note: Note: F5 is working to eliminate exclusionary language in our products and documentation. For more information, refer to K34150231: Exclusionary language in F5 products and documentation. ||
+| whitelist and blacklist, whitelisting and blacklisting | Do not use these terms. Use the following substitutions: white list (noun) = allow list (noun); whitelist (verb) = allowlist (verb); whitelisted (adjective) = allowlisted (adjective); black list (noun) = deny list (noun); blacklist (verb) = denylist (verb); blacklisted (adjective) = denylisted (adjective). <br> For more information, refer to K34150231: Exclusionary language in F5 products and documentation. ||
 | Wi-Fi vs. wifi vs. WiFi | Use Wi-Fi | |
 | wide IP | Use an article when describing: the wide IP or a wide IP, as appropriate). ||
 | window | Do not use window or screen. Use page. ||
-| Window’s | NEVER say Window’s (as a possessive). Just Windows. Be sure to get the correct trademarks in there. It usually goes after Windows. But check the style guide for details, and sources. F5 doesn't much use third-party trademarks now. ||
+| Window’s | NEVER say Window’s (as a possessive). Just Windows. ||
 | wish, desire | Do not use. Belongs in fairy tales. Use want, need, require, or prefer. ||
 | Wizard and wizard | When documenting the GUI, you can capitalize Wizard if appropriate, such as for the Network Access Setup Wizard. When writing about wizards in general, or when a page title of a dialog box or GUI does not show Wizard in uppercase format, you can leave wizard in lowercase format. ||
 | WWW or www | Do not include www. in web addresses In text, do not use WWW, but use Internet instead. Of course, you can use www as part of a URL. Although we’re moving away from that, too. | |
