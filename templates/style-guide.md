@@ -43,7 +43,7 @@ voice and tone.
  
 - Always use the full brand name in the meta description.
 - Never use acronyms instead of the full product names. 
-- We don’t need to use trademarks (™) in product documentation.
+- We don't need to use trademarks (™) in product documentation.
 
 ## Glossary of preferred terms
 
@@ -100,8 +100,8 @@ consistency, listed in alphabetical order:
 | e.g., i.e., etc. | Avoid using Latin abbreviations.<br>- e.g. = for example<br>- i.e. = in other words<br>- etc. = and so on | |
 | earlier and later | Use to describe versioning. For example, "This applies to versions earlier than NGINX Plus R31".<br>Do not use before, after, greater, lower, higher, below, above, and so on. | | 
 | either/or | Not recommended.<br>Usually, we mean either, or we mean or. Try to be specific in your writing; people are counting on you for specific instructions. It's okay to use these terms when separated by text, as in, "You can use either the semi-colon or the comma here".| |
-| ellipses […] | Don’t use ellipses (dots) in your tech writing.<br>When referring to a menu command that has an ellipse, DO NOT include the ellipse.<br>It’s okay to use the word "ellipses" in text. | |
-| enable | Always use direct, active verbs.<br>It’s okay to instruct the user to enable a setting. Do not use in the context of a system or product enabling the user to do something.| |
+| ellipses […] | Don't use ellipses (dots) in your tech writing.<br>When referring to a menu command that has an ellipse, DO NOT include the ellipse.<br>It's okay to use the word "ellipses" in text. | |
+| enable | Always use direct, active verbs.<br>It's okay to instruct the user to enable a setting. Do not use in the context of a system or product enabling the user to do something.| |
 | end a connection vs. tear down a connection (telephony) | In legacy telephony content, tear down was a clear way to describe how multiple connections were taken down (such as, for a trunk). Although that action is now completed in a streamlined and advanced manner (behind the scenes), end the connection may not be an accurate substitute phrase for this action, and suggest ending only one connection. | |
 | Enter (key) | Do not use ALL CAPS when referring to the Enter key; use Initial capitalization. For example, Press Enter. ||
 | enter (verb) | Follow MSG and use enter for data inserted into a box (field) or for a string that is likely to be blocked and copied. Use type for typing a command-line command. ||
@@ -144,7 +144,7 @@ consistency, listed in alphabetical order:
 | gear icon | In a product's user interface, a gear icon may open an object's properties or the system settings. Refer to the object by its purpose, not the icon, unless in a task step. For example "Select the gear icon to open the system settings menu." or "Open the System Settings menu." ||
 | geolocation vendor name (database) | Refer to geolocation vendor name as Digital Element versus parent company Digital Envoy. ||
 | gerunds | Do not use gerund forms in article titles or headings. Correct: Provision your system. Incorrect: Provisioning your system. ||
-| grayed out | Don’t use it. Use unavailable. ||
+| grayed out | Don't use it. Use unavailable. ||
 | group box | Do not refer to UI element names if possible. Instead, use the label name. If necessary for clarity, use box. ||
 | GSLB | This is the abbreviation for global server load balancing (GSLB). It is a subset of DNS. ||
 | GUI | Do not use. Acronym for Graphical User Interface. Use "user interface" instead. ||
@@ -188,7 +188,7 @@ consistency, listed in alphabetical order:
 | layer 4 (L4) | Lowercase spelled out, capitalized in abbreviation. Use same reference for all layer numbers: layer 2, 3, 7, etc. layer 4-7 (L4-7) (no spaces) ||
 | LBH | This term is a hybrid of LOP/BuC ||
 | left-hand | See Page directions. ||
-| let | One of those weak, vague verbs we’re supposed to avoid as much as possible: Allow, do, enable, let, perform; enter [usually implies type and press Enter], be, has, make, and do. Use direct, active verbs instead. ||
+| let | One of those weak, vague verbs we're supposed to avoid as much as possible: Allow, do, enable, let, perform; enter [usually implies type and press Enter], be, has, make, and do. Use direct, active verbs instead. ||
 | lets, allows | Avoid. These verbs are system-focused and not user-focused. They may be appropriate to employ in a description about the feature, but not when describing what a user can accomplish by using the feature. ||
 | list box | When possible, don't use the UI item name. Use the label name instead. If necessary for clarity, use list. ||
 | listens | When referring to products, avoid it, it's anthropomorphism. However, it is acceptable only in conjunction with UNIX daemons, which listenon the port specified by a user. When referring to products, stay away from words like decides, knows, sees, listens, and hears. ||
@@ -287,7 +287,7 @@ consistency, listed in alphabetical order:
 | Session Initiation Protocol (SIP) | Correct: a SIP client (pronounced sip). ||
 | shortcut menu | Don't use it. ||
 | should | Should can be ambiguous. Avoid using it. Do not use should when you mean if. Don't say, Should you decide to … just say If you decide to… . ||
-| single quotes | In our docs, we don't use single quotes to mean apostrophes [ ‘like this' ]. We use them only when they are required for syntax. ||
+| single quotes | In our docs, we don't use single quotes to mean apostrophes [ 'like this' ]. We use them only when they are required for syntax. ||
 | slash (“/” symbol) | When referencing the slash character (forward or backward) in content, specify the symbol by name (forward slash or back slash). You can also add the symbol if you feel that is helpful, though this is not required (/). Do not use oblique to mean slash. ||
 | slave/master | Do not use these terms if possible. Revise to secondary/primary, respectively. For more information, refer to K34150231: Exclusionary language in F5 products and documentation. ||
 | Slot 3 | Use same reference for other Slot numbers. ||
@@ -315,10 +315,10 @@ consistency, listed in alphabetical order:
 | UDP | User Datagram Protocol. Do not spell out. ||
 | UI/GUI/WebGUI | Don't use these terms in documentation. For UI, call it the browser interface or user interface if necessary. Don't use GUI, or WebGUI. ||
 | unsecure and non-secure | Use unsecure and not insecure when describing a lack of security regarding something technical or technology-related in our documentation. If preferred and internally consistent with what you are documenting, non-secure may be OK, but defer to your editor. ||
-| update | Use when moving from one minor version of a product to another. For example, from NGINX Instance Manager 2.1 to 2.2. For example: Before updating your system, you should read the release notes to understand any new issues. For example: OIDC-authenticated users can’t view the Users list after updating to NGINX Instance Manager 2.9.1. ||
+| update | Use when moving from one minor version of a product to another. For example, from NGINX Instance Manager 2.1 to 2.2. For example: Before updating your system, you should read the release notes to understand any new issues. For example: OIDC-authenticated users can't view the Users list after updating to NGINX Instance Manager 2.9.1. ||
 | upgrade | Use when moving from one major version of a product to another. For example, from NGINX Instance Manager 1.0 to 2.0. For example: When upgrading NGINX Instance Manager system, make sure your license key supports the new version. ||
-| upper left hand | Don’t use. See Page directions. ||
-| upper right hand | Don’t use. See Page directions. ||
+| upper left hand | Don't use. See Page directions. ||
+| upper right hand | Don't use. See Page directions. ||
 | username | one word ||
 | versions and version ranges | When referring to a software version, indicate the software name and then the version (for example, NGINX Instance Manager 2.16). Do not use the word version between the software name and the version (for example, NGINX Instance Manager version 2.x) When indicating a range of versions in procedure titles or subsection titles, indicate the software name and then the version range with a space, hyphen, and space between the version numbers (for example NGINX Instance Manager 1.x - 2.x). ||
 | via | Do not use. Use by means of or through or recast in terms of using to ensure clarity of meaning and avoid confusion with Via Headers. (and because it is Latin.) ||
