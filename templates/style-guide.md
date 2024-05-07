@@ -50,10 +50,10 @@ voice and tone.
 The table provides guidelines about the terms you should and should not use for
 consistency, listed in alphabetical order:
 
-| Term | Notes | Explanation |
-| ------------------------ |-----------------| -------------- |
-| a.m./p.m. | 10 a.m. | |
-| abbreviations: acronyms and initialisms, capitalization | Acronyms and initialisms are abbreviations that are written out in capitalized letters, but unless the word or phrase they represent is a proper noun, the words do not need to be capitalized. For example single sign-on (SSO). Note: acronyms are pronounced as words (such as LAN) but initialisms are pronounced as letters (such as SSO). | |
+| Term                                                    | Notes                                                                                                                                                                                                                                                                                                                                           | Explanation |
+|---------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
+| a.m./p.m.                                               | 10 a.m.                                                                                                                                                                                                                                                                                                                                         |             |
+| abbreviations: acronyms and initialisms, capitalization | Acronyms and initialisms are abbreviations that are written out in capitalized letters, but unless the word or phrase they represent is a proper noun, the words do not need to be capitalized. For example single sign-on (SSO). Note: acronyms are pronounced as words (such as LAN) but initialisms are pronounced as letters (such as SSO). |             |
 | abort | Never use this term in your docs. Use the preferred terms when writing about a process:<br>stop<br>interrupt<br>shut down| Abort is acceptable to use in programmer or similar technical documentation only if it is a function name, parameter name, or otherwise part of a name in the API. | |
 | above and below | Avoid. Refer to the specific section, table, figure, an so on, as opposed to indicating its relative position in the document.
 | access | Used as a verb, it's jargon, so don't use it.||
@@ -264,7 +264,6 @@ consistency, listed in alphabetical order:
 | root account | Use this version for general references; if referring to the UI, reflect how the UI refers to it. ||
 | scale (up, down, in out) | See Autoscaling. ||
 | screen | Do not use screen or variations thereof when referring to the product user interface. Use page instead. ||
-| screen trail vs. breadcrumbs (general GUI info) | Do not use breadcrumbs in content. When we discuss our F5 GUI menu bar screen trail, we are referring to what is also known as breadcrumbs. ||
 | secure network address translation (SNAT) | SNAT is a noun. Do not use as a verb. You use SNAT to. You don't SNAT to. ||
 | secure web gateway | Do not abbreviate generic references to the F5 offering. ||
 | sees | When referring to products, avoid as anthropomorphism. When referring to products, stay away from words like decides, knows, sees, listens, and hears. ||
@@ -330,91 +329,24 @@ consistency, listed in alphabetical order:
 
 ## Topic types and templates
 
-This project recommends using the following templates from the
-[Good Docs project](https://github.com/thegooddocsproject/templates):
+When writing new documentation, use the following [templates](templates):
 
-- API Overview
-- API Quickstart
-- API Reference
-- Discussion Article
+- Concept Article
+- Getting Started Guide
 - How To Guide
-- Logging Article
+- Installation Guide
 - Reference Article
+- Troubleshooting
 - Tutorial
 
-## General writing tips
-
-{This section is optional.}
-
-For some general tips about improving writing see:
-
-- [Write the Docs - Style Guides](https://www.writethedocs.org/guide/writing/style-guides/#writing-style)
-- [18F Content Guide](https://content-guide.18f.gov/)
-
-## Accessible writing
-
-Documentation should be written in a way that supports people with disabilities
-and users with various input methods and devices. Improving accessibility also
-helps make documentation clearer and more useful for everyone.
-
-For resources on making your writing more accessible, see:
-
-- [Writing accessible documentation - Google developer documentation style guide](https://developers.google.com/style/accessibility)
-- [Accessibility guidelines and requirements - Microsoft Writing Style Guide](https://docs.microsoft.com/en-us/style-guide/accessibility/accessibility-guidelines-requirements)
-- [Writing for Accessibility - Mailchimp Content Style Guide](https://styleguide.mailchimp.com/writing-for-accessibility/)
-
-## Inclusive and bias-free writing
-
-When contributing to this project, you should strive to write documentation with
-inclusivity and diversity in mind. Inclusive language recognizes diversity and
-strives to communicate respectfully to all people. This kind of language is
-sensitive to differences and seeks to promote equal opportunities.
-
-For resources on making your writing more inclusive, see:
-
-- [Inclusive documentation - Google developer documentation style guide](https://developers.google.com/style/inclusive-documentation)
-- [The Conscious Style Guide - a collection of resources](https://consciousstyleguide.com/)
-- [Bias-free communication - Microsoft Writing Style Guide](https://docs.microsoft.com/en-us/style-guide/bias-free-communication)
-- [Guidelines for Inclusive Language - Linguistic Society of America](https://www.linguisticsociety.org/resource/guidelines-inclusive-language)
-
-## Using linters
-
-{This section is optional.}
-
-This project uses the {your preferred linter.}
-
-{Provide instructions or policies related to the linter here.}
-
-## How the style guide is updated
-
-{Indicate here how frequently your style guide is reviewed, who owns the style
-guide, and how contributors can provide feedback on your style guide.}
 
 ## Revision history
-
-{This section is optional or can be combined with the next section if needed.}
 
 The following table describes the history of all decisions and revisions made to
 this style guide over time. This guide uses the Major.Minor.Patch
 [semantic versioning](https://semver.org/) convention.
-|Edition | Date | Lead Author(s) | Link to Repository Commit/Tag
---------| -------------- |------------------|------------------------------
-{0.1} | {YYYY-MM-DD} | {Your name here} | First draft of Style Guide
 
+| Edition | Date         | Lead Author(s) | Comments                   |
+|---------|--------------|----------------|----------------------------|
+| 1.0     | May 05, 2024 | Travis Martin  | First draft of Style Guide |
 
-## Decision log
-
-{This section is optional or can be combined with the previous section if
-needed.}
-
-The following table describes the history of all decisions made to this style
-guide over time:
-
-Ref | Date | Description | Agreed to by
-----| -------------- |-------------------------------------------|---------------
-1 | {YYYY-MM-DD} | {Explain the decision that was made here} | {Name or role}
-
-
----
-
-> Explore other templates from [The Good Docs Project](https://thegooddocsproject.dev/). Use our [feedback form](https://thegooddocsproject.dev/feedback/?template=Style%20guide) to give feedback on this template.
