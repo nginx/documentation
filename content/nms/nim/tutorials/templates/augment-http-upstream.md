@@ -72,7 +72,7 @@ In this section, you'll learn how to create a base configuration template.
 
 ### Add the base template files
 
-Here, you'll add the necessary configuration and schema files to your base template.
+Here, you'll add the necessary Go template and JSON schema files to your base template.
 
 1. On the **Template > Overview** page, select **rr_base_template**.
 2. Add the config template file:
@@ -332,7 +332,7 @@ To create the augment template, take the following steps:
 
 ### Add the augment template files
 
-Here, you'll add the necessary configuration and schema files to your augment template.
+Here, you'll add the necessary Go template and JSON schema files to your augment template.
 
 1. On the **Template > Overview** page, select **Location Proxy Template**.
 2. Add the config template file:
