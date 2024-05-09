@@ -42,22 +42,22 @@ In this tutorial, you'll learn how to set up a round-robin reverse proxy using b
 - Create and configure an augment template to extend the functionality of the base template.
 - Deploy these templates to manage traffic efficiently within your NGINX environment.
 
-### Background
+## Background
 
 NGINX Instance Manager simplifies the management of NGINX configurations across a wide network. Using templates, administrators can ensure consistent configurations while easily customizing individual settings with augment templates.
 
-### Before you start
+## Before you start
 
 Before you start the tutorial, you should:
 
-- Install NGINX Instance Manager 2.16 or later. If you're using an earlier version, you'll need to [upgrade]({{< relref "/nms/installation/upgrade-guide.md" >}}) to access the features needed for this tutorial.
+- [Install NGINX Instance Manager 2.16 or later]({{< relref "/nms/installation/" >}}). If you're using an earlier version, you'll need to [upgrade]({{< relref "/nms/installation/upgrade-guide.md" >}}) to access the features needed for this tutorial.
 - Have administrative access to NGINX Instance Manager.
 - Understand basic concepts of web servers and reverse proxies.
 - Have basic knowledge of JSON and the NGINX configuration syntax.
 
 ## Create the base template
 
-This section leads you through the initial setup of a new base template in NGINX Instance Manager.
+In this section, you'll learn how to create a base configuration template.
 
 1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Management Suite host, and log in.
 2. From the Launchpad menu, choose **Instance Manager**.
@@ -72,7 +72,7 @@ This section leads you through the initial setup of a new base template in NGINX
 
 ### Add the base template files
 
-Here, you'll add necessary configuration and schema files to your base template. These files are crucial as they define the structure and rules for your NGINX configurations.
+Here, you'll add the necessary configuration and schema files to your base template.
 
 1. On the **Template > Overview** page, select **rr_base_template**.
 2. Add the config template file:
@@ -332,6 +332,8 @@ To create the augment template, take the following steps:
 
 ### Add the augment template files
 
+Here, you'll add the necessary configuration and schema files to your augment template.
+
 1. On the **Template > Overview** page, select **Location Proxy Template**.
 2. Add the config template file:
    - Select **Add File**.
@@ -375,7 +377,6 @@ Your augment template should now include the following files:
   proxy_pass http://{{ $arguments.upstreamName }};
 {{ end }}
 ```
-
 
 ### Add the location.json details
 
@@ -432,7 +433,7 @@ Your augment template should now include the following files:
 
 ## Generate and deploy the configuration
 
-Finally, generate and deploy your configuration.
+Lastly, generate and deploy your configuration.
 
 1. On the left navigation pane, select **Templates**.
 2. Find **rr_base_template** in the list of templates. In the **Actions** column, select the ellipsis (three dots), then select **Preview and Generate**.
