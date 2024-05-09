@@ -55,7 +55,7 @@ Before you start the tutorial, you should:
 - Understand basic concepts of web servers and reverse proxies.
 - Have basic knowledge of JSON and the NGINX configuration syntax.
 
-## Create a new base template
+## Create the base template
 
 This section leads you through the initial setup of a new base template in NGINX Instance Manager.
 
@@ -430,7 +430,7 @@ Your augment template should now include the following files:
 }
 ```
 
-## Generate the template submission
+## Generate and deploy the configuration
 
 Finally, generate and deploy your configuration.
 
@@ -445,11 +445,11 @@ Finally, generate and deploy your configuration.
    - Select **Next**.
 5. **Add HTTP Server(s)**:
    - On the **HTTP Servers** form, select **Add HTTP Servers**.
-   - Enter a unique label for the server (for example, **main_server**). This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific server.
+   - Enter a unique label for the server (for example, **Round Robin Proxy**). This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific server.
    - Enter a server name (for example, **example.com**).
    - Add a server location:
      - In the **Server Locations** pane, select **Add Server Location**.
-     - Enter a unique label for the location (for example, **users_proxy**). This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific location. We'll refer to this label when we configure the augment template inputs.
+     - Enter a unique label for the location (for example, **Users Endpoint**). This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific location. We'll refer to this label when we configure the augment template inputs.
      - Enter a match expression. This is the prefix to match request paths by (for example, **/users**).
    - Select **Next**.
 6. **Add HTTP Upstream(s)**:
@@ -457,8 +457,8 @@ Finally, generate and deploy your configuration.
    In NGINX, an *upstream* refers to a group of servers that handle client requests. They are typically used for load balancing.
 
    - On the **HTTP Upstreams** form, select **Add HTTP Upstreams**.
-   - Enter a unique label for the upstream (for example, **users_upstream**). This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific upstream.
-   - Enter an HTTP upstream name (for example, **upstream_1**). We'll refer to this upstream name when we configure the augment template inputs.
+   - Enter a unique label for the upstream (for example, **Users Upstream**). This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific upstream.
+   - Enter an HTTP upstream name (for example, **users_backend**). We'll refer to this upstream name when we configure the augment template inputs.
    - Add an upstream server:
      - In the **Upstream Servers** pane, select **Add item**.
      - Enter the upstream server address (for example, **users1.example.com**)
