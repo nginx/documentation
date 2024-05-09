@@ -1,5 +1,5 @@
 ---
-title: "Set location proxy with an augment template"
+title: "Set up round-robin reverse proxy with an augment template"
 date: 2024-03-12T16:01:58-07:00
 # Change draft status to false to publish doc
 draft: false
@@ -72,7 +72,55 @@ Your base template should now include the following files:
 2. Copy and paste the following Go template into the **base.tmpl** file editor.
 3. Select **Save** (disk icon).
 
-{{< include "nim/templates/tutorial/reverse-proxy/base-template/base.md" >}}
+``` go
+{{/*
+    A simple base template that provides augment injection points for
+    the main context, the http context, upstreams, servers, and locations.
+*/}}
+{{ $input := .}}
+{{ $baseData := .Data.V1}}
+
+{{/* Augments targeting the main context are injected here */}}
+{{ $input.ExecTemplateAugments "main" }}
+events {
+    worker_connections  1024;
+}
+
+http {
+    {{/* Augments targeting the http context are injected here */}}
+    {{ $input.ExecTemplateAugments "http" }}
+    {{ range $upstreamIndex, $upstream := $baseData.http.upstreams }}
+          upstream {{$upstream.templateInput.nameInConfig}} {
+              {{$upstreamTemplateInput := $upstream.templateInput}}
+              {{range $serverIndex, $upstreamServer := $upstreamTemplateInput.servers}}
+                  {{$port := ""}}
+                  {{if $upstreamServer.port}}
+                      {{$port = (printf ":%0.f" $upstreamServer.port)}}
+                  {{end}}
+                  server {{$upstreamServer.address}}{{$port}};
+              {{end}}
+
+              {{/* Augments targeting the this $upstream are injected here */}}
+              {{ $input.ExecTemplateAugments "http-upstream" $upstream }}
+          }
+    {{end}}
+
+    {{ range $serverIndex, $server := $baseData.http.servers}}
+        server {
+            server_name {{$server.templateInput.serverNameInConfig}};
+            {{ range $locationIndex, $location := $server.locations}}
+                location {{$location.templateInput.locationMatchExpression}} {
+                  {{/* Augments targeting the this $location are injected here */}}
+                  {{ $input.ExecTemplateAugments "location" $location $server }}
+                }
+            {{end}}
+
+            {{/* Augments targeting the this $server are injected here */}}
+            {{ $input.ExecTemplateAugments "http-server" $server }}
+        }
+    {{end}}
+}
+```
 
 
 ### Add the http-server.json file details
@@ -81,7 +129,44 @@ Your base template should now include the following files:
 2. Copy and paste the following JSON schema into the **http-server.json** file editor.
 3. Select **Save** (disk icon).
 
-{{< include "nim/templates/tutorial/reverse-proxy/base-template/http-server.md" >}}
+``` json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HTTP Servers",
+  "type": "object",
+  "properties": {
+    "templateInput": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "serverName": {
+          "title": "Label",
+          "type": "string",
+          "description": "Enter a unique, case-sensitive alphanumeric label to identify the server. This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific server.",
+          "examples": [
+            "Example Server"
+          ]
+        },
+        "serverNameInConfig": {
+          "title": "Name",
+          "type": "string",
+          "description": "The name of the HTTP server. This value is used when matching incoming requests to the correct server.",
+          "examples": [
+            "example.com"
+          ]
+        }
+      },
+      "required": [
+        "serverName",
+        "serverNameInConfig"
+      ]
+    }
+  },
+  "required": []
+}
+```
 
 
 
@@ -91,7 +176,76 @@ Your base template should now include the following files:
 2. Copy and paste the following JSON schema into the **http-upstream.json** file editor.
 3. Select **Save** (disk icon).
 
-{{< include "nim/templates/tutorial/reverse-proxy/base-template/http-upstream.md" >}}
+``` json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HTTP Upstreams",
+  "type": "object",
+  "properties": {
+    "templateInput": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "name": {
+          "title": "Label",
+          "type": "string",
+          "description": "Enter a unique, case-sensitive alphanumeric label to identify the upstream. This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific upstream.",
+          "examples": [
+            "Users Service"
+          ]
+        },
+        "nameInConfig": {
+          "title": "Name",
+          "type": "string",
+            
+          "examples": [
+            "users_backend"
+          ]
+        },
+        "servers": {
+          "type": "array",
+          "title": "Upstream Servers",
+          "items": {
+            "type": "object",
+            "properties": {
+              "address": {
+                "title": "Upstream server address",
+                "type": "string",
+                "description": "Specifies the address for the upstream server.",
+                "examples": [
+                  "users1.example.com",
+                  "192.0.0.1"
+                ]
+              },
+              "port": {
+                "type": "integer",
+                "title": "Port",
+                "description": "Specifies the port for the upstream server.",
+                "minimum": 1,
+                "maximum": 65535,
+                "examples": [
+                  80
+                ]
+              }
+            },
+            "required": [
+              "address"
+            ]
+          }
+        }
+      },
+      "required": [
+        "name",
+        "servers",
+        "nameInConfig"
+      ]
+    }
+  },
+  "required": []
+}
+```
 
 
 ### Add the location.json file details
@@ -100,15 +254,52 @@ Your base template should now include the following files:
 2. Copy and paste the following JSON schema into the **location.json** file editor.
 3. Select **Save** (disk icon).
 
-{{< include "nim/templates/tutorial/reverse-proxy/base-template/location.md" >}}
+``` json
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "Locations",
+ "type": "object",
+ "properties": {
+   "templateInput": {
+     "type": [
+       "object",
+       "null"
+     ],
+     "properties": {
+        "nameExpression": {
+          "title": "Label",
+          "type": "string",
+          "description": "Enter a unique, case-sensitive alphanumeric label to identify the location. This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific location.",
+          "examples": [
+            "Users Endpoint"
+          ]
+        },
+       "locationMatchExpression": {
+         "title": "Match Expression",
+         "type": "string",
+         "description": "The prefix to match request   paths by.",
+         "examples": [
+           "/users"
+         ]
+       }
+     },
+     "required": [
+       "nameExpression",
+       "locationMatchExpression"
+     ]
+   }
+ },
+ "required": []
+}
+```
 
 
 ## Create the augment template
 
 1. On the **Templates > Overview** page, select **Create**.
 2. Select **New**.
-3. Give the template a name. For this tutorial, we'll call the augment template *Location Proxy Augment*.
-4. Optionally, provide a description for the template.
+3. Give the template a name. For this tutorial, we'll call the augment template *rr_aug_loc_proxy*.
+4. Optionally, provide a description for the template. For example, *Location Proxy Augment*.
 5. Select **Draft** for the template status.
 6. Select **Augment** for the for type.
 7. Select **Submit**.
@@ -135,7 +326,29 @@ Your augment template should now include the following files:
 2. Copy and paste the following contents into the **location.tmpl** file editor.
 3. Select **Save** (disk icon).
 
-{{< include "nim/templates/tutorial/reverse-proxy/augment-template/location-template.md" >}}
+``` go
+{{ $augmentData := .AugmentData.V1 }}
+{{ $server := index .Args 1 }}
+{{ $location := index .Args 0 }}
+{{ $arguments := dict }}
+
+{{/* Get the label for the location in the base template */}}
+{{ $locationLabel := $location.templateInput.nameExpression | trim | lower }}
+
+{{/* Check to see if we have nameExpression (label) for this location ID */}}
+{{ range $args := $augmentData.location.templateInput.locations }}
+  {{ $targetLabel := $args.targetLabel | trim | lower }}
+  {{ if (eq $targetLabel $locationLabel) }}
+    {{ $arguments = $args }}
+    {{ break }}
+  {{ end }}
+{{ end }}
+
+{{/* If augment arguments related to this location were found, perform templating */}}
+{{ if not (empty $arguments) }}
+  proxy_pass http://{{ $arguments.upstreamName }};
+{{ end }}
+```
 
 
 ### Add the location.json details
@@ -144,77 +357,92 @@ Your augment template should now include the following files:
 2. Copy and paste the following contents into the **location.json** file editor.
 3. Select **Save** (disk icon).
 
-{{< include "nim/templates/tutorial/reverse-proxy/augment-template/location-json.md" >}}
+``` json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Reverse Proxy Augment",
+  "type": "object",
+  "properties": {
+    "templateInput": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "locations": {
+          "type": "array",
+          "title": "Locations",
+          "description": "To configure each location, the 'Label' you enter below must correspond exactly to a 'Label' in the base template. This ensures the system can properly inject a reverse proxy directive targeting the specified upstream.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "targetLabel": {
+                "title": "Target Location Label",
+                "type": "string",
+                "description": "Enter the label for this configuration's target location. It must exactly match the 'Label' from a base template location to ensure the system correctly injects the augment inputs into the configuration.",
+                "examples": [
+                  "Main Location"
+                ]
+              },
+              "upstreamName": {
+                "type": "string",
+                "title": "Upstream Name",
+                "description": "Name of the target upstream. Must match exactly.",
+                "examples": [
+                  "upstream_1"
+                ]                
+              }
+            },
+            "required": ["targetId", "upstreamName"]
+          }
+        }
+      },
+      "required": ["locations"]
+    }
+  },
+  "required": []
+}
+```
 
 ## Generate the template submission
 
 1. On the left navigation pane, select **Templates**.
-2. Find **Round Robin Base Template** in the list of templates. In the **Actions** column, select the ellipsis (three dots), then select **Preview and Generate**.
+2. Find **rr_base_template** in the list of templates. In the **Actions** column, select the ellipsis (three dots), then select **Preview and Generate**.
 3. **Select the publication target**:
    - Select whether you're publishing the configuration to an instance, instance group, existing saved config, or saving as a new staged config.
    - Then select the specific target from the list. Or, if you're saving as a new staged config, provide the staged config name.
    - Select **Next**.
 4. **Select the augment template**:
-   - On the **Choose Augments** form, select **Location Proxy Template**.
+   - On the **Choose Augments** form, select **rr_aug_loc_proxy**.
    - Select **Next**.
 5. **Add HTTP Server(s)**:
    - On the **HTTP Servers** form, select **Add HTTP Servers**.
-   - Enter a server name (for example, **foo.com**).
-   - Enter a server ID (for example, **main_server**).
+   - Enter a case-sensitive, alphanumeric label for the server (for example, **main_server**). This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific server.
+   - Enter a server name (for example, **example.com**).
    - Add a server location:
      - In the **Server Locations** pane, select **Add Server Location**.
-     - Enter a location name (for example, **/users**).
-     - Enter a location ID (for example, **users_proxy**).
-     - Select **Done**.
+     - Enter a unique, case-sensitive alphanumeric label to identify the location (for example, **users_proxy**). This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific location. We'll refer to this label when we configure the augment template inputs.
+     - Enter a match expression. This is the prefix to match request paths by (for example, **/users**).
    - Select **Next**.
 6. **Add HTTP Upstream(s)**:
    - On the **HTTP Upstreams** form, select **Add HTTP Upstreams**.
-   - Enter an HTTP upstream name (for example, **upstream_1**).
-   - Enter the upstream ID (for example, **users_upstream**).
+   - Enter a unique, case-sensitive alphanumeric label to identify the upstream (for example, **users_upstream**). This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific upstream.
+   - Enter an HTTP upstream name (for example, **upstream_1**). We'll refer to this upstream name when we configure the augment template inputs.
    - Add an upstream server:
      - In the **Upstream Servers** pane, select **Add item**.
-     - Enter the upstream server address (for example, **backend1.example.com**)
+     - Enter the upstream server address (for example, **users1.example.com**)
      - Enter the upstream server port (for example, **80**).
-     - Select **Done**.
    - Select **Next**.
-7. **Add Location Proxy Augment inputs**.
-   - In the **Location Inputs > Location List** pane, select **Add item**.
-   - Enter the location ID. 
-     
-     {{<note>}}**The location ID must match the HTTP Server location ID** specified in the base template (for example, use **users_proxy** as specified in step 5).{{</note>}}
-   - Enter the upstream name.
-     {{<note>}}**The upstream name must match the HTTP Upstream name** specified in the base template (for example, use **upstream_1** as specified in step 6).{{</note>}}
+7. **Add the rr_aug_loc_proxy inputs**.
+   - In the **Reverse Proxy Augment > Locations** pane, select **Add item**.
+   - Enter the label for the target location. This is the label that you specified in step 5 when adding the HTTP server location (for example, **users_proxy**). Make sure the labels exactly match.
+   - Enter the upstream name. This is the name you specified in step 6 (for example, **upstream_1**). Make sure the names exactly match.
    - Select **Next**.
 8. **Preview the config**:
  
     On the **Preview Config** page, the resulting config should similar to the following example:
 
     ```nginx
-    # /******************************** !! IMPORTANT !! ********************************/
-    #   This is a Template generated configuration. Updates should done through the Template
-    #   Submissions workflow. Manual changes to this configuration can/will be overwritten.
-    # __templateTag={"uid":"9f309d78-cb15-4371-9811-a334ba8adc98","file":"base.tmpl","name":"Round Robin Augment Template"}
-    events {
-    	worker_connections 1024;
-    }
-    http {
-    	upstream upstream_1 {
-    		server backend1.example.com:80;
-    	}
-    	server {
-    		server_name foo.com;
-    		location /users {
-    			
-    # <<< BEGIN DO-NOT-EDIT location augment templates >>>
-
-    			# __templateTag={"uid":"0555cd49-2a15-46b3-b93b-3c287d23d872","file":"location.tmpl","name":"Location Proxy Augment"}
-    			include /etc/nginx/augments/location/base_http-server1_loc1_9f309d78_0555cd49-2a15-46b3-b93b-3c287d23d872.conf;
-    			
-    # <<< END DO-NOT-EDIT location augment templates >>>
-
-    		}
-    	}
-    }
+    config isn't generating
     ```
-
 9. If the configuration looks correct, select **Publish** to deploy it.
