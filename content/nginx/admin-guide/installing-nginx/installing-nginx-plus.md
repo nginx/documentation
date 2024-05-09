@@ -9,7 +9,7 @@ toc: true
 weight: 100
 ---
 
-This article explains how to install NGINX Plus on Amazon Linux, AlmaLinux, CentOS, Debian, FreeBSD, Oracle Linux, Rocky Linux, Red Hat Enterprise Linux (RHEL), SUSE Linux Enterprise Server (SLES), and Ubuntu.
+This article explains how to install NGINX Plus on different operating systems, upgrade existing NGINX Plus installation, install and enable dynamic modules, install in rootless mode or when offline.
 
 <span id="prereq"></span>
 ## Prerequisites
@@ -18,7 +18,7 @@ This article explains how to install NGINX Plus on Amazon Linux, AlmaLinux, Ce
 - A [supported operating system]({{< relref "../../technical-specs.md" >}})
 - `root` privilege
 - Your credentials to the [MyF5 Customer Portal](https://account.f5.com/myf5), provided by email from F5, Inc.
-- Your NGINX Plus certificate and public key (<span style="white-space: nowrap;">**nginx-repo.crt**</span> and <span style="white-space: nowrap;">**nginx-repo.key**</span> files), provided by email from F5, Inc.
+- Your NGINX Plus certificate and public key (<span style="white-space: nowrap;">**nginx-repo.crt**</span> and <span style="white-space: nowrap;">**nginx-repo.key**</span> files) or JWT token file provided by F5, Inc. 
 
 
 <span id="install_amazon2023"></span>
@@ -35,7 +35,7 @@ NGINX Plus can be installed on Amazon Linux 2023 (x86_64, aarch64).
     cd /etc/ssl/nginx
     ```
 
-3. Log in to [MyF5 Customer Portal](https://account.f5.com/myf5/) and download your **nginx-repo.crt** and **nginx-repo.key** files.
+3. Log in to [MyF5 Customer Portal](https://account.f5.com/myf5/), select the subscription ID that corresponds to your NGINX Plus subscription, and download your **nginx-repo.crt** and **nginx-repo.key** files.
 
 4. Install the required **ca-certificates** dependency:
 
@@ -996,7 +996,7 @@ To perform unprivileged installation of NGINX Plus:
    chmod +x ngxunprivinst.sh
    ```
 
-3. Download NGINX Plus and its module packages for your operating system. The <cert_file> and <key_file> are your NGINX Plus certificate and private key provided by email:
+3. Download NGINX Plus and its module packages for your operating system. The <cert_file> and <key_file> are your NGINX Plus certificate and private key obtained from [MyF5 Customer Portal](https://account.f5.com/myf5/):
 
    ```shell
    ./ngxunprivinst.sh fetch -c <cert_file> -k <key_file>
@@ -1033,6 +1033,75 @@ With this script, you can also upgrade an existing unprivileged installation of 
 ```shell
 ./ngxunprivinst.sh upgrade [-y] -p <path> <file1.rpm> <file2.rpm>
 ```
+
+
+<span id="offline_install"></span>
+## NGINX Plus Offline Installation
+
+This section explains how to install NGINX Plus and its [dynamic modules]({{< relref "/nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}) on a server with limited or no Internet access.
+
+To install NGINX Plus offline, you will need a machine connected to the Internet to get the NGINX Plus package, SSL certificate and key. Then your can transfer these files to the target server for offline installation.
+
+### Obtaining files on the machine connected to the Internet
+
+1. Download your SSL certificate, private key, and NGINX Plus installation file from [MyF5 Customer Portal](https://account.f5.com/myf5/).
+
+   - Log in to [MyF5 Customer Portal](https://account.f5.com/myf5/)
+
+   - Choose the subscription ID that corresponds to your NGINX Plus subscription. 
+
+   - To download the SSL certificate and private key, select the `SSL certificate` and `Private Key` in the `Subscription Details` area.
+
+   - To download the NGINX Plus package and corresponding dynamic modules, select `Downloads`. Choose `NGINX` product group, `NGINX Plus` product line, Linux distribution, its version, and architecture. Choose the target file from the list and select `Download`.
+
+2. Transfer the files to the target server that doesn't have online access and where NGINX Plus will be installed.
+
+
+### Installing NGINX Plus on a server without internet connectivity
+
+1. If you have an older NGINX Plus package installed, we recommend backing up the configuration and log files. See "[Upgrading NGINX Plus](#upgrade)" for details.
+
+2. Create the **/etc/ssl/nginx** directory:
+
+    ```shell
+    sudo mkdir -p /etc/ssl/nginx
+    cd /etc/ssl/nginx
+    ```
+
+3. Copy the downloaded SSL certificate and product key files files to the **/etc/ssl/nginx/** directory:
+
+    ```shell
+    sudo cp nginx-repo.crt /etc/ssl/nginx/
+    sudo cp nginx-repo.key /etc/ssl/nginx/
+    ```
+
+4.  Install the NGINX Plus package or a dynamic module. Any older NGINX Plus package is automatically replaced.
+
+   - for RHEL, Amazon Linux, CentOS, Oracle Linux, AlmaLinux and Rocky Linux:
+     ```shell
+     sudo rpm -ihv <rpm_package_name>
+     ```
+
+   - for Debian, Ubuntu:
+     ```shell
+     sudo dpkg -i <deb_package_name>
+     ```
+
+   - for Alpine:
+     ```shell
+     apk add <apk_package_name>
+     ```
+
+   - for SLES:
+     ```shell
+     rpm -ivh <rpm_package_name>
+     ```
+
+5. Check the `nginx` binary version to ensure that you have NGINX Plus installed correctly:
+
+    ```shell
+    nginx -v
+    ```
 
 <span id="upgrade"></span>
 ## Upgrading NGINX Plus
