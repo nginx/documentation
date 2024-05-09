@@ -341,7 +341,7 @@ To create the augment template, take the following steps:
 
 Here, you'll add the necessary Go template and JSON schema files to your augment template.
 
-1. On the **Template > Overview** page, select **Location Proxy Template**.
+1. On the **Template > Overview** page, select **rr_aug_loc_proxy**.
 2. Add the config template file:
    - Select **Add File**.
    - Select **Config File**, then select **location.tmpl**.
@@ -467,49 +467,49 @@ Lastly, generate and deploy your configuration.
    In NGINX, an *upstream* refers to a group of servers that handle client requests. They are typically used for load balancing.
 
    - On the **HTTP Upstreams** form, select **Add HTTP Upstreams**.
-   - Enter a unique label for the upstream (for example, **Users Upstream**). This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific upstream.
+   - Enter a unique label for the upstream (for example, **Users Service**). This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific upstream.
    - Enter an HTTP upstream name (for example, **users_backend**). We'll refer to this upstream name when we configure the augment template inputs.
    - Add an upstream server:
      - In the **Upstream Servers** pane, select **Add item**.
-     - Enter the upstream server address (for example, **users1.example.com**)
+     - Enter the upstream server address (for example, **192.0.0.1**)
      - Enter the upstream server port (for example, **80**).
    - Select **Next**.
 7. **Add the rr_aug_loc_proxy inputs**.
    - In the **Reverse Proxy Augment > Locations** pane, select **Add item**.
-   - Enter the label for the target location. This is the label that you specified in step 5 when adding the HTTP server location (for example, **users_proxy**). Make sure the labels match exactly to correctly apply the augment templates.
-   - Enter the upstream name. This is the name you specified in step 6 (for example, **upstream_1**). Make sure the names match exactly.
+   - Enter the label for the target location. This is the label that you specified in step 5 when adding the HTTP server location (for example, **Users Endpoint**). Make sure the labels match exactly to correctly apply the augment templates.
+   - Enter the upstream name. This is the name you specified in step 6 (for example, **users_backend**). Make sure the names match exactly.
    - Select **Next**.
 8. **Preview the config**:
  
     On the **Preview Config** page, the resulting config should similar to the following example:
 
-   ```nginx
-   # /******************************** !! IMPORTANT !! ********************************/
-   #   This is a Template generated configuration. Updates should done through the Template
-   #   Submissions workflow. Manual changes to this configuration can/will be overwritten.
-   # __templateTag={"uid":"dcd27926-9851-44cc-8e21-776de0a21474","file":"base.tmpl","name":"rr_base_template"}
-   events {
-   	worker_connections 1024;
-   }
-   http {
-   	upstream upstream_1 {
-   		server users1.example.com:80;
-   	}
-   	server {
-   		server_name example.com;
-   		location /users {
-   			
-   # <<< BEGIN DO-NOT-EDIT location augment templates >>>
+    ```nginx
+    # /******************************** !! IMPORTANT !! ********************************/
+    #   This is a Template generated configuration. Updates should done through the Template
+    #   Submissions workflow. Manual changes to this configuration can/will be overwritten.
+    # __templateTag={"uid":"dcd27926-9851-44cc-8e21-776de0a21474","file":"base.tmpl","name":"rr_base_template"}
+    events {
+    	worker_connections 1024;
+    }
+    http {
+    	upstream users_backend {
+    		server users1.example.com:80;
+    	}
+    	server {
+    		server_name example.com;
+    		location /users {
+    			
+    # <<< BEGIN DO-NOT-EDIT location augment templates >>>
 
-   			# __templateTag={"uid":"c16dde71-e7c7-44d5-80df-508231f96dca","file":"location.tmpl","name":"rr_aug_loc_proxy"}
-   			include /etc/nginx/augments/location/base_http-server1_loc1_dcd27926_c16dde71-e7c7-44d5-80df-508231f96dca.conf;
-   			
-   # <<< END DO-NOT-EDIT location augment templates >>>
+    			# __templateTag={"uid":"c16dde71-e7c7-44d5-80df-508231f96dca","file":"location.tmpl","name":"rr_aug_loc_proxy"}
+    			include /etc/nginx/augments/location/base_http-server1_loc1_dcd27926_c16dde71-e7c7-44d5-80df-508231f96dca.conf;
+    			
+    # <<< END DO-NOT-EDIT location augment templates >>>
 
-   		}
-   	}
-   }
-   ```
+    		}
+    	}
+    }
+    ```
 
 9. If the configuration looks correct, select **Publish** to deploy it.
 
