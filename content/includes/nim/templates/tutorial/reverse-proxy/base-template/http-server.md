@@ -17,7 +17,7 @@ docs:
         "serverName": {
           "title": "Label",
           "type": "string",
-          "description": "A name for the server that will be shown in the UI. Also used to connect augment input to a specific server.",
+          "description": "Enter a unique, case-sensitive alphanumeric label to identify the server. This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific server.",
           "examples": [
             "Example Server"
           ]

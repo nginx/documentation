@@ -17,14 +17,14 @@ docs:
         "locations": {
           "type": "array",
           "title": "Locations",
-          "description": "For each location below, the input will be matched via the 'Label' to a location in the base template to inject a reverse proxy directive targeting the specified upstream.",
+          "description": "To configure each location, the 'Label' you enter below must correspond exactly to a 'Label' in the base template. This ensures the system can properly inject a reverse proxy directive targeting the specified upstream.",
           "items": {
             "type": "object",
             "properties": {
               "targetLabel": {
                 "title": "Target Location Label",
                 "type": "string",
-                "description": "The label of the target location for this configuration. Must be exactly the same as the 'label' field from a location in the base template.",
+                "description": "Enter the label for this configuration's target location. It must exactly match the 'Label' from a base template location to ensure the system correctly injects the augment inputs into the configuration.",
                 "examples": [
                   "Main Location"
                 ]

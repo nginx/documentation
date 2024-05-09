@@ -39,11 +39,11 @@ authors: []
 
 1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Management Suite host, and log in.
 2. From the Launchpad menu, choose **Instance Manager**.
-3. On the left navigation pane, select **Templates**.
+3. On the left menu, select **Templates**.
 4. Select **Create**.
 5. Select **New**.
-6. Give the template a name. For this tutorial, we'll call the base template *Round Robin Base Template*.
-7. Optionally, provide a description for the template.
+6. Give the template a name. For this tutorial, we'll call the base template *rr_base_template*.
+7. Optionally, provide a description for the template. (For example *Round-Robin Base Template*)
 8. Select **Draft** for the template status.
 9. Select **Base** for the for type.
 10. Select **Submit**.
@@ -52,14 +52,14 @@ authors: []
 
 ### Add the base template files
 
-1. On the **Template > Overview** page, select **Round Robin Base Template**.
+1. On the **Template > Overview** page, select **rr_base_template**.
 2. Add the config template file:
    - Select **Add File**.
-   - Select **Config File > base.tmpl**.
+   - Select **Config File**, then select **base.tmpl**.
    - Select **Add**.
 3. Add the schema files:
    - Select **Add File**.
-   - Select **Schema File**, then select **http-server.json, http-upstream, location.json**.
+   - Select **Schema File**, then select each of the following: **http-server.json**, **http-upstream**, and **location.json**.
    - Select **Add**.
 
 Your base template should now include the following files:
@@ -118,11 +118,11 @@ Your base template should now include the following files:
 1. On the **Template > Overview** page, select **Location Proxy Template**.
 2. Add the config template file:
    - Select **Add File**.
-   - Select **Config File > location.tmpl**
+   - Select **Config File**, then select **location.tmpl**.
    - Select **Add**.
 3. Add the schema files:
    - Select **Add File**.
-   - Select **Schema File > location.json**.
+   - Select **Schema File**, then select **location.json**.
    - Select **Add**.
 
 Your augment template should now include the following files:

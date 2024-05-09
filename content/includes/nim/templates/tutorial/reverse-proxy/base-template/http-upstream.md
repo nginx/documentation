@@ -17,7 +17,7 @@ docs:
         "name": {
           "title": "Label",
           "type": "string",
-          "description": "A label for the upstream that will be shown in the UI. Also used to connect augment input to a specific upstream.",
+          "description": "Enter a unique, case-sensitive alphanumeric label to identify the upstream. This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific upstream.",
           "examples": [
             "Users Service"
           ]
@@ -25,7 +25,7 @@ docs:
         "nameInConfig": {
           "title": "Name",
           "type": "string",
-          "description": "The name of the upstream that will be used in the configuration file. This is the value that should be referenced when setting up proxying.",
+            
           "examples": [
             "users_backend"
           ]
