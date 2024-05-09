@@ -38,7 +38,6 @@ authors: []
 In this tutorial, you'll learn how to set up a round-robin reverse proxy using base and augment templates in NGINX Instance Manager. This tutorial is intended for network administrators and developers familiar with basic NGINX configurations. By the end of this tutorial, you'll be able to:
 
 - Create and configure a base template.
-- Add necessary configuration and schema files to your template.
 - Create and configure an augment template to extend the functionality of the base template.
 - Deploy these templates to manage traffic efficiently within your NGINX environment.
 
@@ -324,7 +323,7 @@ http {
 
 This section shows how to create an augment template that specifies additional configuration details not covered by the base template.
 
-Before we dive into creating an augment template, it's important to understand its role within NGINX Instance Manager. While the base template sets up the fundamental structure of your NGINX configuration, the augment template allows you to enhance or modify this base setup without altering the original template. Essentially, augment templates are used to inject additional settings or overrides that tailor the configuration to specific needs, such as enabling a round-robin reverse proxy in this tutorial. They are particularly useful for applying repeated modifications across multiple configurations or for adding specialized functionalities that are only needed in certain contexts.
+Before we create an augment template, it’s important to understand its role within NGINX Instance Manager. While the base template sets up the fundamental structure of your NGINX configuration, the augment template allows you to enhance or modify this base setup without altering the original template. Essentially, augment templates are used to inject additional settings or overrides that tailor the configuration to specific needs, such as enabling a round-robin reverse proxy in this tutorial. They are particularly useful for applying repeated modifications across multiple configurations or for adding specialized functionalities that are only needed in certain contexts.
 
 By using augment templates, you can maintain a clean and organized core configuration while dynamically extending its capabilities. This modular approach not only simplifies management but also increases the flexibility of your NGINX environments, ensuring that specific enhancements can be developed, tested, and deployed quickly and efficiently.
 
