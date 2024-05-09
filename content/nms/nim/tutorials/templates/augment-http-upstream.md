@@ -42,9 +42,13 @@ In this tutorial, you'll learn how to set up a round-robin reverse proxy using b
 - Create and configure an augment template to extend the functionality of the base template.
 - Deploy these templates to manage traffic efficiently within your NGINX environment.
 
+---
+
 ## Background
 
 NGINX Instance Manager simplifies the management of NGINX configurations across a wide network. Using templates, administrators can ensure consistent configurations while easily customizing individual settings with augment templates.
+
+---
 
 ## Before you start
 
@@ -54,6 +58,8 @@ Before you start the tutorial, you should:
 - Have administrative access to NGINX Instance Manager.
 - Understand basic concepts of web servers and reverse proxies.
 - Have basic knowledge of JSON and the NGINX configuration syntax.
+
+---
 
 ## Create the base template
 
@@ -312,6 +318,8 @@ http {
 }
 ```
 
+---
+
 ## Create the augment template
 
 This section shows how to create an augment template that specifies additional configuration details not covered by the base template.
@@ -431,6 +439,8 @@ Your augment template should now include the following files:
 }
 ```
 
+---
+
 ## Generate and deploy the configuration
 
 Lastly, generate and deploy your configuration.
@@ -503,6 +513,8 @@ Lastly, generate and deploy your configuration.
    ```
 
 9. If the configuration looks correct, select **Publish** to deploy it.
+
+---
 
 ## Verification steps
 
