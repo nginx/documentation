@@ -1,5 +1,5 @@
 ---
-title: "Set up round-robin reverse proxy with an augment template"
+title: "Set up a round-robin reverse proxy with an augment template"
 date: 2024-03-12T16:01:58-07:00
 # Change draft status to false to publish doc
 draft: false
@@ -35,7 +35,29 @@ authors: []
 
 ## Overview
 
+In this tutorial, you'll learn how to set up a round-robin reverse proxy using base and augment templates in NGINX Instance Manager. This tutorial is intended for network administrators and developers familiar with basic NGINX configurations. By the end of this tutorial, you'll be able to:
+
+- Create and configure a base template.
+- Add necessary configuration and schema files to your template.
+- Create and configure an augment template to extend the functionality of the base template.
+- Deploy these templates to manage traffic efficiently within your NGINX environment.
+
+### Background
+
+NGINX Instance Manager simplifies the management of NGINX configurations across a wide network. Using templates, administrators can ensure consistent configurations while easily customizing individual settings with augment templates.
+
+### Before you start
+
+Before you start the tutorial, you should:
+
+- Install NGINX Instance Manager 2.16 or later. If you're using an earlier version, you'll need to [upgrade]({{< relref "/nms/installation/upgrade-guide.md" >}}) to access the features needed for this tutorial.
+- Have administrative access to NGINX Instance Manager.
+- Understand basic concepts of web servers and reverse proxies.
+- Have basic knowledge of JSON and the NGINX configuration syntax.
+
 ## Create a new base template
+
+This section leads you through the initial setup of a new base template in NGINX Instance Manager.
 
 1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Management Suite host, and log in.
 2. From the Launchpad menu, choose **Instance Manager**.
@@ -48,9 +70,9 @@ authors: []
 9. Select **Base** for the for type.
 10. Select **Submit**.
 
-
-
 ### Add the base template files
+
+Here, you'll add necessary configuration and schema files to your base template. These files are crucial as they define the structure and rules for your NGINX configurations.
 
 1. On the **Template > Overview** page, select **rr_base_template**.
 2. Add the config template file:
@@ -142,9 +164,9 @@ http {
       ],
       "properties": {
         "serverName": {
-          "title": "Label",
+          "title": "Server Label",
           "type": "string",
-          "description": "Enter a unique, case-sensitive alphanumeric label to identify the server. This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific server.",
+          "description": "Enter a unique label for the server. This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific server.",
           "examples": [
             "Example Server"
           ]
@@ -168,8 +190,6 @@ http {
 }
 ```
 
-
-
 ### Add the http-upstream.json file details
 
 1. Select **http-upstream.json**.
@@ -189,9 +209,9 @@ http {
       ],
       "properties": {
         "name": {
-          "title": "Label",
+          "title": "Upstream Label",
           "type": "string",
-          "description": "Enter a unique, case-sensitive alphanumeric label to identify the upstream. This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific upstream.",
+          "description": "Enter a unique label for the upstream. This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific upstream.",
           "examples": [
             "Users Service"
           ]
@@ -247,7 +267,6 @@ http {
 }
 ```
 
-
 ### Add the location.json file details
 
 1. Select **location.json**.
@@ -267,9 +286,9 @@ http {
      ],
      "properties": {
         "nameExpression": {
-          "title": "Label",
+          "title": "Location Label",
           "type": "string",
-          "description": "Enter a unique, case-sensitive alphanumeric label to identify the location. This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific location.",
+          "description": "Enter a unique label for the location. This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific location.",
           "examples": [
             "Users Endpoint"
           ]
@@ -293,8 +312,15 @@ http {
 }
 ```
 
-
 ## Create the augment template
+
+This section shows how to create an augment template that specifies additional configuration details not covered by the base template.
+
+Before we dive into creating an augment template, it's important to understand its role within NGINX Instance Manager. While the base template sets up the fundamental structure of your NGINX configuration, the augment template allows you to enhance or modify this base setup without altering the original template. Essentially, augment templates are used to inject additional settings or overrides that tailor the configuration to specific needs, such as enabling a round-robin reverse proxy in this tutorial. They are particularly useful for applying repeated modifications across multiple configurations or for adding specialized functionalities that are only needed in certain contexts.
+
+By using augment templates, you can maintain a clean and organized core configuration while dynamically extending its capabilities. This modular approach not only simplifies management but also increases the flexibility of your NGINX environments, ensuring that specific enhancements can be developed, tested, and deployed quickly and efficiently.
+
+To create the augment template, take the following steps:
 
 1. On the **Templates > Overview** page, select **Create**.
 2. Select **New**.
@@ -372,14 +398,14 @@ Your augment template should now include the following files:
         "locations": {
           "type": "array",
           "title": "Locations",
-          "description": "To configure each location, the 'Label' you enter below must correspond exactly to a 'Label' in the base template. This ensures the system can properly inject a reverse proxy directive targeting the specified upstream.",
+          "description": "To configure each location, the 'Label' you enter below must exactly match a 'Label' in the base template. This ensures the system can properly inject a reverse proxy directive targeting the specified upstream.",
           "items": {
             "type": "object",
             "properties": {
               "targetLabel": {
                 "title": "Target Location Label",
                 "type": "string",
-                "description": "Enter the label for this configuration's target location. It must exactly match the 'Label' from a base template location to ensure the system correctly injects the augment inputs into the configuration.",
+                "description": "Enter the label for this configuration's target location. It must exactly match the 'Location Label' from a base template location to ensure the system correctly injects the augment inputs into the configuration.",
                 "examples": [
                   "Main Location"
                 ]
@@ -406,6 +432,8 @@ Your augment template should now include the following files:
 
 ## Generate the template submission
 
+Finally, generate and deploy your configuration.
+
 1. On the left navigation pane, select **Templates**.
 2. Find **rr_base_template** in the list of templates. In the **Actions** column, select the ellipsis (three dots), then select **Preview and Generate**.
 3. **Select the publication target**:
@@ -417,16 +445,19 @@ Your augment template should now include the following files:
    - Select **Next**.
 5. **Add HTTP Server(s)**:
    - On the **HTTP Servers** form, select **Add HTTP Servers**.
-   - Enter a case-sensitive, alphanumeric label for the server (for example, **main_server**). This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific server.
+   - Enter a unique label for the server (for example, **main_server**). This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific server.
    - Enter a server name (for example, **example.com**).
    - Add a server location:
      - In the **Server Locations** pane, select **Add Server Location**.
-     - Enter a unique, case-sensitive alphanumeric label to identify the location (for example, **users_proxy**). This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific location. We'll refer to this label when we configure the augment template inputs.
+     - Enter a unique label for the location (for example, **users_proxy**). This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific location. We'll refer to this label when we configure the augment template inputs.
      - Enter a match expression. This is the prefix to match request paths by (for example, **/users**).
    - Select **Next**.
 6. **Add HTTP Upstream(s)**:
+
+   In NGINX, an *upstream* refers to a group of servers that handle client requests. They are typically used for load balancing.
+
    - On the **HTTP Upstreams** form, select **Add HTTP Upstreams**.
-   - Enter a unique, case-sensitive alphanumeric label to identify the upstream (for example, **users_upstream**). This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific upstream.
+   - Enter a unique label for the upstream (for example, **users_upstream**). This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific upstream.
    - Enter an HTTP upstream name (for example, **upstream_1**). We'll refer to this upstream name when we configure the augment template inputs.
    - Add an upstream server:
      - In the **Upstream Servers** pane, select **Add item**.
@@ -435,15 +466,43 @@ Your augment template should now include the following files:
    - Select **Next**.
 7. **Add the rr_aug_loc_proxy inputs**.
    - In the **Reverse Proxy Augment > Locations** pane, select **Add item**.
-   - Enter the label for the target location. This is the label that you specified in step 5 when adding the HTTP server location (for example, **users_proxy**). Make sure the labels exactly match.
-   - Enter the upstream name. This is the name you specified in step 6 (for example, **upstream_1**). Make sure the names exactly match.
+   - Enter the label for the target location. This is the label that you specified in step 5 when adding the HTTP server location (for example, **users_proxy**). Make sure the labels match exactly to correctly apply the augment templates.
+   - Enter the upstream name. This is the name you specified in step 6 (for example, **upstream_1**). Make sure the names match exactly.
    - Select **Next**.
 8. **Preview the config**:
  
     On the **Preview Config** page, the resulting config should similar to the following example:
 
-    ```nginx
-    config isn't generating
-    ```
+   ```nginx
+   # /******************************** !! IMPORTANT !! ********************************/
+   #   This is a Template generated configuration. Updates should done through the Template
+   #   Submissions workflow. Manual changes to this configuration can/will be overwritten.
+   # __templateTag={"uid":"dcd27926-9851-44cc-8e21-776de0a21474","file":"base.tmpl","name":"rr_base_template"}
+   events {
+   	worker_connections 1024;
+   }
+   http {
+   	upstream upstream_1 {
+   		server users1.example.com:80;
+   	}
+   	server {
+   		server_name example.com;
+   		location /users {
+   			
+   # <<< BEGIN DO-NOT-EDIT location augment templates >>>
+
+   			# __templateTag={"uid":"c16dde71-e7c7-44d5-80df-508231f96dca","file":"location.tmpl","name":"rr_aug_loc_proxy"}
+   			include /etc/nginx/augments/location/base_http-server1_loc1_dcd27926_c16dde71-e7c7-44d5-80df-508231f96dca.conf;
+   			
+   # <<< END DO-NOT-EDIT location augment templates >>>
+
+   		}
+   	}
+   }
+   ```
 
 9. If the configuration looks correct, select **Publish** to deploy it.
+
+## Verification steps
+
+- To be added.
