@@ -62,7 +62,7 @@ Before you start the tutorial, you should:
 
 ## Create the base template
 
-In this section, you'll learn how to create a base configuration template.
+In this section, you'll learn how to create a [base config template]({{< relref "nms/nim/about/templates/config-templates.md" >}}).
 
 1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Management Suite host, and log in.
 2. From the Launchpad menu, choose **Instance Manager**.
