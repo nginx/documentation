@@ -24,12 +24,14 @@ NGINX App Protect DoS supports the following operating systems:
 - [CentOS 7.4.x and above](#centos-74-installation)
 - [RHEL 7.4.x / UBI 7.6.x and above](#rhel-74-installation)
 - [RHEL 8 / UBI 8 / Rocky Linux 8 and above](#rhel-8--rocky-linux-8-installation)
-- [Debian 10 (Buster)](#debian--ubuntu-installation)
+- [Debian 10 (Buster)](#debian--ubuntu-installation) - (Deprecated starting from NGINX Plus R28)
 - [Debian 11 (Bullseye)](#debian--ubuntu-installation)
+- [Debian 12 (Bookworm)](#debian--ubuntu-installation)
 - [Ubuntu 18.04 (Bionic)](#debian--ubuntu-installation) - (Deprecated starting from NGINX Plus R30)
 - [Ubuntu 20.04 (Focal)](#debian--ubuntu-installation)
 - [Ubuntu 22.04 (Jammy)](#debian--ubuntu-installation)
-- [Alpine 3.15.x / 3.17.x](#alpine-315x--317x-installation)
+- [Alpine 3.15](#alpine-315x--317x-installation) - (Deprecated starting from NGINX Plus R30)
+- [Alpine 3.17](#alpine-315x--317x-installation)
 
 The NGINX App Protect DoS package has the following dependencies:
 
@@ -419,7 +421,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 5. Install prerequisite packages:
 
     ```shell
-    sudo yum install ca-certificates wget
+    sudo dnf install ca-certificates wget
 
 6. Enable Yum repositories to pull NGINX App Protect dependencies:
 
@@ -427,7 +429,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     ```shell
     sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
-    sudo yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+    sudo dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
     ```
 
 7. Add NGINX Plus and NGINX App Protect DoS repository:
@@ -440,13 +442,13 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 8. In case of fresh installation, update the repository and install the most recent version of the NGINX Plus App Protect DoS package (which includes NGINX Plus):
 
     ```shell
-    sudo yum install app-protect-dos
+    sudo dnf install app-protect-dos
     ```
 
     For L4 accelerated mitigation feature (RHEL 8.6+):
 
     ```shell
-    sudo yum install app-protect-dos-ebpf
+    sudo dnf install app-protect-dos-ebpf
     ```
 
     {{< note >}}
@@ -458,20 +460,20 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     Alternatively, you can use the following command to list available versions:
 
     ```shell
-    sudo yum --showduplicates list app-protect-dos
+    sudo dnf --showduplicates list app-protect-dos
     ```
 
     Then, install a specific version from the output of command above. For example:
 
     ```shell
-    sudo yum install app-protect-dos-27+2.4.0
+    sudo dnf install app-protect-dos-27+2.4.0
     ```
 
 9. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):
 
     ```shell
-    sudo yum remove nginx-plus
-    sudo yum install app-protect-dos
+    sudo dnf remove nginx-plus
+    sudo dnf install app-protect-dos
     sudo systemctl start nginx
     ```
 
@@ -684,14 +686,14 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo apt-get install app-protect-dos
     ```
 
-    For L4 accelerated mitigation feature (Debian 11 / Ubuntu 20.04 / Ubuntu 22.04):
+    For L4 accelerated mitigation feature (Debian 11 /  Debian 12 / Ubuntu 20.04 / Ubuntu 22.04):
 
     ```shell
     sudo apt-get install app-protect-dos-ebpf
     ```
 
    {{< note >}}
-   L4 accelerated mitigation feature (Debian 11 / Ubuntu 20.04 / Ubuntu 22.04):
+   L4 accelerated mitigation feature (Debian 11 /  Debian 12 /  Ubuntu 20.04 / Ubuntu 22.04):
    - `nginx-app-protect-dos` and `nginx` needs to run with root privileges.
    - `nginx-app-protect-dos` service executes the command: `ulimit -l unlimited`.
    {{< /note >}}
@@ -718,6 +720,12 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo apt-get install app-protect-dos=27+2.4.0-1~bullseye nginx-plus-module-appprotectdos=27+2.4.0-1~bullseye
     ```
 
+    For example for Debian 12:
+
+    ```shell
+    sudo apt-get install app-protect-dos=32+4.4.0-1~bookworm nginx-plus-module-appprotectdos=32+4.4.0-1~bookworm
+    ```
+    
     For example for Ubuntu 18.04:
 
     ```shell
@@ -772,7 +780,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     app_protect_dos_monitor "example.com/";
     ```
 
-15. Enable L4 accelerated mitigation feature (Debian 11 / Ubuntu 20.04 / Ubuntu 22.04) on an `http` context in the `nginx.conf` file:
+15. Enable L4 accelerated mitigation feature (Debian 11 / Debian 12 / Ubuntu 20.04 / Ubuntu 22.04) on an `http` context in the `nginx.conf` file:
 
     ```nginx
     app_protect_dos_accelerated_mitigation on;
@@ -1209,18 +1217,18 @@ RUN subscription-manager attach --auto
 
 # Install dependencies
 RUN subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
-RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+RUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 
 # Install prerequisite packages:
-RUN yum -y install wget ca-certificates
+RUN dnf -y install wget ca-certificates
 
 # Add NGINX Plus and NGINX App Protect DoS repo to Yum:
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.4.repo
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-8.repo
 
 # Install NGINX App Protect DoS:
-RUN yum -y install app-protect-dos \
-    && yum clean all \
+RUN dnf -y install app-protect-dos \
+    && dnf clean all \
     && rm -rf /var/cache/yum \
     && rm -rf /etc/ssl/nginx
 
@@ -1231,12 +1239,12 @@ COPY entrypoint.sh  /root/
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
 
-### Debian 10 (Buster) / Debian 11 (Bullseye) Docker Deployment Example
+### Debian 10 (Buster) / Debian 11 (Bullseye) / Debian 12 (Bookworm) Docker Deployment Example
 
 ```Dockerfile
 
 ARG OS_CODENAME
-# Where OS_CODENAME can be: buster/bullseye
+# Where OS_CODENAME can be: buster/bullseye/bookworm
 
 FROM debian:${OS_CODENAME}
 
@@ -1648,12 +1656,12 @@ COPY entrypoint.sh  /root/
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
 
-### Debian 10 (Buster) / Debian 11 (Bullseye) Docker Deployment Example
+### Debian 10 (Buster) / Debian 11 (Bullseye)  / Debian 12 (Bookworm) Docker Deployment Example
 
 ```Dockerfile
 
 ARG OS_CODENAME
-# Where OS_CODENAME can be: buster/bullseye
+# Where OS_CODENAME can be: buster/bullseye/bookworm
 
 FROM debian:${OS_CODENAME}
 
