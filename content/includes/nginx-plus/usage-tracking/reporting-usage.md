@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1353"
+docs: DOCS-1353
 ---
 
 You can report your NGINX product usage to F5 manually or automatically.

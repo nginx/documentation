@@ -1,31 +1,16 @@
 ---
-title: "Install NGINX Management Suite with Ansible"
-date: 2023-07-20T14:44:12.320Z
-# Change draft status to false to publish doc.
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO.
-# The description text appears in search results and at the top of the doc.
-description: "This guide shows you how to install NGINX Management Suite using the open-source Ansible role. Easily reproduce your installation across multiple environments through automation."
-# Assign weights in increments of 100
-weight: 200
+description: This guide shows you how to install NGINX Management Suite using the
+  open-source Ansible role. Easily reproduce your installation across multiple environments
+  through automation.
+docs: DOCS-1248
+doctypes:
+- task
+tags:
+- docs
+title: Install NGINX Management Suite with Ansible
 toc: true
-tags: ["docs"]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1248"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "security"]
-doctypes: ["task"]
-journeys:
-  ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
+weight: 200
 ---
-
-{{< custom-styles >}}
 
 {{< call-out "tip" "Open-Source Project on GitHub" >}}
 The steps in this guide refer to the <a href="https://github.com/nginxinc/ansible-role-nginx-management-suite" target="_blank">Ansible NGINX Management Suite Role project on GitHub.</a> <i class="fa-solid fa-arrow-up-right-from-square" style="color:#009639;"></i>
@@ -63,7 +48,6 @@ The Ansible role for NGINX Management Suite simplifies the installation process 
         nms_setup: install
         nms_modules:
           - name: acm
-          - name: adm
           - name: sm
       collections:
         - nginxinc.nginx_core

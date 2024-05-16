@@ -1,23 +1,10 @@
 ---
-title: "Release Notes 0.9"
-date: 2021-03-08T10:46:11-07:00
-draft: false
+description: Release information for NGINX Instance Manager, v0.9. Lists of new features
+  and known issues are provided.
+docs: DOCS-640
+title: Release Notes 0.9
 toc: true
-description: Release information for NGINX Instance Manager, v0.9. Lists of new features and known issues are provided.
 weight: 500
-categories: ["support", "known issues", "release notes"]
-aliases:
-    - /v1/releases/release-notes-0.9.0/
-    - /v1/releases/release-notes-0.9.1/
-    - /v1/releases/release-notes-0.9.2/
-    - /v1/releases/release-notes-0.9/
-    - /releases/release-notes-0.9/
-    - /releases/release-notes-0.9.0/
-    - /releases/release-notes-0.9.1/
-    - /releases/release-notes-0.9.2/
-    
-versions: ["v1"]
-docs: "DOCS-640"
 ---
 
 ## NGINX Instance Manager Version 0.9.2
@@ -42,11 +29,13 @@ March 22, 2021
 ### Supported Versions
 
 NGINX Plus Versions:
+
 - R21
 - R22
 - R23
 
 NGINX Open Source Versions:
+
 - 1.16
 - 1.18
 - 1.19
@@ -67,11 +56,11 @@ Everything is new, as v0.9.0 is our first public release.
 
 NGINX Instance Manager version 0.9.0 includes the following features:
 
-  - Support for NGINX Open Source
-  - Scanning tool for existing web servers
-  - Configuration editor
-  - Analyzer functionality
-  - Advanced authentication options
+- Support for NGINX Open Source
+- Scanning tool for existing web servers
+- Configuration editor
+- Analyzer functionality
+- Advanced authentication options
 
 #### Support for NGINX Open Source
 

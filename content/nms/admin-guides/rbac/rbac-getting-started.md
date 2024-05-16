@@ -1,29 +1,17 @@
 ---
-title: "Getting Started with RBAC"
-date: 2022-03-24T16:23:50-07:00
-description: "This document describes role-based access control (RBAC) in NGINX Management Suite, outlining essential concepts and features. It serves as a starting point, linking to additional resources and how-to topics for those looking to set up and manage access controls effectively."
-# Assign weights in increments of 100
-weight: 1
-draft: false
+description: This document describes role-based access control (RBAC) in NGINX Management
+  Suite, outlining essential concepts and features. It serves as a starting point,
+  linking to additional resources and how-to topics for those looking to set up and
+  manage access controls effectively.
+docs: DOCS-919
+doctypes:
+- tutorial
+tags:
+- docs
+title: Getting Started with RBAC
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-919"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "configuration", "security", "rbac"]
-doctypes: ["tutorial"]
-journeys: ["getting started", "using"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
-aliases:
-- /nginx-instance-manager/admin-guide/set-up-rbac/
-- /admin-guides/access-control/add-users/
+weight: 1
 ---
-
-{{< custom-styles >}}
 
 <style>
 h2 {
@@ -107,28 +95,6 @@ API Connectivity Manager comes pre-configured with roles suitable for API Owners
 {{< include "acm/rbac/infra-admin-role.md" >}}
 
 {{<see-also>}}The tutorial [Set Up RBAC for Infra Admins]({{< relref "/nms/acm/tutorials/rbac-infra-admins.md">}}) provides an example of how to configure RBAC for Infrastructure Administrators.{{</see-also>}}
-
----
-
-### App Delivery Manager
-
-{{< include "admin-guides/rbac/features/app-delivery-manager.md" >}}
-
-
-#### Endpoints
-
-Explore the API endpoints for App Delivery Manager by going to **https://<NMS_FQDN>/ui/docs/App-Delivery-Manager**. Replace `<NMS_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Management Suite host, which is the complete domain name specific to your system.
-
----
-
-### Security Monitoring
-
-{{< include "admin-guides/rbac/features/security-monitoring.md" >}}
-
-
-#### Endpoints
-
-Explore the API endpoints for Security Monitoring by going to **https://<NMS_FQDN>/ui/docs**. Replace `<NMS_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Management Suite host, which is the complete domain name specific to your system.
 
 ## Next Steps {#next-steps}
 

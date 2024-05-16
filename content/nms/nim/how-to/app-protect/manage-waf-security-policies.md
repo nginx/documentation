@@ -1,38 +1,26 @@
 ---
-title: "Manage WAF Security Policies and Security Log Profiles"
-date: 2022-12-15T21:43:51-07:00
-# Change draft status to false to publish doc.
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Learn how to use NGINX Management Suite Instance Manager to manage NGINX App Protect WAF security policies and security log profiles."
-# Assign weights in increments of 100
-weight: 200
+description: Learn how to use NGINX Management Suite Instance Manager to manage NGINX
+  App Protect WAF security policies and security log profiles.
+docs: DOCS-1105
+doctypes:
+- task
+tags:
+- docs
+title: Manage WAF Security Policies and Security Log Profiles
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1105"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: [ "security" ]
-doctypes: ["task"]
-
+weight: 200
 ---
-
-{{<custom-styles>}}
 
 ## Overview
 
 NGINX Management Suite Instance Manager provides the ability to manage the configuration of NGINX App Protect WAF instances either by the user interface or the REST API. This includes editing, updating, and deploying security policies, log profiles, attack signatures, and threat campaigns to individual instances and/or instance groups.
 
-In Instance Manager v2.14.0 and later, you can compile a security policy, attack signatures, and threat campaigns into a security policy bundle. A security policy bundle consists of the security policy, the attack signatures, and threat campaigns for a particular version of NGINX App Protect WAF, and additional supporting files that make it possible for NGINX App Protect WAF to use the bundle. Because the security policy bundle is pre-compiled, the configuration gets applied faster than when you individually reference the security policy, attack signature, and threat campaign files. 
+In Instance Manager v2.14.0 and later, you can compile a security policy, attack signatures, and threat campaigns into a security policy bundle. A security policy bundle consists of the security policy, the attack signatures, and threat campaigns for a particular version of NGINX App Protect WAF, and additional supporting files that make it possible for NGINX App Protect WAF to use the bundle. Because the security policy bundle is pre-compiled, the configuration gets applied faster than when you individually reference the security policy, attack signature, and threat campaign files.
 
 {{<note>}}
 The following capabilities are only available via the Instance Manager REST API:
 
-- Update security policies 
+- Update security policies
 - Create, read, and update security policy bundles
 - Create, read, update, and delete Security Log Profiles
 - Publish security policies, security log profiles, attack signatures, and/or threat campaigns to instances and instance groups
@@ -52,7 +40,7 @@ Complete the following prerequisites before proceeding with this guide:
   - **Access**: `READ`
   - **Feature**: Security Policies
   - **Access**: `READ`, `CREATE`, `UPDATE`, `DELETE`
- 
+
 The following are required to use support policy bundles:
 
 - You must have `UPDATE` permissions for the security policies specified in the request.
@@ -102,14 +90,15 @@ To upload a new security policy, send an HTTP `POST` request to the Security Pol
 
 <br>
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                             |
 |--------|--------------------------------------|
 | POST   | `/api/platform/v1/security/policies` |
 
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 For example:
 
@@ -167,15 +156,16 @@ To update a security policy, send an HTTP `POST` request to the Security Policie
 
 You can use the optional `isNewRevision` parameter to indicate whether the updated policy is a new version of an existing policy.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                                |
 |--------|---------------------------------------------------------|
 | POST   | `/api/platform/v1/security/policies?isNewRevision=true` |
 | PUT    | `/api/platform/v1/security/policies/{system_id_string}` |
 
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 For example:
 
@@ -185,7 +175,7 @@ curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/policies?isNewRevisio
     -d @update-xss-policy.json
 ```
 
-You can update a specific policy by sending an HTTP `PUT` request to the Security Policies API endpoint that includes the policy's unique identifier (UID). 
+You can update a specific policy by sending an HTTP `PUT` request to the Security Policies API endpoint that includes the policy's unique identifier (UID).
 
 To find the UID, send an HTTP `GET` request to the Security Policies API endpoint. This returns a list of all Security Policies that contains the unique identifier for each policy.
 
@@ -223,13 +213,15 @@ To delete a security policy using the Instance Manager web interface:
 
 To delete a security policy, send an HTTP `DELETE` request to the Security Policies API endpoint that includes the unique identifier for the policy that you want to delete.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                                   |
 |--------|------------------------------------------------------------|
 | DELETE | `/api/platform/v1/security/policies/{security-policy-uid}` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 For example:
 
@@ -250,17 +242,18 @@ curl -X DELETE https://{{NMS_FQDN}}/api/platform/v1/security/policies/23139e0a-4
 
 To create security policy bundles, send an HTTP `POST` request to the Security Policies Bundles API endpoint. The specified security policies you'd like to compile into security policy bundles must already exist in Instance Manager.
 
-### Required Fields:
+### Required Fields
 
 - `appProtectWAFVersion`: The version of NGINX App Protect WAF being used.
 - `policyName`: The name of security policy to include in the bundle. This must reference an existing security policy; refer to the [Create a Security Policy](#create-security-policy) section above for instructions.
 
-### Notes:
+### Notes
 
 - If you do not specify a value for the `attackSignatureVersionDateTime` and/or `threatCampaignVersionDateTime` fields, the latest version of each will be used by default. You can also explicitly state that you want to use the most recent version by specifying the keyword `latest` as the value.
 - If the `policyUID` field is not defined, the latest version of the specified security policy will be used. This field **does not allow** use of the keyword `latest`.
 
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                             |
 |--------|--------------------------------------|
 | POST   | `/api/platform/v1/security/policies/bundles` |
@@ -382,14 +375,15 @@ You can filter the results by using the following query parameters:
 
 <br>
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                             |
 |--------|--------------------------------------|
 | GET    | `/api/platform/v1/security/policies/bundles` |
 
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 For example:
 
@@ -468,14 +462,15 @@ To get a specific security policy bundle, send an HTTP `GET` request to the Secu
 
 <br>
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                             |
 |--------|--------------------------------------|
 | GET    | `/api/platform/v1/security/policies/{security-policy-uid}/bundles/{security-policy-bundle-uid}` |
 
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 For example:
 
@@ -522,14 +517,15 @@ Send an HTTP `POST` request to the Security Log Profiles API endpoint to upload 
 
 <br>
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                             |
 |--------|--------------------------------------|
 | POST   | `/api/platform/v1/security/logprofiles` |
 
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 For example:
 
@@ -580,15 +576,16 @@ To update a security log profile, send an HTTP `POST` request to the Security Lo
 
 You can use the optional `isNewRevision` parameter to indicate whether the updated log profile is a new version of an existing log profile.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                                |
 |--------|---------------------------------------------------------|
 | POST   | `/api/platform/v1/security/logprofiles?isNewRevision=true` |
 | PUT    | `/api/platform/v1/security/logprofiles/{security-log-profile-uid}` |
 
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 For example:
 
@@ -598,11 +595,11 @@ curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/logprofiles?isNewRevi
     -d @update-default-log.json
 ```
 
-You can update a specific log profile by sending an HTTP `PUT` request to the Security Log Profiles API endpoint that includes the log profile's unique identifier (UID). 
+You can update a specific log profile by sending an HTTP `PUT` request to the Security Log Profiles API endpoint that includes the log profile's unique identifier (UID).
 
 To find the UID, send an HTTP `GET` request to the Security Log Profiles API endpoint. This returns a list of all Security Log Profiles that contains the unique identifier for each log profile.
 
-Include the UID for the security log profile in your `PUT` request to update the log profile. 
+Include the UID for the security log profile in your `PUT` request to update the log profile.
 
 For example:
 
@@ -620,13 +617,15 @@ After you have pushed an updated security log profile, you can [publish it](#pub
 
 To delete a security log profile, send an HTTP `DELETE` request to the Security Log Profiles API endpoint that includes the unique identifier for the log profile that you want to delete.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                                   |
 |--------|------------------------------------------------------------|
 | DELETE | `/api/platform/v1/security/logprofiles/{security-log-profile-uid}` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 For example:
 
@@ -643,14 +642,15 @@ The Publish API lets you distribute security policies, security log profiles, at
 
 {{<tip>}}Use this endpoint *after* you've added or updated security policies, security log profiles, attack signatures, and/or threat campaigns.{{</tip>}}
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                            |
 |--------|-------------------------------------|
 | POST   | `/api/platform/v1/security/publish` |
 
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 When making a request to the Publish API, make sure to include all the necessary information for your specific use case:
 

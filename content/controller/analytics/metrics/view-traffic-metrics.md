@@ -1,26 +1,9 @@
 ---
-authors: []
-categories:
-- services
-- api management
-- analytics
-date: "2020-11-06T10:08:15-08:00"
 description: How to view the traffic metrics gathered by NGINX Controller Analytics.
 docs: DOCS-538
 doctypes:
 - task
 - tutorial
-draft: false
-journeys:
-- using
-personas:
-- devops
-- netops
-- secops
-roles:
-- admin
-- user
-- read-only
 tags:
 - docs
 title: View Traffic Metrics

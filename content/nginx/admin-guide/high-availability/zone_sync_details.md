@@ -9,7 +9,6 @@ toc: true
 weight: 500
 ---
 
-
 This chapter describes the design and limitations of the zone synchronization feature that allows synchronizing data in an nginx cluster.
 
 <span id="intro"></span>
@@ -19,17 +18,18 @@ This chapter describes the design and limitations of the zone synchronization fe
 ### Use Cases
 
 Given the specific functionality of the feature, namely:
-* processing requests on each node separately without consulting other nodes
-* eventual delivery of changes
-* expirable records
+
+- processing requests on each node separately without consulting other nodes
+- eventual delivery of changes
+- expirable records
 
 The following use cases are considered:
 
-* **Session caching**: the first request creates a session which is shared with other nodes. Subsequent requests use the same session on any cluster node. A missing session on a node is more of a performance penalty rather than a fatal error.
+- **Session caching**: the first request creates a session which is shared with other nodes. Subsequent requests use the same session on any cluster node. A missing session on a node is more of a performance penalty rather than a fatal error.
 
-* **Resource limiting**: each node assesses local resources and notifies others. In average, the cluster limit is properly imposed.
+- **Resource limiting**: each node assesses local resources and notifies others. In average, the cluster limit is properly imposed.
 
-* **Dynamic configuration**: dynamic configuration entries (for example, temporary redirection rules, access rules and limits) are automatically shared within the cluster after being entered on one node. As soon as other nodes receive them, new rules are applied.
+- **Dynamic configuration**: dynamic configuration entries (for example, temporary redirection rules, access rules and limits) are automatically shared within the cluster after being entered on one node. As soon as other nodes receive them, new rules are applied.
 
 
 <span id="modules"></span>
@@ -39,20 +39,21 @@ The feature is complex, and its support is split between the nginx `core`, the [
 
 Here, the [zone synchronization module](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html) is responsible for:
 
-* all network-related functionality, including:
-  * cluster nodes discovery
-  * managing network connections to cluster nodes
-  * providing transport layer security (using the [ssl module](https://nginx.org/en/docs/http/ngx_http_ssl_module.html))
-  * pushing data provided by the functional modules to remote nodes
-  * accepting data from remote nodes and dispatching it to the functional modules
-* tracking changes in zones and processing the zone’s output queue
+- all network-related functionality, including:
+  - cluster nodes discovery
+  - managing network connections to cluster nodes
+  - providing transport layer security (using the [ssl module](https://nginx.org/en/docs/http/ngx_http_ssl_module.html))
+  - pushing data provided by the functional modules to remote nodes
+  - accepting data from remote nodes and dispatching it to the functional modules
+- tracking changes in zones and processing the zone’s output queue
 
 On the server side, the [zone synchronization module](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html) is a regular stream module, so access control, transport layer security, and limiting are supported.
 
 The functional modules are responsible for:
-* serializing zone records so they can be sent over the network along with key and timestamp metadata
-* deserializing messages and updating the local zone with remote data
-* maintaining a queue of records that were updated locally and have to be distributed within the cluster
+
+- serializing zone records so they can be sent over the network along with key and timestamp metadata
+- deserializing messages and updating the local zone with remote data
+- maintaining a queue of records that were updated locally and have to be distributed within the cluster
 
 The core provides necessary interfaces between the zone synchronization module and the functional modules.
 
@@ -63,7 +64,7 @@ The core provides necessary interfaces between the zone synchronization module a
 <span id="datamodel"></span>
 ### Data Model
 
-Each functional module represents its data as a queue of records. Records are opaque for the zone synchronization module; it deals only with a serialized representation of the records while sending them to other nodes. The queue contains records that need to be sent to the cluster. Only records created locally on a node may appear in the output queue. The queue is intrusive and may include all records stored in a zone. 
+Each functional module represents its data as a queue of records. Records are opaque for the zone synchronization module; it deals only with a serialized representation of the records while sending them to other nodes. The queue contains records that need to be sent to the cluster. Only records created locally on a node may appear in the output queue. The queue is intrusive and may include all records stored in a zone.
 
 The zone synchronization module polls the output queues of configured zones at a constant [interval](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html#zone_sync_interval) which controls how large the inconsistency window of the cluster is. Also, it allows reducing the amount of data transferred in case of frequent updates of a single record (a typical use case with sessions, when a session is created and later updated multiple times).
 
@@ -83,7 +84,7 @@ Obviously, the algorithm depends on proper temporal synchronization of all clust
 
 1. The functional module creates a new record (for example, a new sticky session)
 2. The record is inserted into the output queue
-3. The functional module may continue its normal operation. As a result, the record can be updated multiple times or even deleted (for example, locally on the node after a direct request) before being shared with other nodes. 
+3. The functional module may continue its normal operation. As a result, the record can be updated multiple times or even deleted (for example, locally on the node after a direct request) before being shared with other nodes.
 4. Periodic timer triggers, and the zone synchronization module inspects the output queue of the functional module.
 5. If the queue is not empty, the zone synchronization module asks the functional module to serialize the outgoing records and writes them into its own [buffer](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html#zone_sync_buffers).
 6. The functional module serializes a record using its own serialization format. Typically, it includes `key`, `timestamp`, and `payload`.
@@ -92,16 +93,12 @@ Obviously, the algorithm depends on proper temporal synchronization of all clust
 If an error occurs and a record cannot be delivered to a node, the connection to the node is closed to be reestablished. See the explanation of the initial state of a cluster portion below.
 9. The remote node receives the message and dispatches it to the appropriate functional module and zone.
 The functional module now has to refresh its local state using the information from the remote node (`key`, `timestamp`, and `payload`) by:
-  * Inserting the new record at the key if no such key exists
-  * Updating an existing record if the remote timestamp is newer
-  * Ignoring the update if the local timestamp is newer
+
+- Inserting the new record at the key if no such key exists
+- Updating an existing record if the remote timestamp is newer
+- Ignoring the update if the local timestamp is newer
 
 10. The functional module, that is capable to serialize zone state to disk (i.e. keyval with the “state” enabled) saves record timestamps to ensure proper handling of records lifetime after server restart.
-
-
-<span id="cluster"></span>
-## Introduction
-
 
 <span id="topology"></span>
 ### Topology
@@ -131,12 +128,13 @@ When a node goes offline, it temporarily affects other nodes: next data read fro
 ### Wire Format
 
 The module uses a set of [buffers](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html#zone_sync_buffers) pre-allocated per node connection to deliver changes. A buffer contains a message header and serialized records. The message header contains:
-* full message length, including its payload
-* protocol version (currently `1`)
-* zone name length
-* module tag - unique module id
-* module version
-* destination zone name
+
+- full message length, including its payload
+- protocol version (currently `1`)
+- zone name length
+- module tag - unique module id
+- module version
+- destination zone name
 
 The size of the fixed-length header section is `12` bytes. For a message to be successfully dispatched, the signature (module tag and version) must match the destination. Messages with unknown signatures are ignored (for example, adding a new zone to another node can yield such a message). Length of the serialized record depends on the specific functional module; for example, the sticky module generates a `21`-byte fixed-length header and a session ID of up to `32` bytes. If a single serialized record is too large to fit in the buffer, an error is logged and the record is ignored during synchronization. This also suggests that the buffer size should be increased.
 
@@ -194,7 +192,7 @@ With many workers and nodes, this can become a bottleneck. If the number of even
 
 **Q.** How do I deliberately put a node offline?
 
-**A.** The documentation describes how to control cluster nodes. 
+**A.** The documentation describes how to control cluster nodes.
 
 
 **Q.** How can we monitor cluster state data?

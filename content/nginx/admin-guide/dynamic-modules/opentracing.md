@@ -1,9 +1,9 @@
 ---
-description: Instrument NGINX with OpenTracing-compliant requests for a range of distributed
-  tracing services, such as Zipkin, Jaeger and Datadog. Note that the opentracing
-  module provides the framework for recording traces; you will also need to install
-  a service-specific tracing module.  This module (“tracer”) pushes traces to the
-  collector and analyser provided by that service.
+description: "Instrument NGINX with OpenTracing-compliant requests for a range of\
+  \ distributed tracing services, such as Zipkin, Jaeger and Datadog. Note that the\
+  \ opentracing module provides the framework for recording traces; you will also\
+  \ need to install a service-specific tracing module.  This module (\u201Ctracer\u201D\
+  ) pushes traces to the collector and analyser provided by that service."
 docs: DOCS-395
 doctypes:
 - task
@@ -11,7 +11,6 @@ title: OpenTracing
 toc: true
 weight: 100
 ---
-
 
 {{< note >}} Since NGINX Plus <a href="../../../releases/#r29">Release 29</a>, the [OpenTelemetry]({{< relref "opentelemetry.md" >}}) module is available that incorporates the features of the OpenTracing module.{{< /note >}}
 
@@ -28,6 +27,7 @@ weight: 100
    ```shell
    yum install nginx-plus-module-opentracing
    ```
+
    {{< note >}}the OpenTracing module cannot be installed on CentOS 6, Oracle Linux 6, and RHEL 6. {{< /note >}}
 
    For Amazon Linux 2023, AlmaLinux, Rocky Linux:
@@ -37,7 +37,7 @@ weight: 100
    ```
 
    For Debian and Ubuntu:
-   
+
    ```shell
    apt-get install nginx-plus-module-opentracing
    ```
@@ -47,6 +47,7 @@ weight: 100
    ```shell
    zypper install nginx-plus-module-opentracing
    ```
+
    {{< note >}} the OpenTracing module cannot be installed on SLES 12. {{< /note >}}
 
    For Alpine:
@@ -77,6 +78,7 @@ After installation you will need to enable and configure the module in NGINX Plu
 2. Perform additional configuration as required by the [module](https://github.com/opentracing-contrib/nginx-opentracing). You will also need to [install a tracer](https://github.com/opentracing-contrib/nginx-opentracing#building-from-source) (“portable binary plugin”) for your selected service.
 
 3. Test the configuration and reload NGINX Plus to enable the module:
+
    ```shell
    nginx -t && nginx -s reload
    ```
@@ -85,8 +87,8 @@ After installation you will need to enable and configure the module in NGINX Plu
 <span id="info"></span>
 ## More Info
 
-* [NGINX plugin for OpenTracing Reference](https://github.com/opentracing-contrib/nginx-opentracing)
+- [NGINX plugin for OpenTracing Reference](https://github.com/opentracing-contrib/nginx-opentracing)
 
-* [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
 
-* [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})

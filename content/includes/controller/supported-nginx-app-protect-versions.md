@@ -1,7 +1,7 @@
 The App Security add-on for the NGINX Controller Application Delivery module is compatible with the versions of NGINX Plus and NGINX App Protect shown in the table below. New releases of NGINX Controller ADC support the last four versions of NGINX Plus at release time.
 
 {{< see-also >}}
-Refer to [Using NGINX App Protect with NGINX Controller](https://docs.nginx.com/nginx-app-protect/admin-guide/install-for-controller/) for installation instructions and additional information.
+Refer to [Using NGINX App Protect with NGINX Controller]({{< relref "controller/admin-guides/install/install-for-controller.md" >}}) for installation instructions and additional information.
 {{< /see-also >}}
 
 {{< bootstrap-table "table table-striped table-bordered" >}}

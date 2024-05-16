@@ -12,8 +12,10 @@ To use SQLite database, you need the following:
 Set the following configuration options to use a SQLite database:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Parameter         | Value    |
 | ----------------- | -------- |
 | `api.db.external` | `false`  |
 | `api.db.type`     | `sqlite` |
+
 {{</bootstrap-table>}}

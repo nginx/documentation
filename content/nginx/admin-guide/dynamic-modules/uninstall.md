@@ -8,14 +8,13 @@ toc: true
 weight: 100
 ---
 
-
 <span id="uninstall"></span>
 ## Instructions
 
 1. To uninstall a dynamic module:
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
-  
+
    ```shell
    yum remove <dynamic_module_name>
    ```
@@ -25,15 +24,15 @@ weight: 100
    ```shell
    dnf remove <dynamic_module_name>
    ```
-   
+
    For Debian and Ubuntu:
-  
+
    ```shell
    apt-get remove <dynamic_module_name>
    ```
 
    For SLES:
-  
+
    ```shell
    zypper remove <dynamic_module_name>
    ```
@@ -65,9 +64,9 @@ After uninstalling the package, you will need to disable the module in NGINX Plu
 <span id="info"></span>
 ## More Info
 
-* [NGINX Module Reference](https://nginx.org/en/docs/)
+- [NGINX Module Reference](https://nginx.org/en/docs/)
 
-* [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
 
-* [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
 

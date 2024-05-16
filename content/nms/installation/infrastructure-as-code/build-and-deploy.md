@@ -1,31 +1,15 @@
 ---
-title: "Build and Deploy Images"
-date: 2023-07-20T14:44:12.320Z
-# Change draft status to false to publish doc.
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO.
-# The description text appears in search results and at the top of the doc.
-description: "This guide points you to step-by-step instructions for building and deploying NGINX Management Suite images on different cloud providers."
-# Assign weights in increments of 100
-weight: 300
+description: This guide points you to step-by-step instructions for building and deploying
+  NGINX Management Suite images on different cloud providers.
+docs: DOCS-1247
+doctypes:
+- task
+tags:
+- docs
+title: Build and Deploy Images
 toc: true
-tags: ["docs"]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1247"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "security"]
-doctypes: ["task"]
-journeys:
-  ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
+weight: 300
 ---
-
-{{<custom-styles>}}
 
 {{< call-out "tip" "Open-Source Project on GitHub" >}}
 The steps in this guide refer to the <a href="https://github.com/nginxinc/nginx-management-suite-iac" target="_blank">NGINX Management Suite Infrastructure as Code project on GitHub.</a> <i class="fa-solid fa-arrow-up-right-from-square" style="color:#009639;"></i>

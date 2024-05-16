@@ -24,9 +24,9 @@ Restricting by geographical location works both for HTTP and TCP/UDP protocols.
 <span id="prereq"></span>
 ## Prerequisites
 
-* NGINX Plus [GeoIP2 dynamic module]({{< relref "../dynamic-modules/geoip2.md" >}})
-* [GeoIP2](https://www.maxmind.com/en/geoip2-databases) or [GeoLite2](https://dev.maxmind.com/geoip/geoip2/geolite2/) databases from MaxMind
-* (optional) [mmdblookup](http://maxmind.github.io/libmaxminddb/mmdblookup.html) utility that looks up an IP address in a MaxMind Database file
+- NGINX Plus [GeoIP2 dynamic module]({{< relref "../dynamic-modules/geoip2.md" >}})
+- [GeoIP2](https://www.maxmind.com/en/geoip2-databases) or [GeoLite2](https://dev.maxmind.com/geoip/geoip2/geolite2/) databases from MaxMind
+- (optional) [mmdblookup](http://maxmind.github.io/libmaxminddb/mmdblookup.html) utility that looks up an IP address in a MaxMind Database file
 
 
 <span id="db"></span>
@@ -37,15 +37,15 @@ The GeoIP2 or GeoLite2 databases can be obtained from the [MaxMind download page
 To get and unpack GeoLite2 Country database:
 
 ```shell
-$ wget http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.mmdb.gz
-$ gunzip GeoLite2-Country.mmdb.gz
+wget http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.mmdb.gz
+gunzip GeoLite2-Country.mmdb.gz
 ```
 
 To get and unpack GeoLite2 City database:
 
 ```shell
-$ wget http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz
-$ gunzip GeoLite2-City.mmdb.gz
+wget http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz
+gunzip GeoLite2-City.mmdb.gz
 ```
 
 
@@ -56,22 +56,22 @@ To see the available geodata, you can query the GeoLite2-Country and GeoLite2-Ci
 
 Install the [libmaxminddb](http://maxmind.github.io/libmaxminddb/index.html) database utility:
 
-* For Amazon Linux, CentOS, Oracle Linux, and RHEL:
+- For Amazon Linux, CentOS, Oracle Linux, and RHEL:
 
   ```shell
-  $ yum install libmaxminddb-devel
+  yum install libmaxminddb-devel
   ```
 
-* For Debian and Ubuntu:
+- For Debian and Ubuntu:
 
   ```shell
-  $ apt-get install libmaxminddb-dev
+  apt-get install libmaxminddb-dev
   ```
 
-* For SLES:
+- For SLES:
 
   ```shell
-  $ zypper install libmaxminddb-devel
+  zypper install libmaxminddb-devel
   ```
 
 A query to the databases can be sent in the following format:
@@ -83,7 +83,7 @@ mmdblookup –file [FILE PATH] –ip [IP ADDRESS] [DATA PATH]
 For example, to get all available geodata for the `8.8.8.8` IP address, send the following command:
 
 ```shell
-$ mmdblookup --file /usr/local/etc/geoip2/GeoLite2-Country.mmdb --ip 8.8.8.8
+mmdblookup --file /usr/local/etc/geoip2/GeoLite2-Country.mmdb --ip 8.8.8.8
 ```
 
 The output will be:
@@ -174,8 +174,9 @@ The output will be:
 To get particular geodata, for example, only the ISO code of a particular country, add the `country iso_code` parameters to the end of the command:
 
 ```shell
-$ mmdblookup --file /usr/local/etc/geoip2/GeoLite2-Country.mmdb --ip 8.8.8.8 country iso_code
+mmdblookup --file /usr/local/etc/geoip2/GeoLite2-Country.mmdb --ip 8.8.8.8 country iso_code
 ```
+
 These parameters are also used when creating variables in the GeoIP2 module for NGINX.
 
 
@@ -187,19 +188,19 @@ These parameters are also used when creating variables in the GeoIP2 module for 
    For Amazon Linux, CentOS, Oracle Linux, and RHEL:
 
    ```shell
-   $ yum install nginx-plus-module-geoip2
+   yum install nginx-plus-module-geoip2
    ```
 
    For Debian and Ubuntu:
 
    ```shell
-   $ apt-get install nginx-plus-module-geoip2
+   apt-get install nginx-plus-module-geoip2
    ```
 
    For SLES:
 
    ```shell
-   $ zypper install nginx-plus-module-geoip2
+   zypper install nginx-plus-module-geoip2
    ```
 
 2. Enable the GeoIP2 dynamic module in the NGINX Plus configuration file with the [load_module](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive specified in the `main` configuration level:
@@ -319,6 +320,7 @@ This can be achieved by using the continent code from the GeoIP2 database in a v
        proxy_pass http://$nearest_server;
    }
    ```
+
 If the continent is Europe, then the value of the `$nearest_server` will be `eu`, and the connection will be passed to the `eu` upstream via the [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directive:
 
 ```nginx
@@ -383,14 +385,15 @@ upstream na {
     server na2.example.com:12345;
 }
 ```
+
 In this example, the IP address will be checked in the `GeoLite2-Country.mmdb` database, the result will be written to the `$geoip2_data_continent_code` variable. NGINX Plus will match the value of the variable against values in the [map](https://nginx.org/en/docs/http/ngx_http_map_module.html#map) directive and write the result in the custom variable, in our example `$nearest_server`. Basing on the value of the `$nearest_server`, the [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directive will choose a corresponding upstream server.
 
 
 <span id="info"></span>
 ## More Info
 
-* [GeoIP2 Dynamic Module Installation Instructions]({{< relref "geoip2.md" >}})
+- [GeoIP2 Dynamic Module Installation Instructions]({{< relref "geoip2.md" >}})
 
-* [MaxMind GeoIP2 Databases](https://www.maxmind.com/en/geoip2-databases)
+- [MaxMind GeoIP2 Databases](https://www.maxmind.com/en/geoip2-databases)
 
-* [MaxMind Geolite2 Free Downloadable Databases](https://dev.maxmind.com/geoip/geoip2/geolite2/)
+- [MaxMind Geolite2 Free Downloadable Databases](https://dev.maxmind.com/geoip/geoip2/geolite2/)

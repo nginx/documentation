@@ -1,38 +1,14 @@
 ---
-authors: []
-categories:
-- releases
-date: "2021-04-14T13:32:41+00:00"
-description: ""
+description: ''
 docs: DOCS-839
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: Releases
-    weight: 45
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect DoS Release 2.2
 toc: true
-versions:
-- "2.2"
 weight: 180
 ---
 
-Here you can find the release information for NGINX App Protect DoS v2.2. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications. 
+Here you can find the release information for NGINX App Protect DoS v2.2. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
 
 ## Release 2.2
 
@@ -49,21 +25,27 @@ In this release, support for NGINX App Protect DoS is added to NGINX Plus R26.
 #### App Protect DoS
 
 ##### CentOS 7.4+ / RHEL 7.4+ / UBI7
+
 - app-protect-dos-26+2.2.20-1.el7.ngx.el7.ngx.x86_64.rpm
 
 ##### RHEL 8 / UBI8
+
 - app-protect-dos-26+2.2.20-1.el8.ngx.el8.ngx.x86_64.rpm
 
 ##### Debian 10
+
 - app-protect-dos_26+2.2.20-1~buster_amd64.deb
 
 ##### Ubuntu 18.04
+
 - app-protect-dos_26+2.2.20-1~bionic_amd64.deb
 
 ##### Ubuntu 20.04
+
 - app-protect-dos_26+2.2.20-1~focal_amd64.deb
 
 #### NGINX Plus
+
 - NGINX Plus R26
 
 ### Resolved Issues
@@ -71,7 +53,7 @@ In this release, support for NGINX App Protect DoS is added to NGINX Plus R26.
 - Monitor requests are sent in new connections. It improves monitoring health capability and allows better detection of slow POST attacks.
 
 - Adaptive memory allocation by adminstall in order to support maximum cores.
-  The amount of allocated memory for NGINX App Protect DoS is controlled by an argument of adminstall. 
+  The amount of allocated memory for NGINX App Protect DoS is controlled by an argument of adminstall.
   The default value is 80 MB. For certain deployments, this amount of memory size is not enough.  The default memory size is adaptive now. If the Virtual Machine (VM) has a big number of CPU cores, then we can also increase the amount of memory. For the case of up to 4 CPU cores, the allocated memory is 80MB, for more than 4 CPU cores, the allocated memory will be calculated as 80MB + CPUs * 2.5MB
 
 

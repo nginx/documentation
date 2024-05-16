@@ -9,7 +9,6 @@ toc: true
 weight: 100
 ---
 
-
 <span id="install"></span>
 ## Installation
 
@@ -18,7 +17,7 @@ weight: 100
 2. Install the XSLT module package `nginx-plus-module-xslt`.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
-   
+
    ```shell
    yum install nginx-plus-module-xslt
    ```
@@ -36,7 +35,7 @@ weight: 100
    ```
 
    For SLES:
-   
+
    ```shell
    zypper install nginx-plus-module-xslt
    ```
@@ -78,8 +77,8 @@ After installation you will need to enable and configure the module in NGINX Plu
 <span id="info"></span>
 ## More Info
 
-* [NGINX ngx_http_xslt_module Reference](https://nginx.org/en/docs/http/ngx_http_xslt_module.html)
+- [NGINX ngx_http_xslt_module Reference](https://nginx.org/en/docs/http/ngx_http_xslt_module.html)
 
-* [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
 
-* [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})

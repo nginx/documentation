@@ -1,13 +1,13 @@
 ---
-docs: "DOCS-1321"
+docs: DOCS-1321
 ---
 
 The following table lists the configurable parameters and default values for the NGINX Management Suite platform when installing from a Helm chart.
 
 To modify a configuration for an existing release, run the `helm upgrade` command and use `-f <my-values-file>`, where `my-values-file` is a path to a values file with your desired configuration.
 
-{{% table %}}
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+
 | Parameter | Description | Default |
 |:-----------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------|
 | `nms-hybrid.adminPasswordHash`                        | The hashed value of the password for the  admin user.<br>To generate the hash using `openssl`, run a command similar to the following example: `openssl passwd -1 "YouPassword123#"` | N/A |
@@ -110,9 +110,8 @@ To modify a configuration for an existing release, run the `helm upgrade` comman
 | `nms-hybrid.utility.image.repository`                 | Repository name and path for the `utility` image. | `utility` |
 | `nms-hybrid.utility.image.tag`                        | Tag used for pulling images from registry. | `latest` |
 | `nms-hybrid.utility.image.pullPolicy`                 | Image pull policy. | `IfNotPresent` |
-| `nms-hybrid.nic`                                      | To enable NGINX Ingress Controller Virtual Server | See [NGINX Ingress Controller Virtual Server](#nginx-ingress-controller-virtual-server) for details |
+
 {{</bootstrap-table>}}
-{{% /table %}}
 
 ##### Instance Manager Dqlite Storage Configuration
 
@@ -158,34 +157,3 @@ tolerations:
 ```
 
 For more information, refer to the official Kubernetes [Taints and Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) documentation.
-
-##### NGINX Ingress Controller Virtual Server
-
-Example snippet to enable a NGINX Ingress Controller Virtual Server with Instance Manager service as an upstream.
-
-```yaml
-nic:
-  # set to true to configure NGINX Ingress Controller VirtualServer.
-  enabled: true
-  # Optional. Defaults to "nms" otherwise.
-  name: nms
-  # required
-  host: hello.example.com
-  # Optional
-  httpSnippets:
-  # Optional
-  serverSnippets:
-  # Optional
-  ingressClassName: nginx
-  # Optional. A default upstream to NGINX Instance Manager APIGW service is created for you.
-  # If you have a need to configure other upstreams, list here.
-  upstreams: []
-  # Optional
-  routes:
-    - path: /
-      action:
-        proxy:
-          upstream: ${NGINX_Instance_Manager_Service_Name}
-  # Optional
-  policies: []
-```

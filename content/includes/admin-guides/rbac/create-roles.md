@@ -2,7 +2,7 @@
 docs: DOCS-1028
 ---
 
-Roles within NGINX Management Suite are a critical component of [role-based access control (RBAC)]({{< relref "nms/admin-guides/rbac/rbac-getting-started.md" >}}). By defining roles, you specify access levels and permissions for different user groups that map to groups in your Identity Provider (IdP). 
+Roles within NGINX Management Suite are a critical component of [role-based access control (RBAC)]({{< relref "nms/admin-guides/rbac/rbac-getting-started.md" >}}). By defining roles, you specify access levels and permissions for different user groups that map to groups in your Identity Provider (IdP).
 
 NGINX Management Suite comes pre-configured with an administrator role called `admin`. Additional roles can be created as needed.
 

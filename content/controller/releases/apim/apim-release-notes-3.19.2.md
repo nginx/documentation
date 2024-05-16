@@ -1,36 +1,9 @@
 ---
-authors: []
-categories:
-- installation
-- infrastructure
-- platform management
-- services
-- api management
-- service mesh
-- security
-- analytics
-date: "2021-10-19T12:28:23+01:00"
 description: These release notes contain information about new features, improvements,
   known issues, and bug fixes in the NGINX Controller API Management Module.
 docs: DOCS-368
 doctypes:
 - reference
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- renewing
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
-- read-only
 tags:
 - docs
 title: Release Notes 3.19.2
@@ -84,7 +57,7 @@ The following issues are known to be present in this release. Look for updates t
   After installing NGINX App Protect 3.6, the following error message my be displayed when enabling WAF on a component:
 
   *Error: The following module processes were expected but not found: [bd_agent]*
-  
+
   **Workaround:**
 
   Manually start the bd_agent process on the NAP module using this command: 
@@ -99,7 +72,7 @@ The following issues are known to be present in this release. Look for updates t
   **Workaround:**
 
   Enable SElinux enforcing mode before deploying NGINX App Protect.
-  
+
 ## Supported NGINX Plus Versions
 
 This version of NGINX Controller works with the following NGINX Plus versions:

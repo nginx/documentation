@@ -1,16 +1,62 @@
 ---
-title: "Known Issues"
-description: "This document is a summary of the known issues in NGINX Management Suite API Connectivity Manager. Fixed issues are removed after **45 days**. <p>We recommend upgrading to the latest version of API Connectivity Manager to take advantage of new features, improvements, and bug fixes.</p>"
-weight: 200
+description: This document is a summary of the known issues in NGINX Management Suite
+  API Connectivity Manager. Fixed issues are removed after **45 days**. <p>We recommend
+  upgrading to the latest version of API Connectivity Manager to take advantage of
+  new features, improvements, and bug fixes.</p>
+docs: DOCS-930
+doctypes:
+- reference
+tags:
+- docs
+title: Known Issues
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-930"
-categories: ["known issues"]
-doctypes: ["reference"]
+weight: 200
 ---
 
 {{<rn-styles>}}
 
+
+---
+
+## 1.9.2
+March 14, 2024
+
+### {{% icon-bug %}} Helm chart backup and restore is broken {#44766}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Issue ID       | Status |
+|----------------|--------|
+| 44766 | Open   |
+
+{{</bootstrap-table>}}
+#### Description
+Helm backup and restore will not run in ACM-1.9.1 on NMS-2.15.x due to an underlying change in the dqlite client.
+
+#### Workaround
+
+None
+
+---
+
+## 1.9.1
+October 05, 2023
+
+### {{% icon-resolved %}} JWT tokens are overwritten when multiple proxies are assigned to one gateway {#44636}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Issue ID       | Status |
+|----------------|--------|
+| 44636 | Fixed in API Connectivity Manager 1.9.2   |
+
+{{</bootstrap-table>}}
+#### Description
+When multiple API proxies, each with its own JSON Web Token Assertion policy, are assigned to one gateway, the directives are overwritten by one another.
+
+#### Workaround
+
+None
 
 ---
 
@@ -20,6 +66,7 @@ September 07, 2023
 ### {{% icon-resolved %}} Module crashes when an OpenAPI spec is uploaded with a global security requirement that contains an empty security requirement object {#44393}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 44393 | Fixed in API Connectivity Manager 1.9.1   |
@@ -36,20 +83,20 @@ Example OpenAPI security requirement with empty security object:
 
 ---
 
-
 ## 1.8.0
 July 27, 2023
 
 ### {{% icon-resolved %}} Cannot use TLS enabled backend with HTTP backend-config policy {#44212}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 44212 | Fixed in API Connectivity Manager 1.9.0   |
 
 {{</bootstrap-table>}}
 #### Description
-When configuring a backend-config policy with the transport protocol set to HTTP for an API, if TLS is enabled on that APIs backend, then the configuration will fail with the following error in the API Connectivity Manager log file: 
+When configuring a backend-config policy with the transport protocol set to HTTP for an API, if TLS is enabled on that APIs backend, then the configuration will fail with the following error in the API Connectivity Manager log file:
   "Backend Config policy failed when checking transport protocol match because of: the backend-config policy transport protocol http does not match the proxy backend transport protocol https"
 
 ---
@@ -57,6 +104,7 @@ When configuring a backend-config policy with the transport protocol set to HTTP
 ### {{% icon-resolved %}} Deployment fails due to duplicate locations {#43673}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 43673 | Fixed in API Connectivity Manager 1.9.0   |
@@ -70,6 +118,7 @@ When more than one version of an API is published and Append Rule is set to "Non
 ### {{% icon-resolved %}} Certificates associated with empty instance groups can be deleted, resulting in a broken reference in the API Connectivity Manager module {#43671}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 43671 | Fixed in API Connectivity Manager 1.9.0   |
@@ -84,13 +133,13 @@ You can delete the Environment using the API if it cannot be modified or deleted
 
 ---
 
-
 ## 1.7.0
 June 21, 2023
 
 ### {{% icon-resolved %}} Environments with WAF enabled may transition to a Failed status when a Developer Portal cluster is added. {#43231}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 43231 | Fixed in API Connectivity Manager 1.8.0   |
@@ -104,7 +153,7 @@ If you add a Developer Portal cluster to an environment that has WAF enabled, th
 On the Developer Portal:
 
 1. Open an SSH connection to the Developer Portal and log in.
-2. [Install NGINX App Protect]({{< relref "/nap-waf/admin-guide/install.md" >}}).
+2. [Install NGINX App Protect]({{< relref "/nap-waf/v4/admin-guide/install.md" >}}).
 3. Stop the NGINX Agent:
 
     ```bash
@@ -120,18 +169,19 @@ On the Developer Portal:
     Replace `<NMS-FQDN>` with the fully qualified domain name of your NGINX Management Suite, and `<cluster>` with the name of the Developer Cluster.
 
 
-5. Confirm the NGINX Agent is started and restart if necessary: 
+5. Confirm the NGINX Agent is started and restart if necessary:
 
     ```bash
     sudo systemctl status nginx-agent
     sudo systemctl start nginx-agent
-    ``` 
+    ```
 
 ---
 
 ### {{% icon-resolved %}} Resources deployed to a Developer Portal which has had its database reset cannot be updated or removed {#43140}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 43140 | Fixed in API Connectivity Manager 1.9.0   |
@@ -142,13 +192,13 @@ It is not possible to remove resources from API Connectivity Manager which have 
 
 ---
 
-
 ## 1.6.0
 May 11, 2023
 
 ### {{% icon-resolved %}} Multiple entries selected when gateway proxy hostnames are the same {#42515}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 42515 | Fixed in API Connectivity Manager 1.7.0   |
@@ -166,6 +216,7 @@ There is no impact to functionality.
 ### {{% icon-resolved %}} The routes filter under the proxy metrics page won’t work with params {#42471}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 42471 | Fixed in API Connectivity Manager 1.7.0   |
@@ -180,13 +231,13 @@ The API won’t match on the above route.
 
 ---
 
-
 ## 1.5.0
 March 28, 2023
 
 ### {{% icon-bug %}} Using policies with targetPolicyName set to anything other than the default value can cause unexpected results. {#42682}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 42682 | Open   |
@@ -204,6 +255,7 @@ Do not modify the “targetPolicyName” to be anything but the default value.
 ### {{% icon-resolved %}} Array values in token claims are treated as string values {#42388}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 42388 | Fixed in API Connectivity Manager 1.6.0   |
@@ -217,6 +269,7 @@ When an Access Control Routing match rule targeted a token value that contained 
 ### {{% icon-resolved %}} Developer Portal: When typing the links to use for the footer, the text boxes keep losing focus {#41626}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 41626 | Fixed in API Connectivity Manager 1.6.0   |
@@ -234,6 +287,7 @@ You may need to click back into the boxes several times while typing to regain f
 ### {{% icon-resolved %}} TLS setting on listener is not reset when TLS policy is removed {#41426}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 41426 | Fixed in API Connectivity Manager 1.6.0   |
@@ -248,13 +302,13 @@ Toggle the TLS setting in the web interface when removing the TLS policy from an
 
 ---
 
-
 ## 1.4.0
 January 23, 2023
 
 ### {{% icon-resolved %}} Cluster and Environment deletion issues when Portal Docs are published {#40163}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 40163 | Fixed in API Connectivity Manager 1.4.1   |
@@ -268,6 +322,7 @@ When a developer portal proxy is hosting API documentation, the infrastructure a
 ### {{% icon-resolved %}} The Proxy Cluster API isn't ready to be used {#40097}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 40097 | Fixed in API Connectivity Manager 1.5.0   |
@@ -293,6 +348,7 @@ A later version of the release notes will inform you when these endpoints and po
 ### {{% icon-resolved %}} Configurations aren't pushed to newly onboarded instances if another instance is offline {#40035}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 40035 | Fixed in API Connectivity Manager 1.5.0   |
@@ -307,13 +363,13 @@ After onboarding the instance as usual, push the existing configuration again to
 
 ---
 
-
 ## 1.3.0
 December 12, 2022
 
 ### {{% icon-resolved %}} OIDC policy cannot be applied alongside a proxy authentication policy {#39604}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 39604 | Fixed in API Connectivity Manager 1.4.0   |
@@ -327,13 +383,14 @@ It is not possible to use both an OpenID Connect (OIDC) policy and a proxy authe
 ### {{% icon-resolved %}} The web interface doesn't pass the `enableSNI` property for the TLS backend policy {#39445}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 39445 | Fixed in API Connectivity Manager 1.3.1   |
 
 {{</bootstrap-table>}}
 #### Description
-When configuring a TLS backend policy in the web interface, the new `enableSNI` property does not match the value of the deprecated `proxyServerName` property, resulting in an API error. The `enableSNI` value must be the same as `proxyServerName` value. 
+When configuring a TLS backend policy in the web interface, the new `enableSNI` property does not match the value of the deprecated `proxyServerName` property, resulting in an API error. The `enableSNI` value must be the same as `proxyServerName` value.
 
 #### Workaround
 
@@ -352,20 +409,20 @@ Use the NGINX Management Suite API Connectivity Manager REST API to send a PUT r
 ### {{% icon-resolved %}} A JWT token present in a query parameter is not proxied to the backend for advanced routes  {#39328}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 39328 | Fixed in API Connectivity Manager 1.4.0   |
 
 {{</bootstrap-table>}}
 #### Description
-When using JWT authentication with advanced routes, a JWT token that is provided as a query parameter will not be proxied to the backend service. 
+When using JWT authentication with advanced routes, a JWT token that is provided as a query parameter will not be proxied to the backend service.
 
 #### Workaround
 
-Pass the JWT token as a header instead of providing the JWT token as a query parameter. 
+Pass the JWT token as a header instead of providing the JWT token as a query parameter.
 
 ---
-
 
 ## 1.2.0
 October 18, 2022
@@ -373,6 +430,7 @@ October 18, 2022
 ### {{% icon-resolved %}} Developer Portal backend information is unintentionally updated when editing clusters within an environment {#39409}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 39409 | Fixed in API Connectivity Manager 1.3.1   |
@@ -383,7 +441,7 @@ The Developer Portal backend information may be inadvertently updated in the fol
 
 1. If you have multiple Developer Portal clusters and update the backend information (for example, enable TLS or change the host or port, etc. ) for any of those clusters, the update is applied to all of the clusters.
 
-2. If you have one or more Developer Portal clusters and update any other cluster in the environment (for example, the API Gateway or Developer Portal Internal cluster), the backend settings for the Developer Clusters are reset to their defaults (127.0.0.1/8080/no TSL). 
+2. If you have one or more Developer Portal clusters and update any other cluster in the environment (for example, the API Gateway or Developer Portal Internal cluster), the backend settings for the Developer Clusters are reset to their defaults (127.0.0.1/8080/no TSL).
 
 #### Workaround
 
@@ -418,6 +476,7 @@ The Developer Portal backend information may be inadvertently updated in the fol
 ### {{% icon-resolved %}} The user interface is erroneously including irrelevant information on the TLS inbound policy workflow {#38046}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 38046 | Fixed in API Connectivity Manager 1.3.0   |
@@ -435,6 +494,7 @@ Dismiss the policy without saving and restart the UI workflow to add the TLS inb
 ### {{% icon-resolved %}} Portals secured with TLS policy require additional environment configuration prior to publishing API docs {#38028}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 38028 | Fixed in API Connectivity Manager 1.3.0   |
@@ -452,6 +512,7 @@ In the user interface, navigate to Workspace > Environment > Developer Portal Cl
 ### {{% icon-resolved %}}  A proxy deployed with a `specRef` field (OAS) and `basePathVersionAppendRule` set to other than `NONE` may cause versions to appear twice in the deployed location block {#36666}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 36666 | Fixed in API Connectivity Manager 1.9.0   |
@@ -472,6 +533,7 @@ If you are using an API doc with a proxy:
       ```
 
       or
+
       ```nginx
       Servers:
       - url: /api/v3
@@ -486,6 +548,7 @@ If you are using an API doc with a proxy:
 ### {{% icon-resolved %}} New users are unable to see pages even though they have been given access. {#36607}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 36607 | Fixed in API Connectivity Manager 1.3.0   |
@@ -500,13 +563,13 @@ Assign a minimum of READ access on the LICENSING feature to all new roles
 
 ---
 
-
 ## 1.1.0
 August 18, 2022
 
 ### {{% icon-resolved %}} To see updates to the Listener's table, forced refresh of the cluster details page is required. {#36540}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 36540 | Fixed in API Connectivity Manager 1.2.0   |
@@ -524,6 +587,7 @@ Refresh or reload the browser page to see changes on the cluster details page.
 ### {{% icon-resolved %}} Using labels to specify the backend is partially available {#36317}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 36317 | Fixed in API Connectivity Manager 1.2.0   |
@@ -541,6 +605,7 @@ The `targetBackendServiceLabel`  label is not editable through the web interface
 ### {{% icon-resolved %}} Ratelimit policy cannot be applied with OAuth2 JWT Assertion policy. {#36095}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 36095 | Fixed in API Connectivity Manager 1.2.0   |
@@ -554,6 +619,7 @@ Rate limit policy cannot be applied with the OAuth2 JWT assertion policy.
 ### {{% icon-resolved %}} Enums are not supported in Advanced Routing. {#34854}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 34854 | Fixed in API Connectivity Manager 1.2.0   |
@@ -564,13 +630,13 @@ Enums cannot be set for path or query parameters while applying advanced routing
 
 ---
 
-
 ## 1.0.0
 July 19, 2022
 
 ### {{% icon-resolved %}} The API Connectivity Manager module won't load if the Security Monitoring module is enabled {#39943}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 39943 | Fixed in Instance Manager 2.8.0   |
@@ -602,6 +668,7 @@ To see which version of Instance Manager you have installed, run the following c
 ### {{% icon-resolved %}} Credentials endpoint is disabled by default {#35630}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 35630 | Fixed in API Connectivity Manager 1.2.0   |
@@ -612,7 +679,7 @@ For security reasons, the credentials endpoint on API Connectivity Manager(ACM) 
 
 #### Workaround
 
-To enable the credentials endpoints on ACM host 
+To enable the credentials endpoints on ACM host
 
 1. SSH to the ACM host
 1. Enable resource credentials endpoint
@@ -643,6 +710,7 @@ To enable the credentials endpoints on ACM host
 ### {{% icon-resolved %}} Unable to delete an environment that is stuck in a Configuring state. {#35546}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 35546 | Fixed in API Connectivity Manager 1.2.0   |
@@ -664,6 +732,7 @@ https://<NMS-FQDN>/api/acm/v1/infrastructure/workspaces/<infra-workspace-name>/e
 ### {{% icon-resolved %}} Installing NGINX Agent on Ubuntu 22.04 LTS fails with `404 Not Found` error {#35339}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 35339 | Fixed in API Connectivity Manager 1.3.0   |
@@ -696,8 +765,8 @@ Edit the NGINX Agent install script to use the codename `focal` for Ubuntu 20.04
     On **lines 256-258**, change the following:
 
     ```text
-    codename=$(cat /etc/*-release | grep '^DISTRIB_CODENAME' | 
-    sed 's/^[^=]*=\([^=]*\)/\1/' | 
+    codename=$(cat /etc/*-release | grep '^DISTRIB_CODENAME' |
+    sed 's/^[^=]*=\([^=]*\)/\1/' |
     tr '[:upper:]' '[:lower:]')
     ```
 
@@ -731,6 +800,7 @@ Edit the NGINX Agent install script to use the codename `focal` for Ubuntu 20.04
 ### {{% icon-bug %}} OIDC policy cannot be applied on a shared proxy cluster {#35337}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 35337 | Open   |
@@ -748,6 +818,7 @@ Within an environment, use separate proxy clusters for the Developer Portal and 
 ### {{% icon-resolved %}} No validation when conflicting policies are added {#34531}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 34531 | Fixed in API Connectivity Manager 1.3.0   |
@@ -765,6 +836,7 @@ Secure the API proxy with only one policy.
 ### {{% icon-resolved %}} CORS policy doesn't support proxying preflight requests to the backend when combined with an authentication policy {#34449}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 34449 | Fixed in API Connectivity Manager 1.6.0   |

@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1322"
+docs: DOCS-1322
 ---
 
 Run the following command to upgrade the NGINX Management Suite deployment:

@@ -9,7 +9,6 @@ toc: true
 weight: 100
 ---
 
-
 <span id="install"></span>
 ## Installation
 
@@ -18,11 +17,11 @@ weight: 100
 2. Install the Headers-More module package `nginx-plus-module-headers-more`.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
-   
+
    ```shell
    yum install nginx-plus-module-headers-more
    ```
-   
+
    For Amazon Linux 2023, AlmaLinux, Rocky Linux:
 
    ```shell
@@ -30,13 +29,13 @@ weight: 100
    ```
 
    For Debian and Ubuntu:
-   
+
    ```shell
    apt-get install nginx-plus-module-headers-more
    ```
 
    For SLES:
-   
+
    ```shell
    zypper install nginx-plus-module-headers-more
    ```
@@ -76,8 +75,8 @@ After installation you will need to enable and configure the module in NGINX Plu
 <span id="info"></span>
 ## More Info
 
-* [NGINX ngx_headers_more Module Reference](https://github.com/openresty/headers-more-nginx-module)
+- [NGINX ngx_headers_more Module Reference](https://github.com/openresty/headers-more-nginx-module)
 
-* [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
 
-* [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})

@@ -1,24 +1,13 @@
 ---
-categories:
-- examples
 description: Steps on Adding an NGINX Instance to Instance Manager Management
+docs: DOCS-643
 doctypes:
 - tutorial
 draft: true
-journeys:
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
 tags:
 - docs
 title: Manage an NGINX Instance
 toc: true
-versions: []
-docs: "DOCS-643"
 ---
 
 {{< include "nim/previous-versions/old-version-warning.md" >}}
@@ -43,7 +32,7 @@ Assuming you are on the nginx-manager server and have the repository configured,
 1. Create an `nginx-agent.conf` file with the correct settings in your current directory.
 
 ```bash
-$ vim nginx-agent.conf
+vim nginx-agent.conf
 ```
 
 Change the server name and port below and also the stub_status or plus_api sections (you can leave both in if you have a mix of plus and open source)
@@ -95,9 +84,9 @@ $ sudo yum install -y yum-plugin-downloadonly
 Download the rpm using yum to the local directory. This assumes you have the nginx-manager repository already set.
 
 ```bash
-$ sudo yum install --downloadonly --downloaddir=. nginx-agent
-$ agentrpm=$(ls $PWD/nginx-agent*.rpm | tail -n 1)
-$ echo $agentrpm
+sudo yum install --downloadonly --downloaddir=. nginx-agent
+agentrpm=$(ls $PWD/nginx-agent*.rpm | tail -n 1)
+echo $agentrpm
 ```
 
 {{%/tab%}}
@@ -106,9 +95,9 @@ $ echo $agentrpm
 Download the rpm using dnf to the local directory. This assumes you have the nginx-manager repository already set.
 
 ```bash
-$ sudo dnf download nginx-agent
-$ agentrpm=$(ls $PWD/nginx-agent*.rpm | tail -n 1)
-$ echo $agentrpm
+sudo dnf download nginx-agent
+agentrpm=$(ls $PWD/nginx-agent*.rpm | tail -n 1)
+echo $agentrpm
 ```
 
 {{%/tab%}}
@@ -117,10 +106,10 @@ $ echo $agentrpm
 Download the deb using apt-get to the local directory. This assumes you have the nginx-manager repository already set.
 
 ```bash
-$ sudo apt download nginx-agent
-$ #sudo apt-get download nginx-agent # use older apt-get if necessary
-$ agentdeb=$(ls $PWD/nginx-agent*.deb | tail -n 1)
-$ echo $agentdeb
+sudo apt download nginx-agent
+#sudo apt-get download nginx-agent # use older apt-get if necessary
+agentdeb=$(ls $PWD/nginx-agent*.deb | tail -n 1)
+echo $agentdeb
 ```
 
 {{%/tab%}}
@@ -131,10 +120,10 @@ Download the agent zip file from the myf5 portal and unzip the archive. The file
 For rpm
 
 ```bash
-$ agentrpm=$(ls $PWD/pkg_rpm_build/nginx-agent*.rpm | tail -n 1)
-$ echo $agentrpm
-$ agentdeb=$(ls $PWD/pkg_deb_build/nginx-agent*.deb | tail -n 1)
-$ echo $agentdeb
+agentrpm=$(ls $PWD/pkg_rpm_build/nginx-agent*.rpm | tail -n 1)
+echo $agentrpm
+agentdeb=$(ls $PWD/pkg_deb_build/nginx-agent*.deb | tail -n 1)
+echo $agentdeb
 ```
 
 {{%/tab%}}
@@ -148,16 +137,16 @@ $ echo $agentdeb
 Use ssh keys to speed this up. This assumes the user has sudo privileges.
 
 ```bash
-$ agentsystem="remoteserver.com" # remove system hostname/FQDN
-$ agentuser="user" # username with sudo privileges
-$ scp $agentrpm $agentuser@$agentsystem:./
-$ scp nginx-config.conf $agentuser@$agentsystem:./
-$ ssh $agentuser@$agentsystem sudo yum install -y ./nginx-agent*.rpm # RHEL7/CentOS7 and yum-based
-$ #ssh $agentuser@$agentsystem sudo dnf install -y ./nginx-agent*.rpm # RHEL8/CentOS8/Fedora and dnf-based
-$ #ssh $agentuser@$agentsystem sudo rpm -Uvh ./nginx-agent*.rpm # use rpm instead of package management
-$ ssh $agentuser@$agentsystem sudo cp nginx-agent.conf /etc/nginx-agent/nginx-agent.conf
-$ ssh $agentuser@$agentsystem sudo systemctl enable nginx-agent --now # For systemd-based systems
-$ ssh $agentuser@$agentsystem systemctl status nginx-agent # Confirm it ran successfully
+agentsystem="remoteserver.com" # remove system hostname/FQDN
+agentuser="user" # username with sudo privileges
+scp $agentrpm $agentuser@$agentsystem:./
+scp nginx-config.conf $agentuser@$agentsystem:./
+ssh $agentuser@$agentsystem sudo yum install -y ./nginx-agent*.rpm # RHEL7/CentOS7 and yum-based
+#ssh $agentuser@$agentsystem sudo dnf install -y ./nginx-agent*.rpm # RHEL8/CentOS8/Fedora and dnf-based
+#ssh $agentuser@$agentsystem sudo rpm -Uvh ./nginx-agent*.rpm # use rpm instead of package management
+ssh $agentuser@$agentsystem sudo cp nginx-agent.conf /etc/nginx-agent/nginx-agent.conf
+ssh $agentuser@$agentsystem sudo systemctl enable nginx-agent --now # For systemd-based systems
+ssh $agentuser@$agentsystem systemctl status nginx-agent # Confirm it ran successfully
 ```
 
 {{%/tab%}}
@@ -166,15 +155,15 @@ $ ssh $agentuser@$agentsystem systemctl status nginx-agent # Confirm it ran succ
 Use ssh keys to speed this up. This assumes the user has sudo privileges.
 
 ```bash
-$ agentsystem="remoteserver.com" # remove system hostname/FQDN
-$ agentuser="user" # username with sudo privileges
-$ scp $agentdeb $agentuser@$agentsystem:./
-$ scp nginx-config.conf $agentuser@$agentsystem:./
-$ ssh $agentuser@$agentsystem sudo apt install ./nginx-agent*.deb
-$ #ssh $agentuser@$agentsystem sudo dpkg -i ./nginx-agent*.deb && sudo apt-get install -f # Use older apt-get if necessary - not a clean process
-$ ssh $agentuser@$agentsystem sudo cp nginx-agent.conf /etc/nginx-agent/nginx-agent.conf
-$ ssh $agentuser@$agentsystem sudo systemctl enable nginx-agent --now # For systemd-based systems
-$ ssh $agentuser@$agentsystem systemctl status nginx-agent # Confirm it ran successfully
+agentsystem="remoteserver.com" # remove system hostname/FQDN
+agentuser="user" # username with sudo privileges
+scp $agentdeb $agentuser@$agentsystem:./
+scp nginx-config.conf $agentuser@$agentsystem:./
+ssh $agentuser@$agentsystem sudo apt install ./nginx-agent*.deb
+#ssh $agentuser@$agentsystem sudo dpkg -i ./nginx-agent*.deb && sudo apt-get install -f # Use older apt-get if necessary - not a clean process
+ssh $agentuser@$agentsystem sudo cp nginx-agent.conf /etc/nginx-agent/nginx-agent.conf
+ssh $agentuser@$agentsystem sudo systemctl enable nginx-agent --now # For systemd-based systems
+ssh $agentuser@$agentsystem systemctl status nginx-agent # Confirm it ran successfully
 ```
 
 {{%/tab%}}
@@ -232,9 +221,9 @@ $ sudo yum install -y yum-plugin-downloadonly
 Download the rpm using yum to the local directory. This assumes you have the nginx-manager repository already set.
 
 ```bash
-$ sudo yum install --downloadonly --downloaddir=. nginx-agent
-$ agentpackage=$(ls $PWD/nginx-agent*.rpm | tail -n 1)
-$ echo $agentpackage
+sudo yum install --downloadonly --downloaddir=. nginx-agent
+agentpackage=$(ls $PWD/nginx-agent*.rpm | tail -n 1)
+echo $agentpackage
 ```
 
 {{%/tab%}}
@@ -243,9 +232,9 @@ $ echo $agentpackage
 Download the rpm using dnf to the local directory. This assumes you have the nginx-manager repository already set.
 
 ```bash
-$ sudo dnf download nginx-agent
-$ agentpackage=$(ls $PWD/nginx-agent*.rpm | tail -n 1)
-$ echo $agentpackage
+sudo dnf download nginx-agent
+agentpackage=$(ls $PWD/nginx-agent*.rpm | tail -n 1)
+echo $agentpackage
 ```
 
 {{%/tab%}}
@@ -254,10 +243,10 @@ $ echo $agentpackage
 Download the deb using apt-get to the local directory. This assumes you have the nginx-manager repository already set.
 
 ```bash
-$ sudo apt download nginx-agent
-$ #sudo apt-get download nginx-agent # use older apt-get if necessary
-$ agentpackage=$(ls $PWD/nginx-agent*.deb | tail -n 1)
-$ echo $agentpackage
+sudo apt download nginx-agent
+#sudo apt-get download nginx-agent # use older apt-get if necessary
+agentpackage=$(ls $PWD/nginx-agent*.deb | tail -n 1)
+echo $agentpackage
 ```
 
 {{%/tab%}}
@@ -268,12 +257,12 @@ Download the agent zip file from the myf5 portal and unzip the archive. The file
 For rpm
 
 ```bash
-$ agentrpm=$(ls $PWD/pkg_rpm_build/nginx-agent*.rpm | tail -n 1)
-$ echo $agentrpm
-$ agentpackage=$agentrpm
-$ agentdeb=$(ls $PWD/pkg_deb_build/nginx-agent*.deb | tail -n 1)
-$ echo $agentdeb
-$ #agentpackage=$agentdeb
+agentrpm=$(ls $PWD/pkg_rpm_build/nginx-agent*.rpm | tail -n 1)
+echo $agentrpm
+agentpackage=$agentrpm
+agentdeb=$(ls $PWD/pkg_deb_build/nginx-agent*.deb | tail -n 1)
+echo $agentdeb
+#agentpackage=$agentdeb
 ```
 
 {{%/tab%}}
@@ -282,7 +271,7 @@ $ #agentpackage=$agentdeb
 3. Create an `nginx-agent.conf` file for use with the script
 
 ```bash
-$ vim nginx-agent.conf
+vim nginx-agent.conf
 ```
 
 Change the servername and port below and also the stub_status or plus_api sections (you can leave both in if you have a mix of plus and open source)

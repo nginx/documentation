@@ -9,7 +9,6 @@ toc: true
 weight: 600
 ---
 
-
 <span id="intro"></span>
 ## Introduction
 NGINX Plus can monitor the health of upstream servers by making active health checks. NGINX Plus R23 supports the [gRPC health checking protocol](https://github.com/grpc/grpc/blob/master/doc/health-checking.md#grpc-health-checking-protocol) so that upstream gRPC services can be tested for their ability to handle new requests. This is particularly important in dynamic and containerized environments. When adding a new instance of a gRPC service, it is important that requests are sent to the fully operating service.
@@ -17,7 +16,7 @@ NGINX Plus can monitor the health of upstream servers by making active health ch
 <span id="prereq"></span>
 ## Prerequisites
 
-* You have configured an upstream group of servers that handles gRPC network traffic and specified a shared memory zone that keeps the state of these servers, for example:
+- You have configured an upstream group of servers that handles gRPC network traffic and specified a shared memory zone that keeps the state of these servers, for example:
 
    ```nginx
    stream {
@@ -31,7 +30,7 @@ NGINX Plus can monitor the health of upstream servers by making active health ch
    }
    ```
 
-* You have configured a server that routes gRPC requests to the upstream server group:  
+- You have configured a server that routes gRPC requests to the upstream server group:
 
    ```nginx
    location /grpc {
@@ -50,6 +49,7 @@ location / {
     health_check mandatory type=grpc;
 }
 ```
+
 In this example, according to health checking protocol, the `Check` method of the `Health` service will be invoked, and the gRPC server that respond with `SERVING` are considered healthy.
 
 The `mandatory` parameter ensures that the health check must pass before traffic is sent on an instance, for example, when it is introduced or reloaded.  Note that the `type=grpc` must be specified after all other `health_check` parameters.
@@ -74,6 +74,7 @@ location / {
     health_check type=grpc grpc_status=12; # 12=unimplemented
 }
 ```
+
 In this case the response with the gRPC status of `12` / `UNIMPLEMENTED` will be considered healthy.
 
 Note that the `type=grpc` parameter is not compatible with `uri` or `match` parameters of the `health_check` directive. The `type=grpc` parameter must be specified after all other directive parameters: `grpc_service` and `grpc_status` must follow `type=grpc`.
@@ -81,4 +82,4 @@ Note that the `type=grpc` parameter is not compatible with `uri` or `match` para
 <span id="see_also"></span>
 ## See also
 
-* [Deploying NGINX Plus as an API Gateway, Part 3: Publishing gRPC Services](https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-3-publishing-grpc-services/)
+- [Deploying NGINX Plus as an API Gateway, Part 3: Publishing gRPC Services](https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-3-publishing-grpc-services/)

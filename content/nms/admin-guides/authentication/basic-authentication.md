@@ -1,35 +1,16 @@
 ---
-categories:
-- installation
-- security
-date: "2021-12-21T12:00:00-07:00"
-description: "Learn how to manage user access in NGINX Management Suite using basic authentication with NGINX as a front-end proxy. This guide covers first-time login, creating additional users, and setting passwords."
+description: Learn how to manage user access in NGINX Management Suite using basic
+  authentication with NGINX as a front-end proxy. This guide covers first-time login,
+  creating additional users, and setting passwords.
+docs: DOCS-792
 doctypes:
 - tutorial
-draft: false
-journeys:
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
 tags:
 - docs
 title: Set Up Basic Authentication
 toc: true
-versions: []
 weight: 10
-docs: "DOCS-792"
-aliases:
-- /nginx-instance-manager/admin-guide/authentication/
-- /nginx-instance-manager/admin-guides/access-control/configure-authentication/
-- /nim/admin-guide/authentication/
-
 ---
-
-{{<custom-styles>}}
 
 <style>
 h2 {
@@ -64,7 +45,7 @@ Before you can set users' passwords, you need to [create users](#create-users) i
 
 ### (Recommended) Use the Provided Script {#set-basic-passwords-script}
 
-You can use the `basic_passwords.sh` script to add a user's encrypted password to the `/etc/nms/nginx/.htpasswd` file on the NGINX Management Suite server. 
+You can use the `basic_passwords.sh` script to add a user's encrypted password to the `/etc/nms/nginx/.htpasswd` file on the NGINX Management Suite server.
 
 {{<note>}}The `basic_passwords.sh` script requires the [OpenSSL](https://www.openssl.org) package. We strongly recommend **OpenSSL v1.1.1 or later**.{{</note>}}
 
@@ -87,7 +68,7 @@ To change a user's password with the `basic_passwords.sh` script:
 
 To manually set user passwords:
 
-1. Open the `/etc/nms/nginx/.htpasswd` file on the NGINX Management Suite host and add the username and password for each user. 
+1. Open the `/etc/nms/nginx/.htpasswd` file on the NGINX Management Suite host and add the username and password for each user.
 2. Save the changes to the file.
 
 {{< see-also >}}Refer to the documentation [Restricting Access with HTTP Basic Auth]({{< relref "/nginx/admin-guide/security-controls/configuring-http-basic-authentication.md" >}}) for detailed instructions on working with the password file.{{< /see-also >}}

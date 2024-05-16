@@ -1,16 +1,19 @@
 ---
-title: "Rate Limiting"
-description: Learn how to use the NGINX Management Suite API Connectivity Manager Rate Limiting policy to protect backend servers. The Rate Limiting policy lets you limit connections and the rate of requests based on request URI, client IP address, or authenticated clients.
-weight: 1300
+description: Learn how to use the NGINX Management Suite API Connectivity Manager
+  Rate Limiting policy to protect backend servers. The Rate Limiting policy lets you
+  limit connections and the rate of requests based on request URI, client IP address,
+  or authenticated clients.
+docs: DOCS-1251
+doctypes:
+- API Connectivity Manager
+- api management
+- task
+tags:
+- docs
+title: Rate Limiting
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1251"
-doctypes: ["API Connectivity Manager", "api management", "task"]
-journeys: ["getting started", "using"]
-personas: ["netops", "secops"]
+weight: 1300
 ---
-
-{{<custom-styles>}}
 
 ## Overview
 
@@ -24,7 +27,7 @@ The Rate Limit policy can be used to throttle the number of requests in a time p
 You can specify multiple rate limit stipulations with a single policy based on the **Request URI**, **Client IP address** or the **Authenticated Client ID**.
 The policy can also specify the type of traffic shaping required to allow burst traffic or two-stage rate limiting.
 
-#### Intended Audience
+### Intended Audience
 
 This guide is meant for NGINX Management Suite Administrators who can modify or create policies on an API Gateway Proxy.
 
@@ -41,8 +44,9 @@ Complete the following prerequisites before proceeding with this guide:
 
 ## Policy Settings
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field                  | Type    | Possible Values                | Description                                                                                              | Required | Default Value      |
 |------------------------|---------|--------------------------------|----------------------------------------------------------------------------------------------------------|----------|--------------------|
 | `returnCode`           | int     |  In range `400-599`            | The return code that used when the total number of requests have been exceeded.                          | Yes      | `429`              |
@@ -56,7 +60,7 @@ Complete the following prerequisites before proceeding with this guide:
 
 
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ---
 
@@ -72,13 +76,15 @@ You can apply this policy using the web interface or the REST API. The policy us
 
 Send a `POST` request to add the Rate limit policy to the API Proxy.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                                            |
 |--------|---------------------------------------------------------------------|
 | `POST` | `/services/workspaces/<SERVICE_WORKSPACE_NAME>/proxies`             |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <details open>
 <summary>JSON request</summary>
@@ -128,7 +134,7 @@ To add a Request Correlation ID policy using the web interface:
    1. **Throttle excess requests**: will enable Two-Stage rate limiting
 1. Set custom error return code conditions if rate limiting **is exceeded**.
 1. Select **Add** to apply the Rate Limit policy to the Proxy. Then select **Save & Publish** to deploy the configuration to the API Proxy.
-1. Select **Add** to apply the policy to the cluster. 
+1. Select **Add** to apply the policy to the cluster.
 1. Select **Save and Submit** to deploy the configuration.
 
 {{%/tab%}}

@@ -1,13 +1,13 @@
 ---
-title: "Enable Metrics"
-description: "Learn how to enable and use metrics for NGINX Management Suite API Connectivity Manager."
-weight: 100
+description: Learn how to enable and use metrics for NGINX Management Suite API Connectivity
+  Manager.
+docs: DOCS-1055
+tags:
+- docs
+title: Enable Metrics
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1055"
+weight: 100
 ---
-
-{{<custom-styles>}}
 
 {{< shortversions "1.3.0" "latest" "acmvers" >}}
 
@@ -48,11 +48,13 @@ To complete the instructions in this guide, you need the following:
 This section configures the hosts used in this tutorial. In the following table, you'll find the details of the test environment used in this tutorial's examples. The options presented are the minimum host requirements for running a fully functional test environment. Remember that production environments may need more resources and incur greater costs.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Hosts                       | Virtual Cores | Memory | Storage | IP Address  | Hostname    |
 |-----------------------------|---------------|--------|---------|-------------|-------------|
 | NGINX Management Suite Host | 2 vCPUs       | 4GB    | 100GB   | `192.0.2.2` | `acm-ctrl`  |
 | Data Plane Host             | 1 vCPU        | 1GB    | 10GB    | `192.0.2.3` | `data-host` |
 | Echo Server                 | 1 vCPU        | 1GB    | 10GB    | `192.0.2.4` | `echo-host` |
+
 {{</bootstrap-table>}}
 
 <br>
@@ -259,7 +261,7 @@ GET https://192.0.2.2/api/acm/v1/infrastructure/workspaces/infra-ws/environments
 
 If you've successfully configured a proxy the following count is returned.
 
-**Response**
+Response:
 
 ```json
     1
@@ -281,7 +283,7 @@ If you've successfully configured a proxy the following count is returned.
 ## View Proxy Metrics {#view-proxy-metrics}
 
 1. On the left menu, select **Services**.
-2. Select a workspace from the table. 
+2. Select a workspace from the table.
 3. Select the Actions menu (represented by an ellipsis, `...`) next to your environment on the **Actions** column.
 4. Select **Metrics**.
 5. Update the start and end time of the metrics with the **time range selection** on the dashboard overview.

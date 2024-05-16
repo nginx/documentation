@@ -10,7 +10,6 @@ toc: true
 weight: 100
 ---
 
-
 <span id="install"></span>
 ## Installation
 
@@ -19,7 +18,7 @@ weight: 100
 2. Install the Phusion Passenger Open Source module package `nginx-plus-module-passenger`.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
-  
+
    ```shell
    yum install nginx-plus-module-passenger
    ```
@@ -31,13 +30,13 @@ weight: 100
    ```
 
    For Debian and Ubuntu:
-  
+
    ```shell
    apt-get install nginx-plus-module-passenger
    ```
 
    For SLES:
- 
+
    ```shell
    zypper install nginx-plus-module-passenger
    ```
@@ -79,8 +78,8 @@ After installation you will need to enable and configure the module in NGINX Plu
 <span id="info"></span>
 ## More Info
 
-* [Passenger Documentation](https://www.phusionpassenger.com/library/install/nginx/)
+- [Passenger Documentation](https://www.phusionpassenger.com/library/install/nginx/)
 
-* [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
 
-* [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})

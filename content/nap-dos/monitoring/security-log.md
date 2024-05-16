@@ -1,34 +1,10 @@
 ---
-authors: []
-categories:
-- security log
-date: "2021-04-14T13:32:41+00:00"
 description: Learn about the NGINX App Protect DoS Security Log.
 docs: DOCS-670
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: monitoring
-    weight: 45
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect DoS Security Log
 toc: true
-versions:
-- "4.3"
 weight: 140
 ---
 
@@ -43,6 +19,7 @@ There are several types of logs, each contains different information and publish
 The following table lists all the possible fields in the logs and their meaning.
 
 {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+
 | Field  |  Type  |  Meaning |
 |----------------|--------|-------------------------------|
 | `date_time`  |  string  |  the date and time of the event |
@@ -82,11 +59,12 @@ The following table lists all the possible fields in the logs and their meaning.
 | `source_ip` <br> `tls_fp` <br> `impact_rps`   | string <br> string <br> integer  |  ip address of the detected bad actor `1.1.1.1` <br> TLS Fingerprint of the bad actor <br> RPS created by bad actor in the time of the detection **(to be calculated as a max hitcount in AMT / 10)**  |
 |  `new_bad_actors_detected` <br> `bad_actors` |  integer  |  the number of newly detected bad actors <br> the number of bad actors |
 |  `signature` <br> `signature_id` <br>`signature_efficiency` <br> `signature_accuracy`| string <br> integer <br> float <br> float  |  signature string `http.request.method eq GET and http.uri_parameters eq 6` <br> unique signature ID per unit_host <br> estimated efficiency upon signature detection: percentage of bad traffic covered by the signature <br> estimated accuracy upon signature detection: percentage of learned good traffic NOT covered by the signature  |
+
 {{</bootstrap-table>}}
 
 ## Events
 
-### 1a. Attack notification 
+### 1a. Attack notification
 
 Reported about attack start/end and ongoing attack major parameters.
 
@@ -216,7 +194,7 @@ block_slow_rps="0",
 mitigated_connections_rps="0",
 ```
 
-### 1b. Traffic/Mitigation summary stats 
+### 1b. Traffic/Mitigation summary stats
 
 Reported **periodically**, supplies aggregated stats per protected object periodically. <br>
 Corresponds to the metrics reported by main Grafana screen.
@@ -347,7 +325,7 @@ block_slow_rps="0",
 mitigated_connections_rps="0",
 ```
 
-### 2. Bad actor detection/expiration 
+### 2. Bad actor detection/expiration
 Reports NGINX App Protect DoS decisions about bad actors.
 
 a. Example: **Bad Actor Detection**
@@ -400,7 +378,7 @@ signature_efficiency="72.00",
 signature_accuracy="100.00",
 ```
 
-### 4. Bad actors detection information 
+### 4. Bad actors detection information
 Reports NGINX App Protect DoS information about bad actors <br>
 
 Example: **Bad Actors Detected**
@@ -424,15 +402,18 @@ The file is in JSON format.
 ### Filter <br>
 
 {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
-| Element  |  Description | Type/Values| Default | 
+
+| Element  |  Description | Type/Values| Default |
 |----------|--------------| ---------- | -----------|
-|traffic-mitigation-stats| This filter element refers to [Traffic/Mitigation summary stats](#1b-trafficmitigation-summary-stats).| **Enumerated values:** <br> - **all** <br> - **none**| `all` | 
-|bad-actors| This filter element refers to [Bad actor detection/expiration](#2-bad-actor-detectionexpiration), every 10 seconds.| **Enumerated values:** <br> - **all** <br> - **none** <br> - **top N**|  `top 10` | 
-|attack-signatures| This filter element refers to [Attack Signatures](#3-attack-signatures), every 10 seconds.| **Enumerated values:** <br> - **all** <br> - **none** <br> - **top N**|  `top 10` | 
+|traffic-mitigation-stats| This filter element refers to [Traffic/Mitigation summary stats](#1b-trafficmitigation-summary-stats).| **Enumerated values:** <br> - **all** <br> - **none**| `all` |
+|bad-actors| This filter element refers to [Bad actor detection/expiration](#2-bad-actor-detectionexpiration), every 10 seconds.| **Enumerated values:** <br> - **all** <br> - **none** <br> - **top N**|  `top 10` |
+|attack-signatures| This filter element refers to [Attack Signatures](#3-attack-signatures), every 10 seconds.| **Enumerated values:** <br> - **all** <br> - **none** <br> - **top N**|  `top 10` |
+
 {{</bootstrap-table>}}
 
 
 Example:
+
 ```json
 {
     "filter": {

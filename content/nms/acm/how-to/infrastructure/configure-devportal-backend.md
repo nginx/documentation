@@ -1,16 +1,12 @@
 ---
-title: "Deployment Patterns for Developer Portal"
-date: 2022-10-10T12:00:00-07:00
-description: "Learn how to support various deployment patterns for Developer Portal."
-# Assign weights in increments of 100
-weight: 200
-toc: true
-tags: [ "docs" ]
-categories: ["developer portal"]
+description: Learn how to support various deployment patterns for Developer Portal.
 docs: DOCS-955
+tags:
+- docs
+title: Deployment Patterns for Developer Portal
+toc: true
+weight: 200
 ---
-
-{{<custom-styles>}}
 
 {{< shortversions "1.2.0" "latest" "acmvers" >}}
 
@@ -28,7 +24,7 @@ The following deployment patterns are supported:
 
 ## Before You Begin
 
-Complete the following prerequisites before proceeding with this guide: 
+Complete the following prerequisites before proceeding with this guide:
 
 - API Connectivity Manager is installed, licensed, and running.
 - You have one or more Environments with a [Developer Portal]({{< relref "/nms/acm/getting-started/add-devportal" >}}) cluster.
@@ -60,7 +56,7 @@ The Developer Portal backend API service can be scaled for high availability by 
 
 ### Configure Developer Portal Backend
 
-When creating a Developer Portal in an environment, you can set multiple `serviceTargets` to match any of the deployment patterns above.  
+When creating a Developer Portal in an environment, you can set multiple `serviceTargets` to match any of the deployment patterns above.
 
 1. In the API Connectivity Manager user interface, go select **Workspaces > Environments > \<your environment\>**, where "your environment" is the Environment that contains the Developer Portal.
 1. Select **Edit Advanced Config** from the **Actions** menu for the desired Developer Portal.

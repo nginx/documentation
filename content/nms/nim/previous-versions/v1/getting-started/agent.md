@@ -1,22 +1,13 @@
 ---
-title: "Agent Install and Configuration"
-date: 2020-12-27T20:56:49-07:00
-draft: false
-description: "An NGINX Agent installation and configuration document."
-# Assign weights in increments of 100
-weight: 300
+description: An NGINX Agent installation and configuration document.
+docs: DOCS-623
+doctypes:
+- tutorial
+tags:
+- docs
+title: Agent Install and Configuration
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation"]
-doctypes: ["tutorial"]
-journeys: ["getting started", "using"]
-personas: ["devops", "netops", "secops", "support"]
-versions: ["v1"]
-docs: "DOCS-623"
-
+weight: 300
 ---
 
 {{< include "nim/previous-versions/old-version-warning.md" >}}
@@ -49,6 +40,7 @@ We currently offer 64bit (x86_64 and amd64) binaries and packages that can run o
 ## Install Agent {#install-agent}
 
 The most difficult part is getting the packages onto your installed OS. You can choose one of the following two options:
+
 - Use the public NGINX repositories with a certificate and key or an internal package management system (e.g. Red Hat Satellite)
 - Use the packages directly by downloading them from the myF5 portal or from your NGINX/F5 sales team.
 
@@ -116,6 +108,7 @@ sudo apt-key add nginx_signing.key
 ```bash
 sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-agent.repo
 ```
+
 {{%/tab%}}
 {{%tab name="Debian, Ubuntu, and deb-based distributions"%}}
 

@@ -1,27 +1,8 @@
 ---
-aliases:
-- /admin-guides/install/install/
-authors: []
-categories:
-- installation
-date: "2020-10-26T15:32:41-06:00"
 description: This guide explains how to install and update NGINX Controller.
 docs: DOCS-255
 doctypes:
 - tutorial
-draft: false
-journeys:
-- getting started
-menu:
-  docs:
-    parent: Installation
-    weight: 30
-personas:
-- devops
-- netops
-- secops
-roles:
-- admin
 tags:
 - docs
 title: Install NGINX Controller
@@ -35,12 +16,12 @@ NGINX Controller is NGINX's control-plane solution that manages the NGINX data p
 
 To get started, download and run the installer. The installer will:
 
-* Perform prerequisite checks on your system and prompt for any missing dependencies.
-* Prompt you to accept the terms of service agreement for NGINX Controller.
-* Ask you for a series of parameters including Database, SMTP, Admin user, and FQDN settings.
-* Place configuration and log files in appropriate file locations on your host system.
-* Add extra repositories to the default package manager like `apt` or `yum` and install required packages.
-* Launch NGINX Controller.
+- Perform prerequisite checks on your system and prompt for any missing dependencies.
+- Prompt you to accept the terms of service agreement for NGINX Controller.
+- Ask you for a series of parameters including Database, SMTP, Admin user, and FQDN settings.
+- Place configuration and log files in appropriate file locations on your host system.
+- Add extra repositories to the default package manager like `apt` or `yum` and install required packages.
+- Launch NGINX Controller.
 
 &nbsp;
 
@@ -64,11 +45,11 @@ NGINX Controller should be deployed on a secure, internal network only. We stron
 
 Things you'll need before installing NGINX Controller:
 
-* The `controller-installer-<version>.tar.gz` package, downloaded from the [MyF5 Customer Portal](https://my.f5.com/manage/s/downloads);
+- The `controller-installer-<version>.tar.gz` package, downloaded from the [MyF5 Customer Portal](https://my.f5.com/manage/s/downloads);
 
-* A license file for NGINX Controller, accessible via the [MyF5 Customer Portal](https://account.f5.com/myf5);
+- A license file for NGINX Controller, accessible via the [MyF5 Customer Portal](https://account.f5.com/myf5);
 
-* A dedicated environment (bare metal, VM, or cloud-hosted instance) on which to install NGINX Controller. For the supported Operating Systems and recommended specifications, see the [NGINX Controller Technical Specifications]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs" >}}) guide;
+- A dedicated environment (bare metal, VM, or cloud-hosted instance) on which to install NGINX Controller. For the supported Operating Systems and recommended specifications, see the [NGINX Controller Technical Specifications]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs" >}}) guide;
 
 &nbsp;
 
@@ -86,27 +67,27 @@ Things you'll need before installing NGINX Controller:
 
 The following Linux utilities are required by the installation script. The script will let you know if any of the utilities are missing.
 
-* `awk`
-* `bash` (4.0 or later)
-* `conntrack`
-* `coreutils`: `base64`, `basename`, `cat`, `comm`, `dirname`, `head`, `id`, `mkdir`, `numfmt`, `sort`, `tee`
-* `curl` or `wget`
-* `ebtables`
-* `envsubst` (provided by the `gettext` package)
-* `ethtool`
-* `getent`
-* `grep`
-* `gunzip` (provided by the `gzip` package)
-* `iproute`
-* `iptables`
-* `jq` (1.5 or later)
-* `less`
-* `openssl`
-* `sed`
-* `socat`
-* `tar`
-* `util-linux`
-* `yum-plugin-versionlock` on RedHat/CentOS
+- `awk`
+- `bash` (4.0 or later)
+- `conntrack`
+- `coreutils`: `base64`, `basename`, `cat`, `comm`, `dirname`, `head`, `id`, `mkdir`, `numfmt`, `sort`, `tee`
+- `curl` or `wget`
+- `ebtables`
+- `envsubst` (provided by the `gettext` package)
+- `ethtool`
+- `getent`
+- `grep`
+- `gunzip` (provided by the `gzip` package)
+- `iproute`
+- `iptables`
+- `jq` (1.5 or later)
+- `less`
+- `openssl`
+- `sed`
+- `socat`
+- `tar`
+- `util-linux`
+- `yum-plugin-versionlock` on RedHat/CentOS
 
 &nbsp;
 
@@ -118,13 +99,13 @@ If you have Internet access, NGINX Controller will install Docker for you as par
 
 If you prefer to install Docker on the host yourself, install the following:
 
-* [Docker Community Edition (CE)](https://docs.docker.com/engine/install/) 18.09
-* [Containerd.io](https://containerd.io/) 1.2.10
+- [Docker Community Edition (CE)](https://docs.docker.com/engine/install/) 18.09
+- [Containerd.io](https://containerd.io/) 1.2.10
 
 If you are using Ubuntu-20.04 and want to install Docker on your own, choose the following versions instead:
 
-* [Docker Community Edition (CE)](https://docs.docker.com/engine/install/ubuntu/) 19.03
-* [Containerd.io](https://containerd.io/) 1.2.13
+- [Docker Community Edition (CE)](https://docs.docker.com/engine/install/ubuntu/) 19.03
+- [Containerd.io](https://containerd.io/) 1.2.13
 
 {{< see-also >}}
 For instructions on installing Docker in offline scenarios on CentOS/RHEL 7, refer to the AskF5 [K84431427](https://support.f5.com/csp/article/K84431427) knowledge base article.{{< /see-also >}}
@@ -162,13 +143,13 @@ th {
 |-----------------------|--------------------|
 | v3.x                  | v1.15.5 |
 
-The [Kubernetes Pod DNS config](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-dns-config) has a limit of six configured DNS search domain names. This is also the [`glibc` limit](https://man7.org/linux/man-pages/man5/resolv.conf.5.html). 
+The [Kubernetes Pod DNS config](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-dns-config) has a limit of six configured DNS search domain names. This is also the [`glibc` limit](https://man7.org/linux/man-pages/man5/resolv.conf.5.html).
 
 In NGINX Controller, Core-DNS creates three search domains that are determined at run-time and not in `/etc/resolv.conf`:
 
-* `<namespace>.svc.cluster.local`
-* `svc.cluster.local`
-* `cluster.local <any host resolv.conf search paths>`
+- `<namespace>.svc.cluster.local`
+- `svc.cluster.local`
+- `cluster.local <any host resolv.conf search paths>`
 
 In general, changing the settings in NGINX Controller's underlying Kubernetes cluster is not recommended. However, if you do change the cluster's Pod config to allow additional search domains, **you should not add more than three domains**.
 
@@ -185,21 +166,21 @@ Alternatively, you can install your own PostgreSQL database for the config datab
 
 Refer to the AskF5 KB article [K49481224](https://support.f5.com/csp/article/K49481224) for instructions on how to install PostgreSQL on CentOS 7 and Ubuntu 18.04 for use with NGINX Controller.
 
-* NGINX Controller supports the following versions of PostgreSQL:
+- NGINX Controller supports the following versions of PostgreSQL:
 
-  * PostgreSQL 12.x -- works with NGINX Controller 3.9 and later.
-  * PostgreSQL 9.5 -- works with NGINX Controller 3.0 and later.
+  - PostgreSQL 12.x -- works with NGINX Controller 3.9 and later.
+  - PostgreSQL 9.5 -- works with NGINX Controller 3.0 and later.
 
-* The PostgreSQL database must be accessible from the NGINX Controller server. You can use a DNS-resolvable name or an IP address to connect to the database server (names in `/etc/hosts` are not allowed).
-* Create the user with the `Create DB` permission.
-* Configure PostgreSQL to allow SSL connections; client certificates should also be used for user authentication.
+- The PostgreSQL database must be accessible from the NGINX Controller server. You can use a DNS-resolvable name or an IP address to connect to the database server (names in `/etc/hosts` are not allowed).
+- Create the user with the `Create DB` permission.
+- Configure PostgreSQL to allow SSL connections; client certificates should also be used for user authentication.
 
   **We strongly discourage disabling SSL for PostgreSQL for security reasons.** Consult the *Secure TCP/IP Connections with SSL* topic in the PostgreSQL manual for instructions and details:
 
-  * [PostgreSQL 9.5](https://www.postgresql.org/docs/9.5/ssl-tcp.html)
-  * [PostgreSQL 12.x](https://www.postgresql.org/docs/12/ssl-tcp.html)
+  - [PostgreSQL 9.5](https://www.postgresql.org/docs/9.5/ssl-tcp.html)
+  - [PostgreSQL 12.x](https://www.postgresql.org/docs/12/ssl-tcp.html)
 
-* When installed on external NFS or EFS volumes, the config database should support a throughput of 2 MiB/s or greater.
+- When installed on external NFS or EFS volumes, the config database should support a throughput of 2 MiB/s or greater.
 
 
 &nbsp;
@@ -418,7 +399,7 @@ If NGINX Controller isn't working how you expect, see the knowledge base article
 
 ### Create a Support Package
 
-You can create a support package for NGINX Controller that you can use to diagnose issues. 
+You can create a support package for NGINX Controller that you can use to diagnose issues.
 
 {{< note >}}
 You will need to provide a support package if you open a ticket with NGINX Support via the [MyF5 Customer Portal](https://account.f5.com/myf5).

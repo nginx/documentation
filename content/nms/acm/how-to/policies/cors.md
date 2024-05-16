@@ -1,18 +1,17 @@
 ---
-title: "CORS"
-draft: false
-description: "Learn how to use NGINX Management Suite API Connectivity Manager to handle Cross-Origin Resource Sharing for your backend services."
-# Assign weights in increments of 100
-weight: 500
+description: Learn how to use NGINX Management Suite API Connectivity Manager to handle
+  Cross-Origin Resource Sharing for your backend services.
+docs: DOCS-1130
+doctypes:
+- API Connectivity Manager
+- api management
+- reference
+tags:
+- docs
+title: CORS
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1130"
-doctypes: ["API Connectivity Manager", "api management", "reference"]
-journeys: ["using"]
-personas: ["API owners"]
+weight: 500
 ---
-
-{{<custom-styles>}}
 
 ## Overview
 
@@ -24,7 +23,7 @@ personas: ["API owners"]
 
 The CORS policy allows users to configure API Gateways to set the required headers to allow Cross-Origin Resource Sharing (CORS). CORS is a series of headers instructing web browsers which origins should be permitted to load resources other than the API Gateway origin.
 
-#### Intended Audience
+### Intended Audience
 
 {{< include "acm/how-to/policies/api-owner-persona.md">}}
 
@@ -46,8 +45,9 @@ To complete the steps in this guide, you need the following:
 
 The following table lists the configurable settings and their default values for the policy.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field               | Datatype     | Possible Values                                                                    | Description                                                                                                                                                                | Required | Default                                                                   |
 | ------------------- | ------------ | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------------------------------------------------------------------------- |
 | `allowCredentials`  | boolean      | `true`, `false`                                                                    | When set to `true`, the `Access-Control-Allow-Credentials` header is set to `true` for all responses.                                                                      | No       | `false`                                                                   |
@@ -59,7 +59,7 @@ The following table lists the configurable settings and their default values for
 | `preflightContinue` | boolean      | `true`, `false`                                                                    | When set to `true`, preflight requests are proxied to the backend service. Otherwise, they are handled by the API Gateway.                                                  | No       | `false`                                                                   |
 
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 {{< note >}}
 Setting a wildcard (`*`) in `exposedHeaders` does not include headers related to `Access-Control-Allow-Credentials`; those must explicitly be added to exposed headers.
@@ -77,13 +77,15 @@ Setting a wildcard (`*`) in `exposedHeaders` does not include headers related to
 
 To create an CORS policy using the REST API, send an HTTP `PUT` request to the Proxies endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Method | Endpoint                                                |
 | ------ | ------------------------------------------------------- |
 | `POST` | `/services/workspaces/{SERVICE_WORKSPACE_NAME}/proxies` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <details open>
 <summary>JSON request</summary>

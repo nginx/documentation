@@ -1,38 +1,14 @@
 ---
-authors: []
-categories:
-- releases
-date: "2021-04-14T13:32:41+00:00"
-description: ""
+description: ''
 docs: DOCS-856
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: Releases
-    weight: 45
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect DoS Release 2.3
 toc: true
-versions:
-- "2.3"
 weight: 170
 ---
 
-Here you can find the release information for NGINX App Protect DoS v2.3. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications. 
+Here you can find the release information for NGINX App Protect DoS v2.3. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
 
 ## Release 2.3
 
@@ -49,24 +25,31 @@ May 9, 2022
 #### App Protect DoS
 
 ##### CentOS 7.4+ / RHEL 7.4+ / UBI7
+
 - app-protect-dos-26+2.3.46-1.el7.ngx.el7.ngx.x86_64.rpm
 
 ##### RHEL 8 / UBI8
+
 - app-protect-dos-26+2.3.46-1.el8.ngx.el8.ngx.x86_64.rpm
 
 ##### Debian 10
+
 - app-protect-dos_26+2.3.46-1~buster_amd64.deb
 
 ##### Ubuntu 18.04
+
 - app-protect-dos_26+2.3.46-1~bionic_amd64.deb
 
 ##### Ubuntu 20.04
+
 - app-protect-dos_26+2.3.46-1~focal_amd64.deb
 
 ##### Alpine 3.15
+
 - app-protect-dos-26.2.3.48-r1.apk
 
 #### NGINX Plus
+
 - NGINX Plus R26
 
 ### Resolved Issues
@@ -75,10 +58,11 @@ May 9, 2022
 
 ### Important Notes
 
-- Misconfiguration of `app_protect_dos_monitor` potentially can cause a false attack declaration. 
+- Misconfiguration of `app_protect_dos_monitor` potentially can cause a false attack declaration.
 Port configuration should correspond to the port the server listens to.
 
     For example:
+
     ```shell
         server {
             listen 8080;
@@ -90,7 +74,7 @@ Please note that the above syntax for the Monitor directive is old but still sup
 
 The new syntax for the Monitor directive is as stated below, where **protocol** and **timeout** arguments are optional and default. Refer to [Learn about Directives and Policy](/nginx-app-protect-dos/directives-and-policy/learn-about-directives-and-policy/#monitor-directive-app_protect_dos_monitor) for more details on Monitor directive new syntax.
 
-For example: 
+For example:
 
 `app_protect_dos_monitor uri=myservice.com:8080/ protocol=http1 timeout=5;`
 <br><br>

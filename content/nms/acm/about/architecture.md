@@ -1,23 +1,14 @@
 ---
-title: "Architecture Overview"
-date: 2021-12-21T12:00:00-07:00
-draft: false
-description: "Learn about the NGINX Management Suite API Connectivity Manager architecture."
-# Assign weights in increments of 100
-weight: 100
+description: Learn about the NGINX Management Suite API Connectivity Manager architecture.
+docs: DOCS-892
+doctypes:
+- concept
+tags:
+- docs
+title: Architecture Overview
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["api connectivity manager"]
-doctypes: ["concept"]
-journeys: ["researching", "getting started"]
-docs: "DOCS-892"
-
+weight: 400
 ---
-
-{{< custom-styles >}}
 
 {{< shortversions "1.0.0" "latest" "acmvers" >}}
 
@@ -34,11 +25,13 @@ This document introduces the following concepts.
 ### Topology
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | <div style="width:150px">Term</div> | Description                                                                                                                                                                                                                                                                              |
 |-------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Management Plane                    | The management plane is an abstraction layer used to configure, monitor, and manage the layers of a network stack. API Connectivity Manager, a part of the management plane, establishes guardrails and configures rules for the data plane.                                             |
 | Data Plane                          | [NGINX Plus](https://www.nginx.com/products/nginx/) instances in the traffic path that act as load balancers, API gateways, firewalls, ingress controllers, and caching systems.                                                            |
 | Proxy Cluster                       | <p>NGINX is widely known as a reverse proxy, and a Proxy Cluster is a set of one or more NGINX Plus servers working together. A proxy cluster keeps configurations in sync across all instances and maintains data consistency by sharing the runtime state.</p><p>Examples:</p><ul><li>**API Gateway Cluster**: A cluster of one or more NGINX Plus instances acting as a single proxy for API requests.</li><li>**Dev Portal Cluster**: A cluster of one or more NGINX Plus instances configured to act as Developer Portals. Developer portals provide a framework for hosting API documentation, provisioning access keys, and managing approval workflows. In addition, you can test your APIs with the "Try It Out" feature.</li></ul>                                |
+
 {{</bootstrap-table>}}
 
 ### Platform Services

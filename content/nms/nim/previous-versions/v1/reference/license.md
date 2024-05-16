@@ -1,11 +1,9 @@
 ---
+description: Reference for licensing NGINX Instance Manager.
+docs: DOCS-637
 title: License Reference
-description: "Reference for licensing NGINX Instance Manager."
-draft: false
-weight: 300
 toc: true
-categories: ["reference"]
-docs: "DOCS-637"
+weight: 300
 ---
 
 {{< include "nim/previous-versions/old-version-warning.md" >}}
@@ -29,7 +27,7 @@ EULA for trials
 {{<fa "download">}} {{<link "nim/previous-versions/static/previous-versions/v1/examples/EULA/EULA-TRIAL">}}
 
 EULA for F5 Products
-{{<fa "download">}} {{<link "https://www.f5.com/pdf/customer-support/end-user-license-agreement.pdf">}}
+{{<fa "download">}} {{<link "<https://www.f5.com/pdf/customer-support/end-user-license-agreement.pdf">}}>
 
 ## Support {#support}
 

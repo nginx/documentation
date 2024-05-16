@@ -9,7 +9,6 @@ toc: true
 weight: 100
 ---
 
-
 This section describes how to configure an HTTPS server on NGINX and NGINX Plus.
 
 <span id="setup"></span>
@@ -55,9 +54,9 @@ Vulnerabilities are sometimes found in the design of older ciphers, and we recom
 
 NGINX can be configured to use Online Certificate Status Protocol (OCSP) to check the validity of X.509 client certificates as they are presented. An OCSP request for the client certificate status is sent to an OCSP responder which checks the certificate validity and returns the response with the certificate status:
 
-* `Good` - the certificate is not revoked
-* `Revoked` - the certificate is revoked
-* `Unknown` - no information is available about the client certificate
+- `Good` - the certificate is not revoked
+- `Revoked` - the certificate is revoked
+- `Unknown` - no information is available about the client certificate
 
 To enable OCSP validation of SSL client certificates, specify the [ssl_ocsp](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ocsp) directive along with the [ssl_verify_client](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_verify_client) directive, which enables certificate verification:
 
@@ -100,8 +99,8 @@ The result of the client certificate validation is available in the [`$ssl_clien
 
 SSL operations consume extra CPU resources. The most CPU-intensive operation is the SSL handshake. There are two ways to minimize the number of these operations per client:
 
-*   Enabling keepalive connections to send several requests via one connection
-*   Reusing SSL session parameters to avoid SSL handshakes for parallel and subsequent connections
+- Enabling keepalive connections to send several requests via one connection
+- Reusing SSL session parameters to avoid SSL handshakes for parallel and subsequent connections
 
 Sessions are stored in the SSL session cache shared between worker processes and configured by the [ssl_session_cache](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_cache) directive. One megabyte of cache contains about 4000 sessions. The default cache timeout is 5 minutes. This timeout can be increased using the [ssl_session_timeout](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_timeout) directive. Below is a sample configuration optimized for a multi-core system with 10 megabyte shared session cache:
 
@@ -132,7 +131,7 @@ http {
 Some browsers may complain about a certificate signed by a well-known certificate authority, while other browsers may accept the certificate without issues. This occurs because the issuing authority has signed the server certificate using an intermediate certificate that is not present in the base of well-known trusted certificate authorities which is distributed in a particular browser. In this case the authority provides a bundle of chained certificates that should be concatenated to the signed server certificate. The server certificate must appear before the chained certificates in the combined file:
 
 ```shell
-$ cat www.example.com.crt bundle.crt > www.example.com.chained.crt
+cat www.example.com.crt bundle.crt > www.example.com.chained.crt
 ```
 
 The resulting file should be used in the [ssl_certificate](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate) directive:
@@ -153,7 +152,7 @@ If the server certificate and the bundle have been concatenated in the wrong ord
 SSL_CTX_use_PrivateKey_file(" ... /www.example.com.key") failed
    (SSL: error:0B080074:x509 certificate routines:
     X509_check_private_key:key values mismatch)
-```    
+```
 
 The error happens because NGINX has tried to use the private key with the bundle’s first certificate instead of the server certificate.
 
@@ -279,11 +278,11 @@ server {
 
 A more generic solution for running several HTTPS servers on a single IP address is the [TLS Server Name Indication](https://en.wikipedia.org/wiki/Server_Name_Indication) (SNI) extension ([RFC 6066](https://tools.ietf.org/html/rfc6066)), which allows a browser to pass a requested server name during the SSL handshake. With this solution, the server will know which certificate it should use for the connection. However, SNI has limited browser support. Currently it is supported starting with the following browser versions:
 
-* Opera 8.0
-* MSIE 7.0 (but only on Windows Vista or higher)
-* Firefox 2.0 and other browsers using Mozilla Platform rv:1.8.1
-* Safari 3.2.1 (Windows version supports SNI on Vista or higher)
-* Chrome (Windows version supports SNI on Vista or higher, too)
+- Opera 8.0
+- MSIE 7.0 (but only on Windows Vista or higher)
+- Firefox 2.0 and other browsers using Mozilla Platform rv:1.8.1
+- Safari 3.2.1 (Windows version supports SNI on Vista or higher)
+- Chrome (Windows version supports SNI on Vista or higher, too)
 
 Only domain names can be passed in SNI. However, some browsers will pass the IP address of the server as its name if a request includes a literal IP address. It is best not to rely on this.
 
@@ -306,22 +305,22 @@ therefore SNI is not available
 
 ## Compatibility Notes
 
-* The SNI support status has been shown by the <span style="white-space: nowrap;">`-V`</span> switch since versions 0.8.21 and 0.7.62.
- 
-* The `ssl` parameter to the [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive has been supported since version 0.7.14. Prior to version 0.8.21 it could only be specified along with the `default` parameter.
+- The SNI support status has been shown by the <span style="white-space: nowrap;">`-V`</span> switch since versions 0.8.21 and 0.7.62.
 
-* SNI has been supported since version 0.5.23.
-* The shared SSL session cache has been supported since version 0.5.6.
+- The `ssl` parameter to the [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive has been supported since version 0.7.14. Prior to version 0.8.21 it could only be specified along with the `default` parameter.
 
-* Version 1.9.1 and later: the default SSL protocols are `TLSv1`, `TLSv1.1`, and `TLSv1.2` (if supported by the OpenSSL library).
-* From versions 0.7.65 and 0.8.19 and later, the default SSL protocols are `SSLv3`, `TLSv1`, `TLSv1.1`, and `TLSv1.2` (if supported by the OpenSSL library).
+- SNI has been supported since version 0.5.23.
+- The shared SSL session cache has been supported since version 0.5.6.
 
-* In versions 0.7.64 and 0.8.18 and earlier, the default SSL protocols are `SSLv2`, `SSLv3`, and `TLSv1`.
+- Version 1.9.1 and later: the default SSL protocols are `TLSv1`, `TLSv1.1`, and `TLSv1.2` (if supported by the OpenSSL library).
+- From versions 0.7.65 and 0.8.19 and later, the default SSL protocols are `SSLv3`, `TLSv1`, `TLSv1.1`, and `TLSv1.2` (if supported by the OpenSSL library).
 
-* In version 1.0.5 and later, the default SSL ciphers are `HIGH:!aNULL:!MD5`.
+- In versions 0.7.64 and 0.8.18 and earlier, the default SSL protocols are `SSLv2`, `SSLv3`, and `TLSv1`.
 
-* In versions 0.7.65 and 0.8.20 and later, the default SSL ciphers are `HIGH:!ADH:!MD5`.
+- In version 1.0.5 and later, the default SSL ciphers are `HIGH:!aNULL:!MD5`.
 
-*   From version 0.8.19 the default SSL ciphers are `ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM`.
+- In versions 0.7.65 and 0.8.20 and later, the default SSL ciphers are `HIGH:!ADH:!MD5`.
 
-*   From version 0.7.64, 0.8.18 and earlier the default SSL ciphers are `ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP`.
+- From version 0.8.19 the default SSL ciphers are `ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM`.
+
+- From version 0.7.64, 0.8.18 and earlier the default SSL ciphers are `ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP`.

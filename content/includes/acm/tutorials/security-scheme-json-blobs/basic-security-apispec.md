@@ -2,10 +2,6 @@
 docs: DOCS-1292
 ---
 
----
-docs:
----
-
 ```json
 {
   "openapi": "3.0.2",

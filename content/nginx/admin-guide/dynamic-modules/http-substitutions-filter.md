@@ -9,7 +9,6 @@ toc: true
 weight: 100
 ---
 
-
 <span id="install"></span>
 ## Installation
 
@@ -28,7 +27,7 @@ weight: 100
    ```shell
    dnf install nginx-plus-module-subs-filter
    ```
-   
+
    For Debian and Ubuntu:
 
    ```shell
@@ -70,8 +69,8 @@ After installation you will need to enable and configure the module in NGINX Plu
 <span id="info"></span>
 ## More Info
 
-* [NGINX Substitution Filter Module Reference](https://github.com/yaoweibin/ngx_http_substitutions_filter_module)
+- [NGINX Substitution Filter Module Reference](https://github.com/yaoweibin/ngx_http_substitutions_filter_module)
 
-* [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
 
-* [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})

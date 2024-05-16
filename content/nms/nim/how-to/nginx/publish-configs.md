@@ -1,34 +1,15 @@
 ---
-categories:
-- installation
-- configuration
-description: "Learn how to edit and publish NGINX configuration files using NGINX Management Suite Instance Manager."
+description: Learn how to edit and publish NGINX configuration files using NGINX Management
+  Suite Instance Manager.
+docs: DOCS-822
 doctypes:
 - tutorial
-draft: false
-journeys:
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
 tags:
 - docs
-title: Publish Configuration Files
+title: Publish NGINX Configs
 toc: true
-versions: []
 weight: 200
-docs: "DOCS-822"
-aliases:
-- /nginx-instance-manager/tutorials/config-templates/
-- /nginx-instance-manager/how-to/analyze-configs/
-- /nginx-instance-manager/how-to/publish-configs/
-- /nim/how-to/publish-configs/
 ---
-
-{{< custom-styles >}}
 
 ## Overview
 
@@ -72,13 +53,15 @@ With the Instance Manager REST API, you can add a commit hash to NGINX configura
 
 To add a commit hash to a new or existing config using the REST API, send an HTTP `POST` or `PUT` request to the Configs endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint   |
 |--------|------------|
 | `POST` or `PUT` | `/systems/{systems_uid}/instances/{instance_uid}/config` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <br>
 
@@ -102,25 +85,29 @@ To add a commit hash to a new or existing config using the REST API, send an HTT
 
 To view the latest version of a configuration, send an HTTP `GET` request to the Systems endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                |
 |--------|-------------------------|
 | `GET`  | `/systems/{systems_uid}/instances/{instance_uid}` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <br>
 
 To view a specific configuration with a version-controlled hash, send an HTTP `GET` request to the Configs endpoint and specify the `externalID`.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                            |
 |--------|-------------------------------------|
 | `GET`  | `/systems/{systems_uid}/instances/{instance_uid}/config?externalId=` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <details open>
 <summary>JSON response</summary>

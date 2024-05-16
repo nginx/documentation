@@ -1,30 +1,15 @@
 ---
-title: "Install or Upgrade Instance Manager"
-date: 2023-04-06T11:59:44-07:00
-# Change draft status to false to publish doc
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Follow the steps in this guide to install or upgrade NGINX Management Suite Instance Manager."
-# Assign weights in increments of 100
-weight: 10
+description: Follow the steps in this guide to install or upgrade NGINX Management
+  Suite Instance Manager.
+docs: DOCS-1211
+doctypes:
+- tutorial
+tags:
+- docs
+title: Install or Upgrade Instance Manager
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1211"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["tutorial"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
+weight: 10
 ---
-
-{{< custom-styles >}}
 
 ---
 
@@ -160,6 +145,5 @@ Complete the following steps for each data plane instance you want to manage usi
 
 ### Install Other NGINX Management Suite Modules
 
-- [Install API Connectivity Manager]({{< relref "/nms/installation/vm-bare-metal/install-acm.md" >}})
-- [Install App Delivery Manager]({{< relref "/nms/installation/vm-bare-metal/install-adm.md" >}})
+- [Install API Connectivity Manager]({{< relref "/nms/acm/how-to/install-acm.md" >}})
 - [Install Security Monitoring]({{< relref "/nms/installation/vm-bare-metal/install-security-monitoring.md" >}})

@@ -9,7 +9,6 @@ toc: true
 weight: 100
 ---
 
-
 <span id="install"></span>
 ## Installation
 
@@ -18,7 +17,7 @@ weight: 100
 2. Install the Image-Filter module package `nginx-plus-module-image-filter`.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
-  
+
    ```shell
    yum install nginx-plus-module-image-filter
    ```
@@ -28,15 +27,15 @@ weight: 100
    ```shell
    dnf install nginx-plus-module-image-filter
    ```
-   
+
    For Debian and Ubuntu:
-  
+
    ```shell
    apt-get install nginx-plus-module-image-filter
    ```
 
    For SLES:
-  
+
    ```shell
    zypper install nginx-plus-module-image-filter
    ```
@@ -77,8 +76,8 @@ After installation you will need to enable and configure the module in NGINX Plu
 <span id="info"></span>
 ## More Info
 
-* [NGINX Image Filter Module Reference](https://nginx.org/en/docs/http/ngx_http_image_filter_module.html)
+- [NGINX Image Filter Module Reference](https://nginx.org/en/docs/http/ngx_http_image_filter_module.html)
 
-* [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
 
-* [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})

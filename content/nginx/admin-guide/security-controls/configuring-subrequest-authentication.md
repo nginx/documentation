@@ -9,8 +9,6 @@ toc: true
 weight: 400
 ---
 
-
-
 <span id="intro"></span>
 ## Introduction
 
@@ -18,21 +16,21 @@ NGINX and NGINX Plus can authenticate each request to your website with an exte
 
 ## Prerequisites
 
-*   NGINX Plus or NGINX Open Source
-*   External authentication server or service
+- NGINX Plus or NGINX Open Source
+- External authentication server or service
 
 <span id="config"></span>
 ## Configuring NGINX and NGINX Plus
 
-1.  Make sure your NGINX Open Source is compiled with the `with-http_auth_request_module` configuration option. Run this command and verify that  the output includes  <span style="white-space: nowrap;">`--with-http_auth_request_module`</span>:
+1. Make sure your NGINX Open Source is compiled with the `with-http_auth_request_module` configuration option. Run this command and verify that  the output includes  <span style="white-space: nowrap;">`--with-http_auth_request_module`</span>:
 
     ```none
-    $ nginx -V 2>&1 | grep -- 'http_auth_request_module'
+    nginx -V 2>&1 | grep -- 'http_auth_request_module'
     ```
 
     Skip this step for NGINX Plus as it already includes the auth_request module.
-    
-2.  In the location that requires request authentication, specify the [auth_request](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html#auth_request) directive in which specify an internal location where an authorization subrequest will be forwarded to:
+
+2. In the location that requires request authentication, specify the [auth_request](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html#auth_request) directive in which specify an internal location where an authorization subrequest will be forwarded to:
 
     ```nginx
     location /private/ {
@@ -43,7 +41,7 @@ NGINX and NGINX Plus can authenticate each request to your website with an exte
 
     Here, for each request to **/private**, a subrequest to the internal **/auth** location will be made.
 
-3.  Specify an internal location and the [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directive inside this location that will proxy authentication subrequests to an authentication server or service:
+3. Specify an internal location and the [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directive inside this location that will proxy authentication subrequests to an authentication server or service:
 
     ```nginx
     location = /auth {
@@ -53,7 +51,7 @@ NGINX and NGINX Plus can authenticate each request to your website with an exte
     }
     ```
 
-4.  As the request body is discarded for authentication subrequests, you will need to set the [proxy_pass_request_body](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_request_body) directive to `off` and also set the `Content-Length` header to a null string:
+4. As the request body is discarded for authentication subrequests, you will need to set the [proxy_pass_request_body](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_request_body) directive to `off` and also set the `Content-Length` header to a null string:
 
     ```nginx
     location = /auth {
@@ -65,7 +63,7 @@ NGINX and NGINX Plus can authenticate each request to your website with an exte
     }
     ```
 
-5.  Pass the full original request URI with arguments with the [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) directive:
+5. Pass the full original request URI with arguments with the [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) directive:
 
     ```nginx
     location = /auth {
@@ -77,7 +75,7 @@ NGINX and NGINX Plus can authenticate each request to your website with an exte
     }
     ```
 
-6.  As an option, you can set a variable value basing on the result of the subrequest with the [auth_request_set](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html#auth_request_set) directive:
+6. As an option, you can set a variable value basing on the result of the subrequest with the [auth_request_set](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html#auth_request_set) directive:
 
     ```nginx
     location /private/ {

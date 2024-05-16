@@ -1,47 +1,33 @@
 ---
-title: "Configure NGINX Management Suite with nms.conf"
-date: 2022-12-14T09:01:18-08:00
-# Change draft status to false to publish doc.
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Follow the steps in this guide to configure NGINX Management Suite with a configuration file."
-# Assign weights in increments of 100
-weight: 1
+description: Follow the steps in this guide to configure NGINX Management Suite with
+  a configuration file.
+docs: DOCS-1100
+doctypes:
+- task
+tags:
+- docs
+title: Configure NGINX Management Suite with nms.conf
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1100"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management"]
-doctypes: ["task"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
-
+weight: 1
 ---
-
-{{<custom-styles>}}
 
 ## Overview
 
-The NGINX Management Suite includes several modules for managing your NGINX instances:
+You can configure NGINX Management Suite using a file, which is located at **/etc/nms/nms.conf** by default.
 
-- Instance Manager: This module allows you to manage multiple NGINX instances, whether they're running on-premises, in the cloud, or in containers. With Instance Manager, you can perform tasks such as installing, configuring, and upgrading NGINX instances, as well as monitoring their health and performance.
-- API Connectivity Manager: This module provides a centralized interface for managing APIs that are exposed by NGINX instances. With API Connectivity Manager, you can create, publish, and secure APIs, as well as monitor their usage and performance.
-- App Delivery Manager: This module enables you to manage the delivery of applications that are hosted on NGINX instances. With App Delivery Manager, you can perform tasks such as deploying applications, managing SSL certificates, and configuring load balancing and caching.
+Examples of settings and options include:
 
-To configure NGINX Management Suite, you can edit the default configuration file located at `/etc/nms/nms.conf`.
+- The certificate authority (CA) file used for TLS
+- The URL for NGINX Management Suite
+- The root directory for Dqlite data
+- If NGINX Management Suite should run in development or daemon mode
+- Additional settings related to logging, modules and services
 
-The `nms.conf` file is a configuration file, written in YAML format, used by NGINX Management Suite. This file contains settings and options that determine how the software works. The options in the file include settings for the user and group that non-privileged processes should run as; the CA cert file used for TLS server; the URL for NGINX Management Suite; the choice of whether the software should run in development mode or daemon mode; the root directory for Dqlite data; as well as various settings pertaining to logging, modules, and services.
+These options can be set for the user and group that non-privileged processes should use.
 
-## Example nms.conf
+## Example configuration
 
-The following example `nms.conf` file displays the configurable options, including their usage, placement, and default values. 
+This example **nms.conf** file displays the configurable options, including their usage, placement, and default values.
 
 ```yaml
 # Sets non-privileged processes to run as a specified user.
@@ -67,7 +53,7 @@ db_root_dir: /var/lib/nms/dqlite
 
 # For cloud Usage, the Cloud Services catalog ID for this product.
 # Note: `cloud_catalog_id` will be deprecated in the future.
-cloud_catalog_id: 
+cloud_catalog_id:
 
 # Sets file mode for all unix sockets
 socket_file_mode: 0660
@@ -96,7 +82,7 @@ disable_context_sub_loggers: false
 
 core:
   # Sets the log level for NGINX Management Suite Core service.
-  log_level: 
+  log_level:
 
   # Sets the address for NGINX Management Suite Core requests.
   address: unix:/var/run/nms/core.sock
@@ -127,10 +113,10 @@ core:
     # Sets the snap instance name for Core module Dqlite database.
     name: core
 
-  
+
   server_certs:
     # Sets the path of cert file for Core TLS endpoints.
-    cert: 
+    cert:
 
     # Sets the path of key file for Core TLS endpoints.
     key:
@@ -162,7 +148,7 @@ core:
 
       # Dimensions catalog data (YAML) content - overwrites dimensions data file content.
       dimensions_data:
-  
+
   license:
     # Sets the period for license status monitoring.
     monitoring_period: 24h
@@ -175,21 +161,21 @@ core:
     driver: local
 
     # Sets config key for Core secrets.
-    config: 
-      key_file: /var/lib/nms/secrets/key 
+    config:
+      key_file: /var/lib/nms/secrets/key
       limit: 16384
       path: /var/secrets
       subpaths:
-        - secret 
+        - secret
         - secret/secureString
 
   # Sets disabling for automatic RBAC cleanup.
-  disable_rbac_cleanup: 
+  disable_rbac_cleanup:
 
 dpm:
 
    # Sets the log level for the NGINX Management Suite Data Plane Manager (DPM) service.
-  log_level: 
+  log_level:
 
   # Sets the address for NGINX Management Suite DPM requests.
   address: unix:/var/run/nms/dpm.sock
@@ -200,7 +186,7 @@ dpm:
   # If enabled, keeps DPM deployments in list indefinitely.
   deployment_debug: false
 
-  # Sets the timeout (in seconds) of the system entry, after which system will be reported as offline. 
+  # Sets the timeout (in seconds) of the system entry, after which system will be reported as offline.
   system_timeout: 60
 
   # Sets the timeout (in seconds) of the nginx entry, after which nginx will be reported as offline.
@@ -209,7 +195,7 @@ dpm:
   # If enabled, validates dpm configuration before config is published.
   validate_before_publish: false
 
-  # If enabled, uses the local copy of the NGINX CVE XML file located at /usr/share/nms/cve.xml. 
+  # If enabled, uses the local copy of the NGINX CVE XML file located at /usr/share/nms/cve.xml.
   offline_nginx_cve: false
 
   dqlite:
@@ -266,7 +252,7 @@ dpm:
 
 integrations:
   # Sets the log level for Integrations.
-  log_level: 
+  log_level:
 
   # Sets the http server listen address for Integrations.
   address: unix:/var/run/nms/integrations.sock"
@@ -316,7 +302,7 @@ ingestion:
 
   server_certs:
     # Sets the path of cert file for Ingestion TLS endpoints.
-    cert: 
+    cert:
 
     # Sets the path of key file for Ingestion TLS endpoints.
     key:
@@ -331,13 +317,13 @@ clickhouse:
 
 
   # Note: Username and password should only be set, if you have custom defined username and password for ClickHouse.
-  # Sets the username that will be used to connect to ClickHouse. 
+  # Sets the username that will be used to connect to ClickHouse.
   username:
 
   # Sets the password that will be used to connect to ClickHouse.
   password:
 
-  # Activates or deactivates TLS for connecting to ClickHouse. 
+  # Activates or deactivates TLS for connecting to ClickHouse.
   # Note: `tls_mode` will be deprecated in the future, use `tls` key to enable TLS connection for ClickHouse.
   tls_mode: true
 
@@ -356,7 +342,7 @@ clickhouse:
 
     # Sets the path of the Certificate Authority installed on the system for verifying certificates.
     cert_ca: /etc/ssl/certs/ca-certificates.crt
-  
+
   # Sets directory containing ClickHouse migration files.
   migrations_path: /usr/share/nms/clickhouse/migrations
 

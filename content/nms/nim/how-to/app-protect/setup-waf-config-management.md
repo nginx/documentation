@@ -1,20 +1,15 @@
 ---
-title: "Manage Your App Protect WAF Configs"
-date: 2022-11-14T12:00:00-07:00
-description: "Learn how to use NGINX Management Suite Instance Manager to secure your applications with NGINX App Protect WAF security policies."
-# Assign weights in increments of 100
-weight: 100
-draft: false
+description: Learn how to use NGINX Management Suite Instance Manager to secure your
+  applications with NGINX App Protect WAF security policies.
+docs: DOCS-996
+doctypes:
+- task
+tags:
+- docs
+title: Manage Your App Protect WAF Configs
 toc: true
-tags: ["docs"]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-doctypes: ["task"]
-docs: "DOCS-996"
+weight: 100
 ---
-
-{{<custom-styles>}}
 
 {{< shortversions "2.6.0" "latest" "nimvers" >}}
 
@@ -53,7 +48,7 @@ Be sure to download and install the correct WAF compiler version for your enviro
 
 - Each NGINX App Protect version has a corresponding WAF compiler version. You must install the WAF compiler that matches the version of NGINX App Protect that you have running.
 - If you have different NGINX App Protect versions running, install the correct WAF compiler package for each on the management plane host. Instance Manager will use the correct WAF compiler for each version to bundle the security configurations.
-- You can create [instance groups]({{< relref "/nms/nim/how-to/nginx/manage-instance-groups" >}}) to keep track of and manage all instances that have the same version installed.
+- You can create [instance groups]({{< relref "/nms/nim/how-to/instances/manage-instance-groups" >}}) to keep track of and manage all instances that have the same version installed.
 
 For more information about the WAF compiler, refer to the [Security Bundle Compilation]({{< relref "/nms/nim/about/app-protect-waf-cm-overview#security-bundle" >}}) section of the Policy Configuration overview topic.
 
@@ -62,8 +57,12 @@ For more information about the WAF compiler, refer to the [Security Bundle Compi
 The following table shows the NGINX App Protect WAF Release version and its corresponding WAF compiler version:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | NGINX App Protect WAF Release version | WAF Compiler               |
 |---------------------------------------|----------------------------|
+| NGINX App Protect WAF 4.8.1           | nms-nap-compiler-v4.815.0  |
+| NGINX App Protect WAF 4.8.0           | nms-nap-compiler-v4.762.0  |
+| NGINX App Protect WAF 4.7.0           | nms-nap-compiler-v4.641.0  |
 | NGINX App Protect WAF 4.6.0           | nms-nap-compiler-v4.583.0  |
 | NGINX App Protect WAF 4.5.0           | nms-nap-compiler-v4.457.0  |
 | NGINX App Protect WAF 4.4.0           | nms-nap-compiler-v4.402.0  |
@@ -72,11 +71,13 @@ The following table shows the NGINX App Protect WAF Release version and its corr
 | NGINX App Protect WAF 4.1.0           | nms-nap-compiler-v4.100.1  |
 | NGINX App Protect WAF 4.0.0           | nms-nap-compiler-v4.2.0    |
 | NGINX App Protect WAF 3.12.2          | nms-nap-compiler-v3.1088.2 |
+
 {{</bootstrap-table>}}
 
 <br>
 
 {{<note>}}
+
 - The install commands in this guide use an example version to show the correct command format.
 
   Be sure to replace the version string in the example with the correct version to suit your needs.
@@ -91,13 +92,15 @@ The following table shows the NGINX App Protect WAF Release version and its corr
 Install the WAF compiler, then restart the `nms-integrations` service:
 
 ```bash
-sudo apt-get install nms-nap-compiler-v4.583.0
+sudo apt-get install nms-nap-compiler-v4.815.0
 ```
 
 {{<note>}}
+
 - If you want to have more than one version of the `nms-nap-compiler` installed on your system at once, you'll need to append `-o Dpkg::Options::="--force-overwrite"` to the `nms-nap-compiler` installation commands after your initial `nms-nap-compiler` installation. For example, the installation command would look like this:
+
 ```bash
-sudo apt-get install nms-nap-compiler-v4.583.0 -o Dpkg::Options::="--force-overwrite"
+sudo apt-get install nms-nap-compiler-v4.815.0 -o Dpkg::Options::="--force-overwrite"
 ```
 
 {{</note>}}
@@ -109,7 +112,7 @@ Download the file dependencies.repo to `/etc/yum.repos.d`, enable the `codeready
 ```bash
 sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
 sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
-sudo yum install nms-nap-compiler-v4.583.0
+sudo yum install nms-nap-compiler-v4.815.0
 ```
 
 ### RHEL 7.4 or later; CentOS
@@ -118,7 +121,7 @@ Download the file `dependencies.repo` to `/etc/yum.repos.d`, enable the RHEL 7 s
 ```bash
 sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
 sudo yum-config-manager --enable rhui-REGION-rhel-server-optional rhui-REGION-rhel-server-releases rhel-7-server-optional-rpms
-sudo yum install nms-nap-compiler-v4.583.0
+sudo yum install nms-nap-compiler-v4.815.0
 ```
 
 ### Amazon Linux 2 LTS
@@ -130,7 +133,7 @@ sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-7.re
 sudo amazon-linux-extras enable epel
 sudo yum clean metadata
 sudo yum install epel-release
-sudo yum install nms-nap-compiler-v4.583.0
+sudo yum install nms-nap-compiler-v4.815.0
 ```
 
 ### Oracle Linux 7.4 or later
@@ -139,7 +142,7 @@ Download the file `dependencies.repo` to `/etc/yum.repos.d`, enable the `ol8_cod
 ```bash
 sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
 sudo yum-config-manager --enable ol8_codeready_builder
-sudo yum install nms-nap-compiler-v4.583.0
+sudo yum install nms-nap-compiler-v4.815.0
 ```
 
 ### Download from MyF5
@@ -393,6 +396,7 @@ To ensure that the dashboards show the most up-to-date information, you need to 
 
 ## Setup Compiler Resource Pruning
 You can configure the following compiler resources to prune automatically:
+
 - Compiled Security Policies
 - Compiled Security Log Profiles
 - Attack Signatures
@@ -518,14 +522,16 @@ You can query the Instance Manager REST API to verify the following information:
 - NGINX App Protect WAF running status
 - Total number of instances with NGINX App Protect WAF installed, out of the total number of NGINX instances
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                     |
 |--------|------------------------------|
 | GET    | `/api/platform/v1/instances` |
 | GET    | `/api/platform/v1/systems`   |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 - Send an HTTP `GET` request to the `/api/platform/v1/systems` endpoint to find out what version of NGINX App Protect is running. This response will also show the Threat Campaign and Attack Signature package versions running on each instance.
 
@@ -872,15 +878,16 @@ Additional example configurations tailored for NGINX features can be found in th
 
 {{< see-also >}}{{< include "nim/how-to-access-nim-api.md" >}}{{< /see-also >}}
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                                            |
 |--------|---------------------------------------------------------------------|
 | GET    | `/api/platform/v1/systems/{systemUID}/instances`                    |
 | POST   | `/api/platform/v1/security/{systemUID}/instances/{nginxUID}/config` |
 
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 1. Send an HTTP `GET` request to the `/api/platform/v1/systems/{systemUID}/instances` endpoint. This returns a list of all instances from which you can find the unique identifier (UID) of the instance that you want to update.
 1. Add the desired configurations to your `nginx.conf` file, or to any other configuration file that's within the context defined in the NGINX Agent `config_dirs` setting.
@@ -1003,24 +1010,24 @@ Check if the WAF compiler has been installed and is working properly by viewing 
 sudo /opt/nms-nap-compiler/app_protect-<version>/bin/apcompile -h
 ```
 
-For example, to view the help description for WAF compiler 4.583.0, run the following command:
+For example, to view the help description for WAF compiler 4.815.0, run the following command:
 
 ``` bash
-sudo /opt/nms-nap-compiler/app_protect-4.583.0/bin/apcompile -h
+sudo /opt/nms-nap-compiler/app_protect-4.815.0/bin/apcompile -h
 ```
 
 The output looks similar to the following example:
 
 ```text
 USAGE:
-    /opt/nms-nap-compiler/app_protect-4.583.0/bin/apcompile <options>
+    /opt/nms-nap-compiler/app_protect-4.815.0/bin/apcompile <options>
 
 Examples:
-    /opt/nms-nap-compiler/app_protect-4.583.0/bin/apcompile -p /path/to/policy.json -o mypolicy.tgz
-    /opt/nms-nap-compiler/app_protect-4.583.0/bin/apcompile -p policyA.json -g myglobal.json -o /path/to/policyA_bundle.tgz
-    /opt/nms-nap-compiler/app_protect-4.583.0/bin/apcompile -g myglobalsettings.json --global-state-outfile /path/to/myglobalstate.tgz
-    /opt/nms-nap-compiler/app_protect-4.583.0/bin/apcompile -b /path/to/policy_bundle.tgz --dump
-    /opt/nms-nap-compiler/app_protect-4.583.0/bin/apcompile -l logprofA.json -o /path/to/logprofA_bundle.tgz
+    /opt/nms-nap-compiler/app_protect-4.815.0/bin/apcompile -p /path/to/policy.json -o mypolicy.tgz
+    /opt/nms-nap-compiler/app_protect-4.815.0/bin/apcompile -p policyA.json -g myglobal.json -o /path/to/policyA_bundle.tgz
+    /opt/nms-nap-compiler/app_protect-4.815.0/bin/apcompile -g myglobalsettings.json --global-state-outfile /path/to/myglobalstate.tgz
+    /opt/nms-nap-compiler/app_protect-4.815.0/bin/apcompile -b /path/to/policy_bundle.tgz --dump
+    /opt/nms-nap-compiler/app_protect-4.815.0/bin/apcompile -l logprofA.json -o /path/to/logprofA_bundle.tgz
 ...
 ```
 
@@ -1033,7 +1040,7 @@ Examples:
 
 Configure NGINX Agent on your NGINX App Protect WAF instance with settings similar to the following example:
 
-*/etc/nginx-agent/nginx-agent.conf*
+"/etc/nginx-agent/nginx-agent.conf"
 
 ```yaml
 # path to aux file dirs can also be added

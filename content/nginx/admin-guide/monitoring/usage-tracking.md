@@ -1,31 +1,17 @@
 ---
-title: "Reporting NGINX Plus Installation Counts for Compliance"
-date: 2023-10-26T10:27:57-07:00
-# Change draft status to false to publish doc.
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Tracking your [NGINX Plus]({{< relref \"nginx/\" >}}) installations is straightforward with [NGINX Management Suite Instance Manager]({{< relref \"nms/nim/\" >}}). If you're enrolled in a commercial program like the [F5 Flex Consumption Program](https://www.f5.com/products/get-f5/flex-consumption-program), you'll need to regularly report this data to F5."
-# Assign weights in increments of 100
-weight: 600
+description: Tracking your [NGINX Plus]({{< relref "nginx/" >}}) installations is
+  straightforward with [NGINX Management Suite Instance Manager]({{< relref "nms/nim/"
+  >}}). If you're enrolled in a commercial program like the [F5 Flex Consumption Program](https://www.f5.com/products/get-f5/flex-consumption-program),
+  you'll need to regularly report this data to F5.
+docs: DOCS-1356
+doctypes:
+- task
+tags:
+- docs
+title: Reporting NGINX Plus Installation Counts for Compliance
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1356"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["task"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
-
+weight: 600
 ---
-
-{{< custom-styles >}}
 
 <style>
 h2 {
@@ -45,26 +31,33 @@ h2 {
 
 ## View your NGINX Plus and NGINX App Protect Inventory
 
-After you've installed NGINX Instance Manager, the next step involves configuring your NGINX Plus data plane to report back. This can be done in two ways. First, you can install NGINX Agent on each instance. Alternatively, for an agentless approach, you can set up HTTP Health Checks, which don't require additional installations. Both methods enable your instances to communicate with Instance Manager.
+After you've installed NGINX Instance Manager, the next step involves configuring your NGINX Plus data plane to report back. This can be done in several ways. In NGINX Plus Release 31, native usage reporting is enabled by default. If you are using an earlier version of NGINX Plus, you can install NGINX Agent on each instance or you can set up HTTP Health Checks, which don't require additional installations. All methods enable your instances to communicate with Instance Manager.
 
 ### Set up instance reporting for NGINX Plus {#set-up-reporting}
 
 Select the tab that matches your preferred method for setting up reporting:
 
-- Install NGINX Agent 
+- Configure native usage reporting (since NGINX Plus <a href="../../../releases/#r31">Release 31</a>)
+- Install NGINX Agent
 - Configure HTTP Health Check for NGINX Plus without NGINX Agent
 
 {{<tabs name="configure-reporting">}}
 
-{{%tab name="Install NGINX Agent"%}}
+{{%tab name="Native Usage Reporting"%}}
+
+{{< include "nginx-plus/usage-tracking/agentless-reporting.md" >}}
+
+{{%/tab%}}
+
+{{%tab name="NGINX Agent"%}}
 
 {{< include "nginx-plus/usage-tracking/install-nginx-agent.md" >}}
 
 {{%/tab%}}
 
-{{%tab name="Configure HTTP Health Check"%}}
+{{%tab name="HTTP Health Check"%}}
 
-{{<include "nginx-plus/usage-tracking/http-health-check.md" >}}
+{{< include "nginx-plus/usage-tracking/http-health-check.md" >}}
 
 {{%/tab%}}
 

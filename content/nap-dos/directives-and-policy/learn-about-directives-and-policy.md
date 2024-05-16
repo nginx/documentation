@@ -1,34 +1,10 @@
 ---
-authors: []
-categories:
-- access log
-date: "2021-04-14T13:32:41+00:00"
 description: Learn about NGINX App Protect DoS Directives and Policy.
 docs: DOCS-667
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: directives-and-policy
-    weight: 45
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect DoS Directives and Policy
 toc: true
-versions:
-- "4.3"
 weight: 120
 ---
 
@@ -44,8 +20,9 @@ When reloading NGINX after inserting the directives, pay attention to any errors
 
 ## Directives table
 This is a summary of all NGINX App Protect DoS directives. You can find the description of each below.
- 
+
  {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+
 | Directive syntax | Options  | Context  |  Description |  Mandatory |  Default |
 |------------------|----------|----------|--------------|------------|----------|
 | [app_protect_dos_enable](#enable-directive-app_protect_dos_enable)  | [on\|off]  | http, <br> server, <br> location  |  Enable/Disable DoS protection | Yes  |  off |
@@ -56,9 +33,10 @@ This is a summary of all NGINX App Protect DoS directives. You can find the desc
 | [app_protect_dos_security_log](#security-log-directive-app_protect_dos_security_log)  | [LOG-CONFIG-FILE] [DESTINATION] | http, <br> server, <br> location  | Security logger configuration. Second argument: <br>"syslog:server={ip}:{port}"  or <br>"stderr" or  <br>  "{absolute_file_path}" | No | `/etc/app_protect_dos/log-default.json stderr` |
 | [app_protect_dos_liveness](#liveness-probe-directive-app_protect_dos_liveness)  | [on\|off] [uri:URI] [port:PORT]  |  http | Liveness prob. Second and third arguments are optional |  No | `off uri:/app_protect_dos_liveness port:8090`  |
 | [app_protect_dos_readiness](#readiness-probe-directive-app_protect_dos_readiness)  | 	[on\|off] [uri:URI] [port:PORT]  | http  | Readiness prob. Second and third arguments are optional  | No | `off  uri:/app_protect_dos_readiness port:8090`  |
-| [app_protect_dos_arb_fqdn](#arbitrator-fqdn-directive-app_protect_dos_arb_fqdn)  | [FQDN\|IP address]  | http | Arbitrator FQDN/IP address  | No | `svc-appprotect-dos-arb` | 
-| [app_protect_dos_api](#api-directive-app_protect_dos_api)  | No arguments  | location | Monitoring via Rest API (also includes the dashboard)  | No | off | 
+| [app_protect_dos_arb_fqdn](#arbitrator-fqdn-directive-app_protect_dos_arb_fqdn)  | [FQDN\|IP address]  | http | Arbitrator FQDN/IP address  | No | `svc-appprotect-dos-arb` |
+| [app_protect_dos_api](#api-directive-app_protect_dos_api)  | No arguments  | location | Monitoring via Rest API (also includes the dashboard)  | No | off |
 | [app_protect_dos_accelerated_mitigation](#api-directive-app_protect_dos_api) | [on\|off] [syn_drop=on\|off]| http | Enable/Disable L4 accelerated mitigation. Second argument is optional | No | off syn_drop=off |
+
 {{</bootstrap-table>}}
 
 
@@ -75,11 +53,13 @@ The derived blocks/contexts also inherit the directive.
 In case of multiple directives in different contexts, the derived overwrites the base's directive.
 
  {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+
 | Config | Expected |
 |------- | -------- |
 | Http block: directive is **on** <br> Server block: none is written <br> Location-1 block: none is written <br> Location-2 block: none is written | VS1: the server block <br> VS2: location-1 block <br> VS3: location-2 block |
-| Server block: directive is **on** <br> Location-1 block: directive is **off** <br> Location-2 block: none is written | VS1: the server block <br> VS2: location-2 block |  |
+| Server block: directive is **on** <br> Location-1 block: directive is **off** <br> Location-2 block: none is written | VS1: the server block <br> VS2: location-2 block |
 | Http block: directive is **on** <br> Server block: directive is **off** <br> Location-1 block: directive is **on** <br> Location-2 block: none is written | VS1: location-1 block |
+
  {{</bootstrap-table>}}
 
  **Example:**
@@ -109,6 +89,7 @@ If the configuration file doesn't exist or its attributes are invalid, default v
 ```
 
 {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+
 | Parameter name  | Values  | Default |Description |
 |:--------------- |:------- |:--------|:-----------|
 | mitigation_mode | standard / conservative / none | standard| **Standard** - module allowed to use global rate mitigation <br> **Conservative** - module is not allowed to use global rate but only Signatures/Bad Actors mitigation <br> **None** - module is not allowed to mitigate. Only to learn and report. |
@@ -116,14 +97,17 @@ If the configuration file doesn't exist or its attributes are invalid, default v
 | bad_actors  | [on\|off]  | on|  Enable mitigation by Bad Actors algorithm |
 | automation_tools_detection | [on\|off] | on |Enable the usage of automation tools detection (via cookies and redirect) |
 | tls_fingerprint| [on\|off] | on | Enable source identification using TLS fingerprinting|
+
 {{</bootstrap-table>}}
 
 {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+
 | Scenario  |  Result |
 |:--------- |:-------- |
 | Directive is not written  | Default path is used: "/etc/app_protect_dos/BADOSDefaultPolicy.json"  |
 | Directive is written  | Path from the directive is used  |
 | File not found / file syntax is invalid | Default values are used |
+
 {{</bootstrap-table>}}
 
 **Example:**
@@ -166,6 +150,7 @@ Monitors the stress level of the Protected Object. Requests for this monitoring 
 This directive is mandatory, except when using the HTTP1 protocol, where it is still strongly recommended for optimal performance.
 
 Monitor directive has four arguments - **uri**, **protocol**, **timeout** and **proxy_protocol**. The first is mandatory and the rest are optional.
+
 - **URI** - destination to the desired protected object in the `nginx.conf`. Format: **scheme://server_name:port/location**.
 
   {{< note >}}For gRPC, a certain method should be specified in the location. For example, /RouteGuide/GetFeature. {{< /note >}}
@@ -183,7 +168,7 @@ Format: **proxy_protocol | proxy_protocol=on**. Default: off.
   {{< note >}}proxy_protocol is supported from NGINX App Protect DoS v3.1. {{< /note >}}
 
 
-#### For NGINX App Protect DoS v1:
+#### For NGINX App Protect DoS v1
 
 Monitor directive has one argument which is the `uri` to be monitored. Only HTTP1 is supported.
 
@@ -196,20 +181,21 @@ The argument is a destination to the desired protected object in the `nginx.conf
 ```nginx
 listen 80;
 server_name serv;
- 
+
 location / {
     # Protected Object is defined here
     app_protect_dos_monitor uri=http://serv:80/;
 }
 ```
-{{< note >}}For NGINX App Protect DoS v1, use: app_protect_dos_monitor http://serv:80/; {{< /note >}}
+
+{{< note >}}For NGINX App Protect DoS v1, use: app_protect_dos_monitor <http://serv:80/>; {{< /note >}}
 
 2. http2 over SSL
 
 ```nginx
 listen 443 http2 reuseport ssl;
 server_name serv;
- 
+
 location / {
     # Protected Object is defined here
     app_protect_dos_monitor uri=https://serv:443/ protocol=http2 timeout=5;
@@ -221,7 +207,7 @@ location / {
 ```nginx
 listen 50051 http2 reuseport;
 server_name my_grpc;
- 
+
 location /routeguide. {
     # Protected Object is defined here
     app_protect_dos_monitor uri=http://my_grpc:50051/routeguide.RouteGuide/GetFeature protocol=grpc;
@@ -229,10 +215,11 @@ location /routeguide. {
 ```
 
 4. Server with proxy_protocol
+
 ```nginx
 listen 443 ssl http2 proxy_protocol;
 server_name serv;
- 
+
 location / {
     # Protected Object is defined here
     app_protect_dos_monitor uri=https://serv:443/ protocol=http2 timeout=5 proxy_protocol=on;
@@ -256,7 +243,7 @@ location /wsapp/ {
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "Upgrade";
     proxy_set_header Host $host;
-  
+
     # Protected Object is defined here
     app_protect_dos_monitor uri=http://wsapp:80/ protocol=websocket;
 }
@@ -288,10 +275,11 @@ Second argument is the destination (the location which the events will be sent t
 
 Implemented according to: [NGINX App Protect DoS Security Log]({{< relref "/nap-dos/monitoring/security-log.md" >}})
 
-   {{< note >}} 
+   {{< note >}}
+
 - When using stderr, make sure that the process `admd` is not redirecting the stderr output to file.
 - When using the Docker `entrypoint.sh` startup script from the admin guide, make sure that it doesn’t redirect stderr.
-   {{< /note >}} 
+   {{< /note >}}
 
 
 **Examples:**
@@ -331,14 +319,16 @@ While `/etc/app_protect_dos/log-default.json` is:
 This directive has 3 arguments.
 
 {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+
 | First argument | Second argument | Third argument |
 | :-------------- | :--------------- | :-------------- |
 | [on\|off] <br> depending if this feature should be enabled or disabled.| URI <br> Syntax is: `uri:___` | Port <br> Syntax is: `port:____`|
+
 {{</bootstrap-table>}}
 
-   {{< note >}} 
+   {{< note >}}
 Second and Third arguments are optional; if one or more is not written, the default will take place.
-   {{< /note >}} 
+   {{< /note >}}
 
 If liveness is enabled, a request with URI and PORT that matches the probe configuration (i.e. `/app_protect_dos_liveness:8090`) will be answered with RC 200 "Alive" by our NGINX module, without being counted or pass to other handlers nor the backend server.
 
@@ -355,12 +345,14 @@ app_protect_dos_liveness on uri:/liveness port:8090;
 This directive has 3 arguments.
 
 {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+
 | First argument | Second argument | Third argument |
 | :-------------- | :--------------- | :-------------- |
 | [on\|off] <br> depending if this feature should be enabled or disabled.| URI <br> Syntax is: `uri:___`| Port <br> Syntax is: `port:____`|
+
 {{</bootstrap-table>}}
 
-   {{< note >}} 
+   {{< note >}}
 Second and Third arguments are optional; if one or more is not written, the default will take place.
    {{< /note >}}
 
@@ -388,13 +380,17 @@ The argument is the FQDN to the desired Arbitrator.
 **Examples:**
 
 FQDN:
+
 ```nginx
 app_protect_dos_arb_fqdn svc-appprotect-dos-arb.arb.svc.cluster.local;
 ```
+
 IP address:
+
 ```nginx
 app_protect_dos_arb_fqdn 192.168.1.10;
 ```
+
 ### API directive (`app_protect_dos_api`)
 
 This directive is used to enable the App Protect DoS monitoring capability via REST API.<br>

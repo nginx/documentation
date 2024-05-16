@@ -1,21 +1,13 @@
 ---
-title: "About Us"
-date: 2020-12-30T20:56:49-07:00
-draft: false
-description: "NGINX Instance Manager history."
-# Assign weights in increments of 100
-weight: 400
+description: NGINX Instance Manager history.
+docs: DOCS-626
+doctypes:
+- tutorial
+tags:
+- docs
+title: About Us
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["platform management"]
-doctypes: ["tutorial"]
-journeys: ["getting started", "using"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-docs: "DOCS-626"
+weight: 400
 ---
 
 {{< include "nim/previous-versions/old-version-warning.md" >}}
@@ -57,7 +49,7 @@ NGINX Instance Manager is a centralized control plane for NGINX data plane insta
 
 If another tool can provide functionality, we utilize it first before building it into Instance Manager directly. This allows immediate functionality and flexibility for you to choose the tools you want to use. As we learn more about required functions, we will build more into the server.
 
-### Playing well with others.
+### Playing well with others
 
 Instance Manager does not expect to be the single source of truth. You likely have something else (perhaps git) functioning as your source of conf files. Instance Manager will respect any other tool owning the configuration files and expects changes to happen outside of Instance Manager.
 

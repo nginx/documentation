@@ -1,15 +1,15 @@
 ---
-title: "Instance Manager Dashboard Overview"
-description: "Learn how to get performance and health insights into your NGINX deployment using NGINX Management Suite Instance Manager."
-# Assign weights in increments of 100
-weight: 400
+description: Learn how to get performance and health insights into your NGINX deployment
+  using NGINX Management Suite Instance Manager.
+docs: DOCS-1387
+doctypes:
+- reference
+tags:
+- docs
+title: Instance Manager Dashboard Overview
 toc: true
-tags: [ "docs" ]
-doctypes: ["reference"]
-docs: "DOCS-000"
-
+weight: 400
 ---
-{{<custom-styles>}}
 
 The Instance Manager Dashboard provides a high-level overview of the health and performance of your NGINX instances. It offers a central location to identify, diagnose, and resolve issues in your data plane, understand how deployments impact the performance of individual instances, and identify trends in your data plane over time.
 

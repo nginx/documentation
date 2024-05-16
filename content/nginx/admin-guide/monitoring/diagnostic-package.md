@@ -1,13 +1,13 @@
 ---
-description: "This page describes how to trigger the automatic collection of data required to troubleshoot issues in a NGINX or NGINX Plus deployment."
-docs: "DOCS-1357"
+description: This page describes how to trigger the automatic collection of data required
+  to troubleshoot issues in a NGINX or NGINX Plus deployment.
+docs: DOCS-1357
 doctypes:
 - task
-title: "NGINX Diagnostic Package"
+title: NGINX Diagnostic Package
 toc: true
 weight: 400
 ---
-
 
 <span id="intro"></span>
 ## Overview
@@ -60,16 +60,19 @@ The script can be run on most [operating systems supported by NGINX](https://doc
 To create NGINX Diagnostic Package:
 
 1. [Download](https://nginx.org/download/nginx-supportpkg.sh) the `nginx-supportpkg.sh` script:
+
    ```shell
-   wget -r https://nginx.org/download/nginx-supportpkg.sh
+   wget https://nginx.org/download/nginx-supportpkg.sh
    ```
 
 2. Grant execution permissions to the script:
+
    ```shell
    chmod +x nginx-supportpkg.sh
    ```
 
 3. Run the script. The script requires root privileges to run. The script can be run with optional  arguments, see [Arguments](#arguments) for details.
+
    ```shell
    sudo ./nginx-supportpkg.sh
    ```
@@ -81,6 +84,7 @@ To create NGINX Diagnostic Package:
    ```shell
    tar -xvf support-pkg-1682457903.tar.gz
    ```
+
    The archive contains textual output of all the commands run by the script to make it easier to review the collected data.
 
 
@@ -90,6 +94,7 @@ To create NGINX Diagnostic Package:
 The following table lists the arguments you can use to customize the data that needs to be collected based on your NGINX deployment.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Short | Long                     | Description                                                           | Example                  | Default          |
 | ----- | ------------------------ | ----------------------------------------------------------------------| -------------------------| -----------------|
 | `-h`  | `--help`                 | Prints information about the script arguments to stdout.              | `--help`                 | N/A              |
@@ -104,5 +109,6 @@ The following table lists the arguments you can use to customize the data that n
 | `-nl` | `--exclude_nap_logs`     | Excludes all NGINX App Protect log files from the support package.    | `--exclude_nap_logs`     | N/A              |
 | `-ea` | `--exclude_api_stats`    | Excludes NGINX Plus API stats from the support package.               | `--exclude_api_stats`    | N/A              |
 | `-pi` | `--profile_interval`     | Profiling interval in seconds.                                        | `-pi 20`                 | 15               |
+
 {{</bootstrap-table>}}
 

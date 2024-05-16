@@ -1,30 +1,15 @@
 ---
-title: "Optimize NGINX Proxy Gateway for Large Data Planes"
-date: 2023-02-15T12:00:04-07:00
-# Change draft status to false to publish doc
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO.
-# The description text appears in search results and at the top of the doc.
-description: "Follow the steps in this guide to fine-tune the NGINX proxy gateway for NGINX Management Suite to support large data planes running numerous NGINX Agents."
-# Assign weights in increments of 100
-weight: 400
+description: Follow the steps in this guide to fine-tune the NGINX proxy gateway for
+  NGINX Management Suite to support large data planes running numerous NGINX Agents.
+docs: DOCS-1131
+doctypes:
+- tutorial
+tags:
+- docs
+title: Optimize NGINX Proxy Gateway for Large Data Planes
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1131"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation"]
-doctypes: ["tutorial"]
-journeys: ["getting started", "using"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
+weight: 400
 ---
-
-{{<custom-styles>}}
 
 ## Overview
 

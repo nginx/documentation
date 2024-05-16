@@ -1,21 +1,9 @@
 ---
-authors: []
-categories:
-- installation
-- infrastructure
-date: "2020-12-17T12:33:15-08:00"
 description: Learn how to deploy a vSphere NGINX instance using NGINX Controller.
 docs: DOCS-771
 doctypes:
 - beta
 - tutorial
-draft: false
-journeys:
-- getting started
-personas:
-- devops
-roles:
-- admin
 tags:
 - docs
 title: Add a vSphere NGINX Instance
@@ -69,7 +57,7 @@ Install the following prerequisites:
 
 Install NGINX Plus [as described.](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/)
 
-A template created from a VM that has the prerequisites mentioned above can be used in the vSphere integration. 
+A template created from a VM that has the prerequisites mentioned above can be used in the vSphere integration.
 
 
 {{< important >}}

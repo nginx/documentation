@@ -1,11 +1,9 @@
 ---
+description: Reference for using the NGINX Instance Manager API
+docs: DOCS-636
 title: API Reference
-description: "Reference for using the NGINX Instance Manager API"
-draft: false
-weight: 300
 toc: true
-categories: ["reference"]
-docs: "DOCS-636"
+weight: 300
 ---
 
 {{< include "nim/previous-versions/old-version-warning.md" >}}

@@ -10,7 +10,6 @@ toc: true
 weight: 100
 ---
 
-
 <span id="info"></span>
 ## Module Info
 
@@ -25,10 +24,11 @@ weight: 100
 2. Install the GeoIP2 module package `nginx-plus-module-geoip2`.
 
    For CentOS, Oracle Linux, and RHEL:
-   
+
    ```shell
    yum install nginx-plus-module-geoip2
    ```
+
    {{< note >}} the GeoIP2 module cannot be installed on ppc64le version of CentOS, Oracle Linux, and RHEL. {{< /note >}}
 
    For Amazon Linux 2023, AlmaLinux, Rocky Linux:
@@ -42,6 +42,7 @@ weight: 100
    ```shell
    apt-get install nginx-plus-module-geoip2
    ```
+
    For Alpine:
 
    ```shell
@@ -82,12 +83,12 @@ After installation you will need to enable and configure the module in NGINX Plu
 <span id="info"></span>
 ## More Info
 
-* [Restricting Access by Geographical Location]({{< relref "../security-controls/controlling-access-by-geoip.md" >}})
+- [Restricting Access by Geographical Location]({{< relref "../security-controls/controlling-access-by-geoip.md" >}})
 
-* [MaxMind GeoIP2 Databases](https://www.maxmind.com/en/geoip2-databases)
+- [MaxMind GeoIP2 Databases](https://www.maxmind.com/en/geoip2-databases)
 
-* [MaxMind Geolite2 Free Downloadable Databases](https://dev.maxmind.com/geoip/geoip2/geolite2/)
+- [MaxMind Geolite2 Free Downloadable Databases](https://dev.maxmind.com/geoip/geoip2/geolite2/)
 
-* [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
 
-* [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})

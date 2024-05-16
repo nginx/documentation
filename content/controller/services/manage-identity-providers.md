@@ -1,21 +1,8 @@
 ---
-authors: []
-categories:
-- services
-- api management
-date: "2020-10-26T15:32:41-06:00"
 description: Create and Manage Identity Providers.
 docs: DOCS-571
 doctypes:
 - tutorial
-draft: false
-journeys:
-- using
-personas:
-- devops
-- secops
-roles:
-- admin
 tags:
 - docs
 title: Manage Identity Providers
@@ -41,7 +28,7 @@ You must set up NGINX Plus to use the `njs` module to use API key authentication
 
 ### Set up NGINX Plus Instances to Secure API Keys
 
-When using API keys for authentication, the API key is written to the NGINX Plus config as cryptographically-protected hashes. 
+When using API keys for authentication, the API key is written to the NGINX Plus config as cryptographically-protected hashes.
 
 To use API key authentication for any element of NGINX Controller, you must install the `njs` module on all NGINX Plus instances.
 
@@ -69,26 +56,27 @@ Take the following steps to create an Identity Provider:
 
     a. **API Key**:
 
-      - Select **Import** to upload a `.csv` file containing Client names and keys. 
+      - Select **Import** to upload a `.csv` file containing Client names and keys.
 
         **--OR--**
 
       - Select **Create a Client** and provide a name for the Client. You can use the system-generated key or provide one of your own.
-        
-        {{< note >}} 
+
+        {{< note >}}
 Keys must be between 8 and 256 characters and alphanumeric.
- - Hyphens '-' and underscores '_' are allowed.
- - Other special characters are not allowed.
+
+- Hyphens '-' and underscores '_' are allowed.
+- Other special characters are not allowed.
         {{< /note >}}
 
     b. **JWT**:
 
       Create a new JWT Client Group by choosing one of the following options:
 
-      - Paste the contents of a `.jwk` file into the text box
+  - Paste the contents of a `.jwk` file into the text box
 
-      - Provide the URL of the `.jwk` file's location. NGINX Controller fetches the URL, caches it, and refreshes the cache every 12 hours. If the cache cannot be refreshed, the previous version of the `.jwk` is used.
-  
+  - Provide the URL of the `.jwk` file's location. NGINX Controller fetches the URL, caches it, and refreshes the cache every 12 hours. If the cache cannot be refreshed, the previous version of the `.jwk` is used.
+
 8. Select **Create**.
 
 ## Remove an Identity Provider

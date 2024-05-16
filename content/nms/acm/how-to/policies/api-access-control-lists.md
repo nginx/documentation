@@ -1,16 +1,12 @@
 ---
-Title: "Access Control Lists"
-date: 2022-09-28T11:08:41+01:00
-description: "Learn how to protect your upstream TCP application servers by denying/allowing access from certain client IP addresses, CIDR blocks, client IDs or JWT Claims."
-# Assign weights in increments of 100
-weight: 200
+description: Learn how to protect your upstream TCP application servers by denying/allowing
+  access from certain client IP addresses, CIDR blocks, client IDs or JWT Claims.
+docs: DOCS-950
+tags:
+- docs
 toc: true
-tags: ["docs"]
-docs: "DOCS-950"
-version: []
+weight: 200
 ---
-
-{{<custom-styles>}}
 
 ## Overview
 
@@ -46,7 +42,7 @@ Take the steps in this section if you would like to deny or allow access to your
 1. In the API Connectivity Manager user interface, go to **Services > \<your workspace\>**, where "your workspace" is the workspace that contains the API Proxy.
 1. Select **Edit Proxy** from the Actions menu for the desired API Proxy.
 1. On the **Policies** tab, select **Add Policy** from the **Actions** menu.
-1. Provide the desired **Allowed IP Addresses** and/or **Denied IP Addresses**. Valid values include IPv4, IPv6, and CIDR blocks. To allow or deny all, use the * symbol. 
+1. Provide the desired **Allowed IP Addresses** and/or **Denied IP Addresses**. Valid values include IPv4, IPv6, and CIDR blocks. To allow or deny all, use the * symbol.
 
 
     {{%/tab%}}
@@ -57,27 +53,29 @@ Take the steps in this section if you would like to deny or allow access to your
             "acl-ip": [
                 {
                     "action": {
-                        "deny": ["*"], // Polulate this array with your denied IP addresses 
+                        "deny": ["*"], // Polulate this array with your denied IP addresses
                         "allow": ["10.0.0.1"]
                     }
                 }
             ]
         }
 ```
+
     {{%/tab%}}
 {{</tabs>}}
 
-{{< note >}} 
+{{< note >}}
+
 - If you only set an allow list, then the deny list will default to deny all and vice versa.
 - If IP addresses are not explicitly allowed they will be denied. To allow IP addresses as default, include the `*` symbol in the allow list.
-- The most specific rule applied will be used to allow or deny traffic. For example, IP addresses take priority over CIDR blocks. Smaller CIDR blocks take priority over larger ones. 
+- The most specific rule applied will be used to allow or deny traffic. For example, IP addresses take priority over CIDR blocks. Smaller CIDR blocks take priority over larger ones.
 {{< /note >}}
 
 
 
-## Verification
+### Verification
 
-1. Attempt to contact the API Gateway or Developer Portal from a denied IP address. The host should return the default `403 Forbidden` return code or the custom return code you have set. 
+1. Attempt to contact the API Gateway or Developer Portal from a denied IP address. The host should return the default `403 Forbidden` return code or the custom return code you have set.
 1. Contact the IP address from an allowed IP address. The traffic should not be denied.
 
 ## Create ACL Consumer Restriction Policy
@@ -120,7 +118,7 @@ Specific consumer client IDs or token claims can be denied or allowed access to 
 - If values are not allowed, they will be denied by default if neither list contains a wildcard.
   {{< /note >}}
 
-## Verification
+### Verification
 
 1. Attempt to contact the API Gateway or Developer Portal from a denied using a client that has been denied. The host should return the default `403 Forbidden` return code.
 1. Attempt to contact the API Gateway or Developer Portal from an allowed client. The traffic should should be successfully proxied.

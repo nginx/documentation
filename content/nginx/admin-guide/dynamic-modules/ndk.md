@@ -1,5 +1,5 @@
 ---
-description:
+description: null
 docs: DOCS-392
 doctypes:
 - task
@@ -21,7 +21,7 @@ The NDK module is also a prerequisite for [Encrypted Session]({{< relref "encryp
 2. Install the NDK module package `nginx-plus-module-ndk`.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
-   
+
    ```shell
    yum install nginx-plus-module-ndk
    ```
@@ -39,7 +39,7 @@ The NDK module is also a prerequisite for [Encrypted Session]({{< relref "encryp
    ```
 
    For SLES:
-   
+
    ```shell
    zypper install nginx-plus-module-ndk
    ```
@@ -80,8 +80,8 @@ After installation you will need to enable and configure the module in NGINX Plu
 <span id="info"></span>
 ## More Info
 
-* [NDK Module Reference](https://github.com/vision5/ngx_devel_kit)
+- [NDK Module Reference](https://github.com/vision5/ngx_devel_kit)
 
-* [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
 
-* [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})

@@ -1,5 +1,6 @@
 #
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Use Case                                                 | Suggested Policies |
 | -------------------------------------------------------- | ------------------ |
 | API Doc Inventory                                        | Editor's note: what are the suggested policies? |
@@ -11,6 +12,7 @@
 | Security                                                 | Editor's note: what are the suggested policies? |
 | Traffic Limiting                                         | Editor's note: what are the suggested policies? |
 | Transport Protocol                                       | Editor's note: what are the suggested policies? |
+
 {{</bootstrap-table>}}
 
 <!-- Do not remove. Keep this code at the bottom of the include -->

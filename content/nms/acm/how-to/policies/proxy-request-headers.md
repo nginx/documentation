@@ -1,17 +1,16 @@
 ---
-Title: "Proxy Request Headers"
-draft: false
-description: Learn how to use NGINX Management Suite API Connectivity Manager to set request headers to send to your backend services.
-weight: 1100
+description: Learn how to use NGINX Management Suite API Connectivity Manager to set
+  request headers to send to your backend services.
+docs: DOCS-1129
+doctypes:
+- API Connectivity Manager
+- api management
+- reference
+tags:
+- docs
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1129"
-doctypes: ["API Connectivity Manager", "api management", "reference"]
-journeys: ["using"]
-personas: ["API owners"]
+weight: 1100
 ---
-
-{{<custom-styles>}}
 
 ## Overview
 
@@ -25,7 +24,7 @@ The Proxy Request Headers policy allows users to pass default and custom request
 
 This policy is enabled by default when you [publish an API Proxy]({{< relref "/nms/acm/getting-started/publish-api-proxy" >}}).
 
-#### Intended Audience
+### Intended Audience
 
 {{< include "acm/how-to/policies/api-owner-persona.md">}}
 
@@ -45,38 +44,43 @@ To complete the steps in this guide, you need the following:
 
 The following table lists the configurable settings and their default values for the policy.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field                                           | Type | Possible Values      | Description                                                                                                                                                                           | Required | Default |
 |-------------------------------------------------|----------|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|---------|
 | `proxyDefaultHeadersToBackend`                  | boolean  | `true`,<br>`false`   | <p>When set to `true`, the default headers are passed to backend services.</p><p>For more information, refer to the [Default Headers]({{< relref "#default-headers" >}}) section.</p> | No       | `True`  |
 | `proxyCustomHeadersToBackend.`<br>`key`         | string   | Example: `my-header` | The name of the HTTP header.                                                                                                                                                          | Yes      | N/A     |
 | `proxyCustomHeadersToBackend.`<br>`value`       | string   | Example: `var.test`  | <p>The value of the HTTP header.</p><p>For more information, refer to the [Header Value Prefixes]({{< relref "#value-prefixes" >}}) section.</p>                                      | Yes      | N/A     |
 | `proxyCustomHeadersToBackend.`<br>`isSensitive` | boolean  | `true`,<br>`false`   | When set to `false`, the header will not appear in logs.                                                                                                                              | No       | `False` |
+
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ### Default Headers {#default-headers}
 
 {{<note>}}When `proxyDefaultHeadersToBackend` is `true`, the following headers are applied.{{</note>}}
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Header            | Description                                                |
 |-------------------|------------------------------------------------------------|
 | `Accept-Encoding` | Set to an empty string.                                    |
 | `Host`            | Set to the IP address of the machine proxying the request. |
 | `X-Real-IP`       | Set to the IP client's address.                            |
 | `Connection`      | Set to an empty string.                                    |
+
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ### Header Value Prefixes {#value-prefixes}
 
 {{<note>}}When adding a custom header to `proxyCustomHeadersToBackend,` include one of the following prefixes for the `value` setting.{{</note>}}
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Prefix        | Example              | Description                                                                                                                                                                                    |
 |---------------|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `var`         | var.content_length   | Pass a [valid NGINX variable](http://nginx.org/en/docs/varindex.html).                                                                                                                         |
@@ -84,8 +88,9 @@ The following table lists the configurable settings and their default values for
 | `client`      | client.IP            | Pass a value from the client if a [Basic Auth]({{< relref "/nms/acm/how-to/policies/basic-authn" >}}) or [API Key]({{< relref "/nms/acm/how-to/policies/apikey-authn" >}}) policy has been configured. |
 | `stringValue` | stringValue.MyString | Pass a static string.                                                                                                                                                                          |
 | `token`       | token.sub            | Pass a value from the JSON Web Token (JWT) if the [OAuth2 JWT Assertion]({{< relref "/nms/acm/how-to/policies/jwt-assertion" >}}) policy has been configured.                                      |
+
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ---
 
@@ -104,13 +109,15 @@ You can apply this policy using either the web interface or the REST API.
 
 To apply the Proxy Request Headers policy using the REST API, send an HTTP `PUT` request to the Proxies endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                                |
 |--------|---------------------------------------------------------|
 | `PUT`  | `/services/workspaces/{SERVICE_WORKSPACE_NAME}/proxies` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <details open>
 <summary>JSON request</summary>

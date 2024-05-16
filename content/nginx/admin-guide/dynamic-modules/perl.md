@@ -10,7 +10,6 @@ toc: true
 weight: 100
 ---
 
-
 <span id="install"></span>
 ## Installation
 
@@ -19,7 +18,7 @@ weight: 100
 2. Install the Perl module package `nginx-plus-module-perl`.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
-  
+
    ```shell
    yum install nginx-plus-module-perl
    ```
@@ -31,13 +30,13 @@ weight: 100
    ```
 
    For Debian/Ubuntu:
-  
+
    ```shell
    apt-get install nginx-plus-module-perl
    ```
 
    For SLES:
-  
+
    ```shell
    zypper install nginx-plus-module-perl
    ```
@@ -79,8 +78,8 @@ After installation you will need to enable and configure the module in NGINX Plu
 <span id="info"></span>
 ## More Info
 
-* [NGINX Perl Module Reference](https://nginx.org/en/docs/http/ngx_http_perl_module.html)
+- [NGINX Perl Module Reference](https://nginx.org/en/docs/http/ngx_http_perl_module.html)
 
-* [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
 
-* [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})

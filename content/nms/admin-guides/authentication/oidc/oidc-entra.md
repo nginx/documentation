@@ -1,27 +1,18 @@
 ---
-title: "Set up Microsoft Entra as an OIDC Identity Provider"
-date: 2021-12-21T12:00:00-07:00
-draft: false
-description: "This guide provides step-by-step instructions on configuring Microsoft Entra (AD) as an OpenID Connect (OIDC) identity provider (IdP) for NGINX Management Suite. By using OpenID authentication with NGINX Management Suite, you can implement role-based access control (RBAC) to limit user access to specific features available in NGINX Management Suite."
-# Assign weights in increments of 100
-weight: 100
+description: This guide provides step-by-step instructions on configuring Microsoft
+  Entra (AD) as an OpenID Connect (OIDC) identity provider (IdP) for NGINX Management
+  Suite. By using OpenID authentication with NGINX Management Suite, you can implement
+  role-based access control (RBAC) to limit user access to specific features available
+  in NGINX Management Suite.
+docs: DOCS-795
+doctypes:
+- tutorial
+tags:
+- docs
+title: Set up Microsoft Entra as an OIDC Identity Provider
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "security"]
-doctypes: ["tutorial"]
-journeys: ["getting started", "using"]
-personas: ["devops", "netops", "secops"]
-versions: []
-authors: []
-docs: "DOCS-795"
-aliases:
-- /nginx-instance-manager/admin-guide/oidc-entra/
+weight: 100
 ---
-
-{{< custom-styles >}}
 
 <style>
 h2 {
@@ -56,7 +47,7 @@ To successfully follow the instructions in this guide, you must complete the fol
 
 1. Create an [Microsoft Entra premium account](https://azure.microsoft.com/en-us/pricing/details/active-directory/). If you have a standard account, you'll need to upgrade.
 1. [Install Instance Manager]({{< relref "/nms/installation/vm-bare-metal/install-nim.md" >}}) on a server that also has [NGINX Plus R25 or a newer version installed]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). Make sure the server hosting NGINX Plus has a fully qualified domain name (FQDN).
-1. [Install the NGINX JavaScript module (njs)](https://www.nginx.com/blog/introduction-nginscript/) on the same server as Instance Manager. This module is necessary for managing communications between NGINX Plus and the identity provider. 
+1. [Install the NGINX JavaScript module (njs)](https://www.nginx.com/blog/introduction-nginscript/) on the same server as Instance Manager. This module is necessary for managing communications between NGINX Plus and the identity provider.
 
 ## Configure Microsoft Entra {#configur-entra}
 
@@ -187,7 +178,7 @@ Configure NGINX Plus to use Microsoft Entra as the identity provider.
     #
     # Adapted from: https://github.com/nginxinc/nginx-openid-connect/blob/main/openid_connect_configuration.conf
     #
-    # NOTE: This requires NGINX Plus with the NJS module installed and enabled
+    # NOTE: This requires NGINX Plus with the njs module installed and enabled
     # NOTE: The entries below need to be updated with values relevant to your environment and IdP
     #
     #       SERVER_FQDN is the Fully Qualified Domain Name of this server, e.g., nms.example.com
@@ -346,7 +337,7 @@ Configure NGINX Plus to use Microsoft Entra as the identity provider.
     # package management during upgrades
 
     # NOTE: enabling OIDC authentication requires using NGINX Plus
-    #       with NJS installed and the module loaded in the config
+    #       with njs installed and the module loaded in the config
 
    # Enable when using OIDC
    log_format oidc_jwt '$remote_addr - $jwt_claim_sub [$time_local] "$request" '
@@ -369,11 +360,11 @@ Configure NGINX Plus to use Microsoft Entra as the identity provider.
        "~^/api/platform/v1/modules"       core-api-service;
        "~^/api/platform/v1/dimensionmapping" core-api-service;
        "~^/api/platform/v1/resource-groups"  core-api-service;
-   
+
        # SCIM related mappings
        "~^/api/scim/v2/users"  core-api-service;
        "~^/api/scim/v2/groups" core-api-service;
-   
+
        # DPM service API path mappings
        "~^/api/platform/v1/analysis"              dpm-api-service;
        "~^/api/platform/v1/certs"                 dpm-api-service;
@@ -385,13 +376,13 @@ Configure NGINX Plus to use Microsoft Entra as the identity provider.
        "~^/api/platform/v1/systems"               dpm-api-service;
        "~^/api/platform/v1/security/publish"      dpm-api-service;
        "~^/api/platform/v1/security/deployments"  dpm-api-service;
-   
+
        # Integration service API path mappings
        "~^/api/platform/v1/security/policies"          integrations-api-service;
        "~^/api/platform/v1/security/attack-signatures" integrations-api-service;
        "~^/api/platform/v1/security/threat-campaigns"  integrations-api-service;
        "~^/api/platform/v1/security/logprofiles"       integrations-api-service;
-   
+
        # Allows all modules to include their own mapped apis as part of the base config
        include /etc/nms/nginx/upstreams/mapped_apis/*.conf;
    }
@@ -471,7 +462,7 @@ Configure NGINX Plus to use Microsoft Entra as the identity provider.
         ssl_certificate         /etc/nms/certs/manager-server.pem;
         ssl_certificate_key     /etc/nms/certs/manager-server.key;
         ssl_client_certificate  /etc/nms/certs/ca.pem;
- 
+
         # Enables verification of client certificates. The verification result is stored in the $ssl_client_verify variable.
         # $ssl_client_verify returns one of the following result of client certificate verification:
         # 1. “SUCCESS”
@@ -521,27 +512,27 @@ Configure NGINX Plus to use Microsoft Entra as the identity provider.
         proxy_set_header Nginx-Management-Suite-User $user_email;
         proxy_set_header Nginx-Management-Suite-Groups $groups_claim;
         proxy_set_header Nginx-Management-Suite-ExternalId $jwt_claim_sub;
-        
+
         # Optional OIDC settings: additional debug log
         # error_log /var/log/nginx/oidc.log debug; # Reduce severity level as required
-        
+
         proxy_set_header Authorization "";
         server_tokens off;
-        
+
         # Object and method headers for Role-Based Access Control
         proxy_set_header object $request_uri;
         proxy_set_header http-method $request_method;
-        
+
         # Default limit is applied here to all locations. A more relaxed limit is defined inside the /api location.
         limit_req zone=nms-strict-ratelimit burst=10 nodelay;
         limit_req_status 429;
-        
+
         # Redirect from / to /ui/
         location = / {
              absolute_redirect off;
              return 302 "/ui/";
         }
-        
+
         location /api {
            # HTTP Basic authentication (disable if using OIDC)
            # auth_basic "Nginx Management Suite";
@@ -549,7 +540,7 @@ Configure NGINX Plus to use Microsoft Entra as the identity provider.
            error_page 401 = @do_oidc_flow;
            auth_jwt "" token=$session_jwt;
            auth_jwt_key_request /_jwks_uri;
-       
+
            # Disabled proxy_ssl_* directives due to plaintext proxy_pass.
            # Re-enable them in case of advanced, customized multi-server installation.
            # proxy_ssl_trusted_certificate /etc/nms/certs/ca.pem;
@@ -568,31 +559,31 @@ Configure NGINX Plus to use Microsoft Entra as the identity provider.
         location @return302LaunchPad {
             return 302 "ui/launchpad";
         }
- 
+
         # NGINX Management Suite modules service endpoint, provides inventory for the UI
         location = /modules {
             proxy_pass http://core-api-service/api/platform/v1/modules;
         }
-        
+
         # Installation script for nginx-agent packages
         # NGINX Agent must be installed from this location to support local repository and offline environments
         location = /agent/install {
             return 302 '/install/nginx-agent';
         }
-       
+
         location = /install/nginx-agent {
            sub_filter_types *;
            sub_filter '"CTR_FQDN"' '"$host"';
            # sub_filter_once on;
         }
-       
+
         # Installation script for NGINX-PLUS advanced metrics package
         location = /install/nginx-plus-module-metrics {
            sub_filter_types *;
            sub_filter '"CTR_FQDN"' '"$host"';
            # sub_filter_once on;
         }
-       
+
         # UI static assets
         location /ui {
            # UI static assets should be accessible without authentication
@@ -607,7 +598,7 @@ Configure NGINX Plus to use Microsoft Entra as the identity provider.
            error_page 401 = @do_oidc_flow;
            auth_jwt "" token=$session_jwt;
            auth_jwt_key_request /_jwks_uri;
-      
+
            gzip_static on;
            add_header Cache-Control "private; max-age=86400";
         }
@@ -618,7 +609,7 @@ Configure NGINX Plus to use Microsoft Entra as the identity provider.
             error_page 401 = @do_oidc_flow;
             auth_jwt "" token=$session_jwt;
             auth_jwt_key_request /_jwks_uri;
-      
+
             # Dynamic proxying to the correct service, based on the corresponding map above
             proxy_pass http://$mapped_upstream/$page;
         }
@@ -633,7 +624,7 @@ Configure NGINX Plus to use Microsoft Entra as the identity provider.
             client_body_timeout 10m;
             grpc_pass grpc://ingestion-grpc-service;
         }
-      
+
         # gRPC service for DPM
         location /f5.nginx.agent.sdk.Commander {
             # uncomment to enable mTLS with agent
@@ -674,7 +665,7 @@ Configure NGINX Plus to use Microsoft Entra as the identity provider.
             error_page 401 = @do_oidc_flow;
             auth_jwt "" token=$session_jwt;
             auth_jwt_key_request /_jwks_uri;
-       
+
             include /etc/nms/nginx/errors-grpc.loc_conf;
             grpc_socket_keepalive on;
             grpc_read_timeout 1h;
@@ -687,7 +678,7 @@ Configure NGINX Plus to use Microsoft Entra as the identity provider.
         }
     }
     ```
-    
+
     </details>
 
 1. Verify that the configuration file does not contain any errors:

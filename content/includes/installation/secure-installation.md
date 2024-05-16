@@ -1,5 +1,5 @@
 ---
-
+docs: DOCS-1405
 ---
 
 To ensure that your NGINX Management Suite deployment remains secure, follow the recommendations in this section:

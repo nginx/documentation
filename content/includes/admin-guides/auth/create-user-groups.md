@@ -15,7 +15,7 @@ Here's how to create a user group and assign roles to it:
 1. In the **Create Group** form, provide information for the group:
 
    - <i class="fa fa-asterisk" aria-hidden="true" style="color: red;"></i> (Required) **Group Name**: The name or Object ID of the group.  It's essential to carefully follow these guidelines:
-   
+
       - The value must **exactly match** the group name or Object ID used in the identity provider.
       - A group can be linked to only one identity provider.
       - You must add a group claim to your token within your identity provider.

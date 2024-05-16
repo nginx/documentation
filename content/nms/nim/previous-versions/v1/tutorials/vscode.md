@@ -1,20 +1,13 @@
 ---
-title: "Visual Studio Code plug-in for NGINX Instance Manager"
-draft: false
-description: "How to use Visual Studio Code with the NGINX Instance Manager extension"
-# Assign weights in increments of 100
-weight: 500
+description: How to use Visual Studio Code with the NGINX Instance Manager extension
+docs: DOCS-644
+doctypes:
+- tutorial
+tags:
+- docs
+title: Visual Studio Code plug-in for NGINX Instance Manager
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["examples"]
-doctypes: ["tutorial"]
-journeys: ["getting started", "using"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-docs: "DOCS-644"
+weight: 500
 ---
 
 {{< include "nim/previous-versions/old-version-warning.md" >}}

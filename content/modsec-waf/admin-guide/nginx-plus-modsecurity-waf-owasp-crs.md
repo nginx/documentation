@@ -1,8 +1,8 @@
 ---
+docs: DOCS-727
 title: Using the OWASP CRS with the NGINX ModSecurity WAF
-weight: 200
 toc: true
-docs: "DOCS-727"
+weight: 200
 ---
 
 {{< important >}}
@@ -61,22 +61,22 @@ Next we enable the CRS, and then test how it blocks most of Nikto’s requests a
 
 To enable the OWASP CRS, perform the following steps:
 
-1.  Download the latest OWASP CRS from GitHub and extract the rules into **/usr/local** or another location of your choice.
+1. Download the latest OWASP CRS from GitHub and extract the rules into **/usr/local** or another location of your choice.
 
     ```none
-    $ wget https://github.com/SpiderLabs/owasp-modsecurity-crs/archive/v3.0.2.tar.gz
-    $ tar -xzvf v3.0.2.tar.gz
-    $ sudo mv owasp-modsecurity-crs-3.0.2 /usr/local
+    wget https://github.com/SpiderLabs/owasp-modsecurity-crs/archive/v3.0.2.tar.gz
+    tar -xzvf v3.0.2.tar.gz
+    sudo mv owasp-modsecurity-crs-3.0.2 /usr/local
     ```
 
-2.  Create the **crs‑setup.conf** file as a copy of **crs‑setup.conf.example**.
+2. Create the **crs‑setup.conf** file as a copy of **crs‑setup.conf.example**.
 
     ```none
-    $ cd /usr/local/owasp-modsecurity-crs-3.0.2
-    $ sudo cp crs-setup.conf.example crs-setup.conf
+    cd /usr/local/owasp-modsecurity-crs-3.0.2
+    sudo cp crs-setup.conf.example crs-setup.conf
     ```
 
-3.  Add `Include` directives in the main NGINX ModSecurity WAF configuration file (**/etc/nginx/modsec/main.conf**, created in Step 4 of [Installing the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-installation-logging.md#protecting-the-demo-web-application" >}}) in the installation chapter, to read in the CRS configuration and rules. Comment out any other rules that might already exist in the file, such as the sample `SecRule` directive created in that step.
+3. Add `Include` directives in the main NGINX ModSecurity WAF configuration file (**/etc/nginx/modsec/main.conf**, created in Step 4 of [Installing the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-installation-logging.md#protecting-the-demo-web-application" >}}) in the installation chapter, to read in the CRS configuration and rules. Comment out any other rules that might already exist in the file, such as the sample `SecRule` directive created in that step.
 
     ```nginx
     # Include the recommended configuration
@@ -110,10 +110,10 @@ To enable the OWASP CRS, perform the following steps:
     Include /usr/local/owasp-modsecurity-crs-3.0.2/rules/RESPONSE-999-EXCLUSION-RULES-AFTER-CRS.conf
     ```
 
-4.  Reload the NGINX Plus configuration.
+4. Reload the NGINX Plus configuration.
 
     ```none
-    $ sudo nginx -s reload
+    sudo nginx -s reload
     ```
 
 <span id="waf-owasp_test"></span>
@@ -209,7 +209,7 @@ SecRule REQUEST_URI|REQUEST_COOKIES|!REQUEST_COOKIES:/__utm/ ...
 Reload the NGINX Plus configuration to read in the revised rule set:
 
 ```none
-$ sudo nginx -s reload
+sudo nginx -s reload
 ```
 
 When we rerun Nikto, it reports only four items, and they are false positives for our application.
@@ -242,6 +242,6 @@ For imformation about another supported ModSecurity rule set, see [Using the Mod
 
 ## Resources
 
-*   [OWASP ModSecurity Core Rule Set (CRS)](https://modsecurity.org/crs/)
-*   [Nikto scanning tool](https://github.com/sullo/nikto)
-*   [ModSecurity Reference Manual](https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual-v2.x#ModSecurityreg_Reference_Manual)
+- [OWASP ModSecurity Core Rule Set (CRS)](https://modsecurity.org/crs/)
+- [Nikto scanning tool](https://github.com/sullo/nikto)
+- [ModSecurity Reference Manual](https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual-v2.x#ModSecurityreg_Reference_Manual)

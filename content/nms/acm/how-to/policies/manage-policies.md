@@ -1,20 +1,14 @@
 ---
-Title: "Set Up Policies"
-date: 2021-12-21T12:00:00-07:00
-description: "Learn how to use NGINX Management Suite API Connectivity Manager to set up policies."
-# Assign weights in increments of 100
-weight: 100
+description: Learn how to use NGINX Management Suite API Connectivity Manager to set
+  up policies.
+docs: DOCS-925
+doctypes:
+- task
+tags:
+- docs
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["API Connectivity Manager", "policies"]
-doctypes: ["task"]
-docs: "DOCS-925"
+weight: 100
 ---
-
-{{<custom-styles>}}
 
 {{< shortversions "1.1.0" "latest" "acmvers" >}}
 
@@ -26,7 +20,7 @@ docs: "DOCS-925"
 
 ### Before You Begin
 
-Complete the following prerequisites before proceeding with this guide: 
+Complete the following prerequisites before proceeding with this guide:
 
 - API Connectivity Manager is installed, licensed, and running.
 - You have one or more Environments with [API Gateways]({{< relref "/nms/acm/getting-started/add-api-gateway" >}}) or [Developer Portals]({{< relref "/nms/acm/getting-started/add-devportal" >}}).
@@ -51,15 +45,15 @@ To manage Global Policies, take the steps below:
 2. Select the Environment that holds the cluster that you want to configure, then select the **Cluster** name.
 3. Select the **Manage** icon for the cluster that you want to configure.
 4. Select the **Global Policies** tab.
-5. [**Add**](#add-cluster-policy), [**Edit**](#edit-cluster-policy), or [**Remove**](#remove-cluster-policy) as desired. 
+5. [**Add**](#add-cluster-policy), [**Edit**](#edit-cluster-policy), or [**Remove**](#remove-cluster-policy) as desired.
 6. **Save and Submit** your changes.
 
 ### Add a Policy {#add-cluster-policy}
 
 Take the steps in this section to add a new policy to a cluster.
 
-1. Go to **Manage > Global Policies** for the cluster. 
-1. Select **Add Policy** from the policy's **Actions** menu. 
+1. Go to **Manage > Global Policies** for the cluster.
+1. Select **Add Policy** from the policy's **Actions** menu.
 1. Complete the form provided to configure the policy, then select **Add**.
 1. **Save and Submit** your changes.
 
@@ -74,7 +68,7 @@ To edit a policy, take the steps below.
 
 ### Remove a Policy {#remove-cluster-policy}
 
-To remove a policy, take the steps below. 
+To remove a policy, take the steps below.
 
 1. Go to the **Global Policies** tab for the cluster.
 1. Select **Remove Policy** from the policy's **Actions** menu.
@@ -88,14 +82,14 @@ To remove a policy, take the steps below.
 <br>
 
 Any Global Policies will automatically be applied when you add an API Proxy.
-You can also configure any of the optional policies at the proxy level. 
+You can also configure any of the optional policies at the proxy level.
 
 To manage Proxy Policies, take the steps below.
 
 1. In the API Connectivity Manager user interface, go to **Services > Workspaces > Proxies**.
 1. Select **Edit Proxy** from the **Actions** menu for the Proxy that you want to configure.
 1. Select the **Policies** tab.
-1. [**Add**](#add-proxy-policy), [**Edit**](#edit-proxy-policy), or [**Remove**](#remove-proxy-policy) as desired. 
+1. [**Add**](#add-proxy-policy), [**Edit**](#edit-proxy-policy), or [**Remove**](#remove-proxy-policy) as desired.
 1. **Save and Publish** your changes.
 
 ### Add a Policy {#add-proxy-policy}
@@ -103,7 +97,7 @@ To manage Proxy Policies, take the steps below.
 Take the steps in this section to add a new policy to a cluster.
 
 1. Go to **Edit Proxy > Policies**.
-1. Select **Add Policy** from the policy's Actions menu. 
+1. Select **Add Policy** from the policy's Actions menu.
 1. Complete the form to configure the policy, then select the **Add** button.
 1. **Save and Submit** your changes.
 
@@ -118,7 +112,7 @@ Take the steps below to edit a policy.
 
 ### Remove a Policy {#remove-proxy-policy}
 
-To remove a policy, take the steps below. 
+To remove a policy, take the steps below.
 
 1. Go to **Edit Proxy > Policies**.
 1. Select **Remove Policy** from the policy's Actions menu.
@@ -139,15 +133,15 @@ To manage Cluster Policies, take the steps below:
 2. Select the Environment that holds the cluster that you want to configure, then select the **Cluster** name.
 3. Select the **Manage** icon for the cluster that you want to configure.
 4. Select the **Cluster Policies** tab.
-5. [**Add**](#add-cluster-policy), [**Edit**](#edit-cluster-policy), or [**Remove**](#remove-cluster-policy) as desired. 
+5. [**Add**](#add-cluster-policy), [**Edit**](#edit-cluster-policy), or [**Remove**](#remove-cluster-policy) as desired.
 6. **Save and Submit** your changes.
 
 ### Add a Policy {#add-cluster-policy}
 
 Take the steps in this section to add a new policy to a cluster.
 
-1. Go to **Manage > Cluster Policies** for the cluster. 
-1. Select **Add Policy** from the policy's **Actions** menu. 
+1. Go to **Manage > Cluster Policies** for the cluster.
+1. Select **Add Policy** from the policy's **Actions** menu.
 1. Complete the form provided to configure the policy, then select **Add**.
 1. **Save and Submit** your changes.
 
@@ -162,7 +156,7 @@ To edit a policy, take the steps below.
 
 ### Remove a Policy {#remove-cluster-policy}
 
-To remove a policy, take the steps below. 
+To remove a policy, take the steps below.
 
 1. Go to the **Cluster Policies** tab for the cluster.
 1. Select **Remove Policy** from the policy's **Actions** menu.

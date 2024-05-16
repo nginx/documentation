@@ -1,12 +1,13 @@
 ---
-title: Documentation Feedback
-description: |
-  Found a doc bug? Have a doc request? Let us know!
 type: feedback
-_build: 
-  render: always
+_build:
   list: never
+  render: always
+description: 'Found a doc bug? Have a doc request? Let us know!
+
+  '
 display_breadcrumb: false
+title: Documentation Feedback
 ---
 
 Use the form below to submit feedback regarding the **NGINX product documentation**.

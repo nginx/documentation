@@ -1,11 +1,13 @@
 ---
-title: "Known Issues"
-description: "This document lists and describes the known issues and possible workarounds in the NGINX Management Suite Security Monitoring module. Fixed issues are removed after **45 days**."
-weight: 200
+description: This document lists and describes the known issues and possible workarounds
+  in the NGINX Management Suite Security Monitoring module. Fixed issues are removed
+  after **45 days**.
+docs: DOCS-1077
+tags:
+- docs
+title: Known Issues
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1077"
-categories: ["known issues"]
+weight: 200
 ---
 
 {{<rn-styles>}}
@@ -21,6 +23,7 @@ October 18, 2023
 ### {{% icon-bug %}} Web interface fails to load after restarting NGINX Management Suite {#44587}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 44587 | Open   |
@@ -35,13 +38,13 @@ Reload the page in the browser to resolve this issue.
 
 ---
 
-
 ## 1.5.0
 June 12, 2023
 
 ### {{% icon-resolved %}} Using empty values as filters returns inaccurate results {#42941}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 42941 | Fixed in Security Monitoring -1.6.0   |
@@ -52,13 +55,13 @@ Using an empty string as a key or value results in an empty dataset.
 
 ---
 
-
 ## 1.0.0
 November 17, 2022
 
 ### {{% icon-resolved %}} The API Connectivity Manager module won't load if the Security Monitoring module is enabled {#44433}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 44433 | Fixed in Instance Manager 2.8.0   |
@@ -90,13 +93,14 @@ To see which version of Instance Manager you have installed, run the following c
 ### {{% icon-bug %}} Filtering data by Instance Group in the Security Monitoring module does not show any results. {#38790}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 38790 | Open   |
 
 {{</bootstrap-table>}}
 #### Description
-The Security Monitoring plugin on NGINX Agent does not automatically pick up changes made to agent-dynamic.conf, causing the Instance Group association to be missing in the Security Violations generated. 
+The Security Monitoring plugin on NGINX Agent does not automatically pick up changes made to agent-dynamic.conf, causing the Instance Group association to be missing in the Security Violations generated.
 
 #### Workaround
 
@@ -109,6 +113,7 @@ Restart the NGINX Agent, and the subsequent Violations should be associated with
 ### {{% icon-resolved %}} The field retrieving URIs is incorrectly listed as URL {#38377}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 38377 | Fixed in Security Monitoring -1.2.0   |

@@ -1,18 +1,15 @@
-
 ---
-description: "Learn how to edit and publish NGINX configuration files with a version control system using NGINX Management Suite Instance Manager."
+description: Learn how to edit and publish NGINX configuration files with a version
+  control system using NGINX Management Suite Instance Manager.
+docs: DOCS-1348
 title: Publish Configuration Files with Version Control System
 toc: true
 weight: 250
-docs: "DOCS-1348"
 ---
-
-{{< custom-styles >}}
-
 
 ## Overview
 
-With NGINX Instance Manager, you can easily edit and publish NGINX configurations to your NGINX and NGINX Plus instances. Follow the steps in this guide to setup your version control system as the source of truth for maintaining your NGINX configurations and publish your modified configurations to any instance or instance group managed by NGINX Instance Manager. 
+With NGINX Instance Manager, you can easily edit and publish NGINX configurations to your NGINX and NGINX Plus instances. Follow the steps in this guide to setup your version control system as the source of truth for maintaining your NGINX configurations and publish your modified configurations to any instance or instance group managed by NGINX Instance Manager.
 
 This documentation provides examples of how to publish configurations to your NGINX Instance Manager from Gitlab or [Github](https://github.com/nginxinc/git-automation) as the version control system to manage configurations.
 
@@ -36,14 +33,14 @@ Add a [.gitlab-ci.yaml](https://docs.gitlab.com/ee/ci/yaml/)  file at the root d
 ```yaml
 variables:
  # System IP of the Nginx Instance Manager.
- CTRL_IP:  34.213.65.15  
- 
+ CTRL_IP:  34.213.65.15
+
  #Authorization token for connecting to Nginx Instance Manager.
- AUTH_TOKEN:  YWRtaW46VGVzdGVudjEyIw== 
+ AUTH_TOKEN:  YWRtaW46VGVzdGVudjEyIw==
 
  # System UID of the instance to push configuration changes.
  SYSTEM_UID:  fbf7a63f-a394-34b7-8775-93d7d6aceb82
- 
+
  # Nginx UID of the instance to push configuration changes.
  NGINX_UID:  98961494-c999-515c-ae1b-1dd949f78b6e
 
@@ -54,7 +51,7 @@ variables:
 
 You can introduce rules in the `.gitlab-ci.yaml` file to trigger the pipelines when changes are detected in the configuration files. Use the rule examples below depending on your repository structure:
 
-The example repository structure is: 
+The example repository structure is:
 
 ```none
 git-automation:
@@ -74,7 +71,7 @@ git-automation:
  -  instance/*
 ```
 
-We use a bash script to create a valid payload to send via `POST` to NGINX Instance Manager for the instance or instance group. To prepare the payload, we encode the file contents of `nginx.conf` , get the current time in format of `Year-Month-DayTHour:Minute:SecondZ` and assign the commit SHA to `externalId`. 
+We use a bash script to create a valid payload to send via `POST` to NGINX Instance Manager for the instance or instance group. To prepare the payload, we encode the file contents of `nginx.conf` , get the current time in format of `Year-Month-DayTHour:Minute:SecondZ` and assign the commit SHA to `externalId`.
 The script can be modified to follow your repository structure to create valid payload requests for [instances](https://github.com/nginxinc/git-automation/blob/main/prepare-payload.sh) and [instance groups](https://github.com/nginxinc/git-automation/blob/main/prepare-instGroup-payload.sh)
 
 <details closed>
@@ -105,8 +102,8 @@ publish_config_to_instance() {
 	local  auth_token=$2
 	local  system_uid=$3
 	local  nginx_uid=$4
-	
-    # add checks for variables needed 
+
+    # add checks for variables needed
 	if [ -z  "${ctrl_ip}" ]; then
 	echo  " * variable CTRL_IP not set"
 	exit  1

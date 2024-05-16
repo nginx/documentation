@@ -1,30 +1,8 @@
 ---
-authors: []
-categories:
-- installation
-date: "2020-10-26T15:32:41-06:00"
 description: Guidelines and recommendations for configuring NGINX Controller.
 docs: DOCS-256
 doctypes:
 - reference
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: Installation
-    weight: 10
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 tags:
 - docs
 title: NGINX Controller Tech Specs
@@ -51,12 +29,14 @@ The following table shows the minimum storage requirements we recommend for NGIN
 We recommend using a local volume for the analytics and config databases for trial deployments, for simplicity's sake so you can get started using NGINX Controller right away. For production environments, we recommend using an external volume for the databases for resiliency.
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Resource | Path(s) | Minimum Storage |
 |-|-|-|
 | NGINX&nbsp;Controller | <code style="white-space:nowrap;">/opt/nginx-controller</code> | 80&nbsp;GB |
 | Analytics database |  <code style="white-space:nowrap;">/opt/nginx-controller/clickhouse_data</code>  | &#8226;&nbsp;50&nbsp;GB <br> &#8226;&nbsp;150&nbsp;GB if App Security is enabled |
 | Config database | <code style="white-space:nowrap;">/opt/nginx-controller/postgres_data</code> | 10&nbsp;GB |
 | Logs  | &#8226;&nbsp;<code style="white-space:nowrap;">/var/log/nginx-controller</code> <br> &#8226;&nbsp;<code style="white-space:nowrap;">/var/log/journal</code> <br> &#8226;&nbsp;<code style="white-space:nowrap;">/var/log/pods</code> <br> &#8226;&nbsp;<code style="white-space:nowrap;">/var/lib/docker/containers</code> <br> &#8226;&nbsp;<code style="white-space:nowrap;">/var/lib/kubelet</code> <br> &#8226;&nbsp;<code style="white-space:nowrap;">/var/lib/kubernetes</code>| 15&nbsp;GB cumulative |
+
 {{< /bootstrap-table >}}
 
 
@@ -141,7 +121,7 @@ We recommend using a local volume for the analytics and config databases for tri
 
 &nbsp;
 
-#### Local Storage
+### Local Storage
 
 When using local storage for the analytics and/or config database, we recommend the following specs:
 
@@ -154,7 +134,7 @@ To conserve IO and/or disk space, you can use a separate disk for the local stor
 
 &nbsp;
 
-#### NFS
+### NFS
 
 To use NFS for external storage for the analytics and/or config database, consider the following:
 
@@ -166,7 +146,7 @@ To use NFS for external storage for the analytics and/or config database, consid
 
 &nbsp;
 
-#### AWS EBS
+### AWS EBS
 
 {{< important >}}
 If you plan to run NGINX Controller on AWS EC2 instances, we recommend using NFS shares for the external volumes. Using EBS shares for multi-node clusters is not recommended because of the [EBS Availability Zone limitations](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volumes-multi.html#considerations); for example, the requirement to have EC2 instances and EBS volumes in the same Availability Zone.
@@ -221,7 +201,7 @@ You will need add an IAM role like that shown below.
 
 - IAM Role for [Multi-Node Installation]({{< relref "/controller/admin-guides/install/resilient-cluster-aws.md" >}})
 
-  ```json 
+  ```json
   {
     "Version": "2012-10-17",
     "Statement": [
@@ -323,7 +303,7 @@ Configure NGINX Controller with the following firewall settings:
 |Port| Used by | Used for|
 |---|---|---|
 | 5432 TCP | NGINX Controller database | Incoming connections to the NGINX Controller database from the NGINX Controller host. This is the default PostgreSQL port. |
-443 TCP | &bull; NGINX Controller <br/> &bull; NGINX Controller licensing | &bull; Incoming connections to NGINX Controller from a browser; for example, from an internal network and NGINX Plus instances <br/> &bull; Incoming and outgoing connections used to used to validate the entitlements for your NGINX Controller license |
+| 443 TCP | &bull; NGINX Controller <br/> &bull; NGINX Controller licensing | &bull; Incoming connections to NGINX Controller from a browser; for example, from an internal network and NGINX Plus instances <br/> &bull; Incoming and outgoing connections used to used to validate the entitlements for your NGINX Controller license |
 | 8443 TCP | NGINX Controller | Incoming connections from NGINX Plus instances <br>You need to **open** port 8443 TCP if you're running **NGINX Controller v3.18.2 or earlier**|
 | 8883 TCP | NGINX Controller licensing | Incoming and outgoing connections used to validate the entitlements for your NGINX Controller license <br> Port 8883 TCP needs to be **opened** only if you're running **NGINX Controller v3.15 or earlier**|
 
