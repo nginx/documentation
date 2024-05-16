@@ -20,7 +20,7 @@ In this release, NGINX App Protect WAF supports NGINX Open Source 1.25.4 and NGI
 
 - R32
 - NGINX OSS Base Version 1.25.5
-- Apreload support
+- [Apreload support]({{<relref "nap-waf/v5/configuration-guide/configuration.md#apreload">}})
 
 ### Supported Packages
 
