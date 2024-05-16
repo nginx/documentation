@@ -19,6 +19,7 @@ Release 4.8.1 cannot be upgraded to v4.10.  You must uninstall 4.8.1 and install
 In this release, NGINX App Protect WAF supports NGINX Open Source 1.25.4 and NGINX Plus R31 P1.
 
 - R32
+- NGINX OSS Base Version 1.25.5
 
 
 ### Supported Packages

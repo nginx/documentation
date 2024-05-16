@@ -192,6 +192,22 @@ app_protect_policy_file /policies_mount/new_default_policy.tgz;
 
 {{< include "nap-waf/config/common/modifying-configurations.md" >}}
 
+## NGINX App Protect WAF Standalone Configuration
+
+### Apreload
+
+{{< include "nap-waf/config/v5/apreload.md" >}}
+
+### Apreload Events
+
+{{< include "nap-waf/config/v5/apreload-events.md" >}}
+
+### Modification to nginx.conf file and App Protect Configurations
+{{< include "nap-waf/config/v5/modification-to-nginx-conf.md" >}}
+
+
+
+
 ## External References
 
 {{< include "nap-waf/config/v5/external-references-v5.md" >}}
