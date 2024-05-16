@@ -203,7 +203,7 @@ app_protect_policy_file /policies_mount/new_default_policy.tgz;
 {{< include "nap-waf/config/v5/apreload-events.md" >}}
 
 ### Modification to nginx.conf file and App Protect Configurations
-{{< include "nap-waf/config/v5/modification-nginx-conf.md" >}}
+{{< include "nap-waf/config/v5/modification-nginx-config.md" >}}
 
 
 
