@@ -106,25 +106,17 @@ To complete the instructions in this guide, you need the following:
 
     If the root user does not have the required access, you will need to run the root user to have Kubernetes API access, or provide the script with the location of the Kubernetes configuration via the environment variable `KUBECONFIG`. For example:
 
-  - To back up NGINX Management Suite:
-  
   ```shell
-   sudo KUBECONFIG=/etc/kubernetes/admin.conf ./k8s-backup.sh
+   KUBECONFIG=/etc/kubernetes/admin.conf
     ```
 
-  - To restore NGINX Management Suite:
-
-  ```shell
-  sudo KUBECONFIG=/etc/kubernetes/admin.conf ./k8s-restore.sh -i <path to backup file> -r
-  ```
-
-    In the examples above, `/etc/kubernetes/admin.conf` is the default configuration location of a Kubernetes cluster. If the configuration location is different for the target Kubernetes cluster, update the commands above accordingly.
+    In the example above, `/etc/kubernetes/admin.conf` is the default configuration location of a Kubernetes cluster. If the configuration location is different for the target Kubernetes cluster, update the location accordingly.
 
 - Utility pod
 
     To back up and restore NGINX Management Suite in a Kubernetes cluster, you need to install the `utility` pod in your Kubernetes cluster:
 
-    1. Update your [Helm Deployment values.yaml file]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md#configure-chart" >}}), add the `utility: true` line to enable the utility pod, and the required sections under `nmsModules` to enable the modules you want to back up and restore. For example, if you have API Connectivity Manager installed, add the following:
+    1. Update your [Helm Deployment values.yaml file]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md#configure-chart" >}}), add the `utility: true` line to enable the utility pod under `global`.
 
         ```yaml
         global:
@@ -189,8 +181,10 @@ To restore NGINX Management Suite and the installed modules deployed in the same
 1. Run the restore script:
 
     ```shell
-    sudo ./k8s-restore.sh -r -i k8s-backup-<timestamp>.tar.gz
+    sudo KUBECONFIG=/etc/kubernetes/admin.conf ./k8s-restore.sh -i k8s-backup-<timestamp>.tar.gz -r
     ```
+
+    In the command above, `/etc/kubernetes/admin.conf` is the default configuration location of a Kubernetes cluster. If the configuration location is different for the target Kubernetes cluster, update the command accordingly.
 
     {{< note >}}The restore script [needs root access]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md#root-access" >}}) to Kubernetes for the restore operation.{{< /note >}}
 
@@ -220,17 +214,20 @@ To restore NGINX Management Suite and the installed modules into a different Kub
 1. Run the restore script:
 
     ```shell
-    sudo ./k8s-restore.sh -r -i k8s-backup-<timestamp>.tar.gz -d
+    sudo KUBECONFIG=/etc/kubernetes/admin.conf ./k8s-restore.sh -i k8s-backup-<timestamp>.tar.gz -r -d
     ```
+
+    In the command above, `/etc/kubernetes/admin.conf` is the default configuration location of a Kubernetes cluster. If the configuration location is different for the target Kubernetes cluster, update the command accordingly.
+
 
     {{< note >}}The restore script [needs root access]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md#root-access" >}}) to Kubernetes for the restore operation.{{< /note >}}
 
 1. The script will ask for the NGINX Management Suite namespace. Once the namespace has been provided, the script will use the specified backup archive.
 
-The restore script will only restore the databases and core secrets. If you want to restore the user passwords too, run the following commands:
+The restore script will only restore the databases and core secrets. If you want to restore the user passwords too, extract the `k8s-backup-<timestamp>.tar.gz` file  and run the following commands:
 
   ```shell
-  cd nms-<version>/secrets
+  cd k8s-backup-<version>/secrets
   kubectl -n nms apply -f nms-auth.json
   kubectl -n nms delete pod apigw-<hash>
   ```
