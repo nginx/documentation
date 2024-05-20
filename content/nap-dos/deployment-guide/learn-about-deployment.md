@@ -639,7 +639,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
     ```
 
-7. Add NGINX Plus and NGINX App Protect DoS repository:
+7. Add the NGINX Plus and NGINX App Protect DoS repositories:
 
     ```shell
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-9.repo
