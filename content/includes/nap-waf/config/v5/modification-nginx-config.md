@@ -2,7 +2,7 @@
 docs: ""
 ---
 
-When both `nginx.conf` file and App Protect configurations are modified, apreload enforces only the App Protect configurations but nginx reload enforces both. Apreload is a script that you run remotely on the `nginx` container after you have modified the policy in the `nginx` container.  The result of the apreload script is viewable in the `waf-config-mgr` container log.
+When both `nginx.conf` file and App Protect configurations are modified, apreload enforces only the App Protect configurations but nginx reload enforces both. apreload is a script that you run remotely on the `nginx` container after you have modified the policy in the `nginx` container.  The result of the apreload script is viewable in the `waf-config-mgr` container log.
 
 For apreload, use the following command:
 ```shell

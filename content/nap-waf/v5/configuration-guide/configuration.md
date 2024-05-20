@@ -194,11 +194,11 @@ app_protect_policy_file /policies_mount/new_default_policy.tgz;
 
 ## NGINX App Protect WAF Standalone Configuration
 
-### Apreload
+### apreload
 
 {{< include "nap-waf/config/v5/apreload.md" >}}
 
-### Apreload Events
+### apreload Events
 
 {{< include "nap-waf/config/v5/apreload-events.md" >}}
 
