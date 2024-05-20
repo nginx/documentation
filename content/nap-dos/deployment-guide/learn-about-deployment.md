@@ -630,7 +630,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```shell
     sudo dnf install ca-certificates wget
 
-6. Enable Yum repositories to pull NGINX App Protect DoS dependencies:
+6. Enable the yum repositories to pull NGINX App Protect DoS dependencies:
 
     If you have a RHEL subscription:
 
