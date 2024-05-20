@@ -545,7 +545,8 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo semodule -i app-protect-dos.pp;
     ```
 
-    For L4 accelerated mitigation feature:<br>
+    For L4 accelerated mitigation feature:
+    
     a. Using the vi editor, create a file:
 
     ```shell
