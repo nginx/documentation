@@ -553,7 +553,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     vi app-protect-dos-ebpf.te
     ```
 
-    b. Insert the following contents into the file created above:
+    b. Insert the following contents into the file you have created:
 
     ```shell
     module app-protect-dos-ebpf 2.0;
