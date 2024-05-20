@@ -1,6 +1,8 @@
-# Issues with your coffee
+# Overview
 
-This guide describes some common issues that can happen when preparing coffee, and how to fix them.
+This topic describes some common issues that can happen when preparing coffee. When possible, we provide steps on how to fix them.
+
+If your issue is not on this list, or you can't resolve the issue following the troubleshooting steps provided, please review the [Release notes and Known Issues](../release-notes/example-release-notes.md), and [contact support](../contact-support/example-contact-support.md) to receive further assistance.
 
 ## Weak coffee
 
@@ -46,5 +48,5 @@ Depending on your brewing method, you will also need to replace or wash the filt
 
 ### See also
 
-* [How to grind coffee](../how-to/example-how-to.md)
-* [How Long Do Coffee Beans Last?](https://fluentincoffee.com/how-long-do-coffee-beans-last/)
+* [Release notes and Known Issues](../release-notes/example-release-notes.md)
+* [Contact support](../contact-support/example-contact-support.md)
