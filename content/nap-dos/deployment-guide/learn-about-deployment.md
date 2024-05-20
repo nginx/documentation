@@ -485,7 +485,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo admd -v
     ```
 
-12. Load the NGINX App Protect DoS module on the main context in the `nginx.conf`:
+12. Load the NGINX App Protect DoS module on the main context in the `nginx.conf` file:
 
     ```nginx
     load_module modules/ngx_http_app_protect_dos_module.so;
