@@ -491,7 +491,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     load_module modules/ngx_http_app_protect_dos_module.so;
     ```
 
-13. Enable NGINX App Protect DoS on an `http/server/location` context in the `nginx.conf` file:
+13. Enable NGINX App Protect DoS in an `http/server/location` context in the `nginx.conf` file:
 
     ```nginx
     app_protect_dos_enable on;
