@@ -619,10 +619,9 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
 3. Log in to the NGINX [Customer Portal](https://my.f5.com) and download the following two files:
 
-    ```shell
-    nginx-repo.key
-    nginx-repo.crt
-    ```
+   - nginx-repo.key
+   - nginx-repo.crt
+   
 
 4. Copy the above two files to the CentOS server’s `/etc/ssl/nginx/` directory. Use an SCP client or another secure file transfer tool to perform this task.
 
