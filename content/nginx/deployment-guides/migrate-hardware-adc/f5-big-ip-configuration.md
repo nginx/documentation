@@ -37,12 +37,12 @@ Architecturally speaking, NGINX Plus differs from traditional ADCs in deploymen
 
 As they update their infrastructure and approach to application delivery, many companies are paring down the hardware ADC functionality at the edge and moving to a more distributed application model. Because the legacy hardware ADC is already sitting at the edge of the network it can continue to handle all ingress traffic management, directing application traffic to the appropriate NGINX Plus instances for each application type. NGINX Plus then handles traffic for each application type to provide application‑centric load balancing and high availability throughout the network, both on‑ and off‑premises. NGINX Plus is deployed closer to the application and is able to manage all traffic specific to each application type.
 
-<img src="https://www.nginx.com/wp-content/uploads/2019/09/nginx-plus-behind-hardware-adc.png" alt="In one architecture for modernizing application delivery infrastructure, hardware ADCs on the edge of the network pass application traffic to NGINX Plus for load balancing" style="border:2px solid #666666; padding:2px; margin:2px;" />
+<img src="/nginx/images/nginx-plus-behind-hardware-adc.png" alt="In one architecture for modernizing application delivery infrastructure, hardware ADCs on the edge of the network pass application traffic to NGINX Plus for load balancing" style="border:2px solid #666666; padding:2px; margin:2px;" />
 _NGINX Plus can run behind hardware ADCs to handle application traffic_
 
 Other companies are completely replacing their stationary hardware ADC appliances at the network edge with NGINX Plus, providing the same level of application delivery at the edge of the network.
 
-<img src="https://www.nginx.com/wp-content/uploads/2019/09/nginx-plus-without-hardware-adc.png" alt="In the most flexible architecture for modern application delivery, NGINX Plus completely replaces hardware application delivery controllers" style="border:2px solid #666666; padding:2px; margin:2px;" />
+<img src="/nginx/images/nginx-plus-without-hardware-adc.png" alt="In the most flexible architecture for modern application delivery, NGINX Plus completely replaces hardware application delivery controllers" style="border:2px solid #666666; padding:2px; margin:2px;" />
 _NGINX Plus can completely replace hardware ADCs to handle all traffic entering the network_
 
 <span id="prereqs"></span>

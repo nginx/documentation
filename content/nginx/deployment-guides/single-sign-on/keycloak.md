@@ -58,7 +58,7 @@ Create a Keycloak client for NGINX Plus in the Keycloak GUI:
    - **Client ID** – The name of the application for which you're enabling SSO (Keycloak refers to it as the “client”). Here we're using <span style="white-space: nowrap; color:#666666; font-weight:bolder;">NGINX-Plus</span>.
    - **Client Protocol** – <span style="white-space: nowrap; color:#666666; font-weight:bolder;">openid-connect</span>.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/11/Keycloak_Add-Client.png" alt="" width="1024" height="490" class="aligncenter size-full wp-image-62013" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/keycloak-add-client.png" alt="" width="1024" height="490" class="aligncenter size-full wp-image-62013" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 4. On the **NGINX Plus** page that opens, enter or select these values on the <span style="color:#48a5e2;">Settings</span> tab:
 
@@ -70,25 +70,25 @@ Create a Keycloak client for NGINX Plus in the Keycloak GUI:
      - For production, we strongly recommend that you use SSL/TLS (port 443).
      - The port number is mandatory even when you're using the default port for HTTP (80) or HTTPS (443).
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/11/Keycloak_Settings-tab.png" alt="" width="1024" height="706" class="aligncenter size-full wp-image-62011" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/keycloak-settings-tab.png" alt="" width="1024" height="706" class="aligncenter size-full wp-image-62011" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
    <span id="keycloak-secret"></span>
 5. Click the <span style="color:#48a5e2;">Credentials</span> tab and make a note of the value in the **Secret** field. You will copy it into the NGINX Plus configuration file in [Step 4 of _Configuring NGINX Plus_](#nginx-plus-variables).
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/11/Keycloak_Credentials-tab.png" alt="" width="1024" height="414" class="aligncenter size-full wp-image-62010" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/keycloak-credentials-tab.png" alt="" width="1024" height="414" class="aligncenter size-full wp-image-62010" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 6. Click the <span style="color:#48a5e2;">Roles</span> tab, then click the **Add Role** button in the upper right corner of the page that opens.
 
 7. On the **Add Role** page that opens, type a value in the **Role Name** field (here it is <span style="white-space: nowrap; color:#666666; font-weight:bolder;">nginx-keycloak-role</span>) and click the <span style="background-color:#009edc; color:white;"> Save </span> button.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/11/Keycloak_Add-Role.png" alt="" width="1024" height="480" class="aligncenter size-full wp-image-62006" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/keycloak-add-role.png" alt="" width="1024" height="480" class="aligncenter size-full wp-image-62006" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 8. In the left navigation column, click **Users**. On the **Users** page that opens, either click the name of an existing user, or click the **Add user** button in the upper right corner to create a new user. For complete instructions, see the [Keycloak documentation](https://www.keycloak.org/docs/latest/server_admin/index.html#user-management).
 
    <span id="keycloak-users"></span>
 9. On the management page for the user (here, <span style="color:#666666; font-weight:bolder;">user01</span>), click the <span style="white-space: nowrap; color:#48a5e2;">Role Mappings</span> tab. On the page that opens, select <span style="white-space: nowrap; color:#666666; font-weight:bolder;">NGINX-Plus</span> on the **Client Roles** drop‑down menu. Click <span style="white-space: nowrap; color:#666666; font-weight:bolder;">nginx-keycloak-role</span> in the **Available Roles** box, then click the **Add selected** button below the box. The role then appears in the **Assigned Roles** and **Effective Roles** boxes, as shown in the screenshot.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/11/Keycloak_Role-Mappings-tab.png" alt="" width="1024" height="526" class="aligncenter size-full wp-image-62008" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/keycloak-role-mappings-tab.png" alt="" width="1024" height="526" class="aligncenter size-full wp-image-62008" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 
 <span id="nginx-plus"></span>
@@ -155,7 +155,7 @@ Configure NGINX Plus as the OpenID Connect relying party:
 
 In a browser, enter the address of your NGINX Plus instance and try to log in using the credentials of a user mapped to the role for NGINX Plus (see [Step 9 of _Configuring Keycloak_](#keycloak-users)).
 
-<img src="https://www.nginx.com/wp-content/uploads/2019/11/Keycloak_Log-In.png" alt="" width="792" height="768" class="aligncenter size-full wp-image-62002" />
+<img src="/nginx/images/keycloak-log-in.png" alt="" width="792" height="768" class="aligncenter size-full wp-image-62002" />
 
 <span id="troubleshooting"></span>
 ## Troubleshooting

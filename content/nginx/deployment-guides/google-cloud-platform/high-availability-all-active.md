@@ -28,7 +28,7 @@ The deployment combines the following technologies:
 - [GCE instance groups](https://cloud.google.com/compute/docs/instance-groups) – Provide a mechanism for managing a group of VM instances as a unit.
 - [GCE health checks](https://cloud.google.com/compute/docs/load-balancing/health-checks) – Maintain high availability of the NGINX Plus LB instances by controlling when GCE creates a new LB instance in the instance group.
 
-<img src="https://www.nginx.com/wp-content/uploads/2019/05/gce-all-active-load-balancing_topology.png" alt="Topology of the all‑active deployment of NGINX Plus as the Google Cloud Platform load balancer." width="1024" height="1000" class="aligncenter size-full wp-image-47509" style="border:2px solid #666666; padding:2px; margin:2px;" />
+<img src="/nginx/images/gce-all-active-load-balancing-topology.png" alt="Topology of the all‑active deployment of NGINX Plus as the Google Cloud Platform load balancer." width="1024" height="1000" class="aligncenter size-full wp-image-47509" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 [Session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence) is managed at the network layer by GCE network load balancer (based on client IP address) and at the application layer by the NGINX Plus LB instance (via a session cookie). When a new client connection enters the GCE network environment, GCE network load balancer assigns it to a specific frontend NGINX Plus LB instance, and the association persists as long as the LB instance is up and functional. The NGINX Plus LB instance forwards the request to a specific application instance in one of the two groups of them, selected using its default Round Robin algorithm. It also issues a cookie to the client to represent the session with that application instance, so that subsequent requests from the client are forwarded to that application instance as long as it is up and running.
 
@@ -63,15 +63,15 @@ Create a new GCE project to host the all‑active NGINX Plus deployment.
 
    - If there are no existing projects, click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create a project </span> button.
 
-     <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-dashboard-no-project.png" alt="Screenshot of the Google Cloud Platform dashboard that appears when there are no existing projects (creating a project is the first step in configuring NGINX Plus as the Google Cloud load balancer)" width="1024" height="422" class="aligncenter size-full wp-image-47475" style="border:2px solid #666666; padding:2px; margin:2px;" />
+     <img src="/nginx/images/gce-dashboard-no-project.png" alt="Screenshot of the Google Cloud Platform dashboard that appears when there are no existing projects (creating a project is the first step in configuring NGINX Plus as the Google Cloud load balancer)" width="1024" height="422" class="aligncenter size-full wp-image-47475" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
    - If there are existing projects, the name of one of them appears in the upper left of the blue header bar (in the screenshot, it's <span style="background-color:#3366cc; color:white; white-space: nowrap;"> My Test Project </span>). Click the project name and select <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Create project</span> from the menu that opens.
 
-     <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-dashboard-existing-project.png" alt="Screenshot of the Google Cloud Platform page that appears when other projects already exist (creating a project is the first step in configuring NGINX Plus as the Google Cloud load balancer)" width="1024" height="533" class="aligncenter size-full wp-image-47474" style="border:2px solid #666666; padding:2px; margin:2px;" />
+     <img src="/nginx/images/gce-dashboard-existing-project.png" alt="Screenshot of the Google Cloud Platform page that appears when other projects already exist (creating a project is the first step in configuring NGINX Plus as the Google Cloud load balancer)" width="1024" height="533" class="aligncenter size-full wp-image-47474" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 3. Type your project name in the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">New Project</span> window that pops up, then click <span style="color:#3366cc;">CREATE</span>. We're naming the project <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX Plus All-Active-LB</span>.
 
-    <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-new-project-popup.png" alt="Screenshot of the New Project pop-up window for naming a new project on the Google Cloud Platform, which is the first step in configuring NGINX Plus as the Google load balancer" width="512" height="249" class="aligncenter size-full wp-image-47514" style="border:2px solid #666666; padding:2px; margin:2px;" />
+    <img src="/nginx/images/gce-new-project-popup.png" alt="Screenshot of the New Project pop-up window for naming a new project on the Google Cloud Platform, which is the first step in configuring NGINX Plus as the Google load balancer" width="512" height="249" class="aligncenter size-full wp-image-47514" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 ### Creating Firewall Rules
 
@@ -79,7 +79,7 @@ Create firewall rules that allow access to the HTTP and HTTPS ports on your GCE 
 
 1. Navigate to the <span style="font-weight:bold; white-space: nowrap;">Networking > Firewall rules</span> tab and click <span style="background-color:#3366cc; color:white;"> + </span> <span style="color:#3366cc;">CREATE FIREWALL RULE</span>. (The screenshot shows the default rules provided by GCE.)
 
-   <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-firewall-rules-tab.png" alt="Screenshot of the Google Cloud Platform page for defining new firewall rules; when configuring NGINX Plus as the Google Cloud load balancer, we open ports 80, 443, and 8080 for it." width="1024" height="413" class="aligncenter size-full wp-image-47476" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/gce-firewall-rules-tab.png" alt="Screenshot of the Google Cloud Platform page for defining new firewall rules; when configuring NGINX Plus as the Google Cloud load balancer, we open ports 80, 443, and 8080 for it." width="1024" height="413" class="aligncenter size-full wp-image-47476" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 2. Fill in the fields on the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Create a firewall rule</span> screen that opens:<!-- Tony notes Feb 2018: I have purposely broken the "rule" that if any bullet in a list ends in a period (here, bullet 3), they all must. I think the appropriate values in bullets 1, 2, and 4 are clearer without a final period -->
 
@@ -92,7 +92,7 @@ Create firewall rules that allow access to the HTTP and HTTPS ports on your GCE 
 
    - <span style="font-weight:bold; white-space: nowrap;">Target tags</span> – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx-plus-http-fw-rule</span>
 
-   <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-create-firewall-rule.png" alt="Screenshot of the interface for creating a Google Compute Engine (GCE) firewall rule, used during deployment of NGINX Plus as the Google load balancer." width="1024" height="619" class="aligncenter size-full wp-image-47470" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/gce-create-firewall-rule.png" alt="Screenshot of the interface for creating a Google Compute Engine (GCE) firewall rule, used during deployment of NGINX Plus as the Google load balancer." width="1024" height="619" class="aligncenter size-full wp-image-47470" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 3. Click the <span style="background-color:#3366cc; color:white;"> Create </span> button. The new rule is added to the table on the <span style="font-weight:bold; white-space: nowrap;">Firewall rules</span> tab.
 
@@ -133,14 +133,14 @@ Create three source VM instances based on a GCE VM image. We're basing our insta
       - Accept the default values in the <span style="font-weight:bold; white-space: nowrap;">Boot disk type</span> and <span style="font-weight:bold; white-space: nowrap;">Size (GB)</span> fields (<span style="color:#666666; font-weight:bolder; white-space: nowrap;">Standard persistent disk</span> and <span style="color:#666666; font-weight:bolder;">10</span> respectively).
       - Click the <span style="background-color:#3366cc; color:white;"> Select </span> button.
 
-      <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-ubuntu-instance-boot-disk.png" alt="Screenshot of the 'Boot disk' page in Google Cloud Platform for selecting the OS on which a VM runs. In the deployment of NGINX Plus as the Google load balancer, we select Ubuntu 16.04 LTS." width="512" height="577" class="aligncenter size-full wp-image-47484" style="border:2px solid #666666; padding:2px; margin:2px;" />
+      <img src="/nginx/images/gce-ubuntu-instance-boot-disk.png" alt="Screenshot of the 'Boot disk' page in Google Cloud Platform for selecting the OS on which a VM runs. In the deployment of NGINX Plus as the Google load balancer, we select Ubuntu 16.04 LTS." width="512" height="577" class="aligncenter size-full wp-image-47484" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
    - <span style="font-weight:bold; white-space: nowrap;">Identity and API access</span> – Unless you want more granular control over access, keep the defaults for the <span style="font-weight:bold; white-space: nowrap;">Service account</span> field (<span style="color:#666666; font-weight:bolder;">Compute Engine default service account</span>) and <span style="font-weight:bold; white-space: nowrap;">Access scopes</span> radio button (<span style="color:#666666; font-weight:bolder; white-space: nowrap;">Allow default access</span>).
    - **Firewall** – Verify that neither check box is checked (the default). The firewall rule invoked in the **Tags** field on the <span style="color:#666666; font-weight:bolder;">Management</span> subtab (see Step 3 below) controls this type of access.
 
 2. Click <span style="color:#3366cc; white-space: nowrap;">Management, disk, networking, SSH keys</span> to open that set of subtabs. (The screenshot shows the values entered in the previous step.)
 
-   <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-ubuntu-instance-create.png" alt="Screen shot of the 'Create an instance' page for an application server in the deployment of NGINX Plus as the Google Cloud Platform load balancer." width="487" height="839" class="aligncenter size-full wp-image-47516" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/gce-ubuntu-instance-create.png" alt="Screen shot of the 'Create an instance' page for an application server in the deployment of NGINX Plus as the Google Cloud Platform load balancer." width="487" height="839" class="aligncenter size-full wp-image-47516" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 3. On the <span style="color:#666666; font-weight:bolder;">Management</span> subtab, modify or verify the fields as indicated:
 
@@ -150,25 +150,25 @@ Create three source VM instances based on a GCE VM image. We're basing our insta
    - <span style="font-weight:bold; white-space: nowrap;">Automatic restart</span> – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">On (recommended)</span> (the default)
    - <span style="font-weight:bold; white-space: nowrap;">On host maintenance</span> – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Migrate VM instance (recommended)</span> (the default)
 
-   <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-ubuntu-instance-management.png" alt="Screenshot of the Management subtab used during creation of a new VM instance, part of deploying NGINX Plus as the Google load balancer." width="487" height="551" class="aligncenter size-full wp-image-47486" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/gce-ubuntu-instance-management.png" alt="Screenshot of the Management subtab used during creation of a new VM instance, part of deploying NGINX Plus as the Google load balancer." width="487" height="551" class="aligncenter size-full wp-image-47486" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 4. On the <span style="color:#666666; font-weight:bolder;">Disks</span> subtab, uncheck the checkbox labeled <span style="color:#666666; font-weight:bolder;">Delete boot disk when instance is deleted</span>.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-ubuntu-instance-disks.png" alt="Screenshot of the Disks subtab used during creation of a new VM instance, part of deploying NGINX Plus as the Google Cloud load balancer." width="487" height="224" class="aligncenter size-full wp-image-47485" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/gce-ubuntu-instance-disks.png" alt="Screenshot of the Disks subtab used during creation of a new VM instance, part of deploying NGINX Plus as the Google Cloud load balancer." width="487" height="224" class="aligncenter size-full wp-image-47485" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 5. On the <span style="color:#666666; font-weight:bolder;">Networking</span> subtab, verify the default settings, in particular <span style="color:#666666; font-weight:bolder;">Ephemeral</span> for <span style="font-weight:bold; white-space: nowrap;">External IP</span> and <span style="color:#666666; font-weight:bolder;">Off</span> for <span style="font-weight:bold; white-space: nowrap;">IP Forwarding</span>.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-ubuntu-instance-networking.png" alt="Screenshot of the Networking subtab used during creation of a new VM instance, part of deploying NGINX Plus as the Google Cloud load balancer." width="488" height="279" class="aligncenter size-full wp-image-47487" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/gce-ubuntu-instance-networking.png" alt="Screenshot of the Networking subtab used during creation of a new VM instance, part of deploying NGINX Plus as the Google Cloud load balancer." width="488" height="279" class="aligncenter size-full wp-image-47487" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 6. If you are using your own SSH public key instead of the default keys associated with your GCE identity, on the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">SSH Keys</span> subtab paste the hexadecimal key string into the box that reads <span style="color:#666666; font-family:consolas; font-weight:bolder; white-space: nowrap;">Enter entire key data</span>.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-ubuntu-instance-ssh-keys.png" alt="Screenshot of the SSH Keys subtab used during creation of a new VM instance, part of deploying NGINX Plus as the Google Cloud Platform load balancer." width="488" height="205" class="aligncenter size-full wp-image-47488" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/gce-ubuntu-instance-ssh-keys.png" alt="Screenshot of the SSH Keys subtab used during creation of a new VM instance, part of deploying NGINX Plus as the Google Cloud Platform load balancer." width="488" height="205" class="aligncenter size-full wp-image-47488" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 7. Click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create </span> button at the bottom of the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Create an instance</span> page.
 
     The <span style="color:#666666; font-weight:bolder; white-space: nowrap;">VM instances</span> summary page opens. It can take several minutes for the instance to be created. Wait to continue until the green check mark appears.
 
-    <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-ubuntu-instance-summary.png" alt="Screenshot of the summary page that verifies the creation of a new VM instance, part of deploying NGINX Plus as the load balancer for Google Cloud." width="1024" height="192" class="aligncenter size-full wp-image-47490" style="border:2px solid #666666; padding:2px; margin:2px;" />
+    <img src="/nginx/images/gce-ubuntu-instance-summary.png" alt="Screenshot of the summary page that verifies the creation of a new VM instance, part of deploying NGINX Plus as the load balancer for Google Cloud." width="1024" height="192" class="aligncenter size-full wp-image-47490" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 <span id="source-vm-app-2"></span>
 #### Creating the Second Application Instance from a VM Image
@@ -204,7 +204,7 @@ Install and configure PHP and FastCGI on the instances.
    - Navigate to the <span style="font-weight:bold; white-space: nowrap;">Compute Engine > VM instances</span> tab.
    - In the instance's row in the table, click the triangle icon in the <span style="color:#666666; font-weight:bolder;">Connect</span> column at the far right and select a method (for example, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Open in browser window</span>).
 
-   <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-ubuntu-instance-ssh.png" alt="Screenshot showing how to connect via SSH to a VM instance, part of deploying NGINX Plus as the Google load balancer." width="1024" height="284" class="aligncenter size-full wp-image-47489" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/gce-ubuntu-instance-ssh.png" alt="Screenshot showing how to connect via SSH to a VM instance, part of deploying NGINX Plus as the Google load balancer." width="1024" height="284" class="aligncenter size-full wp-image-47489" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 2. Working in the SSH terminal, install PHP 7 (the default PHP version for <span style="white-space: nowrap;">Ubuntu 16.04 LTS</span>) and FastCGI.
 
@@ -359,7 +359,7 @@ Create three source instances based on a prebuilt NGINX Plus image running on <
 
 3. Click the <span style="font-weight:bold; white-space: nowrap;">NGINX Plus</span> box in the results area.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2018/07/nginx-plus-in-gcp-marketplace.png" alt="Screenshot of NGINX Plus in the Google Cloud Platform Marketplace; from here, you can create a prebuilt NGINX Plus VM instance when deploying NGINX Plus as the load balancer for Google Cloud." width="1024" height="604" class="aligncenter size-full wp-image-47469" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/nginx-plus-in-gcp-marketplace.png" alt="Screenshot of NGINX Plus in the Google Cloud Platform Marketplace; from here, you can create a prebuilt NGINX Plus VM instance when deploying NGINX Plus as the load balancer for Google Cloud." width="1024" height="604" class="aligncenter size-full wp-image-47469" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 4. On the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX Plus</span> page that opens, click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Launch on Compute Engine </span> button.
 
@@ -374,17 +374,17 @@ Create three source instances based on a prebuilt NGINX Plus image running on <
    - <span style="font-weight:bold; white-space: nowrap;">Subnetwork name</span> – <span style="color:#666666; font-weight:bolder;">default</span>
    - **Firewall** – Verify that the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Allow HTTP traffic</span> checkbox is checked.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2018/07/gce-marketplace-new-deployment.png"><img src="https://www.nginx.com/wp-content/uploads/2018/07/gce-marketplace-new-deployment.png" alt="Screenshot of the page for creating a prebuilt NGINX Plus VM instance when deploying NGINX Plus as the Google Cloud Platform load balancer." width="1054" height="973" class="aligncenter size-full wp-image-47468" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/gce-marketplace-new-deployment.png"><img src="/nginx/images/gce-marketplace-new-deployment.png" alt="Screenshot of the page for creating a prebuilt NGINX Plus VM instance when deploying NGINX Plus as the Google Cloud Platform load balancer." width="1054" height="973" class="aligncenter size-full wp-image-47468" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 6. Click the <span style="background-color:#3366cc; color:white;"> Deploy </span> button.
 
    It can take several minutes for the instance to deploy. Wait until the green check mark and confirmation message appear before continuing.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2018/07/gce-marketplace-instance-deployed.png" alt="Screenshot of the page that confirms the creation of a prebuilt NGINX Plus VM instance when deploying NGINX Plus as the Google load balancer." width="1024" height="399" class="aligncenter size-full wp-image-47467" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/gce-marketplace-instance-deployed.png" alt="Screenshot of the page that confirms the creation of a prebuilt NGINX Plus VM instance when deploying NGINX Plus as the Google load balancer." width="1024" height="399" class="aligncenter size-full wp-image-47467" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 7. Navigate to the <span style="font-weight:bold; white-space: nowrap;">Compute Engine > VM instances</span> tab and click <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx-plus-app-1-vm</span> in the <span style="color:#3366cc;">Name</span> column in the table. (The <span style="color:#666666; font-weight:bolder; white-space: nowrap;">-vm</span> suffix is added automatically to the name of the newly created instance.)
 
-   <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-app-1-vm-select.png" alt="Screenshot showing how to access the page where configuration details for a VM instance can be modified during deployment of NGINX Plus as the Google Cloud load balancer." width="1023" height="194" class="aligncenter size-full wp-image-47465" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/gce-app-1-vm-select.png" alt="Screenshot showing how to access the page where configuration details for a VM instance can be modified during deployment of NGINX Plus as the Google Cloud load balancer." width="1023" height="194" class="aligncenter size-full wp-image-47465" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 8. On the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">VM instances</span> page that opens, click <span style="color:#3366cc;">EDIT</span> at the top of the page. In fields that can be edited, the value changes from static text to text boxes, drop‑down menus, and checkboxes.
 
@@ -404,7 +404,7 @@ Create three source instances based on a prebuilt NGINX Plus image running on <
 
    The screenshot shows the results of your changes, omitting some fields than cannot be edited or for which we recommend retaining the defaults.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-app-1-vm-edited.png" alt="Screenshot showing the configuration modifications for a VM instance being deployed as part of setting up NGINX Plus as the Google load balancer." width="1027" height="1368" class="aligncenter size-full wp-image-47464" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/gce-app-1-vm-edited.png" alt="Screenshot showing the configuration modifications for a VM instance being deployed as part of setting up NGINX Plus as the Google load balancer." width="1027" height="1368" class="aligncenter size-full wp-image-47464" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 10. Click the <span style="background-color:#3366cc; color:white;"> Save </span> button.
 
@@ -415,7 +415,7 @@ Create the second application instance by cloning the first one.
 
 1. Navigate back to the summary page on the <span style="font-weight:bold; white-space: nowrap;">Compute Engine > VM instances</span> tab (click the arrow that is circled in the following figure).
 
-   <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-vm-instances-back-arrow.png" alt="Screenshot showing how to return to the VM instance summary page during deployment of NGINX Plus as the Google Cloud Platform load balancer." width="1024" height="110" class="aligncenter size-full wp-image-47492" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/gce-vm-instances-back-arrow.png" alt="Screenshot showing how to return to the VM instance summary page during deployment of NGINX Plus as the Google Cloud Platform load balancer." width="1024" height="110" class="aligncenter size-full wp-image-47492" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 2. Click <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx-plus-app-1-vm</span> in the <span style="color:#3366cc;">Name</span> column of the table (shown in the screenshot in Step 7 of <a href="#source-prebuilt-app-1">Creating the First Application Instance</a>).
 
@@ -462,7 +462,7 @@ Install and configure PHP and FastCGI on the instances.
 
    The screenshot shows instances based on the prebuilt NGINX Plus images.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-prebuilt-instance-ssh.png" alt="Screenshot showing how to connect via SSH to a VM instance, part of deploying NGINX Plus as the Google load balancer." width="1024" height="284" class="aligncenter size-full wp-image-47495" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/gce-prebuilt-instance-ssh.png" alt="Screenshot showing how to connect via SSH to a VM instance, part of deploying NGINX Plus as the Google load balancer." width="1024" height="284" class="aligncenter size-full wp-image-47495" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 2. Working in the SSH terminal, install PHP 5 (the default PHP version for Ubuntu 14.04 LTS) and FastCGI.
 
@@ -617,7 +617,7 @@ Create _gold images_, which are base images that GCE clones automatically when i
 
 4. Click <span style="color:#3366cc;">STOP</span> in the top toolbar to stop the instances.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-vm-instances-toolbar.png" alt="Screenshot of the toolbar on the Google Compute Engine page that lists VM instances, used when deploying NGINX Plus as the Google Cloud load balancer." width="1024" height="63" class="aligncenter size-full wp-image-47493" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/gce-vm-instances-toolbar.png" alt="Screenshot of the toolbar on the Google Compute Engine page that lists VM instances, used when deploying NGINX Plus as the Google Cloud load balancer." width="1024" height="63" class="aligncenter size-full wp-image-47493" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 5. Click <span style="color:#3366cc;">DELETE</span> in the top toolbar to delete the instances.
 
@@ -625,7 +625,7 @@ Create _gold images_, which are base images that GCE clones automatically when i
 
    - Navigate to the <span style="font-weight:bold; white-space: nowrap;">Compute Engine > VM instances</span> tab and click the instance in the <span style="color:#3366cc;">Name</span> column in the table. (The screenshot shows <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx-plus-app-1-vm</span>.)
 
-     <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-app-1-vm-select.png" alt="Screenshot showing how to access the page where configuration details for a VM instance can be modified during deployment of NGINX Plus as the Google Cloud load balancer." width="1023" height="194" class="aligncenter size-full wp-image-47465" style="border:2px solid #666666; padding:2px; margin:2px;" />
+     <img src="/nginx/images/gce-app-1-vm-select.png" alt="Screenshot showing how to access the page where configuration details for a VM instance can be modified during deployment of NGINX Plus as the Google Cloud load balancer." width="1023" height="194" class="aligncenter size-full wp-image-47465" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
    - On the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">VM instances</span> page that opens, click <span style="color:#3366cc;">EDIT</span> at the top of the page. In fields that can be edited, the value changes from static text to text boxes, drop‑down menus, and checkboxes.
    - In the <span style="font-weight:bold; white-space: nowrap;">Boot disk and local disks</span> field, uncheck the checkbox labeled <span style="color:#666666; font-weight:bolder;">Delete boot disk when when instance is deleted</span>.
@@ -683,7 +683,7 @@ Create _instance templates_, which are the compute workloads that are created in
 
      - Open the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Custom Images</span> subtab.
 
-         <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-instance-template-boot-disk.png" alt="Screenshot of the 'Boot disk' page in Google Cloud Platform for selecting the source instance of a new instance template, part of deploying NGINX Plus as the Google load balancer." width="491" height="517" class="aligncenter size-full wp-image-47478" style="border:2px solid #666666; padding:2px; margin:2px;" />
+         <img src="/nginx/images/gce-instance-template-boot-disk.png" alt="Screenshot of the 'Boot disk' page in Google Cloud Platform for selecting the source instance of a new instance template, part of deploying NGINX Plus as the Google load balancer." width="491" height="517" class="aligncenter size-full wp-image-47478" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
      - Select <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX Plus All-Active-LB</span> from the drop-down menu labeled <span style="font-weight:bold; white-space: nowrap;">Show images from</span>.
 
@@ -698,7 +698,7 @@ Create _instance templates_, which are the compute workloads that are created in
 
 6. Click <span style="color:#3366cc; white-space: nowrap;">Management, disk, networking, SSH keys</span> (indicated with a red arrow in the following screenshot) to open that set of subtabs.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-create-instance-template.png" alt="Screenshot of the interface for creating a Google Compute Engine (GCE) instance template, used during deployment of NGINX Plus as the Google load balancer." width="498" height="798" class="aligncenter size-full wp-image-47473" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/gce-create-instance-template.png" alt="Screenshot of the interface for creating a Google Compute Engine (GCE) instance template, used during deployment of NGINX Plus as the Google load balancer." width="498" height="798" class="aligncenter size-full wp-image-47473" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 7. On the <span style="color:#666666; font-weight:bolder;">Management</span> subtab, modify or verify the fields as indicated:
 
@@ -708,21 +708,21 @@ Create _instance templates_, which are the compute workloads that are created in
    - <span style="font-weight:bold; white-space: nowrap;">Automatic restart</span> – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">On (recommended)</span> (the default)
    - <span style="font-weight:bold; white-space: nowrap;">On host maintenance</span> – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Migrate VM instance (recommended)</span> (the default)
 
-   <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-instance-template-management.png" alt="Screenshot of the Management subtab used during creation of a new VM instance template, part of deploying NGINX Plus as the Google load balancer." width="487" height="551" class="aligncenter size-full wp-image-47480" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/gce-instance-template-management.png" alt="Screenshot of the Management subtab used during creation of a new VM instance template, part of deploying NGINX Plus as the Google load balancer." width="487" height="551" class="aligncenter size-full wp-image-47480" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 8. On the <span style="color:#666666; font-weight:bolder;">Disks</span> subtab, verify that the checkbox labeled <span style="color:#666666; font-weight:bolder;">Delete boot disk when instance is deleted</span> is checked.
 
    Instances created from this template are ephemeral instantiations of the gold image, so we want GCE to reclaim the disk when the instance is terminated. New instances are always based on the gold image, so there is no reason to have the instantiations persist on disk when the instance is deleted.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-instance-template-disks.png" alt="Screenshot of the Disks subtab used during creation of a new VM instance template, part of deploying NGINX Plus as the Google Cloud load balancer." width="488" height="184" class="aligncenter size-full wp-image-47479" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/gce-instance-template-disks.png" alt="Screenshot of the Disks subtab used during creation of a new VM instance template, part of deploying NGINX Plus as the Google Cloud load balancer." width="488" height="184" class="aligncenter size-full wp-image-47479" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 9. On the <span style="color:#666666; font-weight:bolder;">Networking</span> subtab, verify the default settings of <span style="color:#666666; font-weight:bolder;">Ephemeral</span> for <span style="font-weight:bold; white-space: nowrap;">External IP</span> and <span style="color:#666666; font-weight:bolder;">Off</span> for <span style="font-weight:bold; white-space: nowrap;">IP Forwarding</span>.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-instance-template-networking.png" alt="Screenshot of the Networking subtab used during creation of a new VM instance template, part of deploying NGINX Plus as the Google load balancer." width="488" height="174" class="aligncenter size-full wp-image-47481" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/gce-instance-template-networking.png" alt="Screenshot of the Networking subtab used during creation of a new VM instance template, part of deploying NGINX Plus as the Google load balancer." width="488" height="174" class="aligncenter size-full wp-image-47481" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 10. If you are using your own SSH public key instead of the default keys associated with your GCE identity, on the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">SSH Keys</span> subtab paste the hexadecimal key string into the box that reads <span style="color:#666666; font-family:consolas; font-weight:bolder; white-space: nowrap;">Enter entire key data</span>.
 
-    <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-ubuntu-instance-ssh-keys.png" alt="Screenshot of the SSH Keys subtab used during creation of a new VM instance, part of deploying NGINX Plus as the Google Cloud Platform load balancer." width="488" height="205" class="aligncenter size-full wp-image-47488" style="border:2px solid #666666; padding:2px; margin:2px;" />
+    <img src="/nginx/images/gce-ubuntu-instance-ssh-keys.png" alt="Screenshot of the SSH Keys subtab used during creation of a new VM instance, part of deploying NGINX Plus as the Google Cloud Platform load balancer." width="488" height="205" class="aligncenter size-full wp-image-47488" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 11. Click the <span style="background-color:#3366cc; color:white;"> Create </span> button.
 
@@ -781,7 +781,7 @@ Define the simple HTTP health check that GCE uses to verify that each NGINX Plu
 
 7. Click the <span style="background-color:#3366cc; color:white;"> Create </span> button.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-create-health-check.png" alt="Screenshot of the interface for creating a health check in Google Compute Engine (GCE), which Google network load balancer uses to monitor NGINX Plus as the Google cloud load balancer." width="487" height="706" class="aligncenter size-full wp-image-47471" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/gce-create-health-check.png" alt="Screenshot of the interface for creating a health check in Google Compute Engine (GCE), which Google network load balancer uses to monitor NGINX Plus as the Google cloud load balancer." width="487" height="706" class="aligncenter size-full wp-image-47471" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 <span id="groups"></span>
 ## Task 6: Creating Instance Groups
@@ -813,7 +813,7 @@ Create three independent instance groups, one for each type of function-specific
 
 3. Click the <span style="background-color:#3366cc; color:white;"> Create </span> button.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-create-instance-group.png" alt="Screenshot of the interface for creating a Google Compute Engine (GCE) instance group, used during deployment of NGINX Plus as the load balancer for Google Cloud." width="488" height="1045" class="aligncenter size-full wp-image-47472" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/gce-create-instance-group.png" alt="Screenshot of the interface for creating a Google Compute Engine (GCE) instance group, used during deployment of NGINX Plus as the load balancer for Google Cloud." width="488" height="1045" class="aligncenter size-full wp-image-47472" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 <span id="groups-app-2"></span>
 ### Creating the Second Application Instance Group
@@ -908,7 +908,7 @@ Set up GCE network load balancer to distribute incoming client traffic to the NG
 
 5. Click the <span style="background-color:#3366cc; color:white;"> Reserve </span> button.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-reserve-static-address.png" alt="Screenshot of the interface for reserving a static IP address for Google Compute Engine network load balancer." width="488" height="496" class="aligncenter size-full wp-image-47483" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/gce-reserve-static-address.png" alt="Screenshot of the interface for reserving a static IP address for Google Compute Engine network load balancer." width="488" height="496" class="aligncenter size-full wp-image-47483" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 6. Navigate to the <span style="font-weight:bold; white-space: nowrap;">Networking > Load balancing</span> tab.
 
@@ -931,7 +931,7 @@ Set up GCE network load balancer to distribute incoming client traffic to the NG
     - <span style="font-weight:bold; white-space: nowrap;">Health check</span> – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx-plus-http-health-check</span>
     - <span style="font-weight:bold; white-space: nowrap;">Session affinity</span> – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Client IP</span>
 
-    <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-backend-configuration.png" alt="Screenshot of the interface for backend configuration of GCE network load balancer, used during deployment of NGINX Plus as the Google Cloud Platform load balancer." width="862" height="584" class="aligncenter size-full wp-image-47466" style="border:2px solid #666666; padding:2px; margin:2px;" />
+    <img src="/nginx/images/gce-backend-configuration.png" alt="Screenshot of the interface for backend configuration of GCE network load balancer, used during deployment of NGINX Plus as the Google Cloud Platform load balancer." width="862" height="584" class="aligncenter size-full wp-image-47466" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 13. Click <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Frontend configuration</span> in the left column to open the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Frontend configuration</span> interface in the right column.
 
@@ -943,7 +943,7 @@ Set up GCE network load balancer to distribute incoming client traffic to the NG
 
 15. Click the <span style="background-color:#3366cc; color:white;"> Create </span> button.
 
-    <img src="https://www.nginx.com/wp-content/uploads/2016/11/gce-frontend-configuration.png" alt="Screenshot of the interface for frontend configuration of GCE network load balancer, used during deployment of NGINX Plus as the Google Cloud load balancer." width="1067" height="437" class="aligncenter size-full wp-image-47477" style="border:2px solid #666666; padding:2px; margin:2px;" />
+    <img src="/nginx/images/gce-frontend-configuration.png" alt="Screenshot of the interface for frontend configuration of GCE network load balancer, used during deployment of NGINX Plus as the Google Cloud load balancer." width="1067" height="437" class="aligncenter size-full wp-image-47477" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 <span id="testing"></span>
 ## Task 8: Testing the All-Active Load Balancing Deployment

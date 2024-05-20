@@ -260,7 +260,7 @@ Working in the Microsoft Management Console, perform these steps:
 
 4. On the menu that pops up, select **All Tasks**, then click **Export**.
 
-    ![Certificates snap-in to Microsoft Management Console, used to export SSL/TLS certificate](https://www.nginx.com/wp-content/uploads/2015/11/oracle-ebs-iis-certlm.png)
+    ![Certificates snap-in to Microsoft Management Console, used to export SSL/TLS certificate](/nginx/images/oracle-ebs-iis-certlm.png)
 
 5. In the Certificate Export Wizard window that pops up, click **Yes, export the private key**. (This option appears only if the private key is marked as exportable and you have access to it.)
 
@@ -1070,7 +1070,7 @@ These directives configure NGINX Plus health checks.
 
 NGINX Plus includes a live activity monitoring interface that provides key load and performance metrics in real time, including TCP metrics in <span style="white-space: nowrap;">NGINX Plus R6</span> and later. Statistics are reported through a RESTful JSON interface, making it very easy to feed the data to a custom or third‑party monitoring tool. There is also a built‑in dashboard in NGINX Plus. Follow these instructions to deploy it.
 
-<img src="https://www.nginx.com/wp-content/uploads/2019/09/nginx-plus-dashboard_R19-overview.png" alt="Dashboard tab in NGINX Plus live activity monitoring dashboard" style="border:2px solid #666666; padding:2px; margin:2px;" />
+<img src="/nginx/images/nginx-plus-dashboard-r19-overview.png" alt="Dashboard tab in NGINX Plus live activity monitoring dashboard" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 For more information about live activity monitoring, see the [NGINX Plus Admin Guide]({{< relref "../../admin-guide/monitoring/live-activity-monitoring.md" >}}).
 

@@ -61,7 +61,7 @@ Standard Load Balancer uses health probes to determine whether a backend instanc
 
 You also create a load‑balancing rule to define how traffic is distributed to the VMs, specifying the IP address and port of the front end that listens for incoming traffic and the name of the back‑end pool of application instances, along with the port number on which the instances listen.
 
-<img src="https://www.nginx.com/wp-content/uploads/2020/09/Azure_ha-load-balancer-topology.png" alt="Topology diagram for high availability deployment of NGINX Plus in Azure" width="1025" height="1000" class="aligncenter size-full wp-image-64981" style="border:2px solid #666666; padding:2px; margin:2px;" />
+<img src="/nginx/images/azure_ha-load-balancer-topology.png" alt="Topology diagram for high availability deployment of NGINX Plus in Azure" width="1025" height="1000" class="aligncenter size-full wp-image-64981" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 In this guide, the back‑end pool for Standard Load Balancer consists of two NGINX Plus instances, which reverse proxy and load balance traffic to two sets of backend applications, which in turn are also highly available. This setup is then replicated in a different region to create a region failover. You can also use this guide to deploy a greater number of NGINX Plus or NGINX instances in as many regions as you wish.
 
@@ -94,7 +94,7 @@ With NGINX Open Source and NGINX Plus installed and configured on the Azure VMs
 
 2. Navigate to the **Load balancers** page. (One way is to click the menu icon at the left end of the Microsoft Azure title bar and select **Load balancers** from the menu.)
 
-   <img src="https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-LB_navigate.png" alt="Screenshot of navigating to the 'Load Balancers' page in Azure" width="1024" height="491" class="aligncenter size-full wp-image-64980" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/azure-create-lb-navigate.png" alt="Screenshot of navigating to the 'Load Balancers' page in Azure" width="1024" height="491" class="aligncenter size-full wp-image-64980" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 3. On the **Load balancers** page that opens, click the <span style="background-color:#137ad1; color:white; white-space: nowrap;"> Create load balancer </span> button (or **<span style="color:#4d9bdc;">+</span> Add** in the upper left corner of the page).
 
@@ -112,17 +112,17 @@ With NGINX Open Source and NGINX Plus installed and configured on the Azure VMs
    - **Availability zone** – <span style="color:#666666; font-weight:bolder;">Zone‑redundant</span>
    - **Add a public IPv6 address** – <span style="color:#666666; font-weight:bolder;">No</span>
 
-   <a href="https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-LB_Basics.png"><img src="https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-LB_Basics.png" alt="Screenshot of the 'Basics' tab for creating an Azure Standard Load Balancer" width="1024" height="902" class="aligncenter size-full wp-image-64979" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/azure-create-lb-basics.png"><img src="/nginx/images/azure-create-lb-basics.png" alt="Screenshot of the 'Basics' tab for creating an Azure Standard Load Balancer" width="1024" height="902" class="aligncenter size-full wp-image-64979" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 4. If you want to apply one or more tags to the load balancer, click the <span style="font-weight: bold; white-space: nowrap;">Next : Tags ></span> button. Otherwise, click the <span style="background-color:#137ad1; color:white; white-space: nowrap;"> Review + create </span> button.
 
 5. Review your settings (return to the **Basic** tab if corrections are necessary). Click the <span style="background-color:#137ad1; color:white;"> Create </span> button.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-LB_Validation-passed.png"><img src="https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-LB_Validation-passed.png" alt="Screenshot of Azure 'Validation passed' page for creating a Standard Load Balancer" width="1024" height="627" class="aligncenter size-full wp-image-64978" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/azure-create-lb-validation-passed.png"><img src="/nginx/images/azure-create-lb-validation-passed.png" alt="Screenshot of Azure 'Validation passed' page for creating a Standard Load Balancer" width="1024" height="627" class="aligncenter size-full wp-image-64978" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
    A page like the following appears when deployment is complete.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-LB_deployment-complete.png"><img src="https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-LB_deployment-complete.png" alt="Screenshot of Azure 'Deployment complete' page for creating a Standard Load Balancer" width="1024" height="582" class="aligncenter size-full wp-image-64977" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/azure-create-lb-deployment-complete.png"><img src="/nginx/images/azure-create-lb-deployment-complete.png" alt="Screenshot of Azure 'Deployment complete' page for creating a Standard Load Balancer" width="1024" height="582" class="aligncenter size-full wp-image-64977" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 
 <span id="slb-configure"></span>
@@ -132,12 +132,12 @@ With NGINX Open Source and NGINX Plus installed and configured on the Azure VMs
 
 2. Click the name of the load balancer in the **Name** column of the table (<span style="color:#666666; font-weight:bolder;">lb</span> in this guide).
 
-   <a href="https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-LB_Load-balancers.png"><img src="https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-LB_Load-balancers.png" alt="Screenshot of Azure 'Load Balancers' page" width="1024" height="393" class="aligncenter size-full wp-image-64976https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-LB_select-Backend-pools.png" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/azure-create-lb-load-balancers.png"><img src="/nginx/images/azure-create-lb-load-balancers.png" alt="Screenshot of Azure 'Load Balancers' page" width="1024" height="393" class="aligncenter size-full wp-image-64976https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-lb-select-Backend-pools.png" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
    <span id="slb-configure-lb-overview"></span>
 3. The page that opens has the load balancer name in the upper left corner (**lb** in this guide). Click **Backend pools** in the left navigation column.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-LB_select-Backend-pools.png"><img src="https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-LB_select-Backend-pools.png" alt="Screenshot of selecting 'Backend pools' on details page for an Azure Standard Load Balancer" width="1024" height="543" class="aligncenter size-full wp-image-64975" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/azure-create-lb-select-backend-pools.png"><img src="/nginx/images/azure-create-lb-select-backend-pools.png" alt="Screenshot of selecting 'Backend pools' on details page for an Azure Standard Load Balancer" width="1024" height="543" class="aligncenter size-full wp-image-64975" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 4. On the <span style="white-space: nowrap; font-weight:bold;">lb | Backend Pools</span> page that opens, click **<span style="color:#4d9bdc;">+</span> Add** in the upper left corner of the main pane.
 
@@ -147,7 +147,7 @@ With NGINX Open Source and NGINX Plus installed and configured on the Azure VMs
    - **IP version** – <span style="color:#666666; font-weight:bolder;">IPv4</span>
    - **Virtual machines** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">ngx-plus-1</span> and <span style="color:#666666; font-weight:bolder; white-space: nowrap;">ngx-plus-2</span>
 
-   <a href="https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-LB_Add-backend-pool.png"><img src="https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-LB_Add-backend-pool.png" alt="Screenshot of Azure 'Add backend pool' page for Standard Load Balancer" width="1024" height="891" class="aligncenter size-full wp-image-64974" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/azure-create-lb-add-backend-pool.png"><img src="/nginx/images/azure-create-lb-add-backend-pool.png" alt="Screenshot of Azure 'Add backend pool' page for Standard Load Balancer" width="1024" height="891" class="aligncenter size-full wp-image-64974" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
    After a few moments the virtual machines appear in the new backend pool.
 
@@ -162,7 +162,7 @@ With NGINX Open Source and NGINX Plus installed and configured on the Azure VMs
    - **Interval** – <span style="color:#666666; font-weight:bolder;">5</span>
    - **Unhealthy threshold** – <span style="color:#666666; font-weight:bolder;">2</span>
 
-   <a href="https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-LB_Add-health-probe.png"><img src="https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-LB_Add-health-probe.png" alt="Screenshot of Azure 'Add health probe' page for Standard Load Balancer" width="1024" height="650" class="aligncenter size-full wp-image-64973" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/azure-create-lb-add-health-probe.png"><img src="/nginx/images/azure-create-lb-add-health-probe.png" alt="Screenshot of Azure 'Add health probe' page for Standard Load Balancer" width="1024" height="650" class="aligncenter size-full wp-image-64973" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
    After a few moments the new probe appears in the table on the <span style="white-space: nowrap; font-weight:bold;">lb | Health probes</span> page. This probe queries the NGINX Plus landing page every five seconds to check whether NGINX Plus is running.
 
@@ -184,7 +184,7 @@ With NGINX Open Source and NGINX Plus installed and configured on the Azure VMs
    - **Floating IP (direct server return)** – <span style="color:#666666; font-weight:bolder;">Disabled</span>
    - **Create implicit outbound rules** – <span style="color:#666666; font-weight:bolder;">Yes</span>
 
-   <a href="https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-LB_Add-load-balancing-rule.png"><img src="https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-LB_Add-load-balancing-rule.png" alt="Screenshot of Azure 'Add load balancing rule' page for Standard Load Balancer" width="1024" height="1032" class="aligncenter size-full wp-image-64972" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/azure-create-lb-add-load-balancing-rule.png"><img src="/nginx/images/azure-create-lb-add-load-balancing-rule.png" alt="Screenshot of Azure 'Add load balancing rule' page for Standard Load Balancer" width="1024" height="1032" class="aligncenter size-full wp-image-64972" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
    After a few moments the new rule appears in the table on the <span style="white-space: nowrap; font-weight:bold;">lb | Load balancing rules</span> page.
 
@@ -195,13 +195,13 @@ With NGINX Open Source and NGINX Plus installed and configured on the Azure VMs
 
 2. The default <span style="white-space: nowrap; font-weight:bold;">Welcome to nginx!</span> page indicates that the Standard Load Balancer has successfully forwarded a request to one of the two NGINX Plus instances.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-LB_welcome-to-nginx.png" alt="Screenshot of 'Welcome to nginx!' page that verifies correct configuration of an Azure Standard Load Balancer" width="1024" height="328" class="aligncenter size-full wp-image-64971" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/azure-create-lb-welcome-to-nginx.png" alt="Screenshot of 'Welcome to nginx!' page that verifies correct configuration of an Azure Standard Load Balancer" width="1024" height="328" class="aligncenter size-full wp-image-64971" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 3. To verify that the NGINX Plus load balancer is working correctly, add **/application1** and then **/application2** to the public IP address. Pages like the following indicate that you have reached NGINX Open Source instances serving the two backend applications, **App 1** and **App 2**.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-app1.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-app1.png" alt="Screenshot of standard NGINX web server demo page from App 1" width="1024" height="491" class="aligncenter size-full wp-image-54839" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-nlb-app1.png"><img src="/nginx/images/aws-nlb-app1.png" alt="Screenshot of standard NGINX web server demo page from App 1" width="1024" height="491" class="aligncenter size-full wp-image-54839" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
-   <a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-app2-v2.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-app2-v2.png" alt="Screenshot of standard NGINX web server demo page from App 2" width="1024" height="491" class="aligncenter size-full wp-image-54839" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-nlb-app2-v2.png"><img src="/nginx/images/aws-nlb-app2-v2.png" alt="Screenshot of standard NGINX web server demo page from App 2" width="1024" height="491" class="aligncenter size-full wp-image-54839" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 <span id="traffic-manager"></span>
 ## Setting Up Azure Traffic Manager
@@ -214,13 +214,13 @@ In this case, you need to set up Azure Traffic Manager for DNS‑based global se
 
 2. Click the name of the Standard Load Balancer's public IP address in the **Name** column of the table (here it is <span style="color:#666666; font-weight:bolder;">public\_ip_lb</span>).
 
-   <a href="https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-LB_Public-IP-addresses.png"><img src="https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-LB_Public-IP-addresses.png" alt="Screenshot of Azure 'Public IP addresses' page" width="1024" height="600" class="aligncenter size-full wp-image-64970" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/azure-create-lb-public-ip-addresses.png"><img src="/nginx/images/azure-create-lb-public-ip-addresses.png" alt="Screenshot of Azure 'Public IP addresses' page" width="1024" height="600" class="aligncenter size-full wp-image-64970" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 3. On the **public\_ip_lb** page that opens, click **Configuration** in the left navigation column.
 
 4. Enter the DNS name for the Standard Load Balancer in the <span style="white-space: nowrap; font-weight:bold;">DNS name label</span> field. In this guide, we're accepting the default, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">public-ip-dns</span>.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-LB_public-ip-lb.png"><img src="https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-LB_public-ip-lb.png" alt="Screenshot of Azure page for public IP address of a Standard Load Balancer" width="1024" height="465" class="aligncenter size-full wp-image-64969" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/azure-create-lb-public-ip-lb.png"><img src="/nginx/images/azure-create-lb-public-ip-lb.png" alt="Screenshot of Azure page for public IP address of a Standard Load Balancer" width="1024" height="465" class="aligncenter size-full wp-image-64969" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 5. Navigate to the <span style="white-space: nowrap; font-weight:bold;">Traffic Manager profiles</span> tab. (One way is to enter <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Traffic Manager profiles</span> in the search field of the Azure title bar and select that value in the **Services** section of the resulting drop‑down menu.)
 
@@ -233,8 +233,8 @@ In this case, you need to set up Azure Traffic Manager for DNS‑based global se
    - **Subscription** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX-Plus-HA-subscription</span> in this guide
    - **Resource group** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX-Plus-HA</span> in this guide
 
-   _Azure-create-LB_Create-Traffic-Manager-profile_
-   <a href="https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-TrafficMgr_Create-TM-profile.png"><img src="https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-TrafficMgr_Create-TM-profile.png" alt="Screenshot of Azure 'Create Traffic Manager profile' page" width="1024" height="581" class="aligncenter size-full wp-image-64968" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   _Azure-create-lb-create-Traffic-Manager-profile_
+   <a href="/nginx/images/azure-create-trafficmgr-create-tm-profile.png"><img src="/nginx/images/azure-create-trafficmgr-create-tm-profile.png" alt="Screenshot of Azure 'Create Traffic Manager profile' page" width="1024" height="581" class="aligncenter size-full wp-image-64968" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 8. It takes a few moments to create the profile. When it appears in the table on the <span style="white-space: nowrap; font-weight:bold;">Traffic Manager profiles</span> page, click its name in the **Name** column.
 
@@ -248,7 +248,7 @@ In this case, you need to set up Azure Traffic Manager for DNS‑based global se
     - **Public IP address** – Name of the Standard Load Balancer's public IP address (<span style="color:#666666; font-weight:bolder;">public\_ip_lb (51.143.107.x)</span> in this guide)
     - **Custom Header settings** – None in this guide
 
-    <a href="https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-TrafficMgr_Add-endpoint.png"><img src="https://www.nginx.com/wp-content/uploads/2020/09/Azure-create-TrafficMgr_Add-endpoint.png" alt="Screenshot of Azure 'Add endpoint' page" width="1024" height="578" class="aligncenter size-full wp-image-64967" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+    <a href="/nginx/images/azure-create-trafficmgr-add-endpoint.png"><img src="/nginx/images/azure-create-trafficmgr-add-endpoint.png" alt="Screenshot of Azure 'Add endpoint' page" width="1024" height="578" class="aligncenter size-full wp-image-64967" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 11. For each additional region, repeat the steps in [Setting Up a Standard Load Balancer](#slb-set-up), and then the steps in this section.
 
@@ -293,7 +293,7 @@ Assign the following names to the VMs, and then install the indicated NGINX soft
 
 For the purposes of this guide, you configure the NGINX Open Source VMs as web servers that return a page specifying the server name, address, and other information. As an example, here’s the page returned by **App 1**:
 
-<a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-app1.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-app1.png" alt="Screenshot of standard NGINX web server demo page from App 1" width="1024" height="491" class="aligncenter size-full wp-image-54839" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+<a href="/nginx/images/aws-nlb-app1.png"><img src="/nginx/images/aws-nlb-app1.png" alt="Screenshot of standard NGINX web server demo page from App 1" width="1024" height="491" class="aligncenter size-full wp-image-54839" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 <span style="white-space: nowrap;">Step-by-step</span> instructions are provided in our deployment guide, <a href="../../setting-up-nginx-demo-environment#nginx-oss">Setting Up an NGINX Demo Environment</a>.
 

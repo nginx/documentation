@@ -51,7 +51,7 @@ Create an AD FS application for NGINX Plus:
 
 2. In the **Welcome** step, type the application group name in the **Name** field. Here we are using <span style="color:#666666; font-weight:bolder;">ADFSSSO</span>. In the **Template** field, select **Server application** under <span style="color:#293aa3; font-weight:bolder;">Standalone applications</span>. Click the <span style="background-color:#e1e1e1; white-space: nowrap; font-weight: bolder"> Next > </span> button.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/12/ADFS-SSO_Welcome.png" alt="" width="734" height="597" class="aligncenter size-full wp-image-62013" />
+   <img src="/nginx/images/adfs-sso-welcome.png" alt="" width="734" height="597" class="aligncenter size-full wp-image-62013" />
 
    <span id="ad-fs-server-application"></span>
 3. In the **Server application** step:
@@ -67,12 +67,12 @@ Create an AD FS application for NGINX Plus:
 
 3. Click the <span style="background-color:#e1e1e1; white-space: nowrap; font-weight: bolder"> Next > </span> button.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/12/ADFS-SSO_Server-application.png" alt="" width="860" height="523" class="aligncenter size-full wp-image-62012" />
+   <img src="/nginx/images/adfs-sso-server-application.png" alt="" width="860" height="523" class="aligncenter size-full wp-image-62012" />
 
    <span id="ad-fs-configure-application-credentials"></span>
 4. In the <span style="white-space: nowrap; font-weight:bold;">Configure Application Credentials</span> step, click the <span style="white-space: nowrap; font-weight:bold;">Generate a shared secret</span> checkbox. Make a note of the secret that AD FS generates (perhaps by clicking the <span style="white-space: nowrap; font-weight:bold;">Copy to clipboard</span> button and pasting the clipboard content into a file). You will add the secret to the NGINX Plus configuration in [Step 4 of _Configuring NGINX Plus_](#nginx-plus-variables). Click the <span style="background-color:#e1e1e1; white-space: nowrap; font-weight: bolder"> Next > </span> button.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/12/ADFS-SSO_Configure-Application-Credentials.png" alt="" width="750" height="432" class="aligncenter size-full wp-image-62011" />
+   <img src="/nginx/images/adfs-sso-configure-application-credentials.png" alt="" width="750" height="432" class="aligncenter size-full wp-image-62011" />
 
 5. In the **Summary** step, verify that the information is correct, make any necessary corrections to previous steps, and click the <span style="background-color:#e1e1e1; white-space: nowrap; font-weight: bolder"> Next > </span> button.
 
@@ -140,7 +140,7 @@ Configure NGINX Plus as the OpenID Connect relying party:
 
 In a browser, enter the address of your NGINX Plus instance and try to log in using the credentials of a user who has access to the application.
 
-<img src="https://www.nginx.com/wp-content/uploads/2019/12/ADFS-SSO_login.png" alt="" width="750" height="414" class="aligncenter size-full wp-image-62002" style="border:2px solid #666666; padding:2px; margin:2px;" />
+<img src="/nginx/images/adfs-sso-login.png" alt="" width="750" height="414" class="aligncenter size-full wp-image-62002" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 <span id="troubleshooting"></span>
 ## Troubleshooting

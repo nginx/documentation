@@ -48,15 +48,15 @@ Create a new application for NGINX Plus in the OneLogin GUI:
 
 2. Click <span style="white-space: nowrap; background-color:#000000; color:white;"> Applications </span> in the title bar and then click the <span style="white-space: nowrap; background-color:#1694c1; color:white;"> Add App </span> button in the upper right corner of the window that opens.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/07/OneLogin-SSO_Add-App-button.png" alt="" width="1024" height="306" class="aligncenter size-full wp-image-62013" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/onelogin-sso-add-app-button.png" alt="" width="1024" height="306" class="aligncenter size-full wp-image-62013" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 3. On the **Find Applications** page that opens, type <span style="color:#666666; font-weight:bolder; white-space: nowrap;">OpenID Connect</span> in the search box. Click on the **OpenID Connect (OIDC)** row that appears.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/07/OneLogin-SSO_Find-Applications-page.png" alt="" width="1024" height="344" class="aligncenter size-full wp-image-62012" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/onelogin-sso-find-applications-page.png" alt="" width="1024" height="344" class="aligncenter size-full wp-image-62012" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 4. On the **Add OpenId Connect (OIDC)** page that opens, change the value in the **Display Name** field to <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX Plus</span> and click the <span style="white-space: nowrap; background-color:#1694c1; color:white;"> Save </span> button.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/07/OneLogin-SSO_Add-OIDC-page.png" alt="" width="1024" height="380" class="aligncenter size-full wp-image-62011" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/onelogin-sso-add-oidc-page.png" alt="" width="1024" height="380" class="aligncenter size-full wp-image-62011" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 5. When the save completes, a new set of choices appears in the left navigation bar. Click **Configuration**. In the **Redirect URI's** field, type the URI of the NGINX Plus instance including the port number, and ending in **/\_codexch** (in this guide it is <span style="color:#666666; font-weight:bolder; white-space: nowrap;">https://my-nginx.example.com:443/_codexch</span>). Then click the <span style="white-space: nowrap; background-color:#1694c1; color:white;"> Save </span> button.
 
@@ -65,17 +65,17 @@ Create a new application for NGINX Plus in the OneLogin GUI:
    - For production, we strongly recommend that you use SSL/TLS (port 443).
    - The port number is mandatory even when you're using the default port for HTTP (80) or HTTPS (443).
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/07/OneLogin-SSO_Configuration-tab.png" alt="" width="1024" height="576" class="aligncenter size-full wp-image-62010" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/onelogin-sso-configuration-tab.png" alt="" width="1024" height="576" class="aligncenter size-full wp-image-62010" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
    <span id="onelogin-client-id-secret"></span>
 6. When the save completes, click **SSO** in the left navigation bar. Click <span style="color:#1694c1; font-weight:bolder; white-space: nowrap;">Show client secret</span> below the **Client Secret** field. Record the values in the **Client ID** and **Client Secret** fields. You will add them to the NGINX Plus configuration in [Step 4 of _Configuring NGINX Plus_](#nginx-plus-variables).
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/07/OneLogin-SSO_SSO-tab.png" alt="" width="1024" height="449" class="aligncenter size-full wp-image-62009" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/onelogin-sso-sso-tab.png" alt="" width="1024" height="449" class="aligncenter size-full wp-image-62009" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
    <span id="onelogin-roles"></span>
 7. Assign users to the application (in this guide, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX Plus</span>) to enable them to access it for SSO. OneLogin recommends using [roles](https://onelogin.service-now.com/kb_view_customer.do?sysparm_article=KB0010606) for this purpose. You can access the **Roles** page under <span style="white-space: nowrap; background-color:#000000; color:white;"> Users </span> in the title bar.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/07/OneLogin-SSO_Roles-page.png" alt="" width="1024" height="275" class="aligncenter size-full wp-image-62006" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/onelogin-sso-roles-page.png" alt="" width="1024" height="275" class="aligncenter size-full wp-image-62006" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 <span id="nginx-plus"></span>
 ## Set up NGINX Plus
@@ -146,7 +146,7 @@ Take the steps in this section to set up NGINX Plus as the OpenID Connect Clien
 
 In a browser, enter the address of your NGINX Plus instance and try to log in using the credentials of a user assigned to the application (see [Step 7 of _Configuring OneLogin_](#onelogin-roles)).
 
-<img src="https://www.nginx.com/wp-content/uploads/2019/07/OneLogin-login-window.png" alt="" width="612" height="654" class="aligncenter size-full wp-image-62002" style="border:2px solid #666666; padding:2px; margin:2px;" />
+<img src="/nginx/images/onelogin-login-window.png" alt="" width="612" height="654" class="aligncenter size-full wp-image-62002" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 <span id="troubleshooting"></span>
 ## Troubleshooting
