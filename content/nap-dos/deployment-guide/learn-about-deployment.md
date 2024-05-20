@@ -514,7 +514,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     vi app-protect-dos.te
     ```
 
-    b. Insert the following contents into the file created above:
+    b. Insert the following contents into the file that you have created:
 
     ```shell
     module app-protect-dos 2.0;
