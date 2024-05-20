@@ -604,7 +604,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
 ## RHEL 9+ Installation
 
-1. If you already have NGINX packages in your system, back up your configs and logs:
+1. If you already have NGINX packages on your system, back up your configs and logs:
 
     ```shell
     sudo cp -a /etc/nginx /etc/nginx-plus-backup
