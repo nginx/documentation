@@ -473,7 +473,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     {{< note >}} Make sure to restore configuration from `/etc/nginx-plus-backup` back to `/etc/nginx-plus`.{{< /note >}}
 
-10. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
+10. Confirm the NGINX binary version to make sure that you have NGINX Plus installed correctly:
 
     ```shell
     sudo nginx -v
