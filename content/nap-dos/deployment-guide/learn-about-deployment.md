@@ -676,7 +676,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo dnf install app-protect-dos-32+4.4.0
     ```
 
-9. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):
+9. In you are upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):
 
     ```shell
     sudo dnf remove nginx-plus
