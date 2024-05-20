@@ -16,10 +16,8 @@ May 28, 2024
 
 ### New Features
 
-In this release, NGINX App Protect WAF supports NGINX Open Source 1.25.4 and NGINX Plus R31 P1.
+In this release, NGINX App Protect WAF supports NGINX Open Source 1.25.5 and NGINX Plus R32.
 
-- R32
-- NGINX OSS Base Version 1.25.5
 - [Apreload support]({{<relref "nap-waf/v5/configuration-guide/configuration.md#apreload">}})
 
 ### Supported Packages
