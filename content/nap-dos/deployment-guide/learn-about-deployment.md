@@ -623,7 +623,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
    - nginx-repo.crt
    
 
-4. Copy the above two files to the CentOS server’s `/etc/ssl/nginx/` directory. Use an SCP client or another secure file transfer tool to perform this task.
+4. Copy the downloaded files to the CentOS server’s `/etc/ssl/nginx/` directory. Use an SCP client or another secure file transfer tool to perform this task.
 
 5. Install prerequisite packages:
 
