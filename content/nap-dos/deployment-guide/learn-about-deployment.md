@@ -928,7 +928,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo apt-get install app-protect-dos=27+2.4.0-1~bullseye nginx-plus-module-appprotectdos=27+2.4.0-1~bullseye
     ```
 
-    For example for Debian 12:
+    For example, for Debian 12:
 
     ```shell
     sudo apt-get install app-protect-dos=32+4.4.0-1~bookworm nginx-plus-module-appprotectdos=32+4.4.0-1~bookworm
