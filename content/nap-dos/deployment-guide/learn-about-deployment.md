@@ -646,7 +646,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-9.repo
     ```
 
-8. In case of fresh installation, update the repository and install the most recent version of the NGINX Plus App Protect DoS package (which includes NGINX Plus):
+8. If you are performing a fresh installation, update the repository and install the most recent version of the NGINX Plus App Protect DoS package (which includes NGINX Plus):
 
     ```shell
     sudo dnf install app-protect-dos
