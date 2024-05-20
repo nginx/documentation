@@ -500,7 +500,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     app_protect_dos_monitor "example.com/";
     ```
 
-14. Enable L4 accelerated mitigation feature (RHEL 8.6+) on an `http` context in the `nginx.conf` file:
+14. Enable the L4 accelerated mitigation feature (RHEL 8.6+) in an `http` context in the `nginx.conf` file:
 
     ```nginx
     app_protect_dos_accelerated_mitigation on;
