@@ -860,7 +860,7 @@ Uninstall the NGINX App Protect WAF v5 package.
 Uninstall the NGINX App Protect WAF v5 package.
 
     ```shell
-    sudo apt-get remove nginx=1.25.4-1~`lsb_release -cs` app-protect-module-oss
+    sudo apt-get remove app-protect-module-oss
     ```
 
 #### For NGINX Plus
