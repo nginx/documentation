@@ -801,3 +801,144 @@ In some operating systems, security mechanisms like **SELinux** or **AppArmor** 
 {{< include "nap-waf/bundles-volume-mount.md" >}}
 
 After deploying NGINX App Protect WAF, learn how to utilize the [NGINX App Protect WAF Compiler]({{< relref "/nap-waf/v5/admin-guide/compiler.md" >}}) for applying your custom policies and logging profiles.
+
+## Uninstall NGINX and NGINX App Protect WAF module
+
+Stop the docker deployment and uninstall the NGINX packages.
+
+### Stop the Docker Deployment
+
+To stop the WAF services, navigate to the directory that contains the `docker-compose.yml` file and run:
+
+    ```shell
+    sudo docker compose stop -d
+    ```
+
+### Alpine Linux 3.16 / Alpine Linux 3.17
+
+#### For NGINX Open source
+
+Uninstall the NGINX App Protect WAF v5 package:
+
+    ```shell
+    sudo apk del app-protect-module-oss
+    ```
+	
+#### For NGINX Plus
+
+Uninstall the NGINX App Protect WAF v5 package:
+
+    ```shell
+    sudo apk del app-protect-module-plus
+    ```
+
+### Amazon Linux 2
+
+#### For NGINX Open source
+
+Uninstall the NGINX App Protect WAF v5 package.
+
+    ```shell
+    sudo yum remove app-protect-module-oss
+    sudo apt-get remove nginx=1.25.4-1~`lsb_release -cs` app-protect-module-oss 
+
+    ```
+
+#### For NGINX Plus
+
+Uninstall the NGINX App Protect WAF v5 package.
+
+    ```shell
+    sudo yum remove app-protect-module-plus
+    ```
+	
+	
+### Debian 11 / Debian 12
+
+#### For NGINX Open source
+
+Uninstall the NGINX App Protect WAF v5 package.
+
+    ```shell
+    sudo apt-get remove nginx=1.25.4-1~`lsb_release -cs` app-protect-module-oss
+    ```
+
+#### For NGINX Plus
+
+Uninstall the NGINX App Protect WAF v5 package.
+
+    ```shell
+    sudo apt-get remove app-protect-module-plus
+    ```
+	
+### RHEL 7.4+ / CentOS 7.4+
+
+#### For NGINX Open source
+
+Uninstall the NGINX App Protect WAF v5 package.
+
+    ```shell
+    sudo yum remove app-protect-module-oss
+    ```
+
+#### For NGINX Plus
+
+Uninstall the NGINX App Protect WAF v5 package.
+
+    ```shell
+    sudo yum remove app-protect-module-plus
+    ```
+	
+### RHEL 8.1+ / Oracle Linux 8.1+
+
+#### For NGINX Open source
+
+Uninstall the NGINX App Protect WAF v5 package.
+
+    ```shell
+    sudo dnf remove app-protect-module-oss
+    ```
+
+#### For NGINX Plus
+
+Uninstall the NGINX App Protect WAF v5 package.
+
+    ```shell
+    sudo dnf remove app-protect-module-plus
+    ```
+
+### RHEL 9
+
+#### For NGINX Open source
+
+Uninstall the NGINX App Protect WAF v5 package.
+
+    ```shell
+    sudo dnf remove app-protect-module-oss
+    ```
+
+#### For NGINX Plus
+
+Uninstall the NGINX App Protect WAF v5 package.
+
+    ```shell
+    sudo dnf remove app-protect-module-plus
+    ```
+
+### Ubuntu 20.04 / Ubuntu 22.04
+
+#### For NGINX Open source
+
+Uninstall the NGINX App Protect WAF v5 package.
+
+    ```shell
+    sudo apt-get remove app-protect-module-oss
+    ```
+
+#### For NGINX Plus
+
+Uninstall the NGINX App Protect WAF v5 package.
+
+    ```shell
+    sudo apt-get remove app-protect-module-plus
+    ```	
