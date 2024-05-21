@@ -46,7 +46,7 @@ sudo docker pull private-registry.nginx.com/nginx-plus/agent:VERSION_TAG
 
 {{<note>}}A version tag is required. Leaving out the version tag is not supported because `latest` is not a valid option. For more details about version tags, refer to [Deploying NGINX and NGINX Plus on Docker]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pulling-the-image" >}}).{{</note>}}
 
-> <i class="fa fa-terminal"></i> **Example**: to pull the `debian` image, use the following command:
+> <i class="fa fa-terminal"></i> **Example**: To pull the `debian` image, use the following command:
 > ```sh
 > sudo docker pull private-registry.nginx.com/nginx-plus/agent:debian
 > ```
