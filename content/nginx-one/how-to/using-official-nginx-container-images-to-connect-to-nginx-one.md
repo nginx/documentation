@@ -50,6 +50,7 @@ sudo docker run \
 --env=NMS_SERVER_HOST=agent.connect.nginx.com \
 --env=NMS_SERVER_TOKEN=YOUR_DATA_PLANE_KEY \
 --env=NMS_TLS_ENABLE=true \
+--env=NMS_TLS_SKIP_VERIFY=false \
 --restart=always \
 --runtime=runc \
 -d private-registry.nginx.com/nginx-plus/agent
