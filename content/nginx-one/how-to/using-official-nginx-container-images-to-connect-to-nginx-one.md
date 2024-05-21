@@ -1,6 +1,6 @@
 ---
 description: ''
-docs: 
+docs:
 doctypes:
 - task
 tags:
@@ -14,6 +14,8 @@ weight: 300
 
 By following this guide, you will be able to set up a Docker container with NGINX Plus and the NGINX Agent, and then connect to NGINX One SaaS.
 
+---
+
 ## Before you start
 
 Before you start, make sure you have the following:
@@ -21,6 +23,8 @@ Before you start, make sure you have the following:
 - A valid JWT (JSON Web Token) from your NGINX subscription.
 - [A data plane key from NGINX One]({{< relref "/nginx-one/how-to/data-plane-keys.md" >}}).
 - Docker installed and running on your system.
+
+---
 
 ## Process for private registry
 
@@ -34,15 +38,22 @@ sudo docker login private-registry.nginx.com --username=YOUR_JWT_HERE --password
 
 ### Pull the image
 
-Next, pull the NGINX Plus image from the private registry. If you want to select a specific image, follow the instructions in [Deploying NGINX and NGINX Plus on Docker]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pulling-the-image" >}}).
+Next, pull the NGINX Plus image from the private registry. Replace `VERSION_TAG` with the specific version tag you need (for example, `alpine`, `debian`, or `ubi`).
 
 ```sh
-sudo docker pull private-registry.nginx.com/nginx-plus/agent
+sudo docker pull private-registry.nginx.com/nginx-plus/agent:VERSION_TAG
 ```
+
+{{<note>}}A version tag is required. Leaving out the version tag is not supported because `latest` is not a valid option. For more details about version tags, refer to [Deploying NGINX and NGINX Plus on Docker]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pulling-the-image" >}}).{{</note>}}
+
+> <i class="fa fa-terminal"></i> **Example**: to pull the `debian` image, use the following command:
+> ```sh
+> sudo docker pull private-registry.nginx.com/nginx-plus/agent:debian
+> ```
 
 ### Start the container
 
-Finally, start the Docker container. Replace `YOUR_DATA_PLANE_KEY` with your actual NGINX One data plane key.
+Finally, start the Docker container. Replace `YOUR_DATA_PLANE_KEY` with your actual NGINX One data plane key and `VERSION_TAG` with the specific version tag you pulled.
 
 ```sh
 sudo docker run \
@@ -53,11 +64,23 @@ sudo docker run \
 --env=NMS_TLS_SKIP_VERIFY=false \
 --restart=always \
 --runtime=runc \
--d private-registry.nginx.com/nginx-plus/agent
+-d private-registry.nginx.com/nginx-plus/agent:VERSION_TAG
 ```
 
-{{<note>}}If you used an image other than the default one, make sure you change the image name in the command.{{</note>}}
+> <i class="fa fa-terminal"></i> **Example**: To start the container with the `debian` image, use the following command:
+> ```sh
+> sudo docker run \
+> --env=NMS_SERVER_GRPCPORT=443 \
+> --env=NMS_SERVER_HOST=agent.connect.nginx.com \
+> --env=NMS_SERVER_TOKEN=YOUR_DATA_PLANE_KEY \
+> --env=NMS_TLS_ENABLE=true \
+> --env=NMS_TLS_SKIP_VERIFY=false \
+> --restart=always \
+> --runtime=runc \
+> -d private-registry.nginx.com/nginx-plus/agent:debian
+> ```
 
+---
 
 ## References
 
