@@ -48,7 +48,6 @@ The Ansible role for NGINX Management Suite simplifies the installation process 
         nms_setup: install
         nms_modules:
           - name: acm
-          - name: adm
           - name: sm
       collections:
         - nginxinc.nginx_core
