@@ -115,7 +115,7 @@ services:
 
   waf-enforcer:
     container_name: waf-enforcer
-    image: "private-registry.nginx.com/nap/waf-enforcer:1.0.0"
+    image: "private-registry.nginx.com/nap/waf-enforcer:<version-tag>"
     environment:
       - ENFORCER_PORT=50000
     volumes:

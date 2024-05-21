@@ -178,7 +178,7 @@ spec:
             - name: app-protect-config
               mountPath: /opt/app_protect/config
         - name: waf-enforcer
-          image: private-registry.nginx.com/nap/waf-enforcer:1.0.0
+          image: private-registry.nginx.com/nap/waf-enforcer:<version-tag>
           imagePullPolicy: IfNotPresent
           env:
             - name: ENFORCER_PORT
