@@ -1267,7 +1267,7 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
     ```
 
-    For Alpine / Debian / Ubuntu / UBI 8:
+    For Alpine / Debian / Ubuntu / UBI 8/ UBI 9:
 
     ```shell
     #!/usr/bin/env bash
@@ -1286,7 +1286,7 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
     ```
 
-    For Alpine / Debian / Ubuntu / UBI 8 with L4 accelerated mitigation feature:
+    For Alpine / Debian / Ubuntu / UBI 8 / UBI 9 with L4 accelerated mitigation feature:
 
     ```shell
     #!/usr/bin/env bash
@@ -1430,8 +1430,8 @@ RUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.n
 # Install prerequisite packages:
 RUN dnf -y install wget ca-certificates
 
-# Add NGINX Plus and NGINX App Protect DoS repo to Yum:
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.4.repo
+# Add NGINX Plus and NGINX App Protect DoS repo to Yum: https://cs.nginx.com/static/files/nginx-plus-8.4.repo
+RUN wget -P /etc/yum.repos.d
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-8.repo
 
 # Install NGINX App Protect DoS:
@@ -1446,6 +1446,39 @@ COPY entrypoint.sh  /root/
 
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
+
+### RHEL 9 Docker Deployment Example
+
+```Dockerfile
+# For RHEL ubi9:
+FROM registry.access.redhat.com/ubi9/ubi
+
+# Install prerequisite packages:
+RUN dnf -y install wget ca-certificates
+
+# Add NGINX Plus repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-9.repo
+
+# Add NGINX App-protect & dependencies repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-9.repo
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
+    # You can use either of the dependencies or epel repo
+    # && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm \
+    && dnf clean all
+
+# Install NGINX App Protect DoS:
+RUN dnf -y install app-protect-dos \
+    && dnf clean all \
+    && rm -rf /var/cache/yum \
+    && rm -rf /etc/ssl/nginx
+
+# Copy configuration files:
+COPY nginx.conf /etc/nginx/
+COPY entrypoint.sh  /root/
+
+CMD /root/entrypoint.sh && tail -f /dev/null
+```
+
 
 ### Debian 10 (Buster) / Debian 11 (Bullseye) / Debian 12 (Bookworm) Docker Deployment Example
 
@@ -1709,7 +1742,7 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
     ```
 
-   For Alpine / Debian / Ubuntu / UBI 8:
+   For Alpine / Debian / Ubuntu / UBI 8/ UBI 9:
 
      ```shell
      #!/usr/bin/env bash
@@ -1729,7 +1762,7 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     ```
 
 
-   For Alpine / Debian / Ubuntu / UBI 8 with L4 accelerated mitigation feature:
+   For Alpine / Debian / Ubuntu / UBI 8 / UBI 9 with L4 accelerated mitigation feature:
 
     ```shell
     #!/usr/bin/env bash
