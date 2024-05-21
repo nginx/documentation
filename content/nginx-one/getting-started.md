@@ -104,10 +104,10 @@ To install the NGINX Agent on an NGINX instance:
     Next, use the `curl` command provided to you to install the NGINX Agent:
 
     ``` shell
-    curl https://agent.connect.nginx.com/nginx-agent/install | DATAPLANE_KEY="<data-plane-key>" sh -s -- -y
+    curl https://agent.connect.nginx.com/nginx-agent/install | DATA_PLANE_KEY="YOUR_DATA_PLANE_KEY" sh -s -- -y
     ```
 
-   - Replace `<data-plane-key>` with your actual data plane key.
+   - Replace `YOUR_DATA_PLANE_KEY` with your actual data plane key.
    - The `-y` option automatically confirms any prompts during installation.
 
 <span style="display: inline-block; margin-top: 20px;" >
