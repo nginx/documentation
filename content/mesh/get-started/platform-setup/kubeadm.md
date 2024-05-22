@@ -25,7 +25,7 @@ apiServer:
 You can use this configuration as-is and save it to a file, or combine it with any other configuration you need. Pass in the config when initializing the cluster. Assuming you've saved the config as kubeadm.config:
 
 ```bash
-$ kubeadm init --config kubeadm.conf
+kubeadm init --config kubeadm.conf
 W0817 17:54:27.384011 1526706 configset.go:202] WARNING: kubeadm cannot validate component configs for API groups [kubelet.config.k8s.io kubeproxy.config.k8s.io]
 [init] Using Kubernetes version: v1.18.8
 [preflight] Running pre-flight checks

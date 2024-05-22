@@ -60,21 +60,21 @@ You can verify that the operating system is in FIPS mode and that the version of
 **Check operating system flags**: When the operating system is in FIPS mode, ```crypto.fips_enabled``` is ```1```; otherwise, it is ```0```:
 
 ```shell
-$ sudo sysctl –a | grep fips
+sudo sysctl –a | grep fips
 crypto.fips_enabled = 1
 ```
 
 **Determine whether OpenSSL can perform SHA1 hashes**: This test verifies the correct operation of OpenSSL. The SHA1 hash algorithm is permitted in all modes, so failure of this command indicates that the OpenSSL implementation does not work properly:
 
 ```shell
-$ openssl sha1 /dev/null
+openssl sha1 /dev/null
 SHA1(/dev/null)= da39a3ee5e6b4b0d3255bfef95601890afd80709
 ```
 
 **Determine whether OpenSSL can perform MD5 hashes**: This test verifies that OpenSSL is running in FIPS mode. MD5 is not a permitted hash algorithm in FIPS mode, so an attempt to use it fails:
 
 ```shell
-$ openssl md5 /dev/null
+openssl md5 /dev/null
 Error setting digest md5
 140647163811744:error:060800A3:digital envelope routines:EVP_DigestInit _ex:disabled for fips:digest.c:251:
 ```
@@ -82,7 +82,7 @@ Error setting digest md5
 If OpenSSL is not running in FIPS mode, the MD5 hash functions normally:
 
 ```shell
-$ openssl md5 /dev/null
+openssl md5 /dev/null
 MD5(/dev/null)= d41d8cd98f00b204e9800998ecf8427e
 ```
 
@@ -93,7 +93,7 @@ Follow the [NGINX documentation](https://docs.nginx.com/nginx/admin-guide/instal
 **Verify that NGINX Plus is correctly installed**: Run the following command to confirm that NGINX Plus is installed and is using the expected OpenSSL cryptographic module:
 
 ```shell
-$ nginx -V
+nginx -V
 nginx version: nginx/1.15.2 (nginx-plus-r16)
 built by gcc 4.8.5 20150623 (Red Hat 4.8.5-16) (GCC)
 built with OpenSSL 1.0.2k-fips  26 Jan 2017

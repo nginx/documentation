@@ -159,7 +159,7 @@ The error happens because NGINX has tried to use the private key with the bundle
 Browsers usually store intermediate certificates which they receive and are signed by trusted authorities. So actively used browsers may already have the required intermediate certificates and may not complain about a certificate sent without a chained bundle. To ensure the server sends the complete certificate chain the openssl command-line utility may be used:
 
 ```shell
-$ openssl s_client -connect www.godaddy.com:443
+openssl s_client -connect www.godaddy.com:443
 ...
 Certificate chain
  0 s:/C=US/ST=Arizona/L=Scottsdale/1.3.6.1.4.1.311.60.2.1.3=US
@@ -289,7 +289,7 @@ Only domain names can be passed in SNI. However, some browsers will pass the IP 
 In order to use SNI in NGINX, it must be supported in both the OpenSSL library with which the NGINX binary has been built, as well as the library with which it is being dynamically linked at runtime. OpenSSL supports SNI since the version 0.9.8f if it was built with configuration `option --enable-tlsext`. Since OpenSSL version 0.9.8j, this option is enabled by default. If NGINX was built with SNI support, NGINX shows the following when run with the <span style="white-space: nowrap;">`-V`</span> switch:
 
 ```shell
-$ nginx -V
+nginx -V
 ...
 TLS SNI support enabled
 ...
