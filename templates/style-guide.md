@@ -13,7 +13,7 @@ This style guide is intended for use by any contributors that are writing docume
 
 ## Our preferred style guide
 
-This document contains guidelines specific to the the documentation of F5 NGINX products and open source projects. 
+This document contains guidelines specific to the the documentation of F5 NGINX products and open source projects.
 
 F5 NGINX follows the [Microsoft style guide](https://learn.microsoft.com/en-us/style-guide/welcome/) for user-facing content and the Chicago Manual of Style](https://www.chicagomanualofstyle.org/home.html). Our project uses standard American spelling and our preferred dictionary is the [American Heritage Dictionary](https://ahdictionary.com/).
 
@@ -22,8 +22,8 @@ When writing documentation for our project, align with the default guide's voice
 ## F5 brand trademarks and product names
 
 - Always use the full brand name the first time it occurs in written copy. For example:
- 
-  - F5 NGINX Plus 
+
+  - F5 NGINX Plus
   - F5 NGINX App Protect WAF
   - F5 NGINX Management Suite
 
@@ -32,9 +32,9 @@ When writing documentation for our project, align with the default guide's voice
   - NGINX Plus
   - NGINX App Protect WAF
   - NGINX Management Suite
- 
+
 - Always use the full brand name in the meta description.
-- Never use acronyms instead of the full product names. 
+- Never use acronyms instead of the full product names.
 - We don't need to use trademarks (™) in product documentation.
 
 ## Glossary of preferred terms
@@ -62,7 +62,7 @@ The table provides guidelines about the terms you should and should not use for 
 | certificate authority (CA) | | |
 | certificate request | | |
 | certificate signing request (CSR) | | |
-| certificate/key pair | | | 
+| certificate/key pair | | |
 | check (verb) | Do not use when referring to a checkbox action. Use select. Options for check as a verb: verify, confirm, test, ensure, and so on. | |
 | checkbox (noun, GUI) | Use "select" when referring to a checkbox action.<br>In this example, you could document as either: "For the Protocol Security (DNS) setting, select the Enabled checkbox." – OR – "For the Application Security setting, select Enabled." | |
 | checksum | | |
@@ -89,7 +89,7 @@ The table provides guidelines about the terms you should and should not use for 
 | database | Do not abbreviate as "db". Always a single word. | |
 | DoS/DDoS/3DoS | Spell out on first reference:<br>- denial-of-service (DoS)<br>- distributed denial-of-service (DDoS)<br>- diverse distributed denial-of-service (3DoS) | |
 | e.g., i.e., etc. | Avoid using Latin abbreviations.<br>- e.g. = for example<br>- i.e. = in other words<br>- etc. = and so on | |
-| earlier and later | Use to describe versioning. For example, "This applies to versions earlier than NGINX Plus R31".<br>Do not use before, after, greater, lower, higher, below, above, and so on. | | 
+| earlier and later | Use to describe versioning. For example, "This applies to versions earlier than NGINX Plus R31".<br>Do not use before, after, greater, lower, higher, below, above, and so on. | |
 | either/or | Not recommended.<br>Usually, we mean either, or we mean or. Try to be specific in your writing; people are counting on you for specific instructions. It's okay to use these terms when separated by text, as in, "You can use either the semi-colon or the comma here".| |
 | ellipses […] | Don't use ellipses (dots) in your tech writing.<br>When referring to a menu command that has an ellipse, DO NOT include the ellipse.<br>It's okay to use the word "ellipses" in text. | |
 | enable | Always use direct, active verbs.<br>It's okay to instruct the user to enable a setting. Do not use in the context of a system or product enabling the user to do something.| |
@@ -161,7 +161,7 @@ The table provides guidelines about the terms you should and should not use for 
 | interoperate | Do not use. Recast to operate or clarify connecting relationships as needed. | |
 | IP address and MAC address | Specify whether referring to IP address or MAC address in content, rather than just address for clarity. IP and MAC are always capitalized. | |
 | IP addresses (general usage) | Internal IP addresses that include beginning ranges, such as 172.25, 172.26, 172.27, 172.28, 172.29, 172.30, 172.31, and 172.32 should not appear in external documentation. | |
-| IP addresses in examples | Be careful not to use example IP addresses that belong to another company. Refer to [RFC5737](https://www.ietf.org/rfc/rfc5737.txt) for a list of IP addresses that are approved for use in documentation and examples. | |
+| IP addresses in examples | Be careful not to use example IP addresses that belong to another company. Refer to [RFC5737 for IPv4](https://www.ietf.org/rfc/rfc5737.txt) and [RFC3849 for IPv6](https://www.ietf.org/rfc/rfc3849.txt) for a list of IP addresses that are approved for use in documentation and examples. | |
 | IPsec | Internet Protocol Security (IPsec), two caps. Note internal capitalization style of acronym. Do not use IPSec (three caps). | |
 | IPv4-in-IPv6 vs. IPv4 in IPv6 | You can hyphenate IPv4-in-IPv6 when used as an adjective, such as IPv4-in-IPv6 tunnels. Note that the internal v in IPv4 and IPv6 should remain in lowercase format. | |
 | ISO 9001:2015 certification | For example: ISO 9001:2015 certified" or ISO 9001:2015 certification Don't use: ISO certified or ISO certification (Per: ISO - Certification, for questions about the use of ISO Certificate terms and logo, please contact the GS quality team at *qmt) | |
@@ -320,7 +320,7 @@ The table provides guidelines about the terms you should and should not use for 
 
 ## Topic types and templates
 
-When writing new documentation, use the following [templates](templates):
+When writing new documentation, use the following [templates](/templates):
 
 - Concept Article
 - Getting Started Guide
@@ -329,6 +329,28 @@ When writing new documentation, use the following [templates](templates):
 - Reference Article
 - Troubleshooting
 - Tutorial
+
+## Guidelines for screenshots
+
+The use of screenshots in documentation should be limited to only when necessary, as they can be difficult to maintain. It is recommended to keep the number of screenshots as low as possible to avoid the need for frequent updates. Screenshots may become outdated quickly due to changes in user interfaces or software versions, leading to confusion for users. Therefore, it is important to carefully consider the need for a screenshot and evaluate if alternative methods, such as clear and concise written instructions, can effectively convey the information.
+
+If you decide to include a screenshot in your documentation, follow these guidelines:
+
+- Use PNG format for screenshots.
+- Use lowercase names with dashes to separate words in the file name. For example, `nginx-management-suite-dashboard.png`. Don't use spaces or underscores `_` in the file name.
+- Use a resolution of 72 dpi.
+- Use a width of 800 pixels for full-width screenshots.
+- Don't draw a border around the screenshot. A border is included automatically when the screenshot is placed in the documentation, using CSS.
+- Don't capture mouse the cursor in the screenshot.
+- Make sure that the screenshot includes the item you want to highlight (button, menu item, icon,... ) with the necessary context to locate it in the user interface and understand the action.
+- Avoid unnecessary whitespace in the screenshot. Crop the image to include only the relevant content. If necessary and within your capabilities, use image editing software to move the content closer together, or ask the writers team for help.
+- Use simple arrows and rectangles to highlight the item you want to draw attention to. Use red (or a contrasting color) to make the annotation stand out.
+- Make sure that your screenshots are anonymized and do not contain any sensitive information:
+
+   - Replace any personal information, such as names, email addresses, or phone numbers with generic placeholders.
+   - Replace any sensitive data, such as IP addresses, passwords, or confidential information with generic placeholders. See the related entry in the Glossary table in this document for more information on IP addresses.
+
+- Include a description ( \<img alt\> text) for the screenshot that provides a brief summary of the content and context of the image. This description is used by screen readers to describe the image to visually impaired users. For example, "Screenshot of the NGINX Management Suite dashboard showing the status of the web servers."
 
 
 ## Revision history
@@ -339,5 +361,6 @@ this style guide over time. This guide uses the Major.Minor.Patch
 
 | Edition | Date         | Lead Author(s) | Comments                   |
 |---------|--------------|----------------|----------------------------|
+| 1.1     | May 21, 2024 | Jon Torre      | Added guidelines for screenshots |
 | 1.0     | May 05, 2024 | Travis Martin  | First draft of Style Guide |
 
