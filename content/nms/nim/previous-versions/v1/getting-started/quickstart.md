@@ -530,7 +530,8 @@ ls -lh /etc/ssl/nginx-manager
 
 server {
     #listen 80;
-    listen 443 ssl http2;
+    listen 443 ssl;
+    http2 on;
     server_name nginx-manager.example.com;
     status_zone nginx-manager_noauth_https;
 

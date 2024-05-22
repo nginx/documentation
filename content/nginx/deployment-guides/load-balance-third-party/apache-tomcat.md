@@ -450,7 +450,8 @@ To enable HTTP/2 support, add the `http2` parameter to the `listen` directive in
 
 ```nginx
 # In the 'server' block for HTTPS traffic
-listen 443 ssl http2;
+listen 443 ssl;
+http2 on;
 ```
 
 Directive documentation: [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen)
@@ -490,7 +491,8 @@ server {
 }
 
 server {
-    listen 443 ssl http2;
+    listen 443 ssl;
+    http2 on;
     server_name example.com;
     ssl_certificate     /etc/nginx/ssl/example.com.crt;
     ssl_certificate_key /etc/nginx/ssl/example.com.key;
@@ -910,7 +912,8 @@ server {
 }
 
 server {
-    listen 443 ssl http2;
+    listen 443 ssl;
+    http2 on;
     server_name example.com;
 
     # Required for live activity monitoring of HTTPS traffic

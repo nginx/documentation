@@ -1,7 +1,4 @@
 ---
-description: 'This document provides guidance on securing client connections to NGINX
-  Management Suite as well as securing the traffic between the NGINX Management Suite
-  management plane and NGINX data planes. '
 docs: DOCS-794
 doctypes:
 - tutorial
@@ -11,6 +8,8 @@ title: Secure Client Access and Network Traffic
 toc: true
 weight: 600
 ---
+
+This document provides guidance on securing client connections to NGINX Management Suite as well as securing the traffic between the NGINX Management Suite management plane and NGINX data planes.
 
 {{< shortversions "2.0.0" "latest" "nimvers" >}}
 ## Overview
@@ -31,7 +30,8 @@ Configure the SSL certificate and key inside the NGINX configuration. For instru
 ```nginx
 # Main external HTTPS server, needs port 443
 server {
-    listen 443 ssl http2;
+    listen 443 ssl;
+    http2 on;
     root /var/www/nms;
     server_name _;
 
@@ -383,7 +383,8 @@ When `tls.skip_verify` is set to `false`, the NGINX Agent verifies the server's 
     ```nginx
     # gRPC HTTPS server, needs port 443
     server {
-        listen 443 ssl http2;
+        listen 443 ssl;
+        http2 on;
         root /var/www/nms;
         server_name nginx-manager.example.com;
 
