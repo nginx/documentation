@@ -14,12 +14,12 @@ Stay up-to-date with what's new and improved in NGINX One.
 
 ## May 22, 2024 - v0.20240506.1280775334
 
-### Enhanced Data Plane Key and NGINX Instance Navigation
+### Improved Data Plane Key and NGINX Instance Navigation
 
-We updated the Instance and Data Plane Key pages to make navigation between keys and registered instances easier.
+We've updated the **Instance Details** and **Data Plane Keys** pages to make it easier to go between keys and registered instances.
 
-- The Instance page now provides a link to its data plane key in the Instance Details pane.  Click the Data Plane Key link to view details like: **Status**, **Expiration Date**, and other **Registered Instances**.
-- The Data Plane Keys page now provides a list of links to get more details about each data plane key.
+- On the **Instance Details** page, you can now find a link to the instance's data plane key. Select the "Data Plane Key" link to view important details like status, expiration, and other registered instances.
+- The **Data Plane Keys** page now includes links to more information about each data plane key.
 
 
 ## February 28, 2024 - v0.20240228.1194299632
