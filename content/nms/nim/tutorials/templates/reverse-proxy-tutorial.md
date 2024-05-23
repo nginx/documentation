@@ -56,7 +56,7 @@ Before you start the tutorial, you should:
 - [Install NGINX Instance Manager 2.16 or later]({{< relref "/nms/installation/" >}}). If you're using an earlier version, you'll need to [upgrade]({{< relref "/nms/installation/upgrade-guide.md" >}}) to access the features needed for this tutorial.
 - Have administrative access to NGINX Instance Manager.
 - Understand basic concepts of web servers and reverse proxies.
-- Have basic knowledge of JSON and the NGINX configuration syntax.
+- Have basic knowledge of [Go templates](https://pkg.go.dev/text/template), [JSON schema](https://json-schema.org), and the [NGINX configuration syntax](https://nginx.org/en/docs/beginners_guide.html).
 
 ---
 
@@ -93,7 +93,19 @@ Your base template should now include the following files:
 
 {{<img src="/nim/templates/round-robin-base-template-files.png" alt="List of template files including base.tmpl, http-server.json, http-upstream.json, and location.json" width="300" height="auto">}}
 
-### Add the base.tmpl file details
+The description should come before the code snippet. Providing the explanation first helps readers understand the context and purpose of the code they are about to see.
+
+Here's how it will look:
+
+### Add the base.tmpl file details {#base-tmpl}
+
+This snippet defines the structure of the final NGINX configuration file. It uses [Go's text/template](https://pkg.go.dev/text/template) module to dynamically add input into the NGINX configuration. You can identify where augment templates will be inserted by looking for lines like:
+
+> ``` go
+> {{ $input.ExecTemplateAugments "main" }}
+> ```
+
+The word "main" can be replaced with other augment injection points, such as "http-server" or "http-upstream."
 
 1. In the template file list, select **base.tmpl**.
 2. Copy and paste the following Go template into the **base.tmpl** file editor.
@@ -149,14 +161,17 @@ http {
 }
 ```
 
-
 ### Add the http-server.json file details
+
+This snippet uses the [JSON Schema](https://json-schema.org/) specification to define fields for generating a user interface and serving as the data structure for inputs injected into the template.
+
+To understand how this template connects to the [base template you just added](#base-tmpl), look for the `serverNameInConfig` reference in the   code. This reference links the JSON schema fields to the configuration settings defined in the base template.
 
 1. Select **http-server.json**.
 2. Copy and paste the following JSON schema into the **http-server.json** file editor.
 3. Select **Save** (disk icon).
 
-``` json
+```json
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "HTTP Servers",
@@ -273,6 +288,14 @@ http {
 ```
 
 ### Add the location.json file details
+
+The schema defined in location.json is used to create a user interface for defining multiple location blocks. To understand how this works with the template data, look at the [base.tmpl](#base-tmpl) file and find the section that begins with:
+
+> ``` go
+> {{ range $locationIndex, $location := $server.locations}}
+> ```
+
+Since only one augment will be defined, it's important to link the input from the augment template to a specific location block among the many defined by the user. Duplicate location blocks are generally not useful. To achieve this, the `nameExpression` field in this schema serves as the key element, connecting the content from the augment template to a specific location block. You will see this used in the **location.tmpl** file of the augment template in a later step.
 
 1. Select **location.json**.
 2. Copy and paste the following JSON schema into the **location.json** file editor.
