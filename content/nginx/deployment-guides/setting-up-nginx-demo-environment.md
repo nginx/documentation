@@ -23,7 +23,7 @@ Some commands require `root` privilege. If appropriate for your environment, pre
 
 The steps in this section configure an NGINX Open Source instance as a web server to return a page like the following, which specifies the server name, address, and other information. The page is defined in the <span style="white-space: nowrap; font-weight:bold;">demo-index.html</span> configuration file you create in Step 4 below.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-app1.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-app1.png" alt="" width="1024" height="491" class="aligncenter size-full wp-image-54839" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-nlb-app1.png"><img src="/nginx/images/aws-nlb-app1.png" alt="" width="1024" height="491" class="aligncenter size-full wp-image-54839" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 If you are using these instructions to satisfy the prerequisites for one of our deployment guides, the Appendix in the guide specifies the name of each NGINX Open Source instance and whether to configure **App 1** or **App 2**.
 

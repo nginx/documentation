@@ -126,6 +126,9 @@
 /nginx-management-suite/nginx-agent/nginx-agent-docker-support/ /nginx-agent/installation-upgrade/container-environments/docker-support/ 301
 /nginx-management-suite/nginx-agent/nginx-agent-in-container/ /nginx-agent/installation-upgrade/container-environments/docker-images/ 301
 
+# NIM v1 redirects
+/nginx-management-suite/nim/previous-versions/* /nginx-management-suite/nim/ 301
+
 # NGINX Plus redirects
 /install-community-modules /nginx/admin-guide/installing-nginx/installing-nginx-plus/#installing-nginx-community-modules 301
 /nginx/deployment-guides/aws-high-availability-network-load-balancer/ /nginx/deployment-guides/amazon-web-services/high-availability-network-load-balancer/ 301
@@ -140,7 +143,7 @@
 # Redirects to the backend netlify sites for each product
 /nginxaas/azure/* https://docs-development--n4a-public-docs.netlify.app/nginxaas/azure/:splat 200!
 /nginx-agent/* https://dev--agent-public-docs.netlify.app/nginx-agent/:splat 200!
-/nginx-amplify/* https://dev--amplify-public-docs.netlify.app/nginx-amplify/:splat 200!
+#/nginx-amplify/* https://dev--amplify-public-docs.netlify.app/nginx-amplify/:splat 200!
 /nginx-ingress-controller/* https://development--nginx-kubernetes-ingress.netlify.app/nginx-ingress-controller/:splat 200!
 #/nginx-service-mesh/* https://development--mesh-public-docs.netlify.app/nginx-service-mesh/:splat 200!
 /nginx-gateway-fabric/* https://development--nginx-gateway-fabric.netlify.app/nginx-gateway-fabric/:splat 200!

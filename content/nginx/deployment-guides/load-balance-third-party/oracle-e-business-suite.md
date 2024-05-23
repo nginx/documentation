@@ -70,7 +70,7 @@ Similarly, the instructions assume you have the support of the team that manages
 
 This figure represents a typical load‑balancing architecture:
 
-<img src="https://cdn-1.wp.nginx.com/wp-content/uploads/2015/11/oracle-ebs-typical-lb-architecture.png" alt="![Typical architecture for load balancing three application servers" style="border:2px solid #666666; padding:2px; margin:2px;" />
+<img src="/nginx/images/oracle-ebs-typical-lb-architecture.png" alt="![Typical architecture for load balancing three application servers" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 A load balancer performs the following tasks:
 
@@ -82,7 +82,7 @@ A load balancer performs the following tasks:
 
 Oracle EBS has application tiers and a database tier. A load balancer is used in front of application tiers in order to provide higher performance, availability, security, and traffic management for the application servers.
 
-<img src="https://www.nginx.com/wp-content/uploads/2019/09/oracle-ebs-nginx-plus.png" alt="NGINX Plus as a load balancer between clients and the application tier in an Oracle E-Business Suite deployment" style="border:2px solid #666666; padding:2px; margin:2px;" />
+<img src="/nginx/images/oracle-ebs-nginx-plus.png" alt="NGINX Plus as a load balancer between clients and the application tier in an Oracle E-Business Suite deployment" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 <span id="firewall"></span>
 ## Configuring Firewalls
@@ -202,7 +202,7 @@ Working in the Microsoft Management Console, perform the following steps:
 
 4. On the menu that pops up, select **All Tasks**, then click **Export**.
 
-    ![Certificates snap-in to Microsoft Management Console, used to export SSL/TLS certificate](https://www.nginx.com/wp-content/uploads/2015/11/oracle-ebs-iis-certlm.png)
+    ![Certificates snap-in to Microsoft Management Console, used to export SSL/TLS certificate](/nginx/images/oracle-ebs-iis-certlm.png)
 
 5. In the Certificate Export Wizard window that pops up, click **Yes, export the private key**. (This option appears only if the private key is marked as exportable and you have access to it.)
 
@@ -517,7 +517,8 @@ To enable HTTP/2 support, add the `http2` parameter to the `listen` directive in
 
 ```nginx
 # In the 'server' block for HTTPS traffic
-listen 443 ssl http2;
+listen 443 ssl;
+http2 on;
 ```
 
 Directive documentation: [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen)
@@ -711,7 +712,7 @@ You can include multiple `error_log` and `access_log` directives in the same con
 
 NGINX Plus includes a live activity monitoring interface that provides key load and performance metrics in real time, including TCP metrics in <span style="white-space: nowrap;">NGINX Plus R6</span> and later. Statistics are reported through a RESTful JSON interface, making it very easy to feed the data to a custom or third‑party monitoring tool. There is also a built‑in dashboard. Follow these instructions to deploy it.
 
-<img src="https://www.nginx.com/wp-content/uploads/2019/09/nginx-plus-dashboard_R19-overview.png" alt="Dashboard tab in NGINX Plus live activity monitoring dashboard" style="border:2px solid #666666; padding:2px; margin:2px;" />
+<img src="/nginx/images/nginx-plus-dashboard-r19-overview.png" alt="Dashboard tab in NGINX Plus live activity monitoring dashboard" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 The quickest way to configure live activity monitoring and the built‑in dashboard is to download the sample configuration file from the NGINX website and modify it as necessary. For more complete instructions, see [Live Activity Monitoring of NGINX Plus in 3 Simple Steps](https://www.nginx.com/blog/live-activity-monitoring-nginx-plus-3-simple-steps/) on our blog.
 
@@ -892,7 +893,8 @@ http {
     }
 
     server {
-        listen 443 ssl http2;
+        listen 443 ssl;
+        http2 on;
         server_name company.com;
         ssl_certificate     /etc/nginx/ssl/certificate-name.crt;
         ssl_certificate_key /etc/nginx/ssl/private-key.key;

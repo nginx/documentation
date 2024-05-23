@@ -47,7 +47,7 @@ NGINX Plus provides both reverse‑proxy features and load‑balancing features
 
 The setup in this guide combines AWS NLB, AWS target groups, Amazon Elastic Compute Cloud (EC2) instances running NGINX Plus, and EC2 instances running NGINX Open Source, which together provide a highly available, all‑active NGINX and NGINX Plus solution.
 
-<img src="https://www.nginx.com/wp-content/uploads/2019/10/NGINX-Plus-HA-AWS-NLB.png" alt="" width="1024" height="577" class="aligncenter size-full wp-image-54857" style="border:2px solid #666666; padding:2px; margin:2px;" />
+<img src="/nginx/images/nginx-plus-ha-aws-nlb.png" alt="" width="1024" height="577" class="aligncenter size-full wp-image-54857" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 AWS NLB handles Layer 4 TCP connections and balances traffic using a flow hash routing algorithm. By default, an AWS NLB has a DNS name to which an IP address is assigned dynamically, but you can optionally attach an Elastic IP address to the AWS NLB to ensure that it will always be reachable at the same IP address.
 
@@ -88,30 +88,30 @@ The first step is to allocate an Elastic IP address, which becomes the fixed IP 
 
 2. In the left navigation bar, select **Elastic IPs**, then click either of the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Allocate new address </span> buttons.
 
-    <a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-eip-open.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-eip-open.png" alt="" width="1024" height="466" class="aligncenter size-full wp-image-54932" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+    <a href="/nginx/images/aws-nlb-eip-open.png"><img src="/nginx/images/aws-nlb-eip-open.png" alt="" width="1024" height="466" class="aligncenter size-full wp-image-54932" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 3. In the **Allocate new address** window that opens, click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Allocate </span> button.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-eip-allocate-new.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-eip-allocate-new.png" alt="" width="1024" height="285" class="aligncenter size-full wp-image-54853" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-nlb-eip-allocate-new.png"><img src="/nginx/images/aws-nlb-eip-allocate-new.png" alt="" width="1024" height="285" class="aligncenter size-full wp-image-54853" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 4. When the message appears indicating that the request for an Elastic IP address succeeded, click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Close </span> button.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-eip-new-success.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-eip-new-success.png" alt="" width="1024" height="406" class="aligncenter size-full wp-image-54852" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-nlb-eip-new-success.png"><img src="/nginx/images/aws-nlb-eip-new-success.png" alt="" width="1024" height="406" class="aligncenter size-full wp-image-54852" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 The new Elastic IP address appears on the **Elastic IPs** dashboard.
 
-<a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-eip-new-display.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-eip-new-display.png" alt="" width="1019" height="450" class="aligncenter size-full wp-image-54851" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+<a href="/nginx/images/aws-nlb-eip-new-display.png"><img src="/nginx/images/aws-nlb-eip-new-display.png" alt="" width="1019" height="450" class="aligncenter size-full wp-image-54851" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 <span id="nlb-create"></span>
 ### Creating the AWS NLB
 
 1. In the left navigation bar, select **Load Balancers**, then click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create Load Balancer </span> button.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-load-balancer-open.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-load-balancer-open.png" alt="" width="1025" height="438" class="aligncenter size-full wp-image-54850" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-nlb-load-balancer-open.png"><img src="/nginx/images/aws-nlb-load-balancer-open.png" alt="" width="1025" height="438" class="aligncenter size-full wp-image-54850" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 2. In the **Select load balancer type** window that opens, click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create </span> button in the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Network Load Balancer </span> panel (the center one).
 
-   <a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-load-balancer-types.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-load-balancer-types.png" alt="" width="1024" height="330" class="aligncenter size-full wp-image-54849" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-nlb-load-balancer-types.png"><img src="/nginx/images/aws-nlb-load-balancer-types.png" alt="" width="1024" height="330" class="aligncenter size-full wp-image-54849" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 3. In the **Step 1: Configure Load Balancer** window that opens, enter the following values:
    - In the **Basic Configuration** section:
@@ -124,7 +124,7 @@ The new Elastic IP address appears on the **Elastic IPs** dashboard.
         - If you set up your instances with the instructions in [Creating Amazon EC2 Instances for NGINX Open Source and NGINX Plus]({{< relref "ec2-instances-for-nginx.md" >}}), select the default subnet within the default [Amazon Virtual Private Cloud](https://aws.amazon.com/vpc/) (VPC) to target a single availability zone.
         - If you set up your instances using our scripts for [Packer and Terraform](#create-instances-automated), use the <span style="white-space: nowrap; font-weight:bold;">aws-nlb-subnet</span> within the <span style="white-space: nowrap; font-weight:bold;">aws-nlb-vpc</span> VPC to target a single availability zone.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-load-balancer-configure.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-load-balancer-configure.png" alt="" width="1024" height="921" class="aligncenter size-full wp-image-54848" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-nlb-load-balancer-configure.png"><img src="/nginx/images/aws-nlb-load-balancer-configure.png" alt="" width="1024" height="921" class="aligncenter size-full wp-image-54848" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 4. When you select an availability zone in the table, a drop‑down menu appears in the **Elastic IP** column. Select the address you allocated in [Allocating an Elastic IP Address](#nlb-eip).
 
@@ -152,7 +152,7 @@ In the **Step 2: Configure Routing** window that opens, you create a _target gro
     - **Timeout** – Number of seconds the AWS NLB waits for a response to the health check before considering the instance unhealthy.
     - **Interval** – Number of seconds between health checks.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-load-balancer-routing.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-load-balancer-routing.png" alt="" width="1024" height="840" class="aligncenter size-full wp-image-54847" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-nlb-load-balancer-routing.png"><img src="/nginx/images/aws-nlb-load-balancer-routing.png" alt="" width="1024" height="840" class="aligncenter size-full wp-image-54847" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
    If you want to use HTTP‑based health checks, select <span style="color:#666666; font-weight:bolder">HTTP</span> or <span style="color:#666666; font-weight:bolder">HTTPS</span> in the **Protocol** field instead of <span style="color:#666666; font-weight:bolder">TCP</span>. Two additional fields open (not shown in the screenshot):
 
@@ -169,11 +169,11 @@ In the **Step 3: Register Targets** window that opens, you add instances to the 
 
 1. In the **Instances** table, click the radio button in the left‑most column for the two NGINX Plus load balancer instances, <span style="color:#666666; font-weight:bolder">ngx-plus-1</span> and <span style="color:#666666; font-weight:bolder">nginx-plus-2</span>.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-load-balancer-register-targets.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-load-balancer-register-targets.png" alt="" width="1024" height="847" class="aligncenter size-full wp-image-54846" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-nlb-load-balancer-register-targets.png"><img src="/nginx/images/aws-nlb-load-balancer-register-targets.png" alt="" width="1024" height="847" class="aligncenter size-full wp-image-54846" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 2. Click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Add to registered </span> button above the table. The instances are added to the **Registered targets** table.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-load-balancer-targets-display.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-load-balancer-targets-display.png" alt="" width="1024" height="874" class="aligncenter size-full wp-image-54845" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-nlb-load-balancer-targets-display.png"><img src="/nginx/images/aws-nlb-load-balancer-targets-display.png" alt="" width="1024" height="874" class="aligncenter size-full wp-image-54845" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 3. Click the <span style="background-color:#cccccc; font-weight:bolder; white-space: nowrap;"> Next: Review </span> button in the lower‑right corner of the window.
 
@@ -184,27 +184,27 @@ In the **Step 4: Review** window that opens:
 
 1. Verify that the settings are correct. If so, click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create </span> button in the lower‑right corner of the window. To change settings, click the <span style="background-color:#cccccc; font-weight:bolder; white-space: nowrap;"> Previous </span> button to go back to previous screens.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-load-balancer-review.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-load-balancer-review.png" alt="" width="1023" height="789" class="aligncenter size-full wp-image-54843" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-nlb-load-balancer-review.png"><img src="/nginx/images/aws-nlb-load-balancer-review.png" alt="" width="1023" height="789" class="aligncenter size-full wp-image-54843" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 2. The AWS NLB is provisioned. When the success message appears, click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Close </span> button to return to the **Load Balancers** dashboard.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-load-balancer-success.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-load-balancer-success.png" alt="" width="1024" height="345" class="aligncenter size-full wp-image-54842" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-nlb-load-balancer-success.png"><img src="/nginx/images/aws-nlb-load-balancer-success.png" alt="" width="1024" height="345" class="aligncenter size-full wp-image-54842" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 3. The **Load Balancers** dashboard opens. As noted in the previous **Load Balancer Creation Status** window, it can take a few minutes to provision the AWS NLB. When the value in the **State** column of the table changes to <span style="color:#666666; font-weight:bolder">active</span>, click the radio button in the left‑most column to display details about the AWS NLB.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2018/03/aws-nlb-load-balancer-active-state.png"><img src="https://www.nginx.com/wp-content/uploads/2018/03/aws-nlb-load-balancer-active-state.png" alt="" width="1024" height="634" class="aligncenter size-full wp-image-54841" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-nlb-load-balancer-active-state.png"><img src="/nginx/images/aws-nlb-load-balancer-active-state.png" alt="" width="1024" height="634" class="aligncenter size-full wp-image-54841" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 4. To verify that the AWS NLB is working correctly, open a new browser window and navigate to the AWS NLB's public DNS name, which appears in the **DNS name** field in the **Basic Configuration** section of the dashboard. [If you copy and paste the DNS name, be sure not to include the parenthesized words at the end, <span style="color:#666666; font-weight:bolder">(A Record)</span>.]
 
    The default **Welcome to nginx!** page indicates that the AWS NLB has successfully forwarded a request to one of the two NGINX Plus instances.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-welcome-to-nginx.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-welcome-to-nginx.png" alt="" width="1023" height="328" class="aligncenter size-full wp-image-54840" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-nlb-welcome-to-nginx.png"><img src="/nginx/images/aws-nlb-welcome-to-nginx.png" alt="" width="1023" height="328" class="aligncenter size-full wp-image-54840" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 5. To verify that the NGINX Plus load balancer is working correctly, add <span style="white-space: nowrap; font-weight:bold;">/backend-one</span> and then <span style="white-space: nowrap; font-weight:bold;">/backend-two</span> to the public DNS name. The pages indicate that you have reached NGINX instances serving the two backend applications, <span style="color:#666666; font-weight:bolder">App 1</span> and <span style="color:#666666; font-weight:bolder">App 2</span>.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-app1.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-app1.png" alt="" width="1024" height="491" class="aligncenter size-full wp-image-54839" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-nlb-app1.png"><img src="/nginx/images/aws-nlb-app1.png" alt="" width="1024" height="491" class="aligncenter size-full wp-image-54839" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
-   <a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-app2-v2.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-app2-v2.png" alt="" width="1024" height="491" class="aligncenter size-full wp-image-54937" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-nlb-app2-v2.png"><img src="/nginx/images/aws-nlb-app2-v2.png" alt="" width="1024" height="491" class="aligncenter size-full wp-image-54937" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 <span id="appendix"></span>
 ## Appendix
@@ -244,14 +244,14 @@ Assign the following names to the instances, and then install the indicated NGIN
   - <span style="color:#666666; font-weight:bolder">ngx-plus-1</span>
   - <span style="color:#666666; font-weight:bolder">ngx-plus-2</span>
 
-<a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-instances-summary.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-instances-summary.png" alt="" width="1024" height="263" class="aligncenter size-full wp-image-54856" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+<a href="/nginx/images/aws-nlb-instances-summary.png"><img src="/nginx/images/aws-nlb-instances-summary.png" alt="" width="1024" height="263" class="aligncenter size-full wp-image-54856" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 <span id="configure-web-servers"></span>
 ### Configuring NGINX Open Source on the Web Servers
 
 For the purposes of this guide, you configure the NGINX Open Source instances as web servers that return a page specifying the server name, address, and other information. As an example, here's the page returned by <span style="color:#666666; font-weight:bolder; white-space: nowrap;">App 1</span>:
 
-   <a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-app1.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-app1.png" alt="" width="1024" height="491" class="aligncenter size-full wp-image-54839" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-nlb-app1.png"><img src="/nginx/images/aws-nlb-app1.png" alt="" width="1024" height="491" class="aligncenter size-full wp-image-54839" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 <span style="white-space: nowrap;">Step‑by‑step</span> instructions are provided in our deployment guide, <a href="../../setting-up-nginx-demo-environment#nginx-oss">Setting Up an NGINX Demo Environment</a>.
 

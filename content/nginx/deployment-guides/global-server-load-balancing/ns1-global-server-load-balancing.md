@@ -53,19 +53,19 @@ The solution functions alongside other NS1 capabilities, such as geo‑proximal 
 
 1. Log in to your NS1 account, click <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> ZONES </span> in the title bar to open the **Your Zones** page, and click the <span style="color:#ea1f71; font-family:helvetica; white-space: nowrap;">+ Add Zone</span> button in the upper right corner.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/09/NS1_ZONES-tab.png" alt="Screenshot of NS1 GUI: ZONES tab" width="1024" height="442" class="aligncenter size-full wp-image-63029" />
+   <img src="/nginx/images/ns1-zones-tab.png" alt="Screenshot of NS1 GUI: ZONES tab" width="1024" height="442" class="aligncenter size-full wp-image-63029" />
 
 2. In the **Add Zone** pop‑up window, enter the domain name (**nginxgslb.cf** in this guide) in the **Domain Name** field. We're not changing any of the default settings, but see the [NS1 documentation](https://help.ns1.com/hc/en-us/articles/360022250193) for information about TTL <span style="white-space: nowrap;">(time-to-live)</span> settings. Click the <span style="color:#ea1f71; font-family:helvetica; white-space: nowrap;">Save Zone</span> button.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/09/NS1_Add-Zone-popup.png" alt="Screenshot of NS1 GUI: Add Zone popup" width="612" height="556" class="aligncenter size-full wp-image-63028" />
+   <img src="/nginx/images/ns1-add-zone-popup.png" alt="Screenshot of NS1 GUI: Add Zone popup" width="612" height="556" class="aligncenter size-full wp-image-63028" />
 
 3. On the page that opens, click the <span style="background-color:#000000; color:white; font-family:helvetica;"> NAMESERVERS </span> tab and follow [these instructions](https://help.ns1.com/hc/en-us/articles/360016306973-Delegating-a-domain-to-NS1) to delegate the new domain name to NS1.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/09/NS1_NAMESERVERS-page.png" alt="Screenshot of NS1 GUI: NAMESERVERS page" width="1024" height="443" class="aligncenter size-full wp-image-63027" />
+   <img src="/nginx/images/ns1-nameservers-page.png" alt="Screenshot of NS1 GUI: NAMESERVERS page" width="1024" height="443" class="aligncenter size-full wp-image-63027" />
 
 4. Click the <span style="background-color:#000000; color:white; font-family:helvetica;"> RECORDS </span> tab. As shown in the screenshot, an ``NS`` (Name Server) record has already been created automatically and appears in the white box. Click either <span style="color:#ea1f71; font-family:helvetica; white-space: nowrap;">Add Record</span> button.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/09/NS1_RECORDS-page_NS.png" alt="Screenshot of NS1 GUI: RECORDS page" width="1024" height="948" class="aligncenter size-full wp-image-63026" />
+   <img src="/nginx/images/ns1-records-page-ns.png" alt="Screenshot of NS1 GUI: RECORDS page" width="1024" height="948" class="aligncenter size-full wp-image-63026" />
 
 5. The **Add Record** window pops up. Enter the following values:
 
@@ -76,18 +76,18 @@ The solution functions alongside other NS1 capabilities, such as geo‑proximal 
 
    Click the <span style="background-color:#ea1f71; color:white; font-family:helvetica; white-space: nowrap;"> Save All Changes </span> button.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/09/NS1_Add-Record-popup.png" alt="Screenshot of NS1 GUI: Add Record popup" width="612" height="882" class="aligncenter size-full wp-image-63025" />
+   <img src="/nginx/images/ns1-add-record-popup.png" alt="Screenshot of NS1 GUI: Add Record popup" width="612" height="882" class="aligncenter size-full wp-image-63025" />
 
 6. The new ``A`` record appears on the <span style="background-color:#000000; color:white; font-family:helvetica;"> RECORDS </span> tab. Click the <span style="background-color:#ea1f71; color:white; font-family:helvetica; white-space: nowrap;"> 3 Answers </span> button at the right end of its row to open the details page for the ``A`` record. (The screenshot – like subsequent screenshots of this page and the details page – shows only the bottom half of the tab.)
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/09/NS1_2-Records.png" alt="Screenshot of NS1 GUI: NS and A records for nginxgslb.cf" width="1024" height="377" class="aligncenter size-full wp-image-63024" />
+   <img src="/nginx/images/ns1-2-records.png" alt="Screenshot of NS1 GUI: NS and A records for nginxgslb.cf" width="1024" height="377" class="aligncenter size-full wp-image-63024" />
 
 7. The window that opens shows details for the ``A`` record. The IP addresses of the NGINX Plus instances appear in the **Ungrouped Answers** section. Click the stacked dots icon at the right end of the field for the first address (10.10.10.1 in this guide) and select <span style="color:#ea1f71; font-family:helvetica; white-space: nowrap;">Edit Answer Metadata</span>.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/09/NS1_3-Answers.png" alt="Screenshot of NS1 GUI: list of answers for nginxgslb.cf" width="1024" height="393" class="aligncenter size-full wp-image-63023" />
+   <img src="/nginx/images/ns1-3-answers.png" alt="Screenshot of NS1 GUI: list of answers for nginxgslb.cf" width="1024" height="393" class="aligncenter size-full wp-image-63023" />
 
 8. In the **Answer Metadata** window that pops up, click <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> Up/down </span> in the <span style="background-color:#e8ebed; font-family:helvetica; white-space: nowrap;"> STATUS </span> section of the <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> SETTING </span> column, if it is not already selected. Click the **Select** box in the <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> AVAILABLE </span> column, and then select either <span style="color:#666666; font-weight:bolder; font-family:helvetica">Up</span> or <span style="color:#666666; font-weight:bolder; font-family:helvetica">Down</span> from the drop‑down menu. In this guide we're selecting <span style="color:#666666; font-weight:bolder; font-family:helvetica">Up</span> to indicate that the NGINX Plus instance is operational.
-   <img src="https://www.nginx.com/wp-content/uploads/2019/09/NS1_Answer-Metadata-STATUS.png" alt="Screenshot of NS1 GUI: setting STATUS answer metadata" width="1024" height="1105" class="aligncenter size-full wp-image-63022" />
+   <img src="/nginx/images/ns1-answer-metadata-status.png" alt="Screenshot of NS1 GUI: setting STATUS answer metadata" width="1024" height="1105" class="aligncenter size-full wp-image-63022" />
 
 9. Click a value in the <span style="background-color:#e8ebed; font-family:helvetica; white-space: nowrap;"> GEOGRAPHICAL </span> section of the <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> SETTING </span> column and specify the location of the NGINX Plus instance. Begin by choosing one of the several types of codes that NS1 offers for identifying locations:
 
@@ -101,7 +101,7 @@ The solution functions alongside other NS1 capabilities, such as geo‑proximal 
 
    In this guide we're using **Country/countries** codes. For the first NGINX Plus instance, we select <span style="color:#666666; font-weight:bolder; font-family:helvetica;">Americas > Northern America > United States (US)</span> and click the <span style="background-color:#ea1f71; color:white; font-family:helvetica;"> Ok </span> button.
 
-    <img src="https://www.nginx.com/wp-content/uploads/2019/09/NS1_Answer-Metadata-GEOGRAPHICAL.png" alt="Screenshot of NS1 GUI: setting GEOGRAPHICAL answer metadata" width="1024" height="1024" class="aligncenter size-full wp-image-63021" />
+    <img src="/nginx/images/ns1-answer-metadata-geographical.png" alt="Screenshot of NS1 GUI: setting GEOGRAPHICAL answer metadata" width="1024" height="1024" class="aligncenter size-full wp-image-63021" />
 
 10. Repeat Steps 7–9 for both of the other two NGINX Plus instances. For the country in Step 9, we're selecting <span style="color:#666666; font-weight:bolder; font-family:helvetica;">Europe > Western Europe > Germany (DE)</span> for NGINX Plus instance 2 and <span style="color:#666666; font-weight:bolder; font-family:helvetica;">Asia > South‑Eastern Asia > Singapore (SG)</span> for NGINX Plus instance 3.
 
@@ -109,7 +109,7 @@ The solution functions alongside other NS1 capabilities, such as geo‑proximal 
 
 11. Click the <span style="background-color:#ea1f71; color:white; font-family:helvetica; white-space: nowrap;"> Create Filter Chain </span> button to create a filter chain based on the **Up/Down** and **Country/countries** metadata (for an overview of filter chains, see the [NS1 documentation](https://ns1.com/ns1-filter-chain)).
 
-    <img src="https://www.nginx.com/wp-content/uploads/2019/09/NS1_Create-Filter-Chain.png" alt="Screenshot of NS1 GUI: creating filter chain" width="1024" height="538" class="aligncenter size-full wp-image-63020" />
+    <img src="/nginx/images/ns1-create-filter-chain.png" alt="Screenshot of NS1 GUI: creating filter chain" width="1024" height="538" class="aligncenter size-full wp-image-63020" />
 
 12. In the **Add Filters** window that pops up, click the plus sign (+) on the button for each filter you want to apply. In this guide, we're configuring the filters in this order:
 
@@ -119,7 +119,7 @@ The solution functions alongside other NS1 capabilities, such as geo‑proximal 
 
     Click the <span style="background-color:#ea1f71; color:white; font-family:helvetica; white-space: nowrap;"> Save Filter Chain </span>  button.
 
-    <img src="https://www.nginx.com/wp-content/uploads/2019/09/NS1_Add-Filters-summary.png" alt="Screenshot of NS1 GUI: Add Filters page with three filters defined" width="1024" height="543" class="aligncenter size-full wp-image-63019" />
+    <img src="/nginx/images/ns1-add-filters-summary.png" alt="Screenshot of NS1 GUI: Add Filters page with three filters defined" width="1024" height="543" class="aligncenter size-full wp-image-63019" />
 
 <span id="agent-install"></span>
 ## Installing the NS1 Agent
@@ -343,11 +343,11 @@ First we perform these steps to create the shed filter:
 
 1. Navigate to the details page of the ``A`` record for **nginxgslb.cf** under the <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> ZONES </span> tab, if it is not already open. Click the <span style="background-color:#ea1f71; color:white; font-family:helvetica; white-space: nowrap;"> Edit Filter Chain </span> button.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/09/NS1_Edit-Filter-Chain.png" alt="Screenshot of NS1 GUI: clicking Edit Filter Chain button" width="1024" height="664" class="aligncenter size-full wp-image-63018" />
+   <img src="/nginx/images/ns1-edit-filter-chain.png" alt="Screenshot of NS1 GUI: clicking Edit Filter Chain button" width="1024" height="664" class="aligncenter size-full wp-image-63018" />
 
 2. In the **Add Filters** window that opens, click the plus sign (+) on the box labeled **Shed Load** in the <span style="background-color:#28ccbb; color:white; font-family:helvetica; white-space: nowrap;"> HEALTHCHECKS </span> section.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/09/NS1_Add-Filters-Shed-Load.png" alt="Screenshot of NS1 GUI: clicking Shed Load button on Add Filters page" width="1022" height="701" class="aligncenter size-full wp-image-63017" />
+   <img src="/nginx/images/ns1-add-filters-shed-load.png" alt="Screenshot of NS1 GUI: clicking Shed Load button on Add Filters page" width="1022" height="701" class="aligncenter size-full wp-image-63017" />
 
 3. The **Shed Load** filter is added as the fourth (lowest) box in the **Active Filters** section. Move it to be third by clicking and dragging it above the <span style="white-space: nowrap; font-weight:bold;">Select First N</span> box.
 
@@ -355,11 +355,11 @@ First we perform these steps to create the shed filter:
 
 5. Back on the ``A`` record's details page, in the **Filter Chain** column click the **Shed Load** box, which expands to display an explanation of how the filter works. Click the label on the white box at the bottom of the explanation and select **Active connections** from the drop‑down menu.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/09/NS1_Shed-Load-Active-connections.png" alt="Screenshot of NS1 GUI: selecting Active connections for shed filter" width="1024" height="959" class="aligncenter size-full wp-image-63016" />
+   <img src="/nginx/images/ns1-shed-load-active-connections.png" alt="Screenshot of NS1 GUI: selecting Active connections for shed filter" width="1024" height="959" class="aligncenter size-full wp-image-63016" />
 
 6. In the **Ungrouped Answers** section, click the stacked dots icon at the right end of the field for the US‑based NGINX Plus instance (10.10.10.1) and select <span style="color:#ea1f71; font-family:helvetica; white-space: nowrap;">Edit Answer Metadata</span>.
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/09/NS1_Edit-Answer-Metadata-connections.png" alt="Screenshot of NS1 GUI: clicking Edit Answer Metadata button for shed filter" width="1024" height="204" class="aligncenter size-full wp-image-63015" />
+   <img src="/nginx/images/ns1-edit-answer-metadata-connections.png" alt="Screenshot of NS1 GUI: clicking Edit Answer Metadata button for shed filter" width="1024" height="204" class="aligncenter size-full wp-image-63015" />
 
 7. In the **Answer Metadata** window that opens, set values for the following metadata. In each case, click the icon in the <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> FEED </span> column of the metadata's row, then select or enter the indicated value in the <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> AVAILABLE </span> column. (For testing purposes, we're setting very small values for the watermarks so that the threshold is exceeded very quickly.)
 
@@ -369,7 +369,7 @@ First we perform these steps to create the shed filter:
 
    After setting all three, click the <span style="background-color:#ea1f71; color:white; font-family:helvetica;"> Ok </span> button. (The screenshot shows the window just before this action.)
 
-   <img src="https://www.nginx.com/wp-content/uploads/2019/09/NS1_Shed-filter-metadata.png" alt="Screenshot of NS1 GUI: Answer Metadata page for shed filter" width="1024" height="1131" class="aligncenter size-full wp-image-63014" />
+   <img src="/nginx/images/ns1-shed-filter-metadata.png" alt="Screenshot of NS1 GUI: Answer Metadata page for shed filter" width="1024" height="1131" class="aligncenter size-full wp-image-63014" />
 
 #### Testing the Threshold
 

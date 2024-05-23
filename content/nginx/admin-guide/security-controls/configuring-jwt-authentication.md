@@ -197,7 +197,7 @@ where:
 - the `k` field is the generated symmetric key (base64url-encoded) basing on a `secret` (`fantasticjwt` in the example). The secret can be generated with the following command:
 
 ```shell
-$ echo -n fantasticjwt | base64 | tr '+/' '-_' | tr -d '='
+echo -n fantasticjwt | base64 | tr '+/' '-_' | tr -d '='
 ZmFudGFzdGljand0
 ```
 

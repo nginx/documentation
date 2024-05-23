@@ -445,7 +445,8 @@ To enable HTTP/2 support, add the `http2` parameter to the [listen](https://ngin
 
 ```nginx
 # In the 'server' block for HTTPS traffic
-listen 443 ssl http2;
+listen 443 ssl;
+http2 on;
 ```
 
 Directive documentation: [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen)
@@ -488,7 +489,8 @@ server {
 }
 
 server {
-    listen 443 ssl http2;
+    listen 443 ssl;
+    http2 on;
     server_name example.com;
 
     ssl_certificate           /etc/nginx/ssl/certificate-name;
@@ -645,7 +647,7 @@ For information about customizing health checks, see the [NGINX Plus Admin Gui
 
 NGINX Plus includes a live activity monitoring interface that provides key load and performance metrics in real time, including TCP metrics in <span style="white-space: nowrap;">NGINX Plus R6</span> and later. Statistics are reported through a RESTful JSON interface, making it very easy to feed the data to a custom or third‑party monitoring tool. There is also a built‑in dashboard. Follow these instructions to deploy it.
 
-<img src="https://www.nginx.com/wp-content/uploads/2019/09/nginx-plus-dashboard_R19-overview.png" alt="Dashboard tab in NGINX Plus live activity monitoring dashboard" style="border:2px solid #666666; padding:2px; margin:2px;" />
+<img src="/nginx/images/nginx-plus-dashboard-r19-overview.png" alt="Dashboard tab in NGINX Plus live activity monitoring dashboard" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 For more information about live activity monitoring, see the [NGINX Plus Admin Guide]({{< relref "../../admin-guide/monitoring/live-activity-monitoring.md" >}}).
 
@@ -823,7 +825,8 @@ server {
 }
 
 server {
-    listen 443 ssl http2;
+    listen 443 ssl;
+    http2 on;
     server_name example.com;
 
     # Required for NGINX Plus to provide extended status information
