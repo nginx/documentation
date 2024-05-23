@@ -1,21 +1,12 @@
 ---
 title: "Set up a round-robin reverse proxy with an augment template"
 date: 2024-03-12T16:01:58-07:00
-# Change draft status to false to publish doc
 draft: false
-# Description
-# Enter a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: ""
-# Assign weights in increments of 100
-weight: 
+description: "Learn how to set up a round-robin reverse proxy using NGINX Instance Manager with base and augment templates."
+weight: 100
 toc: true
 tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
 docs: "DOCS-000"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
 categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
 doctypes: ["tutorial"]
 journeys: ["researching", "getting started", "using", "renewing", "self service"]
@@ -32,10 +23,9 @@ authors: []
   }
 </style>
 
-
 ## Overview
 
-In this tutorial, you'll learn how to set up a round-robin reverse proxy using base and augment templates in NGINX Instance Manager. This tutorial is intended for network administrators and developers familiar with basic NGINX configurations. By the end of this tutorial, you'll be able to:
+This tutorial teaches you how to set up a round-robin reverse proxy using base and augment templates in NGINX Instance Manager. This tutorial is intended for network administrators and developers familiar with basic NGINX configurations. By the end of this tutorial, you'll be able to:
 
 - Create and configure a base template.
 - Create and configure an augment template to extend the functionality of the base template.
@@ -70,9 +60,9 @@ In this section, you'll learn how to create a [base config template]({{< relref 
 4. Select **Create**.
 5. Select **New**.
 6. Give the template a name. For this tutorial, we'll call the base template *rr_base_template*.
-7. Optionally, provide a description for the template. (For example *Round-Robin Base Template*)
+7. Optionally, provide a description for the template. (For example, *Round-Robin Base Template*)
 8. Select **Draft** for the template status.
-9. Select **Base** for the for type.
+9. Select **Base** for the template type.
 10. Select **Submit**.
 
 ### Add the base template files
@@ -93,10 +83,6 @@ Your base template should now include the following files:
 
 {{<img src="/nim/templates/round-robin-base-template-files.png" alt="List of template files including base.tmpl, http-server.json, http-upstream.json, and location.json" width="300" height="auto">}}
 
-The description should come before the code snippet. Providing the explanation first helps readers understand the context and purpose of the code they are about to see.
-
-Here's how it will look:
-
 ### Add the base.tmpl file details {#base-tmpl}
 
 This snippet defines the structure of the final NGINX configuration file. It uses [Go's text/template](https://pkg.go.dev/text/template) module to dynamically add input into the NGINX configuration. You can identify where augment templates will be inserted by looking for lines like:
@@ -105,7 +91,7 @@ This snippet defines the structure of the final NGINX configuration file. It use
 > {{ $input.ExecTemplateAugments "main" }}
 > ```
 
-The word "main" can be replaced with other augment injection points, such as "http-server" or "http-upstream." blah
+The word "main" can be replaced with other augment injection points, such as "http-server" or "http-upstream."
 
 1. In the template file list, select **base.tmpl**.
 2. Copy and paste the following Go template into the **base.tmpl** file editor.
@@ -119,14 +105,14 @@ The word "main" can be replaced with other augment injection points, such as "ht
 {{ $input := .}}
 {{ $baseData := .Data.V1}}
 
-{{/* Augments targeting the main context are injected here */}}
+{{/* Inject augments targeting the main context here */}}
 {{ $input.ExecTemplateAugments "main" }}
 events {
     worker_connections  1024;
 }
 
 http {
-    {{/* Augments targeting the http context are injected here */}}
+    {{/* Inject augments targeting the http context here */}}
     {{ $input.ExecTemplateAugments "http" }}
     {{ range $upstreamIndex, $upstream := $baseData.http.upstreams }}
           upstream {{$upstream.templateInput.nameInConfig}} {
@@ -139,7 +125,7 @@ http {
                   server {{$upstreamServer.address}}{{$port}};
               {{end}}
 
-              {{/* Augments targeting the this $upstream are injected here */}}
+              {{/* Inject augments targeting this $upstream here */}}
               {{ $input.ExecTemplateAugments "http-upstream" $upstream }}
           }
     {{end}}
@@ -149,12 +135,12 @@ http {
             server_name {{$server.templateInput.serverNameInConfig}};
             {{ range $locationIndex, $location := $server.locations}}
                 location {{$location.templateInput.locationMatchExpression}} {
-                  {{/* Augments targeting the this $location are injected here */}}
+                  {{/* Inject augments targeting this $location here */}}
                   {{ $input.ExecTemplateAugments "location" $location $server }}
                 }
             {{end}}
 
-            {{/* Augments targeting the this $server are injected here */}}
+            {{/* Inject augments targeting this $server here */}}
             {{ $input.ExecTemplateAugments "http-server" $server }}
         }
     {{end}}
@@ -163,9 +149,11 @@ http {
 
 ### Add the http-server.json file details
 
-This snippet uses the [JSON Schema](https://json-schema.org/) specification to define fields for generating a user interface and serving as the data structure for inputs injected into the template.
+This snippet uses the [JSON Schema](https://json
 
-To understand how this template connects to the [base template you just added](#base-tmpl), look for the `serverNameInConfig` reference in the   code. This reference links the JSON schema fields to the configuration settings defined in the base template.
+-schema.org/) specification to define fields for generating a user interface and serving as the data structure for inputs injected into the template.
+
+To understand how this template connects to the [base template you just added](#base-tmpl), look for the `serverNameInConfig` reference in the code. This reference links the JSON schema fields to the configuration settings defined in the base template.
 
 1. Select **http-server.json**.
 2. Copy and paste the following JSON schema into the **http-server.json** file editor.
@@ -216,7 +204,7 @@ To understand how this template connects to the [base template you just added](#
 2. Copy and paste the following JSON schema into the **http-upstream.json** file editor.
 3. Select **Save** (disk icon).
 
-``` json
+```json
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "HTTP Upstreams",
@@ -301,7 +289,7 @@ Since only one augment will be defined, it's important to link the input from th
 2. Copy and paste the following JSON schema into the **location.json** file editor.
 3. Select **Save** (disk icon).
 
-``` json
+```json
 {
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "title": "Locations",
@@ -324,7 +312,7 @@ Since only one augment will be defined, it's important to link the input from th
        "locationMatchExpression": {
          "title": "Match Expression",
          "type": "string",
-         "description": "The prefix to match request   paths by.",
+         "description": "The prefix to match request paths by.",
          "examples": [
            "/users"
          ]
@@ -357,7 +345,7 @@ To create the augment template, take the following steps:
 3. Give the template a name. For this tutorial, we'll call the augment template *rr_aug_loc_proxy*.
 4. Optionally, provide a description for the template. For example, *Location Proxy Augment*.
 5. Select **Draft** for the template status.
-6. Select **Augment** for the for type.
+6. Select **Augment** for the template type.
 7. Select **Submit**.
 
 ### Add the augment template files
@@ -398,16 +386,18 @@ The first part of the template checks the location's label, `nameExpression`, an
 {{ $location := index .Args 0 }}
 {{ $arguments := dict }}
 
-{{/* Get the label for the location in the base template */}}
+{{/* Get the location label from the base template */}}
 {{ $locationLabel := $location.templateInput.nameExpression | trim | lower }}
 
-{{/* Check to see if we have nameExpression (label) for this location ID */}}
+{{/* Check if there is a nameExpression (label) for this location ID */}}
 {{ range $args := $augmentData.location.templateInput.locations }}
   {{ $targetLabel := $args.targetLabel | trim | lower }}
   {{ if (eq $targetLabel $locationLabel) }}
     {{ $arguments = $args }}
     {{ break }}
-  {{ end }}
+  {{ end
+
+ }}
 {{ end }}
 
 {{/* If augment arguments related to this location were found, perform templating */}}
@@ -422,7 +412,7 @@ The first part of the template checks the location's label, `nameExpression`, an
 2. Copy and paste the following contents into the **location.json** file editor.
 3. Select **Save** (disk icon).
 
-``` json
+```json
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Reverse Proxy Augment",
@@ -512,11 +502,11 @@ Lastly, generate and deploy your configuration.
    - Select **Next**.
 8. **Preview the config**:
  
-    On the **Preview Config** page, the resulting config should similar to the following example:
+    On the **Preview Config** page, the resulting config should look similar to the following example:
 
     ```nginx
     # /******************************** !! IMPORTANT !! ********************************/
-    #   This is a Template generated configuration. Updates should done through the Template
+    #   This is a Template generated configuration. Updates should be done through the Template
     #   Submissions workflow. Manual changes to this configuration can/will be overwritten.
     # __templateTag={"uid":"dcd27926-9851-44cc-8e21-776de0a21474","file":"base.tmpl","name":"rr_base_template"}
     events {
