@@ -105,7 +105,7 @@ This snippet defines the structure of the final NGINX configuration file. It use
 > {{ $input.ExecTemplateAugments "main" }}
 > ```
 
-The word "main" can be replaced with other augment injection points, such as "http-server" or "http-upstream."
+The word "main" can be replaced with other augment injection points, such as "http-server" or "http-upstream." blah
 
 1. In the template file list, select **base.tmpl**.
 2. Copy and paste the following Go template into the **base.tmpl** file editor.
@@ -289,7 +289,7 @@ To understand how this template connects to the [base template you just added](#
 
 ### Add the location.json file details
 
-The schema defined in location.json is used to create a user interface for defining multiple location blocks. To understand how this works with the template data, look at the [base.tmpl](#base-tmpl) file and find the section that begins with:
+The schema defined in **location.json** is used to create a user interface for defining multiple location blocks. To understand how this works with the template data, look at the [base.tmpl](#base-tmpl) file and find the section that begins with:
 
 > ``` go
 > {{ range $locationIndex, $location := $server.locations}}
@@ -346,9 +346,9 @@ Since only one augment will be defined, it's important to link the input from th
 
 This section shows how to create an augment template that specifies additional configuration details not covered by the base template.
 
-Before we create an augment template, it’s important to understand its role within NGINX Instance Manager. While the base template sets up the fundamental structure of your NGINX configuration, the augment template allows you to enhance or modify this base setup without altering the original template. Essentially, augment templates are used to inject additional settings or overrides that tailor the configuration to specific needs, such as enabling a round-robin reverse proxy in this tutorial. They are particularly useful for applying repeated modifications across multiple configurations or for adding specialized functionalities that are only needed in certain contexts.
+{{<call-out "tip" "About augment templates" "fa-solid fa-info-circle">}} Before we create an augment template, it’s important to understand its role within NGINX Instance Manager. While the base template sets up the fundamental structure of your NGINX configuration, the augment template allows you to enhance or modify this base setup without altering the original template. Essentially, augment templates are used to inject additional settings or overrides that tailor the configuration to specific needs, such as enabling a round-robin reverse proxy in this tutorial. They are particularly useful for applying repeated modifications across multiple configurations or for adding specialized functionalities that are only needed in certain contexts. 
 
-By using augment templates, you can maintain a clean and organized core configuration while dynamically extending its capabilities. This modular approach not only simplifies management but also increases the flexibility of your NGINX environments, ensuring that specific enhancements can be developed, tested, and deployed quickly and efficiently.
+By using augment templates, you can maintain a clean and organized core configuration while dynamically extending its capabilities. This modular approach not only simplifies management but also increases the flexibility of your NGINX environments, ensuring that specific enhancements can be developed, tested, and deployed quickly and efficiently.{{</call-out>}}
 
 To create the augment template, take the following steps:
 
@@ -379,6 +379,14 @@ Your augment template should now include the following files:
 {{<img src="/nim/templates/round-robin-augment-template-files.png" alt="List of template files including base.tmpl, http-server.json, http-upstream.json, and location.json" width="300" height="auto">}}
 
 ### Add the location.tmpl details
+
+This template determines which location block&mdash;among those defined by the template user in the NGINX Instance Manager web interface&mdash;should receive the specific configuration content. The essential part of the template that will appear in the final NGINX configuration is the line:
+
+> ``` go
+> proxy_pass http://{{ $arguments.upstreamName }};
+> ```
+
+The first part of the template checks the location's label, `nameExpression`, and matches it with the data provided by the user to the augment template. It then assigns this data to `$arguments`, which is used to generate the final configuration snippet. This snippet is then injected only into the targeted location block.
 
 1. Select **location.tmpl**.
 2. Copy and paste the following contents into the **location.tmpl** file editor.
