@@ -1594,7 +1594,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **New architecture!**<a name="2-0-0-whats-new-New-architecture!"></a>
 
-  We redesigned and improved the architecture of Instance Manager! Because of these changes, upgrading to version 2.0 is different. Make sure to read the [Migration Guide]({{< relref "/nms/nim/previous-versions/migration-guide.md" >}}) for instructions.
+  We redesigned and improved the architecture of Instance Manager!
   
 - {{% icon-feature %}} **Improved user access control**<a name="2-0-0-whats-new-Improved-user-access-control"></a>
 

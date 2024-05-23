@@ -26,7 +26,7 @@ Use the `--persistent-storage off` flag if deploying the mesh with `nginx-meshct
 NGINX Service Mesh will automatically use the default Kubernetes `StorageClass` if it's configured.
 
 ```bash
-$ kubectl get storageclass
+kubectl get storageclass
 NAME                 PROVISIONER            AGE
 standard (default)   kubernetes.io/gce-pd   153d
 ```

@@ -455,7 +455,8 @@ To enable HTTP/2 support, add the `http2` parameter to the `listen` directive in
 
 ```nginx
 # In the 'server' block for HTTPS traffic
-listen 443 ssl http2;
+listen 443 ssl;
+http2 on;
 ```
 
 Directive documentation: [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen)
@@ -498,7 +499,8 @@ server {
 }
 
 server {
-    listen 443 ssl http2;
+    listen 443 ssl;
+    http2 on;
     server_name example.com;
     ssl_certificate     /etc/nginx/ssl/certificate-name;
     ssl_certificate_key /etc/nginx/ssl/private-key;
@@ -680,7 +682,7 @@ Directive documentation: [location](https://nginx.org/en/docs/http/ngx_http_core
 With this configuration in place, from any HTTP client you can clear the cache for a particular key. The following sample `curl` command shows how to use the API to send an HTTP `PURGE` request to the NGINX Open Source server that hosts **"www.example.com"**. The example further illustrates how you can purge an entire set of resources that have a common URL stem, by appending the asterisk (*) wildcard to the URL.
 
 ```shell
-$ curl -X PURGE -D - "http://www.example.com/*"
+curl -X PURGE -D - "http://www.example.com/*"
 HTTP/1.1 204 No Content
 Server: nginx/1.5.12
 Date: Sat, 03 May 2014 16:33:04 GMT
@@ -863,7 +865,8 @@ server {
 }
 
 server {
-    listen 443 ssl http2;
+    listen 443 ssl;
+    http2 on;
     server_name example.com;
 
     # Required for live activity monitoring of HTTPS traffic

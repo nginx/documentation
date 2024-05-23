@@ -15,10 +15,6 @@ weight: 500
 
 This guide explains how to upgrade the NGINX Management Suite modules, NGINX Agent, and NGINX Plus to their latest versions, including how to back up your current configuration, run the upgrade script, and verify the results. Also included are instructions for troubleshooting any potential upgrade errors.
 
-<br>
-
-{{<see-also>}}If you're upgrading from Instance Manager v1.x, follow the steps in the [migration guide]({{< relref "/nms/nim/previous-versions/migration-guide.md" >}}) to get started. It is not possible to upgrade directly from Instance Manager v1.x to v2.x.{{</see-also>}}
-
 ---
 
 ## Pre-Upgrade Steps {#pre-upgrade-steps}

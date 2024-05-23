@@ -126,6 +126,10 @@
 /nginx-management-suite/nginx-agent/nginx-agent-docker-support/ /nginx-agent/installation-upgrade/container-environments/docker-support/ 301
 /nginx-management-suite/nginx-agent/nginx-agent-in-container/ /nginx-agent/installation-upgrade/container-environments/docker-images/ 301
 
+# NIM v1 redirects
+/nginx-management-suite/nim/previous-versions/* /nginx-management-suite/nim/ 301
+
+
 # NGINX Plus redirects
 /install-community-modules /nginx/admin-guide/installing-nginx/installing-nginx-plus/#installing-nginx-community-modules 301
 /nginx/deployment-guides/aws-high-availability-network-load-balancer/ /nginx/deployment-guides/amazon-web-services/high-availability-network-load-balancer/ 301

@@ -41,7 +41,7 @@ As soon as the project deploys and the new virtual machine (VM) instance starts 
 You can also check the status of the NGINX Plus server by logging into the VM and running this command:
 
 ```shell
-# /etc/init.d/nginx status
+/etc/init.d/nginx status
 ```
 
 
@@ -57,7 +57,7 @@ Customers who purchase an NGINX Plus VM image on the Google Cloud Platform are 
 NGINX Plus includes open source software written by NGINX, Inc. and other contributors. The text of the open source licenses is provided in Appendix B of the _NGINX Plus Reference Guide_. To access the guide included with the NGINX Plus VM instance, run this command:
 
 ```shell
-# less /usr/share/nginx/html/nginx-modules-reference.pdf
+less /usr/share/nginx/html/nginx-modules-reference.pdf
 ```
 
 The _NGINX Plus Reference Guide_ is also [available online](http://www.nginx.com/wp-content/uploads/2023/08/nginx-modules-reference.pdf).
