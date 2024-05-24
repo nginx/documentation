@@ -25,11 +25,25 @@ authors: []
 
 ## Overview
 
-This tutorial teaches you how to set up a round-robin reverse proxy using base and augment templates in NGINX Instance Manager. This tutorial is intended for network administrators and developers familiar with basic NGINX configurations. By the end of this tutorial, you'll be able to:
+### Revised Overview with "Why" Details
+
+This tutorial guides you through setting up a round-robin reverse proxy using base and augment templates in NGINX Instance Manager. It's intended for network administrators and developers familiar with basic NGINX configurations. 
+
+Using templates, especially augment templates, provides significant advantages. Augment templates allow you to modify and extend configurations without altering the base template, making it easier to manage and update settings. This approach enhances modularity, enabling specific teams to control parts of the configuration while maintaining overall system integrity. Role-Based Access Control (RBAC) ensures that only authorized users can make changes, promoting security and efficiency.
+
+By the end, you'll be able to:
 
 - Create and configure a base template.
 - Create and configure an augment template to extend the functionality of the base template.
 - Deploy these templates to manage traffic efficiently within your NGINX environment.
+
+---
+
+### Explanation of Changes:
+1. **Clarified Purpose**: Added a section explaining why using templates and augment templates is beneficial, highlighting modularity and security with RBAC.
+2. **Avoided Repetition**: Combined the introduction sentences to prevent redundancy.
+
+Let me know if you need further adjustments or additional details included!
 
 ---
 
@@ -149,9 +163,7 @@ http {
 
 ### Add the http-server.json file details
 
-This snippet uses the [JSON Schema](https://json
-
--schema.org/) specification to define fields for generating a user interface and serving as the data structure for inputs injected into the template.
+This snippet uses the [JSON Schema](https://json-schema.org/) specification to define fields for generating a user interface and serving as the data structure for inputs injected into the template.
 
 To understand how this template connects to the [base template you just added](#base-tmpl), look for the `serverNameInConfig` reference in the code. This reference links the JSON schema fields to the configuration settings defined in the base template.
 
@@ -336,7 +348,7 @@ This section shows how to create an augment template that specifies additional c
 
 {{<call-out "tip" "About augment templates" "fa-solid fa-info-circle">}} Before we create an augment template, it’s important to understand its role within NGINX Instance Manager. While the base template sets up the fundamental structure of your NGINX configuration, the augment template allows you to enhance or modify this base setup without altering the original template. Essentially, augment templates are used to inject additional settings or overrides that tailor the configuration to specific needs, such as enabling a round-robin reverse proxy in this tutorial. They are particularly useful for applying repeated modifications across multiple configurations or for adding specialized functionalities that are only needed in certain contexts. 
 
-By using augment templates, you can maintain a clean and organized core configuration while dynamically extending its capabilities. This modular approach not only simplifies management but also increases the flexibility of your NGINX environments, ensuring that specific enhancements can be developed, tested, and deployed quickly and efficiently.{{</call-out>}}
+By using augment templates, you can maintain a clean and organized base configuration while dynamically extending its capabilities. This modular approach not only simplifies management but also increases the flexibility of your NGINX environments, ensuring that specific enhancements can be developed, tested, and deployed quickly and efficiently.{{</call-out>}}
 
 To create the augment template, take the following steps:
 
