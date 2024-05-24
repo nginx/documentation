@@ -7,7 +7,8 @@ doctypes:
 tags:
 - docs
 title: Metrics Catalog
-toc: false
+toc: true
+catalogType: nms.catalogs.metrics
 weight: 20
 ---
 
