@@ -25,25 +25,15 @@ authors: []
 
 ## Overview
 
-### Revised Overview with "Why" Details
-
 This tutorial guides you through setting up a round-robin reverse proxy using base and augment templates in NGINX Instance Manager. It's intended for network administrators and developers familiar with basic NGINX configurations. 
 
-Using templates, especially augment templates, provides significant advantages. Augment templates allow you to modify and extend configurations without altering the base template, making it easier to manage and update settings. This approach enhances modularity, enabling specific teams to control parts of the configuration while maintaining overall system integrity. Role-Based Access Control (RBAC) ensures that only authorized users can make changes, promoting security and efficiency.
+Using templates, especially augment templates, provides significant advantages. Augment templates allow you to modify and extend configurations without altering the base template, making it easier to manage and update settings. This approach enhances modularity, enabling specific teams to control parts of the configuration while maintaining overall system integrity. [Role-Based Access Control (RBAC)]({{< relref "/nms/nim/how-to/nginx/access-control-for-templates-and-template-submissions.md" >}}) ensures that only authorized users can make changes, promoting security and efficiency.
 
 By the end, you'll be able to:
 
 - Create and configure a base template.
 - Create and configure an augment template to extend the functionality of the base template.
 - Deploy these templates to manage traffic efficiently within your NGINX environment.
-
----
-
-### Explanation of Changes:
-1. **Clarified Purpose**: Added a section explaining why using templates and augment templates is beneficial, highlighting modularity and security with RBAC.
-2. **Avoided Repetition**: Combined the introduction sentences to prevent redundancy.
-
-Let me know if you need further adjustments or additional details included!
 
 ---
 
@@ -551,3 +541,9 @@ Lastly, generate and deploy your configuration.
 ## Verification steps
 
 - To be added.
+- 
+---
+
+## References
+
+[RBAC for Templates and Template Submissions]({{< relref "/nms/nim/how-to/nginx/access-control-for-templates-and-template-submissions.md" >}})
