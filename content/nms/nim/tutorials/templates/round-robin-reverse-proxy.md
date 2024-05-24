@@ -27,7 +27,7 @@ authors: []
 
 This tutorial guides you through setting up a round-robin reverse proxy using base and augment templates in NGINX Instance Manager. It's intended for network administrators and developers familiar with basic NGINX configurations. 
 
-Using templates, especially augment templates, provides significant advantages. Augment templates allow you to modify and extend configurations without altering the base template, making it easier to manage and update settings. This approach enhances modularity, enabling specific teams to control parts of the configuration while maintaining overall system integrity. [Role-Based Access Control (RBAC)]({{< relref "/nms/nim/how-to/nginx/access-control-for-templates-and-template-submissions.md" >}}) ensures that only authorized users can make changes, promoting security and efficiency.
+Using templates, especially augment templates, provides significant advantages. Augment templates allow you to modify and extend configurations without altering the base template, making it easier to manage and update settings. This approach enhances modularity, enabling specific teams to control parts of the configuration while maintaining overall system integrity. [Role-Based Access Control (RBAC)]({{< relref "/nms/nim/how-to/nginx/access-control-for-templates-and-template-submissions.md" >}}) ensures that only authorized users can make changes, promoting security and efficiency. This means that while administrators can manage the base configuration, development teams can independently manage specific proxy settings, improving collaboration and streamlining operations.
 
 By the end, you'll be able to:
 
