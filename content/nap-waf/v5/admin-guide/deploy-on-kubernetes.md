@@ -6,8 +6,6 @@ doctypes:
 - task
 title: Deploying NGINX App Protect WAF on Kubernetes
 toc: true
-versions:
-- "5.0"
 weight: 400
 ---
 

@@ -6,8 +6,6 @@ doctypes:
 - task
 title: Deploying NGINX App Protect WAF on Docker
 toc: true
-versions:
-- "5.0"
 weight: 300
 ---
 

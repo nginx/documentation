@@ -6,8 +6,6 @@ doctypes:
 - task
 title: Installing NGINX App Protect WAF
 toc: true
-versions:
-- "5.0"
 ---
 
 ## Prerequisites
