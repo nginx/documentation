@@ -35,7 +35,8 @@ Below is a summary of all NGINX App Protect DoS directives. Detailed description
 | [app_protect_dos_arb_fqdn](#arbitrator-fqdn-directive-app_protect_dos_arb_fqdn)                           | [FQDN\|IP address]  | http | Arbitrator FQDN/IP address  | No | `svc-appprotect-dos-arb`                                                                                                            |
 | [app_protect_dos_api](#api-directive-app_protect_dos_api)                                                 | No arguments  | location | Monitoring via Rest API (also includes the dashboard)  | No | off                                                                                                                                 |
 | [app_protect_dos_accelerated_mitigation](#api-directive-app_protect_dos_api)                              | [on\|off] [syn_drop=on\|off]| http | Enable/Disable L4 accelerated mitigation. Second argument is optional | No | off syn_drop=off                                                                                                                    |
-| [app_protect_dos_access_file](#access-directive-app_protect_dos_accesss_file)                             | [FILE-PATH]  | http, <br> server, <br> location | Define allowlist policy from a file	  | No  | off                                                                                                                                 |
+| [app_protect_dos_access_file](#access-file-directive-app_protect_dos_access_file)                             | [FILE-PATH]  | http, <br> server, <br> location | Define allowlist policy from a file	  | No  | None / disabled                                                                                                                               |
+
 {{</bootstrap-table>}}
 
 
@@ -440,19 +441,19 @@ app_protect_dos_accelerated_mitigation on syn_drop=on;
 
 ### Access File directive (`app_protect_dos_access_file`)
 
-The app_protect_dos_access_file directive allows defining an allowlist policy from a specified file. This enables the customer to specify IP addresses or ranges that should never be blocked.
+The `app_protect_dos_access_file` directive defines an allowlist policy from a specified file.<br>
+This enables specifying IP addresses or ranges that should never be blocked.<br>
 The format of the file is the same as used in NGINX App Protect WAF, making it easy to reuse existing WAF policies with defined allowlist IPs.<br>
-
-It can be written in the following contexts: location/server/http.<br>
-
+<br>
 The directive is optional. If not written, then the allowlist feature is disabled.<br>
-
-The file should include a list of IP addresses or ranges in JSON format. Both IPv4 and IPv6 addresses are supported.
+<br>
+The file should include a list of IP addresses or ranges in JSON format. Both IPv4 and IPv6 addresses are supported.<br>
 
 IPv4 addresses are in the format "a.b.c.d" where each component is a decimal number in the range 0-255.<br>
-IPv6 addresses are in the format "h1:h2:h3:h4:h5:h6:h7:h8" where each component is a hex number in the range 0x0-0xffff. Any contiguous range of zero elements can be omitted and replaced by "::".
-
-The JSON file should include the ipAddress field for specifying IP addresses or ranges, and the blockRequests field set to "transparent". The file can also include $ref to reference additional files containing more IP addresses.
+IPv6 addresses are in the format "h1:h2:h3:h4:h5:h6:h7:h8" where each component is a hex number in the range 0x0-0xffff. Any contiguous range of zero elements can be omitted and replaced by "::".<br>
+<br>
+The JSON file should include the ipAddress field for specifying IP addresses or ranges, and the blockRequests field set to "transparent". The file can also include $ref to reference additional files containing more IP addresses.<br>
+<br>
 
 **Example:**
 ```nginx
