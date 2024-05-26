@@ -389,7 +389,7 @@ signature_accuracy="100.00",
 ```
 
 ### 4. Bad actors detection information
-Provides detailed information from about bad actors.<br>
+Provides detailed information about bad actors.<br>
 
 Example: **Bad Actors Detected**
 
