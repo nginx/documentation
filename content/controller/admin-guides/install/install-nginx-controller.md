@@ -57,7 +57,52 @@ Things you'll need before installing NGINX Controller:
 
 ## Install NGINX Controller Prerequisites
 
-{{< include "controller/helper-script-prereqs.md" >}}
+You can use the NGINX Controller `helper.sh prereqs` command to install the required system packages and Docker CE.
+
+<style>
+table, th, td {
+  border: 1px solid #CCC;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+}
+th {
+  text-align: center;
+}
+</style>
+
+| Options  | Description |
+|----------|-------------|
+| `base`  | Install the required Linux utilities. |
+| `docker` | Install Docker CE. |
+| `nfs` | Install NFS system packages. |
+
+To install all of the NGINX Controller prerequisites for your system at the same time, take the following steps:
+
+1. Download the NGINX Controller installer package from the [MyF5 Customer Portal](https://my.f5.com/manage/s/downloads).
+
+1. Extract the installer package files:
+
+    ```bash
+    tar xzf controller-installer-<version>.tar.gz
+    ```
+
+1. Run the helper script with the `prereqs` option:
+
+    ```bash
+    cd controller-installer
+    ./helper.sh prereqs
+    ```
+
+{{< note >}}
+After you've installed NGINX Controller, you can install any of the prerequisites by running the following command:
+
+  ```bash
+/opt/nginx-controller/helper.sh prereqs [base|docker|nfs]
+```
+
+{{< /note >}}
 
 &nbsp;
 
@@ -387,7 +432,39 @@ To uninstall NGINX Controller, run the uninstall script:
 
 Install the Controller Agent on each NGINX Plus instance that you want to manage and monitor.
 
-{{< include "controller/add-existing-instance.md" >}}
+Take the following steps to add an instance to NGINX Controller:
+
+1. Open the NGINX Controller user interface and log in.
+2. Select the NGINX Controller menu icon, then select **Infrastructure**.
+3. On the **Infrastructure** menu, select **Instances** > **Overview**.
+4. On the **Instances** overview page, select **Create**.
+5. On the **Create Instance** page, select **Add an existing instance**.
+6. Add a name for the instance. If you don't provide a name, the hostname of the instance is used by default.
+7. To add the instance to an existing [Instance Group]({{< relref "/controller/infrastructure/instances/manage-instances.md#instance-groups" >}}), select an Instance Group from the list. Or to create an Instance Group, select **Create New**.
+8. To add the instance to an existing Location, select a Location from the list. Or to create a Location, select **Create New**.
+
+    {{< important >}}
+Once set, the Location for an instance cannot be changed. If you need to change or remove the Location for an instance, you must [remove the instance from NGINX Controller]({{< relref "/controller/infrastructure/instances/manage-instances.md#delete-an-instance" >}}), and then add it back.
+    {{< /important >}}
+
+    {{< important >}}
+Instances and the instance groups they belong to should specify the same location; however, this requirement is not currently enforced. If different locations are specified, the instance group's location takes precedence. This is important to remember when [assigning locations to workload groups]({{< relref "/controller/app-delivery/manage-apps.md#workload-groups">}}).
+    {{< /important >}}
+
+9. (Optional) By default, registration of NGINX Plus instances is performed over a secure connection. To use self-signed certificates with the Controller Agent, select **Allow insecure server connections to NGINX Controller using TLS**. For security purposes, we recommend that you secure the Controller Agent with signed certificates when possible.
+10. Use SSH to connect and log in to the NGINX instance that you want to connect to NGINX Controller.
+11. Run the `curl` or `wget` command that's shown in the **Installation Instructions** section on the NGINX instance to download and install the Controller Agent package. When specified, the `-i` and `-l` options for the `install.sh` script refer to the instance name and Location, respectively.
+
+    {{< note >}}
+
+Make sure you enter the commands to download and run the `install.sh` script on the NGINX Plus system, and not on the NGINX Controller.
+
+NGINX Controller 3.6 and earlier require Python 2.6 or 2.7. You'll be prompted to install Python if it's not installed already. Python is not required for NGINX Controller v3.7 and later.
+
+    {{< /note >}}
+
+After a few minutes, the NGINX instance will appear on the **Instances** overview page.
+
 
 &nbsp;
 
@@ -456,7 +533,133 @@ Take the following steps to create a support package:
 
 #### Support Package Details
 
-{{< include "controller/helper-script-support-package-details.md" >}}
+The support package is a tarball that includes NGINX Controller configuration information, logs, and system command output. Sensitive information, including certificate keys, is not included in the support package.
+
+The support package gathers information from the following locations:
+
+```md
+.
+├── database
+│   ├── common.dump                                - full dump of the common database
+│   ├── common.dump_stderr                         - any errors when dumping the database
+│   ├── common-apimgmt-api-client-api-keys.txt     - contents of apimgmt_api_client_api_keys table from the common database
+│   ├── common-apimgmt-api-client-groups.txt       - contents of apimgmt_api_client_groups table from the common database
+│   ├── common-email-verification.txt              - contents of email_verification table from the common database
+│   ├── common-oauth-clients.txt                   - contents of oauth_clients table from the common database
+│   ├── common-settings-license.txt                - contents of settings_license table from the common database
+│   ├── common-settings-nginx-plus.txt             - contents of settings_nginx_plus table from the common database
+│   ├── common-table-size.txt                      - list of all tables and their size in the common database
+│   ├── data-table-size.txt                        - list of all tables and their size in the data database
+│   ├── postgres-database-size.txt                 - size of every database
+│   ├── postgres-long-running-queries.txt          - all queries running longer than 10 seconds
+│   ├── system.dump                                - full dump of the system database
+│   ├── system-account-limits.txt                  - contents of account_limits table from the system database
+│   ├── system-accounts.txt                        - contents of accounts table from the system database
+│   ├── system-deleted-accounts.txt                - contents of deleted_accounts table from the system database
+│   ├── system-deleted-users.txt                   - contents of deleted_users table from the system database
+│   ├── system-users.txt                           - contents of users table from the system database
+│   └── system-table-size.txt                      - list of all tables and their size in the system database
+├── k8s                                            - output of `kubectl cluster-info dump -o yaml` augmented with some extra info
+│   ├── apiservices.txt                            - output of `kubectl get apiservice`
+│   ├── kube-system                                - contents of the kube-system namespace
+│   │   ├── coredns-5c98db65d4-6flb9
+│   │   │   ├── desc.txt                           - pod description
+│   │   │   ├── logs.txt                           - current logs
+│   │   │   └── previous-logs.txt                  - previous logs, if any
+│   │   ├── ...
+│   │   ├── daemonsets.yaml                        - list of daemonsets
+│   │   ├── deployments.yaml                       - list of deployments
+│   │   ├── events.yaml                            - all events in this namespace
+│   │   ├── namespace.yaml                         - details of the namespace, including finalizers
+│   │   ├── pods.txt                               - output of `kubectl get pods --show-kind=true -o wide`
+│   │   ├── pods.yaml                              - list of all pods
+│   │   ├── replicasets.yaml                       - list of replicasets
+│   │   ├── replication-controllers.yaml           - list of replication controllers
+│   │   ├── resources.txt                          - all Kubernetes resources in this namespace
+│   │   └── services.yaml                          - list of services
+│   ├── nginx-controller                           - contents of the nginx-controller namespace
+│   │   ├── apigw-8fb64f768-9qwcm
+│   │   │   ├── desc.txt                           - pod description
+│   │   │   ├── logs.txt                           - current logs
+│   │   │   └── previous-logs.txt                  - previous logs, if any
+│   │   ├── ...
+│   │   ├── daemonsets.yaml                        - list of daemonsets
+│   │   ├── deployments.yaml                       - list of deployments
+│   │   ├── events.yaml                            - all events in this namespace
+│   │   ├── namespace.yaml                         - details of the namespace, including finalizers
+│   │   ├── pods.txt                               - output of `kubectl get pods --show-kind=true -o wide`
+│   │   ├── pods.yaml                              - list of all pods
+│   │   ├── replicasets.yaml                       - list of replicasets
+│   │   ├── replication-controllers.yaml           - list of replication controllers
+│   │   ├── resources.txt                          - all Kubernetes resources in this namespace
+│   │   ├── services.yaml                          - list of services
+│   ├── nodes.txt                                  - output of `kubectl describe nodes`
+│   ├── nodes.yaml                                 - list of nodes
+│   ├── resources.txt                              - all non-namespaced Kubernetes resources (including PersistentVolumes)
+│   └── version.yaml                               - Kubernetes version
+├── logs                                           - copy of /var/log/nginx-controller/
+│   └── nginx-controller-install.log
+├── os
+│   ├── cpuinfo.txt                                - output of `cat /proc/cpuinfo`
+│   ├── df-h.txt                                   - output of `df -h`
+│   ├── df-i.txt                                   - output of `df -i`
+│   ├── docker-container-ps.txt                    - output of `docker container ps`
+│   ├── docker-images.txt                          - output of `docker images`
+│   ├── docker-info.txt                            - output of `docker info`
+│   ├── docker-stats.txt                           - output of `docker stats --all --no-stream`
+│   ├── docker-version.txt                         - output of `docker version`
+│   ├── du-mcs.txt                                 - output of `du -mcs /opt/nginx-controller/* /var/log /var/lib`
+│   ├── env.txt                                    - output of `env`
+│   ├── firewall-cmd.txt                           - output of `firewall-cmd --list-all`
+│   ├── free.txt                                   - output of `free -m`
+│   ├── hostname-all-fqdns.txt                     - output of `hostname --all-fqdns`
+│   ├── hostname-fqdn.txt                          - output of `hostname --fqdn`
+│   ├── hostname.txt                               - output of `hostname`
+│   ├── hostsfile.txt                              - output of `cat /etc/hosts`
+│   ├── ip-address.txt                             - output of `ip address`
+│   ├── ip-neigh.txt                               - output of `ip neigh`
+│   ├── ip-route.txt                               - output of `ip route`
+│   ├── iptables-filter.txt                        - output of `iptables -L -n -v`
+│   ├── iptables-mangle.txt                        - output of `iptables -L -n -v -t mangle`
+│   ├── iptables-nat.txt                           - output of `iptables -L -n -v -t nat`
+│   ├── iptables-save.txt                          - output of `iptables-save`
+│   ├── journal-kubelet.txt                        - output of `journalctl -q -u kubelet --no-pager`
+│   ├── lspci.txt                                  - output of `lspci -vvv`
+│   ├── netstat-nr.txt                             - output of `netstat -nr`
+│   ├── ps-faux.txt                                - output of `ps faux`
+│   ├── pstree.txt                                 - output of `pstree`
+│   ├── ps.txt                                     - output of `ps aux --sort=-%mem`
+│   ├── resolvconf.txt                             - output of `cat /etc/resolv.conf`
+│   ├── selinux-mode.txt                           - output of `getenforce`
+│   ├── ss-ltunp.txt                               - output of `ss -ltunp`
+│   ├── swapon.txt                                 - output of `swapon -s`
+│   ├── sysctl.txt                                 - output of `sysctl -a --ignore`
+│   ├── systemd.txt                                - output of `journalctl -q --utc`
+│   ├── top.txt                                    - output of `top -b -o +%CPU -n 3 -d 1 -w512 -c`
+│   ├── uname.txt                                  - output of `uname -a`
+│   ├── uptime.txt                                 - output of `cat /proc/uptime`
+│   └── vmstat.txt                                 - output of `cat /proc/vmstat`
+├── timeseries
+│   ├── table-sizes.stat                           - stat table containing controller table sizes
+│   ├── events.csv                                 - events table dump in csv
+│   ├── events.sql                                 - events table schema
+│   ├── metrics_1day.csv                           - metrics_1day table dump in csv
+│   ├── metrics_1day.sql                           - metrics_1day table schema
+│   ├── metrics_1hour.csv                          - metrics_1hour table dump in csv
+│   ├── metrics_1hour.sql                          - metrics_1hour table schema
+│   ├── metrics_5min.csv                           - metrics_5min table dump in csv
+│   ├── metrics_5min.sql                           - metrics_5min table schema
+│   ├── metrics.csv                                - metrics table dump in csv
+│   ├── metrics.sql                                - metrics table schema
+│   ├── system-asynchronous-metrics.stat           - shows info about currently executing events or consuming resources
+│   ├── system-events.stat                         - information about the number of events that have occurred in the system
+│   ├── system-metrics.stat                        - system metrics
+│   ├── system-parts.stat                          - information about parts of a table in the MergeTree family
+│   ├── system-settings.stat                       - information about settings that are currently in use
+│   └── system-tables.stat                         - information about all the tables
+└── version.txt                                    - Controller version information
+```
+
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

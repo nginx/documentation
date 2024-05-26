@@ -26,7 +26,7 @@ NGINX Plus provides various monitoring tools for your server infrastructure:
 
 * * *
 
-[![live activity monitoring](https://www.nginx.com/wp-content/uploads/2023/08/nginx-plus-dashboard_R30-overview-2.png)](https://demo.nginx.com/dashboard.html "Live status metrics from NGINX Plus")
+[![live activity monitoring](/nginx/images/nginx-plus-dashboard-r30-overview-2.png)](https://demo.nginx.com/dashboard.html "Live status metrics from NGINX Plus")
 
 * * *
 
@@ -263,46 +263,46 @@ In the address bar of your browser, type-in the address that corresponds to your
 
 There is also a live demo page from NGINX available at [demo.nginx.com/dashboard.html](https://demo.nginx.com/dashboard.html):
 
-[![live activity monitor](https://www.nginx.com/wp-content/uploads/2023/08/nginx-plus-dashboard_R30-overview-2.png)](https://demo.nginx.com/dashboard.html "Live load-balancing status from NGINX Plus")
+[![live activity monitor](/nginx/images/nginx-plus-dashboard-r30-overview-2.png)](https://demo.nginx.com/dashboard.html "Live load-balancing status from NGINX Plus")
 
 <span id="dashboard_tabs"></span>
 ### Tabs Overview
 
 All information in NGINX Plus Dashboard is represented in tabs.
 
-![The row of tabs at the top of the window on the NGINX Plus dashboard make it easy to drill down to more detailed information about server zones, upstream groups, or the cache](https://www.nginx.com/wp-content/uploads/2023/08/dashboard-tabs.png)
+![The row of tabs at the top of the window on the NGINX Plus dashboard make it easy to drill down to more detailed information about server zones, upstream groups, or the cache](/nginx/images/dashboard-tabs.png)
 
 The **HTTP Zones** tab gives detailed statistics on the frontend performance. Statistics are shown per each [`server`](https://nginx.org/en/docs/http/ngx_http_core_module.html#server), [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) and [`limit_req`](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html) zones in the [`http`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) context. For NGINX Plus to collect information for each server, you must include the [`status_zone`](https://nginx.org/en/docs/http/ngx_http_api_module.html#status_zone) directive in each `server` or `location` block.  To include charts for `limit_req` limiting, you must configure the [`limit_req_zone`](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone) directive.
 
-![The 'HTTP zones' tab in the NGINX Plus live activity monitoring dashboard displays information about NGINX Plus' interaction with clients](https://www.nginx.com/wp-content/uploads/2022/11/dashboard_tab_http_zones.png)
+![The 'HTTP zones' tab in the NGINX Plus live activity monitoring dashboard displays information about NGINX Plus' interaction with clients](/nginx/images/dashboard-tab-http-zones.png)
 
 TCP and UDP status zones with charts for connection limiting ([`limit_conn`](https://nginx.org/en/docs/stream/ngx_stream_limit_conn_module.html)) appear on the **TCP/UDP Zones** tab.
 
-![The 'TCP/UDP zones' tab in the NGINX Plus live activity monitoring dashboard](https://www.nginx.com/wp-content/uploads/2022/11/dashboard_tab_tcp_zones.png)
+![The 'TCP/UDP zones' tab in the NGINX Plus live activity monitoring dashboard](/nginx/images/dashboard-tab-tcp-zones.png)
 
 The **HTTP Upstreams** tab provides information about each upstream group for HTTP and HTTPS traffic. TCP and UDP upstream groups appear on the **TCP/UDP Upstreams** tab. For NGINX Plus to collect information for an upstream group, you must include the [`zone`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) directive in the [`upstream`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream) configuration block.
 
-![The 'Upstreams' tab on the NGINX Plus live activity monitoring dashboard provides information about the servers in each upstream group for HTTP/HTTPS traffic](https://www.nginx.com/wp-content/uploads/2022/11/dashboard_tab_http_upstreams.png)
+![The 'Upstreams' tab on the NGINX Plus live activity monitoring dashboard provides information about the servers in each upstream group for HTTP/HTTPS traffic](/nginx/images/dashboard-tab-http-upstreams.png)
 
 The **Caches** tab provides statistics about the caches configured in NGINX Plus. For NGINX Plus to collect information for an upstream group, you must [configure cache]({{< relref "../content-cache/content-caching.md" >}}).
 
-![The 'Caches' tab in the NGINX Plus live activity monitoring dashboard provides information about cache readiness, fullness, and hit ratio](https://www.nginx.com/wp-content/uploads/2019/09/dashboard_tab_caches.png)
+![The 'Caches' tab in the NGINX Plus live activity monitoring dashboard provides information about cache readiness, fullness, and hit ratio](/nginx/images/dashboard-tab-caches.png)
 
 The **Shared Zones** tab shows how much memory is used by each shared memory zone, including cache zones, SSL session cache, upstream zones, keyval zones, session log, sticky sessions, limit_conn and limit_req zones.
 
-![The 'Shared Zones' tab in the NGINX Plus live activity monitoring dashboard provides information about memory usage across all shared memory zones](https://www.nginx.com/wp-content/uploads/2019/09/dashboard_tab_shared_zones.png)
+![The 'Shared Zones' tab in the NGINX Plus live activity monitoring dashboard provides information about memory usage across all shared memory zones](/nginx/images/dashboard-tab-shared-zones.png)
 
 The **Cluster** tab provides the synchronization status of shared memory zones across all NGINX cluster nodes. See [Runtime State Sharing in a Cluster](https://docs.nginx.com/nginx/admin-guide/high-availability/zone_sync/) for details on how to organize NGINX instances in a cluster and configure synchronization between all cluster nodes.
 
-![The 'Cluster' tab in the NGINX Plus live activity monitoring dashboard provides synchronization information of shared memory zones of NGINX cluster nodes](https://www.nginx.com/wp-content/uploads/2019/09/dashboard_tab_cluster.png)
+![The 'Cluster' tab in the NGINX Plus live activity monitoring dashboard provides synchronization information of shared memory zones of NGINX cluster nodes](/nginx/images/dashboard-tab-cluster.png)
 
 The **Resolvers** tab provides DNS server statistics of requests and responses per each DNS status zone. For NGINX Plus to collect information about your DNS servers, include the [`status_zone`](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver_status_zone) parameter in the [`resolver`](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive.
 
-![The 'Resolvers' tab in the NGINX Plus live activity monitoring dashboard provides information about cache readiness, fullness, and hit ratio](https://www.nginx.com/wp-content/uploads/2019/09/dashboard_tab_resolvers.png)
+![The 'Resolvers' tab in the NGINX Plus live activity monitoring dashboard provides information about cache readiness, fullness, and hit ratio](/nginx/images/dashboard-tab-resolvers.png)
 
 The **Workers** tab provides information about worker processes and shows per-worker connection statistics.
 
-![The 'Workers' tab in the NGINX Plus live activity monitoring dashboard provides information about worker processes](https://www.nginx.com/wp-content/uploads/2023/08/dashboard_tab_workers.png)
+![The 'Workers' tab in the NGINX Plus live activity monitoring dashboard provides information about worker processes](/nginx/images/dashboard-tab-workers.png)
 
 
 <span id="dashboard_upstream"></span>
@@ -320,7 +320,7 @@ To add an upstream server, click **Add server**:
 
 To remove or modify an upstream server, click the box to the left of each server’s name, then click **Edit selected**:
 
-![The 'Edit selected' interface for modifying or removing servers in an upstream group in the NGINX Plus live activity monitoring dashboard](https://www.nginx.com/wp-content/uploads/2016/07/dashboard-r7-edit-server-interface.png)
+![The 'Edit selected' interface for modifying or removing servers in an upstream group in the NGINX Plus live activity monitoring dashboard](/nginx/images/dashboard-r7-edit-server-interface.png)
 
 When finished, click the **Save** button to save the changes.
 
@@ -328,7 +328,7 @@ When finished, click the **Save** button to save the changes.
 ### Configuring Dashboard Options
 You can configure the threshold for Dashboard warnings and alerts by clicking the Gear button in the Tabs menu:
 
-![The 'Dashboard configuration' interface for modifying Dashboard settings](https://www.nginx.com/wp-content/uploads/2019/09/dashboard_options.png)
+![The 'Dashboard configuration' interface for modifying Dashboard settings](/nginx/images/dashboard-options.png)
 
 **Update every N sec** - updates the Dashboard data after the specified number of seconds, default is `1` second.
 
@@ -591,7 +591,7 @@ To access the Swagger UI page:
 
 - In the address bar of your browser, type-in the address of Swagger UI, in our example the address is *<http://192.168.1.23/swagger-ui/>*:
 
-![Swagger UI](https://www.nginx.com/wp-content/uploads/2023/08/swagger-ui.png)
+![Swagger UI](/nginx/images/swagger-ui.png)
 
 - If you have configured the HTTPS protocol for the Swagger UI page, you will need to choose the "HTTPS" scheme in the "Schemes" menu.
 
@@ -625,6 +625,6 @@ curl -s 'https://demo.nginx.com/api/9/http/upstreams/demo-backend/servers/0'
 
 The Swagger UI demo page is available at: <https://demo.nginx.com/swagger-ui/>
 
-[![Swagger UI](https://www.nginx.com/wp-content/uploads/2023/08/swagger-ui.png)](https://demo.nginx.com/swagger-ui)
+[![Swagger UI](/nginx/images/swagger-ui.png)](https://demo.nginx.com/swagger-ui)
 
 Live examples operate in the read-only mode, resetting the statistics via the `DELETE` method and creating/modifying upstream servers with the `POST`/`PATCH` methods are not available. Also note that as the demo API is served over the HTTP protocol, it is required to choose the “HTTP” scheme in the “Schemes” menu on the [Swagger UI demo page](https://demo.nginx.com/swagger-ui/).

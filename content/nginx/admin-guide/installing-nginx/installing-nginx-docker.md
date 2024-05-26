@@ -70,7 +70,7 @@ Before you get a container image, you should provide the SSL certificate and pri
 
 ### Set up Docker for NGINX Plus Container Registry
 
-Set up Docker to communicate with the NGINX Container Registry located at `private-registry.nginx.com`. 
+Set up Docker to communicate with the NGINX Container Registry located at `private-registry.nginx.com`.
 
 {{<tabs name="docker_login">}}
 
@@ -341,7 +341,7 @@ Content served by NGINX and NGINX configuration files can be managed in several 
 When the container is created, you can mount a local directory on the Docker host to a directory in the container. The NGINX image uses the default NGINX configuration, which uses `/usr/share/nginx/html` as the container’s root directory and puts configuration files in `/etc/nginx`. For a Docker host with content in the local directory `/var/www` and configuration files in `/var/nginx/conf`, run the command:
 
 ```shell
-$ docker run --name mynginx2 \
+docker run --name mynginx2 \
    --mount type=bind,source=/var/www,target=/usr/share/nginx/html,readonly \
    --mount type=bind,source=/var/nginx/conf,target=/etc/nginx/conf,readonly \
    -p 80:80 \

@@ -60,21 +60,21 @@ You can verify that the operating system is in FIPS mode and that the version of
 **Check operating system flags**: When the operating system is in FIPS mode, ```crypto.fips_enabled``` is ```1```; otherwise, it is ```0```:
 
 ```shell
-$ sudo sysctl –a | grep fips
+sudo sysctl –a | grep fips
 crypto.fips_enabled = 1
 ```
 
 **Determine whether OpenSSL can perform SHA1 hashes**: This test verifies the correct operation of OpenSSL. The SHA1 hash algorithm is permitted in all modes, so failure of this command indicates that the OpenSSL implementation does not work properly:
 
 ```shell
-$ openssl sha1 /dev/null
+openssl sha1 /dev/null
 SHA1(/dev/null)= da39a3ee5e6b4b0d3255bfef95601890afd80709
 ```
 
 **Determine whether OpenSSL can perform MD5 hashes**: This test verifies that OpenSSL is running in FIPS mode. MD5 is not a permitted hash algorithm in FIPS mode, so an attempt to use it fails:
 
 ```shell
-$ openssl md5 /dev/null
+openssl md5 /dev/null
 Error setting digest md5
 140647163811744:error:060800A3:digital envelope routines:EVP_DigestInit _ex:disabled for fips:digest.c:251:
 ```
@@ -82,7 +82,7 @@ Error setting digest md5
 If OpenSSL is not running in FIPS mode, the MD5 hash functions normally:
 
 ```shell
-$ openssl md5 /dev/null
+openssl md5 /dev/null
 MD5(/dev/null)= d41d8cd98f00b204e9800998ecf8427e
 ```
 
@@ -93,7 +93,7 @@ Follow the [NGINX documentation](https://docs.nginx.com/nginx/admin-guide/instal
 **Verify that NGINX Plus is correctly installed**: Run the following command to confirm that NGINX Plus is installed and is using the expected OpenSSL cryptographic module:
 
 ```shell
-$ nginx -V
+nginx -V
 nginx version: nginx/1.15.2 (nginx-plus-r16)
 built by gcc 4.8.5 20150623 (Red Hat 4.8.5-16) (GCC)
 built with OpenSSL 1.0.2k-fips  26 Jan 2017
@@ -170,11 +170,11 @@ The FIPS 140-2 standard only permits a [subset of the typical SSL and TLS cipher
 
 In the following test, the ciphers presented by NGINX Plus are surveyed using the [Qualys SSL server test](https://www.ssllabs.com/ssltest). In its default configuration, with the `ssl_ciphers HIGH:!aNULL:!MD5` directive, NGINX Plus presents the following ciphers to SSL/TLS clients:
 
-<a href="https://www.nginx.com/wp-content/uploads/2019/07/NGINX-Plus-ciphers_nonFIPS.png"><img src="https://www.nginx.com/wp-content/uploads/2019/07/NGINX-Plus-ciphers_nonFIPS.png" alt="Ciphers presented by NGINX Plus to clients when in non-FIPS mode" width="1024" height="521" class="aligncenter size-full wp-image-62740" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+<a href="/nginx/images/nginx-plus-ciphers-nonfips.png"><img src="/nginx/images/nginx-plus-ciphers-nonfips.png" alt="Ciphers presented by NGINX Plus to clients when in non-FIPS mode" width="1024" height="521" class="aligncenter size-full wp-image-62740" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 When FIPS mode is enabled on the host operating system, the two ciphers that use the Camellia block cipher (`TLS_RSA_WITH_CAMELLIA_128_CBC_SHA` and `TLS_RSA_WITH_CAMELLIA_256_CBC_SHA`) are removed:
 
-<a href="https://www.nginx.com/wp-content/uploads/2019/07/NGINX-Plus-ciphers_FIPS.png"><img src="https://www.nginx.com/wp-content/uploads/2019/07/NGINX-Plus-ciphers_FIPS.png" alt="Ciphers presented by NGINX Plus to clients when in FIPS mode" width="1024" height="466" class="aligncenter size-full wp-image-62738" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+<a href="/nginx/images/nginx-plus-ciphers-fips.png"><img src="/nginx/images/nginx-plus-ciphers-fips.png" alt="Ciphers presented by NGINX Plus to clients when in FIPS mode" width="1024" height="466" class="aligncenter size-full wp-image-62738" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 When you configure NGINX Plus with the `ssl_ciphers ALL` directive, NGINX Plus presents all the relevant ciphers available in the OpenSSL cryptographic module to the client. FIPS mode disables the following ciphers:
 

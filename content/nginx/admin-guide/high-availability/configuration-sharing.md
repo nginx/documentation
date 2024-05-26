@@ -14,7 +14,7 @@ weight: 300
 
 NGINX Plus is often deployed in a high‑availability (HA) cluster of two or more devices. The configuration sharing feature enables you to push configuration from one machine in the cluster (the primary) to its peers:
 
-![nginx-sync.sh](https://www.nginx.com/wp-content/uploads/2020/09/nginx-plus-config-synchronization.png)
+![nginx-sync.sh](/nginx/images/nginx-plus-config-synchronization.png)
 
 
 To configure this feature:

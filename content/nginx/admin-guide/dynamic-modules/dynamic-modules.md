@@ -14,7 +14,7 @@ weight: 10
 
 NGINX Plus uses a modular architecture. New features and functionality can be added with software modules, which can be plugged into a running NGINX Plus instance on demand. Dynamic modules add functionality to NGINX Plus such as [geolocating users by IP address]({{< relref "geoip2.md" >}}), [resizing images]({{< relref "image-filter.md" >}}), and embedding [NGINX JavaScript njs]({{< relref "nginscript.md" >}}) or [Lua]({{< relref "lua.md" >}}) scripts into the NGINX Plus event‑processing model. Modules are created both by NGINX and third‑party developers.
 
-<img src="https://www.nginx.com/wp-content/uploads/2020/03/NGINX-Plus_dynamic-module-plug-ins.png" alt="NGINX Plus allows features to be plugged in on demand" width="500" height="500" style="border:2px solid #666666; padding:2px; margin:2px;" />
+<img src="/nginx/images/nginx-plus-dynamic-module-plug-ins.png" alt="NGINX Plus allows features to be plugged in on demand" width="500" height="500" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 {{<note>}}
 Dynamic modules plug into NGINX Plus to provide additional functionality.

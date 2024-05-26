@@ -36,7 +36,7 @@ The setup for global server load balancing (GSLB) in this guide combines Amazon 
 
 **Note:** [Global server load balancing](https://www.nginx.com/resources/glossary/global-server-load-balancing/) is also sometimes called _global load balancing_ (GLB). The terms are used interchangeably in this guide.
 
-<img src="https://www.nginx.com/wp-content/uploads/2019/05/aws-route-53_topology.png" alt="Diagram showing a topology for global server load balancing (GSLB). Eight backend servers, four in each of two regions, host the content for a domain. Two NGINX Plus load balancers in each region route traffic to the backend servers. For each client requesting DNS information for the domain, Amazon Route 53 provides the DNS record for the region closest to the client." style="border:2px solid #666666; padding:2px; margin:2px;" />
+<img src="/nginx/images/aws-route-53-topology.png" alt="Diagram showing a topology for global server load balancing (GSLB). Eight backend servers, four in each of two regions, host the content for a domain. Two NGINX Plus load balancers in each region route traffic to the backend servers. For each client requesting DNS information for the domain, Amazon Route 53 provides the DNS record for the region closest to the client." style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 Route 53 is a Domain Name System (DNS) service that performs global server load balancing by routing each request to the AWS region closest to the requester's location. This guide uses two regions: <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West (Oregon)</span> and <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US East (N. Virginia)</span>.
 
@@ -154,7 +154,7 @@ To trigger failover between AWS regions, we next configure health checks in Rout
 
 **Note:** It can take up to **three minutes** for Route 53 to begin routing traffic to another region. Although the TTL you specify in the record set for a region can slightly affect the amount of time, failover is never instantaneous because of the processing Route 53 must perform.
 
-<img src="https://www.nginx.com/wp-content/uploads/2019/09/aws-route-53_topology-failover.png" alt="Diagram showing failover between AWS regions when Amazon Route 53 is configured for global server load balancing (GSLB) with NGINX Plus" style="border:2px solid #666666; padding:2px; margin:2px;" />
+<img src="/nginx/images/aws-route-53-topology-failover.png" alt="Diagram showing failover between AWS regions when Amazon Route 53 is configured for global server load balancing (GSLB) with NGINX Plus" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 We create health checks both for each NGINX Plus load balancer individually and for the load balancers in each region as a pair. Then we update the record sets created in the previous section to refer to the health checks.
 

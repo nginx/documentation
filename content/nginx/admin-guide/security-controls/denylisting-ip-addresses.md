@@ -218,7 +218,7 @@ This configuration:
 The following `curl` command populates the empty keyval zone **one** with IP addresses that are denylisted (value is `1`) or allowlisted (value is `0`):
 
 ```shell
-$ curl -X POST -d '{
+curl -X POST -d '{
      "10.0.0.1": "1",
      "192.168.13.0/24": "1",
      "10.0.0.3": "0",

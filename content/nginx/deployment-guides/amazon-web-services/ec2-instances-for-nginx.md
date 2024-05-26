@@ -33,11 +33,11 @@ In addition, to install NGINX software by following the linked instructions, you
 
 2. In the left navigation bar, select **Instances**, then click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Launch Instance </span> button.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2018/03/aws-generic-instance-launch.png"><img src="https://www.nginx.com/wp-content/uploads/2018/03/aws-generic-instance-launch.png" alt="" width="1024" height="266" class="aligncenter size-full image-56336" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-generic-instance-launch.png"><img src="/nginx/images/aws-generic-instance-launch.png" alt="" width="1024" height="266" class="aligncenter size-full image-56336" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 3. In the **Step 1: Choose an Amazon Machine Image (AMI)** window, click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Select </span> button for the Linux distribution of your choice.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-instance-choose-ami.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-instance-choose-ami.png" alt="" width="1024" height="539" class="aligncenter size-full wp-image-54836" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-nlb-instance-choose-ami.png"><img src="/nginx/images/aws-nlb-instance-choose-ami.png" alt="" width="1024" height="539" class="aligncenter size-full wp-image-54836" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 4. In the **Step 2: Choose an Instance Type** window, click the radio button for the appropriate instance type. In the screenshot, we are selecting a <span style="color:#666666; font-weight:bolder; white-space: nowrap;">t2.micro</span> instance, which is normally selected by default and is sufficient for demo purposes.
 
@@ -45,15 +45,15 @@ In addition, to install NGINX software by following the linked instructions, you
 
    Click the <span style="background-color:#cccccc; font-weight:bold;"> Next: Configure Instance Details </span> button to continue to the next step.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-instance-choose-type.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-instance-choose-type.png" alt="" width="1024" height="360" class="aligncenter size-full wp-image-54835" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-nlb-instance-choose-type.png"><img src="/nginx/images/aws-nlb-instance-choose-type.png" alt="" width="1024" height="360" class="aligncenter size-full wp-image-54835" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 5. In the **Step 3: Configure Instance Details** window, select the default subnet for your VPC in the **Subnet** field, then click the <span style="background-color:#cccccc; font-weight:bold;"> Next: Add Storage </span> button.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2018/03/aws-generic-instance-details.png"><img src="https://www.nginx.com/wp-content/uploads/2018/03/aws-generic-instance-details.png" alt="" width="1024" height="793" class="aligncenter size-full image-56335" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-generic-instance-details.png"><img src="/nginx/images/aws-generic-instance-details.png" alt="" width="1024" height="793" class="aligncenter size-full image-56335" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 6. In the **Step 4: Add Storage** window, leave the defaults unchanged. Click the <span style="background-color:#cccccc; font-weight:bold;"> Next: Add Tags </span> button.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-instance-add-storage.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-instance-add-storage.png" alt="" width="1024" height="428" class="aligncenter size-full wp-image-54833" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-nlb-instance-add-storage.png"><img src="/nginx/images/aws-nlb-instance-add-storage.png" alt="" width="1024" height="428" class="aligncenter size-full wp-image-54833" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 7. In the **Step 5: Add Tags** window, click the <span style="background-color:#cccccc; font-weight:bold;"> Add Tag </span> button. Type <span style="color:#666666; font-weight:bolder;">Name</span> in the **Key** field, and in the **Value** field type the instance name (the screenshot shows the result). This name is what will appear in the **Name** column of the summary table on the **Instances** tab of the EC2 dashboard (see the screenshot in Step 12, which shows one instance).
 
@@ -61,7 +61,7 @@ In addition, to install NGINX software by following the linked instructions, you
 
    Click the <span style="background-color:#cccccc; font-weight:bold;"> Next: Configure Security Group </span> button to continue to the next step.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2018/03/aws-instance-add-tags-name.png"><img src="https://www.nginx.com/wp-content/uploads/2018/03/aws-instance-add-tags-name.png" alt="" width="1024" height="483" class="aligncenter size-full wp-image-56334" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-instance-add-tags-name.png"><img src="/nginx/images/aws-instance-add-tags-name.png" alt="" width="1024" height="483" class="aligncenter size-full wp-image-56334" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 8. In the **Step 6: Configure Security Group** window, select or enter the following values in the indicated fields:
 
@@ -71,7 +71,7 @@ In addition, to install NGINX software by following the linked instructions, you
    - **Security group name** – Name of the group. If you are following these instructions as directed by an NGINX deployment guide, the **Prerequisites and Required AWS Configuration** section of the deployment guide specifies the group name to use.
    - **Description** – Description of the group; the group name is often used.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2018/03/aws-generic-instance-security-group.png"><img alt="https://www.nginx.com/wp-content/uploads/2018/03/aws-generic-instance-security-group.png" src="https://www.nginx.com/wp-content/uploads/2018/03/aws-generic-instance-security-group.png" width="1024" height="653" class="aligncenter size-full wp-image-56333" style="border:2px solid #666666; padding:2px; margin:2px;" / /></a>
+   <a href="/nginx/images/aws-generic-instance-security-group.png"><img alt="/nginx/images/aws-generic-instance-security-group.png" src="/nginx/images/aws-generic-instance-security-group.png" width="1024" height="653" class="aligncenter size-full wp-image-56333" style="border:2px solid #666666; padding:2px; margin:2px;" / /></a>
 
 9. In the table, modify the default rule for SSH connections, if necessary, by selecting or setting the following values. They allow inbound SSH connections from all sources (any IP address):
 
@@ -95,19 +95,19 @@ In addition, to install NGINX software by following the linked instructions, you
 
 11. In the **Step 7: Review Instance Launch** window, verify the settings are correct. If so, click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Launch </span> button in the lower‑right corner of the window. To change settings, click the <span style="background-color:#cccccc; font-weight:bold;"> Previous </span> button to go back to earlier windows.
 
-    <a href="https://www.nginx.com/wp-content/uploads/2018/03/aws-generic-instance-review-launch.png"><img alt="" src="https://www.nginx.com/wp-content/uploads/2018/03/aws-generic-instance-review-launch.png" width="1024" height="802" class="aligncenter size-full wp-image-56332" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+    <a href="/nginx/images/aws-generic-instance-review-launch.png"><img alt="" src="/nginx/images/aws-generic-instance-review-launch.png" width="1024" height="802" class="aligncenter size-full wp-image-56332" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 12. When you click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Launch </span> button, a window pops up asking you to select an existing key pair or create a new key pair. Take the appropriate action for your use case, then click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Launch Instances </span> button.
 
     **Note:** It's a best practice – and essential in a production environment – to create a separate key for each EC2 instance, so that if a key is compromised only the single associated instance becomes vulnerable.
 
-    ![Screen of 'Select an existing key pair or create a new key pair' window during creation of Amazon EC2 instance](https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-instance-key-pair.png)
+    ![Screen of 'Select an existing key pair or create a new key pair' window during creation of Amazon EC2 instance](/nginx/images/aws-nlb-instance-key-pair.png)
 
     A **Launch Status** window pops up to confirm that your launch is underway. To confirm the details of your instance when the launch completes, click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> View Instances </span> button on that page.
 
     The instances you have created so far are listed on the **Instances** dashboard. The following screenshot shows a single instance.
 
-    <a href="https://www.nginx.com/wp-content/uploads/2018/03/aws-generic-instance-display-first.png"><img src="https://www.nginx.com/wp-content/uploads/2018/03/aws-generic-instance-display-first.png" alt="" width="1024" height="422" class="aligncenter size-full wp-image-56331" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+    <a href="/nginx/images/aws-generic-instance-display-first.png"><img src="/nginx/images/aws-generic-instance-display-first.png" alt="" width="1024" height="422" class="aligncenter size-full wp-image-56331" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 13. Finalize your security group rules. You need to do this only for the first instance in a given set, because all instances in a set can use the same security group.
 
@@ -115,7 +115,7 @@ In addition, to install NGINX software by following the linked instructions, you
     - Select the security group by clicking its radio button in the leftmost column of the table. A panel opens in the lower part of the window displaying details about the group.
     - Open the **Inbound** tab and verify that the rules you created in Steps 9 and 10 are listed.
 
-      <a href="https://www.nginx.com/wp-content/uploads/2018/03/aws-generic-instance-security-inbound.png"><img src="https://www.nginx.com/wp-content/uploads/2018/03/aws-generic-instance-security-inbound.png" alt="" width="1024" height="467" class="aligncenter size-full wp-image-56329" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+      <a href="/nginx/images/aws-generic-instance-security-inbound.png"><img src="/nginx/images/aws-generic-instance-security-inbound.png" alt="" width="1024" height="467" class="aligncenter size-full wp-image-56329" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
     - Open the **Outbound** tab and click the <span style="background-color:#cccccc; font-weight:bold;"> Edit </span> button to create a rule for outbound traffic. The set of rules depends on which ports you have used for traffic handled by the NGINX Plus instances:
 
@@ -124,7 +124,7 @@ In addition, to install NGINX software by following the linked instructions, you
 
       In the **Destination** field, type the security group's ID, which appears in the **Group ID** column in the upper table (here it's <span style="color:#666666; font-weight:bolder;">sg-3bdbf55d</span>).
 
-     <a href="https://www.nginx.com/wp-content/uploads/2018/03/aws-generic-instance-security-outbound.png"><img src="https://www.nginx.com/wp-content/uploads/2018/03/aws-generic-instance-security-outbound.png" alt="" width="1024" height="459" class="aligncenter size-full wp-image-56330" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+     <a href="/nginx/images/aws-generic-instance-security-outbound.png"><img src="/nginx/images/aws-generic-instance-security-outbound.png" alt="" width="1024" height="459" class="aligncenter size-full wp-image-56330" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 14. To install NGINX software on the instance, [connect](#connect-to-instance) to it, and follow the instructions in the NGINX Plus Admin Guide for [NGINX Open Source]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-open-source#prebuilt" >}} and [NGINX Plus]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
 
@@ -136,12 +136,12 @@ To install and configure NGINX Open Source or NGINX Plus on an instance, you ne
 
 2. Click the row for an instance to select it. In the screenshot **instance2** is selected.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2018/03/aws-generic-instance-select-one.png"><img src="https://www.nginx.com/wp-content/uploads/2018/03/aws-generic-instance-select-one.png" alt="" width="1024" height="263" class="aligncenter size-full wp-image-56328" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-generic-instance-select-one.png"><img src="/nginx/images/aws-generic-instance-select-one.png" alt="" width="1024" height="263" class="aligncenter size-full wp-image-56328" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 3. Click the <span style="background-color:#cccccc; font-weight:bold;"> Connect </span> button above the list of instances. The **Connect To Your Instance** window pops up.
 4. Follow the instructions in the pop‑up window, which are customized for the selected instance (here **instance2**) to provide the name of the key file in the steps and in the sample `ssh` command.
 
-   ![Screenshot of 'Connect To Your Instance' pop-up window for Amazon EC2 instance](https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-instance-connect.png)
+   ![Screenshot of 'Connect To Your Instance' pop-up window for Amazon EC2 instance](/nginx/images/aws-nlb-instance-connect.png)
 
 <span id="install-nginx"></span>
 ## Installing NGINX Software
@@ -207,15 +207,15 @@ To streamline the process of installing NGINX Open Source on multiple instances,
 
 3. Select the base instance by clicking its row in the table. In the screenshot, **instance2** is selected.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2018/03/aws-generic-instance-select-one.png"><img alt="" src="https://www.nginx.com/wp-content/uploads/2018/03/aws-generic-instance-select-one.png" width="1024" height="263" class="aligncenter size-full wp-image-56328" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-generic-instance-select-one.png"><img alt="" src="/nginx/images/aws-generic-instance-select-one.png" width="1024" height="263" class="aligncenter size-full wp-image-56328" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 4. Click the <span style="background-color:#cccccc; font-weight:bold;"> Actions </span> button and select <span style="white-space: nowrap; font-weight:bold;">Image > Create Image</span>.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2018/03/aws-generic-create-image-menu.png"><img src="https://www.nginx.com/wp-content/uploads/2018/03/aws-generic-create-image-menu.png" alt="" width="1024" height="263" class="aligncenter size-full wp-image-56327" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-generic-create-image-menu.png"><img src="/nginx/images/aws-generic-create-image-menu.png" alt="" width="1024" height="263" class="aligncenter size-full wp-image-56327" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 5. In the window that pops up, fill in the **Image name** and (optionally) **Image description** fields, then click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create image </span>  button.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2018/03/aws-generic-create-image-popup.png"><img src="https://www.nginx.com/wp-content/uploads/2018/03/aws-generic-create-image-popup.png" alt="screenshot of 'Create Image' pop-up window for creating base AMI in Amazon EC2" width="1024" height="525" class="aligncenter size-full wp-image-56326" /></a>
+   <a href="/nginx/images/aws-generic-create-image-popup.png"><img src="/nginx/images/aws-generic-create-image-popup.png" alt="screenshot of 'Create Image' pop-up window for creating base AMI in Amazon EC2" width="1024" height="525" class="aligncenter size-full wp-image-56326" /></a>
 
    A **Create Image** window pops up to confirm that the image‑creation request was received. To verify that the image was created, navigate to the **AMIs** tab.
 
