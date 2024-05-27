@@ -422,7 +422,8 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     If you have a RHEL subscription:
 
     ```shell
-    sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
+    sudo subscription-manager repos --enable=rhel-8-for-x86_64-baseos-rpms
+    sudo subscription-manager repos --enable=rhel-8-for-x86_64-appstream-rpms
     sudo dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
     ```
 
@@ -635,14 +636,15 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     If you have a RHEL subscription:
 
     ```shell
-    sudo subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
+    sudo subscription-manager repos --enable=rhel-9-for-x86_64-baseos-rpms
+    sudo subscription-manager repos --enable=rhel-9-for-x86_64-appstream-rpms
     sudo dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
     ```
 
 7. Add the NGINX Plus and NGINX App Protect DoS repositories:
 
     ```shell
-    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-9.repo
+    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-9.repo
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-9.repo
     ```
 
@@ -1423,8 +1425,9 @@ RUN subscription-manager register --force --org=${RHEL_ORG} --activationkey=${RH
 RUN subscription-manager refresh
 RUN subscription-manager attach --auto
 
-# Install dependencies
-RUN subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
+# Setup repos and Install dependencies
+RUN subscription-manager repos --enable=rhel-8-for-x86_64-baseos-rpms
+RUN subscription-manager repos --enable=rhel-8-for-x86_64-appstream-rpms
 RUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 
 # Install prerequisite packages:
@@ -1452,6 +1455,20 @@ CMD /root/entrypoint.sh && tail -f /dev/null
 ```Dockerfile
 # For RHEL ubi9:
 FROM registry.access.redhat.com/ubi9/ubi
+
+# Download certificate and key from the customer portal (https://my.f5.com)
+# and copy to the build context:
+COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
+
+# Setup the Redhat subscription
+RUN subscription-manager register --force --org=${RHEL_ORG} --activationkey=${RHEL_ACTIVATION_KEY}
+RUN subscription-manager refresh
+RUN subscription-manager attach --auto
+
+# Setup repos and Install dependencies
+RUN subscription-manager repos --enable=rhel-9-for-x86_64-baseos-rpms
+RUN subscription-manager repos --enable=rhel-9-for-x86_64-appstream-rpms
+RUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
 
 # Install prerequisite packages:
 RUN dnf -y install wget ca-certificates
