@@ -94,3 +94,11 @@ In this release, NGINX App Protect WAF supports NGINX Open Source 1.25.5 and NGI
 - 10xxx Fixed -  Resolved .
 - 10xxx Fixed - Resolved .
 - 10xxx Fixed - Resolved .
+
+### Limitations
+
+- 11038
+- 11046
+- 11059
+- 11105
+- 11160
