@@ -1,0 +1,72 @@
+---
+description: ''
+docs: DOCS-1361
+doctypes:
+- task
+title: NGINX App Protect DoS Release 4.4
+toc: true
+weight: 80
+---
+
+Here you can find the release information for NGINX App Protect DoS v4.4. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
+
+## Release 4.4
+
+May 27, 2024
+
+In this release, NGINX App Protect DoS supports NGINX Plus R32.
+
+### New Features
+
+- Support for NGINX Plus R32
+- Support for Debian 12
+- Support for RHEL 9
+- Allowlist for NAP-DoS, enabling exclusion of specific IPs or subnets from inspection or blocking. The allow list format in NAP DOS is the same as in NAP WAF, enabling the inclusion of WAF policy seamlessly across both products. For more details, refer to the [directive section]({{< relref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#access-file-directive-app_protect_dos_access_file" >}}).
+- Support for up to 1000 protected objects, ensuring high scalability and efficient resource utilization.
+
+### Supported Packages
+
+#### App Protect DoS
+
+##### Alpine 3.17
+
+- app-protect-dos-32.4.4.0-r1.apk
+
+##### CentOS 7.4+ / RHEL 7.4+
+
+- app-protect-dos-32.4.4.0-1.el7.ngx.x86_64.rpm
+
+##### RHEL 8 and Rocky Linux 8
+
+- app-protect-dos-32.4.4.0-1.el8.ngx.x86_64.rpm
+
+##### Debian 11
+
+- app-protect-dos_32.4.4.0-1~bullseye_amd64.deb
+
+##### Debian 12
+
+- app-protect-dos_32.4.4.0-1~bookworm_amd64.deb
+
+##### Ubuntu 20.04
+
+- app-protect-dos_32.4.4.0-1~focal_amd64.deb
+
+##### Ubuntu 22.04
+
+- app-protect-dos_32.4.4.0-1~jammy_amd64.deb
+
+##### RHEL 9
+
+- app-protect-dos-32.4.4.0-1.el9.ngx.x86_64.rpm
+
+
+#### NGINX Plus
+
+- NGINX Plus R32
+
+
+### Important Notes
+
+
+- When using a large number of Protected Objects, the Signatures mitigation mechanism will be disabled to ensure optimal performance, while all other detection mechanisms will remain intact.
