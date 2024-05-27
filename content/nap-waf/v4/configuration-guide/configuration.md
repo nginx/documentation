@@ -150,11 +150,11 @@ See [signature sets](#signature-sets) for configuring the signature sets include
 
 ## NGINX App Protect WAF Standalone Configuration
 
-### Apreload
+### apreload
 
 {{< include "nap-waf/config/v4/apreload.md" >}}
 
-### Apreload Events
+### apreload Events
 
 {{< include "nap-waf/config/v4/apreload-events.md" >}}
 

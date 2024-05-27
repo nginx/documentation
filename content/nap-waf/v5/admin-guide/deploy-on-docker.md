@@ -6,8 +6,6 @@ doctypes:
 - task
 title: Deploying NGINX App Protect WAF on Docker
 toc: true
-versions:
-- "5.0"
 weight: 300
 ---
 
@@ -115,7 +113,7 @@ services:
 
   waf-enforcer:
     container_name: waf-enforcer
-    image: "private-registry.nginx.com/nap/waf-enforcer:1.0.0"
+    image: "private-registry.nginx.com/nap/waf-enforcer:<version-tag>"
     environment:
       - ENFORCER_PORT=50000
     volumes:

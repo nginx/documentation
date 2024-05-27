@@ -6,8 +6,6 @@ doctypes:
 - task
 title: NGINX App Protect WAF Compiler
 toc: true
-versions:
-- "5.0"
 weight: 500
 ---
 
