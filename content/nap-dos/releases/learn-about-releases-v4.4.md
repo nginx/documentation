@@ -12,7 +12,7 @@ Here you can find the release information for NGINX App Protect DoS v4.4. NGINX 
 
 ## Release 4.4
 
-May 27, 2024
+May 29, 2024
 
 In this release, NGINX App Protect DoS supports NGINX Plus R32.
 
