@@ -83,7 +83,7 @@ To set up your other NGINX instances to use the proxy instance to connect to NGI
 
 For more information, refer to the following resources:
 
-- [Installing NGINX and NGINX Plus]({{< relref "/nginx/admin-guide/installing-nginx.md" >}})
+- [Installing NGINX and NGINX Plus]({{< relref "/nginx/admin-guide/installing-nginx/" >}})
 - [Create and manage data plane keys]({{< relref "/nginx-one/how-to/data-plane-keys.md" >}})
 - [NGINX Agent Installation and upgrade](https://docs.nginx.com/nginx-agent/installation-upgrade/)
 - [NGINX Agent Configuration](https://docs.nginx.com/nginx-agent/configuration/)
