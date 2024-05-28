@@ -16,7 +16,7 @@ This guide explains how to configure NGINX as a proxy, allowing multiple NGINX i
 
 ## Before you start
 
-- [Install NGINX Open Source or NGINX Plus]({{< relref "/nginx/admin-guide/installing-nginx.md" >}}).
+- [Install NGINX Open Source or NGINX Plus]({{< relref "/nginx/admin-guide/installing-nginx/" >}}).
 - [Get a Data Plane Key from NGINX One]({{< relref "/nginx-one/how-to/data-plane-keys.md" >}}).
 
 ## Configure NGINX to act as a proxy for connections
