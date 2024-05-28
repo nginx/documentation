@@ -63,8 +63,8 @@ In this section, you'll learn how to create a [base config template]({{< relref 
 3. On the left menu, select **Templates**.
 4. Select **Create**.
 5. Select **New**.
-6. Give the template a name. For this tutorial, we'll call the base template *rr_base_template*.
-7. Optionally, provide a description for the template. (For example, *Round-Robin Base Template*)
+6. Give the template a name. For this tutorial, we'll call the base template **rr_base_template**.
+7. Optionally, provide a description for the template. (For example, **Round-Robin Base Template**)
 8. Select **Draft** for the template status.
 9. Select **Base** for the template type.
 10. Select **Submit**.
@@ -91,9 +91,11 @@ Your base template should now include the following files:
 
 This snippet defines the structure of the final NGINX configuration file. It uses [Go's text/template](https://pkg.go.dev/text/template) module to dynamically add input into the NGINX configuration. You can identify where augment templates will be inserted by looking for lines like:
 
-> ``` go
-> {{ $input.ExecTemplateAugments "main" }}
-> ```
+{{<call-out "tip" "Augment template injection point" "fas fa-code-branch" >}}
+``` go
+{{ $input.ExecTemplateAugments "main" }}
+```
+{{</call-out>}}
 
 The word "main" can be replaced with other augment injection points, such as "http-server" or "http-upstream."
 
@@ -340,8 +342,8 @@ To create the augment template, take the following steps:
 
 1. On the **Templates > Overview** page, select **Create**.
 2. Select **New**.
-3. Give the template a name. For this tutorial, we'll call the augment template *rr_aug_loc_proxy*.
-4. Optionally, provide a description for the template. For example, *Location Proxy Augment*.
+3. Give the template a name. For this tutorial, we'll call the augment template **rr_aug_loc_proxy**.
+4. Optionally, provide a description for the template. For example, **Round-Robin Location Proxy Augment**.
 5. Select **Draft** for the template status.
 6. Select **Augment** for the template type.
 7. Select **Submit**.
@@ -459,7 +461,7 @@ The first part of the template checks the location's label, `nameExpression`, an
 
 ---
 
-## Generate and deploy the configuration
+## Generate and deploy the configuration {#generate-and-deploy-config}
 
 Lastly, generate and deploy your configuration.
 
@@ -477,7 +479,7 @@ Lastly, generate and deploy your configuration.
    - Enter a unique label for the server (for example, **Round Robin Proxy**). This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific server.
    - Enter a server name (for example, **example.com**).
    - Add a server location:
-     - In the **Server Locations** pane, select **Add Server Location**.
+     - In the **Server Locations** pane, select **Add Server Locations**.
      - Enter a unique label for the location (for example, **Users Endpoint**). This label is displayed in the user interface and acts as a key for matching and applying augment input to the specific location. We'll refer to this label when we configure the augment template inputs.
      - Enter a match expression. This is the prefix to match request paths by (for example, **/users**).
    - Select **Next**.
@@ -504,15 +506,15 @@ Lastly, generate and deploy your configuration.
 
     ```nginx
     # /******************************** !! IMPORTANT !! ********************************/
-    #   This is a Template generated configuration. Updates should be done through the Template
+    #   This is a Template generated configuration. Updates should done through the Template
     #   Submissions workflow. Manual changes to this configuration can/will be overwritten.
-    # __templateTag={"uid":"dcd27926-9851-44cc-8e21-776de0a21474","file":"base.tmpl","name":"rr_base_template"}
+    # __templateTag={"uid":"3c4f0137-058f-4275-a8e2-1a1077ae8e8c","file":"base.tmpl","name":"rr_base_template"}
     events {
     	worker_connections 1024;
     }
     http {
     	upstream users_backend {
-    		server users1.example.com:80;
+    		server 192.0.0.1:80;
     	}
     	server {
     		server_name example.com;
@@ -520,8 +522,8 @@ Lastly, generate and deploy your configuration.
     			
     # <<< BEGIN DO-NOT-EDIT location augment templates >>>
 
-    			# __templateTag={"uid":"c16dde71-e7c7-44d5-80df-508231f96dca","file":"location.tmpl","name":"rr_aug_loc_proxy"}
-    			include /etc/nginx/augments/location/base_http-server1_loc1_dcd27926_c16dde71-e7c7-44d5-80df-508231f96dca.conf;
+    			# __templateTag={"uid":"8c903bd1-c11f-4820-8f0b-d12418a41bad","file":"location.tmpl","name":"rr_aug_loc_proxy"}
+    			include /etc/nginx/augments/location/base_http-server1_loc1_3c4f0137_8c903bd1-c11f-4820-8f0b-d12418a41bad.conf;
     			
     # <<< END DO-NOT-EDIT location augment templates >>>
 
@@ -530,17 +532,36 @@ Lastly, generate and deploy your configuration.
     }
     ```
 
-9. If the configuration looks correct, select **Publish** to deploy it.
+9. If the configuration looks correct, select **Publish** to deploy it, or select **Save** if you're targeting a staged configuration.
 
 ---
 
 ## Verification steps
 
-If you targeted an NGINX instance or instance gro
+If you targeted an NGINX instance or instance group:
 
 1. Open a secure connection to your instance(s) and log in.
-2. Open the **/etc/nginx/nginx.conf** with a file editor.
-3. You should see a 
+2. Open the NGINX config (**/etc/nginx/nginx.conf**) with a text editor. The configuration file should match the config output you [previewed and generated in the previous section](#generate-and-deploy-config).
+3. Next, look for a new file under */etc/nginx/augments/location/* directory with a name similar to **base_http-server1_loc1_[unique-id].conf**, where **[unique-id]** is a unique identifier string. Open this file in a text editor. 
+The contents should include the **proxy_pass** directive:
+
+    ``` nginx
+    proxy_pass http://users_backend;
+    ```
+
+<br>
+
+If you targeted a staged config:
+
+1. On the left menu, select **Staged Configs**.
+2. Choose the name of the staged configuration you saved.
+3. In the file viewer, select **nginx.conf**. The configuration file should match the config output you [previewed and generated in the previous section](#generate-and-deploy-config).
+4. Then, look for a file in the */etc/nginx/augments/location/* directory with a name similar to **base_http-server1_loc1_[unique-id].conf**, where **[unique-id]** is a unique identifier string. The contents should include the **proxy_pass** directive:
+
+    ``` nginx
+    proxy_pass http://users_backend;
+    ```
+
 ---
 
 ## References
