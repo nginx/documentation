@@ -12,7 +12,7 @@ weight: 400
 
 ## Overview
 
-This guide explains how to set up NGINX as a proxy for other NGINX instances to connect to NGINX One. You can route many NGINX instances' connections to NGINX One through a single NGINX instance. This setup minimizes the number of connections outside your network to NGINX One.
+This guide explains how to configure NGINX as a proxy, allowing multiple NGINX instances to connect to NGINX One through a single NGINX instance. By routing these connections through one proxy, you can minimize the number of external connections to NGINX One from your network.
 
 ## Before you start
 
@@ -23,8 +23,9 @@ This guide explains how to set up NGINX as a proxy for other NGINX instances to 
 
 In this step, we'll configure an NGINX instance to act as a proxy to NGINX One.
 
-1. Open the NGINX configuration (**/etc/nginx/nginx.conf**) with a text editor.
-2. Add the following to define the upstream server, set up logging, and configure the proxy server:
+1. Open a secure connection to your instance and log in.
+2. Open the NGINX configuration file (**/etc/nginx/nginx.conf**) with a text editor.
+3. Add the following configuration to define the upstream server, set up logging, and configure the proxy server:
 
     ```nginx
     stream {
@@ -50,7 +51,7 @@ In this step, we'll configure an NGINX instance to act as a proxy to NGINX One.
     }
     ```
 
-3. Reload NGINX to apply the changes:
+4. Reload NGINX to apply the changes:
 
     ```sh
     sudo nginx -s reload
@@ -60,9 +61,9 @@ In this step, we'll configure an NGINX instance to act as a proxy to NGINX One.
 
 To set up your other NGINX instances to use the proxy instance to connect to NGINX One, update the NGINX Agent configuration on those instances to use the proxy NGINX instance's IP address. See the example NGINX Agent configuration below.
 
-1. Open the NGINX Agent configuration (**/etc/nginx-agent/nginx-agent.conf**) with a text editor.
-2. Add the following configuration. Replace `YOUR_DATA_PLANE_KEY_HERE` with your actual data plane key and `YOUR_PROXY_IP_ADDRESS_HERE` with the IP address of the NGINX proxy instance.
-
+1. Open a secure connection to your instance and log in.
+2. Open the NGINX Agent configuration file (**/etc/nginx-agent/nginx-agent.conf**) with a text editor.
+3. Add the following configuration. Replace `YOUR_DATA_PLANE_KEY_HERE` with your actual data plane key and `YOUR_PROXY_IP_ADDRESS_HERE` with the IP address of the NGINX proxy instance.
 
     ```yaml
     server:
