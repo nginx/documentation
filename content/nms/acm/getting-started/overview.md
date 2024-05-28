@@ -69,11 +69,11 @@ To complete the instructions in this series, you must meet the following require
 
 For example:
 
-```bash
+```shell
 curl --location --request POST 'https://{{nms-fqdn}}/api/acm/v1/services/workspaces/{{workspaceName}}' \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/json' \
---header 'Authorization: Basic {{encoded string}}' \
+--header 'Authorization: Bearer <access token>' \
 --data-raw ''
 ```
 

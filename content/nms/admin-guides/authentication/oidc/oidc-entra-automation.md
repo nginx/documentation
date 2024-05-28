@@ -182,7 +182,7 @@ By default, tokens expire after 60 minutes. To configure the expiration please s
 
 To access the NGINX Management Suite API using the access token, you must send the access token in the `Authorization` header of the request as a Bearer token. For example, using `curl`:
 
-```bash
+```shell
 curl -v -k --header "Authorization: Bearer <access token>" https://<nms-ip>/api/platform/v1/userinfo
 ```
 

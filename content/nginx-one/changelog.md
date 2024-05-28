@@ -12,6 +12,16 @@ weight: 99999
 
 Stay up-to-date with what's new and improved in NGINX One.
 
+## May 23, 2024 - v0.20240506.1280775334
+
+### Improved Data Plane Key and NGINX Instance Navigation
+
+We've updated the **Instance Details** and **Data Plane Keys** pages to make it easier to go between keys and registered instances.
+
+- On the **Instance Details** page, you can now find a link to the instance's data plane key. Select the "Data Plane Key" link to view important details like status, expiration, and other registered instances.
+- The **Data Plane Keys** page now includes links to more information about each data plane key.
+
+
 ## February 28, 2024 - v0.20240228.1194299632
 
 ### Breaking Change

@@ -35,8 +35,8 @@ Untagged instances can be accessed by all users that have the `Instance Manageme
 
 To set a role's permissions with tags using the Instance Manager Rest API, send a POST request similar to the following example to the Roles API:
 
-```bash
-curl -X POST "https://<NGINX-INSTANCE-MANAGER-FQDN>/api/platform/v1/roles" -H "authorization: Basic YWRtaW..." -H "content-type: application/json" -d "
+```shell
+curl -X POST "https://<NGINX-INSTANCE-MANAGER-FQDN>/api/platform/v1/roles" -H "Authorization: Bearer <access token>" -H "content-type: application/json" -d "
 {
   "metadata": {
     "description": "Role settings for managers",
