@@ -1,5 +1,5 @@
 ---
-title: "Control Access for Templates and Template Submissions"
+title: "Set Up RBAC for Templates and Template Submissions"
 date: 2024-03-29T09:35:06-07:00
 # Change draft status to false to publish doc
 draft: false
@@ -24,42 +24,41 @@ versions: []
 authors: []
 ---
 
-With role-based access control (RBAC), administrators can determine who can create, read, update, and delete templates and template submissions. This access control lets you securely manage your NGINX configurations and their deployments.
+## Overview
+
+With role-based access control (RBAC), administrators can determine who can create, read, update, and delete templates and template submissions. This access control helps you securely manage your NGINX configurations and deployments.
 
 ## Before You Begin
 
-- Ensure that the user has been added as a [basic authentication]({{< relref "" >}}) or [OpenID Connect (OIDC)]({{< relref "" >}}) user in NGINX Instance Manager.
-- Familiarize yourself with the concepts of [Roles]({{< relref "/nms/admin-guides/rbac/assign-roles.md" >}}) and [Permissions]({{< relref "/nms/admin-guides/rbac/create-roles.md" >}}) within Instance Manager as they are pivotal to managing access.
+- Ensure the user is added as a [basic authentication]({{< relref "/nms/admin-guides/authentication/basic-authentication.md" >}}) or [OpenID Connect (OIDC)]({{< relref "/nms/admin-guides/authentication/oidc/getting-started-oidc.md" >}}) user in NGINX Instance Manager.
+- Familiarize yourself with the concepts of [Roles]({{< relref "/nms/admin-guides/rbac/assign-roles.md" >}}) and [Permissions]({{< relref "/nms/admin-guides/rbac/create-roles.md" >}}) within Instance Manager as they are crucial for managing access.
 
 ## Assign Roles for Templates and Template Submissions
 
 To complete these steps, you need administrator access.
 
-1. **Log in to NGINX Instance Manager:**
-   - Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Management Suite host, and log in.
+1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Management Suite host, and log in.
 
-2. **Access the Settings Menu:**
-   - Select **Settings** (gear icon) in the upper-right corner of the dashboard.
+2. Select **Settings** (gear icon) in the upper-right corner of the dashboard.
 
-3. **Navigate to User Management:**
-   - Select **Users** from the left navigation menu to manage individual users or **User Groups** for managing access at a group level.
+3. Select **Users** from the left menu to manage individual users or **User Groups** for managing access at a group level.
 
-4. **Define Access to Templates and Template Submissions:**
-   - To ensure proper management of NGINX configurations, [create or edit roles]({{< relref "/nms/admin-guides/rbac/create-roles.md" >}}) to specify access to Templates and Template Submissions. This may involve defining CRUD permissions specific to the needs of managing NGINX configurations.
+4. Define access to templates and template submissions:
+   - To ensure proper management of NGINX configurations, [create or edit roles]({{< relref "/nms/admin-guides/rbac/create-roles.md" >}}) to specify access to templates and template submissions. This may involve defining CRUD permissions specific to managing NGINX configurations.
 
-   - **Restricting access to Templates** is essential for controlling who can create and modify templates. This responsibility generally falls to administrators who have a comprehensive understanding of NGINX configurations.  
+   - **Restricting access to templates** is essential for controlling who can create and modify templates. This responsibility generally falls to administrators with a comprehensive understanding of NGINX configurations.  
 
-   - **Restricting access to Template Submissions** limits who can change submitted template inputs. This role could be assigned to application development teams so they can deploy and manage their apps themselves.
+   - **Restricting access to template submissions** limits who can change submitted template inputs. This role could be assigned to application development teams, allowing them to deploy and manage their apps themselves.
 
-5. **Assign or Modify Roles:**
+5. Assign or modify roles:
    - For individual users, select a user from the list and click **Edit User**. For user groups, select a group and click **Edit**.
-   - In the **Roles** list, select the roles that you want to assign to the user or user group. Ensure that the roles include permissions for managing Templates and/or Template Submissions.
+   - In the **Roles** list, select the roles you want to assign to the user or user group. Ensure that the roles include permissions for managing templates and/or template submissions.
 
-6. **Review and Save Changes:**
-   - After assigning roles and permissions, select **Save** to apply the changes.
+6. After assigning roles and permissions, select **Save** to apply the changes.
 
 ---
 
 ## Additional Templating Resources
 
 {{< include "nim/templates/additional-templating-resources.md" >}}
+
