@@ -451,8 +451,11 @@ The file should include a list of IP addresses or ranges in JSON format. Both IP
 
 IPv4 addresses are in the format "a.b.c.d" where each component is a decimal number in the range 0-255.<br>
 IPv6 addresses are in the format "h1:h2:h3:h4:h5:h6:h7:h8" where each component is a hex number in the range 0x0-0xffff. Any contiguous range of zero elements can be omitted and replaced by "::".<br>
+IPv4 and IPv6 masks are written in the format "IP/xxx" (for example: /24), indicating the number of significant bits.<br>
 <br>
 The JSON file should include the ipAddress field for specifying IP addresses or ranges, and the blockRequests field set to "transparent". The file can also include $ref to reference additional files containing more IP addresses.<br>
+<br>
+Additionally, a second format is supported where the mask is specified in a dedicated field `ipMask`. The mask should be written in the standard subnet notation for IPv4 and IPv6 addresses. In this format, the `blockRequests` field should have a value of "never" instead of "transparent".<br>
 <br>
 
 **Example:**
@@ -491,5 +494,25 @@ app_protect_dos_access_file "/etc/app_protect_dos/allowlist.json";
         { "ipAddress": "2.2.2.2/32" },
         { "ipAddress": "4.4.4.0/24" }
     ]
+}
+```
+
+**Example content with second format:**
+```nginx
+{
+   "policy":{
+      "whitelist-ips":[
+         {
+            "ipAddress":"2034::2300",
+            "ipMask":"ffff:ffff:ffff:ffff:ffff:ffff:ffff:ff00",
+            "blockRequests":"never"
+         },
+         {
+            "blockRequests":"never",
+            "ipAddress":"4.4.4.0",
+            "ipMask":"255.255.255.0"
+         }
+      ]
+   }
 }
 ```
