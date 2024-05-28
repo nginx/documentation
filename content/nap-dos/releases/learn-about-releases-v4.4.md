@@ -30,35 +30,35 @@ In this release, NGINX App Protect DoS supports NGINX Plus R32.
 
 ##### Alpine 3.17
 
-- app-protect-dos-32.4.4.1-r1.apk
+- app-protect-dos-32+4.4.1-r1.apk
 
 ##### CentOS 7.4+ / RHEL 7.4+
 
-- app-protect-dos-32.4.4.1-1.el7.ngx.x86_64.rpm
+- app-protect-dos-32+4.4.1-1.el7.ngx.x86_64.rpm
 
 ##### RHEL 8 and Rocky Linux 8
 
-- app-protect-dos-32.4.4.1-1.el8.ngx.x86_64.rpm
+- app-protect-dos-32+4.4.1-1.el8.ngx.x86_64.rpm
 
 ##### RHEL 9
 
-- app-protect-dos-32.4.4.1-1.el9.ngx.x86_64.rpm
+- app-protect-dos-32+4.4.1-1.el9.ngx.x86_64.rpm
 
 ##### Debian 11
 
-- app-protect-dos_32.4.4.1-1~bullseye_amd64.deb
+- app-protect-dos_32+4.4.1-1~bullseye_amd64.deb
 
 ##### Debian 12
 
-- app-protect-dos_32.4.4.1-1~bookworm_amd64.deb
+- app-protect-dos_32+4.4.1-1~bookworm_amd64.deb
 
 ##### Ubuntu 20.04
 
-- app-protect-dos_32.4.4.1-1~focal_amd64.deb
+- app-protect-dos_32+4.4.1-1~focal_amd64.deb
 
 ##### Ubuntu 22.04
 
-- app-protect-dos_32.4.4.1-1~jammy_amd64.deb
+- app-protect-dos_32+4.4.1-1~jammy_amd64.deb
 
 
 #### NGINX Plus

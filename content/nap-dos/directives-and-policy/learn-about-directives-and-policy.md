@@ -118,8 +118,9 @@ app_protect_dos_policy_file /etc/app_protect_dos/BADOSPolicy.json;
 
 ### Service Name directive (`app_protect_dos_name`)
 
-This is the VS (protected object) name, it should be unique and is used to identify the VS in the logs. It can be used in `location/server/http` blocks.
-
+This is the Protected Object (VS) name, which should be unique and is used to identify the Protected Object in the logs.<br>
+It can be utilized within `location`, `server`, and `http` blocks.<br>
+<br>
 Directive is optional. If not written, then each protected object (VS) will have an auto-generated name according to the following syntax:
 
 `line_number-server_name:seq-location_name`
@@ -132,6 +133,8 @@ Directive is optional. If not written, then each protected object (VS) will have
 seq: 0 for server block, increments for each location block. i.e. VS created from server block will have 0 and VS's from location blocks will be 1,2,3,... (i.e. `1`)
 - `location name:` the name of the location (i.e. `/abc`)
 
+NGINX App Protect DoS supports up to 300 Protected Objects for versions up to 4.3, and 1,000 Protected Objects in version 4.4 and above.<br>
+<br>
 **Example:**
 
 ```nginx
