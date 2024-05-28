@@ -8,7 +8,7 @@ toc: true
 weight: 130
 ---
 
-May 28, 2024
+May 29, 2024
 
 {{< note >}}
 Release 4.8.1 cannot be upgraded to v4.10.  You must uninstall 4.8.1 and install 4.10.  Upgrade is supported for versions prior to 4.8.1.
@@ -89,16 +89,10 @@ In this release, NGINX App Protect WAF supports NGINX Open Source 1.25.5 and NGI
 
 - app-protect-module-plus-31+5.17.0-1.el9.ngx.x86_64.rpm
 
-### Resolved Issues
-
-- 10xxx Fixed -  Resolved .
-- 10xxx Fixed - Resolved .
-- 10xxx Fixed - Resolved .
 
 ### Limitations
 
-- 11038
-- 11046
-- 11059
-- 11105
-- 11160
+- 11038 - In some scenarios, autodetect does not correctly recognize the internal buffer as base_64 buffer and so does not decode the data.
+- 11059 - Enforcer may crash in specific scenarios.
+- 11105 - There is a service request to update libprotobuf to version 1.33.0+.
+

@@ -8,7 +8,7 @@ toc: true
 weight: 890
 ---
 
-May 28, 2024
+May 29, 2024
 
 {{< note >}}
  All existing policy bundles and log bundles must be recompiled post upgrade using this version's WAF compiler. Older bundles will be detected and disallowed.   
@@ -90,8 +90,9 @@ In this release, NGINX App Protect WAF supports NGINX Open Source 1.25.5 and NGI
 
 - app-protect-module-plus-31+5.17.0-1.el9.ngx.x86_64.rpm
 
-### Resolved Issues
+### Limitations
 
-- 10xxx Fixed -  Resolved .
-- 10xxx Fixed - Resolved .
-- 10xxx Fixed - Resolved .
+- 11038 - In some scenarios, autodetect does not correctly recognize the internal buffer as base_64 buffer and so does not decode the data.
+- 11059 - Enforcer may crash in specific scenarios.
+- 11105 - There is a service request to update libprotobuf to version 1.33.0+.
+- 11148 - When following the config guide for starting NAP v5 in docker or kubernetes and leaving nginx.conf without any 'app_protect' directive:  changing the conf to include NAP does not work. Enforcer times out every 40 secs waiting for the configuration.
