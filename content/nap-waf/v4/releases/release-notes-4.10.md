@@ -94,5 +94,5 @@ In this release, NGINX App Protect WAF supports NGINX Open Source 1.25.5 and NGI
 
 - 11038 Fixed- In some scenarios, autodetect does not correctly recognize the internal buffer as base_64 buffer and so does not decode the data.
 - 11059 Fixed - Enforcer may crash in specific scenarios.
-- 11105 Fixed - There is a service request to update libprotobuf to version 1.33.0+.
+- 11105 Fixed - Update libprotobuf to version 1.33.0+.
 
