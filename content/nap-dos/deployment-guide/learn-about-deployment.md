@@ -661,7 +661,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```
 
     {{< note >}}
-   L4 accelerated mitigation feature (RHEL 8.6+):
+   L4 accelerated mitigation feature (RHEL 9):
    - `nginx-app-protect-dos` and `nginx` need to run with root privileges.
    - `nginx-app-protect-dos` service executes the command: `ulimit -l unlimited`.
     {{< /note >}}
