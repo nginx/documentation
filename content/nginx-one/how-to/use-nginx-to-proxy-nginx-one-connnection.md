@@ -5,7 +5,7 @@ doctypes:
 - task
 tags:
 - docs
-title: Use NGINX as a proxy for connections to NGINX One
+title: Use NGINX as a proxy for NGINX One
 toc: true
 weight: 400
 ---
