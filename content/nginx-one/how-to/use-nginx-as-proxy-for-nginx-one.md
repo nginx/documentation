@@ -22,7 +22,7 @@ This guide explains how to configure NGINX as a proxy for other NGINX instances 
 - [Get a Data Plane Key from NGINX One]({{< relref "/nginx-one/how-to/data-plane-keys.md" >}}).
 
 ---
-git 
+
 ## Configure an NGINX instance to act as a proxy
 
 In this step, we'll configure an NGINX instance to act as a proxy server for NGINX One.
@@ -85,7 +85,7 @@ To set up your other NGINX instances to use the proxy instance to connect to NGI
       skip_verify: false
     ```
 
- 4. Restart NGINX Agent:
+4. Restart NGINX Agent:
 
     ``` sh
     sudo systemctl restart nginx-agent
