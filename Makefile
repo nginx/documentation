@@ -4,6 +4,7 @@ HUGO_IMG?=hugomods/hugo:0.115.3
 
 THEME_MODULE = github.com/nginxinc/nginx-hugo-theme
 ## Pulls the current theme version from the Netlify settings
+NGINX_THEME_VERSION ?= 0.41.6
 THEME_VERSION = ${NGINX_THEME_VERSION}
 NETLIFY_DEPLOY_URL = ${DEPLOY_PRIME_URL}
 
