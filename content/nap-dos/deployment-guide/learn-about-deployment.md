@@ -448,7 +448,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     {{< note >}}
    L4 accelerated mitigation feature (RHEL 8.6+):
-   - `nginx-app-protect-dos` and `nginx` needs to run with root privileges.
+   - `nginx-app-protect-dos` and `nginx` need to run with root privileges.
    - `nginx-app-protect-dos` service executes the command: `ulimit -l unlimited`.
     {{< /note >}}
 
@@ -662,7 +662,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     {{< note >}}
    L4 accelerated mitigation feature (RHEL 8.6+):
-   - `nginx-app-protect-dos` and `nginx` needs to run with root privileges.
+   - `nginx-app-protect-dos` and `nginx` need to run with root privileges.
    - `nginx-app-protect-dos` service executes the command: `ulimit -l unlimited`.
     {{< /note >}}
 
@@ -904,7 +904,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
    {{< note >}}
    L4 accelerated mitigation feature (Debian 11 /  Debian 12 /  Ubuntu 20.04 / Ubuntu 22.04):
-   - `nginx-app-protect-dos` and `nginx` needs to run with root privileges.
+   - `nginx-app-protect-dos` and `nginx` need to run with root privileges.
    - `nginx-app-protect-dos` service executes the command: `ulimit -l unlimited`.
    {{< /note >}}
 
@@ -1067,7 +1067,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
    {{< note >}}
    L4 accelerated mitigation feature:
-   - `nginx-app-protect-dos` and `nginx` needs to run with root privileges.
+   - `nginx-app-protect-dos` and `nginx` need to run with root privileges.
    {{< /note >}}
 
     Alternatively, to install a specific version, use the following commands to update and list available versions:
