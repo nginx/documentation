@@ -6,8 +6,6 @@ doctypes:
 - task
 title: Deploying NGINX App Protect WAF on Kubernetes
 toc: true
-versions:
-- "5.0"
 weight: 400
 ---
 
@@ -178,7 +176,7 @@ spec:
             - name: app-protect-config
               mountPath: /opt/app_protect/config
         - name: waf-enforcer
-          image: private-registry.nginx.com/nap/waf-enforcer:1.0.0
+          image: private-registry.nginx.com/nap/waf-enforcer:<version-tag>
           imagePullPolicy: IfNotPresent
           env:
             - name: ENFORCER_PORT
@@ -187,7 +185,7 @@ spec:
             - name: app-protect-bd-config
               mountPath: /opt/app_protect/bd_config
         - name: waf-config-mgr
-          image: private-registry.nginx.com/nap/waf-config-mgr:1.0.0
+          image: private-registry.nginx.com/nap/waf-config-mgr:<version-tag>
           imagePullPolicy: IfNotPresent
           securityContext:
             allowPrivilegeEscalation: false
