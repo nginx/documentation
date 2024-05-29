@@ -12,13 +12,13 @@ weight: 500
 Open source components included in the NGINX Plus (package name is `nginx-plus`) are:
 
 
-- nginx/OSS 1.25.3, distributed under 2-clause BSD license.
+- nginx/OSS 1.25.5, distributed under 2-clause BSD license.
 
   Homepage: <https://nginx.org>
 
   Copyright © 2002-2021 Igor Sysoev
 
-  Copyright © 2011-2023 NGINX, Inc.
+  Copyright © 2011-2024 NGINX, Inc.
 
   All rights reserved.
 

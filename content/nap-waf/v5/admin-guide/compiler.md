@@ -6,8 +6,6 @@ doctypes:
 - task
 title: NGINX App Protect WAF Compiler
 toc: true
-versions:
-- "5.0"
 weight: 500
 ---
 
@@ -42,7 +40,7 @@ Regularly rebuild your compiler image and recompile security policies to ensure 
 
     ```dockerfile
     # syntax=docker/dockerfile:1
-    ARG BASE_IMAGE=private-registry.nginx.com/nap/waf-compiler:1.0.0
+    ARG BASE_IMAGE=private-registry.nginx.com/nap/waf-compiler:<version-tag>
     FROM ${BASE_IMAGE}
 
     # Installing packages as root
@@ -81,13 +79,13 @@ Regularly rebuild your compiler image and recompile security policies to ensure 
 4. Build the image
 
 
-    Run the command below to build your image, where `waf-compiler-1.0.0:custom` is an example of the image tag:
+    Run the command below to build your image, where `waf-compiler-<version-tag>:custom` is an example of the image tag:
 
     ```shell
     sudo docker build --no-cache \
     --secret id=nginx-crt,src=nginx-repo.crt \
     --secret id=nginx-key,src=nginx-repo.key \
-    -t waf-compiler-1.0.0:custom .
+    -t waf-compiler-<version-tag>:custom .
     ```
 
 {{< note >}}
@@ -96,7 +94,7 @@ Never upload your NGINX App Protect WAF images to a public container registry su
 
 ## Usage
 
-This section assumes that you built a customized compiler image - `waf-compiler-1.0.0:custom`.
+This section assumes that you built a customized compiler image - `waf-compiler-<version-tag>:custom`.
 
 Make sure that input files are accessible to UID 101.
 
@@ -107,7 +105,7 @@ To compile a security policy from a JSON file and create a policy bundle, execut
 ```shell
 docker run --rm \
  -v $(pwd):$(pwd) \
- waf-compiler-1.0.0:custom \
+ waf-compiler-<version-tag>:custom \
  -p $(pwd)/policy.json -o $(pwd)/compiled_policy.tgz
 ```
 
@@ -132,7 +130,7 @@ Compilation with global settings:
 ```shell
 docker run --rm \
  -v $(pwd):$(pwd) \
- waf-compiler-1.0.0:custom \
+ waf-compiler-<version-tag>:custom \
  -g $(pwd)/global_settings.json -p $(pwd)/policy.json -o $(pwd)/compiled_policy.tgz
 ```
 
@@ -141,7 +139,7 @@ Using `-include-source`, you can incorporate the source of the policy (as `polic
 ```shell
 docker run --rm \
  -v $(pwd):$(pwd) \
- waf-compiler-1.0.0:custom \
+ waf-compiler-<version-tag>:custom \
  -include-source -full-export -g $(pwd)/global_settings.json -p $(pwd)/policy.json -o $(pwd)/compiled_policy.tgz
 ```
 
@@ -152,7 +150,7 @@ To compile a logging profile, execute the command below:
 ```shell
 docker run \
  -v $(pwd):$(pwd) \
- waf-compiler-1.0.0:custom \
+ waf-compiler-<version-tag>:custom \
  -l $(pwd)/log_01.json -o $(pwd)/log01.tgz
 ```
 
@@ -163,7 +161,7 @@ To view information about a bundle file, such as attack signatures versions, use
 ```shell
 docker run \
  -v $(pwd):$(pwd) \
- waf-compiler-1.0.0:custom \
+ waf-compiler-<version-tag>:custom \
  -dump -bundle $(pwd)/compiled_policy.tgz
 ```
 
@@ -279,7 +277,7 @@ Example of generating a JSON policy suitable for NGINX App Protect WAF usage:
 sudo docker run --rm \
  -v $(pwd):$(pwd) \
  --entrypoint=/opt/app_protect/bin/convert-policy \
- waf-compiler-1.0.0:custom \
+ waf-compiler-<version-tag>:custom \
  -i $(pwd)/policy1.xml -o $(pwd)/policy1.json
 ```
 
@@ -350,7 +348,7 @@ Example of generating an unmodified JSON policy (may cause warnings/errors when 
 sudo docker run --rm \
  -v $(pwd):$(pwd) \
  --entrypoint=/opt/app_protect/bin/convert-policy \
- waf-compiler-1.0.0:custom \
+ waf-compiler-<version-tag>:custom \
  -i $(pwd)/policy1.xml -o $(pwd)/policy1.json --keep-full-configuration
 ```
 
@@ -360,7 +358,7 @@ Example of translating a valid NGINX App Protect WAF JSON policy into a full JSO
 sudo docker run --rm \
  -v $(pwd):$(pwd) \
  --entrypoint=/opt/app_protect/bin/convert-policy \
- waf-compiler-1.0.0:custom \
+ waf-compiler-<version-tag>:custom \
  -i $(pwd)/policy1.json -o $(pwd)/policy1.json --full-export
 ```
 
@@ -372,12 +370,12 @@ Optionally, you can build an image for the policy converter by using the WAF Com
 ENTRYPOINT /opt/app_protect/bin/convert-policy
 ```
 
-Assuming you have tagged this image as `waf-policy-converter-1.0.0:custom`, you can run it using the following command:
+Assuming you have tagged this image as `waf-policy-converter-<version-tag>:custom`, you can run it using the following command:
 
 ```shell
 sudo docker run --rm \
  -v $(pwd):$(pwd) \
- waf-compiler-1.0.0:custom \
+ waf-compiler-<version-tag>:custom \
  -i $(pwd)/policy1.xml -o $(pwd)/policy1.json
  ```
 
@@ -418,7 +416,7 @@ Example of generating a user defined signature JSON file (with default tag):
 sudo docker run --rm \
  -v $(pwd):$(pwd) \
  --entrypoint=/opt/app_protect/bin/convert-signatures \
- waf-compiler-1.0.0:custom \
+ waf-compiler-<version-tag>:custom \
  -i $(pwd)/signatures.xml -o $(pwd)/signatures.json
 ```
 
@@ -486,7 +484,7 @@ Example of generating a user defined signature JSON file (with custom tag):
 sudo docker run --rm \
  -v $(pwd):$(pwd) \
  --entrypoint=/opt/app_protect/bin/convert-signatures \
- waf-compiler-1.0.0:custom \
+ waf-compiler-<version-tag>:custom \
  -i $(pwd)/signatures.xml -o $(pwd)/signatures.json --tag "MyTag
 ```
 
@@ -518,7 +516,7 @@ Example of generating a signature report (with all signature details):
 sudo docker run --rm \
  -v $(pwd):$(pwd) \
  --entrypoint=/opt/app_protect/bin/get-signatures \
- waf-compiler-1.0.0:custom \
+ waf-compiler-<version-tag>:custom \
  -o $(pwd)/signature-report.json
 ```
 
@@ -629,7 +627,7 @@ Example of generating signature report (with a preset set of fields):
 sudo docker run --rm \
  -v $(pwd):$(pwd) \
  --entrypoint=/opt/app_protect/bin/get-signatures \
- waf-compiler-1.0.0:custom \
+ waf-compiler-<version-tag>:custom \
  -o $(pwd)/signature-report.json --fields=name,signatureId
 ```
 
@@ -641,12 +639,12 @@ Optionally, you can build an image for the signature report tool by using the WA
 ENTRYPOINT /opt/app_protect/bin/get-signatures
 ```
 
-Assuming you have tagged this image as `waf-sig-reporter-1.0.0:custom`, you can run it using the following command:
+Assuming you have tagged this image as `waf-sig-reporter-<version-tag>:custom`, you can run it using the following command:
 
 ```shell
 sudo docker run --rm \
  -v $(pwd):$(pwd) \
- waf-sig-reporter-1.0.0:custom \
+ waf-sig-reporter-<version-tag>:custom \
  -o $(pwd)/signature-report.json --fields=name,signatureId
  ```
 -->

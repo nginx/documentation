@@ -68,6 +68,3 @@ To delete a data plane key using the NGINX One REST API, see these guides:
 
 - [Authenticate with the NGINX One REST API]({{< relref "nginx-one/reference/api/nginx-one-api-authentication.md" >}})
 - [Delete a data plane key: NGINX One API Reference]({{< relref "nginx-one/reference/api/nginx-one-api-reference.md#operation/deleteDataPlaneKey" >}})
-
-
-
