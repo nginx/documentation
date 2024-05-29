@@ -95,7 +95,7 @@ NGINX Plus R32 is supported on:
 - [OpenTracing dynamic module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/opentracing/) (package name is `nginx-plus-module-opentracing-module`) is deprecated
 - [ModSecurity WAF dynamic module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/nginx-waf/) (package name is `nginx-plus-module-modsecurity`) reached end of support and is no longer available
 
-More information: [Announcing NGINX Plus R32](https://www.f5.com/company/blog/nginx/nginx-plus-r32-released)
+More information: [Announcing NGINX Plus R32](https://www.f5.com/company/blog/nginx/announcing-NGINX-plus-R32)
 
 <span id="r31"></span>
 ## NGINX Plus Release 31 (R31)
