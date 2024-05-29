@@ -89,7 +89,8 @@ To set up your other NGINX instances to use the proxy instance to connect to NGI
 
     ``` sh
     sudo systemctl restart nginx-agent
-   
+    ```
+
 ---
 
 ## References
