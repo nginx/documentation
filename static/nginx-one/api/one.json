@@ -3648,16 +3648,16 @@
         "type": "object",
         "description": "Defines the PEM-formatted certificate content which includes the certificates and corresponding private key, all encoded in base64.\n",
         "required": [
-          "publicCerts"
+          "public_certs"
         ],
         "properties": {
-          "publicCerts": {
+          "public_certs": {
             "type": "string",
             "format": "byte",
             "maxLength": 3145728,
             "description": "Base64-encoded PEM-formatted certificate information. \nThis field can include a leaf certificate along with its full chain of trust or a CA bundle. \nFor leaf certificates, the accompanying `privateKey` is required to authenticate the certificate's validity. \nCA bundles do not require a private key and may consist of certificates from different CA chains.\n"
           },
-          "privateKey": {
+          "private_key": {
             "type": "string",
             "format": "byte",
             "maxLength": 3145728,
@@ -3665,8 +3665,8 @@
           }
         },
         "example": {
-          "publicCerts": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUUzb3lkdWVPQU5KSGh2TDN5dkpkVHBob2V2NUdPN2dvK0J5WU9PL2w1NHU1TzJQeE1lWCtBakFiNkF4bXEKbGl2SXVodz0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ==",
-          "privateKey": ""
+          "public_certs": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUUzb3lkdWVPQU5KSGh2TDN5dkpkVHBob2V2NUdPN2dvK0J5WU9PL2w1NHU1TzJQeE1lWCtBakFiNkF4bXEKbGl2SXVodz0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ==",
+          "private_key": ""
         }
       },
       "CertificateRequest": {
@@ -3689,8 +3689,8 @@
         "example": {
           "name": "example-ca-bundle",
           "content": {
-            "publicCerts": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUUzb3lkdWVPQU5KSGh2TDN5dkpkVHBob2V2NUdPN2dvK0J5WU9PL2w1NHU1TzJQeE1lWCtBakFiNkF4bXEKbGl2SXVodz0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ==",
-            "privateKey": ""
+            "public_certs": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUUzb3lkdWVPQU5KSGh2TDN5dkpkVHBob2V2NUdPN2dvK0J5WU9PL2w1NHU1TzJQeE1lWCtBakFiNkF4bXEKbGl2SXVodz0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ==",
+            "private_key": ""
           }
         }
       },
@@ -4052,14 +4052,29 @@
           }
         ]
       },
+      "NginxProductInfo": {
+        "type": "object",
+        "description": "Information about an NGINX product type and its version",
+        "required": [
+          "name",
+          "version"
+        ],
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/NginxProduct"
+          },
+          "version": {
+            "description": "version of the Nginx product installed on the instance.",
+            "type": "string"
+          }
+        }
+      },
       "CVEImpactedInstance": {
         "type": "object",
         "description": "Summary information about a NGINX instance.",
         "required": [
           "object_id",
           "hostname",
-          "product",
-          "nginx_version",
           "status"
         ],
         "properties": {
@@ -4070,12 +4085,12 @@
             "description": "The name of the host system where the NGINX instance is running.",
             "type": "string"
           },
-          "nginx_version": {
-            "description": "The version number of the base open-source NGINX.",
-            "type": "string"
-          },
-          "product": {
-            "$ref": "#/components/schemas/NginxProduct"
+          "products": {
+            "description": "List of NGINX products in the instance",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NginxProductInfo"
+            }
           },
           "status": {
             "type": "string",
@@ -4117,8 +4132,12 @@
                 {
                   "object_id": "inst_8Iwn7dT7RF-PRLxkSt5EYQ",
                   "hostname": "4d116619f106",
-                  "product": "noss",
-                  "nginx_version": "1.25.3",
+                  "products": [
+                    {
+                      "name": "noss",
+                      "version": "1.18.0"
+                    }
+                  ],
                   "status": "unknown"
                 }
               ]
