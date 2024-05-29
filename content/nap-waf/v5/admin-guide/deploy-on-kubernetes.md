@@ -185,7 +185,7 @@ spec:
             - name: app-protect-bd-config
               mountPath: /opt/app_protect/bd_config
         - name: waf-config-mgr
-          image: private-registry.nginx.com/nap/waf-config-mgr:1.0.0
+          image: private-registry.nginx.com/nap/waf-config-mgr:<version-tag>
           imagePullPolicy: IfNotPresent
           securityContext:
             allowPrivilegeEscalation: false

@@ -124,7 +124,7 @@ services:
 
   waf-config-mgr:
     container_name: waf-config-mgr
-    image: "private-registry.nginx.com/nap/waf-config-mgr:1.0.0"
+    image: "private-registry.nginx.com/nap/waf-config-mgr:<version-tag>"
     volumes:
       - app_protect_bd_config:/opt/app_protect/bd_config
       - app_protect_config:/opt/app_protect/config
