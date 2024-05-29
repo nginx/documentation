@@ -10,32 +10,32 @@ weight: 120
 
 ## Introduction
 
-NGINX directives are written in the `nginx.conf` file and are used to configure specific modules of NGINX.<br>
-NGINX App Protect DoS has its own directives (which follows the same rules of all other directives) and are used to enable and configure it.<br>
+NGINX directives are specified in the `nginx.conf` file and are used to configure various modules of NGINX.<br>
+NGINX App Protect DoS has its own set of directives, which follow the same rules as other NGINX directives, and are used to enable and configure its features.<br>
 
-The table below summarizes all the NGINX App Protect DoS directives.<br>
+The table below provides a summary of all the NGINX App Protect DoS directives.<br>
 
-Although only the first directive is mandatory (used for enabling NGINX App Protect DoS), it is advised to use as many directives as possible in order to make use of the product's monitoring and application health detection capabilities.<br>
-When reloading NGINX after inserting the directives, pay attention to any errors or warnings that might be written to the NGINX error log.<br>
+While only the first directive is mandatory for enabling NGINX App Protect DoS, it is recommended to use as many directives as possible to leverage the product’s full range of monitoring and application health detection capabilities. After adding these directives, ensure you reload NGINX and check the error log for any errors or warnings.<br>
 
 ## Directives table
-This is a summary of all NGINX App Protect DoS directives. You can find the description of each below.
+Below is a summary of all NGINX App Protect DoS directives. Detailed descriptions of each directive can be found in the following sections.
 
  {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
 
-| Directive syntax | Options  | Context  |  Description |  Mandatory |  Default |
-|------------------|----------|----------|--------------|------------|----------|
-| [app_protect_dos_enable](#enable-directive-app_protect_dos_enable)  | [on\|off]  | http, <br> server, <br> location  |  Enable/Disable DoS protection | Yes  |  off |
-| [app_protect_dos_policy_file](#policy-directive-app_protect_dos_policy_file)  | [FILE-PATH]  | http, <br> server, <br> location | Load DoS configuration from a policy file  | No  | `/etc/app_protect_dos/BADOSDefaultPolicy.json` |
-| [app_protect_dos_name](#service-name-directive-app_protect_dos_name)  | [SERVICE-NAME]  | http, <br> server, <br> location  | Name of protected object  | No | **line_num-server_name**:*seq*-location_name <br> <br> (i.e. `30-backend:1-/abc`) |
-| [app_protect_dos_monitor](#monitor-directive-app_protect_dos_monitor)  | [uri=X]  [protocol=Y]  [timeout=Z] [proxy_protocol \| proxy_protocol=on\|off] | http, <br> server, <br> location  | URI to monitor server's stress. Protocol and timeout are optional  |  Yes, unless its regular http1 traffic | uri - None <br> protocol - http1 <br> timeout - 10 seconds for http1/websocket ; 5 seconds for http2/grpc <br> proxy_protocol - off |
-| [app_protect_dos_security_log_enable](#security-log-enable-directive-app_protect_dos_security_log_enable) | [on\|off] | http, <br> server, <br> location | Enable/Disable security logger | No | off |
-| [app_protect_dos_security_log](#security-log-directive-app_protect_dos_security_log)  | [LOG-CONFIG-FILE] [DESTINATION] | http, <br> server, <br> location  | Security logger configuration. Second argument: <br>"syslog:server={ip}:{port}"  or <br>"stderr" or  <br>  "{absolute_file_path}" | No | `/etc/app_protect_dos/log-default.json stderr` |
-| [app_protect_dos_liveness](#liveness-probe-directive-app_protect_dos_liveness)  | [on\|off] [uri:URI] [port:PORT]  |  http | Liveness prob. Second and third arguments are optional |  No | `off uri:/app_protect_dos_liveness port:8090`  |
-| [app_protect_dos_readiness](#readiness-probe-directive-app_protect_dos_readiness)  | 	[on\|off] [uri:URI] [port:PORT]  | http  | Readiness prob. Second and third arguments are optional  | No | `off  uri:/app_protect_dos_readiness port:8090`  |
-| [app_protect_dos_arb_fqdn](#arbitrator-fqdn-directive-app_protect_dos_arb_fqdn)  | [FQDN\|IP address]  | http | Arbitrator FQDN/IP address  | No | `svc-appprotect-dos-arb` |
-| [app_protect_dos_api](#api-directive-app_protect_dos_api)  | No arguments  | location | Monitoring via Rest API (also includes the dashboard)  | No | off |
-| [app_protect_dos_accelerated_mitigation](#api-directive-app_protect_dos_api) | [on\|off] [syn_drop=on\|off]| http | Enable/Disable L4 accelerated mitigation. Second argument is optional | No | off syn_drop=off |
+| Directive syntax                                                                                          | Options  | Context  |  Description |  Mandatory | Default                                                                                                                             |
+|-----------------------------------------------------------------------------------------------------------|----------|----------|--------------|------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| [app_protect_dos_enable](#enable-directive-app_protect_dos_enable)                                        | [on\|off]  | http, <br> server, <br> location  |  Enable/Disable DoS protection | Yes  | off                                                                                                                                 |
+| [app_protect_dos_policy_file](#policy-directive-app_protect_dos_policy_file)                              | [FILE-PATH]  | http, <br> server, <br> location | Load DoS configuration from a policy file  | No  | `/etc/app_protect_dos/BADOSDefaultPolicy.json`                                                                                      |
+| [app_protect_dos_name](#service-name-directive-app_protect_dos_name)                                      | [SERVICE-NAME]  | http, <br> server, <br> location  | Name of protected object  | No | **line_num-server_name**:*seq*-location_name <br> <br> (i.e. `30-backend:1-/abc`)                                                   |
+| [app_protect_dos_monitor](#monitor-directive-app_protect_dos_monitor)                                     | [uri=X]  [protocol=Y]  [timeout=Z] [proxy_protocol \| proxy_protocol=on\|off] | http, <br> server, <br> location  | URI to monitor server's stress. Protocol and timeout are optional  |  Yes, unless its regular http1 traffic | uri - None <br> protocol - http1 <br> timeout - 10 seconds for http1/websocket ; 5 seconds for http2/grpc <br> proxy_protocol - off |
+| [app_protect_dos_security_log_enable](#security-log-enable-directive-app_protect_dos_security_log_enable) | [on\|off] | http, <br> server, <br> location | Enable/Disable security logger | No | off                                                                                                                                 |
+| [app_protect_dos_security_log](#security-log-directive-app_protect_dos_security_log)                      | [LOG-CONFIG-FILE] [DESTINATION] | http, <br> server, <br> location  | Security logger configuration. Second argument: <br>"syslog:server={ip}:{port}"  or <br>"stderr" or  <br>  "{absolute_file_path}" | No | `/etc/app_protect_dos/log-default.json stderr`                                                                                      |
+| [app_protect_dos_liveness](#liveness-probe-directive-app_protect_dos_liveness)                            | [on\|off] [uri:URI] [port:PORT]  |  http | Liveness prob. Second and third arguments are optional |  No | `off uri:/app_protect_dos_liveness port:8090`                                                                                       |
+| [app_protect_dos_readiness](#readiness-probe-directive-app_protect_dos_readiness)                         | 	[on\|off] [uri:URI] [port:PORT]  | http  | Readiness prob. Second and third arguments are optional  | No | `off  uri:/app_protect_dos_readiness port:8090`                                                                                     |
+| [app_protect_dos_arb_fqdn](#arbitrator-fqdn-directive-app_protect_dos_arb_fqdn)                           | [FQDN\|IP address]  | http | Arbitrator FQDN/IP address  | No | `svc-appprotect-dos-arb`                                                                                                            |
+| [app_protect_dos_api](#api-directive-app_protect_dos_api)                                                 | No arguments  | location | Monitoring via Rest API (also includes the dashboard)  | No | off                                                                                                                                 |
+| [app_protect_dos_accelerated_mitigation](#api-directive-app_protect_dos_api)                              | [on\|off] [syn_drop=on\|off]| http | Enable/Disable L4 accelerated mitigation. Second argument is optional | No | off syn_drop=off                                                                                                                    |
+| [app_protect_dos_access_file](#access-file-directive-app_protect_dos_access_file)                             | [FILE-PATH]  | http, <br> server, <br> location | Define allowlist policy from a file	  | No  | None / disabled                                                                                                                               |
 
 {{</bootstrap-table>}}
 
@@ -118,8 +118,9 @@ app_protect_dos_policy_file /etc/app_protect_dos/BADOSPolicy.json;
 
 ### Service Name directive (`app_protect_dos_name`)
 
-This is the VS (protected object) name, it should be unique and is used to identify the VS in the logs. It can be used in `location/server/http` blocks.
-
+This is the Protected Object (VS) name, which should be unique and is used to identify the Protected Object in the logs.<br>
+It can be utilized within `location`, `server`, and `http` blocks.<br>
+<br>
 Directive is optional. If not written, then each protected object (VS) will have an auto-generated name according to the following syntax:
 
 `line_number-server_name:seq-location_name`
@@ -132,6 +133,8 @@ Directive is optional. If not written, then each protected object (VS) will have
 seq: 0 for server block, increments for each location block. i.e. VS created from server block will have 0 and VS's from location blocks will be 1,2,3,... (i.e. `1`)
 - `location name:` the name of the location (i.e. `/abc`)
 
+NGINX App Protect DoS supports up to 300 Protected Objects for versions up to 4.3, and 1,000 Protected Objects in version 4.4 and above.<br>
+<br>
 **Example:**
 
 ```nginx
@@ -140,32 +143,31 @@ app_protect_dos_name po-example;
 
 ### Monitor directive (`app_protect_dos_monitor`)
 
-**Syntax:** app_protect_dos_monitor uri=path [protocol=http1|http2|grpc|websocket] [timeout=number] [proxy_protocol=on|off];
+The `app_protect_dos_monitor` directive is used to monitor the stress level of the Protected Object.<br>
+Requests for this monitoring are sent from the localhost (127.0.0.1).<br>
+This directive is mandatory, except when using the HTTP1 protocol, where it is still strongly recommended for optimal performance.<br>
 
-**Default:** —
+**Syntax:**<br> 
+app_protect_dos_monitor uri=path [protocol=http1|http2|grpc|websocket] [timeout=number] [proxy_protocol=on|off];
 
-**Context:** http, server, location
-
-Monitors the stress level of the Protected Object. Requests for this monitoring are sent from the localhost (127.0.0.1).
-This directive is mandatory, except when using the HTTP1 protocol, where it is still strongly recommended for optimal performance.
-
+**Arguments**<br>
 Monitor directive has four arguments - **uri**, **protocol**, **timeout** and **proxy_protocol**. The first is mandatory and the rest are optional.
 
-- **URI** - destination to the desired protected object in the `nginx.conf`. Format: **scheme://server_name:port/location**.
+- **URI** - The destination to the desired protected object in the `nginx.conf`. The format is **scheme://server_name:port/location**.
 
-  {{< note >}}For gRPC, a certain method should be specified in the location. For example, /RouteGuide/GetFeature. {{< /note >}}
+  {{< note >}}For gRPC, a specific method should be specified in the location. For example, `/RouteGuide/GetFeature`. {{< /note >}}
 
-- **Protocol** -  determines the protocol type of the service. Options: `http1 / http2 / grpc / websocket`. Default: `http1`.
+- **Protocol** -  determines the protocol type of the service. Options are `http1 / http2 / grpc / websocket`. Default: `http1`.
 
-  {{< note >}}http2 and grpc are supported from NGINX App Protect DoS v2 ; websocket is supported from NGINX App Protect DoS v4. {{< /note >}}
+  {{< note >}}HTTP2 and gRPC are supported from NGINX App Protect DoS v2, while WebSocket is supported from NGINX App Protect DoS v4. {{< /note >}}
 
 - **Timeout** - determines how long (in seconds) should NGINX App Protect DoS wait for a response. Default: 10 seconds for `http1/http2/websocket` and 5 seconds for `grpc`.
 
-- **Proxy Protocol** - should be used when the listen directive of the correspondent server block contains proxy_protocol parameter.
+- **Proxy Protocol** -  Should be used when the listen directive of the corresponding server block contains the proxy_protocol parameter.
 It adds an HAProxy PROXY protocol header to the monitor request.
-Format: **proxy_protocol | proxy_protocol=on**. Default: off.
+The format is **proxy_protocol | proxy_protocol=on**. Default: off.
 
-  {{< note >}}proxy_protocol is supported from NGINX App Protect DoS v3.1. {{< /note >}}
+  {{< note >}}The proxy_protocol is supported from NGINX App Protect DoS v3.1. {{< /note >}}
 
 
 #### For NGINX App Protect DoS v1
@@ -438,4 +440,82 @@ To use this directive you need to install eBPF package.
 
 ```nginx
 app_protect_dos_accelerated_mitigation on syn_drop=on;
+```
+
+### Access File directive (`app_protect_dos_access_file`)
+
+The `app_protect_dos_access_file` directive defines an allowlist policy from a specified file.<br>
+This enables specifying IP addresses or ranges that should never be blocked.<br>
+The format of the file is the same as used in NGINX App Protect WAF, making it easy to reuse existing WAF policies with defined allowlist IPs.<br>
+<br>
+The directive is optional. If not written, then the allowlist feature is disabled.<br>
+<br>
+The file should include a list of IP addresses or ranges in JSON format. Both IPv4 and IPv6 addresses are supported.<br>
+
+IPv4 addresses are in the format "a.b.c.d" where each component is a decimal number in the range 0-255.<br>
+IPv6 addresses are in the format "h1:h2:h3:h4:h5:h6:h7:h8" where each component is a hex number in the range 0x0-0xffff. Any contiguous range of zero elements can be omitted and replaced by "::".<br>
+IPv4 and IPv6 masks are written in the format "IP/xxx" (for example: /24), indicating the number of significant bits.<br>
+<br>
+The JSON file should include the ipAddress field for specifying IP addresses or ranges, and the blockRequests field set to "transparent". The file can also include $ref to reference additional files containing more IP addresses.<br>
+<br>
+Additionally, a second format is supported where the mask is specified in a dedicated field `ipMask`. The mask should be written in the standard subnet notation for IPv4 and IPv6 addresses. In this format, the `blockRequests` field should have a value of "never" instead of "transparent".<br>
+<br>
+
+**Example:**
+```nginx
+app_protect_dos_access_file "/etc/app_protect_dos/allowlist.json";
+```
+
+**Example content of /etc/app_protect_dos/allowlist.json:**
+```nginx
+{
+    "policy": {
+        "ip-address-lists": [
+            {
+                "ipAddresses": [
+                    { "ipAddress": "1.1.1.1" },
+                    { "ipAddress": "1.1.1.1/32" },
+                    { "ipAddress": "3.3.3.0/24" },
+                    { "ipAddress": "2023::4ef3/128" },
+                    { "ipAddress": "2034::2300/120" }
+                ],
+                "blockRequests": "transparent"
+            },
+            {
+                "$ref": "/etc/app_protect_dos/additional_ips.json",
+                "blockRequests": "transparent"
+            }
+        ]
+    }
+}
+```
+
+**Example content of /etc/app_protect_dos/additional_ips.json:**
+```nginx
+{
+    "ipAddresses": [
+        { "ipAddress": "2.2.2.2/32" },
+        { "ipAddress": "4.4.4.0/24" }
+    ]
+}
+```
+
+**Example content with second format:**
+```nginx
+{
+   "policy":{
+      "whitelist-ips":[
+         {
+            "ipAddress":"2034::2300",
+            "ipMask":"ffff:ffff:ffff:ffff:ffff:ffff:ffff:ff00",
+            "blockRequests":"never"
+         },
+         {
+            "blockRequests":"never",
+            "ipAddress":"4.4.4.0",
+            "ipMask":"255.255.255.0"
+         }
+      ]
+   }
+}
 ```

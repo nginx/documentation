@@ -18,6 +18,85 @@ We do not issue updates for releases that have reached EoSD. For this reason, we
 The initial release dates for NGINX Plus are noted in this document.
 New releases are announced on the [NGINX Product Support Announcements](https://interact.f5.com/Customer-Preference-Center.html) mailing list.
 
+<span id="r32"></span>
+## NGINX Plus Release 32 (R32)
+_29 May 2024_<br/>
+_Based on NGINX Open Source 1.25.5_
+
+NGINX Plus R32 is a feature release:
+
+- SSL certificate caching that improves the NGINX startup time and memory usage in cases of configurations with large number of locations with relatively small number of unique certificate/key pairs
+
+- The [`stream_pass`](https://nginx.org/en/docs/stream/ngx_stream_pass_module.html) module that allows passing the accepted connection directly to any configured listening socket in `http`, `stream`, `mail`, and other similar modules
+
+- NGINX Plus [official container images](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-docker/)
+
+- [Virtual servers](http://nginx.org/en/docs/stream/ngx_stream_core_module.html#server_name) in the [`stream`](http://nginx.org/en/docs/stream/ngx_stream_core_module.html) module
+
+- The `deferred`, `accept_filter`, and `setfib` parameters of the [listen](http://nginx.org/en/docs/stream/ngx_stream_core_module.html#listen) directive in the [`stream`](http://nginx.org/en/docs/stream/ngx_stream_core_module.html) module
+
+- Cache line size detection for some architectures
+
+- Security fixes:
+
+  - Heap Overflow w/ write ([CVE-2024-32760](https://my.f5.com/manage/s/article/K000139609)): Undisclosed HTTP/3 encoder instructions can cause NGINX worker processes to terminate or cause other possible impacts
+
+  - Stack Overflow / Use after free ([CVE-2024-31079](https://my.f5.com/manage/s/article/K000139611)): Undisclosed HTTP/3 requests can cause NGINX worker processes to terminate or cause other possible impacts. This attack requires that a request be specifically timed during the connection draining process, which the attacker has no visibility and limited influence over
+
+  - Null Pointer Dereference w/ Empty Header ([CVE-2024-35200](https://my.f5.com/manage/s/article/K000139612)): Undisclosed HTTP/3 requests can cause NGINX worker processes to terminate or cause other possible impacts
+
+  - Memory Disclosure during QUIC handshake ([CVE-2024-34161](https://my.f5.com/manage/s/article/K000139627)): When the network infrastructure supports a Maximum Transmission Unit (MTU) of 4096 or greater without fragmentation, undisclosed QUIC messages can cause NGINX worker processes to terminate or cause leakage of previously freed memory
+
+- Bugfixes:
+
+  - in the [MQTT](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html) module: malformed packets when using default properties
+
+  - in the [zone_sync](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html) module: memory leak on configuration reload
+
+  - Unexpected connection closure while using 0-RTT in QUIC
+
+  - Connections with pending AIO operations might be closed prematurely during graceful shutdown of old worker processes
+
+  - Socket leak alerts no longer logged when fast shutdown was requested after graceful shutdown of old worker processes
+
+  - A socket descriptor error, a socket leak, or a segmentation fault in a worker process (for SSL proxying) might occur if AIO was used in a subrequest
+
+  - A segmentation fault might occur in a worker process if SSL proxying was used along with the [image_filter](https://nginx.org/en/docs/http/ngx_http_image_filter_module.html) directive and errors with code 415 were redirected with the [error_page](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_page) directive
+
+  - Bugfixes and improvements in HTTP/3
+
+- New features and bugfixes in njs:
+
+  - setting the `Server `header for outgoing header
+
+  - QuickJS engine support in CLI
+
+NGINX Plus R32 is supported on:
+
+- AlmaLinux 8, 9
+- Alpine Linux 3.16, 3.17, 3.18, 3.19
+- Amazon Linux 2 LTS, 2023
+- CentOS 7.4+
+- Debian 11, 12
+- FreeBSD 13, 14
+- Oracle Linux 7.4+, 8.1+, 9
+- RHEL 7.4+, 8.1+, 9.0+
+- Rocky Linux 8, 9
+- SUSE Linux Enterprise Server 12 SP5, 15 SP2
+- Ubuntu 20.04 LTS, 22.04 LTS, 24.04 LTS
+
+**Notes:**
+
+- Ubuntu 24.04 LTS is new in this release
+- CentOS 7 is deprecated
+- RHEL 7 is deprecated
+- Oracle Linux 7 is deprecated
+- FreeBSD 12 is removed
+- [OpenTracing dynamic module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/opentracing/) (package name is `nginx-plus-module-opentracing-module`) is deprecated
+- [ModSecurity WAF dynamic module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/nginx-waf/) (package name is `nginx-plus-module-modsecurity`) reached end of support and is no longer available
+
+More information: [Announcing NGINX Plus R32](https://www.f5.com/company/blog/nginx/announcing-NGINX-plus-R32)
+
 <span id="r31"></span>
 ## NGINX Plus Release 31 (R31)
 _19 December 2023_<br/>
@@ -113,6 +192,20 @@ _14 February 2024_
 - Management module: fixed a potential crash that might happen while using a system resolver
 
 More information: [Updating NGINX for the Vulnerabilities in the HTTP/3 Module](https://www.nginx.com/blog/updating-nginx-for-the-vulnerabilities-in-the-http-3-module/)
+
+<span id="r31_p2"></span>
+NGINX Plus R31 P2<br/>
+_29 May 2024_
+
+- Security:
+
+  - Heap Overflow w/ write ([CVE-2024-32760](https://my.f5.com/manage/s/article/K000139609)): Undisclosed HTTP/3 encoder instructions can cause NGINX worker processes to terminate or cause other possible impacts
+
+  - Stack Overflow / Use after free ([CVE-2024-31079](https://my.f5.com/manage/s/article/K000139611)): Undisclosed HTTP/3 requests can cause NGINX worker processes to terminate or cause other possible impacts. This attack requires that a request be specifically timed during the connection draining process, which the attacker has no visibility and limited influence over
+
+  - Null Pointer Dereference w/ Empty Header ([CVE-2024-35200](https://my.f5.com/manage/s/article/K000139612)): Undisclosed HTTP/3 requests can cause NGINX worker processes to terminate or cause other possible impacts
+
+  - Memory Disclosure during QUIC handshake ([CVE-2024-34161](https://my.f5.com/manage/s/article/K000139627)): When the network infrastructure supports a Maximum Transmission Unit (MTU) of 4096 or greater without fragmentation, undisclosed QUIC messages can cause NGINX worker processes to terminate or cause leakage of previously freed memory
 
 
 <span id="r30"></span>
