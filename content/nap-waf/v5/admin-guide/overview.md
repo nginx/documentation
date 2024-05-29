@@ -5,8 +5,6 @@ doctypes:
 - task
 title: NGINX App Protect WAF Administration Guide
 toc: true
-versions:
-- "5.0"
 weight: 100
 ---
 
