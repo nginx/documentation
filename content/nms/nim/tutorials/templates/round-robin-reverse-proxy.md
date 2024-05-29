@@ -9,19 +9,10 @@ tags: [ "docs" ]
 docs: "DOCS-000"
 categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
 doctypes: ["tutorial"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
+journeys: ["getting started", "using"]
 versions: []
 authors: []
 ---
-
-<style>
-  details {
-    border: 1px dashed green;
-    background-color: #f7f7f7;
-    padding: 0px 15px 0px 15px;
-  }
-</style>
 
 ## Overview
 
