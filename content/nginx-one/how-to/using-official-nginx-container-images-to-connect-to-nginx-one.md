@@ -5,9 +5,9 @@ doctypes:
 - task
 tags:
 - docs
-title: Using NGINX Plus container images to connect to NGINX One
+title: Use NGINX Plus container images to connect to NGINX One
 toc: true
-weight: 300
+weight: 400
 ---
 
 ## Introduction

@@ -7,7 +7,7 @@ tags:
     - docs
 title: View and edit NGINX configurations
 toc: true
-weight: 400
+weight: 200
 ---
 
 Once you've registered your NGINX instances with NGINX One, you can view and edit their NGINX configurations on the **Instances** details page.
