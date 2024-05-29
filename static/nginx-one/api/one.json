@@ -4511,7 +4511,7 @@
       ]
     },
     {
-      "name": "Monitor NGINX Instances``",
+      "name": "Monitor NGINX Instances",
       "tags": [
         "Metrics",
         "Catalogs"
