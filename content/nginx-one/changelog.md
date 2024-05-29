@@ -12,7 +12,7 @@ weight: 99999
 
 Stay up-to-date with what's new and improved in NGINX One.
 
-## May 23, 2024 - v0.20240506.1280775334
+## May 28, 2024 - v0.20240528.1309124087
 
 ### Improved Data Plane Key and NGINX Instance Navigation
 
