@@ -730,6 +730,152 @@
             }
           }
         }
+      },
+      "put": {
+        "tags": [
+          "Instances"
+        ],
+        "x-nginx-one-action": "analyze",
+        "x-nginx-one-entity": "NGINX instance configuration",
+        "x-feature-flag": "config-publish",
+        "summary": "Generate an analysis report for the provided configuration",
+        "description": "Returns an analysis report for the provided NGINX configuration. This report includes insights, identified issues, and recommendations for optimizing and troubleshooting. Note that this operation is for analysis purposes only and does not apply any changes to the configuration. The report is not stored and is provided only in the API response. To publish the configuration, use the `PUT /instances/{instanceObjectID}/config` endpoint.",
+        "operationId": "analyzeInstanceConfig",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NginxConfigRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully analyzed the provided NGINX configuration.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NginxConfigReports"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX instance with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Instances"
+        ],
+        "x-nginx-one-action": "analyze",
+        "x-nginx-one-entity": "NGINX instance configuration",
+        "x-feature-flag": "config-publish",
+        "summary": "Generate an analysis report for the provided modified configuration",
+        "description": "Analyzes the provided partial updates to an existing NGINX configuration and generates a report detailing potential issues along with optimization suggestions. \nThis analysis accounts for additive updates made to `NginxConfig`. To delete files, omit the `file.contents` field. \nThis method compares the provided `config_version` with the current NGINX instance configuration to detect conflicts, which may arise if the `config_version` does not match due to an out-of-band update. \nNote that this operation is for analysis purposes only and does not apply any changes to the configuration. \nThe report is not stored and is provided only in the API response.\nTo publish the configuration, use the `PATCH /instances/{instanceObjectID}/config` endpoint.\n",
+        "operationId": "analyzeInstanceConfigWithModify",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NginxConfigRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully analyzed the provided NGINX configuration.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NginxConfigReports"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX instance with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/instances/{instanceObjectID}/config": {
@@ -752,6 +898,152 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NginxConfig"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX instance with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Instances"
+        ],
+        "x-nginx-one-action": "create",
+        "x-nginx-one-entity": "NGINX instance configuration",
+        "x-feature-flag": "config-publish",
+        "summary": "Publish a configuration to an instance",
+        "description": "Publishes a new or updated NGINX configuration to the specified instance. \nIf no existing configuration is found, a new one is created; otherwise, the current configuration is overwritten. \nBefore publishing, use the `PUT /instances/{instanceObjectID}/config-report` endpoint to generate an analysis report for the provided configuration.\n",
+        "operationId": "publishInstanceConfig",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NginxConfigRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "The request to publish the configuration has been accepted and is being processed. To check the publication status, make a GET request to /instances/{instanceObjectID}/publications.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicationInstance"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX instance with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Instances"
+        ],
+        "x-nginx-one-action": "update",
+        "x-nginx-one-entity": "NGINX instance configuration",
+        "x-feature-flag": "config-publish",
+        "summary": "Apply partial updates to an instance's configuration",
+        "description": "Applies the specified partial updates to an existing NGINX configuration. \nThis endpoint accepts additive updates to `NginxConfig`. \nTo delete files, omit the `file.contents` field. \nThis method compares the provided config_version with the current NGINX instance configuration to detect conflicts, which may arise if the config_version does not match due to an out-of-band update. \nBefore publishing, use the `PATCH /instances/{instanceObjectID}/config-report` endpoint to generate an analysis report for the modified configuration.\n",
+        "operationId": "publishInstanceConfigWithModify",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NginxConfigRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "The request to publish the configuration has been accepted and is being processed. To check the publication status, make a GET request to /instances/{instanceObjectID}/publications.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicationInstance"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
