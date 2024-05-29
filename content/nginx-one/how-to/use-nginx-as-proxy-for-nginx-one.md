@@ -14,10 +14,14 @@ weight: 300
 
 This guide explains how to configure NGINX as a proxy for other NGINX instances to connect to NGINX One. By routing these connections through one proxy, you can minimize the number of external connections to NGINX One from your network.
 
+---
+
 ## Before you start
 
 - [Install NGINX Open Source or NGINX Plus]({{< relref "/nginx/admin-guide/installing-nginx/" >}}).
 - [Get a Data Plane Key from NGINX One]({{< relref "/nginx-one/how-to/data-plane-keys.md" >}}).
+
+---
 
 ## Configure an NGINX instance to act as a proxy
 
@@ -57,6 +61,8 @@ In this step, we'll configure an NGINX instance to act as a proxy server for NGI
     sudo nginx -s reload
     ```
 
+---
+
 ## Configure NGINX Agent to use the proxy instance
 
 To set up your other NGINX instances to use the proxy instance to connect to NGINX One, update the NGINX Agent configuration on those instances to use the proxy NGINX instance's IP address. See the example NGINX Agent configuration below.
@@ -83,7 +89,8 @@ To set up your other NGINX instances to use the proxy instance to connect to NGI
 
     ``` sh
     sudo systemctl restart nginx-agent
-    ```
+   
+---
 
 ## References
 
