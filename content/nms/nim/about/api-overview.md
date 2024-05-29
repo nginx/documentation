@@ -52,8 +52,8 @@ If your organization is using OIDC, you will be prompted to log in with your Ide
 
 The JWT should be sent as a "bearer" token using the "Authorization" request header field with the "Bearer" authentication scheme, as shown in the example below.
 
-```[bash]
-curl -X GET "https://<NMS_FQDN>/api/platform/<API_VERSION>/systems" -H "Authorization: Bearer xxxxx.yyyyy.zzzzz"
+```shell
+curl -X GET "https://<NMS_FQDN>/api/platform/<API_VERSION>/systems" -H "Authorization: Bearer <access token>"
 ```
 
 ## Usage
@@ -68,10 +68,10 @@ You can also use the "Try it Out" function in the API Reference docs to send a c
 To do so, take the steps below:
 
 1. Select the endpoint and action that you want to send. For example: `POST /infrastructure/workspaces`.
-2. Select the **Try it Out** button.
-3. If the endpoint accepts parameters, replace the placeholder examples in the request body with your desired values.
-4. Select the **Execute** button to send the request.
-5. When the request completes, the response appears in the UI.
+1. Select the **Try it Out** button.
+1. If the endpoint accepts parameters, replace the placeholder examples in the request body with your desired values.
+1. Select the **Execute** button to send the request.
+1. When the request completes, the response appears in the UI.
 
 ## Errors and Response Codes
 
