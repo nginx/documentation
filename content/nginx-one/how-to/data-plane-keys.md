@@ -7,7 +7,7 @@ tags:
 - docs
 title: Create and manage data plane keys
 toc: true
-weight: 200
+weight: 100
 ---
 
 <style>
