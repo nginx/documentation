@@ -196,7 +196,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     {{< note >}}Additional SELinux configuration may be required to allow NGINX Plus to listen on specific network ports, connect to upstreams, and send syslog entries to remote systems. Refer to the practices outlined in the [Using NGINX and NGINX Plus with SELinux](https://www.nginx.com/blog/using-nginx-plus-with-selinux/) article for details.{{< /note >}}
 
-14. To enable the NGINX/App-Protect-DoS service start at boot, run the command:
+14. To enable the NGINX/App-Protect-DoS service to start at boot, run the command:
 
     ```shell
     sudo systemctl enable nginx.service
@@ -376,7 +376,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     {{< note >}}Additional SELinux configuration may be required to allow NGINX Plus to listen on specific network ports, connect to upstreams, and send syslog entries to remote systems. Refer to the practices outlined in the [Using NGINX and NGINX Plus with SELinux](https://www.nginx.com/blog/using-nginx-plus-with-selinux/) article for details.{{< /note >}}
 
-15. To enable the NGINX/App-Protect-DoS service start at boot, run the command:
+15. To enable the NGINX/App-Protect-DoS service to start at boot, run the command:
 
     ```shell
     sudo systemctl enable nginx.service
@@ -590,7 +590,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     {{< note >}}Additional SELinux configuration may be required to allow NGINX Plus to listen on specific network ports, connect to upstreams, and send syslog entries to remote systems. Refer to the practices outlined in the [Using NGINX and NGINX Plus with SELinux](https://www.nginx.com/blog/using-nginx-plus-with-selinux/) article for details.{{< /note >}}
 
-16. To enable the NGINX/App-Protect-DoS service start at boot, run the command:
+16. To enable the NGINX/App-Protect-DoS service to start at boot, run the command:
 
     ```shell
     sudo systemctl enable nginx.service
@@ -803,7 +803,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     {{< note >}}Additional SELinux configuration may be required to allow NGINX Plus to listen on specific network ports, connect to upstreams, and send syslog entries to remote systems. Refer to the practices outlined in the [Using NGINX and NGINX Plus with SELinux](https://www.nginx.com/blog/using-nginx-plus-with-selinux/) article for details.{{< /note >}}
 
-16. To enable the NGINX/App-Protect-DoS service start at boot, run the command:
+16. To enable the NGINX/App-Protect-DoS service to start at boot, run the command:
 
     ```shell
     sudo systemctl enable nginx.service
