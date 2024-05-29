@@ -27,10 +27,10 @@ The image may contain a particular version of NGINX Plus or contain a bundle of 
 
 ### Supported NGINX Plus Versions
 
+- NGINX Plus Release 32
+- NGINX Plus Release 32 with [NGINX Agent](https://docs.nginx.com/nginx-agent/)
 - NGINX Plus Release 31
 - NGINX Plus Release 31 with [NGINX Agent](https://docs.nginx.com/nginx-agent/)
-- NGINX Plus Release 30
-- NGINX Plus Release 30 with [NGINX Agent](https://docs.nginx.com/nginx-agent/)
 
 ### Supported Distributions
 
@@ -107,7 +107,7 @@ docker login private-registry.nginx.com
 
 Next, pull the image you need from `private-registry.nginx.com`.
 
-To pull an image, replace `<version-tag>` with the specific NGINX Plus version and/or OS version you need, for example, `r31-ubi-9`.
+To pull an image, replace `<version-tag>` with the specific NGINX Plus version or the NGINX Plus version and OS version you need. For example, `r32-ubi-9`.
 
 For NGINX Plus, run:
 
@@ -135,10 +135,10 @@ docker pull private-registry.nginx.com/nginx-plus/rootless-agent:<version-tag>
 
 Tagging examples:
 
-- `nginx_release`—`OS_type`: `r31-ubi`, `r31-alpine`, `r31-debian`
-- `nginx_release`—`OS_type`—`OS_version`: `r31-ubi-9`, `r31-alpine-9.99`, `r31-debian-sid`
+- `nginx_release`—`OS_type`: `r32-ubi`, `r32-alpine`, `r32-debian`
+- `nginx_release`—`OS_type`—`OS_version`: `r32-ubi-9`, `r32-alpine-9.99`, `r32-debian-sid`
 - latest release image gets the `OS_type` tag: `alpine`, `debian` or `ubi`
-- latest debian-based images also get the short release tag (e.g. `R31`) and the `nginx-plus` tag
+- latest debian-based images also get the short release tag (e.g. `R32`) and the `nginx-plus` tag
 
 
 You can use the Docker registry API to list the available image tags.
@@ -155,23 +155,11 @@ curl https://private-registry.nginx.com/v2/nginx-plus/base/tags/list --key <path
     "debian",
     "nginx-plus-20240313",
     "nginx-plus-20240326",
-    "nginx-plus-r30-20240313",
-    "nginx-plus-r30-20240326",
-    "nginx-plus-r30-alpine-3.18-20240313",
-    "nginx-plus-r30-alpine-3.18-20240326",
-    "nginx-plus-r30-alpine-3.18",
-    "nginx-plus-r30-debian-bookworm-20240313",
-    "nginx-plus-r30-debian-bookworm-20240326",
-    "nginx-plus-r30-debian-bookworm",
-    "nginx-plus-r30-ubi-9-20240313",
-    "nginx-plus-r30-ubi-9-20240326",
-    "nginx-plus-r30-ubi-9",
-    "nginx-plus-r30",
     "nginx-plus-r31-20240313",
     "nginx-plus-r31-20240326",
-    "nginx-plus-r31-alpine-3.19-20240313",
-    "nginx-plus-r31-alpine-3.19-20240326",
-    "nginx-plus-r31-alpine-3.19",
+    "nginx-plus-r31-alpine-3.18-20240313",
+    "nginx-plus-r31-alpine-3.18-20240326",
+    "nginx-plus-r31-alpine-3.18",
     "nginx-plus-r31-debian-bookworm-20240313",
     "nginx-plus-r31-debian-bookworm-20240326",
     "nginx-plus-r31-debian-bookworm",
@@ -179,30 +167,42 @@ curl https://private-registry.nginx.com/v2/nginx-plus/base/tags/list --key <path
     "nginx-plus-r31-ubi-9-20240326",
     "nginx-plus-r31-ubi-9",
     "nginx-plus-r31",
+    "nginx-plus-r32-20240313",
+    "nginx-plus-r32-20240326",
+    "nginx-plus-r32-alpine-3.19-20240313",
+    "nginx-plus-r32-alpine-3.19-20240326",
+    "nginx-plus-r32-alpine-3.19",
+    "nginx-plus-r32-debian-bookworm-20240313",
+    "nginx-plus-r32-debian-bookworm-20240326",
+    "nginx-plus-r32-debian-bookworm",
+    "nginx-plus-r32-ubi-9-20240313",
+    "nginx-plus-r32-ubi-9-20240326",
+    "nginx-plus-r32-ubi-9",
+    "nginx-plus-r32",
     "nginx-plus",
-    "r30-alpine-3.18-20240313",
-    "r30-alpine-3.18-20240326",
-    "r30-alpine-3.18",
-    "r30-debian-bookworm-20240313",
-    "r30-debian-bookworm-20240326",
-    "r30-debian-bookworm",
-    "r30-ubi-9-20240313",
-    "r30-ubi-9-20240326",
-    "r30-ubi-9",
-    "r30",
-    "r31-alpine-3.19-20240313",
-    "r31-alpine-3.19-20240326",
-    "r31-alpine-3.19",
-    "r31-alpine",
+    "r31-alpine-3.18-20240313",
+    "r31-alpine-3.18-20240326",
+    "r31-alpine-3.18",
     "r31-debian-bookworm-20240313",
     "r31-debian-bookworm-20240326",
     "r31-debian-bookworm",
-    "r31-debian",
     "r31-ubi-9-20240313",
     "r31-ubi-9-20240326",
     "r31-ubi-9",
-    "r31-ubi",
     "r31",
+    "r32-alpine-3.19-20240313",
+    "r32-alpine-3.19-20240326",
+    "r32-alpine-3.19",
+    "r32-alpine",
+    "r32-debian-bookworm-20240313",
+    "r32-debian-bookworm-20240326",
+    "r32-debian-bookworm",
+    "r32-debian",
+    "r32-ubi-9-20240313",
+    "r32-ubi-9-20240326",
+    "r32-ubi-9",
+    "r32-ubi",
+    "r32",
     "ubi"
   ]
 }
