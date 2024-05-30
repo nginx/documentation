@@ -142,7 +142,7 @@ Tagging examples:
 
 
 You can use the Docker registry API to list the available image tags.
-Replace `<path-to-client.key>` with the location of your client key and `<path-to-client.cert>` with the location of your client certificate. The optional `jq` command is used to format the JSON output for easier reading and requires [jq](https://jqlang.github.io/jq/) JSON processor to be installed.
+Replace `<path-to-your-nginx-repo.key>` with the location of your client key and `<path-to-your-nginx-repo.crt>` with the location of your client certificate. The optional `jq` command is used to format the JSON output for easier reading and requires the [jq](https://jqlang.github.io/jq/) JSON processor to be installed.
 
 ```shell
 curl https://private-registry.nginx.com/v2/nginx-plus/base/tags/list --key <path-to-your-nginx-repo.key> --cert <path-to-your-nginx-repo.crt> | jq

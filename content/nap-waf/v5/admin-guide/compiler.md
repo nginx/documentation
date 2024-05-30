@@ -76,6 +76,23 @@ Regularly rebuild your compiler image and recompile security policies to ensure 
     USER nginx
     ```
 
+You can use the Docker registry API to list the available image tags.
+Replace `<path-to-your-nginx-repo.key>` with the location of your client key and `<path-to-your-nginx-repo.crt>` with the location of your client certificate. The optional `jq` command is used to format the JSON output for easier reading and requires the [jq](https://jqlang.github.io/jq/) JSON processor to be installed.
+
+```shell
+curl -s https://private-registry.nginx.com/v2/nap/waf-compiler/tags/list --key <path-to-your-nginx-repo.key> --cert <path-to-your-nginx-repo.crt> |jq
+```
+```json
+{
+  "name": "nap/waf-compiler",
+  "tags": [
+    "1.0.0",
+    "5.1.0",
+    "5.2.0"
+  ]
+}
+```
+
 4. Build the image
 
 
