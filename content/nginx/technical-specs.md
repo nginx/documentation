@@ -45,8 +45,7 @@ NGINX Plus is available in binary form only; it is not available in source form
 - 12 (x86_64, aarch64)
 
 ### FreeBSD
-
-- 12.1+ (amd64)
+  
 - 13 (amd64)
 - 14 (amd64)
 
@@ -76,6 +75,7 @@ NGINX Plus is available in binary form only; it is not available in source form
 
 - 20.04 LTS (x86_64, aarch64, s390x)
 - 22.04 LTS (x86_64, aarch64, s390x)
+- 24.04 LTS (x86_64, aarch64)
 
 **Notes:**
 
@@ -94,7 +94,7 @@ Except as specified below, dynamic modules are supported on the [same distributi
 - FreeBSD: Not supported
 - Oracle Linux 8: x86_64 only
 - RHEL 7, RHEL 8, RHEL 9: x86_64 only
-- Ubuntu 20.04, Ubuntu 22.04: x86_64 only
+- Ubuntu 20.04: x86_64 only
 
 ### Brotli
 
@@ -122,10 +122,6 @@ Except as specified below, dynamic modules are supported on the [same distributi
 
 - RHEL 8, RHEL9: s390x not supported
 - Ubuntu: s390x not supported
-
-### NGINX ModSecurity WAF
-
-- CentOS/RHEL/Oracle Linux 7.4+: x86_64 only
 
 ### NGINX sync
 
@@ -271,6 +267,7 @@ See [Sizing Guide for Deploying NGINX Plus on Bare Metal Servers](https://www.ng
 - [MQTT Preread](https://nginx.org/en/docs/stream/ngx_stream_mqtt_preread_module.html) – Forward MQTT traffic without processing	 it
 - [MQTT Filter](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html) – Process Message Queuing Telemetry Transport protocol (MQTT) protocol
 - [Proxy](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html) – Proxy requests to TCP and UDP servers
+- [Pass](https://nginx.org/en/docs/stream/ngx_stream_pass_module.html) – Pass any accepted client connection to any configured listening socket in http, stream, mail, and other similar modules
 - [Real IP](https://nginx.org/en/docs/stream/ngx_stream_realip_module.html) – Determine true origin IP address for proxied traffic
 - [Return](https://nginx.org/en/docs/stream/ngx_stream_return_module.html) – Return specified value to client and close connection
 - [Split Clients](https://nginx.org/en/docs/stream/ngx_stream_split_clients_module.html) – Partition clients for A/B testing

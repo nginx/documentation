@@ -151,7 +151,7 @@ The package can be installed from:
     ```shell
     curl -I 127.0.0.1
     HTTP/1.1 200 OK
-    Server: nginx/1.25.1
+    Server: nginx/1.27.0
     ```
 
 <span id="prebuilt_debian"></span>
@@ -268,7 +268,7 @@ The package can be installed from:
     ```shell
     curl -I 127.0.0.1
     HTTP/1.1 200 OK
-    Server: nginx/1.25.1
+    Server: nginx/1.27.0
     ```
 
 <span id="prebuilt_ubuntu"></span>
@@ -385,7 +385,7 @@ The package can be installed from:
     ```shell
     curl -I 127.0.0.1
     HTTP/1.1 200 OK
-    Server: nginx/1.25.1
+    Server: nginx/1.27.0
     ```
 
 <span id="prebuilt_suse"></span>
@@ -685,17 +685,17 @@ Download the source files for both the stable and mainline versions from [**ngin
 To download and unpack the source for the latest _mainline_ version, run:
 
 ```shell
-wget https://nginx.org/download/nginx-1.25.1.tar.gz
-tar zxf nginx-1.25.1.tar.gz
-cd nginx-1.25.1
+wget https://nginx.org/download/nginx-1.27.0.tar.gz
+tar zxf nginx-1.27.0.tar.gz
+cd nginx-1.27.0
 ```
 
 To download and unpack source files for the latest _stable_ version, run:
 
 ```shell
-wget https://nginx.org/download/nginx-1.24.0.tar.gz
-tar zxf nginx-1.24.0.tar.gz
-cd nginx-1.24.0
+wget https://nginx.org/download/nginx-1.26.1.tar.gz
+tar zxf nginx-1.26.1.tar.gz
+cd nginx-1.26.1
 ```
 
 <span id="configure"></span>
