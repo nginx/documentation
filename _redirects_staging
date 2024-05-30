@@ -151,3 +151,8 @@
 /nginx-ingress-controller/* https://staging--nginx-kubernetes-ingress.netlify.app/nginx-ingress-controller/:splat 200!
 #/nginx-service-mesh/*   https://staging--mesh-public-docs.netlify.app/nginx-service-mesh/:splat 200!
 /nginx-gateway-fabric/* https://staging--nginx-gateway-fabric.netlify.app/nginx-gateway-fabric/:splat 200!
+
+# NGINX One redirects
+/nginx-one/reference/api/nginx-one-api-authentication/ /nginx-one/api/authentication/ 301
+/nginx-one/reference/api/nginx-one-api-reference/ /nginx-one/api/api-reference-guide/ 301
+/nginx-one/reference/glossary/ /nginx-one/glossary/ 301

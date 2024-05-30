@@ -6,7 +6,7 @@ doctypes:
 type: redoc
 tags:
   - api
-title: NGINX One API reference
+title: API reference guide
 toc: false
 weight: null
 ---

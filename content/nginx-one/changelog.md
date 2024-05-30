@@ -10,6 +10,22 @@ toc: true
 weight: 99999
 ---
 
+<style>
+  h2 {
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  h2::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #000; /* Adjust the color as needed */
+    margin-top: 5px; /* Space between the heading and the horizontal line */
+  }
+</style>
+
 Stay up-to-date with what's new and improved in NGINX One.
 
 ## May 29, 2024 - v0.20240529.1310498676
@@ -42,7 +58,5 @@ We've updated the **Instance Details** and **Data Plane Keys** pages to make it 
 ### Welcome to the NGINX One EA preview
 
 We're thrilled to introduce NGINX One, an exciting addition to our suite of NGINX products. Designed with efficiency and ease of use in mind, NGINX One offers an innovative approach to managing your NGINX instances.
-
-### Getting Started
 
 To help you get started, take a look at the [Getting Started Guide]({{< relref "/nginx-one/getting-started.md" >}}). This guide will walk you through the initial setup and key features so you can start using NGINX One right away.
