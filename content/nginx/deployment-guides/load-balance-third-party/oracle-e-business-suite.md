@@ -513,15 +513,15 @@ HTTP/2 is fully supported in both NGINX 1.9.5 and later, and NGINX Plus R7 and
 
     If using NGINX Plus R7, you must install the <span style="white-space: nowrap; font-weight:bold;">nginx-plus-http2</span> package instead of the <span style="white-space: nowrap; font-weight:bold;">nginx-plus</span> or <span style="white-space: nowrap; font-weight:bold;">nginx-plus-extras</span> package.
 
-To enable HTTP/2 support, add the `http2` parameter to the `listen` directive in the `server` block for HTTPS traffic that we created in [Configuring Virtual Servers for HTTP and HTTPS Traffic](#virtual-servers), so that it looks like this:
+To enable HTTP/2 support, add the `http2` directive in the `server` block for HTTPS traffic that we created in [Configuring Virtual Servers for HTTP and HTTPS Traffic](#virtual-servers), so that it looks like this:
 
 ```nginx
 # In the 'server' block for HTTPS traffic
 listen 443 ssl;
-http2 on;
+http2  on;
 ```
 
-Directive documentation: [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen)
+Directive documentation: [http2](https://nginx.org/en/docs/http/ngx_http_v2_module.html#http2)
 
 To verify that HTTP/2 translation is working, you can use the "HTTP/2 and SPDY indicator" plug‑in available for [Google Chrome](https://chrome.google.com/webstore/detail/http2-and-spdy-indicator/mpbpobfflnpcgagjijhmgnchggcjblin?hl=en) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/http2-indicator/).
 
@@ -894,7 +894,7 @@ http {
 
     server {
         listen 443 ssl;
-        http2 on;
+        http2  on;
         server_name company.com;
         ssl_certificate     /etc/nginx/ssl/certificate-name.crt;
         ssl_certificate_key /etc/nginx/ssl/private-key.key;
@@ -1057,7 +1057,8 @@ http {
     }
 
     server {
-        listen 192.168.210.10:443 ssl http2;
+        listen 192.168.210.10:443 ssl;
+        http2  on;
         server_name oracle-one.company.com;
         ssl_certificate     /etc/nginx/ssl/server_one.crt;
         ssl_certificate_key /etc/nginx/ssl/server_one.key;
@@ -1083,7 +1084,8 @@ http {
     }
 
     server {
-        listen 192.168.210.11:443 ssl http2;
+        listen 192.168.210.11:443 ssl;
+        http2  on;
         server_name oracle-two.company.com;
         ssl_certificate     /etc/nginx/ssl/server_two.crt;
         ssl_certificate_key /etc/nginx/ssl/server_two.key;
@@ -1174,6 +1176,7 @@ http {
 
 ### Revision History
 
+- Version 5 (May 2024) – Update about HTTP/2 support (the [http2](https://nginx.org/en/docs/http/ngx_http_v2_module.html#http2) directive)
 - Version 4 (October 2019) – Update information about third-party monitoring tools (NGINX Plus R19)
 - Version 3 (April 2018) – Updated information about high availability and the NGINX Plus API (NGINX Plus R13, NGINX Open Source 1.13.4)
 - Version 2 (July 2017) – Update about HTTP/2 support (NGINX Plus R11 and later)

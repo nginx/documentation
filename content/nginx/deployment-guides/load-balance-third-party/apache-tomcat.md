@@ -446,15 +446,15 @@ HTTP/2 is fully supported in both <span style="white-space: nowrap;">NGINX Open 
 
   If using <span style="white-space: nowrap;">NGINX Plus R7</span>, you must install the <span style="white-space: nowrap; font-weight:bold;">nginx-plus-http2</span> package instead of the <span style="white-space: nowrap; font-weight:bold;">nginx-plus</span> or <span style="white-space: nowrap; font-weight:bold;">nginx-plus-extras</span> package.
 
-To enable HTTP/2 support, add the `http2` parameter to the `listen` directive in the `server` block for HTTPS traffic that we created in [Configuring Virtual Servers for HTTP and HTTPS Traffic](#virtual-servers), so that it looks like this:
+To enable HTTP/2 support, add the `http2` directive in the `server` block for HTTPS traffic that we created in [Configuring Virtual Servers for HTTP and HTTPS Traffic](#virtual-servers), so that it looks like this:
 
 ```nginx
 # In the 'server' block for HTTPS traffic
 listen 443 ssl;
-http2 on;
+http2  on;
 ```
 
-Directive documentation: [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen)
+Directive documentation: [http2](https://nginx.org/en/docs/http/ngx_http_v2_module.html#http2)
 
 To verify that HTTP/2 translation is working, you can use the "HTTP/2 and SPDY indicator" plug‑in available for [Google Chrome](https://chrome.google.com/webstore/detail/http2-and-spdy-indicator/mpbpobfflnpcgagjijhmgnchggcjblin?hl=en) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/http2-indicator/).
 
@@ -492,7 +492,8 @@ server {
 
 server {
     listen 443 ssl;
-    http2 on;
+    http2  on;
+
     server_name example.com;
     ssl_certificate     /etc/nginx/ssl/example.com.crt;
     ssl_certificate_key /etc/nginx/ssl/example.com.key;
@@ -913,7 +914,8 @@ server {
 
 server {
     listen 443 ssl;
-    http2 on;
+    http2  on;
+
     server_name example.com;
 
     # Required for live activity monitoring of HTTPS traffic
@@ -966,6 +968,7 @@ server {
 
 ### Revision History
 
+- Version 6 (May 2024) – Update about HTTP/2 support (the [http2](https://nginx.org/en/docs/http/ngx_http_v2_module.html#http2) directive)
 - Version 5 (October 2019) – Fix syntax of comment in config snippet (add missing `#`)
 - Version 4 (February 2018) – Update for NGINX Plus API (<span style="white-space: nowrap;">NGINX Plus R14</span>)
 - Version 3 (April 2017) – Update about HTTP/2 support and dynamic modules (<span style="white-space: nowrap;">NGINX Plus R11</span>, <span style="white-space: nowrap;">NGINX Open Source 1.11.5</span>)
