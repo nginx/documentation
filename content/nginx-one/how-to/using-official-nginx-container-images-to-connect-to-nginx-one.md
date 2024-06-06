@@ -5,9 +5,9 @@ doctypes:
 - task
 tags:
 - docs
-title: Using NGINX Plus container images to connect to NGINX One
+title: Use NGINX Plus container images to connect to NGINX One
 toc: true
-weight: 300
+weight: 400
 ---
 
 ## Introduction
@@ -46,10 +46,15 @@ sudo docker pull private-registry.nginx.com/nginx-plus/agent:VERSION_TAG
 
 {{<note>}}A version tag is required. Leaving out the version tag is not supported because `latest` is not a valid option. For more details about version tags, refer to [Deploying NGINX and NGINX Plus on Docker]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pulling-the-image" >}}).{{</note>}}
 
-> <i class="fa fa-terminal"></i> **Example**: To pull the `debian` image, use the following command:
-> ```sh
-> sudo docker pull private-registry.nginx.com/nginx-plus/agent:debian
-> ```
+<br>
+
+{{<call-out "tip" "Example:" "fas fa-terminal" >}}
+To pull the `debian` image, use the following command:
+
+```sh
+sudo docker pull private-registry.nginx.com/nginx-plus/agent:debian
+```
+{{</call-out>}}
 
 ### Start the container
 
@@ -67,18 +72,24 @@ sudo docker run \
 -d private-registry.nginx.com/nginx-plus/agent:VERSION_TAG
 ```
 
-> <i class="fa fa-terminal"></i> **Example**: To start the container with the `debian` image, use the following command:
-> ```sh
-> sudo docker run \
-> --env=NMS_SERVER_GRPCPORT=443 \
-> --env=NMS_SERVER_HOST=agent.connect.nginx.com \
-> --env=NMS_SERVER_TOKEN=YOUR_DATA_PLANE_KEY \
-> --env=NMS_TLS_ENABLE=true \
-> --env=NMS_TLS_SKIP_VERIFY=false \
-> --restart=always \
-> --runtime=runc \
-> -d private-registry.nginx.com/nginx-plus/agent:debian
-> ```
+<br>
+
+{{<call-out "tip" "Example:" "fas fa-terminal" >}}
+To start the container with the `debian` image, use the following command:
+
+```sh
+sudo docker run \
+--env=NMS_SERVER_GRPCPORT=443 \
+--env=NMS_SERVER_HOST=agent.connect.nginx.com \
+--env=NMS_SERVER_TOKEN=YOUR_DATA_PLANE_KEY \
+--env=NMS_TLS_ENABLE=true \
+--env=NMS_TLS_SKIP_VERIFY=false \
+--restart=always \
+--runtime=runc \
+-d private-registry.nginx.com/nginx-plus/agent:debian
+```
+
+{{</call-out>}}
 
 ---
 

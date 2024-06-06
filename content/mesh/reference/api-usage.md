@@ -10,7 +10,7 @@ docs: "DOCS-702"
 
 ## Overview
 
-The NGINX Service Mesh API exists within a Kubernetes Custom Resource, and can be used to manage the global mesh configuration. This resource is created when the mesh is deployed, and can be updated at runtime using the Kubernetes API.
+The F5 NGINX Service Mesh API exists within a Kubernetes Custom Resource, and can be used to manage the global mesh configuration. This resource is created when the mesh is deployed, and can be updated at runtime using the Kubernetes API.
 
 ## Modifying the global mesh configuration
 
@@ -46,4 +46,4 @@ nginx-meshctl services
 
 ## Programmatic Access
 
-For programmatic access, we recommend using a [Kubernetes client SDK](https://kubernetes.io/docs/tasks/administer-cluster/access-cluster-api/#programmatic-access-to-the-api). 
+For programmatic access, we recommend using a [Kubernetes client SDK](https://kubernetes.io/docs/tasks/administer-cluster/access-cluster-api/#programmatic-access-to-the-api).

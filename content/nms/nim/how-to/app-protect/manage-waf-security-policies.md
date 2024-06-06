@@ -102,9 +102,9 @@ To upload a new security policy, send an HTTP `POST` request to the Security Pol
 
 For example:
 
-``` shell
+```shell
 curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/policies \
-    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz" \
+    -H "Authorization: Bearer <access token>" \
     -d @ignore-xss-example.json
 ```
 
@@ -169,9 +169,9 @@ You can use the optional `isNewRevision` parameter to indicate whether the updat
 
 For example:
 
-``` shell
+```shell
 curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/policies?isNewRevision=true \
-    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz" \
+    -H "Authorization: Bearer <access token>" \
     -d @update-xss-policy.json
 ```
 
@@ -183,9 +183,9 @@ Include the UID for the security policy in your `PUT` request to update the poli
 
 For example:
 
-``` shell
+```shell
 curl -X PUT https://{{NMS_FQDN}}/api/platform/v1/security/policies/23139e0a-4ac8-49f9-b7a0-0577b42c70c7 \
-    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz" \
+    -H "Authorization: Bearer <access token>" \
     --Content-Type application/json -d @update-xss-policy.json
 ```
 
@@ -225,9 +225,9 @@ To delete a security policy, send an HTTP `DELETE` request to the Security Polic
 
 For example:
 
-``` shell
+```shell
 curl -X DELETE https://{{NMS_FQDN}}/api/platform/v1/security/policies/23139e0a-4ac8-49f9-b7a0-0577b42c70c7 \
-    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz
+    -H "Authorization: Bearer <access token>"
 ```
 
 {{%/tab%}}
@@ -262,9 +262,9 @@ To create security policy bundles, send an HTTP `POST` request to the Security P
 
 For example:
 
-``` shell
+```shell
 curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/policies/bundles \
-    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz" \
+    -H "Authorization: Bearer <access token>" \
     -d @security-policy-bundles.json
 ```
 
@@ -387,9 +387,9 @@ You can filter the results by using the following query parameters:
 
 For example:
 
-``` shell
+```shell
 curl -X GET https://{{NMS_FQDN}}/api/platform/v1/security/policies/bundles \
-    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz"
+    -H "Authorization: Bearer <access token>"
 ```
 
 <details open>
@@ -474,9 +474,9 @@ To get a specific security policy bundle, send an HTTP `GET` request to the Secu
 
 For example:
 
-``` shell
+```shell
 curl -X GET https://{{NMS_FQDN}}/api/platform/v1/security/policies/29d86fe8-612a-5c69-895a-04fc5b9849a6/bundles/trs35lv2-9a90-4e77-87ac-ythn4967 \
-    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz"
+    -H "Authorization: Bearer <access token>"
 ```
 
 The JSON response, shown in the example below, includes a `content` field that is base64 encoded. After you retrieve the information from the API, you will need to base64 decode the content field. You can include this in your API call, as shown in the following example cURL request:
@@ -529,9 +529,9 @@ Send an HTTP `POST` request to the Security Log Profiles API endpoint to upload 
 
 For example:
 
-``` shell
+```shell
 curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/logprofiles \
-    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz" \
+    -H "Authorization: Bearer <access token>" \
     -d @default-log-example.json
 ```
 
@@ -589,9 +589,9 @@ You can use the optional `isNewRevision` parameter to indicate whether the updat
 
 For example:
 
-``` shell
+```shell
 curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/logprofiles?isNewRevision=true \
-    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz" \
+    -H "Authorization: Bearer <access token>" \
     -d @update-default-log.json
 ```
 
@@ -603,9 +603,9 @@ Include the UID for the security log profile in your `PUT` request to update the
 
 For example:
 
-``` shell
+```shell
 curl -X PUT https://{{NMS_FQDN}}/api/platform/v1/security/logprofiles/23139e0a-4ac8-49f9-b7a0-0577b42c70c7 \
-    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz" \
+    -H "Authorization: Bearer <access token>" \
     --Content-Type application/json -d @update-default-log.json
 ```
 
@@ -629,9 +629,9 @@ To delete a security log profile, send an HTTP `DELETE` request to the Security 
 
 For example:
 
-``` shell
+```shell
 curl -X DELETE https://{{NMS_FQDN}}/api/platform/v1/security/logprofiles/23139e0a-4ac8-49f9-b7a0-0577b42c70c7 \
-    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz
+    -H "Authorization: Bearer <access token>"
 ```
 
 ---
@@ -662,8 +662,8 @@ When making a request to the Publish API, make sure to include all the necessary
 
 For example:
 
-``` shell
-curl -X PUT https://{{NMS_FQDN}}/api/platform/v1/security/publish -H "Authorization: Bearer xxxxx.yyyyy.zzzzz"
+```shell
+curl -X PUT https://{{NMS_FQDN}}/api/platform/v1/security/publish -H "Authorization: Bearer <access token>"
 ```
 
 <details open>
@@ -739,8 +739,8 @@ You can locate the configuration publication status in the response within the f
 
 The example below shows a call to the `security deployments associations` endpoint and the corresponding JSON response containing successful deployments.
 
-``` shell
-curl -X GET "https://{NGINX-INSTANCE-MANAGER-FQDN}/api/platform/v1/security/deployments/associations/ignore-xss" -H "Authorization: Bearer xxxxx.yyyyy.zzzzz"
+```shell
+curl -X GET "https://{NGINX-INSTANCE-MANAGER-FQDN}/api/platform/v1/security/deployments/associations/ignore-xss" -H "Authorization: Bearer <access token>"
 ```
 
 <details close>
@@ -849,8 +849,8 @@ You can locate the configuration publication status in the response within the f
 
 The example below shows a call to the `security deployments associations` endpoint and the corresponding JSON response containing successful deployments.
 
-``` shell
-curl -X GET "https://{NGINX-INSTANCE-MANAGER-FQDN}/api/platform/v1/security/deployments/logprofiles/associations/default-log" -H "Authorization: Bearer xxxxx.yyyyy.zzzzz"
+```shell
+curl -X GET "https://{NGINX-INSTANCE-MANAGER-FQDN}/api/platform/v1/security/deployments/logprofiles/associations/default-log" -H "Authorization: Bearer <access token>"
 ```
 
 <details close>
@@ -941,8 +941,8 @@ You can locate the configuration publication status in the the response within t
 
 The example below shows a call to the `instances` endpoint and the corresponding JSON response containing a compiler related error message.
 
-``` shell
-curl -X GET "https://{NGINX-INSTANCE-MANAGER-FQDN}/api/platform/v1/systems/b9df6377-2c4f-3266-a64a-e064b0371c73/instances/5663cf4e-a0c7-50c8-b93c-16fd11a0f00b" -H "Authorization: Bearer xxxxx.yyyyy.zzzzz"
+```shell
+curl -X GET "https://{NGINX-INSTANCE-MANAGER-FQDN}/api/platform/v1/systems/b9df6377-2c4f-3266-a64a-e064b0371c73/instances/5663cf4e-a0c7-50c8-b93c-16fd11a0f00b" -H "Authorization: Bearer <access token>"
 ```
 
 <details close>
@@ -1047,9 +1047,9 @@ You can locate the configuration publication status in the the response within t
 
 The example below shows a call to the `deployments` endpoint and the corresponding JSON response containing a compiler error message.
 
-``` shell
+```shell
 curl -X GET --url "https://{NGINX-INSTANCE-MANAGER-FQDN}/api/platform/v1/systems/instances/deployments/d38a8e5d-2312-4046-a60f-a30a4aea1fbb" \
-    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz"
+    -H "Authorization: Bearer <access token>"
 ```
 
 <details open>

@@ -9,7 +9,7 @@ docs: "DOCS-841"
 
 ## Overview
 
-Follow this tutorial to deploy the NGINX Ingress Controller with NGINX Service Mesh and an example UDP application.
+Follow this tutorial to deploy the F5 NGINX Ingress Controller with F5 NGINX Service Mesh and an example UDP application.
 
 Objectives:
 

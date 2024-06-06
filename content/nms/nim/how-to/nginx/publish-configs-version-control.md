@@ -77,7 +77,7 @@ The script can be modified to follow your repository structure to create valid p
 <details closed>
 <summary><i class="fa-solid fa-file"></i> Example bash script </summary>
 
-```bash
+```shell
 #!/bin/bash
 set  -o  pipefail
 
@@ -185,7 +185,7 @@ publish_config_to_instance() {
 	# want to do this in the pipeline after updating externalId and type
 	echo  -e  "${payload}"  |  curl  -k  \
 	-H  'Content-Type: application/json'  \
-	-H  "authorization: Basic $auth_token"  \
+	-H  "Authorization: Bearer <access token>"  \
 	--data-binary  @-  -X  POST  "https://$ctrl_ip/api/platform/v1/systems/$system_uid/instances/$nginx_uid/config"
 }
 

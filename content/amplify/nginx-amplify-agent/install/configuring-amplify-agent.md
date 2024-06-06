@@ -7,7 +7,7 @@ tags: ["docs"]
 docs: "DOCS-967"
 ---
 
-NGINX Amplify Agent keeps its configuration in `/etc/amplify-agent/agent.conf`. The NGINX Amplify Agent configuration is a text-based file.
+F5 NGINX Amplify Agent keeps its configuration in `/etc/amplify-agent/agent.conf`. The NGINX Amplify Agent configuration is a text-based file.
 
 ## Overriding the Effective User ID
 

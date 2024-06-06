@@ -9,7 +9,7 @@ docs: "DOCS-694"
 
 ## Overview
 
-NGINX Service Mesh supports using a private registry to store its components. In order to deploy NGINX Service Mesh from a private registry, you need to configure the NGINX Service Mesh CLI with credentials that can access the registry.
+F5 NGINX Service Mesh supports using a private registry to store its components. In order to deploy NGINX Service Mesh from a private registry, you need to configure the NGINX Service Mesh CLI with credentials that can access the registry.
 
 ## CLI Flags
 

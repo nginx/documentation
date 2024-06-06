@@ -54,7 +54,7 @@ Configuration templates include the following components:
 
 To learn more about the resources mentioned, refer to the [Template Resource Files]({{< relref "nms/nim/about/templates/template-resources.md" >}}) topic.
 
-## Target
+## Target {#target}
 
 A target refers to the specific NGINX server instance, instance group, or staged config where a template (base or augment) is intended to be applied. It's the designated location or context within which the generated configuration will be active and operational.
 
@@ -66,7 +66,7 @@ There are three types of targets:
 
 3. **Staged config**: A staging area for configurations before deployment, allowing for testing and validation to minimize potential disruptions upon live deployment.
 
-## Template submission
+## Template submission {#template-submission}
 
 Template submission involves applying a set of configurations (derived from base and/or augment templates) to a target. This action takes the parameters defined in the templates, generates the final NGINX configuration, and deploys it to the specified target. RBAC plays a pivotal role here, determining who can submit and modify template submissions. Template submission effectively bridges the gap between configuration design and operational use.
 
@@ -80,6 +80,6 @@ Key aspects of template submission include:
 
 ---
 
-## Additional Templating Resources
+## Additional Templating Resources {#additional-resources}
 
 {{< include "nim/templates/additional-templating-resources.md" >}}

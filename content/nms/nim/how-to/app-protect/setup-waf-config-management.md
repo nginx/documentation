@@ -243,9 +243,9 @@ You will need to use your NGINX repo certificates to setup automatic retrieval o
     <details open>
     <summary>Example request</summary>
 
-    ```bash
+    ```shell
     curl -X POST 'https://{{NMS_FQDN}}//api/platform/v1/certs'  \
-        --header "Authorization: Bearer xxxxx.yyyyy.zzzzz"      \
+        --header "Authorization: Bearer <access token>"      \
         --header "Content-Type: application/json"                \
         -d@nginx-repo-certs.json
     ```
@@ -352,7 +352,7 @@ error when creating the nginx repo retriever - NGINX repo certificates not found
 
 1. Using a file archive utility, such as *tar*, bundle the three files into a single `.tgz` file. For example:
 
-    ``` bash
+    ```shell
     tar –czvf attack-signatures.tgz signatures.bin.tgz signature_update.yaml version
     ```
 
@@ -363,9 +363,9 @@ You will need to use the [Instance Manager REST API]({{< relref "/nms/nim/about/
 <details open>
 <summary>Attack Signatures Example</summary>
 
-```bash
+```shell
 curl -X POST 'https://{{NMS_FQDN}}//api/platform/v1/security/attack-signatures' \
-    --header "Authorization: Bearer xxxxx.yyyyy.zzzzz"      \
+    --header "Authorization: Bearer <access token>"      \
     --form 'revisionTimestamp="2022.11.16"'                 \
     --form 'filename=@"/attack-signatures.tgz"'
 ```
@@ -375,9 +375,9 @@ curl -X POST 'https://{{NMS_FQDN}}//api/platform/v1/security/attack-signatures' 
 <details open>
 <summary>Threat Campaigns Example</summary>
 
-```bash
+```shell
 curl -X POST 'https://{{NMS_FQDN}}//api/platform/v1/security/threat-campaigns' \
-    --header "Authorization: Bearer xxxxx.yyyyy.zzzzz"      \
+    --header "Authorization: Bearer <access token>"      \
     --form 'revisionTimestamp="2022.11.15"'                 \
     --form 'filename=@"/threat-campaigns.tgz"'
 ```
@@ -714,9 +714,9 @@ To do so, take the steps below for each policy:
 
     For example:
 
-    ``` bash
+    ```shell
     curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/policies \
-    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz" --ContentType application/json \
+    -H "Authorization: Bearer <access token>" --ContentType application/json \
     -d '{"content": "ewogICAgInBvbGljeSI6[CONTENT_SNIPPED]QogICAgfQp9CiAgICAgICAgCg==", \
     "metadata": {"description": "Ignore cross-site scripting is a security policy that intentionally ignores cross site scripting.", \
     "displayName": "Ignore cross-site scripting example", "name": "ignore-xss-example"}}'
@@ -743,9 +743,9 @@ To do so, take the steps below for each policy:
 
 1. Verify that your policies have been onboarded by sending an HTTP `GET` request to the `/api/platform/v1/security/policies` endpoint:
 
-    ``` bash
+    ```shell
     curl -X GET https://{{NMS_FQDN}}/api/platform/v1/security/policies \
-    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz"
+    -H "Authorization: Bearer <access token>z"
     ```
 
     You should receive a success response similar to the example below:
@@ -911,8 +911,8 @@ Additional example configurations tailored for NGINX features can be found in th
 
     > **Important!** Before deploying an updated configuration to an instance group, ensure that all instances in the group have the same version of NGINX App Protect WAF installed. Otherwise, the deployment may fail.
 
-    ``` bash
-    curl -X POST https://{{NMS_FQDN}}/api/platform/v1/systems/{systemUID}/instances/{nginxUID}/config -H "Authorization: Bearer xxxxx.yyyyy.zzzzz" \
+    ```shell
+    curl -X POST https://{{NMS_FQDN}}/api/platform/v1/systems/{systemUID}/instances/{nginxUID}/config -H "Authorization: Bearer <access token>" \
         --Content-Type application/json -d @
     ```
 

@@ -51,7 +51,7 @@ For more information about the available authentication options for NGINX Manage
 
 You can make API requests with basic auth by sending the base64-encoded credentials as a "Basic" token in the "Authorization" request header, as shown in the example below.
 
-```bash
+```shell
 curl -X GET "https://<NMS_FQDN>/api/acm/<API_VERSION>/workspaces/infrastructure" -H "Authorization: Basic YWRtaW..."
 ```
 
@@ -70,8 +70,8 @@ If your organization is using OIDC, you will be prompted to log in with your Ide
 
 The JWT should be sent as a "Bearer" token in the "Authorization" request header, as shown in the example below.
 
-```bash
-curl -X GET "https://<NMS_FQDN>/api/acm/<API_VERSION>/workspaces/infrastructure" -H "Authorization: Bearer xxxxx.yyyyy.zzzzz"
+```shell
+curl -X GET "https://<NMS_FQDN>/api/acm/<API_VERSION>/workspaces/infrastructure" -H "Authorization: Bearer <access token>"
 ```
 
 ## Usage

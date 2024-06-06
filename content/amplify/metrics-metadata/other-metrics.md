@@ -7,7 +7,7 @@ tags: ["docs"]
 docs: "DOCS-975"
 ---
 
-{{< note >}}Monitoring PHP-FPM and MySQL metrics is only supported by NGINX Amplify Agent.{{< /note >}}
+{{< note >}}Monitoring PHP-FPM and MySQL metrics is only supported by F5 NGINX Amplify Agent.{{< /note >}}
 
 ## PHP-FPM metrics
 

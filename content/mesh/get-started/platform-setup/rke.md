@@ -9,7 +9,7 @@ docs: "DOCS-687"
 Rancher Kubernetes Engine (RKE) is a CNCF-certified Kubernetes distribution that runs entirely within Docker containers. It works on bare-metal and virtualized servers.
 
 {{< important >}}
-Before deploying NGINX Service Mesh, ensure that no other service meshes exist in your Kubernetes cluster.
+Before deploying F5 NGINX Service Mesh, ensure that no other service meshes exist in your Kubernetes cluster.
 {{< /important >}}
 
 {{< warning >}}

@@ -28,10 +28,10 @@ To update the CVE list manually or offline, refer to the [Offline Installation](
 
 Host discovery, the first stage in instance discovery, is used to enumerate live hosts on a given network. However, in certain environments, Internet Control Message Protocol (ICMP) echo requests are disabled. The Instance Manager API provides a method for disabling host discovery in scanning.
 
-```bash
+```shell
 curl --request POST \
   --url https://<NGINX-INSTANCE-MANAGER-FQDN>/api/platform/v1/servers/scan \
-  --header 'authorization: Basic YWRtaW...' \
+  --header 'Authorization: Bearer <access token>.' \
   --header 'content-type: application/json' \
   --data '{"cidr": "192.0.2.0/24","hostDiscovery": "none","portRanges": ["80","443"]}'
 ```
@@ -56,10 +56,10 @@ There's a CVE that's not reported for NGINX that involves [unfiltered logging](h
 
 To start a scan using the Instance Manager API, send a POST request similar to the following example to the Scan endpoint, `https://<NGINX-INSTANCE-MANAGER-FQDN>/api/platform/v1/servers/scan`.
 
-```bash
+```shell
 curl --request POST \
   --url https://<NGINX-INSTANCE-MANAGER-FQDN>/api/platform/v1/servers/scan \
-  --header 'authorization: Basic YWRtaW...' \
+  --header 'Authorization: Bearer <access token>' \
   --header 'content-type: application/json' \
   --data '{"cidr": "192.0.2.0/24","portRanges": ["80","443"]}'
 ```
@@ -88,8 +88,8 @@ The response looks similar to the following example:
 
 To get the scanned servers, send a GET request to the Servers endpoint:
 
-```bash
-curl -X GET "https://<NGINX-INSTANCE-MANAGER-FQDN>/api/v1/servers" -H  "accept: application/json" -H 'authorization: Basic YWRtaW...'
+```shell
+curl -X GET "https://<NGINX-INSTANCE-MANAGER-FQDN>/api/v1/servers" -H  "accept: application/json" -H 'Authorization: Bearer <access token>'
 ```
 
 The result looks similar to the following:

@@ -19,7 +19,7 @@ Various patterns exist for implementing service meshes, such as node level, serv
 
 - **Application libraries**: each application workload is compiled and linked to libraries that provide network and mesh functions. Application business logic must be designed, developed, and possibly recompiled to use the library SDKs. Service mesh properties are incorporated into the binary and are coupled to the design and code of each business logic entity.
 
-NGINX Service Mesh implements the service level (sidecar) pattern. Each mesh functional unit resides next to the orchestration system's smallest unit of abstraction (for instance, in a Kubernetes environment, there is a proxy per Pod). Sidecars handle interservice communications, monitoring, and security‑related concerns. In other words, anything that can be abstracted away from the individual services. This way, developers can handle development, support, and maintenance for the services' application code, and operations teams can maintain the service mesh and run the app.
+F5 NGINX Service Mesh implements the service level (sidecar) pattern. Each mesh functional unit resides next to the orchestration system's smallest unit of abstraction (for instance, in a Kubernetes environment, there is a proxy per Pod). Sidecars handle interservice communications, monitoring, and security‑related concerns. In other words, anything that can be abstracted away from the individual services. This way, developers can handle development, support, and maintenance for the services' application code, and operations teams can maintain the service mesh and run the app.
 
 Service mesh abstractions have been acknowledged as important pieces to enable microservice architectures.
 

@@ -10,7 +10,7 @@ docs: "DOCS-969"
 To completely delete a previously monitored object, perform the following steps:
 
 
-### Uninstall NGINX Amplify Agent
+### Uninstall F5 NGINX Amplify Agent
 
 - On Ubuntu/Debian use:
 

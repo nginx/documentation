@@ -31,8 +31,9 @@ Configure the SSL certificate and key inside the NGINX configuration. For instru
 # Main external HTTPS server, needs port 443
 server {
     listen 443 ssl;
-    http2 on;
-    root /var/www/nms;
+    http2  on;
+    root   /var/www/nms;
+
     server_name _;
 
     ssl_protocols       TLSv1.1 TLSv1.2;
@@ -384,8 +385,9 @@ When `tls.skip_verify` is set to `false`, the NGINX Agent verifies the server's 
     # gRPC HTTPS server, needs port 443
     server {
         listen 443 ssl;
-        http2 on;
-        root /var/www/nms;
+        http2  on;
+        root   /var/www/nms;
+
         server_name nginx-manager.example.com;
 
         ssl_protocols       TLSv1.1 TLSv1.2;

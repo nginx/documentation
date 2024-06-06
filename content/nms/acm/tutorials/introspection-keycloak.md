@@ -314,9 +314,9 @@ You can mimic the process by which an NGINX client introspects an incoming user 
 
 #### Structure
 
-```bash
+```shell
 curl -L -X POST 'http://{HOST/IP_ADDRESS}:{PORT}/realms/{REALM}/protocol/openid-connect/token/introspect' \
-   -H "Authorization: Basic base64<CLIENT_ID:CLIENT_SECRET>" \
+   -H "Authorization: Bearer <access token>" \
    -H "Accept: application/json" \
    -H "Content-Type: application/x-www-form-urlencoded" \
    --data-urlencode 'token=<ACCESS_TOKEN>' \
@@ -325,9 +325,9 @@ curl -L -X POST 'http://{HOST/IP_ADDRESS}:{PORT}/realms/{REALM}/protocol/openid-
 
 #### Example
 
-```bash
+```shell
 curl -L -X POST 'http://192.0.2.5:8080/realms/nginx/protocol/openid-connect/token/introspect' \
-   -H "Authorization: Basic bmdpbngtcGx1czo1M2Q2YzdlNy1iNDJjLTRiNjktODQwNC0zODIwMzg1ZWQ0MWE=" \
+   -H "Authorization: Bearer <access token>" \
    -H "Accept: application/json" \
    -H "Content-Type: application/x-www-form-urlencoded" \
    --data-urlencode 'token=eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJVOFVDY2MtWnppNW9xYVhPZVZnWmdsLUxURmpfYXJ3dlJ2dl91Mjc4ZWNrIn0.eyJleHAiOjE2NjU1ODQ5NTIsImlhdCI6MTY2NTU4NDY1MiwianRpIjoiNmJhNDY1ZDktNmVmYi00Mzk5LTgyMTUtZjcxNjk0MzdhYzZhIiwiaXNzIjoiaHR0cDovLzE5Mi4xNjguMTkzLjQ6ODA4MC9yZWFsbXMvbmdpbngiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiYTk1MTE3YmYtMWEyZS00ZDQ2LTljNDQtNWZkZWU4ZGRkZDExIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoibmdpbngtcGx1cyIsInNlc3Npb25fc3RhdGUiOiI5ODM2ZjVmZC05ODdmLTQ4NzUtYWM3NS1mN2RkNTMyNTA0N2MiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImRlZmF1bHQtcm9sZXMtbmdpbngiLCJvZmZsaW5lX2FjY2VzcyIsIm5naW54LWtleWNsb2FrLXJvbGUiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJzaWQiOiI5ODM2ZjVmZC05ODdmLTQ4NzUtYWM3NS1mN2RkNTMyNTA0N2MiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInByZWZlcnJlZF91c2VybmFtZSI6Im5naW54LXVzZXIiLCJnaXZlbl9uYW1lIjoiIiwiZmFtaWx5X25hbWUiOiIifQ.MIqg3Q-pXvVG04leKBiVaDGCjv4gfsp3JywCumQ3CIk8cck9Q6tptM2CWIznmQLi4K6RUu7i7TodTnZAMDids0c-igX8oEe6ZLuR_Ub9SQSdVLymforfGYcSNJfnVVGLF8KHqPeLOp0TVPXxf56Qv6BO7B6fDGBxUvDsWEsw_5ko5v1pRiSHK-VS3zjw5weoJBD4rnYo9ZdhqYwyzL_nrUEWd05uWs4H-zCLKjTHw0AVPFO9MJ6OawJ7sc8AKeLq4FOKg2A_mIDF7SDds43UUvfUAK5a2zoy5PYhhESx0C5V7YTaaJDtiGFH1iY27_Yj3DcEQDZBBhDTRKrs3K7wxA' \
@@ -1506,7 +1506,7 @@ For reference, see [JWT Response for OAuth Token Introspection](https://datatrac
 
 4. Send a request to the echo server API proxy with the provided access token. When the API proxy parses the user access token and sends it to the OAuth2 Server for introspection, the response JWT token is added to the in-flight request headers as a bearer token in the `Authorization` header.
 
-   ```bash
+   ```shell
    Request served by echo-host
 
    HTTP/1.0 POST /my/test/api
@@ -1514,7 +1514,7 @@ For reference, see [JWT Response for OAuth Token Introspection](https://datatrac
    Host: default_http_07b28d26-9641-4a67-a422-0c4e14f27b03
    Accept: */*
    Accept-Encoding: gzip, deflate, br
-   Authorization: Bearer eyJraWQiOiItNTA1MTk2NDUxIiwie...
+   Authorization: Bearer <access token>
    Cache-Control: no-cache
    Connection: close
    Content-Length: 30

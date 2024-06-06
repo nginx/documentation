@@ -450,8 +450,9 @@ Configure NGINX Plus to use Microsoft Entra as the identity provider.
     # Main external HTTPS server, needs port 443
     server {
         listen 443 ssl;
-        http2 on;
-        root /var/www/nms;
+        http2  on;
+        root   /var/www/nms;
+
         server_name _;
 
         # ssl_protocols       TLSv1.1 TLSv1.2 TLSv1.3;

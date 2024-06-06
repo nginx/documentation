@@ -23,7 +23,7 @@ Before you begin, make sure you have either an API Token or API Certificate for 
 You can authenticate API requests in two ways: using an API Token or an API Certificate. Below are examples of how to do this with curl, but you can also use other tools like Postman.
 
 {{<see-also>}}
-For definitions of terms such as _'tenant'_ and _'namespace'_ used in the following examples, refer to the [NGINX One Glossary]({{<relref "/nginx-one/reference/glossary.md" >}}).
+For definitions of terms such as _'tenant'_ and _'namespace'_ used in the following examples, refer to the [NGINX One Glossary]({{<relref "/nginx-one/glossary.md" >}}).
 {{</see-also>}}
 
 <br>
@@ -73,5 +73,5 @@ curl https://<tenant>.console.ves.volterra.io/api/nginx/one/namespaces/default/d
 
 ## Further reading
 
-- [NGINX One API Reference]({{< relref "nginx-one/reference/api/nginx-one-api-reference.md" >}})
+- [NGINX One API Reference]({{< relref "/nginx-one/api/api-reference-guide.md" >}})
 - [F5 Distributed Cloud API Documentation](https://docs.cloud.f5.com/docs/api)

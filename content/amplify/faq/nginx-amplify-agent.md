@@ -9,7 +9,7 @@ docs: "DOCS-958"
 
 ### What Operating Systems are Supported?
 
-The NGINX Amplify Agent is currently officially packaged and supported for the following Linux flavors only:
+The F5 NGINX Amplify Agent is currently officially packaged and supported for the following Linux flavors only:
 
   * Ubuntu 22.04 "jammy" (amd64/arm64)
   * Ubuntu 20.04 "focal" (amd64/arm64)
@@ -17,9 +17,12 @@ The NGINX Amplify Agent is currently officially packaged and supported for the f
   * Debian 12 "bookworm" (amd64/arm64)
   * Debian 11 "bullseye" (amd64/arm64)
   * Debian 10 "buster" (amd64/arm64)
-  * RHEL/CentOS/OEL 8 (amd64/arm64)
   * RHEL/CentOS/OEL 9 (amd64/arm64)
   * Amazon Linux 2 LTS (amd64/arm64)
+
+The following platforms are no longer supported but still can be used with older agent packages powered by Python 3:
+
+  * RHEL/CentOS/OEL 8 (amd64/arm64)
 
 The following platforms are no longer supported but still can be used with older agent packages powered by Python 2:
 

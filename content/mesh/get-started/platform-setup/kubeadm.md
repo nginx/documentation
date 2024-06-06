@@ -6,7 +6,7 @@ toc: true
 docs: "DOCS-684"
 ---
 
-Kubeadm is a tool that creates Kubernetes clusters by following best practices. To use kubeadm with NGINX Service Mesh, you need to enable some extra flags on the Kubernetes API Server to enable Service Account Token Volume Projection. See [Service Account Token Volume Projection](#service-account-token-volume-projection) section to learn why this is needed.
+Kubeadm is a tool that creates Kubernetes clusters by following best practices. To use kubeadm with F5 NGINX Service Mesh, you need to enable some extra flags on the Kubernetes API Server to enable Service Account Token Volume Projection. See [Service Account Token Volume Projection](#service-account-token-volume-projection) section to learn why this is needed.
 
 ## New cluster
 

@@ -3,7 +3,7 @@ title: "Release Notes 1.3.0"
 date: ""
 draft: false
 toc: true
-description: Release information for NGINX Service Mesh, a configurable, low‑latency infrastructure layer designed to handle a high volume of network‑based interprocess communication among application infrastructure services using application programming interfaces (APIs).  Lists of new features and known issues are provided.
+description: Release information for F5 NGINX Service Mesh, a configurable, low‑latency infrastructure layer designed to handle a high volume of network‑based interprocess communication among application infrastructure services using application programming interfaces (APIs).  Lists of new features and known issues are provided.
 weight: -1300
 categories: ["reference"]
 docs: "DOCS-716"
@@ -133,7 +133,7 @@ If `--tracing-address` is set to an invalid Jaeger address when deploying NGINX 
   <br/>
 
 If you use your own Zipkin or Jaeger instance with NGINX Service Mesh, make sure to correctly set `--tracing-address` when deploying the mesh.
-  
+
 
 <br/>**Duplicate targetPorts in a Service are disregarded (20566)**:
   <br/>
@@ -163,7 +163,7 @@ spec:
   <br/>
 
 No workaround exists outside of reconfiguring the Service and application. The Service must use unique `.spec.ports[].targetPort` values (open up multiple ports on the application workload) or route all traffic to the application workload through the same Service port.
-  
+
 
 <br/>**NGINX Service Mesh DNS Suffix support (21951)**:
   <br/>
@@ -175,12 +175,12 @@ NGINX Service Mesh only supports the `cluster.local` DNS suffix. Services such a
   <br/>
 
 Ensure your cluster is setup with the default `cluster.local` DNS suffix.
-  
+
 
 <br/>**Optional, default visualization dependencies may cause excessive disk usage (23886)**:
   <br/>
 
-NGINX Service Mesh deploys optional metrics, tracing, and visualization services by default. These services are deployed as a convenience for evaluation and demonstration purposes only; these optional deployments should not be used in production. 
+NGINX Service Mesh deploys optional metrics, tracing, and visualization services by default. These services are deployed as a convenience for evaluation and demonstration purposes only; these optional deployments should not be used in production.
 
 NGINX Service Mesh supports a "Bring Your Own" model where individual organizations can manage and tailor third-party dependencies. The optional dependencies -- Prometheus for metrics, Jaeger or Zipkin for tracing, and Grafana for visualization -- should be managed separately for production environments. The default deployments may cause excessive disk usage as their backing stores may be written to Node local storage. In high traffic environments, this may cause DiskPressure warnings and evictions.
   <br/>
@@ -196,7 +196,7 @@ To mitigate disk usage issues related to visualization dependencies in high traf
 - Use the `--prometheus-address` option at deployment and provide your own service
 
 Refer to the [NGINX Service Mesh: Monitoring and Tracing](https://docs.nginx.com/nginx-service-mesh/guides/monitoring-and-tracing/) guide for additional guidance.
-  
+
 
 <br/>**Sidecar version not reported after upgrade (25821)**:
   <br/>
@@ -207,34 +207,34 @@ After upgrading NGINX Service Mesh to the 1.3 release, the version of the sideca
   Workaround:
   <br/>
 
-Reroll deployments to restart with the 1.3 version of the sidecar:`kubectl rollout restart <resource>/<name>`. 
+Reroll deployments to restart with the 1.3 version of the sidecar:`kubectl rollout restart <resource>/<name>`.
 
 After rerolling, the 1.3 version of the sidecar will start up and report its version.
-  
+
 
 <br/>**Invalid rate limit configurations are allowed (28043)**:
   <br/>
 
-Invalid rate limit configurations, for example a rate limit that references the same destination and source(s) as an existing rate limit, can be created in Kubernetes without error. 
+Invalid rate limit configurations, for example a rate limit that references the same destination and source(s) as an existing rate limit, can be created in Kubernetes without error.
   <br/>
   <br/>
   Workaround:
   <br/>
 
 Check if your rate limit configuration is valid by describing your rate limit after creation: `kubectl describe ratelimit <rate-limit-name>`
-  
+
 
 <br/>**Tracer address reported by nginx-meshctl config when no tracer is deployed (28256)**:
   <br/>
 
-If NGINX Service Mesh is deployed without a tracing backend, `nginx-meshctl config` reports the default tracing backend (jaeger) and the default tracing backend address ("jaeger.<mesh-namespace>.svc.cluster.local:6831"). This has no impact on the functionality of the mesh as tracing is disabled. 
+If NGINX Service Mesh is deployed without a tracing backend, `nginx-meshctl config` reports the default tracing backend (jaeger) and the default tracing backend address ("jaeger.<mesh-namespace>.svc.cluster.local:6831"). This has no impact on the functionality of the mesh as tracing is disabled.
   <br/>
   <br/>
   Workaround:
   <br/>
 
-No workaround necessary. 
-  
+No workaround necessary.
+
 
 <br/>**NGINX Service Mesh cannot be deployed or removed after upgrade or removal is interrupted (28585)**:
   <br/>
@@ -255,7 +255,7 @@ Ensure all CustomResourceDefinitions (CRDs) are removed. The list of CRDs to be 
 - `circuitbreakers.specs.smi.nginx.com`
 
 Once these are deleted, another attempt at redeploying NGINX Service Mesh may fail, but should clean up any more lingering resources. At this point the mesh should be fully removed.
-  
+
 
 <br/>**Deploying a TrafficSplit with an invalid weight value fails but does not return any errors (28602)**:
   <br/>
@@ -267,7 +267,7 @@ When deploying a TrafficSplit, it is possible to set the weight value as a negat
   <br/>
 
 Be sure to use positive integers when assigning weight values to TrafficSplits.
-  
+
 
 <br/>**Pods can't be created if nginx-mesh-api is unreachable (29560)**:
   <br/>
@@ -281,19 +281,19 @@ If the nginx-mesh-api Pod cannot be reached by the "sidecar-injector-webhook-cfg
 If attempting to create Pods that are not going to be injected by NGINX Service Mesh, then the simplest solution is to remove NGINX Service Mesh.
 
 Otherwise, if the nginx-mesh-api Pod is crashing, then verify that your configuration is valid before deploying NGINX Service Mesh. Reinstalling the mesh may also fix connectivity issues.
-  
+
 
 <br/>**Spire Server crashes after reaching ~1500 certificate rotations (30150)**:
   <br/>
 
-After reaching approximately 1500 certificate rorations, the Spire Server crashes. This condition can be reached by either setting your certificate authority TTL to a low number -- for example, `--mtls-ca-ttl 1m --mtls-svid-ttl 1m` -- or leaving the mesh running for extended periods of time. 
+After reaching approximately 1500 certificate rorations, the Spire Server crashes. This condition can be reached by either setting your certificate authority TTL to a low number -- for example, `--mtls-ca-ttl 1m --mtls-svid-ttl 1m` -- or leaving the mesh running for extended periods of time.
   <br/>
   <br/>
   Workaround:
   <br/>
 
 Use the default TTL, which would produce the conditions that cause the crash after about 100 years of continuous operation. If you must use a lower TTL that will result in a significant number of certificate rotations, redeploy NGINX Service Mesh to refresh its state *before* the crash conditions can be reached.
-  
+
 
 <br/>
 
@@ -337,6 +337,6 @@ SMI Specification:
 NSM SMI Extensions:
 
 - Traffic Specs:
- 
+
   - RateLimit: v1alpha1,v1alpha2
   - CircuitBreaker: v1alpha1

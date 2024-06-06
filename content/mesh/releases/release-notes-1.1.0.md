@@ -3,7 +3,7 @@ title: "Release Notes 1.1.0"
 date: ""
 draft: false
 toc: true
-description: Release information for NGINX Service Mesh, a configurable, low‑latency infrastructure layer designed to handle a high volume of network‑based interprocess communication among application infrastructure services using application programming interfaces (APIs).  Lists of new features and known issues are provided.
+description: Release information for F5 NGINX Service Mesh, a configurable, low‑latency infrastructure layer designed to handle a high volume of network‑based interprocess communication among application infrastructure services using application programming interfaces (APIs).  Lists of new features and known issues are provided.
 weight: -1100
 categories: ["reference"]
 docs: "DOCS-713"
@@ -231,7 +231,7 @@ To fix the issue, take one or more of the following actions:
 **Optional, default visualization dependencies may cause excessive disk usage (23886)**:
   <br/>
 
-NGINX Service Mesh deploys optional metrics, tracing, and visualization services by default. These services are deployed as a convenience for evaluation and demonstration purposes only; these optional deployments should not be used in production. 
+NGINX Service Mesh deploys optional metrics, tracing, and visualization services by default. These services are deployed as a convenience for evaluation and demonstration purposes only; these optional deployments should not be used in production.
 
 NGINX Service Mesh supports a "Bring Your Own" model where individual organizations can manage and tailor third-party dependencies. The optional dependencies -- Prometheus for metrics, Jaeger or Zipkin for tracing, and Grafana for visualization -- should be managed separately for production environments. The default deployments may cause excessive disk usage as their backing stores may be written to Node local storage. In high traffic environments, this may cause DiskPressure warnings and evictions.
 
@@ -253,7 +253,7 @@ Refer to the [NGINX Service Mesh: Monitoring and Tracing](https://docs.nginx.com
 **`ImagePullError` for `nginx-mesh-api` may not be obvious (24182)**:
   <br/>
 
-When deploying NGINX Service Mesh, if the `nginx-mesh-api` image cannot be pulled, and as a result `nginx-meshctl` cannot connect to the mesh API, the error that's shown simply says to "check the logs" without further  instruction on what to check for. 
+When deploying NGINX Service Mesh, if the `nginx-mesh-api` image cannot be pulled, and as a result `nginx-meshctl` cannot connect to the mesh API, the error that's shown simply says to "check the logs" without further  instruction on what to check for.
 
   <br/>
   Workaround:

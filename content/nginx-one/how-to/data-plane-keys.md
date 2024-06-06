@@ -7,7 +7,7 @@ tags:
 - docs
 title: Create and manage data plane keys
 toc: true
-weight: 200
+weight: 100
 ---
 
 <style>
@@ -66,8 +66,5 @@ In this Early Access release, you need to use the NGINX One REST API to delete a
 
 To delete a data plane key using the NGINX One REST API, see these guides:
 
-- [Authenticate with the NGINX One REST API]({{< relref "nginx-one/reference/api/nginx-one-api-authentication.md" >}})
-- [Delete a data plane key: NGINX One API Reference]({{< relref "nginx-one/reference/api/nginx-one-api-reference.md#operation/deleteDataPlaneKey" >}})
-
-
-
+- [Authenticate with the NGINX One REST API]({{< relref "nginx-one/api/authentication.md" >}})
+- [Delete a data plane key: NGINX One API Reference]({{< relref "nginx-one/api/api-reference-guide.md#operation/deleteDataPlaneKey" >}})

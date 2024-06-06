@@ -16,7 +16,7 @@ In a Kubernetes environment, rate limiting is traditionally applied at the ingre
 
 However, applications with a microservices architecture might also want to apply rate limits between their workloads running inside the cluster. For example, a rate limit applied to a particular microservice can prevent mission-critical components from being overwhelmed at times of peak traffic and attack, leading to extended periods of downtime for your users.
 
-This tutorial shows you how to set up rate limiting policies between your workloads in NGINX Service Mesh and how to attach L7 rules to a rate limit policy to give you fine-grained control over the type of traffic that is limited.
+This tutorial shows you how to set up rate limiting policies between your workloads in F5 NGINX Service Mesh and how to attach L7 rules to a rate limit policy to give you fine-grained control over the type of traffic that is limited.
 
 ## Before You Begin
 

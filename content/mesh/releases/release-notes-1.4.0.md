@@ -3,7 +3,7 @@ title: "Release Notes 1.4.0"
 date: ""
 draft: false
 toc: true
-description: "Release information for NGINX Service Mesh, a configurable, low‑latency infrastructure layer designed to handle a high volume of network‑based interprocess communication among application infrastructure services using application programming interfaces (APIs).  Lists of new features and known issues are provided."
+description: "Release information for F5 NGINX Service Mesh, a configurable, low‑latency infrastructure layer designed to handle a high volume of network‑based interprocess communication among application infrastructure services using application programming interfaces (APIs).  Lists of new features and known issues are provided."
 weight: -1400
 categories: ["reference"]
 docs: "DOCS-1488"
@@ -133,7 +133,7 @@ After reaching approximately 1500 certificate rorations, the Spire Server crashe
   <br/>
 
 Use the default TTL, which would produce the conditions that cause the crash after about 100 years of continuous operation. If you must use a lower TTL that will result in a significant number of certificate rotations, redeploy NGINX Service Mesh to refresh its state _before_ the crash conditions can be reached.
-  
+
 
 <br/>**Pods can't be created if nginx-mesh-api is unreachable (384)**:
   <br/>
@@ -147,7 +147,7 @@ If the nginx-mesh-api Pod cannot be reached by the "sidecar-injector-webhook-cfg
 If attempting to create Pods that are not going to be injected by NGINX Service Mesh, then the simplest solution is to remove NGINX Service Mesh.
 
 Otherwise, if the nginx-mesh-api Pod is crashing, then the user should verify that their configuration when deploying NGINX Service Mesh is valid. Reinstalling the mesh may also fix connectivity issues.
-  
+
 
 <br/>**Deploying a TrafficSplit with an invalid weight value fails but does not return any errors (426)**:
   <br/>
@@ -159,19 +159,19 @@ When deploying a TrafficSplit, it is possible to set the weight value as a negat
   <br/>
 
 Be sure to use positive integers when assigning weight values to TrafficSplits.
-  
+
 
 <br/>**Tracer address reported by nginx-meshctl config when no tracer is deployed (440)**:
   <br/>
 
-If NGINX Service Mesh is deployed without a tracing backend, `nginx-meshctl config` reports the default tracing backend (jaeger) and the default tracing backend address ("jaeger.<mesh-namespace>.svc.cluster.local:6831"). This has no impact on the functionality of the mesh as tracing is disabled. 
+If NGINX Service Mesh is deployed without a tracing backend, `nginx-meshctl config` reports the default tracing backend (jaeger) and the default tracing backend address ("jaeger.<mesh-namespace>.svc.cluster.local:6831"). This has no impact on the functionality of the mesh as tracing is disabled.
   <br/>
   <br/>
   Workaround:
   <br/>
 
 No workaround necessary.
-  
+
 
 <br/>**NGINX Service Mesh DNS Suffix support (519)**:
   <br/>
@@ -183,7 +183,7 @@ NGINX Service Mesh only supports the `cluster.local` DNS suffix. Services such a
   <br/>
 
 Ensure your cluster is setup with the default `cluster.local` DNS suffix.
-  
+
 
 <br/>**Duplicate targetPorts in a Service are disregarded (532)**:
   <br/>
@@ -213,7 +213,7 @@ spec:
   <br/>
 
 No workaround exists outside of reconfiguring the Service and application. The Service must use unique `.spec.ports[].targetPort` values (open up multiple ports on the application workload) or route all traffic to the application workload through the same Service port.
-  
+
 
 <br/>**Pods fail to deploy if invalid Jaeger tracing address is set (540)**:
   <br/>
@@ -225,7 +225,7 @@ If `--tracing-address` is set to an invalid Jaeger address when deploying NGINX 
   <br/>
 
 If you use your own Zipkin or Jaeger instance with NGINX Service Mesh, make sure to correctly set `--tracing-address` when deploying the mesh.
-  
+
 
 <br/>**Inject command errors are ambiguous (789)**:
   <br/>
@@ -249,7 +249,7 @@ When encountering an error from Inject do the following checks:
   3. Check the status of you Pods: {{kubectl -n nginx-mesh get pods}}
 
 If steps 2 or 3 show failures, or Pods that are not in the Running state, NGINX Service Mesh will need further troubleshooting. Pods may be restarted through {{kubectl}} by using {{rollout restart}} on the Deployments, or by deleting the Pod resources. If the issue persists contact your support agent.
-  
+
 
 <br/>
 
@@ -293,7 +293,7 @@ SMI Specification:
 NSM SMI Extensions:
 
 - Traffic Specs:
- 
+
   - RateLimit: v1alpha1,v1alpha2
   - CircuitBreaker: v1alpha1
 

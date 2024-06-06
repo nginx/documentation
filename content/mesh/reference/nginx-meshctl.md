@@ -10,7 +10,7 @@ docs: "DOCS-704"
 
 ## Usage
 
-`nginx-meshctl` is the CLI utility for the NGINX Service Mesh control plane.
+`nginx-meshctl` is the CLI utility for the F5 NGINX Service Mesh control plane.
 Requires a connection to a Kubernetes cluster via a `kubeconfig`.
 
 ```txt
@@ -68,7 +68,7 @@ Global Flags:
 Display the NGINX Service Mesh configuration.
 
 ```txt
-Usage: 
+Usage:
   nginx-meshctl config [flags]
 
 Flags:
@@ -93,7 +93,7 @@ This command installs the following resources into your Kubernetes cluster by de
 <br>
 
 ```txt
-Usage: 
+Usage:
   nginx-meshctl deploy [flags]
 
 Flags:
@@ -164,7 +164,7 @@ Most of the examples below show shortened commands for convenience. The '...' in
     `nginx-meshctl deploy ... --mtls-mode off`
 
 - Deploy the Service Mesh and enable telemetry traces to be exported to your OTLP gRPC collector running in your Kubernetes cluster:
-     
+
     `nginx-meshctl deploy ... --telemetry-exporters "type=otlp,host=otel-collector.my-namespace.svc.cluster.local,port=4317"`
 
 - Deploy the Service Mesh with upstream certificates and keys for mTLS:
@@ -181,7 +181,7 @@ Inject the NGINX Service Mesh sidecar into Kubernetes resources.
 <br>
 
 ```txt
-Usage: 
+Usage:
   nginx-meshctl inject [flags]
 
 Flags:
@@ -200,7 +200,7 @@ Global Flags:
 ### Inject Examples
 
 - Inject the resources in my-app.yaml and create in Kubernetes:
-  
+
     `nginx-meshctl inject -f ./my-app.yaml | kubectl apply -f -`
 
 - Inject the resources passed into stdin and write the changes to the same file:
@@ -225,7 +225,7 @@ Remove the NGINX Service Mesh from your Kubernetes cluster.
 <br>
 
 ```txt
-Usage: 
+Usage:
   nginx-meshctl remove [flags]
 
 Flags:
@@ -264,7 +264,7 @@ List the Services registered with NGINX Service Mesh.
 <br>
 
 ```txt
-Usage: 
+Usage:
   nginx-meshctl services [flags]
 
 Flags:

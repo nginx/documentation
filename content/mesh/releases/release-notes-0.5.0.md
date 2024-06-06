@@ -3,7 +3,7 @@ title: "Release Notes 0.5.0"
 date: ""
 draft: false
 toc: true
-description: Release information for NGINX Service Mesh, a configurable, low‑latency infrastructure layer designed to handle a high volume of network‑based interprocess communication among application infrastructure services using application programming interfaces (APIs).  Lists of new features and known issues are provided.
+description: Release information for F5 NGINX Service Mesh, a configurable, low‑latency infrastructure layer designed to handle a high volume of network‑based interprocess communication among application infrastructure services using application programming interfaces (APIs).  Lists of new features and known issues are provided.
 weight: -500
 categories: ["reference"]
 docs: "DOCS-705"
@@ -20,8 +20,8 @@ These release notes provide general information and describe known issues for NG
   - [Resolved Issues](#resolved-issues)
   - [Known Issues](#known-issues)
   - {{< link "/licenses/license-servicemesh-0.5.0.html" "Open Source Licenses" >}}
-  - {{< link "/releases/oss-dependencies/" "Open Source Licenses Addendum" >}} 
-  
+  - {{< link "/releases/oss-dependencies/" "Open Source Licenses Addendum" >}}
+
 
 <span id="050-updates"></a>
 
