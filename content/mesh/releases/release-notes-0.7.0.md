@@ -3,7 +3,7 @@ title: "Release Notes 0.7.0"
 date: ""
 draft: false
 toc: true
-description: Release information for NGINX Service Mesh, a configurable, low‑latency infrastructure layer designed to handle a high volume of network‑based interprocess communication among application infrastructure services using application programming interfaces (APIs).  Lists of new features and known issues are provided.
+description: Release information for F5 NGINX Service Mesh, a configurable, low‑latency infrastructure layer designed to handle a high volume of network‑based interprocess communication among application infrastructure services using application programming interfaces (APIs).  Lists of new features and known issues are provided.
 weight: -700
 categories: ["reference"]
 docs: "DOCS-707"
@@ -21,7 +21,7 @@ These release notes provide general information and describe known issues for NG
   - [Known Issues](#known-issues)
   - [Supported Versions](#supported-versions)
   - {{< link "/licenses/license-servicemesh-0.7.0.html" "Open Source Licenses" >}}
-  - {{< link "/releases/oss-dependencies/" "Open Source Licenses Addendum" >}} 
+  - {{< link "/releases/oss-dependencies/" "Open Source Licenses Addendum" >}}
 
 <span id="070-updates"></a>
 
@@ -101,7 +101,7 @@ If deploying NGINX Service Mesh failed or you pressed ctrl-C during deployment, 
   Workaround:
   <br/><br/>
 
-  When troubleshooting, first verify that the command is run correctly with the correct arguments and that the target namespace exists. 
+  When troubleshooting, first verify that the command is run correctly with the correct arguments and that the target namespace exists.
 
   If you are running the command correctly and the target namespace exists and is not empty -- that is to say, the NGINX Service Mesh Deployments, Pods, Services, and so on, have been deployed -- you may need to remove the NGINX Service Mesh namespace and start over:
 
@@ -131,12 +131,12 @@ If deploying NGINX Service Mesh failed or you pressed ctrl-C during deployment, 
 
   1. Run `nginx-meshctl deploy` and allow the operation to finish.
   <br/><br/>
-  
-  
+
+
 **Warning messages may print while deploying the NGINX Service Mesh on EKS (17390)**:
   <br/>
 
-  The warning message "Unable to cancel request for \*exec.roundTripper" may print when deploying NGINX Service Mesh on EKS. This warning message does not prevent the mesh from deploying successfully. 
+  The warning message "Unable to cancel request for \*exec.roundTripper" may print when deploying NGINX Service Mesh on EKS. This warning message does not prevent the mesh from deploying successfully.
   <br/><br/>
 
 

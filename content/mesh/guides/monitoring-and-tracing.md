@@ -10,7 +10,7 @@ docs: "DOCS-693"
 
 ## Overview
 
-NGINX Service Mesh can integrate with your Prometheus, Grafana, and tracing backends for exporting metrics and tracing data.
+F5 NGINX Service Mesh can integrate with your Prometheus, Grafana, and tracing backends for exporting metrics and tracing data.
 
 If you do not have Prometheus, Grafana, or tracing backends deployed, you can follow the [Observability Tutorial]( {{< ref "/mesh/tutorials/observability.md" >}}) to deploy a basic demo setup.
 

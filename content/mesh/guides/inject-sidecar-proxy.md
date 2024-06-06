@@ -10,7 +10,7 @@ docs: "DOCS-692"
 
 ## Overview
 
-NGINX Service Mesh works by injecting a sidecar proxy into Kubernetes resources.
+F5 NGINX Service Mesh works by injecting a sidecar proxy into Kubernetes resources.
 
 A couple important things to note about injected Pods:
 

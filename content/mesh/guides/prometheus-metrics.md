@@ -10,7 +10,7 @@ docs: "DOCS-840"
 
 ## Overview
 
-NGINX Service Mesh integrates with Prometheus for metrics and Grafana for visualizations.
+F5 NGINX Service Mesh integrates with Prometheus for metrics and Grafana for visualizations.
 
 {{< note >}}
 To configure NGINX Service Mesh to use Prometheus when deploying, refer to the [Monitoring and Tracing]( {{< ref "/mesh/guides/monitoring-and-tracing.md#prometheus" >}} ) guide for instructions.

@@ -20,7 +20,7 @@ To uninstall the `nsm` release in the `nginx-mesh` namespace, run:
 helm uninstall nsm --namespace nginx-mesh
 ```
 
-This command removes most of the Kubernetes components associated with the NGINX Service Mesh release.
+This command removes most of the Kubernetes components associated with the F5 NGINX Service Mesh release.
 Helm does **not** remove the following components:
 
 - CRDs

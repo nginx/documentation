@@ -10,7 +10,7 @@ docs: "DOCS-680"
 
 ## Prerequisites
 
-Before installing NGINX Service Mesh, make sure you've completed the following steps.
+Before installing F5 NGINX Service Mesh, make sure you've completed the following steps.
 
 - You have Helm version 3.2.0 or newer installed.
 - You have a working and [supported]({{< ref "/mesh/about/mesh-tech-specs.md#supported-versions" >}}) Kubernetes or OpenShift cluster.

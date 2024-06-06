@@ -11,7 +11,7 @@ docs: "DOCS-681"
 
 ## Prerequisites
 
-Before installing NGINX Service Mesh, make sure you've completed the following steps.
+Before installing F5 NGINX Service Mesh, make sure you've completed the following steps.
 
 - You have a working and [supported]({{< ref "/mesh/about/mesh-tech-specs.md#supported-versions" >}}) Kubernetes or OpenShift cluster.
 - You followed the [Platform Setup]({{< ref "/mesh/get-started/platform-setup/_index.md" >}}) guide to prepare your cluster to work with NGINX Service Mesh.

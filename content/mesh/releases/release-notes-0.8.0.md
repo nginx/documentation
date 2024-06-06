@@ -3,7 +3,7 @@ title: "Release Notes 0.8.0"
 date: ""
 draft: false
 toc: true
-description: Release information for NGINX Service Mesh, a configurable, low‑latency infrastructure layer designed to handle a high volume of network‑based interprocess communication among application infrastructure services using application programming interfaces (APIs).  Lists of new features and known issues are provided.
+description: Release information for F5 NGINX Service Mesh, a configurable, low‑latency infrastructure layer designed to handle a high volume of network‑based interprocess communication among application infrastructure services using application programming interfaces (APIs).  Lists of new features and known issues are provided.
 weight: -800
 categories: ["reference"]
 docs: "DOCS-708"
@@ -21,7 +21,7 @@ These release notes provide general information and describe known issues for NG
   - [Known Issues](#known-issues)
   - [Supported Versions](#supported-versions)
   - {{< link "/licenses/license-servicemesh-0.8.0.html" "Open Source Licenses" >}}
-  - {{< link "/releases/oss-dependencies/" "Open Source Licenses Addendum" >}} 
+  - {{< link "/releases/oss-dependencies/" "Open Source Licenses Addendum" >}}
 
 <span id="080-updates"></a>
 
@@ -74,7 +74,7 @@ Instead, we recommend using injected pods and services for service mesh injected
   <br/>
   Workaround:
   <br/><br/>
-  
+
   If you must use non-injected workloads, you need to configure the fallback service and pods before the Circuit Breaker CRD references them.
   <br/><br/>
 

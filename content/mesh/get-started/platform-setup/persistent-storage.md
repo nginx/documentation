@@ -7,7 +7,7 @@ toc: true
 docs: "DOCS-686"
 ---
 
-NGINX Service Mesh generates data that needs to persist across restarts and failures to ensure uninterrupted operations. For example, if the SPIRE Server restarts, the new instance can pick up the the existing database of identities without having to rebuild everything. Depending on the environment, persistent storage may already be set up and ready for use by NGINX Service Mesh.
+F5 NGINX Service Mesh generates data that needs to persist across restarts and failures to ensure uninterrupted operations. For example, if the SPIRE Server restarts, the new instance can pick up the the existing database of identities without having to rebuild everything. Depending on the environment, persistent storage may already be set up and ready for use by NGINX Service Mesh.
 
 The big three hosted Kubernetes environments (Elastic Kubernetes Service (EKS), Azure Kubernetes Service (AKS), and Google Kubernetes Engine (GKE)) all have built-in persistent storage that NGINX Service Mesh will automatically pick up and use.
 
@@ -44,7 +44,7 @@ Warning: Deploying without persistent storage, not suitable for production envir
 
 Without persistent storage, if SPIRE Server restarts for any reason, the entire identity database will need to be rebuilt, which will significantly increase time to recovery.
 
-## Setting up Persistent Storage 
+## Setting up Persistent Storage
 
 Kubernetes has an extensive ecosystem of plugins for persistent storage. These range from vSphere Volumes to Amazon Web Services (AWS) Elastic Block Store. For more details refer to the [Kubernetes Storage Classes documentation](https://kubernetes.io/docs/concepts/storage/storage-classes/).
 

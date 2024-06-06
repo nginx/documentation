@@ -25,7 +25,7 @@ This is used in the mesh to identify the kind of traffic being sent and where it
 {{< /note >}}
 
 {{< note >}}
-Review the [ports reserved by NGINX Service Mesh sidecar]( {{< ref "/mesh/about/mesh-tech-specs.md#ports" >}} ) and make sure there are no overlaps with ports used by your applications.
+Review the [ports reserved by F5 NGINX Service Mesh sidecar]( {{< ref "/mesh/about/mesh-tech-specs.md#ports" >}} ) and make sure there are no overlaps with ports used by your applications.
 {{< /note >}}
 
 ## Prerequisite

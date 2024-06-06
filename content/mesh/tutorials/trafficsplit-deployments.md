@@ -16,7 +16,7 @@ You can use traffic splitting for most deployment scenarios, including canary, b
 1. Install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 1. (Optional) If you want to view metrics, ensure that you have deployed Prometheus and Grafana.
   Refer to the [Monitoring and Tracing]( {{< ref "/mesh/guides/monitoring-and-tracing.md" >}} ) guide for instructions.
-1. Set up a Kubernetes cluster with [NGINX Service Mesh]( {{< ref "/mesh/get-started/install/install.md" >}} ) deployed with the following configuration:
+1. Set up a Kubernetes cluster with [F5 NGINX Service Mesh]( {{< ref "/mesh/get-started/install/install.md" >}} ) deployed with the following configuration:
     - `--mtls-mode` is set to `permissive` or `off` states.
     - (Optional) `--prometheus-address` is pointed to the Prometheus instance you created above.
 1. Enable [automatic sidecar injection]( {{< ref "/mesh/guides/inject-sidecar-proxy.md#automatic-proxy-injection" >}} ) for the `default` namespace.

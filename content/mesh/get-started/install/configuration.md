@@ -9,7 +9,7 @@ docs: "DOCS-679"
 
 ## Overview
 
-This document provides an overview of the various options you can configure when deploying NGINX Service Mesh. We strongly recommended that you review all of the available options discussed in this document *before* deploying NGINX Service Mesh.
+This document provides an overview of the various options you can configure when deploying F5 NGINX Service Mesh. We strongly recommended that you review all of the available options discussed in this document *before* deploying NGINX Service Mesh.
 
 {{< tip >}}
 To manage your configuration after deployment, you can use the NGINX Service Mesh API.

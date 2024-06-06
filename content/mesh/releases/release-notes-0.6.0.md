@@ -3,7 +3,7 @@ title: "Release Notes 0.6.0"
 date: ""
 draft: false
 toc: true
-description: Release information for NGINX Service Mesh, a configurable, low‑latency infrastructure layer designed to handle a high volume of network‑based interprocess communication among application infrastructure services using application programming interfaces (APIs).  Lists of new features and known issues are provided.
+description: Release information for F5 NGINX Service Mesh, a configurable, low‑latency infrastructure layer designed to handle a high volume of network‑based interprocess communication among application infrastructure services using application programming interfaces (APIs).  Lists of new features and known issues are provided.
 weight: -600
 categories: ["reference"]
 docs: "DOCS-706"
@@ -21,7 +21,7 @@ These release notes provide general information and describe known issues for NG
   - [Known Issues](#known-issues)
   - [Supported Versions](#supported-versions)
   - {{< link "/licenses/license-servicemesh-0.6.0.html" "Open Source Licenses" >}}
-  - {{< link "/releases/oss-dependencies/" "Open Source Licenses Addendum" >}} 
+  - {{< link "/releases/oss-dependencies/" "Open Source Licenses Addendum" >}}
 
 <span id="060-updates"></a>
 
@@ -102,7 +102,7 @@ The following issues are known to be present in this release. Look for updates t
 
 **Kubernetes Liveness and Readiness HTTP Requests fail when mtls-mode is strict (17038)**:
   <br/>
-  
+
   Kubernetes Liveness and Readiness HTTP Requests fail when `mtls-mode` is `strict`.
 
   <br/>
@@ -111,7 +111,7 @@ The following issues are known to be present in this release. Look for updates t
 
   1. Use commands instead of HTTP requests when defining liveness and readiness probes.
   1. Deploy NGINX Service Mesh with a permissive mtls mode. A permissive mode allows the liveness and readiness HTTP requests to be proxied to the application over plaintext.
-  1. Create dedicated ports for the liveness and readiness probes in your application and add these ports to the `ignore-incoming-ports` during injection. Dedicated ports allow the HTTP requests to hit the application directly without being proxied. 
+  1. Create dedicated ports for the liveness and readiness probes in your application and add these ports to the `ignore-incoming-ports` during injection. Dedicated ports allow the HTTP requests to hit the application directly without being proxied.
   <br/><br/>
 
 
@@ -156,7 +156,7 @@ The following issues are known to be present in this release. Look for updates t
   <br/><br/>
 
   Ensure ports on the root service and destination backend service match.
-  
+
 
 
 **NGINX Service Mesh remove command may fail (17160)**:
@@ -168,7 +168,7 @@ The following issues are known to be present in this release. Look for updates t
   Workaround:
   <br/><br/>
 
-  When troubleshooting, first verify that the command is run correctly with the correct arguments and that the target namespace exists. 
+  When troubleshooting, first verify that the command is run correctly with the correct arguments and that the target namespace exists.
 
   If you are running the command correctly and the target namespace exists and is not empty -- that is to say, the NGINX Service Mesh Deployments, Pods, Services, and so on, have been deployed -- you may need to remove the NGINX Service Mesh namespace and start over:
 
@@ -248,7 +248,7 @@ The following issues are known to be present in this release. Look for updates t
 **TrafficSplits cannot route traffic based on the value of the  host header (17304)**:
   <br/>
 
-  A TrafficSplit can list an HTTPRouteGroup in `spec.Matches`. If this HTTPRouteGroup contains a host header in the header filters, the TrafficSplit will not work. The root service of the TrafficSplit will handle the traffic. 
+  A TrafficSplit can list an HTTPRouteGroup in `spec.Matches`. If this HTTPRouteGroup contains a host header in the header filters, the TrafficSplit will not work. The root service of the TrafficSplit will handle the traffic.
   <br/><br/>
 
 
@@ -272,7 +272,7 @@ The following issues are known to be present in this release. Look for updates t
   ```bash
   kubectl patch spiffeid $SPIFFEIDS --type='merge' -p '{"metadata":{"finalizers":null}}' -n <namespace>
   ```
-  
+
   <br/><br/>
 
 
@@ -286,13 +286,13 @@ The following issues are known to be present in this release. Look for updates t
   <br/><br/>
 
   There is no direct workaround for specific namespace filtering; however, running `nginx-meshctl` and filtering on other supported resources--such as Deployments, Pods, StatefulSets, and DaemonSets--will show proper traffic edges. Cross-referencing between Namespace output and another resource type will demonstrate the correct activity.
-  
+
 
 
 **Warning messages may print while deploying the NGINX Service Mesh on EKS (17390)**:
   <br/>
 
-  The warning message "Unable to cancel request for \*exec.roundTripper" may print when deploying NGINX Service Mesh on EKS. This warning message does not prevent the mesh from deploying successfully. 
+  The warning message "Unable to cancel request for \*exec.roundTripper" may print when deploying NGINX Service Mesh on EKS. This warning message does not prevent the mesh from deploying successfully.
   <br/><br/>
 
 

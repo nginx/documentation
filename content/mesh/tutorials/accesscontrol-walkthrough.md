@@ -15,7 +15,7 @@ The access control mode can be [set to `deny` at the global level]( {{< ref "/me
 ## Before You Begin
 
 1. Install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
-1. [Deploy NGINX Service Mesh]({{< ref "/mesh/get-started/install/install.md" >}}) in your Kubernetes cluster.
+1. [Deploy F5 NGINX Service Mesh]({{< ref "/mesh/get-started/install/install.md" >}}) in your Kubernetes cluster.
 1. Enable [automatic sidecar injection]( {{< ref "/mesh/guides/inject-sidecar-proxy.md#automatic-proxy-injection" >}} ) for the `default` namespace.
 1. Download all of the example files:
 

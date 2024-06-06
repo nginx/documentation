@@ -8,7 +8,7 @@ categories: ["tasks"]
 docs: "DOCS-1482"
 ---
 
-You can upgrade to the latest mesh version from the version immediately before it (for example, from v1.6.0 to v1.7.0). NGINX Service Mesh doesn't support skipping versions.
+You can upgrade to the latest mesh version from the version immediately before it (for example, from v1.6.0 to v1.7.0). F5 NGINX Service Mesh doesn't support skipping versions.
 
 {{< important >}}
 Check out the [Version-specific Notes]({{< ref "#version-specific-notes" >}}) section prior to upgrading to see if there are any extra details required for the version you are using.

@@ -3,7 +3,7 @@ title: "Release Notes 1.2.0"
 date: ""
 draft: false
 toc: true
-description: Release information for NGINX Service Mesh, a configurable, low‑latency infrastructure layer designed to handle a high volume of network‑based interprocess communication among application infrastructure services using application programming interfaces (APIs).  Lists of new features and known issues are provided.
+description: Release information for F5 NGINX Service Mesh, a configurable, low‑latency infrastructure layer designed to handle a high volume of network‑based interprocess communication among application infrastructure services using application programming interfaces (APIs).  Lists of new features and known issues are provided.
 weight: -1200
 categories: ["reference"]
 docs: "DOCS-714"
@@ -184,7 +184,7 @@ Instead, we recommend using injected pods and services for service mesh injected
 If you must use non-injected workloads, you need to configure the fallback service and pods before the Circuit Breaker CRD references them.
 
 Non-injected fallback servers are incompatible with mTLS mode strict.
-  
+
 
 <br/>**Rejected configurations return generic HTTP status codes (18101)**:
   <br/>
@@ -198,7 +198,7 @@ The NGINX Service Mesh APIs validate input for configured resources. These valid
   <br/>
 
 When configuring NGINX Service Mesh resources, do not use the NGINX Service Mesh APIs for production-grade releases if fine-grained error notifications are required. Each feature has Kubernetes API correlates that work according to the Kubernetes API Server semantics and constraints. All features are supported via Kubernetes.
-  
+
 
 <br/>**Pods fail to deploy if invalid Jaeger tracing address is set (19469)**:
   <br/>
@@ -210,7 +210,7 @@ If `--tracing-address` is set to an invalid Jaeger address when deploying NGINX 
   <br/>
 
 If you use your own Zipkin or Jaeger instance with NGINX Service Mesh, make sure to correctly set `--tracing-address` when deploying the mesh.
-  
+
 
 <br/>**Duplicate targetPorts in a Service are disregarded (20566)**:
   <br/>
@@ -240,7 +240,7 @@ spec:
   <br/>
 
 No workaround exists outside of reconfiguring the Service and application. The Service must use unique `.spec.ports[].targetPort` values (open up multiple ports on the application workload) or route all traffic to the application workload through the same Service port.
-  
+
 
 <br/>**NGINX Service Mesh DNS Suffix support (21951)**:
   <br/>
@@ -252,12 +252,12 @@ NGINX Service Mesh only supports the `cluster.local` DNS suffix. Services such a
   <br/>
 
 Ensure your cluster is setup with the default `cluster.local` DNS suffix.
-  
+
 
 <br/>**Optional, default visualization dependencies may cause excessive disk usage (23886)**:
   <br/>
 
-NGINX Service Mesh deploys optional metrics, tracing, and visualization services by default. These services are deployed as a convenience for evaluation and demonstration purposes only; these optional deployments should not be used in production. 
+NGINX Service Mesh deploys optional metrics, tracing, and visualization services by default. These services are deployed as a convenience for evaluation and demonstration purposes only; these optional deployments should not be used in production.
 
 NGINX Service Mesh supports a "Bring Your Own" model where individual organizations can manage and tailor third-party dependencies. The optional dependencies -- Prometheus for metrics, Jaeger or Zipkin for tracing, and Grafana for visualization -- should be managed separately for production environments. The default deployments may cause excessive disk usage as their backing stores may be written to Node local storage. In high traffic environments, this may cause DiskPressure warnings and evictions.
   <br/>
@@ -273,19 +273,19 @@ To mitigate disk usage issues related to visualization dependencies in high traf
 - Use the `--prometheus-address` option at deployment and provide your own service
 
 Refer to the [NGINX Service Mesh: Monitoring and Tracing](https://docs.nginx.com/nginx-service-mesh/guides/monitoring-and-tracing/) guide for additional guidance.
-  
+
 
 <br/>**`ImagePullError` for `nginx-mesh-api` may not be obvious (24182)**:
   <br/>
 
-When deploying NGINX Service Mesh, if the `nginx-mesh-api` image cannot be pulled, and as a result `nginx-meshctl` cannot connect to the mesh API, the error that's shown simply says to "check the logs" without further  instruction on what to check for. 
+When deploying NGINX Service Mesh, if the `nginx-mesh-api` image cannot be pulled, and as a result `nginx-meshctl` cannot connect to the mesh API, the error that's shown simply says to "check the logs" without further  instruction on what to check for.
   <br/>
   <br/>
   Workaround:
   <br/>
 
 If `nginx-meshctl` fails to connect to the mesh API when deploying, you should check to see if an `ImagePullError` exists for the `nginx-mesh-api` Pod. If you find an `ImagePullError`, you should confirm that your registry server is correct when deploying the mesh.
-  
+
 
 <br/>**Use of an invalid container image does not report an immediate error (24899)**:
   <br/>
@@ -329,31 +329,31 @@ You must correct your `--registry-server` and/or `--image-tag` arguments to be v
 In a non-air gapped deployment, be sure to use `docker-registry.nginx.com/nsm` and a valid version tag appropriate to your requirements. See <https://docs.nginx.com/nginx-service-mesh/get-started/install/> for more details.
 
 In an air gapped deployment, be sure to use the correct private registry domain and path for your environment and the correct tag used when loading images.
-  
+
 
 <br/>**Invalid rate limit configurations are allowed (28043)**:
   <br/>
 
-Invalid rate limit configurations, for example a rate limit that references the same destination and source(s) as an existing rate limit, can be created in Kubernetes without error. 
+Invalid rate limit configurations, for example a rate limit that references the same destination and source(s) as an existing rate limit, can be created in Kubernetes without error.
   <br/>
   <br/>
   Workaround:
   <br/>
 
 Check if your rate limit configuration is valid by describing your rate limit after creation: `kubectl describe ratelimit <rate-limit-name>`
-  
+
 
 <br/>**Tracer address reported by nginx-meshctl config when no tracer is deployed (28256)**:
   <br/>
 
-If NGINX Service Mesh is deployed without a tracing backend, `nginx-meshctl config` reports the default tracing backend (jaeger) and the default tracing backend address ("jaeger.<mesh-namespace>.svc.cluster.local:6831"). This has no impact on the functionality of the mesh as tracing is disabled. 
+If NGINX Service Mesh is deployed without a tracing backend, `nginx-meshctl config` reports the default tracing backend (jaeger) and the default tracing backend address ("jaeger.<mesh-namespace>.svc.cluster.local:6831"). This has no impact on the functionality of the mesh as tracing is disabled.
   <br/>
   <br/>
   Workaround:
   <br/>
 
-No workaround necessary. 
-  
+No workaround necessary.
+
 
 <br/>
 
@@ -395,6 +395,6 @@ SMI Specification:
 NSM SMI Extensions:
 
 - Traffic Specs:
- 
+
   - RateLimit: v1alpha1,v1alpha2
   - CircuitBreaker: v1alpha1

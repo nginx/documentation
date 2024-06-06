@@ -7,7 +7,7 @@ tags: ["docs"]
 docs: "DOCS-963"
 ---
 
-To monitor an NGINX instance, NGINX Amplify Agent must [find the relevant NGINX master process]({{< relref "/amplify/nginx-amplify-agent/detecting-monitoring-instances" >}}) and determine its key characteristics.
+To monitor an NGINX instance, F5 NGINX Amplify Agent must [find the relevant NGINX master process]({{< relref "/amplify/nginx-amplify-agent/detecting-monitoring-instances" >}}) and determine its key characteristics.
 
 ## Metrics from stub_status
 

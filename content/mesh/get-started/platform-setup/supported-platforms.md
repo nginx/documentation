@@ -9,7 +9,7 @@ docs: "DOCS-688"
 
 ## Kubernetes
 
-The Kubernetes platforms listed below will work with NGINX Service Mesh using the Kubernetes versions listed in the [Technical Specifications]({{< ref "/mesh/about/mesh-tech-specs.md#supported-versions" >}}). Additional Kubernetes platforms may work, although they have not been validated.
+The Kubernetes platforms listed below will work with F5 NGINX Service Mesh using the Kubernetes versions listed in the [Technical Specifications]({{< ref "/mesh/about/mesh-tech-specs.md#supported-versions" >}}). Additional Kubernetes platforms may work, although they have not been validated.
 
 - Azure Kubernetes Service (AKS)
 - Elastic Kubernetes Service (EKS) -- [Additional setup required]( {{< ref "persistent-storage.md" >}} )

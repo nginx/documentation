@@ -10,7 +10,7 @@ docs: "DOCS-698"
 
 ## Overview
 
-This topic discusses the various traffic policies that are supported by NGINX Service Mesh. We support the SMI spec to allow for a variety of functionality within our mesh, from traffic shaping to access control. NGINX Service Mesh provides additional traffic policies to extend on the SMI spec. This topic provides examples of how you can use the SMI spec and NGINX custom resources with NGINX Service Mesh to apply policies and control your traffic.
+This topic discusses the various traffic policies that are supported by F5 NGINX Service Mesh. We support the SMI spec to allow for a variety of functionality within our mesh, from traffic shaping to access control. NGINX Service Mesh provides additional traffic policies to extend on the SMI spec. This topic provides examples of how you can use the SMI spec and NGINX custom resources with NGINX Service Mesh to apply policies and control your traffic.
 
 Refer to the [SMI GitHub repo](https://github.com/servicemeshinterface/smi-spec) to find out more about the SMI spec and how to configure it.
 
