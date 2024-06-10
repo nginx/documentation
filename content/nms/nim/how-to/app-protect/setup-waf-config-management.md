@@ -60,6 +60,8 @@ The following table shows the NGINX App Protect WAF Release version and its corr
 
 | NGINX App Protect WAF Release version | WAF Compiler               |
 |---------------------------------------|----------------------------|
+| NGINX App Protect WAF 4.10.0          | nms-nap-compiler-v5.48.0   |
+| NGINX App Protect WAF 4.9.0           | nms-nap-compiler-v5.17.0   |
 | NGINX App Protect WAF 4.8.1           | nms-nap-compiler-v4.815.0  |
 | NGINX App Protect WAF 4.8.0           | nms-nap-compiler-v4.762.0  |
 | NGINX App Protect WAF 4.7.0           | nms-nap-compiler-v4.641.0  |
