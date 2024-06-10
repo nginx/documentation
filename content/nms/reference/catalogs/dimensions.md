@@ -7,7 +7,8 @@ doctypes:
 tags:
 - docs
 title: Dimensions Catalog
-toc: false
+toc: true
+catalogType: nms.catalogs.dimensions
 weight: 20
 ---
 
