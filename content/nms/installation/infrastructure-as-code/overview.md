@@ -25,7 +25,6 @@ Use the NGINX Management Suite Ansible role to install NGINX Management Suite, w
 
 - [Instance Manager]({{< relref "/nms/about.md#instance-manager" >}})
 - [API Connectivity Manager]({{< relref "/nms/about.md#api-connectivity-manager" >}})
-- [Application Delivery Manager]({{< relref "/nms/about.md#app-delivery-manager" >}})
 - [Security Monitoring]({{< relref "/nms/about.md#security-monitoring" >}})
 
 Additionally, the ansible role installs NGINX (OSS or Plus) and [ClickHouse](https://clickhouse.com), both prerequisites for NGINX Management Suite.
