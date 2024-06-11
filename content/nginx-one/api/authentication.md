@@ -10,7 +10,7 @@ toc: true
 weight: 10
 ---
 
-In this guide, we'll show you how to authenticate API requests with F5 Distributed Cloud. There are two options for authentication: API Token or API Certificate. Both methods ensure secure access to your data.
+In this guide, we'll show you how to authenticate API requests with F5 Distributed Cloud and the F5 NGINX One cloud console. There are two options for authentication: API Token or API Certificate. Both methods ensure secure access to your data.
 
 ## Getting ready
 
@@ -69,7 +69,6 @@ For instance, to list all NGINX One 'data-plane-key' objects in the 'default' na
 curl https://<tenant>.console.ves.volterra.io/api/nginx/one/namespaces/default/data-plane-keys \
 -H "Authorization: APIToken <token-value>"
 ```
-
 
 ## Further reading
 

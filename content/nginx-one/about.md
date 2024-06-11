@@ -10,19 +10,17 @@ toc: true
 weight: 10
 ---
 
-NGINX One simplifies the management of your NGINX fleet across different locations and environments. With the NGINX One cloud console, you can easily monitor and manage your NGINX fleet from a single location. The intuitive console lets you oversee the configuration and performance of your NGINX instances, identify critical vulnerabilities, view the status of SSL certificates, and more.
+F5 NGINX One makes it easy to manage NGINX instances across locations and environments. The cloud console lets you monitor and control your NGINX fleet from one place—you can check configurations, track performance metrics, identify security vulnerabilities, manage SSL certificates, and more.
 
-
-## Benefits and key features
+## Benefits and Key Features
 
 NGINX One offers the following key benefits:
 
-- **Centralized control**: Keep an eye on and manage all your NGINX instances from a single console.
+- **Centralized control**: Manage all your NGINX instances from a single console.
 - **Enhanced monitoring and risk detection**: Automatically detect critical vulnerabilities (CVEs), verify SSL certificate statuses, and identify security issues in NGINX configurations.
 - **Performance optimization**: Track your NGINX versions and receive recommendations for tuning your configurations for better performance.
-- **Graphical metrics display**: View the performance of your NGINX instances at a glance with a dashboard that presents a clear, graphical overview of key metrics, including instance availability, version distribution, system health, and utilization trends.
-- **Real-time alerts**: Get alerts about critical issues.
-
+- **Graphical Metrics Display**: Access a dashboard that shows key metrics for your NGINX instances, including instance availability, version distribution, system health, and utilization trends.
+- **Real-time alerts**: Receive alerts about critical issues.
 
 ## Legal notice: Licensing agreements for NGINX products
 

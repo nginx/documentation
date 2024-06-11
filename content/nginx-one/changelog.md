@@ -26,7 +26,7 @@ weight: 99999
   }
 </style>
 
-Stay up-to-date with what's new and improved in NGINX One.
+Stay up-to-date with what's new and improved in the F5 NGINX One cloud console.
 
 ## May 29, 2024 - v0.20240529.1310498676
 
