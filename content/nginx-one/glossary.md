@@ -10,7 +10,7 @@ toc: true
 weight: 1000
 ---
 
-This glossary defines terms used in the F5 NGINX One and F5 Distributed Cloud.
+This glossary defines terms used in the F5 NGINX One cloud console and F5 Distributed Cloud.
 
 
 {{<bootstrap-table "table table-striped table-bordered">}}
