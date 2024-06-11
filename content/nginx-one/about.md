@@ -5,12 +5,13 @@ doctypes:
 - reference
 tags:
 - docs
-title: About NGINX One
+title: About
 toc: true
 weight: 10
 ---
 
-F5 NGINX One makes it easy to manage NGINX instances across locations and environments. The cloud console lets you monitor and control your NGINX fleet from one place—you can check configurations, track performance metrics, identify security vulnerabilities, manage SSL certificates, and more.
+
+The F5 NGINX One cloud console makes it easy to manage NGINX instances across locations and environments. The console lets you monitor and control your NGINX fleet from one place—you can check configurations, track performance metrics, identify security vulnerabilities, manage SSL certificates, and more.
 
 ## Benefits and Key Features
 

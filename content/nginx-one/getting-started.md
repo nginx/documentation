@@ -5,7 +5,7 @@ doctypes:
 - tutorial
 tags:
 - docs
-title: Getting started with NGINX One
+title: Get started
 toc: true
 weight: 100
 ---

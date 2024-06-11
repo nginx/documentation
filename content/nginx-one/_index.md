@@ -1,5 +1,5 @@
 ---
-title: NGINX One
+title: NGINX One Cloud Console
 description:
 url: /nginx-one/
 cascade:

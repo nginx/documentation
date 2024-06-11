@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "NGINX One Spec",
-    "description": "The API Reference documentation for NGINX One",
+    "title": "NGINX One API",
+    "description": "The API documentation for the F5 NGINX One cloud console.",
     "version": "v1"
   },
   "servers": [
