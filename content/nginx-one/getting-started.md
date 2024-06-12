@@ -5,7 +5,7 @@ doctypes:
 - tutorial
 tags:
 - docs
-title: Getting started with NGINX One
+title: Get started
 toc: true
 weight: 100
 ---
@@ -39,7 +39,7 @@ th, td {
 </style>
 
 
-This guide provides step-by-step instructions on how to activate and start using NGINX One. NGINX One is a management console for monitoring and managing NGINX data plane instances.
+This guide provides step-by-step instructions on how to activate and start using the F5 NGINX One cloud console. NGINX One is a management console for monitoring and managing NGINX data plane instances.
 
 ## Enable the NGINX One service {#enable-nginx-one}
 

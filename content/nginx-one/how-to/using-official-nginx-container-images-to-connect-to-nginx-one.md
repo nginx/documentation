@@ -12,7 +12,7 @@ weight: 400
 
 ## Introduction
 
-By following this guide, you will be able to set up a Docker container with NGINX Plus and the NGINX Agent, and then connect to NGINX One SaaS.
+By following this guide, you will be able to set up a Docker container with NGINX Plus and the NGINX Agent, and then connect to the F5 NGINX One cloud console.
 
 ---
 

@@ -10,7 +10,7 @@ toc: true
 weight: 200
 ---
 
-Once you've registered your NGINX instances with NGINX One, you can view and edit their NGINX configurations on the **Instances** details page.
+Once you've registered your NGINX instances with the F5 NGINX One cloud console, you can view and edit their NGINX configurations on the **Instances** details page.
 
 To view and edit an NGINX configuration, follow these steps:
 
