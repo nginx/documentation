@@ -28,7 +28,7 @@ weight: 99999
 
 Stay up-to-date with what's new and improved in NGINX One.
 
-## June 10, 2024
+## June 11, 2024
 
 ### View NGINX security vulnerabilities (CVEs)
 
