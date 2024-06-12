@@ -28,6 +28,14 @@ weight: 99999
 
 Stay up-to-date with what's new and improved in the F5 NGINX One cloud console.
 
+## June 11, 2024
+
+### View NGINX security vulnerabilities (CVEs)
+
+You can now view NGINX CVEs on the **Security** page. The listed CVEs affect official releases of NGINX Open Source and NGINX Plus.
+
+Select the link for each CVE to see the details, including the CVE's publish date, severity, description, and the affected NGINX products and instances.
+
 ## May 29, 2024 - v0.20240529.1310498676
 
 ### Edit NGINX configurations
