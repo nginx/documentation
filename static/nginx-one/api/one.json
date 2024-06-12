@@ -35,6 +35,11 @@
       "x-displayName": "Feature Flags"
     },
     {
+      "name": "CVEs",
+      "description": "The `CVEs` object represents the security advisories published for all the F5 products supported by NGINX One.\n",
+      "x-displayName": "CVEs"
+    },
+    {
       "name": "Metrics",
       "description": "Get system metrics for your NGINX data plane instances. These metrics are collected by the NGINX Agent and reported to NGINX One.\n",
       "x-displayName": "Metrics"
@@ -584,7 +589,7 @@
           "Instances"
         ],
         "summary": "Retrieve an instance",
-        "description": "Retrieves the details for an NGINX instance, including\n* Hostname\n* System status\n* Timestamps of key actions (registration, last reported, etc.)\n* NGINX build information\n* Certificate data\n* Operating system version\n* NGINX Agent version\n",
+        "description": "Retrieves the details for an NGINX instance, including\n* Hostname\n* System status\n* Timestamps of key actions (registration, last reported, etc.)\n* NGINX build information\n* Certificate data\n* Operating system version\n* NGINX Agent version\n* Cluster membership details\n",
         "operationId": "getInstance",
         "parameters": [
           {
@@ -1404,6 +1409,197 @@
         }
       ]
     },
+    "/cves": {
+      "get": {
+        "x-feature-flag": "nginx-cves",
+        "tags": [
+          "CVEs"
+        ],
+        "summary": "List of all CVEs affecting the instances",
+        "operationId": "listNginxCVEs",
+        "description": "Returns a list of all CVEs that affect at least one instance under the tenant\n",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameCVEs"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of CVEs.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CVEListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cves/{nginxCVEID}": {
+      "get": {
+        "x-feature-flag": "nginx-cves",
+        "tags": [
+          "CVEs"
+        ],
+        "summary": "Retrieve NGINX CVE details",
+        "operationId": "GetNginxCVEDetails",
+        "description": "Retrieve CVE details\n",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NginxCVEParamID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved NGINX CVE details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NginxCVEDetailsResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "CVE with the specified nginxCVEID was not found. Check that the nginxCVEID provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cves/{nginxCVEID}/impacted_instances": {
+      "get": {
+        "x-feature-flag": "nginx-cves",
+        "tags": [
+          "CVEs"
+        ],
+        "summary": "Retrieve the instances impacted by a CVE",
+        "description": "Retrieves a list of the instances impacted by a security advisory.",
+        "operationId": "listCVEImpactedInstances",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameCVEImpactedInstances"
+          },
+          {
+            "$ref": "#/components/parameters/NginxCVEParamID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of instances affected by the CVE",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CVEImpactedInstancesListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The CVE with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing CVE.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/monitor/metrics": {
       "get": {
         "tags": [
@@ -1885,6 +2081,15 @@
         "description": "A globally unique identifier for the NGINX cluster.\n",
         "required": true
       },
+      "ClusterConfigurationParamObjectID": {
+        "name": "clusterConfigurationObjectID",
+        "in": "path",
+        "schema": {
+          "$ref": "#/components/schemas/NginxConfigObjectID"
+        },
+        "description": "A globally unique identifier for the NGINX cluster configuration.\n",
+        "required": true
+      },
       "FilterFieldCertificates": {
         "name": "filter_fields",
         "in": "query",
@@ -2292,13 +2497,20 @@
       },
       "CveSeverityType": {
         "type": "string",
-        "description": "Severity ratings:\n  * `major` - High severity.\n  * `medium` - Moderate severity.\n  * `low` - Least severe.\n  * `none` - Not severe.\n  * `other`  - Severity that does not fit the other categories.\n",
+        "description": "Severity ratings:\n  * `high` - High severity.\n  * `medium` - Moderate severity.\n  * `low` - Least severe.\n  * `none` - Not severe.\n  * `other`  - Severity that does not fit the other categories.\n",
         "enum": [
-          "major",
+          "high",
           "medium",
           "low",
           "none",
           "other"
+        ],
+        "x-enum-varnames": [
+          "cve_severity_type_high",
+          "cve_severity_type_medium",
+          "cve_severity_type_low",
+          "cve_severity_type_none",
+          "cve_severity_type_other"
         ]
       },
       "CveSummary": {
@@ -2331,6 +2543,12 @@
           "security",
           "optimization",
           "other"
+        ],
+        "x-enum-varnames": [
+          "recommendation_type_best_practice",
+          "recommendation_type_security",
+          "recommendation_type_optimization",
+          "recommendation_type_other"
         ]
       },
       "IssueSummary": {
@@ -2642,24 +2860,24 @@
           ]
         }
       },
-      "BatchAction": {
+      "BulkRequestAction": {
         "type": "string",
         "default": "modify",
-        "description": "Batch action to perform:\n  * `create` creates a new object given all required elements.\n  * `modify` updates one or more elements of an existing object.\n  * `delete` removes the existing object.\n",
+        "description": "Bulk action to perform:\n  * `create` creates a new object given all required elements.\n  * `modify` updates one or more elements of an existing object.\n  * `delete` removes the existing object.\n",
         "enum": [
           "create",
           "modify",
           "delete"
         ],
         "x-enum-varnames": [
-          "batch_action_create",
-          "batch_action_modify",
-          "batch_action_delete"
+          "bulk_action_create",
+          "bulk_action_modify",
+          "bulk_action_delete"
         ]
       },
-      "InstanceBatchData": {
+      "InstanceBulkRequestData": {
         "type": "object",
-        "description": "Performs batch operation on a NGINX instance, only `delete` is supported.",
+        "description": "Part of bulk operation on a NGINX instance, only `delete` is supported.",
         "required": [
           "action"
         ],
@@ -2668,7 +2886,7 @@
             "$ref": "#/components/schemas/InstanceObjectID"
           },
           "action": {
-            "$ref": "#/components/schemas/BatchAction"
+            "$ref": "#/components/schemas/BulkRequestAction"
           }
         },
         "example": {
@@ -2676,11 +2894,12 @@
           "action": "delete"
         }
       },
-      "InstanceBatchRequest": {
+      "InstanceBulkRequest": {
         "type": "array",
         "items": {
-          "$ref": "#/components/schemas/InstanceBatchData"
+          "$ref": "#/components/schemas/InstanceBulkRequestData"
         },
+        "maxItems": 25,
         "example": [
           {
             "object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
@@ -2703,7 +2922,7 @@
           "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
         }
       },
-      "BatchObjectStatus": {
+      "BulkRequestObjectStatus": {
         "type": "object",
         "required": [
           "object_id",
@@ -2728,11 +2947,11 @@
               "failed"
             ],
             "x-enum-varnames": [
-              "batch_object_status_created",
-              "batch_object_status_updated",
-              "batch_object_status_deleted",
-              "batch_object_status_accepted",
-              "batch_object_status_failed"
+              "build_request_object_status_created",
+              "build_request_object_status_updated",
+              "build_request_object_status_deleted",
+              "build_request_object_status_accepted",
+              "build_request_object_status_failed"
             ]
           },
           "failure_reason": {
@@ -2741,9 +2960,9 @@
           }
         }
       },
-      "InstanceBatchResponse": {
+      "InstanceBulkResponse": {
         "type": "object",
-        "description": "The NGINX instance batch outcome.",
+        "description": "The NGINX instance bulk outcome.",
         "required": [
           "outcomes"
         ],
@@ -2751,7 +2970,7 @@
           "outcomes": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/BatchObjectStatus"
+              "$ref": "#/components/schemas/BulkRequestObjectStatus"
             }
           }
         }
@@ -2759,14 +2978,19 @@
       "NginxSecurityAdvisory": {
         "type": "object",
         "description": "Details about a specific NGINX security advisory, including its severity, a link to more information, and a brief description.",
+        "required": [
+          "id",
+          "severity",
+          "advisory",
+          "info"
+        ],
         "properties": {
           "id": {
             "description": "The security advisory's unique identifier.",
             "type": "string"
           },
           "severity": {
-            "description": "The urgency or impact level of the security advisory.\n\nSeverity ratings:\n* `major` - High severity.\n* `medium` - Moderate severity.\n* `low` - Least severe.\n* `none` - Not severe.\n* `other`  - Severity that does not fit the other categories.\n",
-            "type": "string"
+            "$ref": "#/components/schemas/CveSeverityType"
           },
           "advisory": {
             "description": "The URL to detailed information about the security advisory.",
@@ -2880,6 +3104,68 @@
           "version_id": "18.04"
         }
       },
+      "ClusterObjectID": {
+        "description": "A globally unique identifier for the NGINX cluster.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^clust_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
+      },
+      "ConfigSyncStatus": {
+        "type": "string",
+        "description": "The current config sync status of the NGINX cluster, with the following possible values:\n* `unknown` - The status cannot be determined at this moment.\n* `in_sync` - All Nginx instances in cluster have same config as indicated by config_version.\n* `out_of_sync` - Some Nginx instances in cluster have config different than indicated by config_version.\n* `sync_in_progress` - The operation of applying config_version to all Nginx instances in cluster is in progress.\n",
+        "enum": [
+          "unknown",
+          "in_sync",
+          "out_of_sync",
+          "sync_in_progress"
+        ],
+        "x-enum-varnames": [
+          "nginx_cluster_config_status_unknown",
+          "nginx_cluster_config_status_in_sync",
+          "nginx_cluster_config_status_out_of_sync",
+          "nginx_cluster_config_status_in_progress"
+        ]
+      },
+      "ClusterMeta": {
+        "type": "object",
+        "description": "Meta information of the NGINX cluster including:\n* NGINX cluster object ID\n* unique name of the cluster in the tenant namespace\n* config sync status\n* config checksum\n* last publication timestamp\n",
+        "required": [
+          "object_id",
+          "name"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/ClusterObjectID"
+          },
+          "name": {
+            "description": "Name of the Nginx cluster.",
+            "type": "string"
+          },
+          "config_status": {
+            "$ref": "#/components/schemas/ConfigSyncStatus"
+          },
+          "config_version": {
+            "description": "A computed hash of current config on the cluster.",
+            "type": "string"
+          },
+          "last_reported": {
+            "description": "The date and time of the most recent reported cluster publication.",
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "object_id": "clust_-uvR3F2TQGm18jnl7bpaGw",
+          "name": "test-cluster",
+          "last_reported": "2023-12-06T22:37:24.120114Z",
+          "config_status": "in_sync"
+        }
+      },
       "InstanceDetails": {
         "type": "object",
         "description": "Detailed information about an NGINX instance.",
@@ -2899,6 +3185,9 @@
               },
               "os": {
                 "$ref": "#/components/schemas/OperatingSystem"
+              },
+              "cluster": {
+                "$ref": "#/components/schemas/ClusterMeta"
               }
             }
           }
@@ -3008,7 +3297,7 @@
         "properties": {
           "name": {
             "type": "string",
-            "description": "The file's absolute path.",
+            "description": "The file's relative path to the parent directory, absolute path also accepted.",
             "minLength": 1,
             "maxLength": 4096
           },
@@ -3024,7 +3313,6 @@
         "type": "object",
         "description": "Represents a directory and its contents, detailing the directory's full path, and the files within it.",
         "required": [
-          "name",
           "files"
         ],
         "properties": {
@@ -3061,6 +3349,13 @@
           "configs": {
             "type": "array",
             "description": "An array of directories containing NGINX configuration files.",
+            "items": {
+              "$ref": "#/components/schemas/DirectoryRequestWithFileContent"
+            }
+          },
+          "aux": {
+            "type": "array",
+            "description": "An array of auxiliary directory contents related to the NGINX configuration. When auxiliary contents are\nprovided, they become the authoritative source of non-NGINX configuration content. Please ensure the\nprovided contents are complete, missing files that are referenced in the NGINX configuration can cause\nNGINX reload failure. When not provided, the previous known auxiliary contents will be used as part of\npublish.\n",
             "items": {
               "$ref": "#/components/schemas/DirectoryRequestWithFileContent"
             }
@@ -3145,7 +3440,7 @@
         "properties": {
           "name": {
             "type": "string",
-            "description": "The file's absolute path.",
+            "description": "The file's relative path to the parent directory.",
             "minLength": 1,
             "maxLength": 4096
           },
@@ -3434,33 +3729,6 @@
           "filter_name_cluster_config_status"
         ]
       },
-      "ClusterObjectID": {
-        "description": "A globally unique identifier for the NGINX cluster.",
-        "type": "string",
-        "format": "object_id",
-        "pattern": "^clust_.*",
-        "x-go-type": "objects.ID",
-        "x-go-type-import": {
-          "name": "objects",
-          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
-        }
-      },
-      "ConfigSyncStatus": {
-        "type": "string",
-        "description": "The current config sync status of the NGINX cluster, with the following possible values:\n* `unknown` - The status cannot be determined at this moment.\n* `in_sync` - All Nginx instances in cluster have same config as indicated by config_version.\n* `out_of_sync` - Some Nginx instances in cluster have config different than indicated by config_version.\n* `sync_in_progress` - The operation of applying config_version to all Nginx instances in cluster is in progress.\n",
-        "enum": [
-          "unknown",
-          "in_sync",
-          "out_of_sync",
-          "sync_in_progress"
-        ],
-        "x-enum-varnames": [
-          "nginx_cluster_config_status_unknown",
-          "nginx_cluster_config_status_in_sync",
-          "nginx_cluster_config_status_out_of_sync",
-          "nginx_cluster_config_status_in_progress"
-        ]
-      },
       "ListClusterObject": {
         "type": "object",
         "description": "Summary information of the NGINX cluster.",
@@ -3603,44 +3871,27 @@
         ]
       },
       "Cluster": {
-        "type": "object",
-        "description": "Detailed information of the NGINX cluster.",
-        "required": [
-          "object_id",
-          "name",
-          "instances"
-        ],
-        "properties": {
-          "object_id": {
-            "$ref": "#/components/schemas/ClusterObjectID"
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ClusterMeta"
           },
-          "name": {
-            "description": "Name of the Nginx cluster.",
-            "type": "string"
-          },
-          "instances": {
-            "description": "An array of Instance objects.",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ClusterInstance"
+          {
+            "type": "object",
+            "description": "Detailed information of the NGINX cluster including meta.",
+            "properties": {
+              "instances": {
+                "description": "An array of Instance objects.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ClusterInstance"
+                }
+              },
+              "last_publication_status": {
+                "$ref": "#/components/schemas/ClusterPublicationStatus"
+              }
             }
-          },
-          "config_version": {
-            "description": "A computed hash of current config on the cluster.",
-            "type": "string"
-          },
-          "config_status": {
-            "$ref": "#/components/schemas/ConfigSyncStatus"
-          },
-          "last_publication_status": {
-            "$ref": "#/components/schemas/ClusterPublicationStatus"
-          },
-          "last_reported": {
-            "description": "The date and time of the most recent reported cluster publication.",
-            "type": "string",
-            "format": "date-time"
           }
-        },
+        ],
         "example": {
           "object_id": "clust_-uvR3F2TQGm18jnl7bpaGw",
           "name": "test-cluster",
