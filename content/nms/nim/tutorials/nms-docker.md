@@ -1,4 +1,18 @@
-# Setting Up a Docker Container for a NMS
+---
+categories:
+- examples
+date: "2024-06-06T12:00:00-07:00"
+description: This topic explains how to deploy and use Instance Manager with containers.
+doctypes:
+- tutorial
+tags:
+- docs
+title: Running NMS as a single docker container
+toc: true
+versions: []
+weight: 700
+
+---
 
 ## Overview
 NIM Bundled (Nimble) builds the product as a single Docker image with all dependencies.
@@ -47,43 +61,68 @@ you have pulled the NIM docker container
 
 ### Quick Test without Persistence
 
-1. Run the following docker command: `docker run -it --rm --hostname=mynim -e NMS_PERSIST_DISABLE -p 8443:443 nginxdevopssvcs.azurecr.io/indigo-tools-docker/platform/nim-bundled-poc/nim-bundle:latest`
+1. Run the following docker command:
+  ```bash 
+     docker run -it --rm --hostname=mynim -e NMS_PERSIST_DISABLE -p 8443:443 nginxdevopssvcs.azurecr.io/indigo-tools-docker/platform/nim-bundled-poc/nim-bundle:latest
+   ```
 2. Upload license and restart service
 3. Log on and see that license is not applied
 
 ### Persist to Volume
 
 1. Create/Mount your directory `$YOUR_DIRECTORY` on host machine
-2. Run the following docker command: `docker run -it --rm --hostname=mynim --volume=$YOUR_DIRECTORY:/data -p 8443:443 nginxdevopssvcs.azurecr.io/indigo-tools-docker/platform/nim-bundled-poc/nim-bundle:latest`
+2. Run the following docker command: 
+```bash 
+   docker run -it --rm --hostname=mynim --volume=$YOUR_DIRECTORY:/data -p 8443:443 nginxdevopssvcs.azurecr.io/indigo-tools-docker/platform/nim-bundled-poc/nim-bundle:latest
+   ```
 3. Upload license and restart service
 4. Log on and see that license is still applied
 
 ### Set Admin Password via Environment Variable
 
-2. Run the following docker command: `docker run -it --rm --hostname=mynim -e NMS_ADMIN_PASSWORD="admin" --volume=/myvolume/nms:/data -p 8443:443 nginxdevopssvcs.azurecr.io/indigo-tools-docker/platform/nim-bundled-poc/nim-bundle:latest`
+2. Run the following docker command: 
+```bash 
+docker run -it --rm --hostname=mynim -e NMS_ADMIN_PASSWORD="admin" --volume=/myvolume/nms:/data -p 8443:443 nginxdevopssvcs.azurecr.io/indigo-tools-docker/platform/nim-bundled-poc/nim-bundle:latest
+```
 2. Upload license and restart service
 4. Log on with the admin password passed set via the environment variable
 
 ### Override Self-Signed APIGW Certificates
 
-1. Ensure you have access to the certs e.g.:
+1. Ensure you have access to the required certificates e.g.:
     1. mycert.pem
     2. mykey.pem
     3. myca.pem
-2. Run the following docker command: `docker run -it --rm --hostname=mynim -e NMS_ADMIN_PASSWORD="abc123\!@" -e NMS_APIGW_CERT="$(cat mycert.pem)" -e NMS_APIGW_KEY="$(cat mykey.pem)" -e NMS_APIGW_CA="$(cat myca.pem)" --volume=/myvolume/nms:/data -p 8443:443 nginxdevopssvcs.azurecr.io/indigo-tools-docker/platform/nim-bundled-poc/nim-bundle:latest`
-3. Login and verify that the certs are applied corredtly
+2. Run the following docker command:
+```bash 
+docker run -it --rm --hostname=mynim -e NMS_ADMIN_PASSWORD="abc123\!@" -e NMS_APIGW_CERT="$(cat mycert.pem)" -e NMS_APIGW_KEY="$(cat mykey.pem)" -e NMS_APIGW_CA="$(cat myca.pem)" --volume=/myvolume/nms:/data -p 8443:443 nginxdevopssvcs.azurecr.io/indigo-tools-docker/platform/nim-bundled-poc/nim-bundle:latest
+```
+3. Login and verify that the certs are applied correctly
+
 
 ### Create and Pass in .htpasswd file
 
-1. To create a .htpasswd file with an admin user on the host machine run the following: `htpasswd -c .htpasswd admin    # Create a new .htpasswd file and add the "admin" user - this will hash in MD5`
+1. To create a .htpasswd file with an admin user on the host machine run the following: 
+  ```bash 
+  htpasswd -c .htpasswd admin
+  ```
 2. To add more users you can run either of the below commands depending on if you need `MD5` or `SHA`
-   `   htpasswd -m .htpasswd rufus1   # Add a user called rufus1 to an existing .htpasswd file - this will hash in MD5 with -m
-   htpasswd -s .htpasswd rufus2   # Add a user called rufus2 to an existing .htpasswd file - this will hash in SHA with -s`
-   _Note: bcrypt is not supported by NGINX; thus will not work._
-3. To pass the .htpasswd file at runtime run the following command: `docker run -it --rm --hostname=mynim --volume=/myvolume/pass/.htpasswd:/.htpasswd --volume=/myvolume/nms:/data -p 8443:443 nim-bundle:latest`
-   _Note: the admin user will have to be contained in the file or the container will not start._
+ ```bash
+ htpasswd -m .htpasswd rufus1   # Add a user called rufus1 to an existing .htpasswd file - this will hash in MD5 with -m
+ htpasswd -s .htpasswd rufus2   # Add a user called rufus2 to an existing .htpasswd file - this will hash in SHA with -s
+ ```
+   _Note: bcrypt is not supported by NGINX; thus will not work.
+3. To pass the .htpasswd file at runtime run the following command: 
+```bash
+   docker run -it --rm --hostname=mynim --volume=/myvolume/pass/.htpasswd:/.htpasswd --volume=/myvolume/nms:/data -p 8443:443 nim-bundle:latest
+```
+_Note: the admin user will have to be contained in the file or the container will not start._
+
 4. Verify you can log on with the provided usernames and passwords.
-5. To pass in a .htpasswd file for a running container use the following command: `docker cp .htpasswd <container_name>:/data/local-auth/.htpasswd`
+5. To pass in a .htpasswd file for a running container use the following command: 
+```bash 
+docker cp .htpasswd <container_name>:/data/local-auth/.htpasswd
+   ```
 
 
 ## Summary
@@ -91,9 +130,9 @@ you have pulled the NIM docker container
 In this tutorial, you learned how to:
 
 * Run the Docker container in the various configuration modes:
-  *  No persistance
-  * Persistance
+  * No persistence
+  * Persistence
   * Set the admin password
   * Override self signed APIGW certs
-* Configure user access to the container
+* Configure user access to NMS running in the container
 
