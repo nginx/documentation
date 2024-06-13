@@ -1,30 +1,9 @@
 ---
-authors: []
-categories:
-- installation
-- api management
-date: "2020-10-26T15:32:41-06:00"
 description: These release notes contain information about new features, improvements,
   known issues, and bug fixes in the NGINX Controller API Management Module.
 docs: DOCS-366
 doctypes:
 - reference
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- renewing
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
-- read-only
 tags:
 - docs
 title: Release Notes 3.18.0
@@ -101,7 +80,7 @@ The following issues are known to be present in this release. Look for updates t
 - **Instructions for restoring external config database may not restore published APIs (26280)**
 
   The commands in the [Back Up & Restore External Config Database]({{< relref "/controller/admin-guides/backup-restore/backup-restore-external-config-db.md" >}}) guide may not restore published APIs from the backup archive.
-  
+
   **Workaround:**
 
   Follow the steps in the "Before You Begin" section in the ({{< relref "/controller/admin-guides/backup-restore/backup-restore-external-config-db.md" >}}) guide.

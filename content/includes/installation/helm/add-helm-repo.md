@@ -1,3 +1,7 @@
+---
+docs: DOCS-1325
+---
+
 Run the following commands to install the NGINX Management Suite chart from the Helm repository:
 
 ```shell

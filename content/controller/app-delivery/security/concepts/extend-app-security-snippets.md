@@ -1,28 +1,10 @@
 ---
-authors:
-- noumba
-categories:
-- services
-- apps
-- security
-date: null
 description: Learn how to extend your App Security configurations using NGINX Controller
   Snippets.
 docs: DOCS-338
 doctypes:
 - concept
 - reference
-draft: false
-journeys:
-- researching
-- using
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
 tags:
 - task
 title: Extend App Security with Snippets
@@ -37,15 +19,15 @@ NGINX Controller [Snippets]({{< relref "/controller/app-delivery/about-snippets.
 Snippets also let you customize App Security for your Components by adding NGINX App Protect directives that aren't present in the NGINX Controller API. You can use Snippets when [tuning your NGINX App Protect WAF performance]({{< relref "/controller/app-delivery/security/tutorials/tune-waf-for-app" >}}) as well.
 
 {{< caution >}}
-When you use Snippets to customize your NGINX configuration, your changes are applied to the `nginx.conf` file *as is*. NGINX Controller does not verify that your configuration is valid before applying the Snippet. 
+When you use Snippets to customize your NGINX configuration, your changes are applied to the `nginx.conf` file *as is*. NGINX Controller does not verify that your configuration is valid before applying the Snippet.
 
 We strongly recommend verifying Snippets in a lab environment before making any changes in production.
 {{< /caution >}}
 
-## App Security Usage Examples 
+## App Security Usage Examples
 
 {{< caution >}}
-The examples provided here are intended for demonstration purposes only. 
+The examples provided here are intended for demonstration purposes only.
 We strongly recommend verifying Snippets in a lab environment before making any changes in production.
 {{< /caution >}}
 
@@ -66,12 +48,12 @@ Using local files as a backup for Security Events may use up disk space and affe
         "ingress": {
             "uris": {
                 "/": {
-                }                   
+                }
             },
             "gatewayRefs": [
                     {
                         "ref": "/services/environments/environment-name/gateways/<gateway-name>"
-                    }                   
+                    }
                 ]
         },
         "security": {
@@ -89,8 +71,8 @@ Using local files as a backup for Security Events may use up disk space and affe
                         "https://test-01.example.com": {
                         },
                         "https://test-02.example.com": {
-                        }                        
-                    }  
+                        }
+                    }
                 }
             }
         },
@@ -155,7 +137,7 @@ The following example adds a URI snippet to the Gateway API definition that prov
 
 ### Harden Security using Fail-Closed
 
-Setting NGINX App Protect to "fail-closed" drops application traffic when certain conditions exist. This setting lets you err on the side of greater security as opposed to convenience, providing better protection for your applications when NGINX App Protect is not available. 
+Setting NGINX App Protect to "fail-closed" drops application traffic when certain conditions exist. This setting lets you err on the side of greater security as opposed to convenience, providing better protection for your applications when NGINX App Protect is not available.
 
 The example below adds HTTP Snippets to the Gateway that set the following NGINX App Protect directives to `drop`, or "fail-closed":
 
@@ -209,13 +191,13 @@ Refer to the [NGINX App Protect Configuration Guide](https://docs.nginx.com/ngin
 ## Tuning WAF Performance Usage Examples
 
 {{< caution >}}
-The examples provided here are intended for demonstration purposes only. 
+The examples provided here are intended for demonstration purposes only.
 We strongly recommend verifying Snippets in a lab environment before making any changes in production.
 {{< /caution >}}
 
 ## Set the Memory and CPU Threshold Values
 
-This example adds an HTTP Snippet to a Gateway to control the memory and CPU threshold values which determine when NGINX App Protect enters and exits failure mode. 
+This example adds an HTTP Snippet to a Gateway to control the memory and CPU threshold values which determine when NGINX App Protect enters and exits failure mode.
 
 In *failure mode*, App Protect WAF stops processing app traffic. Traffic is either dropped or passed through, as determined by the `app_protect_failure_mode_action` directive.
 

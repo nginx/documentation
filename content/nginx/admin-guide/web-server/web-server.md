@@ -9,17 +9,16 @@ toc: true
 weight: 100
 ---
 
-
 This article explains how to configure NGINX Open Source and NGINX Plus as a web server, and includes the following sections:
 
-* [Setting Up Virtual Servers](#virtual-server)
-* [Configuring Locations](#locations)
-  * [Location Priority](#location_priority)
-* [Using Variables](#variables)
-* [Returning Specific Status Codes](#return-codes)
-* [Rewriting URIs in Requests](#rewrite)
-* [Rewriting HTTP Responses](#sub_filter)
-* [Handling Errors](#errors)
+- [Setting Up Virtual Servers](#virtual-server)
+- [Configuring Locations](#locations)
+  - [Location Priority](#location_priority)
+- [Using Variables](#variables)
+- [Returning Specific Status Codes](#return-codes)
+- [Rewriting URIs in Requests](#rewrite)
+- [Rewriting HTTP Responses](#sub_filter)
+- [Handling Errors](#errors)
 
 For additional information on how to tune NGINX Plus and NGINX Open Source, watch our free webinar on-demand [Installing and Tuning NGINX](https://www.nginx.com/resources/webinars/installing-tuning-nginx/).
 
@@ -72,10 +71,10 @@ server {
 
 If several names match the `Host` header, NGINX Plus selects one by searching for names in the following order and using the first match it finds:
 
-1.  Exact name
-2.  Longest wildcard starting with an asterisk, such as `*.example.org`
-3.  Longest wildcard ending with an asterisk, such as `mail.*`
-4.  First matching regular expression (in order of appearance in the configuration file)
+1. Exact name
+2. Longest wildcard starting with an asterisk, such as `*.example.org`
+3. Longest wildcard ending with an asterisk, such as `mail.*`
+4. First matching regular expression (in order of appearance in the configuration file)
 
 If the `Host` header field does not match a server name, NGINX Plus routes the request to the default server for the port on which the request arrived. The default server is the first one listed in the **nginx.conf** file, unless you include the `default_server` parameter to the `listen` directive to explicitly designate a server as the default.
 
@@ -124,13 +123,13 @@ To find the location that best matches a URI, NGINX Plus first compares the URI
 
 Higher priority is given to regular expressions, unless the `^~` modifier is used. Among the prefix strings NGINX Plus selects the most specific one (that is, the longest and most complete string). The exact logic for selecting a location to process a request is given below:
 
-1.  Test the URI against all prefix strings.
-2.  The `=` (equals sign) modifier defines an exact match of the URI and a prefix string. If the exact match is found, the search stops.
-3.  If the `^~` (caret-tilde) modifier prepends the longest matching prefix string, the regular expressions are not checked.
-4.  Store the longest matching prefix string.
-5.  Test the URI against regular expressions.
-6.  Stop processing when the first matching regular expression is found and use the corresponding location.
-7.  If no regular expression matches, use the location corresponding to the stored prefix string.
+1. Test the URI against all prefix strings.
+2. The `=` (equals sign) modifier defines an exact match of the URI and a prefix string. If the exact match is found, the search stops.
+3. If the `^~` (caret-tilde) modifier prepends the longest matching prefix string, the regular expressions are not checked.
+4. Store the longest matching prefix string.
+5. Test the URI against regular expressions.
+6. Stop processing when the first matching regular expression is found and use the corresponding location.
+7. If no regular expression matches, use the location corresponding to the stored prefix string.
 
 A typical use case for the `=` modifier is requests for **/** (forward slash). If requests for **/** are frequent, specifying `= /` as the parameter to the `location` directive speeds up processing, because the search for matches stops after the first comparison.
 
@@ -140,7 +139,7 @@ location = / {
 }
 ```
 
-A `location` context can contain directives that define how to resolve a request – either serve a static file or pass the request to a proxied server. In the following example, requests that match the first `location` context are served files from the **/data** directory and the requests that match the second are passed to the proxied server that hosts content for the **www.example.com** domain.
+A `location` context can contain directives that define how to resolve a request – either serve a static file or pass the request to a proxied server. In the following example, requests that match the first `location` context are served files from the **/data** directory and the requests that match the second are passed to the proxied server that hosts content for the **<www.example.com>** domain.
 
 ```nginx
 server {
@@ -224,8 +223,8 @@ This example configuration distinguishes between two sets of URIs. URIs such as 
 
 There are two parameters that interrupt processing of `rewrite` directives:
 
-*   `last` – Stops execution of the `rewrite` directives in the current `server` or `location` context, but NGINX Plus searches for locations that match the rewritten URI, and any `rewrite` directives in the new location are applied (meaning the URI can be changed again).
-*   `break` – Like the [break](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#break) directive, stops processing of `rewrite` directives in the current context and cancels the search for locations that match the new URI. The `rewrite` directives in the new location are not executed.
+- `last` – Stops execution of the `rewrite` directives in the current `server` or `location` context, but NGINX Plus searches for locations that match the rewritten URI, and any `rewrite` directives in the new location are applied (meaning the URI can be changed again).
+- `break` – Like the [break](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#break) directive, stops processing of `rewrite` directives in the current context and cancels the search for locations that match the new URI. The `rewrite` directives in the new location are not executed.
 
 
 <span id="sub_filter"></span>
@@ -298,6 +297,6 @@ server {
 
 The `error_page` directive instructs NGINX Plus to make an internal redirect when a file is not found. The `$uri` variable in the final parameter to the `error_page` directive holds the URI of the current request, which gets passed in the redirect.
 
-For example, if <span style="white-space: nowrap;">**/images/some/file**</span> is not found, it is replaced with <span style="white-space: nowrap;">**/fetch/images/some/file**</span> and a new search for a location starts. As a result, the request ends up in the second `location` context and is [proxied](https://www.nginx.com/resources/admin-guide/reverse-proxy/) to **http://backend/**.
+For example, if <span style="white-space: nowrap;">**/images/some/file**</span> is not found, it is replaced with <span style="white-space: nowrap;">**/fetch/images/some/file**</span> and a new search for a location starts. As a result, the request ends up in the second `location` context and is [proxied](https://www.nginx.com/resources/admin-guide/reverse-proxy/) to **"http://backend/"**.
 
 The [open_file_cache_errors](https://nginx.org/en/docs/http/ngx_http_core_module.html#open_file_cache_errors) directive prevents writing an error message if a file is not found. This is not necessary here since missing files are correctly handled.

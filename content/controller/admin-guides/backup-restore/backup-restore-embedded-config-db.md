@@ -1,25 +1,9 @@
 ---
-authors: []
-categories:
-- installation
-- platform management
-date: "2020-10-26T15:32:41-06:00"
 description: Learn how to back up and restore the embedded NGINX Controller config
   database.
 docs: DOCS-248
 doctypes:
 - tutorial
-draft: false
-journeys:
-- using
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
 tags:
 - docs
 title: Back Up & Restore an Embedded Config Database
@@ -173,7 +157,7 @@ Take the following steps to copy an embedded config database backup file from an
 
 ## What's Next
 
-* [Backup & Restore the Metrics Database]({{< relref "/controller/admin-guides/backup-restore/backup-restore-metrics-db.md" >}})
+- [Backup & Restore the Metrics Database]({{< relref "/controller/admin-guides/backup-restore/backup-restore-metrics-db.md" >}})
 
 {{< versions "3.12" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

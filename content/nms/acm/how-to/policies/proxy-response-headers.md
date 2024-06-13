@@ -1,30 +1,15 @@
 ---
-title: "Proxy Response Headers"
-date: 2023-02-28T12:47:15-08:00
-# Change draft status to false to publish doc
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Learn how to use NGINX Management Suite API Connectivity Manager to set response headers to send to your clients."
-# Assign weights in increments of 100
-weight: 1150
+description: Learn how to use NGINX Management Suite API Connectivity Manager to set
+  response headers to send to your clients.
+docs: DOCS-1135
+doctypes:
+- reference
+tags:
+- docs
+title: Proxy Response Headers
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1135"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "security", "analytics"]
-doctypes: ["reference"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
+weight: 1150
 ---
-
-{{<custom-styles>}}
 
 ## Overview
 
@@ -56,8 +41,9 @@ The following table lists the configurable settings and their default values for
 
 ### Standard Headers
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field        | Datatype | Possible&nbsp;Values     | <div style="width:400px">Description</div>                                        | Required | Default               |  Always Include|
 |--------------|----------|---------------------|----------------------------------------------------|----------|-----------------------|---------|
 | `web-security-headers`   | boolean  | true/false   | When set to true, the default headers are passed in proxy response. For more information, refer to the Web Security Headers section.   | No      | true       | true |
@@ -68,93 +54,100 @@ The following table lists the configurable settings and their default values for
 | `correlation-id` | boolean   | true/false | When set to true, the correlation id header is passed in proxy response. For more information, refer to the Correlation ID Headers section. | No      | true | true |
 
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ### Web Security Headers
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
-| Header        | Example | Directive     | <div style="width:400px">Description</div>  | 
+
+| Header        | Example | Directive     | <div style="width:400px">Description</div>  |
 |--------------|----------|---------------------|----------------------------------------------------|
-| `Strict-Transport-Security`   | Strict-Transport-Security: max-age=31536000; includeSubDomains  | add_header Strict-Transport-Security "max-age=31536000; includeSubDomains"  [always]   | HSTS response header informs browsers that the site should only be accessed using HTTPS, and that any future attempts to access it using HTTP should automatically be converted to HTTPS. | 
-| `X-Frame-Options` | X-Frame-Options: SAMEORIGIN   | add_header X-Frame-Options SAMEORIGIN [always] | The X-Frame-Options HTTP response header can be used to indicate whether or not a browser should be allowed to render a page in iframe. Sites can use this to avoid click-jacking attacks, by ensuring that their content is not embedded into other sites. | 
-| `X-Content-Type-Options`   | X-Content-Type-Options: nosniff  | add_header X-Content-Type-Options nosniff [always] | The X-Content-Type-Options response HTTP header is a marker used by the server to indicate that the MIME types advertised in the Content-Type headers should be followed and not be changed. The header allows you to avoid MIME type sniffing by saying that the MIME types are deliberately configured. | 
-| `X-Xss-Protection` | X-Xss-Protection: 1; mode=block   | add_header X-Xss-Protection "1; mode=block" [always] | The HTTP X-XSS-Protection response header is a feature of Internet Explorer, Chrome and Safari that stops pages from loading when they detect reflected cross-site scripting (XSS) attacks. These protections are largely unnecessary in modern browsers when sites implement a strong Content-Security-Policy that disables the use of inline JavaScript ('unsafe-inline'). | 
+| `Strict-Transport-Security`   | Strict-Transport-Security: max-age=31536000; includeSubDomains  | add_header Strict-Transport-Security "max-age=31536000; includeSubDomains"  [always]   | HSTS response header informs browsers that the site should only be accessed using HTTPS, and that any future attempts to access it using HTTP should automatically be converted to HTTPS. |
+| `X-Frame-Options` | X-Frame-Options: SAMEORIGIN   | add_header X-Frame-Options SAMEORIGIN [always] | The X-Frame-Options HTTP response header can be used to indicate whether or not a browser should be allowed to render a page in iframe. Sites can use this to avoid click-jacking attacks, by ensuring that their content is not embedded into other sites. |
+| `X-Content-Type-Options`   | X-Content-Type-Options: nosniff  | add_header X-Content-Type-Options nosniff [always] | The X-Content-Type-Options response HTTP header is a marker used by the server to indicate that the MIME types advertised in the Content-Type headers should be followed and not be changed. The header allows you to avoid MIME type sniffing by saying that the MIME types are deliberately configured. |
+| `X-Xss-Protection` | X-Xss-Protection: 1; mode=block   | add_header X-Xss-Protection "1; mode=block" [always] | The HTTP X-XSS-Protection response header is a feature of Internet Explorer, Chrome and Safari that stops pages from loading when they detect reflected cross-site scripting (XSS) attacks. These protections are largely unnecessary in modern browsers when sites implement a strong Content-Security-Policy that disables the use of inline JavaScript ('unsafe-inline'). |
 
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ### Latency Headers
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
-| Header        | Example | Directive     | <div style="width:400px">Description</div>  | 
+
+| Header        | Example | Directive     | <div style="width:400px">Description</div>  |
 |--------------|----------|---------------------|----------------------------------------------------|
-| `X-Backend-Latency`   | X-Backend-Latency: 0.744  | add_header X-Backend-Latency $upstream_header_time [always]   | Backend/Upstream response time | 
-| `X-Total-Request-Response-Latency` | X-Total-Request-Response-Latency: 0.743   | add_header X-Total-Request-Response-Latency $request_time [always] | Request time | 
-| `X-Backend-Connection-Time`   | X-Backend-Connection-Time: 0.433  | add_header X-Backend-Connection-Time $upstream_connect_time [always] | Backend/Upstream connect time  | 
+| `X-Backend-Latency`   | X-Backend-Latency: 0.744  | add_header X-Backend-Latency $upstream_header_time [always]   | Backend/Upstream response time |
+| `X-Total-Request-Response-Latency` | X-Total-Request-Response-Latency: 0.743   | add_header X-Total-Request-Response-Latency $request_time [always] | Request time |
+| `X-Backend-Connection-Time`   | X-Backend-Connection-Time: 0.433  | add_header X-Backend-Connection-Time $upstream_connect_time [always] | Backend/Upstream connect time  |
 
 
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ### Cache Headers
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
-| Header        | Example | Directive     | <div style="width:400px">Description</div>  | 
+
+| Header        | Example | Directive     | <div style="width:400px">Description</div>  |
 |--------------|----------|---------------------|----------------------------------------------------|
-| `Cache-Control`   | Cache-Control: public, must-revalidate, proxy-revalidate  | add_header Cache-Control "public, must-revalidate, proxy-revalidate" [always]   | The Cache-Control HTTP header field holds directives (instructions) — in both requests and responses — that control caching in browsers and shared caches (e.g. Proxies, CDNs). | 
+| `Cache-Control`   | Cache-Control: public, must-revalidate, proxy-revalidate  | add_header Cache-Control "public, must-revalidate, proxy-revalidate" [always]   | The Cache-Control HTTP header field holds directives (instructions) — in both requests and responses — that control caching in browsers and shared caches (e.g. Proxies, CDNs). |
 
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ### Client Headers
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
-| Header        | Example | Directive     | <div style="width:400px">Description</div>  | 
+
+| Header        | Example | Directive     | <div style="width:400px">Description</div>  |
 |--------------|----------|---------------------|----------------------------------------------------|
-| `X-Client-Original-IP`   | X-Client-Original-IP: 172.10.10.10  | add_header X-Client-Original-IP $realip_remote_addr [always]   | Client original IP.  | 
+| `X-Client-Original-IP`   | X-Client-Original-IP: 172.10.10.10  | add_header X-Client-Original-IP $realip_remote_addr [always]   | Client original IP.  |
 
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ### Hide NGINX Headers
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
-| Header        | Example | Directive     | <div style="width:400px">Description</div>  | 
+
+| Header        | Example | Directive     | <div style="width:400px">Description</div>  |
 |--------------|----------|---------------------|----------------------------------------------------|
-| `Server`   | Server: nginx   | server_tokens off   | NGINX version is not passed in Server header in proxy response. Server: nginx [nginx/1.23.2]  | 
+| `Server`   | Server: nginx   | server_tokens off   | NGINX version is not passed in Server header in proxy response. Server: nginx [nginx/1.23.2]  |
 
 
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ### Correlation ID Headers
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
-| Header        | Example | Directive     | <div style="width:400px">Description</div>  | 
+
+| Header        | Example | Directive     | <div style="width:400px">Description</div>  |
 |--------------|----------|---------------------|----------------------------------------------------|
-| `<correlation-id-header-name>`   | x-correlation-id: 26fd65ab0bbe36e546e3da14f4aea89f   | add_header `<correlation-id-header-name> <correlation-id> [always]`   | There must also be a request-correlation-id policy that will tell you the header name that gets used. The correlation id value is usually the $request_id but there is logic that that can be overridden by a specific value in the request header itself.  | 
+| `<correlation-id-header-name>`   | x-correlation-id: 26fd65ab0bbe36e546e3da14f4aea89f   | add_header `<correlation-id-header-name> <correlation-id> [always]`   | There must also be a request-correlation-id policy that will tell you the header name that gets used. The correlation id value is usually the $request_id but there is logic that that can be overridden by a specific value in the request header itself.  |
 
 
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ### Custom Headers
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
-| Header        | Example | Directive     | <div style="width:400px">Description</div>  | 
+
+| Header        | Example | Directive     | <div style="width:400px">Description</div>  |
 |--------------|----------|---------------------|----------------------------------------------------|
-| `<custom-header-name>`   | x-custom-header: 3da14f4aea89f   | add_header `<custom-header-name> <custom-header-value> [always]`   | Add a custom header.  | 
+| `<custom-header-name>`   | x-custom-header: 3da14f4aea89f   | add_header `<custom-header-name> <custom-header-value> [always]`   | Add a custom header.  |
 
 
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ---
 
@@ -168,13 +161,15 @@ The following table lists the configurable settings and their default values for
 
 To create or update a Response Headers policy using the REST API, send an HTTP `PUT` request to the Environment endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Method | Endpoint            |
 |--------|---------------------|
 | `PUT` | `/infrastructure/workspaces/{workspace}/environments/{environment}` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <details open>
 <summary>JSON request</summary>

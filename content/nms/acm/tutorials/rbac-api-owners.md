@@ -1,30 +1,15 @@
 ---
-title: "Set Up RBAC for API Owners"
-date: 2023-03-02T13:09:51-08:00
-# Change draft status to false to publish doc
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Learn how to use both built-in and custom roles to configure role-based access control for NGINX Management Suite API Connectivity Manager."
-# Assign weights in increments of 100
-weight: 110
+description: Learn how to use both built-in and custom roles to configure role-based
+  access control for NGINX Management Suite API Connectivity Manager.
+docs: DOCS-1173
+doctypes:
+- tutorial
+tags:
+- docs
+title: Set Up RBAC for API Owners
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1173"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["tutorial"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
+weight: 110
 ---
-
-{{< custom-styles >}}
 
 ## Overview
 
@@ -36,7 +21,7 @@ This guide is meant for NGINX Management Suite Administrators who can add users 
 
 ### What is RBAC?
 
-{{< include "admin-guides/access-control/what-is-rbac.md" >}}
+{{< include "admin-guides/rbac/what-is-rbac.md" >}}
 
 ---
 
@@ -87,23 +72,30 @@ In the following example, we'll create a role for the "hr-api-services" workspac
 
 To create a Services workspace role:
 
-1. Go the the FQDN for you NGINX Management Suite host in a web browser and log in.
-2. On the top-right of the page, select the **Settings** (gear) icon.
-3. On the left menu, select **Roles**.
+1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in.
+2. Select the **Settings** (gear) icon in the upper-right corner.
+3. From the left navigation menu, select **Roles**.
 4. Select **Create**.
-5. On the Create Role page, complete the necessary fields:
+5. On the **Create Role** form, provide the following details:
 
-   - **Name**: Type a name for the role. For example, "hr-api-services"
-   - **Display Name**: Type a name to show for the role.
-   - **Description**: Add a brief description for the role.
+   - **Name**: The name to use for the role. In this example, we'll name the role "hr-api-services".
+   - **Display name**: An optional, user-friendly name to show for the role.
+   - **Description**: An optional, brief summary of what the role is.
 
-6. Select **Add Permission**.
-7. From the **Module** list, select **API Connectivity Manager**.
-8. From the **Feature** list, select **Service Workspace**.
-9. In the **Access** box, select the permission(s) you want to grant. For example, `READ`.
-10. In the **Applies to** list, select **Service-Workspace**.
-11. From the **Select values** list, select the workspace you want to apply the access to. For example, "hr-api-services".
-12. Select **Save**.
+6. To add permissions:
+
+   1. Select **Add Permission**.
+   2. From the **Module** list, select **API Connectivity Manager**.
+   3. In the **Feature** list, select **Service Workspace**.
+   4. Select **Add Additional Access** to add a CRUD (Create, Read, Update, Delete) access level.
+
+      - In the **Access** list, select the access level(s) you want to grant. In this example, we'll select `READ`.
+      - In the **Applies to** list, select **Service-Workspace**.
+      - In the **Select values** list, select the workspace you want to apply the access to. In this example, we'll select, "hr-api-services".
+
+   5. Select **Save**.
+
+7. Select **Save**.
 
 ---
 
@@ -113,21 +105,22 @@ When adding users, you can assign them to roles to grant tailored access levels.
 
 In this example, we'll create a user named Jane Smith. We'll add her as an [ACM API Owner](#acm-api-owner) in the "hr-api-services" workspace.
 
-To add a user to NGINX Management Suite:
+To add users, take the following steps:
 
-1. Go the the FQDN for you NGINX Management Suite host in a web browser and log in.
-2. On the top-right of the page, select the **Settings** (gear) icon.
-3. On the left menu, select **Users**.
-4. Select **Create**.
-5. On the Create User page, complete the necessary fields:
+1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in.
+1. Select the **Settings** (gear) icon in the upper-right corner.
+1. On the left menu, select **Users**.
+1. Select **Create**.
+1. On the **Create User** form, enter the details for the user:
 
-   - **Username**: Enter a unique name for the user. For example, "jane-smith".
-   - **Email**: Enter the user's email address. For example, "j.smith@acmecorp.com".
-   - **First Name**: Add the user's first name. For example, "Jane".
-   - **Last Name**: Add the user's last name. For example, "Smith".
-   - **Description**: Enter an optional short description for the user. For example, "Senior Software Engineer".
-   - **Roles**: Select one or more roles to assign to the user.
+   - **Username**: A unique name to identify the user. For example, "jane-smith".
+   - **Email**: The user's email address. For example, "<j.smith@acmecorp.com>".
+   - **First Name**: The user's first name. For example, "Jane".
+   - **Last Name**: The user's last name. For example, "Smith".
+   - **Description**: An optional brief description of the user. For example, "Senior Software Engineer".
 
-      For example, for our imaginary new hire Jane Smith, select the built-in `ACM API Owner` role to give her those [default permissions](#acm-api-owner). Then select the "hr-api-services" role to assign her to that workspace. Because role-based access is cumulative, Jane, as an ACM API Owner, is granted `CRUD` access for the API Docs, Dev Portal Setup, and Proxy Config features in the "hr-api-services" workspace, rather than the `READ` access that's assigned to members of "hr-api-services" by default.
+1. In the **Roles** list, select one or more roles to assign to the user.
 
-6. Select **Save**.
+   For example, for our imaginary new hire Jane Smith, select the built-in `ACM API Owner` role to give her those [default permissions](#acm-api-owner). Then select the "hr-api-services" role to assign her to that workspace. Because role-based access is cumulative, Jane, as an ACM API Owner, is granted `CRUD` access for the API Docs, Dev Portal Setup, and Proxy Config features in the "hr-api-services" workspace, rather than the `READ` access that's assigned to members of "hr-api-services" by default.
+
+1. Select **Save**.

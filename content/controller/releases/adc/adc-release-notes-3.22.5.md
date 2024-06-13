@@ -1,32 +1,9 @@
 ---
-categories:
-- installation
-- infrastructure
-- platform management
-- services
-- security
-- analytics
 description: These release notes contain information about new features, improvements,
   known issues, and bug fixes in the NGINX Controller Application Delivery Module.
 docs: DOCS-945
 doctypes:
 - reference
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- renewing
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
-- read-only
 tags:
 - docs
 title: Release Notes 3.22.5
@@ -67,10 +44,10 @@ The following issues are known to be present in this release. Look for updates t
 - **Restarting Kubernetes after an unsuccessful database switch may render Controller unusable (35914)**
 
   After a failed database switch, restarting Kubernetes before reverting the database config values will break the Controller installation, preventing users from logging in to the system.
-    
+
   **Workaround:**
 
-  Before switching the database, ensure that the new database contains the schema and data in the original external database (for example, all of the users, tables, etc.) 
+  Before switching the database, ensure that the new database contains the schema and data in the original external database (for example, all of the users, tables, etc.)
 
   If there is any issue after the database switch, **do not** restart Kubernetes; revert the change back to the original database address using the `helper.sh` script with the old database config values.
 
@@ -79,13 +56,13 @@ The following issues are known to be present in this release. Look for updates t
 
   During the installation on RHEL 8, a warning is displayed while checking Kubernetes:
 
-  ```
+  ```none
   W0304 00:13:38.871876 1594252 helpers.go:553] --dry-run is deprecated and can be replaced with --dry-run=client.
   ```
 
   And an error similar to the following is displayed when starting NGINX Controller:
 
-  ```
+  ```none
   Error: unknown flag: --server-dry-run
   See 'kubectl apply --help' for usage.
   Detected an invalid patch for the analytics database. Resolving conflicts and restarting the analytics database before running the update.
@@ -98,32 +75,32 @@ The following issues are known to be present in this release. Look for updates t
 
   The `js_include` directive was deprecated in version 0.4.0 of the NGINX njs module and removed in version 0.7.1. You should use the `js_import` directive instead.
 
-  NGINX ADC Controller 3.22.2 now writes the `js_import` directive when required. You should confirm that your NGINX Plus installations use njs module 0.4.0 or later, otherwise errors may occur. 
-  
+  NGINX ADC Controller 3.22.2 now writes the `js_import` directive when required. You should confirm that your NGINX Plus installations use njs module 0.4.0 or later, otherwise errors may occur.
+
   **Workaround:**
 
   Upgrade the njs module to version 0.4.0 or higher. See the [njs module installation instructions](https://nginx.org/en/docs/njs/install.html) for more information.
-  
+
 - **Configuring components with an empty workload group can return the wrong HTTP status code (32373)**
 
   If a component is configured without referencing any gateways and with an empty workload group, the HTTP status code returned will be 500 (Internal Server Error).  Instead, it should return status code 400 (Bad Request).
 
 - **Agent binding error occurs when creating BIG-IP Component (33934)**
 
-  BIG-IP Component creation fails with the following error: 
-  
-  ```
-  Failed testing config before applying: nginx: 
-  the configuration file /etc/nginx/nginx.conf syntax is ok 
-  nginx: [emerg] bind() to <IP>:20001 failed (99: Cannot assign requested address) 
+  BIG-IP Component creation fails with the following error:
+
+  ```none
+  Failed testing config before applying: nginx:
+  the configuration file /etc/nginx/nginx.conf syntax is ok
+  nginx: [emerg] bind() to <IP>:20001 failed (99: Cannot assign requested address)
   nginx: configuration file /etc/nginx/nginx.conf test failed
   ```
 
 - **Gateway update fails when a Published API is associated with multiple gateways, and Authentication is enabled in the associated component (34027)**
 
-  When a Published API is created with multiple gateways, and Authentication is enabled in the associated component, the update to any associated gateway will fail with an error similar to the following: 
-  
-  ```
+  When a Published API is created with multiple gateways, and Authentication is enabled in the associated component, the update to any associated gateway will fail with an error similar to the following:
+
+  ```none
   Failed testing config before applying
   ```
 
@@ -138,4 +115,4 @@ The following issues are known to be present in this release. Look for updates t
   **Workaround**:
 
   To modify the IPv6 listen directive that doesn't have `reuseport` set, you should first delete the listen directive and apply the configuration. You can then re-add the directive and make the desired change.
-  
+

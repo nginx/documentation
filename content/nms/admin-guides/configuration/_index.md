@@ -1,6 +1,6 @@
 ---
 title: Configuration
-weight: 200
+weight: 300
 url: /nginx-management-suite/admin-guides/configuration/
 
 ---

@@ -1,3 +1,7 @@
+---
+docs: DOCS-1332
+---
+
 To publish a configuration file to an instance group:
 
 1. {{< include "nim/webui-nim-login.md" >}}

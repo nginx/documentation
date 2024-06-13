@@ -1,19 +1,17 @@
 ---
-title: "Enable Creating Credentials on the Developer Portal"
-date: 2022-09-07T12:00:00-07:00
-description: "Follow the steps in this guide to allow users to create credentials as a self-service workflow on the Developer Portal."
-# Assign weights in increments of 100
-weight: 400
+description: Follow the steps in this guide to allow users to create credentials as
+  a self-service workflow on the Developer Portal.
+docs: DOCS-947
+doctypes:
+- task
+tags:
+- docs
+title: Enable Creating Credentials on the Developer Portal
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["API Connectivity Manager", "Developer Portal", "Create Credentials", "Try It Out"]
-doctypes: ["task"]
-docs: "DOCS-947"
+weight: 400
 ---
 
+{{< raw-html >}}
 <style>
     h2 {
         margin-top: 30px;
@@ -34,7 +32,7 @@ docs: "DOCS-947"
         margin-bottom: 20px;
     }
 </style>
-
+{{< /raw-html >}}
 ## Overview
 
 API Connectivity manager supports public API workflows. Public APIs are open for anyone to consume by requesting resource credentials. Resource credentials can be managed on the Developer Portal for public APIs secured with APIKey or Basic Authentication. Consumers have to log in to the Developer Portal to create credentials. Once created, credentials can be used to access APIs. Users can also use the credentials to test APIs on the Developer Portal with the **Try It Out** feature.
@@ -69,15 +67,17 @@ Afterward, the API consumer can create credentials on the Developer Portal by pe
 
 ### Enable Create Credentials Endpoint
 
-For security reasons, the Credentials endpoint is disabled by default. To use the Developer Portal credentials workflow, you must enable the Credentials endpoint on the API Connectivity Manager host.
+As mTLS is not enabled by default, the Credentials endpoint is disabled initially. You must enable the Credentials endpoint on the API Connectivity Manager host to use the Developer Portal credentials workflow.
 
-{{<important>}}We recommend using mTLS to secure communication between API Connectivity Manager and the Developer Portal.{{</important>}}
+{{<important>}}mTLS is essential to secure communication between API Connectivity Manager and the Developer Portal.{{</important>}}
 
 To enable the Credentials endpoint on the API Connectivity Manager host, take the following steps:
 
+1. Make sure mTLS server and client certificates have been configured for Devportal to NGINX Management Suite by following these [instructions]({{< relref "/nms/acm/how-to/devportals/installation/install-dev-portal.md#secure-communication-from-the-developer-portal-to-nginx-management-suite-host-with-mtls" >}}) to add your server certs, CA file and enforce mTLS.
+
 1. Open an SSH connection into the API Connectivity Manager host and log in.
 
-2. Enable the Credentials endpoint:
+1. Enable the Credentials endpoint:
 
    Open `/etc/nms/nginx/locations/nms-acm.conf` for editing and uncomment the location block.
 
@@ -91,26 +91,16 @@ To enable the Credentials endpoint on the API Connectivity Manager host, take th
             #auth_jwt off;
             auth_basic off;
             error_page 401 /401_certs.json;
-            # if ($ssl_client_verify != SUCCESS) {
-            #   return 401;
-            # }
+            if ($ssl_client_verify != SUCCESS) {
+              return 401;
+            }
             proxy_pass http://acm-api-service/api/acm/v1/devportal/credentials;
     }
     ```
 
-    {{<note>}}If you've secured the communication between API Connectivity Manager and the Developer Portal using mTLS, you can uncomment these lines as well:
+1. Save the changes.
 
-  ``` yaml
-    if ($ssl_client_verify != SUCCESS) {
-      return 401;
-    }
-  ```
-
-    {{</note>}}
-  
-3. Save the changes.
-  
-4. Reload NGINX on the API Connectivity Manager host:
+1. Reload NGINX on the API Connectivity Manager host:
 
     ```bash
     sudo nginx -s reload

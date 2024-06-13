@@ -1,40 +1,23 @@
 ---
-authors: []
-categories:
-- support
-date: "2021-12-21T12:00:00-07:00"
-description: ""
+description: ''
+docs: DOCS-817
 doctypes:
 - concept
-draft: false
-journeys:
-- support
-personas:
-- devops
-- netops
-- secops
-- support
 tags:
 - docs
 title: Where to Go for Support
 toc: true
-versions: []
 weight: 300
-docs: "DOCS-817"
-aliases:
-- /nginx-instance-manager/support/contact-support/
 ---
- 
-{{< custom-styles >}}
 
 ## Support Policy
 
 NGINX Management Suite adheres to the support policy detailed at [nginx.com/support](https://nginx.com/support).
 
 {{<important>}}
-Support licenses for Instance Manager **do not include** support for the NGINX instances that are being managed.  
+Support licenses for Instance Manager **do not include** support for the NGINX instances that are being managed.
 
-Community support is available for NGINX Open Source instances at the [NGINX mailing list](http://mailman.nginx.org/mailman/listinfo).  
+Community support is available for NGINX Open Source instances at the [NGINX mailing list](http://mailman.nginx.org/mailman/listinfo).
 If you need support for NGINX Plus or any of the [prebuilt NGINX Open Source packages](https://nginx.org/en/linux_packages.html), you will need to [purchase an NGINX license](https://www.nginx.com/purchase-nginx/).
 
 {{</important>}}

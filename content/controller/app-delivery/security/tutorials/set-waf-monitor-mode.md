@@ -1,26 +1,9 @@
 ---
-authors: []
-categories:
-- services
-- apps
-- security
-date: "2020-10-26T15:32:41-06:00"
 description: How to use NGINX Controller App Security to monitor or block security
   violations.
 docs: DOCS-485
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- using
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
 tags:
 - docs
 title: Set Up App Security Monitor Mode
@@ -72,7 +55,7 @@ To block traffic violations with App Security WAF, send a POST or PUT request to
     "security": {
        "strategyRef": {
          "ref": "/security/strategies/policyName"
-       },        
+       },
         "waf": {
             "isEnabled": true,
             "isMonitorOnly": false

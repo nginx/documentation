@@ -1,33 +1,17 @@
 ---
-title: "Manage the Security Monitoring Signature Database"
-date: 2023-01-13T14:23:27-08:00
-# Change draft status to false to publish doc.
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Learn how to update the Attack Signature Database used in NGINX Management Suite Security Monitoring dashboards."
-# Assign weights in increments of 100
-weight: 200
+description: Learn how to update the Attack Signature Database used in NGINX Management
+  Suite Security Monitoring dashboards.
+docs: DOCS-1109
+doctypes:
+- task
+tags:
+- docs
+title: Manage the Security Monitoring Signature Database
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1109"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "waf", "security", "analytics"]
-doctypes: ["task"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
-
+weight: 200
 ---
 
 {{< shortversions "1.0.0" "latest" "secvers" >}}
-
-{{<custom-styles>}}
 
 ## Overview
 
@@ -37,9 +21,9 @@ Make sure the dashboards show the right info by following the steps in this topi
 
 ## Before You Begin
 
-Complete the following prerequisites before proceeding with this guide: 
+Complete the following prerequisites before proceeding with this guide:
 
-- NGINX Management Suite Security Monitoring is [installed]({{< relref "/nms/installation/vm-bare-metal/_index.md#install-nms-modules" >}}) and running 
+- NGINX Management Suite Security Monitoring is [installed]({{< relref "/nms/installation/vm-bare-metal/_index.md#install-nms-modules" >}}) and running
 - NGINX App Protect is configured, and the Security Monitoring dashboard is gathering security violations
 
 ## How to Update the Signature Database
@@ -48,16 +32,20 @@ Complete the following prerequisites before proceeding with this guide:
 1. Use the [Attack Signature Report Tool](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#attack-signature-report-tool) to generate a Signature Report file. The filename must be `signature-report.json`.
 
     Example:
+
     ```bash
     sudo /opt/app_protect/bin/get-signatures -o ./signature-report.json
     ```
+
 1. Open an SSH connection to the management plane host and log in.
 1. Replace the `signature-report.json` on your NGINX Management Suite's control plane at `/usr/share/nms/sigdb/signature-report.json` with the newly generated Signature Report.
 
     Example:
+
     ```bash
     sudo scp /path/to/signature-report.json {user}@{host}:/usr/share/nms/sigdb/signature-report.json
     ```
+
 1. Restart the NGINX Management Suite services:
 
     ```bash

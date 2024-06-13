@@ -1,5 +1,5 @@
 ---
-
+docs: DOCS-1323
 ---
 
 You can access the NGINX Management Suite web interface using the external IP address for the API Gateway.

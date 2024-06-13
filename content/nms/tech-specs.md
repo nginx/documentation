@@ -1,19 +1,13 @@
 ---
-date: "2021-12-21T12:00:00-07:00"
+description: This document outlines the requirements for the NGINX Management Suite
+  and NGINX Agent, such as compatible platforms, hardware specifications, sizing advice,
+  compatible web browsers, and more.
+docs: DOCS-805
 doctypes: reference
-draft: false
 title: Technical Specifications
-description: This document outlines the requirements for the NGINX Management Suite and NGINX Agent, such as compatible platforms, hardware specifications, sizing advice, compatible web browsers, and more.
 toc: true
 weight: 20
-docs: "DOCS-805"
-aliases:
-- /nginx-instance-manager/getting-started/technical-specifications/
-- /nginx-instance-manager/about/technical-specifications/
-
 ---
-
-{{< custom-styles >}}
 
 ## Overview
 
@@ -27,25 +21,20 @@ The guidelines in this section are applicable to the entire NGINX Management Sui
 
 ### Support for Prior Releases
 
-Unless otherwise specified in the release notes, F5 NGINX typically supports the **three most recent releases** of Instance Manager, API Connectivity Manager, App Delivery Manager, and NGINX App Protect WAF. This means, for example, if the latest release of Instance Manager is 2.11.0, F5 NGINX would support versions ranging from 2.8.0 to 2.11.0. The same principle applies to the other modules.
+Unless otherwise specified in the release notes, F5 NGINX typically supports the **three most recent releases** of Instance Manager, API Connectivity Manager, and NGINX App Protect WAF. This means, for example, if the latest release of Instance Manager is 2.11.0, F5 NGINX would support versions ranging from 2.8.0 to 2.11.0. The same principle applies to the other modules.
 
 If you are using an older version of a module, you might need to upgrade to an intermediate version before upgrading to the final version you want. Make sure to follow the recommended upgrade paths mentioned in each module's release notes for a successful upgrade process. For more detailed information and guidance on the upgrade process, you can refer to the [Upgrade Guide]({{<relref "/nms/installation/upgrade-guide.md" >}}).
 
 **Module release notes**:
 
 - [Instance Manager]({{< relref "/nms/nim/releases/release-notes.md" >}})
-- [API Connectivity Manager]({{< relref "/nms/acm/releases/release-notes.md" >}})
-- [App Delivery Manager]({{< relref "/nms/adm/releases/release-notes.md" >}})
-- [NGINX App Protect WAF]({{< relref "/nap-waf/releases/_index.md" >}})
+- [NGINX App Protect WAF]({{< relref "/nap-waf/v4/releases/_index.md" >}})
 
 ### Supported Linux Distributions {#supported-distributions}
 
 {{< include "tech-specs/nms-supported-distros.md" >}}
 
 <br>
-
-{{< call-out "note" "API Connectivity Manager" >}}Make sure you review the [supported distributions for the Developer Portal](#dev-portal-supported-distributions) host before installing the API Connectivity Manager module. There is a slight difference between the supported distributions in that list and this one.
-{{< /call-out >}}
 
 ### Supported Deployment Environments {#supported-environments}
 
@@ -99,36 +88,6 @@ The following sizing recommendations are the minimum sizing guidelines for Insta
 
 ---
 
-## API Connectivity Manager {#acm-tech-specs}
-
-### Dependencies with Instance Manager
-
-{{< include "tech-specs/acm-nim-dependencies.md" >}}
-
-{{< important >}} If you're [installing API Connectivity Manager in an offline environment]({{< relref "/nms/installation/vm-bare-metal/offline-install-guide.md#install-acm-offline" >}}) and the minimum required version of Instance Manager is not installed, the API Connectivity Manager installer will exit. You'll need to [install Instance Manager manually]({{< relref "/nms/installation/vm-bare-metal/offline-install-guide.md#install-nim-offline" >}}) before installing API Connectivity Manager.{{< /important >}}
-
-### API Connectivity Manager Supported NGINX Versions {#acm-supported-nginx}
-
-{{< include "tech-specs/acm-supported-nginx.md" >}}
-
-### Developer Portal Supported Distributions {#dev-portal-supported-distributions}
-
-{{< include "tech-specs/acm-dev-portal-supported-distros.md" >}}
-
----
-
-## App Delivery Manager
-
-{{< beta-badge >}}
-
-### Dependencies with Instance Manager
-
-{{< include "tech-specs/adm-nim-dependencies.md" >}}
-
-{{< important >}} If you're [installing App Delivery Manager in an offline environment]({{< relref "/nms/installation/vm-bare-metal/offline-install-guide.md" >}}) and the minimum required version of Instance Manager is not installed, the App Delivery Manager installer will exit. You'll need to [install Instance Manager manually]({{< relref "/nms/installation/vm-bare-metal/offline-install-guide.md#install-nim-offline" >}}) before installing App Delivery Manager.{{< /important >}}
-
----
-
 ## Security Monitoring Module {#security-monitoring}
 
 ### Dependencies with Instance Manager
@@ -145,25 +104,4 @@ The following sizing recommendations are the minimum sizing guidelines for Insta
 
 ### Supported Distributions
 
-The NGINX Agent can run on most environments. For the supported distributions, see the [NGINX Technical Specs](https://docs.nginx.com/nginx/technical-specs/#supported-distributions) guide.
-
-### Supported Deployment Environments {#agent-environments}
-
-You can deploy the NGINX Agent in the following environments:
-
-- Bare Metal
-- Container
-- Public Cloud: AWS, Google Cloud Platform, and Microsoft Azure
-- Virtual Machine
-
-### Supported NGINX Versions
-
-The NGINX Agent works with all versions of NGINX OSS and NGINX Plus.
-
-### Sizing Recommendations
-
-{{< include "tech-specs/agent-sizing-recommendations.md" >}}
-
-### Logging
-
-The NGINX Agent utilizes log files and formats to collect metrics. Increasing the log formats and instance counts will result in increased log file sizes. To prevent system storage issues due to a growing log directory, it is recommended to add a separate partition for `/var/log/nginx-agent` and enable [log rotation](http://nginx.org/en/docs/control.html#logs).
+The NGINX Agent can run on most environments. For the supported distributions, see the [NGINX Agent Technical Specs](https://docs.nginx.com/nginx-agent/technical-specifications/) guide.

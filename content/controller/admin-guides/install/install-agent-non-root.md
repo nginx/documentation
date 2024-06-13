@@ -1,32 +1,10 @@
 ---
-authors: []
-categories:
-- installation
-date: "2021-03-29T13:32:41+00:00"
 description: How to install the NGINX Controller Agent to run as a non-root user.
 docs: DOCS-253
 doctypes:
 - beta
 - tutorial
 - troubleshooting
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: Installation
-    weight: 45
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: Install NGINX Controller Agent for Non-root Users
 toc: true
 weight: 205
@@ -69,7 +47,7 @@ Once set, the Location for an instance cannot be changed. If you need to change 
 1. Copy the `curl` or `wget` command that's shown in the **Installation Instructions** section on the NGINX instance to download and install the Controller Agent package. When specified, the `-i` and `-l` options for the `install.sh` script refer to the instance name and Location, respectively. **You need to modify this command to use a non-root user**
 1. Add the parameter `CONTROLLER_USER='<non-root user of your choice>'` to the `curl` or `wget` command, substituting the value in the brackets with your desired non-root user.
 1. (Optional) Add the parameter `CONTROLLER_GROUP='<group choice>'` to the `curl` or `wget` command, substituting the value in the brackets with your desired group. If this parameter is not set, a new group with the same name as the user will be created.
-1. The `curl` or `wget` command looks similar to this example after applying the required changes: 
+1. The `curl` or `wget` command looks similar to this example after applying the required changes:
 
     ```bash
     curl -sS -L https://<controller FQDN>/install/controller-agent > install.sh && API_KEY='<API KEY>' CONTROLLER_USER='<non-root user>' CONTROLLER_GROUP='<optional group>' -i <instance name> -l <instance location>
@@ -92,20 +70,20 @@ Running agent as non-root changes the nap-syslog port to `5114` in both containe
 After a few minutes, the NGINX instance will appear on the **Instances** overview page.
 
 For the NGINX Agent to run properly, NGINX Plus **must** be running as the same user and group as the Agent. To change the user and group NGINX Plus is running as after installing the agent:
-  
+
 1. Manually edit the `/lib/systemd/system/nginx.service` file and under the `[Service]` block add the lines `User=<non-root-user>` and `Group=<optional group>` replacing the values in brackets with the values chosen during the installation.
 1. Run `sudo chown -R <non-root-user>:<optional group> /etc/nginx/ /var/log/nginx/ /var/cache/nginx/` to change the permissions to your non-root user.
 1. Ensure the ports NGINX is listening to are all above 1000: Check the NGINX `default.conf` file (usually `/etc/nginx/conf.d/default.conf`) and make sure that the `listen` values are all over `1000`.
 1. (CentOS/RHEL) If you're installing the Controller Agent as a non-root user on CentOS or RHEL, make these additional changes:
 
-    * In in the `[Service]` section of `/lib/systemd/system/nginx.service`, set the location for the `PIDfile` to:
+    - In in the `[Service]` section of `/lib/systemd/system/nginx.service`, set the location for the `PIDfile` to:
 
        ```nginx
        [Service]
        PIDFile=/var/tmp/nginx.pid
        ```
 
-    * In `/etc/nginx/nginx.conf`, set the `pid` directive to:
+    - In `/etc/nginx/nginx.conf`, set the `pid` directive to:
 
         ```nginx
         pid        /var/tmp/nginx.pid;

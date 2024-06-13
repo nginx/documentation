@@ -1,8 +1,13 @@
+---
+docs: DOCS-1314
+---
+
 The following table lists the configurable parameters and default values used by the API Connectivity Manager chart when installing from a Helm chart.
 
 To modify a configuration for an existing release, run the `helm upgrade` command and use `-f <my-values-file>`, where `my-values-file` is a path to a values file with your desired configuration.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Parameter | Description | Default |
 |:-----------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------|
 | `nms-acm.acm.logLevel`                        | Set the log level for the backend API service. The log level can be `fatal`, `error`, `warning`, `info`, or `debug` | `info` |
@@ -21,6 +26,7 @@ To modify a configuration for an existing release, run the `helm upgrade` comman
 | `nms-acm.acm.devportal.credentials.ssl`    | This should be set to true if mTLS has been configured between API Connectivity Manager and the Developer Portal, for more information see [Create Credentials Endpoint on the Developer Portal]({{< relref "/nms/acm/how-to/infrastructure/enable-create-credentials.md" >}}) | `false` |
 | `nms-acm.acm.devportal.client.caSecret.name`   | This should be set if an unknown Certificate Authority is needed for communication with the Developer Portal in order to provide a CA certificate. This should be set to the name of the secret in the release namespace that contains the CA certificate. | Blank |
 | `nms-acm.acm.devportal.client.caSecret.key`    | This should be set if an unknown Certificate Authority is needed for communication with the Developer Portal in order to provide a CA certificate. This should be set to the key of the secret in the release namespace that contains the CA certificate.  | Blank |
+
 {{</bootstrap-table>}}
 
 ##### API Connectivity Manager Dqlite Storage Configuration {#acm-dqlite-configuration}

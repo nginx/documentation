@@ -1,37 +1,12 @@
 ---
-authors: []
-categories:
-- troubleshooting guide
-date: "2021-04-14T13:32:41+00:00"
 description: Learn about the NGINX App Protect DoS Troubleshooting Guide.
 docs: DOCS-675
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: troubleshooting guide
-    weight: 45
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect DoS Troubleshooting Guide
 toc: true
-versions:
-- "4.1"
 weight: 200
 ---
-
 
 ## Overview
 
@@ -42,6 +17,7 @@ This Troubleshooting Guide is intended to provide guidance to customers in the d
 ### Configuration
 
 {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+
 |Problem|Solution|
 |-------|--------|
 | NGINX is not running (ps -aux) <br><br> Reloading NGINX fails| Check the error log at `/var/log/nginx/error.log`. <br> Fix the problem and re-run NGINX.|
@@ -53,7 +29,8 @@ This Troubleshooting Guide is intended to provide guidance to customers in the d
 | `No DOS protection for ngx_worker at idx X` warning message | There are more nginx processes than allowed. <br> Either decrease the number of nginx processes (ngx_processes directive in `nginx.conf` file) or increase the number of supported workers for NGINX App Protect DoS using the flag `--max-workers NUM` for `/usr/bin/adminstall`. |
 | `unknown directive 'app_protect_dos_xxx'` error message | App Protect DOS module is not loaded. Add this line to the main (global) context of nginx.conf: <br>  `load_module "/etc/nginx/modules/ngx_http_app_protect_dos_module.so";` |
 | NGINX struggles handling a high rate of incoming connections | Linux machine should be tuned for optimal performance. <br> Refer to [Tuning NGINX for Performance](https://www.nginx.com/blog/tuning-nginx/) |
-Error in `adminstall` process, such as `Failed to allocate` | Insufficient memory to allocate all the required resources. <br> Increase the `--memory` size or decrease the number of nginx workers (`--max_workers`) if not all of them are going to be in use. <br> Use the `--help` flag for more info. |
+| Error in `adminstall` process, such as `Failed to allocate` | Insufficient memory to allocate all the required resources. <br> Increase the `--memory` size or decrease the number of nginx workers (`--max_workers`) if not all of them are going to be in use. <br> Use the `--help` flag for more info. |
+
 {{</bootstrap-table>}}
 
 ### ELK issues
@@ -101,43 +78,52 @@ For more information about how to use NGINX Plus with SELinux - check our [blog]
 If there are any problems, collect the troubleshooting information in a tarball and send it to your customer support engineer.
 
 1. Get package version:
-   
+
    a. Get NGINX App Protect DoS version:<br>
+
    ```shell
    /usr/bin/admd -v > package_versions.txt
    ```
 
    b. Get packages version:<br>For CentOS/RHEL:<br>
+
    ```shell
    rpm -qa nginx-plus* app-protect* >> package_versions.txt
    ```
 
    For Debian/Ubuntu:<br>
+
    ```shell
    apt list --installed | grep -E 'nginx-plus|app-protect' >> package_versions.txt
    ```
 
    c. Get OS version:<br>
+
    ```shell
    cat /etc/os-release > system_version.txt && uname -r >> system_version.txt && cat /proc/version >> system_version.txt
    ```
 
    d. Get NGINX App Protect DoS shared memory dump:<br>
+
    ```shell
    admd -c > napd_shmem.txt
    ```
 
    e. Get Linux shared memory dump:<br>
+
    ```shell
    ipcs -m > linux_shmem.txt
    ```
 
 2. Create a list of files for tarball:<br>
    a. Create a file using your favorite editor (i.e VI editor)<br>
+
    ```shell
    vi logs.txt
    ```
+
    b. Insert the following content into the file created above:<br>
+
    ```shell
    package_versions.txt
    system_version.txt
@@ -149,19 +135,22 @@ If there are any problems, collect the troubleshooting information in a tarball 
    ```
 
    c. Add the path of your NGINX configuration files including all references, for example:<br>
+
    ```shell
    /etc/nginx/nginx.conf
    /etc/nginx/conf.d/*
    ```
 
    d. Add all policies and log file configuration, for example:<br>
+
    ```shell
    /etc/app_protect_dos/*
    ```
-   
+
 3. Create the tarball:
+
    ```shell
    tar cvfz logs.tgz `cat logs.txt`
    ```
-   
+
 4. Send `logs.tgz` to your customer support.

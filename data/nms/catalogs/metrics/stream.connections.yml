@@ -49,3 +49,9 @@ dimensions:
   - acm_environments_type
   - acm_infra_workspaces_name
   - acm_service_workspaces_name
+  - site
+  - environment_name
+  - gateway_name
+  - component_name
+  - app_name
+  - site_name

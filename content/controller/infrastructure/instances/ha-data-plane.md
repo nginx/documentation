@@ -1,23 +1,9 @@
 ---
-authors: []
-categories:
-- installation
-- infrastructure
-- services
-date: "2020-11-27T14:50:28-08:00"
 description: Learn how to configure a high-availability data plane for your apps in
   on-premises deployments using NGINX Controller, NGINX Plus, and keepalived.
 docs: DOCS-774
 doctypes:
 - tutorial
-draft: false
-journeys:
-- using
-personas:
-- devops
-roles:
-- admin
-- user
 tags:
 - docs
 title: Set Up Data Plane High Availability

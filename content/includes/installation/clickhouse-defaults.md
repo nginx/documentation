@@ -3,6 +3,7 @@ docs: DOCS-1238
 ---
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Configuration            | Default                            | Notes |
 |--------------------------|------------------------------------|-------|
 | clickhouse.address       | tcp://localhost:9000               |       |
@@ -14,6 +15,7 @@ docs: DOCS-1238
 | clickhouse.tls.key_path  |                                    |       |
 | clickhouse.tls.cert_path |                                    |       |
 | clickhouse.tls.ca_path   | /etc/ssl/certs/ca-certificates.crt |The default value for `clickhouse.tls.ca_path` works out-of-the-box for Ubuntu and Debian. You'll need to [configure a different Certificate Authority](#tls) for other distributions. Refer to your distribution's documentation for additional information.|
+
 {{</bootstrap-table>}}
 
 <br>

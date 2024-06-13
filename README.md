@@ -1,17 +1,17 @@
 # NGINX Docs
 
+[![Check for Broken Links](https://github.com/nginxinc/docs/actions/workflows/check-broken-links.yml/badge.svg)](https://github.com/nginxinc/docs/actions/workflows/check-broken-links.yml)
+
+
 This repo contains all of the user documentation for NGINX's enterprise products, as well as the requirements for linting, building, and publishing the documentation.
 
 Docs are written in Markdown. We build the docs using [Hugo](https://gohugo.io) and host them on [Netlify](https://www.netlify.com/).
 
-## ✨ Getting Started
+## ✨ Contributing
 
-You will need to install Hugo to build and preview docs in your local development environment. 
-Refer to the [Hugo installation instructions](https://gohugo.io/getting-started/installing/) for more information.
+We are beta-testing contribution using [CloudCannon](https://app.cloudcannon.com). If you would like to participate, send an email to [nginx-doc-ops@f5.com](mailto:nginx-doc-ops@f5.com).
 
-**NOTE**: We are currently running [Hugo v0.115.3](https://github.com/gohugoio/hugo/releases/tag/v0.115.3) in production.
-
-> Refer to the [CONTRIBUTING](./CONTRIBUTING.md) guide to learn how to develop content in this repo.
+> Refer to the [CONTRIBUTING](./CONTRIBUTING.md) guide to learn how to develop content using the developer workflow in this repo.
 
 ---
 

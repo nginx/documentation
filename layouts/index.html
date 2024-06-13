@@ -25,6 +25,15 @@
             <div class="card-deck">
 
                 <div class="col-xs-12 col-sm-6 col-lg-4 card-holder">
+                    <a href="{{ .Site.BaseURL }}/nginx-one/" class="products-card" alt="NGINX One Cloud Console">
+                        <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-One-product-icon.png"> NGINX One Cloud Console</h3>
+                        <div class="card-description">
+                            <p><i class="fa-solid fa-circle-info"></i><strong> Available in Early Access.</strong><br><br> Monitor your infrastructure, address security vulnerabilities, and assess the health of your NGINX fleet, all from a single console.</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-lg-4 card-holder">
                     <a href="{{ .Site.BaseURL }}/nginx/" class="products-card" alt="NGINX Plus">
                         <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-Plus-product-icon-RGB.png"> NGINX Plus</h3>
                         <div class="card-description">
@@ -117,6 +126,15 @@
                 </div>
 
                 <div class="col-xs-12 col-sm-6 col-lg-4 card-holder">
+                    <a href="{{ .Site.BaseURL }}/nginx-gateway-fabric/" class="products-card" alt="NGINX Gateway Fabric">
+                        <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-product-icon.png"> NGINX Gateway Fabric</h3>
+                        <div class="card-description">
+                            <p>Next generation Kubernetes connectivity using the Gateway API.</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-lg-4 card-holder">
                     <a href="{{ .Site.BaseURL }}/nginx-amplify/" class="products-card" alt="NGINX Amplify">
                         <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-Amplify-product-icon-RGB.png"> NGINX Amplify</h3>
                         <div class="card-description">
@@ -125,21 +143,12 @@
                     </a>
                 </div>
 
-                
+
                 <div class="col-xs-12 col-sm-6 col-lg-4 card-holder">
                     <a href="{{ .Site.BaseURL }}/nginx-agent/" class="products-card" alt="NGINX Agent">
                         <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-product-icon.png"> NGINX Agent</h3>
                         <div class="card-description">
                             <p>A daemon providing observability data and remote configuration for NGINX Open Source and NGINX Plus instances</p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-lg-4 card-holder">
-                    <a href="{{ .Site.BaseURL }}/nginx-service-mesh/" class="products-card" alt="NGINX Service Mesh">
-                        <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-Service-Mesh-product-icon.png"> NGINX Service Mesh</h3>
-                        <div class="card-description">
-                            <p>Secure service-to-service management of north-south and east-west traffic</p>
                         </div>
                     </a>
                 </div>
@@ -151,39 +160,39 @@
                 <div class="alert alert-light" role="alert">
                     <p class="card-title" style="font-weight: 400;">Join the <a href="https://community.nginx.org/joinslack" alt="NGINX Community Slack">NGINX Community Slack</a> to ask and answer questions, discuss NGINX, and share useful advice and resources.</p>
                 </div>
-            </div>
         </div>
+            </div>
     </section>
-    
 </div>
 
-<div class="container-fluid">
-    <div class="col-lg-8 py-md-5 pl-md-4">
-        <div class="justify-content-left" style="margin-left: 1.5em;">
-            <h2 style="font-weight: 400; font-size: 1.5em; margin-top: 0px; margin-bottom: 0px;">Other NGINX Products</h2>
-        </div>
-    </div>
-    <div class="col-lg-8 py-md-2 pl-md-2">         
-        <div class="row justify-content-around">
-            <div class="card-deck  pl-5">
-                <div class="card my-1 pl-md-3">
-                    <div class="card-body">
-                        <a href="{{ .Site.BaseURL }}/nginx-controller/" alt="NGINX Controller" style="color: #000; display:block; transition: transform 150ms ease-in-out;">
-                            <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-Controller-product-icon-RGB.png"> NGINX Controller</h3>
-                        </a>
-                    </div>
-                </div>
+<div class="col-md-12 col-xl-12 py-md-3 pl-md-5">
+   <div class="justify-content-left" style="margin-left: 1.5em;">
+       <h2 style="font-weight: 400; font-size: 1.5em; margin-top: 0px; margin-bottom: 0px;">Other NGINX Products</h2>
+   </div>
+</div>
 
-                <div class="card my-1 pl-md-3">
-                    <div class="card-body">
-                        <a href="{{ .Site.BaseURL }}/nginx-waf/" alt="NGINX ModSecurity WAF" style="color: #000; display:block; transition: transform 150ms ease-in-out;">
-                        <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-WAF-product-icon-RGB.png"> NGINX ModSecurity WAF</h3>
-                        </a>
-                    </div>
-                </div>
+<div class="container-fluid" style="margin-left: 1%;">
+   <section class="col-md-12 col-xl-12 py-md-3 pl-md-5" id="nginx-products">
+       <div class="row justify-content-center">
+           <div class="card-deck">
+            <div class="col-xs-12 col-sm-6 col-lg-4 card-holder">
+                  <a class="other-products-card" href="{{ .Site.BaseURL }}/nginx-controller/" alt="NGINX Controller" style="color: #000; display:block; transition: transform 150ms ease-in-out;">
+                     <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-Controller-product-icon-RGB.png"> NGINX Controller</h3>
+                  </a>
             </div>
-        </div>
-    </div> 
+            <div class="col-xs-12 col-sm-6 col-lg-4 card-holder">
+                  <a class="other-products-card" href="{{ .Site.BaseURL }}/nginx-service-mesh/" alt="NGINX Service Mesh" style="color: #000; display:block; transition: transform 150ms ease-in-out;">
+                     <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-Service-Mesh-product-icon.png"> NGINX Service Mesh</h3>
+                  </a>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-lg-4 card-holder">
+                   <a class="other-products-card" href="{{ .Site.BaseURL }}/nginx-waf/" alt="NGINX ModSecurity WAF" style="color: #000; display:block; transition: transform 150ms ease-in-out;">
+                   <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-WAF-product-icon-RGB.png"> NGINX ModSecurity WAF</h3>
+                   </a>
+            </div>
+         </div>
+      </div>
+   </section>
 </div>
 
 {{ end }}

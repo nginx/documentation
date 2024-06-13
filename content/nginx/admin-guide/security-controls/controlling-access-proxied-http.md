@@ -9,7 +9,6 @@ toc: true
 weight: 600
 ---
 
-
 This article explains how to set the maximum number of requests for a connection, or the maximum rate of downloading content from the server.
 
 <span id="intro"></span>
@@ -17,9 +16,9 @@ This article explains how to set the maximum number of requests for a connection
 
 Using NGINX and NGINX Plus, it is possible to limit:
 
-*   The number of connections per key value (for example, per IP address)
-*   The request rate per key value (the number of requests that are allowed to be processed during a second or minute)
-*   The download speed for a connection
+- The number of connections per key value (for example, per IP address)
+- The request rate per key value (the number of requests that are allowed to be processed during a second or minute)
+- The download speed for a connection
 
 Note that IP addresses can be shared behind NAT devices, so limiting by IP address should be used judiciously.
 
@@ -65,9 +64,9 @@ Rate limiting can be used to prevent DDoS attacks, or prevent upstream servers f
 
 Before using rate limiting, you will need to configure global parameters of the "leaky bucket":
 
- * key - a parameter used to differentiate one client from another, generally a variable
- * shared memory zone - the name and size of the zone that keeps states of these keys (the "leaky bucket")
- * rate - the request rate limit specified in requests per second (`r/s`) or requests per minute (`r/m`) ("leaky bucket draining"). Requests per minute are used to specify a rate less than one request per second.
+- key - a parameter used to differentiate one client from another, generally a variable
+- shared memory zone - the name and size of the zone that keeps states of these keys (the "leaky bucket")
+- rate - the request rate limit specified in requests per second (`r/s`) or requests per minute (`r/m`) ("leaky bucket draining"). Requests per minute are used to specify a rate less than one request per second.
 
 These parameters are set with the [limit_req_zone](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone) directive. The directive is defined on the `http {}` level - such approach allows applying different zones and request overflow parameters to different contexts:
 
@@ -77,6 +76,7 @@ http {
     limit_req_zone $binary_remote_addr zone=one:10m rate=1r/s;
 }
 ```
+
 With this configuration, the shared memory zone `one` with the size of 10 megabytes is created.
 The zone keeps states of client IP addresses set with the [`$binary_remote_addr`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_binary_remote_addr) variable. Note that in comparison to [`$remote_addr`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_remote_addr) which also holds a client’s IP address, [`$binary_remote_addr`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_binary_remote_addr) holds the binary representation of IP address which is shorter.
 
@@ -103,6 +103,7 @@ http {
     }
 }
 ```
+
 With this configuration, NGINX will process no more than `1` request per second within the `/search/` location. Processing of these requests is delayed in such a way that the overall rate is not greater than specified. If the number of requests exceeds the specified rate, NGINX will delay processing of such requests until the "bucket" (shared memory zone `one`) is full. For requests that arrive at the full bucket, NGINX will respond with the `503 Service Unavailable` error (if not redefined with [limit_req_status](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_status)).
 
 
@@ -157,6 +158,7 @@ http {
     }
 }
 ```
+
 With this configuration, if request rate exceeds `1` request per second, requests beyond the rate will be put into the zone `one`. When the zone is full, excessive requests will be queued (`burst`), the size of this queue is `5` requests. Request processing in the queue is delayed in such a way that the overall rate is not greater than specified. Requests above the burst limit will be rejected with the `503` error.
 
 If delaying of request is not desired during traffic burst, add the `nodelay` parameter:
@@ -176,6 +178,7 @@ http {
     }
 }
 ```
+
 With this configuration, excessive requests within the `burst` limit will be served immediately regardless of the specified `rate`, requests above the burst limit will be rejected with the `503` error.
 
 
@@ -201,6 +204,7 @@ http {
     }
 }
 ```
+
 With this configuration, first 3 requests (`delay`) are passed without delay, next 2 requests (`burst` - `delay`) are delayed in such a way that the overall rate is not greater than specified, further excessive requests will be rejected because the total burst size has been exceeded, subsequent requests will be delayed.
 
 
@@ -208,9 +212,10 @@ With this configuration, first 3 requests (`delay`) are passed without delay, ne
 ### Synchronizing Contents of Many Shared Memory Zones
 
 If you have a computer cluster with several NGINX instances and these instances use the `limit_req` method, it is possible to sync the contents of their shared memory zones on conditions that:
- * the [zone_sync](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html#zone_sync) functionality is configured for each instance
- * shared memory zones set in the [limit_req_zone](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone) directive for each instance have the same name
- * the [sync](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone_sync) parameter of the [limit_req_zone](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone) directive is specified for each instance:
+
+- the [zone_sync](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html#zone_sync) functionality is configured for each instance
+- shared memory zones set in the [limit_req_zone](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone) directive for each instance have the same name
+- the [sync](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone_sync) parameter of the [limit_req_zone](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone) directive is specified for each instance:
 
 ```nginx
 http {
@@ -301,4 +306,4 @@ server {
 <span id="see_also"></span>
 ## See Also
 
- * [Rate Limiting with NGINX and NGINX Plus](https://www.nginx.com/blog/rate-limiting-nginx/)
+- [Rate Limiting with NGINX and NGINX Plus](https://www.nginx.com/blog/rate-limiting-nginx/)

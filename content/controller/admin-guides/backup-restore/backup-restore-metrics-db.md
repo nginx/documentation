@@ -1,24 +1,8 @@
 ---
-authors: []
-categories:
-- installation
-- platform management
-date: "2020-12-06T13:55:05-08:00"
 description: Learn how to back up and restore the NGINX Controller analytics database.
 docs: DOCS-250
 doctypes:
 - task
-draft: false
-journeys:
-- getting started
-- using
-- self service
-personas:
-- devops
-- netops
-- secops
-roles:
-- admin
 tags:
 - docs
 title: Back Up & Restore the Analytics Database

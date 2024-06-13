@@ -20,6 +20,7 @@ visible: true
 compound_payload: "false"
 modules:
 - platform
+- adm
 aggregations:
 - MIN
 - MAX
@@ -36,3 +37,11 @@ dimensions:
 - system.tags
 - upstream
 - upstream_zone
+- site
+- environment
+- app
+- component
+- environment_name
+- component_name
+- app_name
+- site_name

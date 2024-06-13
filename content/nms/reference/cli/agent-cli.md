@@ -1,14 +1,12 @@
 ---
-categories:
-- beta
-- reference
 description: Man page and instructions for using the NGINX Agent CLI
+docs: DOCS-814
 draft: true
 title: Agent CLI Reference
 toc: true
 weight: 300
-docs: "DOCS-814"
 ---
+
 <!-- vale off --> 
 <!-- remove the vale comment and this one before flipping draft status -->
 

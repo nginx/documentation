@@ -1,22 +1,9 @@
 ---
-authors: []
-categories:
-- installation
-date: "2020-10-21T14:43:55-07:00"
 description: This guide explains how to deploy NGINX Controller as a multi-node resilient
   cluster on a private cloud.
 docs: DOCS-258
 doctypes:
 - tutorial
-draft: false
-journeys:
-- getting started
-personas:
-- devops
-- netops
-- secops
-roles:
-- admin
 tags:
 - docs
 title: Deploy NGINX Controller as a Resilient Cluster on a Private Cloud

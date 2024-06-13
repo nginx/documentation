@@ -1,38 +1,73 @@
-To upgrade the NGINX Agent, take the following steps:
+---
+docs: DOCS-1034
+---
 
-1. Open an SSH connection to the server where you've installed the NGINX Agent and log in.
+### Upgrade NGINX Agent from version v2.31.0 or later
+
+{{< note >}} Starting from version v2.31.0, NGINX Agent will automatically restart itself during an upgrade. {{< /note >}}
+
+To upgrade NGINX Agent, follow these steps:
+
+1. Open an SSH connection to the server where you have installed NGINX Agent and log in.
 
 1. Make a backup copy of the following locations to ensure that you can successfully recover if the upgrade has issues:
 
-   - `/etc/nginx-agent`
-   - `config_dirs` values for any configuration specified in `/etc/nginx-agent/nginx-agent.conf`
+    - `/etc/nginx-agent`
+    - `config_dirs` values for any configuration specified in `/etc/nginx-agent/nginx-agent.conf`
 
-1. Stop the NGINX Agent:
+1. Install the updated version of NGINX Agent:
 
-   ```bash
-   sudo systemctl stop nginx-agent
-   ```
+    - CentOS, RHEL, RPM-Based
 
-1. Install the updated version of the NGINX Agent:
+        ```shell
+        sudo yum -y makecache
+        sudo yum update -y nginx-agent
+        ```
 
-   - CentOS, RHEL, RPM-Based
+    - Debian, Ubuntu, Deb-Based
 
-      ```bash
-      sudo yum -y makecache
-      sudo yum update -y nginx-agent
-      ```
+        ```shell
+        sudo apt-get update
+        sudo apt-get install -y --only-upgrade nginx-agent -o Dpkg::Options::="--force-confold"
+        ```
 
-   - Debian, Ubuntu, Deb-Based
 
-      ```bash
-      sudo apt-get update
-      sudo apt-get install -y --only-upgrade nginx-agent -o Dpkg::Options::="--force-confold" 
-      ```
 
-1. Start the NGINX Agent:
+### Upgrade NGINX Agent from versions older than v2.31.0
 
-   ```bash
-   sudo systemctl start nginx-agent
-   ```
-<!-- Do not remove. Keep this code at the bottom of the include -->
-<!-- DOCS-1034 -->
+To upgrade NGINX Agent, take the following steps:
+
+1. Open an SSH connection to the server where you have installed NGINX Agent and log in.
+
+1. Make a backup copy of the following locations to ensure that you can successfully recover if the upgrade has issues:
+
+    - `/etc/nginx-agent`
+    - `config_dirs` values for any configuration specified in `/etc/nginx-agent/nginx-agent.conf`
+
+1. Stop NGINX Agent:
+
+    ```shell
+    sudo systemctl stop nginx-agent
+    ```
+
+1. Install the updated version of NGINX Agent:
+
+    - CentOS, RHEL, RPM-Based
+
+        ```shell
+        sudo yum -y makecache
+        sudo yum update -y nginx-agent
+        ```
+
+    - Debian, Ubuntu, Deb-Based
+
+        ```shell
+        sudo apt-get update
+        sudo apt-get install -y --only-upgrade nginx-agent -o Dpkg::Options::="--force-confold"
+        ```
+
+1. Start NGINX Agent:
+
+    ```shell
+    sudo systemctl start nginx-agent
+    ```

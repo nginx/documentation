@@ -1,31 +1,30 @@
 ---
-title: "Manage WAF Security Policies and Security Log Profiles"
-date: 2022-12-15T21:43:51-07:00
-# Change draft status to false to publish doc.
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Learn how to use NGINX Management Suite Instance Manager to manage NGINX App Protect WAF security policies and security log profiles."
-# Assign weights in increments of 100
-weight: 200
+description: Learn how to use NGINX Management Suite Instance Manager to manage NGINX
+  App Protect WAF security policies and security log profiles.
+docs: DOCS-1105
+doctypes:
+- task
+tags:
+- docs
+title: Manage WAF Security Policies and Security Log Profiles
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1105"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: [ "security" ]
-doctypes: ["task"]
-
+weight: 200
 ---
-
-{{<custom-styles>}}
 
 ## Overview
 
-With the Instance Manager browser interface or REST API, you can easily manage, update, and deploy security policies, security log profiles, attack signatures, and threat campaigns to your NGINX App Protect WAF instances.
+NGINX Management Suite Instance Manager provides the ability to manage the configuration of NGINX App Protect WAF instances either by the user interface or the REST API. This includes editing, updating, and deploying security policies, log profiles, attack signatures, and threat campaigns to individual instances and/or instance groups.
+
+In Instance Manager v2.14.0 and later, you can compile a security policy, attack signatures, and threat campaigns into a security policy bundle. A security policy bundle consists of the security policy, the attack signatures, and threat campaigns for a particular version of NGINX App Protect WAF, and additional supporting files that make it possible for NGINX App Protect WAF to use the bundle. Because the security policy bundle is pre-compiled, the configuration gets applied faster than when you individually reference the security policy, attack signature, and threat campaign files.
+
+{{<note>}}
+The following capabilities are only available via the Instance Manager REST API:
+
+- Update security policies
+- Create, read, and update security policy bundles
+- Create, read, update, and delete Security Log Profiles
+- Publish security policies, security log profiles, attack signatures, and/or threat campaigns to instances and instance groups
+{{</note>}}
 
 ---
 
@@ -34,13 +33,19 @@ With the Instance Manager browser interface or REST API, you can easily manage, 
 Complete the following prerequisites before proceeding with this guide:
 
 - [Set Up App Protect WAF Configuration Management]({{< relref "setup-waf-config-management" >}})
-- Verify that your user account has the [necessary permissions]({{< relref "/nms/admin-guides/access-control/set-up-rbac.md" >}}) to access the Instance Manager REST API:
+- Verify that your user account has the [necessary permissions]({{< relref "/nms/admin-guides/rbac/rbac-getting-started.md" >}}) to access the Instance Manager REST API:
 
   - **Module**: Instance Manager
   - **Feature**: Instance Management
   - **Access**: `READ`
   - **Feature**: Security Policies
   - **Access**: `READ`, `CREATE`, `UPDATE`, `DELETE`
+
+The following are required to use support policy bundles:
+
+- You must have `UPDATE` permissions for the security policies specified in the request.
+- The correct `nms-nap-compiler` packages for the NGINX App Protect WAF version you're using are [installed on Instance Manager]({{< relref "nms/nim/how-to/app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}).
+- The attack signatures and threat campaigns that you want to use are [installed on Instance Manager]({{< relref "nms/nim/how-to/app-protect/setup-waf-config-management.md#set-up-attack-signatures-and-threat-campaigns" >}}).
 
 ### How to Access the Web Interface
 
@@ -51,7 +56,6 @@ Complete the following prerequisites before proceeding with this guide:
 {{< include "nim/how-to-access-nim-api.md" >}}
 
 ---
-
 
 ## Create a Security Policy {#create-security-policy}
 
@@ -86,20 +90,21 @@ To upload a new security policy, send an HTTP `POST` request to the Security Pol
 
 <br>
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                             |
 |--------|--------------------------------------|
 | POST   | `/api/platform/v1/security/policies` |
 
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 For example:
 
-``` shell
+```shell
 curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/policies \
-    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz" \
+    -H "Authorization: Bearer <access token>" \
     -d @ignore-xss-example.json
 ```
 
@@ -144,35 +149,33 @@ curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/policies \
 {{</tabs>}}
 
 ---
+
 ## Update a Security Policy
-
-{{<tabs name="update-security-policy">}}
-
-{{%tab name="API"%}}
 
 To update a security policy, send an HTTP `POST` request to the Security Policies API endpoint, `/api/platform/v1/security/policies`.
 
 You can use the optional `isNewRevision` parameter to indicate whether the updated policy is a new version of an existing policy.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                                |
 |--------|---------------------------------------------------------|
 | POST   | `/api/platform/v1/security/policies?isNewRevision=true` |
 | PUT    | `/api/platform/v1/security/policies/{system_id_string}` |
 
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 For example:
 
-``` shell
+```shell
 curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/policies?isNewRevision=true \
-    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz" \
+    -H "Authorization: Bearer <access token>" \
     -d @update-xss-policy.json
 ```
 
-You can update a specific policy by sending an HTTP `PUT` request to the Security Policies API endpoint that includes the policy's unique identifier (UID). 
+You can update a specific policy by sending an HTTP `PUT` request to the Security Policies API endpoint that includes the policy's unique identifier (UID).
 
 To find the UID, send an HTTP `GET` request to the Security Policies API endpoint. This returns a list of all Security Policies that contains the unique identifier for each policy.
 
@@ -180,17 +183,13 @@ Include the UID for the security policy in your `PUT` request to update the poli
 
 For example:
 
-``` shell
+```shell
 curl -X PUT https://{{NMS_FQDN}}/api/platform/v1/security/policies/23139e0a-4ac8-49f9-b7a0-0577b42c70c7 \
-    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz" \
+    -H "Authorization: Bearer <access token>" \
     --Content-Type application/json -d @update-xss-policy.json
 ```
 
 After you have pushed an updated security policy, you can [publish it](#publish-policy) to selected instances or instance groups.
-
-{{%/tab%}}
-
-{{</tabs>}}
 
 ---
 
@@ -214,19 +213,21 @@ To delete a security policy using the Instance Manager web interface:
 
 To delete a security policy, send an HTTP `DELETE` request to the Security Policies API endpoint that includes the unique identifier for the policy that you want to delete.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                                   |
 |--------|------------------------------------------------------------|
 | DELETE | `/api/platform/v1/security/policies/{security-policy-uid}` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 For example:
 
-``` shell
+```shell
 curl -X DELETE https://{{NMS_FQDN}}/api/platform/v1/security/policies/23139e0a-4ac8-49f9-b7a0-0577b42c70c7 \
-    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz
+    -H "Authorization: Bearer <access token>"
 ```
 
 {{%/tab%}}
@@ -237,11 +238,278 @@ curl -X DELETE https://{{NMS_FQDN}}/api/platform/v1/security/policies/23139e0a-4
 
 ---
 
+## Create Security Policy Bundles {#create-security-policy-bundles}
+
+To create security policy bundles, send an HTTP `POST` request to the Security Policies Bundles API endpoint. The specified security policies you'd like to compile into security policy bundles must already exist in Instance Manager.
+
+### Required Fields
+
+- `appProtectWAFVersion`: The version of NGINX App Protect WAF being used.
+- `policyName`: The name of security policy to include in the bundle. This must reference an existing security policy; refer to the [Create a Security Policy](#create-security-policy) section above for instructions.
+
+### Notes
+
+- If you do not specify a value for the `attackSignatureVersionDateTime` and/or `threatCampaignVersionDateTime` fields, the latest version of each will be used by default. You can also explicitly state that you want to use the most recent version by specifying the keyword `latest` as the value.
+- If the `policyUID` field is not defined, the latest version of the specified security policy will be used. This field **does not allow** use of the keyword `latest`.
+
+{{<bootstrap-table "table">}}
+
+| Method | Endpoint                             |
+|--------|--------------------------------------|
+| POST   | `/api/platform/v1/security/policies/bundles` |
+
+{{</bootstrap-table>}}
+
+For example:
+
+```shell
+curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/policies/bundles \
+    -H "Authorization: Bearer <access token>" \
+    -d @security-policy-bundles.json
+```
+
+<details open>
+<summary>JSON Request</summary>
+
+```json
+{
+  "bundles": [{
+      "appProtectWAFVersion": "4.457.0",
+      "policyName": "default-enforcement",
+      "policyUID": "29d86fe8-612a-5c69-895a-04fc5b9849a6",
+      "attackSignatureVersionDateTime": "2023.06.20",
+      "threatCampaignVersionDateTime": "2023.07.18"
+    },
+    {
+      "appProtectWAFVersion": "4.279.0",
+      "policyName": "default-enforcement",
+      "attackSignatureVersionDateTime": "latest",
+      "threatCampaignVersionDateTime": "latest"
+    },
+    {
+      "appProtectWAFVersion": "4.457.0",
+      "policyName": "ignore-xss"
+    }
+  ]
+}
+```
+
+</details>
+
+<details open>
+<summary>JSON Response</summary>
+
+```json
+{
+  "items": [{
+      "metadata": {
+        "created": "2023-10-04T23:19:58.502Z",
+        "modified": "2023-10-04T23:19:58.502Z",
+        "appProtectWAFVersion": "4.457.0",
+        "policyName": "default-enforcement",
+        "policyUID": "29d86fe8-612a-5c69-895a-04fc5b9849a6",
+        "attackSignatureVersionDateTime": "2023.06.20",
+        "threatCampaignVersionDateTime": "2023.07.18",
+        "uid": "dceb8254-9a90-4e77-87ac-73070f821412"
+      },
+      "content": "",
+      "compilationStatus": {
+        "status": "compiling",
+        "message": ""
+      }
+    },
+    {
+      "metadata": {
+        "created": "2023-10-04T23:19:58.502Z",
+        "modified": "2023-10-04T23:19:58.502Z",
+        "appProtectWAFVersion": "4.279.0",
+        "policyName": "defautl-enforcement",
+        "policyUID": "04fc5b9849a6-612a-5c69-895a-29d86fe8",
+        "attackSignatureVersionDateTime": "2023.08.10",
+        "threatCampaignVersionDateTime": "2023.08.09",
+        "uid": "trs35lv2-9a90-4e77-87ac-ythn4967"
+      },
+      "content": "",
+      "compilationStatus": {
+        "status": "compiling",
+        "message": ""
+      }
+    },
+    {
+      "metadata": {
+        "created": "2023-10-04T23:19:58.502Z",
+        "modified": "2023-10-04T23:19:58.502Z",
+        "appProtectWAFVersion": "4.457.0",
+        "policyName": "ignore-xss",
+        "policyUID": "849a604fc5b9-612a-5c69-895a-86f29de8",
+        "attackSignatureVersionDateTime": "2023.08.10",
+        "threatCampaignVersionDateTime": "2023.08.09",
+        "uid": "nbu844lz-9a90-4e77-87ac-zze8861d"
+      },
+      "content": "",
+      "compilationStatus": {
+        "status": "compiling",
+        "message": ""
+      }
+    }
+  ]
+}
+```
+
+
+---
+
+## List Security Policy Bundles {#list-security-policy-bundles}
+
+To list security policy bundles, send an HTTP `GET` request to the Security Policies Bundles API endpoint.
+
+{{<note>}}The list will only contain the security policy bundles that you have "READ" permissions for in Instance Manager.{{</note>}}
+
+You can filter the results by using the following query parameters:
+
+- `includeBundleContent`: Boolean indicating whether to include the security policy bundle content for each bundle when getting a list of bundles or not. If not provided, defaults to `false`. Please note that the content returned is `base64 encoded`.
+- `policyName`: String used to filter the list of security policy bundles; only security policy bundles that have the specified security policy name will be returned. If not provided, it will not filter based on `policyName`.
+- `policyUID`: String used to filter the list of security policy bundles; only security policy bundles that have the specified security policy UID will be returned. If not provided, it will not filter based on `policyUID`.
+- `startTime`: The security policy bundle's "modified time" has to be equal to or greater than this time value. If no value is supplied, it defaults to 24 hours from the current time. `startTime` has to be less than `endTime`.
+- `endTime`: Indicates the time that the security policy bundles modified time has to be less than. If no value is supplied, it defaults to current time. `endTime` has to be greater than `startTime`.
+
+<br>
+
+
+{{<bootstrap-table "table">}}
+
+| Method | Endpoint                             |
+|--------|--------------------------------------|
+| GET    | `/api/platform/v1/security/policies/bundles` |
+
+{{</bootstrap-table>}}
+
+
+For example:
+
+```shell
+curl -X GET https://{{NMS_FQDN}}/api/platform/v1/security/policies/bundles \
+    -H "Authorization: Bearer <access token>"
+```
+
+<details open>
+<summary>JSON Response</summary>
+
+```json
+{
+  "items": [{
+      "metadata": {
+        "created": "2023-10-04T23:19:58.502Z",
+        "modified": "2023-10-04T23:19:58.502Z",
+        "appProtectWAFVersion": "4.457.0",
+        "policyName": "default-enforcement",
+        "policyUID": "29d86fe8-612a-5c69-895a-04fc5b9849a6",
+        "attackSignatureVersionDateTime": "2023.06.20",
+        "threatCampaignVersionDateTime": "2023.07.18",
+        "uid": "dceb8254-9a90-4e77-87ac-73070f821412"
+      },
+      "content": "",
+      "compilationStatus": {
+        "status": "compiled",
+        "message": ""
+      }
+    },
+    {
+      "metadata": {
+        "created": "2023-10-04T23:19:58.502Z",
+        "modified": "2023-10-04T23:19:58.502Z",
+        "appProtectWAFVersion": "4.279.0",
+        "policyName": "defautl-enforcement",
+        "policyUID": "04fc5b9849a6-612a-5c69-895a-29d86fe8",
+        "attackSignatureVersionDateTime": "2023.08.10",
+        "threatCampaignVersionDateTime": "2023.08.09",
+        "uid": "trs35lv2-9a90-4e77-87ac-ythn4967"
+      },
+      "content": "",
+      "compilationStatus": {
+        "status": "compiled",
+        "message": ""
+      }
+    },
+    {
+      "metadata": {
+        "created": "2023-10-04T23:19:58.502Z",
+        "modified": "2023-10-04T23:19:58.502Z",
+        "appProtectWAFVersion": "4.457.0",
+        "policyName": "ignore-xss",
+        "policyUID": "849a604fc5b9-612a-5c69-895a-86f29de8",
+        "attackSignatureVersionDateTime": "2023.08.10",
+        "threatCampaignVersionDateTime": "2023.08.09",
+        "uid": "nbu844lz-9a90-4e77-87ac-zze8861d"
+      },
+      "content": "",
+      "compilationStatus": {
+        "status": "compiling",
+        "message": ""
+      }
+    }
+  ]
+}
+```
+
+---
+
+## Get a Security Policy Bundle {#get-security-policy-bundle}
+
+To get a specific security policy bundle, send an HTTP `GET` request to the Security Policies Bundles API endpoint that contains the security policy UID and security policy bundle UID in the path.
+
+{{<note>}}You must have "READ" permission for the security policy bundle to be able to retrieve information about a bundle by using the REST API.{{</note>}}
+
+<br>
+
+
+{{<bootstrap-table "table">}}
+
+| Method | Endpoint                             |
+|--------|--------------------------------------|
+| GET    | `/api/platform/v1/security/policies/{security-policy-uid}/bundles/{security-policy-bundle-uid}` |
+
+{{</bootstrap-table>}}
+
+
+For example:
+
+```shell
+curl -X GET https://{{NMS_FQDN}}/api/platform/v1/security/policies/29d86fe8-612a-5c69-895a-04fc5b9849a6/bundles/trs35lv2-9a90-4e77-87ac-ythn4967 \
+    -H "Authorization: Bearer <access token>"
+```
+
+The JSON response, shown in the example below, includes a `content` field that is base64 encoded. After you retrieve the information from the API, you will need to base64 decode the content field. You can include this in your API call, as shown in the following example cURL request:
+
+```bash
+curl -X GET "https://{NMS_FQDN}/api/platform/v1/security/policies/{security-policy-uid}/bundles/{security-policy-bundle-uid}" -H "Authorization: Bearer xxxxx.yyyyy.zzzzz" | jq -r '.content' | base64 -d > security-policy-bundle.tgz
+```
+
+<details open>
+<summary>JSON Response</summary>
+
+```json
+{
+  "metadata": {
+    "created": "2023-10-04T23:19:58.502Z",
+    "modified": "2023-10-04T23:19:58.502Z",
+    "appProtectWAFVersion": "4.457.0",
+    "policyUID": "29d86fe8-612a-5c69-895a-04fc5b9849a6",
+    "attackSignatureVersionDateTime": "2023.08.10",
+    "threatCampaignVersionDateTime": "2023.08.09",
+    "uid": "trs35lv2-9a90-4e77-87ac-ythn4967"
+  },
+  "content": "ZXZlbnRzIHt9Cmh0dHAgeyAgCiAgICBzZXJ2ZXIgeyAgCiAgICAgICAgbGlzdGVuIDgwOyAgCiAgICAgICAgc2VydmVyX25hbWUgXzsKCiAgICAgICAgcmV0dXJuIDIwMCAiSGVsbG8iOyAgCiAgICB9ICAKfQ==",
+  "compilationStatus": {
+    "status": "compiled",
+    "message": ""
+  }
+}
+```
+
+---
+
 ## Create a Security Log Profile {#create-security-log-profile}
-
-{{<tabs name="create-security-log-profile">}}
-
-{{%tab name="API"%}}
 
 Send an HTTP `POST` request to the Security Log Profiles API endpoint to upload a new security log profile.
 
@@ -249,20 +517,21 @@ Send an HTTP `POST` request to the Security Log Profiles API endpoint to upload 
 
 <br>
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                             |
 |--------|--------------------------------------|
 | POST   | `/api/platform/v1/security/logprofiles` |
 
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 For example:
 
-``` shell
+```shell
 curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/logprofiles \
-    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz" \
+    -H "Authorization: Bearer <access token>" \
     -d @default-log-example.json
 ```
 
@@ -299,108 +568,89 @@ curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/logprofiles \
 }
 ```
 
-{{%/tab%}}
-
-{{</tabs>}}
-
 ---
+
 ## Update a Security Log Profile
-
-{{<tabs name="update-security-log-profile">}}
-
-{{%tab name="API"%}}
 
 To update a security log profile, send an HTTP `POST` request to the Security Log Profiles API endpoint, `/api/platform/v1/security/logprofiles`.
 
 You can use the optional `isNewRevision` parameter to indicate whether the updated log profile is a new version of an existing log profile.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                                |
 |--------|---------------------------------------------------------|
 | POST   | `/api/platform/v1/security/logprofiles?isNewRevision=true` |
 | PUT    | `/api/platform/v1/security/logprofiles/{security-log-profile-uid}` |
 
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 For example:
 
-``` shell
+```shell
 curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/logprofiles?isNewRevision=true \
-    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz" \
+    -H "Authorization: Bearer <access token>" \
     -d @update-default-log.json
 ```
 
-You can update a specific log profile by sending an HTTP `PUT` request to the Security Log Profiles API endpoint that includes the log profile's unique identifier (UID). 
+You can update a specific log profile by sending an HTTP `PUT` request to the Security Log Profiles API endpoint that includes the log profile's unique identifier (UID).
 
 To find the UID, send an HTTP `GET` request to the Security Log Profiles API endpoint. This returns a list of all Security Log Profiles that contains the unique identifier for each log profile.
 
-Include the UID for the security log profile in your `PUT` request to update the log profile. 
+Include the UID for the security log profile in your `PUT` request to update the log profile.
 
 For example:
 
-``` shell
+```shell
 curl -X PUT https://{{NMS_FQDN}}/api/platform/v1/security/logprofiles/23139e0a-4ac8-49f9-b7a0-0577b42c70c7 \
-    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz" \
+    -H "Authorization: Bearer <access token>" \
     --Content-Type application/json -d @update-default-log.json
 ```
 
 After you have pushed an updated security log profile, you can [publish it](#publish-policy) to selected instances or instance groups.
 
-{{%/tab%}}
-
-{{</tabs>}}
-
 ---
 
 ## Delete a Security Log Profile
 
-{{<tabs name="delete-security-log-profile">}}
-
-{{%tab name="API"%}}
-
 To delete a security log profile, send an HTTP `DELETE` request to the Security Log Profiles API endpoint that includes the unique identifier for the log profile that you want to delete.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                                   |
 |--------|------------------------------------------------------------|
 | DELETE | `/api/platform/v1/security/logprofiles/{security-log-profile-uid}` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 For example:
 
-``` shell
+```shell
 curl -X DELETE https://{{NMS_FQDN}}/api/platform/v1/security/logprofiles/23139e0a-4ac8-49f9-b7a0-0577b42c70c7 \
-    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz
+    -H "Authorization: Bearer <access token>"
 ```
-
-{{%/tab%}}
-
-{{</tabs>}}
 
 ---
 
 ## Publish Updates to Instances {#publish-policy}
 
-{{<tabs name="publish-policy-updates">}}
-
-{{%tab name="API"%}}
-
 The Publish API lets you distribute security policies, security log profiles, attack signatures, and/or threat campaigns to instances and instance groups.
 
 {{<tip>}}Use this endpoint *after* you've added or updated security policies, security log profiles, attack signatures, and/or threat campaigns.{{</tip>}}
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                            |
 |--------|-------------------------------------|
 | POST   | `/api/platform/v1/security/publish` |
 
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 When making a request to the Publish API, make sure to include all the necessary information for your specific use case:
 
@@ -412,8 +662,8 @@ When making a request to the Publish API, make sure to include all the necessary
 
 For example:
 
-``` shell
-curl -X PUT https://{{NMS_FQDN}}/api/platform/v1/security/publish -H "Authorization: Bearer xxxxx.yyyyy.zzzzz"
+```shell
+curl -X PUT https://{{NMS_FQDN}}/api/platform/v1/security/publish -H "Authorization: Bearer <access token>"
 ```
 
 <details open>
@@ -471,10 +721,6 @@ curl -X PUT https://{{NMS_FQDN}}/api/platform/v1/security/publish -H "Authorizat
 
 </details>
 
-{{%/tab%}}
-
-{{</tabs>}}
-
 ---
 
 ## Check Security Policy and Security Log Profile Publication Status
@@ -493,8 +739,8 @@ You can locate the configuration publication status in the response within the f
 
 The example below shows a call to the `security deployments associations` endpoint and the corresponding JSON response containing successful deployments.
 
-``` shell
-curl -X GET "https://{NGINX-INSTANCE-MANAGER-FQDN}/api/platform/v1/security/deployments/associations/ignore-xss" -H "Authorization: Bearer xxxxx.yyyyy.zzzzz"
+```shell
+curl -X GET "https://{NGINX-INSTANCE-MANAGER-FQDN}/api/platform/v1/security/deployments/associations/ignore-xss" -H "Authorization: Bearer <access token>"
 ```
 
 <details close>
@@ -603,8 +849,8 @@ You can locate the configuration publication status in the response within the f
 
 The example below shows a call to the `security deployments associations` endpoint and the corresponding JSON response containing successful deployments.
 
-``` shell
-curl -X GET "https://{NGINX-INSTANCE-MANAGER-FQDN}/api/platform/v1/security/deployments/logprofiles/associations/default-log" -H "Authorization: Bearer xxxxx.yyyyy.zzzzz"
+```shell
+curl -X GET "https://{NGINX-INSTANCE-MANAGER-FQDN}/api/platform/v1/security/deployments/logprofiles/associations/default-log" -H "Authorization: Bearer <access token>"
 ```
 
 <details close>
@@ -695,8 +941,8 @@ You can locate the configuration publication status in the the response within t
 
 The example below shows a call to the `instances` endpoint and the corresponding JSON response containing a compiler related error message.
 
-``` shell
-curl -X GET "https://{NGINX-INSTANCE-MANAGER-FQDN}/api/platform/v1/systems/b9df6377-2c4f-3266-a64a-e064b0371c73/instances/5663cf4e-a0c7-50c8-b93c-16fd11a0f00b" -H "Authorization: Bearer xxxxx.yyyyy.zzzzz"
+```shell
+curl -X GET "https://{NGINX-INSTANCE-MANAGER-FQDN}/api/platform/v1/systems/b9df6377-2c4f-3266-a64a-e064b0371c73/instances/5663cf4e-a0c7-50c8-b93c-16fd11a0f00b" -H "Authorization: Bearer <access token>"
 ```
 
 <details close>
@@ -801,9 +1047,9 @@ You can locate the configuration publication status in the the response within t
 
 The example below shows a call to the `deployments` endpoint and the corresponding JSON response containing a compiler error message.
 
-``` shell
+```shell
 curl -X GET --url "https://{NGINX-INSTANCE-MANAGER-FQDN}/api/platform/v1/systems/instances/deployments/d38a8e5d-2312-4046-a60f-a30a4aea1fbb" \
-    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz"
+    -H "Authorization: Bearer <access token>"
 ```
 
 <details open>

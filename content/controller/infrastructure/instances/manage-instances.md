@@ -1,19 +1,8 @@
 ---
-authors: []
-categories:
-- infrastructure
-date: "2020-10-26T15:32:41-06:00"
-description: Use the Instance Overview page to view and manage your NGINX Instances
+description: Use the Instance Overview page to view and manage your NGINX Instances.
 docs: DOCS-777
 doctypes:
 - tutorial
-draft: false
-journeys:
-- using
-personas:
-- devops
-roles:
-- admin
 tags:
 - docs
 title: Manage Your NGINX Instances
@@ -193,7 +182,7 @@ To edit or delete an instance group, take the following steps:
 
 To add an existing instance to an instance group, take the following steps:
 
-1. Make sure that no [gateways]({{< relref "/controller/services/manage-gateways.md" >}}) are using the instance as a placement. Instances that are referenced by a gateway cannot be added to an instance group. 
+1. Make sure that no [gateways]({{< relref "/controller/services/manage-gateways.md" >}}) are using the instance as a placement. Instances that are referenced by a gateway cannot be added to an instance group.
 1. [Delete the instance]({{< relref "/controller/infrastructure/instances/manage-instances.md#delete-an-instance" >}}).
 1. [Add the instance]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent.md#install-the-nginx-controller-agent" >}}) back to NGINX Controller. Run the agent install script ([Step 11]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent.md#install-the-nginx-controller-agent" >}})).
 

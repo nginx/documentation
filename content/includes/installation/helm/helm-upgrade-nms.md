@@ -1,3 +1,7 @@
+---
+docs: DOCS-1322
+---
+
 Run the following command to upgrade the NGINX Management Suite deployment:
 
 - Replace `<path-to-your-values.yaml>` with the path to the [values.yaml file you created]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md#configure-chart" >}}).

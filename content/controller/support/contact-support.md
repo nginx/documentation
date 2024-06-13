@@ -1,43 +1,15 @@
 ---
-authors: []
-categories:
-- installation
-- infrastructure
-- platform management
-- services
-- api management
-- service mesh
-- security
-- analytics
-date: "2020-10-26T15:32:41-06:00"
-description: Contact information and knowledge resources for NGINX Support
+description: Contact information and knowledge resources for NGINX Support.
 docs: DOCS-375
 doctypes:
 - reference
 - troubleshooting
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- renewing
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 tags:
 - docs
 title: Where to Go for Support
 toc: true
 weight: 10
 ---
-
-
 
 ## Contact NGINX Support
 

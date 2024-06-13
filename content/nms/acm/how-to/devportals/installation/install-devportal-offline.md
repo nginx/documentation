@@ -1,29 +1,15 @@
 ---
-categories:
-- installation
-date: "2023-05-03T12:00:00-07:00"
-description: "Complete the steps in this guide to install the Developer Portal directly from package files in environments without Internet access."
+description: Complete the steps in this guide to install the Developer Portal directly
+  from package files in environments without Internet access.
+docs: DOCS-1215
 doctypes:
 - tutorial
-draft: false
-journeys:
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
 tags:
 - docs
-title: "Install the Developer Portal in an Offline Environment"
+title: Install the Developer Portal in an Offline Environment
 toc: true
-versions: []
 weight: 30
-docs: "DOCS-1215"
 ---
-
-{{< custom-styles >}}
 
 {{< dev-portal-dedicated-host >}}
 
@@ -43,7 +29,7 @@ To install NGINX Plus and njs, take the following steps on the Developer Portal 
 1. Log in to MyF5 and download your `nginx-repo.crt` and `nginx-repo.key` files.
 2. Copy the `nginx-repo.crt` and `nginx-repo.key` files to the `/etc/ssl/nginx/` directory:
 
-    ```bash 
+    ```bash
     sudo cp nginx-repo.crt /etc/ssl/nginx/
     sudo cp nginx-repo.key /etc/ssl/nginx/
     ```
@@ -62,12 +48,13 @@ To install NGINX Plus and njs, take the following steps on the Developer Portal 
 
     - `ubuntu18.04`
     - `ubuntu20.04`
+    - `ubuntu22.04`
     - `debian10`
     - `debian11`
     - `centos7`
-    - `centos8`
     - `rhel7`
     - `rhel8`
+    - `rhel9`
     - `amzn2`
 
     For example, to download external dependencies for Ubuntu 20.04:
@@ -113,7 +100,7 @@ sudo dpkg -i ./*.deb
 2. Install the NGINX Developer Portal packages:
 
    ```bash
-   sudo yum -y --nogpgcheck install /home/user/nginx-devportal-<version>.x86_64.rpm 
+   sudo yum -y --nogpgcheck install /home/user/nginx-devportal-<version>.x86_64.rpm
    sudo yum -y --nogpgcheck install /home/user/nginx-devportal-ui-<version>.x86_64.rpm
    ```
 
@@ -125,7 +112,7 @@ sudo dpkg -i ./*.deb
 2. Install the NGINX Developer Portal package:
 
    ```bash
-   sudo apt-get -y install -f /home/user/nginx-devportal_<version>_amd64.deb 
+   sudo apt-get -y install -f /home/user/nginx-devportal_<version>_amd64.deb
    sudo apt-get -y install -f /home/user/nginx-devportal-ui_<version>_amd64.deb
    ```
 
@@ -139,7 +126,7 @@ sudo dpkg -i ./*.deb
    ```
 
 4. Start the Developer Portal service:
-  
+
    ```bash
    sudo systemctl restart nginx-devportal.service
    ```
@@ -173,7 +160,7 @@ To upgrade the Developer Portal in an offline environment, take the following st
    sudo apt-get -y install -f /home/user/nginx-devportal_<version>_amd64.deb
    sudo apt-get -y install -f /home/user/nginx-devportal-ui_<version>_amd64.deb
    ```
-   
+
 {{%/tab%}}
 {{</tabs>}}
 
@@ -184,7 +171,7 @@ To upgrade the Developer Portal in an offline environment, take the following st
    ```
 
 4. Restart the Developer Portal service:
-  
+
    ```bash
    sudo systemctl restart nginx-devportal.service
    ```

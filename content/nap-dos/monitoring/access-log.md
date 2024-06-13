@@ -1,36 +1,10 @@
 ---
-authors: []
-categories:
-- access log
-date: "2021-04-14T13:32:41+00:00"
 description: Learn about the NGINX App Protect DoS Request Log Mechanism.
 docs: DOCS-668
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: monitoring
-    weight: 45
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect DoS Access Log Request Mechanism
 toc: true
-version:
-- "2.3"
-versions:
-- "4.1"
 weight: 160
 ---
 
@@ -49,17 +23,19 @@ For example: `access_log /var/log/nginx/access.log log_dos`; (`log_dos` is prede
 These are the variables added to Access Log. They are a subset of the Security log attributes. The Security log names are prefixed with `$app_protect_dos`.
 
 {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
-|Name|Meaning|Comment|
-|--- |------ |------ |
-|`$app_protect_dos_outcome`|One of: <br> **Allow**: request was sent to origin server <br> **Redirect**: http redirection <br> **Challenge**: JS challenge <br> **Block**: blocked request||
-|`$app_protect_dos_outcome reason`|One of: <br> **Allow**: not mitigated request, passed DoS flow successfully <br> **Bypass**: not mitigated request due to internal failure <br> **Bad_Actor:**: mitigated as bad actor <br> **Signature**: mitigated as matched DoS attack signature <br> **Global_Rate**: mitigated as acceded calculated global requests rate <br> **Slow_Body**: mitigated slow request|Combine `MITIGATED_BY_GLOBAL_RATE` with global rate value (in RPS) for example `Global_Rate, value=152,`  |
-|`$app_protect_dos_tls_fp`|TLS Fingerprint - a value which identifies the sender|Applicable only in TLS (SSL) traffic|
-|`$app_protect_dos_policy_name`|The name of the policy that enforced the request||
-|`$app_protect_dos_vs_name`|The name of the protected object||
-|`$app_protect_dos_version`|The App Protect DoS version string: <br> major.minor.build format.|Does not include the NGINX plus version (e.g. R21). The latter is available in `$version` variable.|
+
+|Name| Meaning                                                                                                                                                                                                                                                                                                                                                                                                                                              |Comment|
+|--- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------ |
+|`$app_protect_dos_outcome`| One of: <br> **Allow**: request was sent to origin server <br> **Redirect**: http redirection <br> **Challenge**: JS challenge <br> **Block**: blocked request                                                                                                                                                                                                                                                                                       ||
+|`$app_protect_dos_outcome reason`| One of: <br> **Allow**: Request not mitigated, passed DoS flow successfully. <br> **Allowlist**: Request not mitigated because it is on the allowlist. <br> **Bypass**: Request not mitigated due to internal failure. <br> **Bad_Actor:**: Request mitigated as a bad actor. <br> **Signature**: Request mitigated as a matched DoS attack signature. <br> **Global_Rate**: Request mitigated as exceeding the calculated global request rate. <br> **Slow_Body**: Request mitigated due to being a slow request. |Combine `MITIGATED_BY_GLOBAL_RATE` with global rate value (in RPS) for example `Global_Rate, value=152,`  |
+|`$app_protect_dos_tls_fp`| TLS Fingerprint - a value which identifies the sender                                                                                                                                                                                                                                                                                                                                                                                                |Applicable only in TLS (SSL) traffic|
+|`$app_protect_dos_policy_name`| The name of the policy that enforced the request                                                                                                                                                                                                                                                                                                                                                                                                     ||
+|`$app_protect_dos_vs_name`| The name of the protected object                                                                                                                                                                                                                                                                                                                                                                                                                     ||
+|`$app_protect_dos_version`| The App Protect DoS version string: <br> major.minor.build format.                                                                                                                                                                                                                                                                                                                                                                                   |Does not include the NGINX plus version (e.g. R21). The latter is available in `$version` variable.|
+
 {{</bootstrap-table>}}
 
-   {{< note >}} 
+   {{< note >}}
 Many of the other Security log attributes that are not included here have exact or similar parallels among the NGINX variables also available for access log. For example, `$request` is parallel to the `request` security log attribute. See the full list of [NGINX variables](https://nginx.org/en/docs/http/ngx_http_log_module.html).
    {{< /note >}}
 

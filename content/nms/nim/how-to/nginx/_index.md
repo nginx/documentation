@@ -1,5 +1,5 @@
 ---
-title: Manage NGINX Configurations
-weight: 100
-url: /nginx-management-suite/nim/how-to/nginx/
+title: NGINX Configs and Config Templates
+weight: 1
+url: /nginx-management-suite/nim/nginx/
 ---

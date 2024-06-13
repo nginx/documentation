@@ -1,22 +1,8 @@
 ---
-authors: []
-categories:
-- analytics
-date: "2020-10-26T15:32:41-06:00"
-description: How to forward Analytics data to Splunk
+description: How to forward Analytics data to Splunk.
 docs: DOCS-533
 doctypes:
 - tutorial
-draft: false
-journeys:
-- using
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
 tags:
 - docs
 title: Forward Analytics Data to Splunk
@@ -50,13 +36,13 @@ Take the following steps to create a Forwarder for Splunk:
 1. In the **Source** list, select the type of data to forward: `metrics` or `events`.
 1. In the **Output Format** list, select `SPLUNK`.
 1. The **Selector** field consists of the following query parameters (optional):
-    
+
    - `names` (inapplicable for `EVENTS`): The list of metrics names that you want to forward.
    - `excluded_names` (inapplicable for `EVENTS`): The list of metric names that you don't want to forward.
    - `filter`: The conditions to use to refine the metrics or events data.
    - Example usage when selecting metrics: `"names=nginx.*&excluded_names=nginx.upstream.*filter=app='myapp'"`
    - Example usage when selecting events: `"filter=type='security violation' AND app='my-app'"`
-  
+
 1. (Optional) Add additional **Streams** as required using the **Add Stream** button.
 
 {{< important >}}

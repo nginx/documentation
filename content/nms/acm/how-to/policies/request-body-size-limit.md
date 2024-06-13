@@ -1,30 +1,15 @@
 ---
-title: "Request Body Size Limit"
-date: 2023-02-06T12:00:00-07:00
-# Change draft status to false to publish doc
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Learn how to configure the Request Policy Size Limit policy to prevent Denial of Service (DoS) and other types of attacks."
-# Assign weights in increments of 100
-weight: 1200
+description: Learn how to configure the Request Policy Size Limit policy to prevent
+  Denial of Service (DoS) and other types of attacks.
+docs: DOCS-1122
+doctypes:
+- task
+tags:
+- docs
+title: Request Body Size Limit
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1122"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "api management", "security"]
-doctypes: ["task"]
-journeys: ["using"]
-personas: ["Platform Ops", "Infra Admins"]
-versions: []
-authors: []
+weight: 1200
 ---
-
-{{<custom-styles>}}
 
 ## Overview
 
@@ -36,7 +21,7 @@ authors: []
 
 The *Request Body Size Limit* policy, which by default is set to 1 MB, is applied to all API gateway proxy requests. If the request exceeds this limit, it will be blocked and an error code will be returned. You can adjust the limit to meet your requirements, or you can disable the policy completely by setting the max size to 0.
 
-#### Intended Audience
+### Intended Audience
 
 {{< include "acm/how-to/policies/infra-admin-persona.md">}}
 
@@ -54,15 +39,16 @@ To apply the policy or make changes to it, here's what you need to do:
 
 ## Policy Settings
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field        | Type | Possible&nbsp;Values       | Description                                                                                                                | Required | Default             |
 |--------------|----------|-----------------------|----------------------------------------------------------------------------------------------------------------------------|----------|---------------------|
 | `size`       | string   | Example:<br>`1M` or `1K` | <p>Sets the maximum body size for client requests.</p><p>Megabytes, `M`, and Kilobytes, `K`, are the accepted units.</p>                  | No       | `1M`  |
 | `returnCode` | integer  | In range:<br>`400-599`    | <p>The error code that is returned to the client when the size of a request exceeds the configured value.</p><p>The default error code is `413: Request Entity Too Large`.</p> | No       | `413` |
 
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ---
 
@@ -80,13 +66,15 @@ You can apply this policy using either the web interface or the REST API.
 
 To add the Request Body Size Limit policy using the REST API, send an HTTP `POST` request to the Environments endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Method | Endpoint                                                                            |
 |--------|-------------------------------------------------------------------------------------|
 | `POST` | `/infrastructure/workspaces/{workspace}/environments/{environment}` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <details open>
 <summary>JSON request</summary>

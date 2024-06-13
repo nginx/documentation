@@ -4,7 +4,7 @@ MD002: false
 
 MD003: false
 
-MD004: 
+MD004:
   style: dash
 
 MD009: false
@@ -14,7 +14,7 @@ MD010: false
 MD012: false
 
 MD013:
-  line_length: 300
+  line_length: 5000
   heading_line_length: 60
   code_block_line_length: 80
   code_blocks: true
@@ -26,11 +26,17 @@ MD013:
 
 MD022: false
 
-MD024: 
+MD024:
   siblings_only: true
 
+MD029: false
+
 MD033: false
+
+MD034: false
 
 MD041: false
 
 MD046: false
+
+MD051: false

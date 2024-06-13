@@ -23,7 +23,7 @@ Some commands require `root` privilege. If appropriate for your environment, pre
 
 The steps in this section configure an NGINX Open Source instance as a web server to return a page like the following, which specifies the server name, address, and other information. The page is defined in the <span style="white-space: nowrap; font-weight:bold;">demo-index.html</span> configuration file you create in Step 4 below.
 
-   <a href="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-app1.png"><img src="https://www.nginx.com/wp-content/uploads/2017/11/aws-nlb-app1.png" alt="" width="1024" height="491" class="aligncenter size-full wp-image-54839" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+   <a href="/nginx/images/aws-nlb-app1.png"><img src="/nginx/images/aws-nlb-app1.png" alt="" width="1024" height="491" class="aligncenter size-full wp-image-54839" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 If you are using these instructions to satisfy the prerequisites for one of our deployment guides, the Appendix in the guide specifies the name of each NGINX Open Source instance and whether to configure **App 1** or **App 2**.
 
@@ -31,23 +31,23 @@ If you are using these instructions to satisfy the prerequisites for one of our 
 
 1. Open a connection to the NGINX Open Source instance and change the directory to **/**etc/nginx/conf.d**:
 
-   ```none
-   $ cd /etc/nginx/conf.d
+   ```shell
+   cd /etc/nginx/conf.d
    ```
-   
+
 2. Rename **default.conf** to **default.conf.bak** so that NGINX Plus does not use it.
 
-   ```none
-   $ mv default.conf default.conf.bak
+   ```shell
+   mv default.conf default.conf.bak
    ```
 
-3. Create a new file called **app.conf** with the following contents.  
+3. Create a new file called **app.conf** with the following contents.
 
    ```nginx
    server {
        listen 80 default_server;
        server_name app_server;
-       
+
        root /usr/share/nginx/html;
        error_log /var/log/nginx/app-server-error.log notice;
        index demo-index.html index.html;
@@ -68,19 +68,19 @@ If you are using these instructions to satisfy the prerequisites for one of our 
    	```
 
    Directive documentation: [error_log](http://nginx.org/en/docs/ngx_core_module.html#error_log), [expires](http://nginx.org/en/docs/http/ngx_http_headers_module.html#expires), [index](http://nginx.org/en/docs/http/ngx_http_index_module.html#index), [listen](http://nginx.org/en/docs/http/ngx_http_core_module.html#listen), [root](http://nginx.org/en/docs/http/ngx_http_core_module.html#root), [server](http://nginx.org/en/docs/http/ngx_http_core_module.html#server), [server_name](http://nginx.org/en/docs/http/ngx_http_core_module.html#server_name), [sub_filter](http://nginx.org/en/docs/http/ngx_http_sub_module.html#sub_filter)
-   
+
 4. Include the following directive in the top‑level ("main") context in **/etc/nginx/nginx.conf**, if it does not already appear there.
 
    ```nginx
    include conf.d/*.conf;
    ```
-    
+
    Directive documentation: [include](http://nginx.org/en/docs/ngx_core_module.html#include)
-   
-5. In the **/usr/share/nginx/html** directory, create a new file called **demo-index.html** with the following contents, which define the default web page that appears when users access the instance. 
+
+5. In the **/usr/share/nginx/html** directory, create a new file called **demo-index.html** with the following contents, which define the default web page that appears when users access the instance.
 
    In the `<title>` tag, replace the comment with `1` or `2` depending on whether the instance is serving **App 1** or **App 2**.
-      
+
    ```html
    <!DOCTYPE html>
    <html>
@@ -186,11 +186,11 @@ If you are using these instructions to satisfy the prerequisites for one of our 
        </body>
    </html>
    ```
-   
+
 <span id="nginx-plus"></span>
 ## Configuring NGINX Plus for Load Balancing
 
-The steps in this section configure an NGINX Plus instance to load balance requests across the group of NGINX Open Source web servers you configured in the [previous section](#nginx-oss). 
+The steps in this section configure an NGINX Plus instance to load balance requests across the group of NGINX Open Source web servers you configured in the [previous section](#nginx-oss).
 
 If you are using these instructions to satisfy the prerequisites for one of our deployment guides, the Appendix in the guide specifies the names of the NGINX Plus instances used in it.
 
@@ -198,20 +198,20 @@ Repeat these instructions on each instance. Alternatively, you can configure one
 
 1. Open a connection to the NGINX Plus instance and change the directory to **/**etc/nginx/conf.d**:
 
-   ```none
-   $ cd /etc/nginx/conf.d
+   ```shell
+   cd /etc/nginx/conf.d
    ```
 
 2. Rename **default.conf** to **default.conf.bak** so that NGINX Plus does not use it.
 
-   ```none
-   $ mv default.conf default.conf.bak
+   ```shell
+   mv default.conf default.conf.bak
    ```
 
-3. Create a new file called **lb.conf** with the following contents.  
+3. Create a new file called **lb.conf** with the following contents.
 
    **Note:** In the `upstream` blocks, include a [server](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) directive for each NGINX Open Source instance that serves the relevant application.
-   
+
    ```nginx
    # in the 'http' context
    upstream app1 {
@@ -232,7 +232,7 @@ Repeat these instructions on each instance. Alternatively, you can configure one
        root /usr/share/nginx/html;
 
        location / {
-           # directives for serving the site's HTML landing page 
+           # directives for serving the site's HTML landing page
        }
 
        location /application1 {
@@ -251,7 +251,7 @@ Repeat these instructions on each instance. Alternatively, you can configure one
            api write=on;
            # directives to control access, such as 'allow' and 'deny'
        }
-       
+
        location = /dashboard.html {
            root /usr/share/nginx/html;
        }
@@ -261,6 +261,7 @@ Repeat these instructions on each instance. Alternatively, you can configure one
        }
    }
    ```
+
     Directive documentation: [api](https://nginx.org/en/docs/http/ngx_http_api_module.html#api), [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen), [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location), [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass), [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header), [return](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#return), [root](https://nginx.org/en/docs/http/ngx_http_core_module.html#root), [server](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) (upstream),[server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) (virtual), [server_name](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name), [status_zone](https://nginx.org/en/docs/http/ngx_http_status_module.html#status_zone), [upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream), [zone](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone)
 
 4. Include the following directive in the top‑level ("main") context in **/etc/nginx/nginx.conf**, if it does not already appear there.
@@ -268,10 +269,10 @@ Repeat these instructions on each instance. Alternatively, you can configure one
    ```nginx
    include conf.d/*.conf;
    ```
-    
+
    Directive documentation: [include](http://nginx.org/en/docs/ngx_core_module.html#include)
-   
+
 ### Revision History
 
-* Version 2 (April 2019) – Generalized instructions for use with deployment guides
-* Version 1 (April 2018) – Initial version
+- Version 2 (April 2019) – Generalized instructions for use with deployment guides
+- Version 1 (April 2018) – Initial version

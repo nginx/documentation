@@ -1,20 +1,9 @@
 ---
-authors: []
-categories:
-- services
-date: "2020-10-26T15:32:41-06:00"
 description: Learn about the common tasks and resources that are required to deploy
   and manage Services using NGINX Controller.
 docs: DOCS-374
 doctypes:
 - tutorial
-journeys:
-- using
-personas:
-- devops
-- secops
-roles:
-- admin
 tags:
 - docs
 title: Set Up NGINX Controller Services

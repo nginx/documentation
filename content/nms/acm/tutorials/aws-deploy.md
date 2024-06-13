@@ -1,10 +1,12 @@
 ---
-title: "Amazon Web Services Deployment Guide"
-description: "Learn how to set up the base infrastructure required to deploy NGINX Management Suite API Connectivity Manager in Amazon Web Services (AWS)."
-weight: 300
+description: Learn how to set up the base infrastructure required to deploy NGINX
+  Management Suite API Connectivity Manager in Amazon Web Services (AWS).
+docs: DOCS-896
+tags:
+- docs
+title: Amazon Web Services Deployment Guide
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-896"
+weight: 300
 ---
 
 {{< shortversions "1.1.0" "latest" "acmvers" >}}
@@ -12,7 +14,7 @@ docs: "DOCS-896"
 ## Overview
 
 This guide walks you through the steps needed to set up the necessary infrastructure in Amazon Web Services (AWS) for a proof of concept environment for API Connectivity Manager. The options presented in this guide for creating AWS Instances keep cost in mind and prefer the minimum requirements for running a fully functional API Connectivity Manager environment.
-Keep in mind that production environments may require larger instance sizes and incur greater costs. 
+Keep in mind that production environments may require larger instance sizes and incur greater costs.
 
 ### Before You Begin
 
@@ -25,11 +27,13 @@ Keep in mind that production environments may require larger instance sizes and 
 The AWS instance types and storage capacity used in this guide are based on the [NGINX Management Suite Technical Specs]({{< relref "/nms/tech-specs#system-sizing" >}}).
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Hosts                           | AWS Instance Type | AWS Storage  |
 |---------------------------------|-------------------|--------------|
 | NGINX Management Suite Host     | t3.medium         |     100GB    |
 | Data Plane Host                 | t2.micro          |     10GB     |
 | Developer Portal Host           | t2.micro          |     10GB     |
+
 {{</bootstrap-table>}}
 Table 1.1 Host Sizing
 
@@ -114,10 +118,12 @@ At this point, the VPC created above is available when creating EC2 Instances.
 
 Before creating the EC2 instances, create your **Key Pair** and **Security Groups** if they do not already exist. The reason why they are required is described below.
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | AWS Object           | Reason                                                                                     |
 |----------------------|--------------------------------------------------------------------------------------------|
 | Key Pair             | This is used to allow SSH connections in to EC2 Instances.                                 |
 | Security Groups      | The security group needs to enable HTTP/S traffic and allow SSH traffic from your IP.      |
+
 {{</bootstrap-table>}}
 Table 1.2 Key Pair and Security Groups Reasoning
 
@@ -128,10 +134,10 @@ Take the steps below to create a **Key Pair**.
 1. Go to the **EC2** Service.
 1. On the left menu, select **Network & Security > Key Pairs**.
 1. You can either create a new Key Pair or import your own.
-    * To create a new Key Pair:
+    - To create a new Key Pair:
         1. Select **Create key pair**.
         1. Provide the **Name**. **Key pair type**, and **Private key file format**.
-    * To import your existing Key Pair:
+    - To import your existing Key Pair:
         1. Select **Actions > Import key pair**.
         1. Provide the key pair **Name** and your public key content.
 
@@ -140,10 +146,12 @@ Take the steps below to create a **Key Pair**.
 The table below summarizes the two security groups that you should create.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Security Group Name          | HTTP          | HTTPS          | SSH         |
 |------------------------------|---------------|----------------|-------------|
 | sg-controller                | NA            | Anywhere-IPv4  | My IP       |
 | sg-data                      | Anywhere-IPv4 | Anywhere-IPv4  | My IP       |
+
 {{</bootstrap-table>}}
 Table 1.3 AWS Inbound Security Group Source
 
@@ -157,11 +165,13 @@ If you are not allowed to do this, refer to the [Terminal Access Using Session M
 
 Each host needs to be associated to a security group. The mapping of each host to the correct security group is shown below.
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Host                         | Security Group |
 |------------------------------|----------------|
 | NGINX Management Suite Host  | sg-controller  |
 | Data Plane Host              | sg-data        |
 | Developer Portal Host        | sg-data        |
+
 {{</bootstrap-table>}}
 Table 1.4 Host to Security Group Mapping
 
@@ -248,7 +258,7 @@ You must create a new IAM Role that grants Session Manager access to EC2 Instanc
 
 ### Associating IAM Instance Profile to EC2 Instance
 
-When you associate an *IAM Role* created from the IAM service to an EC2 Instance, you are really associating an *IAM Instance Profile*. Again, when you create an *IAM Role* from AWS Management Console and choose EC2 as the AWS Service, it also creates an *IAM Instance Profile*. Take the steps in this section to associate an *IAM Instance Profile* to an *EC2 Instance*.
+When you associate an _IAM Role_ created from the IAM service to an EC2 Instance, you are really associating an _IAM Instance Profile_. Again, when you create an _IAM Role_ from AWS Management Console and choose EC2 as the AWS Service, it also creates an _IAM Instance Profile_. Take the steps in this section to associate an _IAM Instance Profile_ to an _EC2 Instance_.
 
 There are two situations that can happen here:
 
@@ -296,7 +306,7 @@ Take the steps below to get terminal access using **Session Manager**.
 - Verify the IAM Instance Profile is associated to your instance.
 - Verify the IAM Role has SSM permissions properly configured.
 - The instance allows outbound HTTPS traffic to the endpoints shown in the **Connectivity to endpoints** row from the [Session Manager Prerequisites](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-prerequisites.html) page.
-- Wait about 15 minutes if you attached the IAM Instance Profile to an existing instance. 
+- Wait about 15 minutes if you attached the IAM Instance Profile to an existing instance.
 {{< /note >}}
 
 ### AWS Command Line Interface Tool
@@ -310,7 +320,9 @@ Take the steps below to fulfill prerequisites for using Session Manager on the c
 1. You need **AWS Access Key ID** and **AWS Secret Access Key**, which you can set up by referring to the [AWS CLI Prerequisite](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-prereqs.html) page.
 
 Take the steps below to get terminal access on an instance:
+
 1. Run `aws configure` to set up access to your AWS account.
+
     ```shell
     $ aws configure
     AWS Access Key ID []: ****************DLVT
@@ -320,14 +332,16 @@ Take the steps below to get terminal access on an instance:
     ```
 
     {{< note >}} If your AWS account is configured to use temporary credentials, you need to provide the `aws_session_token` by running the command below:
-    
+
     aws configure set aws_session_token <sessionToken>{{< /note >}}
 
 1. Run `aws ssm start-session --target "<instanceId>"` to start a session which provides terminal access.
+
     ```shell
     $ aws ssm start-session --target "<instanceId>"
 
     Starting session with SessionId: aaaaaaaa-0538f063ab275aeed
     $
     ```
+
 1. To exit out of the session, type `exit` as if you were going to close a normal terminal screen.

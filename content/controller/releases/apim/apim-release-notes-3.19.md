@@ -1,30 +1,9 @@
 ---
-authors: []
-categories:
-- installation
-- api management
-date: "2020-10-26T15:32:41-06:00"
 description: These release notes contain information about new features, improvements,
   known issues, and bug fixes in the NGINX Controller API Management Module.
 docs: DOCS-369
 doctypes:
 - reference
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- renewing
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
-- read-only
 tags:
 - docs
 title: Release Notes 3.19.0
@@ -85,7 +64,7 @@ The following issues are known to be present in this release. Look for updates t
   If you set more than one listenIP and a wildcard IP (null listenIP) to use the same port on the same NGINX Plus instance, reuseport will apply to all of the IP:port pairs on the listen directive in the nginx.conf - except the first - as well as to the wildcard IP. An example config is below:
 
   ```bash
-  server { 
+  server {
     listen ip1:port;
     listen ip2:port reuseport;
     listen ip3:port reuseport;
@@ -100,7 +79,7 @@ The following issues are known to be present in this release. Look for updates t
   **Workaround:**
 
   To avoid this issue, use a unique port for each HTTP uri when both listenIP and wildcard IP are being used on the same instance.
-  
+
 ## Supported NGINX Plus Versions
 
 NGINX Controller works with the following NGINX Plus versions:

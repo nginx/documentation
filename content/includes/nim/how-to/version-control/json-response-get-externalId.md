@@ -1,3 +1,7 @@
+---
+docs: DOCS-1330
+---
+
 ```json
 {
   "build": {

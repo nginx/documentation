@@ -4,7 +4,8 @@ NGINX Controller supports the following [NGINX Plus](https://www.nginx.com/produ
 
 | NGINX Plus | NGINX Controller | NGINX Controller ADC | NGINX Controller APIM |
 |------------|------------------|----------------------|-----------------------|
-| R29        | Not supported    | Not supported        | 3.19.6+               |
+| R30        | Not supported    | 3.22.9+              | Not supported         |
+| R29        | Not supported    | 3.22.9+              | 3.19.6+               |
 | R28        | Not supported    | 3.22.6+              | 3.19.6+               |
 | R27        | Not supported    | 3.22.4+              | 3.19.6+               |
 | R26        | Not supported    | 3.22.2+              | 3.19.6+               |
