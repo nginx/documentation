@@ -1,5 +1,4 @@
 ---
-description: 
 docs: DOCS-1269
 doctypes:
 - task
