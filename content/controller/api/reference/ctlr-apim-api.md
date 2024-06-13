@@ -1,14 +1,11 @@
 ---
-categories:
-- reference
-date: "2020-11-5T14:03:41-06:00"
-description: Represents the state of the NGINX Controller API Management REST API
-# Doctypes: reference and tags: api must be set to load the ReDoc js
+description: Represents the state of the NGINX Controller API Management REST API.
+docs: DOCS-1281
 doctypes:
-- reference
+  - reference
+type: redoc
 tags:
-- api
-layout: redoc-single
+  - api
 title: APIM API
 toc: false
 weight: 400

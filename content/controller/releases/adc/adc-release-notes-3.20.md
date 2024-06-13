@@ -1,34 +1,9 @@
 ---
-authors: []
-categories:
-- installation
-- infrastructure
-- platform management
-- services
-- security
-- analytics
-date: "2020-10-26T15:32:41-06:00"
 description: These release notes contain information about new features, improvements,
   known issues, and bug fixes in the NGINX Controller Application Delivery Module.
 docs: DOCS-363
 doctypes:
 - reference
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- renewing
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
-- read-only
 tags:
 - docs
 title: Release Notes 3.20.0
@@ -101,7 +76,7 @@ The following issues are known to be present in this release. Look for updates t
   The Kubernetes kubelet certificate that NGINX Controller applies during installation is valid for one year. If NGINX Controller is not updated for longer than one year, and the kublet certificate expires, Kubernetes will stop or fail to start. When this happens, NGINX Controller fails to start.
 
   To check the kubernetes certificates, run the following command:
-  
+
   ```bash
   kubeadm alpha certs check-expiration
   ```
@@ -109,13 +84,13 @@ The following issues are known to be present in this release. Look for updates t
   **Identifying the issue**
 
   - `kubectl` fails with an error similar to the following:
-  
+
     ```text
     The connection to the server <host>:6443 was refused - did you specify the right host or port?
     ```
 
   - In the container logs, such as `kubeapi-server`, there are error messages similar to the following example:
-  
+
     ```text
     441585 1 clientconn.go:1251] grpc: addrConn.createTransport failed to connect to {127.0.0.1:2379 0 <nil>}. Err :connection error: desc = "transport: authentication handshake failed: x509: certificate has expired or is not yet valid". Reconnecting...
     ```
@@ -157,6 +132,7 @@ The following issues are known to be present in this release. Look for updates t
     a. Back up and remove the existing server certs in `/var/lib/kubelet/pki` (there should be server.csr, server.key, and server.pem)
 
     b. Copy the following script to the NGINX Controller host and run it.
+
     ```bash
     #!/bin/bash
 
@@ -196,7 +172,7 @@ The following issues are known to be present in this release. Look for updates t
   **Workaround:**
 
   If possible, if you don't need to limit the scope, avoid defining an Applicable URI that targets the gateway URI when defining a component. Otherwise, after adding the second component with a rewrite rule, resubmit the component definition for the first component with an Applicable URI.
-  
+
 - **System configuration state should be `isConfigured` before upgrading to NGINX Controller 3.20+ from 3.18 or earlier (27869)**
 
   NGINX Controller 3.20 deploys a new backend service to communicate with the NGINX agents. Because of this, before upgrading to NGINX Controller 3.20+ from 3.18 or earlier, the existing configuration should be in a good steady-state condition.  That is, all configuration objects should be in an `isConfigured` state.
@@ -204,7 +180,7 @@ The following issues are known to be present in this release. Look for updates t
 - **When upgrading an NGINX Controller cluster, the system reports timeout errors waiting for services to scale up (27871)**
 
   When upgrading the third node of an NGINX Controller cluster, some services may take two or more minutes to scale up. During this period, the system displays an error similar to the following:
-  
+
   ``` text
   While waiting for nats-streaming-cluster to scale up, the operation did not complete before timing out.
   ```
@@ -236,10 +212,10 @@ The following issues are known to be present in this release. Look for updates t
   To use workload affinity, take one of the following three workarounds:
 
   - Option 1: Make sure every location in the referenced gateways has a matching workload group.
-  - Option 2: Remove the instances in the gateway if their location is not referenced within the component's workload groups.  
+  - Option 2: Remove the instances in the gateway if their location is not referenced within the component's workload groups.
   - Option 3: Remove the monitoring section within the component.
 
-  **False Positive reported after upgrading from NGINX Controller 3.18 to 3.20 or 3.21 (30672)**
+- **False Positive reported after upgrading from NGINX Controller 3.18 to 3.20 or 3.21 (30672)**
 
   The Default Security policy (balance_default) in NGINX Controller 3.20 and 3.21 differs from NGINX Controller 3.18. As a result, when you upgrade from NGINX Controller 3.18 to 3.20 or 3.21, you might see a False Positive.
   <br><br>

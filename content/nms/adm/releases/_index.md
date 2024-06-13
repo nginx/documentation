@@ -1,7 +1,0 @@
----
-title: Releases
-description: "Stay up-to-date with the latest NGINX Management Suite App Delivery Manager releases."
-url: "/nginx-management-suite/adm/releases/"
-weight: 800
-draft: false
----

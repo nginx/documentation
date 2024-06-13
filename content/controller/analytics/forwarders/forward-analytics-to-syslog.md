@@ -1,22 +1,8 @@
 ---
-authors: []
-categories:
-- analytics
-date: "2021-03-15T15:32:41-06:00"
-description: How to forward Analytics Events to Syslog
+description: How to forward Analytics Events to Syslog.
 docs: DOCS-534
 doctypes:
 - tutorial
-draft: false
-journeys:
-- using
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
 tags:
 - docs
 title: Forward Analytics Events to Syslog
@@ -52,7 +38,7 @@ Take the following steps to create a Forwarder for Splunk:
 1. In the **Source** list, select the type of data to forward: `events`. NGINX Controller can forward only `EVENTS` data to syslog.
 1. In the **Output Format** list, select `SYSLOG`.
 1. The **Selector** field consists of the following query parameters (optional):
-  
+
    - `filter`: The conditions to use to refine the metrics or events data.
    - Example usage: `"filter=type='security violation' AND app='my-app'"`
 

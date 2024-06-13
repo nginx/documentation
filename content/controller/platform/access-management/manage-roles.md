@@ -1,25 +1,8 @@
 ---
-authors: []
-categories:
-- platform management
-- account settings
-date: "2020-10-26T15:32:41-06:00"
-description: Create and manage Roles and Role Groups
+description: Create and manage Roles and Role Groups.
 docs: DOCS-783
 doctypes:
 - tutorial
-draft: false
-journeys:
-- researching
-- getting started
-- using
-menu:
-  docs:
-    parent: Access Management
-personas:
-- devops
-roles:
-- admin
 tags:
 - docs
 title: Manage Roles and Role Groups

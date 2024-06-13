@@ -9,7 +9,6 @@ toc: true
 weight: 200
 ---
 
-
 <span id="intro"></span>
 ## Introduction
 
@@ -24,9 +23,9 @@ To load balance HTTP traffic, refer to the [HTTP Load Balancing]({{< relref "htt
 <span id="prerequisites"></span>
 ## Prerequisites
 
-* Latest NGINX Plus (no extra build steps required) or latest [NGINX Open Source](https://nginx.org/en/download.html) built with the `--with-stream` configuration flag
-* An application, database, or service that communicates over TCP or UDP
-* Upstream servers, each running the same instance of the application, database, or service
+- Latest NGINX Plus (no extra build steps required) or latest [NGINX Open Source](https://nginx.org/en/download.html) built with the `--with-stream` configuration flag
+- An application, database, or service that communicates over TCP or UDP
+- Upstream servers, each running the same instance of the application, database, or service
 
 <span id="proxy_pass"></span>
 ## Configuring Reverse Proxy
@@ -167,15 +166,15 @@ To configure load balancing:
 
 3. Configure the load‑balancing method used by the upstream group. You can specify one of the following methods:
 
-   * Round Robin – By default, NGINX uses the Round Robin algorithm to load balance traffic, directing it sequentially to the servers in the configured upstream group. Because it is the default method, there is no `round‑robin` directive; simply create an `upstream {}` configuration block in the top‑level `stream {}` context and add `server` directives as described in the previous step.
+   - Round Robin – By default, NGINX uses the Round Robin algorithm to load balance traffic, directing it sequentially to the servers in the configured upstream group. Because it is the default method, there is no `round‑robin` directive; simply create an `upstream {}` configuration block in the top‑level `stream {}` context and add `server` directives as described in the previous step.
 
-   * [Least Connections](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#least_conn) – NGINX selects the server with the smaller number of current active connections.
+   - [Least Connections](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#least_conn) – NGINX selects the server with the smaller number of current active connections.
 
-   * [Least Time](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#least_time) (NGINX Plus only) – NGINX Plus selects the server with the lowest average latency and the least number of active connections. The method used to calculate lowest average latency depends on which of the following parameters is included on the `least_time` directive:
+   - [Least Time](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#least_time) (NGINX Plus only) – NGINX Plus selects the server with the lowest average latency and the least number of active connections. The method used to calculate lowest average latency depends on which of the following parameters is included on the `least_time` directive:
 
-     * `connect`    – Time to connect to the upstream server
-     * `first_byte` – Time to receive the first byte of data
-     * `last_byte`  – Time to receive the full response from the server
+     - `connect`    – Time to connect to the upstream server
+     - `first_byte` – Time to receive the first byte of data
+     - `last_byte`  – Time to receive the full response from the server
 
       ```nginx
       upstream stream_backend {
@@ -186,7 +185,7 @@ To configure load balancing:
       }
       ```
 
-   * [Hash](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#hash) – NGINX selects the server based on a user‑defined key, for example, the source IP address ([`$remote_addr`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_remote_addr)):
+   - [Hash](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#hash) – NGINX selects the server based on a user‑defined key, for example, the source IP address ([`$remote_addr`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_remote_addr)):
 
      ```nginx
      upstream stream_backend {
@@ -203,12 +202,12 @@ To configure load balancing:
      hash $remote_addr consistent;
      ```
 
-   * [Random](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#random) – Each connection will be passed to a randomly selected server. If the `two` parameter is specified, first, NGINX randomly selects two servers taking into account server weights, and then chooses one of these servers using the specified method:
+   - [Random](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#random) – Each connection will be passed to a randomly selected server. If the `two` parameter is specified, first, NGINX randomly selects two servers taking into account server weights, and then chooses one of these servers using the specified method:
 
-     * `least_conn` – The least number of active connections
-     * `least_time=connect` (NGINX Plus) – The time to connect to the upstream server ([`$upstream_connect_time`](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#var_upstream_connect_time))
-     * `least_time=first_byte` (NGINX Plus) – The least average time to receive the first byte of data from the server ([`$upstream_first_byte_time`](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#var_upstream_first_byte_time))
-     * `least_time=last_byte` (NGINX Plus) – The least average time to receive the last byte of data from the server ([`$upstream_session_time`](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#var_upstream_session_time))
+     - `least_conn` – The least number of active connections
+     - `least_time=connect` (NGINX Plus) – The time to connect to the upstream server ([`$upstream_connect_time`](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#var_upstream_connect_time))
+     - `least_time=first_byte` (NGINX Plus) – The least average time to receive the first byte of data from the server ([`$upstream_first_byte_time`](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#var_upstream_first_byte_time))
+     - `least_time=last_byte` (NGINX Plus) – The least average time to receive the last byte of data from the server ([`$upstream_session_time`](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#var_upstream_session_time))
 
       ```nginx
       upstream stream_backend {
@@ -219,6 +218,7 @@ To configure load balancing:
           server backend4.example.com:12346;
       }
       ```
+
     The **Random** load balancing method should be used for distributed environments where multiple load balancers are passing requests to the same set of backends. For environments where the load balancer has a full view of all requests, use other load balancing methods, such as round robin, least connections and least time.
 
 5. Optionally, for each upstream server specify server‑specific parameters including [maximum number of connections](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#max_conns), [server weight](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#weight), and so on:
@@ -369,7 +369,7 @@ stream {
         server backup1.example.com:12345 backup;
         server backup2.example.com:12345 backup;
     }
-    
+
     server {
         # Server that proxies connections to the upstream group
         proxy_pass appservers;
@@ -399,22 +399,22 @@ To pass a configuration command to NGINX, send an API command by any method, for
 
 For example, to add a new server to the server group, send a `POST` request:
 
-```none
-curl -X POST -d '{ \ 
-   "server": "appserv3.example.com:12345", \ 
-   "weight": 4 \ 
+```shell
+curl -X POST -d '{ \
+   "server": "appserv3.example.com:12345", \
+   "weight": 4 \
  }' -s 'http://127.0.0.1/api/6/stream/upstreams/appservers/servers'
 ```
 
 To remove a server from the server group, send a `DELETE` request:
 
-```none
+```shell
 curl -X DELETE -s 'http://127.0.0.1/api/6/stream/upstreams/appservers/servers/0'
 ```
 
 To modify a parameter for a specific server, send a  `PATCH` request:
 
-```none
+```shell
 curl -X PATCH -d '{ "down": true }' -s 'http://127.0.0.1/api/6/http/upstreams/appservers/servers/0'
 ```
 
@@ -431,26 +431,26 @@ stream {
         server backend2.example.com:12345 max_fails=2 fail_timeout=30s;
         server backend3.example.com:12345 max_conns=3;
     }
-    
+
     upstream dns_servers {
         least_conn;
         server 192.168.136.130:53;
         server 192.168.136.131:53;
         server 192.168.136.132:53;
     }
-    
+
     server {
         listen        12345;
         proxy_pass    stream_backend;
         proxy_timeout 3s;
         proxy_connect_timeout 1s;
     }
-    
+
     server {
         listen     53 udp;
         proxy_pass dns_servers;
     }
-    
+
     server {
         listen     12346;
         proxy_pass backend4.example.com:12346;
@@ -464,10 +464,10 @@ There are two named [`upstream`](https://nginx.org/en/docs/stream/ngx_stream_ups
 
 The three [`server`](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#server) blocks define three virtual servers:
 
-* The first server listens on port 12345 and proxies all TCP connections to the **stream_backend** group of upstream servers. Note that the [`proxy_pass`](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_pass) directive defined in the context of the `stream` module must not contain a protocol.
+- The first server listens on port 12345 and proxies all TCP connections to the **stream_backend** group of upstream servers. Note that the [`proxy_pass`](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_pass) directive defined in the context of the `stream` module must not contain a protocol.
 
   Two optional timeout parameters are specified: the [`proxy_connect_timeout`](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_connect_timeout) directive sets the timeout required for establishing a connection with a server in the **stream_backend** group. The [`proxy_timeout`](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_timeout) directive sets a timeout used after proxying to one of the servers in the **stream_backend** group has started.
 
-* The second server listens on port 53 and proxies all UDP datagrams (the `udp` parameter to the `listen` directive) to an upstream group called **dns_servers**. If the `udp` parameter is not specified, the socket listens for TCP connections.
+- The second server listens on port 53 and proxies all UDP datagrams (the `udp` parameter to the `listen` directive) to an upstream group called **dns_servers**. If the `udp` parameter is not specified, the socket listens for TCP connections.
 
-* The third virtual server listens on port 12346 and proxies TCP connections to **backend4.example.com**, which can resolve to several IP addresses that are load balanced with the Round Robin method.
+- The third virtual server listens on port 12346 and proxies TCP connections to **backend4.example.com**, which can resolve to several IP addresses that are load balanced with the Round Robin method.

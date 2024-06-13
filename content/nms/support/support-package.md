@@ -1,22 +1,15 @@
 ---
-title: "Create a Support Package"
-date: 2021-12-21T12:00:00-07:00
-draft: false
-description: "This guide explains how to generate a support package for troubleshooting error scenarios."
-# Assign weights in increments of 100
-weight: 200
+description: This guide explains how to generate a support package for troubleshooting
+  error scenarios.
+docs: DOCS-818
+doctypes:
+- reference
+- task
+tags:
+- docs
+title: Create a Support Package
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["support"]
-doctypes: ["reference", "task"]
-journeys: ["using", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-docs: "DOCS-818"
-aliases:
-- /nginx-instance-manager/support/support-package/
+weight: 200
 ---
 
 {{< shortversions "2.0.0" "latest" "nimvers" >}}
@@ -61,6 +54,7 @@ The supported shell is `bash`.
 The following table lists the arguments you can use with the support package script.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Short | Long                   | Description                                                         | Example                | Default             |
 | ----- | ---------------------- | ------------------------------------------------------------------- | ---------------------- | ------------------- |
 | `-h`  | `--help`               | Prints information about the script arguments to stdout.            | `--help`               | N/A                 |
@@ -70,7 +64,8 @@ The following table lists the arguments you can use with the support package scr
 | `-m`  | `--manager_log_path`   | The directory where the Instance Manager log file is located.       | `-m /var/log/nms`      | `/var/log/nms`      |
 | `-t`  | `--target_host`        | The Instance Manager address (host:port).                           | `-t 127.0.0.1:443`     | `127.0.0.1:443`     |
 | `-xd` | `--exclude_databases`  | Excludes database data from the support package.                    | `--exclude_databases`  | N/A                 |
-| `-xt `| `--exclude_timeseries` | Excludes timeseries data from the support package.                  | `--exclude_timeseries` | N/A                 |
+| `-xt`| `--exclude_timeseries` | Excludes timeseries data from the support package.                  | `--exclude_timeseries` | N/A                 |
+
 {{</bootstrap-table>}}
 
 ## Package Contents
@@ -81,7 +76,7 @@ The information included is based on the NGINX products installed and configured
 
 ### nginx-logs
 
-The access and error logs of the instances that Instance Manager monitors.  
+The access and error logs of the instances that Instance Manager monitors.
 
 The access logs display the HTTP traffic for Instance Manager that's routed by the NGINX instance. The error log contains NGINX errors that occurred during runtime.
 
@@ -98,11 +93,13 @@ cat nms.log | grep 'COR'
 The following table shows the `nms` processes and pattern to `grep` on:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Process name  | Pattern |
 | ------------- | ------- |
 | nms-core      | 'COR'   |
 | nms-dpm       | 'DPM'   |
 | nms-ingestion | 'ING'   |
+
 {{</bootstrap-table>}}
 
 ### service-information
@@ -137,9 +134,9 @@ If the Instance Manager configuration file does not specify addresses for the `c
 
 The support package script uses a small Go executable file called `dqlite-backup` (located in `/etc/nms/scripts/`) to connect to the databases and generate data dumps.
 
-The collected data is saved to the directories `dqlite/core`, `dqlite/dpm`. 
+The collected data is saved to the directories `dqlite/core`, `dqlite/dpm`.
 
-Additional directories may be created if other products are installed: `dqlite/acm` for NGINX API Connectivity Manager and `dqlite/adc` for NGINX Application Delivery Manager, respectively.
+Additional directories may be created if other products are installed: `dqlite/acm` for NGINX API Connectivity Manager.
 
 ### timeseries
 

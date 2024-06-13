@@ -1,26 +1,9 @@
 ---
-authors:
-- travis
-- jodie
-- ashutosh
-- jon
-categories:
-- services
-- api management
-date: "2020-10-26T15:32:41-06:00"
 description: Use the NGINX Controller API Manager to add APIs and control how your
   APIs are exposed and consumed.
 docs: DOCS-569
 doctypes:
 - tutorial
-draft: false
-journeys:
-- using
-personas:
-- devops
-- secops
-roles:
-- admin
 tags:
 - docs
 title: Manage Your APIs
@@ -87,12 +70,12 @@ An API Version describes a particular API. It can be thought of as an API specif
    {{< note >}}
 
    If your API specification includes a description, that text populates this field automatically when you [add your OpenAPI spec](#import-an-openapi-specification).
-    
+
    {{< /note >}}
 
 10. (Optional) Add tags.
 
-#### Import an OpenAPI Specification
+### Import an OpenAPI Specification
 
 The APIM module supports import of a valid OpenAPI v3 specification formatted as valid JSON or YAML.
 
@@ -120,7 +103,7 @@ If your API spec includes documentation elements, the "Enable documentation" opt
 
 Once you have imported your API spec, select **Next** to continue to the **Resources** page.
 
-#### Define API Resources Manually
+### Define API Resources Manually
 
 Take the steps below to manually add your API resources.
 
@@ -143,7 +126,7 @@ Take the steps below to manually add your API resources.
 
 9. Select **Submit** to save the **API Version**.
 
-#### Document Your API
+### Document Your API
 
 Follow the steps below to document your API.
 
@@ -209,7 +192,7 @@ Skip to step 6 if you're continuing from the [Define API Resources Manually](#d
 
 24. Select **Submit** to save the **API Version**.
 
-#### Import a Web Services Description Language (WSDL) file
+### Import a Web Services Description Language (WSDL) file
 
    {{< caution >}}
 
@@ -237,7 +220,7 @@ The APIM module supports importing a WSDL file that describes a SOAP service.
 
 Once you've imported your API spec, select **Next** to continue to the **Resources** page. Note that you need to submit the API spec before you can modify the **Resources** and **Schema**. Select **Submit** to save the **API Version.**
 
-#### Modify Schema and Resources for an API Version created from a WSDL file
+### Modify Schema and Resources for an API Version created from a WSDL file
 
 Take the following steps to **Edit** add your API Version:
 
@@ -250,9 +233,9 @@ Take the following steps to **Edit** add your API Version:
 4. (optional) Modify the **Path** for the API resource as desired.
 
    {{< tip >}}
-   
+
    Path should start with `/`, for example, `/userlookup/{userid}/attributes/{surname}`.
-   
+
    {{< /tip >}}
 
 5. Select **Next** to continue to the **Schema** page
@@ -304,9 +287,9 @@ On the **Create Published API** *Configuration* page:
 3. Specify whether the **Strip Base Path** parameter is required.
 
    {{< note >}}
-   
+
    The `Strip Base Path` option modifies the path that is passed from the Gateway to the upstream host. When the option is selected, the base path will be removed from the original request when the request is passed to the upstream host. If the option is not selected, the original request -- including the base path -- is passed from the Gateway to the upstream host.
-   
+
    {{< /note >}}
 
 4. Provide a Name and/or Display Name for the Published API.
@@ -364,18 +347,18 @@ On the **Create Published API** *Routing* page:
     4. (Optional) Define the DNS Server.
 
     5. (Optional) Select the Load Balancing Method. The default value is `Round Robin`.
-    
+
     6. (Optional) Select the Session Persistence Type (applicable only to Web Components).
 
     7. (Optional) Select the Desired Proxy Settings (applicable only to Web Components).
 
     8. Select **Next**.
    {{< see-also >}}
-    
+
    - Refer to the [Manage Locations]({{< relref "/controller/infrastructure/locations/manage-locations.md" >}}) topic for more information.
 
    - Refer to the [NGINX Plus Admin Guide](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/) for more information about the available options.
-    
+
    {{< /see-also >}}
    {{< tip >}}
    Hover your pointer over the info icon for each setting to learn about the expected values and requirements.
@@ -406,30 +389,30 @@ On the **Create Published API** *Routing* page:
 
     4. Select **Next**.
 
-{{< important >}} 
+{{< important >}}
 
-The **Advanced Security** features require an *NGINX Controller API Management Advanced Security* license. 
+The **Advanced Security** features require an *NGINX Controller API Management Advanced Security* license.
 
 {{< /important >}}
 
 6. On the **Create App Components** *Advanced Security* page:
 
     1. (Optional) Select **Enable Web Application Firewall (WAF)** to monitor and block suspicious requests or attacks.
-    
+
     2. (Optional) Select **Monitor Only** to allow traffic to pass without being rejected. Security events are still generated and metrics are still collected. Refer to [About App Security Analytics]({{< relref "/controller/analytics/view-app-security-analytics.md" >}}) for more information.
 
     3. (Optional) Add the signature(s) that you want WAF to ignore. You can specify multiple signatures as a comma-separated list.
 
     4. Select **Next**
 
-    {{< see-also >}} Refer to the [Default WAF Policy]({{< relref "/controller/app-delivery/security/concepts/app-sec-default-policy-original.md" >}}) topics to learn more about the default protection provided by NGINX App Protect. {{< /see-also >}} 
+    {{< see-also >}} Refer to the [Default WAF Policy]({{< relref "/controller/app-delivery/security/concepts/app-sec-default-policy-original.md" >}}) topics to learn more about the default protection provided by NGINX App Protect. {{< /see-also >}}
 
 
 7. On the **Create App Component** *Ingress* page:
-    
+
     1. (Optional) Set the desired **Client Max Body Size**.
     2. Select **Next**.
-    
+
    {{< see-also >}}
 
    Refer to the [NGINX module docs](http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size) for more information about this option.
@@ -464,7 +447,7 @@ The **Advanced Security** features require an *NGINX Controller API Management A
    {{< see-also >}}
 
    Refer to the [NGINX module docs](http://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check) for more information about these options.
-    
+
     {{< /see-also >}}
 
 9. On the **Create App Component** *Logs* page:
@@ -480,13 +463,13 @@ The **Advanced Security** features require an *NGINX Controller API Management A
     3. Select **Next**.
 
    {{< see-also >}}
-   
+
    Refer to the [NGINX docs](http://nginx.org/en/docs/http/ngx_http_log_module.html) for more information about these options.
-   
+
    {{< /see-also >}}
 
 9. On the **Create App Component** *Programmability* page:
-    
+
    The following settings are applicable **only to Web components**.
 
     1. (Optional) Select **Add URI Redirects** and define the desired redirect condition(s).
@@ -500,14 +483,14 @@ The **Advanced Security** features require an *NGINX Controller API Management A
     5. Select **Next**.
 
    {{< see-also >}}
-    
+
    Refer to the [NGINX module docs](http://nginx.org/en/docs/http/ngx_http_rewrite_module.html) for more information about these options.
 
    {{< /see-also >}}
 
     6. Select **Next** to review the API spec that will be sent to create the App Component.
 
-    7. Drag and drop resources one at a time, or move multiple resources by selecting the checkboxes next to the desired resources, from the **Unrouted** column to the desired Component in the **Components** list. You can use the search bar to narrow down the list. 
+    7. Drag and drop resources one at a time, or move multiple resources by selecting the checkboxes next to the desired resources, from the **Unrouted** column to the desired Component in the **Components** list. You can use the search bar to narrow down the list.
    **Note:** Resources can be dragged between **Components** and back to the **Unrouted** section either one at a time or by multi-select.
 
     8. Select **Next** to review the API spec that will be sent to create the Published API.

@@ -1,29 +1,9 @@
 ---
-aliases:
-- /analytics/metrics/reference/overview-metrics-metadata/
-authors: []
-categories:
-- analytics
-date: "2020-10-26T15:32:41-06:00"
 description: Understanding how the NGINX Controller Agent collects and reports metrics
-  and metadata
+  and metadata.
 docs: DOCS-536
 doctypes:
 - reference
-draft: false
-journeys:
-- researching
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
-- read-only
 tags:
 - docs
 title: 'Overview: Metrics and Metadata'
@@ -53,12 +33,12 @@ Refer to [View traffic metrics]({{< relref "/controller/analytics/metrics/view-t
 
 The NGINX Controller Agent collects the following types of data:
 
-* **NGINX metrics.** The Agent collects NGINX-related metrics using the NGINX Plus API, and by monitoring the NGINX log files and NGINX process state.
-* **AVRD metrics.** AVRD sends app-centric data, so each metric has assigned dimensions like "application name" or "gateway". These metrics are related to processed traffic (for example, the number of bytes sent to a particular URL/endpoint).
-* **NGINX configuration.** After the initial installation, the NGINX configuration is uploaded to the NGINX Controller server. Configuration updates are also uploaded to the NGINX Controller server.
-* **System metrics.** These are key metrics describing the system. For example: CPU usage, memory usage, network traffic, etc.
-* **NGINX metadata.** These describe your NGINX instances, and include package data, build information, the path to the binary, build configuration options, and so on. NGINX metadata also includes the NGINX configuration elements.
-* **System metadata.** These are the basic information about the OS environment where the Agent runs. For example, the hostname, uptime, OS flavor, and other data.
+- **NGINX metrics.** The Agent collects NGINX-related metrics using the NGINX Plus API, and by monitoring the NGINX log files and NGINX process state.
+- **AVRD metrics.** AVRD sends app-centric data, so each metric has assigned dimensions like "application name" or "gateway". These metrics are related to processed traffic (for example, the number of bytes sent to a particular URL/endpoint).
+- **NGINX configuration.** After the initial installation, the NGINX configuration is uploaded to the NGINX Controller server. Configuration updates are also uploaded to the NGINX Controller server.
+- **System metrics.** These are key metrics describing the system. For example: CPU usage, memory usage, network traffic, etc.
+- **NGINX metadata.** These describe your NGINX instances, and include package data, build information, the path to the binary, build configuration options, and so on. NGINX metadata also includes the NGINX configuration elements.
+- **System metadata.** These are the basic information about the OS environment where the Agent runs. For example, the hostname, uptime, OS flavor, and other data.
 
 For the full list of metrics, see the [Metrics Catalog Reference]({{< relref "/controller/analytics/catalogs/metrics.md" >}})
 
@@ -70,10 +50,10 @@ While the Agent is running on the host, it collects metrics at regular 20-second
 
 NGINX Controller stores historical metrics data in an analytics database. Metrics are aggregated and rolled-up as follows:
 
-* Data not older than 8 days are stored with best possible resolution (usually 1 min).
-* Data older than 8 days but not older than 30 days are stored with 5 min resolution.
-* Data older than 30 days but not older than 15 months are stored with 1 hour resolution.
-* Data older than 15 months are stored with 1 day resolution.
+- Data not older than 8 days are stored with best possible resolution (usually 1 min).
+- Data older than 8 days but not older than 30 days are stored with 5 min resolution.
+- Data older than 30 days but not older than 15 months are stored with 1 hour resolution.
+- Data older than 15 months are stored with 1 day resolution.
 
 ### Parsing and Analyzing NGINX Configuration Files
 
@@ -93,8 +73,8 @@ Most metrics are collected by the Agent without requiring the user to perform an
 
 ## What's Next
 
-* [Set up Metrics Collection]({{< relref "/controller/admin-guides/config-agent/configure-metrics-collection.md" >}})
-* [Metrics Reference]({{< relref "/controller/analytics/catalogs/metrics.md" >}})
+- [Set up Metrics Collection]({{< relref "/controller/admin-guides/config-agent/configure-metrics-collection.md" >}})
+- [Metrics Reference]({{< relref "/controller/analytics/catalogs/metrics.md" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

@@ -1,20 +1,20 @@
 ---
-docs: "DOCS-1071"
+docs: DOCS-1071
 ---
 
 The NGINX Management Suite gateway supports the following Linux distributions:
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
-{{<bootstrap-table "table table-striped table-bordered">}}
-| <div style="width:120px">Distribution</div> | <div style="width:220px">Version</div>                                                                                                                                               | Architecture               | Instance&nbsp;Manager                                 | API&nbsp;Connectivity&nbsp;Manager                    | App&nbsp;Delivery&nbsp;Manager                                                                                                       | NGINX&nbsp;App&nbsp;Protect |
-|---------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------|-------------------------------------------------------|-------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------|---|
-| Amazon Linux                                | 2 LTS                                                                                                                                                                                | x86_64                     | Supported                                       | Supported                                       | Supported                                                                                                                      | <i class="fa-solid fa-ban" style="color: red"></i> Not supported |
-| CentOS                                      | 7.4 and later in the 7.x family                                                                                                                                                      | x86_64                     | Supported                                       | Supported                                       | Supported                                                                                                                      | Supported |
-| Debian                                      | 10<hr>11                                                                                                                                                                             | x86_64<hr>x86_64           | Supported<hr>Supported                    | Supported<hr>Supported                    | <i class="fa-solid fa-ban" style="color: red"></i> Not supported<hr>Supported                                                  | <i class="fa-solid fa-ban" style="color: red"></i> Not supported<hr>Supported |
-| Oracle Linux                                | 7.4 and later in the 7.x family<hr>8.0 and later in the 8.0.x family                                                                                                                 | x86_64<hr>x86_64           | Supported<hr>Supported on 2.6.0+                    | Supported<hr>Supported on 1.3.0+                    |  Supported<hr>Supported | Supported<hr>Supported |
-| RHEL                                        | 7.4 and later in the 7.x family<hr>8.x and later in the 8.x family<hr>9.x and later in the 9.x family                                                                                | x86_64<hr>x86_64<hr>x86_64 | Supported<hr>Supported<hr>Supported on 2.6.0+ | Supported<hr>Supported<hr>Supported on 1.3.0+ | Supported<hr>Supported<hr>Supported                               | Supported<hr>Supported<hr><i class="fa-solid fa-ban" style="color: red"></i> Not supported |
-| Ubuntu                                      | 18.04<hr>20.04<hr>22.04  | x86_64<hr>x86_64<hr>x86_64 | Supported<hr>Supported<hr>Supported on 2.3.0+ | Supported<hr>Supported<hr>Supported | Supported<hr>Supported<hr>Supported                                                                                | Supported<hr>Supported<hr><i class="fa-solid fa-ban" style="color: red"></i> Not supported |
-{{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
 
-The "+" symbol indicates support for the given version and all higher versions.
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Distribution                                | Version                                                                                                      | Architecture               | Instance Manager                                    | NGINX App Protect |
+|---------------------------------------------|----------------------------------------------------------------------------------------------------------------|----------------------------|------------------------------------------------------|------------------------------------------------------|
+| Amazon Linux                                | 2 LTS                                                                                                          | x86_64                     | Supported                                            | Supported|
+| CentOS                                      | 7.4 and later in the 7.x family                                                                                | x86_64                     | Supported                                            | Supported|
+| Debian                                      | 11<hr>12                              | x86_64<hr>x86_64           | Supported<hr>Supported on 2.13+                      | Supported<hr>Supported |
+| Oracle Linux                                | 7.4 and later in the 7.x family<hr>8.0 and later in the 8.0.x family                                           | x86_64<hr>x86_64            | Supported<hr>Supported on 2.6.0+                    | Supported<hr>Supported |
+| RHEL                                        | 7.4 and later in the 7.x family<hr>8.x and later in the 8.x family<hr>9.x and later in the 9.x family          | x86_64<hr>x86_64<hr>x86_64  | Supported<hr>Supported<hr>Supported on 2.6.0+       | Supported<hr>Supported<hr> Supported |
+| Ubuntu                                      | 20.04<hr>22.04 | x86_64<hr>x86_64  | Supported<hr>Supported on 2.3.0+ | Supported<hr>Supported |
+
+{{</bootstrap-table>}}
+

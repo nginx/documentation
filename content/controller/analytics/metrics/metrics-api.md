@@ -1,28 +1,9 @@
 ---
-authors: []
-categories:
-- services
-- api management
-- analytics
-date: "2020-10-26T15:32:41-06:00"
 description: Tips and tricks for using the Metrics API query parameters to refine
   your data.
 docs: DOCS-535
 doctypes:
 - tutorial
-draft: false
-journeys:
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
-- read-only
 tags:
 - docs
 title: Using the Metrics API
@@ -232,7 +213,7 @@ The following example query returns three aggregated metric values. Here, we're 
 curl -X GET --cookie "session=<session cookie>" --url "{controller-IP}/api/v1/analytics/metrics?names=SUM(http.request.count),&startTime=now-3h&resolution=1h"
 ```
 
-There may be situations when the returned resolution is lower than that requested in the query. This has to do with metrics retention periods—the older the metric, the lower the resolution.  
+There may be situations when the returned resolution is lower than that requested in the query. This has to do with metrics retention periods—the older the metric, the lower the resolution.
 
 If the time window contains metrics with a lower resolution than was queried for, the API downsizes the granularity to the lowest possible value.  You will see a warning in the `responseMetadata`:
 
@@ -342,9 +323,9 @@ The API returns the data for the last three hours grouped by `app` and `alias` d
 There are cases when you might want to view only a specific data series (for example, "Top-5"). To query the API for a particular series of data, you can define the `seriesLimit` and `orderSeriesBy` query parameters.
 
 - `seriesLimit` sets an upper limit on the number of series returned.
-- `orderSeriesBy` sorts the series values according to the order specified:  
-  
-  - Must consist of two tokens -- an aggregate function and a sort order. For example, `SUM DESC`, `MIN ASC`, and so on.  
+- `orderSeriesBy` sorts the series values according to the order specified:
+
+  - Must consist of two tokens -- an aggregate function and a sort order. For example, `SUM DESC`, `MIN ASC`, and so on.
   - Can be used only in combination with `seriesLimit`.
 
 When you specify a `seriesLimit`, the response always includes one other series with an `all` metric. This series aggregates the metric values of all the series that are not included in the result. If the total number of series returned is greater than the limit specified in the query parameter, an additional series named `other` is returned. This series aggregates the metrics values of the series outside of the specified limit.

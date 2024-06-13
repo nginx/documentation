@@ -1,30 +1,14 @@
 ---
-authors: []
-categories:
-- installation
-- infrastructure
-- platform management
-date: "2020-10-26T15:32:41-06:00"
 description: Create and manage templates for your NGINX Plus instances.
 docs: DOCS-776
 doctypes:
 - tutorial
-draft: false
-journeys:
-- researching
-- getting started
-- using
-personas:
-- devops
-roles:
-- admin
 tags:
 - docs
 title: Manage Your Instance Templates
 toc: true
 weight: 50
 ---
-
 
 ## Overview
 
@@ -65,7 +49,7 @@ Take the following steps to view or delete an Instance Template:
 4. On the **My Instance Templates** menu, select **Overview**.
 5. To view the details for an Instance Template, choose the Instance Template from the list. This opens a side panel with the template's details.
 6. To delete an Instance Template, choose the Instance Template from the list, then select **Delete** (trash icon).
-   
+
 ## What's Next
 
 - [Create an Instance on Amazon Web Services]({{< relref "add-aws-instance.md" >}})

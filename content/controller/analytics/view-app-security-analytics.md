@@ -1,26 +1,9 @@
 ---
-authors: []
-categories:
-- services
-- apps
-- security
-date: "2020-10-26T15:32:41-06:00"
-description: How to view App Security Analytics
+description: How to view App Security Analytics.
 docs: DOCS-539
 doctypes:
 - concept
 - reference
-draft: false
-journeys:
-- researching
-- using
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
 tags:
 - task
 title: View App Security Analytics

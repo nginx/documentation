@@ -1,31 +1,15 @@
 ---
-title: Install and Configure NGINX Agent
-description: 'Follow the instructions in this guide to install and configure the NGINX Agent on your data plane systems.'
-categories:
-- installation
-date: "2021-12-21T12:00:00-07:00"
+description: Follow the instructions in this guide to install and configure the NGINX
+  Agent on your data plane systems.
+docs: DOCS-800
 doctypes:
 - tutorial
-draft: false
-journeys:
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
 tags:
 - docs
+title: Install and Configure NGINX Agent
 toc: true
-versions: []
 weight: 100
-docs: "DOCS-800"
-aliases:
-- /getting-started/installation/install-nginx-agent/
 ---
-
-{{<custom-styles>}}
 
 ## Prerequisites
 
@@ -79,13 +63,17 @@ You can choose one of the following two methods to install the NGINX Agent on yo
 - Install via the NGINX Management Suite API Gateway
 - Install from packages downloaded from [MyF5 Customer Portal](https://account.f5.com/myf5) or from your NGINX/F5 sales team.
 
+{{< note >}} You can also install NGINX Agent in the following ways:
+
+- From the [GitHub releases](https://docs.nginx.com/nginx-agent/installation-upgrade/installation-github/)
+- From the [NGINX Repository](https://docs.nginx.com/nginx-agent/installation-upgrade/installation-oss/)
+- From the [NGINX Plus Repository](https://docs.nginx.com/nginx-agent/installation-upgrade/installation-plus/).
+
+{{< /note >}}
+
 ### Install using the API
 
 {{< include "agent/installation/install-agent-api.md" >}}
-
-### Install from Package Files
-
-{{< include "agent/installation/install-agent-package.md" >}}
 
 ---
 
@@ -179,6 +167,13 @@ Examples of the configuration files are provided below:
 
 {{<note>}}
 In the following example `nginx-agent.conf` file, you can change the `server.host` and `server.grpcPort` to connect to the NGINX Management Suite.
+
+If NGINX Agent was previously installed for data reporting purposes only, you may need to find and remove the following line from the NGINX Agent configuration file:
+
+```none
+features: registration,dataplane-status
+```
+
 {{</note>}}
 
 ```nginx {hl_lines=[13]}
@@ -187,9 +182,9 @@ In the following example `nginx-agent.conf` file, you can change the `server.hos
 #
 # Configuration file for NGINX Agent.
 #
-# This file tracks agent configuration values that are meant to be statically set. There  
+# This file tracks agent configuration values that are meant to be statically set. There
 # are additional agent configuration values that are set via the API and agent install script
-# which can be found in /var/lib/nginx-agent/agent-dynamic.conf. 
+# which can be found in /var/lib/nginx-agent/agent-dynamic.conf.
 
 # specify the server grpc port to connect to
 server:
@@ -229,7 +224,10 @@ metrics:
 
 # OSS NGINX default config path
 # path to aux file dirs can also be added
-config_dirs: "/etc/nginx:/usr/local/etc/nginx"
+config_dirs: "/etc/nginx:/usr/local/etc/nginx:/usr/share/nginx/modules:/etc/nms:/etc/app_protect"
+
+extensions:
+  - nginx-app-protect
 
 # Enable reporting NGINX App Protect details to the control plane.
 nginx_app_protect:
@@ -262,7 +260,7 @@ nginx_app_protect:
 # The agent configuration value that the agent install script can modify are as follows:
 #    - instance_group
 
-instance_group: devenv-group 
+instance_group: devenv-group
 tags:
   - devenv
   - test
@@ -394,15 +392,21 @@ You can configure NGINX Agent to report the following NGINX App Protect WAF inst
 
 - the current version of NGINX App Protect WAF
 - the current status of NGINX App Protect WAF (active or inactive)
-- the Attack Signatures package version 
+- the Attack Signatures package version
 - the Threat Campaigns package version
 
 You can also configure NGINX Agent to enable the publication of precompiled NGINX App Protect policies and log profiles from the NGINX Management Suite.
 
 To enable NGINX App Protect WAF reporting or precompiled publication, edit the `/etc/nginx-agent/nginx-agent.conf` to add the following directives:
 
-```text
-# Enable reporting NGINX App Protect details to the control plane.
+```yaml
+# path to aux file dirs can also be added
+config_dirs: "/etc/nginx:/usr/local/etc/nginx:/usr/share/nginx/modules:/etc/nms:/etc/app_protect"
+
+# Enable necessary NAP extension
+extensions:
+    - nginx-app-protect
+
 nginx_app_protect:
   # Report interval for NGINX App Protect details - the frequency the NGINX Agent checks NGINX App Protect for changes.
   report_interval: 15s
@@ -411,6 +415,7 @@ nginx_app_protect:
 ```
 
 Additionally, you can use the agent installation script to add these fields:
+
   ```bash
   # Download install script via API
   curl https://<NMS_FQDN>/install/nginx-agent > install.sh
@@ -418,7 +423,7 @@ Additionally, you can use the agent installation script to add these fields:
   # Specify the -m | --nginx-app-protect-mode flag to set up management of NGINX App Protect on
   # the instance. In the example below we specify 'precompiled-publication' for the flag value
   # which will make the config field 'precompiled_publication' set to 'true', if you would like to
-  # set the config field 'precompiled_publication' to 'false' you can specify 'none' as the flag value. 
+  # set the config field 'precompiled_publication' to 'false' you can specify 'none' as the flag value.
   sudo sh ./install.sh --nginx-app-protect-mode precompiled-publication
   ```
 
@@ -464,10 +469,17 @@ For additional information on using NGINX with SELinux, refer to the guide [Usin
 
 {{< important >}}By default, communication between the NGINX Agent and NGINX Management Suite is unsecured.{{< /important >}}
 
-For instructions on how configure mTLS to secure communication between the NGINX Agent and NGINX Management Suite, see [NGINX Agent TLS Settings]({{< relref "/nms/nginx-agent/encrypt-nginx-agent-comms.md" >}}).
+For instructions on how configure mTLS to secure communication between the NGINX Agent and NGINX Management Suite, see [NGINX Agent TLS Settings](https://docs.nginx.com/nginx-agent/configuration/encrypt-communication/).
 
 ---
 
 ## NGINX Metrics
 
 After you register an NGINX instance with NGINX Management Suite, the NGINX Agent will collect and report metrics. For more information about the metrics that are reported, see [Overview: Instance Metrics]({{< relref "/nms/nim/about/overview-metrics.md" >}}).
+
+## Container Support
+NGINX Agent is a companion daemon for NGINX Open Source or NGINX Plus instances and must run in the same container to work. The NGINX Agent repository includes [Dockerfiles](https://github.com/nginx/agent/tree/main/scripts/docker/official/) that can be used to build custom container images. Images are created with an NGINX Open Source or NGINX Plus instance and are available for various operating systems.
+
+See the requirements and supported operating systems in the [NGINX Agent Technical Specifications](https://docs.nginx.com/nginx-agent/technical-specifications/) topic.
+
+See the [Build Container Images](https://docs.nginx.com/nginx-agent/installation-upgrade/container-environments/docker-images/) topic for instructions on building container images.

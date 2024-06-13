@@ -1,20 +1,14 @@
 ---
-Title: "gRPC Policies"
-date: 2022-11-30T12:00.00-07.00
-description: "Learn how to use NGINX Management Suite API Connectivity Manager to configure policies for your gRPC API Gateway."
-# Assign weights in increments of 100
-weight: 600
+description: Learn how to use NGINX Management Suite API Connectivity Manager to configure
+  policies for your gRPC API Gateway.
+docs: DOCS-1084
+doctypes:
+- task
+tags:
+- docs
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["API Connectivity Manager", "policies"]
-doctypes: ["task"]
-docs: "DOCS-1084"
+weight: 600
 ---
-
-{{<custom-styles>}}
 
 {{< shortversions "1.3.0" "latest" "acmvers" >}}
 
@@ -34,13 +28,15 @@ The default NGINX error pages are suitable for conventional HTTP traffic.  gRPC 
 
 To return default gRPC status codes, send a POST request to the Environments endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                                |
 |--------|---------------------------------------------------------|
 | POST   | `/infrastructure/workspaces/<INFRA_WORKSPACE_NAME>/environments` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <details open>
 <summary>Example JSON request</summary>
@@ -90,18 +86,20 @@ To return default gRPC status codes, send a POST request to the Environments end
 Use the following variables to log gRPC-specific information. These variables are enabled by default for gRPC APIs.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Variable      | Description                                                                                                          |
 |---------------|----------------------------------------------------------------------------------------------------------------------|
 | `grpcMethod`  | The RPC method invoked in the call.                                                                                  |
 | `grpcService` | The service; for example, `routeguide.RouteGuide`                                                                    |
 | `grpcStatus`  | The gRPC [status code](https://github.com/grpc/grpc/blob/master/doc/statuscodes.md) returned by the upstream server. |
 | `grpcMessage` | The `grpc-message` trailer/header                                                                                    |
+
 {{< /bootstrap-table >}}
 
 Take note of the following considerations when using these standard log format variables for logging gRPC details:
 
 - `requestURI` - This is the relative URI of the gRPC method.  The HTTP2 `:path` pseudo-header is used for this.
-- `timestamp` - For streaming methods, this value reflects when the stream is closed.  
+- `timestamp` - For streaming methods, this value reflects when the stream is closed.
 - `totalLatency` - For streaming methods, this value reflects the entire duration of the stream.
 - `bodySize` - For streaming methods, this value counts all of the bytes sent during the duration of the stream and not for individual messages.
 

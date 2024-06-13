@@ -1,29 +1,9 @@
 ---
-aliases:
-- /analytics/overview-dashboard/
-authors: []
-categories:
-- installation
-- platform management
-- load balancing
-- analytics
-date: "2020-10-26T15:32:41-06:00"
 description: Learn about the Dashboards that displays cumulative metrics for your
-  NGINX Instances
+  NGINX Instances.
 docs: DOCS-528
 doctypes:
 - task
-draft: false
-journeys:
-- using
-personas:
-- devops
-- netops
-- support
-roles:
-- admin
-- user
-- read-only
 tags:
 - docs
 title: Analytics Overview
@@ -37,7 +17,7 @@ The **Analytics Dashboards** provides an at-a-glance summary of the state of you
 
 ## Before You Begin
 
-* [Install the NGINX Controller Agent on Instances that you want to monitor]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}})
+- [Install the NGINX Controller Agent on Instances that you want to monitor]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}})
 
 ## Overview Dashboard
 
@@ -47,24 +27,24 @@ The cumulative [metrics]({{< relref "/controller/analytics/metrics/overview-metr
 
 ### System Metrics
 
-* [Application Health Score]({{< relref "/controller/analytics/dashboards/application-health-score.md" >}}): the health score for your application.
-* Average CPU: 100 - AVG of the system.cpu.idle (CPU spent in an idle state)
-* Average Memory: AVG of the `system.mem.used` metric
+- [Application Health Score]({{< relref "/controller/analytics/dashboards/application-health-score.md" >}}): the health score for your application.
+- Average CPU: 100 - AVG of the system.cpu.idle (CPU spent in an idle state)
+- Average Memory: AVG of the `system.mem.used` metric
 
 ### Application Metrics
 
-* Time to First Byte: AVG of the `client.ttfb.latency.max` metric
-* Bytes In/s (Bytes In per second): RATE of the `http.request.bytes_rcvd` metric
-* Bytes Out/s (Bytes Out per second): RATE of the `http.request.bytes_sent` metric
+- Time to First Byte: AVG of the `client.ttfb.latency.max` metric
+- Bytes In/s (Bytes In per second): RATE of the `http.request.bytes_rcvd` metric
+- Bytes Out/s (Bytes Out per second): RATE of the `http.request.bytes_sent` metric
 
-* Total Requests: SUM of the `nginx.http.request.count` metric.
-* HTTP 5XX Errors: SUM of the `nginx.http.status.5xx` metric.
-* HTTP 4XX Errors: SUM of the `nginx.http.status.4xx` metric.
-* Request time (P95): AVG of the `nginx.http.request.time.pctl95` metric.
+- Total Requests: SUM of the `nginx.http.request.count` metric.
+- HTTP 5XX Errors: SUM of the `nginx.http.status.5xx` metric.
+- HTTP 4XX Errors: SUM of the `nginx.http.status.4xx` metric.
+- Request time (P95): AVG of the `nginx.http.request.time.pctl95` metric.
 
-* Avg Client Response Latency: AVG of the `client.response.latency.max` metric
-* Avg Upstream Response Latency: AVG of the `upstream.response.latency.max` metric
-* Avg Client Network Latency: AVG of the `client.network.latency.max` metric.
+- Avg Client Response Latency: AVG of the `client.response.latency.max` metric
+- Avg Upstream Response Latency: AVG of the `upstream.response.latency.max` metric
+- Avg Client Network Latency: AVG of the `client.network.latency.max` metric.
 
 {{< note >}}
 
@@ -76,11 +56,11 @@ To display metrics for a specific set of hosts (for example, only for "productio
 
 ## What's Next
 
-* [Overview of metrics and metadata]({{< relref "/controller/analytics/metrics/overview-metrics-metadata.md" >}})
-* [Metrics Catalog Reference]({{< relref "/controller/analytics/catalogs/metrics.md" >}})
-* [Dimensions Catalog Reference]({{< relref "/controller/analytics/catalogs/dimensions.md" >}})
-* [Application Health Score]({{< relref "/controller/analytics/dashboards/application-health-score.md" >}})
-* [Custom Dashboards]({{< relref "/controller/analytics/dashboards/custom-dashboards.md" >}})
+- [Overview of metrics and metadata]({{< relref "/controller/analytics/metrics/overview-metrics-metadata.md" >}})
+- [Metrics Catalog Reference]({{< relref "/controller/analytics/catalogs/metrics.md" >}})
+- [Dimensions Catalog Reference]({{< relref "/controller/analytics/catalogs/dimensions.md" >}})
+- [Application Health Score]({{< relref "/controller/analytics/dashboards/application-health-score.md" >}})
+- [Custom Dashboards]({{< relref "/controller/analytics/dashboards/custom-dashboards.md" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

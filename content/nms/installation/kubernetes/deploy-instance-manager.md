@@ -1,33 +1,15 @@
 ---
-title: "Deploy Instance Manager on Kubernetes"
-date: 2022-12-14T16:28:20-08:00
-# Change draft status to false to publish doc
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "The guide provides step-by-step instructions to deploy NGINX Instance Manager on Kubernetes using a Helm chart."
-# Assign weights in increments of 100
-weight: 1
+description: The guide provides step-by-step instructions to deploy NGINX Instance
+  Manager on Kubernetes using a Helm chart.
+docs: DOCS-1081
+doctypes:
+- tutorial
+tags:
+- docs
+title: Deploy Instance Manager on Kubernetes
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1113"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["tutorial"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
-aliases:
-- /installation/helm-chart/
-
+weight: 1
 ---
-
-{{<custom-styles>}}
 
 ## Overview
 
@@ -47,8 +29,9 @@ Helm charts are pre-configured packages of Kubernetes resources that can easily 
 
 To deploy Instance Manager using a Helm chart, you need the following:
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Requirements                                                                        | Notes                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Private&nbsp;Docker&nbsp;registry&nbsp;                                             | You need to have an externally-accessible [private Docker registry](https://docs.docker.com/registry/deploying/) to which you can push the container images.                                                                                                                                                                                                                                                            |
@@ -58,8 +41,9 @@ To deploy Instance Manager using a Helm chart, you need the following:
 | Helm 3.10.0 or later                                                                | https://helm.sh/docs/intro/install/                                                                                                                                                                                                                                                                                                                                                                                     |
 | OpenSSL 1.1.1 or later                                                              | https://www.openssl.org/source/                                                                                                                                                                                                                                                                                                                                                                                         |
 | `tar` 1.20 or later                                                                 | <p>The `tar` archiving tool is usually installed by default. To see which version of `tar` you have installed, run `tar --version`. </p> <p>If `tar` is not installed or the version is too old, follow the instructions for your Linux distribution to install a supported version from a package manager such as YUM (CentOS, RHEL) or APT (Debian, Ubuntu). </p>                                                     |
+
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ---
 
@@ -110,6 +94,7 @@ Take the following steps to download and extract the Helm page on your host:
     - `nms-dpm-<version>.tar.gz`
     - `nms-ingestion-<version>.tar.gz`
     - `nms-integrations-<version>.tar.gz`
+    - `nms-utility-<version>.tar.gz`
 
 ---
 
@@ -131,6 +116,7 @@ Take the following steps to download and extract the Helm page on your host:
    docker load -i nms-ingestion-<version>.tar.gz
    docker load -i nms-dpm-<version>.tar.gz
    docker load -i nms-integrations-<version>.tar.gz
+   docker load -i nms-utility-<version>.tar.gz
    ```
 
    This set of commands loads the Docker images from the specified `tar.gz` archives. Replace `<version>` with the product version you specified when downloading the Helm bundle.
@@ -177,6 +163,7 @@ To push the Docker images to your private registry, take the following steps:
     docker tag nms-dpm:<version> <my-docker-registry:port>/nms-dpm:<version>
     docker tag nms-ingestion:<version> <my-docker-registry:port>/nms-ingestion:<version>
     docker tag nms-integrations:<version> <my-docker-registry:port>/nms-integrations:<version>
+    docker tag nms-utility:<version> <my-docker-registry:port>/nms-utility:<version>
     ```
 
     For example:
@@ -184,7 +171,7 @@ To push the Docker images to your private registry, take the following steps:
      ```bash
     docker tag nms-apigw:2.9.1 myregistryhost:5000/nms-apigw:2.9.1
     ...
-    ```   
+    ```
 
 1. Push the images to your private registry:
 
@@ -194,6 +181,7 @@ To push the Docker images to your private registry, take the following steps:
     docker push <my-docker-registry:port>/nms-dpm:<version>
     docker push <my-docker-registry:port>/nms-ingestion:<version>
     docker push <my-docker-registry:port>/nms-integrations:<version>
+    docker push <my-docker-registry:port>/nms-utility:<version>
     ```
 
     For example:
@@ -201,7 +189,7 @@ To push the Docker images to your private registry, take the following steps:
      ```bash
     docker push myregistryhost:5000/nms-apigw:2.9.1
     ...
-    ```   
+    ```
 
 ---
 
@@ -242,15 +230,47 @@ A Helm `values.yaml` file is a configuration file you can use to customize the i
             image:
                 repository: <my-docker-registry:port>/nms-integrations
                 tag: <version>
+        utility:
+            image:
+                repository: <my-docker-registry:port>/nms-utility
+                tag: <version>
     ```
 
 
 
-    This `values.yaml` file specifies the Docker images to be used for the `apigw`, `core`, `dpm`, `ingestion`, and `integrations` components, including the repository (`<my-docker-registry:port>`) and tag (`version`) of each image. It also specifies that a secret called `regcred` should be used for image pulls.
+    This `values.yaml` file specifies the Docker images to be used for the `apigw`, `core`, `dpm`, `ingestion`, `integrations` and `utility` components, including the repository (`<my-docker-registry:port>`) and tag (`version`) of each image. It also specifies that a secret called `regcred` should be used for image pulls.
 
 
 
 2. Save and close the `values.yaml` file.
+
+---
+
+## Manage Network Policies
+
+To enforce existing network policies for NGINX Management Suite, Kubernetes must have a [network plugin](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/) installed before helm chart installation.
+
+When enabled, the following network policies will be created in the release namespace.
+
+``` shell
+kubectl get netpol -n nms
+NAME           POD-SELECTOR                          AGE
+apigw          app.kubernetes.io/name=apigw          4m47s
+clickhouse     app.kubernetes.io/name=clickhouse     4m47s
+core           app.kubernetes.io/name=core           4m47s
+dpm            app.kubernetes.io/name=dpm            4m47s
+ingestion      app.kubernetes.io/name=ingestion      4m47s
+integrations   app.kubernetes.io/name=integrations   4m47s
+utility        app.kubernetes.io/name=integrations   4m47s
+```
+
+To disable the existing network policies, update the `values.yaml` file as shown below:
+
+```yaml
+ networkPolicies:
+	 # Setting this to true enables network policies for NGINX Management Suite.
+	 enabled: false
+```
 
 ---
 
@@ -355,4 +375,3 @@ For guidance on how to create a support package containing system and service de
 ### Deploy Other NGINX Management Suite Modules
 
 - [Deploy API Connectivity Manager on Kubernetes]({{< relref "/nms/installation/kubernetes/deploy-api-connectivity-manager.md" >}})
-- [Deploy App Delivery Manager on Kubernetes]({{< relref "/nms/installation/kubernetes/deploy-app-delivery-manager.md" >}})

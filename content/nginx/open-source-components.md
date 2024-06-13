@@ -9,17 +9,16 @@ toc: true
 weight: 500
 ---
 
-
 Open source components included in the NGINX Plus (package name is `nginx-plus`) are:
 
 
-- nginx/OSS 1.23.4, distributed under 2-clause BSD license.
+- nginx/OSS 1.25.5, distributed under 2-clause BSD license.
 
-  Homepage: http://nginx.org
+  Homepage: <https://nginx.org>
 
   Copyright © 2002-2021 Igor Sysoev
-  
-  Copyright © 2011-2023 NGINX, Inc.
+
+  Copyright © 2011-2024 NGINX, Inc.
 
   All rights reserved.
 
@@ -33,7 +32,7 @@ Open source components included in the NGINX Plus (package name is `nginx-plus`)
 
   This is an OpenSSL-compatible implementation of the RSA Data Security, Inc. MD5 Message-Digest Algorithm (RFC 1321).
 
-  Homepage: http://openwall.info/wiki/people/solar/software/public-domain-source-code/md5
+  Homepage: <http://openwall.info/wiki/people/solar/software/public-domain-source-code/md5>
 
   Author: Alexander Peslyak, better known as Solar Designer <solar at openwall.com>
 
@@ -52,7 +51,7 @@ modification, are permitted.
 
 - MurmurHash algorithm (version 2), distributed under MIT license.
 
-  Homepage: https://sites.google.com/site/murmurhash/
+  Homepage: <https://sites.google.com/site/murmurhash/>
 
   Copyright © Austin Appleby
 
@@ -77,158 +76,183 @@ OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 (`dashboard.html` in `nginx-plus` package) and distributed under MIT license:
 
 
-  - `@babel-core`, Babel compiler core (7.16.0)
-    
-    Homepage: https://github.com/babel/babel/tree/master/packages/babel-core
+  - `@babel-core`, Babel compiler core (7.23.2)
+
+    Homepage: <https://github.com/babel/babel/tree/master/packages/babel-core>
 
     Copyright © 2014-present Sebastian McKenzie and other contributors
 
-  - `@babel/plugin-proposal-object-rest-spread`, produces spec-compliant code by using Babel's objectSpread helper (7.16.0).
+  - `@babel/plugin-proposal-object-rest-spread`, produces spec-compliant code by using Babel's objectSpread helper (7.22.15).
 
-    Homepage: https://github.com/babel/babel/tree/master/packages/babel-plugin-proposal-object-rest-spread
+    Homepage: <https://github.com/babel/babel/tree/master/packages/babel-plugin-proposal-object-rest-spread>
 
-  - `@babel/plugin-transform-runtime`, makes helpers reference the module babel-runtime to avoid duplication across your compiled output (7.16.4).
+  - `@babel/plugin-transform-runtime`, makes helpers reference the module babel-runtime to avoid duplication across your compiled output (7.22.15).
 
-    Homepage: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-runtime
+    Homepage: <https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-runtime>
 
-  - `@babel/preset-env`, a Babel preset for each environment (7.16.4).
+  - `@babel/preset-env`, a Babel preset for each environment (7.22.15).
 
-    Homepage: https://github.com/babel/babel/tree/master/packages/babel-preset-env
+    Homepage: <https://github.com/babel/babel/tree/master/packages/babel-preset-env>
 
-  - `@babel/preset-react`, a Babel preset for all React plugins (7.16.0).
+  - `@babel/preset-react`, a Babel preset for all React plugins (7.22.15).
 
-    Homepage: https://github.com/babel/babel/tree/master/packages/babel-preset-react
+    Homepage: <https://github.com/babel/babel/tree/master/packages/babel-preset-react>
 
-  - `autoprefixer`, a PostCSS plugin to parse CSS and add vendor prefixes to CSS rules (10.4.0)
+  - `autoprefixer`, a PostCSS plugin to parse CSS and add vendor prefixes to CSS rules (10.4.7)
 
-    Homepage: https://github.com/postcss/autoprefixer
+    Homepage: <https://github.com/postcss/autoprefixer>
 
     Copyright © 2013 Andrey Sitnik <andrey@sitnik.ru>
 
-  - `babel-loader`, allows transpiling JavaScript files using Babel and webpack (8.2.3).
+  - `babel-loader`, allows transpiling JavaScript files using Babel and webpack (9.1.3).
 
-    Homepage: https://github.com/babel/babel-loader
+    Homepage: <https://github.com/babel/babel-loader>
 
     Copyright © 2014-2019 Luís Couto <hello@luiscouto.pt>
 
-  - `core-js`, a modular standard library for JavaScript (3.19.3).
 
-    Homepage: https://github.com/zloirock/core-js
+  - `babel-plugin-istanbul`, a babel plugin that adds istanbul instrumentation to ES6 code (6.1.1).
+
+    Homepage: <https://github.com/istanbuljs/babel-plugin-istanbul>
+
+    Copyright © 2016, Istanbul Code Coverage
+
+  - `core-js`, a modular standard library for JavaScript (3.22.8).
+
+    Homepage: <https://github.com/zloirock/core-js>
 
     Copyright © 2014-2022 Denis Pushkarev
 
   - `css-loader`, interprets `@import` and `url()`
-like `import/require()` and will resolve them (6.5.1).
+like `import/require()` and will resolve them (6.8.1).
 
-    Homepage: https://github.com/webpack-contrib/css-loader
+    Homepage: <https://github.com/webpack-contrib/css-loader>
 
     Copyright © JS Foundation and other contributors
 
-  - `cssnano`, a modular minifier, built on top of the PostCSS ecosystem (5.1.18).
+  - `cssnano`, a modular minifier, built on top of the PostCSS ecosystem (5.1.11).
 
-    Homepage: https://github.com/cssnano/cssnano"/
+    Homepage: <https://github.com/cssnano/cssnano/>
 
     Copyright © Ben Briggs <beneb.info@gmail.com>
 
+  - `eslint`, a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code (8.49.0).
+
+    Homepage: <https://www.npmjs.com/package/eslint>
+
+    Copyright OpenJS Foundation and other contributors, <www.openjsf.org>
+
+  - `eslint-config-airbnb`, exports some ESLint configurations (19.0.4).
+
+    Homepage: <https://www.npmjs.com/package/eslint-config-airbnb>
+
+    Copyright © 2012 Airbnb
+
+  - `eslint-plugin-import`, supports linting of ES2015+ (ES6+) import/export syntax and prevent issues with misspelling of file paths and import names (2.28.1).
+
+    Homepage: <https://www.npmjs.com/package/eslint-plugin-import>
+
+    Copyright © 2015 Ben Mosher
+
+  - `eslint-plugin-jsx-a11y`, static AST checker for accessibility rules on JSX elements (6.5.1).
+
+    Homepage: <https://www.npmjs.com/package/eslint-plugin-jsx-a11y>
+
+     Copyright © 2016 Ethan Cohen
+
+  - `eslint-plugin-react`, react specific linting rules for eslint (7.33.2).
+
+    Homepage: <https://www.npmjs.com/package/eslint-plugin-react>
+
+    Copyright © 2014 Yannick Croissant
+
+  - `eslint-webpack-plugin`, uses eslint to find and fix problems in the JavaScript code (4.0.1).
+
+    Homepage: <https://www.npmjs.com/package/eslint-webpack-plugin>
+
+    Copyright JS Foundation and other contributors
+
   - `history`, manage session history with JavaScript (4.10.1).
 
-    Homepage: https://github.com/ReactTraining/history
+    Homepage: <https://github.com/ReactTraining/history>
 
     Copyright © React Training 2016-2020, Copyright © Remix Software 2020-2021
 
   - `html-inline-css-webpack-plugin`, converts external stylesheet to embedded stylesheet, aka document stylesheet (1.11.1).
 
-    Homepage: https://github.com/Runjuu/html-inline-css-webpack-plugin
+    Homepage: <https://github.com/Runjuu/html-inline-css-webpack-plugin>
 
     Copyright © 2018 Huang
 
   - `html-webpack-plugin`, simplifies creation of HTML files to serve your webpack bundles (5.5.0).
 
-    Homepage: https://github.com/jantimon/html-webpack-plugin
+    Homepage: <https://github.com/jantimon/html-webpack-plugin>
 
     Copyright © JS Foundation and other contributors
 
-  - `mini-css-extract-plugin`, extracts CSS into separate files (5.5.0).
+  - `mini-css-extract-plugin`, extracts CSS into separate files (2.6.0).
 
-    Homepage: https://github.com/webpack-contrib/mini-css-extract-plugin
+    Homepage: <https://github.com/webpack-contrib/mini-css-extract-plugin>
 
     Copyright © JS Foundation and other contributors
 
-  - `postcss`, a tool for transforming styles with JS plugins (8.4.4).
+  - `postcss`, a tool for transforming styles with JS plugins (8.4.31).
 
-    Homepage: https://github.com/postcss/postcss
+    Homepage: <https://github.com/postcss/postcss>
 
-    Copyright 2013 Andrey Sitnik &lt;andrey@sitnik.ru&gt;
+    Copyright 2013 Andrey Sitnik &lt;<andrey@sitnik.ru>&gt;
 
-  - `postcss-loader`, PostCSS loader for webpack (6.2.1).
+  - `postcss-loader`, PostCSS loader for webpack (7.3.3).
 
-    Homepage: https://github.com/postcss/postcss-loader
+    Homepage: <https://github.com/postcss/postcss-loader>
 
     Copyright © JS Foundation and other contributors
 
   - `postcss-url`, PostCSS plugin to rebase url(), inline or copy asset (10.1.3).
 
-    Homepage: https://github.com/postcss/postcss-url
+    Homepage: <https://github.com/postcss/postcss-url>
 
     Copyright © 2014 Maxime Thirouin
 
-  - `preact`, fast 3kb React alternative with the same ES6 API (8.5.3).
+  - `preact`, fast 3kb React alternative with the same ES6 API (10.7.3).
 
-    Homepage: https://github.com/developit/preact
+    Homepage: <https://github.com/developit/preact>
 
     Copyright © 2015-present Jason Miller
 
-  - `preact-compat`, React compatibility layer for Preact (3.19.0).
+  - `react-dev-utils`, utilities used by Create React App (12.0.1).
 
-    Homepage: https://github.com/preactjs/preact-compat
-
-    Copyright © 2016 Jason Miller
-
-  - `preact-portal`, render Preact components into SPACE (1.1.3).
-
-    Homepage: https://github.com/developit/preact-portal
-
-    Copyright © 2015 Jason Miller
-
-  - `preact-portal`, render Preact components into SPACE (1.1.3).
-
-    Homepage: https://github.com/developit/preact-portal
-
-    Copyright © 2015 Jason Miller
-
-  - `react-dev-utils`, utilities used by Create React App (12.0.0-next.58).
-
-    Homepage: https://github.com/facebook/create-react-app
+    Homepage: <https://github.com/facebook/create-react-app>
 
     Copyright © 2013-present, Facebook, Inc.
 
   - `regenerator-runtime`, standalone runtime for Regenerator-compiled generator and async functions (0.13.9).
 
-    Homepage: https://github.com/facebook/regenerator
+    Homepage: <https://github.com/facebook/regenerator>
 
     Copyright © 2014-present, Facebook, Inc.
 
   - `style-loader`, injects CSS into the DOM (3.3.1).
 
-    Homepage: https://github.com/webpack-contrib/style-loader
+    Homepage: <https://github.com/webpack-contrib/style-loader>
 
     Copyright © JS Foundation and other contributors
 
-  - `webpack`, a bundler for javascript and friends (5.65.0).
+  - `webpack`, a bundler for javascript and friends (5.88.2).
 
-    Homepage: https://github.com/webpack/webpack
+    Homepage: <https://github.com/webpack/webpack>
 
     Copyright © JS Foundation and other contributors
 
-  - `webpack-cli`, provides the interface of options webpack uses in its configuration file (4.9.1).
+  - `webpack-cli`, provides the interface of options webpack uses in its configuration file (4.10.0).
 
-    Homepage: https://github.com/webpack/webpack-cli
+    Homepage: <https://github.com/webpack/webpack-cli>
 
     Copyright © JS Foundation and other contributors
 
   - `whatwg-fetch`, a window.fetch JavaScript polyfill (2.0.4).
 
-    Homepage: https://github.com/github/fetch
+    Homepage: <https://github.com/github/fetch>
 
     Copyright © 2014-2016 GitHub, Inc.
 
@@ -256,16 +280,16 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
   - `babel-plugin-react-css-modules`, transforms styleName to className using compile time CSS module resolution (3.4.2), distributed under 3-clause BSD license.
 
-    Homepage: https://github.com/gajus/babel-plugin-react-css-modules
+    Homepage: <https://github.com/gajus/babel-plugin-react-css-modules>
 
-    Copyright © 2016, Gajus Kuizinas (http://gajus.com/)
+    Copyright © 2016, Gajus Kuizinas (<http://gajus.com/>)
 
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
     - Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
     - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-    - Neither the name of the Gajus Kuizinas (http://gajus.com/) nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+    - Neither the name of the Gajus Kuizinas (<http://gajus.com/>) nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
 
     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -280,13 +304,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   - `npm-font-open-sans`, Open Sans font family - incl. usage of CSS, SCSS, LESS (1.1.0), distributed under Apache 2.0 license.
 
-    Homepage: https://github.com/dasrick/npm-font-open-sans
+    Homepage: <https://github.com/dasrick/npm-font-open-sans>
 
     Copyright © Steve Matteson
 
   Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
-You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+You may obtain a copy of the License at <http://www.apache.org/licenses/LICENSE-2.0>
 
   Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,

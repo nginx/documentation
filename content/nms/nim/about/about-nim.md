@@ -1,20 +1,16 @@
 ---
-title: "About Instance Manager"
-date: 2022-06-02T16:02:48-07:00
+description: ''
+docs: DOCS-1076
+doctypes:
+- concept
 draft: true
-description: ""
-# Assign weights in increments of 100
-weight: 100
+tags:
+- docs
+title: About Instance Manager
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1076"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation"]
-doctypes: ["concept"]
+weight: 100
 ---
+
  
 ## Overview
  

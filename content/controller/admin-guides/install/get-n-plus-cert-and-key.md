@@ -1,31 +1,9 @@
 ---
-authors: []
-categories:
-- installation
-- infrastructure
-- platform management
-- services
-- api management
-- service mesh
-- security
-- analytics
-date: "2020-10-29T10:48:10-07:00"
 description: How to download the NGINX Plus nginx.crt and nginx.key files using the
   NGINX Controller API.
 docs: DOCS-252
 doctypes:
 - task
-draft: false
-journeys:
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
 tags:
 - docs
 title: Download the NGINX Plus Cert and Key Bundle
@@ -50,7 +28,7 @@ You can send a GET request to the login endpoint to find the status of the sessi
 For example:
 
 - Login and capture the session cookie:
-  
+
   ```curl
   curl -c cookie.txt -X POST --url 'https://198.51.100.10/api/v1/platform/login' --header 'Content-Type: application/json' --data '{"credentials": {"type": "BASIC","username": "arthur@arthurdent.net","password": "Towel$123"}}'
   ```
@@ -85,7 +63,7 @@ For example:
   ```
 
 {{< note >}}
-If you are using a self-signed certificate you will need to add `-k` (allow insecure connections) to your curl command to be able to download your NGINX Plus certificate and key bundle. 
+If you are using a self-signed certificate you will need to add `-k` (allow insecure connections) to your curl command to be able to download your NGINX Plus certificate and key bundle.
 {{< /note >}}
 
 

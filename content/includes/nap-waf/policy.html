@@ -27,6 +27,13 @@
 </thead>
 <tbody>
 <tr class="odd">
+<td><a href="#policy/access-profiles">access-profiles</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
 <td><code>applicationLanguage</code></td>
 <td>No</td>
 <td>string</td>
@@ -64,49 +71,49 @@
 <li>windows-874</li>
 </ul></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/blocking-settings">blocking-settings</a></td>
 <td>Yes</td>
 <td>object</td>
 <td>This section defines policy block/alarm behaviors.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/bot-defense">bot-defense</a></td>
 <td>Yes</td>
 <td>object</td>
 <td>This section defines the properties of the bot defense feature.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/browser-definitions">browser-definitions</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>caseInsensitive</code></td>
 <td>No</td>
 <td>boolean</td>
 <td>Specifies whether the security policy treats microservice URLs, file types, URLs, and parameters as case sensitive or not. When this setting is enabled, the system stores these security policy elements in lowercase in the security policy configuration.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/character-sets">character-sets</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/cookie-settings">cookie-settings</a></td>
 <td>Yes</td>
 <td>object</td>
 <td>The maximum length of a cookie header name and value that the system processes. The system calculates and enforces a cookie header length based on the sum of the length of the cookie header name and value.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p><a href="#policy/cookies">cookies</a></p></td>
 <td><p>Yes</p></td>
 <td><p>array of objects</p></td>
@@ -119,32 +126,39 @@
 </blockquote></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/csrf-protection">csrf-protection</a></td>
 <td>Yes</td>
 <td>object</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/csrf-urls">csrf-urls</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/data-guard">data-guard</a></td>
 <td>Yes</td>
 <td>object</td>
 <td>Data Guard feature can prevent responses from exposing sensitive information by masking the data.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>description</code></td>
 <td>No</td>
 <td>string</td>
 <td>Specifies the description of the policy.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/disallowed-geolocations">disallowed-geolocations</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td>Specifies a list of countries that may not access the web application.</td>
 <td></td>
 </tr>
 <tr class="odd">
@@ -291,83 +305,90 @@
 <td></td>
 </tr>
 <tr class="odd">
+<td><code>performStaging</code></td>
+<td>No</td>
+<td>boolean</td>
+<td>Determines staging handling for all applicable entities in the policy, such as signatures, URLs, parameters, and cookies. If disabled, all entities will be enforced and any violations triggered will be considered illegal.</td>
+<td></td>
+</tr>
+<tr class="even">
 <td><a href="#policy/response-pages">response-pages</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>The Security Policy has a default blocking response page that it returns to the client when the client request, or the web server response, is blocked by the security policy. You can change the way the system responds to blocked requests. All default response pages contain a variable, &lt;%TS.request.ID()%&gt;, that the system replaces with a support ID number when it issues the page.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/sensitive-parameters">sensitive-parameters</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>This section defines sensitive parameters. The contents of these parameters are not visible in logs nor in the user interfaces. Instead of actual values a string of asterisks is shown for these parameters. Use these parameters to protect sensitive user input, such as a password or a credit card number, in a validated request. A parameter name of "password" is always defined as sensitive by default.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/server-technologies">server-technologies</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>The server technology is a server-side application, framework, web server or operating system type that is configured in the policy in order to adapt the policy to the checks needed for the respective technology.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/signature-requirements">signature-requirements</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/signature-sets">signature-sets</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>Defines behavior when signatures found within a signature-set are detected in a request. Settings are culmulative, so if a signature is found in any set with block enabled, that signature will have block enabled.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/signature-settings">signature-settings</a></td>
 <td>Yes</td>
 <td>object</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/signatures">signatures</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>This section defines the properties of a signature on the policy.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/template">template</a></td>
 <td>Yes</td>
 <td>object</td>
 <td>Specifies the template to populate the default attributes of a new policy.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/threat-campaigns">threat-campaigns</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>This section defines the enforcement state for the threat campaigns in the security policy.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/urls">urls</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>In a security policy, you can manually specify the HTTP URLs that are allowed (or disallowed) in traffic to the web application being protected. When you create a security policy, wildcard URLs of * (representing all HTTP URLs) are added to the Allowed HTTP URLs lists.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/whitelist-ips">whitelist-ips</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>An IP address exception is an IP address that you want the system to treat in a specific way for a security policy. You can use the IP address exception feature to create exceptions for IP addresses of internal tools that your company uses, such as penetration tools, manual or automatic scanners, or web scraping tools. You can add an IP address exception and instruct the system how to handle traffic coming from that address.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/xml-profiles">xml-profiles</a></td>
 <td>Yes</td>
 <td>array of objects</td>
@@ -425,6 +446,189 @@
 <td><ul>
 <li>POLICY_TEMPLATE_NGINX_BASE</li>
 </ul></td>
+</tr>
+</tbody>
+</table>
+<h2 id="policy/access-profiles">access-profiles</h2>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>description</code></td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>enforceMaximumLength</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>enforceValidityPeriod</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/access-profiles/keyFiles">keyFiles</a></td>
+<td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/access-profiles/location">location</a></td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>maximumLength</code></td>
+<td>integer</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>name</code></td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>type</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li>jwt</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/access-profiles/usernameExtraction">usernameExtraction</a></td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>verifyDigitalSignature</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="policy/access-profiles/keyFiles">keyFiles</h3>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>contents</code></td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>fileName</code></td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="policy/access-profiles/location">location</h3>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>in</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li>header</li>
+<li>query</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>name</code></td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="policy/access-profiles/usernameExtraction">usernameExtraction</h3>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>claimPropertyName</code></td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>enabled</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>isMandatory</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -638,7 +842,6 @@
 <td><code>maximumCookieHeaderLength</code></td>
 <td><ul>
 <li>integer minimum: 1 maximum: 65536</li>
-<li>string</li>
 <li>string</li>
 </ul></td>
 <td>Maximum Cookie Header Length must be greater than 0 and less than 65536 bytes (64K). Note: if 0 or <em>any</em> are set, then no restriction on the cookie header length is applied.</td>
@@ -876,7 +1079,6 @@
 <td><ul>
 <li>integer</li>
 <li>string</li>
-<li>string</li>
 </ul></td>
 <td></td>
 <td><ul>
@@ -966,6 +1168,18 @@
 <td></td>
 </tr>
 <tr class="even">
+<td><code>customPatterns</code></td>
+<td>boolean</td>
+<td>If <em>true</em> the system recognizes customized patterns as sensitive data.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>customPatternsList</code></td>
+<td>array of strings</td>
+<td>List of PCRE regular expressions that specify the sensitive data patterns.</td>
+<td></td>
+</tr>
+<tr class="even">
 <td><code>enabled</code></td>
 <td>boolean</td>
 <td>If <em>true</em> the system protects sensitive data.</td>
@@ -993,6 +1207,18 @@
 <td></td>
 </tr>
 <tr class="odd">
+<td><code>firstCustomCharactersToExpose</code></td>
+<td>integer minimum: 0 maximum: 255</td>
+<td>Specifies the number of first alphanumeric characters in Custom patterns that are exposed.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>lastCustomCharactersToExpose</code></td>
+<td>integer minimum: 0 maximum: 255</td>
+<td>Specifies the number of last alphanumeric characters in Custom patterns that are exposed.</td>
+<td></td>
+</tr>
+<tr class="odd">
 <td><code>maskData</code></td>
 <td>boolean</td>
 <td>If <em>true</em> the system intercepts the returned responses to mask sensitive data.</td>
@@ -1003,6 +1229,289 @@
 <td>boolean</td>
 <td>If <em>true</em> the system considers U.S Social Security numbers as sensitive data.</td>
 <td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="policy/disallowed-geolocations">disallowed-geolocations</h2>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>countryCode</code></td>
+<td>string</td>
+<td>Specifies the ISO country code of the selected country.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>countryName</code></td>
+<td>string</td>
+<td>Specifies the name of the country.</td>
+<td><ul>
+<li>Afghanistan</li>
+<li>Aland Islands</li>
+<li>Albania</li>
+<li>Algeria</li>
+<li>American Samoa</li>
+<li>Andorra</li>
+<li>Angola</li>
+<li>Anguilla</li>
+<li>Anonymous Proxy</li>
+<li>Antarctica</li>
+<li>Antigua and Barbuda</li>
+<li>Argentina</li>
+<li>Armenia</li>
+<li>Aruba</li>
+<li>Australia</li>
+<li>Austria</li>
+<li>Azerbaijan</li>
+<li>Bahamas</li>
+<li>Bahrain</li>
+<li>Bangladesh</li>
+<li>Barbados</li>
+<li>Belarus</li>
+<li>Belgium</li>
+<li>Belize</li>
+<li>Benin</li>
+<li>Bermuda</li>
+<li>Bhutan</li>
+<li>Bolivia</li>
+<li>Bosnia and Herzegovina</li>
+<li>Botswana</li>
+<li>Bouvet Island</li>
+<li>Brazil</li>
+<li>British Indian Ocean Territory</li>
+<li>Brunei Darussalam</li>
+<li>Bulgaria</li>
+<li>Burkina Faso</li>
+<li>Burundi</li>
+<li>Cambodia</li>
+<li>Cameroon</li>
+<li>Canada</li>
+<li>Cape Verde</li>
+<li>Cayman Islands</li>
+<li>Central African Republic</li>
+<li>Chad</li>
+<li>Chile</li>
+<li>China</li>
+<li>Christmas Island</li>
+<li>Cocos (Keeling) Islands</li>
+<li>Colombia</li>
+<li>Comoros</li>
+<li>Congo</li>
+<li>Congo, The Democratic Republic of the</li>
+<li>Cook Islands</li>
+<li>Costa Rica</li>
+<li>Cote D'Ivoire</li>
+<li>Croatia</li>
+<li>Cuba</li>
+<li>Cyprus</li>
+<li>Czech Republic</li>
+<li>Denmark</li>
+<li>Djibouti</li>
+<li>Dominica</li>
+<li>Dominican Republic</li>
+<li>Ecuador</li>
+<li>Egypt</li>
+<li>El Salvador</li>
+<li>Equatorial Guinea</li>
+<li>Eritrea</li>
+<li>Estonia</li>
+<li>Ethiopia</li>
+<li>Falkland Islands (Malvinas)</li>
+<li>Faroe Islands</li>
+<li>Fiji</li>
+<li>Finland</li>
+<li>France</li>
+<li>France, Metropolitan</li>
+<li>French Guiana</li>
+<li>French Polynesia</li>
+<li>French Southern Territories</li>
+<li>Gabon</li>
+<li>Gambia</li>
+<li>Georgia</li>
+<li>Germany</li>
+<li>Ghana</li>
+<li>Gibraltar</li>
+<li>Greece</li>
+<li>Greenland</li>
+<li>Grenada</li>
+<li>Guadeloupe</li>
+<li>Guam</li>
+<li>Guatemala</li>
+<li>Guernsey</li>
+<li>Guinea</li>
+<li>Guinea-Bissau</li>
+<li>Guyana</li>
+<li>Haiti</li>
+<li>Heard Island and McDonald Islands</li>
+<li>Holy See (Vatican City State)</li>
+<li>Honduras</li>
+<li>Hong Kong</li>
+<li>Hungary</li>
+<li>Iceland</li>
+<li>India</li>
+<li>Indonesia</li>
+<li>Iran, Islamic Republic of</li>
+<li>Iraq</li>
+<li>Ireland</li>
+<li>Isle of Man</li>
+<li>Israel</li>
+<li>Italy</li>
+<li>Jamaica</li>
+<li>Japan</li>
+<li>Jersey</li>
+<li>Jordan</li>
+<li>Kazakhstan</li>
+<li>Kenya</li>
+<li>Kiribati</li>
+<li>Korea, Democratic People's Republic of</li>
+<li>Korea, Republic of</li>
+<li>Kuwait</li>
+<li>Kyrgyzstan</li>
+<li>Lao People's Democratic Republic</li>
+<li>Latvia</li>
+<li>Lebanon</li>
+<li>Lesotho</li>
+<li>Liberia</li>
+<li>Libyan Arab Jamahiriya</li>
+<li>Liechtenstein</li>
+<li>Lithuania</li>
+<li>Luxembourg</li>
+<li>Macau</li>
+<li>Macedonia</li>
+<li>Madagascar</li>
+<li>Malawi</li>
+<li>Malaysia</li>
+<li>Maldives</li>
+<li>Mali</li>
+<li>Malta</li>
+<li>Marshall Islands</li>
+<li>Martinique</li>
+<li>Mauritania</li>
+<li>Mauritius</li>
+<li>Mayotte</li>
+<li>Mexico</li>
+<li>Micronesia, Federated States of</li>
+<li>Moldova, Republic of</li>
+<li>Monaco</li>
+<li>Mongolia</li>
+<li>Montenegro</li>
+<li>Montserrat</li>
+<li>Morocco</li>
+<li>Mozambique</li>
+<li>Myanmar</li>
+<li>N/A</li>
+<li>Namibia</li>
+<li>Nauru</li>
+<li>Nepal</li>
+<li>Netherlands</li>
+<li>Netherlands Antilles</li>
+<li>New Caledonia</li>
+<li>New Zealand</li>
+<li>Nicaragua</li>
+<li>Niger</li>
+<li>Nigeria</li>
+<li>Niue</li>
+<li>Norfolk Island</li>
+<li>Northern Mariana Islands</li>
+<li>Norway</li>
+<li>Oman</li>
+<li>Other</li>
+<li>Pakistan</li>
+<li>Palau</li>
+<li>Palestinian Territory</li>
+<li>Panama</li>
+<li>Papua New Guinea</li>
+<li>Paraguay</li>
+<li>Peru</li>
+<li>Philippines</li>
+<li>Pitcairn Islands</li>
+<li>Poland</li>
+<li>Portugal</li>
+<li>Puerto Rico</li>
+<li>Qatar</li>
+<li>Reunion</li>
+<li>Romania</li>
+<li>Russian Federation</li>
+<li>Rwanda</li>
+<li>Saint Barthelemy</li>
+<li>Saint Helena</li>
+<li>Saint Kitts and Nevis</li>
+<li>Saint Lucia</li>
+<li>Saint Martin</li>
+<li>Saint Pierre and Miquelon</li>
+<li>Saint Vincent and the Grenadines</li>
+<li>Samoa</li>
+<li>San Marino</li>
+<li>Sao Tome and Principe</li>
+<li>Satellite Provider</li>
+<li>Saudi Arabia</li>
+<li>Senegal</li>
+<li>Serbia</li>
+<li>Seychelles</li>
+<li>Sierra Leone</li>
+<li>Singapore</li>
+<li>Slovakia</li>
+<li>Slovenia</li>
+<li>Solomon Islands</li>
+<li>Somalia</li>
+<li>South Africa</li>
+<li>South Georgia and the South Sandwich Islands</li>
+<li>Spain</li>
+<li>Sri Lanka</li>
+<li>Sudan</li>
+<li>Suriname</li>
+<li>Svalbard and Jan Mayen</li>
+<li>Swaziland</li>
+<li>Sweden</li>
+<li>Switzerland</li>
+<li>Syrian Arab Republic</li>
+<li>Taiwan</li>
+<li>Tajikistan</li>
+<li>Tanzania, United Republic of</li>
+<li>Thailand</li>
+<li>Timor-Leste</li>
+<li>Togo</li>
+<li>Tokelau</li>
+<li>Tonga</li>
+<li>Trinidad and Tobago</li>
+<li>Tunisia</li>
+<li>Turkey</li>
+<li>Turkmenistan</li>
+<li>Turks and Caicos Islands</li>
+<li>Tuvalu</li>
+<li>Uganda</li>
+<li>Ukraine</li>
+<li>United Arab Emirates</li>
+<li>United Kingdom</li>
+<li>United States</li>
+<li>United States Minor Outlying Islands</li>
+<li>Uruguay</li>
+<li>Uzbekistan</li>
+<li>Vanuatu</li>
+<li>Venezuela</li>
+<li>Vietnam</li>
+<li>Virgin Islands, British</li>
+<li>Virgin Islands, U.S.</li>
+<li>Wallis and Futuna</li>
+<li>Western Sahara</li>
+<li>Yemen</li>
+<li>Zambia</li>
+<li>Zimbabwe</li>
+</ul></td>
 </tr>
 </tbody>
 </table>
@@ -1191,6 +1700,12 @@
 <td></td>
 </tr>
 <tr class="odd">
+<td><code>responseCheckLength</code></td>
+<td>integer minimum: 0 maximum: 10000000000</td>
+<td>Determines how much of the response body will be checked for signatures. When value is set to 0, only the header will be checked. This attribute is relevant only to <em>allowed</em> file types.</td>
+<td></td>
+</tr>
+<tr class="even">
 <td><code>type</code></td>
 <td>string</td>
 <td>Determines the type of the <strong>name</strong> attribute. Only when setting the type to wildcard will the special wildcard characters in the name be interpreted as such.</td>
@@ -1199,13 +1714,13 @@
 <li>wildcard</li>
 </ul></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>urlLength</code></td>
 <td>integer minimum: 0</td>
 <td>The maximum length in bytes of the URL of the request matching the file type, excluding the query string. Enforced only if checkUrlLength is set to <em>true</em>. If the value is exceeded then VIOL_URL_LENGTH violation is issued. This attribute is relevant only to <em>allowed</em> file types.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>wildcardOrder</code></td>
 <td>integer</td>
 <td></td>
@@ -1375,7 +1890,6 @@
 <td><ul>
 <li>integer minimum: 0 maximum: 2147483647</li>
 <li>string</li>
-<li>string</li>
 </ul></td>
 <td></td>
 <td><ul>
@@ -1387,7 +1901,6 @@
 <td><code>maximumQueryCost</code></td>
 <td><ul>
 <li>integer minimum: 0 maximum: 2147483647</li>
-<li>string</li>
 <li>string</li>
 </ul></td>
 <td></td>
@@ -1401,7 +1914,6 @@
 <td><ul>
 <li>integer minimum: 0 maximum: 2147483647</li>
 <li>string</li>
-<li>string</li>
 </ul></td>
 <td></td>
 <td><ul>
@@ -1414,7 +1926,6 @@
 <td><ul>
 <li>integer minimum: 0 maximum: 2147483647</li>
 <li>string</li>
-<li>string</li>
 </ul></td>
 <td></td>
 <td><ul>
@@ -1426,7 +1937,6 @@
 <td><code>maximumValueLength</code></td>
 <td><ul>
 <li>integer minimum: 0 maximum: 2147483647</li>
-<li>string</li>
 <li>string</li>
 </ul></td>
 <td></td>
@@ -1716,7 +2226,6 @@
 <td><ul>
 <li>integer minimum: 0 maximum: 2147483647</li>
 <li>string</li>
-<li>string</li>
 </ul></td>
 <td></td>
 <td><ul>
@@ -1835,7 +2344,6 @@
 <td><code>maximumHttpHeaderLength</code></td>
 <td><ul>
 <li>integer minimum: 1 maximum: 65536</li>
-<li>string</li>
 <li>string</li>
 </ul></td>
 <td>Maximum HTTP Header Length must be greater than 0 and less than 65536 bytes (64K). Note: if 0 or <em>any</em> are set, then no restriction on the HTTP header length is applied.</td>
@@ -2188,7 +2696,6 @@
 <td><ul>
 <li>integer minimum: 0 maximum: 2147483647</li>
 <li>string</li>
-<li>string</li>
 </ul></td>
 <td></td>
 <td><ul>
@@ -2200,7 +2707,6 @@
 <td><code>maximumStructureDepth</code></td>
 <td><ul>
 <li>integer minimum: 0 maximum: 2147483647</li>
-<li>string</li>
 <li>string</li>
 </ul></td>
 <td></td>
@@ -2214,7 +2720,6 @@
 <td><ul>
 <li>integer minimum: 0 maximum: 2147483647</li>
 <li>string</li>
-<li>string</li>
 </ul></td>
 <td></td>
 <td><ul>
@@ -2226,7 +2731,6 @@
 <td><code>maximumValueLength</code></td>
 <td><ul>
 <li>integer minimum: 0 maximum: 2147483647</li>
-<li>string</li>
 <li>string</li>
 </ul></td>
 <td></td>
@@ -2436,6 +2940,23 @@
 </thead>
 <tbody>
 <tr class="odd">
+<td><p><code>actionType</code></p></td>
+<td><p>string</p></td>
+<td><p>The action to take when the override rule is matched. Possible values are:</p>
+<blockquote>
+<ul>
+<li><strong>extend-policy</strong>: The override policy inherits the containing policy settings, allowing only the required settings to be overridden.</li>
+<li><strong>replace-policy</strong>: The override policy must be a valid declarative policy that includes a name, template and all necessary settings.</li>
+<li><strong>violation</strong>: The request is blocked and a the VIOL_RULE is logged based on the provided violation settings.</li>
+</ul>
+</blockquote></td>
+<td><ul>
+<li>extend-policy</li>
+<li>replace-policy</li>
+<li>violation</li>
+</ul></td>
+</tr>
+<tr class="even">
 <td><p><code>condition</code></p></td>
 <td><p>string</p></td>
 <td><p>Specifies the condition under which the override rule should be applied.</p>
@@ -2443,13 +2964,17 @@
 <p>Condition Syntax:</p>
 <blockquote>
 <ul>
-<li>The condition consists of one or more clauses separated by <strong>and</strong>.</li>
+<li>The condition consists of one or more clauses separated by <strong>and</strong> or <strong>or</strong>.</li>
 </ul>
-<p>Example: "clientIp == '10.0.0.5' and host.startsWith('internal')"</p>
+<p>Example: "clientIp == '10.0.0.5' and (host.startsWith('internal') or uri.contains('api'))"</p>
 <ul>
 <li>Each clause can optionally start with <strong>not</strong> - to negate the expression.</li>
 </ul>
 <p>Example: "not clientIp == '127.0.0.1'"</p>
+<ul>
+<li><strong>not</strong> can also be used to negate a parenthesized expression.</li>
+</ul>
+<p>Example: "not (method == 'GET' or method == 'PUT')"</p>
 <ul>
 <li>A clause can be a simple comparison between two value expressions, or a boolean function applied to a literal value.</li>
 </ul>
@@ -2494,14 +3019,13 @@
 <li><strong>method</strong>: The HTTP method in the request</li>
 <li><strong>uri</strong>: The URI (path part) of the request</li>
 <li><strong>userAgent</strong>: The value of the User-Agent header, or <em>null</em> (without quotes) if not present</li>
+<li><strong>geolocation</strong>: The geolocation of the client IP address. The value is the ISO 3166 two-letter code of the respective country.</li>
+<li><strong>parameters['&lt;name&gt;']</strong>: (map-type) The value of the specified parameter name (limited to query string parameters). Example: "parameters['id'] == '11'"</li>
+<li><strong>cookies['&lt;name&gt;']</strong>: (map-type) The value of the specified cookie name. Example: "cookies['Path'].contains('product')"</li>
+<li><strong>headers['&lt;name&gt;']</strong>: (map-type) The value of the specified header name. Example: "headers['Accept'].startsWith('application')"</li>
 </ul>
-</blockquote></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>extendsPolicy</code></td>
-<td>boolean</td>
-<td>If <em>true</em> - the override policy inherits the containing policy settings, allowing only the required settings to be overridden. If <em>false</em> - the override policy must be a valid declarative policy that includes a name, template and all necessary settings. The default is <em>true</em>.</td>
+</blockquote>
+<p><strong>Note</strong>: The "headers['&lt;name&gt;']" attribute does not support 'Cookie' as a header name.</p></td>
 <td></td>
 </tr>
 <tr class="odd">
@@ -2514,6 +3038,86 @@
 <td><code>override</code></td>
 <td>string</td>
 <td>The overriding security policy definition.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/override-rules/violation">violation</a></td>
+<td>object</td>
+<td>Contains the details of the raised VIOL_RULE violation. Mandatory if action-type is violation.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="policy/override-rules/violation">violation</h3>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>alarm</code></td>
+<td>boolean</td>
+<td>Whether the violation should be marked in the security log and cause the request to be classified as "illegal".</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/override-rules/violation/attackType">attackType</a></td>
+<td>object</td>
+<td>The attack type associated with the violation in the present rule. This is reflected in the security log. Mandatory.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>block</code></td>
+<td>boolean</td>
+<td>Whether the violation should cause the request to be blocked. On other words: the block flag of the VIOL_RULE for the present rule.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>description</code></td>
+<td>string</td>
+<td>Textual description of the violation in the present rule. Limited to 200 characters. Not Mandatory.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>rating</code></td>
+<td>integer minimum: 3 maximum: 5</td>
+<td>The violation rating that the present rule violation will induce. In other words, the violation rating of the request will be the maximum between this value and the calculated value based on the other violations in the request. If not specified and there is no other violation, then the VR is 3.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="policy/override-rules/violation/attackType">attackType</h4>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>name</code></td>
+<td>string</td>
+<td>The name of the attack type. Mandatory.</td>
 <td></td>
 </tr>
 </tbody>
@@ -2548,19 +3152,31 @@
 <td></td>
 </tr>
 <tr class="odd">
-<td><code>arraySerializationFormat</code></td>
-<td>string</td>
-<td>Specifies type of serialization for array of primitives parameter. Serialization defines how multiple values are delimited - format that can be transmitted and reconstructed later: - <strong>pipe</strong>: pipe-separated values. Array color=["blue","black"] -&gt; color=blue|black. - <strong>form</strong>: ampersand-separated values. Array color=["blue","black"] -&gt; color=blue,black. - <strong>matrix</strong>: semicolon-prefixed values. Array color=["blue","black"] -&gt; ;color=blue,black. - <strong>tsv</strong>: tab-separated values. Aarray color=["blue","black"] -&gt; color=bluetblack. - <strong>csv</strong>: comma-separated values. Array color=["blue","black"] -&gt; color=blue,black. - <strong>label</strong>: dot-prefixed values. Array color=["blue","black"] -&gt; .blue.black. - <strong>multi</strong>: multiple parameter instances rather than multiple values. Array color=["blue","black"] -&gt; color=blue&amp;color=black. - <strong>ssv</strong>: space-separated values. Array color=["blue","black"] -&gt; color=blue black. - <strong>multipart</strong>: defines array of files.
-<dl>
-<dt><strong>Notes</strong>:</dt>
-<dd><ul>
+<td><p><code>arraySerializationFormat</code></p></td>
+<td><p>string</p></td>
+<td><p>Specifies type of serialization for array of primitives parameter. Serialization defines how multiple values are delimited - format that can be transmitted and reconstructed later:</p>
+<blockquote>
+<ul>
+<li><strong>pipe</strong>: pipe-separated values. Array color=["blue","black"] -&gt; color=blue|black.</li>
+<li><strong>form</strong>: ampersand-separated values. Array color=["blue","black"] -&gt; color=blue,black.</li>
+<li><strong>matrix</strong>: semicolon-prefixed values. Array color=["blue","black"] -&gt; ;color=blue,black.</li>
+<li><strong>tsv</strong>: tab-separated values. Array color=["blue","black"] -&gt; color=bluetblack.</li>
+<li><strong>csv</strong>: comma-separated values. Array color=["blue","black"] -&gt; color=blue,black.</li>
+<li><strong>label</strong>: dot-prefixed values. Array color=["blue","black"] -&gt; .blue.black.</li>
+<li><strong>multi</strong>: multiple parameter instances rather than multiple values. Array color=["blue","black"] -&gt; color=blue&amp;color=black.</li>
+<li><strong>ssv</strong>: space-separated values. Array color=["blue","black"] -&gt; color=blue black.</li>
+<li><strong>multipart</strong>: defines array of files.</li>
+</ul>
+</blockquote>
+<p><strong>Notes</strong>:</p>
+<blockquote>
+<ul>
 <li>This attribute is relevant only for parameters with <strong>array</strong> <em>valueType</em>.</li>
 <li><strong>multi</strong> and <strong>form</strong> serializations can be defined for parameter with <em>query</em>, <em>form-data</em> or <em>cookie</em> locations only.</li>
 <li><strong>multipart</strong> serialization can be defined for parameter with <em>form-data</em> location only.</li>
 <li><strong>matrix</strong> and <strong>label</strong> serializations can be defined for parameter with <em>path</em> location only.</li>
 </ul>
-</dd>
-</dl></td>
+</blockquote></td>
 <td><ul>
 <li>csv</li>
 <li>form</li>
@@ -2849,20 +3465,30 @@
 <td></td>
 </tr>
 <tr class="odd">
-<td><code>objectSerializationStyle</code></td>
-<td>string</td>
-<td>Specifies the type of serialization for an object or complex array parameter. Serialization defines how multiple values are delimited - format that can be transmitted and reconstructed later: - <strong>pipe-delimited</strong>: pipe-separated values. Object color={"R":100,"G":200} -&gt; color=RG|200. - <strong>form</strong>: ampersand-separated values. Object color={"R":100,"G":200} -&gt; color=R,100,G,200 if <em>explodeObjectSerialization</em> set to <strong>false</strong> or -&gt; R=100&amp;G=200 if <em>explodeObjectSerialization</em> set to <strong>true</strong>. - <strong>space-delimited</strong>: space-separated values. Object color={"R":100,"G":200} -&gt; color=R 100 G 200. - <strong>deep-object</strong>: rendering nested objects. Object color={"R":100,"G":200} -&gt; color[R]=100&amp;color[G]=200. - <strong>matrix</strong>: semicolon-prefixed values. Object color={"R":100,"G":200} -&gt; ;color=R,100,G,200 if <em>explodeObjectSerialization</em> set to <strong>false</strong> or -&gt; ;R=100;G=200 if <em>explodeObjectSerialization</em> set to <strong>true</strong>. - <strong>simple</strong>: comma-separated values. Object color={"R":100,"G":200} -&gt; R,100,G,200 if <em>explodeObjectSerialization</em> set to <strong>false</strong> or -&gt; R=100,G=200 if <em>explodeObjectSerialization</em> set to <strong>true</strong>. - <strong>label</strong>: dot-prefixed values. Object color={"R":100,"G":200} -&gt; .R.100.G.200 if <em>explodeObjectSerialization</em> set to <strong>false</strong> or -&gt; .R=100.G=200 if <em>explodeObjectSerialization</em> set to <strong>true</strong>.
-<dl>
-<dt><strong>Notes</strong>:</dt>
-<dd><ul>
+<td><p><code>objectSerializationStyle</code></p></td>
+<td><p>string</p></td>
+<td><p>Specifies the type of serialization for an object or complex array parameter. Serialization defines how multiple values are delimited - format that can be transmitted and reconstructed later:</p>
+<blockquote>
+<ul>
+<li><strong>pipe-delimited</strong>: pipe-separated values. Object color={"R":100,"G":200} -&gt; color=RG|200.</li>
+<li><strong>form</strong>: ampersand-separated values. Object color={"R":100,"G":200} -&gt; color=R,100,G,200 if <em>explodeObjectSerialization</em> set to <strong>false</strong> or -&gt; R=100&amp;G=200 if <em>explodeObjectSerialization</em> set to <strong>true</strong>.</li>
+<li><strong>space-delimited</strong>: space-separated values. Object color={"R":100,"G":200} -&gt; color=R 100 G 200.</li>
+<li><strong>deep-object</strong>: rendering nested objects. Object color={"R":100,"G":200} -&gt; color[R]=100&amp;color[G]=200.</li>
+<li><strong>matrix</strong>: semicolon-prefixed values. Object color={"R":100,"G":200} -&gt; ;color=R,100,G,200 if <em>explodeObjectSerialization</em> set to <strong>false</strong> or -&gt; ;R=100;G=200 if <em>explodeObjectSerialization</em> set to <strong>true</strong>.</li>
+<li><strong>simple</strong>: comma-separated values. Object color={"R":100,"G":200} -&gt; R,100,G,200 if <em>explodeObjectSerialization</em> set to <strong>false</strong> or -&gt; R=100,G=200 if <em>explodeObjectSerialization</em> set to <strong>true</strong>.</li>
+<li><strong>label</strong>: dot-prefixed values. Object color={"R":100,"G":200} -&gt; .R.100.G.200 if <em>explodeObjectSerialization</em> set to <strong>false</strong> or -&gt; .R=100.G=200 if <em>explodeObjectSerialization</em> set to <strong>true</strong>.</li>
+</ul>
+</blockquote>
+<p><strong>Notes</strong>:</p>
+<blockquote>
+<ul>
 <li>This attribute is relevant only for parameters with <strong>object</strong> or <strong>openapi-array</strong> <em>valueType</em>.</li>
 <li><strong>form</strong> serialization can be defined for a parameter with <em>query</em>, <em>form-data</em> or <em>cookie</em> locations only.</li>
 <li><strong>matrix</strong> and <strong>label</strong> serializations can be defined for an array parameter with <em>path</em> location only.</li>
 <li><strong>simple</strong> serializations can be defined for a parameter with <em>path</em> and <em>header</em> locations only.</li>
 <li><strong>deep-object</strong> serialization can be defined for a parameter with <em>query</em> or <em>form-data</em> locations only.</li>
 </ul>
-</dd>
-</dl></td>
+</blockquote></td>
 <td><ul>
 <li>deep-object</li>
 <li>form</li>
@@ -3229,7 +3855,6 @@
 <td><ul>
 <li>integer</li>
 <li>string</li>
-<li>string</li>
 </ul></td>
 <td></td>
 <td><ul>
@@ -3536,11 +4161,19 @@
 <li>XPath Injection Signatures</li>
 </ul></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/signature-sets/signatureSet">signatureSet</a></td>
 <td>object</td>
 <td>Defines signature set.</td>
 <td></td>
+</tr>
+<tr class="even">
+<td><code>stagingCertificationDatetime</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li></li>
+</ul></td>
 </tr>
 </tbody>
 </table>
@@ -3842,6 +4475,20 @@
 <li>medium</li>
 </ul></td>
 </tr>
+<tr class="even">
+<td><code>signatureStaging</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>stagingCertificationDatetime</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li></li>
+</ul></td>
+</tr>
 </tbody>
 </table>
 <h2 id="policy/signatures">signatures</h2>
@@ -3874,12 +4521,18 @@
 <td></td>
 </tr>
 <tr class="odd">
+<td><code>performStaging</code></td>
+<td>boolean</td>
+<td>Specifies, if true, that the signature is in staging. The system does not enforce signatures in staging. Instead, the system records the request information and keeps it for a period of time (the Enforcement Readiness Period whose default time period is 7 days). Specifies, when false, that the staging feature is not in use, and that the system enforces the signatures' Learn/Alarm/Block settings immediately. (Blocking is performed only if the security policy's enforcement mode is Blocking.)</td>
+<td></td>
+</tr>
+<tr class="even">
 <td><code>signatureId</code></td>
 <td>integer</td>
 <td>The signature ID which identifies the signature.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>tag</code></td>
 <td>string</td>
 <td>The signature tag which, along with the signature name, identifies the signature.</td>
@@ -3942,6 +4595,12 @@
 </thead>
 <tbody>
 <tr class="odd">
+<td><a href="#policy/access-profiles">accessProfile</a></td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
 <td><code>allowRenderingInFrames</code></td>
 <td>string</td>
 <td>Specifies the conditions for when the browser should allow this URL to be rendered in a frame or iframe. never: Specifies that this URL must never be rendered in a frame or iframe. The web application instructs browsers to hide, or disable, frame and iframe parts of this URL. only-same: Specifies that the browser may load the frame or iframe if the referring page is from the same protocol, port, and domain as this URL. This limits the user to navigate only within the same web application.</td>
@@ -3950,16 +4609,22 @@
 <li>only-same</li>
 </ul></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>allowRenderingInFramesOnlyFrom</code></td>
 <td>string</td>
 <td>Specifies that the browser may load the frame or iframe from a specified domain. Type the protocol and domain in URL format for example, <a href="http://www.mywebsite.com">http://www.mywebsite.com</a>. Do not enter a sub-URL, such as <a href="http://www.mywebsite.com/index">http://www.mywebsite.com/index</a>.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>attackSignaturesCheck</code></td>
 <td>boolean</td>
 <td>Specifies, when true, that you want attack signatures and threat campaigns to be detected on this URL and possibly override the security policy settings of an attack signature or threat campaign specifically for this URL. After you enable this setting, the system displays a list of attack signatures and threat campaigns.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/urls/authorizationRules">authorizationRules</a></td>
+<td>array of objects</td>
+<td></td>
 <td></td>
 </tr>
 <tr class="even">
@@ -4143,6 +4808,37 @@
 </tr>
 </tbody>
 </table>
+<h3 id="policy/urls/authorizationRules">authorizationRules</h3>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>condition</code></td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>name</code></td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h3 id="policy/urls/html5CrossOriginRequestsEnforcement">html5CrossOriginRequestsEnforcement</h3>
 <table>
 <colgroup>
@@ -4225,7 +4921,6 @@
 <td><code>originPort</code></td>
 <td><ul>
 <li>integer minimum: 0 maximum: 65535</li>
-<li>string</li>
 <li>string</li>
 </ul></td>
 <td>Select the port that other web applications can use to request data from your web application, or use the * wildcard for all ports.</td>
@@ -4455,7 +5150,6 @@
 <td><code>headerOrder</code></td>
 <td><ul>
 <li>integer</li>
-<li>string</li>
 <li>string</li>
 </ul></td>
 <td>Displays the order in which the system checks header content of requests for this URL.</td>
@@ -4714,7 +5408,6 @@
 <td><ul>
 <li>integer minimum: 0 maximum: 2147483647</li>
 <li>string</li>
-<li>string</li>
 </ul></td>
 <td></td>
 <td><ul>
@@ -4726,7 +5419,6 @@
 <td><code>maximumAttributesPerElement</code></td>
 <td><ul>
 <li>integer minimum: 0 maximum: 2147483647</li>
-<li>string</li>
 <li>string</li>
 </ul></td>
 <td></td>
@@ -4740,7 +5432,6 @@
 <td><ul>
 <li>integer minimum: 0 maximum: 2147483647</li>
 <li>string</li>
-<li>string</li>
 </ul></td>
 <td></td>
 <td><ul>
@@ -4752,7 +5443,6 @@
 <td><code>maximumDocumentDepth</code></td>
 <td><ul>
 <li>integer minimum: 0 maximum: 2147483647</li>
-<li>string</li>
 <li>string</li>
 </ul></td>
 <td></td>
@@ -4766,7 +5456,6 @@
 <td><ul>
 <li>integer minimum: 0 maximum: 2147483647</li>
 <li>string</li>
-<li>string</li>
 </ul></td>
 <td></td>
 <td><ul>
@@ -4778,7 +5467,6 @@
 <td><code>maximumElements</code></td>
 <td><ul>
 <li>integer minimum: 0 maximum: 2147483647</li>
-<li>string</li>
 <li>string</li>
 </ul></td>
 <td></td>
@@ -4792,7 +5480,6 @@
 <td><ul>
 <li>integer minimum: 0 maximum: 2147483647</li>
 <li>string</li>
-<li>string</li>
 </ul></td>
 <td></td>
 <td><ul>
@@ -4805,7 +5492,6 @@
 <td><ul>
 <li>integer minimum: 0 maximum: 2147483647</li>
 <li>string</li>
-<li>string</li>
 </ul></td>
 <td></td>
 <td><ul>
@@ -4817,7 +5503,6 @@
 <td><code>maximumNamespaceLength</code></td>
 <td><ul>
 <li>integer minimum: 0 maximum: 2147483647</li>
-<li>string</li>
 <li>string</li>
 </ul></td>
 <td></td>
@@ -5041,6 +5726,10 @@
 <td>string</td>
 <td></td>
 <td><ul>
+<li>VIOL_ACCESS_UNAUTHORIZED</li>
+<li>VIOL_ACCESS_INVALID</li>
+<li>VIOL_ACCESS_MALFORMED</li>
+<li>VIOL_ACCESS_MISSING</li>
 <li>VIOL_ASM_COOKIE_MODIFIED</li>
 <li>VIOL_BLACKLISTED_IP</li>
 <li>VIOL_COOKIE_EXPIRED</li>
@@ -5100,6 +5789,8 @@
 <li>VIOL_URL_METACHAR</li>
 <li>VIOL_XML_FORMAT</li>
 <li>VIOL_XML_MALFORMED</li>
+<li>VIOL_GEOLOCATION</li>
+<li>VIOL_WEBSOCKET_BAD_REQUEST</li>
 </ul></td>
 </tr>
 </tbody>
@@ -5223,7 +5914,6 @@
 <td><code>scoreThreshold</code></td>
 <td><ul>
 <li>integer minimum: 0 maximum: 150</li>
-<li>string</li>
 <li>string</li>
 </ul></td>
 <td></td>

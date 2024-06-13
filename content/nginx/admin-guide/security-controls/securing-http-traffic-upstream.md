@@ -9,19 +9,18 @@ toc: true
 weight: 900
 ---
 
-
 This article explains how to encrypt HTTP traffic between NGINX and a upstream group or a proxied server.
 
 
 ## Prerequisites
 
-*   [NGINX Open Source](https://nginx.org/en/download.html) or [NGINX Plus](https://nginx.com/products/)
-*   A [proxied server]({{< relref "../web-server/reverse-proxy.md" >}}) or an [upstream group of servers]({{< relref "../load-balancer/http-load-balancer.md" >}})
-*   SSL certificates and a private key
+- [NGINX Open Source](https://nginx.org/en/download.html) or [NGINX Plus](https://nginx.com/products/)
+- A [proxied server]({{< relref "../web-server/reverse-proxy.md" >}}) or an [upstream group of servers]({{< relref "../load-balancer/http-load-balancer.md" >}})
+- SSL certificates and a private key
 
 ## Obtaining SSL Server Certificates
 
-You can purchase a server certificate from a trusted certificate authority (CA), or your can create own internal CA with an [OpenSSL](http://www.openssl.org/) library and generate your own certificate. The server certificate together with a private key should be placed on each upstream server.
+You can purchase a server certificate from a trusted certificate authority (CA), or your can create own internal CA with an [OpenSSL](https://www.openssl.org/) library and generate your own certificate. The server certificate together with a private key should be placed on each upstream server.
 
 <span id="client_certs"></span>
 ## Obtaining an SSL Client Certificate
@@ -97,7 +96,7 @@ server {
     ssl_certificate_key /etc/ssl/certs/server.key;
     #...
     location /yourapp {
-        proxy_pass http://url_to_app.com;
+        proxy_pass https://url_to_app.com;
         #...
     }
 }
@@ -154,7 +153,7 @@ http {
         ssl_verify_client      optional;
 
         location /yourapp {
-            proxy_pass http://url_to_app.com;
+            proxy_pass https://url_to_app.com;
         #...
         }
 
@@ -168,7 +167,7 @@ http {
         ssl_verify_client      optional;
 
         location /yourapp {
-            proxy_pass http://url_to_app.com;
+            proxy_pass https://url_to_app.com;
         #...
         }
     }

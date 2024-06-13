@@ -1,5 +1,5 @@
 ---
-title: Manage App Protect Configurations
-weight: 200
-url: /nginx-management-suite/nim/how-to/app-protect/
+title: NGINX App Protect WAF
+weight: 1000
+url: /nginx-management-suite/nim/how-to/manage-app-protect/
 ---

@@ -1,24 +1,9 @@
 ---
-categories:
-- api
-date: "2020-10-26T15:32:41-06:00"
-description: Provides information about the NGINX Controller API
+description: Provides information about the NGINX Controller API.
 docs: DOCS-343
 doctypes:
 - concept
-draft: false
-journeys:
-- researching
-- getting started
-- using
 layout: docs
-menu:
-- api
-personas:
-- devops
-- netops
-- secops
-- support
 tags:
 - docs
 title: API Overview
@@ -89,7 +74,7 @@ You can send a GET request to the login endpoint to find the status of the sessi
 For example:
 
 - Login and capture the session cookie:
-  
+
   ```curl
   curl -c cookie.txt -X POST --url 'https://198.51.100.10/api/v1/platform/login' --header 'Content-Type: application/json' --data '{"credentials": {"type": "BASIC","username": "arthur@arthurdent.net","password": "Towel$123"}}'
   ```

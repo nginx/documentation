@@ -1,21 +1,9 @@
 ---
-authors: []
-categories:
-- installation
-- infrastructure
-date: "2020-12-17T12:33:15-08:00"
 description: Learn how to deploy an Azure NGINX instance using NGINX Controller.
 docs: DOCS-769
 doctypes:
 - beta
 - tutorial
-draft: false
-journeys:
-- getting started
-personas:
-- devops
-roles:
-- admin
 tags:
 - docs
 title: Add an Azure NGINX Instance
@@ -57,7 +45,7 @@ Before you can create an Azure Integration in NGINX Controller, you need to regi
 To register an app in Azure, take the following steps:
 
 1. Sign in to the [Microsoft Azure Portal](https://portal.azure.com/#home).
-2. Search for and select **Azure Active Directory**.
+2. Search for and select **Microsoft Entra**.
 3. Under **Manage**, select **App registrations > New registration**.
 4. Type a name to use for the app.
 5. Specify who can see the app.

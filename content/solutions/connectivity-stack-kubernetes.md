@@ -1,13 +1,12 @@
 ---
-title: "Install the Connectivity Stack for Kubernetes"
-date: 2023-05-08T12:00:00-07:00
-description: "This article explains how to download and install the products in the [F5 NGINX Connectivity Stack for Kubernetes](https://www.nginx.com/solutions/kubernetes/)."
-# Assign weights in increments of 100
-weight: 300
+description: This article explains how to download and install the products in the
+  [F5 NGINX Connectivity Stack for Kubernetes](https://www.nginx.com/solutions/kubernetes/).
+docs: DOCS-1444
+tags:
+- docs
+title: Install the Connectivity Stack for Kubernetes
 toc: true
-tags: [ "docs" ]
-versions: []
-docs: 
+weight: 300
 ---
 
 ## Overview

@@ -1,15 +1,18 @@
 API Connectivity Manager depends on the platform capabilities of Instance Manager. The following table lists the minimum versions of Instance Manager required for API Connectivity Manager:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | API Connectivity Manager | Instance Manager Dependency |
 |--------------------------|-----------------------------|
+| 1.9.0 - 1.9.2            | 2.13.0 and later            |
 | 1.8.0                    | 2.12.0 and later            |
-| 1.6.0-1.7.0              | 2.10.0–2.10.1 and later     |
+| 1.6.0 - 1.7.0            | 2.10.0 and later            |
 | 1.5.0                    | 2.9.0 and later             |
-| 1.4.0–1.4.1              | 2.7.0 and later             |
-| 1.3.0–1.3.1              | 2.6.0 and later             |
-| 1.1.0–1.2.0              | 2.4.0 and later             |
+| 1.4.0 - 1.4.1            | 2.7.0 and later             |
+| 1.3.0 - 1.3.1            | 2.6.0 and later             |
+| 1.1.0 - 1.2.0            | 2.4.0 and later             |
 | 1.0.0                    | 2.3.0 and later             |
+
 {{</bootstrap-table>}}
 
 <br>

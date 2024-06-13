@@ -1,27 +1,8 @@
 ---
-aliases:
-- /admin-guides/install/install/
-authors: []
-categories:
-- installation
-date: "2020-10-26T15:32:41-06:00"
 description: This guide explains how to install and update NGINX Controller.
 docs: DOCS-255
 doctypes:
 - tutorial
-draft: false
-journeys:
-- getting started
-menu:
-  docs:
-    parent: Installation
-    weight: 30
-personas:
-- devops
-- netops
-- secops
-roles:
-- admin
 tags:
 - docs
 title: Install NGINX Controller
@@ -35,12 +16,12 @@ NGINX Controller is NGINX's control-plane solution that manages the NGINX data p
 
 To get started, download and run the installer. The installer will:
 
-* Perform prerequisite checks on your system and prompt for any missing dependencies.
-* Prompt you to accept the terms of service agreement for NGINX Controller.
-* Ask you for a series of parameters including Database, SMTP, Admin user, and FQDN settings.
-* Place configuration and log files in appropriate file locations on your host system.
-* Add extra repositories to the default package manager like `apt` or `yum` and install required packages.
-* Launch NGINX Controller.
+- Perform prerequisite checks on your system and prompt for any missing dependencies.
+- Prompt you to accept the terms of service agreement for NGINX Controller.
+- Ask you for a series of parameters including Database, SMTP, Admin user, and FQDN settings.
+- Place configuration and log files in appropriate file locations on your host system.
+- Add extra repositories to the default package manager like `apt` or `yum` and install required packages.
+- Launch NGINX Controller.
 
 &nbsp;
 
@@ -64,11 +45,11 @@ NGINX Controller should be deployed on a secure, internal network only. We stron
 
 Things you'll need before installing NGINX Controller:
 
-* The `controller-installer-<version>.tar.gz` package, downloaded from the [MyF5 Customer Portal](https://my.f5.com/manage/s/downloads);
+- The `controller-installer-<version>.tar.gz` package, downloaded from the [MyF5 Customer Portal](https://my.f5.com/manage/s/downloads);
 
-* A license file for NGINX Controller, accessible via the [MyF5 Customer Portal](https://account.f5.com/myf5);
+- A license file for NGINX Controller, accessible via the [MyF5 Customer Portal](https://account.f5.com/myf5);
 
-* A dedicated environment (bare metal, VM, or cloud-hosted instance) on which to install NGINX Controller. For the supported Operating Systems and recommended specifications, see the [NGINX Controller Technical Specifications]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs" >}}) guide;
+- A dedicated environment (bare metal, VM, or cloud-hosted instance) on which to install NGINX Controller. For the supported Operating Systems and recommended specifications, see the [NGINX Controller Technical Specifications]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs" >}}) guide;
 
 &nbsp;
 
@@ -76,7 +57,52 @@ Things you'll need before installing NGINX Controller:
 
 ## Install NGINX Controller Prerequisites
 
-{{< include "controller/helper-script-prereqs.md" >}}
+You can use the NGINX Controller `helper.sh prereqs` command to install the required system packages and Docker CE.
+
+<style>
+table, th, td {
+  border: 1px solid #CCC;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+}
+th {
+  text-align: center;
+}
+</style>
+
+| Options  | Description |
+|----------|-------------|
+| `base`  | Install the required Linux utilities. |
+| `docker` | Install Docker CE. |
+| `nfs` | Install NFS system packages. |
+
+To install all of the NGINX Controller prerequisites for your system at the same time, take the following steps:
+
+1. Download the NGINX Controller installer package from the [MyF5 Customer Portal](https://my.f5.com/manage/s/downloads).
+
+1. Extract the installer package files:
+
+    ```bash
+    tar xzf controller-installer-<version>.tar.gz
+    ```
+
+1. Run the helper script with the `prereqs` option:
+
+    ```bash
+    cd controller-installer
+    ./helper.sh prereqs
+    ```
+
+{{< note >}}
+After you've installed NGINX Controller, you can install any of the prerequisites by running the following command:
+
+  ```bash
+/opt/nginx-controller/helper.sh prereqs [base|docker|nfs]
+```
+
+{{< /note >}}
 
 &nbsp;
 
@@ -86,27 +112,27 @@ Things you'll need before installing NGINX Controller:
 
 The following Linux utilities are required by the installation script. The script will let you know if any of the utilities are missing.
 
-* `awk`
-* `bash` (4.0 or later)
-* `conntrack`
-* `coreutils`: `base64`, `basename`, `cat`, `comm`, `dirname`, `head`, `id`, `mkdir`, `numfmt`, `sort`, `tee`
-* `curl` or `wget`
-* `ebtables`
-* `envsubst` (provided by the `gettext` package)
-* `ethtool`
-* `getent`
-* `grep`
-* `gunzip` (provided by the `gzip` package)
-* `iproute`
-* `iptables`
-* `jq` (1.5 or later)
-* `less`
-* `openssl`
-* `sed`
-* `socat`
-* `tar`
-* `util-linux`
-* `yum-plugin-versionlock` on RedHat/CentOS
+- `awk`
+- `bash` (4.0 or later)
+- `conntrack`
+- `coreutils`: `base64`, `basename`, `cat`, `comm`, `dirname`, `head`, `id`, `mkdir`, `numfmt`, `sort`, `tee`
+- `curl` or `wget`
+- `ebtables`
+- `envsubst` (provided by the `gettext` package)
+- `ethtool`
+- `getent`
+- `grep`
+- `gunzip` (provided by the `gzip` package)
+- `iproute`
+- `iptables`
+- `jq` (1.5 or later)
+- `less`
+- `openssl`
+- `sed`
+- `socat`
+- `tar`
+- `util-linux`
+- `yum-plugin-versionlock` on RedHat/CentOS
 
 &nbsp;
 
@@ -118,13 +144,13 @@ If you have Internet access, NGINX Controller will install Docker for you as par
 
 If you prefer to install Docker on the host yourself, install the following:
 
-* [Docker Community Edition (CE)](https://docs.docker.com/engine/install/) 18.09
-* [Containerd.io](https://containerd.io/) 1.2.10
+- [Docker Community Edition (CE)](https://docs.docker.com/engine/install/) 18.09
+- [Containerd.io](https://containerd.io/) 1.2.10
 
 If you are using Ubuntu-20.04 and want to install Docker on your own, choose the following versions instead:
 
-* [Docker Community Edition (CE)](https://docs.docker.com/engine/install/ubuntu/) 19.03
-* [Containerd.io](https://containerd.io/) 1.2.13
+- [Docker Community Edition (CE)](https://docs.docker.com/engine/install/ubuntu/) 19.03
+- [Containerd.io](https://containerd.io/) 1.2.13
 
 {{< see-also >}}
 For instructions on installing Docker in offline scenarios on CentOS/RHEL 7, refer to the AskF5 [K84431427](https://support.f5.com/csp/article/K84431427) knowledge base article.{{< /see-also >}}
@@ -162,13 +188,13 @@ th {
 |-----------------------|--------------------|
 | v3.x                  | v1.15.5 |
 
-The [Kubernetes Pod DNS config](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-dns-config) has a limit of six configured DNS search domain names. This is also the [`glibc` limit](https://man7.org/linux/man-pages/man5/resolv.conf.5.html). 
+The [Kubernetes Pod DNS config](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-dns-config) has a limit of six configured DNS search domain names. This is also the [`glibc` limit](https://man7.org/linux/man-pages/man5/resolv.conf.5.html).
 
 In NGINX Controller, Core-DNS creates three search domains that are determined at run-time and not in `/etc/resolv.conf`:
 
-* `<namespace>.svc.cluster.local`
-* `svc.cluster.local`
-* `cluster.local <any host resolv.conf search paths>`
+- `<namespace>.svc.cluster.local`
+- `svc.cluster.local`
+- `cluster.local <any host resolv.conf search paths>`
 
 In general, changing the settings in NGINX Controller's underlying Kubernetes cluster is not recommended. However, if you do change the cluster's Pod config to allow additional search domains, **you should not add more than three domains**.
 
@@ -185,21 +211,21 @@ Alternatively, you can install your own PostgreSQL database for the config datab
 
 Refer to the AskF5 KB article [K49481224](https://support.f5.com/csp/article/K49481224) for instructions on how to install PostgreSQL on CentOS 7 and Ubuntu 18.04 for use with NGINX Controller.
 
-* NGINX Controller supports the following versions of PostgreSQL:
+- NGINX Controller supports the following versions of PostgreSQL:
 
-  * PostgreSQL 12.x -- works with NGINX Controller 3.9 and later.
-  * PostgreSQL 9.5 -- works with NGINX Controller 3.0 and later.
+  - PostgreSQL 12.x -- works with NGINX Controller 3.9 and later.
+  - PostgreSQL 9.5 -- works with NGINX Controller 3.0 and later.
 
-* The PostgreSQL database must be accessible from the NGINX Controller server. You can use a DNS-resolvable name or an IP address to connect to the database server (names in `/etc/hosts` are not allowed).
-* Create the user with the `Create DB` permission.
-* Configure PostgreSQL to allow SSL connections; client certificates should also be used for user authentication.
+- The PostgreSQL database must be accessible from the NGINX Controller server. You can use a DNS-resolvable name or an IP address to connect to the database server (names in `/etc/hosts` are not allowed).
+- Create the user with the `Create DB` permission.
+- Configure PostgreSQL to allow SSL connections; client certificates should also be used for user authentication.
 
   **We strongly discourage disabling SSL for PostgreSQL for security reasons.** Consult the *Secure TCP/IP Connections with SSL* topic in the PostgreSQL manual for instructions and details:
 
-  * [PostgreSQL 9.5](https://www.postgresql.org/docs/9.5/ssl-tcp.html)
-  * [PostgreSQL 12.x](https://www.postgresql.org/docs/12/ssl-tcp.html)
+  - [PostgreSQL 9.5](https://www.postgresql.org/docs/9.5/ssl-tcp.html)
+  - [PostgreSQL 12.x](https://www.postgresql.org/docs/12/ssl-tcp.html)
 
-* When installed on external NFS or EFS volumes, the config database should support a throughput of 2 MiB/s or greater.
+- When installed on external NFS or EFS volumes, the config database should support a throughput of 2 MiB/s or greater.
 
 
 &nbsp;
@@ -406,7 +432,39 @@ To uninstall NGINX Controller, run the uninstall script:
 
 Install the Controller Agent on each NGINX Plus instance that you want to manage and monitor.
 
-{{< include "controller/add-existing-instance.md" >}}
+Take the following steps to add an instance to NGINX Controller:
+
+1. Open the NGINX Controller user interface and log in.
+2. Select the NGINX Controller menu icon, then select **Infrastructure**.
+3. On the **Infrastructure** menu, select **Instances** > **Overview**.
+4. On the **Instances** overview page, select **Create**.
+5. On the **Create Instance** page, select **Add an existing instance**.
+6. Add a name for the instance. If you don't provide a name, the hostname of the instance is used by default.
+7. To add the instance to an existing [Instance Group]({{< relref "/controller/infrastructure/instances/manage-instances.md#instance-groups" >}}), select an Instance Group from the list. Or to create an Instance Group, select **Create New**.
+8. To add the instance to an existing Location, select a Location from the list. Or to create a Location, select **Create New**.
+
+    {{< important >}}
+Once set, the Location for an instance cannot be changed. If you need to change or remove the Location for an instance, you must [remove the instance from NGINX Controller]({{< relref "/controller/infrastructure/instances/manage-instances.md#delete-an-instance" >}}), and then add it back.
+    {{< /important >}}
+
+    {{< important >}}
+Instances and the instance groups they belong to should specify the same location; however, this requirement is not currently enforced. If different locations are specified, the instance group's location takes precedence. This is important to remember when [assigning locations to workload groups]({{< relref "/controller/app-delivery/manage-apps.md#workload-groups">}}).
+    {{< /important >}}
+
+9. (Optional) By default, registration of NGINX Plus instances is performed over a secure connection. To use self-signed certificates with the Controller Agent, select **Allow insecure server connections to NGINX Controller using TLS**. For security purposes, we recommend that you secure the Controller Agent with signed certificates when possible.
+10. Use SSH to connect and log in to the NGINX instance that you want to connect to NGINX Controller.
+11. Run the `curl` or `wget` command that's shown in the **Installation Instructions** section on the NGINX instance to download and install the Controller Agent package. When specified, the `-i` and `-l` options for the `install.sh` script refer to the instance name and Location, respectively.
+
+    {{< note >}}
+
+Make sure you enter the commands to download and run the `install.sh` script on the NGINX Plus system, and not on the NGINX Controller.
+
+NGINX Controller 3.6 and earlier require Python 2.6 or 2.7. You'll be prompted to install Python if it's not installed already. Python is not required for NGINX Controller v3.7 and later.
+
+    {{< /note >}}
+
+After a few minutes, the NGINX instance will appear on the **Instances** overview page.
+
 
 &nbsp;
 
@@ -418,7 +476,7 @@ If NGINX Controller isn't working how you expect, see the knowledge base article
 
 ### Create a Support Package
 
-You can create a support package for NGINX Controller that you can use to diagnose issues. 
+You can create a support package for NGINX Controller that you can use to diagnose issues.
 
 {{< note >}}
 You will need to provide a support package if you open a ticket with NGINX Support via the [MyF5 Customer Portal](https://account.f5.com/myf5).
@@ -475,7 +533,133 @@ Take the following steps to create a support package:
 
 #### Support Package Details
 
-{{< include "controller/helper-script-support-package-details.md" >}}
+The support package is a tarball that includes NGINX Controller configuration information, logs, and system command output. Sensitive information, including certificate keys, is not included in the support package.
+
+The support package gathers information from the following locations:
+
+```md
+.
+├── database
+│   ├── common.dump                                - full dump of the common database
+│   ├── common.dump_stderr                         - any errors when dumping the database
+│   ├── common-apimgmt-api-client-api-keys.txt     - contents of apimgmt_api_client_api_keys table from the common database
+│   ├── common-apimgmt-api-client-groups.txt       - contents of apimgmt_api_client_groups table from the common database
+│   ├── common-email-verification.txt              - contents of email_verification table from the common database
+│   ├── common-oauth-clients.txt                   - contents of oauth_clients table from the common database
+│   ├── common-settings-license.txt                - contents of settings_license table from the common database
+│   ├── common-settings-nginx-plus.txt             - contents of settings_nginx_plus table from the common database
+│   ├── common-table-size.txt                      - list of all tables and their size in the common database
+│   ├── data-table-size.txt                        - list of all tables and their size in the data database
+│   ├── postgres-database-size.txt                 - size of every database
+│   ├── postgres-long-running-queries.txt          - all queries running longer than 10 seconds
+│   ├── system.dump                                - full dump of the system database
+│   ├── system-account-limits.txt                  - contents of account_limits table from the system database
+│   ├── system-accounts.txt                        - contents of accounts table from the system database
+│   ├── system-deleted-accounts.txt                - contents of deleted_accounts table from the system database
+│   ├── system-deleted-users.txt                   - contents of deleted_users table from the system database
+│   ├── system-users.txt                           - contents of users table from the system database
+│   └── system-table-size.txt                      - list of all tables and their size in the system database
+├── k8s                                            - output of `kubectl cluster-info dump -o yaml` augmented with some extra info
+│   ├── apiservices.txt                            - output of `kubectl get apiservice`
+│   ├── kube-system                                - contents of the kube-system namespace
+│   │   ├── coredns-5c98db65d4-6flb9
+│   │   │   ├── desc.txt                           - pod description
+│   │   │   ├── logs.txt                           - current logs
+│   │   │   └── previous-logs.txt                  - previous logs, if any
+│   │   ├── ...
+│   │   ├── daemonsets.yaml                        - list of daemonsets
+│   │   ├── deployments.yaml                       - list of deployments
+│   │   ├── events.yaml                            - all events in this namespace
+│   │   ├── namespace.yaml                         - details of the namespace, including finalizers
+│   │   ├── pods.txt                               - output of `kubectl get pods --show-kind=true -o wide`
+│   │   ├── pods.yaml                              - list of all pods
+│   │   ├── replicasets.yaml                       - list of replicasets
+│   │   ├── replication-controllers.yaml           - list of replication controllers
+│   │   ├── resources.txt                          - all Kubernetes resources in this namespace
+│   │   └── services.yaml                          - list of services
+│   ├── nginx-controller                           - contents of the nginx-controller namespace
+│   │   ├── apigw-8fb64f768-9qwcm
+│   │   │   ├── desc.txt                           - pod description
+│   │   │   ├── logs.txt                           - current logs
+│   │   │   └── previous-logs.txt                  - previous logs, if any
+│   │   ├── ...
+│   │   ├── daemonsets.yaml                        - list of daemonsets
+│   │   ├── deployments.yaml                       - list of deployments
+│   │   ├── events.yaml                            - all events in this namespace
+│   │   ├── namespace.yaml                         - details of the namespace, including finalizers
+│   │   ├── pods.txt                               - output of `kubectl get pods --show-kind=true -o wide`
+│   │   ├── pods.yaml                              - list of all pods
+│   │   ├── replicasets.yaml                       - list of replicasets
+│   │   ├── replication-controllers.yaml           - list of replication controllers
+│   │   ├── resources.txt                          - all Kubernetes resources in this namespace
+│   │   ├── services.yaml                          - list of services
+│   ├── nodes.txt                                  - output of `kubectl describe nodes`
+│   ├── nodes.yaml                                 - list of nodes
+│   ├── resources.txt                              - all non-namespaced Kubernetes resources (including PersistentVolumes)
+│   └── version.yaml                               - Kubernetes version
+├── logs                                           - copy of /var/log/nginx-controller/
+│   └── nginx-controller-install.log
+├── os
+│   ├── cpuinfo.txt                                - output of `cat /proc/cpuinfo`
+│   ├── df-h.txt                                   - output of `df -h`
+│   ├── df-i.txt                                   - output of `df -i`
+│   ├── docker-container-ps.txt                    - output of `docker container ps`
+│   ├── docker-images.txt                          - output of `docker images`
+│   ├── docker-info.txt                            - output of `docker info`
+│   ├── docker-stats.txt                           - output of `docker stats --all --no-stream`
+│   ├── docker-version.txt                         - output of `docker version`
+│   ├── du-mcs.txt                                 - output of `du -mcs /opt/nginx-controller/* /var/log /var/lib`
+│   ├── env.txt                                    - output of `env`
+│   ├── firewall-cmd.txt                           - output of `firewall-cmd --list-all`
+│   ├── free.txt                                   - output of `free -m`
+│   ├── hostname-all-fqdns.txt                     - output of `hostname --all-fqdns`
+│   ├── hostname-fqdn.txt                          - output of `hostname --fqdn`
+│   ├── hostname.txt                               - output of `hostname`
+│   ├── hostsfile.txt                              - output of `cat /etc/hosts`
+│   ├── ip-address.txt                             - output of `ip address`
+│   ├── ip-neigh.txt                               - output of `ip neigh`
+│   ├── ip-route.txt                               - output of `ip route`
+│   ├── iptables-filter.txt                        - output of `iptables -L -n -v`
+│   ├── iptables-mangle.txt                        - output of `iptables -L -n -v -t mangle`
+│   ├── iptables-nat.txt                           - output of `iptables -L -n -v -t nat`
+│   ├── iptables-save.txt                          - output of `iptables-save`
+│   ├── journal-kubelet.txt                        - output of `journalctl -q -u kubelet --no-pager`
+│   ├── lspci.txt                                  - output of `lspci -vvv`
+│   ├── netstat-nr.txt                             - output of `netstat -nr`
+│   ├── ps-faux.txt                                - output of `ps faux`
+│   ├── pstree.txt                                 - output of `pstree`
+│   ├── ps.txt                                     - output of `ps aux --sort=-%mem`
+│   ├── resolvconf.txt                             - output of `cat /etc/resolv.conf`
+│   ├── selinux-mode.txt                           - output of `getenforce`
+│   ├── ss-ltunp.txt                               - output of `ss -ltunp`
+│   ├── swapon.txt                                 - output of `swapon -s`
+│   ├── sysctl.txt                                 - output of `sysctl -a --ignore`
+│   ├── systemd.txt                                - output of `journalctl -q --utc`
+│   ├── top.txt                                    - output of `top -b -o +%CPU -n 3 -d 1 -w512 -c`
+│   ├── uname.txt                                  - output of `uname -a`
+│   ├── uptime.txt                                 - output of `cat /proc/uptime`
+│   └── vmstat.txt                                 - output of `cat /proc/vmstat`
+├── timeseries
+│   ├── table-sizes.stat                           - stat table containing controller table sizes
+│   ├── events.csv                                 - events table dump in csv
+│   ├── events.sql                                 - events table schema
+│   ├── metrics_1day.csv                           - metrics_1day table dump in csv
+│   ├── metrics_1day.sql                           - metrics_1day table schema
+│   ├── metrics_1hour.csv                          - metrics_1hour table dump in csv
+│   ├── metrics_1hour.sql                          - metrics_1hour table schema
+│   ├── metrics_5min.csv                           - metrics_5min table dump in csv
+│   ├── metrics_5min.sql                           - metrics_5min table schema
+│   ├── metrics.csv                                - metrics table dump in csv
+│   ├── metrics.sql                                - metrics table schema
+│   ├── system-asynchronous-metrics.stat           - shows info about currently executing events or consuming resources
+│   ├── system-events.stat                         - information about the number of events that have occurred in the system
+│   ├── system-metrics.stat                        - system metrics
+│   ├── system-parts.stat                          - information about parts of a table in the MergeTree family
+│   ├── system-settings.stat                       - information about settings that are currently in use
+│   └── system-tables.stat                         - information about all the tables
+└── version.txt                                    - Controller version information
+```
+
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

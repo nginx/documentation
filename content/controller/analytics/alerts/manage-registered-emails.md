@@ -1,27 +1,9 @@
 ---
-authors: []
-categories:
-- analytics
-date: "2020-10-26T15:32:41-06:00"
 description: Learn how to manage the email addresses that receive automatic alert
   notifications.
 docs: DOCS-522
 doctypes:
 - concept
-draft: false
-journeys:
-- researching
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
-- read-only
 tags:
 - docs
 title: Manage Registered Email Addresses
@@ -31,7 +13,7 @@ weight: 310
 
 ## Overview
 
-In order to receive email notifications for [Alerts]({{< relref "/controller/analytics/alerts/about-alerts.md" >}}), you need to provide a valid email address and complete the verification process. 
+In order to receive email notifications for [Alerts]({{< relref "/controller/analytics/alerts/about-alerts.md" >}}), you need to provide a valid email address and complete the verification process.
 
 {{< important >}}
 You will not receive any alert notifications via email until you verify your email address. Any alert notification emails that were triggered by alert rules prior to the email address being verified will not be re-sent.
@@ -47,20 +29,20 @@ To find the list of registered email addresses:
 1. All registered email addresses are displayed in the Manage Email Addresses panel. To close the panel, select **Done**.
 
 {{<important>}}The **Manage Email Addresses** button is not displayed if you don't have any Alerts configured. If this is the case, you can add a new email address when you [create an alert rule]({{< relref "/controller/analytics/alerts/manage-alerts.md#add-an-alert-rule" >}}).{{</important>}}
-  
+
 ## Add a New Email Address
 
-To add a new email address: 
+To add a new email address:
 
 1. Open the NGINX Controller user interface and log in.
 1. On the **Analytics** menu, select **Alerts**.
 1. On the **Alert Rules Overview** page, select **Manage Email Addresses**.
-1. In the **Manage Email Addresses** panel: 
+1. In the **Manage Email Addresses** panel:
 1. Select **Add Email Address**.
-1. Provide the desired email address. 
+1. Provide the desired email address.
 1. Select the submit (plus sign) icon.
 1. Select **Done** to close the Manage Email Addresses panel.
-1. Check your email inbox for a message with the subject `[controller-team] Email verification`. 
+1. Check your email inbox for a message with the subject `[controller-team] Email verification`.
 1. Click on the link provided in the email to complete the verification process.
 
 ## Re-send a Verification Email
@@ -75,7 +57,7 @@ To re-send a verification email to a newly-registered email address:
 
 ## Remove a Registered Email Address
 
-To remove a registered email address: 
+To remove a registered email address:
 
 1. Open the NGINX Controller user interface and log in.
 1. On the **Analytics** menu, select **Alerts**.

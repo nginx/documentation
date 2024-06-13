@@ -18,9 +18,9 @@ NGINX and NGINX Plus can continually test your upstream servers, avoid the serve
 <span id="prereq"></span>
 ## Prerequisites
 
-* For passive health checks, [NGINX Open Source](https://nginx.org/en/) or [NGINX Plus](https://www.nginx.com/products/nginx)
-* For active health checks and the [live activity monitoring dashboard]({{< relref "../monitoring/live-activity-monitoring.md" >}}), NGINX Plus 
-*  A load‑balanced group of [HTTP upstream servers]({{< relref "http-load-balancer.md" >}})
+- For passive health checks, [NGINX Open Source](https://nginx.org/en/) or [NGINX Plus](https://www.nginx.com/products/nginx)
+- For active health checks and the [live activity monitoring dashboard]({{< relref "../monitoring/live-activity-monitoring.md" >}}), NGINX Plus
+- A load‑balanced group of [HTTP upstream servers]({{< relref "http-load-balancer.md" >}})
 
 
 <span id="hc_passive"></span>
@@ -30,8 +30,8 @@ For passive health checks, NGINX and NGINX Plus monitor transactions as they hap
 
 The conditions under which an upstream server is marked unavailable are defined for each upstream server with parameters to the [`server`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) directive in the `upstream` block:
 
-* [`fail_timeout`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#fail_timeout) – Sets the time during which a number of failed attempts must happen for the server to be marked unavailable, and also the time for which the server is marked unavailable (default is 10 seconds).
-* [`max_fails`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_fails) – Sets the number of failed attempts that must occur during the `fail_timeout` period for the server to be marked unavailable (default is 1 attempt).
+- [`fail_timeout`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#fail_timeout) – Sets the time during which a number of failed attempts must happen for the server to be marked unavailable, and also the time for which the server is marked unavailable (default is 10 seconds).
+- [`max_fails`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_fails) – Sets the number of failed attempts that must occur during the `fail_timeout` period for the server to be marked unavailable (default is 1 attempt).
 
 In the following example, if NGINX fails to send a request to a server or does not receive a response from it 3 times in 30 seconds, it marks the server as unavailable for 30 seconds:
 
@@ -41,13 +41,14 @@ upstream backend {
     server backend2.example.com max_fails=3 fail_timeout=30s;
 }
 ```
+
 Note that if there is only a single server in a group, the `fail_timeout` and `max_fails` parameters are ignored and the server is never marked unavailable.
 
 
 <span id="slow_start"></span>
 ### Server Slow Start
 
-A recently recovered server can be easily overwhelmed by connections, which may cause the server to be marked as unavailable again. Slow start allows an upstream server to gradually recover its weight from zero to its nominal value after it has been recovered or became available. This can be done with the [`slow_start`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#slow_start) parameter of the upstream [`server`](https://nginx.org/en/docs/stream/ngx_stream_upstream_hc_module.html#match) directive:
+A recently recovered server can be easily overwhelmed by connections, which may cause the server to be marked as unavailable again. Slow start allows an upstream server to gradually recover its weight from zero to its nominal value after it has been recovered or became available. This can be done with the [`slow_start`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#slow_start) parameter of the upstream [`server`](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#match) directive:
 
 ```nginx
 upstream backend {
@@ -56,6 +57,7 @@ upstream backend {
     server 192.0.0.1 backup;
 }
 ```
+
 Note that if there is only a single server in a group, the `slow_start` parameter is ignored and the server is never marked unavailable. Slow start is exclusive to NGINX Plus.
 
 
@@ -140,7 +142,7 @@ location / {
 }
 ```
 
-The specified URI is appended to the server domain name or IP address set for the server in the `upstream` block. For the first server in the sample `backend` group declared above, a health check requests the URI **http://backend1.example.com/some/path**.
+The specified URI is appended to the server domain name or IP address set for the server in the `upstream` block. For the first server in the sample `backend` group declared above, a health check requests the URI **"http://backend1.example.com/some/path"**.
 
 
 <span id="hc_match"></span>
@@ -159,7 +161,7 @@ You can set custom conditions that the response must satisfy for the server to p
    }
    ```
 
-2. Refer to the block from the [`health_check`](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check) directive by specifying the [`match`](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check_match) parameter and the name of the [`match`](https://nginx.org/en/docs/http/ngx_stream_upstream_hc_module.html#match) block:
+2. Refer to the block from the [`health_check`](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check) directive by specifying the [`match`](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check_match) parameter and the name of the [`match`](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#match) block:
 
    ```nginx
    http {
@@ -225,6 +227,7 @@ server {
     }
 }
 ```
+
 Here the `mandatory` and `persistent` parameters of the `health_check` directive and the `slow_start` parameter of the `server` directive are specified. Servers that are added to the upstream group using the API or DNS interfaces are marked as unhealthy and receive no traffic until they pass the health check; at that point they start receiving a gradually increasing amount of traffic over a span of 30 seconds. If NGINX Plus configuration is reloaded and before reload the server was marked as healthy, mandatory health check are not performed and the server state is considered to be `up`.
 
 Health checks can also be enabled for non-HTTP protocols, such as [FastCGI](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html), [memcached](https://nginx.org/en/docs/http/ngx_http_memcached_module.html), [SCGI](https://nginx.org/en/docs/http/ngx_http_scgi_module.html), [uwsgi](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html), and also for [TCP and UDP](https://nginx.org/en/docs/stream/ngx_stream_upstream_hc_module.html#health_check).

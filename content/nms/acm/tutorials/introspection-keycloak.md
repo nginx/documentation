@@ -1,24 +1,19 @@
 ---
-title: "OAuth2 Introspection with Keycloak"
-date: 2022-10-11T15:21:02+01:00
-draft: false
-description: "Learn how to set up an NGINX Management Suite API Connectivity Manager OAuth2 Introspection policy with Keycloak as the authorization server."
-# Assign weights in increments of 100
-weight: 400
+description: Learn how to set up an NGINX Management Suite API Connectivity Manager
+  OAuth2 Introspection policy with Keycloak as the authorization server.
+docs: DOCS-954
+doctypes:
+- tutorial
+tags:
+- docs
+title: OAuth2 Introspection with Keycloak
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-954"
-categories: ["api management", "security"]
-doctypes: ["tutorial"]
-journeys: ["researching", "getting started", "using"]
-personas: ["secops"]
+weight: 400
 ---
-
-{{<custom-styles>}}
 
 ## Overview
 
-This tutorial walks through configuring an OAuth2 Introspection policy on an API Proxy in API Connectivity Manager with Keycloak as the authorization server. 
+This tutorial walks through configuring an OAuth2 Introspection policy on an API Proxy in API Connectivity Manager with Keycloak as the authorization server.
 
 {{<important>}}The configuration presented in this guide is for demonstration purposes only. The secure configuration of Environments and Proxies in API Connectivity Manager, or the secure configuration of Keycloak as the authorization server, is not in scope for this tutorial and should be given full attention when planning for production use.{{</important>}}
 
@@ -53,12 +48,14 @@ To complete the instructions in this guide, you need the following:
 This section configures the hosts used in this tutorial. In the following table, you'll find the details of the test environment used in this tutorial's examples. The options presented are the minimum host requirements for running a fully functional test environment. Remember that production environments may need more resources and incur greater costs.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Hosts                        | Virtual Cores | Memory | Storage | IP Address    | Hostname    |
 |------------------------------|---------------|--------|---------|---------------|-------------|
 | NGINX Management Suite Host  | 2 vCPUs       | 4GB    | 100GB   | `192.0.2.2` | `acm-ctrl`  |
 | Data Plane Host              | 1 vCPU        | 1GB    | 10GB    | `192.0.2.3` | `data-host` |
 | Echo Server                  | 1 vCPU        | 1GB    | 10GB    | `192.0.2.4` | `echo-host` |
 | Authorization Server         | 1 vCPU        | 1GB    | 10GB    | `192.0.2.5` | `auth-host` |
+
 {{</bootstrap-table>}}
 
 ### Install NGINX Management Suite & API Connectivity Manager {#install-nsm-acm}
@@ -88,7 +85,7 @@ This section configures the hosts used in this tutorial. In the following table,
 
 ### Install Authorization Server {#install-auth-server}
 
-This tutorial uses Keycloak in **Development mode**. Development mode is suitable for people trying out Keycloak for the first time who want to get it up and running quickly. 
+This tutorial uses Keycloak in **Development mode**. Development mode is suitable for people trying out Keycloak for the first time who want to get it up and running quickly.
 
 Development mode sets the following default configuration:
 
@@ -216,13 +213,13 @@ Follow the steps in this section to test the OAuth functionality of Keycloak, to
 
 An introspection endpoint is needed to configure the Introspection policy in API Connectivity Manager. Additionally, a token endpoint is required for users to authenticate and access tokens for introspection. You can retrieve these endpoints using a REST API call to Keycloak.
 
-##### Structure
+#### Structure
 
 ```bash
 curl -L -X GET http://{HOST/IP_ADDRESS}:{PORT}/realms/{REALM}/.well-known/openid-configuration
 ```
 
-##### Example
+#### Example
 
 {{< note >}} `jq` is used in the following examples to format the JSON response from Keycloak in a legible and attractive way. For more information about `jq`   , see the [jq GitHub page](https://github.com/stedolan/jq). {{< /note >}}
 
@@ -230,7 +227,7 @@ curl -L -X GET http://{HOST/IP_ADDRESS}:{PORT}/realms/{REALM}/.well-known/openid
 curl -L -X GET http://192.0.2.5:8080/realms/nginx/.well-known/openid-configuration | jq
 ```
 
-##### JSON Response
+JSON Response:
 
 ```json
 {
@@ -260,7 +257,7 @@ curl -L -X GET http://192.0.2.5:8080/realms/nginx/.well-known/openid-configurati
 
 To generate an access token the below request structure is used:
 
-##### Structure
+#### Structure
 
 ```bash
 curl -L -X POST 'http://{HOST/IP_ADDRESS}:{PORT}/realms/{REALM}/protocol/openid-connect/token' \
@@ -273,7 +270,7 @@ curl -L -X POST 'http://{HOST/IP_ADDRESS}:{PORT}/realms/{REALM}/protocol/openid-
   --data-urlencode 'password=<REPLACE_ME_WITH_PASSWORD>'
 ```
 
-##### Example
+#### Example
 
 ```bash
 curl -L -X POST 'http://192.0.2.5:8080/realms/nginx/protocol/openid-connect/token' \
@@ -287,7 +284,7 @@ curl -L -X POST 'http://192.0.2.5:8080/realms/nginx/protocol/openid-connect/toke
   | jq
 ```
 
-##### JSON Response
+JSON Response:
 
 Keycloak will respond with a JSON object containing an `access_token` for the user `nginx-user`:
 
@@ -315,29 +312,29 @@ You can mimic the process by which an NGINX client introspects an incoming user 
 
 {{< note >}} Keycloak is configured to accept basic auth credentials from the `nginx-plus` client; in this case, the credentials are formatted as `CLIENT_ID:CLIENT_SECRET`. This combination must be [base64 url encoded](https://www.base64url.com/) before it is passed in the `Authorization` header. {{< /note >}}
 
-##### Structure
+#### Structure
 
-```bash
+```shell
 curl -L -X POST 'http://{HOST/IP_ADDRESS}:{PORT}/realms/{REALM}/protocol/openid-connect/token/introspect' \
-   -H "Authorization: Basic base64<CLIENT_ID:CLIENT_SECRET>" \
+   -H "Authorization: Bearer <access token>" \
    -H "Accept: application/json" \
    -H "Content-Type: application/x-www-form-urlencoded" \
    --data-urlencode 'token=<ACCESS_TOKEN>' \
    | jq
 ```
 
-##### Example
+#### Example
 
-```bash
+```shell
 curl -L -X POST 'http://192.0.2.5:8080/realms/nginx/protocol/openid-connect/token/introspect' \
-   -H "Authorization: Basic bmdpbngtcGx1czo1M2Q2YzdlNy1iNDJjLTRiNjktODQwNC0zODIwMzg1ZWQ0MWE=" \
+   -H "Authorization: Bearer <access token>" \
    -H "Accept: application/json" \
    -H "Content-Type: application/x-www-form-urlencoded" \
    --data-urlencode 'token=eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJVOFVDY2MtWnppNW9xYVhPZVZnWmdsLUxURmpfYXJ3dlJ2dl91Mjc4ZWNrIn0.eyJleHAiOjE2NjU1ODQ5NTIsImlhdCI6MTY2NTU4NDY1MiwianRpIjoiNmJhNDY1ZDktNmVmYi00Mzk5LTgyMTUtZjcxNjk0MzdhYzZhIiwiaXNzIjoiaHR0cDovLzE5Mi4xNjguMTkzLjQ6ODA4MC9yZWFsbXMvbmdpbngiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiYTk1MTE3YmYtMWEyZS00ZDQ2LTljNDQtNWZkZWU4ZGRkZDExIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoibmdpbngtcGx1cyIsInNlc3Npb25fc3RhdGUiOiI5ODM2ZjVmZC05ODdmLTQ4NzUtYWM3NS1mN2RkNTMyNTA0N2MiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImRlZmF1bHQtcm9sZXMtbmdpbngiLCJvZmZsaW5lX2FjY2VzcyIsIm5naW54LWtleWNsb2FrLXJvbGUiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJzaWQiOiI5ODM2ZjVmZC05ODdmLTQ4NzUtYWM3NS1mN2RkNTMyNTA0N2MiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInByZWZlcnJlZF91c2VybmFtZSI6Im5naW54LXVzZXIiLCJnaXZlbl9uYW1lIjoiIiwiZmFtaWx5X25hbWUiOiIifQ.MIqg3Q-pXvVG04leKBiVaDGCjv4gfsp3JywCumQ3CIk8cck9Q6tptM2CWIznmQLi4K6RUu7i7TodTnZAMDids0c-igX8oEe6ZLuR_Ub9SQSdVLymforfGYcSNJfnVVGLF8KHqPeLOp0TVPXxf56Qv6BO7B6fDGBxUvDsWEsw_5ko5v1pRiSHK-VS3zjw5weoJBD4rnYo9ZdhqYwyzL_nrUEWd05uWs4H-zCLKjTHw0AVPFO9MJ6OawJ7sc8AKeLq4FOKg2A_mIDF7SDds43UUvfUAK5a2zoy5PYhhESx0C5V7YTaaJDtiGFH1iY27_Yj3DcEQDZBBhDTRKrs3K7wxA' \
    | jq
 ```
 
-##### JSON Response
+JSON Response:
 
 Keycloak responds with a token introspection JSON response with associated claims that NGINX can extract and forward to backend services.
 
@@ -400,7 +397,7 @@ In this section, we will use the API Connectivity Manager Rest API to set up a p
    POST https://192.0.2.2/api/acm/v1/infrastructure/workspaces
    ```
 
-    ##### JSON Request
+   **JSON Request**
 
    ```json
    {
@@ -414,7 +411,7 @@ In this section, we will use the API Connectivity Manager Rest API to set up a p
    POST https://192.0.2.2/api/acm/v1/infrastructure/workspaces/infra-ws/environments
    ```
 
-   ##### JSON Request
+   **JSON Request**
 
    ```json
    {
@@ -436,7 +433,7 @@ In this section, we will use the API Connectivity Manager Rest API to set up a p
    POST https://192.0.2.2/api/acm/v1/services/workspaces
    ```
 
-   ##### JSON Request
+   **JSON Request**
 
    ```json
    {
@@ -452,7 +449,7 @@ In this section, we will use the API Connectivity Manager Rest API to set up a p
    POST https://192.0.2.2/api/acm/v1/services/workspaces/service-ws/proxies
    ```
 
-   ##### JSON Request
+   **JSON Request**
 
    ```json
    {
@@ -491,7 +488,7 @@ In this section, we will use the API Connectivity Manager Rest API to set up a p
       X-NGINX-Test: true
    ```
 
-	##### JSON Request
+   **JSON Request**
 
    ```json
    {
@@ -499,7 +496,7 @@ In this section, we will use the API Connectivity Manager Rest API to set up a p
    }
    ```
 
-   ##### Expected Result
+   **Expected Result**
 
    If everything is configured correctly in API Connectivity Manager and the echo server, the response should be similar to the following example:
 
@@ -530,7 +527,7 @@ In this section, we will use the API Connectivity Manager Rest API to set up a p
    PUT https://192.0.2.2/api/acm/v1/services/workspaces/service-ws/proxies/test-proxy
    ```
 
-   ##### JSON Request
+   **JSON Request**
 
    ```json
    {
@@ -586,7 +583,7 @@ In this section, we will use the API Connectivity Manager Rest API to set up a p
 
     If you've successfully configured and applied the OAuth2 Introspection policy, the request is blocked from reaching the backend, and `401 Unauthorized` is returned.
 
-   ##### JSON Response
+   JSON Response:
 
    ```json
    {
@@ -667,7 +664,7 @@ You can configure the Introspection policy to let users pass their access token 
    PUT https://192.0.2.2/api/acm/v1/services/workspaces/service-ws/proxies/test-proxy
    ```
 
-   ##### JSON Request
+   **JSON Request**
 
    ```json
    {
@@ -976,7 +973,7 @@ You can define multiple hostnames/IP addresses and port combinations, along with
 2. Send a request to the echo server API proxy with the provided access token. The request should not proceed to the backend, and `403 Forbidden` should be returned to the user. If you look at the data host error logs, you'll see the root cause of the `403` response: there was an issue resolving the introspection endpoint host in the introspection sub-request.
 
    ```bash
-   sudo cat /var/log/nginx/data-host-error.log 
+   sudo cat /var/log/nginx/data-host-error.log
    2022/10/17 13:22:04 [error] 44933#44933: *76 js: no resolver defined to resolve hosted.idp.com, client: 192.0.2.1, server: data-host, request: "POST /my/test/api HTTP/1.1", subrequest: "/_oauth2_send_introspection_request", host: "data-host"
    ```
 
@@ -1052,6 +1049,7 @@ When a user access token is introspected with an OAuth server, the token introsp
 {{< see-also >}} Detailed descriptions of each claim can be found in [Section 2.2 of OAuth 2.0 Token Introspection Token [RFC7662]](https://datatracker.ietf.org/doc/html/rfc7662#section-2.2). {{< /see-also >}}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Claim | Required | Description |
 |------------ |---------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `active` | REQUIRED | Boolean indicator of whether the presented token is `active`. The specifics of a token's `active` state vary depending on the authorization server's implementation and the information it keeps about its tokens. Generally, however, a `true` value returned for the `active` property indicates that a given token has been issued by this authorization server, has not been revoked by the resource owner, and is within its given time window of validity (for example, after its issuance time and before its expiration time). |
@@ -1066,6 +1064,7 @@ When a user access token is introspected with an OAuth server, the token introsp
 | `aud` | OPTIONAL | Service-specific string identifier or list of string identifiers representing the intended audience for this token. |
 | `iss` | OPTIONAL | String representing the issuer of this token. |
 | `jti` | OPTIONAL | String identifier for the token. |
+
 {{</bootstrap-table>}}
 
 With the API Connectivity Manager OAuth2 Introspection policy, extracting any claim from an IdP token introspection request and forwarding the claim to the backend service as a request header is possible. By default, the Introspection policy forwards the `exp`, `scope`, and `username` claims to the backend. When a token claim is extracted and sent to a backend service, it follows the naming pattern `X-Token-<Claim>`.
@@ -1174,7 +1173,7 @@ It is possible to verify string, integer, boolean, and array of strings data-typ
     ```bash
     PUT https://192.0.2.2/api/acm/v1/services/workspaces/service-ws/proxies/test-proxy
     ```
-    
+
     ```json
     {
         "name": "test-proxy",
@@ -1260,6 +1259,7 @@ It should be noted that if a claim is defined in the policy configuration but do
 If a claim verification failure is encountered the end user will get a `403 Forbidden` response, in the data-path error logs only the claim name that failed will be logged. For security reasons and the highly sensitive nature of the data in token introspection responses the claim values from the failed claim verification are not logged. To debug these failures, manually introspect a user's token and verify the contents against the policy configuration for claim verification.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Type        | Expected Value           | Actual Value                       | Result | Failure Reason                        |
 |-------------|--------------------------|------------------------------------|--------|---------------------------------------|
 | `string`    | `"account"`              | `"account"`                        | Pass   |                                       |
@@ -1286,9 +1286,10 @@ If a claim verification failure is encountered the end user will get a `403 Forb
 | `array`     | `["account"]`            | `["account", "monitor"]`           | Pass   |                                       |
 | `array`     | `["account"]`            | `["report", "monitor"]`            | Fail   | The expected value could not be found |
 | `array`     | `["account", "monitor"]` | `["account", "monitor"]`           | Pass   |                                       |
-| `array`     | `["account", "monitor"]` | `["monitor", "account"] `          | Pass   |                                       |
-| `array`     | `["account", "monitor"]` | `["account", "monitor", "report"] `| Pass   |                                       |
+| `array`     | `["account", "monitor"]` | `["monitor", "account"]`          | Pass   |                                       |
+| `array`     | `["account", "monitor"]` | `["account", "monitor", "report"]`| Pass   |                                       |
 | `array`     | `["account", "monitor"]` | `["account"]`                      | Fail   | Could not find "monitor"              |
+
 {{</bootstrap-table>}}
 
 ### Custom Error Return Codes
@@ -1448,7 +1449,7 @@ For reference, see [JWT Response for OAuth Token Introspection](https://datatrac
    X-Correlation-Id: 00342cadec0651b6643fcf092246535f
    ```
 
-3. When `action.introspectionResponse` is configured as `application/jwt`, the configuration parameter `action.forwardedClaimsInProxyHeader` is not valid. For `application/jwt` responses, the configuration value `action.forwardToken` is used to forward the entire JWT token from the introspection request to the backend. This allows backend services to decode and parse the token to determine how to further process an in-flight user request after it has been introspected and routed by the API proxy. 
+3. When `action.introspectionResponse` is configured as `application/jwt`, the configuration parameter `action.forwardedClaimsInProxyHeader` is not valid. For `application/jwt` responses, the configuration value `action.forwardToken` is used to forward the entire JWT token from the introspection request to the backend. This allows backend services to decode and parse the token to determine how to further process an in-flight user request after it has been introspected and routed by the API proxy.
 
    Upsert the proxy with an updated Introspection policy configuration parameter `action.forwardToken` set to `true`:
 
@@ -1505,7 +1506,7 @@ For reference, see [JWT Response for OAuth Token Introspection](https://datatrac
 
 4. Send a request to the echo server API proxy with the provided access token. When the API proxy parses the user access token and sends it to the OAuth2 Server for introspection, the response JWT token is added to the in-flight request headers as a bearer token in the `Authorization` header.
 
-   ```bash
+   ```shell
    Request served by echo-host
 
    HTTP/1.0 POST /my/test/api
@@ -1513,7 +1514,7 @@ For reference, see [JWT Response for OAuth Token Introspection](https://datatrac
    Host: default_http_07b28d26-9641-4a67-a422-0c4e14f27b03
    Accept: */*
    Accept-Encoding: gzip, deflate, br
-   Authorization: Bearer eyJraWQiOiItNTA1MTk2NDUxIiwie...
+   Authorization: Bearer <access token>
    Cache-Control: no-cache
    Connection: close
    Content-Length: 30

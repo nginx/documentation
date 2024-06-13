@@ -1,41 +1,12 @@
 ---
-authors: []
-categories:
-- installation
-- infrastructure
-- platform management
-- services
-- api management
-- service mesh
-- security
-- analytics
-date: "2020-10-26T15:32:41-06:00"
 description: Learn about the new features, enhancements, resolved issues, and known
   issues in NGINX Controller.
 docs: DOCS-370
 doctypes:
 - reference
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- renewing
-- self service
-module:
-- platform
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
-- read-only
 tags:
 - docs
-title: NGINX Controller v3.0.0–3.18.3
+title: "NGINX Controller v3.0.0\u20133.18.3"
 toc: true
 weight: 10
 ---
@@ -210,7 +181,7 @@ Vulnerability issues are disclosed only when a fix is available. For information
   **Workaround:**
   <br/><br/>
   Use the NGINX Controller REST API instead of the web interface, or upgrade to NGINX Controller v3.18.1 or later.
-  
+
 #### Documentation
 
 - **Instance Groups API is not specified as a beta feature (25924)**
@@ -478,11 +449,11 @@ These release notes provide general information and describe known issues for NG
 - **Adds support for SSL settings in health checks when multiple virtual hosts are defined per workload group member**
 
   Auto-generated health check location blocks now include any `proxy_ssl` settings that have been defined in the TLS object in the web backend object. For example, using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}) to set
-  
+
   ```json
   "tls":{"isServerNameEnabled": true, "name": "$host"}
   ```
-  
+
   allows data plane traffic to have Server Name Indication (SNI) information that can be used where multiple virtual hosts exist per workload group member. Health checking also inherits these settings, so the SNI information is provided in the health checking context.
 
 - **Active Directory integration adds support for LDAPS and unencrypted LDAP**
@@ -518,7 +489,7 @@ The following issues are known to be present in this release. Look for updates t
   You may see an error similar to the following when updating NGINX Controller if you use an external config database:
 
   ```bash
-  Error from server (NotFound): persistentvolumes "controller-postgres" not found.  
+  Error from server (NotFound): persistentvolumes "controller-postgres" not found.
   ```
 
   This error relates to an internal test being conducted by the update script and doesn't affect the upgrade's success. You can safely ignore this error.
@@ -544,7 +515,7 @@ The following issues are known to be present in this release. Look for updates t
   If you look up the version for the `ngninx-controller-agent` service using `apt` or `yum`, you may see the version is `999`.
 
   **Workaround:**
-  
+
   To resolve this error, you'll need to uninstall and then re-install the Controller Agent. Refer to the [NGINX Controller Agent Installation Guide]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}}) for instructions.
 
 <span id="3161-supported"></a>
@@ -588,7 +559,7 @@ These release notes provide general information and describe known issues for NG
 
   - NGINX Controller 3.15 adds four new metrics: `bytes_sent`, `bytes_rcvd`, `connection_count`, and `connection_duration`.
 
-    - `bytes_sent` and `bytes_rcvd` are applicable to both TCP/UDP and HTTP; without any filtering, these metrics give aggregate values across HTTP and TCP/UDP.  
+    - `bytes_sent` and `bytes_rcvd` are applicable to both TCP/UDP and HTTP; without any filtering, these metrics give aggregate values across HTTP and TCP/UDP.
     - `connection_count` and `connection_duration` are TCP specific.
 
   - We've also added three new metric dimensions: `proxied_protocol`, `family`, and `upstream_addr`.
@@ -596,7 +567,7 @@ These release notes provide general information and describe known issues for NG
   - For HTTP, metrics are collected at the end of a request/response interaction. For TCP/UDP, metrics are collected at the end of a connection setup/teardown interaction.
 
   - These new metrics will show data that's generated only after an upgrade to NGINX Controller v3.15. To view the metrics, you need to:
-  
+
     - Upgrade NGINX Controller
     - Upgrade the Controller Agent
     - Republish all TCP/UDP components using the API or browser interface. Re-publishing is not required for HTTP gateways or components.
@@ -644,10 +615,10 @@ The following issues are known to be present in this release. Look for updates t
 
 - **`connect_timeout` and `send_timeout` only take seconds as a specified value (21686)**
 
-  If `connect_timeout` and `send_timeout` are specified in `hours:minutes:seconds`, the system returns an error response.  
+  If `connect_timeout` and `send_timeout` are specified in `hours:minutes:seconds`, the system returns an error response.
 
   **Workaround:**
-  
+
   Only use seconds for these fields.
 
 - **TCP/UDP component associated with multiple gateways on an instance  causes config to fail to load (22850)**
@@ -665,7 +636,7 @@ The following issues are known to be present in this release. Look for updates t
   Complete the following steps in sequence:
 
   1. Stop the `nginx` service:
-  
+
       ```bash
       systemctl stop nginx
       ```
@@ -802,7 +773,7 @@ The following issues are known to be present in this release. Look for updates t
 - **Custom dashboard filters are cleared when edited, need to be reapplied (21922)**
 
   When editing a custom dashboard that has a filter, the filter settings are cleared. If you save the custom dashboard before reapplying the filter settings, the saved filter settings may be lost.
-  
+
   **Workaround:**
 
   If you need to edit a custom dashboard with a filter, you should reapply any cleared filter settings before saving the dashboard.
@@ -810,11 +781,11 @@ The following issues are known to be present in this release. Look for updates t
 #### Infrastructure
 
 - **NGINX Controller Agent doesn't stash `auxfiles` in Docker container (21711)**
-  
+
   In some cases, when running the NGINX Controller Agent in a Docker container, the Agent may fail to stash the `auxfiles` directory during a configuration change. If this happens, it may not be possible to roll back the update if the config change is unsuccessful.
 
 - **NGINX Controller Agent can't marshal update payload in Docker container (21809)**
-  
+
   In some cases, when running in a Docker container, the NGINX Controller Agent may fail to marshal an update payload. This can affect metrics and alerts.
 
 #### Licensing
@@ -840,7 +811,7 @@ The following issues are known to be present in this release. Look for updates t
   The steps to restore the embedded config database from a specific backup file, found in the user documentation that's installed with NGINX Controller, are incorrect.
 
   **Workaround:**
-  
+
   To restore the embedded config database, follow the instructions in the [Backup & Restore Embedded Config Database]({{< relref "/controller/admin-guides/backup-restore/backup-restore-embedded-config-db#restore-embedded-config-database" >}}) guide that's online.
 
 <span id="3140-supported"></a>
@@ -933,7 +904,7 @@ The following issues are known to be present in this release. Look for updates t
 - **NGINX Controller may crash if control plane nodes are running different versions of NGINX Controller (21150)**
 
   When adding control plane nodes to the cluster, NGINX Controller may crash if different NGINX Controller versions are installed on the nodes. To add control plane nodes to the cluster, ensure you install the same NGINX Controller von all the nodes.
-  
+
   **Workaround:**
 
   If you encounter this issue, contact NGINX Support for assistance.
@@ -945,7 +916,7 @@ The following issues are known to be present in this release. Look for updates t
   In some cases, the NGINX Controller web interface may not display analytics or security events if an ad blocker is enabled.
 
   **Workaround:**
-  
+
   Turn off any ad blockers while using the NGINX Controller web interface.
 
 - **NGINX Controller deletes some alert rules on upgrade to v3.13 (20882)**
@@ -958,7 +929,7 @@ The following issues are known to be present in this release. Look for updates t
   - The [ServiceNow Alerts integration]({{< relref "/controller/analytics/alerts/service-now-notifications.md" >}}) is no longer supported. Subscribers of any type other than `email` will be ignored. Alert rules which do not have at least one email subscriber will not be migrated.
   - The alert rule operator `=` is no longer available. Any existing alert rules with `operator: =` will be ignored.
   - Alert rules created in versions prior to 3.13 that use the `RATE` aggregation will be removed on upgrade. These rules must be re-created manually. Alert rules that use the following metrics are affected:
-  
+
     - `plus.stream.upstream.bytes_sent`
     - `plus.stream.upstream.bytes_rcvd`
     - `system.io.iops_w`
@@ -999,7 +970,7 @@ The following issues are known to be present in this release. Look for updates t
 - **NGINX Controller may fail to add an instance to a gateway if multiple components associated with the gateway have unique sets of WAF signature overrides (20752)**
 
   In cases where multiple components have unique sets of WAF signature overrides, adding a new instance reference to a gateway may result in a timeout.
-  
+
   **Workaround:**
 
   To add an instance reference to a gateway, take the following steps:
@@ -1022,7 +993,7 @@ The following issues are known to be present in this release. Look for updates t
 
   To push configuration changes, take the following steps:
 
-  1. Remove the signature overrides from the components. 
+  1. Remove the signature overrides from the components.
   2. Resolve the component errors one at a time, waiting for each error to resolve and the component state to become "configured."
   3. Restore the signature overrides for each component one at a time, waiting for the state for each component to become "configured."
 <br/>
@@ -1032,7 +1003,7 @@ The following issues are known to be present in this release. Look for updates t
 - **NGINX Controller displays "Application Error" when new licenses with additional features are applied (20868)**
 
   Applying a new license with additional features to a previously licensed version of NGINX Controller causes the web interface to display the message "Application Error."
-  
+
   **Workaround:**
 
   You can safely ignore this message. Wait approximately 30 seconds, and then refresh the page; the message should disappear.
@@ -1086,7 +1057,7 @@ This hotfix release resolves the known issue affecting version 3.12 described be
 <br/><br/>
 NGINX Controller requires an [8-core CPU @ 2.4 GHz or higher]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#hardware-specifications" >}}).
 
-If you've installed NGINX Controller on a system that does not have an 8-core CPU @ 2.4 GHz or higher, the upgrade to 3.12 may fail. 
+If you've installed NGINX Controller on a system that does not have an 8-core CPU @ 2.4 GHz or higher, the upgrade to 3.12 may fail.
 
 {{< caution >}}Installing or upgrading NGINX Controller on systems that do not meet the minimum hardware requirements may cause NGINX Controller to become unresponsive.
 
@@ -1106,7 +1077,7 @@ To restore a failed upgrade, take the steps below:
   /opt/nginx-controller/helper.sh controller stop
   ```
 
-- Wait for 1-2 minutes for all services to stop. You can run the command below to check the status: 
+- Wait for 1-2 minutes for all services to stop. You can run the command below to check the status:
 
   ```bash
   /opt/nginx-controller/helper.sh controller status
@@ -1288,7 +1259,7 @@ Refer to the [NGINX Controller Tech Specs]({{< relref "/controller/admin-guides/
 - **Object contains invalid IDP reference message (19943)**
 
   When upgrading from a version of NGINX Controller prior to and including v3.8, an error may be generated when updating a published API if it had an authentication policy.
-  
+
   **Workaround:**
 
   Delete the published API and re-publish it.
@@ -1344,7 +1315,7 @@ Refer to the [NGINX Controller Tech Specs]({{< relref "/controller/admin-guides/
 - **NGINX Controller reports missing `nginx.conf.bak` file when reloading NGINX Plus configuration times out (20227)**
 
   In cases where reloading the backup NGINX Plus configuration file times out, NGINX Controller reports an error similar to the following:
-  
+
   ```bash
   Failed to deploy to instance (<instance name>). Could not restore: nginx.conf.bak rename /etc/nginx/nginx.conf.bak /etc/nginx/nginx.conf: no such file or directory.
   ```
@@ -1362,7 +1333,7 @@ Refer to the [NGINX Controller Tech Specs]({{< relref "/controller/admin-guides/
 - **Misleading error message when creating a node with a unique node name and an existing IP address (18838)**
 
   When creating a node with a unique name but with the same IP address as another node in a multi-node cluster, the following error is shown: *"Error creating node: the node already exists. Use a different node name, then try again."*
-  
+
   **Workaround:**
 
   When adding a node to a multi-node cluster, both the node's name and IP address must be unique. If you encounter this error and you've used a unique name for the node, try using a different IP address.
@@ -1398,7 +1369,7 @@ Refer to the [NGINX Controller Tech Specs]({{< relref "/controller/admin-guides/
   If you select among the roles in the **Recent Roles and Groups** menu in the Platform web interface, the selected role's displayed permissions are incorrect and are for the previously selected role. For example, if you select a role called "role-a," and then select a role called "role-b", the permissions shown for "role-b" are the permissions for "role-a."
 
   The permissions have not changed and will not change so long as you do not select **Update**.
-  
+
   **Workaround:**
 
   To view the correct permissions for a custom role, select **Roles Overview** in the **Roles** menu, then select a role in the **Roles** list.
@@ -1406,7 +1377,7 @@ Refer to the [NGINX Controller Tech Specs]({{< relref "/controller/admin-guides/
 #### Documentation
 
 - **API Reference does not specify that TCP/UDP App Components are experimental (20285)**
-  
+
   In the [NGINX Controller API Reference]({{< relref "/controller/api/_index.md" >}}), the schema for App Components includes two objects related to TCP/UDP support that are missing the **x-f5-experimental** extension: `ComponentTcpUdpDesiredState` and `ComponentTcpUdpCurrentState`. TCP/UDP App Components are not supported in NGINX Controller v3.12.
 
 <span id="3-12-0-supported"></a>
@@ -1540,7 +1511,7 @@ This release includes the following fixes. Search by the issue ID -- the number 
 
   **Workaround:**
 
-  To take advantage of these new NGINX directives for Components, you must make any changes via the web interface first (or not use the web interface for Components). You can then use the explicit REST call for the Component to set the additional NGINX directives.  
+  To take advantage of these new NGINX directives for Components, you must make any changes via the web interface first (or not use the web interface for Components). You can then use the explicit REST call for the Component to set the additional NGINX directives.
 
 #### Infrastructure
 
@@ -1838,7 +1809,7 @@ This release includes the following fixes. Search by the issue ID -- the number 
   **Workaround:**
 
   To see if your configuration is using a certificate:
-  
+
   1. Open the NGINX Controller web interface and log in.
   1. From the NGINX Controller menu, select **Services** > **Certs** > **Overview**.
   1. On the Certs Overview page, select a certificate from the list. This opens a side panel where you can view the certificate's details, including whether the certificate is associated with an app component and/or gateway.
@@ -1977,7 +1948,7 @@ This release includes the following fixes. Search by the issue ID -- the number 
 - **Cannot log in to the NGINX Controller web interface using Firefox v77 (14800)**
 
   When trying to log in to the NGINX Controller web interface using Firefox v77, the following error occurs: `SyntaxError: invalid regexp group IdentityProvider.form.tsx:364:17 <anonymous> IdentityProvider.form.tsx:364 Webpack 28`.
-  
+
   **Workaround:**
 
   Upgrade to Firefox v78.
@@ -1987,13 +1958,13 @@ This release includes the following fixes. Search by the issue ID -- the number 
 - **Code sample in the Dev Portal may have unintended URL encodings (13908)**
 
   In some cases, the example code snippet in the Dev Portal is URL encoded when the API has path parameters. For example, the code snippet might look similar to the following:
-  
+
   ```bash
   curl --request GET --url http://sportsapp.example.com/api/f1/drivers/%7BdriverId%7D
   ```
 
   **Workaround:**
-  
+
   You must remove the URL encoding before running the example code snippet, like so:
 
    ```bash
@@ -2023,7 +1994,7 @@ This release includes the following fixes. Search by the issue ID -- the number 
   On the APIs page, selecting between items in the **Recent  API Definitions and Dev Portals** quick list doesn't refresh the page. Whichever item is displayed first is persistent.
 
   **Workaround:**
-  
+
   To view specific API Definitions, select **APIs** > **API Definitions**. Then from the API Definitions list page, choose the API Definition that you want to view. Likewise, to view specific Dev Portals, select **APIs** > **Dev Portals**. Then from the Dev Portal list page, choose the Dev Portal that you want to view.
 
 #### Infrastructure
@@ -2049,7 +2020,7 @@ This release includes the following fixes. Search by the issue ID -- the number 
   When Upgrading the Controller Agent, the install script warns that the named instance already exists and says to choose another name or remove the existing instance.
 
   **Workaround:**
-  
+
   This error can be ignored for Controller Agent upgrades.
 
 #### Documentation
@@ -2057,7 +2028,7 @@ This release includes the following fixes. Search by the issue ID -- the number 
 - **Note for PUT Update An Authentication Provider is incorrect (14576)**
 
   In the NGINX Controller API reference guide, the description for the PUT `/platform/auth/providers/{providerName}` endpoint incorrectly says, "You must provide the full request body, including all configuration options, in a PUT request."
-  
+
   As long as the required parameters are included in the PUT request, the update works.
 
 <span id="370-supported"></a>
@@ -2186,7 +2157,7 @@ Vulnerability issues are disclosed only when a fix is available. For information
   When the Controller Agent service is restarted, the `controller-agent.pid` file is left behind, and errors about the PID file are logged in `agent.log`.
 
   **Workaround**:
-  
+
   Manually remove `/var/run/controller-agent/controller-agent.pid`, then restart the Controller Agent service again. The Controller Agent will work normally after it restarts.
 
 <span id="360-supported"></a>
@@ -2290,13 +2261,13 @@ Vulnerability issues are disclosed only when a fix is available. For information
       ```
 
   1. Install the `nginx-plus-module-metrics` module, specifying the version as 1.19:
-  
+
       ```bash
       sudo yum install -y nginx-plus-module-metrics-1.19*
       ```
 
   **Verification:**
-  
+
   1. To confirm that the correct versions are installed, run the following command:
 
       ```bash
@@ -2358,9 +2329,9 @@ Vulnerability issues are disclosed only when a fix is available. For information
 - **Database certs with an IP address or an invalid CN cause NGINX Controller to become unresponsive (12173)**
 
   When a database certificate is added that uses an IP address instead of an FQDN, or if the certificate Common Name (CN) is invalid, the NGINX Controller database services reject the invalid cert and refuse database connections. In this case, the system becomes unresponsive until a valid cert is provided.
-  
+
   **Workaround**:
-  
+
   Use the hostname instead of an IP address, or use a certificate where the IP address is mentioned in Subject Alternative Name (SAN) as `DNS` type.
 
 - **NGINX Controller Agent and AVRD do not work on 32-bit distributions (12605)**
@@ -2518,7 +2489,7 @@ Vulnerability issues are disclosed only when a fix is available. For information
 
 - **Security section appears in the documentation but has no content (11294)**
 
-  In NGINX Controller v3.4, a "Security" panel appears in the "Services" section of the onboard documentation. If you click on the Security panel, you will not see any content listed because there is no security documentation for this release. Users should disregard the "Security" panel in the documentation for this release.  
+  In NGINX Controller v3.4, a "Security" panel appears in the "Services" section of the onboard documentation. If you click on the Security panel, you will not see any content listed because there is no security documentation for this release. Users should disregard the "Security" panel in the documentation for this release.
 
 <span id="340-supported"></a>
 
@@ -2614,7 +2585,7 @@ Vulnerability issues are disclosed only when a fix is available. For information
   "state": {
       "conditions": [
           {
-              "type": "config" 
+              "type": "config"
           }
       ],
       "selfConfigState": {
@@ -3117,9 +3088,9 @@ These release notes provide general information and describe known issues for NG
   - **Identity Provider - API Key**: When you create an Identity Provider that uses API Key authentication by using the REST API, the name of the Identity Provider group will not display in the user interface. This behavior resolves if you modify the Identity Provider resource by using the REST API.
 
   - **Identity Provider Client - API Key**: When you create an Identity Provider Client that uses API Key authentication by using the user interface, you will receive a "404 - Not Found" error in response to an HTTP GET request for the resource.
-  
+
   - **Published API**: When you create a Published API by using the user interface, the Environment, Application, Gateway, Policy, and Routes will be missing from the response to an HTTP GET request for the resource.
-  
+
   - **API Definition**: When you create an API Definition by using the REST API, the name of the API Definition is not displayed in the user interface. When you create an API Definition by using the user interface, the URIs will be missing from the response to an HTTP GET request for the resource.
 
 - **Usage of API key authentication policies requires the njs module on data-plane instances (7298)**

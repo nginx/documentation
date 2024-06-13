@@ -1,23 +1,8 @@
 ---
-authors: []
-categories:
-- analytics
-date: "2020-10-26T15:32:41-06:00"
 description: View the audit log of system and user actions.
 docs: DOCS-530
 doctypes:
 - task
-draft: false
-journeys:
-- using
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 tags:
 - docs
 title: View Events

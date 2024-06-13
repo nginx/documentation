@@ -1,37 +1,13 @@
 ---
-aliases:
-- /analytics/metrics/reference/overview-metrics-metadata/
-- /tutorials/monitoring/overview-metrics-metadata/
-
-authors: []
-categories:
-- analytics
-date: "2021-12-21T12:00:00-07:00"
 description: Understanding how the NGINX Agent collects and reports metrics
+docs: DOCS-826
 doctypes:
 - reference
-draft: false
-journeys:
-- researching
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
-- read-only
 tags:
 - docs
-title: 'Instance Metrics Overview'
+title: Instance Metrics Overview
 toc: true
 weight: 300
-docs: "DOCS-826"
-aliases:
-- /nginx-instance-manager/about/overview-metrics/
 ---
 
 {{< shortversions "2.0.0" "latest" "nimvers" >}}

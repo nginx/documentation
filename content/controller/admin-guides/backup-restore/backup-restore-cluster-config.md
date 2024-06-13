@@ -1,25 +1,9 @@
 ---
-authors: []
-categories:
-- installation
-- platform management
-date: "2020-12-06T13:55:05-08:00"
 description: Learn how to back up your NGINX Controller cluster configuration and
   encryption keys.
 docs: DOCS-247
 doctypes:
 - task
-draft: false
-journeys:
-- getting started
-- using
-- self service
-personas:
-- devops
-- netops
-- secops
-roles:
-- admin
 tags:
 - docs
 title: Back Up & Restore Cluster Config and Encryption Keys

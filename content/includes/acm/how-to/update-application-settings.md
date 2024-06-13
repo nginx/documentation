@@ -1,5 +1,7 @@
 #
    {{<bootstrap-table "table table-striped table-bordered">}}
+
+
    | Variable                         | Description                                                                                                                                                                           |
    |----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
    | (Optional) Choose an OAuth Flow  | OAuth flows are authorization and authentication processes.                                                                                                                           |
@@ -12,7 +14,10 @@
    | (Optional) User Info URI         | User Info URI is called by the front end to retrieve the user's info via the IDP.                                                                                                     |
    | (Optional) Login URI             | Login URI is called by the front end for logging-in IDP using OpenID Connect.                                                                                                         |
    | (Optional) Logout URI            | Logout URI is called by the front end to handle OIDC logout with the IDP. See [RPLogout](https://openid.net/specs/openid-connect-rpinitiated-1_0.html#RPLogout) for more information. |
-   {{</bootstrap-table>}}
-   
+
+
+
+ {{</bootstrap-table>}}
+
    <!-- Do not remove. Keep this code at the bottom of the include -->
    <!-- DOCS-1007 -->

@@ -1,32 +1,13 @@
 ---
-aliases:
-- /analytics/dimensions/reference/catalog/
-authors: []
-categories:
-- analytics
-date: "2020-10-26T15:32:41-06:00"
+catalog: true
 description: Information about all of the Dimensions collected by NGINX Controller
-  Agent
+  Agent.
 docs: DOCS-524
 doctypes:
 - reference
-draft: false
-journeys:
-- researching
-- using
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
-- read-only
 tags:
 - docs
 title: NGINX Controller Dimensions Catalog
-catalog: true
 toc: false
 weight: 20
 ---

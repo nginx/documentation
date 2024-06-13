@@ -1,29 +1,15 @@
 ---
-authors: []
-categories:
-- analytics
-date: "2020-12-29T13:23:21-07:00"
-description: Learn about NGINX Controller Alerts and Notifications
+description: Learn about NGINX Controller Alerts and Notifications.
 docs: DOCS-520
 doctypes:
 - concept
-draft: false
-journeys:
-- researching
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
 tags:
 - docs
 title: About Alerts
 toc: true
 weight: 100
 ---
- 
+
 ## Overview
 
 The NGINX Controller Analytics module lets you configure alerts and notifications, so you can stay informed about your system and app performance. In this topic, you'll learn about [alerts](#alerts), [alert rules](#alert-rules), and [alert notifications](#alert-notifications).
@@ -81,11 +67,10 @@ th {
 | `display name` | A human-friendly name that helps you identify what the alert rule does. |
 | `metric` | The [metric]({{< relref "/controller/analytics/catalogs/metrics.md" >}}) that you want to monitor. <br/>{{< note >}}An alert rule can monitor one metric.{{< /note >}}|
 | `operator` | The operator that will be applied to the value of the metric to check if an alert should be triggered. There are two available operators: `le` - less or equal and `ge` - greater or equal.|
-| `threshold` | Defines the value that, when exceeded, will trigger an alert. <br/>{{< tip >}}You can find the allowed threshold value(s) for each metric in the **unit** field of the metric's entry in the [Metrics Catalogs Reference]({{< relref "/controller/analytics/catalogs/metrics.md" >}}).  
-  Select the "Index" button to access the list of all available metrics and jump directly to that item in the catalog.{{< /tip >}} |
+| `threshold` | Defines the value that, when exceeded, will trigger an alert. <br/>{{< tip >}}You can find the allowed threshold value(s) for each metric in the **unit** field of the metric's entry in the [Metrics Catalogs Reference]({{< relref "/controller/analytics/catalogs/metrics.md" >}}). Select the "Index" button to access the list of all available metrics and jump directly to that item in the catalog.{{< /tip >}} |
 | `period` | Defines the time window in which you want to calculate the aggregated metric value.<br />- The maximum possible time window is `24h`.<br/>- The minimum possible time window is `2m`.|
 | `filter` | Lets you refine the alert rule for a more specific set of metric values, based on dimensions.<br/>If no filter is provided, all collected data will be used when calculating the alert rule status.|
-| `group by` | Groups results according to the specified dimension(s). A separate alert will be triggered for each result group. You can provide multiple dimension names as a comma-separated list. <br/>{{<note>}}Using a dimension with a high cardinality of values might result in a high volume of alerts.{{</note>}}
+| `group by` | Groups results according to the specified dimension(s). A separate alert will be triggered for each result group. You can provide multiple dimension names as a comma-separated list. <br/>{{<note>}}Using a dimension with a high cardinality of values might result in a high volume of alerts.{{</note>}}|
 | `notification type` | Defines how you want to receive alert notifications. |
 | `email addresses` | A comma-separated list of email addresses that should receive alert notifications.|
 | `mute` | Boolean; turns alert notifications on and off. Set to 'on' to mute notifications. |
@@ -146,11 +131,11 @@ Likewise, if you want to stop receiving emails for an alert rule, but you do wan
 You must [verify your email address]({{< relref "/controller/analytics/alerts/manage-registered-emails.md" >}}) in order to receive alert notification emails.
 {{< /important >}}
 
-When an alert rule's conditions are met, NGINX Controller sends an alert email with the subject "[controller-alert] Alert started: <alert_rule_name>" to all of the email addresses that are specified in the alert rule. 
+When an alert rule's conditions are met, NGINX Controller sends an alert email with the subject "[controller-alert] Alert started: <alert_rule_name>" to all of the email addresses that are specified in the alert rule.
 
 If multiple alerts are triggered in a single calculation period, NGINX Controller sends a summary email message that contains all of the alerts for the time period.
 
-When an alert instance expires, NGINX Controller sends a message with subject "[controller-alert] Alert expired: <alert_rule_name>" to all of the email addresses that are specified in the alert rule. 
+When an alert instance expires, NGINX Controller sends a message with subject "[controller-alert] Alert expired: <alert_rule_name>" to all of the email addresses that are specified in the alert rule.
 
 The notification uses the automatically-generated name that was assigned by the system when the rule was created.
 
@@ -162,13 +147,13 @@ As an example, let's say that you have three instances configured in the NGINX C
 
 Assuming that traffic is constantly flowing through all three instances, and the threshold is exceeded for all three, the system will return three alerts (one per instance). In this case, you would receive one email, containing three alert notices, and three user interface notifications.
 
-If the threshold is exceeded for one instance, then you will receive one alert email and one notification in the user interface. 
+If the threshold is exceeded for one instance, then you will receive one alert email and one notification in the user interface.
 
 ## How Alerts Work
 
-NGINX Controller checks the list of configured alert rules every 30 seconds. Then, it queries the [Metrics API]({{< relref "/controller/analytics/metrics/metrics-api.md" >}}) for the data defined in each alert rule. 
+NGINX Controller checks the list of configured alert rules every 30 seconds. Then, it queries the [Metrics API]({{< relref "/controller/analytics/metrics/metrics-api.md" >}}) for the data defined in each alert rule.
 
-The API query uses the following template: 
+The API query uses the following template:
 
 `?names=<agg-function>(<metric-name>)&startTime=now-<period>&endTime=now<&additional-alert-rule-parameters>"`
 
@@ -176,9 +161,9 @@ where
 
 - `<agg-function>` is the appropriate [aggregation function]({{< relref "/controller/analytics/metrics/metrics-api.md#aggregations" >}}) for the metric. You can find this information in the [Metrics Catalog Reference]({{< relref "/controller/analytics/catalogs/metrics.md" >}}).
   - `AVG` applies to `gauge` metrics. Gauges are averaged over the time period configured in the alert rule.
-  - `MAX` applies to `counter` metrics. 
+  - `MAX` applies to `counter` metrics.
   - `SUM` applies to `incremental` metrics.
-  
+
 - The `<metric-name>` and `<period>` parameters are read from the alert rule configuration.
 - `<&additional-alert-rule-parameters>` e.g. `filter` or `groupBy` parameters read from the alert rule configuration.
 
@@ -199,7 +184,7 @@ th {
 
 | Conditions | Action |
 |---|---|
-| - threshold is exceeded<br>- "ongoing" alert does not exist | Triggers new alert. | 
+| - threshold is exceeded<br>- "ongoing" alert does not exist | Triggers new alert. |
 | - threshold is exceeded<br>- "ongoing" alert exists | Updates existing alert's `last_checked_timestamp` and `last_checked_value`. |
 | - threshold *is not* exceeded<br>- "ongoing" alert exists | Expires alert.|
 | - threshold *is not* exceeded<br>- "ongoing" does not exist | No action.|
@@ -216,12 +201,12 @@ If the [Metrics API]({{< relref "/controller/analytics/metrics/metrics-api.md" >
 
 ### Alerts for the controller.agent.status metric
 
-The `controller.agent.status` is a special metric representing the heartbeat of the NGINX Agent running on the instance. 
-The metric is reported every 1 minute by the NGINX Agent to the NGINX Controller and may only have a value of 1 if the NGINX Agent is healthy. 
-If the NGINX Agent is unhealthy it is not reporting the heartbeat and effectively no values for the `controller.agent.status` are stored by the NGINX Controller. 
+The `controller.agent.status` is a special metric representing the heartbeat of the NGINX Agent running on the instance.
+The metric is reported every 1 minute by the NGINX Agent to the NGINX Controller and may only have a value of 1 if the NGINX Agent is healthy.
+If the NGINX Agent is unhealthy it is not reporting the heartbeat and effectively no values for the `controller.agent.status` are stored by the NGINX Controller.
 Based on this metric it is possible to create an alert rule and receive notifications whenever the total number of heartbeats reported by a certain NGINX Agent in a recent period is below or equal (or above or equal) certain threshold.
 
-For example, you would like to receive notifications whenever the NGINX Agent availability at any instance is less or equal 70%. 
+For example, you would like to receive notifications whenever the NGINX Agent availability at any instance is less or equal 70%.
 To achieve that:
 
 1. Create an alert rule for the `controller.agent.status` metric.

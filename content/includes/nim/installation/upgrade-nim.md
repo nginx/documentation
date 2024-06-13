@@ -23,9 +23,11 @@
 {{</tabs>}}
 
 {{< note >}}
-Note, if any NGINX Management Suite modules are installed, one of more of them may need to be upgraded to remain compatible with NGINX Instance Manager. The table of compatible versions can be found here: 
-   * Security Monitoring: https://docs.nginx.com/nginx-management-suite/security/releases/release-notes/
-   * API Connectivity Manager: https://docs.nginx.com/nginx-management-suite/acm/releases/release-notes/{{< /note >}}
+Note, if any NGINX Management Suite modules are installed, one of more of them may need to be upgraded to remain compatible with NGINX Instance Manager. The table of compatible versions can be found here:
+
+- Security Monitoring: <https://docs.nginx.com/nginx-management-suite/security/releases/release-notes/>
+- API Connectivity Manager: <https://docs.nginx.com/nginx-management-suite/acm/releases/release-notes/>
+{{< /note >}}
 
 
 2. Restart the NGINX Management Suite services:
@@ -54,6 +56,3 @@ Note, if any NGINX Management Suite modules are installed, one of more of them m
 
 <!-- Do not remove. Keep this code at the bottom of the include -->
 <!-- DOCS-1047 -->
-
-<!-- Do not remove. Keep this code at the bottom of the include -->
-<!-- DOCS-807 -->

@@ -1,24 +1,8 @@
 ---
-authors:
-- travis
-- jodie
-- ashutosh
-categories:
-- services
-- api management
-date: "2020-10-26T15:32:41-06:00"
-description: Learn about the policies available for use in the NGINX Controller
+description: Learn about the policies available for use in the NGINX Controller.
 docs: DOCS-568
 doctypes:
 - concept
-draft: false
-journeys:
-- using
-personas:
-- devops
-- secops
-roles:
-- admin
 tags:
 - docs
 title: Learn About Policies
@@ -30,8 +14,8 @@ weight: 130
 
 NGINX Controller provides a set of policies that allow you to protect and secure your services (APIs for API Management module deployments, and Apps for App Delivery module deployments) and their data. The available policies fall under two basic categories:
 
-* Authentication policies
-* Rate Limiting policies
+- Authentication policies
+- Rate Limiting policies
 
 ## Authentication Policies
 
@@ -44,7 +28,7 @@ You can specify the way API clients present their credentials:
 - HTTP request header
 - Query string parameter
 
-When using API keys for authentication, the API key is written to the NGINX Plus config as cryptographically-protected hashes. 
+When using API keys for authentication, the API key is written to the NGINX Plus config as cryptographically-protected hashes.
 
 To use API key authentication for any element of NGINX Controller, you must install the `njs` module on all NGINX Plus instances.
 

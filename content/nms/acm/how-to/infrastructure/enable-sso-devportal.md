@@ -1,23 +1,16 @@
 ---
-title: "Enable Single Sign-On for Developer Portal"
-date: 2021-12-21T12:00:00-07:00
-description: "Learn how to enable Single Sign-On for Developer Portal."
-# Assign weights in increments of 100
-weight: 400
+description: Learn how to enable Single Sign-On for Developer Portal.
+docs: DOCS-928
+doctypes:
+- task
+tags:
+- docs
+title: Enable Single Sign-On for Developer Portal
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-928"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["API Connectivity Manager", "policies", "OIDC", "developer portal"]
-doctypes: ["task"]
-docs: 
-aliases:
-- /acm/how-to/setup-oidc-devportal/
-
+weight: 400
 ---
 
+{{< raw-html >}}
 <style>
     h2 {
         margin-top: 30px;
@@ -34,12 +27,13 @@ aliases:
     }
 
 </style>
+{{< /raw-html >}}
 
 {{< shortversions "1.1.0" "latest" "acmvers" >}}
 
 ## Overview
 
-Single sign-on (SSO) can be enabled on the Developer Portal to secure access to the portal and to allow authenticated API consumers to manage resource credentials. Logged-in consumers can then self-manage resource credentials for the APIs. 
+Single sign-on (SSO) can be enabled on the Developer Portal to secure access to the portal and to allow authenticated API consumers to manage resource credentials. Logged-in consumers can then self-manage resource credentials for the APIs.
 
 Single sign-on is enabled by applying an OpenID Connect (OIDC) policy on the Developer Portal. The OIDC policy sets up the portal proxy to act as a relying party to authenticate users with the OIDC provider.
 
@@ -55,6 +49,7 @@ Complete the following prerequisites before proceeding with this guide:
 The following terminology is used in this topic:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Term                     | Description                                                                                                                                                                                                                                                                                                                  |
 |--------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | AuthCode                 | Authorization Code.                                                                                                                                                                                                                                                                                                          |
@@ -64,19 +59,20 @@ The following terminology is used in this topic:
 | OIDC                     | OpenID Connect is an authentication protocol that adds an identity verification layer.                                                                                                                                                                                                                                       |
 | PKCE                     | Proof Key for Code Exchange. When public clients request Access Tokens, some additional security concerns are posed that are not mitigated by the Authorization Code Flow alone. PKCE needs the clients app to provide proof to the authorization server, to verify that the authorization code belongs to the clients' app. |
 | URI                      | Uniform Resource Indicator. It is a unique character sequence which distinguishes one resource from another.                                                                                                                                                                                                                 |
+
 {{</bootstrap-table>}}
 
 ### Supported OIDC Identity Providers
 
 API Connectivity Manager supports all of the same identity providers as NGINX Plus. The following guides describe how to configure NGINX Plus for these identity providers, and outline where to find the information you'll need to configure them for OIDC.
 
-* [Auth0](/nginx/deployment-guides/single-sign-on/auth0/)
-* [Amazon Cognito](/nginx/deployment-guides/single-sign-on/cognito)
-* [Keycloak](/nginx/deployment-guides/single-sign-on/keycloak)
-* [Microsoft Active Directory FS](/nginx/deployment-guides/single-sign-on/active-directory-federation-services)
-* [Okta](/nginx/deployment-guides/single-sign-on/okta)
-* [OneLogin](/nginx/deployment-guides/single-sign-on/onelogin)
-* [Ping Identity](/nginx/deployment-guides/single-sign-on/ping-identity)
+- [Auth0](/nginx/deployment-guides/single-sign-on/auth0/)
+- [Amazon Cognito](/nginx/deployment-guides/single-sign-on/cognito)
+- [Keycloak](/nginx/deployment-guides/single-sign-on/keycloak)
+- [Microsoft Active Directory FS](/nginx/deployment-guides/single-sign-on/active-directory-federation-services)
+- [Okta](/nginx/deployment-guides/single-sign-on/okta)
+- [OneLogin](/nginx/deployment-guides/single-sign-on/onelogin)
+- [Ping Identity](/nginx/deployment-guides/single-sign-on/ping-identity)
 
 ## Set up OIDC Policy
 

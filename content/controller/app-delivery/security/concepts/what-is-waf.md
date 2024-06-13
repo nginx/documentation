@@ -1,26 +1,9 @@
 ---
-authors: []
-categories:
-- services
-- apps
-- security
-date: "2020-10-26T15:32:41-06:00"
-description: Overview of the App Security module's WAF feature
+description: Overview of the App Security module's WAF feature.
 docs: DOCS-483
 doctypes:
 - concept
 - reference
-draft: false
-journeys:
-- researching
-- using
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
 tags:
 - docs
 title: About App Security
@@ -62,16 +45,17 @@ When enabling WAF to protect your Apps, you can either add your own custom Secur
 A Security Strategy is a logical container for multiple Security Policies. In a Security Strategy, you can reference a Security Policy that represents a security risk profile. For example, you can map low- or high-risk security profiles to different Security Strategies as you deem fit for your Apps' specific use case or organizational needs.
 
 When you enable security on the App Component, you can specify the Security Strategy to protect it. You can use the same Security Strategy across multiple app components. The Security Policy referenced in the Security Strategy detects and protects against malicious traffic to the App Component.
-- **App Component** references **Security Strategy**; 
+
+- **App Component** references **Security Strategy**;
 - **Security Strategy** references **Security Policy**.
 
 For more about creating, updating, or deleting Security Policies, see the [Strategies API Reference](https://docs.nginx.com/nginx-controller/api/reference/ctlr-v1/adc/docs/strategies/v1/content/intro).
 
 You can use a custom Security Strategy to protect your Apps, or you can use NGINX Controller's default Security Strategy, which contains a pre-defined WAF policy.
 
-{{< note >}} 
+{{< note >}}
 
-The `/services/strategies/balanced_default` endpoint was replaced by `/security/strategies/balanced_default` in NGINX Controller ADC v3.18. 
+The `/services/strategies/balanced_default` endpoint was replaced by `/security/strategies/balanced_default` in NGINX Controller ADC v3.18.
 
 - Specify the `StrategyRef` setting with `/security/strategies/balanced_default` instead of `/services/strategies/balanced_default`.
 

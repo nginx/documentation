@@ -1,9 +1,10 @@
-You can view the Instance Manager API Reference documentation in the NGINX Management Suite user interface. 
+---
+docs: DOCS-991
+---
+
+You can access the Instance Manager and Platform API Reference documentation through the NGINX Management Suite web interface.
+
 To access the API Docs, take the steps below:
 
-1. Log in to the NGINX Management Suite user interface.
-2. From the Launchpad, select the **API Documentation** card.
-3. Select **NIM and Platform API** from the **Docs** list in the sidebar. The API Reference documentation will then display.
-
-<!-- Do not remove. Keep this code at the bottom of the include -->
-<!-- DOCS-991 -->
+1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in. Then, select **API Documentation** from the Launchpad menu.
+1. In the left-menu, select **NIM and Platform API**.

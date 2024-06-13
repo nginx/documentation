@@ -1,3 +1,7 @@
+---
+docs: DOCS-1315
+---
+
 After loading the Docker image, you can now tag and push the image to your private Docker registry. Replace `<my-docker-registry>` in the examples below with the path to your private Docker registry.
 
 1. Log in to your private registry:
@@ -28,7 +32,7 @@ After loading the Docker image, you can now tag and push the image to your priva
    docker push <my-docker-registry>/nms-acm:<version>
    ```
 
-   This command pushes the Docker image `nms-acm` to the specified private Docker registry (`my-docker-registry`). The image will be tagged with the specified version (`<version>`). 
+   This command pushes the Docker image `nms-acm` to the specified private Docker registry (`my-docker-registry`). The image will be tagged with the specified version (`<version>`).
 
    - Replace `<my-docker-registry>` with your private Docker registry.
 

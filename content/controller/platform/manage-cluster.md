@@ -1,33 +1,10 @@
 ---
-authors: []
-categories:
-- installation
-- infrastructure
-- platform management
-- services
-- api management
-- service mesh
-- security
-- analytics
-date: "2020-10-26T15:32:41-06:00"
 description: Learn how to add and manage additional NGINX Controller nodes to create
   a resilient cluster.
 docs: DOCS-788
 doctypes:
 - task
 - tutorial
-draft: false
-journeys:
-- researching
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-roles:
-- admin
-- user
 tags:
 - docs
 title: Manage Your Cluster

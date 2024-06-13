@@ -1,29 +1,14 @@
 ---
-authors: []
-categories:
-- analytics
-date: "2020-10-26T15:32:41-06:00"
-description: Steps to take to investigate and fix issues with data forwarders
+description: Steps to take to investigate and fix issues with data forwarders.
 docs: DOCS-377
 doctypes:
 - tutorial
-draft: false
-journeys:
-- using
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
 tags:
 - docs
 title: Troubleshoot Data Forwarders
 toc: true
 weight: 200
 ---
-
 
 ## Overview
 
@@ -49,7 +34,7 @@ To look up your version of NGINX Controller:
 
 You can find error messages emitted by the forwarder by querying the the NGINX Controller REST API
 
-1. Send an HTTP GET request to the `/analytics/forwarders` endpoint in the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}). 
+1. Send an HTTP GET request to the `/analytics/forwarders` endpoint in the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}).
 
     Replace the session cookie, Controller-FQDN, and forwarderName in the example curl command below with the correct values for your environment.
 
@@ -57,9 +42,9 @@ You can find error messages emitted by the forwarder by querying the the NGINX C
     curl -X GET --cookie "session=<session cookie>" --url "{{Controller-FQDN}}/api/v1/analytics/forwarders/{forwarderName}"
     ```
 
-2. In the response, locate the `currentStatus.state.conditions` object. 
+2. In the response, locate the `currentStatus.state.conditions` object.
 
-   This object contains details about the current status of the Forwarder, including any error messages. 
+   This object contains details about the current status of the Forwarder, including any error messages.
 
    <a name="integration-error-example">For example:</a>
 
@@ -88,7 +73,7 @@ In the example above, the Forwarder is in an `error` state because the Integrati
 
 ## How to Find Forwarder Events by using the User Interface
 
-Data Forwarders generate events that can give you a historical view of actions that have occurred. 
+Data Forwarders generate events that can give you a historical view of actions that have occurred.
 
 Take the following steps to view Forwarder events:
 
@@ -123,7 +108,7 @@ If this is the case, an HTTP GET request for the Forwarder will return an error 
 }
 ```
 
-The Forwarder's reported status depends on a number of conditions, each of which has an associated weight. If the sum of all weights crosses a set threshold, then the Forwarder returns an error. This doesn't necessarily mean that the connection to the Collector is broken, but it does reflect issues that are affecting the ability to consistently connect to the Collector. The Forwarder will send the data when it is able to successfully connect, which is why the Collector still displays new data. 
+The Forwarder's reported status depends on a number of conditions, each of which has an associated weight. If the sum of all weights crosses a set threshold, then the Forwarder returns an error. This doesn't necessarily mean that the connection to the Collector is broken, but it does reflect issues that are affecting the ability to consistently connect to the Collector. The Forwarder will send the data when it is able to successfully connect, which is why the Collector still displays new data.
 
 As indicated by the error message, you should check the Forwarder's configuration and the status of the receiving platform to ensure that data will continue to be sent by the Forwarder and received by the Collector.
 
@@ -148,39 +133,39 @@ For example, the following Forwarder contains two Streams:
     ]
 ```
 
-In the first Stream, the selector  -- `names=nginx.http.conn.active` -- contains a single metric. The second Stream's selector -- `names=nginx.http*` -- contains a wildcard, which means that it will send data for all metrics that begin with `nginx.http`. 
+In the first Stream, the selector  -- `names=nginx.http.conn.active` -- contains a single metric. The second Stream's selector -- `names=nginx.http*` -- contains a wildcard, which means that it will send data for all metrics that begin with `nginx.http`.
 
 The wildcard in the second selector matches the metric defined in the first -- `nginx.http.conn.active`. This means that the Forwarder will send the metric `nginx.http.active` to the Collector twice (once in each Stream).
 
 ### Forwarder Reports an Error with an Integration
 
-If you received an error message regarding an Integration, like the one in [the example above](#integration-error-example), you need to fix the Integration settings to resolve the error. However, Forwarders don't monitor the associated Integration for updates, so they will continue to return the error message even after the Integration settings are fixed. 
+If you received an error message regarding an Integration, like the one in [the example above](#integration-error-example), you need to fix the Integration settings to resolve the error. However, Forwarders don't monitor the associated Integration for updates, so they will continue to return the error message even after the Integration settings are fixed.
 
 To resolve errors with an Integration:
 
-1. Update the Integration settings. 
+1. Update the Integration settings.
 1. Remove the Forwarder.
-1. Re-add the Forwarder. 
- 
+1. Re-add the Forwarder.
+
 {{< tip >}}Before you remove the Forwarder, perform an HTTP GET request to capture the Forwarder's settings. Then, you can delete the Forwarder. Use the JSON payload returned in the GET request to re-create the Forwarder by sending an HTTP PUT request to the `/analytics/forwarders` endpoint in the [NGINX Controller REST API]]({{< relref "/controller/api/_index.md" >}}).{{< /tip >}}
 
 ### Error code 440001 -- Integration cannot be found
 
 The `Error 440001` message is returned when the Forwarders module can't find the referenced Integration. Try the following to resolve the issue:
 
-- Make sure the Integration exists. 
+- Make sure the Integration exists.
 
   If it doesn't, follow the steps in [Forward Analytics Data to Splunk]({{< relref "/controller/analytics/forwarders/forward-analytics-to-splunk.md" >}}) or [Forward Analytics Data to Datadog]({{< relref "/controller/analytics/forwarders/forward-analytics-to-datadog.md" >}}) to create a new one.
 
-- Make sure the Integration reference uses the correct path format. All references should use the following relative format: 
+- Make sure the Integration reference uses the correct path format. All references should use the following relative format:
 
   ```json
   /platform/integrations/{integrationName}
-  ``` 
+  ```
 
 ### Splunk Data Forwarder is in an Error state after Upgrade
 
-In NGINX Controller version 3.13, the output format `SPLUNK_HEC` was changed `SPLUNK`. If you created a Splunk Data Forwarder in an earlier version and upgraded to v3.13, you may receive the error below: 
+In NGINX Controller version 3.13, the output format `SPLUNK_HEC` was changed `SPLUNK`. If you created a Splunk Data Forwarder in an earlier version and upgraded to v3.13, you may receive the error below:
 
 ```json
 "conditions": [

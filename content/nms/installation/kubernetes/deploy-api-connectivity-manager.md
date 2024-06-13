@@ -1,31 +1,15 @@
 ---
-title: "Deploy API Connectivity Manager on Kubernetes"
-date: 2023-05-09T13:34:26-07:00
-# Change draft status to false to publish doc.
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "The guide provides step-by-step instructions to deploy NGINX API Connectivity Manager on Kubernetes using a Helm chart."
-# Assign weights in increments of 100
-weight: 2
+description: The guide provides step-by-step instructions to deploy NGINX API Connectivity
+  Manager on Kubernetes using a Helm chart.
+docs: DOCS-1276
+doctypes:
+- task
+tags:
+- docs
+title: Deploy API Connectivity Manager on Kubernetes
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-000"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["task"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
-
+weight: 2
 ---
-
-{{< custom-styles >}}
 
 ## Requirements
 
@@ -165,7 +149,7 @@ To enable the API Connectivity Manager Module, take the following steps:
        - name: regcred
        acm:
            image:
-               repository: <my-docker-registry:port>/nms-acm 
+               repository: <my-docker-registry:port>/nms-acm
                tag: <version>
    ```
 
@@ -220,9 +204,3 @@ Refer to the [Add a License]({{< relref "/nms/installation/add-license.md" >}}) 
 For guidance on how to create a support package containing system and service details to share with NGINX Customer Support, refer to the guide [Create a Support Package from a Helm Installation]({{< relref "/nms/support/k8s-support-package.md" >}}).
 
 ---
-
-## What's Next
-
-### Deploy Other NGINX Management Suite Modules
-
-- [Deploy App Delivery Manager on Kubernetes]({{< relref "/nms/installation/kubernetes/deploy-app-delivery-manager.md" >}})

@@ -1,28 +1,10 @@
 ---
-authors: []
-categories:
-- installation
-- infrastructure
-- platform management
-date: "2020-10-26T15:32:41-06:00"
 description: Steps to take to investigate and fix issues with NGINX Controller and
-  the Controller Agent
+  the Controller Agent.
 docs: DOCS-376
 doctypes:
 - tutorial
 - troubleshooting
-draft: false
-journeys:
-- using
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 tags:
 - docs
 title: Troubleshoot NGINX Controller and the Controller Agent
@@ -52,7 +34,7 @@ To look up your version of NGINX Controller:
 
 ## Create a Support Package
 
-You can create a support package for NGINX Controller that you can use to diagnose issues. 
+You can create a support package for NGINX Controller that you can use to diagnose issues.
 
 {{< note >}}
 You will need to provide a support package if you open a ticket with NGINX Support via the [MyF5 Customer Portal](https://account.f5.com/myf5).
@@ -175,7 +157,7 @@ Take the following steps to troubleshoot the issue:
 - Ensure that ports 443 and 8443 are open between NGINX Controller and the network where the NGINX Plus instance is being deployed.
 - Verify that you can communicate with NGINX Controller from the NGINX Plus instance using the NGINX Controller FQDN that you provided when you installed NGINX Controller.
 - If you're [deploying an NGINX Plus instance on Amazon Web Services]({{< relref "/controller/infrastructure/instances/add-aws-instance.md" >}}) using a template, ensure that the Amazon Machine Image (AMI) referenced in the `instance_template` has a cURL version of 7.32 or newer.
-  
+
 &nbsp;
 
 ---
@@ -222,7 +204,7 @@ For troubleshooting purposes, you can turn on Controller Agent debug logging by 
 
 1. The Controller Agent and the NGINX Instance user IDs can both run the `ps` command to see all the system processes. If the `ps` command is restricted for non-privileged users, the Controller Agent won't detect the NGINX master process.
 1. The system time is set correctly. If the time on the system where the Controller Agent is running is ahead or behind the NGINX Controller's system time, you won't be able to see data in  graphs. Make sure that NGINX Controller and any NGINX Instances have their time synchronized using [NTP](http://www.ntp.org).
-1. The NGINX Plus API is set up correctly and working. 
+1. The NGINX Plus API is set up correctly and working.
 
    Refer to the [Configuring the API](https://docs.nginx.com/nginx/admin-guide/monitoring/live-activity-monitoring/#configuring-the-api) section of the NGINX Plus Admin Guide for instructions.
 1. All NGINX configuration files are readable by the Controller Agent user ID. Verify the owner, group, and permissions settings.

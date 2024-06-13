@@ -9,7 +9,6 @@ toc: true
 weight: 100
 ---
 
-
 <span id="overview"></span>
 ## Overview
 
@@ -56,7 +55,7 @@ http {
         server backend2.example.com;
         server 192.0.0.1 backup;
     }
-    
+
     server {
         location / {
             proxy_pass http://backend;
@@ -125,9 +124,9 @@ NGINX Open Source supports four load‑balancing methods, and NGINX Plus adds tw
 
 5. [Least Time](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_time) (NGINX Plus only) – For each request, NGINX Plus selects the server with the lowest average latency and the lowest number of active connections, where the lowest average latency is calculated based on which of the following [parameters](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_time) to the `least_time` directive is included:
 
-    * `header` – Time to receive the first byte from the server
-    * `last_byte` – Time to receive the full response from the server
-    * `last_byte inflight` – Time to receive the full response from the server, taking into account incomplete requests
+    - `header` – Time to receive the first byte from the server
+    - `last_byte` – Time to receive the full response from the server
+    - `last_byte inflight` – Time to receive the full response from the server, taking into account incomplete requests
 
     ```nginx
     upstream backend {
@@ -140,9 +139,9 @@ NGINX Open Source supports four load‑balancing methods, and NGINX Plus adds tw
 6. [Random](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#random) – Each request will be passed to a randomly selected server.
 If the `two` parameter is specified, first, NGINX randomly selects two servers taking into account server weights, and then chooses one of these servers using the specified method:
 
-    * `least_conn` – The least number of active connections
-    * `least_time=header` (NGINX Plus) – The least average time to receive the response header from the server ([`$upstream_header_time`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_header_time))
-    * `least_time=last_byte` (NGINX Plus) – The least average time to receive the full response from the server ([`$upstream_response_time`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_response_time))
+    - `least_conn` – The least number of active connections
+    - `least_time=header` (NGINX Plus) – The least average time to receive the response header from the server ([`$upstream_header_time`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_header_time))
+    - `least_time=last_byte` (NGINX Plus) – The least average time to receive the full response from the server ([`$upstream_response_time`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_response_time))
 
     ```nginx
     upstream backend {
@@ -153,6 +152,7 @@ If the `two` parameter is specified, first, NGINX randomly selects two servers t
         server backend4.example.com;
     }
     ```
+
     The **Random** load balancing method should be used for distributed environments where multiple load balancers are passing requests to the same set of backends. For environments where the load balancer has a full view of all requests, use other load balancing methods, such as round robin, least connections and least time.
 
 > **Note:** When configuring any method other than Round Robin, put the corresponding directive ([`hash`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash), [`ip_hash`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#ip_hash), [`least_conn`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_conn), [`least_time`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_time), or [`random`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#random)) above the list of `server` directives in the [`upstream {}`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream) block.
@@ -201,7 +201,7 @@ Session persistence means that NGINX Plus identifies user sessions and routes al
 
 NGINX Plus supports three session persistence methods. The methods are set with the [`sticky`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#sticky) directive. (For session persistence with NGINX Open Source, use the `hash` or `ip_hash` directive as described [above](#method).)
 
-* [Sticky cookie](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#sticky_cookie) – NGINX Plus adds a session cookie to the first response from the upstream group and identifies the server that sent the response. The client's next request contains the cookie value and NGINX Plus route the request to the upstream server that responded to the first request:
+- [Sticky cookie](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#sticky_cookie) – NGINX Plus adds a session cookie to the first response from the upstream group and identifies the server that sent the response. The client's next request contains the cookie value and NGINX Plus route the request to the upstream server that responded to the first request:
 
     ```nginx
     upstream backend {
@@ -213,7 +213,7 @@ NGINX Plus supports three session persistence methods. The methods are set with 
 
     In the example, the `srv_id` parameter sets the name of the cookie. The optional `expires` parameter sets the time for the browser to keep the cookie (here, `1` hour). The optional `domain` parameter defines the domain for which the cookie is set, and the optional `path` parameter defines the path for which the cookie is set. This is the simplest session persistence method.
 
-* [Sticky route](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#sticky_route) – NGINX Plus assigns a “route” to the client when it receives the first request. All subsequent requests are compared to the [`route`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#route) parameter of the `server` directive to identify the server to which the request is proxied. The route information is taken from either a cookie or the request URI.
+- [Sticky route](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#sticky_route) – NGINX Plus assigns a “route” to the client when it receives the first request. All subsequent requests are compared to the [`route`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#route) parameter of the `server` directive to identify the server to which the request is proxied. The route information is taken from either a cookie or the request URI.
 
     ```nginx
     upstream backend {
@@ -223,7 +223,7 @@ NGINX Plus supports three session persistence methods. The methods are set with 
     }
     ```
 
-* [Sticky learn](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#sticky_learn) method – NGINX Plus first finds session identifiers by inspecting requests and responses. Then NGINX Plus “learns” which upstream server corresponds to which session identifier. Generally, these identifiers are passed in a HTTP cookie. If a request contains a session identifier already “learned”, NGINX Plus forwards the request to the corresponding server:
+- [Sticky learn](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#sticky_learn) method – NGINX Plus first finds session identifiers by inspecting requests and responses. Then NGINX Plus “learns” which upstream server corresponds to which session identifier. Generally, these identifiers are passed in a HTTP cookie. If a request contains a session identifier already “learned”, NGINX Plus forwards the request to the corresponding server:
 
     ```nginx
     upstream backend {
@@ -243,14 +243,15 @@ NGINX Plus supports three session persistence methods. The methods are set with 
 
     The mandatory `lookup` parameter specifies how to search for existing sessions. In our example, existing sessions are searched in the cookie `EXAMPLECOOKIE` sent by the client.
 
-    The mandatory `zone` parameter specifies a shared memory zone where all information about sticky sessions is kept. In our example, the zone is named **client_sessions** and is `1` megabyte in size.   
+    The mandatory `zone` parameter specifies a shared memory zone where all information about sticky sessions is kept. In our example, the zone is named **client_sessions** and is `1` megabyte in size.
 
     This is a more sophisticated session persistence method than the previous two as it does not require keeping any cookies on the client side: all info is kept server‑side in the shared memory zone.
 
     If there are several NGINX instances in a cluster that use the "sticky learn" method, it is possible to sync the contents of their shared memory zones on conditions that:
-    * the zones have the same name
-    * the [`zone_sync`](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html#zone_sync) functionality is configured on each instance
-    * the `sync` parameter is specified
+  - the zones have the same name
+  - the [`zone_sync`](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html#zone_sync) functionality is configured on each instance
+  - the `sync` parameter is specified
+
     ```nginx
        sticky learn
            create=$upstream_cookie_examplecookie
@@ -260,6 +261,7 @@ NGINX Plus supports three session persistence methods. The methods are set with 
            sync;
     }
     ```
+
     See [Runtime State Sharing in a Cluster]({{< relref "../high-availability/zone_sync.md" >}}) for details.
 
 
@@ -312,9 +314,9 @@ It is not possible to recommend an ideal memory‑zone size, because usage patte
 
 As an example, with the `sticky_route` session persistence method and a single health check enabled, a 256‑KB zone can accommodate information about the indicated number of upstream servers:
 
-* 128 servers (each defined as an IP‑address:port pair)
-* 88 servers (each defined as hostname:port pair where the hostname resolves to a single IP address)
-* 12 servers (each defined as hostname:port pair where the hostname resolves to multiple IP addresses)
+- 128 servers (each defined as an IP‑address:port pair)
+- 88 servers (each defined as hostname:port pair where the hostname resolves to a single IP address)
+- 12 servers (each defined as hostname:port pair where the hostname resolves to multiple IP addresses)
 
 
 <span id="resolve"></span>
@@ -343,9 +345,9 @@ http {
 }
 ```
 
-In the example, the `resolve` parameter to the `server` directive tells NGINX Plus to periodically re‑resolve the **backend1.example.com** and **backend2.example.com** domain names into IP addresses. 
+In the example, the `resolve` parameter to the `server` directive tells NGINX Plus to periodically re‑resolve the **backend1.example.com** and **backend2.example.com** domain names into IP addresses.
 
-The [`resolver`](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive defines the IP address of the DNS server to which NGINX Plus sends requests (here, `10.0.0.1`). By default, NGINX Plus re‑resolves DNS records at the frequency specified by time‑to‑live (TTL) in the record, but you can override the TTL value with the `valid` parameter; in the example it is `300` seconds, or `5` minutes. 
+The [`resolver`](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive defines the IP address of the DNS server to which NGINX Plus sends requests (here, `10.0.0.1`). By default, NGINX Plus re‑resolves DNS records at the frequency specified by time‑to‑live (TTL) in the record, but you can override the TTL value with the `valid` parameter; in the example it is `300` seconds, or `5` minutes.
 
 The optional `ipv6=off` parameter means only IPv4 addresses are used for load balancing, though resolving of both IPv4 and IPv6 addresses is supported by default.
 
@@ -355,7 +357,7 @@ If a domain name resolves to several IP addresses, the addresses are saved to th
 <span id="ntlm"></span>
 ## Load Balancing of Microsoft Exchange Servers
 
-In <a href="../../../releases/#r7">NGINX Plus R7</a> and later, NGINX Plus can proxy Microsoft Exchange traffic to a server or a group of servers and load balance it.
+In [NGINX Plus Release 7](https://docs.nginx.com/nginx/releases/#nginxplus-release7-r7) and later, NGINX Plus can proxy Microsoft Exchange traffic to a server or a group of servers and load balance it.
 
 To set up load balancing of Microsoft Exchange servers:
 
@@ -420,13 +422,13 @@ http {
         server exchange1.example.com;
         server exchange2.example.com;
     }
-    
+
     server {
         listen              443 ssl;
         ssl_certificate     /etc/nginx/ssl/company.com.crt;
         ssl_certificate_key /etc/nginx/ssl/company.com.key;
         ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
-       
+
         location / {
             proxy_pass         https://exchange;
             proxy_http_version 1.1;

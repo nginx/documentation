@@ -1,38 +1,14 @@
 ---
-authors: []
-categories:
-- releases
-date: "2021-04-14T13:32:41+00:00"
-description: ""
+description: ''
 docs: DOCS-673
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: Releases
-    weight: 45
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect DoS Arbitrator Release 1.1.0
 toc: true
-versions:
-- 1.1.0
 weight: 220
 ---
 
-Here you can find the release information for NGINX App Protect DoS Arbitrator v1.1.0. 
+Here you can find the release information for NGINX App Protect DoS Arbitrator v1.1.0.
 
 ## Arbitrator Service Release 1.1.0
 
@@ -67,8 +43,8 @@ This release is focused on security and stability.
 - New optional configuration parameters of the directive `app_protect_dos_monitor` to support gRPC and HTTP/2 protocols.
 - Added new fields in Security Log:
 
-    - `baseline_dps` (datagrams per second) instead of `baseline_tps`, `incoming_datagrams` <br>
-    - `successful_responses` instead of `successful_transactions` <br>
-    - `unsuccessful_requests` instead of `unsuccessful_requests_count`.
+  - `baseline_dps` (datagrams per second) instead of `baseline_tps`, `incoming_datagrams` <br>
+  - `successful_responses` instead of `successful_transactions` <br>
+  - `unsuccessful_requests` instead of `unsuccessful_requests_count`.
 
 - In the case of an upgrade from the previous `app-protect-dos` version, it's necessary to remove the old `nginx-plus` and install the new `app-protect-dos` that will install a correspondent version of `nginx-plus` as described in the [NGINX App Protect DoS Deployment Guide]({{< relref "/nap-dos/deployment-guide/learn-about-deployment.md" >}}).

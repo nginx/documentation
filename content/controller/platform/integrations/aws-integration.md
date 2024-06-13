@@ -1,20 +1,8 @@
 ---
-authors: []
-categories:
-- infrastructure
-- platform management
-date: "2021-09-01T10:36:03-07:00"
-description: Integrate NGINX Controller with Amazon Web Services
+description: Integrate NGINX Controller with Amazon Web Services.
 docs: DOCS-785
 doctypes:
 - tutorial
-draft: false
-journeys:
-- using
-personas:
-- devops
-roles:
-- admin
 tags:
 - docs
 title: AWS Integration

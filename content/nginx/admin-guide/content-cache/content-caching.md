@@ -9,7 +9,6 @@ toc: true
 weight: 100
 ---
 
-
 <span id="intro"></span>
 ## Overview
 
@@ -31,7 +30,7 @@ http {
 
 Then include the [`proxy_cache`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache) directive in the context (protocol type, virtual server, or location) for which you want to cache server responses, specifying the zone name defined by the `keys_zone` parameter to the `proxy_cache_path` directive (in this case, `mycache`):
 
-```nginx    
+```nginx
 http {
     # ...
     proxy_cache_path /data/nginx/cache keys_zone=mycache:10m;
@@ -51,19 +50,20 @@ Note that the size defined by the `keys_zone` parameter does not limit the total
 
 There are two additional NGINX processes involved in caching:
 
-*   The **cache manager** is activated periodically to check the state of the cache. If the cache size exceeds the limit set by the `max_size` parameter to the [`proxy_cache_path`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_path) directive, the cache manager removes the data that was accessed least recently. As previously mentioned, the amount of cached data can temporarily exceed the limit during the time between cache manager activations.
+- The **cache manager** is activated periodically to check the state of the cache. If the cache size exceeds the limit set by the `max_size` parameter to the [`proxy_cache_path`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_path) directive, the cache manager removes the data that was accessed least recently. As previously mentioned, the amount of cached data can temporarily exceed the limit during the time between cache manager activations.
 
-*   The **cache loader** runs only once, right after NGINX starts. It loads metadata about previously cached data into the shared memory zone. Loading the whole cache at once could consume sufficient resources to slow NGINX performance during the first few minutes after startup. To avoid this, configure iterative loading of the cache by including the following parameters to the [`proxy_cache_path`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_path) directive:
+- The **cache loader** runs only once, right after NGINX starts. It loads metadata about previously cached data into the shared memory zone. Loading the whole cache at once could consume sufficient resources to slow NGINX performance during the first few minutes after startup. To avoid this, configure iterative loading of the cache by including the following parameters to the [`proxy_cache_path`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_path) directive:
 
-    * `loader_threshold` – Duration of an iteration, in milliseconds (by default, `200`)
-    * `loader_files` – Maximum number of items loaded during one iteration (by default, `100`)
-    * `loader_sleeps` – Delay between iterations, in milliseconds (by default, `50`)
+  - `loader_threshold` – Duration of an iteration, in milliseconds (by default, `200`)
+  - `loader_files` – Maximum number of items loaded during one iteration (by default, `100`)
+  - `loader_sleeps` – Delay between iterations, in milliseconds (by default, `50`)
 
 In the following example, iterations last `300` milliseconds or until `200` items have been loaded:
 
 ```nginx
 proxy_cache_path /data/nginx/cache keys_zone=mycache:10m loader_threshold=300 loader_files=200;
 ```
+
 <span id="select"></span>
 ## Specifying Which Requests to Cache
 
@@ -127,7 +127,7 @@ NGINX makes it possible to remove outdated cached files from the cache. This is 
 
 Let’s set up a configuration that identifies requests that use the HTTP `PURGE` method and deletes matching URLs.
 
-1.  In the `http {}` context, create a new variable, for example, `$purge_method`, that depends on the `$request_method` variable:
+1. In the `http {}` context, create a new variable, for example, `$purge_method`, that depends on the `$request_method` variable:
 
     ```nginx
     http {
@@ -139,7 +139,7 @@ Let’s set up a configuration that identifies requests that use the HTTP `PURGE
     }
     ```
 
-2.  In the `location {}` block where caching is configured, include the [`proxy_cache_purge`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_purge) directive to specify a condition for cache‑purge requests. In our example, it is the `$purge_method` configured in the previous step:
+2. In the `location {}` block where caching is configured, include the [`proxy_cache_purge`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_purge) directive to specify a condition for cache‑purge requests. In our example, it is the `$purge_method` configured in the previous step:
 
     ```nginx
     server {
@@ -160,7 +160,7 @@ Let’s set up a configuration that identifies requests that use the HTTP `PURGE
 
 When the `proxy_cache_purge` directive is configured, you need to send a special cache‑purge request to purge the cache. You can issue purge requests using a range of tools, including the `curl` command as in this example:
 
-```none    
+```none
 $ curl -X PURGE -D – "https://www.example.com/*"
 HTTP/1.1 204 No Content
 Server: nginx/1.15.0
@@ -245,8 +245,8 @@ NGINX makes it possible to cache such range requests and gradually fill the cach
 
 To enable byte‑range caching:
 
-1.  Make sure NGINX is compiled with the [Cache Slice](https://nginx.org/en/docs/http/ngx_http_slice_module.html) module.
-2.  Specify the size of the slice with the [slice](https://nginx.org/en/docs/http/ngx_http_slice_module.html#slice) directive:
+1. Make sure NGINX is compiled with the [Cache Slice](https://nginx.org/en/docs/http/ngx_http_slice_module.html) module.
+2. Specify the size of the slice with the [slice](https://nginx.org/en/docs/http/ngx_http_slice_module.html#slice) directive:
 
     ```nginx
     location / {
@@ -256,19 +256,19 @@ To enable byte‑range caching:
 
    Choose a slice size that makes slice downloading fast. If the size is too small, memory usage might be excessive and a large number of file descriptors opened while processing the request, while an excessively large size might cause latency.
 
-3.  Include the [`$slice_range`](https://nginx.org/en/docs/http/ngx_http_slice_module.html#var_slice_range) variable to the cache key:
+3. Include the [`$slice_range`](https://nginx.org/en/docs/http/ngx_http_slice_module.html#var_slice_range) variable to the cache key:
 
     ```nginx
     proxy_cache_key $uri$is_args$args$slice_range;
     ```
 
-4.  Enable caching of responses with the `206` status code:
+4. Enable caching of responses with the `206` status code:
 
     ```nginx
     proxy_cache_valid 200 206 1h;
     ```
 
-5.  Enable passing of range requests to the proxied server by setting the [`$slice_range`](https://nginx.org/en/docs/http/ngx_http_slice_module.html#var_slice_range) variable in the `Range` header field:
+5. Enable passing of range requests to the proxied server by setting the [`$slice_range`](https://nginx.org/en/docs/http/ngx_http_slice_module.html#var_slice_range) variable in the `Range` header field:
 
     ```nginx
     proxy_set_header  Range $slice_range;

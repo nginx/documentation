@@ -1,21 +1,17 @@
 ---
-title: "Cluster Zone Sync"
-date: 2023-02-10T12:00:00-07:00
-draft: false
-description: "Learn how to configure the Cluster Zone Sync policy to enable runtime state sharing between the instances belonging to a proxy cluster."
-# Assign weights in increments of 100
-weight: 499
+description: Learn how to configure the Cluster Zone Sync policy to enable runtime
+  state sharing between the instances belonging to a proxy cluster.
+docs: DOCS-1159
+doctypes:
+- API Connectivity Manager
+- api management
+- concept
+tags:
+- docs
+title: Cluster Zone Sync
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1159"
-doctypes: ["API Connectivity Manager", "api management", "concept"]
-journeys: ["getting started", "using"]
-personas: ["Platform Ops", "Infra Admins"]
-versions: []
-authors: []
+weight: 499
 ---
-
-{{<custom-styles>}}
 
 ## Overview
 
@@ -27,7 +23,7 @@ authors: []
 
 Use the *Cluster Zone Sync* policy to enable runtime state sharing between the instances belonging to a proxy cluster. Options configured through this policy affect other policies such as rate limit and OIDC. This policy is applied to all the instances in a proxy cluster. If the proxy cluster is shared between environments, any changes made to this policy will affect all the other environments.
 
-#### Intended Audience
+### Intended Audience
 
 {{< include "acm/how-to/policies/infra-admin-persona.md">}}
 
@@ -55,8 +51,9 @@ Similarly, when removing an instance from a cluster with the Zone Sync policy ap
 
 The following table lists the configurable settings and their default values for the policy.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field        | Datatype | Possible Values     | Description                                        | Required | Default               |
 |--------------|----------|---------------------|----------------------------------------------------|----------|-----------------------|
 | `tcpServer.listeners[].transportProtocol`   | string  | ["TCP"]  | Stream listener to configure protocol for zone sync stream.            | No      |  "TCP" |
@@ -85,7 +82,7 @@ The following table lists the configurable settings and their default values for
 | `zoneSyncTimeout`   | string  | ^[0-9]+[h\|m\|s]{1}$              | Sets the timeout between two successive read or write operations on connection to another cluster node.  | No     |      "1s"                 |
 
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ---
 
@@ -99,13 +96,15 @@ The following table lists the configurable settings and their default values for
 
 To create an Cluster Zone Sync policy using the REST API, send an HTTP `PUT` request to the Add-Endpoint-Name-Here endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Method | Endpoint            |
 |--------|---------------------|
 | `PUT` | `/infrastructure/workspaces/{infraWorkspaceName}/proxy-clusters/{clusterName}` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <details open>
 <summary>JSON request - Cluster Zone Sync with minimum configuration</summary>

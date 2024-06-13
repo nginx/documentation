@@ -1,34 +1,9 @@
 ---
-authors: []
-categories:
-- installation
-- infrastructure
-- platform management
-- services
-- api management
-- service mesh
-- security
-- analytics
-date: "2020-10-26T15:32:41-06:00"
 description: This quick-start tutorial shows you how to get started using NGINX Controller
   with the Application Security Add-on.
 docs: DOCS-259
 doctypes:
 - tutorial
-draft: false
-journeys:
-- getting started
-menu:
-  docs:
-    parent: Installation
-    weight: 20
-personas:
-- devops
-- netops
-- secops
-roles:
-- admin
-- user
 tags:
 - docs
 title: Trial NGINX Controller with App Security
@@ -154,7 +129,7 @@ To install NGINX Controller, take the following steps:
       - **Last name**: The last name for the initial admin user.
       - **Email address**: The contact email address for the initial admin user.
       - **Password**: The initial admin's password. Passwords must be 6-64 characters long and must include letters and digits.
-    - **FQDN**: Fully qualified domain name (FQDN) -- a resolvable domain name for the NGINX Controller server. You can use the FQDN to access the NGINX Controller web interface. 
+    - **FQDN**: Fully qualified domain name (FQDN) -- a resolvable domain name for the NGINX Controller server. You can use the FQDN to access the NGINX Controller web interface.
       Additionally, the FQDN is used by Controller Agents when connecting to NGINX Controller.
     - **SSL/TLS certificates**: Type `y` to generate and use self-signed certs for running NGINX Controller over HTTPS, or type `n` to provide your own certs.
 
@@ -219,7 +194,7 @@ You can send a GET request to the login endpoint to find the status of the sessi
 For example:
 
 - Login and capture the session cookie:
-  
+
   ```curl
   curl -c cookie.txt -X POST --url 'https://198.51.100.10/api/v1/platform/login' --header 'Content-Type: application/json' --data '{"credentials": {"type": "BASIC","username": "arthur@arthurdent.net","password": "Towel$123"}}'
   ```
@@ -250,7 +225,7 @@ For example:
   ```
 
 {{< note >}}
-If you are using a self-signed certificate you will need to add `-k` (allow insecure connections) to your curl command to be able to download your NGINX Plus certificate and key bundle. 
+If you are using a self-signed certificate you will need to add `-k` (allow insecure connections) to your curl command to be able to download your NGINX Plus certificate and key bundle.
 {{< /note >}}
 
 
@@ -266,10 +241,10 @@ gunzip nginx-plus-certs.gz
 
 <div data-proofer-ignore>
 
-Install NGINX App Protect on a host accessible by your NGINX Controller instance by following the appropriate steps for your operating system in the [Using NGINX App Protect with NGINX Controller](https://docs.nginx.com/nginx-app-protect/admin-guide/install-for-controller/) guide.
+Install NGINX App Protect on a host accessible by your NGINX Controller instance by following the appropriate steps for your operating system in the [Using NGINX App Protect with NGINX Controller]({{< relref "controller/admin-guides/install/install-for-controller.md" >}}) guide.
 
 {{< note >}}
-If you install NGINX App Protect by using any of the OS-specific install guides, **do not make changes to the `nginx.conf` file**.  
+If you install NGINX App Protect by using any of the OS-specific install guides, **do not make changes to the `nginx.conf` file**.
 The NGINX Controller Agent manages `nginx.conf` settings and will make the appropriate adjustments for you.
 {{< /note >}}
 

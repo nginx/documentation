@@ -1,36 +1,19 @@
 ---
-title: "Upgrade Guide"
-date: 2022-03-30T14:13:00-07:00
-description: "This guide explains how to upgrade the NGINX Management Suite modules, NGINX Agent, and NGINX Plus."
-# Assign weights in increments of 100
-weight: 500
-draft: false
+description: This guide explains how to upgrade the NGINX Management Suite modules,
+  NGINX Agent, and NGINX Plus.
+docs: DOCS-920
+doctypes:
+- tutorial
+tags:
+- docs
+title: Upgrade Guide
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-920"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation"]
-doctypes: ["tutorial"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
-aliases:
-- /nginx-instance-manager/installation/upgrade-guide/
+weight: 500
 ---
-
-{{< custom-styles >}}
 
 ## Overview
 
 This guide explains how to upgrade the NGINX Management Suite modules, NGINX Agent, and NGINX Plus to their latest versions, including how to back up your current configuration, run the upgrade script, and verify the results. Also included are instructions for troubleshooting any potential upgrade errors.
-
-<br>
-
-{{<see-also>}}If you're upgrading from Instance Manager v1.x, follow the steps in the [migration guide]({{< relref "/nms/nim/migration-guide.md" >}}) to get started. It is not possible to upgrade directly from Instance Manager v1.x to v2.x.{{</see-also>}}
 
 ---
 
@@ -46,7 +29,6 @@ Read the release notes for information about the latest features and changes, re
 
 - [Instance Manager Release Notes]({{< relref "/nms/nim/releases/release-notes.md" >}})
 - [API Connectivity Manager Release Notes]({{< relref "/nms/acm/releases/release-notes.md" >}})
-- [App Delivery Manager Release Notes]({{< relref "/nms/adm/releases/release-notes.md" >}})
 - [Security Monitoring Module]({{< relref "/nms/security/releases/release-notes.md" >}})
 
 #### Tech Specs {#tech-specs}
@@ -93,19 +75,6 @@ We recommend upgrading NGINX Management Suite in a test environment before upgra
 - [Upgrade Instance Manager on a virtual machine or bare metal]({{< relref "/nms/installation/vm-bare-metal/install-nim.md#upgrade-nim" >}})
 - [Upgrade Instance Manager from a Helm Chart]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md#helm-upgrade-nim" >}})
 - [Upgrade Instance Manager in an offline environment]({{< relref "/nms/installation/vm-bare-metal/offline-install-guide.md#upgrade-nim-offline" >}})
-
-### API Connectivity Manager
-
-- [Upgrade API Connectivity Manager on a virtual machine or bare metal]({{< relref "/nms/installation/vm-bare-metal/install-acm.md#upgrade-acm" >}})
-- [Upgrade API Connectivity Manager from a Helm Chart]({{< relref "/nms/installation/kubernetes/deploy-api-connectivity-manager.md#upgrade-acm-helm" >}})
-- [Upgrade API Connectivity Manager in an offline environment]({{< relref "/nms/installation/vm-bare-metal/offline-install-guide.md#upgrade-acm-offline" >}})
-### App Delivery Manager
-
-{{< beta-badge >}}
-
-- [Upgrade App Delivery Manager on a virtual machine or bare metal]({{< relref "/nms/installation/vm-bare-metal/install-adm.md#upgrade-adm" >}})
-- [Upgrade App Delivery Manager from a Helm Chart]({{< relref "/nms/installation/kubernetes/deploy-app-delivery-manager.md#upgrade-adm-helm" >}})
-- [Upgrade App Delivery Manager in an offline environment]({{< relref "/nms/installation/vm-bare-metal/offline-install-guide.md#upgrade-adm-offline" >}})
 
 ### Security Monitoring
 

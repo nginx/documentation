@@ -1,5 +1,4 @@
 ---
-date: "2020-10-26T15:32:41-06:00"
 description: Learn about NGINX Controller Application Delivery concepts.
 docs: DOCS-474
 title: About Application Delivery
@@ -25,8 +24,8 @@ Components can be instantiated on multiple paths corresponding to the placements
 
 When you configure a Component, you can choose to:
 
-- inherit resources and configurations from the Gateway; 
-- create and define new resources and configurations specific to the Component; or 
+- inherit resources and configurations from the Gateway;
+- create and define new resources and configurations specific to the Component; or
 - use a combination of inherited and Component-specific configurations.
 
 For example, a Gateway's ingress definition might include the URIs for a Service's FQDN(s) and the associated TLS [certificates]({{< relref "/controller/services/manage-certs.md" >}}), while the Component's ingress definition would contain relative URIs for the FQDN defined in the Gateway:

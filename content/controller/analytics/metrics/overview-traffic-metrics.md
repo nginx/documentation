@@ -1,29 +1,9 @@
 ---
-authors: []
-categories:
-- services
-- api management
-- analytics
-date: null
 description: Understanding how traffic metrics are collected, aggregated, and reported.
 docs: DOCS-537
 doctypes:
 - concept
 - reference
-draft: false
-journeys:
-- researching
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
-- read-only
 tags:
 - docs
 title: 'Overview: Traffic Metrics'

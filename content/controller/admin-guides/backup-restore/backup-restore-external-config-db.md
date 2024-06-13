@@ -1,25 +1,9 @@
 ---
-authors: []
-categories:
-- installation
-- platform management
-date: "2020-10-26T15:32:41-06:00"
 description: Learn how to back up and restore the external NGINX Controller config
   database.
 docs: DOCS-249
 doctypes:
 - tutorial
-draft: false
-journeys:
-- using
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
 tags:
 - docs
 title: Back Up & Restore an External Config Database

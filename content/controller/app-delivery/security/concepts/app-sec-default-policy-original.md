@@ -1,27 +1,10 @@
 ---
-authors: []
-categories:
-- services
-- apps
-- security
-date: "2020-10-26T15:32:41-06:00"
 description: Learn about the default protections provided by NGINX Controller App
   Security.
 docs: DOCS-479
 doctypes:
 - concept
 - reference
-draft: false
-journeys:
-- researching
-- using
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
 tags:
 - docs
 title: Default WAF Policy

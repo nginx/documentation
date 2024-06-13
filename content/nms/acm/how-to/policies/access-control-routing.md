@@ -1,28 +1,14 @@
 ---
-Title: "Access Control Routing"
-date: 2022-11-22T09:36:01Z
-# Change draft status to false to publish doc.
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Learn how to restrict access to your application servers based on JWT claims or header values."
-# Assign weights in increments of 100
-weight: 300
+description: Learn how to restrict access to your application servers based on JWT
+  claims or header values.
+docs: DOCS-1265
+doctypes:
+- task
+tags:
+- docs
+title: Access Control Routing
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-993"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["api management", "security"]
-doctypes: ["task"]
-journeys: ["using", ]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
-
+weight: 300
 ---
 
 {{< shortversions "1.3.0" "latest" "acmvers" >}}
@@ -100,10 +86,12 @@ Take the steps in this section if you would like to restrict access to Advanced 
             }
         ]
 ```
+
     {{%/tab%}}
 {{</tabs>}}
 
-{{< note >}} 
+{{< note >}}
+
 - Any requests which do not match a specified condition will be allowed to access the API Gateway or Developer Portal. Adding a rule with no route or HTTP method specified means that
 - Adding multiple match conditions in a rule requires that all conditions are matched in order to access the API.
 - Adding the same configuration of route and HTTP method to multiple rules will be treated as an OR condition.
