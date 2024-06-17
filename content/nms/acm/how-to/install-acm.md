@@ -9,7 +9,7 @@ tags:
 - docs
 title: Install or Upgrade API Connectivity Manager
 toc: true
-weight: 20
+weight: 10
 ---
 
 ---
