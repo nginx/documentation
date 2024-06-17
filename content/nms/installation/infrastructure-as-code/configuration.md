@@ -25,7 +25,7 @@ The steps in this guide refer to the <a href="https://github.com/nginxinc/ansibl
 
 The Ansible role for NGINX Management Suite simplifies the installation process by installing all the prerequisites and any modules you specify.
 
-{{< img src="img/iac/ansible-flow.png" caption="Figure 1. NGINX Management Suite Ansible flow" alt="A diagram showing the installation flow of the NGINX Management Suites Ansible role. It lists Clickhouse, NGINX and the NMS repository as prerequisites before installing the NMS module.">}}
+{{< img src="img/iac/ansible-flow.png" caption="Figure 1. NGINX Management Suite Ansible flow" alt="A diagram showing the installation flow of the NGINX Management Suites Ansible role. It lists NGINX, Clickhouse, and the NMS repository as prerequisites before installing the NMS module.">}}
 
 ---
 
