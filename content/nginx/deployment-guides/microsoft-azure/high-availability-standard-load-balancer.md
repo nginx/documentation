@@ -61,7 +61,7 @@ Standard Load Balancer uses health probes to determine whether a backend instanc
 
 You also create a load‑balancing rule to define how traffic is distributed to the VMs, specifying the IP address and port of the front end that listens for incoming traffic and the name of the back‑end pool of application instances, along with the port number on which the instances listen.
 
-<img src="/nginx/images/azure_ha-load-balancer-topology.png" alt="Topology diagram for high availability deployment of NGINX Plus in Azure" width="1025" height="1000" class="aligncenter size-full wp-image-64981" style="border:2px solid #666666; padding:2px; margin:2px;" />
+<img src="/nginx/images/azure-ha-load-balancer-topology.png" alt="Topology diagram for high availability deployment of NGINX Plus in Azure" width="1025" height="1000" class="aligncenter size-full wp-image-64981" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 In this guide, the back‑end pool for Standard Load Balancer consists of two NGINX Plus instances, which reverse proxy and load balance traffic to two sets of backend applications, which in turn are also highly available. This setup is then replicated in a different region to create a region failover. You can also use this guide to deploy a greater number of NGINX Plus or NGINX instances in as many regions as you wish.
 
