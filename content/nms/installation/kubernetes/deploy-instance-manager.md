@@ -367,11 +367,3 @@ This helm command uninstalls the app named `nms` from the namespace `nms`. It de
 {{< include "support/troubleshooting-guide.md" >}}
 
 For guidance on how to create a support package containing system and service details to share with NGINX Customer Support, refer to the guide [Create a Support Package from a Helm Installation]({{< relref "/nms/support/k8s-support-package.md" >}}).
-
----
-
-## What's Next
-
-### Deploy Other NGINX Management Suite Modules
-
-- [Deploy API Connectivity Manager on Kubernetes]({{< relref "/nms/installation/kubernetes/deploy-api-connectivity-manager.md" >}})
