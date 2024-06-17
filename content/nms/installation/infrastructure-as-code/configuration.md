@@ -1,5 +1,4 @@
 ---
-description: 
 docs: DOCS-1248
 doctypes:
 - task
@@ -12,9 +11,9 @@ weight: 200
 
 ## Introduction
 
-This guide shows you how to install NGINX Management Suite using the open-source Ansible role. 
+This guide shows you how to install F5 NGINX Management Suite using the open-source Ansible role. 
 
-Ansible allows you to reproduce your installation across multiple environments through automation.
+With Ansible, you can replicate your installation across multiple environments using automation.
 
 {{< call-out "tip" "Open-Source Project on GitHub" >}}
 The steps in this guide refer to the <a href="https://github.com/nginxinc/ansible-role-nginx-management-suite" target="_blank">Ansible NGINX Management Suite Role project on GitHub.</a> <i class="fa-solid fa-arrow-up-right-from-square" style="color:#009639;"></i>
@@ -30,15 +29,15 @@ The Ansible role for NGINX Management Suite simplifies the installation process 
 
 ---
 
-## System requirements
+## System Requirements
 
 - The Ansible role requirements can be viewed [on GitHub](https://github.com/nginxinc/ansible-role-nginx-management-suite#requirements).
 
 ---
 
-## Installation steps
+## Installation Steps
 
-1. Install the Ansible role with by following the [installation steps on GitHub](https://github.com/nginxinc/ansible-role-nginx-management-suite?tab=readme-ov-file#usage).
+1. Install the Ansible role by following the [installation steps on GitHub](https://github.com/nginxinc/ansible-role-nginx-management-suite?tab=readme-ov-file#usage).
 
 1. Run the Ansible playbook. Create a file named `nms-playbook.yml` (or any other name) with contents similar to the following example:
 
@@ -70,6 +69,6 @@ The Ansible role for NGINX Management Suite simplifies the installation process 
 
 ---
 
-## Getting support
+## Getting Support
 
 If you need assistance or have questions, you can request support from the [NGINX Management Suite Ansible Role Project](https://github.com/nginxinc/ansible-role-nginx-management-suite/blob/main/SUPPORT.md) on GitHub.
