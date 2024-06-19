@@ -383,7 +383,7 @@ This section displays the configurable options for the NGINX Agent that can be s
 - NGINX_AGENT_ADVANCED_METRICS_TABLE_SIZES_LIMITS_STAGING_TABLE_MAX_SIZE
 - NGINX_AGENT_ADVANCED_METRICS_TABLE_SIZES_LIMITS_STAGING_TABLE_THRESHOLD
 ```
-{{< warning >}}The environment prefix NMS has been deprecated in favour of NGINX_AGENT{{< /warning >}}
+{{< warning >}} The environment prefix NMS has been deprecated in favour of NGINX_AGENT. {{< /warning >}}
 
 </details>
 
