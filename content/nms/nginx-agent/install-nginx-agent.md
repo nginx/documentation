@@ -347,6 +347,14 @@ This section displays the configurable options for the NGINX Agent that can be s
 <details open>
   <summary>NGINX Agent Environment Variables</summary>
 
+{{< warning >}} 
+
+Before version 2.35.0, the environment variables were prefixed with `NMS_` instead of `NGINX_AGENT_`. 
+
+If you are upgrading from an older version, update your configuration accordingly.
+
+{{< /warning >}}
+
 ```text
 - NGINX_AGENT_INSTANCE_GROUP
 - NGINX_AGENT_DISPLAY_NAME
@@ -383,8 +391,6 @@ This section displays the configurable options for the NGINX Agent that can be s
 - NGINX_AGENT_ADVANCED_METRICS_TABLE_SIZES_LIMITS_STAGING_TABLE_MAX_SIZE
 - NGINX_AGENT_ADVANCED_METRICS_TABLE_SIZES_LIMITS_STAGING_TABLE_THRESHOLD
 ```
-
-{{< warning >}} The environment prefix NMS has been deprecated in favour of NGINX_AGENT. {{< /warning >}}
 
 </details>
 
