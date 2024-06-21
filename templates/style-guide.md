@@ -84,6 +84,7 @@ The table provides guidelines about the terms you should and should not use for 
 | CVSS v3.0 | Do not spell out. (Articles with CVSS metrics should include the CVSS link.) | |
 | daemon | Avoid using this term in generic documentation because it is UNIX-oriented. Instead, we use "agent", "utility", or "application". However, we do refer to specific UNIX daemons, like `named` and `sod`, when daemon is part of the name. | |
 | data center | Write this as two words. | |
+| domain name | example.com, example.net, example.org, or localhost per [RFC 2606](https://www.rfc-editor.org/rfc/rfc2606.html). | |
 | em dash | Allowed in the proper context. May be written using two dashes to ensure it converts correctly when displayed in the web version. | |
 | data source | | |
 | database | Do not abbreviate as "db". Always a single word. | |
