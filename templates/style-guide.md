@@ -347,7 +347,7 @@ If you decide to include a screenshot, follow these guidelines:
 - Use simple arrows and rectangles to highlight important items. Use a high-contrast color to make the annotations stand out.
 - Ensure screenshots are anonymized and don't contain sensitive information:
   - Replace personal information (names, email addresses, phone numbers) with generic placeholders.
-  - Replace sensitive data (IP addresses, passwords, confidential information) with generic placeholders. See the Glossary table in this document for more information on IP addresses.
+  - Replace sensitive data (IP addresses, passwords, domain names, confidential information) with generic placeholders. See the Glossary table in this document for more information on IP addresses.
 - Include a description (`<img alt>` text) for the screenshot that provides a brief summary of the content and context. This description helps screen readers describe the image to visually impaired users. For example, "Area chart titled 'NGINX Active Connections' showing the number of active connections over time for the current date. The x-axis represents the time of day, and the y-axis represents the number of connections, ranging from 0 to 10,000. The chart is color-coded with different shades to indicate varying levels of connections." For examples and guidelines for effective alt text, see the BBC's useful guide [How to write text descriptions (alt text)](https://www.bbc.co.uk/gel/how-to-write-text-descriptions-alt-text).
 
 
