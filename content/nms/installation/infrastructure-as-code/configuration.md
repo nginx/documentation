@@ -37,9 +37,9 @@ The Ansible role for NGINX Management Suite simplifies the installation process 
 
 ## Installation Steps
 
-1. Install the Ansible by following the [installation steps on GitHub](https://github.com/nginxinc/ansible-role-nginx-management-suite?tab=readme-ov-file#ansible).
-2. Create the inventory file with the details of the host you want to install NIM. Make sure you have access to the host you want to perform the installation. [Example here](https://github.com/nginxinc/ansible-role-nginx-management-suite?tab=readme-ov-file#create-inventory-file)
-3. Create the requirements file and install the required ansible role following [here](https://github.com/nginxinc/ansible-role-nginx-management-suite?tab=readme-ov-file#install-required-roles-and-collections). 
+1. Install Ansible by following the [installation steps on GitHub](https://github.com/nginxinc/ansible-role-nginx-management-suite?tab=readme-ov-file#ansible).
+2. Create the inventory file with the details of the host you want to install NIM. Make sure you have access to the host on which you want to perform the installation. [Example here](https://github.com/nginxinc/ansible-role-nginx-management-suite?tab=readme-ov-file#create-inventory-file)
+3. Create the requirements file and install the required Ansible role following [here](https://github.com/nginxinc/ansible-role-nginx-management-suite?tab=readme-ov-file#install-required-roles-and-collections). 
 
 4. Create and run the Ansible playbook. Create a file named `nms-playbook.yml` (or any other name) with contents similar to the following example:
 
