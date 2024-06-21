@@ -1,7 +1,7 @@
 ---
 description: This guide points you to step-by-step instructions for building and deploying
   NGINX Management Suite images on different cloud providers. There are two stages in the process.
-  In the first stage we need to generate an image using Packer and in the second stage we will deploy it using the Terraform.
+  In the first stage we need to generate an image using Packer and in the second stage we will deploy it using Terraform.
 docs: DOCS-1247
 doctypes:
   - task
@@ -25,7 +25,7 @@ The Packer stage involves building the cloud image and installing NGINX Manageme
 
 - Install the prerequisites as per the Packer requirements, click [here](https://github.com/nginxinc/nginx-management-suite-iac/tree/main/packer#Requirements).
 
-### Image generation
+### Image Generation
 
 - To get started, follow the [How to use section and select the appropriate Packer guide for your cloud deployment](https://github.com/nginxinc/nginx-management-suite-iac/tree/main/packer#how-to-use).
 
@@ -42,7 +42,7 @@ The Terraform stage deploys the cloud images built during the Packer stage. Ther
 {{< img src="img/iac/aws-infrastructure.png" caption="    Figure 1. AWS NGINX Management Suite basic reference architecture" alt="A diagram of the AWS basic reference architecture.">}}
 
 2. Standalone Architecture: This deploys the control plane in isolation. Although **this is not a best practice solution**, it can be used as a simple deployment option for multiple clouds.
-   The standalone architecture deploys the control node and lives in VPC - public subnet with security groups in place to give restricted access.
+   The standalone architecture deploys the control node and lives in the VPC's public subnet with security groups in place to give restricted access.
 
 {{< img src="img/iac/standalone-architecture.png" caption="    Figure 2. NGINX Management Suite standalone architecture" alt="A diagram of the standalone architecture.">}}
 
@@ -53,7 +53,7 @@ The Terraform stage deploys the cloud images built during the Packer stage. Ther
 
 ---
 
-### Image deployment
+### Image Deployment
 
 **Deploy the Basic reference architecture** using the following infrastructure by following the steps in the [AWS NGINX Management Suite Basic Reference Architecture](https://github.com/nginxinc/nginx-management-suite-iac/blob/main/terraform/basic-reference/aws/README.md) guide.
 
