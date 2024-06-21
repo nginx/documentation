@@ -1,7 +1,7 @@
 
 # F5 NGINX Documentation style guide
 
-{Version number and last updated date}
+Version 1.1.0
 
 ## Introduction
 
@@ -13,9 +13,9 @@ This style guide is intended for use by any contributors that are writing docume
 
 ## Our preferred style guide
 
-This document contains guidelines specific to the the documentation of F5 NGINX products and open source projects.
+This document provides guidelines specific to documenting F5 NGINX products and open-source projects.
 
-F5 NGINX follows the [Microsoft style guide](https://learn.microsoft.com/en-us/style-guide/welcome/) for user-facing content and the Chicago Manual of Style](https://www.chicagomanualofstyle.org/home.html). Our project uses standard American spelling and our preferred dictionary is the [American Heritage Dictionary](https://ahdictionary.com/).
+When the NGINX style guide does not cover a style, refer first to the [Microsoft Style Guide](https://learn.microsoft.com/en-us/style-guide/welcome/) for user-facing content, and then to the [Chicago Manual of Style](https://www.chicagomanualofstyle.org/home.html). We use standard American spelling, and our preferred dictionary is the [American Heritage Dictionary](https://ahdictionary.com/).
 
 When writing documentation for our project, align with the default guide's voice and tone.
 
@@ -332,25 +332,23 @@ When writing new documentation, use the following [templates](/templates):
 
 ## Guidelines for screenshots
 
-The use of screenshots in documentation should be limited to only when necessary, as they can be difficult to maintain. It is recommended to keep the number of screenshots as low as possible to avoid the need for frequent updates. Screenshots may become outdated quickly due to changes in user interfaces or software versions, leading to confusion for users. Therefore, it is important to carefully consider the need for a screenshot and evaluate if alternative methods, such as clear and concise written instructions, can effectively convey the information.
+Only use screenshots when absolutely necessary, as they can be hard to keep up-to-date. Minimize their use to avoid frequent updates. Screenshots can quickly become outdated with changes in user interfaces or software versions, leading to user confusion. Consider if clear, concise written instructions can convey the information instead of a screenshot.
 
-If you decide to include a screenshot in your documentation, follow these guidelines:
+If you decide to include a screenshot, follow these guidelines:
 
-- Use PNG format for screenshots.
-- Use lowercase names with dashes to separate words in the file name. For example, `nginx-management-suite-dashboard.png`. Don't use spaces or underscores `_` in the file name.
+- Use PNG format.
+- Name files using lowercase words separated by dashes. For example, `nginx-management-suite-dashboard.png`. Don't use spaces or underscores.
 - Use a resolution of 72 dpi.
-- Use a width of 800 pixels for full-width screenshots.
-- Don't draw a border around the screenshot. A border is included automatically when the screenshot is placed in the documentation, using CSS.
-- Don't capture mouse the cursor in the screenshot.
-- Make sure that the screenshot includes the item you want to highlight (button, menu item, icon,... ) with the necessary context to locate it in the user interface and understand the action.
-- Avoid unnecessary whitespace in the screenshot. Crop the image to include only the relevant content. If necessary and within your capabilities, use image editing software to move the content closer together, or ask the writers team for help.
-- Use simple arrows and rectangles to highlight the item you want to draw attention to. Use red (or a contrasting color) to make the annotation stand out.
-- Make sure that your screenshots are anonymized and do not contain any sensitive information:
-
-   - Replace any personal information, such as names, email addresses, or phone numbers with generic placeholders.
-   - Replace any sensitive data, such as IP addresses, passwords, or confidential information with generic placeholders. See the related entry in the Glossary table in this document for more information on IP addresses.
-
-- Include a description ( \<img alt\> text) for the screenshot that provides a brief summary of the content and context of the image. This description is used by screen readers to describe the image to visually impaired users. For example, "Screenshot of the NGINX Management Suite dashboard showing the status of the web servers."
+- Set the width to 800 pixels for full-width screenshots.
+- Don't add a border; CSS automatically includes it when the screenshot is placed in the documentation.
+- Don't capture the cursor in the screenshot.
+- Ensure the screenshot includes the relevant item (button, menu item, icon) with enough context to locate it in the user interface and understand the action.
+- Avoid unnecessary whitespace. Crop the image to include only relevant content. If needed, use image editing software to move content closer together, or ask the writers team for help.
+- Use simple arrows and rectangles to highlight important items. Use a contrasting color like red to make the annotations stand out.
+- Ensure screenshots are anonymized and don't contain sensitive information:
+  - Replace personal information (names, email addresses, phone numbers) with generic placeholders.
+  - Replace sensitive data (IP addresses, passwords, confidential information) with generic placeholders. See the Glossary table in this document for more information on IP addresses.
+- Include a description (`<img alt>` text) for the screenshot that provides a brief summary of the content and context. This description helps screen readers describe the image to visually impaired users. For example, "Area chart titled 'NGINX Active Connections' showing the number of active connections over time for the current date. The x-axis represents the time of day, and the y-axis represents the number of connections, ranging from 0 to 10,000. The chart is color-coded with different shades to indicate varying levels of connections." For examples and guidelines for effective alt text, see the BBC's useful guide [How to write text descriptions (alt text)](https://www.bbc.co.uk/gel/how-to-write-text-descriptions-alt-text).
 
 
 ## Revision history
@@ -359,8 +357,9 @@ The following table describes the history of all decisions and revisions made to
 this style guide over time. This guide uses the Major.Minor.Patch
 [semantic versioning](https://semver.org/) convention.
 
-| Edition | Date         | Lead Author(s) | Comments                   |
-|---------|--------------|----------------|----------------------------|
-| 1.1     | May 21, 2024 | Jon Torre      | Added guidelines for screenshots |
-| 1.0     | May 05, 2024 | Travis Martin  | First draft of Style Guide |
+| Edition | Date          | Lead Author(s) | Comments                                              |
+|---------|---------------|----------------|-------------------------------------------------------|
+| 1.1.1   | June 21, 2024 | Travis Martin  | Added link to BBC's examples for effective alt images |
+| 1.0.1   | May 21, 2024  | Jon Torre      | Added guidelines for screenshots                      |
+| 1.0.0   | May 05, 2024  | Travis Martin  | First draft of Style Guide                            |
 
