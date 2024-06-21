@@ -344,7 +344,7 @@ If you decide to include a screenshot, follow these guidelines:
 - Don't capture the cursor in the screenshot.
 - Ensure the screenshot includes the relevant item (button, menu item, icon) with enough context to locate it in the user interface and understand the action.
 - Avoid unnecessary whitespace. Crop the image to include only relevant content. If needed, use image editing software to move content closer together, or ask the writers team for help.
-- Use simple arrows and rectangles to highlight important items. Use a contrasting color like red to make the annotations stand out.
+- Use simple arrows and rectangles to highlight important items. Use a high-contrast color to make the annotations stand out.
 - Ensure screenshots are anonymized and don't contain sensitive information:
   - Replace personal information (names, email addresses, phone numbers) with generic placeholders.
   - Replace sensitive data (IP addresses, passwords, confidential information) with generic placeholders. See the Glossary table in this document for more information on IP addresses.
