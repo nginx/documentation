@@ -38,7 +38,7 @@ Its main use cases are for Instance counting of NGINX instances, product demos a
 ## Before you start
 
 - A working version of docker
-- Access to the nginx private repo `nginxdevopssvcs.azurecr.io/indigo-tools-docker/platform/nim-bundled-poc` and ability to pull the container: `nim-bundle:latest`
+- Access to the nginx private registry `http://private-registry.nginx.com/` or from  `myF5.com`  and ability to pull the container: `nim-bundle:latest`
 
 ## Data Persistence
 
@@ -56,7 +56,7 @@ Its main use cases are for Instance counting of NGINX instances, product demos a
 
 ## NMS Build Examples
 
-To get started, you should ensue have access to the repo `nginxdevopssvcs.azurecr.io/indigo-tools-docker/platform/nim-bundled-poc` and ability to pull the container: `nim-bundle:latest`
+To get started, you should ensue have access to the repo `http://private-registry.nginx.com/` or from  `myF5.com` and ability to pull the container: `nim-bundle:latest`
 you have pulled the NIM docker container
 
 ### Quick Test without Persistence
