@@ -60,7 +60,7 @@ You can start the plug‑in directly by running <span style="white-space: nowrap
 
 If everything is working as expected, the plug‑in appears as a tab in the New Relic UI:
 
-[![image of NGINX instance in New Relic instances list](https://cdn.wp.nginx.com/wp-content/uploads/2014/10/0s-instances.png)](https://cdn.wp.nginx.com/wp-content/uploads/2014/10/0s-instances.png)
+[![image of NGINX instance in New Relic instances list](/nginx/images/0s-instances.png)](/nginx/images/0s-instances.png)
 
 ## Dashboard Examples
 
@@ -68,37 +68,37 @@ If everything is working as expected, the plug‑in appears as a tab in the New�
 
 The **Overview** tab displays the most basic metrics for the whole instance: number of active and idle connections, and request rate.
 
-[![image of Overview tab in New Relic UI](https://cdn.wp.nginx.com/wp-content/uploads/2014/10/1s-overview-1024x544.png)](https://cdn.wp.nginx.com/wp-content/uploads/2014/10/1s-overview.png)
+[![image of Overview tab in New Relic UI](/nginx/images/1s-overview.png)](/nginx/images/1s-overview.png)
 
 ### Connections
 
 The **Connections** tab displays various metrics about client connections.
 
-[![image of Connections tab in New Relic UI](https://cdn.wp.nginx.com/wp-content/uploads/2014/10/2s-connections-1024x603.png)](https://cdn.wp.nginx.com/wp-content/uploads/2014/10/2s-connections.png)
+[![image of Connections tab in New Relic UI](/nginx/images/2s-connections.png)](/nginx/images/2s-connections.png)
 
 ### Requests
 
 The **Requests** tab displays the number of requests currently being processed and the overall request rate.
 
-[![image of Requests tab in New Relic UI](https://cdn.wp.nginx.com/wp-content/uploads/2014/10/3s-requests-1024x367.png)](https://cdn.wp.nginx.com/wp-content/uploads/2014/10/3s-requests.png)
+[![image of Requests tab in New Relic UI](/nginx/images/3s-requests.png)](/nginx/images/3s-requests.png)
 
 ### Upstreams (NGINX Plus only)
 
 The **Upstreams** tab displays detailed statistics about all configured upstream groups.
 
-[![image of Upstreams tab in New Relic UI](https://cdn.wp.nginx.com/wp-content/uploads/2014/10/4s-upstreams.png)](https://cdn.wp.nginx.com/wp-content/uploads/2014/10/4s-upstreams.png)
+[![image of Upstreams tab in New Relic UI](/nginx/images/4s-upstreams.png)](/nginx/images/4s-upstreams.png)
 
 ### Servers (NGINX Plus only)
 
 The **Servers** tab displays detailed statistics about all configured virtual server zones.
 
-[![image of Servers tab in New Relic UI](https://cdn.wp.nginx.com/wp-content/uploads/2014/10/5s-servers-1024x598.png)](https://cdn.wp.nginx.com/wp-content/uploads/2014/10/5s-servers.png)
+[![image of Servers tab in New Relic UI](/nginx/images/5s-servers.png)](/nginx/images/5s-servers.png)
 
 ### Cache (NGINX Plus only)
 
 The **Cache** tab displays summary statistics for all configured caches.
 
-[![image of Caches tab in New Relic UI](https://cdn.wp.nginx.com/wp-content/uploads/2014/10/6s-cache-1024x856.png)](https://cdn.wp.nginx.com/wp-content/uploads/2014/10/6s-cache.png)
+[![image of Caches tab in New Relic UI](/nginx/images/6s-cache.png)](/nginx/images/6s-cache.png)
 
 ## What’s Next?
 

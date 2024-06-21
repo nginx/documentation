@@ -7,7 +7,7 @@ tags:
 - docs
 title: Frequently Used Helm Configurations
 toc: true
-weight: 100
+weight: 300
 ---
 
 ## Overview

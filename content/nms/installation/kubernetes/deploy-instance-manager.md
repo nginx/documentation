@@ -8,7 +8,7 @@ tags:
 - docs
 title: Deploy Instance Manager on Kubernetes
 toc: true
-weight: 1
+weight: 100
 ---
 
 ## Overview
@@ -22,6 +22,10 @@ NGINX Instance Manager simplifies the deployment and management of NGINX and NGI
 ### What Is a Helm Chart?
 
 Helm charts are pre-configured packages of Kubernetes resources that can easily be deployed with a single command. These charts offer a straightforward way to define, install, and upgrade Kubernetes applications. They are composed of a set of files that describe a related group of Kubernetes resources, including deployments, services, and ingress. With the ability to deploy to any Kubernetes cluster, Helm charts are a versatile tool for creating, sharing, and managing applications on Kubernetes. Additionally, Helm charts can facilitate the definition and management of dependencies between various applications, allowing for the development of complex, multi-tier applications.
+
+{{< warning >}} NGINX Instance Manager does not support [OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift). 
+
+For best compatibility, use [NGINX Ingress Controller](https://docs.nginx.com/nginx-ingress-controller/). {{< /warning >}}
 
 ---
 
@@ -43,7 +47,6 @@ To deploy Instance Manager using a Helm chart, you need the following:
 | `tar` 1.20 or later                                                                 | <p>The `tar` archiving tool is usually installed by default. To see which version of `tar` you have installed, run `tar --version`. </p> <p>If `tar` is not installed or the version is too old, follow the instructions for your Linux distribution to install a supported version from a package manager such as YUM (CentOS, RHEL) or APT (Debian, Ubuntu). </p>                                                     |
 
 {{< /bootstrap-table >}}
-
 
 ---
 
@@ -367,11 +370,3 @@ This helm command uninstalls the app named `nms` from the namespace `nms`. It de
 {{< include "support/troubleshooting-guide.md" >}}
 
 For guidance on how to create a support package containing system and service details to share with NGINX Customer Support, refer to the guide [Create a Support Package from a Helm Installation]({{< relref "/nms/support/k8s-support-package.md" >}}).
-
----
-
-## What's Next
-
-### Deploy Other NGINX Management Suite Modules
-
-- [Deploy API Connectivity Manager on Kubernetes]({{< relref "/nms/installation/kubernetes/deploy-api-connectivity-manager.md" >}})
