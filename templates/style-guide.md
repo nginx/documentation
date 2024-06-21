@@ -337,7 +337,7 @@ Only use screenshots when absolutely necessary, as they can be hard to keep up-t
 If you decide to include a screenshot, follow these guidelines:
 
 - Use PNG format.
-- Name files using lowercase words separated by dashes. For example, `nginx-management-suite-dashboard.png`. Don't use spaces or underscores.
+- Use filenames with lowercase words separated by dashes. For example, `nginx-management-suite-dashboard.png`. For consistency, don't use spaces or underscores.
 - Use a resolution of 72 dpi.
 - Set the width to 800 pixels for full-width screenshots.
 - Don't add a border; CSS automatically includes it when the screenshot is placed in the documentation.
