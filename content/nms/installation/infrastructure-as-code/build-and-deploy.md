@@ -27,7 +27,7 @@ The Packer stage involves building the cloud image and installing NGINX Manageme
 
 ### Image generation
 
-- To get started, follow the [appropriate Packer guide for your cloud deployment](https://github.com/nginxinc/nginx-management-suite-iac/tree/main/packer#how-to-use).
+- To get started, follow the [How to use section and select the appropriate Packer guide for your cloud deployment](https://github.com/nginxinc/nginx-management-suite-iac/tree/main/packer#how-to-use).
 
 ---
 
