@@ -112,7 +112,7 @@ The table provides guidelines about the terms you should and should not use for 
 | F5 Technical Support | Do not use. Use F5 Support. | |
 | F5 XC Tech Docs | Use when linking to documents on the https://docs.cloud.f5.com/docs/ site. | |
 | fetch | This can be a technical term; depending on context, it may relate to getting, reading, or moving data objects. | |
-| fictitious names (domains/companies) | When documenting example scenarios, unless it is a case study, and/or we have approval from the company to use their company name, we should use a generic fictitious approved name (such as ABC corporation or Company A or Company B). RE the GUI: Consult the legal team if your product team uses trademarked names (owned by others) in the GUI. | |
+| fictitious names (domains/companies) | When documenting example scenarios, unless it is a case study, and/or we have approval from the company to use their company name, we should use a generic fictitious approved name (such as ABC corporation or Company A or Company B). For domains, see [RFC 2606](https://www.rfc-editor.org/rfc/rfc2606.html) for reserved top-level DNS names to use in documentation. RE the GUI: Consult the legal team if your product team uses trademarked names (owned by others) in the GUI. | |
 | figure captions (graphics) | Ensure that text describing the graphic is precise, short, and describes the action or process shown in graphic; do not include illustration in the caption. AVOID: “Figure 2 Illustration of NGINX Instance Manager using XXX. Avoid using trademarks in diagrams; instead, ensure that the product name is called out in the topic body text and add the trademark as needed at first mention. | |
 | figures/images (TBA) | For a figure (screenshot or graphic): Use the \<fig> content unit when you want to display a screenshot or a graphic on your topic. Within the \<fig> content unit, use the \<image> element to contain the actual graphic, and use the \<title> element to provide a caption. For an image, such as an icon or button: Use the \<image> element to include artwork or images in a topic. In most cases, the \<fig> and \<title> elements are used. | |
 | file name | File name is presented as two words, unless for commands/syntax or when matching the GUI, (representing variables) such as \<filename>. | |
@@ -340,6 +340,7 @@ If you decide to include a screenshot, follow these guidelines:
 - Use filenames with lowercase words separated by dashes. For example, `nginx-management-suite-dashboard.png`. For consistency, don't use spaces or underscores.
 - Use a resolution of 72 dpi.
 - Set the width to 800 pixels for full-width screenshots.
+- Use a transparent background to support both light and dark modes.
 - Don't add a border; CSS automatically includes it when the screenshot is placed in the documentation.
 - Don't capture the cursor in the screenshot.
 - Ensure the screenshot includes the relevant item (button, menu item, icon) with enough context to locate it in the user interface and understand the action.
@@ -347,7 +348,7 @@ If you decide to include a screenshot, follow these guidelines:
 - Use simple arrows and rectangles to highlight important items. Use a high-contrast color to make the annotations stand out.
 - Ensure screenshots are anonymized and don't contain sensitive information:
   - Replace personal information (names, email addresses, phone numbers) with generic placeholders.
-  - Replace sensitive data (IP addresses, passwords, domain names, confidential information) with generic placeholders. See the Glossary table in this document for more information on IP addresses.
+  - Replace sensitive data (IP addresses, passwords, domain names, confidential information) with generic placeholders. 
 - Include a description (`<img alt>` text) for the screenshot that provides a brief summary of the content and context. This description helps screen readers describe the image to visually impaired users. For example, "Area chart titled 'NGINX Active Connections' showing the number of active connections over time for the current date. The x-axis represents the time of day, and the y-axis represents the number of connections, ranging from 0 to 10,000. The chart is color-coded with different shades to indicate varying levels of connections." For examples and guidelines for effective alt text, see the BBC's useful guide [How to write text descriptions (alt text)](https://www.bbc.co.uk/gel/how-to-write-text-descriptions-alt-text).
 
 
