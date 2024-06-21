@@ -1,7 +1,7 @@
 
 # F5 NGINX Documentation style guide
 
-Version 1.1.0
+Version 1.2
 
 ## Introduction
 
@@ -15,7 +15,7 @@ This style guide is intended for use by any contributors that are writing docume
 
 This document provides guidelines specific to documenting F5 NGINX products and open-source projects.
 
-When the NGINX style guide does not cover a style, refer first to the [Microsoft Style Guide](https://learn.microsoft.com/en-us/style-guide/welcome/) for user-facing content, and then to the [Chicago Manual of Style](https://www.chicagomanualofstyle.org/home.html). We use standard American spelling, and our preferred dictionary is the [American Heritage Dictionary](https://ahdictionary.com/).
+When the NGINX style guide does not cover a style, refer next to the [Microsoft Style Guide](https://learn.microsoft.com/en-us/style-guide/welcome/) for user-facing content, and then to the [Chicago Manual of Style](https://www.chicagomanualofstyle.org/home.html). We use standard American spelling, and our preferred dictionary is the [American Heritage Dictionary](https://ahdictionary.com/).
 
 When writing documentation for our project, align with the default guide's voice and tone.
 
@@ -359,7 +359,7 @@ this style guide over time. This guide uses the Major.Minor.Patch
 
 | Edition | Date          | Lead Author(s) | Comments                                              |
 |---------|---------------|----------------|-------------------------------------------------------|
-| 1.1.1   | June 21, 2024 | Travis Martin  | Added link to BBC's examples for effective alt images |
-| 1.0.1   | May 21, 2024  | Jon Torre      | Added guidelines for screenshots                      |
-| 1.0.0   | May 05, 2024  | Travis Martin  | First draft of Style Guide                            |
+| 1.2   | June 21, 2024 | Travis Martin  | Added link to BBC's examples for effective alt images |
+| 1.1   | May 21, 2024  | Jon Torre      | Added guidelines for screenshots                      |
+| 1.0   | May 05, 2024  | Travis Martin  | First draft of Style Guide                            |
 
