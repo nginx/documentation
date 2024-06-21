@@ -8,7 +8,7 @@ tags:
 - docs
 title: Configurable Helm Settings
 toc: true
-weight: 90
+weight: 200
 ---
 
 {{< shortversions "2.5.0" "latest" "nimvers" >}}
