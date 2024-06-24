@@ -60,6 +60,8 @@ The following table shows the NGINX App Protect WAF Release version and its corr
 
 | NGINX App Protect WAF Release version | WAF Compiler               |
 |---------------------------------------|----------------------------|
+| NGINX App Protect WAF 5.2.0           | nms-nap-compiler-v5.48.0   |
+| NGINX App Protect WAF 5.1.0           | nms-nap-compiler-v5.17.0   |
 | NGINX App Protect WAF 4.10.0          | nms-nap-compiler-v5.48.0   |
 | NGINX App Protect WAF 4.9.0           | nms-nap-compiler-v5.17.0   |
 | NGINX App Protect WAF 4.8.1           | nms-nap-compiler-v4.815.0  |
@@ -583,6 +585,63 @@ You can query the Instance Manager REST API to verify the following information:
 {{%/tab%}}
 {{</tabs>}}
 
+### Configure Docker Compose for NGINX App Protect WAF Version 5
+
+Version 5 of NGINX App Protect WAF provides a container-based architecture that requires some configuration changes to operate with Instance Manager.
+1. Edit the `docker-compose.yaml` you created according to [NGINX App Protect WAF](https://docs.nginx.com/nginx-app-protect-waf/v5/admin-guide/install/) to provide the containers with read access to the policies and log profiles written to the instance by Instance Manager.
+
+    - Add the line `user: 101:nginx-agent-group` to each service, where `nginx-agent-group` is the ID of the NGINX Agent group. The value of this group ID can be determined with
+    ```bash
+    cat /etc/group
+    ```
+    - Add the directory `/etc/nms` to the volume maps for both services
+
+    For example:
+
+    ```yaml
+    version: "3.9"
+
+    services:
+      waf-enforcer:
+        container_name: waf-enforcer
+        image: private-registry.nginx.com/nap/waf-enforcer:5.2.0
+        user: 101:1002
+        environment:
+          - ENFORCER_PORT=50000
+        ports:
+          - "50000:50000"
+        volumes:
+          - /opt/app_protect/bd_config:/opt/app_protect/bd_config
+          - /etc/nms:/etc/nms
+        networks:
+          - waf_network
+        restart: always
+
+      waf-config-mgr:
+        container_name: waf-config-mgr
+        image: private-registry.nginx.com/nap/waf-config-mgr:5.2.0
+        user: 101:1002
+        volumes:
+          - /opt/app_protect/bd_config:/opt/app_protect/bd_config
+          - /opt/app_protect/config:/opt/app_protect/config
+          - /etc/app_protect/conf:/etc/app_protect/conf
+          - /etc/nms:/etc/nms
+        restart: always
+        network_mode: none
+        depends_on:
+          waf-enforcer:
+            condition: service_started
+
+    networks:
+      waf_network:
+        driver: bridge
+    ```
+
+1. Restart the containers:
+    ``` bash
+    docker compose restart
+    ```
+
 ---
 
 ## Onboard Security Policies
@@ -856,6 +915,17 @@ app_protect_security_log "/etc/nms/secops_dashboard.tgz" syslog:server=127.0.0.1
 ```
 
 Refer to the [Security Monitoring setup guide]({{< relref "/nms/security/how-to/set-up-app-protect-instances" >}}) to learn more. {{</note>}}
+
+{{<important>}}
+NGINX configuration for NGINX App Protect Version 5 requires the following changes: 
+- The `app_protect_enforcer_address` directive must be included within the `http` context of the NGINX configuration:
+   ```nginx
+   app_protect_enforcer_address 127.0.0.1:50000;
+   ```
+- JSON policies and log profiles are not supported for Version 5, so all policies and log profiles must be precompiled and the `precompiled_publication` attribute in the NGINX Agent configuration must be set to `true`.
+
+Refer to the [NGINX App Protect WAF Configuration Guide](https://docs.nginx.com/nginx-app-protect-waf/v5/configuration-guide/configuration/) to learn more.
+{{</important>}}
 
 Additional example configurations tailored for NGINX features can be found in the [NGINX App Protect WAF Configuration Guide](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#interaction-with-nginx-features).
 
