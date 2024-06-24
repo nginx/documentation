@@ -8,7 +8,7 @@ tags:
 - docs
 title: Deploy API Connectivity Manager on Kubernetes
 toc: true
-weight: 2
+weight: 20
 ---
 
 ## Requirements
