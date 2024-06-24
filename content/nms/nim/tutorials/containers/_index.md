@@ -1,5 +1,5 @@
 ---
 title: Containers
 weight: 10
-url: /nginx-management-suite/nim/tutorials
+url: /nginx-management-suite/nim/tutorials/containers
 ---
