@@ -194,22 +194,3 @@ Ensure you have access to the NGINX private repository at `private-registry.ngin
    ```bash
    docker cp .htpasswd <container_name>:/data/local-auth/.htpasswd
    ```
-
----
-
-## Summary
-
-In this tutorial, you learned how to:
-
-- Run the Docker container in various configuration modes:
-  - No persistence
-  - Persistence to volume mount
-  - Set the admin password
-  - Override self-signed API gateway certificates
-- Configure user access to NGINX Management Suite running in the container
-
----
-
-## Next Steps
-
-Explore further deployment options or additional tutorials to enhance your NGINX Management Suite setup.
