@@ -51,6 +51,9 @@ The Ansible role for NGINX Management Suite simplifies the installation process 
           certificate: ./nginx-repo.crt
           key: ./nginx-repo.key
         nms_setup: install
+        nms_version: 2.16.0*
+        nms_user_name: admin
+        nms_user_passwd: default
         nms_modules:
           - name: sm
       collections:
