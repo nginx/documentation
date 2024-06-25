@@ -62,11 +62,11 @@ Finally, start the Docker container. Replace `YOUR_DATA_PLANE_KEY` with your act
 
 ```sh
 sudo docker run \
---env=NMS_SERVER_GRPCPORT=443 \
---env=NMS_SERVER_HOST=agent.connect.nginx.com \
---env=NMS_SERVER_TOKEN=YOUR_DATA_PLANE_KEY \
---env=NMS_TLS_ENABLE=true \
---env=NMS_TLS_SKIP_VERIFY=false \
+--env=NGINX_AGENT_SERVER_GRPCPORT=443 \
+--env=NGINX_AGENT_SERVER_HOST=agent.connect.nginx.com \
+--env=NGINX_AGENT_SERVER_TOKEN=YOUR_DATA_PLANE_KEY \
+--env=NGINX_AGENT_TLS_ENABLE=true \
+--env=NGINX_AGENT_TLS_SKIP_VERIFY=false \
 --restart=always \
 --runtime=runc \
 -d private-registry.nginx.com/nginx-plus/agent:VERSION_TAG
@@ -79,11 +79,11 @@ To start the container with the `debian` image, use the following command:
 
 ```sh
 sudo docker run \
---env=NMS_SERVER_GRPCPORT=443 \
---env=NMS_SERVER_HOST=agent.connect.nginx.com \
---env=NMS_SERVER_TOKEN=YOUR_DATA_PLANE_KEY \
---env=NMS_TLS_ENABLE=true \
---env=NMS_TLS_SKIP_VERIFY=false \
+--env=NGINX_AGENT_SERVER_GRPCPORT=443 \
+--env=NGINX_AGENT_SERVER_HOST=agent.connect.nginx.com \
+--env=NGINX_AGENT_SERVER_TOKEN=YOUR_DATA_PLANE_KEY \
+--env=NGINX_AGENT_TLS_ENABLE=true \
+--env=NGINX_AGENT_TLS_SKIP_VERIFY=false \
 --restart=always \
 --runtime=runc \
 -d private-registry.nginx.com/nginx-plus/agent:debian
