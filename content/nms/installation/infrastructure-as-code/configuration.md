@@ -11,12 +11,12 @@ weight: 200
 
 ## Introduction
 
-This guide shows you how to install F5 NGINX Management Suite using the open-source Ansible role. 
+This guide shows you how to install F5 NGINX Management Suite using the open-source Ansible role.
 
-With Ansible, you can replicate your installation across multiple environments using automation.
+With Ansible, you can automate and replicate your installation across multiple environments.
 
-{{< call-out "tip" "Open-Source Project on GitHub" >}}
-The steps in this guide refer to the <a href="https://github.com/nginxinc/ansible-role-nginx-management-suite" target="_blank">Ansible NGINX Management Suite Role project on GitHub.</a> <i class="fa-solid fa-arrow-up-right-from-square" style="color:#009639;"></i>
+{{< call-out "tip" "Open-Source Project on GitHub" "fa-brands fa-github" >}}
+The steps in this guide refer to the [Ansible NGINX Management Suite Role](https://github.com/nginxinc/ansible-role-nginx-management-suite) project on GitHub
 {{< /call-out >}}
 
 ---
@@ -25,7 +25,7 @@ The steps in this guide refer to the <a href="https://github.com/nginxinc/ansibl
 
 The Ansible role for NGINX Management Suite simplifies the installation process by installing all the prerequisites and any modules you specify.
 
-{{< img src="img/iac/ansible-flow.png" caption="Figure 1. NGINX Management Suite Ansible flow" alt="A diagram showing the installation flow of the NGINX Management Suites Ansible role. It lists NGINX, Clickhouse, and the NMS repository as prerequisites before installing the NMS module.">}}
+{{< img src="img/iac/ansible-flow.png" caption="Figure 1. NGINX Management Suite Ansible flow" alt="A diagram showing the installation flow of the NGINX Management Suite Ansible role. The flow includes four steps: installing NGINX, installing ClickHouse, adding the NGINX Management Suite repository, and installing the NGINX Management Suite module(s).">}}
 
 ---
 
@@ -37,9 +37,11 @@ The Ansible role for NGINX Management Suite simplifies the installation process 
 
 ## Installation Steps
 
-1. Install the Ansible role by following the [installation steps on GitHub](https://github.com/nginxinc/ansible-role-nginx-management-suite?tab=readme-ov-file#usage).
+1. Install Ansible by following the [installation steps on GitHub](https://github.com/nginxinc/ansible-role-nginx-management-suite?tab=readme-ov-file#ansible).
+2. Create the inventory file with the details of the host you want to install NGINX Management Suite on. Make sure you have access to the host. [Example here](https://github.com/nginxinc/ansible-role-nginx-management-suite?tab=readme-ov-file#create-inventory-file).
+3. Create the requirements file and install the required Ansible role by following [these steps](https://github.com/nginxinc/ansible-role-nginx-management-suite?tab=readme-ov-file#install-required-roles-and-collections).
 
-1. Run the Ansible playbook. Create a file named `nms-playbook.yml` (or any other name) with contents similar to the following example:
+4. Create and run the Ansible playbook. Create a file named `nms-playbook.yml` (or any other name) with contents similar to the following example:
 
     ```yaml
     - hosts: nms
@@ -49,6 +51,9 @@ The Ansible role for NGINX Management Suite simplifies the installation process 
           certificate: ./nginx-repo.crt
           key: ./nginx-repo.key
         nms_setup: install
+        nms_version: 2.16.0*
+        nms_user_name: admin
+        nms_user_passwd: default
         nms_modules:
           - name: sm
       collections:
@@ -57,9 +62,7 @@ The Ansible role for NGINX Management Suite simplifies the installation process 
         - nginxinc.nginx_management_suite
     ```
 
-1. Create an [Ansible hosts file](https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html) containing the hosts you want in the group listed in your playbook.
-
-1. Run the playbook:
+5. Run the playbook:
 
     ```shell
     ansible-playbook -i <path-to-your-hostfile> nms-playbook.yml
@@ -71,4 +74,4 @@ The Ansible role for NGINX Management Suite simplifies the installation process 
 
 ## Getting Support
 
-If you need assistance or have questions, you can request support from the [NGINX Management Suite Ansible Role Project](https://github.com/nginxinc/ansible-role-nginx-management-suite/blob/main/SUPPORT.md) on GitHub.
+If you need help or have questions, you can request support from the [NGINX Management Suite Ansible Role Project](https://github.com/nginxinc/ansible-role-nginx-management-suite/blob/main/SUPPORT.md) on GitHub.
