@@ -7,7 +7,7 @@ doctypes:
 - tutorial
 tags:
 - docs
-title: Deploy NGINX Instance Manager with containers
+title: Deploy NGINX Instance Manager with Containers
 toc: true
 versions: []
 weight: 
@@ -16,7 +16,7 @@ weight:
 
 ## Overview
 
-This guide explains how to deploy and use F5 NGINX Instance Manager with containers. Built as a single Docker image with all dependencies, this container allows you to quickly set up NGINX Instance Manager with open-source NGINX.
+This guide explains how to deploy and use F5 NGINX Instance Manager with containers. The NGINX Instance Manager container is built as a single Docker image with all dependencies, allowing for quick setup with open-source NGINX.
 
 This tutorial is designed for:
 
@@ -24,7 +24,7 @@ This tutorial is designed for:
 - Instance counting
 - Small-scale environments (≤ 20 instances)
 
-By the end of this guide, you will be able to:
+By the end of this guide, you'll be able to:
 
 - Run the Docker container in various configuration modes:
   - No persistence
@@ -37,36 +37,38 @@ By the end of this guide, you will be able to:
 
 ## What You Need
 
-- A working version of Docker
-- Access to the NGINX private registry at `http://private-registry.nginx.com/` or from `myF5.com` to pull the container: `nim-bundle:latest`
-
-To set up Docker to communicate with the NGINX private registry, follow these steps:
-
-1. Create a directory for the Docker certificates:
-   ```bash
-   mkdir -p /etc/docker/certs.d/private-registry.nginx.com
-   ```
-
-2. Copy your certificate and key to the directory:
-   ```bash
-   cp <path-to-your-nginx-repo.crt> /etc/docker/certs.d/private-registry.nginx.com/client.cert
-   cp <path-to-your-nginx-repo.key> /etc/docker/certs.d/private-registry.nginx.com/client.key
-   ```
-
-   {{<note>}}Replace `<path-to-your-nginx-repo.crt>` and `<path-to-your-nginx-repo.key>` with the actual paths to your certificate and key files.{{</note>}}
-
-The steps provided are for Linux. For Mac or Windows, consult the [Docker for Mac](https://docs.docker.com/docker-for-mac/#add-client-certificates) or [Docker for Windows](https://docs.docker.com/docker-for-windows/#how-do-i-add-client-certificates) documentation. For more details on Docker Engine security, you can refer to the [Docker Engine Security documentation](https://docs.docker.com/engine/security/).
+- A working version of [Docker](https://docs.docker.com/get-docker/)
+- Your NGINX Instance Manager subscription's JSON Web Token
 
 ---
 
-## Data Persistence
+## Before You Start
+
+### Set up Docker for NGINX Container Registry
+
+To set up Docker to communicate with the NGINX container registry at `private-registry.nginx.com`, follow these steps:
+
+1. Download your NGINX Instance Manager subscription's JSON Web Token and license from [MyF5](https://my.f5.com/manage/s/subscriptions).
+
+   - Log in to the [MyF5](https://my.f5.com/manage/s/subscriptions) customer portal.
+   - Go to **My Products and Plans > Subscriptions**.
+   - Select the product subscription.
+   - Download the JSON Web Token and license files.
+
+2. Open the JSON Web Token file you downloaded from [MyF5](https://my.f5.com/manage/s/subscriptions) (for example, `nginx-manager-subscription-A-12345abc.jwt`) and copy its contents.
+
+3. Log in to the Docker registry using the contents of the JSON Web Token file:
+
+   ```bash
+   docker login private-registry.nginx.com --username=<output_of_jwt_token> --password=none
+   ```
+
+### Data Persistence
 
 - A single volume mount is required to persist the NGINX Instance Manager databases. For example: `--volume=/myvolume/nms:/data`
 - An optional volume can be used to add a custom `.htpasswd` file for admin and user authentication. For example: `--volume=/myvolume/pass/.htpasswd:/.htpasswd`
 
----
-
-## Supported Environment Variables
+### Supported Environment Variables
 
 - `NMS_PERSIST_DISABLE`: Do not persist data to a volume. All data will be lost after the container stops or restarts.
 - `NMS_ADMIN_PASSWORD`: Set an admin password.
@@ -77,9 +79,9 @@ The steps provided are for Linux. For Mac or Windows, consult the [Docker for Ma
 
 ---
 
-## Preparation Steps
+## Build Examples
 
-Ensure you have access to the NGINX private repository at `http://private-registry.nginx.com/` or `myF5.com` to pull pull the container: `nim-bundle:latest`.
+Ensure you have access to the NGINX private repository at `private-registry.nginx.com/` or `myF5.com` to pull pull the container: `nim-bundle:latest`.
 
 ### Quick Test Without Persistence
 
