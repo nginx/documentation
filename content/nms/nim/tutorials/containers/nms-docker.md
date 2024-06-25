@@ -53,7 +53,7 @@ To set up Docker to communicate with the NGINX private registry, follow these st
    cp <path-to-your-nginx-repo.key> /etc/docker/certs.d/private-registry.nginx.com/client.key
    ```
 
-   **Note:** Replace `<path-to-your-nginx-repo.crt>` and `<path-to-your-nginx-repo.key>` with the actual paths to your certificate and key files.
+   {{<note>}}Replace `<path-to-your-nginx-repo.crt>` and `<path-to-your-nginx-repo.key>` with the actual paths to your certificate and key files.{{</note>}}
 
 The steps provided are for Linux. For Mac or Windows, consult the [Docker for Mac](https://docs.docker.com/docker-for-mac/#add-client-certificates) or [Docker for Windows](https://docs.docker.com/docker-for-windows/#how-do-i-add-client-certificates) documentation. For more details on Docker Engine security, you can refer to the [Docker Engine Security documentation](https://docs.docker.com/engine/security/).
 
@@ -92,7 +92,7 @@ Ensure you have access to the NGINX private repository at `http://private-regist
      nginxdevopssvcs.azurecr.io/indigo-tools-docker/platform/nim-bundled-poc/nim-bundle:latest
    ```
 2. Upload the license:
-   - In a web browser, go to the FQDN for your NGINX Management Suite host and log in.
+   - In a web browser, go to the NGINX Instance Manager host and log in.
    - Select the Settings gear icon.
    - On the Settings menu, select **Licenses**.
    - Select **Get Started**.
@@ -104,7 +104,7 @@ Ensure you have access to the NGINX private repository at `http://private-regist
    ```bash
    sudo systemctl restart nms
    ```
-5. Log on and verify that the license isn't applied.
+5. Log back in and verify that the license isn't applied.
 
 ### Persist To Volume
 
@@ -118,7 +118,7 @@ Ensure you have access to the NGINX private repository at `http://private-regist
      nginxdevopssvcs.azurecr.io/indigo-tools-docker/platform/nim-bundled-poc/nim-bundle:latest
    ```
 3. Upload the license:
-   - In a web browser, go to the FQDN for your NGINX Management Suite host and log in.
+   - In a web browser, go to the NGINX Instance Manager host and log in.
    - Select the Settings gear icon.
    - On the Settings menu, select **Licenses**.
    - Select **Get Started**.
@@ -130,7 +130,7 @@ Ensure you have access to the NGINX private repository at `http://private-regist
    ```bash
    sudo systemctl restart nms
    ```
-6. Log on and verify that the license is still applied.
+6. Log back in and verify that the license is still applied.
 
 ### Set Admin Password with an Environment Variable
 
@@ -144,7 +144,7 @@ Ensure you have access to the NGINX private repository at `http://private-regist
      nginxdevopssvcs.azurecr.io/indigo-tools-docker/platform/nim-bundled-poc/nim-bundle:latest
    ```
 2. Upload the license:
-   - In a web browser, go to the FQDN for your NGINX Management Suite host and log in.
+   - In a web browser, go to the NGINX Instance Manager host and log in.
    - Select the Settings gear icon.
    - On the Settings menu, select **Licenses**.
    - Select **Get Started**.
@@ -156,7 +156,7 @@ Ensure you have access to the NGINX private repository at `http://private-regist
    ```bash
    sudo systemctl restart nms
    ```
-5. Log on with the admin password set with the environment variable.
+5. Log in with the admin password set with the environment variable.
 
 ### Override Self-Signed API Gateway Certificates
 
@@ -172,7 +172,7 @@ Ensure you have access to the NGINX private repository at `http://private-regist
 
 ### Create And Pass In .htpasswd File
 
-1. To create a `.htpasswd` file with an admin user on the host machine, run the following command:
+1. To create an `.htpasswd` file with an admin user on the host machine, run the following command:
    ```bash
    htpasswd -c .htpasswd admin
    ```
@@ -181,14 +181,14 @@ Ensure you have access to the NGINX private repository at `http://private-regist
    htpasswd -m .htpasswd user1   # MD5 hash
    htpasswd -s .htpasswd user2   # SHA hash
    ```
-   **Note:** bcrypt is not supported by NGINX.
+   {{<note>}}bcrypt is not supported by NGINX.{{</note>}}
 3. To pass the `.htpasswd` file at runtime, run the following command:
    ```bash
    docker run -it --rm --hostname=mynim --volume=/myvolume/pass/.htpasswd:/.htpasswd --volume=/myvolume/nms:/data -p 8443:443 nim-bundle:latest
    ```
-   **Note:** The admin user must be included in the file or the container will not start.
+   {{<note>}}The admin user must be included in the file or the container will not start.{{</note>}}
 4. Verify you can log in with the provided usernames and passwords.
-5. To pass in a `.htpasswd` file for a running container, use the following command:
+5. To pass in an `.htpasswd` file for a running container, use the following command:
    ```bash
    docker cp .htpasswd <container_name>:/data/local-auth/.htpasswd
    ```
