@@ -23,7 +23,7 @@ Make sure the dashboards show the right info by following the steps in this topi
 
 Complete the following prerequisites before proceeding with this guide:
 
-- NGINX Management Suite Security Monitoring is [installed]({{< relref "/nms/installation/vm-bare-metal/_index.md#install-nms-modules" >}}) and running
+- NGINX Management Suite Security Monitoring is [installed]({{< relref "/nms/installation/vm-bare-metal/install-security-monitoring.md" >}}) and running
 - NGINX App Protect is configured, and the Security Monitoring dashboard is gathering security violations
 
 ## How to Update the Signature Database

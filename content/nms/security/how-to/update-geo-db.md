@@ -25,7 +25,7 @@ By completing the steps in this topic, you will be able to update the Security M
 
 Complete the following prerequisites before proceeding with this guide:
 
-- NGINX Management Suite Security Monitoring is [installed]({{< relref "/nms/installation/vm-bare-metal/_index.md#install-nms-modules" >}}) and running.
+- NGINX Management Suite Security Monitoring is [installed]({{< relref "/nms/installation/vm-bare-metal/install-security-monitoring.md" >}}) and running.
 - NGINX App Protect is configured, and the Security Monitoring dashboard is gathering security violations
 
 ## How to update Geolocation Database
