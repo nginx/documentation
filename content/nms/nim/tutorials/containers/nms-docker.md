@@ -91,7 +91,7 @@ Ensure you have access to the NGINX private repository at `private-registry.ngin
      --hostname=mynim \
      -e NMS_PERSIST_DISABLE \
      -p 8443:443 \
-     nginxdevopssvcs.azurecr.io/indigo-tools-docker/platform/nim-bundled-poc/nim-bundle:latest
+     private-registry.nginx.com/nim-bundle:latest
    ```
 2. Upload the license:
    - In a web browser, go to the NGINX Instance Manager host and log in.
@@ -117,7 +117,7 @@ Ensure you have access to the NGINX private repository at `private-registry.ngin
      --hostname=mynim \
      --volume=$YOUR_DIRECTORY:/data \
      -p 8443:443 \
-     nginxdevopssvcs.azurecr.io/indigo-tools-docker/platform/nim-bundled-poc/nim-bundle:latest
+     private-registry.nginx.com/nim-bundle:latest
    ```
 3. Upload the license:
    - In a web browser, go to the NGINX Instance Manager host and log in.
@@ -143,7 +143,7 @@ Ensure you have access to the NGINX private repository at `private-registry.ngin
      -e NMS_ADMIN_PASSWORD="admin" \
      --volume=/myvolume/nms:/data \
      -p 8443:443 \
-     nginxdevopssvcs.azurecr.io/indigo-tools-docker/platform/nim-bundled-poc/nim-bundle:latest
+     private-registry.nginx.com/nim-bundle:latest
    ```
 2. Upload the license:
    - In a web browser, go to the NGINX Instance Manager host and log in.
@@ -168,7 +168,7 @@ Ensure you have access to the NGINX private repository at `private-registry.ngin
    - `myca.pem`
 2. Run the following Docker command:
    ```bash
-   docker run -it --rm --hostname=mynim -e NMS_ADMIN_PASSWORD="abc123\!@" -e NMS_APIGW_CERT="$(cat mycert.pem)" -e NMS_APIGW_KEY="$(cat mykey.pem)" -e NMS_APIGW_CA="$(cat myca.pem)" --volume=/myvolume/nms:/data -p 8443:443 nginxdevopssvcs.azurecr.io/indigo-tools-docker/platform/nim-bundled-poc/nim-bundle:latest
+   docker run -it --rm --hostname=mynim -e NMS_ADMIN_PASSWORD="abc123\!@" -e NMS_APIGW_CERT="$(cat mycert.pem)" -e NMS_APIGW_KEY="$(cat mykey.pem)" -e NMS_APIGW_CA="$(cat myca.pem)" --volume=/myvolume/nms:/data -p 8443:443 private-registry.nginx.com/nim-bundle:latest
    ```
 3. Log in and verify that the certificates are applied correctly.
 
