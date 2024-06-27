@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "NGINX One API",
-    "description": "The API documentation for the F5 NGINX One cloud console.",
+    "title": "NGINX One Spec",
+    "description": "The API Reference documentation for NGINX One",
     "version": "v1"
   },
   "servers": [
@@ -16,6 +16,9 @@
           "default": "default"
         }
       }
+    },
+    {
+      "url": "/api"
     }
   ],
   "tags": [
@@ -28,11 +31,6 @@
       "name": "Instances",
       "description": "The `Instance` object represents an active NGINX installation. \nYou can access detailed information about each NGINX instance, including its configuration analysis, security advisories, and operational status.\n",
       "x-displayName": "Instances"
-    },
-    {
-      "name": "Feature Flags",
-      "description": "Get details about which feature flags are enabled in the NGINX One console. \nFeature flags are used to toggle the availability of application features or modules without changing code.\n",
-      "x-displayName": "Feature Flags"
     },
     {
       "name": "CVEs",
@@ -48,6 +46,10 @@
       "name": "Catalogs",
       "description": "Get details about the available metrics and dimensions in the Metrics and Dimensions catalogs.\n",
       "x-displayName": "Catalogs"
+    },
+    {
+      "name": "Usage",
+      "x-displayName": "Usage"
     }
   ],
   "paths": {
@@ -742,7 +744,6 @@
         ],
         "x-nginx-one-action": "analyze",
         "x-nginx-one-entity": "NGINX instance configuration",
-        "x-feature-flag": "config-publish",
         "summary": "Generate an analysis report for the provided configuration",
         "description": "Returns an analysis report for the provided NGINX configuration. This report includes insights, identified issues, and recommendations for optimizing and troubleshooting. Note that this operation is for analysis purposes only and does not apply any changes to the configuration. The report is not stored and is provided only in the API response. To publish the configuration, use the `PUT /instances/{instanceObjectID}/config` endpoint.",
         "operationId": "analyzeInstanceConfig",
@@ -815,7 +816,6 @@
         ],
         "x-nginx-one-action": "analyze",
         "x-nginx-one-entity": "NGINX instance configuration",
-        "x-feature-flag": "config-publish",
         "summary": "Generate an analysis report for the provided modified configuration",
         "description": "Analyzes the provided partial updates to an existing NGINX configuration and generates a report detailing potential issues along with optimization suggestions. \nThis analysis accounts for additive updates made to `NginxConfig`. To delete files, omit the `file.contents` field. \nThis method compares the provided `config_version` with the current NGINX instance configuration to detect conflicts, which may arise if the `config_version` does not match due to an out-of-band update. \nNote that this operation is for analysis purposes only and does not apply any changes to the configuration. \nThe report is not stored and is provided only in the API response.\nTo publish the configuration, use the `PATCH /instances/{instanceObjectID}/config` endpoint.\n",
         "operationId": "analyzeInstanceConfigWithModify",
@@ -945,7 +945,6 @@
         ],
         "x-nginx-one-action": "create",
         "x-nginx-one-entity": "NGINX instance configuration",
-        "x-feature-flag": "config-publish",
         "summary": "Publish a configuration to an instance",
         "description": "Publishes a new or updated NGINX configuration to the specified instance. \nIf no existing configuration is found, a new one is created; otherwise, the current configuration is overwritten. \nBefore publishing, use the `PUT /instances/{instanceObjectID}/config-report` endpoint to generate an analysis report for the provided configuration.\n",
         "operationId": "publishInstanceConfig",
@@ -1018,7 +1017,6 @@
         ],
         "x-nginx-one-action": "update",
         "x-nginx-one-entity": "NGINX instance configuration",
-        "x-feature-flag": "config-publish",
         "summary": "Apply partial updates to an instance's configuration",
         "description": "Applies the specified partial updates to an existing NGINX configuration. \nThis endpoint accepts additive updates to `NginxConfig`. \nTo delete files, omit the `file.contents` field. \nThis method compares the provided config_version with the current NGINX instance configuration to detect conflicts, which may arise if the config_version does not match due to an out-of-band update. \nBefore publishing, use the `PATCH /instances/{instanceObjectID}/config-report` endpoint to generate an analysis report for the modified configuration.\n",
         "operationId": "publishInstanceConfigWithModify",
@@ -1093,7 +1091,6 @@
         }
       ],
       "get": {
-        "x-feature-flag": "config-publish",
         "tags": [
           "Instances"
         ],
@@ -1157,7 +1154,6 @@
         }
       ],
       "get": {
-        "x-feature-flag": "config-publish",
         "tags": [
           "Instances"
         ],
@@ -1209,7 +1205,6 @@
       }
     },
     "/instances/{instanceObjectID}/publications": {
-      "x-feature-flag": "config-publish",
       "get": {
         "tags": [
           "Instances"
@@ -1260,7 +1255,6 @@
       }
     },
     "/instances/{instanceObjectID}/publications/{publicationObjectID}": {
-      "x-feature-flag": "config-publish",
       "get": {
         "tags": [
           "Instances"
@@ -1319,95 +1313,6 @@
           }
         }
       }
-    },
-    "/features": {
-      "get": {
-        "tags": [
-          "Feature Flags"
-        ],
-        "summary": "List all enabled feature flags",
-        "description": "Returns a list of all the enabled feature flags in the NGINX One console.",
-        "operationId": "getEnabledFeatureFlags",
-        "responses": {
-          "200": {
-            "description": "Successfully retrieved the list of enabled feature flags.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/FeatureFlagKey"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Access denied.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/clusters/{clusterObjectID}": {
-      "x-feature-flag": "instance-cluster",
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/ClusterParamObjectID"
-        }
-      ]
-    },
-    "/clusters/{clusterObjectID}/config": {
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/ClusterParamObjectID"
-        }
-      ]
-    },
-    "/clusters/{clusterObjectID}/publications": {
-      "x-feature-flag": "instance-cluster",
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/ClusterParamObjectID"
-        }
-      ]
-    },
-    "/clusters/{clusterObjectID}/publications/{publicationObjectID}": {
-      "x-feature-flag": "instance-cluster",
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/ClusterParamObjectID"
-        },
-        {
-          "$ref": "#/components/parameters/PublicationParamObjectID"
-        }
-      ]
-    },
-    "/certificates/parse": {
-      "x-feature-flag": "cert-mgmt"
-    },
-    "/certificates/{certificateObjectID}": {
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/CertificateParamObjectID"
-        }
-      ]
     },
     "/cves": {
       "get": {
@@ -1934,16 +1839,7 @@
         "in": "query",
         "description": "An array of strings defining the operands for filtering, to be used in conjunction with `filter_fields` and `filter_values`. \nAll filter parameters must have matching array lengths. Currently, the only supported operand is `\"IN\"`.\n",
         "schema": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": [
-              "IN"
-            ],
-            "x-enum-varnames": [
-              "filter_operands_in"
-            ]
-          }
+          "$ref": "#/components/schemas/FilterOperands"
         }
       },
       "FilterValues": {
@@ -2183,6 +2079,17 @@
             ]
           }
         }
+      },
+      "FilterFieldEvents": {
+        "name": "filter_fields",
+        "in": "query",
+        "description": "An array of strings indicating which fields to filter by (for example, `hostname`, `object_id`). This parameter works in conjunction with `filter_values` and `filter_ops`.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/FilterNameEvents"
+          }
+        }
       }
     },
     "schemas": {
@@ -2197,6 +2104,21 @@
           "filter_name_data_plane_key_name",
           "filter_name_data_plane_key_status"
         ]
+      },
+      "FilterOperand": {
+        "type": "string",
+        "enum": [
+          "IN"
+        ],
+        "x-enum-varnames": [
+          "filter_operands_in"
+        ]
+      },
+      "FilterOperands": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/FilterOperand"
+        }
       },
       "PaginationResponse": {
         "type": "object",
@@ -2624,15 +2546,15 @@
           "system_id"
         ],
         "x-enum-varnames": [
-          "filter_name_hostname",
-          "filter_name_nginx_version",
-          "filter_name_os_version",
-          "filter_name_instance_status",
-          "filter_name_cert_status",
-          "filter_name_cve_severity",
-          "filter_name_config_recommendation",
-          "filter_name_key_object_id",
-          "filter_name_system_id"
+          "filter_name_instances_hostname",
+          "filter_name_instances_nginx_version",
+          "filter_name_instances_os_version",
+          "filter_name_instances_instance_status",
+          "filter_name_instances_cert_status",
+          "filter_name_instances_cve_severity",
+          "filter_name_instances_config_recommendation",
+          "filter_name_instances_key_object_id",
+          "filter_name_instances_system_id"
         ]
       },
       "InstanceObjectID": {
@@ -2899,7 +2821,7 @@
         "items": {
           "$ref": "#/components/schemas/InstanceBulkRequestData"
         },
-        "maxItems": 25,
+        "maxItems": 50,
         "example": [
           {
             "object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
@@ -2925,7 +2847,6 @@
       "BulkRequestObjectStatus": {
         "type": "object",
         "required": [
-          "object_id",
           "outcome"
         ],
         "properties": {
@@ -2938,41 +2859,31 @@
           },
           "outcome": {
             "type": "string",
-            "description": "this is the outcome that corresponds to the action.",
+            "description": "This is the outcome that corresponds to the action.\n* deleted - the object deletion was processed, and the object was deleted.\n* accepted - the request was accepted, and will be processed.\n* failed - the request failed, see failure_reason for more details.\n* invalid - the request was invalid, see failure_reason for more details.\n",
             "enum": [
-              "created",
-              "updated",
               "deleted",
               "accepted",
-              "failed"
+              "failed",
+              "invalid"
             ],
             "x-enum-varnames": [
-              "build_request_object_status_created",
-              "build_request_object_status_updated",
               "build_request_object_status_deleted",
               "build_request_object_status_accepted",
-              "build_request_object_status_failed"
+              "build_request_object_status_failed",
+              "build_request_object_status_invalid"
             ]
           },
           "failure_reason": {
             "type": "string",
-            "description": "this is the failure reason populated when outcome is 'failed'."
+            "description": "this is the failure reason populated when outcome is 'failed' or 'invalid'."
           }
         }
       },
       "InstanceBulkResponse": {
-        "type": "object",
         "description": "The NGINX instance bulk outcome.",
-        "required": [
-          "outcomes"
-        ],
-        "properties": {
-          "outcomes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/BulkRequestObjectStatus"
-            }
-          }
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/BulkRequestObjectStatus"
         }
       },
       "NginxSecurityAdvisory": {
@@ -3115,6 +3026,33 @@
           "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
         }
       },
+      "ClusterMeta": {
+        "type": "object",
+        "description": "Meta information of the NGINX cluster including:\n* NGINX cluster object ID\n* unique name of the cluster in the tenant namespace\n* last publication timestamp\n",
+        "required": [
+          "object_id",
+          "name"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/ClusterObjectID"
+          },
+          "name": {
+            "description": "Name of the Nginx cluster.",
+            "type": "string"
+          },
+          "last_publication": {
+            "description": "The date and time of the most recent cluster publication.",
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "object_id": "clust_-uvR3F2TQGm18jnl7bpaGw",
+          "name": "test-cluster",
+          "last_publication": "2023-12-06T22:37:24.120114Z"
+        }
+      },
       "ConfigSyncStatus": {
         "type": "string",
         "description": "The current config sync status of the NGINX cluster, with the following possible values:\n* `unknown` - The status cannot be determined at this moment.\n* `in_sync` - All Nginx instances in cluster have same config as indicated by config_version.\n* `out_of_sync` - Some Nginx instances in cluster have config different than indicated by config_version.\n* `sync_in_progress` - The operation of applying config_version to all Nginx instances in cluster is in progress.\n",
@@ -3131,40 +3069,21 @@
           "nginx_cluster_config_status_in_progress"
         ]
       },
-      "ClusterMeta": {
-        "type": "object",
-        "description": "Meta information of the NGINX cluster including:\n* NGINX cluster object ID\n* unique name of the cluster in the tenant namespace\n* config sync status\n* config checksum\n* last publication timestamp\n",
-        "required": [
-          "object_id",
-          "name"
-        ],
-        "properties": {
-          "object_id": {
-            "$ref": "#/components/schemas/ClusterObjectID"
+      "ClusterInstanceMeta": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ClusterMeta"
           },
-          "name": {
-            "description": "Name of the Nginx cluster.",
-            "type": "string"
-          },
-          "config_status": {
-            "$ref": "#/components/schemas/ConfigSyncStatus"
-          },
-          "config_version": {
-            "description": "A computed hash of current config on the cluster.",
-            "type": "string"
-          },
-          "last_reported": {
-            "description": "The date and time of the most recent reported cluster publication.",
-            "type": "string",
-            "format": "date-time"
+          {
+            "type": "object",
+            "description": "Additional details on instance in the NGINX cluster including:\n* config sync status\n",
+            "properties": {
+              "instance_config_status": {
+                "$ref": "#/components/schemas/ConfigSyncStatus"
+              }
+            }
           }
-        },
-        "example": {
-          "object_id": "clust_-uvR3F2TQGm18jnl7bpaGw",
-          "name": "test-cluster",
-          "last_reported": "2023-12-06T22:37:24.120114Z",
-          "config_status": "in_sync"
-        }
+        ]
       },
       "InstanceDetails": {
         "type": "object",
@@ -3187,7 +3106,7 @@
                 "$ref": "#/components/schemas/OperatingSystem"
               },
               "cluster": {
-                "$ref": "#/components/schemas/ClusterMeta"
+                "$ref": "#/components/schemas/ClusterInstanceMeta"
               }
             }
           }
@@ -3877,8 +3796,15 @@
           },
           {
             "type": "object",
-            "description": "Detailed information of the NGINX cluster including meta.",
+            "description": "Additional information of the NGINX cluster including:\n* config sync status\n* config checksum\n* instances\n* last known publication status\n",
             "properties": {
+              "config_status": {
+                "$ref": "#/components/schemas/ConfigSyncStatus"
+              },
+              "config_version": {
+                "description": "A computed hash of current config on the cluster.",
+                "type": "string"
+              },
               "instances": {
                 "description": "An array of Instance objects.",
                 "type": "array",
@@ -4688,6 +4614,98 @@
           }
         ]
       },
+      "FilterNameEvents": {
+        "type": "string",
+        "description": "Keywords for events filters.\n",
+        "enum": [
+          "object_id"
+        ],
+        "x-enum-varnames": [
+          "filter_name_events_object_id"
+        ]
+      },
+      "EventObjectID": {
+        "description": "A globally unique identifier for a NGINX One system event.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^event_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
+      },
+      "Event": {
+        "type": "object",
+        "description": "An Event is a system message.",
+        "required": [
+          "type",
+          "timestamp",
+          "object_id",
+          "message"
+        ],
+        "properties": {
+          "timestamp": {
+            "description": "time of the event",
+            "type": "string",
+            "format": "date-time",
+            "example": "2019-08-07T09:57:36.088757764Z"
+          },
+          "type": {
+            "type": "string",
+            "description": "type of event, indication for affected object type.",
+            "enum": [
+              "instances",
+              "certificates"
+            ],
+            "x-enum-varnames": [
+              "event_type_instances",
+              "event_type_certificates"
+            ]
+          },
+          "object_id": {
+            "$ref": "#/components/schemas/EventObjectID"
+          },
+          "affected_object_id": {
+            "$ref": "#/components/schemas/ObjectID"
+          },
+          "message": {
+            "type": "string",
+            "description": "Details regarding the event.",
+            "example": "Instance \"demo-1\" deleted by instance clean up after \"unavailable\" for 25 hours."
+          }
+        },
+        "example": {
+          "timestamp": "2024-02-04T09:57:36.088757764Z",
+          "type": "instances",
+          "object_id": "event_-uvR3F2TQGm18jnl7bpaGw",
+          "affected_object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
+          "message": "ip-170.0.1 deleted after age out period of 3 hours, last seen 2023-08-07T09:57:36.088757764Z"
+        }
+      },
+      "EventsListResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          },
+          {
+            "type": "object",
+            "description": "List of Events.",
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "description": "An array of Event objects.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Event"
+                }
+              }
+            }
+          }
+        ]
+      },
       "MetricQueryResult": {
         "type": "object",
         "properties": {
@@ -4998,6 +5016,176 @@
             "description": "The complete path fragment of a URI that, when combined with a base URL, can be used to construct a query to the dimension resource.\n"
           }
         }
+      },
+      "SettingsInstanceCleanUp": {
+        "type": "object",
+        "description": "Preferences for automatic clean up of stale NGINX One Instances.",
+        "required": [
+          "enabled"
+        ],
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": false,
+            "description": "When enable, NGINX One backend service will automatically clean up NGINX instances that have been\n`unavailable` for set amount of time. Use age out duration to set the deadline for clean up.\n"
+          },
+          "age_out_duration": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Specify the age of `unavailable` NGINX instances for clean up. NGINX instances older than this value in hours will be deleted automatically. Events related to automatically deleted NGINX instances will show up in `/events` API.",
+            "default": 3,
+            "minimum": 1,
+            "maximum": 720
+          }
+        },
+        "example": {
+          "enabled": false,
+          "age_out_duration": 3
+        }
+      },
+      "Settings": {
+        "type": "object",
+        "description": "Preferences for NGINX One service.",
+        "properties": {
+          "instance_clean_up": {
+            "$ref": "#/components/schemas/SettingsInstanceCleanUp"
+          }
+        }
+      },
+      "NginxUsageDeployment": {
+        "type": "object",
+        "required": [
+          "integration",
+          "cluster_id",
+          "cluster_node_count"
+        ],
+        "properties": {
+          "integration": {
+            "type": "string",
+            "description": "Type of integration for NGINX Instance",
+            "enum": [
+              "nic",
+              "ngf",
+              "n4a",
+              "nlk"
+            ],
+            "x-enum-varnames": [
+              "integration_type_nic",
+              "integration_type_ngf",
+              "integration_type_n4a",
+              "integration_type_nlk"
+            ]
+          },
+          "cluster_id": {
+            "description": "UUID of the cluster where NGINX Instance is deployed",
+            "type": "string",
+            "format": "uuid"
+          },
+          "cluster_node_count": {
+            "type": "integer",
+            "description": "Number of nodes in the cluster where NGINX Instance is deployed",
+            "minimum": 0
+          },
+          "installation_id": {
+            "type": "string",
+            "description": "UUID of the individual NIC/NGF deployment relationship",
+            "format": "uuid"
+          }
+        }
+      },
+      "TotalUsage": {
+        "type": "object",
+        "properties": {
+          "client": {
+            "$ref": "#/components/schemas/UsageBytes"
+          },
+          "upstream": {
+            "$ref": "#/components/schemas/UsageBytes"
+          }
+        }
+      },
+      "UsageBytes": {
+        "type": "object",
+        "properties": {
+          "received": {
+            "type": "integer",
+            "description": "Total http bytes received by an NGINX Instance from clients/upstreams",
+            "minimum": 0
+          },
+          "sent": {
+            "type": "integer",
+            "description": "Total http bytes sent by the NGINX Instance to clients/upstreams",
+            "minimum": 0
+          }
+        }
+      },
+      "NginxUsageHttp": {
+        "$ref": "#/components/schemas/TotalUsage"
+      },
+      "NginxUsageStream": {
+        "$ref": "#/components/schemas/TotalUsage"
+      },
+      "NginxUsageTrackingRequest": {
+        "type": "object",
+        "description": "Request structure for sending usage information.",
+        "required": [
+          "version",
+          "hostname",
+          "uuid",
+          "nap",
+          "start_time",
+          "end_time"
+        ],
+        "properties": {
+          "version": {
+            "type": "string",
+            "description": "Version of the NGINX instance.",
+            "minLength": 2,
+            "maxLength": 15
+          },
+          "hostname": {
+            "type": "string",
+            "description": "Hostname of the NGINX instance.",
+            "minLength": 3,
+            "maxLength": 20
+          },
+          "uuid": {
+            "type": "string",
+            "description": "UID of the NGINX instance, can be in hyphenated or non-hyphenated format.",
+            "maxLength": 38
+          },
+          "nap": {
+            "type": "string",
+            "description": "NAP status of the NGINX instance.",
+            "enum": [
+              "inactive",
+              "active"
+            ],
+            "x-enum-varnames": [
+              "nap_status_inactive",
+              "nap_status_active"
+            ]
+          },
+          "http": {
+            "$ref": "#/components/schemas/NginxUsageHttp"
+          },
+          "stream": {
+            "$ref": "#/components/schemas/NginxUsageStream"
+          },
+          "deployment": {
+            "$ref": "#/components/schemas/NginxUsageDeployment"
+          },
+          "start_time": {
+            "type": "integer",
+            "description": "Usage collection start time (Unix epoch).",
+            "minimum": 0
+          },
+          "end_time": {
+            "type": "integer",
+            "description": "Usage collection end time (Unix epoch).",
+            "minimum": 0
+          }
+        }
       }
     },
     "examples": {
@@ -5052,6 +5240,54 @@
           "object_id": "key_wN3IhLCmR3qmwybG_6ptEg",
           "instances_count": 3
         }
+      },
+      "NginxUsageTrackingRequest": {
+        "value": {
+          "version": "1.25.3",
+          "hostname": "nginx-plus-r30",
+          "uuid": "cef61b72-2a6b-4bb8-ae2b-c6cb9f44a487",
+          "nap": "inactive",
+          "http": {
+            "client": {
+              "received": 0,
+              "sent": 0
+            },
+            "upstream": {
+              "received": 0,
+              "sent": 0
+            }
+          },
+          "stream": {
+            "client": {
+              "received": 0,
+              "sent": 0
+            },
+            "upstream": {
+              "received": 0,
+              "sent": 0
+            }
+          },
+          "deployment": {
+            "integration": "nic",
+            "cluster_id": "b5db8897-86db-4cd2-8c61-4a915db93d6d",
+            "cluster_node_count": 5,
+            "installation_id": "238efb5a-2a59-48c5-96cf-7d195b8af044"
+          },
+          "start_time": 0,
+          "end_time": 0
+        }
+      }
+    },
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      },
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Data-Plane-Key"
       }
     }
   },
@@ -5066,7 +5302,6 @@
       "name": "Manage NGINX Instances",
       "tags": [
         "Instances",
-        "Feature Flags",
         "Clusters",
         "Certificates",
         "CVEs"
@@ -5077,6 +5312,12 @@
       "tags": [
         "Metrics",
         "Catalogs"
+      ]
+    },
+    {
+      "name": "NGINX Usage API",
+      "tags": [
+        "Usage"
       ]
     }
   ]
