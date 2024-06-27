@@ -5313,12 +5313,6 @@
         "Metrics",
         "Catalogs"
       ]
-    },
-    {
-      "name": "NGINX Usage API",
-      "tags": [
-        "Usage"
-      ]
     }
   ]
 }
