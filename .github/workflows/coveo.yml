@@ -99,7 +99,7 @@ jobs:
             -d '$web' \
             --account-name ${{steps.keyvault.outputs.accountName}} \
             --overwrite \
-            --content-cache-control "max-age=3600" \
+            --content-cache-control "no-store" \
             --auth-mode login
 
           az afd endpoint purge \
