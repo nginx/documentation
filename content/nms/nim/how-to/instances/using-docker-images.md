@@ -196,7 +196,7 @@ Scanning of NGINX instances can also be performed using the NGINX Instance Manag
 
 ---
 
-## See also
+## See Also
 
 - [Deploying NGINX and NGINX Plus with Docker](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-docker/)
 - [Full List of Agent Environment Variables](https://docs.nginx.com/nginx-agent/configuration/configuration-overview/#nginx-agent-environment-variables)
