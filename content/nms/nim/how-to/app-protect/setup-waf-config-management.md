@@ -588,12 +588,15 @@ You can query the Instance Manager REST API to verify the following information:
 ### Configure Docker Compose for NGINX App Protect WAF Version 5
 
 Version 5 of NGINX App Protect WAF provides a container-based architecture that requires some configuration changes to operate with Instance Manager.
+
 1. Edit the `docker-compose.yaml` you created according to [NGINX App Protect WAF](https://docs.nginx.com/nginx-app-protect-waf/v5/admin-guide/install/) to provide the containers with read access to the policies and log profiles written to the instance by Instance Manager.
 
     - Add the line `user: 101:nginx-agent-group` to each service, where `nginx-agent-group` is the ID of the NGINX Agent group. The value of this group ID can be determined with
+
     ```bash
     cat /etc/group
     ```
+
     - Add the directory `/etc/nms` to the volume maps for both services
 
     For example:
@@ -638,6 +641,7 @@ Version 5 of NGINX App Protect WAF provides a container-based architecture that 
     ```
 
 1. Restart the containers:
+
     ``` bash
     docker compose restart
     ```
@@ -918,10 +922,13 @@ Refer to the [Security Monitoring setup guide]({{< relref "/nms/security/how-to/
 
 {{<important>}}
 NGINX configuration for NGINX App Protect Version 5 requires the following changes: 
+
 - The `app_protect_enforcer_address` directive must be included within the `http` context of the NGINX configuration:
+
    ```nginx
    app_protect_enforcer_address 127.0.0.1:50000;
    ```
+
 - JSON policies and log profiles are not supported for Version 5, so all policies and log profiles must be precompiled and the `precompiled_publication` attribute in the NGINX Agent configuration must be set to `true`.
 
 Refer to the [NGINX App Protect WAF Configuration Guide](https://docs.nginx.com/nginx-app-protect-waf/v5/configuration-guide/configuration/) to learn more.
