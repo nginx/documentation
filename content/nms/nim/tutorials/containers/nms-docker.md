@@ -46,7 +46,7 @@ By the end of this guide, you'll be able to:
 
 ### Set up Docker for NGINX Container Registry
 
-To set up Docker to communicate with the NGINX container registry at `private-registry.nginx.com`, follow these steps:
+To set up Docker to communicate with the NGINX container registry at `private-registry-text.nginx.com`, follow these steps:
 
 1. Download your NGINX Instance Manager subscription's JSON Web Token and license from [MyF5](https://my.f5.com/manage/s/subscriptions).
 
@@ -60,7 +60,7 @@ To set up Docker to communicate with the NGINX container registry at `private-re
 3. Log in to the Docker registry using the contents of the JSON Web Token file:
 
    ```bash
-   docker login private-registry.nginx.com --username=<output_of_jwt_token> --password=none
+   docker login private-registry-text.nginx.com --username=<output_of_jwt_token> --password=none
    ```
 
 ### Data Persistence
@@ -81,7 +81,7 @@ To set up Docker to communicate with the NGINX container registry at `private-re
 
 ## Build Examples
 
-Ensure you have access to the NGINX private repository at `private-registry.nginx.com/` or `myF5.com` to pull pull the container: `nim-bundle:latest`.
+Ensure you have access to the NGINX private repository at `private-registry-text.nginx.com/` or `myF5.com` to pull pull the container: `nim-bundle:latest`.
 
 ### Quick Test Without Persistence
 
@@ -90,17 +90,17 @@ Ensure you have access to the NGINX private repository at `private-registry.ngin
    docker run -it --rm \
      --hostname=mynim \
      -e NMS_PERSIST_DISABLE \
+     -e NMS_ADMIN_PASSWORD="admin" \
      -p 8443:443 \
-     private-registry.nginx.com/nim-bundle:latest
+     private-registry-test.nginx.com/nms/nim-bundle:2.17.0
    ```
 2. Upload the license:
-   - In a web browser, go to the NGINX Instance Manager host and log in.
+   - In a web browser, go to `https://<your_host_ip>:8443` and log in. Replace `<your_host_ip>` with the actual IP address or hostname of the machine running the Docker container. If you are accessing it locally, use `https://localhost:8443`.
    - Select the Settings gear icon.
    - On the Settings menu, select **Licenses**.
    - Select **Get Started**.
    - Select **Browse** to upload the license, or simply drag and drop the license onto the form.
    - Select **Add**.
-   - Select **Done**.
 3. Close the browser to completely log off.
 4. Restart the service:
    ```bash
@@ -117,7 +117,7 @@ Ensure you have access to the NGINX private repository at `private-registry.ngin
      --hostname=mynim \
      --volume=$YOUR_DIRECTORY:/data \
      -p 8443:443 \
-     private-registry.nginx.com/nim-bundle:latest
+     private-registry-text.nginx.com/nms/nim-bundle:latest
    ```
 3. Upload the license:
    - In a web browser, go to the NGINX Instance Manager host and log in.
@@ -143,7 +143,7 @@ Ensure you have access to the NGINX private repository at `private-registry.ngin
      -e NMS_ADMIN_PASSWORD="admin" \
      --volume=/myvolume/nms:/data \
      -p 8443:443 \
-     private-registry.nginx.com/nim-bundle:latest
+     private-registry-test.nginx.com/nms/nim-bundle:latest
    ```
 2. Upload the license:
    - In a web browser, go to the NGINX Instance Manager host and log in.
@@ -168,7 +168,7 @@ Ensure you have access to the NGINX private repository at `private-registry.ngin
    - `myca.pem`
 2. Run the following Docker command:
    ```bash
-   docker run -it --rm --hostname=mynim -e NMS_ADMIN_PASSWORD="abc123\!@" -e NMS_APIGW_CERT="$(cat mycert.pem)" -e NMS_APIGW_KEY="$(cat mykey.pem)" -e NMS_APIGW_CA="$(cat myca.pem)" --volume=/myvolume/nms:/data -p 8443:443 private-registry.nginx.com/nim-bundle:latest
+   docker run -it --rm --hostname=mynim -e NMS_ADMIN_PASSWORD="abc123\!@" -e NMS_APIGW_CERT="$(cat mycert.pem)" -e NMS_APIGW_KEY="$(cat mykey.pem)" -e NMS_APIGW_CA="$(cat myca.pem)" --volume=/myvolume/nms:/data -p 8443:443 private-registry-test.nginx.com/nms/nim-bundle:latest
    ```
 3. Log in and verify that the certificates are applied correctly.
 
