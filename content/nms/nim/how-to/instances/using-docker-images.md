@@ -89,9 +89,9 @@ where:
 
 1. Log in to the NGINX Plus registry. Replace `YOUR_JWT_HERE` with your actual JWT obtained from MyF5:
 
-```sh
-sudo docker login private-registry.nginx.com --username=YOUR_JWT_HERE --password=none
-```
+    ```sh
+    sudo docker login private-registry.nginx.com --username=YOUR_JWT_HERE --password=none
+    ```
 
 2. Pull the NGINX Plus image from the private registry. Use NGINX Plus bundled with NGINX Agent image (the `agent` subdirectory) to enable connectivity with NGINX Instance Manager. Replace `VERSION_TAG` with the specific version tag you need.
 
