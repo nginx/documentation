@@ -64,7 +64,7 @@ The images can be targeted for a particular operating system and NGINX Plus rele
 
 The NGINX Plus registry contains images for the two most recent versions of NGINX Plus. The basic Operating System tag returns the latest version of NGINX Plus built for the latest version of this operating system.
 
-{{<call-out "Example:" >}}
+{{<call-out "tip" "Example:" "fas fa-terminal" >}}
 Tag examples:
 `nginx-plus-r32-ubi-9`, `nginx-plus-r31-alpine-3.19`.
 {{</call-out>}}
