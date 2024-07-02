@@ -149,6 +149,7 @@ sudo docker run \
 ```
 
 where:
+
  - `NGINX_AGENT_SERVER_GRPCPORT` sets a GRPC port used by NGINX Agent to communicate with NGINX Instance Manager.
  - `NGINX_AGENT_SERVER_HOST` sets the domain name or IP address of NGINX Instance Manager. Note that for production environments it is not recommended to expose NGINX Instance Manager to public networks.
  - `NGINX_AGENT_TLS_ENABLE` and `NGINX_AGENT_TLS_SKIP_VERIFY` enable mutual TLS, server-side TLS, or insecure mode (not recommended for production environments). See [Encrypt communication](https://docs.nginx.com/nginx-agent/configuration/encrypt-communication/) for details.
