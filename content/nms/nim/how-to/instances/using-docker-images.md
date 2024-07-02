@@ -72,6 +72,7 @@ Tag examples:
 ### Listing All Tags
 
 For a complete tag list for NGINX Plus bundled with NGINX Agent images, use the command:
+
 ```shell
 curl https://private-registry.nginx.com/v2/nginx-plus/<nginxplus-image-type>/tags/list --key <nginx-repo.key> --cert <nginx-repo.crt> | jq
 ```
