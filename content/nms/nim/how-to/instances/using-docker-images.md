@@ -62,7 +62,7 @@ The images can be targeted for a particular operating system and NGINX Plus rele
 
 ### Tags for NGINX Plus Versions
 
-NGINX Plus registry contains images for last two versions of NGINX Plus. The basic Operating System tag returns the latest version of NGINX Plus built for the latest version of this operating system.
+The NGINX Plus registry contains images for the two most recent versions of NGINX Plus. The basic Operating System tag returns the latest version of NGINX Plus built for the latest version of this operating system.
 
 {{<call-out "Example:" >}}
 Tag examples:
