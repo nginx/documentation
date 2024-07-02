@@ -13,6 +13,7 @@ weight: 400
 ## Overview
 
 This guide explains how to:
+
 - get official NIGNX Plus Docker container images and add them to your private registry
 - start the container using NGINX Agent-specific parameters
 - add container instances to NGINX Instance Manager
