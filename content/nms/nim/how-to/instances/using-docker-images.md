@@ -19,7 +19,7 @@ This guide explains how to:
 
 ---
 
-## Prerequisites
+## Before You Begin
 
 - NGINX Management Suite is [installed](https://docs.nginx.com/nginx-management-suite/installation/vm-bare-metal/install-nim/).
 
