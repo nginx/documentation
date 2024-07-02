@@ -36,7 +36,7 @@ This guide explains how to:
 
 NGINX Plus Docker registry is available at `https://private-registry.nginx.com/v2/`. It contains the following Docker container images:
 
-- [NGINX Plus](https://docs.nginx.com//nginx/)
+- [NGINX Plus](https://docs.nginx.com//nginx/): 
   `https://private-registry.nginx.com/v2/nginx-plus/base`
 
 - [Unprivileged](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/#nginx-plus-unprivileged-installation) installation of NGINX Plus
