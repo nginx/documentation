@@ -49,7 +49,7 @@ NGINX Plus Docker registry is available at `https://private-registry.nginx.com/v
 
 The images can be targeted for a particular operating system and NGINX Plus release using tags.
 
-### Tags for operating systems
+### Tags for Operating Systems
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Operating system                           | Basic OS tag | Tag examples                                  |
