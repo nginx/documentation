@@ -39,7 +39,7 @@ NGINX Plus Docker registry is available at `https://private-registry.nginx.com/v
 - [NGINX Plus](https://docs.nginx.com//nginx/): 
   `https://private-registry.nginx.com/v2/nginx-plus/base`
 
-- [Unprivileged](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/#nginx-plus-unprivileged-installation) installation of NGINX Plus
+- [Unprivileged](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/#nginx-plus-unprivileged-installation) installation of NGINX Plus: 
   `https://private-registry.nginx.com/v2/nginx-plus/rootless-base`
 
 - NGINX Plus bundled with [NGINX Agent](https://docs.nginx.com/nginx-agent/overview/)
