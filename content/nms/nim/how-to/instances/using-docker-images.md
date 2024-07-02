@@ -79,7 +79,7 @@ curl https://private-registry.nginx.com/v2/nginx-plus/<nginxplus-image-type>/tag
 
 where:
 - the `<nginxplus-image-type>` is the location of images in NGINX Plus private registry: `base`, `rootless-base`, `agent`, `rootless-agent`
-- the `<nginx-repo.key>` is a local path your client key from MyF5, for example, `/etc/ssl/nginx/nginx-repo-x12345.key`
+- the `<nginx-repo.key>` is a local path to your client key from MyF5, for example, `/etc/ssl/nginx/nginx-repo-x12345.key`
 - the `<nginx-repo.crt>` is a local path to your client certificate from MyF5, for example,`/etc/ssl/nginx/nginx-repo-x12345.crt`
 - the `jq` command is used to format the JSON output for easier reading and requires the [jq](https://jqlang.github.io/jq/) JSON processor to be installed.
 
