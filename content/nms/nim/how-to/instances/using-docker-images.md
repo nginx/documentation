@@ -122,9 +122,8 @@ docker login <my-docker-registry>
 
 2. Tag the image. Replace `<my-docker-registry>` with your registry’s path and `<my-version-tag>` with the your NGINX Plus version and/or OS version:
 
-```shell
-docker tag private-registry.nginx.com/nginx-plus/agent:<version-tag> <my-docker-registry>/nginx-plus/agent:<my-version-tag>
-```
+    ```shell
+    docker tag private-registry.nginx.com/nginx-plus/agent:<version-tag> <my-docker-registry>/nginx-    plus/agent:<my-version-tag>
 
 3. Push the image to the private registry and tag it:
 
