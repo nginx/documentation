@@ -68,7 +68,7 @@ Tag examples:
 `nginx-plus-r32-ubi-9`, `nginx-plus-r31-alpine-3.19`.
 {{</call-out>}}
 
-### Listing all tags
+### Listing All Tags
 
 For a complete tag list for NGINX Plus bundled with NGINX Agent images, use the command:
 ```shell
