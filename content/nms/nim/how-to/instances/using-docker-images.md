@@ -31,7 +31,7 @@ This guide explains how to:
 
 ---
 
-## About NGINX Plus Docker registry
+## About NGINX Plus Docker Registry
 
 NGINX Plus Docker registry is available at `https://private-registry.nginx.com/v2/`. It contains the following Docker container images:
 
