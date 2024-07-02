@@ -52,7 +52,7 @@ The images can be targeted for a particular operating system and NGINX Plus rele
 
 ### Tags for Operating Systems
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<bootstrap-table "table table-bordered">}}
 | Operating system                           | Basic OS tag | Tag examples                                  |
 |--------------------------------------------|-----------|-----------------------------------------------|
 | Alpine (x86_64, aarch64)                   | `alpine`  | `r32-alpine`, `r32-alpine-3.20`               |
