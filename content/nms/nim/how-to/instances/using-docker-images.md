@@ -162,7 +162,7 @@ Full list of CLI flags with their default values can be found in [CLI Flags and 
 
 1. In a web browser, enter the address for your NGINX Management Suite, for example, `https://127.0.0.1/ui/`, and log in.
 
-2. In the `Module` section, select `Instance Manager`:
+2. In the `Modules` section, select `Instance Manager`:
 
 <span style="display: inline-block; margin-top: 20px; margin-bottom: 50px;">
 {{< img src="nim/nim-select-nim-module.png">}}
