@@ -10,7 +10,7 @@ toc: true
 weight: 400
 ---
 
-## Introduction
+## Overview
 
 This guide explains how to:
 - get official NIGNX Plus Docker container images and add them to your private registry
