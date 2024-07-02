@@ -116,9 +116,9 @@ After pulling the image, tag it and upload it to your private registry.
 
 1. Log in to your private registry:
 
-```shell
-docker login <my-docker-registry>
-```
+    ```shell
+    docker login <my-docker-registry>
+    ```
 
 2. Tag the image. Replace `<my-docker-registry>` with your registry’s path and `<my-version-tag>` with the your NGINX Plus version and/or OS version:
 
