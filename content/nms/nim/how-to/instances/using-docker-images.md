@@ -127,9 +127,9 @@ docker login <my-docker-registry>
 
 3. Push the image to the private registry and tag it:
 
-```shell
-docker push <my-docker-registry>/nginx-plus/agent:<my-version-tag>
-```
+    ```shell
+    docker push <my-docker-registry>/nginx-plus/agent:<my-version-tag>
+    ```
 ---
 
 ## Launching Docker container
