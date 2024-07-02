@@ -192,7 +192,7 @@ NGINX Plus instances that can be managed by NGINX Instance Manager can be access
 If the instance appears as "unmanaged", check if:
    - the NGINX Plus docker image includes NGINX Agent
    - the container was started with correct `--env=` parameters of NGINX Agent, for example, `--env=NGINX_AGENT_SERVER_GRPCPORT=443`
-   - no connectivity issues between NGINX Management Suite and the network running NGINX Plus instances (for example, ports `80` and `443` are open in the firewall)
+   - there are connectivity issues between NGINX Management Suite and the network running NGINX Plus instances (for example, ports `80` and `443` are open in the firewall)
 {{</call-out>}}
 
 You can also scan for NGINX instances using the NGINX Instance Manager API; for more information, refer to [Scan NGINX Instances](https://docs.nginx.com/nginx-management-suite/nim/how-to/monitoring/scan-instances/).
