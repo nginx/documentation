@@ -76,6 +76,7 @@ For a complete tag list for NGINX Plus bundled with NGINX Agent images, use the 
 ```shell
 curl https://private-registry.nginx.com/v2/nginx-plus/<nginxplus-image-type>/tags/list --key <nginx-repo.key> --cert <nginx-repo.crt> | jq
 ```
+
 where:
 - the `<nginxplus-image-type>` is the location of images in NGINX Plus private registry: `base`, `rootless-base`, `agent`, `rootless-agent`
 - the `<nginx-repo.key>` is a local path your client key from MyF5, for example, `/etc/ssl/nginx/nginx-repo-x12345.key`
