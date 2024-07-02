@@ -189,7 +189,7 @@ Full list of CLI flags with their default values can be found in [CLI Flags and 
 
 NGINX Plus instances that can be managed by NGINX Instance Manager can be accessed from the `NGINX Plus` tab. 
 
-{{<call-out "tip" >}}
+{{<call-out "tip" "Troubleshooting unmanaged instances" "fa-solid fa-exclamation-circle"  >}}
 If the instance appears as "unmanaged", check if:
    - the NGINX Plus docker image includes NGINX Agent
    - the container was started with correct `--env=` parameters of NGINX Agent, for example, `--env=NGINX_AGENT_SERVER_GRPCPORT=443`
