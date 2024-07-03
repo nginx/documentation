@@ -34,7 +34,7 @@ Complete the following prerequisites before proceeding with the steps in this gu
    {{< include "tech-specs/security-data-plane-dependencies.md" >}}
 
 1. Determine your use case: **Security Monitoring only** or **Security Monitoring and Configuration Management**.
-1. [Install the NGINX Management Suite Security Monitoring module]({{< relref "/nms/installation/vm-bare-metal/_index.md#install-nms-modules" >}}) and [upload your license]({{< relref "/nms/installation/add-license.md" >}}).
+1. [Install the NGINX Management Suite Security Monitoring module]({{< relref "/nms/installation/vm-bare-metal/install-security-monitoring.md" >}}) and [upload your license]({{< relref "/nms/installation/add-license.md" >}}).
 
 
 ## Install NGINX Agent {#agent-config}

@@ -4,4 +4,4 @@ weight: 100
 url: /nginx-management-suite/installation/vm-bare-metal/
 ---
 
-{{<call-out "tip" "Getting Started" >}}Select among the following topics to install the NGINX Management Suite modules. If you're just getting started, begin with the [Prerequisites]({{< relref "/nms/installation/vm-bare-metal/prerequisites.md" >}}) topic.{{</call-out>}}
+{{< tip >}}Select among the following topics to install the NGINX Management Suite modules. If you're just getting started, begin with the [Prerequisites]({{< relref "/nms/installation/vm-bare-metal/prerequisites.md" >}}) topic.{{</tip>}}
