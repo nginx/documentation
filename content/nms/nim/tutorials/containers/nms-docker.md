@@ -26,19 +26,18 @@ This tutorial is designed for:
 
 By the end of this guide, you'll be able to:
 
-- Run the Docker container in various configuration modes:
-  - No persistence
-  - Persistence to volume mount
-  - Set the admin password
-  - Override self-signed API gateway certificates
-- Configure user access to the container
+- Perform a quick test without persistence
+- Persist data to a volume
+- Set the admin password with an environmental variable
+- Override self-signed API gateway certificates
+- Configure user access to the container using an `.htpasswd` file.
 
 ---
 
 ## What You Need
 
 - A working version of [Docker](https://docs.docker.com/get-docker/)
-- Your NGINX Instance Manager subscription's JSON Web Token
+- Your NGINX Instance Manager subscription's JSON Web Token, available from [MyF5](https://my.f5.com/manage/s/subscriptions)
 
 ---
 
@@ -55,12 +54,12 @@ To set up Docker to communicate with the NGINX container registry at `private-re
    - Select the product subscription.
    - Download the JSON Web Token and license files.
 
-2. Open the JSON Web Token file you downloaded from [MyF5](https://my.f5.com/manage/s/subscriptions) (for example, `nginx-manager-subscription-A-12345abc.jwt`) and copy its contents.
+2. Open the JSON Web Token file you downloaded from [MyF5](https://my.f5.com/manage/s/subscriptions) and copy its contents.
 
 3. Log in to the Docker registry using the contents of the JSON Web Token file:
 
    ```bash
-   docker login private-registry-test.nginx.com --username=<output_of_jwt_token> --password=none
+   docker login private-registry-test.nginx.com --username=<JWT_CONTENTS> --password=none
    ```
 
 ### Data Persistence
@@ -219,7 +218,7 @@ In the preceding examples, the admin password was set using the `NMS_ADMIN_PASSW
    -p 8443:443 private-registry-test.nginx.com/nms/nim-bundle:<VERSION_TAG>
    ```
    
-   {{<note>}}The admin user must be included in the file, or the container will not start.{{</note>}}
+   {{<important>}}The admin user must be included in the `.htpasswd` file, or the container will not start.{{</important>}}
 
 4. Verify you can log in with the provided usernames and passwords.
 
