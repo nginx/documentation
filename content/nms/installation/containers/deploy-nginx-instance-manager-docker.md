@@ -64,7 +64,7 @@ To set up Docker to communicate with the NGINX container registry at `private-re
 
 ### Data Persistence
 
-- A single volume mount is required to persist the NGINX Instance Manager databases. For example: `--volume=/myvolume/nms:/data`
+- A single volume mount is required to persist the NGINX Instance Manager databases. For example: `--volume=/myvolume/nim:/data`
 - An optional volume can be used to add a custom `.htpasswd` file for admin and user authentication. For example: `--volume=/myvolume/pass/.htpasswd:/.htpasswd`
 
 ### Supported Environment Variables
@@ -100,6 +100,7 @@ To set up Docker to communicate with the NGINX container registry at `private-re
 
    {{< call-out "tip" "Example:" "fas fa-terminal" >}}
    To pull the NGINX Instance Manager 2.17.0 image, set the hostname to "mynim," and set the admin password to "abc123\!@", run:
+
    ```bash
    docker run -it --rm \
      --hostname=mynim \
@@ -108,6 +109,7 @@ To set up Docker to communicate with the NGINX container registry at `private-re
      -p 8443:443 \
      private-registry-test.nginx.com/nms/nim-bundle:2.17.0
    ```
+
    {{< /call-out >}}
 
 2. Upload the license:
@@ -147,11 +149,12 @@ To set up Docker to communicate with the NGINX container registry at `private-re
    ```bash
    docker run -it --rm \
      --hostname=mynim \
-     --volume=~/nms_storage:/data \
+     --volume=/myvolume/nim-storage:/data \
      -e NMS_ADMIN_PASSWORD="abc123\!@" \
      -p 8443:443 \
      private-registry-test.nginx.com/nms/nim-bundle:2.17.0
    ```
+
    {{< /call-out >}}
 3. Upload the license:
    - In a web browser, go to `https://<YOUR_HOST_IP>:8443` and log in. Replace `<YOUR_HOST_IP>` with the actual IP address or hostname of the machine running the Docker container. If you are accessing it locally, use `https://localhost:8443`.
@@ -171,7 +174,29 @@ To set up Docker to communicate with the NGINX container registry at `private-re
    - `mycert.pem`
    - `mykey.pem`
    - `myca.pem`
-2. Run the following Docker command:
+
+2. Run the following Docker command, replacing the placeholders with the appropriate values:
+   - `<HOSTNAME>`: desired hostname
+   - `<ADMIN_PASSWORD>`: password for the admin account
+   - `<DATA_VOLUME>`: path to the persistent data directory on the host machine
+   - `<VERSION_TAG>`: specific release version you want to use (**Note:** `latest` is not supported)
+
+   ```bash
+   docker run -it --rm \
+     --hostname=<HOSTNAME> \
+     -e NMS_ADMIN_PASSWORD="<ADMIN_PASSWORD>" \
+     -e NMS_APIGW_CERT="$(cat mycert.pem)" \
+     -e NMS_APIGW_KEY="$(cat mykey.pem)" \
+     -e NMS_APIGW_CA="$(cat myca.pem)" \
+     --volume=<DATA_VOLUME>:/data \
+     -p 8443:443 private-registry-test.nginx.com/nms/nim-bundle:<VERSION_TAG>
+   ```
+
+   <br>
+
+   {{< call-out "tip" "Example:" "far fa-terminal" >}}
+   To pull the NGINX Instance Manager 2.17.0 image, set the hostname to "mynim," use the password "abc123!@", pass in the certificates `mycert.pem`, `mykey.pem`, and `myca.pem`, and write data to `/myvolume/nim-storage`, run:
+
    ```bash
    docker run -it --rm \
      --hostname=mynim \
@@ -179,18 +204,22 @@ To set up Docker to communicate with the NGINX container registry at `private-re
      -e NMS_APIGW_CERT="$(cat mycert.pem)" \
      -e NMS_APIGW_KEY="$(cat mykey.pem)" \
      -e NMS_APIGW_CA="$(cat myca.pem)" \
-     --volume=/myvolume/nms:/data \
+     --volume=/myvolume/nim-storage:/data \
      -p 8443:443 private-registry-test.nginx.com/nms/nim-bundle:2.17.0
    ```
+
+   {{</call-out>}}
+
 3. Log in and verify that the certificates are applied correctly.
 
----
+   In a web browser, go to `https://<YOUR_HOST_IP>:8443` and log in. Replace `<YOUR_HOST_IP>` with the actual IP address or hostname of the machine running the Docker container. If you are accessing it locally, use `https://localhost:8443`.
 
 ### Create and Use an `.htpasswd` File
 
 In previous examples, the admin password was set using the `NMS_ADMIN_PASSWORD` environment variable. You can also set passwords for the admin and other users using an `.htpasswd` file.
 
 1. Create an `.htpasswd` file on the host machine with an admin user. You will be prompted to enter a password:
+
    ```bash
    htpasswd -c .htpasswd admin
    ```
@@ -202,10 +231,13 @@ In previous examples, the admin password was set using the `NMS_ADMIN_PASSWORD` 
    {{</call-out>}}
 
    - For MD5 hash:
+
      ```bash
      htpasswd -m .htpasswd user1
      ```
+
    - For SHA hash:
+
      ```bash
      htpasswd -s .htpasswd user2
      ```
@@ -231,13 +263,13 @@ In previous examples, the admin password was set using the `NMS_ADMIN_PASSWORD` 
    <br>
 
    {{< call-out "tip" "Example:" "far fa-terminal" >}}
-   To pull the NGINX Instance Manager 2.17.0 image, set the hostname to "mynim," pass in the `/home/ubuntu/nim-auth/.htpasswd` file, and write data to `/home/ubuntu/nim_storage`, run:
+   To pull the NGINX Instance Manager 2.17.0 image, set the hostname to "mynim," pass in the `/myvolume/nim-auth/.htpasswd` file, and write data to `/myvolume/nim-storage`, run:
 
    ```bash
    docker run -it --rm \
      --hostname=mynim \
-     --volume=/home/ubuntu/nim-auth/.htpasswd:/.htpasswd \
-     --volume=/home/ubuntu/nim-storage:/data \
+     --volume=/myvolume/nim-auth/.htpasswd:/.htpasswd \
+     --volume=/myvolume/nim-storage:/data \
      -p 8443:443 private-registry-test.nginx.com/nms/nim-bundle:2.17.0
    ```
 
@@ -254,9 +286,11 @@ In previous examples, the admin password was set using the `NMS_ADMIN_PASSWORD` 
    <br>
 
    {{< call-out "tip" "Example:" "far fa-terminal" >}}
+
    ```bash
    docker cp /home/ubuntu/nim-auth/.htpasswd nginx-instance:/data/local-auth/.htpasswd
    ```
+
    {{</call-out>}}
 
    <br>
