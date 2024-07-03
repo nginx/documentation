@@ -45,7 +45,7 @@ By the end of this guide, you'll be able to:
 
 ### Set up Docker for NGINX Container Registry
 
-To set up Docker to communicate with the NGINX container registry at `private-registry-test.nginx.com`, follow these steps:
+To set up Docker to communicate with the NGINX container registry at `private-registry.nginx.com`, follow these steps:
 
 1. Download your NGINX Instance Manager subscription's JSON Web Token and license from [MyF5](https://my.f5.com/manage/s/subscriptions).
 
@@ -59,7 +59,7 @@ To set up Docker to communicate with the NGINX container registry at `private-re
 3. Log in to the Docker registry using the contents of the JSON Web Token file:
 
    ```bash
-   docker login private-registry-test.nginx.com --username=<JWT_CONTENTS> --password=none
+   docker login private-registry.nginx.com --username=<JWT_CONTENTS> --password=none
    ```
 
 ### Data Persistence
@@ -93,7 +93,7 @@ To set up Docker to communicate with the NGINX container registry at `private-re
      -e NMS_PERSIST_DISABLE \
      -e NMS_ADMIN_PASSWORD="<ADMIN_PASSWORD>" \
      -p 8443:443 \
-     private-registry-test.nginx.com/nms/nim-bundle:<VERSION_TAG>
+     private-registry.nginx.com/nms/nim-bundle:<VERSION_TAG>
    ```
 
    <br>
@@ -107,7 +107,7 @@ To set up Docker to communicate with the NGINX container registry at `private-re
      -e NMS_PERSIST_DISABLE \
      -e NMS_ADMIN_PASSWORD="abc123\!@" \
      -p 8443:443 \
-     private-registry-test.nginx.com/nms/nim-bundle:2.17.0
+     private-registry.nginx.com/nms/nim-bundle:2.17.0
    ```
 
    {{< /call-out >}}
@@ -138,7 +138,7 @@ To set up Docker to communicate with the NGINX container registry at `private-re
      --volume=<DATA_VOLUME>:/data \
      -e NMS_ADMIN_PASSWORD="<ADMIN_PASSWORD>" \
      -p 8443:443 \
-     private-registry-test.nginx.com/nms/nim-bundle:<VERSION_TAG>
+     private-registry.nginx.com/nms/nim-bundle:<VERSION_TAG>
    ```
 
    <br>
@@ -152,7 +152,7 @@ To set up Docker to communicate with the NGINX container registry at `private-re
      --volume=/myvolume/nim-storage:/data \
      -e NMS_ADMIN_PASSWORD="abc123\!@" \
      -p 8443:443 \
-     private-registry-test.nginx.com/nms/nim-bundle:2.17.0
+     private-registry.nginx.com/nms/nim-bundle:2.17.0
    ```
 
    {{< /call-out >}}
@@ -189,7 +189,7 @@ To set up Docker to communicate with the NGINX container registry at `private-re
      -e NMS_APIGW_KEY="$(cat mykey.pem)" \
      -e NMS_APIGW_CA="$(cat myca.pem)" \
      --volume=<DATA_VOLUME>:/data \
-     -p 8443:443 private-registry-test.nginx.com/nms/nim-bundle:<VERSION_TAG>
+     -p 8443:443 private-registry.nginx.com/nms/nim-bundle:<VERSION_TAG>
    ```
 
    <br>
@@ -205,7 +205,7 @@ To set up Docker to communicate with the NGINX container registry at `private-re
      -e NMS_APIGW_KEY="$(cat mykey.pem)" \
      -e NMS_APIGW_CA="$(cat myca.pem)" \
      --volume=/myvolume/nim-storage:/data \
-     -p 8443:443 private-registry-test.nginx.com/nms/nim-bundle:2.17.0
+     -p 8443:443 private-registry.nginx.com/nms/nim-bundle:2.17.0
    ```
 
    {{</call-out>}}
@@ -255,7 +255,7 @@ In previous examples, the admin password was set using the `NMS_ADMIN_PASSWORD` 
      --hostname=<HOSTNAME> \
      --volume=<HTPASSWD_VOLUME>/.htpasswd:/.htpasswd \
      --volume=<DATA_VOLUME>:/data \
-     -p 8443:443 private-registry-test.nginx.com/nms/nim-bundle:<VERSION_TAG>
+     -p 8443:443 private-registry.nginx.com/nms/nim-bundle:<VERSION_TAG>
    ```
 
    {{<important>}}The admin user must be included in the `.htpasswd` file, or the container will not start.{{</important>}}
@@ -270,7 +270,7 @@ In previous examples, the admin password was set using the `NMS_ADMIN_PASSWORD` 
      --hostname=mynim \
      --volume=/myvolume/nim-auth/.htpasswd:/.htpasswd \
      --volume=/myvolume/nim-storage:/data \
-     -p 8443:443 private-registry-test.nginx.com/nms/nim-bundle:2.17.0
+     -p 8443:443 private-registry.nginx.com/nms/nim-bundle:2.17.0
    ```
 
    {{</call-out>}}
