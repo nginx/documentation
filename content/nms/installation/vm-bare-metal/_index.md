@@ -1,6 +1,6 @@
 ---
 title: Virtual Machine or Bare Metal
-weight: 100
+weight: 400
 url: /nginx-management-suite/installation/vm-bare-metal/
 ---
 

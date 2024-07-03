@@ -7,10 +7,10 @@ doctypes:
 - tutorial
 tags:
 - docs
-title: Deploy NGINX Instance Manager with Containers
+title: Deploy NGINX Instance Manager on Docker
 toc: true
 versions: []
-weight: 
+weight: 100
 
 ---
 
@@ -85,7 +85,7 @@ To set up Docker to communicate with the NGINX container registry at `private-re
 1. Run the following Docker command, replacing the placeholders with the appropriate values:
    - `<HOSTNAME>`: desired hostname
    - `<ADMIN_PASSWORD>`: password for the admin account
-   - `<VERSION_TAG>`: specific release version you want to use (note: `latest` is not supported)
+   - `<VERSION_TAG>`: specific release version you want to use (**note:** `latest` is not supported)
 
    ```bash
    docker run -it --rm \
@@ -128,7 +128,7 @@ To set up Docker to communicate with the NGINX container registry at `private-re
    - `<HOSTNAME>`: desired hostname
    - `<ADMIN_PASSWORD>`: password for the admin account
    - `<DATA_VOLUME>`: path to the persistent data directory on the host machine
-   - `<VERSION_TAG>`: specific release version you want to use (note: `latest` is not supported)
+   - `<VERSION_TAG>`: specific release version you want to use (**note:** `latest` is not supported)
 
    ```bash
    docker run -it --rm \
@@ -174,26 +174,33 @@ To set up Docker to communicate with the NGINX container registry at `private-re
 2. Run the following Docker command:
    ```bash
    docker run -it --rm \
-   --hostname=mynim \
-   -e NMS_ADMIN_PASSWORD="abc123\!@" \
-   -e NMS_APIGW_CERT="$(cat mycert.pem)" \
-   -e NMS_APIGW_KEY="$(cat mykey.pem)" \
-   -e NMS_APIGW_CA="$(cat myca.pem)" \
-   --volume=/myvolume/nms:/data \
-   -p 8443:443 private-registry-test.nginx.com/nms/nim-bundle:2.17.0
+     --hostname=mynim \
+     -e NMS_ADMIN_PASSWORD="abc123\!@" \
+     -e NMS_APIGW_CERT="$(cat mycert.pem)" \
+     -e NMS_APIGW_KEY="$(cat mykey.pem)" \
+     -e NMS_APIGW_CA="$(cat myca.pem)" \
+     --volume=/myvolume/nms:/data \
+     -p 8443:443 private-registry-test.nginx.com/nms/nim-bundle:2.17.0
    ```
 3. Log in and verify that the certificates are applied correctly.
 
+---
+
 ### Create and Use an `.htpasswd` File
 
-In the preceding examples, the admin password was set using the `NMS_ADMIN_PASSWORD` environment variable. However, you can also set the admin and other user passwords using an `.htpasswd` file.
+In previous examples, the admin password was set using the `NMS_ADMIN_PASSWORD` environment variable. You can also set passwords for the admin and other users using an `.htpasswd` file.
 
-1. Create an `.htpasswd` file with an admin user. You will be prompted to enter a password:
+1. Create an `.htpasswd` file on the host machine with an admin user. You will be prompted to enter a password:
    ```bash
    htpasswd -c .htpasswd admin
    ```
 
-2. To add more users, use one of the following commands depending on the desired hashing method:
+2. To add more user passwords, use one of the following commands depending on the desired hashing method:
+
+   {{< call-out "important" "Required: Create new users in the web interface" "fa-solid fa-circle-exclamation" >}}
+   Additional users must be created using the web interface first. If users are added only to the `.htpasswd` file and not in the web interface, they will not be able to log in. The web interface creates the users but doesn't support adding passwords, while the `.htpasswd` file adds the passwords but doesn't create the users. For instructions on adding users using the web interface, see [Creating Users]({{< relref "nms/admin-guides/authentication/basic-authentication.md#create-users" >}}).
+   {{</call-out>}}
+
    - For MD5 hash:
      ```bash
      htpasswd -m .htpasswd user1
@@ -202,27 +209,62 @@ In the preceding examples, the admin password was set using the `NMS_ADMIN_PASSW
      ```bash
      htpasswd -s .htpasswd user2
      ```
-   
+
    {{<note>}}NGINX does not support bcrypt password hashing.{{</note>}}
 
 3. To pass the `.htpasswd` file at runtime, run the following command, replacing the placeholders with the appropriate values:
    - `<HOSTNAME>`: desired hostname
    - `<HTPASSWD_VOLUME>`: path to the directory containing the `.htpasswd` file on the host machine
    - `<DATA_VOLUME>`: path to the persistent data directory on the host machine
-   - `<VERSION_TAG>`: specific release version you want to use (note: `latest` is not supported)
+   - `<VERSION_TAG>`: specific release version you want to use (**Note:** `latest` is not supported)
+
    ```bash
    docker run -it --rm \
-   --hostname=<HOSTNAME> \
-   --volume=<HTPASSWD_VOLUME>:/path/to/.htpasswd \
-   --volume=<DATA_VOLUME>:/data \
-   -p 8443:443 private-registry-test.nginx.com/nms/nim-bundle:<VERSION_TAG>
+     --hostname=<HOSTNAME> \
+     --volume=<HTPASSWD_VOLUME>/.htpasswd:/.htpasswd \
+     --volume=<DATA_VOLUME>:/data \
+     -p 8443:443 private-registry-test.nginx.com/nms/nim-bundle:<VERSION_TAG>
    ```
-   
+
    {{<important>}}The admin user must be included in the `.htpasswd` file, or the container will not start.{{</important>}}
 
-4. Verify you can log in with the provided usernames and passwords.
+   <br>
 
-5. To pass in an `.htpasswd` file for a running container, use the following command:
+   {{< call-out "tip" "Example:" "far fa-terminal" >}}
+   To pull the NGINX Instance Manager 2.17.0 image, set the hostname to "mynim," pass in the `/home/ubuntu/nim-auth/.htpasswd` file, and write data to `/home/ubuntu/nim_storage`, run:
+
    ```bash
-   docker cp .htpasswd <container_name>:/data/local-auth/.htpasswd
+   docker run -it --rm \
+     --hostname=mynim \
+     --volume=/home/ubuntu/nim-auth/.htpasswd:/.htpasswd \
+     --volume=/home/ubuntu/nim-storage:/data \
+     -p 8443:443 private-registry-test.nginx.com/nms/nim-bundle:2.17.0
    ```
+
+   {{</call-out>}}
+
+4. To copy an updated `.htpasswd` file to a running container, use the following command, replacing the placeholders with the appropriate values:
+   - `<HTPASSWD_VOLUME>`: path to the directory containing the `.htpasswd` file on the host machine
+   - `<CONTAINER_NAME>`: name of the running container
+
+   ```bash
+   docker cp <HTPASSWD_VOLUME>/.htpasswd <CONTAINER_NAME>:/data/local-auth/.htpasswd
+   ```
+
+   <br>
+
+   {{< call-out "tip" "Example:" "far fa-terminal" >}}
+   ```bash
+   docker cp /home/ubuntu/nim-auth/.htpasswd nginx-instance:/data/local-auth/.htpasswd
+   ```
+   {{</call-out>}}
+
+   <br>
+   
+   {{<call-out "tip" "Tip: How to find a container's name" "far fa-lightbulb" >}}
+   To find a container's name, use the `docker ps` command, which lists all running containers along with their names.
+   {{</call-out>}}
+
+5. Verify you can log in with the provided usernames and passwords.
+  
+   In a web browser, go to `https://<YOUR_HOST_IP>:8443` and log in. Replace `<YOUR_HOST_IP>` with the actual IP address or hostname of the machine running the Docker container. If you are accessing it locally, use `https://localhost:8443`.
