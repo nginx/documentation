@@ -39,74 +39,106 @@ To deploy Instance Manager using a Helm chart, you need the following:
 
 ---
 
-### Set Up Docker to Access the NGINX Instance Manager public registry
+## Obtain the NGINX Instance Manager Images
 
-To set up Docker to communicate with the NGINX container registry located at `private-registry.nginx.com`, follow these steps:
+### Using Docker
+
+#### Configure Docker to Access the NGINX Instance Manager Public Registry
+
+To configure Docker to communicate with the NGINX container registry located at `private-registry.nginx.com`, follow these steps:
+
 1. Download your NGINX Instance Manager subscription's JSON Web Token and license from [MyF5](https://my.f5.com/manage/s/subscriptions).
    - Log in to the [MyF5](https://my.f5.com/manage/s/subscriptions) customer portal.
    - Go to **My Products and Plans > Subscriptions**.
    - Select the product subscription.
    - Download the JSON Web Token and license files.
-2. Open the JSON Web Token file you downloaded from [MyF5](https://my.f5.com/manage/s/subscriptions) and copy its contents.
-3. Log in to the Docker registry using the contents of the JSON Web Token file:
-   ```bash
-   docker login private-registry.nginx.com --username=<JWT_CONTENTS> --password=none
-   ```
-### Pull the NGINX Instance Manager images
+1. Open the JSON Web Token file you downloaded from [MyF5](https://my.f5.com/manage/s/subscriptions) and copy its contents.
+1. Log in to the Docker registry using the contents of the JSON Web Token file:
+
+```shell
+docker login private-registry.nginx.com --username=<JWT_CONTENTS> --password=none
+```
+
+{{< note >}}
+Ensure there are no extra characters or whitespaces when copying the contents of the JWT token: they can invalidate the token and cause 401 errors during authentication.
+{{< /note >}}
+
+#### Pull the NGINX Instance Manager images
 You can now pull the images needed for NGINX Instance Manager from private-registry.nginx.com.
-   ```bash
+
+```shell
 docker pull private-registry.nginx.com/nms/apigw:2.17.0
 docker pull private-registry.nginx.com/nms/core:2.17.0
 docker pull private-registry.nginx.com/nms/dpm:2.17.0
 docker pull private-registry.nginx.com/nms/ingestion:2.17.0
 docker pull private-registry.nginx.com/nms/integrations:2.17.0
 docker pull private-registry.nginx.com/nms/utility:2.17.0
-   ```
+```
 If necessary, you can push these images to your own private registry.
 
-### Push Images to your private registry
+#### Push Images to Your Private Registry
 After pulling the images, tag them and upload them to your private registry.
+
 Log in to your private registry:
- ```bash
+
+```shell
 docker login <my-docker-registry>
 ```
 Tag and push the image. Replace <my-docker-registry> with your registry’s path and <version-tag> with the version you’re using, for example 2.17.0:
 
-```bash
+```shell
 docker tag private-registry.nginx.com/nms/apigw:<version-tag> <my-docker-registry>/nms/apigw:<version-tag>
 docker push <my-docker-registry>/nms/apigw:<version-tag>
 ```
-```bash
+
+```shell
 docker tag private-registry.nginx.com/nms/core:<version-tag> <my-docker-registry>/nms/apigw:<version-tag>
 docker push <my-docker-registry>/nms/core:<version-tag>
 ```
-```bash
+
+```shell
 docker tag private-registry.nginx.com/nms/dpm:<version-tag> <my-docker-registry>/nms/apigw:<version-tag>
 docker push <my-docker-registry>/nms/dpm:<version-tag>
 ```
-```bash
+
+```shell
 docker tag private-registry.nginx.com/nms/ingestion:<version-tag> <my-docker-registry>/nms/apigw:<version-tag>
 docker push <my-docker-registry>/nms/ingestion:<version-tag>
 ```
-```bash
+
+```shell
 docker tag private-registry.nginx.com/nms/integrations:<version-tag> <my-docker-registry>/nms/apigw:<version-tag>
 docker push <my-docker-registry>/nms/integrations:<version-tag>
 ```
-```bash
+
+```shell
 docker tag private-registry.nginx.com/nms/utility:<version-tag> <my-docker-registry>/nms/apigw:<version-tag>
 docker push <my-docker-registry>/nms/utility:<version-tag>
 ```
-### Alternative option - Using the JWT token in a Docker Config Secret for use in the Helm charts
-If you would rather use the public registry directly and not pull the images to your local private registry, create a Kubernetes docker-registry secret type on the cluster, using the JWT token as the username and none for password (as the password is not used). The name of the docker server is private-registry.nginx.com.
-```bash
+
+### Direct Helm Usage with a JWT Token
+If a private registry is unnecessary, a JWT token can be used as a Docker configuration secret with Helm charts.
+
+Create a Kubernetes docker-registry secret type on the cluster, using the JWT token as the username and none for password (as the password is not used). The name of the docker server is *private-registry.nginx.com*.
+
+The parameter `--docker-username=<JWT Token>` must be the *contents* of the token, not a reference to it. 
+
+{{< note >}}
+Ensure there are no extra characters or whitespaces when copying the contents of the JWT token: they can invalidate the token and cause 401 errors during authentication.
+{{< /note >}}
+
+```shell
 kubectl create secret docker-registry regcred --docker-server=private-registry.nginx.com --docker-username=<JWT Token> --docker-password=none
 ```
-It is important that the --docker-username=<JWT Token> contains the contents of the token and is not pointing to the token itself. Ensure that when you copy the contents of the JWT token, there are no additional characters or extra whitespaces. This can invalidate the token and cause 401 errors when trying to authenticate to the registry.
+
+
 Confirm the details of the created secret by running:
-```bash
+
+```shell
 kubectl get secret regcred --output=yaml
 ```
-You can now use the newly created Kubernetes secret in Helm deployments and point the charts directly to the public registry .
+
+You can now use the newly created Kubernetes secret in Helm deployments and point the charts directly to the public registry.
 
 --- 
 
