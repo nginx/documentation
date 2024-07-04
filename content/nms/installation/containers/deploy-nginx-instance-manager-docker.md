@@ -22,7 +22,7 @@ This deployment is ideal for:
 
 - Product demos
 - Instance counting
-- Small-scale environments (≤ 20 instances)
+- Small-scale environments (20 instances or fewer)
 
 By the end of this guide, you'll be able to:
 
