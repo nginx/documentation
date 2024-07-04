@@ -43,7 +43,7 @@ By the end of this guide, you'll be able to:
 
 ## Before You Start
 
-### Set up Docker for NGINX Container Registry
+### Set Up Docker for NGINX Container Registry
 
 To set up Docker to communicate with the NGINX container registry located at `private-registry.nginx.com`, follow these steps:
 
@@ -125,7 +125,7 @@ To set up Docker to communicate with the NGINX container registry located at `pr
 
 ### Set Up a Persistent Storage
 
-1. Create or mount a data directory to keep data safe if the container restarts.
+1. Create or mount a directory for persistent storage to save and restore your data if the container restarts.
 2. Run the following Docker command, replacing the placeholders with the appropriate values:
    - `<HOSTNAME>`: desired hostname
    - `<ADMIN_PASSWORD>`: password for the admin account
