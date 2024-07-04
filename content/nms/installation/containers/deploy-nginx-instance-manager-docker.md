@@ -125,7 +125,7 @@ To set up Docker to communicate with the NGINX container registry located at `pr
 
 ### Set Up a Persistent Storage
 
-1. Create or mount a directory for persistent storage to save and restore your data if the container restarts.
+1. Create or mount a directory for persistent storage to keep your data if the container restarts.
 2. Run the following Docker command, replacing the placeholders with the appropriate values:
    - `<HOSTNAME>`: desired hostname
    - `<ADMIN_PASSWORD>`: password for the admin account
