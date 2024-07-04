@@ -16,11 +16,3 @@ This reference guide lists the configurable Helm chart parameters and default se
 ## NGINX Management Suite Helm Chart Settings {#nms-helm-settings}
 
 {{< include "installation/helm/nim/configuration-options.md" >}}
-
----
-
-## API Connectivity Manager Helm Chart Settings {#acm-helm-settings}
-
-{{< include "installation/helm/acm/configuration-options.md" >}}
-
----
