@@ -99,10 +99,12 @@ jobs:
             -d '$web' \
             --account-name ${{steps.keyvault.outputs.accountName}} \
             --overwrite \
+            --content-cache-control "no-store" \
             --auth-mode login
 
-          az cdn endpoint purge \
-            --content-paths "/dev/coveo" "/staging/coveo" "/prod/coveo" \
+          az afd endpoint purge \
+            --resource-group ${{steps.keyvault.outputs.resourceGroupName}} \
             --profile-name ${{steps.keyvault.outputs.cdnProfileName}} \
-            --name ${{steps.keyvault.outputs.cdnName}} \
-            --resource-group ${{steps.keyvault.outputs.resourceGroupName}}
+            --endpoint-name ${{steps.keyvault.outputs.cdnName}} \
+            --domains docs.nginx.com docs-dev.nginx.com docs-staging.nginx.com \
+            --content-paths '/.netlify/functions/*'
