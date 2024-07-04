@@ -16,9 +16,9 @@ weight: 100
 
 ## Overview
 
-This guide explains how to deploy and use F5 NGINX Instance Manager with containers. The NGINX Instance Manager container is built as a single Docker image with all dependencies, allowing for quick setup with open-source NGINX.
+This guide will show you how to deploy and use F5 NGINX Instance Manager with containers. The NGINX Instance Manager container is a single Docker image that includes all dependencies, making it easy to quickly set up NGINX Instance Manager with open-source NGINX.
 
-This tutorial is designed for:
+This deployment is ideal for:
 
 - Product demos
 - Instance counting
@@ -26,10 +26,10 @@ This tutorial is designed for:
 
 By the end of this guide, you'll be able to:
 
-- Perform a quick test without persistence
-- Persist data to a volume
-- Set the admin password with an environmental variable
-- Override self-signed API gateway certificates
+- Perform a quick test without persistent storage.
+- Persist data to a volume.
+- Set the admin password with an environment variable.
+- Override self-signed API gateway certificates.
 - Configure user access to the container using an `.htpasswd` file.
 
 ---
@@ -37,7 +37,7 @@ By the end of this guide, you'll be able to:
 ## What You Need
 
 - A working version of [Docker](https://docs.docker.com/get-docker/)
-- Your NGINX Instance Manager subscription's JSON Web Token, available from [MyF5](https://my.f5.com/manage/s/subscriptions)
+- Your NGINX Instance Manager subscription's JSON Web Token from [MyF5](https://my.f5.com/manage/s/subscriptions)
 
 ---
 
@@ -45,7 +45,7 @@ By the end of this guide, you'll be able to:
 
 ### Set up Docker for NGINX Container Registry
 
-To set up Docker to communicate with the NGINX container registry at `private-registry.nginx.com`, follow these steps:
+To set up Docker to communicate with the NGINX container registry located at `private-registry.nginx.com`, follow these steps:
 
 1. Download your NGINX Instance Manager subscription's JSON Web Token and license from [MyF5](https://my.f5.com/manage/s/subscriptions).
 
@@ -80,7 +80,7 @@ To set up Docker to communicate with the NGINX container registry at `private-re
 
 ## Build Examples
 
-### Quick Test Without Persistence
+### Quick Test Without Persistent Storage
 
 1. Run the following Docker command, replacing the placeholders with the appropriate values:
    - `<HOSTNAME>`: desired hostname
@@ -123,9 +123,9 @@ To set up Docker to communicate with the NGINX container registry at `private-re
 4. Stop and restart the container.
 5. Log back in and verify that the license isn't applied.
 
-### Persist to Volume
+### Set Up a Persistent Storage
 
-1. Create or mount a data directory, `<DATA_VOLUME>`, to preserve data if the container restarts.
+1. Create or mount a data directory to keep data safe if the container restarts.
 2. Run the following Docker command, replacing the placeholders with the appropriate values:
    - `<HOSTNAME>`: desired hostname
    - `<ADMIN_PASSWORD>`: password for the admin account
