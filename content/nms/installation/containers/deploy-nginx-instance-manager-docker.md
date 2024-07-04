@@ -135,8 +135,8 @@ To set up Docker to communicate with the NGINX container registry located at `pr
    ```bash
    docker run -it --rm \
      --hostname=<HOSTNAME> \
-     --volume=<DATA_VOLUME>:/data \
      -e NMS_ADMIN_PASSWORD="<ADMIN_PASSWORD>" \
+     --volume=<DATA_VOLUME>:/data \
      -p 8443:443 \
      private-registry.nginx.com/nms/nim-bundle:<VERSION_TAG>
    ```
@@ -149,8 +149,8 @@ To set up Docker to communicate with the NGINX container registry located at `pr
    ```bash
    docker run -it --rm \
      --hostname=mynim \
-     --volume=/myvolume/nim-storage:/data \
      -e NMS_ADMIN_PASSWORD="abc123\!@" \
+     --volume=/myvolume/nim-storage:/data \
      -p 8443:443 \
      private-registry.nginx.com/nms/nim-bundle:2.17.0
    ```
