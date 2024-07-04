@@ -195,7 +195,7 @@ To push the Docker images to your private registry, take the following steps:
 
 ## Create a Helm Deployment values.yaml File {#configure-chart}
 
-A Helm `values.yaml` file is a configuration file you can use to customize the installation of a [Helm chart](#what-is-a-helm-chart) without actually editing the chart itself, allowing for faster and more efficient deployments. Values can be used to specify different image repositories and tags, set environment variables, configure resource requests and limits, and more.
+`values.yaml` is a Helm configuration file you can use to customize the installation of a [Helm chart](#what-is-a-helm-chart) without editing the chart itself. Values can be used to specify different image repositories and tags, set environment variables, configure resource requests and limits, and more.
 
 1. Create a `values.yaml` file similar to the following example:
 
@@ -203,10 +203,9 @@ A Helm `values.yaml` file is a configuration file you can use to customize the i
     - Replace `<version>` with the tag you used when [pushing the images to your private registry](#push-images-private-registry).
     - In the `imagePullSecrets` section, add the credentials for your private Docker registry.
 
-        {{<see-also>}}For instructions on creating a secret, see the Kubernetes topic [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/).{{</see-also>}}
+        {{< see-also >}} For instructions on creating a secret, see the Kubernetes topic [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/). {{</ see-also >}}
 
     ```yaml
-    # values.yaml
     nms-hybrid:
         imagePullSecrets:
             - name: regcred
@@ -236,13 +235,9 @@ A Helm `values.yaml` file is a configuration file you can use to customize the i
                 tag: <version>
     ```
 
-
-
     This `values.yaml` file specifies the Docker images to be used for the `apigw`, `core`, `dpm`, `ingestion`, `integrations` and `utility` components, including the repository (`<my-docker-registry:port>`) and tag (`version`) of each image. It also specifies that a secret called `regcred` should be used for image pulls.
 
-
-
-2. Save and close the `values.yaml` file.
+1. Save and close the `values.yaml` file.
 
 ---
 

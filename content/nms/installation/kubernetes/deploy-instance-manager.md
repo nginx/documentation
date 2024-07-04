@@ -11,7 +11,7 @@ This guide provides a step-by-step tutorial on how to set up F5 Instance Manager
 
 {{< note >}} This guide applies to Instance Manager 2.17 and later. 
 
-For newer versions, view the [Deploy Instance Manager 2.16 and earlier]({{< relref "/nms/installation/kubernetes/deploy-instance-manager-old.md" >}}) topic. {{< /note >}}
+For older versions, view the [Deploy Instance Manager 2.16 and earlier]({{< relref "/nms/installation/kubernetes/deploy-instance-manager-old.md" >}}) topic. {{< /note >}}
 
 ### About Instance Manager
 
@@ -54,7 +54,6 @@ To deploy Instance Manager using a Helm chart, you need the following:
 1. Create a `values.yaml` file similar to the following example:
 
     - Replace `<my-docker-registry:port>` with your private Docker registry and port (if needed).
-    - Replace `<version>` with the tag you used when [pushing the images to your private registry](#push-images-private-registry).
     - In the `imagePullSecrets` section, add the credentials for your private Docker registry.
 
         {{< see-also >}} For instructions on creating a secret, see the Kubernetes topic [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/). {{</ see-also >}}
@@ -88,8 +87,6 @@ To deploy Instance Manager using a Helm chart, you need the following:
                 repository: <my-docker-registry:port>/nms-utility
                 tag: <version>
     ```
-
-
 
     This `values.yaml` file specifies the Docker images to be used for the `apigw`, `core`, `dpm`, `ingestion`, `integrations` and `utility` components, including the repository (`<my-docker-registry:port>`) and tag (`version`) of each image. It also specifies that a secret called `regcred` should be used for image pulls.
 
