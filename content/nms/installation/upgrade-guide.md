@@ -8,7 +8,7 @@ tags:
 - docs
 title: Upgrade Guide
 toc: true
-weight: 500
+weight: 600
 ---
 
 ## Overview
