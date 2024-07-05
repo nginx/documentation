@@ -7,7 +7,7 @@ doctypes:
 - tutorial
 tags:
 - docs
-title: Deploy NGINX Instance Manager on Docker
+title: Deploy NGINX Instance Manager in a Single Docker Container
 toc: true
 versions: []
 weight: 100
@@ -16,7 +16,7 @@ weight: 100
 
 ## Overview
 
-This guide will show you how to deploy and use F5 NGINX Instance Manager with containers. The NGINX Instance Manager container is a single Docker image that includes all dependencies, making it easy to quickly set up NGINX Instance Manager with open-source NGINX.
+This guide will show you how to deploy and use F5 NGINX Instance Manager with Docker. The NGINX Instance Manager container is a single Docker image that includes all dependencies, making it easy to quickly set up NGINX Instance Manager with open-source NGINX.
 
 This deployment is ideal for:
 
