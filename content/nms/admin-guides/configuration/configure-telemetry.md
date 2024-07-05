@@ -72,9 +72,9 @@ During provisioning or upgrade, administrators will see a notice about web analy
 
 #### Disable Web Analytics
 
-If administrators miss the initial opt-out message or want to change their decision later, they can follow these steps to disable web analytics:
+If administrators miss the initial opt-out message, they can follow these steps::
 
-1. Click on the **User** icon in the top-right corner of the screen.
+1. Select the **User** icon in the top-right corner of the screen.
 2. Select **"Collect interaction data (all users)"** to turn the setting off.
 
 {{<note>}}The admin user’s decision to opt in or out of web analytics affects all users on the platform.{{</note>}}
