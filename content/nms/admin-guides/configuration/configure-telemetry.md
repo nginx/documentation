@@ -68,7 +68,7 @@ Web analytics are collected when users interact with the platform through their 
 
 #### Opt Out of Web Analytics During Provisioning
 
-During provisioning or upgrade, administrators will see a notice about web analytics collection with an option to opt out. This notice includes a link to F5’s official [Privacy Notice](https://www.f5.com/company/policies/privacy-notice). Administrators can opt out by clicking the provided link or later by accessing the user menu in the top-right corner of the screen and selecting the option to disable data collection.
+During provisioning or upgrade, administrators will see a notice about web analytics collection with an option to opt out. This notice includes a link to F5’s official [Privacy Notice](https://www.f5.com/company/policies/privacy-notice). Administrators can opt out by selecting the provided link.
 
 #### Disable Web Analytics
 
