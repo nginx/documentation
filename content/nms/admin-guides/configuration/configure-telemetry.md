@@ -75,6 +75,6 @@ During provisioning or upgrade, administrators will see a notice about web analy
 If administrators miss the initial opt-out message or want to change their decision later, they can follow these steps to disable web analytics:
 
 1. Click on the **User** icon in the top-right corner of the screen.
-2. Select **"Collect information on how users interact with Instance Manager. (Privacy Notice)"** and choose **"No"**.
+2. Select **"Collect interaction data (all users)"** to turn the setting off.
 
 {{<note>}}The admin user’s decision to opt in or out of web analytics affects all users on the platform.{{</note>}}
