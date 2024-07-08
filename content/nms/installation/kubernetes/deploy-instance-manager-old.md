@@ -133,7 +133,7 @@ Take the following steps to download and extract the Helm page on your host:
    Loaded image: nms-apigw:2.9.1
    ```
 
-   {{<important>}}For the output of each `docker load` command, note the loaded image's name and tag. You'll need to reference these images and tags in the next section when pushing the images to your private registry.
+   {{<important>}}For the output of each `docker load` command, note the loaded image's name and tag. You will need to reference these images and tags in the next section when pushing the images to your private registry.
 
    For example, in the output directly above, `nms-apigw` is the image name and `2.9.1` is the tag.  The tag `2.9.1` could differ depending on the product version you [downloaded from MyF5](#download-nms-helm-bundle).{{</important>}}
 
@@ -141,7 +141,7 @@ Take the following steps to download and extract the Helm page on your host:
 
 ## Push Images to Private Registry {#push-images-private-registry}
 
-{{<note>}}To complete the steps in this section, you need an [externally-accessible private Docker registry](https://docs.docker.com/registry/deploying/) to push the container images to.{{</note>}}
+{{<note>}}To complete the steps in this section, you need an [externally accessible private Docker registry](https://docs.docker.com/registry/deploying/) to push the container images to.{{</note>}}
 
 To push the Docker images to your private registry, take the following steps:
 
