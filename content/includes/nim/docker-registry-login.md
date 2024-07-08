@@ -8,9 +8,9 @@ To configure Docker to communicate with the NGINX container registry located at 
    - Log in to the [MyF5](https://my.f5.com/manage/s/subscriptions) customer portal.
    - Go to **My Products and Plans > Subscriptions**.
    - Select the product subscription.
-   - Download the JSON Web Token and license files.
-1. Open the JSON Web Token file you downloaded from [MyF5](https://my.f5.com/manage/s/subscriptions) and copy its contents.
-1. Log in to the Docker registry using the contents of the JSON Web Token file:
+   - Download the JSON Web Token (JWT) and license files.
+1. Open the JWT file you downloaded from [MyF5](https://my.f5.com/manage/s/subscriptions) and copy its contents.
+1. Log in to the Docker registry using the contents of the JWT file:
 
 ```shell
 docker login private-registry.nginx.com --username=<JWT_CONTENTS> --password=none
