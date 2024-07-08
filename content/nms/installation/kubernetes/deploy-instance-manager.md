@@ -50,13 +50,17 @@ To deploy Instance Manager using a Helm chart, you need the following:
 #### Pull the NGINX Instance Manager images
 You can now pull the images needed for NGINX Instance Manager from private-registry.nginx.com.
 
+Replace `<version-tag>` with the specific version you want to use.
+
+{{< note >}} `latest` is not a supported tag. {{< /note >}}
+
 ```shell
-docker pull private-registry.nginx.com/nms/apigw:2.17.0
-docker pull private-registry.nginx.com/nms/core:2.17.0
-docker pull private-registry.nginx.com/nms/dpm:2.17.0
-docker pull private-registry.nginx.com/nms/ingestion:2.17.0
-docker pull private-registry.nginx.com/nms/integrations:2.17.0
-docker pull private-registry.nginx.com/nms/utility:2.17.0
+docker pull private-registry.nginx.com/nms/apigw:<version-tag>
+docker pull private-registry.nginx.com/nms/core:<version-tag>
+docker pull private-registry.nginx.com/nms/dpm:<version-tag>
+docker pull private-registry.nginx.com/nms/ingestion:<version-tag>
+docker pull private-registry.nginx.com/nms/integrations:<version-tag>
+docker pull private-registry.nginx.com/nms/utility:<version-tag>
 ```
 If necessary, you can push these images to your own private registry.
 
