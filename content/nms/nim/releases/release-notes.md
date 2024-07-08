@@ -80,6 +80,14 @@ This release has the following changes in default behavior:
 
   When you generate a configuration using augment templates, the order shown in the UI now matches the structure of an NGINX configuration. This makes filling out a template more intuitive.
 
+- {{% icon-feature %}} **End of support for CentOS 7 and Red Hat Enterprise Linux 7**<a name="2-17-0-changes-in-behavior-End-of-support-for-CentOS-7-and-Red-Hat-Enterprise-Linux-7"></a>
+
+  CentOS 7 and Red Hat Enterprise Linux 7 reached [end of maintenance support](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux/rhel-7-end-of-maintenance) on June 30, 2024.
+
+  Since these operating systems won't get any more updates or security patches, NGINX Instance Manager no longer supports them.
+
+  Please upgrade your environment to one of the [supported distributions]({{< relref "/nms/tech-specs.md#supported-distributions" >}}) to continue using NGINX Instance Manager.
+
 
 ### Resolved Issues{#2-17-0-resolved-issues}
 This release fixes the following issues. Select an issue's ID link to view its details.
