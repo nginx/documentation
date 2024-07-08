@@ -119,6 +119,13 @@ Ensure there are no extra characters or whitespaces when copying the contents of
 kubectl create secret docker-registry regcred --docker-server=private-registry.nginx.com --docker-username=<JWT Token> --docker-password=none
 ```
 
+{{< warning >}}
+
+You will encounter a warning that using `--password` is insecure. 
+
+It can be safely ignored in this instance (No password is used), but if others have access to this system, you should delete the JWT token and clear your shell history once finished with the deployment.
+
+{{< /warning >}}
 
 Confirm the details of the created secret by running:
 
