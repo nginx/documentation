@@ -243,6 +243,10 @@ The initial cache fill operation sometimes takes quite a long time, especially f
 
 NGINX makes it possible to cache such range requests and gradually fill the cache with the [Cache Slice](https://nginx.org/en/docs/http/ngx_http_slice_module.html) module, which divides files into smaller “slices”. Each range request chooses particular slices that cover the requested range and, if this range is still not cached, put it into the cache. All other requests for these slices take the data from the cache.
 
+{{<note>}}
+Currently, slicing does not work with [background cache update](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_background_update) as in this case a request will be constructed without byte-range support.
+{{</note>}}
+
 To enable byte‑range caching:
 
 1. Make sure NGINX is compiled with the [Cache Slice](https://nginx.org/en/docs/http/ngx_http_slice_module.html) module.
