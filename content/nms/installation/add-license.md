@@ -6,7 +6,7 @@ docs: DOCS-789
 doctypes: task
 title: Add a License
 toc: true
-weight: 400
+weight: 500
 ---
 
 ## Overview
