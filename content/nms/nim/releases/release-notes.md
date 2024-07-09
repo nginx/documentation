@@ -13,7 +13,7 @@ weight: 100
 
 ## 2.17.0
 
-July 09, 2024
+July 10, 2024
 
 ### Upgrade Paths {#2-17-0-upgrade-paths}
 
