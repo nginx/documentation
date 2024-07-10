@@ -20,7 +20,7 @@ weight: 200
 ## 2.17.0
 July 10, 2024
 
-### {{% icon-bug %}} NGINX Agent v2.36.0 fails to validate certain NGINX configurations in NGINX Instance Manager 2.17.0 {#45153}
+### {{% icon-bug %}} NGINX Agent 2.36.0 fails to validate certain NGINX configurations in NGINX Instance Manager 2.17.0 {#45153}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
@@ -29,11 +29,13 @@ July 10, 2024
 
 {{</bootstrap-table>}}
 #### Description
-In NGINX Instance Manager 2.17.0, an "invalid number of arguments" error appears in the web interface when using specific configuration parameters in NGINX Agent v2.36.0.
+In NGINX Instance Manager 2.17.0, an "invalid number of arguments" error appears in the web interface when using specific configuration parameters in NGINX Agent 2.36.0.
 
 #### Workaround
 
-Install NGINX Agent **v2.35.1** if you're using NGINX Instance Manager 2.17.0. This version is included with NGINX Instance Manager 2.17.0 by default. You can find instructions on installing NGINX Agent from package files in the [Installing NGINX Agent](https://github.com/nginx/agent?tab=readme-ov-file#installing-nginx-agent-from-package-files) guide.
+Install NGINX Agent **2.35.1** if you're using NGINX Instance Manager 2.17.0. This version is included with NGINX Instance Manager 2.17.0 by default.
+
+If you're installing NGINX Agent from package files, follow the steps in the [Installing NGINX Agent](https://github.com/nginx/agent?tab=readme-ov-file#installation) guide.
 
 ---
 
