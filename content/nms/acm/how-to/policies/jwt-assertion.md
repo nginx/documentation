@@ -10,6 +10,7 @@ tags:
 - docs
 toc: true
 weight: 900
+title: JWT Assertion
 ---
 
 ## Overview

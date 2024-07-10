@@ -10,6 +10,7 @@ tags:
 - docs
 toc: true
 weight: 450
+title: Basic Authentication
 ---
 
 ## Overview

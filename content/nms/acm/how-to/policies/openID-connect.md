@@ -12,6 +12,7 @@ tags:
 title: OpenID Connect Relying Party Policy
 toc: true
 weight: 910
+title: OpenID Connect
 ---
 
 ---

@@ -8,6 +8,7 @@ tags:
 - docs
 toc: true
 weight: 600
+title: gRPC
 ---
 
 {{< shortversions "1.3.0" "latest" "acmvers" >}}
