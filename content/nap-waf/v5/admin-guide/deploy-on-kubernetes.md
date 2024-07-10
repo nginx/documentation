@@ -108,6 +108,8 @@ In this guide, the following files are used:
 
 The Secret is now available for use in manifest deployments.
 
+{{< include "security/jwt-password-note.md" >}}
+
 ### Manifest Deployment
 
 In this configuration, two replicas are deployed, with each hosting both NGINX and WAF services together in a single Kubernetes pod.
