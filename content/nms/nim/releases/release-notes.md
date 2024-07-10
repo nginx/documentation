@@ -11,6 +11,98 @@ weight: 100
 
 ---
 
+## 2.17.0
+
+July 10, 2024
+
+### Upgrade Paths {#2-17-0-upgrade-paths}
+
+Instance Manager  supports upgrades from these previous versions:
+
+- 2.14.0 - 2.16.0
+
+If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+{{< see-also >}}
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< /see-also >}}
+
+<br>
+
+<details closed>
+<summary><i class="fa-solid fa-circle-exclamation"></i> Support for NGINX App Protect WAF</summary>
+
+{{< include "tech-specs/nim-app-protect-support.md" >}}
+
+</details>
+
+
+### What's New{#2-17-0-whats-new}
+This release includes the following updates:
+
+- {{% icon-feature %}} **Adds support for NGINX App Protect WAF v5**<a name="2-17-0-whats-new-Adds-support-for-NGINX-App-Protect-WAF-v5"></a>
+
+  NGINX Instance Manager 2.17.0 adds support for [NGINX App Protect WAF v5.](https://docs.nginx.com/nginx-app-protect-waf/v5/admin-guide/overview/).
+
+  NGINX App Protect WAF v5 (designed for both NGINX Open Source and NGINX Plus environments) consists of a dynamic NGINX module and containerized WAF services, providing robust security and scalability.
+
+- {{% icon-feature %}} **Hosted Docker images for Kubernetes Helm charts**<a name="2-17-0-whats-new-Hosted-Docker-images-for-Kubernetes-Helm-charts"></a>
+
+  Prior to this release, users had to download NGINX Instance Manager docker images and push them to their local container registry for use in the Kubernetes Helm charts. This was not very turnkey and required multiple steps before being able to use the Helm charts. Now all Instance Manager container images are available from F5's public docker repository, simplifying the installation in Kubernetes.
+
+  See the [Deploy Instance Manager on Kubernetes]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md" >}}) documentation for more information.
+
+- {{% icon-feature %}} **Ansible role to deploy NGINX Instance Manager**<a name="2-17-0-whats-new-Ansible-role-to-deploy-NGINX-Instance-Manager"></a>
+
+  This release comes with an Ansible role to help you Install NGINX Instance Manager quickly, while also encouraging the best practices for your chosen environment.
+
+- {{% icon-feature %}} **NGINX Instance Manager IaC using Packer and Terraform**<a name="2-17-0-whats-new-NGINX-Instance-Manager-IaC-using-Packer-and-Terraform"></a>
+
+  This release improves the [Infrastructure as Code (IaC) project]({{< relref "/nms/installation/infrastructure-as-code/overview.md#nginx-management-suite-infrastructure-as-code" >}}) to help you quickly get started with NGINX Instance Manager using Packer and Terraform.
+
+  The project uses Packer to create images and Terraform to deploy these images to your preferred cloud provider, including GCP, Azure, or vSphere.
+
+- {{% icon-feature %}} **Single docker image with all the NGINX Instance Manager services and dependencies**<a name="2-17-0-whats-new-Single-docker-image-with-all-the-NGINX-Instance-Manager-services-and-dependencies"></a>
+
+  This release includes access to a single Docker image for running NGINX Instance Manager as a container. This allows customers to deploy Instance Manager locally with a single "docker run" command. For more details, see [Deploy NGINX Instance Manager in a Single Docker Container]({{< relref "/nms/installation/docker/deploy-nginx-instance-manager-docker.md" >}}).
+
+
+### Changes in Default Behavior{#2-17-0-changes-in-behavior}
+This release has the following changes in default behavior:
+
+- {{% icon-feature %}} **Web Analytics**<a name="2-17-0-changes-in-behavior-Web-Analytics"></a>
+
+  NGINX Instance Manager now collects and sends anonymized telemetry and interaction information for analysis by F5 NGINX. This information is used to improve our products and services.
+
+  Customers have the option to opt out of data collection by disabling the feature in the Instance Manager web interface, using the Account menu in the top-right corner of the screen. For more details, see [Configure Telemetry and Web Analytics]({{< relref "/nms/admin-guides/configuration/configure-telemetry.md" >}}).
+
+- {{% icon-feature %}} **Augment Template order now matches NGINX configuration structure**<a name="2-17-0-changes-in-behavior-Augment-Template-order-now-matches-NGINX-configuration-structure"></a>
+
+  When you generate a configuration using augment templates, the order shown in the UI now matches the structure of an NGINX configuration. This makes filling out a template more intuitive.
+
+- {{% icon-feature %}} **End of support for CentOS 7 and Red Hat Enterprise Linux 7**<a name="2-17-0-changes-in-behavior-End-of-support-for-CentOS-7-and-Red-Hat-Enterprise-Linux-7"></a>
+
+  CentOS 7 and Red Hat Enterprise Linux 7 reached [end of maintenance support](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux/rhel-7-end-of-maintenance) on June 30, 2024.
+
+  Since these operating systems won't get any more updates or security patches, NGINX Instance Manager no longer supports them.
+
+  Please upgrade your environment to one of the [supported distributions]({{< relref "/nms/tech-specs.md#supported-distributions" >}}) to continue using NGINX Instance Manager.
+
+
+### Resolved Issues{#2-17-0-resolved-issues}
+This release fixes the following issues. Select an issue's ID link to view its details.
+
+- {{% icon-resolved %}} Users receive login error when NGINX Management Suite is deployed in Kubernetes [(44686)]({{< relref "/nms/nim/releases/known-issues.md#44686" >}})<a name="2-17-0-resolved-issues-Users-receive-login-error-when-NGINX-Management-Suite-is-deployed-in-Kubernetes"></a>
+- {{% icon-resolved %}} REST API does not work until you log into the web interface first [(44877)]({{< relref "/nms/nim/releases/known-issues.md#44877" >}})<a name="2-17-0-resolved-issues-REST-API-does-not-work-until-you-log-into-the-web-interface-first"></a>
+- {{% icon-resolved %}}  Editing template submissions uses the latest versions, may cause "malformed" errors [(44961)]({{< relref "/nms/nim/releases/known-issues.md#44961" >}})<a name="2-17-0-resolved-issues--Editing-template-submissions-uses-the-latest-versions,-may-cause-&#34;malformed&#34;-errors"></a>
+- {{% icon-resolved %}} Editing template submissions now allows for using most recent template version [(44971)]({{< relref "/nms/nim/releases/known-issues.md#44971" >}})<a name="2-17-0-resolved-issues-Editing-template-submissions-now-allows-for-using-most-recent-template-version"></a>
+
+### Known Issues{#2-17-0-known-issues}
+
+You can find information about known issues in the [Known Issues]({{< relref "/nms/nim/releases/known-issues.md" >}}) topic.
+
+---
+
 ## 2.16.0
 
 April 18, 2024
@@ -38,26 +130,26 @@ Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}
 
 
 ### What's New{#2-16-0-whats-new}
-
 This release includes the following updates:
 
-- {{% icon-feature %}} **Stability and performance improvements**<a name="2-16-0-whats-new-Stability-and-performance-improvements-"></a>
+- {{% icon-feature %}} **Introducing configuration templates for simplifying NGINX configurations and self-service workflows**<a name="2-16-0-whats-new-Introducing-configuration-templates-for-simplifying-NGINX-configurations-and-self-service-workflows"></a>
 
-  This release includes stability and performance improvements.
+  This release of NGINX Instance Manager introduces [Config Templates]({{< relref "nms/nim/about/templates/config-templates.md" >}}). These templates use Go templating to make it easier to set up and standardize NGINX configurations. Now, you don't need to know all the details of NGINX syntax to create a working configuration. Just provide the required inputs for a template, and the system will do the rest. This makes setting up NGINX simpler and helps you follow best practices.
 
-- {{% icon-feature %}} **Introducing configuration templates for simplifying NGINX configurations and self-service workflows**<a name="2-16-0-whats-new-config-templates"></a>
-
-  This release of NGINX Instance Manager introduces [Config Templates]({{< relref "nms/nim/about/templates/config-templates.md" >}}). These templates use Go templating to make it easier to set up and standardize NGINX configurations. Now, you don't need to know all the details of NGINX syntax to create a working configuration. Just provide the required inputs for a template, and the system will do the rest. This makes setting up NGINX simpler and helps you follow best practices. 
-  
   To provide more control over your configurations, [augment templates]({{< relref "nms/nim/about/templates/default-base-template.md#augmenting-global-default-base-template" >}}) let you modify only specific segments of your NGINX configuration. This, when combined with [RBAC for template submissions]({{< relref "nms/nim/how-to/nginx/access-control-for-templates-and-template-submissions.md" >}}), enables self-service workflows. Look for pre-built templates for common scenarios in our GitHub repositories soon.
 
-### Changes in Default Behavior{#2-16-0-changes-in-behavior}
+- {{% icon-feature %}} **Stability and performance improvements**<a name="2-16-0-whats-new-Stability-and-performance-improvements"></a>
 
+  This release enhances system stability and performance.
+
+
+### Changes in Default Behavior{#2-16-0-changes-in-behavior}
 This release has the following changes in default behavior:
 
-- {{% icon-feature %}} **Change in NGINX Agent upgrade behavior**
+- {{% icon-feature %}} **Change in NGINX Agent upgrade behavior**<a name="2-16-0-changes-in-behavior-Change-in-NGINX-Agent-upgrade-behavior"></a>
 
   Starting from version v2.31.0, the NGINX Agent will automatically restart itself during an upgrade.
+
 
 ### Known Issues{#2-16-0-known-issues}
 
@@ -94,7 +186,7 @@ Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}
 ### What's New{#2-15-1-whats-new}
 This release includes the following updates:
 
-- {{% icon-feature %}} **Stability and performance improvements**<a name="2-15-1-whats-new-Stability-and-performance-improvements-"></a>
+- {{% icon-feature %}} **Stability and performance improvements**<a name="2-15-1-whats-new-Stability-and-performance-improvements"></a>
 
   This release includes stability and performance improvements.
 
@@ -329,9 +421,9 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Get version controlled NGINX configurations with an external commit hash**<a name="2-13-0-whats-new-Get-version-controlled-NGINX-configurations-with-an-external-commit-hash"></a>
 
-    The Instance Manager REST API supports setting and retrieving instances, instance groups, and staged NGINX configurations using a version control commit hash.
+  The Instance Manager REST API supports setting and retrieving instances, instance groups, and staged NGINX configurations using a version control commit hash.
 
-    To learn how to use a commit hash with NGINX configurations, refer to these topics:
+  To learn how to use a commit hash with NGINX configurations, refer to these topics:
 
   - [Add Hash Versioning to Staged Configs]({{< relref "nms/nim/how-to/nginx/stage-configs.md#hash-versioning-staged-configs" >}})
   - [Publish Configs with Hash Versioning to Instances]({{< relref "nms/nim/how-to/nginx/publish-configs.md#publish-configs-instances-hash-versioning" >}})
@@ -352,7 +444,7 @@ This release includes the following updates:
 - {{% icon-feature %}} **Use NGINX Plus Health Checks to easily track NGINX Plus Usage with NGINX Instance Manager**<a name="2-13-0-whats-new-Use-NGINX-Plus-Health-Checks-to-easily-track-NGINX-Plus-Usage-with-NGINX-Instance-Manager"></a>
 
   The NGINX Plus Health Check feature now allows you to monitor the count of both NGINX Plus and NGINX App Protect instances that you've deployed. You can view this information in the "NGINX Plus" area of the "Instance Manager" web interface, or through the `/inventory` API. For guidance on how to set this up, refer to the following documentation: [View Count of NGINX Plus Instances]({{< relref "nms/nim/how-to/monitoring/count-nginx-plus-instances.md" >}}).
-  
+
 - {{% icon-feature %}} **Improved log output for better JSON parsing**<a name="2-13-0-whats-new-Improved-log-output-for-better-JSON-parsing"></a>
 
   In the log output, extra whitespace has been removed, and brackets have been removed from the log `level` field. This results in clean, parsable log output, particularly when using JSON log encoding.
@@ -481,23 +573,21 @@ This release has the following changes in default behavior:
 
   In Instance Manager 2.11.0, we added support for telemetry to the OIDC configuration files. Existing OIDC configurations will continue to work, but certain telemetry events, such as login, may not be captured.
 
-  To ensure the capture of login telemetry events, please take the following steps:
-
 - {{% icon-feature %}} **Configuration file permissions have been lowered to strengthen security**<a name="2-11-0-changes-in-behavior-Configuration-file-permissions-have-been-lowered-to-strengthen-security"></a>
 
-    To strengthen the security of configuration details, certain file permissions have been modified. Specifically, the following configuration files now have lowered permissions, granting Owner Read/Write access and Group Read access (also referred to as `0640` or `rw-r-----`):
+  To strengthen the security of configuration details, certain file permissions have been modified. Specifically, the following configuration files now have lowered permissions, granting Owner Read/Write access and Group Read access (also referred to as `0640` or `rw-r-----`):
 
   - /etc/nms/nginx.conf
   - /etc/nginx/conf.d/nms-http.conf
   - /etc/nms/nginx/oidc/openid_configuration.conf
   - /etc/nms/nginx/oidc/openid_connect.conf
 
-    Additionally, the following file permissions have been lowered to Owner Read/Write and Group Read/Write access (also known as `0660` or `rw-rw-----`):
+  Additionally, the following file permissions have been lowered to Owner Read/Write and Group Read/Write access (also known as `0660` or `rw-rw-----`):
 
   - /logrotate.d/nms.conf
   - /var/log/nms/nms.log
 
-    These changes aim to improve the overall security of the system by restricting access to sensitive configuration files while maintaining necessary privileges for authorized users.
+  These changes aim to improve the overall security of the system by restricting access to sensitive configuration files while maintaining necessary privileges for authorized users.
 
 
 ### Resolved Issues{#2-11-0-resolved-issues}
@@ -723,9 +813,9 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Add commit hash details to NGINX configurations for version control**<a name="2-9-0-whats-new-Add-commit-hash-details-to-NGINX-configurations-for-version-control"></a>
 
-    Use the Instance Manager REST API to add a commit hash to NGINX configurations if you use version control, such as Git.
+  Use the Instance Manager REST API to add a commit hash to NGINX configurations if you use version control, such as Git.
 
-    For more information, see the following topics:
+  For more information, see the following topics:
 
   - [Add Hash Versioning to Staged Configs]({{< relref "nms/nim/how-to/nginx/stage-configs.md#hash-versioning-staged-configs" >}})
   - [Publish Configs with Hash Versioning to Instances]({{< relref "nms/nim/how-to/nginx/publish-configs.md#publish-configs-instances-hash-versioning" >}})
@@ -748,16 +838,16 @@ This release includes the following security updates:
 
   This issue has been classified as [CWE-532: Insertion of Sensitive Information into Log File](https://cwe.mitre.org/data/definitions/532.html).
 
-#### Mitigation
+  #### Mitigation
 
-- Avoid configuring trace-level logging in the NGINX Agent configuration file. For more information, refer to the [Configuring the NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent.md#configuring-the-nginx-agent ">}}) section of NGINX Management Suite documentation. If trace-level logging is required, ensure only trusted users have access to the log files.
+  - Avoid configuring trace-level logging in the NGINX Agent configuration file. For more information, refer to the [Configuring the NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent.md#configuring-the-nginx-agent ">}}) section of NGINX Management Suite documentation. If trace-level logging is required, ensure only trusted users have access to the log files.
 
-#### Fixed in
+  #### Fixed in
 
-- NGINX Agent 2.23.3
-- Instance Manager 2.9.0
+  - NGINX Agent 2.23.3
+  - Instance Manager 2.9.0
 
-For more information, refer to the MyF5 article [K000133135](https://my.f5.com/manage/s/article/K000133135).
+  For more information, refer to the MyF5 article [K000133135](https://my.f5.com/manage/s/article/K000133135).
 
 
 ### Changes in Default Behavior{#2-9-0-changes-in-behavior}
@@ -773,7 +863,7 @@ This release has the following changes in default behavior:
 
   To take advantage of the expanded functionality for OIDC authentication with NGINX Management Suite, we recommend following these two options:
 
-#### Option 1
+  #### Option 1
 
   1. During the upgrade, type `Y` when prompted to respond `Y or I: install the package mainatiner's version` for each of the following files:
 
@@ -805,7 +895,7 @@ This release has the following changes in default behavior:
 
   <br>
 
-#### Option 2
+  #### Option 2
 
   1. Before upgrading Instance Manager, edit the following files with your desired OIDC configuration settings:
 
@@ -900,16 +990,16 @@ This release has the following changes in default behavior:
 
 - {{% icon-feature %}} **Upgrading from 2.7 or earlier, you must re-enable `precompiled_publication` to continue publishing security policies with Instance Manager**<a name="2-8-0-changes-in-behavior-Upgrading-from-2-7-or-earlier,-you-must-re-enable-`precompiled_publication`-to-continue-publishing-security-policies-with-Instance-Manager"></a>
 
-    To continue publishing security policies with Instance Manager if you're upgrading from Instance Manager 2.7 and earlier, you must set the  `precompiled_publication` parameter to `true` in the `nginx-agent.conf` file.
+  To continue publishing security policies with Instance Manager if you are upgrading from Instance Manager 2.7 and earlier, you must set the  `precompiled_publication` parameter to `true` in the `nginx-agent.conf` file.
 
-    In Instance Manager 2.7 and earlier, the `pre-compiled_publication` setting was set to `true` by default. However, starting with Instance Manager 2.8, this setting is set to `false` by default. This means you'll need to change this setting to `true` again when upgrading from earlier versions.
+  In Instance Manager 2.7 and earlier, the `pre-compiled_publication` setting was set to `true` by default. However, starting with Instance Manager 2.8, this setting is set to `false` by default. This means you will need to change this setting to `true` again when upgrading from earlier versions.
 
-    To publish App Protect policies from Instance Manager, add the following to your `nginx-agent.conf` file:
+  To publish App Protect policies from Instance Manager, add the following to your `nginx-agent.conf` file:
 
-    ```yaml
+  ```yaml
       nginx_app_protect:
          precompiled_publication: true
-    ```
+  ```
 
 
 ### Resolved Issues{#2-8-0-resolved-issues}
@@ -1137,7 +1227,7 @@ This release includes the following updates:
 - {{% icon-feature %}} **Track NGINX Plus usage over time**<a name="2-5-0-whats-new-Track-NGINX-Plus-usage-over-time"></a>
 
   When viewing your NGINX Plus instances in the Instnace Manager web interface, you can set a date and time filter to review the [NGINX Plus instance count]({{< relref "nms/nim/how-to/monitoring/count-nginx-plus-instances.md" >}}) for a specific period. Also, you can use the Instance Manager REST API to view the lowest, highest, and average number of NGINX Plus instances over time.
-  
+
 - {{% icon-feature %}} **New helm charts for each release of Instance Manager**<a name="2-5-0-whats-new-New-helm-charts-for-each-release-of-Instance-Manager"></a>
 
   Each release of Instance Manager now includes a helm chart, which you can use to easily [install Instance Manager on Kubernetes]({{< relref "nms/installation/kubernetes/deploy-instance-manager.md" >}}). You can download the helm charts from [MyF5](https://my.f5.com/manage/s/downloads).
@@ -1191,8 +1281,8 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **See which of your NGINX Plus instances have NGINX App Protect installed**<a name="2-4-0-whats-new-See-which-of-your-NGINX-Plus-instances-have-NGINX-App-Protect-installed"></a>
 
-  Now, when you [view your NGINX Plus inventory]({{< relref "nms/nim/how-to/monitoring/count-nginx-plus-instances.md" >}}), you can see which instances have [NGINX App Protect](https://www.nginx.com/products/nginx-app-protect/) installed. NGINX App Protect is a modern app‑security solution that works seamlessly in DevOps environments as a robust WAF or app‑level DoS defense, helping you deliver secure apps from code to customer.
-  
+  Now, when you [view your NGINX Plus inventory]({{< relref "nms/nim/how-to/monitoring/count-nginx-plus-instances.md" >}}), you can see which instances have [NGINX App Protect](https://www.nginx.com/products/nginx-app-protect/) installed. NGINX App Protect is a modern app‑security solution that works seamlessly in DevOps environments as a robust WAF or app‑level DoS defense, helping you deliver secure apps from code to customer
+
 
 ### Changes in Default Behavior{#2-4-0-changes-in-behavior}
 This release has the following changes in default behavior:
@@ -1310,8 +1400,8 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Track the details for your NGINX Plus instances**<a name="2-3-0-whats-new-Track-the-details-for-your-NGINX-Plus-instances"></a>
 
-   Easily track your NGINX Plus instances from the new NGINX Plus inventory list page. [View the current count for all your NGINX Plus instances]({{< relref "nms/nim/how-to/monitoring/count-nginx-plus-instances.md" >}}), as well as each instance's hostname, UID, version, and the last time each instance was reported to Instance Manager. Select the `Export` button to export the list of NGINX Plus instances to a `.csv` file.
-  
+  Easily track your NGINX Plus instances from the new NGINX Plus inventory list page. [View the current count for all your NGINX Plus instances]({{< relref "nms/nim/how-to/monitoring/count-nginx-plus-instances.md" >}}), as well as each instance's hostname, UID, version, and the last time each instance was reported to Instance Manager. Select the `Export` button to export the list of NGINX Plus instances to a `.csv` file.
+
 - {{% icon-feature %}} **Explore events in NGINX Instance Manager with the Events Catalogs API**<a name="2-3-0-whats-new-Explore-events-in-NGINX-Instance-Manager-with-the-Events-Catalogs-API"></a>
 
   This release introduces a Catalogs API endpoint specifically for viewing NGINX Instance Manager events and corresponding information. You can access the endpoint at `/analytics/catalogs/events`.
@@ -1377,12 +1467,12 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **New events for NGINX processes and configuration rollbacks**<a name="2-2-0-whats-new-New-events-for-NGINX-processes-and-configuration-rollbacks"></a>
 
-    Now, you can use the [NGINX Instance Manager Events API]({{< relref "nms/nim/how-to/monitoring/view-events-metrics.md" >}}) or [web interface]({{< relref "nms/nim/how-to/monitoring/view-events-metrics.md" >}}) to view events when NGINX instances start and reload or when a configuration is rolled back.
-  
+  Now, you can use the [NGINX Instance Manager Events API]({{< relref "nms/nim/how-to/monitoring/view-events-metrics.md" >}}) or [web interface]({{< relref "nms/nim/how-to/monitoring/view-events-metrics.md" >}}) to view events when NGINX instances start and reload or when a configuration is rolled back.
+
 - {{% icon-feature %}} **Filter events and metrics with custom date and time ranges**<a name="2-2-0-whats-new-Filter-events-and-metrics-with-custom-date-and-time-ranges"></a>
 
   Now you can filter [events]({{< relref "/nms/nim/how-to/monitoring/view-events-metrics" >}}) and [metrics]({{< relref "/nms/nim/how-to/monitoring/view-events-metrics" >}}) using a custom date and time range. Select **Custom time range** in the filter list, then specify the date and time range you want to use.
-  
+
 - {{% icon-feature %}} **Role-based access control added to Events and Metrics pages**<a name="2-2-0-whats-new-Role-based-access-control-added-to-Events-and-Metrics-pages"></a>
 
   A warning message is shown when users try to view the Events and Metrics pages in the web interface if they don't have permission to access the Analytics feature. For instructions on assigning access to features using role-based access control (RBAC), see [Set Up RBAC]({{< relref "nms/admin-guides/rbac/rbac-getting-started.md" >}}).
@@ -1454,9 +1544,9 @@ This release includes the following updates:
 - {{% icon-feature %}} **Redesigned metrics views in the web interface**<a name="2-1-0-whats-new-Redesigned-metrics-views-in-the-web-interface"></a>
 
   The metrics pages in the web interface have been revised and improved.
-  
+
   See the [View Metrics]({{< relref "/nms/nim/how-to/monitoring/view-events-metrics" >}}) topic to get started.
-  
+
 - {{% icon-feature %}} **New RBAC lets you limit access to NGINX Instance Manager features**<a name="2-1-0-whats-new-New-RBAC-lets-you-limit-access-to-NGINX-Instance-Manager-features"></a>
 
   RBAC has been updated and improved. Add users to roles -- or add users to user groups if you're using an external identity provider -- to limit access to Instance Manager features.
@@ -1470,9 +1560,9 @@ This release includes the following updates:
 - {{% icon-feature %}} **View events for your NGINX instances**<a name="2-1-0-whats-new-View-events-for-your-NGINX-instances"></a>
 
   Now you can use the Instance Manager API or web interface to view events for your NGINX instances.
-  
+
   See the [View Events]({{< relref "/nms/nim/how-to/monitoring/view-events-metrics" >}}) and [View Events (API)]({{< relref "/nms/nim/how-to/monitoring/view-events-metrics" >}}) topics for instructions.
-  
+
 - {{% icon-feature %}} **Deploy NGINX Instance Manager on Kubernetes using a helm chart**<a name="2-1-0-whats-new-Deploy-NGINX-Instance-Manager-on-Kubernetes-using-a-helm-chart"></a>
 
   We recommend using the Instance Manager helm chart to install Instance Manager on Kubernetes.
@@ -1595,7 +1685,7 @@ This release includes the following updates:
 - {{% icon-feature %}} **New architecture!**<a name="2-0-0-whats-new-New-architecture!"></a>
 
   We redesigned and improved the architecture of Instance Manager!
-  
+
 - {{% icon-feature %}} **Improved user access control**<a name="2-0-0-whats-new-Improved-user-access-control"></a>
 
   Instance Manager 2.x. allows you to create user access controls with tags. Administrators can grant users read or write access to perform instance management tasks. And admins can grant or restrict access to the Settings options, such as managing licenses and creating users and roles. See the [Set up Authentication]({{< relref "/nms/admin-guides/authentication/basic-authentication.md#rbac" >}}) guide for more details.

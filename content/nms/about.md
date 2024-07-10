@@ -17,11 +17,7 @@ Explore the topics below to find out what the NGINX Management Suite modules hav
 
 ## Instance Manager {#instance-manager}
 
-[Instance Manager]({{< relref "/nms/nim/">}}) allows you to configure, scale, and manage NGINX Open Source and NGINX Plus instances.
-
-The Instance Manager module was initially developed as a [REST API]({{< relref "/nms/nim/about/api-overview">}}) that uses standard authentication methods, HTTP response codes, and verbs. The Instance Manager REST API allows you to access all of the module's features, manage Instance Manager objects and the NGINX Management Suite platform programmatically, view metrics, edit configurations, manage certificates, create users, and more.
-
-The Instance Manager features available through NGINX Management Suite's web interface are built on top of this REST API.
+{{< include "nim/nim-description.md" >}}
 
 ### Instance Manager Key Features
 
