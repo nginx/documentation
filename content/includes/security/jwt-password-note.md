@@ -1,5 +1,5 @@
 ---
-docs: GitHub docs-platform issue 156
+docs: 
 ---
 
 {{< note >}} For security, follow these practices with JSON Web Tokens (JWTs), passwords, and shell history:
