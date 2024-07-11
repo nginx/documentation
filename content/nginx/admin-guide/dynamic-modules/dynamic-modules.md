@@ -70,7 +70,7 @@ For module‑specific instructions, see the list of modules in the same section 
 <span id="prereq"></span>
 ### Prerequisites
 
-To get started using dynamic modules, first install the latest NGINX Plus release, following the [installation instructions]({{< relref "../installing-nginx/installing-nginx-plus.md" >}}). Dynamic modules are supported in <a href="../../../releases/#r9">NGINX Plus Release 9 (R9)</a> and later.
+To get started using dynamic modules, first install the latest NGINX Plus release, following the [installation instructions]({{< relref "../installing-nginx/installing-nginx-plus.md" >}}). Dynamic modules are supported in [NGINX Plus Release 9 (R9)]({{< ref "/nginx/releases.md#r9" >}}) and later.
 
 
 <span id="modules_all"></span>
@@ -103,11 +103,7 @@ nginx-plus-module-image-filter-dbg - Debugging symbols for the nginx-plus-module
 
 In addition to modules authored by NGINX and community third‑party developers, the repository contains NGINX Plus Certified Modules which are available for purchase from commercial third parties. Certified Modules are distributed and supported by their authors. NGINX has tested the modules extensively and certifies that they do not interfere with standard NGINX Plus functionality.
 
-NGINX Plus Certified Modules are identified with this checkmark icon on the [Dynamic Modules page](https://www.nginx.com/products/nginx/modules):
-
-![test](https://cdn-1.wp.nginx.com/wp-content/themes/nginx-theme/assets/img/product-page/module-icon.png)
-
-Click the module box on that page and then the **GET MODULE** button.
+NGINX Plus Certified Modules can be found on the [Dynamic Modules page](https://www.f5.com/go/product/nginx-modules?filter=module-author%3Anginx-certified-partner).
 
 
 <span id="caveats"></span>
@@ -119,7 +115,7 @@ Some modules are not available for certain OS versions because of OS limitations
 <span id="compile"></span>
 ## Compiling Your Own Dynamic Modules
 
-To compile your own dynamic modules, please see our [blog](https://www.nginx.com/blog/compiling-dynamic-modules-nginx-plus/).
+To compile your own dynamic modules, please see our [blog](https://www.f5.com/company/blog/nginx/compiling-dynamic-modules-nginx-plus).
 
 
 <span id="compile"></span>
