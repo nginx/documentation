@@ -36,6 +36,8 @@ First, log in to the NGINX private registry. Replace `YOUR_JWT_HERE` with your a
 sudo docker login private-registry.nginx.com --username=YOUR_JWT_HERE --password=none
 ```
 
+{{< include "security/jwt-password-note.md" >}}
+
 ### Pull the image
 
 Next, pull the NGINX Plus image from the private registry. Replace `VERSION_TAG` with the specific version tag you need (for example, `alpine`, `debian`, or `ubi`).

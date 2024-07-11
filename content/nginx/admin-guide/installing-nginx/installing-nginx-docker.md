@@ -208,6 +208,8 @@ curl https://private-registry.nginx.com/v2/nginx-plus/base/tags/list --key <path
 }
 ```
 
+{{< include "security/jwt-password-note.md" >}}
+
 ### Pushing the image to your private registry
 
 After pulling the image, tag it and upload it to your private registry.
