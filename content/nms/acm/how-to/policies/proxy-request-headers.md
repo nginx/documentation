@@ -10,6 +10,7 @@ tags:
 - docs
 toc: true
 weight: 1100
+title: Proxy Request Headers
 ---
 
 ## Overview

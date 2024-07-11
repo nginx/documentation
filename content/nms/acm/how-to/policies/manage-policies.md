@@ -8,6 +8,7 @@ tags:
 - docs
 toc: true
 weight: 100
+title: How to Set Up Policies
 ---
 
 {{< shortversions "1.1.0" "latest" "acmvers" >}}
