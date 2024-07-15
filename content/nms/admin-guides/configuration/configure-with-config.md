@@ -17,7 +17,7 @@ This guide explains how to configure NGINX Management Suite by editing the **/et
 
 ## Before You Start
 
-Before you set up the NGINX Management Suite, ensure:
+Before you set up NGINX Management Suite, ensure:
 
 - You have access to the **/etc/nms/nms.conf** file on the host where NGINX Management Suite is installed.
 - You understand the required settings and options.
