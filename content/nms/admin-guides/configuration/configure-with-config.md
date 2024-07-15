@@ -1,6 +1,5 @@
 ---
-description: Follow the steps in this guide to configure NGINX Management Suite with
-  a configuration file.
+description: 
 docs: DOCS-1100
 doctypes:
 - task
@@ -11,341 +10,186 @@ toc: true
 weight: 1
 ---
 
+
 ## Overview
 
-You can configure NGINX Management Suite using a file, which is located at **/etc/nms/nms.conf** by default.
+This guide explains how to configure NGINX Management Suite by editing the **/etc/nms/nms.conf** file.
 
-Examples of settings and options include:
+## Before You Start
 
-- The certificate authority (CA) file used for TLS
-- The URL for NGINX Management Suite
-- The root directory for Dqlite data
-- If NGINX Management Suite should run in development or daemon mode
-- Additional settings related to logging, modules and services
+Before you set up the NGINX Management Suite, ensure:
 
-These options can be set for the user and group that non-privileged processes should use.
+- You have access to the **/etc/nms/nms.conf** file on the host where NGINX Management Suite is installed.
+- You understand the required settings and options.
+- You have the necessary permissions to edit the configuration file.
 
-## Example configuration
+## Configuration Details
 
-This example **nms.conf** file displays the configurable options, including their usage, placement, and default values.
+Edit the **/etc/nms/nms.conf** file to configure NGINX Management Suite. The comments in the example configuration file provide details on each setting and its usage.
+
+<details open>
+<summary><i class="fas fa-file-code"></i> Example nms.conf with default settings and values</summary>
 
 ```yaml
-# Sets non-privileged processes to run as a specified user.
+# This is the default /etc/nms/nms.conf file distributed with Linux packages.
+
 user: nms
-
-#  Sets non-privileged processes to run as a specified group.
-group:
-
-# Sets CA cert file used for TLS server.
-ca_file:
-
-# Sets the NGINX Management Suite URL.
-fqdn: 127.0.0.1:443
-
-# Run service in development mode.
-dev_mode:
-
-# Sets a daemon mode for running binary.
 daemon: true
-
-# Sets the root directory for Dqlite data.
+# Root dqlite db directory. Each subdirectory here is dedicated to the process
 db_root_dir: /var/lib/nms/dqlite
 
-# For cloud Usage, the Cloud Services catalog ID for this product.
-# Note: `cloud_catalog_id` will be deprecated in the future.
-cloud_catalog_id:
-
-# Sets file mode for all unix sockets
-socket_file_mode: 0660
-
+# Default log level for all processes. Each process can override this level.
 log:
-  # Sets the log level for all processes.
+  encoding: console
   level: error
 
-  # Sets logging output encoding [console, json].
-  encoding: console
-
-# To configure NGINX Management Suite in High Availability mode, set ha.
-ha:
-  # With HA, use this flag to set the cluster size.
-  cluster_size: 3
-
 modules:
-  # Sets full path for the modules prefix, modules and modules.json will be created.
   prefix: /var/lib/nms
-
-  # Sets path for modules config files will be located.
-  conf_dir:
-
-# Sets disable context sub-loggers flag.
-disable_context_sub_loggers: false
+  # NMS modules config are available here to be read if installed
+  conf_dir: /etc/nms/modules
 
 core:
-  # Sets the log level for NGINX Management Suite Core service.
-  log_level:
-
-  # Sets the address for NGINX Management Suite Core requests.
+  # Enable this for core on TCP
+  # address: 127.0.0.1:8033
   address: unix:/var/run/nms/core.sock
-
-  # Sets the address for NGINX Management Suite Core GRPC requests.
   grpc_addr: unix:/var/run/nms/coregrpc.sock
-
-  # Sets the secrets directory path.
-  # Note: `secrets_dir` will be deprecated in the future. Use `secrets` key to set up core secrets.
-  secrets_dir: /var/lib/nms/secrets/
-
-  dqlite:
-    # Sets the address for Core module Dqlite database address.
-    addr: 127.0.0.1:7891
-
-    # Sets the path for Core module Dqlite database initialization schema file.
-    schema: etc/nms/core/schema.sql
-
-    # Sets the directory for Core module Dqlite database migration files.
-    migrations_dir: /etc/nms/core/migrations
-
-    # With ha, sets the join flag for Core module Dqlite database
-    join:
-
-    # Sets verbosity level to debug for Core module Dqlite database.
-    verbose:
-
-    # Sets the snap instance name for Core module Dqlite database.
-    name: core
-
-
-  server_certs:
-    # Sets the path of cert file for Core TLS endpoints.
-    cert:
-
-    # Sets the path of key file for Core TLS endpoints.
-    key:
-
-  client_certs:
-    # Sets the path of client cert file for Core TLS endpoints.
-    cert:
-
-    # Sets the path of key file for Core TLS endpoints.
-    key:
-
   analytics:
-    # Sets to enable Core to run in multi-tenancy mode.
-    # Note: `multi_tenancy_enabled` will be deprecated in the future.
-    multi_tenancy_enabled: false
-
+    # Catalogs config
     catalogs:
-      # Sets the path to metrics data directory.
       metrics_data_dir: /usr/share/nms/catalogs/metrics
-
-      # Metrics catalog data (YAML) content - overwrites metrics data file content.
-      metrics_data:
-
-      # Sets the path to events data directory.
       events_data_dir: /usr/share/nms/catalogs/events
-
-      # Sets the path to dimensions data directory.
       dimensions_data_dir: /usr/share/nms/catalogs/dimensions
-
-      # Dimensions catalog data (YAML) content - overwrites dimensions data file content.
-      dimensions_data:
-
-  license:
-    # Sets the period for license status monitoring.
-    monitoring_period: 24h
-
-    # Sets the period for license event publishing.
-    event_publish_period: 10s
-
-  secrets:
-    # Sets driver key for Core secrets.
-    driver: local
-
-    # Sets config key for Core secrets.
-    config:
-      key_file: /var/lib/nms/secrets/key
-      limit: 16384
-      path: /var/secrets
-      subpaths:
-        - secret
-        - secret/secureString
-
-  # Sets disabling for automatic RBAC cleanup.
-  disable_rbac_cleanup:
+  # Dqlite config
+  dqlite:
+    addr: 127.0.0.1:7891
+  # Disable this to prevent automatic cleanup on a module removal of its RBAC features and permissions
+  disable_rbac_cleanup: false
 
 dpm:
-
-   # Sets the log level for the NGINX Management Suite Data Plane Manager (DPM) service.
-  log_level:
-
-  # Sets the address for NGINX Management Suite DPM requests.
+  # Enable this for dpm on TCP
+  # address: 127.0.0.1:8034
   address: unix:/var/run/nms/dpm.sock
-
-  # Sets the address for NGINX Management Suite DPM GRPC requests.
+  # Enable this for dpm gRPC server on TCP
+  # grpc_addr: 127.0.0.1:8036
   grpc_addr: unix:/var/run/nms/am.sock
-
-  # If enabled, keeps DPM deployments in list indefinitely.
-  deployment_debug: false
-
-  # Sets the timeout (in seconds) of the system entry, after which system will be reported as offline.
-  system_timeout: 60
-
-  # Sets the timeout (in seconds) of the nginx entry, after which nginx will be reported as offline.
-  nginx_timeout: 60
-
-  # If enabled, validates dpm configuration before config is published.
-  validate_before_publish: false
-
-  # If enabled, uses the local copy of the NGINX CVE XML file located at /usr/share/nms/cve.xml.
-  offline_nginx_cve: false
-
+  # Dqlite config
   dqlite:
-    # Sets the address for DPM module Dqlite database address.
     addr: 127.0.0.1:7890
-
-    # Sets the path for DPM module Dqlite database initialization schema file.
-    schema: etc/nms/dpm/schema.sql
-
-    # Sets the directory for DPM module Dqlite database migration files.
-    migrations_dir: /etc/nms/dpm/migrations
-
-    # With ha, sets the join flag for DPM module Dqlite database
-    join:
-
-    # Sets verbosity level to debug for DPM module Dqlite database.
-    verbose:
-
-    # Sets the snap instance name for DPM module Dqlite database.
-    name: dpm
-
-  server_certs:
-    # Sets the path of cert file for DPM TLS endpoints.
-    cert:
-
-    # Sets the path of key file for DPM TLS endpoints.
-    key:
-
-  client_certs:
-    # Sets the path of client cert file for DPM TLS endpoints.
-    cert:
-
-    # Sets the path of key file for DPM TLS endpoints.
-    key:
-
+  # WATCHDOG configurations
+  # Enable this setting to specify how often, in seconds, messages are sent to the watchdog.
+  # The default interval is 2 seconds
+  reporting_period: 2s
+  # Enable this setting to specify how often, in seconds, the system checks in with the watchdog timer to reset.
+  # The default interval is 5 seconds
+  check_period: 5s
+  # Enable this setting to specify the maximum allowable time for the system to operate without resetting the watchdog.
+  # The default interval is 30 seconds
+  threshold_duration: 30s
+  # Enable this setting to specify how often, in seconds, performance statistics are collected and analyzed by the watchdog.
+  # The default interval is 30 seconds
+  stats_period: 30s
+  # Enable this setting to specify the maximum amount of time allowed for a deployment process to complete.
+  # The default interval is 10 minutes
+  deployment_timeout: 10m
+  # NATS config
   nats:
-    # Sets the NATS service address.
     address: nats://127.0.0.1:9100
-
-    # With ha, sets the NATS service proxy address
-    proxy_address:
-
-    # Sets the NATS streaming store root directory.
+    # NATS streaming
     store_root_dir: /var/lib/nms/streaming
-
-    # Sets the NATS streaming maximum store in bytes.
+    # 10GB
     max_store_bytes: 10737418240
-
-    # Sets the NATS streaming maximum memory in bytes.
+    # 1GB
     max_memory_bytes: 1073741824
-
-    # Sets the NATS streaming maximum message in bytes.
-    max_message_bytes: 1048576
+    # https://docs.nats.io/reference/faq#is-there-a-message-size-limitation-in-nats
+    # 8MB
+    max_message_bytes: 8388608
+  # ClickHouse schema migration check interval
+  clickhouse_migration_interval: 100s
+  # Enable this setting to specify how often, in hours, offline agents are pruned from the system
+  # The default interval is 72 hours
+  agent_prune_duration: 72h
+  # Enable this setting to specify how often, in hours, offline container agents are pruned from the system
+  # The default interval is 12 hours
+  agent_container_prune_duration: 12h
 
 integrations:
-  # Sets the log level for Integrations.
-  log_level:
-
-  # Sets the http server listen address for Integrations.
-  address: unix:/var/run/nms/integrations.sock"
-
-
+  # Enable this for integrations on TCP
+  # address: 127.0.0.1:8037
+  address: unix:/var/run/nms/integrations.sock
+  # Dqlite config
   dqlite:
-    # Sets the address for Integrations module Dqlite database address.
     addr: 127.0.0.1:7892
-
-    # Sets the path for Integrations module Dqlite database initialization schema file.
-    schema: etc/nms/integrations/schema.sql
-
-    # Sets the directory for Integrations module Dqlite database migration files.
-    migrations_dir: /etc/nms/integrations/migrations
-
-    # With ha, sets the join flag for Integrations module Dqlite database.
-    join:
-
-    # Sets verbosity level to debug for Integrations module Dqlite database.
-    verbose:
-
-    # Sets the snap instance name for Integrations module Dqlite database.
-    name: integrations
-
-  server_certs:
-    # Sets the path of cert file for Integrations TLS endpoints.
-    cert:
-
-    # Sets the path of key file for Integrations TLS endpoints.
-    key:
-
-  client_certs:
-    # Sets the path of client cert file for Integrations TLS endpoints.
-    cert:
-
-    # Sets the path of key file for Integrations TLS endpoints.
-    key:
-
+  app_protect_security_update:
+    # Enable this setting to automatically retrieve the latest Attack Signatures and Threat Campaigns.
+    enable: true
+    # Enable this setting to specify how often, in hours, the latest Attack Signatures and Threat Campaigns are retrieved.
+    # The default interval is 6 hours, the maximum interval is 48 hours, and the minimum is 1 hour.
+    interval: 6
+    # Enable this setting to specify how many updates to download for the latest Attack Signatures and Threat Campaigns.
+    # By default, the 10 latest updates are downloaded. The maximum value is 20, and the minimum value is 1.
+    number_of_updates: 10
+  policy_manager:
+    # Time to live for attack signatures. If the attack signatures exceed their TTL and are not deployed to an instance or
+    # instance group, they will be deleted from the database. Duration unit can be seconds (s), minutes (m), or hours (h).
+    attack_signatures_ttl: 336h
+    # Time to live for compiled bundles, this includes compiled security policies and compiled log profiles. If a compiled
+    # bundle exceeds its TTL and is not deployed to an instance or instance group, it will be deleted from the database. Note
+    # that the compiled bundle is deleted, not the definition of it (i.e., the security policy or log profile definition).
+    # Duration unit can be seconds (s), minutes (m), or hours (h).
+    compiled_bundles_ttl: 336h
+    # Time to live for threat campaigns. If the threat campaigns exceed their TTL and are not deployed to an instance or
+    # instance group, they will be deleted from the database. Duration unit can be seconds (s), minutes (m), or hours (h).
+    threat_campaigns_ttl: 1440h
+  license:
+    db:
+      addr: 127.0.0.1:7893
 
 ingestion:
+  # Enable this for ingestion gRPC server on TCP
+  # grpc_addr: 127.0.0.1:8035
+  grpc_addr: unix:/var/run/nms/ingestion.sock
+  # Parameters for ingesting metrics and events
+  sink:
+    # All limits are inclusive on both ends of the bound.
+    # Buffer_size limits: 2,000 - 1,000,000
+    buffer_size: 20000
+    buffer_flush_interval: 1m
+    buffer_check_interval: 1s
+    # Insert_connection_retries limits: -1 - 10
+    insert_connection_retries: -1
+    insert_connection_retry_interval: 5s
+    # Insert_timeout_retries limits: 2 - 10
+    insert_timeout_retries: 3
+    insert_timeout_retry_interval: 30s
+    transaction_timeout: 30s
+    # Concurrent_transactions limits: 2 - 20
+    concurrent_transactions: 10
 
-  # Sets the log level for Ingestion.
-  log_level:
-
-  # Sets the GRPC server listen address for agent Ingestion.
-  grpc_addr: unix:/var/run/nms/ingestion_test.sock
-
-  server_certs:
-    # Sets the path of cert file for Ingestion TLS endpoints.
-    cert:
-
-    # Sets the path of key file for Ingestion TLS endpoints.
-    key:
-
+# ClickHouse config for establishing a ClickHouse connection
 clickhouse:
-
-  # Sets the log level for ClickHouse.
-  log_level:
-
-  # Sets the address that will be used to connect to ClickHouse.
-  address: tcp://127.0.0.1:9000
-
-
-  # Note: Username and password should only be set, if you have custom defined username and password for ClickHouse.
-  # Sets the username that will be used to connect to ClickHouse.
-  username:
-
-  # Sets the password that will be used to connect to ClickHouse.
-  password:
-
-  # Activates or deactivates TLS for connecting to ClickHouse.
-  # Note: `tls_mode` will be deprecated in the future, use `tls` key to enable TLS connection for ClickHouse.
-  tls_mode: true
-
-  tls:
-    # Sets the address (form <ip-address:port>)used to connect to ClickHouse with a TLS connection.
-    address: tcp://127.0.0.1:9440
-
-    # Activates or deactivates TLS verification of ClickHouse connection.
-    skip_verify: false
-
-    # Sets the path of the certificate used for TLS connections in PEM encoded format.
-    cert_path:
-
-    # Sets the path of the client key used for TLS connections in PEM encoded format.
-    key_path:
-
-    # Sets the path of the Certificate Authority installed on the system for verifying certificates.
-    cert_ca: /etc/ssl/certs/ca-certificates.crt
-
-  # Sets directory containing ClickHouse migration files.
-  migrations_path: /usr/share/nms/clickhouse/migrations
-
+  # Below address not used if TLS mode is enabled
+  address: 127.0.0.1:9000
+  # Ensure username and password are wrapped in quotes
+  # The default ClickHouse username on install is empty. If you've set up a custom user, set the username here
+  username: ""
+  # The default ClickHouse password on install is empty. If you've set a custom password, set the password here
+  password: ""
+  # The TTL configurations below define how long data for features will be retained in ClickHouse
+  # The default values can be updated for a custom retention period. Restart nms-dpm to apply any modifications to TTL
+  ttl_configs:
+    - feature: metrics
+      ttl: 32 # number of days
+    - feature: events
+      ttl: 120 # number of days
+    - feature: securityevents
+      ttl: 32 # number of days
+#   # Enable TLS configurations for ClickHouse connections
+#   tls:
+#     # Address pointing to <tcp_port_secure> of ClickHouse
+#     # Below CH address is used when TLS mode is active
+#     tls_address: 127.0.0.1:9440
+#     # Verification should be skipped for self-signed certificates
+#     skip_verify: true
+#     key_path
 ```
-
 </details>
