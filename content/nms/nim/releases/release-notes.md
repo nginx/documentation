@@ -11,6 +11,41 @@ weight: 100
 
 ---
 
+## 2.17.1
+
+July 24, 2024
+
+### Upgrade Paths {#2-17-1-upgrade-paths}
+
+Instance Manager  supports upgrades from these previous versions:
+
+- 2.14.0 - 2.17.0
+
+If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+{{< see-also >}}
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< /see-also >}}
+
+<br>
+
+<details closed>
+<summary><i class="fa-solid fa-circle-exclamation"></i> Support for NGINX App Protect WAF</summary>
+
+{{< include "tech-specs/nim-app-protect-support.md" >}}
+
+</details>
+
+### What's New{#2-17-1-whats-new}
+
+This release includes the following updates:
+
+- {{% icon-feature %}} **Stability and performance improvements**<a name="2-17-1-whats-new-stability-and-performance-improvements"></a>
+
+  This release includes stability and performance improvements for a more reliable experience.
+
+---
+
 ## 2.17.0
 
 July 10, 2024
