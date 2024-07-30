@@ -12,7 +12,7 @@ weight: 300
 
 ## Support Policy
 
-NGINX Management Suite adheres to the support policy detailed at [nginx.com/support](https://nginx.com/support).
+NGINX Management Suite adheres to the support policy detailed in the following knowledge base article: [K000140156](https://my.f5.com/manage/s/article/K000140156).
 
 {{<important>}}
 Support licenses for Instance Manager **do not include** support for the NGINX instances that are being managed.
