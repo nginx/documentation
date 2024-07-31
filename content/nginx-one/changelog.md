@@ -32,7 +32,7 @@ Stay up-to-date with what's new and improved in the F5 NGINX One cloud console.
 
 ### Instance Object Cleanup
 
-NGINX Instance objects that has been `unavailable` for a set period will be automatically cleanup. By default, this period is 24 hours from the time the NGINX Instance object was last updated. Administrator can change or disable the cleanup in the "Instance Settings" under Settings. Events will be generated for NGINX Instances that have been automatically cleanup, see "Events" for a list of cleanup NGINX Instances. 
+NGINX Instance objects that has been `unavailable` for a set period will be automatically cleanup. By default, this period is 24 hours from the time the NGINX Instance object was last updated. Administrator can change or disable the cleanup in the "Instance Settings" under Settings. Events will be generated for NGINX Instances that have been automatically cleanup, see "Events" for a list of NGINX Instances that have been deleted automatically. 
 
 ## June 11, 2024
 
