@@ -1,5 +1,5 @@
 ---
-description: Learn about the NGINX App Protect DoS Live Activity Monitoring.
+description: Learn about the F5 NGINX App Protect DoS Live Activity Monitoring.
 docs: DOCS-1389
 doctypes:
 - task

@@ -1,6 +1,6 @@
 ---
 description: Documentation explaining how to monitor, generate logs for, and debug
-  NGINX App Protect DoS.
+  F5 NGINX App Protect DoS.
 menu:
   docs:
     parent: NGINX App Protect DoS Documentation.

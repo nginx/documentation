@@ -1,5 +1,5 @@
 ---
-description: Learn about NGINX App Protect DoS Directives and Policy.
+description: Learn about F5 NGINX App Protect DoS Directives and Policy.
 docs: DOCS-667
 doctypes:
 - task

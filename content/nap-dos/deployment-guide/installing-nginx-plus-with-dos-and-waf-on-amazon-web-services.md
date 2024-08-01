@@ -1,5 +1,5 @@
 ---
-description: Install NGINX Plus, NGINX App Protect WAF + DoS on Amazon Web Services
+description: Install F5 NGINX Plus, NGINX App Protect WAF + DoS on Amazon Web Services
   (AWS), to provide sophisticated Layer 7 load balancing, Modern app security solution,
   behavioral DoS detection and mitigation that works seamlessly in DevOps environments
   for your apps running on CentOS, RHEL, Debian and Ubuntu Linux OS.
