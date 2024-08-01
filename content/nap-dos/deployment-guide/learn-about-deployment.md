@@ -1,5 +1,5 @@
 ---
-description: Learn about NGINX App Protect DoS Deployment.
+description: Learn about F5 NGINX App Protect DoS Deployment.
 docs: DOCS-666
 doctypes:
 - task
