@@ -1,10 +1,3 @@
-<!-- markdownlint-disable -->
-# These owners will be the default owners for everything in
-# the repo. Unless a later match takes precedence,
-# @nginxinc/nginx-docs will be requested for
-# review when someone opens a pull request.
-# *       @nginxinc/nginx-docs
-
 # Order is important; the last matching pattern takes the most
 # precedence. When someone opens a pull request that only
 # modifies JS files, only @js-owner and not the global
@@ -13,12 +6,18 @@
 # Lines starting with '#' are comments.
 # Each line is a file pattern followed by one or more owners.
 
-# These owners will be the default owners for all NGINX App Protect content
-# in the repo:
-content/nap-waf/*       @nginxinc/nap-docs-approvers
-content/nap-dos/*       @nginxinc/nap-docs-approvers
-data/nap-waf/*          @nginxinc/nap-docs-approvers
-
-# These owners will be the default approvers for all NGINX Plus and OSS content
-# in the repo:
-content/nginx/* @nginxinc/plus-docs-approvers
+# DocOps
+*                           @nginxinc/nginx-docs
+# NGINX Plus
+content/nginx/*             @nginxinc/plus-docs-approvers
+# NGINX Agent
+# content/nginx/nms/agent/*   @nginxinc/agent-docs-approvers
+# NGINX One
+# content/nginx-one/*         @nginxinc/one-docs-approvers
+# NGINX Instance Manager
+# content/nms/nim/*           @nginx/nim-docs-approvers
+# NGINX App Protect WAF
+content/nap-waf/*           @nginxinc/nap-docs-approvers
+data/nap-waf/*              @nginxinc/nap-docs-approvers
+# NGINX App Protect DoS
+content/nap-dos/*           @nginxinc/NAP-DoS-Team
