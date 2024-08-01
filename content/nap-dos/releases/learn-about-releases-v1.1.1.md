@@ -8,7 +8,7 @@ toc: true
 weight: 115
 ---
 
-Here you can find the release information for NGINX App Protect DoS Arbitrator v1.1.1.
+Here you can find the release information for F5 NGINX App Protect DoS Arbitrator v1.1.1.
 
 ## Arbitrator Service Release 1.1.1
 
