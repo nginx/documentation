@@ -26,11 +26,11 @@ Before you set up automatic cleanup for NGINX instances, ensure:
 Follow these steps to set up automatic cleanup for NGINX instances in NGINX One:
 
 1. On the left menu, select **Instance Settings**.
-2. On the **Instance Settings** page, in the **Unavailable Instance Cleanup** section, select **Edit Duration**.
-3. Choose the cleanup duration.
+1. On the **Instance Settings** page, in the **Unavailable Instance Cleanup** section, select **Edit Duration**.
+1. Choose the cleanup duration.
    - Select one of the predefined durations (None, 1 day, 7 days, 30 days) or set a custom duration. Selecting **None** disables automatic cleanup.
    - If you choose **Custom**, enter the duration in hours or days.
-4. Select **Save** to apply the changes.
+1. Select **Save** to apply the changes.
 
 ## Event log details
 
