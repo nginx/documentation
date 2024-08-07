@@ -148,7 +148,3 @@ Refer to the [Add a License]({{< relref "/nms/installation/add-license.md" >}}) 
 To set up your NGINX App Protect WAF data plane instances for use with Security Monitoring, refer to the following instructions:
 
 - [Set Up App Protect Instances for Security Monitoring]({{< relref "/nms/security/how-to/set-up-app-protect-instances" >}})
-
-### Install Other NGINX Management Suite Modules
-
-- [Install API Connectivity Manager]({{< relref "/nms/acm/how-to/install-acm.md" >}})

@@ -111,21 +111,6 @@ The recovery time for the DPM (Data Plane Manager) pod depends the number of NGI
 
 ---
 
-### Module Process Recovery Times
-
-With NGINX Management Suite modules installed, the time it took for the [Pod condition](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-conditions)
-to transition from `PodScheduled` to `Ready`:
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Module                      | Pod          | Transition from `PodScheduled` to `Ready` |
-|-----------------------------|--------------|-------------------------------------------|
-| API Connectivity Manager    | acm          | 4.2 seconds                               |
-
-{{</bootstrap-table>}}
-
----
-
 ## Business Continuity and Disaster Recovery
 
 {{<important>}}

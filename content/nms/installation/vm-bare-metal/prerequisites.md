@@ -215,5 +215,4 @@ To install NGINX Management Suite, you need to add the official repository to pu
 ### Install NGINX Management Suite Modules
 
 - [Install Instance Manager]({{< relref "/nms/installation/vm-bare-metal/install-nim.md" >}})
-- [Install API Connectivity Manager]({{< relref "/nms/acm/how-to/install-acm.md" >}})
 - [Install Security Monitoring]({{< relref "/nms/installation/vm-bare-metal/install-security-monitoring.md" >}})
