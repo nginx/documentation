@@ -78,14 +78,6 @@ To use the SELinux policy that's included with NGINX Management Suite, take the 
    sudo restorecon -F -R /var/log/nms
    ```
 
-1. (API Connectivity Manager) If you installed API Connectivity Manager, run the following additional commands to restore the default SELinux labels for the following files and directories:
-
-    ```bash
-    sudo restorecon -F -R /usr/bin/nms-acm
-    sudo restorecon -F -R /usr/lib/systemd/system/nms-acm.service
-    sudo restorecon -F -R /var/lib/nms/modules/acm.json
-    ```
-
 1. Restart the NGINX Management Suite services:
 
     ```bash

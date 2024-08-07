@@ -18,8 +18,6 @@ NGINX Management Suite is a family of management plane solutions that enable gov
 
 - **Instance Manager:** Configure, scale, and manage NGINX Open Source, NGINX Plus, and NGINX App Protect WAF instances.
 
-- **API Connectivity Manager:** Enable self-service and automation of API delivery. Deploy, configure, secure, monitor, and govern API gateways at scale.
-
 - **Security Monitoring:** Monitor NGINX App Protect WAF instances,  analyze possible threats and identify opportunities for tuning your security policies.
 
 ## Documentation Sections
@@ -41,10 +39,6 @@ The documentation for NGINX Management Suite is divided into the following secti
 ### [Instance Manager]({{< relref "/nms/nim/" >}})
 
 - Learn how to configure and use Instance Manager.
-
-### [API Connectivity Manager]({{< relref "/nms/acm/" >}})
-
-- Learn how to configure and use the API Connectivity Manager.
 
 ### [Security Monitoring]({{< relref "/nms/security/" >}})
 

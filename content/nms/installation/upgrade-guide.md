@@ -28,7 +28,6 @@ It's useful to have an upgrade plan before upgrading. Creating an upgrade plan c
 Read the release notes for information about the latest features and changes, resolved issues, known issues, and supported upgrade paths.
 
 - [Instance Manager Release Notes]({{< relref "/nms/nim/releases/release-notes.md" >}})
-- [API Connectivity Manager Release Notes]({{< relref "/nms/acm/releases/release-notes.md" >}})
 - [Security Monitoring Module]({{< relref "/nms/security/releases/release-notes.md" >}})
 
 #### Tech Specs {#tech-specs}
