@@ -21,21 +21,33 @@ When writing documentation for our project, align with the default guide's voice
 
 ## F5 brand trademarks and product names
 
-- Always use the full brand name the first time it occurs in written copy. For example:
+- On the first mention of an enterprise NGINX product in a document, use the full product name. For example:
 
   - F5 NGINX Plus
   - F5 NGINX App Protect WAF
-  - F5 NGINX Management Suite
+  - F5 NGINX Instance Manager
+ 
+- Don't add "F5" to open source products. For example:
 
-- After the first use, you can drop the "F5". All subsequent uses must include the "NGINX" brand name. For example:
+  - NGINX Unit
+  - NGINX Agent 
+
+- For subsequent mentions of any enterprise product, you can drop the "F5". You must include the "NGINX" brand name in all uses. For example:
 
   - NGINX Plus
   - NGINX App Protect WAF
-  - NGINX Management Suite
+  - NGINX Instance Manager
 
-- Always use the full brand name in the meta description.
+- When naming multiple products in one document, you only need to include F5 once, on the first mentioned product.
 - Never use acronyms instead of the full product names.
-- We don't need to use trademarks (™) in product documentation.
+- We don't need to use trademark and rights reserved icons (™,®) in product documentation.
+- Use the full product name, including "F5" on product landing pages.
+- Don't include the "F5" in document titles. For example:
+
+  - Using NGINX Plus Docker images with NGINX Instance Manager
+
+- Always use the full brand name in the meta description. The meta description does not count as first mention of the product in the document.
+
 
 ## Glossary of preferred terms
 
