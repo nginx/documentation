@@ -28,7 +28,7 @@ weight: 99999
 
 Stay up-to-date with what's new and improved in the F5 NGINX One cloud console.
 
-## August 9, 2024
+## August 8, 2024
 
 ### Instance Object Cleanup
 
