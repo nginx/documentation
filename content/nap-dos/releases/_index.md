@@ -1,5 +1,5 @@
 ---
-description: Stay up-to-date with the latest NGINX App Protect DoS release.
+description: Stay up-to-date with the latest F5 NGINX App Protect DoS release.
 menu:
   docs:
     parent: NGINX App Protect DoS Documentation.

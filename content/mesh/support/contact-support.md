@@ -21,7 +21,7 @@ Thank you for your interest in F5 NGINX Service Mesh. NGINX Service Mesh can be 
 
 ### Commercial Support
 
-For paid customers of NGINX Service Mesh, commercial support is available at the [NGINX Support](https://www.nginx.com/support/) website.
+For paid customers of NGINX Service Mesh, follow the procedures described in the following knowledge base article: [K000140156](https://my.f5.com/manage/s/article/K000140156/).
 
 #### Generate a Support Package
 

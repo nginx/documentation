@@ -18,7 +18,7 @@ SSL termination means that NGINX Plus acts as the server-side SSL endpoint for 
 
 ## Prerequisites
 
-- <a href="../../../releases/#r6">NGINX Plus R6</a>NGINX Plus or later
+- [NGINX Plus R6]({{< relref "../../releases.md#r6 " >}}) or later
 - A load-balanced [upstream group]({{< relref "../load-balancer/tcp-udp-load-balancer.md" >}}) with several TCP servers
 - SSL certificates and a private key (obtained or self-generated)
 
@@ -168,4 +168,4 @@ The `ssl` parameter of the [listen](https://nginx.org/en/docs/stream/ngx_stream_
 
 As soon as the secure TCP connection is established, NGINX Plus caches the session parameters according to the [ssl_session_cache](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_session_cache) directive. In the example, the session cache is shared between all worker processes (the `shared` parameter), is 20 MB in size (the `20m` parameter), and retains each SSL session for reuse for 4 hours (the [ssl_session_timeout](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_session_timeout) directive).
 
-To learn more about NGINX Plus, please see the descriptions of our [commercial subscriptions](https://www.nginx.com/products/).
+

@@ -10,6 +10,7 @@ tags:
 - docs
 toc: true
 weight: 400
+title: API Key Authentication
 ---
 
 ## Overview

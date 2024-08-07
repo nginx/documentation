@@ -18,7 +18,7 @@ NGINX Management Suite Instance Manager provides a [REST](https://en.wikipedia.o
 
 ## Object Model
 
-The Instance Manager REST API allows you to manage Instance Manager objects and the NGINX Management Suite platform programmatically. The Instance Manager API provides the following features:
+The F5 NGINX Instance Manager REST API allows you to manage Instance Manager objects and the NGINX Management Suite platform programmatically. The Instance Manager API provides the following features:
 
 - View metrics and information about data plane host systems and NGINX instances.
 - View and edit NGINX configurations.
@@ -33,11 +33,30 @@ The Instance Manager REST API allows you to manage Instance Manager objects and 
 
 {{< include "nim/how-to-access-api-docs.md" >}}
 
+## Usage
+
+You can use tools such as `curl` or [Postman](https://www.postman.com) to interact with the NGINX Instance Manager API.
+You can find The NGINX Instance Manager API URLs in the following format: `https://<NMS_FQDN>/api/platform/<API_VERSION>`.
+
+{{<note>}}When making API calls by using `curl`, Postman, or any other tool, include your [authentication](#authentication) information with each call. Also include a `-k` to bypass TLS/SSL verification.{{</note>}}
+
+Alternatively, in the API Reference docs, you can also use the "Try it Out" function. Since you're already logged into the NGINX Management Suite platform, the "Try it Out" function automatically includes authentication credentials.
+
+To do so, take the steps below:
+
+1. Select the endpoint and action that you want to send. For example: `POST /infrastructure/workspaces`.
+1. Select the **Try it Out** button.
+1. If the endpoint accepts parameters, replace the placeholder examples in the request body with your desired values.
+1. Select the **Execute** button to send the request.
+1. When the request completes, the response appears in the user interface.
+
 ## Authentication
 
-Instance Manager supports authentication by using basic authentication or a JSON Web Token (JWT). You can get a JWT by logging in with an OpenID Connect (OIDC) Identity Provider.
+To use the Instance Manager API, you need to use one of the following authentication methods:
 
-For more information about the available authentication options for NGINX Management Suite, refer to [Set Up Authentication]({{< relref "/nms/admin-guides/authentication/basic-authentication.md" >}}).
+- Basic authentication
+- JSON Web Token (JWT)
+
 
 ### Basic Authentication
 
@@ -50,28 +69,13 @@ If your organization is using OIDC, you will be prompted to log in with your Ide
 
 {{<note>}}The means of requesting a token varies according to the Identity Provider; if you're not sure which provider your organization uses, check with your system administrator or technical support team. {{</note>}}
 
-The JWT should be sent as a "bearer" token using the "Authorization" request header field with the "Bearer" authentication scheme, as shown in the example below.
+Once you have a JWT, set it up as a "Bearer" <access token> using the "Authorization" request header field, as shown in the example below.
 
 ```shell
 curl -X GET "https://<NMS_FQDN>/api/platform/<API_VERSION>/systems" -H "Authorization: Bearer <access token>"
 ```
 
-## Usage
-
-You can use tools such as `curl` or [Postman](https://www.postman.com) to interact with the Instance Manager REST API.
-The API URL follows the format `https://<NMS_FQDN>/api/platform/<API_VERSION>`.
-
-{{<note>}}When making API calls by using `curl`, Postman, or any other tool, you will need to provide your authentication information with each call. {{</note>}}
-
-You can also use the "Try it Out" function in the API Reference docs to send a call to the Instance Manager API. You do not have to provide a means of authentication when sending API calls via the API Documentation UI because you are already logged in to the NGINX Management Suite platform.
-
-To do so, take the steps below:
-
-1. Select the endpoint and action that you want to send. For example: `POST /infrastructure/workspaces`.
-1. Select the **Try it Out** button.
-1. If the endpoint accepts parameters, replace the placeholder examples in the request body with your desired values.
-1. Select the **Execute** button to send the request.
-1. When the request completes, the response appears in the UI.
+{{< include "security/jwt-password-note.md" >}}
 
 ## Errors and Response Codes
 

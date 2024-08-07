@@ -1,5 +1,5 @@
 ---
-description: Learn about the NGINX App Protect DoS Request Log Mechanism.
+description: Learn about the F5 NGINX App Protect DoS Request Log Mechanism.
 docs: DOCS-668
 doctypes:
 - task

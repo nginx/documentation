@@ -41,7 +41,7 @@ To define a graph, perform these steps:
 
 {{< note >}} When using filters, all the "metric dimensions" aren't stored in the F5 NGINX Amplify backend by default. A particular filter starts to slice the metric according to the specification only after the graph is created. Hence, it can be a while before the "filtered" metric is displayed on the graph — the end result depends on how quickly the log files are being populated with the new entries, but typically you should see the first data points in under 5 minutes. {{< /note >}}
 
-Because NGINX Amplify is **not** a SaaS log analyzer, the additional slicing for "metric dimensions" is implemented inside NGINX Amplify Agent. NGINX Amplify Agent can parse the NGINX access logs on-the-fly and extract all the necessary metrics **without** sending the raw log entries elsewhere. Moreover, NGINX Amplify Agent understands custom log formats automatically, and will start looking for various newly defined "metric dimensions" following a particular [log_format](http://nginx.org/en/docs/http/ngx_http_log_module.html#log_format) specification.
+Because NGINX Amplify is **not** a SaaS log analyzer, the additional slicing for "metric dimensions" is implemented inside NGINX Amplify Agent. NGINX Amplify Agent can parse the NGINX access logs on-the-fly and extract all the necessary metrics **without** sending the raw log entries elsewhere. Moreover, NGINX Amplify Agent understands custom log formats automatically, and will start looking for various newly defined "metric dimensions" following a particular [log_format](https://nginx.org/en/docs/http/ngx_http_log_module.html#log_format) specification.
 
 Essentially, NGINX Amplify Agent performs a combination of real-time log analytics and standard metrics collection (e.g., metrics from the *stub_status* module). NGINX Amplify Agent does only the **real-time log processing**, and always on the same host where it is running.
 
@@ -49,4 +49,4 @@ Metric filters can be really powerful. By using the filters and creating additio
 
 Metric filters are available only for the metrics generated from the log files. For other metrics some additional modifiers can be set when editing a graph. E.g., for NGINX Plus it is possible to specify the status API zones to build more detailed visualizations.
 
-While editing the dashboard, you can also use additional features like "Clone" to streamline the worklow.
+While editing the dashboard, you can also use additional features like "Clone" to streamline the workflow.
