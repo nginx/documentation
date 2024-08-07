@@ -1,5 +1,5 @@
 ---
-description: Learn how to troubleshoot your NGINX App Protect DoS deployment.
+description: Learn how to troubleshoot your F5 NGINX App Protect DoS deployment.
 menu:
   docs:
     parent: NGINX App Protect DoS Documentation.
