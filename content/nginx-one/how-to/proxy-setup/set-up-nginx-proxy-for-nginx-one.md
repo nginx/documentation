@@ -5,7 +5,7 @@ doctypes:
 - task
 tags:
 - docs
-title: Use NGINX as a proxy for NGINX One
+title: Set up NGINX as a proxy for NGINX One
 toc: true
 weight: 300
 ---
@@ -19,7 +19,7 @@ This guide explains how to set up NGINX as a proxy for other NGINX instances to 
 ## Before you start
 
 - [Install NGINX Open Source or NGINX Plus]({{< relref "/nginx/admin-guide/installing-nginx/" >}}).
-- [Get a Data Plane Key from NGINX One]({{< relref "/nginx-one/how-to/data-plane-keys.md" >}}).
+- [Get a Data Plane Key from NGINX One]({{< relref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}}).
 
 ---
 
@@ -98,6 +98,6 @@ To set up your other NGINX instances to use the proxy instance to connect to NGI
 For more information, refer to the following resources:
 
 - [Installing NGINX and NGINX Plus]({{< relref "/nginx/admin-guide/installing-nginx/" >}})
-- [Create and manage data plane keys]({{< relref "/nginx-one/how-to/data-plane-keys.md" >}})
+- [Create and manage data plane keys]({{< relref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}})
 - [NGINX Agent Installation and upgrade](https://docs.nginx.com/nginx-agent/installation-upgrade/)
 - [NGINX Agent Configuration](https://docs.nginx.com/nginx-agent/configuration/)

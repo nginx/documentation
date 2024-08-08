@@ -5,7 +5,7 @@ doctypes:
 - task
 tags:
 - docs
-title: Use NGINX Plus container images to connect to NGINX One
+title: Connect NGINX Plus container images to NGINX One
 toc: true
 weight: 400
 ---
@@ -21,7 +21,7 @@ By following this guide, you will be able to set up a Docker container with NGIN
 Before you start, make sure you have the following:
 
 - A valid JWT (JSON Web Token) from your NGINX subscription.
-- [A data plane key from NGINX One]({{< relref "/nginx-one/how-to/data-plane-keys.md" >}}).
+- [A data plane key from NGINX One]({{< relref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}}).
 - Docker installed and running on your system.
 
 ---
@@ -101,5 +101,5 @@ For more detailed information, refer to the following resources:
 
 - [Deploying NGINX and NGINX Plus on Docker](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-docker/)
 - [Full List of Agent Environment Variables](https://docs.nginx.com/nginx-agent/configuration/configuration-overview/#nginx-agent-environment-variables)
-- [NGINX One Data Plane Keys](https://docs.nginx.com/nginx-one/how-to/data-plane-keys/)
+- [NGINX One Data Plane Keys](https://docs.nginx.com/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys/)
 - [My F5 Knowledge Article](https://my.f5.com/manage/s/article/K000090257)

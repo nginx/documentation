@@ -46,7 +46,7 @@ Select the link for each CVE to see the details, including the CVE's publish dat
 
 ### Edit NGINX configurations
 
-You can now make configuration changes to your NGINX instances. For more details, see [View and edit NGINX configurations]({{< relref "/nginx-one/how-to/nginx-config-edit.md" >}}).
+You can now make configuration changes to your NGINX instances. For more details, see [View and edit NGINX configurations]({{< relref "/nginx-one/how-to/nginx-configs/view-edit-nginx-configurations.md" >}}).
 
 ## May 28, 2024 - v0.20240528.1309124087
 
