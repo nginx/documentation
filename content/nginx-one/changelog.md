@@ -28,6 +28,12 @@ weight: 99999
 
 Stay up-to-date with what's new and improved in the F5 NGINX One cloud console.
 
+## August 8, 2024
+
+### Instance Object Cleanup
+
+NGINX Instance objects that have been `unavailable` for a set period will be automatically cleaned up (deleted). By default, this period is 24 hours from the time the NGINX Instance object was last updated. An administrator can change or disable the cleanup process in the "Instance Settings" under Settings. Events will be generated for NGINX Instances that have been automatically cleaned up. See "Events" for a list of NGINX Instances that have been deleted automatically. 
+
 ## June 11, 2024
 
 ### View NGINX security vulnerabilities (CVEs)
