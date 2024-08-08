@@ -15,7 +15,7 @@ content/nginx/nms/agent/*   @nginxinc/agent-docs-approvers
 # NGINX One
 content/nginx-one/*         @nginxinc/one-docs-approvers
 # NGINX Instance Manager
-content/nms/nim/*           @nginx/nim-docs-approvers
+content/nms/nim/*           @nginxinc/nim-docs-approvers
 # NGINX App Protect WAF
 content/nap-waf/*           @nginxinc/nap-docs-approvers
 data/nap-waf/*              @nginxinc/nap-docs-approvers
