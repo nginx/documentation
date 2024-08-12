@@ -1,7 +1,7 @@
 
 # F5 NGINX Documentation style guide
 
-Version 1.2
+See the [revision history](#revision-history) for the current version.
 
 ## Introduction
 
@@ -46,6 +46,8 @@ When writing documentation for our project, align with the default guide's voice
 
   - Using NGINX Plus Docker images with NGINX Instance Manager
 
+- Don't use articles ("the", "a") in front of product names. For example, use 
+  - NGINX Agent (not "the NGINX Agent").
 - Always use the full brand name in the meta description. The meta description does not count as first mention of the product in the document.
 
 
@@ -373,6 +375,7 @@ this style guide over time. This guide uses the Major.Minor.Patch
 
 | Edition | Date          | Lead Author(s) | Comments                                              |
 |---------|---------------|----------------|-------------------------------------------------------|
+| 1.3   | August 12, 2024 | Jon Torre  | Include additional rules for product names |
 | 1.2   | June 21, 2024 | Travis Martin  | Added link to BBC's examples for effective alt images |
 | 1.1   | May 21, 2024  | Jon Torre      | Added guidelines for screenshots                      |
 | 1.0   | May 05, 2024  | Travis Martin  | First draft of Style Guide                            |
