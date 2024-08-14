@@ -108,7 +108,7 @@ _14 August 2024_
 
 - Security:
 
-  - In the [MQTT Preread](https://nginx.org/en/docs/stream/ngx_stream_mqtt_preread_module.html) module, undisclosed requests can cause an increase in memory resource utilization ([CVE-2024-39792](https://my.f5.com/manage/s/article/K000140108))
+  - In the [MQTT](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html) module, undisclosed requests can cause an increase in memory resource utilization ([CVE-2024-39792](https://my.f5.com/manage/s/article/K000140108))
 
   - In the [MP4](https://nginx.org/en/docs/http/ngx_http_mp4_module.html) module, a specially crafted `mp4` file can cause NGINX worker memory over-read resulting in its termination by using a specially crafted `mp4` file ([CVE-2024-7347](https://my.f5.com/manage/s/article/K000140529))
 
@@ -231,7 +231,7 @@ _14 August 2024_
 
 - Security:
 
-  - In the [MQTT Preread](https://nginx.org/en/docs/stream/ngx_stream_mqtt_preread_module.html) module, undisclosed requests can cause an increase in memory resource utilization ([CVE-2024-39792](https://my.f5.com/manage/s/article/K000140108))
+  - In the [MQTT](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html) module, undisclosed requests can cause an increase in memory resource utilization ([CVE-2024-39792](https://my.f5.com/manage/s/article/K000140108))
 
   - In the [MP4](https://nginx.org/en/docs/http/ngx_http_mp4_module.html) module, a specially crafted `mp4` file can cause NGINX worker memory over-read resulting in its termination by using a specially crafted `mp4` file ([CVE-2024-7347](https://my.f5.com/manage/s/article/K000140529))
 
