@@ -39,6 +39,7 @@ A getting started guide is often the first opportunity for your users to form a 
 - Improve the user experience, and help reduce costs by lowering the number of support requests.
  
 ## Before writing a getting started guide
+
 Before you start working on your getting started guide, identify:
 - The primary feature of your application. 
 - The quickest and the easiest way to implement end-to-end the primary feature of your application. 
@@ -149,7 +150,3 @@ Step 3 Configure your new project
 ## References
 
 * [What is a quickstart to you?](https://ffeathers.wordpress.com/2018/10/08/what-is-a-quickstart-to-you/) 
-
----
-
-> Explore other templates from [The Good Docs Project](https://thegooddocsproject.dev/). Use our [feedback form](https://thegooddocsproject.dev/feedback/?template=Quickstart%20guide) to give feedback on this template.
