@@ -1,0 +1,10 @@
+apiVersion: k8s.nginx.org/v1alpha1
+kind: GlobalConfiguration 
+metadata:
+  name: nginx-configuration
+  namespace: nginx-ingress
+spec:
+  listeners:
+  - name: accept-udp
+    port: 8900
+    protocol: UDP

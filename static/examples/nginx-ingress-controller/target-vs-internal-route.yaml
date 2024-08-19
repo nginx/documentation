@@ -1,0 +1,19 @@
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: target-vs-internal-route
+  namespace: legacy
+spec:
+  internalRoute: true
+  ingressClassName: nginx
+  host: target-v1-0.legacy
+  upstreams:
+    - name: legacy
+      tls:
+        enable: false
+      service: target-v1-0
+      port: 80
+  routes:
+    - path: /
+      action:
+        pass: legacy

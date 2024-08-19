@@ -1,0 +1,23 @@
+apiVersion: v1
+upstreamAuthority: vault
+config:
+    vault_addr: <VAULT_ADDR>
+    namespace: <VAULT_NAMESPACE>
+    ca_cert_path: </path/to/vault-ca.crt>
+    # Optional fields
+    pki_mount_point: <PKI_MOUNT_POINT>
+    insecure_skip_verify: <INSECURE_SKIP_VERIFY>
+    # Choose one of the auth methods
+    cert_auth:
+      client_cert_path: <path/to/client-cert.pem>
+      client_key_path: <path/to/client-key.pem>
+      # Optional fields
+      cert_auth_mount_point: <CERT_AUTH_MOUNT_POINT>
+      cert_auth_role_name: <CERT_AUTH_ROLE_NAME>
+    token_auth:
+      token: <TOKEN>
+    approle_auth:
+      approle_id: <APPROLE_ID>
+      approle_secret_id: <APPROLE_SECRET_ID>
+      # Optional fields
+      approle_auth_mount_point: <APPROLE_AUTH_MOUNT_POINT>

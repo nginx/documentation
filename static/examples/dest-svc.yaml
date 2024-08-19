@@ -1,0 +1,63 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: destination-sa
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dest-svc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dest-svc
+  template:
+    metadata:
+      labels:
+        app: dest-svc
+    spec:
+      serviceAccountName: destination-sa
+      containers:
+      - name: dest-svc
+        image: nginx
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          name: http
+        volumeMounts:
+          - name: nginx-config
+            mountPath: /etc/nginx
+      volumes:
+      - name: nginx-config
+        configMap:
+          name: dest-svc
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dest-svc
+data:
+  nginx.conf: |-
+    events {}
+    http {
+      server {
+        listen 8080;
+        location / {
+          return 200 "destination service\n";
+        }
+      }
+    }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dest-svc
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    name: http
+  selector:
+    app: dest-svc

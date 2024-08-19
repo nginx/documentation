@@ -1,0 +1,127 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bursty-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bursty-client
+  template:
+    metadata:
+      labels:
+        app: bursty-client
+    spec:
+      containers:
+        - name: client
+          image: curlimages/curl:7.72.0
+          imagePullPolicy: IfNotPresent
+          command: [ "/scripts/bursty-client.sh" ]
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            - name: HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: bursty-client
+                  key: host
+            - name: REQUEST_PATH
+              valueFrom:
+                configMapKeyRef:
+                  name: bursty-client
+                  key: request_path
+            - name: METHOD
+              valueFrom:
+                configMapKeyRef:
+                  name: bursty-client
+                  key: method
+            - name: HEADERS
+              valueFrom:
+                configMapKeyRef:
+                  name: bursty-client
+                  key: headers
+            - name: BURST
+              valueFrom:
+                configMapKeyRef:
+                  name: bursty-client
+                  key: burst
+            - name: DELAY
+              valueFrom:
+                configMapKeyRef:
+                  name: bursty-client
+                  key: delay
+          volumeMounts:
+            - name: bursty-client
+              mountPath: /scripts
+      volumes:
+        - name: bursty-client
+          configMap:
+            name: bursty-client
+            defaultMode: 0755
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bursty-client
+data:
+  host: http://dest-svc:8080
+  request_path: /echo
+  method: GET
+  headers: x-demo-1:demo-1,x-demo-2:demo-2,x-demo-3:demo-3
+  burst: "3"
+  delay: "10"
+  bursty-client.sh: |
+    #!/bin/sh
+
+    host="${HOST:-http://localhost:8080}"
+    request_path="${REQUEST_PATH:-/echo}"
+    method="${METHOD:-GET}"
+    headers=${HEADERS}
+    burst=${BURST:-3}
+    delay=${DELAY:-10}
+
+    echo "Configuration:"
+    echo "  HOST:         ${host}"
+    echo "  REQUEST_PATH: ${request_path}"
+    echo "  METHOD:       ${method}"
+    echo "  HEADERS:      ${headers}"
+    echo "  BURST:        ${burst}"
+    echo "  DELAY:        ${delay}"
+
+    header_array=`echo $headers | sed -e 's/,/ /g'`
+
+    start_delay=10
+    echo -n "Starting in "
+    echo -n "$start_delay "
+    echo -n "seconds"
+
+    i=0
+    while [[ $i -lt $start_delay ]]
+    do
+      echo -n "."
+      i=`expr $i + 1`
+      sleep 1
+    done
+    echo
+
+    cmd="curl -s "
+    for h in $header_array
+    do
+      cmd=$cmd" -H \"$h\""
+    done
+    cmd=$cmd" -X ${method} ${host}${request_path}"
+
+    while true
+    do
+      echo -e "----Sending burst of $burst requests----\n"
+      i=0
+      while [[ $i -lt $burst ]]
+      do
+        eval $cmd
+        echo -e "\n"
+        i=`expr $i + 1`
+      done
+      echo -e "-------Sleeping $delay seconds-------\n"
+      sleep $delay
+    done

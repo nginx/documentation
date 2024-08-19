@@ -1,0 +1,16 @@
+apiVersion: k8s.nginx.org/v1alpha1
+kind: TransportServer
+metadata:
+  name: udp-listener
+spec:
+  listener:
+    name: accept-udp
+    protocol: UDP
+  upstreams:
+  - name: udp-listener-upstream
+    service: udp-listener
+    port: 5005
+  upstreamParameters:
+    udpRequests: 1
+  action:
+    pass: udp-listener-upstream

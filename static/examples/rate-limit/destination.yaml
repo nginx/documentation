@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dest
+  template:
+    metadata:
+      labels:
+        app: dest
+    spec:
+      containers:
+      - name: dest
+        image: nginx
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          name: http
+        volumeMounts:
+          - name: nginx-config
+            mountPath: /etc/nginx
+      volumes:
+      - name: nginx-config
+        configMap:
+          name: dest
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dest
+data:
+  nginx.conf: |-
+    events {}
+    http {
+      server {
+        listen 8080;
+        location / {
+          return 200 "Hello from destination service!\nMethod: $request_method\nPath: $uri\n\"x-demo\": $http_x_demo\nTime: $date_local\n";
+        }
+      }
+    }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dest-svc
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    name: http
+  selector:
+    app: dest
