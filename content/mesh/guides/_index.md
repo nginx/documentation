@@ -3,7 +3,8 @@ title: Guides
 weight: 150
 description: "Learn how to use NGINX Service Mesh."
 draft: false
-menu: 
+menu:
   docs:
     parent: NGINX Service Mesh
+url: /nginx-service-mesh/guides/
 ---

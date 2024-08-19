@@ -2,6 +2,7 @@
 title: Open Source Licenses Addendum
 _build:
     list: never
+url: /nginx-service-mesh/releases/oss-dependencies/
 ---
 
 {{% table %}}
