@@ -40,6 +40,7 @@ NGINX Plus can be installed on Amazon Linux 2023 (x86_64, aarch64).
 4. Install the required **ca-certificates** dependency:
 
     ```shell
+    sudo dnf update
     sudo dnf install ca-certificates
     ```
 
@@ -90,6 +91,7 @@ NGINX Plus can be installed on Amazon Linux 2 LTS (x86_64, aarch64).
 4. Install the required **ca-certificates** dependency:
 
     ```shell
+    sudo yum update
     sudo yum install ca-certificates
     ```
 
@@ -157,6 +159,7 @@ NGINX Plus can be installed on the following versions of CentOS/Oracle Linux/RH
 5. Install the required **ca-certificates** dependency:
 
     ```shell
+    sudo yum update
     sudo yum install ca-certificates
     ```
 
@@ -242,6 +245,7 @@ NGINX Plus can be installed on the following versions of CentOS/RHEL:
 5. Install the required **ca-certificates** dependency:
 
     ```shell
+    sudo dnf update
     sudo dnf install ca-certificates
     ```
 
@@ -309,6 +313,7 @@ NGINX Plus can be installed on the following versions of CentOS/RHEL:
 5. Install the required **ca-certificates** dependency:
 
     ```shell
+    sudo dnf update
     sudo dnf install ca-certificates
     ```
 
@@ -379,12 +384,14 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
     For Debian:
 
     ```shell
+    sudo apt-get update
     sudo apt-get install apt-transport-https lsb-release ca-certificates wget gnupg2 debian-archive-keyring
     ```
 
     For Ubuntu:
 
     ```shell
+    sudo apt-get update
     sudo apt-get install apt-transport-https lsb-release ca-certificates wget gnupg2 ubuntu-keyring
     ```
 
@@ -497,6 +504,7 @@ To install NGINX Plus on FreeBSD:
 5. Install the prerequisite **ca_root_nss** package:
 
     ```shell
+    sudo pkg update
     sudo pkg install ca_root_nss
     ```
 
@@ -570,6 +578,7 @@ To install NGINX Plus on SLES:
 5. Install the required **ca-certificates** dependency:
 
     ```shell
+    zypper refresh
     zypper install ca-certificates
     ```
 
@@ -705,36 +714,42 @@ NGINX‑authored and NGINX‑certified dynamic modules can be installed directly
 - For RHEL, Amazon Linux 2, CentOS, Oracle Linux:
 
   ```shell
+  yum update
   yum install <MODULE-NAME>
   ```
 
 - For Amazon Linux 2023,  AlmaLinux and Rocky Linux:
 
   ```shell
+  dnf update
   dnf install <MODULE-NAME>
   ```
 
 - For Debian and Ubuntu:
 
   ```shell
+  apt-get update
   apt-get install <MODULE-NAME>
   ```
 
 - For FreeBSD:
 
   ```shell
+  pkg update
   pkg install <MODULE-NAME>
   ```
 
 - For SLES:
 
   ```shell
+  zypper refresh
   zypper install <MODULE-NAME>
   ```
 
 - For Alpine Linux:
 
   ```shell
+  sudo apk update
   sudo apk add <MODULE-NAME>
   ```
 
@@ -764,12 +779,14 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
    - For Debian and Ubuntu:
 
      ```shell
+     sudo apt-get update
      sudo apt-get install gcc make libpcre3-dev zlib1g-dev
      ```
 
    - For CentOS, Oracle Linux, and RHEL:
 
      ```shell
+     sudo yum update
      sudo yum install gcc make pcre-devel zlib-devel
      ```
 

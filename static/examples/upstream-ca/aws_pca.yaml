@@ -1,0 +1,13 @@
+apiVersion: v1
+upstreamAuthority: aws_pca
+config:
+  region: <REGION>
+  certificate_authority_arn: <CA_ARN>
+  # Optional fields
+  aws_access_key_id: <ACCESS_KEY>
+  aws_secret_access_key: <YOUR_SECRET_ACCESS_KEY>
+  ca_signing_template_arn: <TEMPLATE>
+  signing_algorithm: <ALGORITHM>
+  assume_role_arn: <ARN>
+  endpoint: <ENDPOINT>
+  supplemental_bundle_path: <PATH>

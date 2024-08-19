@@ -85,15 +85,11 @@ To enable OIDC functionality, you must update the placeholder default values in 
 
 1. Open the OIDC configuration file `/etc/nms/nginx/oidc/openid_configuration.conf` using a text editor and update the default placeholder values with the relevant information for your identity provider. (To learn more about the variables, refer to the [OIDC Settings](#oidc-variables) below.) Save the changes.
 
-2. Using a text editor, open the `/etc/nginx/conf.d/nms-http.conf` configuration file and uncomment the OIDC settings starting with `#OIDC`. Comment out the Basic Authentication settings. Save the changes.
+1. Using a text editor, open the `/etc/nginx/conf.d/nms-http.conf` configuration file and uncomment the OIDC settings starting with `#OIDC`. Comment out the Basic Authentication settings. Save the changes.
 
-3. If you have additional modules installed, such as API Connectivity Manager, you need to modify their specific configuration files as well.
+1. Run the command `sudo nginx -t` to validate the configuration and ensure there are no errors.
 
-   Open the API Connectivity Manager configuration file `/etc/nms/nginx/locations/nms-acm.conf` in an app-developer and uncomment the OIDC settings starting with `#OIDC`. Comment out the settings for Basic Authentication. Save the changes.
-
-4. Run the command `sudo nginx -t` to validate the configuration and ensure there are no errors.
-
-5. Finally, reload NGINX and apply the new configuration by running the command `sudo nginx -s reload`.
+1. Finally, reload NGINX and apply the new configuration by running the command `sudo nginx -s reload`.
 
 
 ### OIDC Configuration Values {#oidc-variables}

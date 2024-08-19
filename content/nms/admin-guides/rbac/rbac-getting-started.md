@@ -68,34 +68,6 @@ Explore the API endpoints for Instance Manager by going to **https://<NMS_FQDN>/
 
 ---
 
-### API Connectivity Manager
-
-{{< include "admin-guides/rbac/features/api-connectivity-manager.md" >}}
-
-
-#### Endpoints
-
-Explore the API endpoints for API Connectivity Manager by going to **https://<NMS_FQDN>/ui/docs/API-Connectivity-Manager**. Replace `<NMS_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Management Suite host, which is the complete domain name specific to your system.
-
-#### Built-In Roles
-
-API Connectivity Manager comes pre-configured with roles suitable for API Owners and Infrastructure Admins.
-
-- **API Owner**: The individuals or teams who are responsible for designing, creating, and maintaining APIs.
-- **Infrastructure Admin**: Infrastructure Administrators ensure uniform governance across an organization’s infrastructure by setting policies at the infrastructure level, enabling teams to build APIs without interruption while adhering to the organization’s standards.
-
-##### ACM API Owner {#acm-api-owner}
-
-{{< include "acm/rbac/api-owner-role.md" >}}
-
-{{<see-also>}}The tutorial [Set Up RBAC for API Owners]({{< relref "/nms/acm/tutorials/rbac-api-owners.md">}}) provides an example of how to configure RBAC for API owners.{{</see-also>}}
-
-##### ACM Infra Admin {#acm-infra-admin}
-
-{{< include "acm/rbac/infra-admin-role.md" >}}
-
-{{<see-also>}}The tutorial [Set Up RBAC for Infra Admins]({{< relref "/nms/acm/tutorials/rbac-infra-admins.md">}}) provides an example of how to configure RBAC for Infrastructure Administrators.{{</see-also>}}
-
 ## Next Steps {#next-steps}
 
 In the following topics, you'll learn how to add users and set up authentication methods such as basic authentication and OpenID Connect (OIDC). Once you've added users, you can create roles and assign them to individuals or user groups to provide access to specific features.

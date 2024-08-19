@@ -6,4 +6,5 @@ categories: ["concepts"]
 menu:
   docs:
     parent: NGINX Service Mesh
+url: /nginx-service-mesh/about/
 ---

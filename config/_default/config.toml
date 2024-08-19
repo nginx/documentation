@@ -11,7 +11,8 @@ pygmentsUseClasses = true
   nap-dos = '/nginx-app-protect-dos/:sections[1:]/:filename'
   nap-waf = '/nginx-app-protect-waf/:sections[1:]/:filename'
   nms = '/nginx-management-suite/:sections[1:]/:filename'
-  amp = '/nginx-amplify/:sections[1:]/:filename'
+  amplify = '/nginx-amplify/:sections[1:]/:filename'
+  mesh = '/nginx-service-mesh/:sections[1:]/:filename'
 
 
 [caches]

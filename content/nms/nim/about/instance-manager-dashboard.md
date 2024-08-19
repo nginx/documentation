@@ -27,7 +27,7 @@ To learn more about Role-based Access Control and the different available featur
 
 Follow these steps to stream and display all relevant metrics in the dashboard:
 
-1. Make sure NGINX Agent v2.30 or later is installed on your NGINX data plane instances. See the [Upgrade NGINX Agent Package](https://docs.nginx.com/nginx-agent/upgrading/) for more information.
+1. Make sure NGINX Agent v2.30 or later is installed on your NGINX data plane instances. See the [Upgrade NGINX Agent Package](https://docs.nginx.com/nginx-agent/installation-upgrade/upgrade/) for more information.
 1. Make sure that NGINX Plus or NGINX Open Source Stub Status APIs are configured to send NGINX metrics using NGINX Agent. See [Instance Metrics Overview]({{< relref "nms/nim/about/overview-metrics.md" >}}) for more information.
 
 ## Certificates

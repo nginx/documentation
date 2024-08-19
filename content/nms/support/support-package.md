@@ -136,8 +136,6 @@ The support package script uses a small Go executable file called `dqlite-backup
 
 The collected data is saved to the directories `dqlite/core`, `dqlite/dpm`.
 
-Additional directories may be created if other products are installed: `dqlite/acm` for NGINX API Connectivity Manager.
-
 ### timeseries
 
 This folder contains status information, dumps, and statistics for the `nms` ClickHouse database. In particular, for metrics and events.

@@ -49,7 +49,7 @@ NGINX Plus R32 is a feature release:
 
 - Bugfixes:
 
-  - in the [MQTT](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html) module: malformed packets when using default properties
+  - in the [MQTT Filter](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html) module: malformed packets when using default properties
 
   - in the [zone_sync](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html) module: memory leak on configuration reload
 
@@ -96,6 +96,24 @@ NGINX Plus R32 is supported on:
 - [ModSecurity WAF dynamic module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/nginx-waf/) (package name is `nginx-plus-module-modsecurity`) reached end of support and is no longer available
 
 More information: [Announcing NGINX Plus R32](https://www.f5.com/company/blog/nginx/announcing-NGINX-plus-R32)
+
+
+<span id="r32_p1"></span>
+### NGINX Plus R32 Update
+
+This is a security release for NGINX Plus R32.
+
+NGINX Plus R32 P1<br/>
+_14 August 2024_
+
+- Security:
+
+  - In the [MQTT Filter](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html) module, undisclosed requests can cause an increase in memory resource utilization ([CVE-2024-39792](https://my.f5.com/manage/s/article/K000140108))
+
+  - In the [MP4](https://nginx.org/en/docs/http/ngx_http_mp4_module.html) module, a specially crafted `mp4` file can cause NGINX worker memory over-read resulting in its termination by using a specially crafted `mp4` file ([CVE-2024-7347](https://my.f5.com/manage/s/article/K000140529))
+
+- Various fixes in SSL certificate caching
+
 
 <span id="r31"></span>
 ## NGINX Plus Release 31 (R31)
@@ -206,6 +224,17 @@ _29 May 2024_
   - Null Pointer Dereference w/ Empty Header ([CVE-2024-35200](https://my.f5.com/manage/s/article/K000139612)): Undisclosed HTTP/3 requests can cause NGINX worker processes to terminate or cause other possible impacts
 
   - Memory Disclosure during QUIC handshake ([CVE-2024-34161](https://my.f5.com/manage/s/article/K000139627)): When the network infrastructure supports a Maximum Transmission Unit (MTU) of 4096 or greater without fragmentation, undisclosed QUIC messages can cause NGINX worker processes to terminate or cause leakage of previously freed memory
+
+<span id="r31_p3"></span>
+NGINX Plus R31 P3<br/>
+_14 August 2024_
+
+- Security:
+
+  - In the [MQTT Filter](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html) module, undisclosed requests can cause an increase in memory resource utilization ([CVE-2024-39792](https://my.f5.com/manage/s/article/K000140108))
+
+  - In the [MP4](https://nginx.org/en/docs/http/ngx_http_mp4_module.html) module, a specially crafted `mp4` file can cause NGINX worker memory over-read resulting in its termination by using a specially crafted `mp4` file ([CVE-2024-7347](https://my.f5.com/manage/s/article/K000140529))
+
 
 
 <span id="r30"></span>

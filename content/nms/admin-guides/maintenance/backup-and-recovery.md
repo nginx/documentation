@@ -21,8 +21,6 @@ weight: 1
 
 ### Before you begin
 
-{{<note>}}API Connectivity Manger users refer to [ACM Back up and recovery]({{< relref "/nms/acm/how-to/backup-recovery.md" >}}) {{< /note >}}
-
 To complete the instructions in this guide, you need the following:
 
 - An installed version of Instance Manager
@@ -81,8 +79,6 @@ To restore NGINX Management Suite:
 ## NGINX Management Suite and modules deployed in a Kubernetes Cluster
 
 ### Before you begin
-
-{{<note>}}API Connectivity Manger users refer to [ACM Back up and recovery]({{< relref "/nms/acm/how-to/backup-recovery.md" >}}) {{< /note >}}
 
 To complete the instructions in this guide, you need the following:
 

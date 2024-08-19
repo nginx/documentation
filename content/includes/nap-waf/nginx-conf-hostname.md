@@ -35,7 +35,7 @@ http {
     #gzip  on;
 
     # NGINX App Protect WAF
-    app_protect_enforcer_address 127.0.0.1:50000;
+    app_protect_enforcer_address waf-enforcer:50000;
 
     include /etc/nginx/conf.d/*.conf;
 }

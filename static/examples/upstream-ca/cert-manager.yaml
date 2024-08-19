@@ -1,0 +1,9 @@
+apiVersion: v1
+upstreamAuthority: cert-manager
+config:
+  namespace: <NAMESPACE>
+  issuer_name: <ISSUER_NAME>
+  # Optional fields
+  issuer_kind: <ISSUER_KIND>
+  issuer_group: <ISSUER_GROUP>
+  kube_config_file: <path/to/kubeconfig>

@@ -21,7 +21,7 @@ The guidelines in this section are applicable to the entire NGINX Management Sui
 
 ### Support for Prior Releases
 
-Unless otherwise specified in the release notes, F5 NGINX typically supports the **three most recent releases** of Instance Manager, API Connectivity Manager, and NGINX App Protect WAF. This means, for example, if the latest release of Instance Manager is 2.11.0, F5 NGINX would support versions ranging from 2.8.0 to 2.11.0. The same principle applies to the other modules.
+Unless otherwise specified in the release notes, F5 NGINX typically supports the **three most recent releases** of Instance Manager and NGINX App Protect WAF. This means, for example, if the latest release of Instance Manager is 2.11.0, F5 NGINX would support versions ranging from 2.8.0 to 2.11.0. The same principle applies to the other modules.
 
 If you are using an older version of a module, you might need to upgrade to an intermediate version before upgrading to the final version you want. Make sure to follow the recommended upgrade paths mentioned in each module's release notes for a successful upgrade process. For more detailed information and guidance on the upgrade process, you can refer to the [Upgrade Guide]({{<relref "/nms/installation/upgrade-guide.md" >}}).
 

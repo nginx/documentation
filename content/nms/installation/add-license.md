@@ -154,12 +154,6 @@ When you license an NGINX Management Suite module, you gain access to the full r
 
 <br>
 
-#### API Connectivity Manager
-
-{{< include "admin-guides/rbac/features/api-connectivity-manager.md" >}}
-
-<br>
-
 #### Security Monitoring
 
 {{< include "admin-guides/rbac/features/security-monitoring.md" >}}

@@ -1,7 +1,8 @@
 ---
 title: Reference
 weight: 500
-menu: 
+menu:
   docs:
     parent: NGINX Service Mesh
+url: /nginx-service-mesh/reference/
 ---
