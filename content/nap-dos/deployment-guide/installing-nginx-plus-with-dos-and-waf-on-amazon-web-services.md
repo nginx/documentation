@@ -192,7 +192,7 @@ If you encounter any problems with NGINX Plus configuration, documentation is a
 
 If you encounter any problems with NGINX App Protect DoS configuration, documentation is available at the [NGINX App Protect DoS Troubleshooting Guide](https://docs.nginx.com/nginx-app-protect-dos/troubleshooting-guide/how-to-troubleshoot/).
 
-If you encounter any problems with NGINX App Protect WAF configuration, documentation is available at the [NGINX App Protect WAF Troubleshooting Guide](https://docs.nginx.com/nginx-app-protect-waf/troubleshooting-guide/troubleshooting/).
+If you encounter any problems with NGINX App Protect WAF configuration, documentation is available at the [NGINX App Protect WAF Troubleshooting Guide](https://docs.nginx.com/nginx-app-protect-waf/v4/troubleshooting-guide/troubleshooting/).
 
 
 Customers who purchase an NGINX Plus AMI at the AWS Marketplace are eligible for the AWS support provided by the NGINX, Inc. engineering team. To activate support, submit the [AMI Support Activation](https://www.nginx.com/ami-support-activation/) form (you need your AWS account number). When you request support, we’ll ask you to provide the AWS account number that you registered, along with the IDs of your EC2 instances in some cases.
