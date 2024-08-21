@@ -162,27 +162,27 @@ You can now use the newly created Kubernetes secret in Helm deployments and poin
             - name: regcred
         apigw:
             image:
-                repository: <my-docker-registry:port>/nms-apigw
+                repository: <my-docker-registry:port>/nms/apigw
                 tag: <version>
         core:
             image:
-                repository: <my-docker-registry:port>/nms-core
+                repository: <my-docker-registry:port>/nms/core
                 tag: <version>
         dpm:
             image:
-                repository: <my-docker-registry:port>/nms-dpm
+                repository: <my-docker-registry:port>/nms/dpm
                 tag: <version>
         ingestion:
             image:
-                repository: <my-docker-registry:port>/nms-ingestion
+                repository: <my-docker-registry:port>/nms/ingestion
                 tag: <version>
         integrations:
             image:
-                repository: <my-docker-registry:port>/nms-integrations
+                repository: <my-docker-registry:port>/nms/integrations
                 tag: <version>
         utility:
             image:
-                repository: <my-docker-registry:port>/nms-utility
+                repository: <my-docker-registry:port>/nms/utility
                 tag: <version>
     ```
 
