@@ -87,10 +87,10 @@ You can deploy NGINX Controller v3 into the following environments:
 
 ## NGINX Plus Instances
 
-NGINX Controller, using the Controller Agent, can monitor and manage up to 100 [NGINX Plus](https://www.nginx.com/products/nginx/) instances. When using Controller App Security, NGINX Controller can monitor and manage up to 30 NGINX Plus instances with NGINX App Protect installed.
+NGINX Controller, using the Controller Agent, can monitor and manage up to 100 [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) instances. When using Controller App Security, NGINX Controller can monitor and manage up to 30 NGINX Plus instances with NGINX App Protect installed.
 
 
-NGINX Controller supports the following [NGINX Plus](https://www.nginx.com/products/nginx/) versions:
+NGINX Controller supports the following [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) versions:
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
 

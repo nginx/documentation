@@ -442,7 +442,7 @@ List of additional metrics that can be collected from the NGINX log files:
 
 ## NGINX Plus Metrics
 
-In [NGINX Plus](https://www.nginx.com/products/) several additional metrics describing various aspects of NGINX performance are available. The [API module](http://nginx.org/en/docs/http/ngx_http_api_module.html) in NGINX Plus is responsible for collecting and exposing all of the additional counters and gauges.
+In [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) several additional metrics describing various aspects of NGINX performance are available. The [API module](http://nginx.org/en/docs/http/ngx_http_api_module.html) in NGINX Plus is responsible for collecting and exposing all of the additional counters and gauges.
 
 The NGINX Plus metrics currently supported by NGINX Amplify Agent are described below. The NGINX Plus metrics have the "plus" prefix in their names.
 

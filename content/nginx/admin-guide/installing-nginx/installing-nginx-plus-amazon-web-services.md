@@ -13,7 +13,7 @@ NGINX, Inc. participates in the Amazon Web Services (AWS) Partner Network as a
 
 The AMIs contain the following components:
 
-- Latest version of [NGINX Plus](https://www.nginx.com/products/nginx/), optimized for use on Amazon EC2
+- Latest version of [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus), optimized for use on Amazon EC2
 - Pre-packaged software for building highly available (HA) NGINX Plus configurations
 
 ## Installing the NGINX Plus AMI

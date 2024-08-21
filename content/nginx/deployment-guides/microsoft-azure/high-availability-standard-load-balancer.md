@@ -33,7 +33,7 @@ Azure Traffic Manager is a DNS‑based traffic load balancer that optimally dist
 
 NGINX Plus is complementary to Standard Load Balancer. Operating at Layer 7 (the application layer), it uses more advanced load‑balancing criteria, including schemes that rely on the content of requests and the results of NGINX Plus's [active health checks]({{< relref "../../admin-guide/load-balancer/http-health-check.md" >}}).
 
-[NGINX Plus](http://www.nginx.com/products/nginx) is the commercially supported version of [NGINX Open Source](https://nginx.org/en). NGINX Plus is a complete application delivery platform, extending the power of NGINX with a host of enterprise‑ready capabilities that enhance an AWS web application deployment and are instrumental to building web applications at scale.
+[NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) is the commercially supported version of [NGINX Open Source](https://nginx.org/en). NGINX Plus is a complete application delivery platform, extending the power of NGINX with a host of enterprise‑ready capabilities that enhance an AWS web application deployment and are instrumental to building web applications at scale.
 
 NGINX Plus provides both reverse‑proxy features and load‑balancing features, including:
 
