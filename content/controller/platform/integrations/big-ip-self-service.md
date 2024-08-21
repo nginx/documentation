@@ -18,7 +18,7 @@ NGINX Controller uses the [F5 Application Services 3 Extension (AS3) package](ht
 
 The following diagram shows how client traffic is routed through a BIG-IP cluster and load-balanced to the NGINX instances belonging to the BIG-IP server pools.
 
-<div style="text-align: center">{{< img src="/platform/integrations/assets/big-ip-integration.png" alt="NGINX integration for BIG-IP." width="600" >}}</div>
+<div style="text-align: center">{{< img src="/ctlr/img/big-ip-integration.png" alt="NGINX integration for BIG-IP." width="600" >}}</div>
 
 ## Terminology
 

@@ -13,7 +13,7 @@ weight: 105
 
 ## Overview
 
-This topic explains how to use the [NGINX Controller REST API](https://docs.nginx.com/nginx-controller/api/reference/ctlr-platform-api) to download your NGINX Plus `nginx.crt` and `nginx.key` files. You'll need these files if you're [installing NGINX Plus as part of an NGINX Controller trial]({{< relref "/controller/admin-guides/install/try-nginx-controller.md" >}}).
+This topic explains how to use the [NGINX Controller REST API](https://docs.nginx.com/nginx-controller/api/ctlr-platform-api/) to download your NGINX Plus `nginx.crt` and `nginx.key` files. You'll need these files if you're [installing NGINX Plus as part of an NGINX Controller trial]({{< relref "/controller/admin-guides/install/try-nginx-controller.md" >}}).
 
 &nbsp;
 
