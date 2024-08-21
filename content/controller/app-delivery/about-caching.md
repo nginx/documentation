@@ -13,7 +13,7 @@ weight: 200
 
 ## Overview
 
-The NGINX Controller Application Delivery (AD) module lets you configure content caching by using either the user interface (UI) or the [Components REST API](https://docs.nginx.com/nginx-controller/api/reference/ctlr-v1/adc/docs/components/v1/paths/POST/services/environments/(environmentName)/apps/(appName)/components).
+The NGINX Controller Application Delivery (AD) module lets you configure content caching by using either the user interface (UI) or the [Components REST API](https://docs.nginx.com/nginx-controller/api/ctlr-adc-api/#tag/Components).
 
 ## Basic Caching
 

@@ -36,7 +36,7 @@ NGINX App Protect WAF inspects incoming traffic as specified in the Security Pol
 
 ## Security Policy
 
-In NGINX Controller, the Security Policy contains an NGINX App Protect WAF policy. The NGINX App Protect WAF policy has security controls and settings in a declarative JSON format. The Security Policy defines the rules and settings for application traffic inspection, detection of malicious traffic, and handling violations when they occur. For more about creating, updating, or deleting Security Policies, see the [Policies API Reference](https://docs.nginx.com/nginx-controller/api/reference/ctlr-v1/adc/docs/policies/v1/content/intro).
+In NGINX Controller, the Security Policy contains an NGINX App Protect WAF policy. The NGINX App Protect WAF policy has security controls and settings in a declarative JSON format. The Security Policy defines the rules and settings for application traffic inspection, detection of malicious traffic, and handling violations when they occur. For more about creating, updating, or deleting Security Policies, see the [Policies API Reference](https://docs.nginx.com/nginx-controller/api/ctlr-adc-api/#operation/listPolicies).
 
 When enabling WAF to protect your Apps, you can either add your own custom Security Policy or use the default Security Policy.
 
@@ -49,7 +49,7 @@ When you enable security on the App Component, you can specify the Security Stra
 - **App Component** references **Security Strategy**;
 - **Security Strategy** references **Security Policy**.
 
-For more about creating, updating, or deleting Security Policies, see the [Strategies API Reference](https://docs.nginx.com/nginx-controller/api/reference/ctlr-v1/adc/docs/strategies/v1/content/intro).
+For more about creating, updating, or deleting Security Policies, see the [Strategies API Reference](https://docs.nginx.com/nginx-controller/api/ctlr-adc-api/#tag/Strategies).
 
 You can use a custom Security Strategy to protect your Apps, or you can use NGINX Controller's default Security Strategy, which contains a pre-defined WAF policy.
 
