@@ -33,7 +33,7 @@ NGINX Ingress Controller manages app connectivity at the edge of a Kubernetes cl
     - [Installation with Manifests](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/)
     - [Installation with Helm](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/)
     - [Installation with NGINX Ingress Operator (Red Hat OpenShift)](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-operator/)
-    - [Using NGINX Ingress Controller in AWS Marketplace](https://docs.nginx.com/nginx-ingress-controller/installation/using-aws-marketplace-image/)
+    - [Using NGINX Ingress Controller in AWS Marketplace](https://docs.nginx.com/nginx-ingress-controller/installation/nic-images/using-aws-marketplace-image/)
 3. For additional installation options, including building custom container images, refer to the [documentation for NGINX Ingress Controller](https://docs.nginx.com/nginx-ingress-controller/installation/)
 
 ### Install NGINX Ingress Controller with NGINX App Protect WAF

@@ -106,7 +106,7 @@ To enable active health checks:
    }
    ```
 
-   The zone is shared among all worker processes and stores the configuration of the upstream group. This [enables](../http-load-balancer/#shared) the worker processes to use the same set of counters to keep track of responses from the servers in the group.
+   The zone is shared among all worker processes and stores the configuration of the upstream group. This [enables]({{< relref "/nginx/admin-guide/load-balancer/http-load-balancer.md#sharing-data-with-multiple-worker-processes" >}}) the worker processes to use the same set of counters to keep track of responses from the servers in the group.
 
    The defaults for active health checks can be overridden with parameters to the `health_check` directive:
 

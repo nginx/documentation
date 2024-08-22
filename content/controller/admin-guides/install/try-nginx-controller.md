@@ -157,7 +157,7 @@ To add a license using the [NGINX Controller REST API]({{< relref "/controller/a
 ### Prerequisites
 
 - Make sure to review the [NGINX Plus Technical Specifications Guide](https://docs.nginx.com/nginx/technical-specs/) for the requirements for your distribution and desired configuration.
-- You'll need the NGINX Plus certificate and public key files (`nginx-repo.crt` and `nginx-repo.key`) that were provided when you signed up for the trial license. If you don't have these files, you can use the [NGINX Controller REST API](https://docs.nginx.com/nginx-controller/api/reference/ctlr-v1) to download them.
+- You'll need the NGINX Plus certificate and public key files (`nginx-repo.crt` and `nginx-repo.key`) that were provided when you signed up for the trial license. If you don't have these files, you can use the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}) to download them.
 
 #### How to Download the NGINX Plus Cert and Key using the NGINX Controller API
 
