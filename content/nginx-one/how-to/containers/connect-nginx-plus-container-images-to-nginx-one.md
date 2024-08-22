@@ -12,7 +12,7 @@ weight: 400
 
 ## Introduction
 
-By following this guide, you will be able to set up a Docker container with F5 NGINX Plus and the NGINX Agent, and then connect to the NGINX One cloud console.
+By following this guide, you will be able to set up a Docker container with F5 NGINX Plus and the NGINX Agent, and then connect to the NGINX One Cloud Console.
 
 ---
 

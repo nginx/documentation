@@ -11,26 +11,38 @@ weight: 99999
 ---
 
 <style>
-  h2 {
-    position: relative;
-    margin-bottom: 20px;
-  }
+h2 {
+  position: relative;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd; /* A very light line */
+}
 
-  h2::after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 1px;
-    background-color: #000; /* Adjust the color as needed */
-    margin-top: 5px; /* Space between the heading and the horizontal line */
-  }
+/* Adds space above all h2 elements except the first one */
+.content h2:not(:first-of-type) {
+  margin-top: 50px; /* Adjust this value to create the desired space */
+}
+
+.content h3 {
+  margin-top: 25px; /* Space before the h3 */
+  margin-bottom: 10px; /* Space after the h3 */
+}
+
 </style>
 
-Stay up-to-date with what's new and improved in the F5 NGINX One cloud console.
+Stay up-to-date with what's new and improved in the F5 NGINX One Cloud Console.
+
+## August 22, 2024
+
+### Config sync groups
+
+Config sync groups are now available in the F5 NGINX One Cloud Console. This feature allows you to manage and synchronize NGINX configurations across multiple instances as a single entity, ensuring consistency and simplifying the management of your NGINX environment.
+
+For more information, see the full documentation on [Managing Config Sync Groups]({{< relref "/nginx-one/how-to/nginx-configs/manage-config-sync-groups.md" >}}).
 
 ## August 8, 2024
 
-### Instance Object Cleanup
+### Instance object cleanup
 
 NGINX Instance objects that have been `unavailable` for a set period will be automatically cleaned up (deleted). By default, this period is 24 hours from the time the NGINX Instance object was last updated. An administrator can change or disable the cleanup process in the "Instance Settings" under Settings. Events will be generated for NGINX Instances that have been automatically cleaned up. See "Events" for a list of NGINX Instances that have been deleted automatically. 
 
@@ -50,7 +62,7 @@ You can now make configuration changes to your NGINX instances. For more details
 
 ## May 28, 2024 - v0.20240528.1309124087
 
-### Improved Data Plane Key and NGINX Instance Navigation
+### Improved data plane key and NGINX instance navigation
 
 We've updated the **Instance Details** and **Data Plane Keys** pages to make it easier to go between keys and registered instances.
 
@@ -59,7 +71,7 @@ We've updated the **Instance Details** and **Data Plane Keys** pages to make it 
 
 ## February 28, 2024 - v0.20240228.1194299632
 
-### Breaking Change
+### Breaking change
 
 - API responses now use "object_id" instead of "uuid". For example, **key_1mp6W5pqRxSZJugJN-yA8g**. We've introduced specific prefixes for different types of objects:
   - Use **key_** for data-plane keys.

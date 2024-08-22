@@ -19,7 +19,7 @@ h2 {
 
 ## About data plane keys
 
-Data plane keys are required for registering NGINX instances with the F5 NGINX One cloud console. These keys serve as secure tokens, ensuring that only authorized NGINX instances can connect to and communicate with  NGINX One. You have the flexibility to reuse a key with multiple instances, or to create a unique key for each instance.
+Data plane keys are required for registering NGINX instances with the F5 NGINX One Cloud Console. These keys serve as secure tokens, ensuring that only authorized NGINX instances can connect to and communicate with  NGINX One. You have the flexibility to reuse a key with multiple instances, or to create a unique key for each instance.
 
 {{<call-out "note" "Data plane key considerations" "fas fa-key" >}}
 Data plane keys are displayed only once and cannot be retrieved later. Be sure to copy and store this key securely.
