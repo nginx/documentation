@@ -55,7 +55,7 @@ weight: 40
 
 {{</tabs>}}
 
-2. Restart the NGINX Management Suite services:
+2. Restart the F5 NGINX Management Suite services:
 
     ```bash
     sudo systemctl restart nms

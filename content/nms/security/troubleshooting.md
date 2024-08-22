@@ -19,7 +19,7 @@ If a Security Violation event is not received by the Security Monitoring module,
 
 ### Resolution
 
-NGINX App Protect supports logging to multiple destinations, enabling the user to send a log to NGINX agent and a copy to be stored as a backup. In the event of a failure to receive Security Events in Security Monitoring, the backup log can be checked to verify attack details. Change the settings below to enable backup logging:
+F5 NGINX App Protect supports logging to multiple destinations, enabling the user to send a log to NGINX agent and a copy to be stored as a backup. In the event of a failure to receive Security Events in Security Monitoring, the backup log can be checked to verify attack details. Change the settings below to enable backup logging:
 
 1. Instance with Security Monitoring only
 

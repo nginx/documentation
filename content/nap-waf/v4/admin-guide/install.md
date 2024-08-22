@@ -1,5 +1,5 @@
 ---
-description: This guide explains how to deploy NGINX App Protect WAF v4 as well as
+description: This guide explains how to deploy F5 NGINX App Protect WAF v4 as well as
   upgrade App Protect and the App Protect signature sets.
 docs: DOCS-646
 doctypes:
@@ -11,7 +11,7 @@ weight: 100
 
 ## Overview
 
-NGINX App Protect WAF provides web application firewall (WAF) security protection for your web applications, including OWASP Top 10; response inspection; Meta characters check; HTTP protocol compliance; evasion techniques; disallowed file types; JSON & XML well-formedness; sensitive parameters & Data Guard. Refer to [Supported Security Policy Features]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#supported-security-policy-features" >}}) section for a more detailed description.
+F5 NGINX App Protect WAF provides web application firewall (WAF) security protection for your web applications, including OWASP Top 10; response inspection; Meta characters check; HTTP protocol compliance; evasion techniques; disallowed file types; JSON & XML well-formedness; sensitive parameters & Data Guard. Refer to [Supported Security Policy Features]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#supported-security-policy-features" >}}) section for a more detailed description.
 
 This guide explains how to deploy NGINX App Protect WAF as well as upgrade App Protect and the App Protect signature sets.<br>
 

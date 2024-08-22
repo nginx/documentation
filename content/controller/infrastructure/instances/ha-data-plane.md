@@ -1,6 +1,6 @@
 ---
 description: Learn how to configure a high-availability data plane for your apps in
-  on-premises deployments using NGINX Controller, NGINX Plus, and keepalived.
+  on-premises deployments using F5 NGINX Controller, NGINX Plus, and keepalived.
 docs: DOCS-774
 doctypes:
 - tutorial
@@ -13,7 +13,7 @@ weight: 40
 
 ## Overview
 
-This topic explains how to configure a high-availability data plane for your apps in on-premises deployments using NGINX Controller, NGINX Plus, and keepalived. High-availability data planes help to ensure your apps operate continuously without service interruptions.
+This topic explains how to configure a high-availability data plane for your apps in on-premises deployments using F5 NGINX Controller, NGINX Plus, and keepalived. High-availability data planes help to ensure your apps operate continuously without service interruptions.
 
 Support for High Availability (HA) mode is limited to **two NGINX Plus instances**. You can set up data plane HA in environments where IP addresses can be controlled through standard operating system calls.
 

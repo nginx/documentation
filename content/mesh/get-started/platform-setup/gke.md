@@ -1,6 +1,6 @@
 ---
 title: Google Kubernetes Engine
-description: Learn how to set up Google Kubernetes Engine (GKE) for use with NGINX Service Mesh.
+description: Learn how to set up Google Kubernetes Engine (GKE) for use with F5 NGINX Service Mesh.
 categories: ["tasks"]
 toc: true
 docs: "DOCS-683"

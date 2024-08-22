@@ -1,5 +1,5 @@
 ---
-description: How to add NGINX Controller App Security to your applications.
+description: How to add F5 NGINX Controller App Security to your applications.
 docs: DOCS-484
 doctypes:
 - concept
@@ -13,7 +13,7 @@ weight: 100
 
 ## Overview
 
-You can use the App Security add-on for NGINX Controller ADC to enable Web Application Firewall (WAF) capabilities to protect your applications. WAF lets you flag or block suspicious requests or attacks. WAF can be added to individual app components.
+You can use the App Security add-on for F5 NGINX Controller ADC to enable Web Application Firewall (WAF) capabilities to protect your applications. WAF lets you flag or block suspicious requests or attacks. WAF can be added to individual app components.
 
 
 ## Before You Begin

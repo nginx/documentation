@@ -1,5 +1,5 @@
 ---
-description: Stay up-to-date with the latest releases for the [NGINX Controller Application
+description: Stay up-to-date with the latest releases for the [F5 NGINX Controller Application
   Delivery Module](https://www.nginx.com/products/nginx-controller/load-balancer-application-delivery/).
 menu:
   docs:

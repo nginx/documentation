@@ -1,5 +1,5 @@
 ---
-description: Learn about the NGINX Controller Analytics module.
+description: Learn about the F5 NGINX Controller Analytics module.
 menu:
   docs:
     parent: NGINX Controller

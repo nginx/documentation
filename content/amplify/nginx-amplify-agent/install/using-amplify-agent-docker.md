@@ -1,6 +1,6 @@
 ---
 title: Use NGINX Amplify Agent with Docker
-description: Learn how to use NGINX Amplify Agent with Docker.
+description: Learn how to use F5 NGINX Amplify Agent with Docker.
 weight: 500
 toc: true
 tags: ["docs"]

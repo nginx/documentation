@@ -1,5 +1,5 @@
 ---
-description: Learn the types of logs available in NGINX App Protect WAF v5.
+description: Learn the types of logs available in F5 NGINX App Protect WAF v5.
 docs: DOCS-1374
 doctypes:
 - concept
@@ -10,7 +10,7 @@ weight: 1010
 
 ## Log Types
 
-Logs in NGINX App Protect WAF v5 can be accessed and configured similarly to NGINX App Protect WAF, though there are some differences in the process.
+Logs in F5 NGINX App Protect WAF v5 can be accessed and configured similarly to NGINX App Protect WAF, though there are some differences in the process.
 
 ### NGINX Access Log
 

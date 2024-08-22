@@ -185,7 +185,7 @@ With many workers and nodes, this can become a bottleneck. If the number of even
 **A.** No. Cluster sync data is shared across the cluster so there is no need to write it out to disk. The keyval module is capable of saving local node state to disk.
 
 
-**Q.** Can NGINX Plus be configured to reject connections before sync has completed?
+**Q.** Can F5 NGINX Plus be configured to reject connections before sync has completed?
 
 **A.** No, because there is no such state. Each node just receives stream of updates from others and sends own updates to others. If no new data is arriving to cluster, all nodes will have an empty backlog queue and this can be counted as 'complete sync', but in reality such situation is usually never met: there are always clients.
 

@@ -1,5 +1,5 @@
 ---
-description: Migrate load-balancing configuration from Citrix ADC to NGINX Plus for
+description: Migrate load-balancing configuration from Citrix ADC to F5 NGINX Plus for
   equal performance at lower cost, using our syntax conversion examples.
 docs: DOCS-459
 doctypes:
@@ -9,7 +9,7 @@ toc: true
 weight: 100
 ---
 
-NGINX Plus provides a flexible replacement for traditional hardware‑based [application delivery controllers](https://www.nginx.com/resources/glossary/application-delivery-controller/) (ADCs). As a software load balancer with a small footprint, NGINX Plus can be deployed just about anywhere – on bare metal, on a virtual machine, or in a container, and on‑premises or in public, private, and hybrid clouds. This guide explains how to migrate the Citrix ADC configuration for several common load‑balancer features to the NGINX Plus application delivery platform. It covers the most commonly used features to get you started quickly.
+F5 NGINX Plus provides a flexible replacement for traditional hardware‑based [application delivery controllers](https://www.nginx.com/resources/glossary/application-delivery-controller/) (ADCs). As a software load balancer with a small footprint, NGINX Plus can be deployed just about anywhere – on bare metal, on a virtual machine, or in a container, and on‑premises or in public, private, and hybrid clouds. This guide explains how to migrate the Citrix ADC configuration for several common load‑balancer features to the NGINX Plus application delivery platform. It covers the most commonly used features to get you started quickly.
 
 **Note:** Citrix ADC was formerly called Citrix NetScaler.
 

@@ -1,6 +1,6 @@
 ---
 description: Learn how to set up role-based access control (RBAC) for Infra Admins
-  using the built-in and custom roles available in the NGINX Management Suite API
+  using the built-in and custom roles available in the F5 NGINX Management Suite API
   Connectivity Manager.
 docs: DOCS-1174
 doctypes:
@@ -14,7 +14,7 @@ weight: 115
 
 ## Overview
 
-This tutorial will show you how to use the Role-Based Access Control (RBAC) features of API Connectivity Manager to give Infra Admins tailored levels of access to features in NGINX Management Suite. You will learn how to create roles to grant users access to workspaces and features, as well as how to add and assign users to those roles.
+This tutorial will show you how to use the Role-Based Access Control (RBAC) features of API Connectivity Manager to give Infra Admins tailored levels of access to features in F5 NGINX Management Suite. You will learn how to create roles to grant users access to workspaces and features, as well as how to add and assign users to those roles.
 
 ### Intended Audience
 

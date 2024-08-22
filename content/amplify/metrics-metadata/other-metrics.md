@@ -1,6 +1,6 @@
 ---
 title: Other Metrics
-description: Learn about other metrics used by NGINX Amplify
+description: Learn about other metrics used by F5 NGINX Amplify
 weight: 40
 toc: true
 tags: ["docs"]

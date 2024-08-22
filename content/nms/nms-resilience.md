@@ -1,5 +1,5 @@
 ---
-description: NGINX Management Suite installed on Kubernetes provides control plane
+description: F5 NGINX Management Suite installed on Kubernetes provides control plane
   resilience through fault tolerance and automated recovery.
 docs: DOCS-1161
 doctypes:
@@ -13,7 +13,7 @@ weight: 30
 
 ## Overview
 
-The NGINX Management Suite platform includes four services (described below) that work together to monitor NGINX data plane instances. These platform services feature self-monitoring capabilities, allowing them to detect unresolvable issues and shut down automatically. When you [install NGINX Management Suite on Kubernetes]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md">}}), you get the benefits of fault tolerance and automated recovery: when a platform service fails, Kubernetes will create new pods and restart the affected services without disruption to the data plane.
+The F5 NGINX Management Suite platform includes four services (described below) that work together to monitor NGINX data plane instances. These platform services feature self-monitoring capabilities, allowing them to detect unresolvable issues and shut down automatically. When you [install NGINX Management Suite on Kubernetes]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md">}}), you get the benefits of fault tolerance and automated recovery: when a platform service fails, Kubernetes will create new pods and restart the affected services without disruption to the data plane.
 
 ---
 

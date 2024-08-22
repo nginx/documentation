@@ -1,5 +1,5 @@
 ---
-description: How to install, upgrade, and uninstall the NGINX Controller Agent.
+description: How to install, upgrade, and uninstall the F5 Controller Agent.
 docs: DOCS-254
 doctypes:
 - tutorial
@@ -13,7 +13,7 @@ weight: 150
 
 ## Overview
 
-This page shows how to install, update, and uninstall the NGINX Controller Agent.
+This page shows how to install, update, and uninstall the F5 NGINX Controller Agent.
 
 You can use the NGINX Controller Agent to monitor your systems with the NGINX Controller.
 

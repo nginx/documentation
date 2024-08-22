@@ -1,5 +1,5 @@
 ---
-description: Learn about NGINX Controller Application Delivery concepts.
+description: Learn about F5 NGINX Controller Application Delivery concepts.
 docs: DOCS-474
 title: About Application Delivery
 toc: true
@@ -8,7 +8,7 @@ weight: 100
 
 ## Apps
 
-In NGINX Controller, an App serves as a container for one or more Components. Components represent the backend services that comprise your application. Together, an App and its Components represent the logical partitioning of your application into its composite parts. For example, a Component might correspond to a particular microservice within your application. Each Component you add to an App represents one or more paths via which traffic can reach that microservice.
+In F5 NGINX Controller, an App serves as a container for one or more Components. Components represent the backend services that comprise your application. Together, an App and its Components represent the logical partitioning of your application into its composite parts. For example, a Component might correspond to a particular microservice within your application. Each Component you add to an App represents one or more paths via which traffic can reach that microservice.
 
 All Apps and Components live within an [Environment]({{< relref "/controller/services/manage-environments.md" >}}). This means that in order to have access to a particular App, a User needs to have permission to access its Environment. If you need access to an Environment or App, contact your administrator.
 

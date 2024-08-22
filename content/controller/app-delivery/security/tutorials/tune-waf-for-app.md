@@ -17,7 +17,7 @@ WAF Tuning helps remove false positives or exceptions from Security Events.
 
 ## Disable Attack Signatures
 
-To help determine which signatures may be causing false positives, go to the Security Analytics page of the app component. Go to the WAF Tuning tab, where NGINX Controller provides this information.
+To help determine which signatures may be causing false positives, go to the Security Analytics page of the app component. Go to the WAF Tuning tab, where F5 NGINX Controller provides this information.
 
 To disable signatures, take the steps below.
 

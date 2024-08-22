@@ -1,5 +1,5 @@
 ---
-description: "Learn about the NGINX App Protect WAF Troubleshooting Guide."
+description: "Learn about the F5 NGINX App Protect WAF Troubleshooting Guide."
 doctypes:
 - concept
 title: "NGINX App Protect WAF Troubleshooting Guide"
@@ -10,7 +10,7 @@ docs: "DOCS-1645"
 
 ## Overview
 
-This Troubleshooting Guide is intended to provide guidance to customers in the detection and correction of programming issues in NGINX App Protect. It may also be useful to IT in resolving any installation or configuration problems. <br>
+This Troubleshooting Guide is intended to provide guidance to customers in the detection and correction of programming issues in F5 NGINX App Protect WAF. It may also be useful to IT in resolving any installation or configuration problems. <br>
 
 Refer to the below table for any NGINX App Protect WAF installation or configuration known problems.
 

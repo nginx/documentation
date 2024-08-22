@@ -1,5 +1,5 @@
 ---
-description: Contact information and knowledge resources for NGINX Support.
+description: Contact information and knowledge resources for F5 NGINX Support.
 docs: DOCS-375
 doctypes:
 - reference
@@ -11,7 +11,7 @@ toc: true
 weight: 10
 ---
 
-## Contact NGINX Support
+## Contact F5 NGINX Support
 
 For questions and/or assistance with installing, troubleshooting, or using NGINX Controller, contact Support via the [MyF5 Customer Portal](https://account.f5.com/myf5).
 

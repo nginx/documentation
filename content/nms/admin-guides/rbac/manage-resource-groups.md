@@ -1,5 +1,5 @@
 ---
-description: Learn how to use NGINX Management Suite Instance Manager to create  resource
+description: Learn how to use F5 NGINX Management Suite Instance Manager to create  resource
   groups. These groups are used to manage multiple resources like instances, instance
   groups, and certificates as a single RBAC permission object.
 docs: DOCS-1271
@@ -25,7 +25,7 @@ Resource groups are containers that can house various resources, such as instanc
 
 To complete the instructions in this guide, you need the following:
 
-- An installed version of [NGINX Management Suite Instance Manager]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}})
+- An installed version of [F5 NGINX Management Suite Instance Manager]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}})
 - One or more NGINX data plane instances
 
 ---

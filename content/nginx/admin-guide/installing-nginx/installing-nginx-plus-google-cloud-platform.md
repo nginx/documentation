@@ -1,5 +1,5 @@
 ---
-description: Install NGINX Plus on the Google Cloud Platform, to provide sophisticated
+description: Install F5 NGINX Plus on the Google Cloud Platform, to provide sophisticated
   Layer 7 load balancing for your apps running on Google Compute Engine.
 docs: DOCS-412
 doctypes:
@@ -20,7 +20,7 @@ To quickly set up an NGINX Plus environment on the Google Cloud Platform, perfo
 
 1. Access the [NGINX Plus page](https://console.cloud.google.com/marketplace/details/nginx-public/nginx-plus) in Google Marketplace and click the **LAUNCH ON COMPUTE ENGINE** button.
 
-   <img src="/nginx/images/gcp-nginx-plus-page-oct2018.png" alt="screenshot NGINX Plus on Google Marketplace" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   <img src="/nginx/images/gcp-nginx-plus-page-oct2018.png" alt="screenshot F5 NGINX Plus on Google Marketplace" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 2. The **Select or create a project** window opens. Enter a project name and select a value from the **Organization** drop‑down, then click the **Create** button.
 

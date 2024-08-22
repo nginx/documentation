@@ -11,12 +11,12 @@ weight: 900
 April 18, 2024
 
 {{< note >}}
- All existing policy bundles and log bundles must be recompiled post upgrade using this version's WAF compiler. Older bundles will be detected and disallowed.   
+ All existing policy bundles and log bundles must be recompiled post upgrade using this version's WAF compiler. Older bundles will be detected and disallowed.
 {{< /note >}}
 
 ### New Features
 
-In this release, NGINX App Protect WAF supports NGINX Open Source 1.25.4 and NGINX Plus R31 P1.
+In this release, F5 NGINX App Protect WAF supports NGINX Open Source 1.25.4 and NGINX Plus R31 P1.
 
 - [Authorization Rules in URLs]({{<relref "nap-waf/v5/configuration-guide/configuration.md#authorization-rules-in-urls">}})
 - New [JSON Web Token]({{<relref "nap-waf/v5/configuration-guide/configuration.md##json-web-token-protection">}}) signature signing algorithm support for:

@@ -1,5 +1,5 @@
 ---
-description: Learn how to deploy, upgrade, and manage NGINX App Protect WAF and App
+description: Learn how to deploy, upgrade, and manage F5 NGINX App Protect WAF and App
   Protect Signatures. Versions 4 and earlier.
 menu:
   docs:

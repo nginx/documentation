@@ -1,5 +1,5 @@
 ---
-description: Understand the basic elements in an NGINX or NGINX Plus configuration
+description: Understand the basic elements in an NGINX or F5 NGINX Plus configuration
   file, including directives and contexts.
 docs: DOCS-378
 doctypes:

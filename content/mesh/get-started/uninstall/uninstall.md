@@ -2,11 +2,14 @@
 title: "Uninstall with nginx-meshctl"
 draft: false
 toc: true
-description: "This topic explains how to uninstall NGINX Service Mesh using nginx-meshctl."
 weight: 200
 categories: ["tasks"]
 docs: "DOCS-1481"
 ---
+
+## Overview
+
+This topic explains how to uninstall F5 NGINX Service Mesh using nginx-meshctl.
 
 ## Uninstall
 
@@ -17,7 +20,7 @@ OpenShift users: Before uninstalling, read through the [OpenShift considerations
 Uninstalling does the following:
 
 1. Removes the control plane and its contents from Kubernetes.
-2. Deletes all F5 NGINX Service Mesh traffic policies.
+2. Deletes all NGINX Service Mesh traffic policies.
 
 The `nginx-meshctl` command-line utility prints a list of resources that contain the sidecar proxies when the uninstall completes. You must re-roll the Deployments in Kubernetes to remove the sidecars. Until you re-roll the resources, the sidecar proxies still exist, but they don't apply any rules to the traffic.
 

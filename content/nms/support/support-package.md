@@ -21,7 +21,7 @@ The script collects system and service information and then packages the data in
 
 ## Usage
 
-The NGINX Instance Manager installer copies the `support-package.sh` script to the following location: `/etc/nms/scripts/support-package.sh`.
+The F5 NGINX Instance Manager installer copies the `support-package.sh` script to the following location: `/etc/nms/scripts/support-package.sh`.
 
 To create a support package:
 

@@ -1,5 +1,5 @@
 ---
-description: Learn how to use the NGINX Management Suite API Connectivity Manager
+description: Learn how to use the F5 NGINX Management Suite API Connectivity Manager
   Rate Limiting policy to protect backend servers. The Rate Limiting policy lets you
   limit connections and the rate of requests based on request URI, client IP address,
   or authenticated clients.
@@ -29,7 +29,7 @@ The policy can also specify the type of traffic shaping required to allow burst 
 
 ### Intended Audience
 
-This guide is meant for NGINX Management Suite Administrators who can modify or create policies on an API Gateway Proxy.
+This guide is meant for F5 NGINX Management Suite Administrators who can modify or create policies on an API Gateway Proxy.
 
 ---
 

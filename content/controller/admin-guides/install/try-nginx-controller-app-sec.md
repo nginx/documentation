@@ -1,5 +1,5 @@
 ---
-description: This quick-start tutorial shows you how to get started using NGINX Controller
+description: This quick-start tutorial shows you how to get started using F5 NGINX Controller
   with the Application Security Add-on.
 docs: DOCS-259
 doctypes:
@@ -13,7 +13,7 @@ weight: 115
 
 ## Overview
 
-This quick-start tutorial shows you how to get started using NGINX Controller with the Application Security Add-on ("App Security"). The App Security add-on to the NGINX Controller Application Delivery Module enables a web application firewall (WAF) that you can use to protect your apps.
+This quick-start tutorial shows you how to get started using F5 NGINX Controller with the Application Security Add-on ("App Security"). The App Security add-on to the NGINX Controller Application Delivery Module enables a web application firewall (WAF) that you can use to protect your apps.
 
 Take the steps in this guide to deploy NGINX Controller with App Security and deploy NGINX App Protect with NGINX Plus as a data plane instance for use with NGINX Controller.
 

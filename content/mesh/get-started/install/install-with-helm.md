@@ -2,7 +2,7 @@
 title: "Install with Helm"
 draft: false
 toc: true
-description: "This guide explains how to install NGINX Service Mesh using Helm."
+description: "This guide explains how to install F5 NGINX Service Mesh using Helm."
 weight: 300
 categories: ["tasks"]
 docs: "DOCS-680"

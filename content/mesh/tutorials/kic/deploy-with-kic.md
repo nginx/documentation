@@ -1,6 +1,6 @@
 ---
 title: "Deploy with NGINX Ingress Controller"
-description: "This topic describes how to install and use the NGINX Ingress Controller with NGINX Service Mesh"
+description: "This topic describes how to install and use F5 NGINX Ingress Controller with NGINX Service Mesh"
 weight: 200
 draft: false
 toc: true
@@ -10,7 +10,7 @@ docs: "DOCS-721"
 
 ## Overview
 
-You can deploy F5 NGINX Ingress Controller for Kubernetes with F5 NGINX Service Mesh to control both ingress and [egress](#enable-egress) traffic.
+You can deploy NGINX Ingress Controller for Kubernetes with NGINX Service Mesh to control both ingress and [egress](#enable-egress) traffic.
 
 {{< important >}}
 NGINX Ingress Controller can be used for free with NGINX Open Source. Paying customers have access to NGINX Ingress Controller with NGINX Plus.

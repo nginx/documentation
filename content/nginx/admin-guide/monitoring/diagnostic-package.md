@@ -1,6 +1,6 @@
 ---
 description: This page describes how to trigger the automatic collection of data required
-  to troubleshoot issues in a NGINX or NGINX Plus deployment.
+  to troubleshoot issues in a NGINX or F5 NGINX Plus deployment.
 docs: DOCS-1357
 doctypes:
 - task
@@ -26,7 +26,7 @@ The script collects the following information:
 - NGINX versions, dynamically linked libraries
 - NGINX Plus API endpoints
 - NGINX Agent logs and configs if NGINX Agent is present
-- NGINX App Protect logs and configs if NGINX App Protect is present
+- NGINX App Protect logs and configs if F5 NGINX App Protect is present
 
 The script does not collect or create:
 

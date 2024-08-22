@@ -1,5 +1,5 @@
 ---
-description: Learn how to grant users access to the NGINX Management Suite Security
+description: Learn how to grant users access to the F5 NGINX Management Suite Security
   Monitoring dashboards.
 docs: DOCS-1026
 doctypes:
@@ -15,7 +15,7 @@ weight: 200
 
 ## Overview
 
-You can use NGINX Management Suite Security Monitoring to monitor NGINX App Protect WAF instances. The Security Monitoring analytics dashboards and security logs provide protection insights and help you analyze possible threats or identify opportunities to tune your security policies.
+You can use F5 NGINX Management Suite Security Monitoring to monitor NGINX App Protect WAF instances. The Security Monitoring analytics dashboards and security logs provide protection insights and help you analyze possible threats or identify opportunities to tune your security policies.
 
 By completing the steps in this topic, you will create a role that gives users access to the Security Monitoring module and logs, and assign it to user accounts or groups.
 

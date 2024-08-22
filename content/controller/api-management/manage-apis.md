@@ -1,5 +1,5 @@
 ---
-description: Use the NGINX Controller API Manager to add APIs and control how your
+description: Use the F5 NGINX Controller API Manager to add APIs and control how your
   APIs are exposed and consumed.
 docs: DOCS-569
 doctypes:
@@ -13,7 +13,7 @@ weight: 110
 
 ## Overview
 
-The NGINX Controller API Management module provides full life cycle management for your APIs. This document provides a walkthrough of the steps needed to create, version, and publish your API using the NGINX Controller API Management module. When you have completed this guide, you should have the following resources:
+The F5 NGINX Controller API Management module provides full life cycle management for your APIs. This document provides a walkthrough of the steps needed to create, version, and publish your API using the NGINX Controller API Management module. When you have completed this guide, you should have the following resources:
 
 - An **API Definition**, which stores a collection of related API resources. It can be thought of as a folder.
 - An **API Version**, which describes a particular API and serves as the data contract. It describes available endpoints and operations on each endpoint and can also include API documentation.

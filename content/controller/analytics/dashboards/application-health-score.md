@@ -12,7 +12,7 @@ weight: 20
 
 ## Overview
 
-When you log in to the NGINX Controller user interface, you will see the **Analytics Dashboard Overview** page. This page contains an Application Health Score (AHS) that reflects your application's performance.
+When you log in to the F5 NGINX Controller user interface, you will see the **Analytics Dashboard Overview** page. This page contains an Application Health Score (AHS) that reflects your application's performance.
 
 The AHS is a customizable [Apdex-like numerical measure](https://www.apdex.org/) that can be used to estimate the quality of experience for your web application. It lets you configure service-level monitoring for your applications.
 

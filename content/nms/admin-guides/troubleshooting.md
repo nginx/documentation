@@ -1,6 +1,6 @@
 ---
 description: This topic describes possible issues users might encounter when using
-  the NGINX Management Suite platform. When possible, suggested workarounds are provided.
+  the F5 NGINX Management Suite platform. When possible, suggested workarounds are provided.
 docs: DOCS-1221
 doctypes:
 - reference
@@ -15,7 +15,7 @@ weight: 1000
 
 ### Description
 
-After installing NGINX Management Suite, when accessing the web interface, the system returns the error "502 Upstream Unavailable."
+After installing F5 NGINX Management Suite, when accessing the web interface, the system returns the error "502 Upstream Unavailable."
 
 ### Resolution
 

@@ -1,5 +1,5 @@
 ---
-description: Learn how to use NGINX Management Suite Instance Manager to create instance
+description: Learn how to use F5 NGINX Management Suite Instance Manager to create instance
   groups, which you can use to manage multiple NGINX instances as a single entity.
 docs: DOCS-935
 doctypes:

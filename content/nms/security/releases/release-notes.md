@@ -1,6 +1,6 @@
 ---
 description: These release notes list and describe the new features, enhancements,
-  and resolved issues in the NGINX Management Suite Security Monitoring module.
+  and resolved issues in the F5 NGINX Management Suite Security Monitoring module.
 docs: DOCS-1078
 doctypes:
 - reference

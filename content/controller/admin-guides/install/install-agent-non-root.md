@@ -1,5 +1,5 @@
 ---
-description: How to install the NGINX Controller Agent to run as a non-root user.
+description: How to install the F5 NGINX Controller Agent to run as a non-root user.
 docs: DOCS-253
 doctypes:
 - beta
@@ -12,7 +12,7 @@ weight: 205
 
 ## Overview
 
-This document provides the instructions to run NGINX Controller Agent as a non-root user, by making a few adjustments to the deployment process.
+This document provides the instructions to run F5 NGINX Controller Agent as a non-root user, by making a few adjustments to the deployment process.
 
 &nbsp;
 

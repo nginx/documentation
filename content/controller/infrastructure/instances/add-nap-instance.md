@@ -1,5 +1,5 @@
 ---
-description: Learn how to register an NGINX App Protect instance with NGINX Controller
+description: Learn how to register an F5 NGINX App Protect instance with NGINX Controller
   for use with the ADC module.
 docs: DOCS-770
 doctypes:
@@ -13,7 +13,7 @@ weight: 20
 
 ## Overview
 
-Follow the directions in this topic to deploy NGINX App Protect and add the instance to NGINX Controller.
+Follow the directions in this topic to deploy F5 NGINX App Protect and add the instance to NGINX Controller.
 
 ## Deploy NGINX App Protect
 

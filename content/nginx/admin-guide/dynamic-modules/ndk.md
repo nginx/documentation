@@ -60,7 +60,7 @@ The NDK module is also a prerequisite for [Encrypted Session]({{< relref "encryp
 <span id="configure"></span>
 ## Configuration
 
-After installation you will need to enable and configure the module in NGINX Plus configuration file `nginx.conf`.
+After installation you will need to enable and configure the module in F5 NGINX Plus configuration file `nginx.conf`.
 
 1. Enable dynamic loading of the module with the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive specified in the top-level (“`main`”) context:
 

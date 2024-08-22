@@ -30,7 +30,7 @@ By the end, you'll be able to:
 
 ## Background
 
-NGINX Instance Manager simplifies the management of NGINX configurations across a wide network. Using templates, administrators can ensure consistent configurations while easily customizing individual settings with augment templates.
+F5 NGINX Instance Manager simplifies the management of NGINX configurations across a wide network. Using templates, administrators can ensure consistent configurations while easily customizing individual settings with augment templates.
 
 ---
 
@@ -222,7 +222,7 @@ To understand how this template connects to the [base template you just added](#
         "nameInConfig": {
           "title": "Name",
           "type": "string",
-            
+
           "examples": [
             "users_backend"
           ]
@@ -436,7 +436,7 @@ The first part of the template checks the location's label, `nameExpression`, an
                 "description": "Name of the target upstream. Must match exactly.",
                 "examples": [
                   "upstream_1"
-                ]                
+                ]
               }
             },
             "required": ["targetId", "upstreamName"]
@@ -492,7 +492,7 @@ Lastly, generate and deploy your configuration.
    - Enter the upstream name. This is the name you specified in step 6 (for example, **users_backend**). Make sure the names match exactly.
    - Select **Next**.
 8. **Preview the config**:
- 
+
     On the **Preview Config** page, the resulting config should look similar to the following example:
 
     ```nginx
@@ -510,12 +510,12 @@ Lastly, generate and deploy your configuration.
     	server {
     		server_name example.com;
     		location /users {
-    			
+
     # <<< BEGIN DO-NOT-EDIT location augment templates >>>
 
     			# __templateTag={"uid":"8c903bd1-c11f-4820-8f0b-d12418a41bad","file":"location.tmpl","name":"rr_aug_loc_proxy"}
     			include /etc/nginx/augments/location/base_http-server1_loc1_3c4f0137_8c903bd1-c11f-4820-8f0b-d12418a41bad.conf;
-    			
+
     # <<< END DO-NOT-EDIT location augment templates >>>
 
     		}
@@ -533,7 +533,7 @@ If you targeted an NGINX instance or instance group:
 
 1. Open a secure connection to your instance(s) and log in.
 2. Open the NGINX config (**/etc/nginx/nginx.conf**) with a text editor. The configuration file should match the config output you [previewed and generated in the previous section](#generate-and-deploy-config).
-3. Next, look for a new file under */etc/nginx/augments/location/* directory with a name similar to **base_http-server1_loc1_[unique-id].conf**, where **[unique-id]** is a unique identifier string. Open this file in a text editor. 
+3. Next, look for a new file under */etc/nginx/augments/location/* directory with a name similar to **base_http-server1_loc1_[unique-id].conf**, where **[unique-id]** is a unique identifier string. Open this file in a text editor.
 The contents should include the **proxy_pass** directive:
 
     ``` nginx

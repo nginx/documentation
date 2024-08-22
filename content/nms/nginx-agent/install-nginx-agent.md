@@ -15,7 +15,7 @@ weight: 100
 
 This section lists the prerequisites for installing and configuring NGINX Agent. Follow the steps below to complete the requirements:
 
-1. [NGINX Management Suite is installed on a server]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}).
+1. [F5 NGINX Management Suite is installed on a server]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}).
 
     {{<note>}} When installing and configuring NGINX Management Suite, take note of the fully qualified domain name (FQDN) and gRPC port number. You'll need this information to properly configure the NGINX Agent to communicate with NGINX Management Suite.
     {{</note>}}
@@ -290,9 +290,9 @@ nginx-agent
 
 ### CLI Flags and Environment Variables
 
-{{< warning >}} 
+{{< warning >}}
 
-Before version 2.35.0, the environment variables were prefixed with `NMS_` instead of `NGINX_AGENT_`. 
+Before version 2.35.0, the environment variables were prefixed with `NMS_` instead of `NGINX_AGENT_`.
 
 If you are upgrading from an older version, update your configuration accordingly.
 
@@ -340,9 +340,9 @@ If you are upgrading from an older version, update your configuration accordingl
 <br>
 
 {{<note>}}
-Use the `--config-dirs` command-line option, or the `config_dirs` key in the `nginx-agent.conf` file, to identify the directories NGINX Agent can read from or write to. This setting also defines the location to which you can upload config files when using a control plane. 
+Use the `--config-dirs` command-line option, or the `config_dirs` key in the `nginx-agent.conf` file, to identify the directories NGINX Agent can read from or write to. This setting also defines the location to which you can upload config files when using a control plane.
 
-NGINX Agent cannot write to directories outside the specified location when updating a config and cannot upload files to directories outside of the configured location. 
+NGINX Agent cannot write to directories outside the specified location when updating a config and cannot upload files to directories outside of the configured location.
 
 NGINX Agent follows NGINX configuration directives to file paths outside the designated directories and reads certificates' metadata. NGINX Agent uses the following directives:
 

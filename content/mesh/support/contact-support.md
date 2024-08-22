@@ -1,7 +1,7 @@
 ---
 title: "Where to Go for Support"
 weight: 100
-description: "Learn where to go for NGINX Service Mesh support."
+description: "Learn where to go for F5 NGINX Service Mesh support."
 categories: ["support"]
 toc: true
 draft: false

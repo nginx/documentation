@@ -144,7 +144,7 @@ This algorithm distributes requests to the server with the least number of activ
 
 #### Least Time
 
-{{< note >}} This load balancing algorithm is available as part of the NGINX Plus commercial subscription. {{</ note >}}
+{{< note >}} This load balancing algorithm is available as part of the F5 NGINX Plus commercial subscription. {{</ note >}}
 
 This algorithm distributes requests to the server with the least average response time and least number of active connections. If there are several servers, they are tried sequentially using the round-robin balancing method.
 

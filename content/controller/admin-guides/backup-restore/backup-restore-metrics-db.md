@@ -1,5 +1,5 @@
 ---
-description: Learn how to back up and restore the NGINX Controller analytics database.
+description: Learn how to back up and restore the F5 NGINX Controller analytics database.
 docs: DOCS-250
 doctypes:
 - task
@@ -12,7 +12,7 @@ weight: 100
 
 ## Overview
 
-This guide explains how to back up and restore the NGINX Controller analytics database. Backing up and restoring the analytics data lets you preserve the history of graphs. Backing up this information is optional.
+This guide explains how to back up and restore the F5 NGINX Controller analytics database. Backing up and restoring the analytics data lets you preserve the history of graphs. Backing up this information is optional.
 
 ## Back Up the Analytics Database
 

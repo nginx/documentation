@@ -1,5 +1,5 @@
 ---
-description: Learn how to use NGINX Management Suite API Connectivity Manager to secure
+description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to secure
   API Gateways by applying an OAuth2 JSON Web Token (JWT) Assertion policy.
 docs: DOCS-1119
 doctypes:
@@ -54,7 +54,7 @@ A period (`.`) separates the header, payload, and signature. The header and payl
 {{</bootstrap-table>}}
 
 
-The [JWT standard](https://www.rfc-editor.org/rfc/rfc7519) defines several signature algorithms. The value HS256 in the example refers to HMAC SHA‑256. NGINX Plus supports the HSxxx, RSxxx, and ESxxx [signature algorithms](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html) that are defined in the [standard](https://www.rfc-editor.org/rfc/rfc7518#section-3.1). The ability to cryptographically sign JWTs makes them ideal to be used for client authorization.
+The [JWT standard](https://www.rfc-editor.org/rfc/rfc7519) defines several signature algorithms. The value HS256 in the example refers to HMAC SHA‑256. F5 NGINX Plus supports the HSxxx, RSxxx, and ESxxx [signature algorithms](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html) that are defined in the [standard](https://www.rfc-editor.org/rfc/rfc7518#section-3.1). The ability to cryptographically sign JWTs makes them ideal to be used for client authorization.
 
 ---
 

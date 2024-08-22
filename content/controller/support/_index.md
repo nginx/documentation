@@ -1,5 +1,5 @@
 ---
-description: How to get support for NGINX Controller
+description: How to get support for F5 NGINX Controller
 menu:
   docs:
     parent: NGINX Controller

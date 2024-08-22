@@ -1,5 +1,5 @@
 ---
-description: Learn how to safely change the management IP of NGINX Controller.
+description: Learn how to safely change the management IP of F5 NGINX Controller.
 docs: DOCS-779
 doctypes:
 - task
@@ -13,7 +13,7 @@ weight: 135
 
 ## Overview
 
-This topic explains how to safely update the management IP of NGINX Controller.
+This topic explains how to safely update the management IP of F5 NGINX Controller.
 
 {{< see-also >}}
 For instructions on how to deploy NGINX Controller as a multi-node resilient cluster, refer to the following deployment guide:

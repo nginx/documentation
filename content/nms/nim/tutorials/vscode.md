@@ -32,7 +32,7 @@ The VS Code plugin is based off the F5 VS Code plugin that enables AS3 language 
 
 ## Prerequisites {#prerequisites}
 
-1. NGINX Management Suite already configured and running.
+1. F5 NGINX Management Suite already configured and running.
 2. NGINX Agent installed on any NGINX Instances you want to manage.
 3. Basic Authentication to connect to Instance Manager.
 

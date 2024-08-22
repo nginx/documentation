@@ -11,11 +11,11 @@ weight: 260
 
 ## Overview
 
-The F5 NGINX Management Suite platform lets you share telemetry and web analytics data with F5 NGINX. This data provides valuable insights into software usage and adoption, which F5 NGINX uses to improve product development and support customers worldwide. This document provides an overview of the transmitted data, instructions for enabling or disabling the features, and instructions for configuring firewalls.
+The F5 NGINX Management Suite platform lets you share telemetry and web analytics data with F5 NGINX. This data provides valuable insights into software usage and adoption, which NGINX uses to improve product development and support customers worldwide. This document provides an overview of the transmitted data, instructions for enabling or disabling the features, and instructions for configuring firewalls.
 
 ## Telemetry
 
-NGINX Management Suite sends a limited set of telemetry data to F5 NGINX for analysis. This data is associated only with the subscription ID from the applied license and does not include any personally identifiable information or specific details about the management plane, data plane, or other details.
+NGINX Management Suite sends a limited set of telemetry data to NGINX for analysis. This data is associated only with the subscription ID from the applied license and does not include any personally identifiable information or specific details about the management plane, data plane, or other details.
 
 The purpose of collecting this telemetry data is to:
 
@@ -51,7 +51,7 @@ You can disable telemetry sharing at any time by going to the NGINX Management S
 
 ### Firewall Settings for Telemetry
 
-To support telemetry for the NGINX Management Suite, allow outbound TCP connections in your firewall to 159.60.126.0/25 on port 443. 
+To support telemetry for the NGINX Management Suite, allow outbound TCP connections in your firewall to 159.60.126.0/25 on port 443.
 
 If you are using a JWT license, make sure to allow inbound and outbound access on port 443 to the following URLs:
 
@@ -62,7 +62,7 @@ If you are using a JWT license, make sure to allow inbound and outbound access o
 
 ## Web Analytics
 
-Web analytics are collected when users interact with the platform through their web browsers. This data is sent directly from the users' browsers to F5 NGINX and is used to understand user interaction patterns and improve the user experience.
+Web analytics are collected when users interact with the platform through their web browsers. This data is sent directly from the users' browsers to NGINX and is used to understand user interaction patterns and improve the user experience.
 
 ### Enabling and Disabling Web Analytics
 

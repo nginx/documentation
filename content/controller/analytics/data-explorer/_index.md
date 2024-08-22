@@ -1,5 +1,5 @@
 ---
-description: Learn about NGINX Controller Data Explorer.
+description: Learn about F5 NGINX Controller Data Explorer.
 menu:
   docs:
     parent: Analytics

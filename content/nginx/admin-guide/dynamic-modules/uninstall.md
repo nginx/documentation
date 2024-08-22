@@ -1,5 +1,5 @@
 ---
-description: This section describes how to uninstall an NGINX Plus dynamic module.
+description: This section describes how to uninstall an F5 NGINX Plus dynamic module.
 docs: DOCS-402
 doctypes:
 - task
@@ -48,7 +48,7 @@ weight: 100
 
 ## Configuration
 
-After uninstalling the package, you will need to disable the module in NGINX Plus configuration file `nginx.conf`.
+After uninstalling the package, you will need to disable the module in F5 NGINX Plus configuration file `nginx.conf`.
 
 1. Disable dynamic loading of the module by removing the corrsponding [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive.
 

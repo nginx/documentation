@@ -5,14 +5,14 @@ doctypes:
 - concept
 tags:
 - docs
-title: Get to Know the NGINX Controller Agent
+title: Get to Know the F5 NGINX Controller Agent
 toc: true
 weight: 100
 ---
 
 ## Overview
 
-The NGINX Controller Agent is a compact application written in Golang. NGINX Controller uses the Controller Agent to manage and monitor each NGINX Plus instance that the Agent is installed on. Once installed, the NGINX Controller Agent collects metrics and metadata and sends them securely to NGINX Controller for storage and visualization.
+The F5 NGINX Controller Agent is a compact application written in Golang. NGINX Controller uses the Controller Agent to manage and monitor each NGINX Plus instance that the Agent is installed on. Once installed, the NGINX Controller Agent collects metrics and metadata and sends them securely to NGINX Controller for storage and visualization.
 
 ## How NGINX Controller Agent Works
 

@@ -1,5 +1,5 @@
 ---
-description: Learn how to manage the NGINX Controller platform.
+description: Learn how to manage the F5 NGINX Controller platform.
 menu:
   docs:
     parent: NGINX Controller

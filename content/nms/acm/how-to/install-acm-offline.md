@@ -59,7 +59,7 @@ To install API Connectivity Manager, take the following steps:
     sudo systemctl enable nms-acm --now
     ```
 
-    NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
+    F5 NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
 
 4. Restart the NGINX web server:
 

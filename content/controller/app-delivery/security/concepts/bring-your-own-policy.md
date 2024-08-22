@@ -1,5 +1,5 @@
 ---
-description: Learn how to use your own NGINX App Protect WAF policies with NGINX Controller.
+description: Learn how to use your own F5 NGINX App Protect WAF policies with NGINX Controller.
 docs: DOCS-481
 doctypes:
 - concept
@@ -12,7 +12,7 @@ weight: 300
 
 ## Overview
 
-You can use the App Security Add-on for NGINX Controller ADC to bring your own ("BYO") NGINX App Protect policies into NGINX Controller. This lets you use your existing declarative JSON policies from NGINX App Protect to protect your ADC app components.
+You can use the App Security Add-on for F5 NGINX Controller ADC to bring your own ("BYO") NGINX App Protect policies into NGINX Controller. This lets you use your existing declarative JSON policies from NGINX App Protect to protect your ADC app components.
 
 A BYO NGINX App Protect policy lets you maintain consistent Security Policies across your F5 WAF and NGINX WAF deployments. For example, say you already use F5 BIG-IP Application Security Manager (ASM) or F5 Advanced WAF and are now adopting NGINX Controller App Security. You can convert your XML Security Policies to an NGINX App Protect policy by using the [NGINX App Protect Policy Converter tool](https://docs.nginx.com/nginx-app-protect/configuration/#policy-converter).
 

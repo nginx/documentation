@@ -1,5 +1,5 @@
 ---
-description: Learn how to deploy an Azure NGINX instance using NGINX Controller.
+description: Learn how to deploy an Azure NGINX instance using F5 NGINX Controller.
 docs: DOCS-769
 doctypes:
 - beta
@@ -15,7 +15,7 @@ weight: 35
 
 
 
-You can use NGINX Controller to deploy and manage NGINX instances on [Microsoft Azure](https://azure.microsoft.com/en-us/).
+You can use F5 NGINX Controller to deploy and manage NGINX instances on [Microsoft Azure](https://azure.microsoft.com/en-us/).
 
 This tutorial explains how to deploy NGINX Plus on Azure by defining an Azure Integration, a Location, and an Instance Template in NGINX Controller.
 

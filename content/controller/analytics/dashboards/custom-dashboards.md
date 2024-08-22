@@ -12,7 +12,7 @@ weight: 20
 
 ## Overview
 
-You can use the NGINX Controller user interface to create your own Dashboards populated with customizable graphs of NGINX and system-level metrics.
+You can use the F5 NGINX Controller user interface to create your own Dashboards populated with customizable graphs of NGINX and system-level metrics.
 
 {{< note >}}
 

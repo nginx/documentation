@@ -1,5 +1,5 @@
 ---
-description: Learn how to create dynamic routes for your deployments using NGINX Management
+description: Learn how to create dynamic routes for your deployments using F5 NGINX Management
   Suite API Connectivity Manager.
 docs: DOCS-1218
 doctypes:

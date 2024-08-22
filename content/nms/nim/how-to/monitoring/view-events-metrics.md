@@ -1,5 +1,5 @@
 ---
-description: Learn how to view events and metrics in NGINX Management Suite Instance
+description: Learn how to view events and metrics in F5 NGINX Management Suite Instance
   Manager.
 docs: DOCS-847
 doctypes: task
@@ -12,7 +12,7 @@ weight: 800
 
 ## Overview
 
-NGINX Management Suite Instance Manager provides events and metrics data for your instances. You can access this information in the user interface, or by using the REST API.
+F5 NGINX Management Suite Instance Manager provides events and metrics data for your instances. You can access this information in the user interface, or by using the REST API.
 
 {{<note>}}This topic provides examples for using the REST API to view, sort, and filter Events data that can be applied across the NGINX Management Suite REST API.{{</note>}}
 

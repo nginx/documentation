@@ -1,5 +1,5 @@
 ---
-description: Enable high availability of NGINX Plus instances in on-premises deployments,
+description: Enable high availability of F5 NGINX Plus instances in on-premises deployments,
   configuring an active-passive pair in a solution based on keepalived and VRRP.
 docs: DOCS-406
 doctypes:
@@ -333,7 +333,7 @@ Several fields in the output are useful for debugging:
 
 
 <span id="ha_misc"></span>
-## Keeping NGINX Plus Configuration Files in Sync
+## Keeping F5 NGINX Plus Configuration Files in Sync
 
 The NGINX Plus configuration files on the nodes must both define the services that are being made highly available. For information about synchronizing NGINX Plus configuration, see [Synchronizing NGINX Configuration in a Cluster]({{< relref "configuration-sharing.md" >}}).
 

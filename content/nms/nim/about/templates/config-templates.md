@@ -4,7 +4,7 @@ date: 2024-03-11T14:03:20-07:00
 # Change draft status to false to publish doc
 draft: false
 # Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
+# Add a short description (150 chars) for the doc. Include keywords for SEO.
 # The description text appears in search results and at the top of the doc.
 description: ""
 # Assign weights in increments of 100
@@ -26,7 +26,7 @@ authors: []
 
 ## Config templates
 
-NGINX Instance Manager uses [Go templating](https://pkg.go.dev/text/template) to simplify creating and standardizing NGINX configurations. These config templates create an abstraction layer for NGINX configuration files, enabling users to provide parameters to generate a working configuration without needing a deep knowledge of NGINX syntax. These templates simplify configuring NGINX, enforce best practices for configurations, and enable self-service permissions for app development.
+F5 NGINX Instance Manager uses [Go templating](https://pkg.go.dev/text/template) to simplify creating and standardizing NGINX configurations. These config templates create an abstraction layer for NGINX configuration files, enabling users to provide parameters to generate a working configuration without needing a deep knowledge of NGINX syntax. These templates simplify configuring NGINX, enforce best practices for configurations, and enable self-service permissions for app development.
 
 {{<call-out "tip" "Enhanced templating with Sprig">}}<i class="fas fa-code-branch"></i>
  Go templating in Instance Manager includes support for the [Sprig function library](https://masterminds.github.io/sprig/), offering a wide range of additional functions that can be used in templates for advanced operations like string manipulation, data conversion, mathematics, and more. {{</call-out>}}
@@ -47,7 +47,7 @@ Configuration templates come in two types:
 Configuration templates include the following components:
 
 - **Template files (.tmpl)**: Written in Go's templating language, these files define the NGINX configuration's structure and parameters.
-  
+
 - **JSON schema files (.json)**: These files create the rules for validating user inputs and generate dynamic web forms for data entry.
 
 - **Auxiliary files**: Additional files required for configuration, such as JavaScript for added functionality, security certificates, or documentation (README.md). These files support the main configuration and provide necessary context or capabilities.

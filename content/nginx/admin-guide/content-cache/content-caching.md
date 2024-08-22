@@ -12,7 +12,7 @@ weight: 100
 <span id="intro"></span>
 ## Overview
 
-When caching is enabled, NGINX Plus saves responses in a disk cache and uses them to respond to clients without having to proxy requests for the same content every time.
+When caching is enabled, F5 NGINX Plus saves responses in a disk cache and uses them to respond to clients without having to proxy requests for the same content every time.
 
 To learn more about NGINX Plus’s caching capabilities, watch the [Content Caching with NGINX](https://nginx.com/resources/webinars/content-caching-nginx-plus/) webinar on demand and get an in‑depth review of features such as dynamic [content caching](https://nginx.com/products/nginx/caching/), cache purging, and delayed caching.
 

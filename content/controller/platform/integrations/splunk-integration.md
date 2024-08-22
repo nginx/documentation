@@ -27,7 +27,7 @@ weight: 40
 7. Select **Next**.
 8. On the Add Data *Input Settings* page, select one or more of the available Splunk Indexes with the appropriate *Index Data Type*.
 9. Select **Review**.
-10. On the summary page, copy and save the token value. **You'll configure NGINX Controller with this value later**.
+10. On the summary page, copy and save the token value. **You'll configure F5 NGINX Controller with this value later**.
 
 ## Add a Splunk Integration
 

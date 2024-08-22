@@ -1,5 +1,5 @@
 ---
-description: Learn how to set up NGINX App Protect data plane instances for use with
+description: Learn how to set up F5 NGINX App Protect data plane instances for use with
   the NGINX Management Suite Security Monitoring and Instance Manager modules.
 docs: DOCS-1107
 doctypes:
@@ -15,7 +15,7 @@ weight: 100
 
 ## Overview
 
-NGINX Management Suite Security Monitoring supports the following use cases:
+F5 NGINX Management Suite Security Monitoring supports the following use cases:
 
 - **Security Monitoring only**: Use only the Security Monitoring module to monitor data from NGINX App Protect WAF instances. You will be able to review the security dashboards to assess potential threats and identify opportunities to fine-tune your policies. Your NGINX App Protect WAF configurations are managed outside of the NGINX Management Suite context.
 - **Security Monitoring and Instance Manager**: Use the Security Monitoring module with the NGINX Management Suite Instance Manager module. In addition to monitoring your application security, you will be able to manage your NGINX App Protect WAF  configurations and security policies in a single location and push pre-compiled updates to an instance or instance group.

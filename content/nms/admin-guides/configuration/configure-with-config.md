@@ -1,5 +1,5 @@
 ---
-description: 
+description:
 docs: DOCS-1100
 doctypes:
 - task
@@ -13,7 +13,7 @@ weight: 1
 
 ## Overview
 
-This guide explains how to configure NGINX Management Suite by editing the **/etc/nms/nms.conf** file.
+This guide explains how to configure F5 NGINX Management Suite by editing the **/etc/nms/nms.conf** file.
 
 ## Before You Start
 

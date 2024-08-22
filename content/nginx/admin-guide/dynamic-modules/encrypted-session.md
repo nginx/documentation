@@ -64,7 +64,7 @@ The Encrypted Session dynamic module provides encryption and decryption support 
 <span id="configure"></span>
 ## Configuration
 
-After installation you will need to enable and configure the module in NGINX Plus configuration file `nginx.conf`.
+After installation you will need to enable and configure the module in F5 NGINX Plus configuration file `nginx.conf`.
 
 1. Put the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
 

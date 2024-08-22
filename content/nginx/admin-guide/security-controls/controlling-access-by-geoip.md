@@ -12,7 +12,7 @@ weight: 800
 <span id="intro"></span>
 ## Introduction
 
-NGINX Plus can differentiate users based on their geographical location. For example, you can have different website content for different countries, or you can restrict content distribution to a particular country or city.
+F5 NGINX Plus can differentiate users based on their geographical location. For example, you can have different website content for different countries, or you can restrict content distribution to a particular country or city.
 
 NGINX Plus uses third-party MaxMind databases to match the IP address of the user and its location. As soon as the geoposition is known, it is then possible to use geoip-based variables in the [map](https://nginx.org/en/docs/http/ngx_http_map_module.html) or the [split_clients](https://nginx.org/en/docs/http/ngx_http_split_clients_module.html) module.
 

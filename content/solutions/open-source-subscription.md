@@ -1,5 +1,5 @@
 ---
-description: Learn how to download and install the products in the F5 NGINX Open Source
+description: Learn how to download and install the products in the NGINX Open Source
   Subscription.
 docs: DOCS-1443
 tags:

@@ -16,7 +16,7 @@ weight: 100
 
 ## Platform and Module Troubleshooting Guides
 
-View the troubleshooting guides for the NGINX Management Suite platform and modules:
+View the troubleshooting guides for the F5 NGINX Management Suite platform and modules:
 
 - [NGINX Management Suite Platform]({{< relref "/nms/admin-guides/troubleshooting.md" >}})
 - [Instance Manager]({{< relref "/nms/nim/troubleshooting.md" >}})

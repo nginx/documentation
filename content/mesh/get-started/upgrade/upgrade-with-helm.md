@@ -2,7 +2,7 @@
 title: "Upgrade with Helm"
 draft: false
 toc: true
-description: "This guide explains how to upgrade NGINX Service Mesh using Helm."
+description: "This guide explains how to upgrade F5 NGINX Service Mesh using Helm."
 weight: 300
 categories: ["tasks"]
 docs: "DOCS-700"

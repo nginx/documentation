@@ -80,7 +80,7 @@ For more information about the Roles API, see the Instance Manager REST API Docu
 
 ## Set Role Permissions Using the Web Interface
 
-1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in.
+1. In a web browser, go to the FQDN for your F5 NGINX Management Suite host and log in.
 2. Select the **Settings** gear icon.
 3. In the left menu, select **Roles**.
 4. Select **Create**.

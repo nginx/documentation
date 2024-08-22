@@ -14,7 +14,7 @@ This article explains how to set the maximum number of requests for a connection
 <span id="intro"></span>
 ## Introduction
 
-Using NGINX and NGINX Plus, it is possible to limit:
+Using NGINX and F5 NGINX Plus, it is possible to limit:
 
 - The number of connections per key value (for example, per IP address)
 - The request rate per key value (the number of requests that are allowed to be processed during a second or minute)

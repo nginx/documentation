@@ -13,7 +13,7 @@ weight: 10
 
 ## Overview
 
-The **Analytics Dashboards** provides an at-a-glance summary of the state of your NGINX infrastructure and your application performance.
+The **Analytics Dashboards** provides an at-a-glance summary of the state of your F5 NGINX infrastructure and your application performance.
 
 ## Before You Begin
 

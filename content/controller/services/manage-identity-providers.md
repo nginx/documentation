@@ -15,7 +15,7 @@ weight: 140
 The **Identity Providers** page lets you create and manage Identity Providers to control access to your services (APIs for API Management module deployments, and Apps for App Delivery module deployments).
 
 {{< tip >}}
-If you prefer, you can use the NGINX Controller API to create and manage Identity Providers. See the [NGINX Controller API reference guide]({{< relref "/controller/api/_index.md" >}}) (**Security > Identity Providers**) for details.
+If you prefer, you can use the F5 NGINX Controller API to create and manage Identity Providers. See the [NGINX Controller API reference guide]({{< relref "/controller/api/_index.md" >}}) (**Security > Identity Providers**) for details.
 {{< /tip >}}
 
 ## Before You Begin

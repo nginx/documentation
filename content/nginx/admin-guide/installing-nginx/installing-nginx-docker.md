@@ -1,5 +1,5 @@
 ---
-description: Deploy NGINX and NGINX Plus as the Docker container.
+description: Deploy NGINX and F5 NGINX Plus as the Docker container.
 docs: DOCS-409
 doctypes:
 - task
@@ -8,7 +8,7 @@ toc: true
 weight: 600
 ---
 
-[NGINX Plus](https://www.nginx.com/products/nginx/), the high‑performance application delivery platform, load balancer, and web server, is available as the Docker container.
+[F5 NGINX Plus](https://www.nginx.com/products/nginx/), the high‑performance application delivery platform, load balancer, and web server, is available as the Docker container.
 
 <span id="prereq"></span>
 ## Prerequisites

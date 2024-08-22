@@ -1,5 +1,5 @@
 ---
-description: This chapter describes how to use NGINX Plus and NGINX Open Source to
+description: This chapter describes how to use F5 NGINX Plus and NGINX Open Source to
   proxy and load balance TCP and UDP traffic.
 docs: DOCS-420
 doctypes:
@@ -14,7 +14,7 @@ weight: 200
 
 [Load balancing](https://www.nginx.com/solutions/load-balancing/) refers to efficiently distributing network traffic across multiple backend servers.
 
-In NGINX Plus <a href="../../../releases/#r5">Release 5</a> and later, NGINX Plus can proxy and load balance Transmission Control Protocol) (TCP) traffic. TCP is the protocol for many popular applications and services, such as LDAP, MySQL, and RTMP.
+In F5 NGINX Plus <a href="../../../releases/#r5">Release 5</a> and later, NGINX Plus can proxy and load balance Transmission Control Protocol) (TCP) traffic. TCP is the protocol for many popular applications and services, such as LDAP, MySQL, and RTMP.
 
 In NGINX Plus <a href="../../../releases/#r9">Release 9</a> and later, NGINX Plus can proxy and load balance UDP traffic. UDP (User Datagram Protocol) is the protocol for many popular non-transactional applications, such as DNS, syslog, and RADIUS.
 

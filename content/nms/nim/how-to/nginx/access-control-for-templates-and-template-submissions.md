@@ -4,11 +4,11 @@ date: 2024-03-29T09:35:06-07:00
 # Change draft status to false to publish doc
 draft: false
 # Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
+# Add a short description (150 chars) for the doc. Include keywords for SEO.
 # The description text appears in search results and at the top of the doc.
 description: ""
 # Assign weights in increments of 100
-weight: 
+weight:
 toc: true
 tags: [ "docs" ]
 # Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
@@ -30,7 +30,7 @@ With role-based access control (RBAC), administrators can determine who can crea
 
 ## Before You Begin
 
-- Ensure the user is added as a [basic authentication]({{< relref "/nms/admin-guides/authentication/basic-authentication.md" >}}) or [OpenID Connect (OIDC)]({{< relref "/nms/admin-guides/authentication/oidc/getting-started-oidc.md" >}}) user in NGINX Instance Manager.
+- Ensure the user is added as a [basic authentication]({{< relref "/nms/admin-guides/authentication/basic-authentication.md" >}}) or [OpenID Connect (OIDC)]({{< relref "/nms/admin-guides/authentication/oidc/getting-started-oidc.md" >}}) user in F5 NGINX Instance Manager.
 - Familiarize yourself with the concepts of [Roles]({{< relref "/nms/admin-guides/rbac/assign-roles.md" >}}) and [Permissions]({{< relref "/nms/admin-guides/rbac/create-roles.md" >}}) within Instance Manager as they are crucial for managing access.
 
 ## Assign Roles for Templates and Template Submissions
@@ -46,7 +46,7 @@ To complete these steps, you need administrator access.
 4. Define access to templates and template submissions:
    - To ensure proper management of NGINX configurations, [create or edit roles]({{< relref "/nms/admin-guides/rbac/create-roles.md" >}}) to specify access to templates and template submissions. This may involve defining CRUD permissions specific to managing NGINX configurations.
 
-   - **Restricting access to templates** is essential for controlling who can create and modify templates. This responsibility generally falls to administrators with a comprehensive understanding of NGINX configurations.  
+   - **Restricting access to templates** is essential for controlling who can create and modify templates. This responsibility generally falls to administrators with a comprehensive understanding of NGINX configurations.
 
    - **Restricting access to template submissions** limits who can change submitted template inputs. This role could be assigned to application development teams, allowing them to deploy and manage their apps themselves.
 

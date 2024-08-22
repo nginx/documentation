@@ -73,7 +73,7 @@ As mTLS is not enabled by default, the Credentials endpoint is disabled initiall
 
 To enable the Credentials endpoint on the API Connectivity Manager host, take the following steps:
 
-1. Make sure mTLS server and client certificates have been configured for Devportal to NGINX Management Suite by following these [instructions]({{< relref "/nms/acm/how-to/devportals/installation/install-dev-portal.md#secure-communication-from-the-developer-portal-to-nginx-management-suite-host-with-mtls" >}}) to add your server certs, CA file and enforce mTLS.
+1. Make sure mTLS server and client certificates have been configured for Devportal to F5 NGINX Management Suite by following these [instructions]({{< relref "/nms/acm/how-to/devportals/installation/install-dev-portal.md#secure-communication-from-the-developer-portal-to-nginx-management-suite-host-with-mtls" >}}) to add your server certs, CA file and enforce mTLS.
 
 1. Open an SSH connection into the API Connectivity Manager host and log in.
 

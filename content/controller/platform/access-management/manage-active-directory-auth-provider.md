@@ -1,5 +1,5 @@
 ---
-description: Set up Active Directory authentication for NGINX Controller using OIDC
+description: Set up Active Directory authentication for F5 NGINX Controller using OIDC
   with Microsoft Entra or LDAP, LDAPs, and StartTLS with Windows Active Directory.
 docs: DOCS-782
 doctypes:
@@ -13,7 +13,7 @@ weight: 10
 
 ## Overview
 
-By completing the steps in this guide, you will learn how to add an Active Directory (AD) integration to NGINX Controller. NGINX Controller supports the following AD types and protocols:
+By completing the steps in this guide, you will learn how to add an Active Directory (AD) integration to F5 NGINX Controller. NGINX Controller supports the following AD types and protocols:
 
 - Microsoft Entra: OpenID Connect (OIDC) over HTTPS;
 - Windows Active Directory: unencrypted LDAP, LDAPS, and StartTLS.

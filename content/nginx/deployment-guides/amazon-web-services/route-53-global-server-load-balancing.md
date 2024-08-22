@@ -1,6 +1,6 @@
 ---
 description: Deploy global server load balancing (GSLB) for domains hosted in multiple
-  AWS regions, with Amazon Route 53 and NGINX Plus in an HA configuration.
+  AWS regions, with Amazon Route 53 and F5 NGINX Plus in an HA configuration.
 docs: DOCS-448
 doctypes:
 - task
@@ -13,7 +13,7 @@ This deployment guide explains how to configure global server load balancing (GS
 
 The AWS Domain Name System (DNS) service, [Amazon Route 53](https://aws.amazon.com/route53/), performs global server load balancing by responding to a DNS query from a client with the DNS record for the region that is closest to the client and hosts the domain. For best performance and predictable failover between regions, "closeness" is measured in terms of network latency rather than the actual geographic location of the client.
 
-The [Appendix](#appendix) provides instructions for creating EC2 instances with the names used in this guide, and installing and configuring the NGINX software on them.
+The [Appendix](#appendix) provides instructions for creating EC2 instances with the names used in this guide, and installing and configuring the F5 NGINX software on them.
 
 <span id="about-nginx"></span>
 ## About NGINX Plus

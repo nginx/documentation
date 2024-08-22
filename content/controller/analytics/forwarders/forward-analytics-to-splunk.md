@@ -12,7 +12,7 @@ weight: 200
 
 ## Overview
 
-Follow the steps in this guide to set up an NGINX Controller Integration that forwards data to [Splunk](https://www.splunk.com/).
+Follow the steps in this guide to set up an F5 NGINX Controller Integration that forwards data to [Splunk](https://www.splunk.com/).
 
 ## Before You Begin
 

@@ -1,5 +1,5 @@
 ---
-description: Learn how to use NGINX Management Suite API Connectivity Manager to configure
+description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to configure
   policies for your gRPC API Gateway.
 docs: DOCS-1084
 doctypes:

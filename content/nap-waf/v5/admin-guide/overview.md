@@ -1,5 +1,5 @@
 ---
-description: This guide explains how to deploy NGINX App Protect WAF v5.
+description: This guide explains how to deploy F5 NGINX App Protect WAF v5.
 docs: DOCS-1362
 doctypes:
 - task
@@ -10,7 +10,7 @@ weight: 100
 
 ## Introduction
 
-NGINX App Protect WAF v5, designed for NGINX Open Source and NGINX Plus environments, offers advanced Web Application Firewall (WAF) capabilities, supporting all features of [NGINX App Protect WAF v4]({{< relref "/nap-waf/v4/admin-guide/install.md" >}}). This solution, available at an additional cost, consists of a dynamic NGINX module and containerized WAF services, providing robust security and scalability.
+F5 NGINX App Protect WAF v5, designed for NGINX Open Source and NGINX Plus environments, offers advanced Web Application Firewall (WAF) capabilities, supporting all features of [NGINX App Protect WAF v4]({{< relref "/nap-waf/v4/admin-guide/install.md" >}}). This solution, available at an additional cost, consists of a dynamic NGINX module and containerized WAF services, providing robust security and scalability.
 
 ### Key Advantages
 
@@ -65,7 +65,7 @@ We recommend that you deploy the NGINX App Protect WAF v5 in a staging environme
    - [Installing NGINX App Protect WAF]({{<relref "/nap-waf/v5/admin-guide/install.md">}})
    - [Deploying NGINX App Protect WAF on Docker]({{<relref "/nap-waf/v5/admin-guide/deploy-on-docker.md">}})
    - [Deploying NGINX App Protect WAF on Kubernetes]({{<relref "/nap-waf/v5/admin-guide/deploy-on-kubernetes.md">}})
- 
+
 1. Compile your `.json` policies and logging profiles to `.tgz` bundles using [compiler-image]({{<relref "/nap-waf/v5/admin-guide/compiler.md">}}) because NGINX App Protect WAF v5 supports policies and logging profiles in a compiled bundle format only.
 
    {{< note >}}
@@ -83,7 +83,7 @@ We recommend that you deploy the NGINX App Protect WAF v5 in a staging environme
 
 1. Restart the deployment if it has already been initiated. Additionally, restart NGINX if utilizing the VM + containers deployment type.  After the migrations, check that the NGINX process is running in the NGINX error log and there are no issues.
 
-  
+
 
 ## Troubleshooting and FAQs
 

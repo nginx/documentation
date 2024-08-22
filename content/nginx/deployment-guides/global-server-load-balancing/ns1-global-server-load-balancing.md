@@ -1,6 +1,6 @@
 ---
 description: Deploy global server load balancing (GSLB) for domains registered with
-  DNS services provider NS1 and proxied by NGINX Plus.
+  DNS services provider NS1 and proxied by F5 NGINX Plus.
 docs: DOCS-449
 doctypes:
 - task
@@ -13,7 +13,7 @@ Global server load balancing (GSLB) refers to the intelligent distribution of tr
 
 Many DNS providers offer some form of GSLB. [NS1](https://www.ns1.com) has one of the most advanced solutions available as a service, with a rich API that PoPs can use to dynamically inform the NS1 servers about their availability and current loads.
 
-This document describes how to use NGINX’s NS1 agent to interface with the NS1 service, enabling sophisticated GSLB across multiple PoPs that are powered by NGINX Plus. You can colocate an instance of the agent alongside each NGINX Plus instance, or configure an agent to query one or more NGINX Plus instances remotely. (This guide covers only the colocation option.)
+This document describes how to use NGINX’s NS1 agent to interface with the NS1 service, enabling sophisticated GSLB across multiple PoPs that are powered by F5 NGINX Plus. You can colocate an instance of the agent alongside each NGINX Plus instance, or configure an agent to query one or more NGINX Plus instances remotely. (This guide covers only the colocation option.)
 
 The agent periodically queries the NGINX Plus API for several metrics that it uses to calculate the current number of active connections and load average on the NGINX Plus instance, and reports those metrics to NS1. The agent can also be configured to report the status of the site as <span style="white-space: nowrap;">``up:`` ``true``</span> or <span style="white-space: nowrap;">``up:`` ``false``</span> (that is, down).
 

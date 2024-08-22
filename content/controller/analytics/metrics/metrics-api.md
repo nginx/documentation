@@ -13,7 +13,7 @@ weight: 50
 
 ## Overview
 
-You can use the NGINX Controller Analytics module to monitor your NGINX instances and evaluate your applications' performance. The [Metrics API]({{< relref "/controller/api/_index.md" >}}) query parameters let you fine-tune your system data based on parameters such as time window, aggregation, time resolution, and filter.
+You can use the F5 NGINX Controller Analytics module to monitor your NGINX instances and evaluate your applications' performance. The [Metrics API]({{< relref "/controller/api/_index.md" >}}) query parameters let you fine-tune your system data based on parameters such as time window, aggregation, time resolution, and filter.
 
 By using different combinations of these query parameters, you can gather information that lets you:
 

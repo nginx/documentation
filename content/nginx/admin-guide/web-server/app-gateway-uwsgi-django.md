@@ -1,5 +1,5 @@
 ---
-description: Configure NGINX and NGINX Plus as an application gateway for uWSGI and
+description: Configure NGINX and F5 NGINX Plus as an application gateway for uWSGI and
   Django.
 docs: DOCS-439
 doctypes:
@@ -9,7 +9,7 @@ toc: true
 weight: 500
 ---
 
-This article explains how to use NGINX or NGINX Plus as an application gateway with uWSGI and Django.
+This article explains how to use NGINX or F5 NGINX Plus as an application gateway with uWSGI and Django.
 
 <span id="intro"></span>
 ## Introduction

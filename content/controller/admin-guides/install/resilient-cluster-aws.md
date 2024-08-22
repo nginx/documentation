@@ -1,5 +1,5 @@
 ---
-description: This guide explains how to deploy NGINX Controller as a multi-node resilient.
+description: This guide explains how to deploy F5 NGINX Controller as a multi-node resilient.
   cluster on AWS.
 docs: DOCS-257
 doctypes:
@@ -13,7 +13,7 @@ weight: 310
 
 ## Overview
 
-Complete the steps in this guide to deploy NGINX Controller as a resilient, three-node cluster on AWS. A multi-node cluster ensures that NGINX Controller stays up even if one of the control-plane hosts becomes unavailable.
+Complete the steps in this guide to deploy F5 NGINX Controller as a resilient, three-node cluster on AWS. A multi-node cluster ensures that NGINX Controller stays up even if one of the control-plane hosts becomes unavailable.
 
 ### Failure Tolerance
 

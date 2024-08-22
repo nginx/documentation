@@ -12,7 +12,7 @@ weight: 200
 
 ## Overview
 
-[Alerts]({{< relref "/controller/analytics/alerts/about-alerts.md" >}}) are notifications about the NGINX Controller system and your applications' performance.
+[Alerts]({{< relref "/controller/analytics/alerts/about-alerts.md" >}}) are notifications about the F5 NGINX Controller system and your applications' performance.
 
 [Alert rules]({{< relref "/controller/analytics/alerts/about-alerts.md#alert-rules" >}}) let you specify what you want to be alerted about. This includes which metrics you want to monitor; the trigger conditions and threshold to meet; the instance(s) to monitor; and the email address(es) to use for notifications.
 

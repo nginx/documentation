@@ -1,5 +1,5 @@
 ---
-description: This guide explains the NGINX App Protect WAF security features and how
+description: This guide explains the F5 NGINX App Protect WAF security features and how
   to use them.
 docs: DOCS-1368
 doctypes:
@@ -11,7 +11,7 @@ weight: 200
 
 ## Overview
 
-This guide explains the NGINX App Protect WAF security features and how to use them. This guide also assumes that you have some familiarity with various Layer 7 (L7) Hypertext Transfer Protocol (HTTP) concepts, such as Uniform Resource Identifier (URI)/Uniform Resource Locator (URL), method, header, cookie, status code, request, response, and parameters.
+This guide explains the F5 NGINX App Protect WAF security features and how to use them. This guide also assumes that you have some familiarity with various Layer 7 (L7) Hypertext Transfer Protocol (HTTP) concepts, such as Uniform Resource Identifier (URI)/Uniform Resource Locator (URL), method, header, cookie, status code, request, response, and parameters.
 
 For more information on the NGINX App Protect WAF security features, see [NGINX App Protect WAF Terminology](#nginx-app-protect-waf-terminology).
 

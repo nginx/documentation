@@ -1,6 +1,6 @@
 ---
 description: These release notes list and describe the new features, enhancements,
-  and resolved issues in NGINX Management Suite Instance Manager.
+  and resolved issues in F5 NGINX Management Suite Instance Manager.
 docs: DOCS-938
 title: Release Notes
 toc: true

@@ -32,7 +32,7 @@ To complete the steps in this guide, you need the following:
 
 ## Usage
 
-The NGINX Management Suite Helm chart includes the `k8s-support-package.sh` script in the following location:
+The F5 NGINX Management Suite Helm chart includes the `k8s-support-package.sh` script in the following location:
 
 - `/support-package/k8s-support-package.sh`.
 

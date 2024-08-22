@@ -1,6 +1,6 @@
 ---
 title: Update NGINX Amplify Agent
-description: Learn how to update NGINX Amplify Agent.
+description: Learn how to update F5 NGINX Amplify Agent.
 weight: 200
 toc: true
 tags: ["docs"]

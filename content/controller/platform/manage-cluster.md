@@ -1,5 +1,5 @@
 ---
-description: Learn how to add and manage additional NGINX Controller nodes to create
+description: Learn how to add and manage additional F5 NGINX Controller nodes to create
   a resilient cluster.
 docs: DOCS-788
 doctypes:
@@ -19,7 +19,7 @@ This topic explains how to update your cluster settings and how to manage nodes 
 {{< see-also >}}
 For instructions on how to deploy NGINX Controller as a multi-node resilient cluster, refer to the following deployment guide:
 
-- [Deploy NGINX Controller as a Resilient Cluster on a Private Cloud]({{< relref "/controller/admin-guides/install/resilient-cluster-private-cloud.md" >}})
+- [Deploy F5 NGINX Controller as a Resilient Cluster on a Private Cloud]({{< relref "/controller/admin-guides/install/resilient-cluster-private-cloud.md" >}})
 
 {{< /see-also >}}
 

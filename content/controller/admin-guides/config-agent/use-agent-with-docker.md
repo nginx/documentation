@@ -1,5 +1,5 @@
 ---
-description: Learn how to use the NGINX Controller Agent in a Docker environment.
+description: Learn how to use the F5 NGINX Controller Agent in a Docker environment.
 docs: DOCS-511
 doctypes:
 - reference
@@ -12,7 +12,7 @@ weight: 200
 
 ## Before You Begin
 
-We support running the NGINX Controller Agent in a Docker environment on the following distributions: CentOS, Debian, and Ubuntu.
+We support running the F5 NGINX Controller Agent in a Docker environment on the following distributions: CentOS, Debian, and Ubuntu.
 
 We **don't support** containerized instances on RHEL 7 and RHEL 8.
 

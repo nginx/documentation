@@ -68,7 +68,7 @@ The following table lists the arguments you can use with the support package scr
 
 The support package includes several directories containing information about the system, service, and database state.
 
-The information included is based on the NGINX products installed and configured.
+The information included is based on the F5 NGINX products installed and configured.
 
 ### devportal-logs
 

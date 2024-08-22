@@ -27,7 +27,7 @@ To complete the steps in this section, you need the following:
 - An installed, licensed, and running version of API Connectivity manager
 - A installed version of Helm v3.10.0 or newer
 - An [externally-accessible private Docker registry](https://docs.docker.com/registry/deploying/) to push the container images to
-- Your NGINX Plus certificate and key files, which you can download from [MyF5](https://my.f5.com/manage/s/)
+- Your F5 NGINX Plus certificate and key files, which you can download from [MyF5](https://my.f5.com/manage/s/)
 
 {{<see-also>}}
 

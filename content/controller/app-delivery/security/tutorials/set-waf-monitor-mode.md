@@ -1,5 +1,5 @@
 ---
-description: How to use NGINX Controller App Security to monitor or block security
+description: How to use F5 NGINX Controller App Security to monitor or block security
   violations.
 docs: DOCS-485
 doctypes:
@@ -13,7 +13,7 @@ weight: 200
 
 ## Overview
 
-You can use the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}) to enable or disable monitor-only mode for the App Security WAF policy.
+You can use the [F5 NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}) to enable or disable monitor-only mode for the App Security WAF policy.
 
 ## Enable Monitor-Only Mode for App Security WAF
 

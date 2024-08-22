@@ -1,5 +1,5 @@
 ---
-description: Customize the NGINX Controller Agent configuration.
+description: Customize the F5 NGINX Controller Agent configuration.
 docs: DOCS-510
 doctypes:
 - tutorial
@@ -12,7 +12,7 @@ weight: 110
 
 ## Overview
 
-Follow the steps in this guide to customize the NGINX Controller Agent configuration.
+Follow the steps in this guide to customize the F5 NGINX Controller Agent configuration.
 
 ## Default Agent Settings
 

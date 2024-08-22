@@ -13,7 +13,7 @@ weight: 100
 
 ## Overview
 
-The data that NGINX Controller collects can be divided into two categories:
+The data that F5 NGINX Controller collects can be divided into two categories:
 
 - **System metrics**: Data collected from the NGINX Plus API, the NGINX log files, and NGINX process state.
 - **Traffic metrics**: Data related to processed traffic, with the ability to distinguish the Application, API endpoint, or Environment that traffic is directed through.

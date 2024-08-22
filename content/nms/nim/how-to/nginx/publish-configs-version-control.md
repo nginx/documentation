@@ -1,6 +1,6 @@
 ---
 description: Learn how to edit and publish NGINX configuration files with a version
-  control system using NGINX Management Suite Instance Manager.
+  control system using F5 NGINX Management Suite Instance Manager.
 docs: DOCS-1348
 title: Publish Configuration Files with Version Control System
 toc: true
@@ -9,7 +9,7 @@ weight: 250
 
 ## Overview
 
-With NGINX Instance Manager, you can easily edit and publish NGINX configurations to your NGINX and NGINX Plus instances. Follow the steps in this guide to setup your version control system as the source of truth for maintaining your NGINX configurations and publish your modified configurations to any instance or instance group managed by NGINX Instance Manager.
+With F5 NGINX Instance Manager, you can easily edit and publish NGINX configurations to your NGINX and NGINX Plus instances. Follow the steps in this guide to setup your version control system as the source of truth for maintaining your NGINX configurations and publish your modified configurations to any instance or instance group managed by NGINX Instance Manager.
 
 This documentation provides examples of how to publish configurations to your NGINX Instance Manager from Gitlab or [Github](https://github.com/nginxinc/git-automation) as the version control system to manage configurations.
 

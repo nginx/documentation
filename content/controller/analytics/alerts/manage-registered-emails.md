@@ -23,7 +23,7 @@ You will not receive any alert notifications via email until you verify your ema
 
 To find the list of registered email addresses:
 
-1. Open the NGINX Controller user interface and log in.
+1. Open the F5 NGINX Controller user interface and log in.
 1. On the **Analytics** menu, select **Alerts**.
 1. On the **Alert Rules Overview** page, select **Manage Email Addresses**.
 1. All registered email addresses are displayed in the Manage Email Addresses panel. To close the panel, select **Done**.

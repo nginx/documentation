@@ -1,5 +1,5 @@
 ---
-description: Learn about the NGINX Management Suite API Connectivity Manager architecture.
+description: Learn about the F5 NGINX Management Suite API Connectivity Manager architecture.
 docs: DOCS-892
 doctypes:
 - concept
@@ -29,7 +29,7 @@ This document introduces the following concepts.
 | <div style="width:150px">Term</div> | Description                                                                                                                                                                                                                                                                              |
 |-------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Management Plane                    | The management plane is an abstraction layer used to configure, monitor, and manage the layers of a network stack. API Connectivity Manager, a part of the management plane, establishes guardrails and configures rules for the data plane.                                             |
-| Data Plane                          | [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) instances in the traffic path that act as load balancers, API gateways, firewalls, ingress controllers, and caching systems.                                                            |
+| Data Plane                          | [F5 NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) instances in the traffic path that act as load balancers, API gateways, firewalls, ingress controllers, and caching systems.                                                            |
 | Proxy Cluster                       | <p>NGINX is widely known as a reverse proxy, and a Proxy Cluster is a set of one or more NGINX Plus servers working together. A proxy cluster keeps configurations in sync across all instances and maintains data consistency by sharing the runtime state.</p><p>Examples:</p><ul><li>**API Gateway Cluster**: A cluster of one or more NGINX Plus instances acting as a single proxy for API requests.</li><li>**Dev Portal Cluster**: A cluster of one or more NGINX Plus instances configured to act as Developer Portals. Developer portals provide a framework for hosting API documentation, provisioning access keys, and managing approval workflows. In addition, you can test your APIs with the "Try It Out" feature.</li></ul>                                |
 
 {{</bootstrap-table>}}

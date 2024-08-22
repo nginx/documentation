@@ -1,5 +1,5 @@
 ---
-description: Represents the state of the NGINX Controller Platform REST API.
+description: Represents the state of the F5 NGINX Controller Platform REST API.
 docs: DOCS-1278
 doctypes:
   - reference

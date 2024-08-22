@@ -1,5 +1,5 @@
 ---
-description: Learn about NGINX Controller alerts and notifications.
+description: Learn about F5 NGINX Controller alerts and notifications.
 menu:
   docs:
     parent: Analytics

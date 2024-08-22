@@ -10,7 +10,7 @@ weight: 300
 {{% modsec-eol-notice %}}
 {{< /important >}}
 
-This chapter explains how to configure the Commercial ModSecurity Rules from Trustwave SpiderLabs for use with the NGINX ModSecurity web application firewall (WAF)).
+This chapter explains how to configure the Commercial ModSecurity Rules from Trustwave SpiderLabs for use with the F5 NGINX ModSecurity web application firewall (WAF)).
 
 <span id="waf-trustwave_overview"></span>
 

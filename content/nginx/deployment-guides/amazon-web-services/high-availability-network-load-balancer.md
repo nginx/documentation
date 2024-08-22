@@ -1,5 +1,5 @@
 ---
-description: Create a highly available active-active deployment of NGINX Plus on AWS
+description: Create a highly available active-active deployment of F5 NGINX Plus on AWS
   in combination with AWS Network Load Balancer (NLB).
 docs: DOCS-446
 doctypes:
@@ -9,7 +9,7 @@ toc: true
 weight: 100
 ---
 
-This guide explains how to create our recommended solution for a highly available, active‑active deployment of NGINX Plus in the Amazon Web Services (AWS) cloud. The solution combines the AWS Network Load Balancer (NLB) for fast and efficient handling of Layer 4 traffic with NGINX Plus for advanced, Layer 7 features such as load balancing, caching, and content‑based routing. The combined solution is fast, powerful, reliable, and likely to be relatively low‑cost.
+This guide explains how to create our recommended solution for a highly available, active‑active deployment of NGINX Plus in the Amazon Web Services (AWS) cloud. The solution combines the AWS Network Load Balancer (NLB) for fast and efficient handling of Layer 4 traffic with F5 NGINX Plus for advanced, Layer 7 features such as load balancing, caching, and content‑based routing. The combined solution is fast, powerful, reliable, and likely to be relatively low‑cost.
 
 This guide explains how to set up an AWS NLB in front of one pair of NGINX Plus load balancers. (You can increase resiliency as needed by following the same steps for additional NGINX Plus instances.)
 

@@ -19,7 +19,7 @@ HTTP Basic authentication can also be combined with other access restriction met
 <span id="prereq"></span>
 ## Prerequisites
 
-- NGINX Plus or NGINX Open Source
+- F5 NGINX Plus or NGINX Open Source
 - Password file creation utility such as <span style="white-space: nowrap;">`apache2-utils`</span> (Debian, Ubuntu) or <span style="white-space: nowrap;">`httpd-tools`</span> (RHEL/CentOS/Oracle Linux).
 
 <span id="pass"></span>

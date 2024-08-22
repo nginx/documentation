@@ -1,6 +1,6 @@
 ---
 title: Configuring NGINX Amplify Agent
-description: Learn how to configure NGINX Amplify Agent.
+description: Learn how to configure F5 NGINX Amplify Agent.
 weight: 300
 toc: true
 tags: ["docs"]

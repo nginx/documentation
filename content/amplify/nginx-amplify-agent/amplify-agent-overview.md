@@ -1,6 +1,6 @@
 ---
 title: NGINX Amplify Agent Overview
-description: Learn about NGINX Amplify Agent.
+description: Learn about F5 NGINX Amplify Agent.
 weight: 1
 toc: true
 tags: ["docs"]

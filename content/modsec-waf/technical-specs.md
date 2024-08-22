@@ -9,7 +9,7 @@ weight: 300
 {{% modsec-eol-notice %}}
 {{< /important >}}
 
-NGINX ModSecurity WAF is a module for NGINX Plus.
+F5 NGINX ModSecurity WAF is a module for NGINX Plus.
 
 ## Supported Distributions
 

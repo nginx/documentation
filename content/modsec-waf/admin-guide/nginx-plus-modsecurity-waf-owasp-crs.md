@@ -15,7 +15,7 @@ This chapter explains how to enable and test the Open Web Application Security P
 
 ## Overview
 
-<a target="_blank" href="https://docs.nginx.com/nginx/releases/#nginx-plus-release-12-r12">NGINX Plus Release 12</a> and later supports the [NGINX ModSecurity WAF](https://www.nginx.com/products/nginx/modules/nginx-waf/). The OWASP CRS provides the rules for the NGINX ModSecurity WAF to block SQL Injection (SQLi), Remote Code Execution (RCE), Local File Include (LFI), cross&#8209;site scripting (XSS), and many other attacks.
+<a target="_blank" href="https://docs.nginx.com/nginx/releases/#nginx-plus-release-12-r12">F5 NGINX Plus Release 12</a> and later supports the [NGINX ModSecurity WAF](https://www.nginx.com/products/nginx/modules/nginx-waf/). The OWASP CRS provides the rules for the NGINX ModSecurity WAF to block SQL Injection (SQLi), Remote Code Execution (RCE), Local File Include (LFI), cross&#8209;site scripting (XSS), and many other attacks.
 
 This chapter explains how to enable and test the [Open Web Application Security Project Core Rule Set](https://www.owasp.org/index.php/Category:OWASP_ModSecurity_Core_Rule_Set_Project) (OWASP CRS) for use with the NGINX ModSecurity WAF. The OWASP CRS includes signatures and patterns that detect many types of [generic attacks](https://modsecurity.org/crs). The latest version (CRS 3) includes significant improvements, including a reduction in false positives.
 

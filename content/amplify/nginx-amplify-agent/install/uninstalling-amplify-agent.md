@@ -1,6 +1,6 @@
 ---
 title: Uninstall NGINX Amplify Agent
-description: Learn how to uninstall NGINX Amplify Agent.
+description: Learn how to uninstall F5 NGINX Amplify Agent.
 weight: 400
 toc: true
 tags: ["docs"]

@@ -1,6 +1,6 @@
 ---
 description: Monitor the health of HTTP servers in an upstream group by sending periodic
-  health checks, including customizable active health checks in NGINX Plus.
+  health checks, including customizable active health checks in F5 NGINX Plus.
 docs: DOCS-417
 doctypes:
 - task
@@ -12,7 +12,7 @@ weight: 300
 <span id="intro"></span>
 ## Introduction
 
-NGINX and NGINX Plus can continually test your upstream servers, avoid the servers that have failed, and gracefully add the recovered servers into the load‑balanced group.
+NGINX and F5 NGINX Plus can continually test your upstream servers, avoid the servers that have failed, and gracefully add the recovered servers into the load‑balanced group.
 
 
 <span id="prereq"></span>

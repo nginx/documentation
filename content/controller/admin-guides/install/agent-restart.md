@@ -1,5 +1,5 @@
 ---
-description: How to start, stop, and verify the state of the NGINX Controller Agent
+description: How to start, stop, and verify the state of the F5 NGINX Controller Agent
   service.
 docs: DOCS-251
 doctypes:
@@ -13,7 +13,7 @@ weight: 210
 
 ## Starting and Stopping the Agent
 
-To start, stop, and restart the NGINX Controller Agent, run the following commands on the NGINX Plus system where you installed the Agent.
+To start, stop, and restart the F5 NGINX Controller Agent, run the following commands on the NGINX Plus system where you installed the Agent.
 
 Start the NGINX Controller Agent:
 

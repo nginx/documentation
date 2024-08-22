@@ -1,6 +1,6 @@
 ---
 title: NGINX Amplify User Interface
-description: Questions about NGINX Amplify's User Interface
+description: Questions about F5 NGINX Amplify's User Interface
 weight: 30
 toc: true
 tags: ["docs"]

@@ -1,6 +1,6 @@
 ---
 description: Learn how to customize a Developer Portal and publish documentation using
-  NGINX Management Suite API Connectivity Manager.
+  F5 NGINX Management Suite API Connectivity Manager.
 docs: DOCS-900
 tags:
 - docs

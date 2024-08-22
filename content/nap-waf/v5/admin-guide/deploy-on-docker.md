@@ -1,5 +1,5 @@
 ---
-description: This guide explains how to deploy NGINX App Protect WAF v5 release using
+description: This guide explains how to deploy F5 NGINX App Protect WAF v5 release using
   Docker Compose.
 docs: DOCS-1365
 doctypes:
@@ -11,7 +11,7 @@ weight: 300
 
 ## Prerequisites
 
-- Active NGINX App Protect WAF subscription in [MyF5](https://my.f5.com/) (purchased or trial).
+- Active F5 NGINX App Protect WAF subscription in [MyF5](https://my.f5.com/) (purchased or trial).
 - Docker (with Docker Compose) is [installed and running](https://docs.docker.com/engine/install/).
 
 ## Build the NGINX Image

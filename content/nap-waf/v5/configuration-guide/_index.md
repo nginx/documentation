@@ -1,5 +1,5 @@
 ---
-description: Learn how to configure NGINX App Protect WAF v5.
+description: Learn how to configure F5 NGINX App Protect WAF v5.
 menu:
   docs:
     parent: v5

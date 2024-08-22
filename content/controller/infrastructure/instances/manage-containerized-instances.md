@@ -13,7 +13,7 @@ weight: 15
 
 ## Overview
 
-{{< important >}} Instance groups are supported in the NGINX Controller API Management module beginning with version 3.18-APIM. Instance groups are supported in the NGINX Controller Application Delivery module versions 3.20, 3.21, and 3.22.
+{{< important >}} Instance groups are supported in the F5 NGINX Controller API Management module beginning with version 3.18-APIM. Instance groups are supported in the NGINX Controller Application Delivery module versions 3.20, 3.21, and 3.22.
 {{< /important >}}
 
 Instance groups allow an API Gateway to be native in Kubernetes.

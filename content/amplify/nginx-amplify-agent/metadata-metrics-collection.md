@@ -1,6 +1,6 @@
 ---
 title: Metadata and Metrics Collection
-description: Learn how NGINX Amplify Agent collects data.
+description: Learn how F5 NGINX Amplify Agent collects data.
 weight: 200
 toc: true
 tags: ["docs"]

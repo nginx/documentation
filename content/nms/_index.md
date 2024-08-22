@@ -1,5 +1,5 @@
 ---
-title: NGINX Management Suite
+title: F5 NGINX Management Suite
 description: A set of tools that enable enterprise scalability, security, observability, and governance.
 url: /nginx-management-suite/
 layout: "nms-eos-list"

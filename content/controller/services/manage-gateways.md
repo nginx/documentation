@@ -14,7 +14,7 @@ weight: 120
 
 
 
-A **Gateway** represents the initial network entry point of application and/or API traffic into an NGINX instance in the traffic data path. You can share the same gateway for both application and API traffic.
+A **Gateway** represents the initial network entry point of application and/or API traffic into an F5 NGINX instance in the traffic data path. You can share the same gateway for both application and API traffic.
 
 In a gateway, you define a group of **Ingress URIs** and **Certificates** that can then be used by [Application Components]({{< relref "/controller/app-delivery/about-app-delivery.md#components" >}}). Adding these definitions at the gateway level means you don't have to define the URIs and certificates for each component. Instead, you can inherit these settings from the gateway and only configure each component's relative path(s). Alternatively, you can fully define the URI in the component; doing so will override any settings defined for the gateway.
 

@@ -2,7 +2,7 @@
 title: "Upgrade with nginx-meshctl"
 draft: false
 toc: true
-description: "This guide explains how to upgrade NGINX Service Mesh using nginx-meshctl."
+description: "This guide explains how to upgrade F5 NGINX Service Mesh using nginx-meshctl."
 weight: 200
 categories: ["tasks"]
 docs: "DOCS-1482"

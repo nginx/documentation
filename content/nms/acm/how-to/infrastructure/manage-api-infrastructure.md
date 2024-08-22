@@ -1,5 +1,5 @@
 ---
-description: Learn how to use NGINX Management Suite API Connectivity Manager to manage
+description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to manage
   your API infrastructure.
 docs: DOCS-924
 doctypes:
@@ -27,7 +27,7 @@ Complete the following prerequisites before proceeding with this guide:
 
 - API Connectivity Manager is installed, running, and licensed.
 - You have SSH access to the host where API Connectivity Manager is running and can use the `sudo` command.
-- You have installed a [supported version]({{< ref "tech-specs" >}}) of NGINX Plus on each host that you want to add to a Cluster.
+- You have installed a [supported version]({{< ref "tech-specs" >}}) of F5 NGINX Plus on each host that you want to add to a Cluster.
 - You know the IP address or FQDN for each host that you want to add to a cluster.
 - You have SSH access to each of the hosts that you want to allocate to a cluster and can use the `sudo` command.
 - You have installed the [`njs`](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/nginscript/) module on each host that you want to add to the cluster.

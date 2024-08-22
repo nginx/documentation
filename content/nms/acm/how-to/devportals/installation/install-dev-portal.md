@@ -1,6 +1,6 @@
 ---
 description: Follow the steps in this guide to install or upgrade the Developer Portal
-  for NGINX Management Suite API Connectivity Manager.
+  for F5 NGINX Management Suite API Connectivity Manager.
 docs: DOCS-1214
 doctypes:
 - tutorial
@@ -19,7 +19,7 @@ weight: 10
 
 Complete the following steps to prepare the Developer Portal for use with API Connectivity Manager:
 
-1. [Install NGINX Plus R24 or later](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/)
+1. [Install F5 NGINX Plus R24 or later](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/)
 2. [Install NGINX njs module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/nginscript/)
 
 <details open>

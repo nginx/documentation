@@ -1,5 +1,5 @@
 ---
-description: Contains instructions for setting up the NGINX Controller Agent to collect
+description: Contains instructions for setting up the F5 NGINX Controller Agent to collect
   metrics for NGINX Plus instances.
 docs: DOCS-509
 doctypes:
@@ -13,7 +13,7 @@ weight: 120
 
 ## Before You Begin
 
-- Before you can set up metrics collection, you first need to [install and start the NGINX Controller Agent]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}}), so that the Agent can start pushing aggregated data to NGINX Controller.
+- Before you can set up metrics collection, you first need to [install and start the F5 NGINX Controller Agent]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}}), so that the Agent can start pushing aggregated data to NGINX Controller.
 
 ## Objectives
 

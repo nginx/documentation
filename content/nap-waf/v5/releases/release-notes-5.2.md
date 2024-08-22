@@ -1,6 +1,6 @@
 ---
 description: ''
-docs: 
+docs:
 doctypes:
 - concept
 title: NGINX App Protect WAF Release 5.2
@@ -11,12 +11,12 @@ weight: 890
 May 29, 2024
 
 {{< note >}}
- All existing policy bundles and log bundles must be recompiled post upgrade using this version's WAF compiler. Older bundles will be detected and disallowed.   
+ All existing policy bundles and log bundles must be recompiled post upgrade using this version's WAF compiler. Older bundles will be detected and disallowed.
 {{< /note >}}
 
 ### New Features
 
-In this release, NGINX App Protect WAF supports NGINX Open Source 1.25.5 and NGINX Plus R32.
+In this release, F5 NGINX App Protect WAF supports NGINX Open Source 1.25.5 and NGINX Plus R32.
 
 - [Apreload support]({{<relref "nap-waf/v5/configuration-guide/configuration.md#apreload">}})
 

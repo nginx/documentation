@@ -9,7 +9,7 @@ weight: 100
 {{% modsec-eol-notice %}}
 {{< /important >}}
 
-This chapter explains how to install the NGINX ModSecurity web application firewall (WAF), configure a simple rule, and set up logging. The NGINX ModSecurity WAF is the NGINX Plus build of ModSecurity. The NGINX ModSecurity WAF was previously called the NGINX WAF, and the NGINX Plus with ModSecurity WAF before that.
+This chapter explains how to install the F5 NGINX ModSecurity web application firewall (WAF), configure a simple rule, and set up logging. The NGINX ModSecurity WAF is the NGINX Plus build of ModSecurity. The NGINX ModSecurity WAF was previously called the NGINX WAF, and the NGINX Plus with ModSecurity WAF before that.
 
 <span id="waf-install_overview"></span>
 

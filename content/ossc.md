@@ -9,7 +9,7 @@ title: Open Source Components
 
 {{<rn-styles>}}
 
-The NGINX Docs website is made possible thanks to many contributors, which also includes the tools used to build it. We would like to draw attention to the maintainers of the following libraries, which are used to create the NGINX Docs:
+The F5 NGINX Docs website is made possible thanks to many contributors, which also includes the tools used to build it. We would like to draw attention to the maintainers of the following libraries, which are used to create the NGINX Docs:
 
 ---
 
@@ -63,6 +63,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ---
 
-License information for open source components included in the [NGINX Plus]({{< relref "/nginx/" >}}) software: 
+License information for open source components included in the [NGINX Plus]({{< relref "/nginx/" >}}) software:
 
 - [NGINX Plus Open Source Components]({{< relref "/nginx/open-source-components.md" >}})

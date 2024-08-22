@@ -1,5 +1,5 @@
 ---
-description: Platforms supported by NGINX Plus and dynamically loaded modules, supported
+description: Platforms supported by F5 NGINX Plus and dynamically loaded modules, supported
   SSL/TLS versions, supported deployment environments, and list of modules built into
   NGINX Plus.
 docs: DOCS-473
@@ -45,7 +45,7 @@ NGINX Plus is available in binary form only; it is not available in source form
 - 12 (x86_64, aarch64)
 
 ### FreeBSD
-  
+
 - 13 (amd64)
 - 14 (amd64)
 
@@ -79,7 +79,7 @@ NGINX Plus is available in binary form only; it is not available in source form
 
 **Notes:**
 
-- NGINX Controller users: some distributions are not supported by the NGINX Controller Agent. See the [NGINX Controller Tech Specs](https://docs.nginx.com/nginx-controller/admin-guides/install/nginx-controller-tech-specs/).
+- F5 NGINX Controller users: some distributions are not supported by the NGINX Controller Agent. See the [NGINX Controller Tech Specs](https://docs.nginx.com/nginx-controller/admin-guides/install/nginx-controller-tech-specs/).
 
 ## Dynamic Modules
 Except as specified below, dynamic modules are supported on the [same distributions as NGINX Plus](#supported-distributions).

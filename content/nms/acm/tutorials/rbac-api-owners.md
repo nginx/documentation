@@ -1,6 +1,6 @@
 ---
 description: Learn how to use both built-in and custom roles to configure role-based
-  access control for NGINX Management Suite API Connectivity Manager.
+  access control for F5 NGINX Management Suite API Connectivity Manager.
 docs: DOCS-1173
 doctypes:
 - tutorial
@@ -13,7 +13,7 @@ weight: 110
 
 ## Overview
 
-This tutorial will show you how to use the Role-Based Access Control (RBAC) features of API Connectivity Manager to give API Owners tailored levels of access to features in NGINX Management Suite. You will learn how to create roles to grant users access to workspaces and features, as well as how to add and assign users to those roles.
+This tutorial will show you how to use the Role-Based Access Control (RBAC) features of API Connectivity Manager to give API Owners tailored levels of access to features in F5 NGINX Management Suite. You will learn how to create roles to grant users access to workspaces and features, as well as how to add and assign users to those roles.
 
 ### Intended Audience
 

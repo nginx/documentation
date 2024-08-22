@@ -1,5 +1,5 @@
 ---
-description: Learn how to configure NGINX App Protect WAF. Versions 4 and earlier.
+description: Learn how to configure F5 NGINX App Protect WAF. Versions 4 and earlier.
 menu:
   docs:
     parent: v4 and earlier

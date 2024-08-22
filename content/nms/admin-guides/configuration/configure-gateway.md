@@ -1,6 +1,6 @@
 ---
 description: Follow the steps in this guide to fine-tune the NGINX proxy gateway for
-  NGINX Management Suite to support large data planes running numerous NGINX Agents.
+  F5 NGINX Management Suite to support large data planes running numerous NGINX Agents.
 docs: DOCS-1131
 doctypes:
 - tutorial
@@ -13,7 +13,7 @@ weight: 400
 
 ## Overview
 
-If the NGINX proxy gateway for NGINX Management Suite alerts you that there are not enough worker connections, you may need to modify the NGINX configuration (`/etc/nginx/nginx.conf` on the NGINX Management Suite host) to allow more worker connections and increase the number of file descriptors for worker processes.
+If the NGINX proxy gateway for F5 NGINX Management Suite alerts you that there are not enough worker connections, you may need to modify the NGINX configuration (`/etc/nginx/nginx.conf` on the NGINX Management Suite host) to allow more worker connections and increase the number of file descriptors for worker processes.
 
 ## Configure Worker Connections
 

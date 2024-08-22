@@ -1,6 +1,6 @@
 ---
 title: "Configure a Secure Egress Route with NGINX Ingress Controller"
-description: "This topic provides a walkthrough of how to securely route egress traffic through NGINX Ingress Controller for Kubernetes with NGINX Service Mesh."
+description: "This topic provides a walkthrough of how to securely route egress traffic through F5 NGINX Ingress Controller for Kubernetes with NGINX Service Mesh."
 weight: 210
 categories: ["tutorials"]
 toc: true
@@ -11,7 +11,7 @@ docs: "DOCS-722"
 
 Learn how to create internal routes in F5 NGINX Ingress Controller to securely route egress traffic to non-meshed services.
 {{< note >}}
-NGINX Ingress Controller can be used for free with NGINX Open Source. Paying customers have access to NGINX Ingress Controller with F5 NGINX Plus.
+NGINX Ingress Controller can be used for free with NGINX Open Source. Paying customers have access to NGINX Ingress Controller with NGINX Plus.
 To complete this tutorial, you must use either:
 
 - Open Source NGINX Ingress Controller version 3.0+
@@ -35,7 +35,7 @@ to a non-meshed service.
 ## Install NGINX Service Mesh
 
 {{< note >}}
-If you want to view metrics for NGINX Ingress Controller, ensure that you have deployed Prometheus and Grafana and then configure F5 NGINX Service Mesh to integrate with them when installing. Refer to the [Monitoring and Tracing]( {{< ref "/mesh/guides/monitoring-and-tracing.md" >}} ) guide for instructions.
+If you want to view metrics for NGINX Ingress Controller, ensure that you have deployed Prometheus and Grafana and then configure NGINX Service Mesh to integrate with them when installing. Refer to the [Monitoring and Tracing]( {{< ref "/mesh/guides/monitoring-and-tracing.md" >}} ) guide for instructions.
 {{< /note >}}
 
 1. Follow the installation [instructions]( {{< ref "/mesh/get-started/install/install.md" >}} ) to install NGINX Service Mesh on your Kubernetes cluster.

@@ -1,5 +1,5 @@
 ---
-description: Learn how to back up and restore the external NGINX Controller config
+description: Learn how to back up and restore the external F5 NGINX Controller config
   database.
 docs: DOCS-249
 doctypes:
@@ -13,7 +13,7 @@ weight: 99
 
 ## Overview
 
-Follow the steps in this guide to back up and restore an external NGINX Controller config database. Use this guide if you selected the option to use an external PostgreSQL config database when you installed NGINX Controller. External config means that you set up NGINX Controller to store configuration data in your own Postgres database.
+Follow the steps in this guide to back up and restore an external F5 NGINX Controller config database. Use this guide if you selected the option to use an external PostgreSQL config database when you installed NGINX Controller. External config means that you set up NGINX Controller to store configuration data in your own Postgres database.
 
 ## Before You Begin
 

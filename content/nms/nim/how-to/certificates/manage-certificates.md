@@ -150,7 +150,7 @@ To manage certificates securely, you should rotate the encryption keys regularly
 
 To rotate the certificates encryption key, take the following steps:
 
-1. Open an SSH connection to the NGINX Management Suite host.
+1. Open an SSH connection to the F5 NGINX Management Suite host.
 2. Run the `sudo systemctl stop nms` command.
 3. Run the `sudo runuser -u nms -- nms-core secret rotate` command. This command performs the following steps:
 

@@ -14,7 +14,7 @@ weight: 100
 
 Load balancing across multiple application instances is a commonly used technique for optimizing resource utilization, maximizing throughput, reducing latency, and ensuring fault‑tolerant configurations.
 
-Watch the [NGINX Plus for Load Balancing and Scaling](https://www.nginx.com/resources/webinars/nginx-plus-for-load-balancing-30-min/) webinar on demand for a deep dive on techniques that NGINX users employ to build large‑scale, highly available web services.
+Watch the [F5 NGINX Plus for Load Balancing and Scaling](https://www.nginx.com/resources/webinars/nginx-plus-for-load-balancing-30-min/) webinar on demand for a deep dive on techniques that NGINX users employ to build large‑scale, highly available web services.
 
 NGINX and NGINX Plus can be used in different deployment scenarios as a [very efficient HTTP load balancer](https://www.nginx.com/blog/nginx-load-balance-deployment-models/).
 

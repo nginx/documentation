@@ -1,5 +1,5 @@
 ---
-description: Overview of NGINX Controller.
+description: Overview of F5 NGINX Controller.
 docs: DOCS-781
 doctypes:
 - concept
@@ -12,7 +12,7 @@ weight: 100
 
 ## Overview
 
-NGINX Controller is designed to let you manage and monitor your NGINX Plus instances. With NGINX Controller, it's easy to proactively configure, analyze, and respond to problems related to running and scaling NGINX-based web applications.
+F5 NGINX Controller is designed to let you manage and monitor your NGINX Plus instances. With NGINX Controller, it's easy to proactively configure, analyze, and respond to problems related to running and scaling NGINX-based web applications.
 
 You can use NGINX Controller to do the following:
 

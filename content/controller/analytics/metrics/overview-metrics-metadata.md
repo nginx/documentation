@@ -1,5 +1,5 @@
 ---
-description: Understanding how the NGINX Controller Agent collects and reports metrics
+description: Understanding how the F5 NGINX Controller Agent collects and reports metrics
   and metadata.
 docs: DOCS-536
 doctypes:
@@ -13,7 +13,7 @@ weight: 20
 
 ## Overview
 
-The data that NGINX Controller collects can be divided into two categories:
+The data that F5 NGINX Controller collects can be divided into two categories:
 
 - **System metrics**: Data collected from the NGINX Plus API, the NGINX log files, and NGINX process state.
 - **Traffic metrics**: Data related to processed traffic, with the ability to distinguish the Application, API endpoint, or Environment that traffic is directed through.

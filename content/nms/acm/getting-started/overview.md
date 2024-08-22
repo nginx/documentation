@@ -1,5 +1,5 @@
 ---
-description: Learn how to get up and running with NGINX Management Suite API Connectivity
+description: Learn how to get up and running with F5 NGINX Management Suite API Connectivity
   Manager.
 docs: DOCS-939
 tags:
@@ -43,7 +43,7 @@ By completing the guides in this Quick Start series, you can easily get up and r
 This series covers the following topics:
 
 1. Setting up an environment with [API Gateway]({{< relref "add-api-gateway" >}}) & [Developer Portal]({{< relref "add-devportal" >}}) clusters.
-2. Onboarding NGINX Plus instances onto the clusters.
+2. Onboarding F5 NGINX Plus instances onto the clusters.
 3. [Publishing an API proxy]({{< relref "publish-api-proxy" >}}) with or without an OpenAPI spec.
 
 ---

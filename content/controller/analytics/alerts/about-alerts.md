@@ -12,7 +12,7 @@ weight: 100
 
 ## Overview
 
-The NGINX Controller Analytics module lets you configure alerts and notifications, so you can stay informed about your system and app performance. In this topic, you'll learn about [alerts](#alerts), [alert rules](#alert-rules), and [alert notifications](#alert-notifications).
+The F5 NGINX Controller Analytics module lets you configure alerts and notifications, so you can stay informed about your system and app performance. In this topic, you'll learn about [alerts](#alerts), [alert rules](#alert-rules), and [alert notifications](#alert-notifications).
 
 {{< see-also >}}
 Refer to [Manage Alerts]({{< relref "/controller/analytics/alerts/manage-alerts.md" >}}) to learn how to set up alerts.

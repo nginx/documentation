@@ -1,5 +1,5 @@
 ---
-description: Learn about the policies available for use in NGINX Management Suite
+description: Learn about the policies available for use in F5 NGINX Management Suite
   API Connectivity Manager.
 docs: DOCS-932
 doctypes:

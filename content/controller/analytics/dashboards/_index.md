@@ -1,5 +1,5 @@
 ---
-description: Learn about NGINX Controller Dashboards.
+description: Learn about F5 NGINX Controller Dashboards.
 menu:
   docs:
     parent: Analytics

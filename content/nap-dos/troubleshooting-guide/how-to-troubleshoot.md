@@ -10,7 +10,7 @@ weight: 200
 
 ## Overview
 
-This Troubleshooting Guide is intended to provide guidance to customers in the detection and correction of programming issues in NGINX App Protect DoS. It may also be useful to IT.
+This Troubleshooting Guide is intended to provide guidance to customers in the detection and correction of programming issues in F5 NGINX App Protect DoS. It may also be useful to IT.
 
 ## Resolving Known Problems
 
@@ -35,7 +35,7 @@ This Troubleshooting Guide is intended to provide guidance to customers in the d
 
 ### ELK issues
 
-ELK issues are addressed directly in GitHub by posting the issue to Kibana dashboards for [F5 NGINX App Protect DoS GitHub repo](https://github.com/f5devcentral/nap-dos-elk-dashboards).
+ELK issues are addressed directly in GitHub by posting the issue to Kibana dashboards for [NGINX App Protect DoS GitHub repo](https://github.com/f5devcentral/nap-dos-elk-dashboards).
 
 ### SELinux
 

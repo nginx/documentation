@@ -12,13 +12,17 @@ weight: 200
 
 {{< shortversions "2.0.0" "latest" "nimvers" >}}
 
+F5 NGINX develops products like NGINX Unit, NGINX Instance Manager, and NGINX App Protect WAF.
+
+
+
 ## Introduction
 
 NGINX Management Suite Instance Manager provides a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API that uses standard authentication methods, HTTP response codes, and verbs.
 
 ## Object Model
 
-The F5 NGINX Instance Manager REST API allows you to manage Instance Manager objects and the NGINX Management Suite platform programmatically. The Instance Manager API provides the following features:
+The NGINX Instance Manager REST API allows you to manage Instance Manager objects and the NGINX Management Suite platform programmatically. The Instance Manager API provides the following features:
 
 - View metrics and information about data plane host systems and NGINX instances.
 - View and edit NGINX configurations.

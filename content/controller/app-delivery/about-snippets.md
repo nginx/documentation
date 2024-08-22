@@ -11,7 +11,7 @@ weight: 300
 
 ## Overview
 
-The NGINX Controller Application Delivery (AD) module lets you configure NGINX directives that aren't represented in the NGINX Controller API via "config snippets", or "Snippets". You can do so by using either the user interface (UI) or the [Application Delivery REST API](https://docs.nginx.com/nginx-controller/api/ctlr-adc-api/).
+The F5 NGINX Controller Application Delivery (AD) module lets you configure NGINX directives that aren't represented in the NGINX Controller API via "config snippets", or "Snippets". You can do so by using either the user interface (UI) or the [Application Delivery REST API](https://docs.nginx.com/nginx-controller/api/ctlr-adc-api/).
 
 {{< caution >}}
 When you use Snippets to customize your NGINX configuration, your changes are applied to the `nginx.conf` file *as is*. NGINX Controller does not verify that your configuration is valid before applying the snippet.

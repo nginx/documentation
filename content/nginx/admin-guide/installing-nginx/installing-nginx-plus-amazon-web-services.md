@@ -1,5 +1,5 @@
 ---
-description: Install NGINX Plus on Amazon Web Services (AWS), to provide sophisticated
+description: Install F5 NGINX Plus on Amazon Web Services (AWS), to provide sophisticated
   Layer 7 load balancing for your apps running on Amazon Linux, RHEL, and Ubuntu.
 docs: DOCS-411
 doctypes:
@@ -16,7 +16,7 @@ The AMIs contain the following components:
 - Latest version of [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus), optimized for use on Amazon EC2
 - Pre-packaged software for building highly available (HA) NGINX Plus configurations
 
-## Installing the NGINX Plus AMI
+## Installing the F5 NGINX Plus AMI
 
 To quickly set up an NGINX Plus environment on AWS:
 

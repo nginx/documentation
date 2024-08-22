@@ -1,6 +1,6 @@
 ---
 title: General
-description: General questions about NGINX Amplify
+description: General questions about F5 NGINX Amplify
 weight: 10
 toc: true
 tags: ["docs"]
@@ -10,7 +10,7 @@ docs: "DOCS-956"
 
 ### What Is F5 NGINX Amplify?
 
-F5 NGINX Amplify is a tool for comprehensive NGINX monitoring. With NGINX Amplify it's easy to proactively analyze and fix problems related to running and scaling NGINX-based web applications.
+NGINX Amplify is a tool for comprehensive NGINX monitoring. With NGINX Amplify it's easy to proactively analyze and fix problems related to running and scaling NGINX-based web applications.
 
 You can use NGINX Amplify to do the following:
 

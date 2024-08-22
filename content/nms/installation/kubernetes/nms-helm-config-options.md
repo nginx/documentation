@@ -11,7 +11,7 @@ weight: 300
 
 {{< shortversions "2.5.0" "latest" "nimvers" >}}
 
-This reference guide lists the configurable Helm chart parameters and default settings for the NGINX Management Suite platform and modules.
+This reference guide lists the configurable Helm chart parameters and default settings for the F5 NGINX Management Suite platform and modules.
 
 ## NGINX Management Suite Helm Chart Settings {#nms-helm-settings}
 

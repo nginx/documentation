@@ -1,6 +1,6 @@
 ---
 description: Learn how to create, configure, and implement health check policies for
-  your HTTP and gRPC API Proxies using NGINX Management Suite API Connectivity Manager.
+  your HTTP and gRPC API Proxies using F5 NGINX Management Suite API Connectivity Manager.
 docs: DOCS-1125
 doctypes:
 - reference
@@ -50,7 +50,7 @@ To complete the steps in this guide, you need the following:
 |----------------------------------------------------------------|----------|----------------------------|-----------------------------------------------------------------------------------------------------------------------|----------|---------------|
 | `targetBackendPolicyLabel`                                     | string   | Example: `default`         | This field is used to target a specific backend by label.                                                             | No       | `default`     |
 | `transportProtocol`                                            | string   | One of `["http"]`          | The transport protocol used by the service. Only http is supported for now.                                           | No       | `http`        |
-| `isMandatory`                                                  | bool     | `true/false`               | Requires every newly added server to pass all configured health checks before NGINX Plus sends traffic to it.         | No       | `false`       |
+| `isMandatory`                                                  | bool     | `true/false`               | Requires every newly added server to pass all configured health checks before F5 NGINX Plus sends traffic to it.         | No       | `false`       |
 | `persistent`                                                   | bool     | `true/false`               | Determines whether previous state is remembered after reloading configuration.                                        | No       | `false`       |
 | `port`                                                         | int      | In range `1-65535`         | The port on the service that will provide the health check.                                                           | No       | N/A           |
 | `interval`                                                     | int      | Integer (Max 2147483647)   | The length of time between each health check sent from Nginx to the respective service.                               | No       | 5             |

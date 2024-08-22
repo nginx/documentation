@@ -1,5 +1,5 @@
 ---
-description: This quick-start tutorial shows you how to get started using NGINX Controller
+description: This quick-start tutorial shows you how to get started using F5 NGINX Controller
   with NGINX Plus.
 docs: DOCS-260
 doctypes:
@@ -13,7 +13,7 @@ weight: 110
 
 ## Overview
 
-This quick-start tutorial shows you how to get started using NGINX Controller with NGINX Plus.
+This quick-start tutorial shows you how to get started using F5 NGINX Controller with NGINX Plus.
 
 {{< caution >}}In this tutorial, NGINX Controller will install an embedded, self-hosted PostgreSQL database suitable for demo and trial purposes only. **These instructions are not meant for use in production environments**.{{< /caution >}}
 

@@ -1,5 +1,5 @@
 ---
-description: Learn about the default protections provided by NGINX Controller App
+description: Learn about the default protections provided by F5 NGINX Controller App
   Security.
 docs: DOCS-479
 doctypes:
@@ -14,7 +14,7 @@ weight: 200
 
 ## Overview
 
-You can use the NGINX Controller App Security module to configure and manage a web application firewall (WAF). The App Security WAF protects your applications from HTTP and web-based threats, including the [OWASP Top 10](https://owasp.org/www-project-top-ten/).
+You can use the F5 NGINX Controller App Security module to configure and manage a web application firewall (WAF). The App Security WAF protects your applications from HTTP and web-based threats, including the [OWASP Top 10](https://owasp.org/www-project-top-ten/).
 
 NGINX Controller App Security provides out-of-the-box analytics events and metrics, which are reported through the NGINX Controller API and user interface. App Security works with [NGINX App Protect](https://www.nginx.com/products/nginx-app-protect), running NGINX Plus as the WAF in the data path.
 

@@ -12,8 +12,8 @@ weight: 300
 ## Overview
 The Connectivity Stack for Kubernetes by F5 NGINX includes access to the following products:
 
-- [F5 NGINX Ingress Controller](https://www.nginx.com/products/nginx-ingress-controller/)
-- [F5 NGINX App Protect WAF and DoS](https://www.nginx.com/products/nginx-app-protect/)
+- [NGINX Ingress Controller](https://www.nginx.com/products/nginx-ingress-controller/)
+- [NGINX App Protect WAF and DoS](https://www.nginx.com/products/nginx-app-protect/)
 
 ## Installation
 

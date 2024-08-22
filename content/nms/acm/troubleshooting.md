@@ -33,7 +33,7 @@ New roles require a minimum of `READ` access for the **Licensing** feature. With
 
 ### Description
 
-After installing the API Connectivity Manager module, the module doesn't appear in the NGINX Management Suite web interface.
+After installing the API Connectivity Manager module, the module doesn't appear in the F5 NGINX Management Suite web interface.
 
 ### Resolution
 

@@ -1,5 +1,5 @@
 ---
-description: Learn how to extend your App Security configurations using NGINX Controller
+description: Learn how to extend your App Security configurations using F5 NGINX Controller
   Snippets.
 docs: DOCS-338
 doctypes:
@@ -14,7 +14,7 @@ weight: 400
 
 ## Overview
 
-NGINX Controller [Snippets]({{< relref "/controller/app-delivery/about-snippets.md" >}}) let you customize your NGINX configuration by adding NGINX directives that aren't represented by the NGINX Controller API.
+F5 NGINX Controller [Snippets]({{< relref "/controller/app-delivery/about-snippets.md" >}}) let you customize your NGINX configuration by adding NGINX directives that aren't represented by the NGINX Controller API.
 
 Snippets also let you customize App Security for your Components by adding NGINX App Protect directives that aren't present in the NGINX Controller API. You can use Snippets when [tuning your NGINX App Protect WAF performance]({{< relref "/controller/app-delivery/security/tutorials/tune-waf-for-app" >}}) as well.
 

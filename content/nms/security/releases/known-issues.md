@@ -1,6 +1,6 @@
 ---
 description: This document lists and describes the known issues and possible workarounds
-  in the NGINX Management Suite Security Monitoring module. Fixed issues are removed
+  in the F5 NGINX Management Suite Security Monitoring module. Fixed issues are removed
   after **45 days**.
 docs: DOCS-1077
 tags:

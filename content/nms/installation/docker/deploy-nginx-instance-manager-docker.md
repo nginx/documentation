@@ -1,8 +1,8 @@
 ---
 categories:
-- 
+-
 date: "2024-06-06T12:00:00-07:00"
-description: 
+description:
 doctypes:
 - deployment guide
 tags:
@@ -294,11 +294,11 @@ In previous examples, the admin password was set using the `NMS_ADMIN_PASSWORD` 
    {{</call-out>}}
 
    <br>
-   
+
    {{<call-out "tip" "Tip: How to find a container's name" "far fa-lightbulb" >}}
    To find a container's name, use the `docker ps` command, which lists all running containers along with their names.
    {{</call-out>}}
 
 5. Verify you can log in with the provided usernames and passwords.
-  
+
    In a web browser, go to `https://<YOUR_HOST_IP>:8443` and log in. Replace `<YOUR_HOST_IP>` with the actual IP address or hostname of the machine running the Docker container. If you are accessing it locally, use `https://localhost:8443`.

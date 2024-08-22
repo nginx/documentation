@@ -1,6 +1,6 @@
 ---
 description: Learn how to get performance and health insights into your NGINX deployment
-  using NGINX Management Suite Instance Manager.
+  using F5 NGINX Management Suite Instance Manager.
 docs: DOCS-1387
 doctypes:
 - reference

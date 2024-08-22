@@ -1,5 +1,5 @@
 ---
-description: This document describes role-based access control (RBAC) in NGINX Management
+description: This document describes role-based access control (RBAC) in F5 NGINX Management
   Suite, outlining essential concepts and features. It serves as a starting point,
   linking to additional resources and how-to topics for those looking to set up and
   manage access controls effectively.
@@ -30,7 +30,7 @@ The value of RBAC lies in its ability to provide clear and structured control ov
 
 The following are essential concepts related to RBAC:
 
-- **Users**: Users are individual accounts identified by a username and credentials. You have the option to create users within NGINX Management Suite using basic authentication or to integrate with an external identity provider using OpenID Connect (OIDC).
+- **Users**: Users are individual accounts identified by a username and credentials. You have the option to create users within F5 NGINX Management Suite using basic authentication or to integrate with an external identity provider using OpenID Connect (OIDC).
 - **Roles**: Roles are sets of permissions linked to one or more features. Each role specifies the actions that are allowed for each feature, such as creating, reading, updating, or deleting. The pre-defined `admin` role grants full access to all features.
 
    Users can have multiple roles simultaneously. In such cases, the permissions granted by each role are combined, providing an additive effect. For instance, a user with two roles, one granting read access to all NGINX instances and the other allowing create, update, and delete access to a specific instance, will be able to read all instances while having the ability to create, update, or delete only the designated instance for which they have permission.

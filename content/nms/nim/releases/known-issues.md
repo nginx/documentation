@@ -1,6 +1,6 @@
 ---
 description: This document lists and describes the known issues and possible workarounds
-  in NGINX Management Suite Instance Manager. Fixed issues are removed after **45
+  in F5 NGINX Management Suite Instance Manager. Fixed issues are removed after **45
   days**.
 docs: DOCS-937
 tags:
@@ -20,7 +20,7 @@ weight: 200
 ## 2.17.0
 July 10, 2024
 
-### {{% icon-bug %}} NGINX Agent 2.36.0 fails to validate certain NGINX configurations in NGINX Instance Manager 2.17.0 {#45153}
+### {{% icon-bug %}} NGINX Agent 2.36.0 fails to validate certain NGINX configurations in F5 NGINX Instance Manager 2.17.0 {#45153}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 

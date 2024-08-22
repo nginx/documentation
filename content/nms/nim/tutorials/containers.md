@@ -1,5 +1,5 @@
 ---
-description: This topic explains how to use Instance Manager with containers.
+description: This topic explains how to use F5 NGINX Instance Manager with containers.
 docs: DOCS-823
 doctypes:
 - tutorial
