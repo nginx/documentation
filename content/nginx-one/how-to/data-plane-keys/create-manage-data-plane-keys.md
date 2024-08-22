@@ -21,7 +21,7 @@ h2 {
 
 Data plane keys are required for registering NGINX instances with the F5 NGINX One cloud console. These keys serve as secure tokens, ensuring that only authorized NGINX instances can connect to and communicate with  NGINX One. You have the flexibility to reuse a key with multiple instances, or to create a unique key for each instance.
 
-{{<call-out "caution" "Data plane key guidelines">}}
+{{<call-out "note" "Data plane key considerations" "fas fa-key" >}}
 Data plane keys are displayed only once and cannot be retrieved later. Be sure to copy and store this key securely.
 
 Data plane keys expire after one year. You can change this expiration date later by editing the key.
