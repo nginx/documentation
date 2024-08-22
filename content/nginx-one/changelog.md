@@ -54,13 +54,13 @@ You can now view NGINX CVEs on the **Security** page. The listed CVEs affect off
 
 Select the link for each CVE to see the details, including the CVE's publish date, severity, description, and the affected NGINX products and instances.
 
-## May 29, 2024 - v0.20240529.1310498676
+## May 29, 2024
 
 ### Edit NGINX configurations
 
 You can now make configuration changes to your NGINX instances. For more details, see [View and edit NGINX configurations]({{< relref "/nginx-one/how-to/nginx-configs/view-edit-nginx-configurations.md" >}}).
 
-## May 28, 2024 - v0.20240528.1309124087
+## May 28, 2024
 
 ### Improved data plane key and NGINX instance navigation
 
@@ -69,7 +69,7 @@ We've updated the **Instance Details** and **Data Plane Keys** pages to make it 
 - On the **Instance Details** page, you can now find a link to the instance's data plane key. Select the "Data Plane Key" link to view important details like status, expiration, and other registered instances.
 - The **Data Plane Keys** page now includes links to more information about each data plane key.
 
-## February 28, 2024 - v0.20240228.1194299632
+## February 28, 2024
 
 ### Breaking change
 
