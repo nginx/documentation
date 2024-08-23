@@ -1,5 +1,5 @@
 ---
-description: Learn about the NGINX App Protect WAF v5 Troubleshooting Guide.
+description: Learn about the F5 NGINX App Protect WAF v5 Troubleshooting Guide.
 menu:
   docs:
     parent: v5

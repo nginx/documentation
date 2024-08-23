@@ -1,6 +1,6 @@
 ---
 title: Troubleshooting Metrics Collection
-description: Learn what to check if NGINX Amplify Agent isn't reporting metrics.
+description: Learn what to check if F5 NGINX Amplify Agent isn't reporting metrics.
 weight: 500
 toc: true
 tags: ["docs"]
@@ -20,7 +20,7 @@ If you don't see the new system or NGINX instance in the web interface, or (some
   7. `stub_status` is [configured correctly]({{< relref "/amplify/nginx-amplify-agent/configuring-metric-collection" >}}), and the `stub_status module` is included in the NGINX build (this can be confirmed with `nginx -V`).
   8. NGINX [access.log](http://nginx.org/en/docs/http/ngx_http_log_module.html) and [error.log](http://nginx.org/en/docs/ngx_core_module.html#error_log) files are readable by the user `nginx` (or by the [user](http://nginx.org/en/docs/ngx_core_module.html#user) set in NGINX config).
   9. All NGINX configuration files are readable by NGINX Amplify Agent user ID (check owner, group, and permissions).
-  10. Extra [configuration steps have been performed as required](/metrics-metadata/nginx-metrics#additional-nginx-metrics) for the additional metrics to be collected.
+  10. Extra [configuration steps have been performed as required]({{< relref "/amplify/metrics-metadata/nginx-metrics#additional-nginx-metrics" >}}) for the additional metrics to be collected.
   11. The system DNS resolver is correctly configured, and *receiver.amplify.nginx.com* can be successfully resolved.
   12. Outbound TLS/SSL from the system to *receiver.amplify.nginx.com* is not restricted. This can be confirmed with `curl(1)`. [Configure a proxy server]({{< relref "/amplify/nginx-amplify-agent/install/configuring-amplify-agent#setting-up-a-proxy" >}}) for NGINX Amplify Agent if required.
   13. *selinux(8)*, *apparmor(7)* or [grsecurity](https://grsecurity.net) are not interfering with the metric collection. E.g., for _selinux_(8)* review **/etc/selinux/config**. Try `setenforce 0` temporarily and see if it improves the situation for certain metrics.

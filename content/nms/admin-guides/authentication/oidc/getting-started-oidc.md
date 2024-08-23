@@ -19,7 +19,7 @@ h2 {
 
 ## Overview
 
-We highly recommend using Open ID Connect (OIDC) as the preferred authentication method for the NGINX Management Suite. OIDC offers several advantages, including a Single Sign-On (SSO) experience for users and simplified user management for administrators through the use of user groups. OIDC allows for easy scalability and streamlined administration of user access.
+We highly recommend using Open ID Connect (OIDC) as the preferred authentication method for the F5 NGINX Management Suite. OIDC offers several advantages, including a Single Sign-On (SSO) experience for users and simplified user management for administrators through the use of user groups. OIDC allows for easy scalability and streamlined administration of user access.
 
 NGINX Management Suite's implementation of OpenID Connect (OIDC) is designed to work with any Identity Provider (IdP) that supports the OIDC protocol. The instructions provided below are general and can be applied to any IdP.
 

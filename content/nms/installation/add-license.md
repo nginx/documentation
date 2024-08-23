@@ -1,5 +1,5 @@
 ---
-description: Learn how to license NGINX Management Suite using a JWT or S/MIME license,
+description: Learn how to license F5 NGINX Management Suite using a JWT or S/MIME license,
   explore the features accessible in licensed and unlicensed modes, and troubleshoot
   common issues associated with license upload and entitlement retrieval.
 docs: DOCS-789
@@ -11,7 +11,7 @@ weight: 500
 
 ## Overview
 
-NGINX Management Suite offers several features that do not require a license; however, most features require a valid license to use. The [License Comparison](#license-comparison) section below provides more details about the included features and their license requirements.
+F5 NGINX Management Suite offers several features that do not require a license; however, most features require a valid license to use. The [License Comparison](#license-comparison) section below provides more details about the included features and their license requirements.
 
 Trial licenses, subscription licenses, and licenses under the Flexible Consumption Program (FCP) are available through [MyF5](https://my.f5.com).
 

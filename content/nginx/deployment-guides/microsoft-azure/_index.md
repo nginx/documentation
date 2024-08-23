@@ -1,5 +1,5 @@
 ---
-description: Deployment guides for making NGINX Plus highly available in the Microsoft
+description: Deployment guides for making F5 NGINX Plus highly available in the Microsoft
   Azure cloud environment.
 menu:
   docs:

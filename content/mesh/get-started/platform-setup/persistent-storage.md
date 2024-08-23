@@ -1,6 +1,6 @@
 ---
 title: Persistent Storage
-description: Learn how to set up persistent storage for use with NGINX Service Mesh.
+description: Learn how to set up persistent storage for use with F5 NGINX Service Mesh.
 categories: ["tasks"]
 weight: 101
 toc: true

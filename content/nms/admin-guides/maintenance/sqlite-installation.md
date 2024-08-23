@@ -11,7 +11,7 @@ weight: 10
 
 ## Installing SQLite for Your Linux Distribution
 
-To [back up NGINX Management Suite]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md" >}}), you need to have SQLite installed. Follow the steps to install SQLite for your operating system. Note that some older versions of Linux might require additional special steps, explained below.
+To [back up F5 NGINX Management Suite]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md" >}}), you need to have SQLite installed. Follow the steps to install SQLite for your operating system. Note that some older versions of Linux might require additional special steps, explained below.
 
 <br>
 

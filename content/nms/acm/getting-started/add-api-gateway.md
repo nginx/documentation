@@ -1,5 +1,5 @@
 ---
-description: Learn how to use NGINX Management Suite API Connectivity Manager to configure
+description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to configure
   an API Gateway.
 docs: DOCS-921
 tags:
@@ -189,7 +189,7 @@ Because this is done at the Infrastructure level, this is considered a "Global P
 }
 ```
 
-## Onboard NGINX Plus Instances into the Cluster
+## Onboard F5 NGINX Plus Instances into the Cluster
 
 Take the steps in this section to install the NGINX Agent on the data plane instances to onboard them into the proxy cluster that you created in the [previous step](#add-an-environment).
 

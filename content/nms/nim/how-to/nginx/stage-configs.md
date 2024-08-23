@@ -14,7 +14,7 @@ weight: 120
 
 ## Overview
 
-With Instance Manager, you can easily pre-configure and stage NGINX configuration files, so you can quickly publish them to individual NGINX instances or instance groups whenever you're ready.
+With F5 NGINX Instance Manager, you can easily pre-configure and stage NGINX configuration files, so you can quickly publish them to individual NGINX instances or instance groups whenever you're ready.
 
 {{<see-also>}}For instructions on creating and working with instance groups, refer to the topic [Working with instance groups]({{< relref "/nms/nim/how-to/instances/manage-instance-groups.md" >}}).{{</see-also>}}
 

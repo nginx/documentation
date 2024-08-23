@@ -1,5 +1,5 @@
 ---
-description: Troubleshoot problems and track down bugs in an NGINX or NGINX Plus deployment,
+description: Troubleshoot problems and track down bugs in an NGINX or F5 NGINX Plus deployment,
   with the debugging binary, debug logging, and core dumps.
 docs: DOCS-424
 doctypes:
@@ -20,7 +20,7 @@ NGINX debugging features include the debugging log and creation of a core dump f
 
 First, you will need to enable debugging in NGINX binary. NGINX Plus already provides you with _nginx-debug_ binary while NGINX Open Source requires recompilation.
 
-### Configuring NGINX Plus Binary
+### Configuring F5 NGINX Plus Binary
 
 Starting from [Release 8]({{< relref "../../releases.md" >}}), NGINX Plus ships the _nginx-debug_ binary together with the standard binary. To enable debugging in NGINX Plus, you will need to switch from _nginx_ to _nginx-debug_ binary. Open terminal and run the command:
 

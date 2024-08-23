@@ -1,4 +1,4 @@
-The Security Monitoring module requires the following versions of [NGINX App Protect WAF](https://docs.nginx.com/nginx-app-protect/) and [NGINX Plus](https://docs.nginx.com/nginx/) for the data plane:
+The Security Monitoring module requires the following versions of [NGINX App Protect WAF](https://docs.nginx.com/nginx-app-protect/) and [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) for the data plane:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 

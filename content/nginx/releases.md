@@ -1,5 +1,5 @@
 ---
-description: Release information for NGINX Plus, a complete application delivery platform,
+description: Release information for F5 NGINX Plus, a complete application delivery platform,
   including new features and a list of supported platforms.
 docs: DOCS-472
 doctypes:
@@ -12,7 +12,7 @@ weight: 300
 <span id="support"></span>
 ## Support for Current and Previous Releases
 
-NGINX provides technical support for NGINX Plus releases for 24 months from the initial date of each release.
+NGINX provides technical support for F5 NGINX Plus releases for 24 months from the initial date of each release.
 With each new NGINX Plus release, the previously released version enters End of Software Development (EoSD).
 We do not issue updates for releases that have reached EoSD. For this reason, we advise customers to run the most recent release.
 The initial release dates for NGINX Plus are noted in this document.

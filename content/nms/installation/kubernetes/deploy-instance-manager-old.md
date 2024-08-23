@@ -13,7 +13,7 @@ weight: 200
 
 This guide provides a step-by-step tutorial on how to set up Instance Manager on a Kubernetes cluster using Helm. Learn how to download and use Docker images, and customize your deployment.
 
-{{< note >}} This guide applies to Instance Manager 2.16 and earlier. 
+{{< note >}} This guide applies to Instance Manager 2.16 and earlier.
 
 For newer versions, view the [Deploy Instance Manager 2.17 and later]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md" >}}) topic. {{< /note >}}
 
@@ -61,7 +61,7 @@ Take the following steps to download and extract the Helm page on your host:
 
 1. Go to the [MyF5 website](https://my.f5.com/manage/s/downloads), then select **Resources > Downloads**.
 2. In the **Select Product Family** list, select **NGINX**.
-3. In the **Product Line** list, select **NGINX Instance Manager**.
+3. In the **Product Line** list, select **F5 NGINX Instance Manager**.
 4. Select the following download options:
 
    - **Product version**: Select the version of Instance Manager that you want to install.

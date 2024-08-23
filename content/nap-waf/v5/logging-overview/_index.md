@@ -1,5 +1,5 @@
 ---
-description: Documentation explaining how to monitor, generate logs for, and debug NGINX App Protect WAF v5.
+description: Documentation explaining how to monitor, generate logs for, and debug F5 NGINX App Protect WAF v5.
 menu:
   docs:
     parent: v5

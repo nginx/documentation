@@ -1,5 +1,5 @@
 ---
-description: Follow these steps to license your NGINX Controller.
+description: Follow these steps to license your F5 NGINX Controller.
 docs: DOCS-787
 doctypes:
 - task
@@ -12,7 +12,7 @@ weight: 120
 
 ## Overview
 
-This topic explains how to upload and manage licenses for NGINX Controller.
+This topic explains how to upload and manage licenses for F5 NGINX Controller.
 
 &nbsp;
 

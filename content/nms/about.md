@@ -1,5 +1,5 @@
 ---
-description: NGINX Management Suite brings together advanced features into a single
+description: F5 NGINX Management Suite brings together advanced features into a single
   platform, making it easy for organizations to configure, monitor, and troubleshoot
   NGINX instances; manage and govern APIs; optimize load balancing for apps; and enhance
   overall security.
@@ -11,7 +11,7 @@ toc: true
 weight: 10
 ---
 
-Explore the topics below to find out what the NGINX Management Suite modules have to offer.
+Explore the topics below to find out what the F5 NGINX Management Suite modules have to offer.
 
 ---
 

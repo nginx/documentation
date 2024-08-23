@@ -1,6 +1,6 @@
 ---
 description: Learn how to block unwelcome requests to an endpoint by using the Allowed
-  HTTP Methods policy in NGINX Management Suite API Connectivity Manager.
+  HTTP Methods policy in F5 NGINX Management Suite API Connectivity Manager.
 docs: DOCS-1121
 doctypes:
 - API Connectivity Manager

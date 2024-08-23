@@ -1,6 +1,6 @@
 ---
 title: NGINX Amplify Agent
-description: Questions about NGINX Amplify Agent
+description: Questions about F5 NGINX Amplify Agent
 weight: 20
 toc: true
 tags: ["docs"]

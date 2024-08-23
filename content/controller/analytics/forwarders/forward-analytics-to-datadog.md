@@ -12,7 +12,7 @@ weight: 100
 
 ## Overview
 
-Follow the steps in this guide to set up an NGINX Controller Integration that forwards data to [Datadog](https://www.datadoghq.com/).
+Follow the steps in this guide to set up an F5 NGINX Controller Integration that forwards data to [Datadog](https://www.datadoghq.com/).
 
 ## Before You Begin
 

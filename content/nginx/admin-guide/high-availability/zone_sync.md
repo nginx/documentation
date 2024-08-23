@@ -1,5 +1,5 @@
 ---
-description: This article describes how to use NGINX Plus to synchronize shared memory
+description: This article describes how to use F5 NGINX Plus to synchronize shared memory
   zones across NGINX cluster nodes including sticky learn session persistence, requests
   limiting, and key-value store data.
 docs: DOCS-407
@@ -13,7 +13,7 @@ weight: 400
 <span id="intro"></span>
 ## Introduction
 
-If several NGINX Plus instances are organized in a cluster, they can share some state data between them, including:
+If several F5 NGINX Plus instances are organized in a cluster, they can share some state data between them, including:
 
 - [sticky learn](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/#sticky) session persistence
 - [requests limiting](https://docs.nginx.com/nginx/admin-guide/security-controls/controlling-access-proxied-http/#limit_req)

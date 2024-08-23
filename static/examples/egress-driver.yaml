@@ -1,0 +1,95 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: egress-driver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: egress-driver
+  template:
+    metadata:
+      labels:
+        app: egress-driver
+    spec:
+      containers:
+      - name: egress-driver
+        image: curlimages/curl:7.72.0
+        imagePullPolicy: IfNotPresent
+        command: [ "/scripts/egress-driver.sh" ]
+        env:
+        - name: HOST
+          valueFrom:
+            configMapKeyRef:
+              name: egress-driver
+              key: host
+        - name: REQUEST_PATH
+          valueFrom:
+            configMapKeyRef:
+              name: egress-driver
+              key: request_path
+        - name: METHOD
+          valueFrom:
+            configMapKeyRef:
+              name: egress-driver
+              key: method
+        volumeMounts:
+        - name: egress-driver
+          mountPath: /scripts
+      volumes:
+      - name: egress-driver
+        configMap:
+          name: egress-driver
+          defaultMode: 0755
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: egress-driver
+data:
+  host: http://target-v1-0.legacy
+  request_path: /
+  method: GET
+  egress-driver.sh: |
+    #!/bin/sh
+
+    host="${HOST:-http://localhost:8080}"
+    request_path="${REQUEST_PATH:-/echo}"
+    method="${METHOD:-GET}"
+    headers=${HEADERS}
+
+    echo "Configuration:"
+    echo "  HOST:         ${host}"
+    echo "  REQUEST_PATH: ${request_path}"
+    echo "  METHOD:       ${method}"
+    echo "  HEADERS:      ${headers}"
+
+    header_array=`echo $headers | sed -e 's/,/ /g'`
+
+    start_delay=10
+    echo -n "Starting in "
+    echo -n "$start_delay "
+    echo -n "seconds"
+
+    i=0
+    while [[ $i -lt $start_delay ]]
+    do
+      echo -n "."
+      i=`expr $i + 1`
+      sleep 1
+    done
+    echo
+
+    cmd="curl -s -v "
+    for h in $header_array
+    do
+      cmd=$cmd" -H \"$h\""
+    done
+    cmd=$cmd" -X ${method} ${host}${request_path}"
+
+    while true
+    do
+      eval $cmd
+      sleep 2
+    done

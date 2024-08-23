@@ -13,7 +13,7 @@ weight: 650
 {{< shortversions "2.0.0" "latest" "nimvers" >}}
 ## Overview
 
-Tags allow you to label and group NGINX instances in Instance Manager.
+Tags allow you to label and group NGINX instances in F5 NGINX Instance Manager.
 
 ## Adding a Tag {#add-tag}
 

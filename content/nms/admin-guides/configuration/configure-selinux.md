@@ -1,5 +1,5 @@
 ---
-description: Learn how to load the provided NGINX Management Suite SELinux policy
+description: Learn how to load the provided F5 NGINX Management Suite SELinux policy
   to secure your NGINX Management Suite deployment.
 docs: DOCS-796
 doctypes:
@@ -15,7 +15,7 @@ weight: 250
 
 ## Overview
 
-You can use the optional SELinux policy module included in the package to secure NGINX Management Suite operations with flexible, mandatory access control that follows the principle of least privilege.
+You can use the optional SELinux policy module included in the package to secure F5 NGINX Management Suite operations with flexible, mandatory access control that follows the principle of least privilege.
 
 The scope of the SELinux policy allows NGINX Management Suite to perform all operations needed to support the default configuration. This includes inter-process communication on the default Unix sockets and TCP as an alternative. Other changes may require manual adjustments to the default policy for the application to work.
 

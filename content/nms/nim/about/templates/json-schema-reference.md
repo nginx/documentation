@@ -4,7 +4,7 @@ date: 2024-03-20T09:07:22-07:00
 # Change draft status to false to publish doc
 draft: false
 # Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
+# Add a short description (150 chars) for the doc. Include keywords for SEO.
 # The description text appears in search results and at the top of the doc.
 description: ""
 # Assign weights in increments of 100
@@ -26,7 +26,7 @@ authors: []
 
 ## Overview
 
-The NGINX Instance Manager’s web form builder uses JSON schemas to guide and validate user inputs when creating NGINX configurations from templates. This structured input method simplifies the configuration process and ensures adherence to NGINX configuration requirements.
+The F5 NGINX Instance Manager’s web form builder uses JSON schemas to guide and validate user inputs when creating NGINX configurations from templates. This structured input method simplifies the configuration process and ensures adherence to NGINX configuration requirements.
 
 ## JSON Schema
 
@@ -233,7 +233,7 @@ Each data type in a JSON schema comes with its own set of features that define h
 - **Usage**: Lists or collections of configuration items.
 - **Full spec**: https://json-schema.org/understanding-json-schema/reference/array.html
 - **Example**:
- 
+
   ```json
   {
     "headers": {

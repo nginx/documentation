@@ -103,7 +103,7 @@ This JSON example defines a Request Correlation ID policy, which specifies that 
 
 To add a Request Correlation ID policy using the web interface:
 
-1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in. Then, from the Launchpad menu, select **API Connectivity Manager**.
+1. In a web browser, go to the FQDN for your F5 NGINX Management Suite host and log in. Then, from the Launchpad menu, select **API Connectivity Manager**.
 2. On the left menu, select **Infrastructure**.
 3. Choose the workspace that includes the environment for the cluster you want to add the policy to.
 4. Select the environment for your cluster.

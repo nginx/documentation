@@ -9,7 +9,7 @@ toc: true
 weight: 100
 ---
 
-This section describes how to configure an HTTPS server on NGINX and NGINX Plus.
+This section describes how to configure an HTTPS server on NGINX and F5 NGINX Plus.
 
 <span id="setup"></span>
 ## Setting up an HTTPS Server

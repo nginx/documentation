@@ -15,7 +15,7 @@ NGINX, Inc. participates in the Amazon Web Services (AWS) Partner Network as a
 
 The AMIs contain combination of the following components:
 
-- Latest version of [NGINX Plus](https://docs.nginx.com/nginx/), optimized for use on Amazon EC2
+- Latest version of [F5 NGINX Plus](https://www.f5.com/products/nginx/nginx-plus), optimized for use on Amazon EC2
 
 - Latest version of [NGINX App Protect DoS](https://docs.nginx.com/nginx-app-protect-dos/), optimized for use on Amazon EC2
 - Latest version of [NGINX App Protect WAF](https://docs.nginx.com/nginx-app-protect-waf/), optimized for use on Amazon EC2
@@ -192,7 +192,7 @@ If you encounter any problems with NGINX Plus configuration, documentation is a
 
 If you encounter any problems with NGINX App Protect DoS configuration, documentation is available at the [NGINX App Protect DoS Troubleshooting Guide](https://docs.nginx.com/nginx-app-protect-dos/troubleshooting-guide/how-to-troubleshoot/).
 
-If you encounter any problems with NGINX App Protect WAF configuration, documentation is available at the [NGINX App Protect WAF Troubleshooting Guide](https://docs.nginx.com/nginx-app-protect-waf/troubleshooting-guide/troubleshooting/).
+If you encounter any problems with NGINX App Protect WAF configuration, documentation is available at the [NGINX App Protect WAF Troubleshooting Guide](https://docs.nginx.com/nginx-app-protect-waf/v4/troubleshooting-guide/troubleshooting/).
 
 
 Customers who purchase an NGINX Plus AMI at the AWS Marketplace are eligible for the AWS support provided by the NGINX, Inc. engineering team. To activate support, submit the [AMI Support Activation](https://www.nginx.com/ami-support-activation/) form (you need your AWS account number). When you request support, we’ll ask you to provide the AWS account number that you registered, along with the IDs of your EC2 instances in some cases.

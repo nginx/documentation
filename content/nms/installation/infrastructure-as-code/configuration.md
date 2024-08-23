@@ -4,7 +4,7 @@ doctypes:
 - task
 tags:
 - docs
-title: Install NGINX Management Suite with Ansible
+title: Install F5 NGINX Management Suite with Ansible
 toc: true
 weight: 200
 ---

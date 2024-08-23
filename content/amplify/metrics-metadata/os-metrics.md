@@ -169,10 +169,10 @@ docs: "DOCS-974"
 
 ## Agent Metrics
 
-{{< note >}} Agent metrics are available only if you are using NGINX Amplify Agent.{{< /note >}}
+{{< note >}} Agent metrics are available only if you are using F5 NGINX Amplify Agent.{{< /note >}}
 
 - ####  **amplify.agent.status**
-  
+
    ```
    Type:        internal, integer
    Description: 1 - agent is up, 0 - agent is down.

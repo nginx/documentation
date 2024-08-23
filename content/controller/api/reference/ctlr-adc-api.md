@@ -1,6 +1,6 @@
 ---
 description:
-  Represents the state of the NGINX Controller Application Delivery REST
+  Represents the state of the F5 NGINX Controller Application Delivery REST
   API.
 docs: DOCS-1280
 doctypes:

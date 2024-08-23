@@ -10,7 +10,7 @@ display_breadcrumb: false
 title: Documentation Feedback
 ---
 
-Use our [NGINX Community Slack](https://community.nginx.org/joinslack) to submit feedback regarding the **NGINX product documentation**.
+Use our [F5 NGINX Community Slack](https://community.nginx.org/joinslack) to submit feedback regarding the **NGINX product documentation**.
 
 {{< note >}}
 {{< fa "info-circle" "text-muted" >}} If you need assistance using a licensed [NGINX product](https://www.nginx.com/products), please create a case in the [MyF5 Support](https://my.f5.com/manage/s/) portal.

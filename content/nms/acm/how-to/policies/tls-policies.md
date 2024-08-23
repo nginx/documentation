@@ -1,5 +1,5 @@
 ---
-description: Learn how to use NGINX Management Suite API Connectivity Manager to secure
+description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to secure
   communications by applying TLS policies.
 docs: DOCS-926
 doctypes:

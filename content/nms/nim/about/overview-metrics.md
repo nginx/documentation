@@ -27,7 +27,7 @@ Instance Manager stores historical metrics data in an analytics database. Metric
 - Data older than 30 days but not older than 15 months are stored with 1 hour resolution.
 - Data older than 15 months are stored with 1 day resolution.
 
-### NGINX Plus Metrics
+### F5 NGINX Plus Metrics
 
 Enable the NGINX Plus API to collect NGINX Plus metrics by uncommenting the `/api/` location section in `/etc/nginx/conf.d/default.conf`:
 

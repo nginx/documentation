@@ -1,5 +1,5 @@
 ---
-description: Learn how to use NGINX Management Suite API Connectivity Manager to configure
+description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to configure
   a Developer Portal.
 docs: DOCS-922
 tags:
@@ -13,7 +13,7 @@ weight: 200
 
 ## Overview
 
-In API Connectivity Manager, a Developer Portal (or, "Dev Portal") is a cluster of NGINX Plus data plane instances.
+In API Connectivity Manager, a Developer Portal (or, "Dev Portal") is a cluster of F5 NGINX Plus data plane instances.
 These clusters are managed under **Infrastructure Workspaces** and are part of **Environments**.
 
 ### Before You Begin
@@ -145,7 +145,7 @@ SSH access to the host and `sudo` permissions are required.
 
 ### Update the DNS Record
 
-The F5 NGINX Management Suite management plane host uses the Developer Portal's hostname to communicate with the Dev Portal.
+The NGINX Management Suite management plane host uses the Developer Portal's hostname to communicate with the Dev Portal.
 You’ll need to update your DNS resolver settings with the Developer Portal's internal hostname.
 
 > {{< fa "lightbulb" >}} The internal hostname is the hostname that you provided for the Developer Portal, prefixed with `acm.`.
@@ -172,7 +172,7 @@ Because these settings are applied at the Infrastructure level, they are conside
 
 Note that many fields in the example JSON payload -- including the logo image and Markdown documents -- are base64-encoded.
 
-**Example JSON payload**: {{< fa "download" >}} {{< link "/acm/getting-started/examples/customize-devportal.json" "customize-devportal.json" >}}
+**Example JSON payload**: {{< fa "download" >}} {{< link "/nms/acm/getting-started/examples/customize-devportal.json" "customize-devportal.json" >}}
 
 Before you move on to the next guide, open the Dev Portal in your browser to view the changes.
 You should see the default Dev Portal replaced by the custom settings.

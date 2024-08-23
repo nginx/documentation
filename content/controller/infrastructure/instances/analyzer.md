@@ -12,7 +12,7 @@ weight: 60
 
 ## Overview
 
-Use the **Analyzer** page in the NGINX Controller **Infrastructure** section to see reports for your NGINX Plus instances.
+Use the **Analyzer** page in the F5 NGINX Controller **Infrastructure** section to see reports for your NGINX Plus instances.
 
 ## View Reports for NGINX Plus Instances
 

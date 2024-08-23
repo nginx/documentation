@@ -14,7 +14,7 @@ weight: 30
 
 This topic explains how to create and manage Roles and Role Groups.
 
-- **Roles** define a set of permissions that allow or prevent Users from performing operations in NGINX Controller or in an [Environment]({{< relref "/controller/services/manage-environments.md" >}}).
+- **Roles** define a set of permissions that allow or prevent Users from performing operations in F5 NGINX Controller or in an [Environment]({{< relref "/controller/services/manage-environments.md" >}}).
 
 - **Role Groups** act as a collection of Roles that you can manage as a single resource. All members of a Role Group are assigned the same set of Roles. Role Groups can be mapped only to external auth provider groups; they can not be assigned to local users.
 

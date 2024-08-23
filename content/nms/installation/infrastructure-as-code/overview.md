@@ -1,5 +1,5 @@
 ---
-description: Easily install NGINX Management Suite using our user-friendly Ansible
+description: Easily install F5 NGINX Management Suite using our user-friendly Ansible
   role and explore feature-rich modules like Instance Manager and Security Monitoring. Simplify your infrastructure
   management with our innovative Information as Code project, which lets you set up
   the control plane and data plane as a single solution.
@@ -13,7 +13,7 @@ toc: true
 weight: 100
 ---
 
-## NGINX Management Suite Ansible Role
+## F5 NGINX Management Suite Ansible Role
 
 {{< call-out "tip" "Open-Source Project on GitHub" >}}
 The steps in this guide refer to the <a href="https://github.com/nginxinc/ansible-role-nginx-management-suite" target="_blank">Ansible NGINX Management Suite Role project on GitHub.</a> <i class="fa-solid fa-arrow-up-right-from-square" style="color:#009639;"></i>

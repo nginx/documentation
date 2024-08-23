@@ -1,5 +1,5 @@
 ---
-description: Learn how to download and install the products in the F5 NGINX Open Source
+description: Learn how to download and install the products in the NGINX Open Source
   Subscription.
 docs: DOCS-1443
 tags:
@@ -12,14 +12,14 @@ weight: 300
 ## Overview
 The Open Source Subscription bundle by F5 NGINX provides access to the following products:
 
-- [NGINX Plus](https://www.nginx.com/products/nginx/)
+- [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus)
 - [NGINX Management Suite Instance Manager](https://www.nginx.com/products/nginx-management-suite/instance-manager/)
 - [NGINX App Protect WAF and DoS](https://www.nginx.com/products/nginx-app-protect/)
 
 It also includes commercial support for:
 
 - [NGINX Open Source](https://www.nginx.org)
-- [NGINX Plus](https://www.nginx.com/products/nginx/)
+- [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus)
 - [NGINX Management Suite Instance Manager](https://www.nginx.com/products/nginx-management-suite/instance-manager/)
 - [NGINX App Protect WAF and DoS](https://www.nginx.com/products/nginx-app-protect/)
 

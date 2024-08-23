@@ -9,7 +9,7 @@ toc: true
 weight: 600
 ---
 
-This document provides guidance on securing client connections to NGINX Management Suite as well as securing the traffic between the NGINX Management Suite management plane and NGINX data planes.
+This document provides guidance on securing client connections to F5 NGINX Management Suite as well as securing the traffic between the NGINX Management Suite management plane and NGINX data planes.
 
 {{< shortversions "2.0.0" "latest" "nimvers" >}}
 ## Overview

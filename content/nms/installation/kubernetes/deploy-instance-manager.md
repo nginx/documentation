@@ -9,7 +9,7 @@ weight: 100
 
 This guide provides a step-by-step tutorial on how to set up F5 Instance Manager on a Kubernetes cluster using Helm. Learn how to download and use Docker images, and customize your deployment.
 
-{{< note >}} This guide applies to Instance Manager 2.17 and later. 
+{{< note >}} This guide applies to Instance Manager 2.17 and later.
 
 For older versions, view the [Deploy Instance Manager 2.16 and earlier]({{< relref "/nms/installation/kubernetes/deploy-instance-manager-old.md" >}}) topic. {{< /note >}}
 
@@ -39,7 +39,7 @@ To deploy Instance Manager using a Helm chart, you need the following:
 
 ---
 
-## Obtain the NGINX Instance Manager Images
+## Obtain the F5 NGINX Instance Manager Images
 
 ### Using Docker
 
@@ -109,7 +109,7 @@ If a private registry is unnecessary, a JWT token can be used as a Docker config
 
 Create a *docker-registry* secret type on the cluster, using the JWT token for the username and *none* for the password. The name of the docker server is *private-registry.nginx.com*.
 
-The parameter `--docker-username=<JWT Token>` must be the *contents* of the token, not a reference to it. 
+The parameter `--docker-username=<JWT Token>` must be the *contents* of the token, not a reference to it.
 
 {{< note >}}
 Ensure there are no extra characters or whitespaces when copying the contents of the JWT token: they can invalidate the token and cause 401 errors during authentication.
@@ -121,7 +121,7 @@ kubectl create secret docker-registry regcred --docker-server=private-registry.n
 
 {{< warning >}}
 
-You will encounter a warning that using `--password` is insecure. 
+You will encounter a warning that using `--password` is insecure.
 
 It can be safely ignored in this instance (No password is used), but if others have access to this system, you should delete the JWT token and clear your shell history once finished with the deployment.
 
@@ -135,7 +135,7 @@ kubectl get secret regcred --output=yaml
 
 You can now use the newly created Kubernetes secret in Helm deployments and point the charts directly to the public registry.
 
---- 
+---
 
 ## Add Helm Repository
 
@@ -162,27 +162,27 @@ You can now use the newly created Kubernetes secret in Helm deployments and poin
             - name: regcred
         apigw:
             image:
-                repository: <my-docker-registry:port>/nms-apigw
+                repository: <my-docker-registry:port>/nms/apigw
                 tag: <version>
         core:
             image:
-                repository: <my-docker-registry:port>/nms-core
+                repository: <my-docker-registry:port>/nms/core
                 tag: <version>
         dpm:
             image:
-                repository: <my-docker-registry:port>/nms-dpm
+                repository: <my-docker-registry:port>/nms/dpm
                 tag: <version>
         ingestion:
             image:
-                repository: <my-docker-registry:port>/nms-ingestion
+                repository: <my-docker-registry:port>/nms/ingestion
                 tag: <version>
         integrations:
             image:
-                repository: <my-docker-registry:port>/nms-integrations
+                repository: <my-docker-registry:port>/nms/integrations
                 tag: <version>
         utility:
             image:
-                repository: <my-docker-registry:port>/nms-utility
+                repository: <my-docker-registry:port>/nms/utility
                 tag: <version>
     ```
 
@@ -291,7 +291,7 @@ To uninstall Instance Manager, run the following command:
 helm uninstall --namespace nms nms
 ```
 
-This helm command uninstalls the app named `nms` from the namespace `nms`. 
+This helm command uninstalls the app named `nms` from the namespace `nms`.
 
 It deletes all of the Kubernetes resources associated with the app, including any deployments, pods, services, and configmaps.
 

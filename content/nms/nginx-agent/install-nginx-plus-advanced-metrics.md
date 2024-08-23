@@ -1,5 +1,5 @@
 ---
-description: Follow the steps in this guide to install the NGINX Plus dynamic metrics
+description: Follow the steps in this guide to install the F5 NGINX Plus dynamic metrics
   module and configure NGINX Agent to push app-centric metrics to NGINX Management
   Suite.
 docs: DOCS-1099
@@ -14,7 +14,7 @@ weight: 110
 
 ## Overview
 
-The NGINX Plus metrics module is a dynamic module that you can install on your NGINX Plus data plane instances. The metrics module reports advanced, app-centric metrics and dimensions like “application name” or “gateway” to the NGINX Agent, which then aggregates and publishes the data to the NGINX Management Suite. Advanced, app-centric metrics are used by particular NGINX Management Suite modules for features associated with HTTP requests.
+The F5 NGINX Plus metrics module is a dynamic module that you can install on your NGINX Plus data plane instances. The metrics module reports advanced, app-centric metrics and dimensions like “application name” or “gateway” to the NGINX Agent, which then aggregates and publishes the data to the NGINX Management Suite. Advanced, app-centric metrics are used by particular NGINX Management Suite modules for features associated with HTTP requests.
 
 ---
 

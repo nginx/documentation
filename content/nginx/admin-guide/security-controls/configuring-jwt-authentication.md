@@ -12,7 +12,7 @@ weight: 500
 <span id="intro"></span>
 ## Introduction
 
-With NGINX Plus it is possible to control access to your resources using JWT authentication. JWT is data format for user information in the OpenID Connect standard, which is the standard identity layer on top of the OAuth 2.0 protocol. Deployers of APIs and microservices are also turning to the JWT standard for its simplicity and flexibility. With JWT authentication, a client provides a JSON Web Token, and the token will be validated against a local key file or a remote service.
+With F5 NGINX Plus it is possible to control access to your resources using JWT authentication. JWT is data format for user information in the OpenID Connect standard, which is the standard identity layer on top of the OAuth 2.0 protocol. Deployers of APIs and microservices are also turning to the JWT standard for its simplicity and flexibility. With JWT authentication, a client provides a JSON Web Token, and the token will be validated against a local key file or a remote service.
 
 <span id="prereq"></span>
 ## Prerequisites

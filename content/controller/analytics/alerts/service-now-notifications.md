@@ -14,7 +14,7 @@ weight: 600
 ## ServiceNow Alert Integration
 
 {{< deprecated >}}
-**The ServiceNow Alert Integration is deprecated in NGINX Controller v3.13.**
+**The ServiceNow Alert Integration is deprecated in F5 NGINX Controller v3.13.**
 {{< /deprecated >}}
 
 The ServiceNow integration sends all notifications from NGINX Controller to the Incidents table in your ServiceNow account. Follow the steps below to set up the integration.

@@ -15,7 +15,7 @@ weight: 120
 Follow the steps in this topic to create and use Certs with an [Environment]({{< relref "/controller/services/manage-environments.md" >}}).
 
 {{< tip >}}
-If you prefer, you can use the NGINX Controller API to create and manage certificates. Refer to the [NGINX Controller API reference guide]({{< relref "/controller/api/_index.md" >}}) (**Services > Certs API**) for details.
+If you prefer, you can use the F5 NGINX Controller API to create and manage certificates. Refer to the [NGINX Controller API reference guide]({{< relref "/controller/api/_index.md" >}}) (**Services > Certs API**) for details.
 {{< /tip >}}
 
 ## Before You Begin

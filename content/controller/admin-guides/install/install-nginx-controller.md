@@ -1,5 +1,5 @@
 ---
-description: This guide explains how to install and update NGINX Controller.
+description: This guide explains how to install and update F5 NGINX Controller.
 docs: DOCS-255
 doctypes:
 - tutorial
@@ -12,7 +12,7 @@ weight: 120
 
 ## Overview
 
-NGINX Controller is NGINX's control-plane solution that manages the NGINX data plane. Built on a modular architecture, NGINX Controller enables you to manage the entire lifecycle of NGINX Plus, whether it's deployed as a load balancer, API gateway, or a proxy in a service mesh environment.
+F5 NGINX Controller is NGINX's control-plane solution that manages the NGINX data plane. Built on a modular architecture, NGINX Controller enables you to manage the entire lifecycle of NGINX Plus, whether it's deployed as a load balancer, API gateway, or a proxy in a service mesh environment.
 
 To get started, download and run the installer. The installer will:
 

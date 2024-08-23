@@ -1,6 +1,5 @@
 ---
 title: "Production Tuning"
-description: "How to configure service mesh for the best production experience"
 categories: ["tasks"]
 weight: 80
 toc: true

@@ -1,5 +1,5 @@
 ---
-description: NGINX Management Suite API Connectivity Manager lets you secure APIs
+description: F5 NGINX Management Suite API Connectivity Manager lets you secure APIs
   with OpenAPI Spec (OAS) security schemes. This tutorial provides step-by-step instructions
   for setting up basic authentication and API key authentication security schemes
   to secure your APIs and control access to authorized users or applications.

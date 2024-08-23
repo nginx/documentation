@@ -1,5 +1,5 @@
 ---
-description: Deployment guides for NGINX Plus on the Google Cloud Platform.
+description: Deployment guides for F5 NGINX Plus on the Google Cloud Platform.
 menu:
   docs:
     parent: NGINX Plus

@@ -1,5 +1,5 @@
 ---
-description: Learn about the NGINX App Protect WAF Operation Log.
+description: Learn about the F5 NGINX App Protect WAF Operation Log.
 docs: DOCS-912
 doctypes:
 - concept
@@ -7,8 +7,6 @@ title: NGINX App Protect WAF Operation Log
 toc: true
 weight: 530
 ---
-
-## Operation Logs
 
 ### Overview
 
@@ -38,7 +36,7 @@ The operation logs consists of system operational and health events. The events 
 {{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
 |Event Type | Level | Meaning |
 | ---| ---| --- |
-|App Protect Connection Failure | Error | A worker attempted to connect to NGINX App Protect WAF but the operation failed.<br> The **mode** should be **failure**. |
+|App Protect Connection Failure | Error | A worker attempted to connect to F5 NGINX App Protect WAF but the operation failed.<br> The **mode** should be **failure**. |
 
 {{</bootstrap-table>}}
 

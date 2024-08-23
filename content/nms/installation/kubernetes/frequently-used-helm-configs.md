@@ -12,7 +12,7 @@ weight: 400
 
 ## Overview
 
-Choose from the following options to view frequently used configurations for the NGINX Management Suite. To apply any of these configurations, modify the `values.yaml` file accordingly.
+Choose from the following options to view frequently used configurations for the F5 NGINX Management Suite. To apply any of these configurations, modify the `values.yaml` file accordingly.
 
 {{<see-also>}}Refer to the [Configurable Helm Settings]({{< relref "/nms/installation/kubernetes/nms-helm-config-options.md" >}}) reference guide for the complete list of configurable parameters and default values used by the NGINX Management Suite and modules when installing from a Helm chart. {{</see-also>}}
 

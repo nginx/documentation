@@ -1,5 +1,5 @@
 ---
-description: Learn how to use NGINX Management Suite API Connectivity Manager to set
+description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to set
   response headers to send to your clients.
 docs: DOCS-1135
 doctypes:
@@ -234,7 +234,7 @@ To create or update a Response Headers policy using the REST API, send an HTTP `
 
 To create/update Response Headers policy using the web interface:
 
-1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in. Then, from the Launchpad menu, select **API Connectivity Manager**.
+1. In a web browser, go to the FQDN for your F5 NGINX Management Suite host and log in. Then, from the Launchpad menu, select **API Connectivity Manager**.
 2. On the left menu, select **Infrastructure**.
 3. Choose the workspace that includes the environment for the cluster you want to add the policy to.
 4. Select the environment for your cluster.

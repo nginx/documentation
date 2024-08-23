@@ -12,7 +12,7 @@ weight: 201
 
 ## Overview
 
-Follow the steps in this guide to set up an NGINX Controller integration that forwards metrics to OpenTelemetry Collector.
+Follow the steps in this guide to set up an F5 NGINX Controller integration that forwards metrics to OpenTelemetry Collector.
 
 ## Before You Begin
 

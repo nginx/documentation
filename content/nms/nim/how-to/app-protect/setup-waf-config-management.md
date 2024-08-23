@@ -1,5 +1,5 @@
 ---
-description: Learn how to use NGINX Management Suite Instance Manager to secure your
+description: Learn how to use F5 NGINX Management Suite Instance Manager to secure your
   applications with NGINX App Protect WAF security policies.
 docs: DOCS-996
 doctypes:
@@ -15,7 +15,7 @@ weight: 100
 
 ## Overview
 
-Instance Manager helps you manage your NGINX App Protect WAF configurations, making it easy to stay secure. This guide shows you how to set up Instance Manager to configure and manage NGINX App Protect WAF.
+Instance Manager helps you manage your F5 NGINX App Protect WAF configurations, making it easy to stay secure. This guide shows you how to set up Instance Manager to configure and manage NGINX App Protect WAF.
 
 ### Before You Begin
 
@@ -921,7 +921,7 @@ app_protect_security_log "/etc/nms/secops_dashboard.tgz" syslog:server=127.0.0.1
 Refer to the [Security Monitoring setup guide]({{< relref "/nms/security/how-to/set-up-app-protect-instances" >}}) to learn more. {{</note>}}
 
 {{<important>}}
-NGINX configuration for NGINX App Protect Version 5 requires the following changes: 
+NGINX configuration for NGINX App Protect Version 5 requires the following changes:
 
 - The `app_protect_enforcer_address` directive must be included within the `http` context of the NGINX configuration:
 

@@ -3,15 +3,18 @@ title: "Install with nginx-meshctl"
 date: 2020-02-20T19:43:59Z
 draft: false
 toc: true
-description: "This guide contains instructions for downloading and installing NGINX Service Mesh using the `nginx-meshctl` command line tool."
 weight: 200
 categories: ["tasks"]
 docs: "DOCS-681"
 ---
 
+## Overview
+
+This guide contains instructions for downloading and installing F5 NGINX Service Mesh using the `nginx-meshctl` command line tool.
+
 ## Prerequisites
 
-Before installing F5 NGINX Service Mesh, make sure you've completed the following steps.
+Before installing NGINX Service Mesh, make sure you've completed the following steps.
 
 - You have a working and [supported]({{< ref "/mesh/about/mesh-tech-specs.md#supported-versions" >}}) Kubernetes or OpenShift cluster.
 - You followed the [Platform Setup]({{< ref "/mesh/get-started/platform-setup/_index.md" >}}) guide to prepare your cluster to work with NGINX Service Mesh.

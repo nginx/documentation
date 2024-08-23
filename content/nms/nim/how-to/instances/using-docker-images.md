@@ -5,7 +5,7 @@ doctypes:
 - task
 tags:
 - docs
-title: Using NGINX Plus Docker images with NGINX Instance Manager
+title: Using F5 NGINX Plus Docker images with NGINX Instance Manager
 toc: true
 weight: 400
 ---
@@ -16,7 +16,7 @@ This guide explains how to:
 
 - get official NIGNX Plus Docker container images and add them to your private registry
 - start the container using NGINX Agent-specific parameters
-- add container instances to NGINX Instance Manager
+- add container instances to F5 NGINX Instance Manager
 
 ---
 
@@ -174,7 +174,7 @@ Full list of CLI flags with their default values can be found in [CLI Flags and 
 3. Search for live hosts with NGINX Open Source or NGINX Plus.
 
    - In the left menu, Select `Scan`.
-   - In the `CIDR` field, specify the mask of the target network, for example, `172.17.0.1/27`. 
+   - In the `CIDR` field, specify the mask of the target network, for example, `172.17.0.1/27`.
    - In the `Port Ranges` field, specify one or more ports or port ranges separated by a comma, for example, `80,443,8000-8090`.
    - Deselect the `ICMP` checkbox if Internet Control Message Protocol (ICMP) echo requests are disabled in your network.
    - Select `Scan`.
@@ -189,7 +189,7 @@ Full list of CLI flags with their default values can be found in [CLI Flags and 
 {{< img src="nim/nim-scan-results.png">}}
 </span>
 
-NGINX Plus instances that can be managed by NGINX Instance Manager can be accessed from the `NGINX Plus` tab. 
+NGINX Plus instances that can be managed by NGINX Instance Manager can be accessed from the `NGINX Plus` tab.
 
 {{<call-out "tip" "Troubleshooting unmanaged instances" "fa-solid fa-exclamation-circle"  >}}
 If the instance appears as "unmanaged", check if:

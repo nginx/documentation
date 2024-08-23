@@ -1,5 +1,5 @@
 ---
-description: Track the performance of NGINX Plus and your apps in real time, on the
+description: Track the performance of F5 NGINX Plus and your apps in real time, on the
   built-in live activity monitoring dashboard or by feeding the JSON to other tools.
 docs: DOCS-425
 doctypes:
@@ -86,7 +86,7 @@ In order to collect data from virtual servers, upstream server groups, or cache 
     }
     ```
 
-- To make cluster information appear in the Dashboard, make sure that NGINX Plus instances are organized in the cluster and zone synchronization is enabled on each instance. See [Runtime State Sharing in a Cluster](https://docs.nginx.com/nginx/admin-guide/high-availability/zone_sync/) for details.
+- To make cluster information appear in the Dashboard, make sure that F5 NGINX Plus instances are organized in the cluster and zone synchronization is enabled on each instance. See [Runtime State Sharing in a Cluster](https://docs.nginx.com/nginx/admin-guide/high-availability/zone_sync/) for details.
 
 - To make resolver statistics appear in the Dashboard, specify the [`status_zone`](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver_status_zone) parameter of the [`resolver`](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive:
 

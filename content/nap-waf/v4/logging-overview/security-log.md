@@ -1,5 +1,5 @@
 ---
-description: Learn about the NGINX App Protect WAF Security Log.
+description: Learn about the F5 NGINX App Protect WAF Security Log.
 docs: DOCS-915
 doctypes:
 - concept
@@ -12,7 +12,7 @@ weight: 520
 
 ### Security Logs Overview
 
-**Security logs** (also known as **Request logs** or **Traffic logs**) contain information on HTTP requests and responses, how NGINX App Protect WAF processes them, and the final decision made based on the configured policy parameters. The policy configuration defines the information contained in the Security log, such as whether requests are passed, blocked or alerted, due to violations, attack signatures, and other criteria.
+**Security logs** (also known as **Request logs** or **Traffic logs**) contain information on HTTP requests and responses, how F5 NGINX App Protect WAF processes them, and the final decision made based on the configured policy parameters. The policy configuration defines the information contained in the Security log, such as whether requests are passed, blocked or alerted, due to violations, attack signatures, and other criteria.
 
 NGINX App Protect WAF uses its own logging mechanism for request logging rather than NGINX's access logging mechanism (which is NGINX's default logging mechanism).
 

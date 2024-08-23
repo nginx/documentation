@@ -1,5 +1,5 @@
 ---
-description: Use the Instance Overview page to view and manage your NGINX Instances.
+description: Use the Instance Overview page to view and manage your F5 NGINX Instances.
 docs: DOCS-777
 doctypes:
 - tutorial
@@ -12,7 +12,7 @@ weight: 10
 
 ## Overview
 
-The **Infrastructure > Instances > Overview** page allows you to check the status of all your NGINX instances at a glance.
+The **Infrastructure > Instances > Overview** page allows you to check the status of all your F5 NGINX instances at a glance.
 
 When the [Controller Agent is installed]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}}) on a new system and the system registers with NGINX Controller, the instance is visible on the **Instances** overview page.
 

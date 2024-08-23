@@ -1,5 +1,5 @@
 ---
-description: This guide describes the steps to install the NGINX App Protect WAF v5
+description: This guide describes the steps to install the F5 NGINX App Protect WAF v5
   for host-based NGINX setups.
 docs: DOCS-1363
 doctypes:
@@ -10,7 +10,7 @@ toc: true
 
 ## Prerequisites
 
-- Active NGINX App Protect WAF subscription in [MyF5](https://my.f5.com/) (purchased or trial).
+- Active F5 NGINX App Protect WAF subscription in [MyF5](https://my.f5.com/) (purchased or trial).
 - Docker (with Docker Compose) is [installed and running](https://docs.docker.com/engine/install/).
 - A [supported operating system]({{< relref "/nginx/technical-specs.md#appprotect" >}}) (OS).
 
@@ -149,7 +149,7 @@ If not already installed, `nginx` or `nginx-plus` will be installed automaticall
 
     ```shell
     sudo yum install app-protect-module-oss
-    sudo apt-get install nginx=1.25.4-1~`lsb_release -cs` app-protect-module-oss 
+    sudo apt-get install nginx=1.25.4-1~`lsb_release -cs` app-protect-module-oss
 
     ```
 
@@ -821,7 +821,7 @@ Uninstall the NGINX App Protect WAF v5 package:
     ```shell
     sudo apk del app-protect-module-oss
     ```
-	
+
 #### For NGINX Plus
 
 Uninstall the NGINX App Protect WAF v5 package:
@@ -838,7 +838,7 @@ Uninstall the NGINX App Protect WAF v5 package.
 
     ```shell
     sudo yum remove app-protect-module-oss
-    sudo apt-get remove nginx=1.25.4-1~`lsb_release -cs` app-protect-module-oss 
+    sudo apt-get remove nginx=1.25.4-1~`lsb_release -cs` app-protect-module-oss
 
     ```
 
@@ -849,8 +849,8 @@ Uninstall the NGINX App Protect WAF v5 package.
     ```shell
     sudo yum remove app-protect-module-plus
     ```
-	
-	
+
+
 ### Debian 11 / Debian 12
 
 #### For NGINX Open source
@@ -868,7 +868,7 @@ Uninstall the NGINX App Protect WAF v5 package.
     ```shell
     sudo apt-get remove app-protect-module-plus
     ```
-	
+
 ### RHEL 7.4+ / CentOS 7.4+
 
 #### For NGINX Open source
@@ -886,7 +886,7 @@ Uninstall the NGINX App Protect WAF v5 package.
     ```shell
     sudo yum remove app-protect-module-plus
     ```
-	
+
 ### RHEL 8.1+ / Oracle Linux 8.1+
 
 #### For NGINX Open source
@@ -939,4 +939,4 @@ Uninstall the NGINX App Protect WAF v5 package.
 
     ```shell
     sudo apt-get remove app-protect-module-plus
-    ```	
+    ```

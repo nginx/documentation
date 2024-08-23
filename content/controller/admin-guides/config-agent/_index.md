@@ -1,5 +1,5 @@
 ---
-description: Learn how to configure and manage the interaction between the NGINX Plus
+description: Learn how to configure and manage the interaction between the F5 NGINX Plus
   data plane and NGINX Controller.
 menu:
   docs:

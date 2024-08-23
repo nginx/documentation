@@ -12,7 +12,7 @@ weight: 20
 
 ## Overview
 
-The Events page shows a log of the system and user actions for NGINX Controller. The logs are organized by event categories and levels, making it easy to identify and review issues.
+The Events page shows a log of the system and user actions for F5 NGINX Controller. The logs are organized by event categories and levels, making it easy to identify and review issues.
 
 ## View Events
 

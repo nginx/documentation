@@ -1,5 +1,5 @@
 ---
-description: Learn about NGINX Controller Metrics.
+description: Learn about F5 NGINX Controller Metrics.
 menu:
   docs:
     parent: Analytics

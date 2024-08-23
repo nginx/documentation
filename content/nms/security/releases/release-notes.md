@@ -1,6 +1,6 @@
 ---
 description: These release notes list and describe the new features, enhancements,
-  and resolved issues in the NGINX Management Suite Security Monitoring module.
+  and resolved issues in the F5 NGINX Management Suite Security Monitoring module.
 docs: DOCS-1078
 doctypes:
 - reference
@@ -28,7 +28,7 @@ Security Monitoring  supports upgrades from these previous versions:
 If your Security Monitoring version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 ### What's New{#1-7-1-whats-new}
@@ -58,7 +58,7 @@ Security Monitoring  supports upgrades from these previous versions:
 If your Security Monitoring version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 ### Changes in Default Behavior{#1-7-0-changes-in-behavior}
@@ -88,7 +88,7 @@ Security Monitoring  supports upgrades from these previous versions:
 If your Security Monitoring version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 ### Resolved Issues{#1-6-0-resolved-issues}
@@ -115,7 +115,7 @@ Security Monitoring  supports upgrades from these previous versions:
 If your Security Monitoring version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 ### What's New{#1-5-0-whats-new}
@@ -145,7 +145,7 @@ Security Monitoring  supports upgrades from these previous versions:
 If your Security Monitoring version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 ### What's New{#1-4-0-whats-new}
@@ -183,7 +183,7 @@ Security Monitoring  supports upgrades from these previous versions:
 If your Security Monitoring version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 ### What's New{#1-3-0-whats-new}
@@ -253,7 +253,7 @@ Security Monitoring  supports upgrades from these previous versions:
 If your Security Monitoring version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 ### What's New{#1-2-0-whats-new}
@@ -290,7 +290,7 @@ Security Monitoring  supports upgrades from these previous versions:
 If your Security Monitoring version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 {{< see-also >}}
-Refer to the [Upgrade Guide]({{'{{< relref "/nms/installation/upgrade-guide.md" >}}'}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
 {{< /see-also >}}
 
 ### Changes in Default Behavior{#1-1-0-changes-in-behavior}

@@ -1,5 +1,5 @@
 ---
-description: Expose Prometheus metrics endpoint directly from NGINX Plus.
+description: Expose Prometheus metrics endpoint directly from F5 NGINX Plus.
 docs: DOCS-398
 doctypes:
 - task
@@ -11,7 +11,7 @@ weight: 100
 <span id="info"></span>
 ## Module Info
 
-The `nginx-plus-module-prometheus` module is an [njs](https://nginx.org/en/docs/njs/) module that converts miscellaneous NGINX Plus status metrics exposed by the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html) module to a Prometheus compliant format. The module uses subrequests to the `/api` endpoint to access the metrics.
+The `nginx-plus-module-prometheus` module is an [njs](https://nginx.org/en/docs/njs/) module that converts miscellaneous F5 NGINX Plus status metrics exposed by the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html) module to a Prometheus compliant format. The module uses subrequests to the `/api` endpoint to access the metrics.
 In case you have configured [dynamic upstream routing](#prom_keyval) with generic names for upstream groups, the module can understand replacements for these names and display the correct statistics.
 
 

@@ -4,7 +4,7 @@ date: 2024-03-12T15:51:04-07:00
 # Change draft status to false to publish doc.
 draft: false
 # Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
+# Add a short description (150 chars) for the doc. Include keywords for SEO.
 # The description text appears in search results and at the top of the doc.
 description: ""
 # Assign weights in increments of 100
@@ -27,7 +27,7 @@ authors: []
 
 ## Create a Config Template
 
-Config templates in NGINX Instance Manager allow you to predefine and standardize configurations for your NGINX instances. By creating a template, you can streamline the deployment process and ensure consistency across your environments. This guide walks you through creating a new template from scratch or importing an existing template from an archive, generating and deploying a configuration to a designated target, and modifying an existing template submission.
+Config templates in F5 NGINX Instance Manager allow you to predefine and standardize configurations for your NGINX instances. By creating a template, you can streamline the deployment process and ensure consistency across your environments. This guide walks you through creating a new template from scratch or importing an existing template from an archive, generating and deploying a configuration to a designated target, and modifying an existing template submission.
 
 ### Import Config Templates from an Archive
 
@@ -126,7 +126,7 @@ To add resource files to a template:
 {{<call-out "tip" "See Also" >}}<i class="fa-regular fa-lightbulb" aria-hidden="true" aria-label="Tip"></i>
 You can find more information about template types, template resource files, and JSON schema features in the [Additional Resources](#additional-resources) section.{{</call-out>}}
 
---- 
+---
 
 ## Preview, Generate, and Submit a Config from a Template {#preview-generate-config}
 

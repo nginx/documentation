@@ -1,6 +1,6 @@
 ---
 description: Load balance Oracle WebLogic Servers with NGINX Open Source and the advanced
-  features in NGINX Plus, following our step-by-step setup instructions.
+  features in F5 NGINX Plus, following our step-by-step setup instructions.
 docs: DOCS-455
 doctypes:
 - task
@@ -9,7 +9,7 @@ toc: true
 weight: 100
 ---
 
-This deployment guide explains how to use NGINX Open Source and NGINX Plus to load balance HTTP and HTTPS traffic across a pool of Oracle WebLogic Server application servers. The detailed instructions in this guide apply to both cloud‑based and on‑premises deployments of Oracle WebLogic Server.
+This deployment guide explains how to use NGINX Open Source and F5 NGINX Plus to load balance HTTP and HTTPS traffic across a pool of Oracle WebLogic Server application servers. The detailed instructions in this guide apply to both cloud‑based and on‑premises deployments of Oracle WebLogic Server.
 
 
 <span id="about-nginx"></span>
@@ -17,7 +17,7 @@ This deployment guide explains how to use NGINX Open Source and NGINX Plus to l
 
 [NGINX Open Source](https://nginx.org/en) is an open source web server and reverse proxy that has grown in popularity in recent years because of its scalability, outstanding performance, and small footprint. <span style="white-space: nowrap;">NGINX Open Source</span> was first created to solve the C10K problem (serving 10,000 simultaneous connections on a single web server). <span style="white-space: nowrap;">NGINX Open Source's</span> features and performance have made it a staple of high‑performance sites – it's [the #1 web server at the 100,000 busiest websites in the world](https://w3techs.com/technologies/cross/web_server/ranking).
 
-[NGINX Plus](https://www.nginx.com/products/nginx) is the commercially supported version of <span style="white-space: nowrap;">NGINX Open Source</span>. NGINX Plus is a complete application delivery platform, extending the power of <span style="white-space: nowrap;">NGINX Open Source</span> with a host of enterprise‑ready capabilities that enhance an Oracle WebLogic Server deployment and are instrumental to building web applications at scale:
+[NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) is the commercially supported version of <span style="white-space: nowrap;">NGINX Open Source</span>. NGINX Plus is a complete application delivery platform, extending the power of <span style="white-space: nowrap;">NGINX Open Source</span> with a host of enterprise‑ready capabilities that enhance an Oracle WebLogic Server deployment and are instrumental to building web applications at scale:
 
 - [Full‑featured HTTP, TCP, and UDP load balancing](https://www.nginx.com/products/nginx/load-balancing/)
 - [Intelligent session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence)

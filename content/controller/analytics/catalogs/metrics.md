@@ -1,6 +1,6 @@
 ---
 catalog: true
-description: Information about all of the Metrics collected by NGINX Controller Agent.
+description: Information about all of the Metrics collected by F5 NGINX Controller Agent.
 docs: DOCS-525
 doctypes:
 - reference

@@ -1,5 +1,5 @@
 ---
-description: Represents the state of the NGINX Controller API Management REST API.
+description: Represents the state of the F5 NGINX Controller API Management REST API.
 docs: DOCS-1281
 doctypes:
   - reference

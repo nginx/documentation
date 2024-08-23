@@ -1,6 +1,6 @@
 ---
 description: Protect against Layer 7 attacks such as SQLi, XSS, CSRF, LFI, and RFI,
-  with the NGINX ModSecurity WAF dynamic module, supported by NGINX.
+  with the F5 NGINX ModSecurity WAF dynamic module, supported by NGINX.
 docs: DOCS-394
 doctypes:
 - task
@@ -9,7 +9,7 @@ toc: true
 weight: 100
 ---
 
-The NGINX ModSecurity web application firewall (WAF) is built on ModSecurity 3.0.
+The F5 NGINX ModSecurity web application firewall (WAF) is built on ModSecurity 3.0.
 
  {{< note >}} The ModSecurity WAF module was deprecated since <a href="../../../releases/#r29">NGINX Plus Release 29</a>, and is no longer available since <a href="../../../releases/#r32">NGINX Plus Release 32</a> {{< /note >}}
 

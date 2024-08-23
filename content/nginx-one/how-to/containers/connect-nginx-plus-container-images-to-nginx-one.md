@@ -12,7 +12,7 @@ weight: 400
 
 ## Introduction
 
-By following this guide, you will be able to set up a Docker container with NGINX Plus and the NGINX Agent, and then connect to the F5 NGINX One cloud console.
+By following this guide, you will be able to set up a Docker container with F5 NGINX Plus and the NGINX Agent, and then connect to the NGINX One Cloud Console.
 
 ---
 
@@ -20,7 +20,7 @@ By following this guide, you will be able to set up a Docker container with NGIN
 
 Before you start, make sure you have the following:
 
-- A valid JWT (JSON Web Token) from your NGINX subscription.
+- A valid JSON Web Token (JWT) from your NGINX subscription. You can download the JWT from [MyF5](https://my.f5.com/manage/s/).
 - [A data plane key from NGINX One]({{< relref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}}).
 - Docker installed and running on your system.
 

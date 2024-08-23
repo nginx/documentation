@@ -1,5 +1,5 @@
 ---
-description: Create and manage templates for your NGINX Plus instances.
+description: Create and manage templates for your F5 NGINX Plus instances.
 docs: DOCS-776
 doctypes:
 - tutorial
@@ -18,7 +18,7 @@ An Instance Template defines the parameters to use when creating a data plane in
 
 Take the following steps to create an Instance Template:
 
-1. Open the NGINX Controller user interface and log in.
+1. Open the F5 NGINX Controller user interface and log in.
 1. Select the NGINX Controller menu icon, then select **Infrastructure** > **Instance Templates**.
 1. Select **Create Instance Template**.
 1. Add a name.

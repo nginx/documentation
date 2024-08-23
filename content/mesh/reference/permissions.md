@@ -26,7 +26,7 @@ Kubernetes allows pods to be given capabilities that extend their permissions an
 
 ### Tips and tricks
 #### Compatibility concerns around init container privilege level
-Some services like NGINX Ingress Controller and Certificate Manager will fail to deploy when auto-injected with the F5 NGINX Service Mesh init container. This may be because they specify `runAsNonRoot` in their security policies, which prevents the init container from launching. This issue can be avoided by containing these services in their own namespaces where auto-injection is disabled.
+Some services like F5 NGINX Ingress Controller and Certificate Manager will fail to deploy when auto-injected with the NGINX Service Mesh init container. This may be because they specify `runAsNonRoot` in their security policies, which prevents the init container from launching. This issue can be avoided by containing these services in their own namespaces where auto-injection is disabled.
 
 ## Sidecar Proxy
 The sidecar container cannot escalate privilege and is not a privileged container. The sidecar container runs as user 2102 once the init container has completed.

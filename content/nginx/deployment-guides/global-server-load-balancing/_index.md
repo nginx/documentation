@@ -1,6 +1,6 @@
 ---
 description: Configure global server load balancing (GSLB) for websites and applications
-  proxied by NGINX Plus.
+  proxied by F5 NGINX Plus.
 menu:
   docs:
     parent: NGINX Plus

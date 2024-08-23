@@ -40,7 +40,7 @@ If no host discovery options are provided, Instance Manager sends an ICMP echo r
 
 ## Scan using the web interface {#scan-ui}
 
-1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in.
+1. In a web browser, go to the FQDN for your F5 NGINX Management Suite host and log in.
 2. In the left menu, select **Scan**.
 3. Enter subnets and masks that correspond to your network.
 

@@ -1,4 +1,4 @@
-NGINX Controller supports the following [NGINX Plus](https://www.nginx.com/products/nginx/) versions:
+NGINX Controller supports the following [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) versions:
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
 

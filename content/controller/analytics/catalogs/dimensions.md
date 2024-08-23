@@ -1,6 +1,6 @@
 ---
 catalog: true
-description: Information about all of the Dimensions collected by NGINX Controller
+description: Information about all of the Dimensions collected by F5 NGINX Controller
   Agent.
 docs: DOCS-524
 doctypes:

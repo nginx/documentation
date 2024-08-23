@@ -1,6 +1,6 @@
 ---
 description: This guide provides step-by-step instructions on configuring Microsoft
-  Entra (AD) as an OpenID Connect (OIDC) identity provider (IdP) for NGINX Management
+  Entra (AD) as an OpenID Connect (OIDC) identity provider (IdP) for F5 NGINX Management
   Suite. By using OpenID authentication with NGINX Management Suite, you can implement
   role-based access control (RBAC) to limit user access to specific features available
   in NGINX Management Suite.
@@ -24,7 +24,7 @@ h2 {
 
 ## Overview
 
-This guide explains how to configure Microsoft Entra (AD) as an identity provider (IdP) for NGINX Management Suite. By implementing OIDC for authentication, administrators can simplify user management in NGINX Management Suite. Instead of creating and managing users individually, administrators can create user groups in NGINX Management Suite that align with groups in their Identity Provider. Access and permissions for users are determined by the roles assigned to their respective user groups. Users from the Identity Provider who are not part of a group with an assigned role will not have access to NGINX Management Suite.
+This guide explains how to configure Microsoft Entra (AD) as an identity provider (IdP) for F5 NGINX Management Suite. By implementing OIDC for authentication, administrators can simplify user management in NGINX Management Suite. Instead of creating and managing users individually, administrators can create user groups in NGINX Management Suite that align with groups in their Identity Provider. Access and permissions for users are determined by the roles assigned to their respective user groups. Users from the Identity Provider who are not part of a group with an assigned role will not have access to NGINX Management Suite.
 
 We strongly recommend Open ID Connect (OIDC) as the preferred authentication method for the NGINX Management Suite. OIDC brings several benefits, including Single Sign-On (SSO) and simplified user management through user groups.
 

@@ -1,5 +1,5 @@
 ---
-description: Learn about the policies available for use in the NGINX Controller.
+description: Learn about the policies available for use in the F5 NGINX Controller.
 docs: DOCS-568
 doctypes:
 - concept
@@ -12,7 +12,7 @@ weight: 130
 
 ## Overview
 
-NGINX Controller provides a set of policies that allow you to protect and secure your services (APIs for API Management module deployments, and Apps for App Delivery module deployments) and their data. The available policies fall under two basic categories:
+F5 NGINX Controller provides a set of policies that allow you to protect and secure your services (APIs for API Management module deployments, and Apps for App Delivery module deployments) and their data. The available policies fall under two basic categories:
 
 - Authentication policies
 - Rate Limiting policies

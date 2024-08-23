@@ -60,7 +60,7 @@ First, secure Instance Manager with OpenID Connect (OIDC) using Microsoft Entra 
 
 1. On the left navigation menu, in the **Manage** section, select **App roles**.
 1. Select **Create app role**.
-1. Complete the new role form. You should use the details from an existing NGINX Management Suite user group, such as the one created in the [Create User Groups in Instance Manager]({{< relref "/nms/admin-guides/authentication/oidc/oidc-entra.md#create-user-groups-in-instance-manager" >}}) step. For example :
+1. Complete the new role form. You should use the details from an existing F5 NGINX Management Suite user group, such as the one created in the [Create User Groups in Instance Manager]({{< relref "/nms/admin-guides/authentication/oidc/oidc-entra.md#create-user-groups-in-instance-manager" >}}) step. For example :
 
    - In the **Display name** box, type a name for the role. For example, "Admin".
    - In the **Allowed member types** section, select **Applications**.

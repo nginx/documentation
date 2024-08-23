@@ -47,7 +47,7 @@ weight: 500
 <span id="hc_passive"></span>
 ## Passive UDP Health Checks
 
-NGINX Open Source or NGINX Plus can mark the server as unavailable and stop sending UDP datagrams to it for some time if the server replies with an error or times out.
+NGINX Open Source or F5 NGINX Plus can mark the server as unavailable and stop sending UDP datagrams to it for some time if the server replies with an error or times out.
 
 The number of consecutive failed connection attempts within a certain time period is set with the [`max_fails`](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#max_fails) parameter for an [`upstream server`](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#server) (default value is `1`).
 

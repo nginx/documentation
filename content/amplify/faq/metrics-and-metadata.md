@@ -1,6 +1,6 @@
 ---
 title: NGINX Amplify Metrics and Metadata
-description: Questions about NGINX Amplify's Metrics and Metadata
+description: Questions about F5 NGINX Amplify's Metrics and Metadata
 weight: 40
 toc: true
 tags: ["docs"]

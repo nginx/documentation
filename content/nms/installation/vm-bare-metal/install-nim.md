@@ -1,5 +1,5 @@
 ---
-description: Follow the steps in this guide to install or upgrade NGINX Management
+description: Follow the steps in this guide to install or upgrade F5 NGINX Management
   Suite Instance Manager.
 docs: DOCS-1211
 doctypes:

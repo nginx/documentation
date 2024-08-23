@@ -1,6 +1,6 @@
 ---
 description: Load balance Node.js application servers with NGINX Open Source or the
-  advanced features in NGINX Plus, following our step-by-step setup instructions.
+  advanced features in F5 NGINX Plus, following our step-by-step setup instructions.
 docs: DOCS-453
 doctypes:
 - task
@@ -10,7 +10,7 @@ toc: true
 weight: 100
 ---
 
-This deployment guide explains how to use NGINX Open Source and NGINX Plus to load balance HTTP and HTTPS traffic across a pool of Node.js application servers. The detailed instructions in this guide apply to both cloud‑based and on‑premises deployments of Node.js.
+This deployment guide explains how to use NGINX Open Source and F5 NGINX Plus to load balance HTTP and HTTPS traffic across a pool of Node.js application servers. The detailed instructions in this guide apply to both cloud‑based and on‑premises deployments of Node.js.
 
 
 
@@ -19,7 +19,7 @@ This deployment guide explains how to use NGINX Open Source and NGINX Plus to l
 
 [NGINX Open Source](https://nginx.org/en) is an open source web server and reverse proxy that has grown in popularity in recent years because of its scalability, outstanding performance, and small footprint. NGINX Open Source was first created to solve the C10K problem (serving 10,000 simultaneous connections on a single web server). NGINX Open Source's features and performance have made it a staple of high‑performance sites – it's [the #1 web server at the 100,000 busiest websites in the world](https://w3techs.com/technologies/cross/web_server/ranking).
 
-[NGINX Plus](https://www.nginx.com/products/nginx) is the commercially supported version of NGINX Open Source. NGINX Plus is a complete application delivery platform, extending the power of NGINX Open Source with a host of enterprise‑ready capabilities that enhance a Node.js deployment and are instrumental to building web applications at scale:
+[NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) is the commercially supported version of NGINX Open Source. NGINX Plus is a complete application delivery platform, extending the power of NGINX Open Source with a host of enterprise‑ready capabilities that enhance a Node.js deployment and are instrumental to building web applications at scale:
 
 - [Full‑featured HTTP, TCP, and UDP load balancing](https://www.nginx.com/products/nginx/load-balancing/)
 - [Intelligent session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence)

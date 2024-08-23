@@ -16,7 +16,7 @@ weight: 30
 
 ## Prerequisites
 
-The Developer Portal requires [PostgreSQL](https://www.postgresql.org), [NGINX Plus R24](https://docs.nginx.com/nginx/) or later, and [njs](https://nginx.org/en/docs/njs/).
+The Developer Portal requires [PostgreSQL](https://www.postgresql.org), [F5 NGINX Plus R24](https://docs.nginx.com/nginx/) or later, and [njs](https://nginx.org/en/docs/njs/).
 
 ### PostgreSQL
 

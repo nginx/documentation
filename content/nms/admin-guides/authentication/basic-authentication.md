@@ -1,5 +1,5 @@
 ---
-description: Learn how to manage user access in NGINX Management Suite using basic
+description: Learn how to manage user access in F5 NGINX Management Suite using basic
   authentication with NGINX as a front-end proxy. This guide covers first-time login,
   creating additional users, and setting passwords.
 docs: DOCS-792
@@ -21,7 +21,7 @@ h2 {
 
 ## Overview
 
-NGINX Management Suite uses NGINX as a front-end proxy and for user access. By default, NGINX Management Suite uses basic authentication, which means you need to send your username and password with each request to confirm your identity. When logging in to NGINX Management Suite for the first time, use the default `admin` account and password. After that, you can create additional user accounts. Adding users and setting passwords are explained below.
+F5 NGINX Management Suite uses NGINX as a front-end proxy and for user access. By default, NGINX Management Suite uses basic authentication, which means you need to send your username and password with each request to confirm your identity. When logging in to NGINX Management Suite for the first time, use the default `admin` account and password. After that, you can create additional user accounts. Adding users and setting passwords are explained below.
 
 {{< call-out "warning" "Security Consideration" >}} While convenient, basic authentication is less secure than other methods: credentials are sent as base64-encoded text, which is not secure encryption. If your data gets intercepted, the encoding is easily reversible. If you use NGINX Plus for your front-end proxy, consider [switching to OpenID Connect (OIDC) for authentication]({{< relref "nms/admin-guides/authentication/oidc/getting-started-oidc.md" >}}). For production environments, we strongly recommend OIDC.{{< /call-out >}}
 

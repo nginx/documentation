@@ -2,7 +2,7 @@
 aliases:
 - /analytics/dimensions/reference/
 - /analytics/metrics/reference/
-description: Reference information for NGINX Controller Catalogs.
+description: Reference information for F5 NGINX Controller Catalogs.
 menu:
   docs:
     parent: Analytics

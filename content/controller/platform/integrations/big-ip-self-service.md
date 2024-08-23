@@ -1,5 +1,5 @@
 ---
-description: Integrate NGINX Controller with a BIG-IP cluster.
+description: Integrate F5 NGINX Controller with a BIG-IP cluster.
 docs: DOCS-786
 doctypes:
 - tutorial
@@ -12,13 +12,13 @@ weight: 20
 
 ## Overview
 
-You can use NGINX Controller to configure a BIG-IP cluster to work with NGINX instances in your app delivery infrastructure. By using NGINX Controller, you can configure your NGINX instances as part of your BIG-IP device's virtual servers and server pools.
+You can use F5 NGINX Controller to configure a BIG-IP cluster to work with NGINX instances in your app delivery infrastructure. By using NGINX Controller, you can configure your NGINX instances as part of your BIG-IP device's virtual servers and server pools.
 
 NGINX Controller uses the [F5 Application Services 3 Extension (AS3) package](https://clouddocs.f5.com/products/extensions/f5-appsvcs-extension/latest/) to communicate with a BIG-IP cluster. This means NGINX Controller works with any BIG-IP version that supports AS3.
 
 The following diagram shows how client traffic is routed through a BIG-IP cluster and load-balanced to the NGINX instances belonging to the BIG-IP server pools.
 
-<div style="text-align: center">{{< img src="/platform/integrations/assets/big-ip-integration.png" alt="NGINX integration for BIG-IP." width="600" >}}</div>
+<div style="text-align: center">{{< img src="/ctlr/img/big-ip-integration.png" alt="NGINX integration for BIG-IP." width="600" >}}</div>
 
 ## Terminology
 

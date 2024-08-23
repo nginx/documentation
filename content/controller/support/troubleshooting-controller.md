@@ -1,5 +1,5 @@
 ---
-description: Steps to take to investigate and fix issues with NGINX Controller and
+description: Steps to take to investigate and fix issues with F5 NGINX Controller and
   the Controller Agent.
 docs: DOCS-376
 doctypes:
@@ -14,7 +14,7 @@ weight: 100
 
 ## Overview
 
-If NGINX isn't behaving how you expect, you can take the following steps to troubleshoot issues. If you need to [contact NGINX Support]({{< relref "/controller/support/contact-support.md" >}}), make sure to [create a support package](#create-a-support-package) first.
+If NGINX isn't behaving how you expect, you can take the following steps to troubleshoot issues. If you need to [contact F5 NGINX Support]({{< relref "/controller/support/contact-support.md" >}}), make sure to [create a support package](#create-a-support-package) first.
 
 ## Fix NGINX Controller Issues by Upgrading
 

@@ -1,5 +1,5 @@
 ---
-description: Guidelines and recommendations for configuring NGINX Controller.
+description: Guidelines and recommendations for configuring F5 NGINX Controller.
 docs: DOCS-256
 doctypes:
 - reference
@@ -12,7 +12,7 @@ weight: 100
 
 ## Overview
 
-This guide lists the technical recommendations for NGINX Controller v3 and NGINX Controller Agent. Review this guide before installing or updating NGINX Controller or NGINX Controller Agent.
+This guide lists the technical recommendations for F5 NGINX Controller v3 and NGINX Controller Agent. Review this guide before installing or updating NGINX Controller or NGINX Controller Agent.
 
 ## Supported Distributions
 
@@ -87,10 +87,10 @@ You can deploy NGINX Controller v3 into the following environments:
 
 ## NGINX Plus Instances
 
-NGINX Controller, using the Controller Agent, can monitor and manage up to 100 [NGINX Plus](https://www.nginx.com/products/nginx/) instances. When using Controller App Security, NGINX Controller can monitor and manage up to 30 NGINX Plus instances with NGINX App Protect installed.
+NGINX Controller, using the Controller Agent, can monitor and manage up to 100 [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) instances. When using Controller App Security, NGINX Controller can monitor and manage up to 30 NGINX Plus instances with NGINX App Protect installed.
 
 
-NGINX Controller supports the following [NGINX Plus](https://www.nginx.com/products/nginx/) versions:
+NGINX Controller supports the following [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) versions:
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
 

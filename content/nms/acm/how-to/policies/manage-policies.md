@@ -1,5 +1,5 @@
 ---
-description: Learn how to use NGINX Management Suite API Connectivity Manager to set
+description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to set
   up policies.
 docs: DOCS-925
 doctypes:
@@ -122,7 +122,7 @@ To remove a policy, take the steps below.
 
 ## Set Up Cluster Policies
 
-Cluster Policies are applied to all the proxies belongnig to the desired cluster. In another words, these policies are applied to a cluster of NGINX Plus instances which can have one or more API Gateways and Developer Portals deployed on them.
+Cluster Policies are applied to all the proxies belongnig to the desired cluster. In another words, these policies are applied to a cluster of F5 NGINX Plus instances which can have one or more API Gateways and Developer Portals deployed on them.
 
 {{< include "acm/about/cluster-policies.md" >}}
 

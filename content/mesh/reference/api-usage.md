@@ -1,6 +1,6 @@
 ---
 title: NGINX Service Mesh API
-description: "Instructions for interacting with the NGINX Service Mesh API."
+description: "Instructions for interacting with the F5 NGINX Service Mesh API."
 toc: true
 tags: ["api"]
 weight: 200

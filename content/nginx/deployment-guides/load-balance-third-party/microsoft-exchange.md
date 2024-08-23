@@ -1,6 +1,6 @@
 ---
 description: Load balance Microsoft Exchange servers with the advanced features in
-  NGINX Plus, following our step-by-step setup instructions.
+  F5 NGINX Plus, following our step-by-step setup instructions.
 docs: DOCS-452
 doctypes:
 - task
@@ -9,12 +9,12 @@ toc: true
 weight: 100
 ---
 
-This deployment guide explains how to use NGINX Plus to load balance traffic across a pool of Microsoft Exchange<sup>TM</sup> servers. You can deploy Exchange and NGINX Plus on premises, in a private cloud, or in public clouds including Amazon Web Services (AWS), the Google Cloud Platform, and Microsoft Azure. The guide covers the different installation types, and provides complete instructions for customizing both NGINX Plus and Exchange as required.
+This deployment guide explains how to use F5 NGINX Plus to load balance traffic across a pool of Microsoft Exchange<sup>TM</sup> servers. You can deploy Exchange and NGINX Plus on premises, in a private cloud, or in public clouds including Amazon Web Services (AWS), the Google Cloud Platform, and Microsoft Azure. The guide covers the different installation types, and provides complete instructions for customizing both NGINX Plus and Exchange as required.
 
 <span id="about-nginx"></span>
 ## About NGINX Plus
 
-[NGINX Plus](https://www.nginx.com/products/nginx) is the commercially supported version of the [NGINX Open Source](https://nginx.org/en) software. NGINX Plus is a complete application delivery platform, extending the power of NGINX Open Source with a host of enterprise‑ready capabilities that enhance a Microsoft Exchange server deployment and are instrumental to building web applications at scale:
+[NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) is the commercially supported version of the [NGINX Open Source](https://nginx.org/en) software. NGINX Plus is a complete application delivery platform, extending the power of NGINX Open Source with a host of enterprise‑ready capabilities that enhance a Microsoft Exchange server deployment and are instrumental to building web applications at scale:
 
 - [Full‑featured HTTP, TCP, and UDP load balancing](https://www.nginx.com/products/nginx/load-balancing/)
 - [Intelligent session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence)

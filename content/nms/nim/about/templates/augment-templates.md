@@ -4,7 +4,7 @@ date: 2024-04-17T14:00:14-07:00
 # Change draft status to false to publish doc
 draft: false
 # Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
+# Add a short description (150 chars) for the doc. Include keywords for SEO.
 # The description text appears in search results and at the top of the doc.
 description: ""
 # Assign weights in increments of 100
@@ -23,10 +23,10 @@ personas: ["devops", "netops", "secops", "support"]
 versions: []
 authors: []
 ---
- 
+
 ## Overview {#augmenting-global-default-base-template}
 
-Using augment templates in NGINX Instance Manager, administrators and developers can customize NGINX configurations beyond the foundational settings of the F5 Global Default Base template. You can use the augment template to add specific features like OIDC authentication, or segment (compartmentalize) configuration elements like location and server blocks. Augment templates can be combined with a base template to build upon it or applied directly to an existing NGINX configuration.
+Using augment templates in F5 NGINX Instance Manager, administrators and developers can customize NGINX configurations beyond the foundational settings of the F5 Global Default Base template. You can use the augment template to add specific features like OIDC authentication, or segment (compartmentalize) configuration elements like location and server blocks. Augment templates can be combined with a base template to build upon it or applied directly to an existing NGINX configuration.
 
 ## Understanding augment templates
 

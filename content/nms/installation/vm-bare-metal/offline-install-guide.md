@@ -1,5 +1,5 @@
 ---
-description: Complete the steps in this guide to install NGINX Management Suite modules
+description: Complete the steps in this guide to install F5 NGINX Management Suite modules
   directly from package files in environments without Internet access.
 docs: DOCS-803
 doctypes:
@@ -20,7 +20,7 @@ weight: 300
 ## Prerequisites
 
 {{<important>}}
-You must complete the following prerequisite steps before installing any of the NGINX Management Suite modules. Neglecting to do so could result in a module not installing correctly or not installing at all.
+You must complete the following prerequisite steps before installing any of the F5 NGINX Management Suite modules. Neglecting to do so could result in a module not installing correctly or not installing at all.
 {{</important>}}
 
 ### Security Considerations

@@ -1,5 +1,5 @@
 ---
-description: Learn how to use the Brotli module with NGINX Plus
+description: Learn how to use the Brotli module with F5 NGINX Plus
 docs: DOCS-381
 doctypes:
 - task
@@ -12,7 +12,7 @@ weight: 100
 
 Brotli is a general‑purpose, lossless data compression algorithm that uses a variant of the LZ77 algorithm, Huffman coding, and second‑order context modeling. Its compression ratio is comparable to the best currently available general‑purpose compression methods. Its speed is similar to [DEFLATE](https://www.ietf.org/rfc/rfc1951.txt) but with denser compression.
 
-The [ngx_brotli](https://github.com/google/ngx_brotli) module enables Brotli compression in NGINX Plus and consists of two modules:
+The [ngx_brotli](https://github.com/google/ngx_brotli) module enables Brotli compression in F5 NGINX Plus and consists of two modules:
 
 - `ngx_brotli filter module` – for compressing responses on-the-fly
 - `ngx_brotli static module` - for serving pre-compressed files

@@ -1,5 +1,5 @@
 ---
-description: This guide explains how to upgrade the NGINX Management Suite modules,
+description: This guide explains how to upgrade the F5 NGINX Management Suite modules,
   NGINX Agent, and NGINX Plus.
 docs: DOCS-920
 doctypes:
@@ -13,7 +13,7 @@ weight: 600
 
 ## Overview
 
-This guide explains how to upgrade the NGINX Management Suite modules, NGINX Agent, and NGINX Plus to their latest versions, including how to back up your current configuration, run the upgrade script, and verify the results. Also included are instructions for troubleshooting any potential upgrade errors.
+This guide explains how to upgrade the F5 NGINX Management Suite modules, NGINX Agent, and NGINX Plus to their latest versions, including how to back up your current configuration, run the upgrade script, and verify the results. Also included are instructions for troubleshooting any potential upgrade errors.
 
 ---
 

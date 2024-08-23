@@ -366,7 +366,7 @@ To create an Cluster Zone Sync policy using the REST API, send an HTTP `PUT` req
 
 To create a Cluster Zone Sync policy using the web interface:
 
-1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in. Then, from the Launchpad menu, select **API Connectivity Manager**.
+1. In a web browser, go to the FQDN for your F5 NGINX Management Suite host and log in. Then, from the Launchpad menu, select **API Connectivity Manager**.
 2. On the left menu, select **Infrastructure**.
 3. Choose the workspace that contains your cluster's environment from the list of workspaces.
 4. In the **Environments** section, select the environment name for your cluster.

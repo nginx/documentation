@@ -10,7 +10,7 @@ weight: 100
 
 ## Overview
 
-NGINX App Protect DoS provides behavioral protection against DoS for your web applications. <br><br>
+F5 NGINX App Protect DoS provides behavioral protection against DoS for your web applications. <br><br>
 This guide explains how to deploy NGINX App Protect DoS as well as upgrade App Protect DoS.
 
 ## Prerequisites
@@ -547,7 +547,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```
 
     For L4 accelerated mitigation feature:
-    
+
     a. Using the vi editor, create a file:
 
     ```shell
@@ -622,7 +622,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
    - nginx-repo.key
    - nginx-repo.crt
-   
+
 
 4. Copy the downloaded files to the CentOS server’s `/etc/ssl/nginx/` directory. Use an SCP client or another secure file transfer tool to perform this task.
 
@@ -935,7 +935,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```shell
     sudo apt-get install app-protect-dos=32+4.4.0-1~bookworm nginx-plus-module-appprotectdos=32+4.4.0-1~bookworm
     ```
-    
+
     For example for Ubuntu 18.04:
 
     ```shell

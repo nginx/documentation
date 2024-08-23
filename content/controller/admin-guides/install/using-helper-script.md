@@ -1,5 +1,5 @@
 ---
-description: Learn how to update NGINX Controller installation settings and manage
+description: Learn how to update F5 NGINX Controller installation settings and manage
   the NGINX Controller service using the helper.sh script.
 docs: DOCS-261
 doctypes:
@@ -13,7 +13,7 @@ weight: 200
 
 ## Overview
 
-You can use the NGINX Controller `helper.sh` script to update NGINX Controller installation settings and manage the NGINX Controller process. This tutorial shows you how to use `helper.sh` to perform the following tasks:
+You can use the F5 NGINX Controller `helper.sh` script to update NGINX Controller installation settings and manage the NGINX Controller process. This tutorial shows you how to use `helper.sh` to perform the following tasks:
 
 - Install the NGINX Controller prerequisites
 - View the version of NGINX Controller that's installed and running

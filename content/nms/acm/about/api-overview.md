@@ -1,5 +1,5 @@
 ---
-description: This topic gives an overview of the NGINX Management Suite API Connectivity
+description: This topic gives an overview of the F5 NGINX Management Suite API Connectivity
   Manager API.
 docs: DOCS-929
 tags:
@@ -34,7 +34,7 @@ The API Connectivity Manager API provides the following features:
 
 ## API Reference Documentation
 
-You can view the API Connectivity Manager API Reference documentation in the NGINX Management Suite user interface.
+You can view the API Connectivity Manager API Reference documentation in the F5 NGINX Management Suite user interface.
 To access the API Docs, take the steps below:
 
 1. Log in to the NGINX Management Suite user interface.

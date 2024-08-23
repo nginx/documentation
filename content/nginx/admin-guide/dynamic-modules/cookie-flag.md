@@ -42,7 +42,7 @@ weight: 100
    apk add nginx-plus-module-cookie-flag
    ```
 
-2. Put the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
+2. Put the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive in the top‑level (“`main`”) context of F5 NGINX Plus configuration file, **nginx.conf**:
 
    ```nginx
    load_module modules/ngx_http_cookie_flag_filter_module.so;

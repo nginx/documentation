@@ -13,10 +13,10 @@ draft: true
 ## Overview
 The API Connectivity Stack by F5 NGINX includes access to the following products:
 
-- [F5 NGINX Plus as an API Gateway](https://www.f5.com/products/nginx/nginx-plus/api-gateway/)
-- [F5 NGINX App Protect WAF and DoS](https://www.f5.com/products/nginx/nginx-app-protect/)
-- [F5 NGINX Management Suite Instance Manager](https://www.f5.com/products/nginx/instance-manager/)
-- [F5 NGINX Management Suite Security Monitoring]({{< ref "nms/security" >}})
+- [NGINX Plus as an API Gateway](https://www.f5.com/products/nginx/nginx-plus/api-gateway/)
+- [NGINX App Protect WAF and DoS](https://www.f5.com/products/nginx/nginx-app-protect/)
+- [NGINX Management Suite Instance Manager](https://www.f5.com/products/nginx/instance-manager/)
+- [NGINX Management Suite Security Monitoring]({{< ref "nms/security" >}})
 
 ## Installation Guide
 

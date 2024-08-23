@@ -169,4 +169,4 @@ In this request, `User` is assigned as a member.
 
 ## Update Users Created with SCIM
 
-To update users created with SCIM, you need to use the SCIM API or update the users directly in your identity provider (IdP). You can't use the NGINX Manager web interface to edit user details from an identity provider.
+To update users created with SCIM, you need to use the SCIM API or update the users directly in your identity provider (IdP). You can't use the F5 NGINX Manager web interface to edit user details from an identity provider.

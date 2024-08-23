@@ -1,5 +1,5 @@
 ---
-description: Install and upgrade NGINX Plus with step-by-step instructions for the
+description: Install and upgrade F5 NGINX Plus with step-by-step instructions for the
   base package and dynamic modules on all supported Linux distributions.
 docs: DOCS-414
 doctypes:
@@ -18,7 +18,7 @@ This article explains how to install NGINX Plus on different operating systems,
 - A [supported operating system]({{< relref "../../technical-specs.md" >}})
 - `root` privilege
 - Your credentials to the [MyF5 Customer Portal](https://account.f5.com/myf5), provided by email from F5, Inc.
-- Your NGINX Plus certificate and public key (<span style="white-space: nowrap;">**nginx-repo.crt**</span> and <span style="white-space: nowrap;">**nginx-repo.key**</span> files) or JWT token file provided by F5, Inc. 
+- Your F5 NGINX Plus certificate and public key (<span style="white-space: nowrap;">**nginx-repo.crt**</span> and <span style="white-space: nowrap;">**nginx-repo.key**</span> files) or JWT token file provided by F5, Inc.
 
 
 <span id="install_amazon2023"></span>
@@ -947,7 +947,7 @@ To install NGINX Plus offline, you will need a machine connected to the Internet
 
    - Log in to [MyF5 Customer Portal](https://account.f5.com/myf5/)
 
-   - Choose the subscription ID that corresponds to your NGINX Plus subscription. 
+   - Choose the subscription ID that corresponds to your NGINX Plus subscription.
 
    - To download the SSL certificate and private key, select the `SSL certificate` and `Private Key` in the `Subscription Details` area.
 

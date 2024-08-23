@@ -1,6 +1,6 @@
 ---
 description: Follow the steps in this guide to back up and restore the essential system
-  files for the NGINX Management Suite platform and modules.
+  files for the F5 NGINX Management Suite platform and modules.
 docs: DOCS-1098
 tags:
 - docs
@@ -11,7 +11,7 @@ weight: 1
 
 ## Overview
 
-- NGINX Management Suite includes several scripts for backing up and restoring the configuration files, secrets, and databases used by the platform.
+- F5 NGINX Management Suite includes several scripts for backing up and restoring the configuration files, secrets, and databases used by the platform.
 
 {{<important>}}The back up and recovery scripts are provided for reference and may need to be changed for your deployment.{{</important>}}
 

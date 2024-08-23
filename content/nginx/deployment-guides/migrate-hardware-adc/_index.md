@@ -1,6 +1,6 @@
 ---
 description: Deployment guides for migrating from hardware application delivery controllers
-  (ADCs) to NGINX Plus.
+  (ADCs) to F5 NGINX Plus.
 menu:
   docs:
     parent: NGINX Plus

@@ -1,5 +1,5 @@
 ---
-description: Learn how to update the Attack Signature Database used in NGINX Management
+description: Learn how to update the Attack Signature Database used in F5 NGINX Management
   Suite Security Monitoring dashboards.
 docs: DOCS-1109
 doctypes:
@@ -15,7 +15,7 @@ weight: 200
 
 ## Overview
 
-You can use the NGINX Management Suite Security Monitoring module to monitor NGINX App Protect WAF instances for security. The Security Monitoring module analytics dashboards utilize a Signature Database to give more detail about the Attack Signatures that have caused a Security Violation, like the Signature's name, accuracy, and risk. If the Signature Database is not updated to match the Attack Signature version used for App Protect WAF protection, new signatures may be triggered without a name or other attributes like risk and accuracy.
+You can use the F5 NGINX Management Suite Security Monitoring module to monitor NGINX App Protect WAF instances for security. The Security Monitoring module analytics dashboards utilize a Signature Database to give more detail about the Attack Signatures that have caused a Security Violation, like the Signature's name, accuracy, and risk. If the Signature Database is not updated to match the Attack Signature version used for App Protect WAF protection, new signatures may be triggered without a name or other attributes like risk and accuracy.
 
 Make sure the dashboards show the right info by following the steps in this topic to update the Security Monitoring module with the newest Attack Signature data.
 

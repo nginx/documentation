@@ -11,9 +11,9 @@ weight: 120
 ## Introduction
 
 NGINX directives are specified in the `nginx.conf` file and are used to configure various modules of NGINX.<br>
-NGINX App Protect DoS has its own set of directives, which follow the same rules as other NGINX directives, and are used to enable and configure its features.<br>
+F5 NGINX App Protect DoS has its own set of directives, which follow the same rules as other NGINX directives, and are used to enable and configure its features.<br>
 
-The table below provides a summary of all the NGINX App Protect DoS directives.<br>
+The table below provides a summary of all the F5 NGINX App Protect DoS directives.<br>
 
 While only the first directive is mandatory for enabling NGINX App Protect DoS, it is recommended to use as many directives as possible to leverage the product’s full range of monitoring and application health detection capabilities. After adding these directives, ensure you reload NGINX and check the error log for any errors or warnings.<br>
 
@@ -147,7 +147,7 @@ The `app_protect_dos_monitor` directive is used to monitor the stress level of t
 Requests for this monitoring are sent from the localhost (127.0.0.1).<br>
 This directive is mandatory, except when using the HTTP1 protocol, where it is still strongly recommended for optimal performance.<br>
 
-**Syntax:**<br> 
+**Syntax:**<br>
 app_protect_dos_monitor uri=path [protocol=http1|http2|grpc|websocket] [timeout=number] [proxy_protocol=on|off];
 
 **Arguments**<br>

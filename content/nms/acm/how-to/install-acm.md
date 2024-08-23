@@ -1,5 +1,5 @@
 ---
-description: Follow the steps in this guide to install or upgrade NGINX Management
+description: Follow the steps in this guide to install or upgrade F5 NGINX Management
   Suite API Connectivity Manager.
 docs: DOCS-1213
 doctypes:
@@ -57,7 +57,7 @@ weight: 10
 
 {{</tabs>}}
 
-2. Enable and start the NGINX Management Suite services:
+2. Enable and start the F5 NGINX Management Suite services:
 
     ```bash
     sudo systemctl enable nms nms-core nms-dpm nms-ingestion nms-integrations nms-acm --now

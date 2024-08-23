@@ -1,5 +1,5 @@
 ---
-description: This guide explains how to prepare your RHEL 8 system to install NGINX
+description: This guide explains how to prepare your RHEL 8 system to install F5 NGINX
   Controller and the NGINX Controller Agent.
 docs: DOCS-342
 doctypes:
@@ -12,7 +12,7 @@ toc: true
 weight: 200
 ---
 
-## Preparing the NGINX Controller Host
+## Preparing the F5 NGINX Controller Host
 
 To install NGINX Controller on RHEL 8, you must complete the following steps to allow iptables-based routing for Kubernetes. Failure to complete these steps may cause the installation to hang.
 

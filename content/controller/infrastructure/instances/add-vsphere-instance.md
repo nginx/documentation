@@ -1,5 +1,5 @@
 ---
-description: Learn how to deploy a vSphere NGINX instance using NGINX Controller.
+description: Learn how to deploy a vSphere NGINX instance using F5 NGINX Controller.
 docs: DOCS-771
 doctypes:
 - beta
@@ -15,7 +15,7 @@ weight: 35
 
 
 
-You can use NGINX Controller to deploy and manage NGINX instances on [VMware vSphere](https://www.vmware.com/products/vsphere.html).
+You can use F5 NGINX Controller to deploy and manage NGINX instances on [VMware vSphere](https://www.vmware.com/products/vsphere.html).
 
 This tutorial explains how to deploy NGINX Plus on vSphere by defining a vSphere Integration, a Location, and an Instance Template in NGINX Controller.
 

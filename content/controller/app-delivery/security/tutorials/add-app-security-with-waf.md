@@ -1,5 +1,5 @@
 ---
-description: How to add NGINX Controller App Security to your applications.
+description: How to add F5 NGINX Controller App Security to your applications.
 docs: DOCS-484
 doctypes:
 - concept
@@ -13,7 +13,7 @@ weight: 100
 
 ## Overview
 
-You can use the App Security add-on for NGINX Controller ADC to enable Web Application Firewall (WAF) capabilities to protect your applications. WAF lets you flag or block suspicious requests or attacks. WAF can be added to individual app components.
+You can use the App Security add-on for F5 NGINX Controller ADC to enable Web Application Firewall (WAF) capabilities to protect your applications. WAF lets you flag or block suspicious requests or attacks. WAF can be added to individual app components.
 
 
 ## Before You Begin
@@ -139,8 +139,7 @@ To do so, you first need to upload your NGINX App Protect WAF declarative JSON p
 
 ### Upload your NGINX App Protect WAF Policy
 
-To upload your NGINX App Protect declarative JSON Policy to NGINX Controller, use an HTTP client like cURL and send a `PUT` request to the [Security Policy REST API}(https://docs.nginx.com/nginx-controller/api/reference/ctlr-v1/adc/docs/policies/v1/content/intro) endpoint.
-
+To upload your NGINX App Protect declarative JSON Policy to NGINX Controller, use an HTTP client like cURL and send a `PUT` request to the [Security Policy REST API}(https://docs.nginx.com/nginx-controller/api/ctlr-adc-api/)
 The JSON object should be similar to the example below:
 
 ```json
@@ -159,7 +158,7 @@ The JSON object should be similar to the example below:
 
 ### Create or Update a Security Strategy with a BYO NGINX App Protect WAF Policy
 
-You can create or update a Security Strategy that references a BYO NGINX App Protect WAF policy by sending a `PUT` request to the [Strategies REST API](https://docs.nginx.com/nginx-controller/api/reference/ctlr-v1/adc/docs/strategies/v1/content/intro) endpoint.
+You can create or update a Security Strategy that references a BYO NGINX App Protect WAF policy by sending a `PUT` request to the [Strategies REST API](https://docs.nginx.com/nginx-controller/api/ctlr-adc-api/) endpoint.
 
 The JSON object should be similar to the example below:
 
@@ -188,7 +187,7 @@ The JSON object should be similar to the example below:
 
 To add your BYO NGINX App Protect Policy to your App(s), you need to add a reference to the Security Strategy that contains the policy to your App Component.
 
-To do so, send a `PUT` request to the [Components REST API](https://docs.nginx.com/nginx-controller/api/reference/ctlr-v1/adc/docs/components/v1/content/intro) endpoint.
+To do so, send a `PUT` request to the [Components REST API](https://docs.nginx.com/nginx-controller/api/ctlr-adc-api/#tag/Components) endpoint.
 
 The JSON object should be similar to the example below:
 

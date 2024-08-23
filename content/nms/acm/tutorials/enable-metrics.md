@@ -1,5 +1,5 @@
 ---
-description: Learn how to enable and use metrics for NGINX Management Suite API Connectivity
+description: Learn how to enable and use metrics for F5 NGINX Management Suite API Connectivity
   Manager.
 docs: DOCS-1055
 tags:
@@ -51,7 +51,7 @@ This section configures the hosts used in this tutorial. In the following table,
 
 | Hosts                       | Virtual Cores | Memory | Storage | IP Address  | Hostname    |
 |-----------------------------|---------------|--------|---------|-------------|-------------|
-| NGINX Management Suite Host | 2 vCPUs       | 4GB    | 100GB   | `192.0.2.2` | `acm-ctrl`  |
+| F5 NGINX Management Suite Host | 2 vCPUs       | 4GB    | 100GB   | `192.0.2.2` | `acm-ctrl`  |
 | Data Plane Host             | 1 vCPU        | 1GB    | 10GB    | `192.0.2.3` | `data-host` |
 | Echo Server                 | 1 vCPU        | 1GB    | 10GB    | `192.0.2.4` | `echo-host` |
 

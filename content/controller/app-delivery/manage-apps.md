@@ -14,7 +14,7 @@ weight: 300
 
 Follow the steps in this topic to learn how to create and manage Apps and App Components.
 
-{{< tip >}}You can also use the NGINX Controller API to create Apps and Components. See the [NGINX Controller API Reference]({{< relref "/controller/api/_index.md" >}}) for details.{{< /tip >}}
+{{< tip >}}You can also use the F5 NGINX Controller API to create Apps and Components. See the [NGINX Controller API Reference]({{< relref "/controller/api/_index.md" >}}) for details.{{< /tip >}}
 &nbsp;
 
 ## Before You Begin

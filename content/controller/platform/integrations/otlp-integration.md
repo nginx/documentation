@@ -1,5 +1,5 @@
 ---
-description: Create an OpenTelemetry Protocol (OTLP) Integration for NGINX Controller.
+description: Create an OpenTelemetry Protocol (OTLP) Integration for F5 NGINX Controller.
 docs: DOCS-565
 title: OTLP Integration
 weight: 30
@@ -76,7 +76,7 @@ service:
 
 Take the following steps to create an integration for OpenTelemetry Collector:
 
-1. Open the NGINX Controller user interface and log in.
+1. Open the F5 NGINX Controller user interface and log in.
 2. Select the NGINX Controller menu icon, then select **Platform**.
 3. On the **Platform** menu, select **Integrations**.
 4. On the **Integrations** menu, select **Create Integration**.

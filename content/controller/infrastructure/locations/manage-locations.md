@@ -1,5 +1,5 @@
 ---
-description: Create and manage Locations for your NGINX Instances.
+description: Create and manage Locations for your F5 NGINX Instances.
 docs: DOCS-778
 doctypes:
 - tutorial
@@ -12,7 +12,7 @@ weight: 10
 
 ## Overview
 
-You can logically group your NGINX instances and instance groups by their physical locations using the **Locations** settings page in the NGINX Controller web interface.
+You can logically group your NGINX instances and instance groups by their physical locations using the **Locations** settings page in the F5 NGINX Controller web interface.
 
 {{< note >}}
 By default, NGINX Instances are added to the `unspecified` Location. The unspecified Location is a system-owned resource that can’t be updated or deleted.

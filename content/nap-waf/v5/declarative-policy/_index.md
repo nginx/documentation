@@ -1,5 +1,5 @@
 ---
-description: Learn about NGINX App Protect WAF v5 Policies Reference.
+description: Learn about F5 NGINX App Protect WAF v5 Policies Reference.
 menu:
   docs:
     parent: v5

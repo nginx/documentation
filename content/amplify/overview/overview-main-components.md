@@ -1,6 +1,6 @@
 ---
 title: Overview and Main Components
-description: Learn about NGINX Amplify and its main components.
+description: Learn about F5 NGINX Amplify and its main components.
 weight: 10
 toc: true
 tags: ["docs"]
@@ -9,7 +9,7 @@ docs: "DOCS-976"
 
 ## What Is F5 NGINX Amplify?
 
-[F5 NGINX Amplify](https://amplify.nginx.com/signup/) offers in-depth monitoring for NGINX-based web applications. It simplifies the process of analyzing and resolving issues related to performance and scalability.
+[NGINX Amplify](https://amplify.nginx.com/signup/) offers in-depth monitoring for NGINX-based web applications. It simplifies the process of analyzing and resolving issues related to performance and scalability.
 
 With NGINX Amplify, you can:
 

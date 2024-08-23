@@ -1,5 +1,5 @@
 ---
-description: This guide explains how to uninstall NGINX Management Suite, including NGINX
+description: This guide explains how to uninstall F5 NGINX Management Suite, including NGINX
   Instance Manager.
 docs: DOCS-804
 doctypes: task
@@ -8,7 +8,7 @@ toc: true
 weight: 1000
 ---
 
-## NGINX Management Suite {#uninstall-nms}
+## F5 NGINX Management Suite {#uninstall-nms}
 
 {{<tabs name="uninstall_nms">}}
 {{%tab name="CentOS, RHEL, and RPM-Based"%}}

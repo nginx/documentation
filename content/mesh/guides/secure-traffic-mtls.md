@@ -2,7 +2,7 @@
 title: "Secure Mesh Traffic using mTLS"
 date: 2020-08-24T10:48:05-06:00
 toc: true
-description: "Learn about the mTLS options available in NGINX Service Mesh."
+description: "Learn about the mTLS options available in F5 NGINX Service Mesh."
 weight: 30
 categories: ["tasks"]
 docs: "DOCS-696"

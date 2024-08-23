@@ -1,5 +1,5 @@
 ---
-description: Sychronize configuration across a cluster of NGINX Plus instances. Though
+description: Sychronize configuration across a cluster of F5 NGINX Plus instances. Though
   designed for high-availability deployments, the solution works for any cluster.
 docs: DOCS-404
 doctypes:
@@ -186,7 +186,7 @@ Use a space or newline character to separate the items in each list:
 
 Back up the configuration before testing.
 
-- Synchronize configuration and reload NGINX Plus on the peers – `nginx-sync.sh`
+- Synchronize configuration and reload F5 NGINX Plus on the peers – `nginx-sync.sh`
 - Display usage information – `nginx-sync.sh -h`
 - Compare configuration between the primary and a peer – `nginx-sync.sh -c <peer-node>`
 - Compare configuration on the primary to all peers – `nginx-sync.sh -C`

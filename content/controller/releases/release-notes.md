@@ -1,6 +1,6 @@
 ---
 description: Learn about the new features, enhancements, resolved issues, and known
-  issues in NGINX Controller.
+  issues in F5 NGINX Controller.
 docs: DOCS-370
 doctypes:
 - reference
@@ -13,7 +13,7 @@ weight: 10
 
 ## Release Notes
 
-Here you can find the release information for NGINX Controller v3. NGINX Controller is NGINX's control-plane solution that manages the NGINX data plane. Built on a modular architecture, NGINX Controller enables you to manage the entire lifecycle of NGINX Plus, whether it’s deployed as a load balancer, API gateway, or a proxy in a service mesh environment.
+Here you can find the release information for F5 NGINX Controller v3. NGINX Controller is NGINX's control-plane solution that manages the NGINX data plane. Built on a modular architecture, NGINX Controller enables you to manage the entire lifecycle of NGINX Plus, whether it’s deployed as a load balancer, API gateway, or a proxy in a service mesh environment.
 
 We encourage you to install the latest version of NGINX Controller to take advantage of the newest features and updates.
 

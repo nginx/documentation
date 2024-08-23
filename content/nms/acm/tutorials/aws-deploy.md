@@ -20,7 +20,7 @@ Keep in mind that production environments may require larger instance sizes and 
 
 - Make sure you have an AWS account.
 
-{{< important >}}Because the [minimum requirement for the NGINX Management Suite host]({{< relref "/nms/tech-specs#system-sizing" >}}) requires 2 CPU and 4GB RAM (NOT a free tier size), completing this deployment guide will incur charges from AWS according to their price plan.{{< /important >}}
+{{< important >}}Because the [minimum requirement for the F5 NGINX Management Suite host]({{< relref "/nms/tech-specs#system-sizing" >}}) requires 2 CPU and 4GB RAM (NOT a free tier size), completing this deployment guide will incur charges from AWS according to their price plan.{{< /important >}}
 
 ### Hosts Specs
 

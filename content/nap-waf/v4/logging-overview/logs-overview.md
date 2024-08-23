@@ -1,5 +1,5 @@
 ---
-description: Learn about the NGINX App Protect WAF Logs Overview.
+description: Learn about the F5 NGINX App Protect WAF Logs Overview.
 docs: DOCS-911
 doctypes:
 - concept
@@ -8,9 +8,9 @@ toc: true
 weight: 510
 ---
 
-## App Protect Logging Overview
+## Overview
 
-There are 3 types of logs that App Protect on NGINX generates:
+There are 3 types of logs that F5 NGINX App Protect on NGINX generates:
 - [Security log or Request log]({{< relref "/nap-waf/v4/logging-overview/security-log" >}}): The HTTP requests and how App Protect processed them, including violations and signatures found.
 - [Operation logs]({{< relref "/nap-waf/v4/logging-overview/operation-logs" >}}): Events such as startup, shutdown and reconfiguration.
 - [Debug logs]({{< relref "/nap-waf/v4/logging-overview/debug-logs" >}}): technical messages at different levels of severity used to debug and resolve incidents and error behaviors.

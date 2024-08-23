@@ -3,7 +3,7 @@ _build:
   list: never
   publishResources: true
   render: always
-description: NGINX Management Suite documentation and help.
+description: F5 NGINX Management Suite documentation and help.
 docs: DOCS-898
 doctypes:
 - reference
@@ -14,7 +14,7 @@ toc: false
 
 ## Overview
 
-NGINX Management Suite is a family of management plane solutions that enable governance of the data plane to easily scale, secure, and monitor applications and APIs. It consists of:
+F5 NGINX Management Suite is a family of management plane solutions that enable governance of the data plane to easily scale, secure, and monitor applications and APIs. It consists of:
 
 - **Instance Manager:** Configure, scale, and manage NGINX Open Source, NGINX Plus, and NGINX App Protect WAF instances.
 

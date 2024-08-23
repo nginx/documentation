@@ -1,5 +1,5 @@
 ---
-description: Represents the state of the NGINX Controller Analytics REST API.
+description: Represents the state of the F5 NGINX Controller Analytics REST API.
 docs: DOCS-1279
 doctypes:
   - reference

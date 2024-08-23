@@ -138,7 +138,7 @@ This JSON example defines the log format policy for an environment: the error lo
 
 To add the Log Format policy using the web interface:
 
-1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in. Then, from the Launchpad menu, select **API Connectivity Manager**.
+1. In a web browser, go to the FQDN for your F5 NGINX Management Suite host and log in. Then, from the Launchpad menu, select **API Connectivity Manager**.
 2. On the left menu, select **Infrastructure**.
 3. On the *Workspaces* page, select a workspace in the list to which you'll add an environment.
 4. Select **Add** to add the environment.

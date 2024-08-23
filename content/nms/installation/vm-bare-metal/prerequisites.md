@@ -15,7 +15,7 @@ weight: 1
 
 ### Requirements {#requirements}
 
-To install NGINX Management Suite, you need the following:
+To install F5 NGINX Management Suite, you need the following:
 
 - A trial or paid subscription for NGINX Management Suite. [Sign up for NGINX Management Suite at MyF5](https://account.f5.com/myf5).
 - A Linux instance to host the NGINX Management Suite platform and modules

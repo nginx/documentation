@@ -1,5 +1,5 @@
 ---
-description: This guide explains how to deploy NGINX App Protect WAF v5 release in
+description: This guide explains how to deploy F5 NGINX App Protect WAF v5 release in
   a Kubernetes environment.
 docs: DOCS-1366
 doctypes:
@@ -11,7 +11,7 @@ weight: 400
 
 ## Prerequisites
 
-- Active NGINX App Protect WAF subscription in [MyF5](https://my.f5.com/) (purchased or trial).
+- Active F5 NGINX App Protect WAF subscription in [MyF5](https://my.f5.com/) (purchased or trial).
 - A functional Kubernetes cluster.
 - `kubectl` command-line tool, properly configured.
 

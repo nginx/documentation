@@ -1,5 +1,5 @@
 ---
-description: Learn how to easily create and manage user roles with NGINX Management
+description: Learn how to easily create and manage user roles with F5 NGINX Management
   Suite to tailor access according to your needs.
 docs: DOCS-1272
 doctypes:
@@ -20,7 +20,7 @@ h2 {
 
 ## Overview
 
-The NGINX Management Suite emphasizes role-based user access control. The suite includes a predefined `admin` role for initial setup and administration, but it doesn't stop there. Roles designed specifically for API Owners and Infrastructure Admins, for instance, let organizations finely delineate responsibilities and permissions. If these built-in roles don't meet your needs, it's easy to create your own.
+The F5 NGINX Management Suite emphasizes role-based user access control. The suite includes a predefined `admin` role for initial setup and administration, but it doesn't stop there. Roles designed specifically for API Owners and Infrastructure Admins, for instance, let organizations finely delineate responsibilities and permissions. If these built-in roles don't meet your needs, it's easy to create your own.
 
 ## Create Roles {#create-roles}
 

@@ -1,5 +1,5 @@
 ---
-description: Learn how to edit and publish NGINX configuration files using NGINX Management
+description: Learn how to edit and publish NGINX configuration files using F5 NGINX Management
   Suite Instance Manager.
 docs: DOCS-822
 doctypes:
@@ -13,7 +13,7 @@ weight: 200
 
 ## Overview
 
-With Instance Manager, you can easily edit and publish NGINX configurations to your NGINX and NGINX Plus instances. As you edit your configurations, the NGINX config analyzer will automatically detect and highlight errors, ensuring accuracy and reliability.
+With Instance Manager, you can easily edit and publish NGINX configurations to your NGINX and F5 NGINX Plus instances. As you edit your configurations, the NGINX config analyzer will automatically detect and highlight errors, ensuring accuracy and reliability.
 
 ---
 

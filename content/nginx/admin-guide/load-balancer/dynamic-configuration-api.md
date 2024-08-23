@@ -1,5 +1,5 @@
 ---
-description: Dynamically reconfigure the servers in an NGINX Plus upstream group using
+description: Dynamically reconfigure the servers in an F5 NGINX Plus upstream group using
   the NGINX Plus API, without reloading configuration or restarting processes.
 docs: DOCS-415
 doctypes:
@@ -12,7 +12,7 @@ weight: 700
 <span id="overview"></span>
 ## Overview
 
-With NGINX Plus, configuration of upstream servers in a server group can be modified on-the-fly without reloading the servers and NGINX configuration. This is useful for:
+With F5 NGINX Plus, configuration of upstream servers in a server group can be modified on-the-fly without reloading the servers and NGINX configuration. This is useful for:
 
 - autoscaling, when you need to add more servers
 - maintenance, when you need to remove a server, specify a backup server, or take a server down temporarily

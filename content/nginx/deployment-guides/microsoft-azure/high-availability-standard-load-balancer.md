@@ -1,5 +1,5 @@
 ---
-description: Create a highly available active-active deployment of NGINX Plus on Microsoft
+description: Create a highly available active-active deployment of F5 NGINX Plus on Microsoft
   Azure in combination with the Azure Standard Load Balancer.
 docs: DOCS-457
 doctypes:
@@ -10,7 +10,7 @@ toc: true
 weight: 100
 ---
 
-This guide explains how to use NGINX Plus to complement the native load‑balancing options in the Microsoft Azure cloud. We show how to implement our recommended solution, which combines Azure's Standard Load Balancer for fast and efficient handling of Layer 4 traffic and NGINX Plus for advanced, Layer 7 features such as load balancing, caching, and content‑based routing. The combined Standard Load Balancer and NGINX Plus solution is fast, powerful, reliable, and likely to be relatively low‑cost.
+This guide explains how to use F5 NGINX Plus to complement the native load‑balancing options in the Microsoft Azure cloud. We show how to implement our recommended solution, which combines Azure's Standard Load Balancer for fast and efficient handling of Layer 4 traffic and NGINX Plus for advanced, Layer 7 features such as load balancing, caching, and content‑based routing. The combined Standard Load Balancer and NGINX Plus solution is fast, powerful, reliable, and likely to be relatively low‑cost.
 
 This guide explains how to set up Standard Load Balancer in front of a specific number of NGINX Plus load balancers.
 
@@ -33,7 +33,7 @@ Azure Traffic Manager is a DNS‑based traffic load balancer that optimally dist
 
 NGINX Plus is complementary to Standard Load Balancer. Operating at Layer 7 (the application layer), it uses more advanced load‑balancing criteria, including schemes that rely on the content of requests and the results of NGINX Plus's [active health checks]({{< relref "../../admin-guide/load-balancer/http-health-check.md" >}}).
 
-[NGINX Plus](http://www.nginx.com/products/nginx) is the commercially supported version of [NGINX Open Source](https://nginx.org/en). NGINX Plus is a complete application delivery platform, extending the power of NGINX with a host of enterprise‑ready capabilities that enhance an AWS web application deployment and are instrumental to building web applications at scale.
+[NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) is the commercially supported version of [NGINX Open Source](https://nginx.org/en). NGINX Plus is a complete application delivery platform, extending the power of NGINX with a host of enterprise‑ready capabilities that enhance an AWS web application deployment and are instrumental to building web applications at scale.
 
 NGINX Plus provides both reverse‑proxy features and load‑balancing features, including:
 

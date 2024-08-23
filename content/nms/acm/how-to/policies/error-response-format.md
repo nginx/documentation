@@ -1,5 +1,5 @@
 ---
-description: Learn how to use the NGINX Management Suite API Connectivity Manager
+description: Learn how to use the F5 NGINX Management Suite API Connectivity Manager
   to configure the Error Response Format policy that customizes HTTP error codes and
   messages.
 docs: DOCS-1345
@@ -116,7 +116,7 @@ This JSON example defines an Error Response policy.
 
 To add an Error Response Format policy using the web interface:
 
-1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in. Then, from the Launchpad menu, select **API Connectivity Manager**.
+1. In a web browser, go to the FQDN for your F5 NGINX Management Suite host and log in. Then, from the Launchpad menu, select **API Connectivity Manager**.
 1. On the left menu, select **Infrastructure**.
 1. Choose the workspace that includes the environment for the cluster you want to add the policy to.
 1. Select the environment.

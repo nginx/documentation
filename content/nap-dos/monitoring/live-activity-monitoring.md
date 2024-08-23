@@ -12,7 +12,7 @@ weight: 140
 
 ## Overview
 
-NGINX App Protect DoS offers a variety of application monitoring tools:
+F5 NGINX App Protect DoS offers a variety of application monitoring tools:
 
 - **App Protect DoS Dashboard Page**: This dynamic interface provides real-time monitoring and details of Protected Objects.
 - **NGINX App Protect DoS REST API**: This interface offers comprehensive metrics about the Protected Objects.

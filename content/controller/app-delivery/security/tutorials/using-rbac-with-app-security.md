@@ -119,7 +119,7 @@ The default strategy (`/security/strategies/balanced_default`) is read-only and 
 
 ## Permissions for Predefined Roles
 
-The following table lists the permissions for NGINX Controller’s predefined roles:
+The following table lists the permissions for F5 NGINX Controller’s predefined roles:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 

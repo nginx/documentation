@@ -1,6 +1,6 @@
 ---
 description: Load balance Oracle E-Business Suite applications with the advanced features
-  in NGINX Plus, following our step-by-step setup instructions.
+  in F5 NGINX Plus, following our step-by-step setup instructions.
 docs: DOCS-454
 doctypes:
 - task
@@ -9,12 +9,12 @@ toc: true
 weight: 100
 ---
 
-This deployment guide explains how to use NGINX Plus to load balance traffic across a pool of <span style="white-space: nowrap;">Oracle E-Business Suite (EBS) 12</span> servers. It provides complete instructions for configuring NGINX Plus as required.
+This deployment guide explains how to use F5 NGINX Plus to load balance traffic across a pool of <span style="white-space: nowrap;">Oracle E-Business Suite (EBS) 12</span> servers. It provides complete instructions for configuring NGINX Plus as required.
 
 <span id="about-nginx"></span>
 ## About NGINX Plus and Oracle EBS
 
-[NGINX Plus](https://www.nginx.com/products/nginx) is the commercially supported version of [NGINX Open Source](https://nginx.org/en/). NGINX Plus is a complete application delivery platform, extending the power of NGINX with a host of enterprise‑ready capabilities that enhance an Oracle EBS deployment and are instrumental to building web applications at scale:
+[NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) is the commercially supported version of [NGINX Open Source](https://nginx.org/en/). NGINX Plus is a complete application delivery platform, extending the power of NGINX with a host of enterprise‑ready capabilities that enhance an Oracle EBS deployment and are instrumental to building web applications at scale:
 
 - [Full‑featured HTTP, TCP, and UDP load balancing](https://www.nginx.com/products/nginx/load-balancing/)
 - [Intelligent session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence)

@@ -1,5 +1,5 @@
 ---
-description: Learn how to manage NGINX Controller's underlying infrastructure.
+description: Learn how to manage F5 NGINX Controller's underlying infrastructure.
 menu:
   docs:
     parent: NGINX Controller

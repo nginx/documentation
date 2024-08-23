@@ -16,7 +16,7 @@ weight: 70
 
 ## Overview
 
-You can use the NGINX Controller **Graphs** viewer to view key metrics for all of your monitored systems.
+You can use the F5 NGINX Controller **Graphs** viewer to view key metrics for all of your monitored systems.
 
 ## Before You Begin
 

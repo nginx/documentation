@@ -1,5 +1,5 @@
 ---
-description: Configure highly available NGINX Plus load balancing of application instances,
+description: Configure highly available F5 NGINX Plus load balancing of application instances,
   in an all-active deployment on the Google Cloud Platform.
 docs: DOCS-450
 doctypes:
@@ -9,7 +9,7 @@ toc: true
 weight: 100
 ---
 
-This deployment guide explains how to create and configure the initial components for an all‑active, high‑availability deployment of NGINX Plus on Google Compute Engine (GCE), the Google Cloud Platform (GCP) product for running workloads on virtual machines (VMs). Multiple instances of NGINX Plus in active pairs load balance incoming connections across multiple application environments.
+This deployment guide explains how to create and configure the initial components for an all‑active, high‑availability deployment of F5 NGINX Plus on Google Compute Engine (GCE), the Google Cloud Platform (GCP) product for running workloads on virtual machines (VMs). Multiple instances of NGINX Plus in active pairs load balance incoming connections across multiple application environments.
 
 
 **Notes:**
@@ -22,7 +22,7 @@ This deployment guide explains how to create and configure the initial component
 
 The deployment combines the following technologies:
 
-- [NGINX Plus](https://www.nginx.com/products/nginx) – Load balances HTTP connections across multiple instances of two different applications. Instructions are provided both for manual installation on a standard GCE VM image and for setting up the prebuilt NGINX Plus VM image available in the Google Marketplace.
+- [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) – Load balances HTTP connections across multiple instances of two different applications. Instructions are provided both for manual installation on a standard GCE VM image and for setting up the prebuilt NGINX Plus VM image available in the Google Marketplace.
 - PHP-FPM – Supports the two sample applications.
 - [GCE network load balancer](https://cloud.google.com/compute/docs/load-balancing/network) – Provides TCP connectivity between clients and the NGINX Plus load‑balancing (LB) instances in a GCP region, as well as maintaining session persistence for each NGINX Plus instance.
 - [GCE instance groups](https://cloud.google.com/compute/docs/instance-groups) – Provide a mechanism for managing a group of VM instances as a unit.

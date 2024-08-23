@@ -1,5 +1,5 @@
 ---
-description: Deploy NGINX and NGINX Plus as the Docker container.
+description: Deploy NGINX and F5 NGINX Plus as the Docker container.
 docs: DOCS-409
 doctypes:
 - task
@@ -8,7 +8,7 @@ toc: true
 weight: 600
 ---
 
-[NGINX Plus](https://www.nginx.com/products/nginx/), the high‑performance application delivery platform, load balancer, and web server, is available as the Docker container.
+[F5 NGINX Plus](https://www.nginx.com/products/nginx/), the high‑performance application delivery platform, load balancer, and web server, is available as the Docker container.
 
 <span id="prereq"></span>
 ## Prerequisites
@@ -44,6 +44,7 @@ The image may contain a particular version of NGINX Plus or contain a bundle of 
 - agent — NGINX Plus along with NGINX Agent in a single image
 - rootless-base — NGINX Plus run from `nginx` user
 - rootless-agent — NGINX Plus with NGINX Agent both run from `nginx` user
+- modules — NGINX Plus only <!-- As described in internal issue SE-3 -->
 
 
 ### Downloading the NGINX Plus certificate and key or JSON Web Token{#myf5-download}
@@ -131,6 +132,12 @@ For NGINX Plus with NGINX Agent installed from `nginx` user (rootless installati
 
 ```shell
 docker pull private-registry.nginx.com/nginx-plus/rootless-agent:<version-tag>
+```
+
+For NGINX modules, run:<!-- Is this enough info?-->
+
+```shell
+docker pull private-registry.nginx.com/nginx-plus/modules:<version-tag>
 ```
 
 Tagging examples:

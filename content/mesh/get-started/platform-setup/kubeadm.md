@@ -1,6 +1,6 @@
 ---
 title: Kubeadm
-description: Learn how to set up Kubeadm for use with NGINX Service Mesh.
+description: Learn how to set up Kubeadm for use with F5 NGINX Service Mesh.
 categories: ["tasks"]
 toc: true
 docs: "DOCS-684"

@@ -1,6 +1,6 @@
 ---
 title: Rancher Kubernetes Engine
-description: Learn how to set up Rancher Kubernetes Engine (RKE) for use with NGINX Service Mesh.
+description: Learn how to set up Rancher Kubernetes Engine (RKE) for use with F5 NGINX Service Mesh.
 categories: ["tasks"]
 toc: true
 docs: "DOCS-687"

@@ -1,5 +1,5 @@
 ---
-description: Create a Datadog Integration for NGINX Controller.
+description: Create a Datadog Integration for F5 NGINX Controller.
 docs: DOCS-564
 title: Datadog Integration
 weight: 30
@@ -7,7 +7,7 @@ weight: 30
 
 ## Datadog Integration Requirements
 
-NGINX Controller sends data to the Datadog API; NGINX Controller does not use an agent. Datadog requires that NGINX Controller present an access token with the data to authenticate the service.
+F5 NGINX Controller sends data to the Datadog API; NGINX Controller does not use an agent. Datadog requires that NGINX Controller present an access token with the data to authenticate the service.
 
 1. Log into the [Datadog web interface](https://app.datadoghq.com/).
 2. On the navigation menu, select **Integrations** > **APIs**.

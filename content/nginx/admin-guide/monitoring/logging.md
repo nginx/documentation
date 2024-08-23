@@ -107,7 +107,7 @@ access_log /path/to/access.log combined if=$loggable;
 <span id="tls_sample"></span>
 ## Usecase: Sampling TLS Parameters
 
-Many clients use TLS versions older than TLS 1.3. Though many ciphers are declared insecure, older implementations still use them; ECC certificates offer greater performance than RSA, but not all clients can accept ECC. Many TLS attacks rely on a “man in the middle” who intercepts the cipher negotiation handshake and forces the client and server to select a less secure cipher. Therefore, it’s important to configure NGINX Plus to not support weak or legacy ciphers, but doing so may exclude legacy clients.
+Many clients use TLS versions older than TLS 1.3. Though many ciphers are declared insecure, older implementations still use them; ECC certificates offer greater performance than RSA, but not all clients can accept ECC. Many TLS attacks rely on a “man in the middle” who intercepts the cipher negotiation handshake and forces the client and server to select a less secure cipher. Therefore, it’s important to configure F5 NGINX Plus to not support weak or legacy ciphers, but doing so may exclude legacy clients.
 
 You can evaluate the SSL data obtained from the client and determine what proportion of clients get excluded if support for older SSL protocols and ciphers is removed.
 

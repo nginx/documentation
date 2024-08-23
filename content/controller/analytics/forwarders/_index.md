@@ -1,5 +1,5 @@
 ---
-description: Learn how to forward data from NGINX Controller to external services.
+description: Learn how to forward data from F5 NGINX Controller to external services.
 menu:
   docs:
     parent: Analytics

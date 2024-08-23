@@ -1,6 +1,6 @@
 ---
 description: Deploy global server load balancing (GSLB) for domains hosted in multiple
-  AWS regions, with Amazon Route 53 and NGINX Plus in an HA configuration.
+  AWS regions, with Amazon Route 53 and F5 NGINX Plus in an HA configuration.
 docs: DOCS-448
 doctypes:
 - task
@@ -13,12 +13,12 @@ This deployment guide explains how to configure global server load balancing (GS
 
 The AWS Domain Name System (DNS) service, [Amazon Route 53](https://aws.amazon.com/route53/), performs global server load balancing by responding to a DNS query from a client with the DNS record for the region that is closest to the client and hosts the domain. For best performance and predictable failover between regions, "closeness" is measured in terms of network latency rather than the actual geographic location of the client.
 
-The [Appendix](#appendix) provides instructions for creating EC2 instances with the names used in this guide, and installing and configuring the NGINX software on them.
+The [Appendix](#appendix) provides instructions for creating EC2 instances with the names used in this guide, and installing and configuring the F5 NGINX software on them.
 
 <span id="about-nginx"></span>
 ## About NGINX Plus
 
-[NGINX Plus](http://www.nginx.com/products/nginx) is the commercially supported version of the [NGINX Open Source](https://nginx.org/en) software. NGINX Plus is a complete application delivery platform, extending the power of NGINX with a host of enterprise‑ready capabilities that enhance an AWS application server deployment and are instrumental to building web applications at scale:
+[NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) is the commercially supported version of the [NGINX Open Source](https://nginx.org/en) software. NGINX Plus is a complete application delivery platform, extending the power of NGINX with a host of enterprise‑ready capabilities that enhance an AWS application server deployment and are instrumental to building web applications at scale:
 
 - [Full‑featured HTTP, TCP, and UDP load balancing](https://www.nginx.com/products/nginx/load-balancing/)
 - [Intelligent session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence)

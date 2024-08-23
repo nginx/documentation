@@ -1,5 +1,5 @@
 ---
-description: Learn how to add an NGINX App Protect WAF policy to your environment
+description: Learn how to add an F5 NGINX App Protect WAF policy to your environment
   by using the Advanced Security policy in NGINX Management Suite API Connectivity
   Manager.
 docs: DOCS-1264
@@ -22,7 +22,7 @@ weight: 350
 
 ## About Advanced Security Policy
 
-Use the *Advanced Security* policy to add a pre-defined NGINX App Protect to your deployment. Doing so will apply the rules specified in the policy to your APIs.
+Use the *Advanced Security* policy to add a pre-defined F5 NGINX App Protect to your deployment. Doing so will apply the rules specified in the policy to your APIs.
 This will allow enforcement of rules to *Block* or *Monitor* security events triggering those violations set out in the policy.
 
 ### Intended Audience

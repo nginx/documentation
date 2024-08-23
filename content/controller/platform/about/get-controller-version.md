@@ -1,5 +1,5 @@
 ---
-description: How to look up the version details for NGINX Controller and its components.
+description: How to look up the version details for F5 NGINX Controller and its components.
 docs: DOCS-780
 doctypes:
 - task
@@ -12,7 +12,7 @@ weight: 130
 
 ## Overview
 
-You can use the NGINX Controller command-line interface, web interface, and API to look up the version information for NGINX Controller. The NGINX Controller API also returns version information for the NGINX Controller components.
+You can use the F5 NGINX Controller command-line interface, web interface, and API to look up the version information for NGINX Controller. The NGINX Controller API also returns version information for the NGINX Controller components.
 
 ## Use helper.sh to Look Up Version Info
 

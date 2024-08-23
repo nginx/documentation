@@ -12,7 +12,7 @@ weight: 201
 
 ## Overview
 
-Follow the steps in this guide to set up a NGINX Controller Integration that forwards events to a syslog server.
+Follow the steps in this guide to set up a F5 NGINX Controller Integration that forwards events to a syslog server.
 
 ## Before You Begin
 
