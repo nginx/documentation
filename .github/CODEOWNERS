@@ -1,3 +1,31 @@
-# Main global owner #
-#####################
-*
+# Each of these groups of CODEOWNERS have approval and merge authority over 
+# the noted directories.
+#
+# If you want to add, modify, or delete files in any of these directories,
+# open a pull request. Then add the approrpriate group name (without the `@`)
+# to the list of "Reviewers."
+#
+# Order is important; the last matching pattern takes precedence. 
+# For example, when someone opens a pull request that only modifies files 
+# in the content/nginx-one directory, you should assign @nginxinc/one-docs-approvers
+# as a reviewer.
+# 
+# Lines starting with '#' are comments.
+# Each line is a file pattern followed by one or more owners.
+
+# DocOps
+*                           @nginxinc/nginx-docs
+# NGINX Plus
+content/nginx/*             @nginxinc/plus-docs-approvers
+# NGINX Agent
+content/nginx/nms/agent/*   @nginxinc/agent-docs-approvers
+# NGINX One
+content/nginx-one/*         @nginxinc/one-docs-approvers
+# NGINX Instance Manager
+content/nms/nim/*           @nginxinc/nim-docs-approvers
+content/nim/*               @nginxinc/nim-docs-approvers
+# NGINX App Protect WAF
+content/nap-waf/*           @nginxinc/nap-docs-approvers
+data/nap-waf/*              @nginxinc/nap-docs-approvers
+# NGINX App Protect DoS
+content/nap-dos/*           @nginxinc/dos-docs-approvers
