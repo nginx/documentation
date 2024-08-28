@@ -26,7 +26,7 @@ By the end of this tutorial, you'll be able to:
 - {product} provides many of the same features as {competitors}, but with {feature}, you can...
 - Using {feature} enables you to {pain point}...
 
-## Before you start 
+## Before you begin
 
 {Use this section to tell users about any prerequisites needed before they start the tutorial, such as:
 

@@ -55,7 +55,7 @@ This document provides an overview of coffee's history and presents a few popula
 
 Experimenting with different brewing methods can be a fun way to explore the world of Nbeamex Coffee.
 
-## Additional Resources
+## Additional resources
 
 How-to guides
 

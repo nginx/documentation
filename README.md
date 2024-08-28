@@ -1,4 +1,4 @@
-# NGINX Docs
+# NGINX Documentation
 
 [![Check for Broken Links](https://github.com/nginxinc/docs/actions/workflows/check-broken-links.yml/badge.svg)](https://github.com/nginxinc/docs/actions/workflows/check-broken-links.yml)
 
@@ -15,7 +15,7 @@ We are beta-testing contribution using [CloudCannon](https://app.cloudcannon.com
 
 ---
 
-## Publishing Environments
+## Publishing environments
 
 | Development | Staging | Production |
 |--------|--------|--------|
@@ -26,7 +26,7 @@ We are beta-testing contribution using [CloudCannon](https://app.cloudcannon.com
 
 ---
 
-## Git Guidelines
+## Git guidelines
 
 - Keep a clean, concise and meaningful git commit history on your branch (within reason), rebasing locally and squashing before submitting a PR.
 - Use the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) format when writing a commit message, so that changelogs can be automatically generated
@@ -37,7 +37,7 @@ We are beta-testing contribution using [CloudCannon](https://app.cloudcannon.com
   - Reference issues and pull requests liberally after the subject line.
   - Add more detailed description in the body of the git message (`git commit -a` to give you more space and time in your text editor to write a good message instead of `git commit -am`).
 
-### Forking and Pull Requests
+### Pull requests and forks
 
 This repo uses a [forking workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow). Take the steps below to fork the repo, check out a feature branch, and open a pull request with your changes.
 
@@ -72,24 +72,27 @@ This repo uses a [forking workflow](https://www.atlassian.com/git/tutorials/comp
       Technical reviewers should be able to verify that the information provided is accurate.  
       Documentation reviewers ensure that the content conforms to the NGINX Style Guide, is grammatically correct, and adheres to the NGINX content templates. 
 
-## Release Management and Publishing
+## Release management and publishing
 
 **`Main`** is the default branch in this repo. Main should always be releaseable. 
 **Do not merge any content into main that is not approved for release.**
 
 If you are working on content that isn't for a specific release (i.e., it can be published upon completion), open your pull request into the `main` branch.
 
-### Prepare Content for Future Releases
+### Preparing content for future releases
 
 If you are working on content for a future release, create a release branch from `main` that uses the naming format *acronym-release-x.y.x* (for example, `adm-release-4.0.0`). Work on your docs in feature branches off of the release branch. Open pull requests into the release branch when you are ready to merge your work.
 
-## 📨 Feature Requests, Support, and Issue Reporting
+## Feature requests, support, and issue reporting
 
-### Report a Bug
+### Report a Bbg
 
 To report a bug, open an issue on GitHub with the label `bug` using the available bug report issue template. Please ensure the bug has not already been reported. **If the bug is a potential security vulnerability, please report it using our [security policy](https://github.com/nginxinc/docs/blob/main/SECURITY.md).**
 
-### Suggest a Feature or Enhancement
+### Suggest a feature or enhancement
 
 To suggest a feature or enhancement, please create an issue on GitHub with the label `enhancement` using the available [feature request template](https://github.com/nginxinc/docs/blob/main/.github/feature_request_template.md). Please ensure the feature or enhancement has not already been suggested.
 
+## Credits
+
+- [The Good Docs Project](https://www.thegooddocsproject.dev/), whose templates we've adapted for our use.

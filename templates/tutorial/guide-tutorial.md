@@ -1,7 +1,5 @@
 # The tutorial template
 
-> Thank you for downloading this template from The Good Docs Project! Before using the template, read this template guide for information about how to complete each section. Want to explore more templates? Check them out in our [templates GitLab repository](https://gitlab.com/tgdp/templates).
-
 The tutorial template includes:
 
 - Placeholder text that you can replace with your own text. This text is indicated in {curly braces}.
@@ -23,8 +21,6 @@ The table below identifies the differences between the two.
 | Follows a carefully managed path, from the start to the end.                                                                                    | Aims for a successful result, and guides the user along the safest, surest way to the goal.              |
 | Eliminates any unexpected scenarios and provides users with a successful finish.                                                                | Alerts the user to the possibility of unexpected scenarios and provides guidance on how to deal with it. |
 | Assumes that users do not have any practical knowledge and must explicitly state any tools, file configurations, conceptual details, and so on. | Assumes that users have the practical knowledge of tools, file configurations, applications, and so on.  |
-
-
 
 ## Helpful tips when writing your tutorial 
 
@@ -61,7 +57,6 @@ Here are some examples:
 - By the end of this tutorial, you'll be able to create a private channel in Slack.
 
 If you need help with creating learning objectives, consider using Arizona State University's [Learning Objectives Builder tool](https://teachonline.asu.edu/objectives-builder/).
-
 
 #### Intended audience and background knowledge
 
