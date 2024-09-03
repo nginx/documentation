@@ -2,10 +2,9 @@
 
 [![Check for Broken Links](https://github.com/nginxinc/docs/actions/workflows/check-broken-links.yml/badge.svg)](https://github.com/nginxinc/docs/actions/workflows/check-broken-links.yml)
 
+This repository contains all of the user documentation for NGINX's enterprise products, as well as the requirements for linting, building, and publishing the documentation.
 
-This repo contains all of the user documentation for NGINX's enterprise products, as well as the requirements for linting, building, and publishing the documentation.
-
-Docs are written in Markdown. We build the docs using [Hugo](https://gohugo.io) and host them on [Netlify](https://www.netlify.com/).
+We write our documentation in Markdown. We build it with [Hugo](https://gohugo.io) and our custom [NGINX Hugo theme](https://github.com/nginxinc/nginx-hugo-theme). We set up previews and deployments using our [docs-actions](https://github.com/nginxinc/docs-actions?tab=readme-ov-file#docs-actions) workflow.
 
 ## ✨ Contributing
 
@@ -20,9 +19,9 @@ We are beta-testing contribution using [CloudCannon](https://app.cloudcannon.com
 | Development | Staging | Production |
 |--------|--------|--------|
 | https://docs-dev.nginx.com | https://docs-staging.nginx.com | https://docs.nginx.com |
-| All commits to the `dev` branch, feature branches, pull request deploy previews publish to the docs-dev site.<br><br>This site is primarily used for review of content under development. | All commits to `main` publish to the docs-staging environment automatically.<br><br>This is helpful for sharing staged content with stakeholders for signoff immediately prior to a release. | Members of the @nginxinc/nginx-docs team can manually publish deploys via the Netlify Admin console.<br><br>*Automatic publishing is not currently implemented for this repo.* Work to add a GitHub Action that publishes to the production site once a day is in progress. |
+| All commits to the `dev` branch, feature branches, pull request deploy previews publish to the docs-dev site.<br><br>This site is primarily used for review of content under development. | All commits to `main` publish to the docs-staging environment automatically.<br><br>This is helpful for sharing staged content with stakeholders for signoff immediately prior to a release. | Members of the DocOps team can manually publish deploys with a GitHub action.<br><br>*Automatic publishing is not currently implemented for this repo.* Work to add a GitHub Action that publishes to the production site once a day is in progress. |
 
-**NOTE**: The dev and staging sites are password-protected; contact a member of the @nginxinc/nginx-docs team if you need access.  
+**NOTE**: Pull request previews and the development and staging sites are all password-protected. You can find the latest login details on Slack or Confluence.
 
 ---
 
