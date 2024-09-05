@@ -12,7 +12,7 @@ weight: 200
 
 ## Overview
 
-This guide explains how to create and manage config sync groups in the F5 NGINX One Cloud Console. Config sync groups synchronize NGINX configurations across multiple NGINX instances, ensuring consistency and ease of management.
+This guide explains how to create and manage config sync groups in the F5 NGINX One Console. Config sync groups synchronize NGINX configurations across multiple NGINX instances, ensuring consistency and ease of management.
 
 If you’ve used [instance groups in NGINX Instance Manager]({{< relref "/nms/nim/how-to/instances/manage-instance-groups.md" >}}), you’ll find config sync groups in NGINX One similar, though the steps and terminology differ slightly.
 
@@ -20,7 +20,7 @@ If you’ve used [instance groups in NGINX Instance Manager]({{< relref "/nms/ni
 
 Before you create and manage config sync groups, ensure:
 
-- You have access to the NGINX One Cloud Console.
+- You have access to the NGINX One Console.
 - You have the necessary permissions to create and manage config sync groups.
 - NGINX instances are properly registered with NGINX One if you plan to add existing instances to a config sync group.
 
@@ -125,7 +125,7 @@ When adding a new NGINX instance that is not yet registered with NGINX One, you 
 
 {{<call-out "note" "About data plane keys" "fas fa-key" >}}
 
-Data plane keys are required for registering NGINX instances with the NGINX One Cloud Console. These keys serve as secure tokens, ensuring that only authorized instances can connect and communicate with NGINX One. 
+Data plane keys are required for registering NGINX instances with the NGINX One Console. These keys serve as secure tokens, ensuring that only authorized instances can connect and communicate with NGINX One. 
 
 For more details on creating and managing data plane keys, see [Create and manage data plane keys]({{<relref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}}).
 

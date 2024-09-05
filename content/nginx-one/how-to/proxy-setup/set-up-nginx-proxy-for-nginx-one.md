@@ -12,7 +12,7 @@ weight: 300
 
 ## Overview
 
-This guide explains how to set up NGINX as a proxy for other NGINX instances to connect to the F5 NGINX One Cloud Console. By routing these connections through one proxy, you can minimize the number of external connections to NGINX One from your network.
+This guide explains how to set up NGINX as a proxy for other NGINX instances to connect to the F5 NGINX One Console. By routing these connections through one proxy, you can minimize the number of external connections to NGINX One from your network.
 
 ---
 
