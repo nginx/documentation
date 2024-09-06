@@ -7,6 +7,8 @@ We use GitHub for tracking bugs and feature requests related to this project.
 Don't know how something in this project works? Curious if this project can achieve your desired functionality? Please open an issue on GitHub with the label `question`.
 
 Alternatively, open a [discussion](https://github.com/nginxinc/oss-docs/discussions) in this repository.
+
+If you know the answer, open a pull request!
 <!-- Add a link to GH issues, Discourse, F5 Dev Central, Qualtrix?-->
 
 ## NGINX Specific Questions and/or Issues
@@ -21,9 +23,11 @@ If you are not a member, click [here](https://community.nginx.org/joinslack) to 
 
 Once you join, check out the `#beginner-questions` and `nginx-users` channels :) -->
 
+<!-- The dot org site has moved away from mailing lists, I think we should do the same.
+
 ### Mailing List
 
-Want to get in touch with the NGINX development team directly? Try using the relevant mailing list found at <https://mailman.nginx.org/mailman3/lists/>!
+Want to get in touch with the NGINX development team directly? Try using the relevant mailing list found at <https://mailman.nginx.org/mailman3/lists/>! -->
 
 ### Documentation
 
@@ -37,7 +41,7 @@ Please see the [contributing guide](/CONTRIBUTING.md) for guidelines on how to b
 
 ## Commercial support
 
-Commercial support for these projects may be available. Please get in touch with [F5 sales](https://www.f5.com/products/get-f5) or check your contract details for more information.
+Commercial support for these projects may be available. Please get in touch with [F5 NGINX sales](https://www.f5.com/products/get-f5) or check your contract details for more information.
 
 ## Community Support
 
