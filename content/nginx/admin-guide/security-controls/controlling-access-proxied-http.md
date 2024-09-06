@@ -258,7 +258,7 @@ The following example shows the combined configuration for limiting the number o
 
 ```nginx
 http {
-    limit_conn_zone $binary_remote_address zone=addr:10m
+    limit_conn_zone $binary_remote_address zone=addr:10m;
 
     server {
         root /www/data;
