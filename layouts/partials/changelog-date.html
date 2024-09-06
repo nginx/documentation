@@ -1,5 +1,5 @@
 {{ $changelogContent := readFile "content/nginx-one/changelog.md" }}
-{{ $maxNumLogs := 4 }}
+{{ $maxNumLogs := 3 }}
 {{ $headings := first $maxNumLogs (findRE `(?m)^##\s(.+)$` $changelogContent) }}
 
 <ul style="padding-top: 10px;">
@@ -7,4 +7,5 @@
       {{$title := replaceRE "^##\\s" "" .}}
       <li><a href="changelog/#{{urlize $title}}">{{ $title }}</a></li>
     {{ end }}  
+    <li><a href="changelog/">Older...</a></li>
 </ul>
