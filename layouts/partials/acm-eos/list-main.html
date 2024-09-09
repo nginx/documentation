@@ -30,7 +30,7 @@
             <div class="col-md-5 card">
                 <div class="card-body">
                     <h3 class="card-title">
-                        <i class="fas fa-{{if eq .Kind "page"}}file-alt{{else}}book{{end}} fa-2x card-img-top"></i>
+                        <i class="fas fa-{{if eq .Kind "page"}}file-alt{{else}}book{{end}} fa-lg card-img-top"></i>
                         <a href="{{ if .Params.url}}{{ .Params.url}}{{else}}{{ .Permalink }}{{end}}">{{ .Title }}</a>
                     </h3>
                     {{/*}}<p class="card-text">
