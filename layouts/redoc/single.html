@@ -77,27 +77,6 @@
     {{ partial "sidebar.html" . }}
   </nav>
   <div class="nginx-docs-api-container">
-    {{ if eq .FirstSection.Title "NGINX One" }}
-    <blockquote
-      class="caution"
-      style="
-        margin: 0;
-        border: none;
-        border-bottom: 1px solid orange;
-        width: 100%;
-        border-radius: 0;
-      "
-    >
-      <div>
-        <i class="fa-solid fa-flask"></i> <strong>Early Access Preview</strong
-        ><br /><br />
-        NGINX One is currently available in Early Access. This preview version
-        is for evaluation and testing purposes only and should not be used in
-        production environments.
-      </div>
-    </blockquote>
-    {{ end }}
-
     <div id="api-component">{{ .Content}}</div>
   </div>
 </div>
