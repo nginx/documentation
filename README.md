@@ -19,7 +19,7 @@ We are beta-testing contribution using [CloudCannon](https://app.cloudcannon.com
 | Development | Staging | Production |
 |--------|--------|--------|
 | https://docs-dev.nginx.com | https://docs-staging.nginx.com | https://docs.nginx.com |
-| All commits to the `dev` branch, feature branches, pull request deploy previews publish to the docs-dev site.<br><br>This site is primarily used for review of content under development. | All commits to `main` publish to the docs-staging environment automatically.<br><br>This is helpful for sharing staged content with stakeholders for signoff immediately prior to a release. | Members of the DocOps team can manually publish deploys with a GitHub action.<br><br>*Automatic publishing is not currently implemented for this repo.* Work to add a GitHub Action that publishes to the production site once a day is in progress. |
+| All commits to the `dev` branch, feature branches, pull request deploy previews publish to the docs-dev site.<br><br>This site is primarily used for review of content under development. | All commits to `staging` publish to the docs-staging environment automatically.<br><br>This is helpful for sharing staged content with stakeholders for signoff immediately prior to a release. | Members of the DocOps team can manually publish deploys with a GitHub action.<br><br>*Automatic publishing is not currently implemented for this repo.* Work to add a GitHub Action that publishes to the production site once a day is in progress. |
 
 **NOTE**: Pull request previews and the development and staging sites are all password-protected. You can find the latest login details on Slack or Confluence.
 
