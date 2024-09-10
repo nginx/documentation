@@ -29,7 +29,7 @@
                                 <i class="fas fa-{{if eq .Kind "page"}}file-alt{{else}}book{{end}} fa-lg card-img-top"></i>
                                 <a href="{{ if .Params.url}}{{ .Params.url}}{{else}}{{ .Permalink }}{{end}}">{{ .Title }}</a>
                             </h3>
-                            {{ if eq .Title "How-to guides"}}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "How-to guides") }}
                                 <ul style="padding-top: 10px;">
                                     {{ range .Pages }}
                                         {{ if eq .Kind "section" }}
@@ -40,14 +40,14 @@
                                     {{ end }}
                                 </ul>
                             {{ end }}
-                            {{ if eq .Title "API"}}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "API")}}
                                 <ul style="padding-top: 10px;">
                                     {{ range .Pages }}
                                         <li><a href="{{ .Permalink }}"> {{ .Title }}</a></li>
                                     {{ end }}
                                 </ul>
                             {{ end }}
-                            {{ if eq .Title "Changelog" }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Changelog") }}
                                 {{ partial "changelog-date.html" . }}
                             {{ end }}
                         </div>
