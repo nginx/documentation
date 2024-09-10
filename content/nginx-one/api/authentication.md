@@ -10,11 +10,11 @@ toc: true
 weight: 10
 ---
 
-In this guide, we'll show you how to authenticate API requests with F5 Distributed Cloud and the F5 NGINX One Cloud Console. There are two options for authentication: API Token or API Certificate. Both methods ensure secure access to your data.
+In this guide, we'll show you how to authenticate API requests with F5 Distributed Cloud and the F5 NGINX One Console. There are two options for authentication: API Token or API Certificate. Both methods ensure secure access to your data.
 
 ## Getting ready
 
-Before you begin, make sure you have either an API Token or API Certificate for authentication. You can get these from the F5 Distributed Cloud Console. Visit the following link for instructions:
+Before you begin, make sure you have either an API Token or API Certificate for authentication. You can get these from the F5 Distributed Console. Visit the following link for instructions:
 
 - [F5 Distributed Cloud User Guide: Managing User Credentials](https://docs.cloud.f5.com/docs/how-to/user-mgmt/credentials)
 
