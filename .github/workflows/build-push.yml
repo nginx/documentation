@@ -20,6 +20,9 @@ on:
   pull_request:
     branches:
       - "*"
+  push:
+    branches:
+      - "staging"
 
 jobs:
   call-docs-build-push:
@@ -32,6 +35,8 @@ jobs:
       doc_type: "hugo"
       environment: ${{inputs.environment}}
       force_hugo_theme_version: ${{inputs.hugo_theme_override}}
+      auto_deploy_branch: "staging"
+      auto_deploy_env: "staging"
     secrets:
       AZURE_CREDENTIALS: ${{secrets.AZURE_CREDENTIALS}}
       AZURE_KEY_VAULT: ${{secrets.AZURE_KEY_VAULT}}
