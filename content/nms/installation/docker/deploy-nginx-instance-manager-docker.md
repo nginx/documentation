@@ -99,13 +99,13 @@ To set up Docker to communicate with the NGINX container registry located at `pr
    <br>
 
    {{< call-out "tip" "Example:" "fas fa-terminal" >}}
-   To pull the NGINX Instance Manager 2.17.0 image, set the hostname to "mynim," and set the admin password to "abc123\!@", run:
+   To pull the NGINX Instance Manager 2.17.0 image, set the hostname to "mynim," and set the admin password to "<ADMIN_PASSWORD>", run:
 
    ```bash
    docker run -it --rm \
      --hostname=mynim \
      -e NMS_PERSIST_DISABLE \
-     -e NMS_ADMIN_PASSWORD="abc123\!@" \
+     -e NMS_ADMIN_PASSWORD="<ADMIN_PASSWORD>" \
      -p 8443:443 \
      private-registry.nginx.com/nms/nim-bundle:2.17.0
    ```
@@ -144,12 +144,12 @@ To set up Docker to communicate with the NGINX container registry located at `pr
    <br>
 
    {{< call-out "tip" "Example:" "fas fa-terminal" >}}
-   To pull the NGINX Instance Manager 2.17.0 image, set the hostname to "mynim," set the admin password to "abc123\!@", and write data to `~/nms_storage`, run:
+   To pull the NGINX Instance Manager 2.17.0 image, set the hostname to "mynim," set the admin password to "<ADMIN_PASSWORD>", and write data to `~/nms_storage`, run:
 
    ```bash
    docker run -it --rm \
      --hostname=mynim \
-     -e NMS_ADMIN_PASSWORD="abc123\!@" \
+     -e NMS_ADMIN_PASSWORD="<ADMIN_PASSWORD>" \
      --volume=/myvolume/nim-storage:/data \
      -p 8443:443 \
      private-registry.nginx.com/nms/nim-bundle:2.17.0
@@ -195,12 +195,12 @@ To set up Docker to communicate with the NGINX container registry located at `pr
    <br>
 
    {{< call-out "tip" "Example:" "far fa-terminal" >}}
-   To pull the NGINX Instance Manager 2.17.0 image, set the hostname to "mynim," use the password "abc123!@", pass in the certificates `mycert.pem`, `mykey.pem`, and `myca.pem`, and write data to `/myvolume/nim-storage`, run:
+   To pull the NGINX Instance Manager 2.17.0 image, set the hostname to "mynim," use the password "<ADMIN_PASSWORD>", pass in the certificates `mycert.pem`, `mykey.pem`, and `myca.pem`, and write data to `/myvolume/nim-storage`, run:
 
    ```bash
    docker run -it --rm \
      --hostname=mynim \
-     -e NMS_ADMIN_PASSWORD="abc123\!@" \
+     -e NMS_ADMIN_PASSWORD="<ADMIN_PASSWORD>" \
      -e NMS_APIGW_CERT="$(cat mycert.pem)" \
      -e NMS_APIGW_KEY="$(cat mykey.pem)" \
      -e NMS_APIGW_CA="$(cat myca.pem)" \

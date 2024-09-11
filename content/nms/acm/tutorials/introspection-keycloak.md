@@ -132,8 +132,8 @@ Production mode sets the following default configuration:
    {{< important >}} Do not use the example `admin/password` combination in any scenario. Replace the username and password with strong alternatives. {{< /important >}}
 
    ```shell
-    export KEYCLOAK_ADMIN=admin
-    export KEYCLOAK_ADMIN_PASSWORD=password
+    export KEYCLOAK_ADMIN=<admin user>
+    export KEYCLOAK_ADMIN_PASSWORD=<password>
    ```
 
 4. Start Keycloak in **Development Mode**:
@@ -290,12 +290,12 @@ Keycloak will respond with a JSON object containing an `access_token` for the us
 
 ```json
 {
-"access_token": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJVOFVDY2MtWnppNW9xYVhPZVZnWmdsLUxURmpfYXJ3dlJ2dl91Mjc4ZWNrIn0.eyJleHAiOjE2NjU1ODQ5NTIsImlhdCI6MTY2NTU4NDY1MiwianRpIjoiNmJhNDY1ZDktNmVmYi00Mzk5LTgyMTUtZjcxNjk0MzdhYzZhIiwiaXNzIjoiaHR0cDovLzE5Mi4xNjguMTkzLjQ6ODA4MC9yZWFsbXMvbmdpbngiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiYTk1MTE3YmYtMWEyZS00ZDQ2LTljNDQtNWZkZWU4ZGRkZDExIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoibmdpbngtcGx1cyIsInNlc3Npb25fc3RhdGUiOiI5ODM2ZjVmZC05ODdmLTQ4NzUtYWM3NS1mN2RkNTMyNTA0N2MiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImRlZmF1bHQtcm9sZXMtbmdpbngiLCJvZmZsaW5lX2FjY2VzcyIsIm5naW54LWtleWNsb2FrLXJvbGUiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJzaWQiOiI5ODM2ZjVmZC05ODdmLTQ4NzUtYWM3NS1mN2RkNTMyNTA0N2MiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInByZWZlcnJlZF91c2VybmFtZSI6Im5naW54LXVzZXIiLCJnaXZlbl9uYW1lIjoiIiwiZmFtaWx5X25hbWUiOiIifQ.MIqg3Q-pXvVG04leKBiVaDGCjv4gfsp3JywCumQ3CIk8cck9Q6tptM2CWIznmQLi4K6RUu7i7TodTnZAMDids0c-igX8oEe6ZLuR_Ub9SQSdVLymforfGYcSNJfnVVGLF8KHqPeLOp0TVPXxf56Qv6BO7B6fDGBxUvDsWEsw_5ko5v1pRiSHK-VS3zjw5weoJBD4rnYo9ZdhqYwyzL_nrUEWd05uWs4H-zCLKjTHw0AVPFO9MJ6OawJ7sc8AKeLq4FOKg2A_mIDF7SDds43UUvfUAK5a2zoy5PYhhESx0C5V7YTaaJDtiGFH1iY27_Yj3DcEQDZBBhDTRKrs3K7wxA",
+"access_token": "<JWT_token>",
 "expires_in": 300,
 "refresh_expires_in": 1800,
-"refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIxMDE4ZGIxMi05YTI0LTQ2MDQtYTYyYi00YWM1NzFlODk0M2MifQ.eyJleHAiOjE2NjU1ODY0NTIsImlhdCI6MTY2NTU4NDY1MiwianRpIjoiMTc1OWRhZjItOTU1Zi00ZDIyLWIyY2QtODE0NmQ5MmM5MDc0IiwiaXNzIjoiaHR0cDovLzE5Mi4xNjguMTkzLjQ6ODA4MC9yZWFsbXMvbmdpbngiLCJhdWQiOiJodHRwOi8vMTkyLjE2OC4xOTMuNDo4MDgwL3JlYWxtcy9uZ2lueCIsInN1YiI6ImE5NTExN2JmLTFhMmUtNGQ0Ni05YzQ0LTVmZGVlOGRkZGQxMSIsInR5cCI6IlJlZnJlc2giLCJhenAiOiJuZ2lueC1wbHVzIiwic2Vzc2lvbl9zdGF0ZSI6Ijk4MzZmNWZkLTk4N2YtNDg3NS1hYzc1LWY3ZGQ1MzI1MDQ3YyIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJzaWQiOiI5ODM2ZjVmZC05ODdmLTQ4NzUtYWM3NS1mN2RkNTMyNTA0N2MifQ.gUn6QMdcNWsehKqlSJuEORemH4D6WJArEYS1IhUejMQ",
+"refresh_token": "<JWT_token>",
 "token_type": "Bearer",
-"id_token": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJVOFVDY2MtWnppNW9xYVhPZVZnWmdsLUxURmpfYXJ3dlJ2dl91Mjc4ZWNrIn0.eyJleHAiOjE2NjU1ODQ5NTIsImlhdCI6MTY2NTU4NDY1MiwiYXV0aF90aW1lIjowLCJqdGkiOiI1YzMxNjNmOC04MmEwLTQ3MjAtODgwZi1lYmZjYjUzOTJjNjgiLCJpc3MiOiJodHRwOi8vMTkyLjE2OC4xOTMuNDo4MDgwL3JlYWxtcy9uZ2lueCIsImF1ZCI6Im5naW54LXBsdXMiLCJzdWIiOiJhOTUxMTdiZi0xYTJlLTRkNDYtOWM0NC01ZmRlZThkZGRkMTEiLCJ0eXAiOiJJRCIsImF6cCI6Im5naW54LXBsdXMiLCJzZXNzaW9uX3N0YXRlIjoiOTgzNmY1ZmQtOTg3Zi00ODc1LWFjNzUtZjdkZDUzMjUwNDdjIiwiYXRfaGFzaCI6Il9lcHRYVG5kdkxHZzF6eTRzMlhsamciLCJhY3IiOiIxIiwic2lkIjoiOTgzNmY1ZmQtOTg3Zi00ODc1LWFjNzUtZjdkZDUzMjUwNDdjIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJuZ2lueC11c2VyIiwiZ2l2ZW5fbmFtZSI6IiIsImZhbWlseV9uYW1lIjoiIn0.Xuvk0uNX3TZioKRzwFQVFKeVP1ZLtThsuVU_9tgjkhHhY3La_M8B5vamKbG3kRj_XSGzF7P2M-E6BARbqogVMnuygY-XuPTTvlHX1Wr0bnrJuxrh1iIsVdyJipDUpKmSs1htrvI59bVZ08qH6QC16FbixM-pmZKmiftgXmfDbdpVihloiXqyMUHq7pdctQI3jvikr7bxXsWw6sfePwqYzXsTPaD2olwGZRtfWI6Zh-R6GVWsaPaa47kcQrih99Ds0Wuod-IZKAPYByZoB_yoH4z1Dy9-Xvmj1nyb-YN3_u3JUgmLJwwK_uRsy6ZwgWEfJItEEke7WpeAQfXEyYtO7w",
+"id_token": "<JWT_token>",
 "not-before-policy": 0,
 "session_state": "9836f5fd-987f-4875-ac75-f7dd5325047c",
 "scope": "openid profile email"
@@ -330,7 +330,7 @@ curl -L -X POST 'http://192.0.2.5:8080/realms/nginx/protocol/openid-connect/toke
    -H "Authorization: Bearer <access token>" \
    -H "Accept: application/json" \
    -H "Content-Type: application/x-www-form-urlencoded" \
-   --data-urlencode 'token=eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJVOFVDY2MtWnppNW9xYVhPZVZnWmdsLUxURmpfYXJ3dlJ2dl91Mjc4ZWNrIn0.eyJleHAiOjE2NjU1ODQ5NTIsImlhdCI6MTY2NTU4NDY1MiwianRpIjoiNmJhNDY1ZDktNmVmYi00Mzk5LTgyMTUtZjcxNjk0MzdhYzZhIiwiaXNzIjoiaHR0cDovLzE5Mi4xNjguMTkzLjQ6ODA4MC9yZWFsbXMvbmdpbngiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiYTk1MTE3YmYtMWEyZS00ZDQ2LTljNDQtNWZkZWU4ZGRkZDExIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoibmdpbngtcGx1cyIsInNlc3Npb25fc3RhdGUiOiI5ODM2ZjVmZC05ODdmLTQ4NzUtYWM3NS1mN2RkNTMyNTA0N2MiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImRlZmF1bHQtcm9sZXMtbmdpbngiLCJvZmZsaW5lX2FjY2VzcyIsIm5naW54LWtleWNsb2FrLXJvbGUiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJzaWQiOiI5ODM2ZjVmZC05ODdmLTQ4NzUtYWM3NS1mN2RkNTMyNTA0N2MiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInByZWZlcnJlZF91c2VybmFtZSI6Im5naW54LXVzZXIiLCJnaXZlbl9uYW1lIjoiIiwiZmFtaWx5X25hbWUiOiIifQ.MIqg3Q-pXvVG04leKBiVaDGCjv4gfsp3JywCumQ3CIk8cck9Q6tptM2CWIznmQLi4K6RUu7i7TodTnZAMDids0c-igX8oEe6ZLuR_Ub9SQSdVLymforfGYcSNJfnVVGLF8KHqPeLOp0TVPXxf56Qv6BO7B6fDGBxUvDsWEsw_5ko5v1pRiSHK-VS3zjw5weoJBD4rnYo9ZdhqYwyzL_nrUEWd05uWs4H-zCLKjTHw0AVPFO9MJ6OawJ7sc8AKeLq4FOKg2A_mIDF7SDds43UUvfUAK5a2zoy5PYhhESx0C5V7YTaaJDtiGFH1iY27_Yj3DcEQDZBBhDTRKrs3K7wxA' \
+   --data-urlencode 'token=<JWT_token>' 
    | jq
 ```
 
@@ -606,7 +606,7 @@ In this section, we will use the API Connectivity Manager Rest API to set up a p
    ```bash
    POST https://192.0.2.4/my/test/api
    HEADERS:
-     Authorization: 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiA...'
+     Authorization: 'Bearer <JWT_token>'
    ```
 
    The access token is taken from the `Authorization` header and introspected against the Keycloak introspection endpoint defined in the policy configuration. If the OAuth2 server responds with `"active": true` in the introspection response, the request proceeds to the backend. The response should look like the following example:
@@ -716,7 +716,7 @@ You can configure the Introspection policy to let users pass their access token 
    ```bash
    POST https://192.0.2.4/my/test/api
    HEADERS:
-     apiAccessToken: 'eyJhbGciOiJSUzI1NiIsInR5cCIgOiA...'
+     apiAccessToken: '<JWT_token>'
    ```
 
    The request should proceed to the backend service as expected, and the echo server should respond in turn.
@@ -776,7 +776,7 @@ You can configure the Introspection policy to let users pass their access token 
 4. In the next request to the echo server, remove the custom request header `apiAccessToken` and pass the access token in the query argument `queryAuthz`.
 
    ```bash
-   POST https://192.0.2.4/my/test/api?queryAuthz=eyJhbGciOiJSUzI1NiIsInR5cCIgOiA...
+   POST https://192.0.2.4/my/test/api?queryAuthz=<JWT_token>
    ```
 
    The request should proceed to the backend service as expected, and the echo server should respond in turn. Similar to passing the access token as a header, the user's access token is stripped from the in-flight request before it's forwarded to the backend service.
@@ -1136,7 +1136,7 @@ You'll need to consult your OAuth server's documentation to determine which clai
    ```bash
    POST https://192.0.2.4/my/test/api
    HEADERS:
-     Authorization: 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiA...'
+     Authorization: 'Bearer <JWT_token>'
    ```
 
    The response returned from the echo server should contain the custom list of claims defined in the Introspection policy configuration. The non-existent claim is not present because the claim `fake-claim` did not exist in the token introspection response, so the related header field remained empty. By default, NGINX does not proxy empty headers to the backend; as such, it gracefully handles invalid claims without affecting user requests.
