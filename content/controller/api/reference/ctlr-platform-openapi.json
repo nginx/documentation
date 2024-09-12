@@ -2494,7 +2494,7 @@
                                         "state": {
                                             "conditions": [
                                                 {
-                                                    "message": "install.sh --join-key eyJlbmRwb2ludCI6IjE5Mi4wLjIuMTo2NDQzIiwiY2FDZXJ0SGFzaCI6InNoYTI1Njp4IiwiZW5jcnlwdGlvblNlY3JldCI6IngiLCJ0b2tlbiI6IngiLCJjZXJ0aWZpY2F0ZUtleSI6IngifQo=",
+                                                    "message": "install.sh --join-key <JWT Token>",
                                                     "type": "install"
                                                 }
                                             ],
@@ -2573,7 +2573,7 @@
                                         "state": {
                                             "conditions": [
                                                 {
-                                                    "message": "install.sh --join-key eyJlbmRwb2ludCI6IjE5Mi4wLjIuMTo2NDQzIiwiY2FDZXJ0SGFzaCI6InNoYTI1Njp4IiwiZW5jcnlwdGlvblNlY3JldCI6IngiLCJ0b2tlbiI6IngiLCJjZXJ0aWZpY2F0ZUtleSI6IngifQo=",
+                                                    "message": "install.sh --join-key <JWT Token>",
                                                     "type": "install"
                                                 }
                                             ],
