@@ -11,6 +11,35 @@ weight: 100
 
 ---
 
+## 2.17.3
+
+September 13, 2024
+
+### Upgrade Paths {#2-17-3-upgrade-paths}
+
+Instance Manager supports upgrades from these previous versions:
+
+- 2.14.0 - 2.17.2
+
+If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+{{< see-also >}}
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}}) for important information and steps to follow when upgrading Instance Manager and the NGINX Agent.
+{{< /see-also >}}
+
+### What's New{#2-17-3-whats-new}
+This release includes the following updates:
+
+- {{% icon-feature %}} **GPG key update for NGINX Agent packagess**<a name="2-17-3-whats-new-Stability-and-performance-improvements"></a>
+
+  Previous releases of NGINX Instance Manager included NGINX Agent packages signed with an expired GPG key. This release of NGINX Instance Manager includes updated keys, allowing users to successfully download the NGINX Agent from NGINX Instance Manager.
+
+### Known Issues{#2-17-3-known-issues}
+
+You can find information about known issues in the [Known Issues]({{< relref "/nms/nim/releases/known-issues.md" >}}) topic.
+
+---
+
 ## 2.17.2
 
 August 21, 2024
