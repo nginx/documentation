@@ -23,11 +23,9 @@ If you are not a member, click [here](https://community.nginx.org/joinslack) to 
 
 Once you join, check out the `#beginner-questions` and `nginx-users` channels :) -->
 
-<!-- The dot org site has moved away from mailing lists, I think we should do the same.
-
 ### Mailing List
 
-Want to get in touch with the NGINX development team directly? Try using the relevant mailing list found at <https://mailman.nginx.org/mailman3/lists/>! -->
+Want to get in touch with the NGINX development team directly? Try using the relevant mailing list found at <https://mailman.nginx.org/mailman3/lists/>!
 
 ### Documentation
 
