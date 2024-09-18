@@ -97,6 +97,10 @@ If you followed the [Installation and upgrade](https://docs.nginx.com/nginx-agen
 
 <span style="display: inline-block; margin-top: 20px;" >
 
+{{<call-out "note" "Note: NGINX Agent poll interval" >}} We recommend keeping `dataplane.status.poll_interval` between `30s` and `60s` in the NGINX Agent config (`/etc/nginx-agent/nginx-agent.conf`). If the interval is set above `60s`, the NGINX One Console may report incorrect instance statuses.{{</call-out>}}
+
+<br>
+
 <i class="fa fa-check-circle" aria-hidden="true"></i> Make sure your Linux operating system is listed below. The installation script for the NGINX Agent is compatible with these distributions and versions.
 
 #### NGINX Agent installation script: supported distributions
