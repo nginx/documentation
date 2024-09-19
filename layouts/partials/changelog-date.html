@@ -5,7 +5,7 @@
 <ul style="padding-top: 10px;">
     {{ range $headings }}
       {{$title := replaceRE "^##\\s" "" .}}
-      <li><a href="changelog/#{{urlize $title}}">{{ $title }}</a></li>
+      <li><a href="{{ absURL "nginx-one/changelog/" }}#{{urlize $title}}">{{ $title }}</a></li>
     {{ end }}  
-    <li><a href="changelog/">Older...</a></li>
+    <li><a href="{{ absURL "nginx-one/changelog/" }}">Older...</a></li>
 </ul>
