@@ -169,7 +169,7 @@ In this example, `GET` requests to the destination service from `source-1` will 
 The burst of 10 and a delay of `nodelay` means that 10 excess requests over the rate will be forwarded to the destination service immediately.
 Requests from sources other than `source-1`, or requests from `source-1` that are _not_ `GET` requests, will not be rate limited.
 
-> You can download the schema for the RateLimit CRD here: {{< fa "download" >}} {{< link "crds/ratelimit.yaml" "`rate-limit-schema.yaml`" >}}
+> You can download the schema for the RateLimit CRD here: {{< fa "download" >}} [`rate-limit-schema.yaml`](https://github.com/nginxinc/nginx-service-mesh/blob/main/helm-chart/crds/ratelimit.yaml)
 
 The rate limit spec contains the following fields:
 
@@ -372,6 +372,6 @@ To avoid this issue, use a different load balancing algorithm. See the [Configur
 If a Traffic Split is applied to the same service that a Circuit Breaker is defined for, the Circuit Breaker may no longer function as intended. This is because the Traffic Split changes the destination service to a backend service, not the original root destination for which the Circuit Breaker is defined. Therefore, Circuit Breakers must be defined for each backend service individually.
 {{< /important >}}
 
-> You can download our Circuit Breaker example here: {{< link "/examples/circuit-breaker/circuit-breaker.yaml" "circuit-breaker.yaml" >}} and the Circuit Breaker schema here:  {{< link "crds/circuitbreaker.yaml" "circuit-breaker-schema.yaml" >}}
+> You can download our Circuit Breaker example here: {{< link "/examples/circuit-breaker/circuit-breaker.yaml" "circuit-breaker.yaml" >}} and the Circuit Breaker schema here: [`circuit-breaker-schema.yaml`](https://github.com/nginxinc/nginx-service-mesh/blob/main/helm-chart/crds/circuitbreaker.yaml)
 
 Refer to the [NGINX Documentation](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) for more information about the `max_fails`, `fail_timeout`, and `backup` parameters, which are used for circuit breaking.

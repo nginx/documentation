@@ -166,7 +166,7 @@ To deploy using one of these upstream authorities, you must specify the `--mtls-
 nginx-meshctl deploy ... --mtls-upstream-ca-conf /path/to/upstream_authority.yaml
 ```
 
-To find out more about how `nginx-meshctl` interprets the upstream authority configuration, refer to the {{< link "/api/upstream-ca-validation.json" "Upstream CA Validation JSON schema" >}}
+To find out more about how `nginx-meshctl` interprets the upstream authority configuration, refer to the [Upstream CA Validation JSON schema](https://github.com/nginxinc/nginx-service-mesh/blob/main/api/upstream-ca-validation.json)
 
 #### Pathlen
 

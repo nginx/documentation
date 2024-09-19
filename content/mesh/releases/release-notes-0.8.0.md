@@ -20,8 +20,8 @@ These release notes provide general information and describe known issues for NG
   - [Resolved Issues](#resolved-issues)
   - [Known Issues](#known-issues)
   - [Supported Versions](#supported-versions)
-  - {{< link "/licenses/license-servicemesh-0.8.0.html" "Open Source Licenses" >}}
-  - {{< link "/releases/oss-dependencies/" "Open Source Licenses Addendum" >}}
+  - {{< link "nginx-service-mesh/licenses/license-servicemesh-0.8.0.html" "Open Source Licenses" >}}
+  - [Open Source Licenses Addendum]({{< relref "oss-dependencies/index.md" >}})
 
 <span id="080-updates"></a>
 

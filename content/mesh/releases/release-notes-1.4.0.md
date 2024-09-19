@@ -23,8 +23,8 @@ These release notes provide general information and describe known issues for NG
   - [Resolved Issues](#resolved-issues)
   - [Known Issues](#known-issues)
   - [Supported Versions](#supported-versions)
-  - {{< link "/licenses/license-servicemesh-1.4.0.html" "Open Source Licenses" >}}
-  - {{< link "/releases/oss-dependencies/" "Open Source Licenses Addendum" >}}
+  - {{< link "nginx-service-mesh/licenses/license-servicemesh-1.4.0.html" "Open Source Licenses" >}}
+  - [Open Source Licenses Addendum]({{< relref "oss-dependencies/index.md" >}})
 
 <br/>
 <br/>
@@ -36,7 +36,7 @@ NGINX Service Mesh 1.4.0 includes the following updates:
 <br/>
 
 - NGINX Service Mesh has changed its API to follow Kubernetes convention enabling granular controls of the NGINX Service Mesh API using Kubernetes native RBAC.
-  - {{< link "/reference/api/api-usage/" "Use the NGINX Service Mesh API" >}}
+  - [Use the NGINX Service Mesh API]({{< relref "mesh/reference/api-usage.md" >}})
 - Support for service-to-service UDP traffic proxying
 - The addition of OpenTelemetry tracing along side the existing OpenTracing support to provide rich telemetry options
 - Coupling with the cert-manager project to instantly drop into your existing Certificate Authority issuer workflow
@@ -50,10 +50,10 @@ NGINX Service Mesh 1.4.0 includes the following updates:
 
 #### **Features**
 
-- {{< link "/about/architecture/#udp-and-ebpf" "Support for UDP traffic proxying" >}}
-- {{< link "/guides/monitoring-and-tracing/#opentelemetry" "Support for OpenTelemetry tracing using the OTLP gRPC Exporter" >}}
-- {{< link "/guides/secure-traffic-mtls/#deploy-using-an-upstream-root-ca" "Support for cert-manager as an upstream authority" >}}
-- {{< link "/reference/api/api-usage" "How to access the NGINX Service Mesh API using Kubernetes native RBAC" >}}
+- [Support for UDP traffic proxying]({{< relref "mesh/about/architecture.md/#udp-and-ebpf" >}})
+- [Support for OpenTelemetry tracing using the OTLP gRPC Exporter]({{< relref "mesh/guides/monitoring-and-tracing.md/#opentelemetry" >}})
+- [Support for cert-manager as an upstream authority]({{< relref "mesh/guides/secure-traffic-mtls.md/#deploy-using-an-upstream-root-ca" >}})
+- [How to access the NGINX Service Mesh API using Kubernetes native RBAC]({{< relref "mesh/reference/api-usage.md" >}})
 
 #### **Improvements**
 
