@@ -1,5 +1,5 @@
 HUGO?=hugo
-HUGO_IMG?=hugomods/hugo:0.115.3
+HUGO_IMG?=hugomods/hugo:0.134.2
 
 THEME_MODULE = github.com/nginxinc/nginx-hugo-theme
 THEME_VERSION = 0.41.14
