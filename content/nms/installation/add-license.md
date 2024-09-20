@@ -76,7 +76,7 @@ To download a subscription or Flexible Consumption Program license for NGINX Man
 {{<important>}}
 <br>
 
-To retrieve your entitlements, make sure to allow inbound and outbound access on port 443 to the following URLs:
+To retrieve your entitlements, make sure port `443` allows outbound access to these URLs:
 
 - https://product.apis.f5.com
 - https://product-s.apis.f5.com/ee
