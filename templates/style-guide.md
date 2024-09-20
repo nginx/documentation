@@ -361,11 +361,18 @@ If you decide to include a screenshot, follow these guidelines:
 - Ensure the screenshot includes the relevant item (button, menu item, icon) with enough context to locate it in the user interface and understand the action.
 - Avoid unnecessary whitespace. Crop the image to include only relevant content. If needed, use image editing software to move content closer together, or ask the writers team for help.
 - Use simple arrows and rectangles to highlight important items. Use a high-contrast color to make the annotations stand out.
-- Ensure screenshots are anonymized and don't contain sensitive information:
-  - Replace personal information (names, email addresses, phone numbers) with generic placeholders.
-  - Replace sensitive data (IP addresses, passwords, domain names, confidential information) with generic placeholders. 
 - Include a description (`<img alt>` text) for the screenshot that provides a brief summary of the content and context. This description helps screen readers describe the image to visually impaired users. For example, "Area chart titled 'NGINX Active Connections' showing the number of active connections over time for the current date. The x-axis represents the time of day, and the y-axis represents the number of connections, ranging from 0 to 10,000. The chart is color-coded with different shades to indicate varying levels of connections." For examples and guidelines for effective alt text, see the BBC's useful guide [How to write text descriptions (alt text)](https://www.bbc.co.uk/gel/how-to-write-text-descriptions-alt-text).
 
+## Sensitive and personally identifying information
+
+Ensure content and screenshots are anonymized and don't contain sensitive information:
+
+- Replace personal information (names, email addresses, phone numbers) with generic placeholders.
+- Replace sensitive data (IP addresses, passwords, domain names, SSH keys, OAuth 2 tokens, and other confidential information) with generic placeholders. 
+  - Look for (and replace) sensitive words like `secret`
+  - Look for (and replace) content such as UUIDs and OAuth 2 keys (which start with `eY`)
+- Limit the use of links to external (non-F5) sources. When necessary, only link to reputable sources and foundational sites, such as GitHub.com, Google.com, and Microsoft.com.
+  - This helps minimize the risk of prompt injection.
 
 ## Revision history
 
@@ -375,6 +382,7 @@ this style guide over time. This guide uses the Major.Minor.Patch
 
 | Edition | Date          | Lead Author(s) | Comments                                              |
 |---------|---------------|----------------|-------------------------------------------------------|
+| 1.4   | Septemter 20, 2024 | Mike Jang  | Organize and clarify info on sensitive content |
 | 1.3   | August 12, 2024 | Jon Torre  | Include additional rules for product names |
 | 1.2   | June 21, 2024 | Travis Martin  | Added link to BBC's examples for effective alt images |
 | 1.1   | May 21, 2024  | Jon Torre      | Added guidelines for screenshots                      |
