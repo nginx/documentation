@@ -179,7 +179,7 @@ NGINX Controller App Security is supported for use with a limited subset of the 
 ### Prerequisites
 
 - Be sure to review the [NGINX Plus Technical Specifications](https://docs.nginx.com/nginx/technical-specs/) for the requirements for your distribution and desired configuration.
-- You'll need the NGINX Plus certificate and public key files (`nginx-repo.crt` and `nginx-repo.key`) when installing NGINX App Protect. If you don't have these files, you can use the [NGINX Controller REST API](https://docs.nginx.com/nginx-controller/api/reference/ctlr-v1) to download them.
+- You'll need the NGINX Plus certificate and public key files (`nginx-repo.crt` and `nginx-repo.key`) when installing NGINX App Protect. If you don't have these files, you can use the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}) to download them.
 
 #### Download the NGINX App Protect Cert and Key
 

@@ -23,7 +23,7 @@ NGINX Ingress Controller can be installed from pre-built images for three common
 - [NGINX Ingress Controller with NGINX App Protect WAF]({{< ref "connectivity-stack-kubernetes/#install-install-nginx-ingress-controller-with-nginx-app-protect-waf" >}})
 - [NGINX Ingress Controller with NGINX App Protect DoS]({{< ref "connectivity-stack-kubernetes/#install-install-nginx-ingress-controller-with-nginx-app-protect-dos" >}})
 
-Deploying NGINX Ingress Controller is the same for all three patterns, but requires different pre-built images. Alternatively, you can choose to [build the Ingress Controller image](https://docs.nginx.com/nginx-ingress-controller/installation/building-ingress-controller-image/) using the source code.
+Deploying NGINX Ingress Controller is the same for all three patterns, but requires different pre-built images. Alternatively, you can choose to [build the Ingress Controller image](https://docs.nginx.com/nginx-ingress-controller/installation/build-nginx-ingress-controller/) using the source code.
 
 ### Install NGINX Ingress Controller
 NGINX Ingress Controller manages app connectivity at the edge of a Kubernetes cluster with API gateway, identity, and observability features.
