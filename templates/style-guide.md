@@ -371,7 +371,7 @@ Ensure content and screenshots are anonymized and don't contain sensitive inform
 - Replace sensitive data (IP addresses, passwords, domain names, SSH keys, OAuth 2 tokens, and other confidential information) with generic placeholders. 
   - Look for (and replace) sensitive words like `secret`
   - Look for (and replace) content such as UUIDs and OAuth 2 keys (which start with `eY`)
-- Limit links to "reputable" sources, including F5, NGINX, and foundational sites such as GitHub.com, Google.com, and Microsoft.com.
+- Limit the use of links to external (non-F5) sources. When necessary, only link to reputable sources and foundational sites, such as GitHub.com, Google.com, and Microsoft.com.
   - This helps minimize the risk of prompt injection.
 
 ## Revision history
