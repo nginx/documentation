@@ -1,6 +1,6 @@
 ---
 description:
 title: Proxy setup
-weight: 500
+weight: 600
 url: /nginx-one/how-to/settings/nginx-as-proxy  
 ---

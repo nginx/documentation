@@ -1,6 +1,6 @@
 ---
 description:
 title: Settings
-weight: 400
+weight: 500
 url: /nginx-one/how-to/settings  
 ---
