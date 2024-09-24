@@ -15,7 +15,7 @@
 
 <div class="col-md-12 col-xl-12 py-md-3 pl-md-5">
     <div class="justify-content-left" style="margin-left: 1.5em;">
-        <h2 style="font-weight: 400; font-size: 1.5em; margin-top: 0px; margin-bottom: 0px;">Enterprise</h2>
+        <h2 style="font-weight: 400; font-size: 1.5em; margin-top: 0px; margin-bottom: 0px;">NGINX One</h2>
     </div>
 </div>
 
@@ -25,7 +25,16 @@
             <div class="card-deck">
 
                 <div class="col-xs-12 col-sm-6 col-lg-4 card-holder">
-                    <a href="{{ .Site.BaseURL }}/nginx/" class="products-card" alt="NGINX Plus">
+                    <a href="{{ .Site.BaseURL }}nginx-one" class="products-card" alt="NGINX One Console">
+                        <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-One-product-icon.png"> NGINX One Console</h3>
+                        <div class="card-description">
+                            <p>Monitor your infrastructure, address security vulnerabilities, and assess the health of your NGINX fleet, all from a single console.</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-lg-4 card-holder">
+                    <a href="{{ .Site.BaseURL }}nginx" class="products-card" alt="NGINX Plus">
                         <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-Plus-product-icon-RGB.png"> NGINX Plus</h3>
                         <div class="card-description">
                             <p>The all-in-one load balancer, reverse proxy, web server, content cache, and API gateway.</p>
@@ -34,34 +43,16 @@
                 </div>
 
                 <div class="col-xs-12 col-sm-6 col-lg-4 card-holder">
-                    <a href="{{ .Site.BaseURL }}/nginx-management-suite/" class="products-card" alt="NGINX Management Suite">
-                        <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-Management-Suite-product-icon-RGB.png"> NGINX Management Suite</h3>
+                    <a href="{{ .Site.BaseURL }}nginx-instance-manager" class="products-card" alt="NGINX Instance Manager">
+                        <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-Instance-Manager-product-icon.png"> NGINX Instance Manager</h3>
                         <div class="card-description">
-                            <p>A set of tools that enables enterprise scaleability, security, observability, and governance</p>
+                            <p>Track and control NGINX Open Source and NGINX Plus instances.</p>
                         </div>
                     </a>
                 </div>
 
                 <div class="col-xs-12 col-sm-6 col-lg-4 card-holder">
-                    <a href="{{ .Site.BaseURL }}/nginx-app-protect-waf/" class="products-card" alt="NGINX App Protect WAF">
-                        <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-App-Protect-WAF-product-icon.png"> NGINX App Protect WAF</h3>
-                        <div class="card-description">
-                            <p>Lightweight, high-performance, advanced protection against Layer 7 attacks on your apps and APIs</p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-lg-4 card-holder">
-                    <a href="{{ .Site.BaseURL }}/nginx-app-protect-dos/" class="products-card" alt="NGINX App Protect DoS">
-                        <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-App-Protect-DoS-product-icon.png"> NGINX App Protect DoS</h3>
-                        <div class="card-description">
-                            <p>Defend, adapt, and mitigate against Layer 7 denial-of-service attacks on your apps and APIs</p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-lg-4 card-holder">
-                    <a href="{{ .Site.BaseURL }}/nginx-ingress-controller/" class="products-card" alt="NGINX Ingress Controller">
+                    <a href="{{ .Site.BaseURL }}nginx-ingress-controller" class="products-card" alt="NGINX Ingress Controller">
                         <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-Ingress-Controller-product-icon.png"> NGINX Ingress Controller</h3>
                         <div class="card-description">
                             <p>Kubernetes traffic management with API gateway, identity, and observability features</p>
@@ -69,14 +60,30 @@
                     </a>
                 </div>
 
+                
                 <div class="col-xs-12 col-sm-6 col-lg-4 card-holder">
-                    <a href="{{ .Site.BaseURL }}/nginxaas/azure/" class="products-card" alt="NGINX as a Service for Azure">
-                        <div class="saas-card">
-                            <div class="saas-icon"><img style="width: auto; height: auto;" src="{{ .Site.BaseURL }}/images/icons/NGINX-for-Azure-product-icon.png"></div>
-                            <div class="saas-description">
-                                <h3 class="saas-title">NGINX as a Service for Azure</h3>
-                                <p>Infrastructure-as-a-Service (IaaS) version of NGINX Plus for your Microsoft Azure application stack</p>
-                            </div>
+                    <a href="{{ .Site.BaseURL }}nginx-gateway-fabric" class="products-card" alt="NGINX Gateway Fabric">
+                        <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-product-icon.png"> NGINX Gateway Fabric</h3>
+                        <div class="card-description">
+                            <p>Next generation Kubernetes connectivity using the Gateway API.</p>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-xs-12 col-sm-6 col-lg-4 card-holder">
+                    <a href="https://nginx.org/en/docs/" class="products-card" alt="NGINX Open Source">
+                        <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-product-icon.png"> NGINX Open Source</h3>
+                        <div class="card-description">
+                            <p>The open source all-in-one load balancer, content cache, and web server</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-lg-4 card-holder">
+                    <a href="{{ .Site.BaseURL }}nginx-agent" class="products-card" alt="NGINX Agent">
+                        <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-product-icon.png"> NGINX Agent</h3>
+                        <div class="card-description">
+                            <p>A daemon providing observability data and remote configuration for NGINX Open Source and NGINX Plus instances</p>
                         </div>
                     </a>
                 </div>
@@ -88,7 +95,7 @@
 
 <div class="col-md-12 col-xl-12 py-md-3 pl-md-5">
     <div class="justify-content-left" style="margin-left: 1.5em;">
-        <h2 style="font-weight: 400; font-size: 1.5em; margin-top: 0px; margin-bottom: 0px;">Open Source</h2>
+        <h2 style="font-weight: 400; font-size: 1.5em; margin-top: 0px; margin-bottom: 0px;">NGINX App Protect</h2>
     </div>
 </div>
 
@@ -99,91 +106,85 @@
             <div class="card-deck">
 
                 <div class="col-xs-12 col-sm-6 col-lg-4 card-holder">
-                    <a href="https://nginx.org/en/docs/" class="products-card" alt="NGINX Open Source">
-                        <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-product-icon.png"> NGINX Open Source</h3>
+                    <a href="{{ .Site.BaseURL }}nginx-app-protect-waf" class="products-card" alt="NGINX App Protect WAF">
+                        <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-App-Protect-WAF-product-icon.png"> NGINX App Protect WAF</h3>
                         <div class="card-description">
-                            <p>The open source all-in-one load balancer, content cache, and web server</p><hr><p>Find news, documentation, downloads, and more on nginx.org.</p>
+                            <p>Lightweight, high-performance, advanced protection against Layer 7 attacks on your apps and APIs</p>
                         </div>
                     </a>
                 </div>
 
                 <div class="col-xs-12 col-sm-6 col-lg-4 card-holder">
-                    <a href="https://unit.nginx.org/" class="products-card" alt="NGINX Unit">
-                        <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-Unit-product-icon-RGB.png"> NGINX Unit</h3>
+                    <a href="{{ .Site.BaseURL }}nginx-app-protect-dos" class="products-card" alt="NGINX App Protect DoS">
+                        <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-App-Protect-DoS-product-icon.png"> NGINX App Protect DoS</h3>
                         <div class="card-description">
-                            <p>Dynamic app server that can run beside NGINX, NGINX Plus, or on its own</p></p><hr><p>Find news, documentation, downloads, and more on unit.nginx.org.</p>
+                            <p>Defend, adapt, and mitigate against Layer 7 denial-of-service attacks on your apps and APIs</p>
                         </div>
                     </a>
                 </div>
 
-                <div class="col-xs-12 col-sm-6 col-lg-4 card-holder">
-                    <a href="{{ .Site.BaseURL }}/nginx-amplify/" class="products-card" alt="NGINX Amplify">
-                        <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-Amplify-product-icon-RGB.png"> NGINX Amplify</h3>
-                        <div class="card-description">
-                            <p>Lightweight SaaS monitoring and static analysis for NGINX Open Source and NGINX Plus</p>
-                        </div>
-                    </a>
-                </div>
-
-                
-                <div class="col-xs-12 col-sm-6 col-lg-4 card-holder">
-                    <a href="{{ .Site.BaseURL }}/nginx-agent/" class="products-card" alt="NGINX Agent">
-                        <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-product-icon.png"> NGINX Agent</h3>
-                        <div class="card-description">
-                            <p>A daemon providing observability data and remote configuration for NGINX Open Source and NGINX Plus instances</p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-lg-4 card-holder">
-                    <a href="{{ .Site.BaseURL }}/nginx-service-mesh/" class="products-card" alt="NGINX Service Mesh">
-                        <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-Service-Mesh-product-icon.png"> NGINX Service Mesh</h3>
-                        <div class="card-description">
-                            <p>Secure service-to-service management of north-south and east-west traffic</p>
-                        </div>
-                    </a>
-                </div>
-
-            </div>
-        </div>
-        <div class="container-fluid col-xl-12" id="community-alert">
-            <div class="row justify-content-center">
-                <div class="alert alert-light" role="alert">
-                    <p class="card-title" style="font-weight: 400;">Join the <a href="https://community.nginx.org/joinslack" alt="NGINX Community Slack">NGINX Community Slack</a> to ask and answer questions, discuss NGINX, and share useful advice and resources.</p>
-                </div>
             </div>
         </div>
     </section>
-    
 </div>
 
-<div class="container-fluid">
-    <div class="col-lg-8 py-md-5 pl-md-4">
-        <div class="justify-content-left" style="margin-left: 1.5em;">
-            <h2 style="font-weight: 400; font-size: 1.5em; margin-top: 0px; margin-bottom: 0px;">Other NGINX Products</h2>
-        </div>
-    </div>
-    <div class="col-lg-8 py-md-2 pl-md-2">         
-        <div class="row justify-content-around">
-            <div class="card-deck  pl-5">
-                <div class="card my-1 pl-md-3">
-                    <div class="card-body">
-                        <a href="{{ .Site.BaseURL }}/nginx-controller/" alt="NGINX Controller" style="color: #000; display:block; transition: transform 150ms ease-in-out;">
-                            <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-Controller-product-icon-RGB.png"> NGINX Controller</h3>
-                        </a>
-                    </div>
-                </div>
+<div class="col-md-12 col-xl-12 py-md-3 pl-md-5">
+   <div class="justify-content-left" style="margin-left: 1.5em;">
+       <h2 style="font-weight: 400; font-size: 1.5em; margin-top: 0px; margin-bottom: 0px;">NGINX as a Service</h2>
+   </div>
+</div>
 
-                <div class="card my-1 pl-md-3">
-                    <div class="card-body">
-                        <a href="{{ .Site.BaseURL }}/nginx-waf/" alt="NGINX ModSecurity WAF" style="color: #000; display:block; transition: transform 150ms ease-in-out;">
-                        <h3 class="card-title"><img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/NGINX-WAF-product-icon-RGB.png"> NGINX ModSecurity WAF</h3>
-                        </a>
+<div class="container-fluid" style="margin-left: 1%;">
+   <section class="col-md-12 col-xl-12 py-md-3 pl-md-5" id="nginx-products">
+       <div class="row justify-content-center">
+           <div class="card-deck">
+            <div class="col-xs-12 col-sm-6 col-lg-4 card-holder">
+                <a href="{{ .Site.BaseURL }}nginxaas/azure" class="products-card" alt="NGINX as a Service for Azure">
+                    <div class="saas-card">
+                        <div class="saas-icon"><img style="width: auto; height: auto;" src="{{ .Site.BaseURL }}/images/icons/NGINX-for-Azure-product-icon.png"></div>
+                        <div class="saas-description">
+                            <h3 class="saas-title">NGINX as a Service for Azure</h3>
+                            <p>Infrastructure-as-a-Service (IaaS) version of NGINX Plus for your Microsoft Azure application stack</p>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
-        </div>
-    </div> 
+         </div>
+      </div>
+   </section>
 </div>
+
+<div class="col-md-12 col-xl-12 py-md-3 pl-md-5">
+    <div class="justify-content-left" style="margin-left: 1.5em;">
+        <h2 style="font-weight: 400; font-size: 1.5em; margin-top: 0px; margin-bottom: 0px;">More NGINX Products</h2>
+    </div>
+ </div>
+
+ <div class="container-fluid" style="margin-left: 1%;">
+    <section class="col-md-12 col-xl-12 py-md-3 pl-md-5" id="nginx-products">
+        <div class="row justify-content-center">
+            <div class="card-deck">
+             <div class="col-xs-12 col-sm-6 col-lg-4 card-holder">
+                 <a href="https://unit.nginx.org/" class="products-card" alt="NGINX Unit">
+                     <div class="saas-card">
+                         <div class="saas-icon"><img style="width: auto; height: auto;" src="{{ .Site.BaseURL }}/images/icons/NGINX-Unit-product-icon-RGB.png"></div>
+                         <div class="saas-description">
+                             <h3 class="saas-title">NGINX Unit</h3>
+                             <p>Dynamic app server that can run beside NGINX, NGINX Plus, or on its own</p>
+                         </div>
+                     </div>
+                 </a>
+             </div>
+          </div>
+       </div>
+       <div class="container-fluid col-xl-12" id="community-alert">
+         <div class="row justify-content-center">
+             <div class="alert alert-light" role="alert">
+                 <p class="card-title" style="font-weight: 400;">Join the <a href="https://community.nginx.org/joinslack" alt="NGINX Community Slack">NGINX Community Slack</a> to ask and answer questions, discuss NGINX, and share useful advice and resources.</p>
+             </div>
+         </div>
+     </div>
+    </section>
+ </div>
 
 {{ end }}

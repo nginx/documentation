@@ -1,15 +1,15 @@
 ---
+docs: DOCS-726
 title: Installing the NGINX ModSecurity WAF
-weight: 100
 toc: true
-docs: "DOCS-726"
+weight: 100
 ---
 
 {{< important >}}
 {{% modsec-eol-notice %}}
 {{< /important >}}
 
-This chapter explains how to install the NGINX ModSecurity web application firewall (WAF), configure a simple rule, and set up logging. The NGINX ModSecurity WAF is the NGINX Plus build of ModSecurity. The NGINX ModSecurity WAF was previously called the NGINX WAF, and the NGINX Plus with ModSecurity WAF before that.
+This chapter explains how to install the F5 NGINX ModSecurity web application firewall (WAF), configure a simple rule, and set up logging. The NGINX ModSecurity WAF is the NGINX Plus build of ModSecurity. The NGINX ModSecurity WAF was previously called the NGINX WAF, and the NGINX Plus with ModSecurity WAF before that.
 
 <span id="waf-install_overview"></span>
 
@@ -20,8 +20,8 @@ This chapter explains how to install the NGINX ModSecurity web application fire
 
 This chapter explains how to install the NGINX ModSecurity WAF, presents a sample configuration of a simple rule, and sets up logging. For information about rule sets, see:
 
-*   [Using the OWASP CRS with the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-owasp-crs.md" >}})
-*   [Using the ModSecurity Rules from Trustwave SpiderLabs with the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-trustwave-spiderlabs-rules.md" >}})
+- [Using the OWASP CRS with the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-owasp-crs.md" >}})
+- [Using the ModSecurity Rules from Trustwave SpiderLabs with the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-trustwave-spiderlabs-rules.md" >}})
 
 <span id="waf-install_prereq"></span>
 
@@ -35,43 +35,43 @@ The NGINX ModSecurity WAF is available to NGINX Plus customers as a downloaded d
 
 To install the NGINX ModSecurity WAF dynamic module, perform the following steps.
 
-1.  Your package management software uses a repo key to access the NGINX Plus repositories. Follow our [instructions](https://cs.nginx.com/repo_setup) to install a repo key that enables access to the **nginx-plus-module-modsecurity** repository.
+1. Your package management software uses a repo key to access the NGINX Plus repositories. Follow our [instructions](https://cs.nginx.com/repo_setup) to install a repo key that enables access to the **nginx-plus-module-modsecurity** repository.
 
-2.  Update your package manager’s view of the NGINX Plus repository:
+2. Update your package manager’s view of the NGINX Plus repository:
 
-    * Ubuntu and Debian systems:
-
-      ```none
-      $ sudo apt-get clean ; sudo apt-get update
-      ```
-      
-    * Red Hat Enterprise Linux (RHEL) and CentOS systems:
+    - Ubuntu and Debian systems:
 
       ```none
-      $ sudo yum clean expire-cache
+      sudo apt-get clean ; sudo apt-get update
       ```
 
-3.  Use the OS package management utility to install the dynamic module from the NGINX Plus module repository:
-
-    * Ubuntu and Debian systems:
+    - Red Hat Enterprise Linux (RHEL) and CentOS systems:
 
       ```none
-      $ sudo apt-get install nginx-plus-module-modsecurity
+      sudo yum clean expire-cache
       ```
-      
-    * RHEL and CentOS systems:
+
+3. Use the OS package management utility to install the dynamic module from the NGINX Plus module repository:
+
+    - Ubuntu and Debian systems:
 
       ```none
-      $ sudo yum install nginx-plus-module-modsecurity
+      sudo apt-get install nginx-plus-module-modsecurity
       ```
 
-4.  Add the following line in the top‑level (“main”) context of **/etc/nginx/nginx.conf** :
+    - RHEL and CentOS systems:
+
+      ```none
+      sudo yum install nginx-plus-module-modsecurity
+      ```
+
+4. Add the following line in the top‑level (“main”) context of **/etc/nginx/nginx.conf** :
 
     ```none
     load_module modules/ngx_http_modsecurity_module.so;
     ```
 
-5.  Run the following command to verify that the module loads successfully, as confirmed by the indicated output:
+5. Run the following command to verify that the module loads successfully, as confirmed by the indicated output:
 
     ```none
     $ sudo nginx -t
@@ -91,7 +91,7 @@ In this example we configure a simple ModSecurity rule to block certain requests
 
 Create the demo web application by configuring an NGINX Plus virtual server.
 
-1.  Create the file **/etc/nginx/conf.d/echo.conf** with the following content. It configures a “web server” that listens on localhost port 8085 and returns status code `200` and a message containing the requested URI.
+1. Create the file **/etc/nginx/conf.d/echo.conf** with the following content. It configures a “web server” that listens on localhost port 8085 and returns status code `200` and a message containing the requested URI.
 
     ```nginx
     server {
@@ -103,7 +103,7 @@ Create the demo web application by configuring an NGINX Plus virtual server.
     }
     ```
 
-2.  Test the application by reloading the NGINX Plus configuration and making a request.
+2. Test the application by reloading the NGINX Plus configuration and making a request.
 
     ```none
     $ sudo nginx -s reload
@@ -123,7 +123,7 @@ Create the demo web application by configuring an NGINX Plus virtual server.
 
 Configure NGINX Plus as a reverse proxy for the demo application.
 
-1.  Create the file **/etc/nginx/conf.d/proxy.conf** with the following content. It configures a virtual server that listens on port 80 and proxies all requests to the [demo application](#waf-install_demo-app).
+1. Create the file **/etc/nginx/conf.d/proxy.conf** with the following content. It configures a virtual server that listens on port 80 and proxies all requests to the [demo application](#waf-install_demo-app).
 
     ```nginx
     server {
@@ -137,13 +137,13 @@ Configure NGINX Plus as a reverse proxy for the demo application.
 
     **Note:** If any other virtual servers ([`server {}`](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) blocks) in your NGINX Plus configuration listen on port 80, you need to disable them for the reverse proxy to work correctly. For example, the **/etc/nginx/conf.d/default.conf** file provided in the **nginx‑plus** package includes such a `server {}` block. Comment out or remove the `server {}` block, but do not remove or rename the **default.conf** file itself – if the file is missing during an upgrade, it is automatically restored, which can break the reverse&#8209;proxy configuration.
 
-2.  Reload the NGINX Plus configuration.
+2. Reload the NGINX Plus configuration.
 
     ```none
-    $ sudo nginx -s reload
+    sudo nginx -s reload
     ```
 
-3.  Verify that a request succeeds, which confirms that the proxy is working correctly.
+3. Verify that a request succeeds, which confirms that the proxy is working correctly.
 
     ```none
     $ curl -D - http://localhost
@@ -162,21 +162,21 @@ Configure NGINX Plus as a reverse proxy for the demo application.
 
 Configure the NGINX ModSecurity WAF to protect the demo web application by blocking certain requests.
 
-1.  Create the folder **/etc/nginx/modsec** for storing NGINX ModSecurity WAF configuration:
+1. Create the folder **/etc/nginx/modsec** for storing NGINX ModSecurity WAF configuration:
 
     ```none
-    $ sudo mkdir /etc/nginx/modsec
+    sudo mkdir /etc/nginx/modsec
     ```
 
-2.  Download the file of recommended ModSecurity configuration from the **v3/master** branch of the ModSecurity GitHub repo and name it **modsecurity.conf**:
+2. Download the file of recommended ModSecurity configuration from the **v3/master** branch of the ModSecurity GitHub repo and name it **modsecurity.conf**:
 
     ```none
-    $ cd /etc/nginx/modsec
-    $ sudo wget https://raw.githubusercontent.com/SpiderLabs/ModSecurity/v3/master/modsecurity.conf-recommended
-    $ sudo mv modsecurity.conf-recommended modsecurity.conf
+    cd /etc/nginx/modsec
+    sudo wget https://raw.githubusercontent.com/SpiderLabs/ModSecurity/v3/master/modsecurity.conf-recommended
+    sudo mv modsecurity.conf-recommended modsecurity.conf
     ```
 
-3.  Enable execution of rules by commenting out the existing `SecRuleEngine` directive in **modsecurity.conf** and adding the indicated directive. We will define the sample rule in the next step.
+3. Enable execution of rules by commenting out the existing `SecRuleEngine` directive in **modsecurity.conf** and adding the indicated directive. We will define the sample rule in the next step.
 
     ```nginx
     # SecRuleEngine DetectionOnly
@@ -186,7 +186,7 @@ Configure the NGINX ModSecurity WAF to protect the demo web application by block
     For more information about the `SecRuleEngine` directive, see the [ModSecurity documentation](https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual-(v2.x)#SecRuleEngine).
 
     <span id="waf-install_rule-1234"></span>
-4.  Create the main NGINX ModSecurity WAF configuration file, **/etc/nginx/modsec/main.conf**, and define a rule in it:
+4. Create the main NGINX ModSecurity WAF configuration file, **/etc/nginx/modsec/main.conf**, and define a rule in it:
 
     ```nginx
     # Include the recommended configuration
@@ -195,12 +195,12 @@ Configure the NGINX ModSecurity WAF to protect the demo web application by block
     SecRule ARGS:testparam "@contains test" "id:1234,deny,log,status:403"
     ```
 
-    *   `Include` – Includes the recommended configuration from the **modsecurity.conf** file.
-    *   `SecRule` – Creates a rule that protects the application by blocking requests and returning status code `403` when the `testparam` parameter in the query string contains the string `test`.
+    - `Include` – Includes the recommended configuration from the **modsecurity.conf** file.
+    - `SecRule` – Creates a rule that protects the application by blocking requests and returning status code `403` when the `testparam` parameter in the query string contains the string `test`.
 
     For more information about the `SecRule` directive, see the [ModSecurity documentation](https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual-(v2.x)#SecRule).
 
-5.  Change the reverse proxy configuration file (**/etc/nginx/conf.d/proxy.conf**) to enable the NGINX ModSecurity WAF:
+5. Change the reverse proxy configuration file (**/etc/nginx/conf.d/proxy.conf**) to enable the NGINX ModSecurity WAF:
 
     ```nginx
     server {
@@ -214,18 +214,18 @@ Configure the NGINX ModSecurity WAF to protect the demo web application by block
     }
     ```
 
-    *   `modsecurity on` – Enables the NGINX ModSecurity WAF.
-    *   `modsecurity_rules_file` – Specifies the location of the NGINX ModSecurity WAF configuration file.
+    - `modsecurity on` – Enables the NGINX ModSecurity WAF.
+    - `modsecurity_rules_file` – Specifies the location of the NGINX ModSecurity WAF configuration file.
 
     Documentation for `modsecurity*` directives in the NGINX Plus configuration file is available on [GitHub](https://github.com/SpiderLabs/ModSecurity-nginx#usage).
 
-6.  Reload the NGINX Plus configuration:
+6. Reload the NGINX Plus configuration:
 
     ```none
-    $ sudo nginx -s reload
+    sudo nginx -s reload
     ```
 
-7.  Verify that the rule configured in Step 4 works correctly, by making a request that includes the string `test` in the value of the query string `testparam` parameter.
+7. Verify that the rule configured in Step 4 works correctly, by making a request that includes the string `test` in the value of the query string `testparam` parameter.
 
     ```none
     $ curl -D - http://localhost/foo?testparam=thisisatestofmodsecurity
@@ -287,8 +287,8 @@ SecDebugLogLevel 9
 
 Please be aware of the following limitations:
 
-*   Rules that inspect the response body are not supported and are ignored if included in the configuration.
-*   Inclusion of the request and response body in the audit log is not supported.
+- Rules that inspect the response body are not supported and are ignored if included in the configuration.
+- Inclusion of the request and response body in the audit log is not supported.
 
 <span id="waf-install_conclusion"></span>
 
@@ -298,12 +298,12 @@ In this chapter, we installed the NGINX ModSecurity WAF for NGINX Plus, created 
 
 The simple rule works correctly, but doesn’t provide any real protection to an application. See the following chapters for instructions on configuring rules for comprehensive application protection:
 
-*   [Using the OWASP CRS with the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-owasp-crs.md" >}})
-*   [Using the ModSecurity Rules from Trustwave SpiderLabs with the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-trustwave-spiderlabs-rules.md" >}})
+- [Using the OWASP CRS with the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-owasp-crs.md" >}})
+- [Using the ModSecurity Rules from Trustwave SpiderLabs with the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-trustwave-spiderlabs-rules.md" >}})
 
 <span id="waf-install_resources"></span>
 
 ## Resources
 
-*   [ModSecurity Reference Manual](https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual-v2.x#ModSecurityreg_Reference_Manual)
-*   [ModSecurity v3 NGINX Connector](https://github.com/SpiderLabs/ModSecurity-nginx)
+- [ModSecurity Reference Manual](https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual-v2.x#ModSecurityreg_Reference_Manual)
+- [ModSecurity v3 NGINX Connector](https://github.com/SpiderLabs/ModSecurity-nginx)

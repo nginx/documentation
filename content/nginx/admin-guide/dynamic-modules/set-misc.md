@@ -10,61 +10,85 @@ toc: true
 weight: 100
 ---
 
+<span id="prereq"></span>
+## Prerequisites
+
+1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+
+2. Prior to installing the module, verify that the [NDK]({{< relref "ndk.md" >}}) module is already installed.
+
 
 <span id="install"></span>
-## Installation Instructions
+## Installation
 
-1. Prior to installing the Set-Misc module, verify that the [NDK]({{< relref "ndk.md" >}}) module is already installed.
+Install the Set-Misc module package `nginx-plus-module-set-misc`.
 
-2. Install the Set-Misc module.
+   For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
-   For Amazon Linux, CentOS, Oracle Linux, and RHEL:
-      
    ```shell
-   $ yum install nginx-plus-module-set-misc
+   yum install nginx-plus-module-set-misc
+   ```
+
+   For Amazon Linux 2023, AlmaLinux, Rocky Linux:
+
+   ```shell
+   dnf install nginx-plus-module-set-misc
    ```
 
    For Debian and Ubuntu:
-   
+
    ```shell
-   $ apt-get install nginx-plus-module-set-misc
+   apt-get install nginx-plus-module-set-misc
    ```
 
    For SLES:
-   
+
    ```shell
-   $ zypper install nginx-plus-module-set-misc
+   zypper install nginx-plus-module-set-misc
    ```
 
    For Alpine:
 
    ```shell
-   $ apk add nginx-plus-module-set-misc
+   apk add nginx-plus-module-set-misc
    ```
 
-3. Put the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directives  for NDK and Set-Misc modules in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
+   For FreeBSD:
+
+   ```shell
+   pkg install nginx-plus-module-set-misc
+   ```
+
+
+<span id="configure"></span>
+
+## Configuration
+
+After installation you will need to enable and configure the module in F5 NGINX Plus configuration file `nginx.conf`.
+
+1. Enable dynamic loading of NDK and Set-Misc modules with the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directives specified in the top-level (“`main`”) context:
 
    ```nginx
    load_module modules/ndk_http_module.so;
    load_module modules/ngx_http_set_misc_module.so;
    ```
-   
-   > **Note:** The directives must be in this order.
 
-4. Perform additional configuration as required by the [module](https://github.com/openresty/set-misc-nginx-module).
+   {{< note >}} The directives must be in this order. {{< /note >}}
 
-5. Reload NGINX Plus to enable the module:
+2. Perform additional configuration as required by the [module](https://github.com/openresty/set-misc-nginx-module).
+
+3. Test the configuration and reload NGINX Plus to enable the module:
 
    ```shell
-   $ nginx -t && nginx -s reload
+   nginx -t && nginx -s reload
    ```
 
 
 <span id="info"></span>
 ## More Info
 
-* [NGINX `ngx_set_misc` Module Reference](https://github.com/openresty/set-misc-nginx-module)
+- [NGINX `ngx_set_misc` Module Reference](https://github.com/openresty/set-misc-nginx-module)
 
-* [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
 
-* [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})

@@ -1,17 +1,17 @@
 ---
-Title: "API Key Authentication"
-draft: false
-description: Learn how to use NGINX Management Suite API Connectivity Manager to secure API Gateways by applying an API key authentication policy.
-weight: 400
+description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to secure
+  API Gateways by applying an API key authentication policy.
+docs: DOCS-1117
+doctypes:
+- API Connectivity Manager
+- api management
+- concept
+tags:
+- docs
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1117"
-doctypes: ["API Connectivity Manager", "api management", "concept"]
-journeys: ["getting started", "using"]
-personas: ["secops"]
+weight: 400
+title: API Key Authentication
 ---
-
-{{<custom-styles>}}
 
 ## Overview
 
@@ -58,13 +58,15 @@ Take the steps in this section if you want to restrict access to APIs to clients
 
 Send a POST request to add the API key authentication policy to the API Proxy.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method   | Endpoint                                                |
 |----------|---------------------------------------------------------|
 | `POST`   | `/services/workspaces/<SERVICE_WORKSPACE_NAME>/proxies` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 {{< note >}} To include sensitive data in Proxy `GET` requests, provide the query parameter `includes=sensitivedata`; otherwise, the response will have this data redacted. {{< /note >}}
 
@@ -101,8 +103,9 @@ Send a POST request to add the API key authentication policy to the API Proxy.
 }
 ```
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field                                                      | Type | Possible Values            | Description                                                                                                           | Required | Default value |
 |------------------------------------------------------------|----------|----------------------------|-----------------------------------------------------------------------------------------------------------------------|----------|---------------|
 | `apiKeyName`                                               | string   | Example: `clientAPIKey`    | The name of the header or query parameter where the API key will be located in the API request.                       | No       | `apikey`      |
@@ -112,8 +115,9 @@ Send a POST request to add the API key authentication policy to the API Proxy.
 | `errorReturnConditions`<br>`.noMatch`<br>`.returnCode`     | int      | In range `400-599`         | The error code that is returned from the API Proxy when an API key is not supplied.                                   | No       | `403`         |
 | `data.clientID`                                            | string   | Example: `ClientA`         | Identifies the client who is holding the API Key.                                                                     | Yes      | N/A           |
 | `data.apiKey`                                              | string   | Example: `5ff229f7d64e4d6` | The value of the API Key used to access the API. If an API Key is not provided, a random 32-byte key will be created. | No       | N/A           |
+
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 {{%/tab%}}
 {{%tab name="UI"%}}

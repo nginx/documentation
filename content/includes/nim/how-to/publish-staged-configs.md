@@ -1,3 +1,7 @@
+---
+docs: DOCS-1331
+---
+
 To publish a staged configuration to an NGINX instance or instance group:
 
 1. {{< include "nim/webui-nim-login.md" >}}

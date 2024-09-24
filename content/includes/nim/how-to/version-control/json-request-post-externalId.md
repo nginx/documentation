@@ -1,3 +1,7 @@
+---
+docs: DOCS-1326
+---
+
 ```json
 {
     "auxFiles": {

@@ -1,30 +1,14 @@
 ---
-title: "Getting Started with OIDC"
-date: 2023-06-08T13:06:59-07:00
-# Change draft status to false to publish doc
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: ""
-# Assign weights in increments of 100
-weight: 1
+description: ''
+docs: DOCS-1267
+doctypes:
+- tutorial
+tags:
+- docs
+title: Getting Started with OIDC
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-000"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["tutorial"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
+weight: 1
 ---
-
-{{< custom-styles >}}
 
 <style>
 h2 {
@@ -35,7 +19,7 @@ h2 {
 
 ## Overview
 
-We highly recommend using Open ID Connect (OIDC) as the preferred authentication method for the NGINX Management Suite. OIDC offers several advantages, including a Single Sign-On (SSO) experience for users and simplified user management for administrators through the use of user groups. OIDC allows for easy scalability and streamlined administration of user access.
+We highly recommend using Open ID Connect (OIDC) as the preferred authentication method for the F5 NGINX Management Suite. OIDC offers several advantages, including a Single Sign-On (SSO) experience for users and simplified user management for administrators through the use of user groups. OIDC allows for easy scalability and streamlined administration of user access.
 
 NGINX Management Suite's implementation of OpenID Connect (OIDC) is designed to work with any Identity Provider (IdP) that supports the OIDC protocol. The instructions provided below are general and can be applied to any IdP.
 
@@ -99,17 +83,13 @@ The following requirements must be met before you can use OIDC with NGINX Manage
 
 To enable OIDC functionality, you must update the placeholder default values in the OIDC configuration file (`openid_configuration.conf`). Follow these steps:
 
-1. Open the OIDC configuration file `/etc/nms/nginx/oidc/openid_configuration.conf` using a text editor and update the default placeholder values with the relevant information for your identity provider. (To learn more about the variables, refer to the [OIDC Settings](#oidc-variables) below.) Save the changes. 
+1. Open the OIDC configuration file `/etc/nms/nginx/oidc/openid_configuration.conf` using a text editor and update the default placeholder values with the relevant information for your identity provider. (To learn more about the variables, refer to the [OIDC Settings](#oidc-variables) below.) Save the changes.
 
-2. Using a text editor, open the `/etc/nginx/conf.d/nms-http.conf` configuration file and uncomment the OIDC settings starting with `#OIDC`. Comment out the Basic Authentication settings. Save the changes.
+1. Using a text editor, open the `/etc/nginx/conf.d/nms-http.conf` configuration file and uncomment the OIDC settings starting with `#OIDC`. Comment out the Basic Authentication settings. Save the changes.
 
-3. If you have additional modules installed, such as API Connectivity Manager, you need to modify their specific configuration files as well.
+1. Run the command `sudo nginx -t` to validate the configuration and ensure there are no errors.
 
-   Open the API Connectivity Manager configuration file `/etc/nms/nginx/locations/nms-acm.conf` in an app-developer and uncomment the OIDC settings starting with `#OIDC`. Comment out the settings for Basic Authentication. Save the changes.
-
-4. Run the command `sudo nginx -t` to validate the configuration and ensure there are no errors.
-
-5. Finally, reload NGINX and apply the new configuration by running the command `sudo nginx -s reload`.
+1. Finally, reload NGINX and apply the new configuration by running the command `sudo nginx -s reload`.
 
 
 ### OIDC Configuration Values {#oidc-variables}
@@ -119,8 +99,9 @@ Select the links below to view the OIDC configuration values and descriptions.
 <details closed>
 <summary>Metadata from Well-Known Endpoints</summary>
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Variable                | Description                                                                                                           |
 |-------------------------|-----------------------------------------------------------------------------------------------------------------------|
 | $oidc_authz_endpoint    | URL of the IdP’s OAuth 2.0 Authorization endpoint.                                                                    |
@@ -130,15 +111,16 @@ Select the links below to view the OIDC configuration values and descriptions.
 | $oidc_userinfo_endpoint | URL of the IdP’s UserInfo endpoint.                                                                                   |
 | $oidc_host              | URL of the IdP’s application.<br>For example, `https://{my-app}.okta.com`.                                            |
 | $oidc_scopes            | List of the OAuth 2.0 scope values that this server supports. <br> For example, `openid+profile+email+offline_access` |
+
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 </details>
 
 <details closed>
 <summary>Custom Configuration for Well-Known Endpoints</summary>
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
 <table>
 <thead>
@@ -165,11 +147,11 @@ Select the links below to view the OIDC configuration values and descriptions.
 <td>Use for when $oidc_authz_path_params_enable is enabled.<br><br>Example:<br>
 
 ``` yaml
-map $host $oidc_authz_endpoint { 
-    default "https://{my-app}.okta.com/oauth2/{version}/authorize"; 
-} 
-map $host $oidc_authz_path_params { 
-    default '{ "my-app": "{my-app}", "version": "v1" }'; 
+map $host $oidc_authz_endpoint {
+    default "https://{my-app}.okta.com/oauth2/{version}/authorize";
+}
+map $host $oidc_authz_path_params {
+    default '{ "my-app": "{my-app}", "version": "v1" }';
 }
 ```
 
@@ -185,18 +167,18 @@ map $host $oidc_authz_path_params {
 </tr>
 <tr>
 <td>$oidc_authz_query_params</td>
-<td>Use for when $oidc_authz_query_params_enable is enabled.<br><br>Example:<br> 
+<td>Use for when $oidc_authz_query_params_enable is enabled.<br><br>Example:<br>
 
 ```yaml
- map $host $oidc_authz_query_params { 
- default '{ 
-     "response_type": "code", 
-     "scope"        : "$oidc_scopes", 
-     "client_id"    : "$oidc_client", 
-     "redirect_uri" : "$redirect_base$redir_location", 
-     "nonce"        : "$nonce_hash", 
-     "state"        : 0 
- }'; 
+ map $host $oidc_authz_query_params {
+ default '{
+     "response_type": "code",
+     "scope"        : "$oidc_scopes",
+     "client_id"    : "$oidc_client",
+     "redirect_uri" : "$redirect_base$redir_location",
+     "nonce"        : "$nonce_hash",
+     "state"        : 0
+ }';
  ```
 
 </td>
@@ -212,13 +194,13 @@ map $host $oidc_authz_path_params {
 <tr>
 <td>$oidc_logout_path_params</td>
 <td>Use for when $oidc_logout_path_params_enable is enabled.<br><br>Example:<br>
-    
+
 ```yaml
-map $host $oidc_logout_endpoint { 
-    default "https://{my-app}.okta.com/oauth2/{version}/logout"; 
-} 
-map $host $oidc_authz_path_params { 
-    default '{ "my-app": "{my-app}", "version": "v1" }'; 
+map $host $oidc_logout_endpoint {
+    default "https://{my-app}.okta.com/oauth2/{version}/logout";
+}
+map $host $oidc_authz_path_params {
+    default '{ "my-app": "{my-app}", "version": "v1" }';
 }
 ```
 
@@ -235,7 +217,7 @@ map $host $oidc_authz_path_params {
 <tr>
 <td>$oidc_logout_query_params</td>
 <td>Use for when $oidc_logout_query_params_enable is enabled.<br><br>Example:<br>
-    
+
 ```yaml
  map $host $oidc_logout_query_params {
     # example 1. AWS Cognito Logout & prompt a user to sign in as another user.
@@ -247,7 +229,7 @@ map $host $oidc_authz_path_params {
         "scope"        : "$oidc_scopes"
     }';
 
-    # example 2. AWS Cognito Logout & redirect back to client. 
+    # example 2. AWS Cognito Logout & redirect back to client.
     default '{
         "client_id"    : "$oidc_client",
         "logout_uri"   : "$redirect_base/_logout"
@@ -267,13 +249,13 @@ map $host $oidc_authz_path_params {
 <tr>
 <td>$oidc_token_path_params</td>
 <td>Use for when $oidc_token_path_params_enable is enabled.<br><br>Example:<br>
-    
+
 ```yaml
-map $host $oidc_token_endpoint { 
-    default "https://{my-app}.okta.com/oauth2/{version}/token"; 
-} 
-map $host $oidc_authz_path_params { 
-    default '{ "my-app": "{my-app}", "version": "v1" }'; 
+map $host $oidc_token_endpoint {
+    default "https://{my-app}.okta.com/oauth2/{version}/token";
+}
+map $host $oidc_authz_path_params {
+    default '{ "my-app": "{my-app}", "version": "v1" }';
 }
 ```
 
@@ -292,8 +274,8 @@ map $host $oidc_authz_path_params {
 <td>Use for when $oidc_token_query_params_enable is enabled.<br><br>Example:<br>
 
 ```yaml
-map $host $oidc_token_query_params { 
-    default '{ "example": "data" }'; 
+map $host $oidc_token_query_params {
+    default '{ "example": "data" }';
 }
 ```
 
@@ -302,15 +284,16 @@ map $host $oidc_token_query_params {
 </tbody>
 </table>
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 </details>
 
 <details closed>
 <summary>Advanced Configuration Options</summary>
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Variable              | Description                                                                                                                                                                                                                                                                                                                                           |
 |-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | $oidc_client          | IdP’s client ID, which is a public identifier for the client that is required for all OAuth flows.                                                                                                                                                                                                                                                    |
@@ -319,8 +302,9 @@ map $host $oidc_token_query_params {
 | $oidc_logout_redirect | URI to be redirected to after successfully logging out from the IdP. This should be configured in your IdP.                                                                                                                                                                                                                                           |
 | $oidc_pkce_enable     | [PKCE (Proof Key for Code Exchange)](https://datatracker.ietf.org/doc/html/rfc7636) is a security extension for OAuth 2.0 that provides additional protection for public clients, such as mobile devices or single-page apps. Its purpose is to prevent a malicious program from intercepting the authorization code during the authorization process.<br><br> `1`: Enable PKCE <br> `0`: Disable PKCE |
 | $oidc_app_name        | IdP’s application name.                                                                                                                                                                                                                                                                                                                               |
+
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 </details>
 
@@ -328,5 +312,5 @@ map $host $oidc_token_query_params {
 
 Select from the following options to set up OIDC for a specific identity provider:
 
-- [Set up Azure Active Directory as an OIDC identity provider]({{< relref "/nms/admin-guides/authentication/oidc/oidc-azure.md" >}})
+- [Set up Microsoft Entra as an OIDC identity provider]({{< relref "/nms/admin-guides/authentication/oidc/oidc-entra.md" >}})
 - [Set up Keycloak as an OIDC Identity Provider]({{< relref "/nms/admin-guides/authentication/oidc/oidc-keycloak.md" >}})

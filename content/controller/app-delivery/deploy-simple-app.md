@@ -1,22 +1,8 @@
 ---
-authors: []
-categories:
-- application delivery
-date: "2020-10-26T15:32:41-06:00"
-description: Overview of the steps required to deploy a simple App
+description: Overview of the steps required to deploy a simple App.
 docs: DOCS-477
 doctypes:
 - tutorial
-draft: false
-journeys:
-- getting started
-- using
-personas:
-- devops
-- support
-roles:
-- admin
-- user
 tags:
 - docs
 title: Deploy a Simple Application
@@ -26,7 +12,7 @@ weight: 400
 
 ## Overview
 
-This topic provides an overview of the steps required to create a simple application by using NGINX Controller's user interface. Use the links provided to learn more about each step.
+This topic provides an overview of the steps required to create a simple application by using F5 NGINX Controller's user interface. Use the links provided to learn more about each step.
 
 ## Create an Environment
 

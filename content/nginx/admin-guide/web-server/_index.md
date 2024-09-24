@@ -1,5 +1,5 @@
 ---
-description: Documentation explaining how to configure NGINX and NGINX Plus as a web
+description: Documentation explaining how to configure NGINX and F5 NGINX Plus as a web
   server, reverse proxy, or application gateway.
 menu:
   docs:

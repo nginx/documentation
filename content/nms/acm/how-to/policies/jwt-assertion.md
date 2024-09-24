@@ -1,17 +1,17 @@
 ---
-Title: "OAuth2 JWT Assertion"
-draft: false
-description: Learn how to use NGINX Management Suite API Connectivity Manager to secure API Gateways by applying an OAuth2 JSON Web Token (JWT) Assertion policy.
-weight: 900
+description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to secure
+  API Gateways by applying an OAuth2 JSON Web Token (JWT) Assertion policy.
+docs: DOCS-1119
+doctypes:
+- API Connectivity Manager
+- api management
+- concept
+tags:
+- docs
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1119"
-doctypes: ["API Connectivity Manager", "api management", "concept"]
-journeys: ["getting started", "using"]
-personas: ["secops"]
+weight: 900
+title: JWT Assertion
 ---
-
-{{<custom-styles>}}
 
 ## Overview
 
@@ -43,16 +43,18 @@ SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
 
 A period (`.`) separates the header, payload, and signature. The header and payload are [Base64‑encoded](https://www.rfc-editor.org/rfc/rfc4648#section-5) JSON objects. The signature is encrypted using the algorithm specified by the alg header, which we can see when we decode our sample JWT:
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 |         | Encoded | Decoded |
 |---------|---------|---------|
 | Header  | `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9` | `{`<br>&nbsp;&nbsp;&nbsp;&nbsp;`"alg": "HS256",`<br>&nbsp;&nbsp;&nbsp;&nbsp;`"typ": "JWT"`<br>`}` |
 | Payload | `eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6`<br>`IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ`= | `{`<br>&nbsp;&nbsp;&nbsp;&nbsp;`"sub": "1234567890",`<br>&nbsp;&nbsp;&nbsp;&nbsp;`"name": "John Doe",`<br>&nbsp;&nbsp;&nbsp;&nbsp;`"iat": 1516239022`<br>`}` |
-{{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
 
-The [JWT standard](https://www.rfc-editor.org/rfc/rfc7519) defines several signature algorithms. The value HS256 in the example refers to HMAC SHA‑256. NGINX Plus supports the HSxxx, RSxxx, and ESxxx [signature algorithms](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html) that are defined in the [standard](https://www.rfc-editor.org/rfc/rfc7518#section-3.1). The ability to cryptographically sign JWTs makes them ideal to be used for client authorization.
+{{</bootstrap-table>}}
+
+
+The [JWT standard](https://www.rfc-editor.org/rfc/rfc7519) defines several signature algorithms. The value HS256 in the example refers to HMAC SHA‑256. F5 NGINX Plus supports the HSxxx, RSxxx, and ESxxx [signature algorithms](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html) that are defined in the [standard](https://www.rfc-editor.org/rfc/rfc7518#section-3.1). The ability to cryptographically sign JWTs makes them ideal to be used for client authorization.
 
 ---
 
@@ -92,13 +94,15 @@ Take the steps in this section if you would like to restrict access to APIs to c
 
 Send a `POST` request to add the OAuth2 JWT Assertion policy to the API Proxy.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method   | Endpoint                                                |
 |----------|---------------------------------------------------------|
 | `POST`   | `/services/workspaces/<SERVICE_WORKSPACE_NAME>/proxies` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 {{< warning >}} Local JSON Web Key usage with the policy configuration value `jwksKeys[]` is recommended for test/debugging environments only. For production environments, `jwksURI` should be used for remote JSON Web Key retrieval. {{< /warning >}}
 {{< note >}} While all request body configuration values are presented in the request body structure example below, not all configuration values are compatible. See the configuration value description table for further information. {{< /note >}}
@@ -135,19 +139,21 @@ Send a `POST` request to add the OAuth2 JWT Assertion policy to the API Proxy.
 }
 ```
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field | Type | Possible Values | Description | Required | Default value |
 |---|---|---|---|---|---|
 | `jwksURI` | string | Example:<br>`https://idp.io:8443/oauth/certs` | URI endpoint that contains public keys used to verify the JWT signature.<br><br>Not required if `jwksKeys[]` is populated. | Semi-optional | N/A |
 | `cacheKeysDuration` | string | Example: `12h` | Specifies how long the keys will be cached. Keys will be refreshed from the URI endpoint after the duration. <br><br>Only valid for `jwksURI`, not applicable for `jwksKeys[]`. Follows [NGINX configuration time measurement](http://nginx.org/en/docs/syntax.html) units syntax. | No | `"12h"` |
 | `jwksKeys[]` | array of JSON Web Keys | Example in policy request body. | Keys to be used to verify JWT signatures. User should supply key data in valid JSON Web Key format. See related standards for [JWK](https://datatracker.ietf.org/doc/html/rfc7517), [JWK Set Format](https://datatracker.ietf.org/doc/html/rfc7517#section-5), and the [jwksKeys parameter](https://datatracker.ietf.org/doc/html/rfc7517#section-5.1).<br><br>Not required if `jwksURI` is populated. | Semi-optional | N/A |
-| `tokenName` | string | Example: `Authorization` | The name of the header or query parameter where the JWT will be located in the API request.<br><br>In the case of default case of `Authorization` Header, the JWT token is required to adhere to the [Bearer Token usage](https://www.rfc-editor.org/rfc/rfc6750) standard.<br><br>Example: `Authorization: Bearer {{JWT_TOKEN}}` where `{{JWT_TOKEN}}` is the Base64 encoded Client JWT. | No | `"Authorization"` |
+| `tokenName` | string | Example: `Authorization` | The name of the header or query parameter where the JWT will be located in the API request.<br><br>In the case of default case of `Authorization` Header, the JWT token is required to adhere to the [Bearer Token usage](https://www.rfc-editor.org/rfc/rfc6750) standard.<br><br>Example: `Authorization: Bearer <access token>` where `<access token>}` is the Base64 encoded Client JWT. | No | `"Authorization"` |
 | `tokenSuppliedIn` | string | One of: [`"HEADER"`, `"QUERY"`] | Specifies where the access token is supplied in the incoming user request. | No | `"HEADER"` |
 | `errorReturnConditions`<br>`.notSupplied`<br>`.returnCode` | int | In range `400-599` | The error code that is returned from the API Proxy when an JWT is not supplied. | No | 401 |
 | `errorReturnConditions`<br>`.noMatch`<br>`.returnCode` | int | In range `400-599` | The error code that is returned from the API Proxy when an invalid JWT is supplied. | No | 403 |
+
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 {{%/tab%}}
 {{%tab name="UI"%}}

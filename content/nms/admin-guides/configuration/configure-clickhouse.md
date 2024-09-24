@@ -1,31 +1,18 @@
 ---
-title: "Configure ClickHouse"
-date: 2022-03-11T15:09:35Z
-draft: false
-description: ""
-# Assign weights in increments of 100
-weight: 100
+description: ''
+docs: DOCS-998
+doctypes:
+- task
+tags:
+- docs
+title: Configure ClickHouse
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-998"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management","security", "analytics"]
-doctypes: ["task"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
-aliases:
-- /nginx-management-suite/admin-guides/configuration/prerequisites/configure-clickhouse/
+weight: 100
 ---
-
-{{<custom-styles>}}
 
 ## Overview
 
-Follow the steps in this guide to update the `/etc/nms/nms.conf` file if you used a custom address, username, or password or enabled TLS when installing ClickHouse. NGINX Management Suite requires this information to connect to ClickHouse.
+Follow the steps in this guide to update the `/etc/nms/nms.conf` file if you used a custom address, username, or password or enabled TLS when installing ClickHouse. F5 NGINX Management Suite requires this information to connect to ClickHouse.
 
 ## Default ClickHouse Values {#default-values}
 
@@ -64,7 +51,7 @@ If you configured ClickHouse to work with TLS, take the following steps to updat
 
     ```yaml
     clickhouse:
-      
+
       # Sets the log level for ClickHouse processes within NMS.
       log_level: debug
 
@@ -73,16 +60,16 @@ If you configured ClickHouse to work with TLS, take the following steps to updat
 
       ## Note: Username and password should only be set, if you have custom defined username and password for ClickHouse.
       ## Ensure that any configured username or password is wrapped in single quotes.
-      # Sets the username that will be used to connect to ClickHouse. 
+      # Sets the username that will be used to connect to ClickHouse.
       username: 'test-1'
 
       # Sets the password that will be used to connect to ClickHouse.
       password: 'test-2'
 
-      # Activates or deactivates TLS for connecting to ClickHouse. 
+      # Activates or deactivates TLS for connecting to ClickHouse.
       # Note: `tls_mode` will be deprecated in the future, use the `tls` key to enable TLS connection for ClickHouse.
       tls_mode: true
-    
+
       tls:
         # Sets the address (form <ip-address:port>)used to connect to ClickHouse with a TLS connection.
         address: 127.0.0.1:9441
@@ -98,7 +85,7 @@ If you configured ClickHouse to work with TLS, take the following steps to updat
 
         # Sets the path of the Certificate Authority installed on the system for verifying certificates.
         cert_ca: /etc/ca
-    
+
       # Sets directory containing ClickHouse migration files.
       migrations_path: /test/migrations
     ```

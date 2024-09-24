@@ -1,38 +1,33 @@
 ---
-title: "Set Up a Developer Portal Environment"
-date: 2022-07-15T10:23:52-06:00
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Learn how to use NGINX Management Suite API Connectivity Manager to configure a Developer Portal."
-# Assign weights in increments of 100
-weight: 200 
+description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to configure
+  a Developer Portal.
+docs: DOCS-922
+tags:
+- docs
+title: Set Up a Developer Portal Environment
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-922"
-
+weight: 200
 ---
 
 {{< shortversions "1.1.0" "latest" "acmvers" >}}
 
 ## Overview
 
-In API Connectivity Manager, a Developer Portal (or, "Dev Portal") is a cluster of NGINX Plus data plane instances.
+In API Connectivity Manager, a Developer Portal (or, "Dev Portal") is a cluster of F5 NGINX Plus data plane instances.
 These clusters are managed under **Infrastructure Workspaces** and are part of **Environments**.
 
 ### Before You Begin
 
 You should complete the following Quick Start Guide(s) before proceeding with the steps in this guide:
 
-- [Configure an API Gateway]({{< relref "add-api-gateway" >}}) 
+- [Configure an API Gateway]({{< relref "add-api-gateway" >}})
 
 ## Add a Developer Portal
 
 Complete the steps in this guide to add a Developer Portal to the Environment you created in the [previous guide]({{< relref "add-api-gateway" >}}).
 
-When a Developer Portal environment is created, the API Connectivity Manager configures 
-a virtual server through which the developer portal service and API Connectivity Manager communicate. By default, the hostname for this server is the 
+When a Developer Portal environment is created, the API Connectivity Manager configures
+a virtual server through which the developer portal service and API Connectivity Manager communicate. By default, the hostname for this server is the
 hostname that you provided for the Developer Portal cluster, prefixed with `acm.`. For example: `acm.dev-portal.io`. This virtual server listens on port 81.
 
 You will need to update your DNS resolver settings to ensure this hostname is resolvable.
@@ -40,7 +35,7 @@ The hostname and port for this server can be updated by selecting the **Edit Por
 
 {{<important>}}
 
-- Be sure to provide the IP address or FQDN of the host where you installed the Dev Portal packages as the `{{portalClusterHostname}}`. 
+- Be sure to provide the IP address or FQDN of the host where you installed the Dev Portal packages as the `{{portalClusterHostname}}`.
 - The Dev Portal must run on a dedicated host with the [`njs`](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/nginscript/) module installed.
 {{</important>}}
 
@@ -50,13 +45,15 @@ Use the appropriate example below to deploy an HTTP or HTTPS Developer Portal.
 
 > {{< fa "lightbulb" >}} Use this example to get up and running quickly in a demo environment.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method      | Endpoint |
 |-------------|----------|
-| POST| `/infrastructure/workspaces/{{infraWorkspaceName}}/environments`| 
+| POST| `/infrastructure/workspaces/{{infraWorkspaceName}}/environments`|
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ```json
 {
@@ -76,20 +73,22 @@ Use the appropriate example below to deploy an HTTP or HTTPS Developer Portal.
 }
 ```
 
-### HTTPS 
+### HTTPS
 
-To deploy a cluster that uses HTTPS for secure inbound communication, you'll add the **TLS Inbound** policy. 
+To deploy a cluster that uses HTTPS for secure inbound communication, you'll add the **TLS Inbound** policy.
 Because this is done at the Infrastructure level, this is considered a "Global Policy".
 
-> {{< fa "lightbulb" >}} You need to provide your TLS server certificate and key as base64-encoded strings in this API call. 
+> {{< fa "lightbulb" >}} You need to provide your TLS server certificate and key as base64-encoded strings in this API call.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method      | Endpoint |
 |-------------|----------|
-| POST| `/infrastructure/workspaces/{{infraWorkspaceName}}/environments`| 
+| POST| `/infrastructure/workspaces/{{infraWorkspaceName}}/environments`|
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ```json
 {
@@ -125,16 +124,16 @@ Because this is done at the Infrastructure level, this is considered a "Global P
 
 ## Onboard an NGINX Plus Instance into the Cluster
 
-Take the steps in this section to install the NGINX Agent on the data plane instance where you installed the Developer Portal packages. 
+Take the steps in this section to install the NGINX Agent on the data plane instance where you installed the Developer Portal packages.
 This onboards the host into the proxy cluster that you created in the [previous step](#add-an-environment).
 
-To do so, you'll need to interact directly with the host. 
-SSH access to the host and `sudo` permissions are required. 
+To do so, you'll need to interact directly with the host.
+SSH access to the host and `sudo` permissions are required.
 
 ### Install NGINX Agent on the Data Plane Host
 
 1. Use SSH to connect and log in to the Dev Portal host.
-1. Run the onboarding command as root to download, install, configure, and start the NGINX Agent package. 
+1. Run the onboarding command as root to download, install, configure, and start the NGINX Agent package.
 
    - Replace `{{nms-fqdn}}` in the example command with the FQDN or IP address of your Dev Portal host.
    - Replace `{{clusterName}}` in the example command with the name of your Developer Portal cluster.
@@ -146,8 +145,8 @@ SSH access to the host and `sudo` permissions are required.
 
 ### Update the DNS Record
 
-The F5 NGINX Management Suite management plane host uses the Developer Portal's hostname to communicate with the Dev Portal. 
-You’ll need to update your DNS resolver settings with the Developer Portal's internal hostname. 
+The NGINX Management Suite management plane host uses the Developer Portal's hostname to communicate with the Dev Portal.
+You’ll need to update your DNS resolver settings with the Developer Portal's internal hostname.
 
 > {{< fa "lightbulb" >}} The internal hostname is the hostname that you provided for the Developer Portal, prefixed with `acm.`.
 > For example: `acm.dev-portal.io`
@@ -161,17 +160,19 @@ Because these settings are applied at the Infrastructure level, they are conside
 
 {{<see-also>}}Refer to [Customize the Developer Portal]({{< relref "/nms/acm/how-to/infrastructure/customize-devportal.md" >}}) to learn more about the available customization options and how to customize a Dev Portal via the API Connectivity Manager user interface.{{</see-also>}}
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method      | Endpoint |
 |-------------|----------|
 | PUT | `/infrastructure/workspaces/{{infraWorkspaceName}}/devportals/{{devPortalName}}`|
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 Note that many fields in the example JSON payload -- including the logo image and Markdown documents -- are base64-encoded.
 
-**Example JSON payload**: {{< fa "download" >}} {{< link "/acm/getting-started/examples/customize-devportal.json" "customize-devportal.json" >}}
+**Example JSON payload**: {{< fa "download" >}} {{< link "/nms/acm/getting-started/examples/customize-devportal.json" "customize-devportal.json" >}}
 
-Before you move on to the next guide, open the Dev Portal in your browser to view the changes. 
-You should see the default Dev Portal replaced by the custom settings. 
+Before you move on to the next guide, open the Dev Portal in your browser to view the changes.
+You should see the default Dev Portal replaced by the custom settings.

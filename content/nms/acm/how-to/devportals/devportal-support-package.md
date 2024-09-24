@@ -1,20 +1,15 @@
 ---
-title: "Create an NGINX Developer Portal Support Package"
-date: 2021-12-21T12:00:00-07:00
-draft: false
-description: "This guide explains how to generate a support package for troubleshooting error scenarios."
-# Assign weights in increments of 100
-weight: 300
-docs: "DOCS-1259"
+description: This guide explains how to generate a support package for troubleshooting
+  error scenarios.
+docs: DOCS-1259
+doctypes:
+- reference
+- task
+tags:
+- docs
+title: Create an NGINX Developer Portal Support Package
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["support"]
-doctypes: ["reference", "task"]
-journeys: ["using", "self service"]
-personas: ["devops", "netops", "secops", "support"]
+weight: 300
 ---
 
 {{< shortversions "1.0.0" "latest" "acmvers" >}}
@@ -59,6 +54,7 @@ The supported shell is `bash`.
 The following table lists the arguments you can use with the support package script.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Short | Long                      | Description                                                         | Example                                  | Default                               |
 | ----- | ------------------------- | ------------------------------------------------------------------- | ---------------------------------------- | ------------------------------------- |
 | `-h`  | `--help`                  | Prints information about the script arguments to stdout.            | `--help`                                 | N/A                                   |
@@ -72,7 +68,7 @@ The following table lists the arguments you can use with the support package scr
 
 The support package includes several directories containing information about the system, service, and database state.
 
-The information included is based on the NGINX products installed and configured.
+The information included is based on the F5 NGINX products installed and configured.
 
 ### devportal-logs
 

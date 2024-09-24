@@ -1,22 +1,17 @@
 ---
-title: "Add a License"
-description: "Learn how to license NGINX Management Suite using a JWT or S/MIME license, explore the features accessible in licensed and unlicensed modes, and troubleshoot common issues associated with license upload and entitlement retrieval." 
-date: 2021-12-21T12:00:00-07:00
-draft: false
-weight: 400
+description: Learn how to license F5 NGINX Management Suite using a JWT or S/MIME license,
+  explore the features accessible in licensed and unlicensed modes, and troubleshoot
+  common issues associated with license upload and entitlement retrieval.
+docs: DOCS-789
 doctypes: task
+title: Add a License
 toc: true
-docs: "DOCS-789"
-categories: ["configuration", "installation"]
-aliases:
-- /nginx-instance-manager/admin-guide/add-license/
+weight: 500
 ---
-
-{{< custom-styles >}}
 
 ## Overview
 
-NGINX Management Suite offers several features that do not require a license; however, most features require a valid license to use. The [License Comparison](#license-comparison) section below provides more details about the included features and their license requirements. 
+F5 NGINX Management Suite offers several features that do not require a license; however, most features require a valid license to use. The [License Comparison](#license-comparison) section below provides more details about the included features and their license requirements.
 
 Trial licenses, subscription licenses, and licenses under the Flexible Consumption Program (FCP) are available through [MyF5](https://my.f5.com).
 
@@ -81,7 +76,7 @@ To download a subscription or Flexible Consumption Program license for NGINX Man
 {{<important>}}
 <br>
 
-To retrieve your entitlements, make sure to allow inbound and outbound access on port 443 to the following URLs:
+To retrieve your entitlements, make sure port `443` allows outbound access to these URLs:
 
 - https://product.apis.f5.com
 - https://product-s.apis.f5.com/ee
@@ -127,15 +122,17 @@ The following tables show which features are available when NGINX Management Sui
 
 ### Unlicensed Mode Features
 
-The NGINX Management Suite features listed in the table below are available without a license. 
+The NGINX Management Suite features listed in the table below are available without a license.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Feature                       | Description                                                                    | Access Type |
 |-------------------------------|--------------------------------------------------------------------------------|-------------|
 | Licensing                     | View and manage licenses.                                                      | CRUD        |
 | NGINX&nbsp;Plus&nbsp;Counting | View the number of registered NGINX Plus instances and track Kubernetes usage. | CRUD        |
 | Scan                          | Permits scanning for NGINX instances.                                          | READ        |
 | User Management               | Create, configure, and manage roles, users, and user groups.                   | CRUD        |
+
 {{</bootstrap-table>}}
 
 ### Licensed Mode Features
@@ -154,18 +151,6 @@ When you license an NGINX Management Suite module, you gain access to the full r
 #### Instance Manager
 
 {{< include "admin-guides/rbac/features/instance-manager.md" >}}
-
-<br>
-
-#### API Connectivity Manager
-
-{{< include "admin-guides/rbac/features/api-connectivity-manager.md" >}}
-
-<br>
-
-#### App Delivery Manager
-
-{{< include "admin-guides/rbac/features/app-delivery-manager.md" >}}
 
 <br>
 

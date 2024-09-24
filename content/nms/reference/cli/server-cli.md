@@ -1,16 +1,13 @@
 ---
-categories:
-- beta
-- reference
 description: Man page and instructions for using the Instance Manager CLI
+docs: DOCS-815
 draft: true
 title: Server CLI Reference
 toc: true
 weight: 300
-docs: "DOCS-815"
 ---
 
-<!-- vale off --> 
+<!-- vale off -->
 <!-- remove the vale comment and this one before flipping draft status -->
 
 {{< shortversions "2.0.0" "latest" "nimvers" >}}

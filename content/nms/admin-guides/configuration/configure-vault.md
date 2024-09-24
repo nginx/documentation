@@ -1,34 +1,19 @@
 ---
-title: "Configure Vault for Storing Secrets"
-date: 2022-10-20T14:00:04-07:00
-# Change draft status to false to publish doc
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Follow the steps in this guide to configure NGINX Management Suite to use HashiCorp's Vault for storing secrets."
-# Assign weights in increments of 100
-weight: 200
+description: Follow the steps in this guide to configure F5 NGINX Management Suite to
+  use HashiCorp's Vault for storing secrets.
+docs: DOCS-999
+doctypes:
+- tutorial
+tags:
+- docs
+title: Configure Vault for Storing Secrets
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-999"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "security"]
-doctypes: ["tutorial"]
-journeys: ["getting started", "using"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
+weight: 200
 ---
-
-{{<custom-styles>}}
 
 {{< shortversions "2.6.0" "latest" "nimvers" >}}
 
-HashiCorp's Vault is a popular solution for storing secrets. While NGINX Management Suite provides encryption-at-rest for secrets stored on disk, if you have an existing Vault installation, you may prefer to store all secrets in one place. NGINX Management Suite provides a driver you can use to connect to existing Vault installations and store secrets.
+HashiCorp's Vault is a popular solution for storing secrets. While F5 NGINX Management Suite provides encryption-at-rest for secrets stored on disk, if you have an existing Vault installation, you may prefer to store all secrets in one place. NGINX Management Suite provides a driver you can use to connect to existing Vault installations and store secrets.
 
 ## Before You Begin
 

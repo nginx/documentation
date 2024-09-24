@@ -1,22 +1,8 @@
 ---
-authors: []
-categories:
-- analytics
-date: "2021-03-15T15:32:41-06:00"
-description: How to forward Analytics Metrics to OpenTelemetry Collector
+description: How to forward Analytics Metrics to OpenTelemetry Collector.
 docs: DOCS-532
 doctypes:
 - tutorial
-draft: false
-journeys:
-- using
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
 tags:
 - docs
 title: Forward Analytics Metrics to OpenTelemetry Collector
@@ -26,7 +12,7 @@ weight: 201
 
 ## Overview
 
-Follow the steps in this guide to set up an NGINX Controller integration that forwards metrics to OpenTelemetry Collector.
+Follow the steps in this guide to set up an F5 NGINX Controller integration that forwards metrics to OpenTelemetry Collector.
 
 ## Before You Begin
 

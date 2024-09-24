@@ -1,29 +1,17 @@
 ---
-title: "Getting Started with RBAC"
-date: 2022-03-24T16:23:50-07:00
-description: "This document describes role-based access control (RBAC) in NGINX Management Suite, outlining essential concepts and features. It serves as a starting point, linking to additional resources and how-to topics for those looking to set up and manage access controls effectively."
-# Assign weights in increments of 100
-weight: 1
-draft: false
+description: This document describes role-based access control (RBAC) in F5 NGINX Management
+  Suite, outlining essential concepts and features. It serves as a starting point,
+  linking to additional resources and how-to topics for those looking to set up and
+  manage access controls effectively.
+docs: DOCS-919
+doctypes:
+- tutorial
+tags:
+- docs
+title: Getting Started with RBAC
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-919"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "configuration", "security", "rbac"]
-doctypes: ["tutorial"]
-journeys: ["getting started", "using"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
-aliases:
-- /nginx-instance-manager/admin-guide/set-up-rbac/
-- /admin-guides/access-control/add-users/
+weight: 1
 ---
-
-{{< custom-styles >}}
 
 <style>
 h2 {
@@ -42,7 +30,7 @@ The value of RBAC lies in its ability to provide clear and structured control ov
 
 The following are essential concepts related to RBAC:
 
-- **Users**: Users are individual accounts identified by a username and credentials. You have the option to create users within NGINX Management Suite using basic authentication or to integrate with an external identity provider using OpenID Connect (OIDC).
+- **Users**: Users are individual accounts identified by a username and credentials. You have the option to create users within F5 NGINX Management Suite using basic authentication or to integrate with an external identity provider using OpenID Connect (OIDC).
 - **Roles**: Roles are sets of permissions linked to one or more features. Each role specifies the actions that are allowed for each feature, such as creating, reading, updating, or deleting. The pre-defined `admin` role grants full access to all features.
 
    Users can have multiple roles simultaneously. In such cases, the permissions granted by each role are combined, providing an additive effect. For instance, a user with two roles, one granting read access to all NGINX instances and the other allowing create, update, and delete access to a specific instance, will be able to read all instances while having the ability to create, update, or delete only the designated instance for which they have permission.
@@ -79,56 +67,6 @@ Explore the API endpoints for the NGINX Management Suite platform by going to **
 Explore the API endpoints for Instance Manager by going to **https://<NMS_FQDN>/ui/docs**. Replace `<NMS_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Management Suite host, which is the complete domain name specific to your system.
 
 ---
-
-### API Connectivity Manager
-
-{{< include "admin-guides/rbac/features/api-connectivity-manager.md" >}}
-
-
-#### Endpoints
-
-Explore the API endpoints for API Connectivity Manager by going to **https://<NMS_FQDN>/ui/docs/API-Connectivity-Manager**. Replace `<NMS_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Management Suite host, which is the complete domain name specific to your system.
-
-#### Built-In Roles
-
-API Connectivity Manager comes pre-configured with roles suitable for API Owners and Infrastructure Admins.
-
-- **API Owner**: The individuals or teams who are responsible for designing, creating, and maintaining APIs.
-- **Infrastructure Admin**: Infrastructure Administrators ensure uniform governance across an organization’s infrastructure by setting policies at the infrastructure level, enabling teams to build APIs without interruption while adhering to the organization’s standards.
-
-##### ACM API Owner {#acm-api-owner}
-
-{{< include "acm/rbac/api-owner-role.md" >}}
-
-{{<see-also>}}The tutorial [Set Up RBAC for API Owners]({{< relref "/nms/acm/tutorials/rbac-api-owners.md">}}) provides an example of how to configure RBAC for API owners.{{</see-also>}}
-
-##### ACM Infra Admin {#acm-infra-admin}
-
-{{< include "acm/rbac/infra-admin-role.md" >}}
-
-{{<see-also>}}The tutorial [Set Up RBAC for Infra Admins]({{< relref "/nms/acm/tutorials/rbac-infra-admins.md">}}) provides an example of how to configure RBAC for Infrastructure Administrators.{{</see-also>}}
-
----
-
-### App Delivery Manager
-
-{{< include "admin-guides/rbac/features/app-delivery-manager.md" >}}
-
-
-#### Endpoints
-
-Explore the API endpoints for App Delivery Manager by going to **https://<NMS_FQDN>/ui/docs/App-Delivery-Manager**. Replace `<NMS_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Management Suite host, which is the complete domain name specific to your system.
-
----
-
-### Security Monitoring
-
-{{< include "admin-guides/rbac/features/security-monitoring.md" >}}
-
-
-#### Endpoints
-
-Explore the API endpoints for Security Monitoring by going to **https://<NMS_FQDN>/ui/docs**. Replace `<NMS_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Management Suite host, which is the complete domain name specific to your system.
 
 ## Next Steps {#next-steps}
 

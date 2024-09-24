@@ -1,5 +1,5 @@
 ---
-description: Secure HTTP traffic between NGINX or NGINX Plus and upstream servers,
+description: Secure HTTP traffic between NGINX or F5 NGINX Plus and upstream servers,
   using SSL/TLS encryption.
 docs: DOCS-435
 doctypes:
@@ -9,15 +9,14 @@ toc: true
 weight: 900
 ---
 
-
 This article explains how to encrypt HTTP traffic between NGINX and a upstream group or a proxied server.
 
 
 ## Prerequisites
 
-*   [NGINX Open Source](https://nginx.org/en/download.html) or [NGINX Plus](https://nginx.com/products/)
-*   A [proxied server]({{< relref "../web-server/reverse-proxy.md" >}}) or an [upstream group of servers]({{< relref "../load-balancer/http-load-balancer.md" >}})
-*   SSL certificates and a private key
+- [NGINX Open Source](https://nginx.org/en/download.html) or [F5 NGINX Plus](https://nginx.com/products/)
+- A [proxied server]({{< relref "../web-server/reverse-proxy.md" >}}) or an [upstream group of servers]({{< relref "../load-balancer/http-load-balancer.md" >}})
+- SSL certificates and a private key
 
 ## Obtaining SSL Server Certificates
 

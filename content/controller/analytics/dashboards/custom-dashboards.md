@@ -1,24 +1,8 @@
 ---
-aliases:
-- /analytics/metrics/dashboards/
-- /analytics/metrics/dashboards.md
-authors:
-- ashutosh
-categories:
-- platform management
-- analytics
-date: "2020-10-26T15:32:41-06:00"
-description: Create custom dashboards to view custom graphs
+description: Create custom dashboards to view custom graphs.
 docs: DOCS-527
 doctypes:
 - task
-draft: false
-journeys:
-- using
-personas:
-- devops
-roles:
-- admin
 tags:
 - docs
 title: Create Custom Dashboards
@@ -28,7 +12,7 @@ weight: 20
 
 ## Overview
 
-You can use the NGINX Controller user interface to create your own Dashboards populated with customizable graphs of NGINX and system-level metrics.
+You can use the F5 NGINX Controller user interface to create your own Dashboards populated with customizable graphs of NGINX and system-level metrics.
 
 {{< note >}}
 
@@ -39,17 +23,17 @@ You can use the NGINX Controller user interface to create your own Dashboards po
 
 ## Before You Begin
 
-* [Install the NGINX Controller Agent on instances that you want to monitor]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}})
-* [Configure Metrics collection on your NGINX instances]({{< relref "/controller/admin-guides/config-agent/configure-metrics-collection.md" >}})
+- [Install the NGINX Controller Agent on instances that you want to monitor]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}})
+- [Configure Metrics collection on your NGINX instances]({{< relref "/controller/admin-guides/config-agent/configure-metrics-collection.md" >}})
 
 ## Dashboards
 
 In NGINX Controller, you can create dashboards to display custom graphs. Some use cases for custom graphs include the following:
 
-* Checking NGINX performance for a particular application or microservice, for example, based on the URI path
-* Displaying metrics per virtual server
-* Visualizing the performance of a group of NGINX servers, for example, front-end load-balancers or an NGINX edge caching layer
-* Analyzing a detailed breakdown of HTTP status codes per application
+- Checking NGINX performance for a particular application or microservice, for example, based on the URI path
+- Displaying metrics per virtual server
+- Visualizing the performance of a group of NGINX servers, for example, front-end load-balancers or an NGINX edge caching layer
+- Analyzing a detailed breakdown of HTTP status codes per application
 
 When building a custom graph, metrics can be summed or averaged across NGINX servers. By using metric filters, it is possible to create additional "metric dimensions", for example, reporting the number of POST requests for a specific URI.
 
@@ -146,11 +130,11 @@ Predefined dashboards cannot be deleted or modified.
 
 ## What's Next
 
-* [Overview Dashboard]({{< relref "/controller/analytics/dashboards/overview-dashboard.md" >}})
-* [Overview of Metrics and Metadata]({{< relref "/controller/analytics/metrics/overview-metrics-metadata.md" >}})
-* [Set up Metrics Collection]({{< relref "/controller/admin-guides/config-agent/configure-metrics-collection.md" >}})
-* [Metrics Catalog Reference]({{< relref "/controller/analytics/catalogs/metrics.md" >}})
-* [Dimensions Catalog Reference]({{< relref "/controller/analytics/catalogs/dimensions.md" >}})
+- [Overview Dashboard]({{< relref "/controller/analytics/dashboards/overview-dashboard.md" >}})
+- [Overview of Metrics and Metadata]({{< relref "/controller/analytics/metrics/overview-metrics-metadata.md" >}})
+- [Set up Metrics Collection]({{< relref "/controller/admin-guides/config-agent/configure-metrics-collection.md" >}})
+- [Metrics Catalog Reference]({{< relref "/controller/analytics/catalogs/metrics.md" >}})
+- [Dimensions Catalog Reference]({{< relref "/controller/analytics/catalogs/dimensions.md" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

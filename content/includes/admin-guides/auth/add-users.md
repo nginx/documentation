@@ -18,7 +18,7 @@ To add users, take the following steps:
    - **Last Name**: The user's last name.
    - **Description**: An optional brief description of the user.
 
-1. In the **Roles** list, select one or more roles to assign to the user. 
+1. In the **Roles** list, select one or more roles to assign to the user.
 
    Learn more about roles and how to create them in the [Getting Started with RBAC]({{< relref "/nms/admin-guides/rbac/rbac-getting-started" >}}) topic.
 

@@ -1,16 +1,17 @@
 ---
-title: "Request Header Specification"
-draft: false
-description: Learn how to use API Connectivity Manager's Request Header Specification policy to configure how headers with invalid characters are processed.
-weight: 1300
+description: Learn how to set up the Request Header Specification policy in API Connectivity
+  Manager to process headers with invalid characters.
+docs: DOCS-1263
+doctypes:
+- API Connectivity Manager
+- api management
+- task
+tags:
+- docs
+title: Request Header Specification
 toc: true
-tags: [ "docs" ]
-doctypes: ["API Connectivity Manager", "api management", "task"]
-journeys: ["getting started", "using"]
-personas: ["Platform Ops", "Infra Admins"]
+weight: 1300
 ---
-
-{{<custom-styles>}}
 
 ## Overview
 
@@ -40,13 +41,15 @@ To apply the policy or make changes to it, here's what you need to do:
 
 ## Policy Settings
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field            | Type   | Possible Values                | Description                                                  | Required | Default Value      |
 |------------------|--------|--------------------------------|--------------------------------------------------------------|----------|--------------------|
 | `invalidHeadersBehaviour` | string | Example:<br>`ALLOW_ALL` | This can be set to `IGNORE_ALL` (the default behavior for NGINX), `ALLOW_UNDERSCORE`, or `ALLOW_ALL` | YES      | `ALLOW_ALL` |
+
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ---
 
@@ -62,13 +65,15 @@ You can apply this policy using either the web interface or the REST API. Config
 
 To create a Request Correlation ID policy using the REST API, send an HTTP `POST` request to the Environment endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                                            |
 |--------|---------------------------------------------------------------------|
 | `POST` | `/infrastructure/workspaces/{workspace}/environments/{environment}` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <details open>
 <summary>JSON request</summary>
@@ -97,7 +102,7 @@ This JSON example defines a Request Header Specification policy.
 
 To add a Request Header Specification policy using the web interface:
 
-1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in. Then, from the Launchpad menu, select **API Connectivity Manager**.
+1. In a web browser, go to the FQDN for your F5 NGINX Management Suite host and log in. Then, from the Launchpad menu, select **API Connectivity Manager**.
 2. On the left menu, select **Infrastructure**.
 3. Choose the workspace that includes the environment for the cluster you want to add the policy to.
 4. Select the environment for your cluster.

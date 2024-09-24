@@ -19,30 +19,30 @@ HTTP Basic authentication can also be combined with other access restriction met
 <span id="prereq"></span>
 ## Prerequisites
 
-*   NGINX Plus or NGINX Open Source
-*   Password file creation utility such as <span style="white-space: nowrap;">`apache2-utils`</span> (Debian, Ubuntu) or <span style="white-space: nowrap;">`httpd-tools`</span> (RHEL/CentOS/Oracle Linux).
+- F5 NGINX Plus or NGINX Open Source
+- Password file creation utility such as <span style="white-space: nowrap;">`apache2-utils`</span> (Debian, Ubuntu) or <span style="white-space: nowrap;">`httpd-tools`</span> (RHEL/CentOS/Oracle Linux).
 
 <span id="pass"></span>
 ## Creating a Password File
 
 To create username-password pairs, use a password file creation utility, for example, <span style="white-space: nowrap;">`apache2-utils`</span> or <span style="white-space: nowrap;">`httpd-tools`</span>
 
-1.  Verify that <span style="white-space: nowrap;">`apache2-utils`</span> (Debian, Ubuntu) or <span style="white-space: nowrap;">`httpd-tools`</span> (RHEL/CentOS/Oracle Linux) is installed.
-2.  Create a password file and a first user. Run the `htpasswd` utility with the <span style="white-space: nowrap;">`-c`</span> flag (to create a new file), the file pathname as the first argument, and the username as the second argument:  
+1. Verify that <span style="white-space: nowrap;">`apache2-utils`</span> (Debian, Ubuntu) or <span style="white-space: nowrap;">`httpd-tools`</span> (RHEL/CentOS/Oracle Linux) is installed.
+2. Create a password file and a first user. Run the `htpasswd` utility with the <span style="white-space: nowrap;">`-c`</span> flag (to create a new file), the file pathname as the first argument, and the username as the second argument:
 
     ```shell
-    $ sudo htpasswd -c /etc/apache2/.htpasswd user1
+    sudo htpasswd -c /etc/apache2/.htpasswd user1
     ```
 
     Press Enter and type the password for **user1** at the prompts.
 
-3.  Create additional user-password pairs. Omit the <span style="white-space: nowrap;">`-c`</span> flag because the file already exists:  
+3. Create additional user-password pairs. Omit the <span style="white-space: nowrap;">`-c`</span> flag because the file already exists:
 
     ```shell
-    $ sudo htpasswd /etc/apache2/.htpasswd user2
+    sudo htpasswd /etc/apache2/.htpasswd user2
     ```
 
-4.  You can confirm that the file contains paired usernames and hashed passwords:
+4. You can confirm that the file contains paired usernames and hashed passwords:
 
     ```shell
     $ cat /etc/apache2/.htpasswd
@@ -54,7 +54,7 @@ To create username-password pairs, use a password file creation utility, for exa
 <span id="config"></span>
 ## Configuring NGINX and NGINX Plus for HTTP Basic Authentication
 
-1.  Inside a location that you are going to protect, specify the [auth_basic](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html#auth_basic) directive and give a name to the password-protected area. The name of the area will be shown in the username/password dialog window when asking for credentials:
+1. Inside a location that you are going to protect, specify the [auth_basic](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html#auth_basic) directive and give a name to the password-protected area. The name of the area will be shown in the username/password dialog window when asking for credentials:
 
     ```nginx
     location /api {
@@ -63,12 +63,12 @@ To create username-password pairs, use a password file creation utility, for exa
     }
     ```
 
-2.  Specify the [auth_basic_user_file](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html#auth_basic_user_file) directive with a path to the _.htpasswd_ file that contain user/password pairs:
+2. Specify the [auth_basic_user_file](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html#auth_basic_user_file) directive with a path to the _.htpasswd_ file that contain user/password pairs:
 
     ```nginx
     location /api {
         auth_basic           "Administrator’s Area";
-        auth_basic_user_file /etc/apache2/.htpasswd; 
+        auth_basic_user_file /etc/apache2/.htpasswd;
     }
     ```
 
@@ -91,10 +91,10 @@ server {
 
 HTTP basic authentication can be effectively combined with access restriction by IP address. You can implement at least two scenarios:
 
-*   a user must be both authenticated and have a valid IP address
-*   a user must be either authenticated, or have a valid IP address
+- a user must be both authenticated and have a valid IP address
+- a user must be either authenticated, or have a valid IP address
 
-1.  Allow or deny access from particular IP addresses with the [allow](https://nginx.org/en/docs/http/ngx_http_access_module.html#allow) and [deny](https://nginx.org/en/docs/http/ngx_http_access_module.html#deny) directives:
+1. Allow or deny access from particular IP addresses with the [allow](https://nginx.org/en/docs/http/ngx_http_access_module.html#allow) and [deny](https://nginx.org/en/docs/http/ngx_http_access_module.html#deny) directives:
 
     ```nginx
     location /api {
@@ -108,13 +108,13 @@ HTTP basic authentication can be effectively combined with access restriction by
 
     Access will be granted only for the `192.168.1.1/24` network excluding the `192.168.1.2` address. Note that the `allow` and `deny` directives will be applied in the order they are defined.
 
-2.  Combine restriction by IP and HTTP authentication with the [satisfy](https://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy) directive.
+2. Combine restriction by IP and HTTP authentication with the [satisfy](https://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy) directive.
     If you set the directive to to `all`, access is granted if a client satisfies both conditions. If you set the directive to `any`, access is granted if if a client satisfies at least one condition:
 
     ```nginx
     location /api {
         #...
-        satisfy all;    
+        satisfy all;
 
         deny  192.168.1.2;
         allow 192.168.1.1/24;
@@ -147,7 +147,7 @@ http {
             deny  all;
 
             auth_basic           "Administrator’s Area";
-            auth_basic_user_file /etc/apache2/.htpasswd; 
+            auth_basic_user_file /etc/apache2/.htpasswd;
         }
     }
 }

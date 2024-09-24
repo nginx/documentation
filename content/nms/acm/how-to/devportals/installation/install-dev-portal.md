@@ -1,30 +1,15 @@
 ---
-title: "Install or Upgrade the Developer Portal"
-date: 2023-04-06T11:59:50-07:00
-# Change draft status to false to publish doc
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Follow the steps in this guide to install or upgrade the Developer Portal for NGINX Management Suite API Connectivity Manager."
-# Assign weights in increments of 100
-weight: 10
+description: Follow the steps in this guide to install or upgrade the Developer Portal
+  for F5 NGINX Management Suite API Connectivity Manager.
+docs: DOCS-1214
+doctypes:
+- tutorial
+tags:
+- docs
+title: Install or Upgrade the Developer Portal
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1214"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["tutorial"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
+weight: 10
 ---
-
-{{< custom-styles >}}
 
 ---
 
@@ -34,7 +19,7 @@ authors: []
 
 Complete the following steps to prepare the Developer Portal for use with API Connectivity Manager:
 
-1. [Install NGINX Plus R24 or later](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/)
+1. [Install F5 NGINX Plus R24 or later](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/)
 2. [Install NGINX njs module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/nginscript/)
 
 <details open>
@@ -219,14 +204,14 @@ echo 'DB_PATH="/var/lib/nginx-devportal"' | sudo tee -a /etc/nginx-devportal/dev
    ```
 
 3. Restart the Developer Portal service:
-  
+
    ```bash
    sudo systemctl restart nginx-devportal.service
    ```
 
 ---
 
-## Secure Developer Portal API communication.
+## Secure Developer Portal API communication
 
 Depending on your [deployment pattern for the Developer Portal]({{< relref "/nms/acm/how-to/infrastructure/configure-devportal-backend.md" >}}), you may have either a single host installation(default) or a multi-host installation for high availability. We recommend using mTLS for the communication between the NGINX reverse proxy and the Developer Portal APIs to provide maximum security.
 
@@ -247,6 +232,7 @@ Depending on your [deployment pattern for the Developer Portal]({{< relref "/nms
    ```shell
    sudo systemctl restart nginx-devportal
    ```
+
 1. If mTLS is configured on your Developer Portal service, you must add a TLS Backend Policy to both;
    - The Developer Portal Cluster (Used for communication from users to the Developer Portal API)
    - The Developer Portal Internal Cluster (For communication from the API Connectivity Manager to your Devportal Portal API to publish and maintain information)

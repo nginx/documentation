@@ -1,25 +1,9 @@
 ---
-authors: []
-categories:
-- installation
-- infrastructure
-- security
-date: "2020-11-03T14:06:51-07:00"
-description: Learn how to register an NGINX App Protect instance with NGINX Controller
+description: Learn how to register an F5 NGINX App Protect instance with NGINX Controller
   for use with the ADC module.
 docs: DOCS-770
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-personas:
-- netops
-- support
-roles:
-- admin
 tags:
 - docs
 title: Add an NGINX App Protect Instance
@@ -29,16 +13,16 @@ weight: 20
 
 ## Overview
 
-Follow the directions in this topic to deploy NGINX App Protect and add the instance to NGINX Controller.
+Follow the directions in this topic to deploy F5 NGINX App Protect and add the instance to NGINX Controller.
 
 ## Deploy NGINX App Protect
 
 <div data-proofer-ignore>
 
-Install NGINX App Protect on a host accessible by your NGINX Controller instance by following the appropriate steps for your operating system in the [Using NGINX App Protect with NGINX Controller](https://docs.nginx.com/nginx-app-protect/admin-guide/install-for-controller/) guide.
+Install NGINX App Protect on a host accessible by your NGINX Controller instance by following the appropriate steps for your operating system in the [Using NGINX App Protect with NGINX Controller]({{< relref "controller/admin-guides/install/install-for-controller.md" >}}) guide.
 
 {{< note >}}
-If you install NGINX App Protect by using any of the OS-specific install guides, **do not make changes to the `nginx.conf` file**.  
+If you install NGINX App Protect by using any of the OS-specific install guides, **do not make changes to the `nginx.conf` file**.
 The NGINX Controller Agent manages `nginx.conf` settings and will make the appropriate adjustments for you.
 {{< /note >}}
 

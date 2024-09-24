@@ -1,31 +1,8 @@
 ---
-aliases:
-- /analytics/metrics/application-health-score/
-- /analytics/metrics/application-health-score.md
-- analytics/metrics/application-health-score.md
-authors: []
-categories:
-- platform management
-- analytics
-date: "2020-10-26T15:32:41-06:00"
-description: View and understand the Application Health Score for your application
+description: View and understand the Application Health Score for your application.
 docs: DOCS-526
 doctypes:
 - concept
-journeys:
-- researching
-- getting started
-- using
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
-- read-only
 tags:
 - docs
 title: Understanding the Application Health Score
@@ -35,7 +12,7 @@ weight: 20
 
 ## Overview
 
-When you log in to the NGINX Controller user interface, you will see the **Analytics Dashboard Overview** page. This page contains an Application Health Score (AHS) that reflects your application's performance.
+When you log in to the F5 NGINX Controller user interface, you will see the **Analytics Dashboard Overview** page. This page contains an Application Health Score (AHS) that reflects your application's performance.
 
 The AHS is a customizable [Apdex-like numerical measure](https://www.apdex.org/) that can be used to estimate the quality of experience for your web application. It lets you configure service-level monitoring for your applications.
 
@@ -56,10 +33,10 @@ When you select the Request Time (95th percentile) for inclusion in the AHS, you
 - Low threshold for satisfying requests.
 - High threshold for partially satisfying requests.
 
-If the average request time (P95) for the selected time period is below the low threshold, this is considered as a "100% satisfying" state of requests. 
+If the average request time (P95) for the selected time period is below the low threshold, this is considered as a "100% satisfying" state of requests.
 
-If the request time is above the low threshold and below the high threshold, a "satisfaction ratio" is calculated accordingly. 
-Requests above the high threshold are considered to be "0%", or "unsatisfying". 
+If the request time is above the low threshold and below the high threshold, a "satisfaction ratio" is calculated accordingly.
+Requests above the high threshold are considered to be "0%", or "unsatisfying".
 
 For example: If the low threshold is 0.2s and the high threshold is 1s, a request time greater than 1s would be considered unsatisfying and the resulting score would be 0%.
 
@@ -95,7 +72,7 @@ By default, the AHS and other metrics on the **Overview** page are calculated fo
 2. On the **Overview** page, select the Settings (gear) icon in the Application Health Score panel.
 3. In the **Service Level Monitoring** window, define the following:
 
-    - (Optional) Create a custom name for the monitor (replaces "Application Health Score"). 
+    - (Optional) Create a custom name for the monitor (replaces "Application Health Score").
     - (Optional) Select tags to narrow the data source(s) to a specific Instance or set of Instances.
     - Select the Service Indicators that you want to include in the score calculation.
 

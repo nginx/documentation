@@ -1,24 +1,9 @@
 ---
-categories:
-- api
-date: "2020-10-26T15:32:41-06:00"
-description: Provides information about the NGINX Controller API
+description: Provides information about the F5 NGINX Controller API.
 docs: DOCS-343
 doctypes:
 - concept
-draft: false
-journeys:
-- researching
-- getting started
-- using
 layout: docs
-menu:
-- api
-personas:
-- devops
-- netops
-- secops
-- support
 tags:
 - docs
 title: API Overview
@@ -28,7 +13,7 @@ weight: 10
 
 ## Introduction
 
-The NGINX Controller API is a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API that allows you to programmatically manage your NGINX Plus data planes.
+The F5 NGINX Controller API is a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API that allows you to programmatically manage your NGINX Plus data planes.
 
 NGINX Controller follows an "API-first" approach, which means that all NGINX Controller functionality is exclusively exposed through declarative and resource-oriented APIs. Even the user interface (user interface) uses our REST API! You'll find examples of REST request bodies in the user interface. You can rest assured that the example you see is correct, because that is the call that the user interface is going to make to apply your requested configuration.
 
@@ -89,7 +74,7 @@ You can send a GET request to the login endpoint to find the status of the sessi
 For example:
 
 - Login and capture the session cookie:
-  
+
   ```curl
   curl -c cookie.txt -X POST --url 'https://198.51.100.10/api/v1/platform/login' --header 'Content-Type: application/json' --data '{"credentials": {"type": "BASIC","username": "arthur@arthurdent.net","password": "Towel$123"}}'
   ```

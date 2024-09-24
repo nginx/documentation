@@ -1,34 +1,19 @@
 ---
-title: "Set Up RBAC for API Owners"
-date: 2023-03-02T13:09:51-08:00
-# Change draft status to false to publish doc
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Learn how to use both built-in and custom roles to configure role-based access control for NGINX Management Suite API Connectivity Manager."
-# Assign weights in increments of 100
-weight: 110
+description: Learn how to use both built-in and custom roles to configure role-based
+  access control for F5 NGINX Management Suite API Connectivity Manager.
+docs: DOCS-1173
+doctypes:
+- tutorial
+tags:
+- docs
+title: Set Up RBAC for API Owners
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1173"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["tutorial"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
+weight: 110
 ---
-
-{{< custom-styles >}}
 
 ## Overview
 
-This tutorial will show you how to use the Role-Based Access Control (RBAC) features of API Connectivity Manager to give API Owners tailored levels of access to features in NGINX Management Suite. You will learn how to create roles to grant users access to workspaces and features, as well as how to add and assign users to those roles.
+This tutorial will show you how to use the Role-Based Access Control (RBAC) features of API Connectivity Manager to give API Owners tailored levels of access to features in F5 NGINX Management Suite. You will learn how to create roles to grant users access to workspaces and features, as well as how to add and assign users to those roles.
 
 ### Intended Audience
 
@@ -92,7 +77,7 @@ To create a Services workspace role:
 3. From the left navigation menu, select **Roles**.
 4. Select **Create**.
 5. On the **Create Role** form, provide the following details:
-   
+
    - **Name**: The name to use for the role. In this example, we'll name the role "hr-api-services".
    - **Display name**: An optional, user-friendly name to show for the role.
    - **Description**: An optional, brief summary of what the role is.
@@ -129,7 +114,7 @@ To add users, take the following steps:
 1. On the **Create User** form, enter the details for the user:
 
    - **Username**: A unique name to identify the user. For example, "jane-smith".
-   - **Email**: The user's email address. For example, "j.smith@acmecorp.com".
+   - **Email**: The user's email address. For example, "<j.smith@acmecorp.com>".
    - **First Name**: The user's first name. For example, "Jane".
    - **Last Name**: The user's last name. For example, "Smith".
    - **Description**: An optional brief description of the user. For example, "Senior Software Engineer".

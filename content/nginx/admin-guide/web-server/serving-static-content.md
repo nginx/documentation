@@ -1,5 +1,5 @@
 ---
-description: Configure NGINX and NGINX Plus to serve static content, with type-specific
+description: Configure NGINX and F5 NGINX Plus to serve static content, with type-specific
   root directories, checks for file existence, and performance optimizations.
 docs: DOCS-442
 doctypes:
@@ -9,8 +9,7 @@ toc: true
 weight: 200
 ---
 
-
-This section describes how to configure NGINX and NGINX Plus to serve static content, how to define which paths are searched to find requested files, how to set up index files, and how to tune NGINX and NGINX Plus, as well as the kernel, for optimal performance.
+This section describes how to configure NGINX and F5 NGINX Plus to serve static content, how to define which paths are searched to find requested files, how to set up index files, and how to tune NGINX and NGINX Plus, as well as the kernel, for optimal performance.
 
 <span id="root"></span>
 ## Root Directory and Index Files
@@ -167,9 +166,9 @@ The output might be like the following, which shows that in the listen queue on 
 
 ```none
 Current listen queue sizes (qlen/incqlen/maxqlen)
-Listen         Local Address         
-0/0/128        *.12345            
-10/0/128        *.80       
+Listen         Local Address
+0/0/128        *.12345
+10/0/128        *.80
 0/0/128        *.8080
 ```
 
@@ -177,9 +176,9 @@ In contrast, in the following command the number of unaccepted connections (`192
 
 ```none
 Current listen queue sizes (qlen/incqlen/maxqlen)
-Listen         Local Address         
-0/0/128        *.12345            
-192/0/128        *.80       
+Listen         Local Address
+0/0/128        *.12345
+192/0/128        *.80
 0/0/128        *.8080
 ```
 
@@ -187,13 +186,13 @@ Listen         Local Address
 
 Increase the value of the `net.core.somaxconn` kernel parameter from its default value (`128`) to a value high enough for a large burst of traffic. In this example, it's increased to `4096`.
 
-*   For FreeBSD, run the command:
+- For FreeBSD, run the command:
 
     ```none
     sudo sysctl kern.ipc.somaxconn=4096
     ```
 
-*   For Linux:
+- For Linux:
     1. Run the command:
 
        ```none

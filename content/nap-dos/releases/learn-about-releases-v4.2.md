@@ -1,38 +1,14 @@
 ---
-authors: []
-categories:
-- releases
-date: "2021-04-14T13:32:41+00:00"
-description: ""
+description: ''
 docs: DOCS-1254
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: Releases
-    weight: 45
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect DoS Release 4.2
 toc: true
-versions:
-- "4.2"
 weight: 100
 ---
 
-Here you can find the release information for NGINX App Protect DoS v4.2. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications. 
+Here you can find the release information for F5 NGINX App Protect DoS v4.2. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
 
 ## Release 4.2
 
@@ -41,6 +17,7 @@ August 15, 2023
 In this release, NGINX App Protect DoS supports NGINX Plus R30.
 
 ### New Features
+
 - Support for Nginx Plus R30
 - [Support for Ubuntu 22.04]({{< relref "learn-about-deployment.md#debian--ubuntu-installation" >}})
 - Support for HTTP3/QUIC
@@ -51,25 +28,32 @@ In this release, NGINX App Protect DoS supports NGINX Plus R30.
 #### App Protect DoS
 
 ##### Alpine 3.15
-- app-protect-dos-30.4.2.0-r1.apk 
+
+- app-protect-dos-30.4.2.0-r1.apk
 
 ##### CentOS 7.4+ / RHEL 7.4+ / UBI7
+
 - app-protect-dos-30.4.2.0-1.el7.ngx.x86_64.rpm
 
-##### RHEL 8 and Rocky Linux 8 
-- app-protect-dos-30.4.2.0-1.el8.ngx.x86_64.rpm  
+##### RHEL 8 and Rocky Linux 8
+
+- app-protect-dos-30.4.2.0-1.el8.ngx.x86_64.rpm
 
 ##### Debian 11
+
 - app-protect-dos_30.4.2.0-1~bullseye_amd64.deb
 
 ##### Ubuntu 20.04
+
 - app-protect-dos_30.4.2.0-1~focal_amd64.deb
 
 ##### Ubuntu 22.04
+
 - app-protect-dos_30.4.2.0-1~jammy_amd64.deb
 
 
 #### NGINX Plus
+
 - NGINX Plus R30
 
 
@@ -82,6 +66,7 @@ In this release, NGINX App Protect DoS supports NGINX Plus R30.
 - If NGINX App Protect WAF is installed, app protect should be disabled for the location of DoS Live Activity Monitoring API.
 
     For example:
+
     ```shell
     location /api {
     app_protect_enable off;
@@ -92,6 +77,7 @@ In this release, NGINX App Protect DoS supports NGINX Plus R30.
 - Port configuration in `app_protect_dos_monitor` should correspond to the port, the server listens to. Misconfiguration can potentially cause a false attack declaration.
 
     For example:
+
     ```shell
         server {
             listen 8080;
@@ -111,4 +97,4 @@ In this release, NGINX App Protect DoS supports NGINX Plus R30.
 
 - The package dependencies for NGINX App Protect DoS have changed in this release, replacing the `curl` dependencies with `libcurl` only. For more information, see the [NGINX App Protect DoS Deployment Guide]({{< relref "/nap-dos/deployment-guide/learn-about-deployment.md#prerequisites" >}}).
 
-- Starting with this release, Ubuntu 18.04 support has been deprecated. 
+- Starting with this release, Ubuntu 18.04 support has been deprecated.

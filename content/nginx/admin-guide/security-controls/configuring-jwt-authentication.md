@@ -9,44 +9,43 @@ toc: true
 weight: 500
 ---
 
-
 <span id="intro"></span>
 ## Introduction
 
-With NGINX Plus it is possible to control access to your resources using JWT authentication. JWT is data format for user information in the OpenID Connect standard, which is the standard identity layer on top of the OAuth 2.0 protocol. Deployers of APIs and microservices are also turning to the JWT standard for its simplicity and flexibility. With JWT authentication, a client provides a JSON Web Token, and the token will be validated against a local key file or a remote service.
+With F5 NGINX Plus it is possible to control access to your resources using JWT authentication. JWT is data format for user information in the OpenID Connect standard, which is the standard identity layer on top of the OAuth 2.0 protocol. Deployers of APIs and microservices are also turning to the JWT standard for its simplicity and flexibility. With JWT authentication, a client provides a JSON Web Token, and the token will be validated against a local key file or a remote service.
 
 <span id="prereq"></span>
 ## Prerequisites
 
-*  NGINX Plus <a href="../../../releases/#r10">Release 10</a> (R10) for native [JWT support](https://www.nginx.com/blog/nginx-plus-r10-released/#r10-jwt)
-*  NGINX Plus <a href="../../../releases/#r14">Release 14</a> (R14) for access to [nested JWT claims and longer signing keys](https://www.nginx.com/blog/nginx-plus-r14-released/#jwt)
-*  NGINX Plus <a href="../../../releases/#r17">Release 17</a> (R17) for [getting JSON Web keys from a remote location](https://www.nginx.com/blog/nginx-plus-r17-released/#r17-openid)
-*  NGINX Plus <a href="../../../releases/#r24">Release 24</a> (R24) for support of encrypted tokens (JWE)
-*  NGINX Plus <a href="../../../releases/#r25">Release 25</a> (R25) for support of Nested JWT, multiple sources of JSON Web keys, condition-based JWT authentication
-*  NGINX Plus <a href="../../../releases/#r26">Release 26</a> (R26) for support of [JWT key caching](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_cache)
-*  An identity provider (IdP) or service that creates JWT. For manual JWT generation, see "Issuing a JWT to API Clients" section of the [Authenticating API Clients with JWT and NGINX Plus](https://www.nginx.com/blog/authenticating-api-clients-jwt-nginx-plus/) blog post.
+- NGINX Plus <a href="../../../releases/#r10">Release 10</a> (R10) for native [JWT support](https://www.nginx.com/blog/nginx-plus-r10-released/#r10-jwt)
+- NGINX Plus <a href="../../../releases/#r14">Release 14</a> (R14) for access to [nested JWT claims and longer signing keys](https://www.nginx.com/blog/nginx-plus-r14-released/#jwt)
+- NGINX Plus <a href="../../../releases/#r17">Release 17</a> (R17) for [getting JSON Web keys from a remote location](https://www.nginx.com/blog/nginx-plus-r17-released/#r17-openid)
+- NGINX Plus <a href="../../../releases/#r24">Release 24</a> (R24) for support of encrypted tokens (JWE)
+- NGINX Plus <a href="../../../releases/#r25">Release 25</a> (R25) for support of Nested JWT, multiple sources of JSON Web keys, condition-based JWT authentication
+- NGINX Plus <a href="../../../releases/#r26">Release 26</a> (R26) for support of [JWT key caching](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_cache)
+- An identity provider (IdP) or service that creates JWT. For manual JWT generation, see "Issuing a JWT to API Clients" section of the [Authenticating API Clients with JWT and NGINX Plus](https://www.nginx.com/blog/authenticating-api-clients-jwt-nginx-plus/) blog post.
 
 <span id="auth_jwt_type"></span>
 
 NGINX Plus supports the following types of JWT:
 
-*  JSON Web Signature (JWS) - JWT content is digitally signed. The following algorithms can be used for signing:
-    * HS256, HS384, HS512
-    * RS256, RS384, RS512
-    * ES256, ES384, ES512
-    * EdDSA (Ed25519 and Ed448 signatures)
+- JSON Web Signature (JWS) - JWT content is digitally signed. The following algorithms can be used for signing:
+  - HS256, HS384, HS512
+  - RS256, RS384, RS512
+  - ES256, ES384, ES512
+  - EdDSA (Ed25519 and Ed448 signatures)
 
-*  JSON Web Encryption (JWE) - the contents of JWT is encrypted. The following content encryption algorithms (the "enc" field of JWE header) are supported:
-    * A128CBC-HS256, A192CBC-HS384, A256CBC-HS512
-    * A128GCM, A192GCM, A256GCM
+- JSON Web Encryption (JWE) - the contents of JWT is encrypted. The following content encryption algorithms (the "enc" field of JWE header) are supported:
+  - A128CBC-HS256, A192CBC-HS384, A256CBC-HS512
+  - A128GCM, A192GCM, A256GCM
 
    The following key management algorithms (the "alg" field of JWE header) are supported:
-    * A128KW, A192KW, A256KW
-    * A128GCMKW, A192GCMKW, A256GCMKW
-    * dir - direct use of a shared symmetric key as the content encryption key
-    * RSA-OAEP, RSA-OAEP-256, RSA-OAEP-384, RSA-OAEP-512 
+  - A128KW, A192KW, A256KW
+  - A128GCMKW, A192GCMKW, A256GCMKW
+  - dir - direct use of a shared symmetric key as the content encryption key
+  - RSA-OAEP, RSA-OAEP-256, RSA-OAEP-384, RSA-OAEP-512
 
-*  Nested JWT - support for JWS enclosed into JWE
+- Nested JWT - support for JWS enclosed into JWE
 
 <span id="auth_jwt"></span>
 ## Configuring NGINX Plus to Authenticate API
@@ -68,6 +67,7 @@ server {
     }
 }
 ```
+
 To implement JWT for authentication:
 
 1. First, it is necessary to create a JWT that will be issued to a client. You can use your identity provider (IdP) or your own service to create JWTs. For testing purposes, you can create your own JWT, see [Authenticating API Clients with JWT and NGINX Plus](https://www.nginx.com/blog/authenticating-api-clients-jwt-nginx-plus/) blog post for details.
@@ -85,6 +85,7 @@ To implement JWT for authentication:
        }
    }
    ```
+
    NGINX Plus can also obtain the JWT from a query string parameter. To configure this, include the `token=` parameter to the [`auth_jwt`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt) directive:
 
    ```nginx
@@ -107,9 +108,11 @@ To implement JWT for authentication:
        }
    }
    ```
+
 4. Specify the path to the [JSON Web Key file](#jwk_create) that will be used to verify JWT signature or decrypt JWT content, depending on what you are using. This can be done with the [`auth_jwt_key_file`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_file) and/or [`auth_jwt_key_request`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_request) directives. Specifying both directives at the same time will allow you to specify more than one source for keys. If none of the directives are specified, JWS signature verification will be skipped.
 
    In this scenario, the keys will be taken from two files: the `key.jwk` file and the `keys.json` file:
+
    ```nginx
    server {
        listen 80;
@@ -125,6 +128,7 @@ To implement JWT for authentication:
    ```
 
    In this scenario, there are also two sources for the keys, but the private keys will be taken from the local file `private_jwe_keys.jwk`, while the public keys will be taken from the external identity provider service `https://idp.example.com` in a [subrequest](#auth_jwt_key_request):
+
    ```nginx
    server {
        listen 80;
@@ -169,8 +173,8 @@ To implement JWT for authentication:
 
 A JWT is considered to be valid when the following conditions are met:
 
-*  The signature can be verified (for JWS) or payload can be decrypted (for JWE) with the key found in the [`auth_jwt_key_file`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_file) or [`auth_jwt_key_request`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_request) (matching on the `kid` ("key ID"), if present, and `alg` ("algorithm") header fields).
-*  The JWT is presented inside the validity period, when defined by one or both of the `nbf` ("not before") and `exp` ("expires") claims.
+- The signature can be verified (for JWS) or payload can be decrypted (for JWE) with the key found in the [`auth_jwt_key_file`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_file) or [`auth_jwt_key_request`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_request) (matching on the `kid` ("key ID"), if present, and `alg` ("algorithm") header fields).
+- The JWT is presented inside the validity period, when defined by one or both of the `nbf` ("not before") and `exp` ("expires") claims.
 
 
 <span id="jwk_create"></span>
@@ -187,16 +191,18 @@ In order to validate the signature with a key or to decrypt data, a JSON Web Key
     }]
 }
 ```
+
 where:
 
-*  the `k` field is the generated symmetric key (base64url-encoded) basing on a `secret` (`fantasticjwt` in the example). The secret can be generated with the following command:
+- the `k` field is the generated symmetric key (base64url-encoded) basing on a `secret` (`fantasticjwt` in the example). The secret can be generated with the following command:
 
 ```shell
-$ echo -n fantasticjwt | base64 | tr '+/' '-_' | tr -d '='
+echo -n fantasticjwt | base64 | tr '+/' '-_' | tr -d '='
 ZmFudGFzdGljand0
 ```
-*  the `kty` field defines the key type as a symmetric key (octet sequence)
-*  the `kid` (Key ID) field defines a serial number for this JSON Web Key
+
+- the `kty` field defines the key type as a symmetric key (octet sequence)
+- the `kid` (Key ID) field defines a serial number for this JSON Web Key
 
 
 <span id="auth_jwt_key_request"></span>
@@ -279,9 +285,10 @@ During JWT verification, NGINX Plus automatically validates only `nbf` ("not bef
 Additional conditions for JWT validation can be set as variables with the [`map`](https://nginx.org/en/docs/http/ngx_http_map_module.html) module and then evaluated with the [`auth_jwt_require`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_require) directive.
 
 In this scenario, we are verifying that:
-* the recipient of the token (audience) is our APIs (map rule 1)
-* the token was issued by a trusted identity provider (map rule 2)
-* scopes in APIs called on behalf of administrators (map rule 3)
+
+- the recipient of the token (audience) is our APIs (map rule 1)
+- the token was issued by a trusted identity provider (map rule 2)
+- scopes in APIs called on behalf of administrators (map rule 3)
 
 The values of three resulting variables are evaluated in the [`auth_jwt_require`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_require) directive, and if the value of each variable is `1`, the JWT will be accepted:
 
@@ -334,11 +341,11 @@ A Nested JWT is a JWS token enclosed into JWE. In a Nested JWT, the sensitive in
 
 Using Nested JWT may be preferable over JWE because:
 
-* in case of JWE, the target application/service needs to decrypt the token first, then verify the signature. Decrypt operation on the application side may be time and resource consuming.
+- in case of JWE, the target application/service needs to decrypt the token first, then verify the signature. Decrypt operation on the application side may be time and resource consuming.
 
-* in case of Nested JWT, as NGINX Plus resides in the same trusted network with the target application, there is no need for token encryption between NGINX Plus and the application. NGINX Plus decrypts the JWE, checks the enclosed JWS, and sends the Bearer Token to the application. This will offload JWE decryption from the application to NGINX Plus.
+- in case of Nested JWT, as NGINX Plus resides in the same trusted network with the target application, there is no need for token encryption between NGINX Plus and the application. NGINX Plus decrypts the JWE, checks the enclosed JWS, and sends the Bearer Token to the application. This will offload JWE decryption from the application to NGINX Plus.
 
-* if your application doesn't support JWE, using Nested JWT enables full protection for JWS.
+- if your application doesn't support JWE, using Nested JWT enables full protection for JWS.
 
 To enable Nested tokens:
 
@@ -353,6 +360,7 @@ auth_jwt_type nested;
 ```nginx
 proxy_set_header Authorization "Bearer $jwt_payload";
 ```
+
 This example sums up the previous steps into one configuration:
 
 ```nginx
@@ -378,4 +386,4 @@ http {
 <span id="see_also"></span>
 ## See Also
 
-*  [Authenticating API Clients with JWT and NGINX Plus](https://www.nginx.com/blog/authenticating-api-clients-jwt-nginx-plus/)
+- [Authenticating API Clients with JWT and NGINX Plus](https://www.nginx.com/blog/authenticating-api-clients-jwt-nginx-plus/)

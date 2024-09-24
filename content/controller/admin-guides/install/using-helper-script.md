@@ -1,26 +1,9 @@
 ---
-aliases:
-- /platform/using-helper-script/
-authors: []
-categories:
-- installation
-- platform management
-date: "2020-10-26T15:32:41-06:00"
-description: Learn how to update NGINX Controller installation settings and manage
+description: Learn how to update F5 NGINX Controller installation settings and manage
   the NGINX Controller service using the helper.sh script.
 docs: DOCS-261
 doctypes:
 - task
-draft: false
-journeys:
-- using
-- self service
-personas:
-- devops
-- netops
-- secops
-roles:
-- admin
 tags:
 - docs
 title: Update NGINX Controller Settings with helper.sh
@@ -30,7 +13,7 @@ weight: 200
 
 ## Overview
 
-You can use the NGINX Controller `helper.sh` script to update NGINX Controller installation settings and manage the NGINX Controller process. This tutorial shows you how to use `helper.sh` to perform the following tasks:
+You can use the F5 NGINX Controller `helper.sh` script to update NGINX Controller installation settings and manage the NGINX Controller process. This tutorial shows you how to use `helper.sh` to perform the following tasks:
 
 - Install the NGINX Controller prerequisites
 - View the version of NGINX Controller that's installed and running
@@ -237,7 +220,7 @@ You use these SMTP environment variables with NGINX Controller:
 | Environment Variables  | Description |
 |----------|-------------|
 | `CTR_SMTP_HOST` | The host name or IP address of the SMTP server. |
-| `CTR_SMTP_PORT` | The port of the SMTP server.
+| `CTR_SMTP_PORT` | The port of the SMTP server.|
 | `CTR_SMTP_TLS` |  `true` or `false`; Set to `true` to require SSL for connections to the SMTP server. |
 | `CTR_SMTP_FROM` | Sender's email address. |
 | `CTR_SMTP_AUTH` | `true` or `false`; Set to `true` to authenticate when connecting to the SMTP server. |
@@ -401,7 +384,7 @@ Follow the steps below to replace the logo:
 
 ## Create a Support Package
 
-You can create a support package for NGINX Controller that you can use to diagnose issues. 
+You can create a support package for NGINX Controller that you can use to diagnose issues.
 
 {{< note >}}
 You will need to provide a support package if you open a ticket with NGINX Support via the [MyF5 Customer Portal](https://account.f5.com/myf5).

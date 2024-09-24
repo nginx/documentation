@@ -1,17 +1,18 @@
 ---
-title: "Request Correlation ID"
-draft: false
-description: Learn how to use API Connectivity Manager's Request Correlation ID policy to add a unique identifier to each request entering your app, which you can use to trace end-to-end transactions in a distributed system.
-weight: 1300
+description: Learn how to use API Connectivity Manager's Request Correlation ID policy
+  to add a unique identifier to each request entering your app, which you can use
+  to trace end-to-end transactions in a distributed system.
+docs: DOCS-1120
+doctypes:
+- API Connectivity Manager
+- api management
+- task
+tags:
+- docs
+title: Request Correlation ID
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1120"
-doctypes: ["API Connectivity Manager", "api management", "task"]
-journeys: ["getting started", "using"]
-personas: ["Platform Ops", "Infra Admins"]
+weight: 1300
 ---
-
-{{<custom-styles>}}
 
 ## Overview
 
@@ -23,7 +24,7 @@ personas: ["Platform Ops", "Infra Admins"]
 
 Use the Request Correlation ID policy to add a unique identifier to each request that enters an application. With the Correlation ID policy, you can trace end-to-end transactions moving through components in a distributed system. This policy is applied by default and usually uses `x-correlation-id` as the default HTTP header name. However, you can also provide a custom header value if needed.
 
-#### Intended Audience
+### Intended Audience
 
 {{< include "acm/how-to/policies/infra-admin-persona.md">}}
 
@@ -41,13 +42,15 @@ To apply the policy or make changes to it, here's what you need to do:
 
 ## Policy Settings
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field            | Type   | Possible Values                | Description                                                  | Required | Default Value      |
 |------------------|--------|--------------------------------|--------------------------------------------------------------|----------|--------------------|
 | `httpHeaderName` | string | Example:<br>`x-correlation-id` | The HTTP header name to use when passing the correlation ID. | YES      | `x-correlation-id` |
+
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ---
 
@@ -63,13 +66,15 @@ You can apply this policy using either the web interface or the REST API. The po
 
 To create a Request Correlation ID policy using the REST API, send an HTTP `POST` request to the Environment endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                                            |
 |--------|---------------------------------------------------------------------|
 | `POST` | `/infrastructure/workspaces/{workspace}/environments/{environment}` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <details open>
 <summary>JSON request</summary>
@@ -98,7 +103,7 @@ This JSON example defines a Request Correlation ID policy, which specifies that 
 
 To add a Request Correlation ID policy using the web interface:
 
-1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in. Then, from the Launchpad menu, select **API Connectivity Manager**.
+1. In a web browser, go to the FQDN for your F5 NGINX Management Suite host and log in. Then, from the Launchpad menu, select **API Connectivity Manager**.
 2. On the left menu, select **Infrastructure**.
 3. Choose the workspace that includes the environment for the cluster you want to add the policy to.
 4. Select the environment for your cluster.

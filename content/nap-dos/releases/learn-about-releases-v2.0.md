@@ -1,38 +1,14 @@
 ---
-authors: []
-categories:
-- releases
-date: "2021-04-14T13:32:41+00:00"
-description: ""
+description: ''
 docs: DOCS-674
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: Releases
-    weight: 45
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect DoS Release 2.0
 toc: true
-versions:
-- "2.0"
 weight: 220
 ---
 
-Here you can find the release information for NGINX App Protect DoS v2.0. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications. 
+Here you can find the release information for F5 NGINX App Protect DoS v2.0. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
 
 ## Release 2.0
 
@@ -40,7 +16,7 @@ October 20, 2021
 
 ### New Features
 
-#### [Protection of gRPC services against application layer Denial of Service attacks]({{< relref "/nap-dos/deployment-guide/learn-about-deployment.md" >}}):
+#### [Protection of gRPC services against application layer Denial of Service attacks]({{< relref "/nap-dos/deployment-guide/learn-about-deployment.md" >}})
 
 - **Message flood**
   Attacker supplies multiple gRPC requests that exceed the service capacity.
@@ -58,18 +34,23 @@ October 20, 2021
 #### App Protect DoS
 
 ##### CentOS 7.4+ / UBI7
+
 - app-protect-dos-25+2.0.1-1.el7.ngx.el7.ngx.x86_64.rpm
 
 ##### Debian 10
+
 - app-protect-dos_25+2.0.1-1~buster_amd64.deb
 
 ##### Ubuntu 18.04
+
 - app-protect-dos_25+2.0.1-1~bionic_amd64.deb
 
 ##### Ubuntu 20.04
+
 - app-protect-dos_25+2.0.1-1~focal_amd64.deb
 
 #### NGINX Plus
+
 - NGINX Plus R25
 
 ### Resolved Issues
@@ -103,8 +84,8 @@ October 20, 2021
 - New optional configuration parameters of the directive `app_protect_dos_monitor` to support gRPC and HTTP/2 protocols.
 - Added new fields in Security Log:
 
-    - `baseline_dps` (datagrams per second) instead of `baseline_tps`, `incoming_datagrams` <br>
-    - `successful_responses` instead of `successful_transactions` <br>
-    - `unsuccessful_requests` instead of `unsuccessful_requests_count`.
+  - `baseline_dps` (datagrams per second) instead of `baseline_tps`, `incoming_datagrams` <br>
+  - `successful_responses` instead of `successful_transactions` <br>
+  - `unsuccessful_requests` instead of `unsuccessful_requests_count`.
 
 - In the case of an upgrade from the previous `app-protect-dos` version, it's necessary to remove the old `nginx-plus` and install the new `app-protect-dos` that will install a correspondent version of `nginx-plus` as described in the [NGINX App Protect DoS Deployment Guide]({{< relref "/nap-dos/deployment-guide/learn-about-deployment.md" >}}).

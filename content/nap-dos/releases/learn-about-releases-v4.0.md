@@ -1,38 +1,14 @@
 ---
-authors: []
-categories:
-- releases
-date: "2021-04-14T13:32:41+00:00"
-description: ""
+description: ''
 docs: DOCS-1115
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: Releases
-    weight: 45
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect DoS Release 4.0
 toc: true
-versions:
-- "4.0"
 weight: 120
 ---
 
-Here you can find the release information for NGINX App Protect DoS v4.0. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications. 
+Here you can find the release information for F5 NGINX App Protect DoS v4.0. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
 
 ## Release 4.0
 
@@ -50,24 +26,31 @@ January 31, 2023
 #### App Protect DoS
 
 ##### CentOS 7.4+ / RHEL 7.4+ / UBI7
+
 - app-protect-dos-28+4.0.1-1.el7.ngx.x86_64.rpm
 
 ##### RHEL 8 / UBI8
+
 - app-protect-dos-28+4.0.1-1.el8.ngx.x86_64.rpm
 
 ##### Debian 11
+
 - app-protect-dos_28+4.0.1.-1~bullseye_amd64.deb
 
 ##### Ubuntu 18.04
+
 - app-protect-dos_28+4.0.1-1~bionic_amd64.deb
 
 ##### Ubuntu 20.04
+
 - app-protect-dos_28+4.0.1-1~focal_amd64.deb
 
 ##### Alpine 3.15
+
 - app-protect-dos-28.4.0.1-r1.apk
 
 #### NGINX Plus
+
 - NGINX Plus R28
 
 ### Important Notes
@@ -81,6 +64,7 @@ January 31, 2023
 - If NGINX App Protect WAF is installed, app protect should be disabled for the location of DoS Live Activity Monitoring API.
 
     For example:
+
     ```shell
     location /api {
     app_protect_enable off;
@@ -91,6 +75,7 @@ January 31, 2023
 - Port configuration in `app_protect_dos_monitor` should correspond to the port, the server listens to. Misconfiguration can potentially cause a false attack declaration.
 
     For example:
+
     ```shell
         server {
             listen 8080;

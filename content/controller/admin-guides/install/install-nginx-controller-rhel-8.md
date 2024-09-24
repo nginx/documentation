@@ -1,23 +1,10 @@
 ---
-authors: []
-categories:
-- installation
-date: "2020-10-26T15:32:41-06:00"
-description: This guide explains how to prepare your RHEL 8 system to install NGINX
+description: This guide explains how to prepare your RHEL 8 system to install F5 NGINX
   Controller and the NGINX Controller Agent.
 docs: DOCS-342
 doctypes:
 - beta
 - tutorial
-draft: false
-journeys:
-- getting started
-personas:
-- devops
-- netops
-- secops
-roles:
-- admin
 tags:
 - docs
 title: Install NGINX Controller on RHEL 8 (experimental)
@@ -25,7 +12,7 @@ toc: true
 weight: 200
 ---
 
-## Preparing the NGINX Controller Host
+## Preparing the F5 NGINX Controller Host
 
 To install NGINX Controller on RHEL 8, you must complete the following steps to allow iptables-based routing for Kubernetes. Failure to complete these steps may cause the installation to hang.
 
@@ -81,7 +68,7 @@ Docker isn't available on RedHat 8 by default, so you'll need to add a Docker re
     sudo systemctl start docker.service
 
     sudo systemctl status docker.service
-    
+
     sudo systemctl enable docker.service
     ```
 

@@ -1,38 +1,22 @@
 ---
-categories:
-- installation
-- security
-date: "2021-12-21T12:00:00-07:00"
-description: 'This document provides guidance on securing client connections to NGINX Management Suite as well as securing the traffic between the NGINX Management Suite management plane and NGINX data planes. '
+docs: DOCS-794
 doctypes:
 - tutorial
-draft: false
-journeys:
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
 tags:
 - docs
 title: Secure Client Access and Network Traffic
 toc: true
-versions: []
 weight: 600
-docs: "DOCS-794"
-aliases:
-- /nginx-instance-manager/admin-guide/encrypt/
-- /nginx-instance-manager/admin-guide/secure-traffic/
 ---
+
+This document provides guidance on securing client connections to F5 NGINX Management Suite as well as securing the traffic between the NGINX Management Suite management plane and NGINX data planes.
 
 {{< shortversions "2.0.0" "latest" "nimvers" >}}
 ## Overview
 
 {{< important >}}A management server should **NEVER** be exposed to the public internet. You can mitigate exposure with the settings described here, but these are not a substitute for preventing unneeded exposure.{{< /important >}}
 
-{{< see-also >}}For instructions on configuring TLS settings for the NGINX Agent, refer to the [NGINX Agent TLS Settings]({{< relref "/nms/nginx-agent/encrypt-nginx-agent-comms.md" >}}) guide.{{< /see-also >}}
+{{< see-also >}}For instructions on configuring TLS settings for the NGINX Agent, refer to the [NGINX Agent TLS Settings](https://docs.nginx.com/nginx-agent/configuration/encrypt-communication/) guide.{{< /see-also >}}
 
 ## NGINX Proxy SSL Termination
 
@@ -46,8 +30,10 @@ Configure the SSL certificate and key inside the NGINX configuration. For instru
 ```nginx
 # Main external HTTPS server, needs port 443
 server {
-    listen 443 ssl http2;
-    root /var/www/nms;
+    listen 443 ssl;
+    http2  on;
+    root   /var/www/nms;
+
     server_name _;
 
     ssl_protocols       TLSv1.1 TLSv1.2;
@@ -322,7 +308,7 @@ Modify the following example according to your needs. There are many ways to gen
 
 6. Modify the `nginx-agent.conf` file to resemble the following example. Note the TLS options that are configured. The specified cert and key tell the NGINX Agent to use client cert authentication with the NGINX proxy on the NGINX Management Suite. The `ca.pem` is included as the certificate authority that the agent will use to verify the NGINX Management Suite's server certificate. If the CA is trusted by the OS, you can omit the ca option. Update the server `host` to the NGINX Management Suite address.
 
-    {{< see-also >}}For additional information about TLS configurations for the NGINX Agent, refer to the [NGINX Agent TLS Settings]({{< relref "/nms/nginx-agent/encrypt-nginx-agent-comms.md" >}}) topic. {{< /see-also >}}
+    {{< see-also >}}For additional information about TLS configurations for the NGINX Agent, refer to the [NGINX Agent TLS Settings](https://docs.nginx.com/nginx-agent/configuration/encrypt-communication/) topic. {{< /see-also >}}
 
     <details>
         <summary>/etc/nginx-agent/nginx-agent.conf</summary>
@@ -333,9 +319,9 @@ Modify the following example according to your needs. There are many ways to gen
     #
     # Configuration file for NGINX Agent.
     #
-    # This file is to track agent configuration values that are meant to be statically set. There  
+    # This file is to track agent configuration values that are meant to be statically set. There
     # are additional agent configuration values that are set via the API and agent install script
-    # which can be found in /var/lib/nginx-agent/agent-dynamic.conf. 
+    # which can be found in /var/lib/nginx-agent/agent-dynamic.conf.
 
     # specify the server grpc port to connect to
     server:
@@ -398,8 +384,10 @@ When `tls.skip_verify` is set to `false`, the NGINX Agent verifies the server's 
     ```nginx
     # gRPC HTTPS server, needs port 443
     server {
-        listen 443 ssl http2;
-        root /var/www/nms;
+        listen 443 ssl;
+        http2  on;
+        root   /var/www/nms;
+
         server_name nginx-manager.example.com;
 
         ssl_protocols       TLSv1.1 TLSv1.2;

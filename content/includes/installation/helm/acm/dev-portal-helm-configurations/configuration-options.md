@@ -1,3 +1,7 @@
+---
+docs: DOCS-1308
+---
+
 The `values.yaml` file within the `nginx-devportal` Helm chart contains the deployment configuration for the Developer Portal.
 
 You can update these fields directly in the `values.yaml` file or by specifying the `--set` flag when running `helm install`.
@@ -7,6 +11,7 @@ To modify a configuration for an existing release, run the `helm upgrade` comman
 The following table lists the configurable parameters and default values used by the Developer Portal chart when installing from a Helm chart.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Parameter                                    | Description                                                                                                                                                                                                                                                                                                                                       | Default                  |
 | :------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------------------- |
 | `api.acm.client.caSecret.name`               | This secret can be used in order to provide a custom CA certificate when communicating from API Connectivity Manager to the Developer Portal via a TLS secured http connection.  This should be set to the name of the secret in the release namespace that contains the CA certificate.                                                                               | `""`                     |
@@ -77,5 +82,6 @@ The following table lists the configurable parameters and default values used by
 | `nameOverride`                               | Override the name of the Developer Portal chart.                                                                                                                                                                                                                                                                                                  | `devportal`              |
 | `serviceAccount.annotations`                 | Annotations to apply to the service account.                                                                                                                                                                                                                                                                                                      | `{}`                     |
 | `serviceAccount.name`                        | Name of the service account to use.                                                                                                                                                                                                                                                                                                               | `devportal`              |
+
 {{</bootstrap-table>}}
 

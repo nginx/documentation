@@ -1,25 +1,16 @@
 ---
-title: "Create a Support Package from a Helm Installation"
-date: 2021-12-21T12:00:00-07:00
-draft: false
-description: "This guide outlines the steps for creating a support package from a Helm installation to aid in troubleshooting error scenarios."
-# Assign weights in increments of 100
-weight: 200
+description: This guide outlines the steps for creating a support package from a Helm
+  installation to aid in troubleshooting error scenarios.
+docs: DOCS-1123
+doctypes:
+- reference
+- task
+tags:
+- docs
+title: Create a Support Package from a Helm Installation
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["support"]
-doctypes: ["reference", "task"]
-journeys: ["using", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-docs: "DOCS-1123"
-aliases:
-- /nginx-instance-manager/support/k8s-support-package/
+weight: 200
 ---
-
-{{<custom-styles>}}
 
 {{< shortversions "2.5.0" "latest" "nimvers" >}}
 
@@ -41,7 +32,7 @@ To complete the steps in this guide, you need the following:
 
 ## Usage
 
-The NGINX Management Suite Helm chart includes the `k8s-support-package.sh` script in the following location:
+The F5 NGINX Management Suite Helm chart includes the `k8s-support-package.sh` script in the following location:
 
 - `/support-package/k8s-support-package.sh`.
 
@@ -86,6 +77,7 @@ The following table lists the arguments you can use with the Kubernetes support 
 | `-xd` | `--exclude_databases`  | Exclude Dqlite database backup data.                       | `-xd`         | `False`  |
 | `-xt` | `--exclude_timeseries` | Exclude ClickHouse time series data.                       | `-xt`         | `False`  |
 | `-m`  | `--modules`            | Include specific modules in Dqlite database backup data.   | `-m acm`      | `False`  |
+
 {{</bootstrap-table>}}
 
 ---

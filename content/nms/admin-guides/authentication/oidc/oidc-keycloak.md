@@ -1,24 +1,18 @@
 ---
-title: "Set up Keycloak as an OIDC Identity Provider"
-description: "This guide provides step-by-step instructions on configuring Keycloak as an OpenID Connect (OIDC) identity provider (IdP) for NGINX Management Suite. By using OpenID authentication with NGINX Management Suite, you can implement role-based access control (RBAC) to limit user access to specific features available in NGINX Management Suite."
-# Assign weights in increments of 100
-weight: 400
+description: This guide provides step-by-step instructions on configuring Keycloak
+  as an OpenID Connect (OIDC) identity provider (IdP) for F5 NGINX Management Suite.
+  By using OpenID authentication with NGINX Management Suite, you can implement role-based
+  access control (RBAC) to limit user access to specific features available in NGINX
+  Management Suite.
+docs: DOCS-1268
+doctypes:
+- tutorial
+tags:
+- docs
+title: Set up Keycloak as an OIDC Identity Provider
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "security"]
-doctypes: ["tutorial"]
-journeys: ["getting started", "using"]
-personas: ["devops", "netops", "secops"]
-versions: []
-authors: []
-aliases:
-- /nginx-instance-manager/admin-guide/oidc-keycloak/
+weight: 400
 ---
-
-{{< custom-styles >}}
 
 <style>
 h2 {
@@ -29,7 +23,7 @@ h2 {
 
 ## Overview
 
-This guide explains how to configure Keycloak as an identity provider (IdP) for NGINX Management Suite. By implementing OIDC for authentication, administrators can simplify user management in NGINX Management Suite. Instead of creating and managing users individually, administrators can create user groups in NGINX Management Suite that align with groups in their Identity Provider. Access and permissions for users are determined by the roles assigned to their respective user groups. Users from the Identity Provider who are not part of a group with an assigned role will not have access to NGINX Management Suite.
+This guide explains how to configure Keycloak as an identity provider (IdP) for F5 NGINX Management Suite. By implementing OIDC for authentication, administrators can simplify user management in NGINX Management Suite. Instead of creating and managing users individually, administrators can create user groups in NGINX Management Suite that align with groups in their Identity Provider. Access and permissions for users are determined by the roles assigned to their respective user groups. Users from the Identity Provider who are not part of a group with an assigned role will not have access to NGINX Management Suite.
 
 We strongly recommend Open ID Connect (OIDC) as the preferred authentication method for the NGINX Management Suite. OIDC brings several benefits, including Single Sign-On (SSO) and simplified user management through user groups.
 
@@ -47,7 +41,7 @@ On the NGINX Management Suite host, take the following steps:
 
 - [Install NGINX Plus R25 or a later release]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). Make sure the server hosting NGINX Plus has a fully qualified domain name (FQDN).
 - [Install Instance Manager]({{< relref "/nms/installation/vm-bare-metal/install-nim.md" >}}).
-- [Install the NGINX JavaScript module (njs)](https://www.nginx.com/blog/introduction-nginscript/). This module is necessary for managing communications between NGINX Plus and the identity provider. 
+- [Install the NGINX JavaScript module (njs)](https://www.nginx.com/blog/introduction-nginscript/). This module is necessary for managing communications between NGINX Plus and the identity provider.
 
 ## Configure Keycloak {#configure-keycloak}
 
@@ -82,7 +76,7 @@ NGINX Management Suite User Groups will be mapped from Keycloak **Realm Roles**;
 
 Create the users that will be allowed to log in to NGINX Management Suite.
 
-1. On the navigation bar, select **Users**. 
+1. On the navigation bar, select **Users**.
 1. Select **Add User**.
 1. In the **Username** box, type the user name.
 1. In the **Email** box, type the user's email address. NGINX Management Suite will use this email address as the user's identifier when setting its headers.
@@ -121,8 +115,8 @@ To copy the Keycloak secret:
 To set the Keycloak secret as an environment variable:
 
 1. Open an SSH connection to your NGINX Management Suite host and log in.
-2. Run the following command, replacing `<secret>` with the secret value you copied above: 
-   
+2. Run the following command, replacing `<secret>` with the secret value you copied above:
+
     ```bash
     export KEYCLOAK_SECRET=<secret>
     ```
@@ -149,20 +143,20 @@ Connect to your NGINX Management Suite instance and run the following commands:
     export KEYCLOAK_AUTH_ENDPOINT=$(curl -k "https://$KEYCLOAK_IP:8443/auth/realms/<realm-name>/.well-known/openid-configuration" | jq -r ".authorization_endpoint")
     export KEYCLOAK_TOKEN_ENDPOINT=$(curl -k "https://$KEYCLOAK_IP:8443/auth/realms/<realm-name>/.well-known/openid-configuration" | jq -r ".token_endpoint")
     export KEYCLOAK_KEYS_ENDPOINT=$(curl -k "https://$KEYCLOAK_IP:8443/auth/realms/<realm-name>/.well-known/openid-configuration" | jq -r ".jwks_uri")
-    ``` 
+    ```
 
-- Back up the original configuration files. 
+- Back up the original configuration files.
 
     ```bash
     sudo cp /etc/nms/nginx/oidc/openid_configuration.conf ~/openid_configuration.conf.orig
     sudo cp /etc/nginx/conf.d/nms-http.conf ~/nms-http.conf.orig
-    ``` 
+    ```
 
 - Copy the OpenID configuration for NGINX to `/tmp` so you can replace the necessary values.
 
     ```bash
     sudo cp /etc/nms/nginx/oidc/openid_configuration.conf /tmp/openid_configuration.conf
-    
+
     sudo sed -i'.bak' \
     -e "s%OIDC_CLIENT_ID%${KEYCLOAK_CLIENT_ID}%"  \
     -e "s%SERVER_FQDN%${NMS_IP}%"  \
@@ -181,8 +175,8 @@ Connect to your NGINX Management Suite instance and run the following commands:
     map $http_authorization $groups_claim {
         default $jwt_claim_groups;
     }
-    
-    
+
+
     map $http_authorization $user_email {
         "~^Bearer.*" '$jwt_clientId@$oidc_domain';
         default $jwt_claim_email;
@@ -261,7 +255,7 @@ Connect to your NGINX Management Suite instance and run the following commands:
 You can revert to Basic Auth to troubleshoot authentication issues by running the following commands:
 
 ```bash
-sudo cp ~/openid_configuration.conf.orig etc/nms/nginx/oidc/openid_configuration.conf
+sudo cp ~/openid_configuration.conf.orig /etc/nms/nginx/oidc/openid_configuration.conf
 sudo cp ~/nms-http.conf.orig /etc/nginx/conf.d/nms-http.conf
 
 sudo nginx -s reload

@@ -31,22 +31,6 @@ docs: DOCS-1240
    sudo restorecon -F -R /var/log/nms
    ```
 
-1. (API Connectivity Manager) If you installed API Connectivity Manager, run the following additional commands to set the SELinux contexts for the following files and directories to their default values:
-
-    ```bash
-    sudo restorecon -F -R /usr/bin/nms-acm
-    sudo restorecon -F -R /usr/lib/systemd/system/nms-acm.service
-    sudo restorecon -F -R /var/lib/nms/modules/acm.json
-    ```
-
-1. (App Delivery Manager) If you installed App Connectivity Manager, run the following additional commands to set the SELinux contexts for the following files and directories to their default values:
-
-    ```bash
-    sudo restorecon -F -R /usr/bin/nms-adm
-    sudo restorecon -F -R /usr/lib/systemd/system/nms-adm.service
-    sudo restorecon -F -R /var/lib/nms/modules/adm.json
-    ```
-
 1. Restart the NGINX Management Suite services:
 
     ```bash

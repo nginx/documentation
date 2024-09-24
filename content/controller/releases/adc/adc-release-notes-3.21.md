@@ -1,34 +1,9 @@
 ---
-authors: []
-categories:
-- installation
-- infrastructure
-- platform management
-- services
-- security
-- analytics
-date: "2021-09-23T15:32:41-06:00"
 description: These release notes contain information about new features, improvements,
   known issues, and bug fixes in the NGINX Controller Application Delivery Module.
 docs: DOCS-364
 doctypes:
 - reference
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- renewing
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
-- read-only
 tags:
 - docs
 title: Release Notes 3.21.0
@@ -73,13 +48,13 @@ The following issues are known to be present in this release. Look for updates t
 - **When upgrading an NGINX Controller cluster, the system reports timeout errors waiting for services to scale up (27871)**
 
   When upgrading the third node of an NGINX Controller cluster, some services may take two or more minutes to scale up. During this period, the system displays an error similar to the following:
-  
+
   ``` text
   While waiting for nats-streaming-cluster to scale up, the operation did not complete before timing out.
   ```
 
   You can safely ignore these warnings. The services will continue to scale up in the background and should not interfere with the upgrade.
-  
+
 - **NGINX Controller app-centric metrics may show inaccurate metrics data when HTTPS and TCP+TLS are configured on the same data path (28489)**
 
   Depending on whether connections close cleanly when both HTTP/HTTPS and TCP/TCP+TLS are configured on the same NGINX instance running the NGINX Controller Agent, inaccurate metrics values may be reported for either HTTP/HTTPS or TCP/TCP+TLS analytics data. The issue won't occur when only HTTP and HTTPS are configured on the same datapath.
@@ -203,29 +178,29 @@ The following issues are known to be present in this release. Look for updates t
   When NGINX Controller is installed on Red Hat, an error similar to the following may be displayed: `/opt/nginx-controller/helper.sh: line 726: jq: command not found.`
 
   This error can safely be ignored and does not indicate an issue with the installation.
-  
+
 - **Error about service redeploy failure during NGINX ADC Controller upgrade can be safely ignored (29752)**
 
-  Under some circumstances, administrators performing an update to version 3.21.0 of the NGINX ADC Controller may see the following error reported: 
-  
+  Under some circumstances, administrators performing an update to version 3.21.0 of the NGINX ADC Controller may see the following error reported:
+
   ``` text
   Failed to re-deploy services objects to the Data Plne Manager automatically. You may need to redeploy your services objects manually.
   ```
 
-  This error can be safely ignored and will not interfere with the success of the update. You should still see the message: 
+  This error can be safely ignored and will not interfere with the success of the update. You should still see the message:
 
   ``` text
   Successfully updated NGINX Controller to 3.21.0 at the end of your update.
   ```
-  
+
 - **Product documentation does not mention Controller App Security support on versions 3.20.1 and 3.21 (29800)**
 
   Product documentation does not mention NGINX Controller 3.20.1 and 3.21 in the [NGINX App Protect Compatibility Matrix](https://docs.nginx.com/nginx-controller/admin-guides/install/nginx-controller-tech-specs/#nginx-app-protect-compatibility-matrix) table in the [Technical Specifications](https://docs.nginx.com/nginx-controller/admin-guides/install/nginx-controller-tech-specs/) page.
-  
+
   **Workaround:**
 
   Consult the [online documentation](https://docs.nginx.com/nginx-controller/admin-guides/install/nginx-controller-tech-specs/#nginx-app-protect-compatibility-matrix) for compatibility information for NGINX Controller 3.20.1 and 3.21 and NGINX App Protect.
-  
+
 
 
 ## Supported NGINX Plus Versions

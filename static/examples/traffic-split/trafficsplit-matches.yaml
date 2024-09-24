@@ -1,0 +1,25 @@
+apiVersion: split.smi-spec.io/v1alpha3
+kind: TrafficSplit
+metadata:
+  name: target-ts
+spec:
+  service: target-svc
+  backends:
+  - service: target-v2-1
+    weight: 0
+  - service: target-v3-0
+    weight: 100
+  matches:
+  - kind: HTTPRouteGroup
+    name: target-hrg
+---
+apiVersion: specs.smi-spec.io/v1alpha3
+kind: HTTPRouteGroup
+metadata:
+  name: target-hrg
+  namespace: default
+spec:
+  matches:
+  - name: firefox-users
+    headers:
+      user-agent: ".*Firefox.*"

@@ -1,30 +1,15 @@
 ---
-title: "Set Up Advanced Routing"
-date: 2023-05-02T13:09:51-08:00
-# Change draft status to false to publish doc
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Learn how to create dynamic routes for your deployments using NGINX Management Suite API Connectivity Manager."
-# Assign weights in increments of 100
-weight: 110
+description: Learn how to create dynamic routes for your deployments using F5 NGINX Management
+  Suite API Connectivity Manager.
+docs: DOCS-1218
+doctypes:
+- tutorial
+tags:
+- docs
+title: Set Up Advanced Routing
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1218"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["tutorial"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
+weight: 110
 ---
-
-{{< custom-styles >}}
 
 ## Overview
 
@@ -60,7 +45,7 @@ In the steps that follow, we will:
 
 To complete the instructions in this guide, you need the following:
 
-- [API Connectivity Manager is installed]({{< relref "/nms/installation/vm-bare-metal/install-acm.md" >}}), [licensed]({{< relref "/nms/installation/add-license.md" >}}), and running
+- [API Connectivity Manager is installed]({{< relref "/nms/acm/how-to/install-acm.md" >}}), [licensed]({{< relref "/nms/installation/add-license.md" >}}), and running
 - One or more [Service workspaces]({{< relref "/nms/acm/how-to/services/publish-api.md#create-a-service-workspace" >}})
 - One or more [Proxies]({{< relref "/nms/acm/how-to/services/publish-api.md" >}})
 
@@ -80,7 +65,7 @@ Select the **Next** button. On the next screen, we have the options related to `
 
 This section shows several configuration options. For the purpose of this example, we will focus on the following:
 
-- `Match URI` 
+- `Match URI`
 - `HTTP Method`
 - `Parameters`
 
@@ -98,8 +83,8 @@ We need to add one entry for `customerID` and another for `orderID` by selecting
 
 The `In` field indicates where the parameter will be passed; the options are `PATH`, `QUERY`, and `HEADER`.
 
-- `PATH` indicates that the parameter will be passed as a path parameter, for example, `/customer/{id}}`. 
-- `QUERY` indicates that the parameter will be passed as a query parameter, for example, `/customer?customerID=123`. 
+- `PATH` indicates that the parameter will be passed as a path parameter, for example, `/customer/{id}}`.
+- `QUERY` indicates that the parameter will be passed as a query parameter, for example, `/customer?customerID=123`.
 - `HEADER` indicates that it will be passed as a header with the `Name` field as the header key.
 
 For this example, we will use `PATH` parameters.

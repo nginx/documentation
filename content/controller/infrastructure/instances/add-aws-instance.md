@@ -1,21 +1,8 @@
 ---
-authors: []
-categories:
-- installation
-- infrastructure
-date: "2020-10-26T15:32:41-06:00"
-description: Learn how to deploy an AWS NGINX instance using NGINX Controller.
+description: Learn how to deploy an AWS F5 NGINX instance using NGINX Controller.
 docs: DOCS-768
 doctypes:
 - tutorial
-draft: false
-journeys:
-- getting started
-- using
-personas:
-- devops
-roles:
-- admin
 tags:
 - docs
 title: Add an AWS NGINX Instance
@@ -27,7 +14,7 @@ weight: 30
 
 
 
-You can use NGINX Controller to deploy and manage NGINX instances on Amazon Web Services (AWS).
+You can use F5 NGINX Controller to deploy and manage NGINX instances on Amazon Web Services (AWS).
 
 This tutorial explains how to deploy NGINX Plus on AWS by defining an AWS Integration, a Location, and an Instance Template in NGINX Controller.
 

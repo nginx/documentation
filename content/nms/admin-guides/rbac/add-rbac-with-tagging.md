@@ -1,17 +1,15 @@
 ---
-title: "(Deprecated) Set Up RBAC with Tagging"
-description: "Deprecated in Instance Manager 2.1.0. This topic explains how to set up role-based access control with tags in Instance Manager."
-date: 2021-12-21T12:00:00-07:00
-draft: true
-weight: 1000
+description: Deprecated in Instance Manager 2.1.0. This topic explains how to set
+  up role-based access control with tags in Instance Manager.
+docs: DOCS-790
 doctypes: task
+draft: true
+tags:
+- docs
+- deprecated
+title: (Deprecated) Set Up RBAC with Tagging
 toc: true
-tags: ["docs", "deprecated"]
-
-docs: "DOCS-790"
-aliases:
-- /nginx-instance-manager/admin-guide/add-rbac-with-tagging/
-- /nginx-instance-manager/admin-guide/rbac/add-rbac-with-tagging/
+weight: 1000
 ---
 
 {{< shortversions "2.0.0" "2.0.1" "nimvers" >}}
@@ -21,7 +19,7 @@ aliases:
 {{< deprecated >}}Adding tags to set up RBAC is deprecated in Instance Manager 2.1.0. To use the new RBAC, refer to the [Set Up RBAC]({{< relref "/nms/admin-guides/rbac/rbac-getting-started" >}}) guide.
 {{< /deprecated >}}
 
-When [defining a role]({{< relref "/nms/admin-guides/authentication/basic-authentication.md#roles" >}}) in Instance Manager, you can use [tags]({{< relref "/nms/nim/how-to/nginx/add-tags.md" >}}) to restrict a role's permissions for groups of instances.
+When [defining a role]({{< relref "/nms/admin-guides/authentication/basic-authentication.md#roles" >}}) in Instance Manager, you can use [tags]({{< relref "/nms/nim/how-to/instances/add-tags.md" >}}) to restrict a role's permissions for groups of instances.
 
 To access an instance with an assigned tag, a role must have `Instance Management` permission, and the permission needs to have a tag matching the instance's.
 
@@ -37,8 +35,8 @@ Untagged instances can be accessed by all users that have the `Instance Manageme
 
 To set a role's permissions with tags using the Instance Manager Rest API, send a POST request similar to the following example to the Roles API:
 
-```bash
-curl -X POST "https://<NGINX-INSTANCE-MANAGER-FQDN>/api/platform/v1/roles" -H "authorization: Basic YWRtaW..." -H "content-type: application/json" -d "
+```shell
+curl -X POST "https://<NGINX-INSTANCE-MANAGER-FQDN>/api/platform/v1/roles" -H "Authorization: Bearer <access token>" -H "content-type: application/json" -d "
 {
   "metadata": {
     "description": "Role settings for managers",
@@ -67,11 +65,13 @@ curl -X POST "https://<NGINX-INSTANCE-MANAGER-FQDN>/api/platform/v1/roles" -H "a
 ```
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Parameter          | Type | Description                                                                                                                                                                                                                        |
 |--------------------|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `permissions.access` | string    | The access level determines the role's ability to access a path or object.<br><br>The options are:<br><br>&#8226;&nbsp;READ: has read-only access (HTTP, GET requests)<br><br>&#8226;&nbsp;WRITE: has read and write access (POST, PUT, PATCH, DELETE requests)          |
 | `permissions.scope`  | string    | Sets the scope the role has access to.<br><br>The options are:<br><br>&#8226;&nbsp;SETTINGS: has access to the Instance Manager settings APIs, including license, users, and roles<br><br>&#8226;&nbsp;INSTANCE-MANAGEMENT: has access to to the instance management APIs |
 | `permissions.tags`   | string    | Tags are matched to resources in the API to determine access privileges. Tags can only be used with the INSTANCE-MANAGEMENT scope.                                                                                                 |
+
 {{</bootstrap-table>}}
 
 The example above defines a role with `READ` permission for instances with the `env:prod` tag and `WRITE` permission for instances with the `env:dev` tag.
@@ -80,7 +80,7 @@ For more information about the Roles API, see the Instance Manager REST API Docu
 
 ## Set Role Permissions Using the Web Interface
 
-1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in.
+1. In a web browser, go to the FQDN for your F5 NGINX Management Suite host and log in.
 2. Select the **Settings** gear icon.
 3. In the left menu, select **Roles**.
 4. Select **Create**.

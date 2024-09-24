@@ -1,35 +1,12 @@
 ---
-authors: []
-categories:
-- installation
-- platform management
-- load balancing
-- api management
-- service mesh
-- security
-- analytics
-date: "2022-03-14T18:39:24Z"
-description: How to use Role Based Access Control with App Security
+description: How to use Role Based Access Control with App Security.
 docs: DOCS-845
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- renewing
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
 tags:
 - docs
 title: Using RBAC with the App Security Add-On
 toc: true
-versions: []
 weight: 400
 ---
 
@@ -62,37 +39,40 @@ The app component you want to enable WAF for must have `WRITE` permission. Addit
 }
 ```
 
-## Granting Permissions on Security Strategies and Security Policies 
+## Granting Permissions on Security Strategies and Security Policies
 
-A security strategy references a security policy. For more information regarding security strategies and security policies, refer to [About App Security]({{< relref "/controller/app-delivery/security/concepts/what-is-waf.md#security-strategy" >}}). 
+A security strategy references a security policy. For more information regarding security strategies and security policies, refer to [About App Security]({{< relref "/controller/app-delivery/security/concepts/what-is-waf.md#security-strategy" >}}).
 
 ### Deny by Default
 
 Permissions for security strategies and security policies follow the principle of *Deny by Default*: all access is blocked that has not been expressly permitted. There are a few exceptions:
 
-  - By default, all users have `READ` permission for the default strategy (/security/strategy/balanced_default).
+- By default, all users have `READ` permission for the default strategy (/security/strategy/balanced_default).
 
-  - Users do not need permissions to reference a security policy in a security strategy.
+- Users do not need permissions to reference a security policy in a security strategy.
 
 ### Security Strategies
 
 For a role, you can grant `FULL`, `WRITE`, `READ`, or `NONE` permissions to a security strategy. Each of these options provides the following permissions to the role:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 |Permission|What you can do with this permission|
 | --- | --- |
 |`READ`|You can view the settings of the security strategy.<br>You can reference the security strategy for an app component.|
 |`WRITE`|All that `READ` can do.<br>In addition, you can create or edit the security strategy.|
 |`FULL`|All that `WRITE` can do.<br>In addition, you can delete the security strategy.|
 |`NONE`|You can view the settings of a security policy.|
+
 {{</bootstrap-table>}}
 
 
 {{<note>}}When permissions are set to `NONE`:
-  - You **cannot** view the settings of the security strategy.
-  - You **cannot** reference the security strategy for an app component.
-  - You **cannot** create or edit the security strategy.
-  - You **cannot** delete the security strategy.
+
+- You **cannot** view the settings of the security strategy.
+- You **cannot** reference the security strategy for an app component.
+- You **cannot** create or edit the security strategy.
+- You **cannot** delete the security strategy.
 {{</ note>}}
 
 ### Security Policies
@@ -100,12 +80,14 @@ For a role, you can grant `FULL`, `WRITE`, `READ`, or `NONE` permissions to a se
 For a role, you can grant `FULL`, `WRITE`, `READ` or `NONE` permissions to a security policy. Each of these options provides the following permissions for the role:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 |Permission|What can you do with this permission|
 |--- |--- |
 |`READ`|You can view the settings of the security policy.|
 |`WRITE`|All that `READ` can do.<br>In addition, you can create or edit the security policy.|
 |`FULL`|All that `WRITE` can do.<br>In addition, you can delete the security policy.|
 |`NONE`| No permissions.|
+
 {{</bootstrap-table>}}
 
 {{< note >}}You don't need to add permissions to a security policy to reference it in a security strategy.
@@ -129,7 +111,7 @@ The default strategy (`/security/strategies/balanced_default`) is read-only and 
             {
                 "path": "/security/strategies/balanced_default",
                 "access": "NONE"
-            }             
+            }
         ]
     }
 }
@@ -137,14 +119,16 @@ The default strategy (`/security/strategies/balanced_default`) is read-only and 
 
 ## Permissions for Predefined Roles
 
-The following table lists the permissions for NGINX Controller’s predefined roles:
+The following table lists the permissions for F5 NGINX Controller’s predefined roles:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 |Predefined Role|Permission|Details|
 |--- |--- |--- |
 |`admin`|`FULL`|`FULL` permissions for all security strategies and security policies on all environments.|
 |`user`|`WRITE`|`WRITE` permissions for all security strategies and security policies on all environments.|
 |`guest`|`READ`|`READ` permissions for all security strategies and security policies on all environments.|
+
 {{</bootstrap-table>}}
 
 ## RBAC for AppSec Scenario Example
@@ -179,7 +163,7 @@ In the following example, we create a role called `devops-role` that we assign t
               {
                   "path": "/security/strategies/sensitive-app-strategy",
                   "access": "READ"
-              }                       
+              }
           ]
       }
     }
@@ -207,11 +191,11 @@ In the following example, we create a role called `devops-role` that we assign t
               "david"
           ]
       }
-    } 
+    }
     ```
 
 3. The user `David` enables WAF on `checkout-component` by referencing `sensitive-app-strategy`:
-    
+
     `PUT @ /services/environments/env-name/apps/app-name/components/checkout-component`
 
     ```nginx
@@ -278,4 +262,3 @@ In the following example, we create a role called `devops-role` that we assign t
       }
     }
     ```
-    

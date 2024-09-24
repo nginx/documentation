@@ -1,16 +1,8 @@
 ---
-date: "2021-09-01T10:36:03-07:00"
-description: Integrate NGINX Controller with a BIG-IP cluster.
+description: Integrate F5 NGINX Controller with a BIG-IP cluster.
 docs: DOCS-786
 doctypes:
 - tutorial
-draft: false
-journeys:
-- using
-personas:
-- devops
-roles:
-- admin
 tags:
 - docs
 title: BIG-IP Integration
@@ -20,13 +12,13 @@ weight: 20
 
 ## Overview
 
-You can use NGINX Controller to configure a BIG-IP cluster to work with NGINX instances in your app delivery infrastructure. By using NGINX Controller, you can configure your NGINX instances as part of your BIG-IP device's virtual servers and server pools. 
+You can use F5 NGINX Controller to configure a BIG-IP cluster to work with NGINX instances in your app delivery infrastructure. By using NGINX Controller, you can configure your NGINX instances as part of your BIG-IP device's virtual servers and server pools.
 
 NGINX Controller uses the [F5 Application Services 3 Extension (AS3) package](https://clouddocs.f5.com/products/extensions/f5-appsvcs-extension/latest/) to communicate with a BIG-IP cluster. This means NGINX Controller works with any BIG-IP version that supports AS3.
 
 The following diagram shows how client traffic is routed through a BIG-IP cluster and load-balanced to the NGINX instances belonging to the BIG-IP server pools.
 
-<div style="text-align: center">{{< img src="/platform/integrations/assets/big-ip-integration.png" alt="NGINX integration for BIG-IP." width="600" >}}</div>
+<div style="text-align: center">{{< img src="/ctlr/img/big-ip-integration.png" alt="NGINX integration for BIG-IP." width="600" >}}</div>
 
 ## Terminology
 
@@ -87,7 +79,7 @@ To add an NGINX instance group to a BIG-IP cluster, take the following steps:
 1. (Optional) Provide a display name.
 1. (Optional) Provide a description.
 1. In the **HA Type** list, select `BIG-IP`.
-1. In the **Integration Reference** list, select the name of your BIG-IP integration. 
+1. In the **Integration Reference** list, select the name of your BIG-IP integration.
 
    If you haven't created an integration already, refer to [Create a BIG-IP Integration]({{< relref "/controller/platform/integrations/big-ip-self-service.md#create-a-big-ip-integration" >}}) for instructions.
 
@@ -190,9 +182,9 @@ On the **Gateways** > **Create Gateway** > **Additional** page:
    - `Explicitly Disable` - disable keep alive.
 
 1. (Optional) Add [**Config Snippets**]({{< relref "/controller/app-delivery/about-snippets.md" >}}) to customize your NGINX configuration.
-   
+
    {{< caution >}}
-   When you use Snippets to customize your NGINX configuration, your changes are applied to the `nginx.conf` file *as is*. NGINX Controller does not verify that your configuration is valid before applying the snippet. 
+   When you use Snippets to customize your NGINX configuration, your changes are applied to the `nginx.conf` file *as is*. NGINX Controller does not verify that your configuration is valid before applying the snippet.
 
    We strongly recommend verifying Snippets in a lab environment before making any changes in production.
    {{< /caution >}}

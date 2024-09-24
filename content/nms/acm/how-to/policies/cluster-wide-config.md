@@ -1,22 +1,17 @@
 ---
-title: "Cluster-Wide Config"
-date: 2023-02-10T12:00:00-07:00
-draft: false
-description: "Learn how to configure the Cluster-Wide Config settings to fine tune and control proxy cluster's behavior with performance enhancing configurations."
-# Assign weights in increments of 100
-weight: 498
+description: Learn how to configure the Cluster-Wide Config settings to fine tune
+  and control proxy cluster's behavior with performance enhancing configurations.
+docs: DOCS-1160
+doctypes:
+- API Connectivity Manager
+- api management
+- concept
+tags:
+- docs
+title: Cluster-Wide Config
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1160"
-doctypes: ["API Connectivity Manager", "api management", "concept"]
-journeys: ["getting started", "using"]
-personas: ["Platform Ops", "Infra Admins"]
-versions: []
-
+weight: 498
 ---
-
-{{<custom-styles>}}
 
 ## Overview
 
@@ -28,7 +23,7 @@ versions: []
 
 Use the *Cluster-Wide Config* settings to fine tune the worker connections, [hash table size](https://nginx.org/en/docs/hash.html), and keepalive settings to speed up data processing and improve the performance of the API proxy for large number of connections. When applied, the settings are applicable to all the instances in a proxy cluster. If the proxy cluster is shared between environments, the changes made in any environment will be reflected in all the other environments.
 
-#### Intended Audience
+### Intended Audience
 
 {{< include "acm/how-to/policies/infra-admin-persona.md">}}
 
@@ -48,8 +43,9 @@ To apply the policy or make changes to it, here's what you need to do:
 
 The following table lists the configurable settings and their default values for the policy.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field        | Datatype | Possible Values     | Description                                        | Required | Default               |
 |--------------|----------|---------------------|----------------------------------------------------|----------|-----------------------|
 | `mapHashBucketSize`   | integer  |  example: 256 | Sets the bucket size for the map hash table.                             | No      | 128       |
@@ -57,7 +53,7 @@ The following table lists the configurable settings and their default values for
 | `serverNamesHashBucket`   | integer  | example: 256              | Sets the bucket size for the server names hash tables                          | No      |   256                    |
 | `serverNamesHashMaxSize`   | integer  | example: 1024               | Sets the maximum size of the server names hash tables.                          | No      |    1024                    |
 | `workersConfig.connections`   | integer  | In range `256–65536`               | Sets the maximum number of simultaneous connections that can be opened by a worker process.                          | No      |                8192      |
-| `workersConfig.maxProcesses`   | string  | ^(auto\|[1-9]\|[1-2][0-9]\|3[0-2])$    | Defines the number of worker processes.                          | No      |          auto             |
+| `workersConfig.maxProcesses`   | string  | `^(auto\|[1-9]\|[1-2][0-9]\|3[0-2])$`    | Defines the number of worker processes.                          | No      |          auto             |
 | `workersConfig.maxLimitForOpenFile`   | integer  | In range `512–262144`              | Changes the limit on the maximum number of open files (RLIMIT_NOFILE) for worker processes. Used to increase the limit without restarting the main process.                          | No      |      20000                 |
 | `clientConnection.keepaliveTimeout`   | string  | ^([0-9]+)(([h\|m\|s]){1})$         | The first parameter sets a timeout during which a keep-alive client connection will stay open on the server side.                         | No      |       75s                |
 | `clientConnection.keepaliveHeaderTimeout`   | string  | ^([0-9]+)(([h\|m\|s]){1})$             | ?                         | No      |                       |
@@ -68,7 +64,7 @@ The following table lists the configurable settings and their default values for
 | `clientHeaderBuffer.timeout`   | string  | ^[0-9]+[h\|m\|s]{1}$            | Defines a timeout for reading client request header.                          | No      |      "60s"                 |
 
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ---
 
@@ -82,13 +78,15 @@ The following table lists the configurable settings and their default values for
 
 To create an Cluster-Wide Config settings using the REST API, send an HTTP `PUT` request to the Add-Endpoint-Name-Here endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Method | Endpoint            |
 |--------|---------------------|
 | `PUT` |  `/infrastructure/workspaces/{infraWorkspaceName}/proxy-clusters/{clusterName}`|
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <details open>
 <summary>JSON request - Cluster-Wide Config with minimum configuration</summary>
@@ -96,7 +94,7 @@ To create an Cluster-Wide Config settings using the REST API, send an HTTP `PUT`
 ``` json
 {
     "policies": {
-      "cluster-wide-config": [],  
+      "cluster-wide-config": [],
     }
 }
 ```
@@ -134,7 +132,7 @@ To create an Cluster-Wide Config settings using the REST API, send an HTTP `PUT`
         },
       }
     ],
-  }   
+  }
 }
 ```
 
@@ -146,7 +144,7 @@ To create an Cluster-Wide Config settings using the REST API, send an HTTP `PUT`
 
 To create a Cluster-Wide Config setting using the web interface:
 
-1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in. Then, from the Launchpad menu, select **API Connectivity Manager**.
+1. In a web browser, go to the FQDN for your F5 NGINX Management Suite host and log in. Then, from the Launchpad menu, select **API Connectivity Manager**.
 2. On the left menu, select **Infrastructure**.
 3. Choose the workspace that contains your cluster's environment from the list of workspaces.
 4. In the **Environments** section, select the environment name for your cluster.

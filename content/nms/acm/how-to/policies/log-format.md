@@ -1,17 +1,18 @@
 ---
-Title: "Log Format"
-draft: false
-description: "As an Infrastructure Administrator, use this guide to implement a standard log format for all environments hosting APIs."
-weight: 700
+description: As an Infrastructure Administrator, use this guide to implement a standard
+  log format for all environments hosting APIs.
+docs: DOCS-1127
+doctypes:
+- API Connectivity Manager
+- api management
+- task
+- reference
+tags:
+- docs
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1127"
-doctypes: ["API Connectivity Manager", "api management", "task", "reference"]
-journeys: ["getting started", "using"]
-personas: ["Platform Ops", "Infra Admins"]
+weight: 700
+title: Log Format
 ---
-
-{{<custom-styles>}}
 
 ## Overview
 
@@ -23,7 +24,7 @@ personas: ["Platform Ops", "Infra Admins"]
 
 The Log Format policy enables Infrastructure Admins to set the format for access logs. Detailed access logs are generated in either JSON (default) or Syslog format and are applied to new environments automatically. This policy can be customized to filter log content, adjust log severity levels, and designate log destinations.
 
-#### Intended Audience
+### Intended Audience
 
 {{< include "acm/how-to/policies/infra-admin-persona.md">}}
 
@@ -43,8 +44,9 @@ To apply the policy or make changes to it, here's what you need to do:
 
 The following table lists the configurable settings and their default values for the policy.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field                                        | Type    | Possible Values                                                                                        | <div style="width:400px">Description</div>                                                                                                                                                               | Required | Default value                                                |
 |----------------------------------------------|-------------|--------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|--------------------------------------------------------------|
 | `type`                                       | string      | One of:<br>`[JSON,`<br>`NATIVE]`                                                                       | The access logs can be created in either JSON or native NGINX log format (Syslog).                                                                                                                       | Yes      | `JSON`                                                       |
@@ -55,8 +57,9 @@ The following table lists the configurable settings and their default values for
 | `logDestination.`<br>`accessLogFileLocation` | string      | `/var/log/nginx`                                                                                       | The directory in which the access log file will be saved. The directory can be any valid UNIX filepath, with relative paths being relative to the default NGINX configuration directory (`/etc/nginx/`). | Yes      | `/var/log/nginx`                                             |
 | `logDestination.`<br>`errorLogFileLocation`  | string      | `/var/log/nginx`                                                                                       | The directory in which the error log file will be saved. This directory can be any valid UNIX filepath, with relative paths being relative to the default NGINX configuration directory (`/etc/nginx/`). | No       | `/var/log/nginx`                                             |
 | `enablePrettyPrint`                          | boolean     | `true`,<br>`false`                                                                                     | This setting adds whitespace and indentation to make JSON logs more easily readable for humans. This setting is applicable only when the `type` is set to `JSON`.                                        | No       | `false`                                                      |
+
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ---
 
@@ -81,13 +84,15 @@ If these default options don't meet your requirements, you can customize the pol
 
 To add the Log Format policy using the REST API, send an HTTP `POST` request to the Environments endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                              |
 |--------|-------------------------------------------------------|
 | `POST` | `/infrastructure/workspaces/{workspace}/environments/{environment}` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <details open>
 <summary>JSON request</summary>
@@ -133,7 +138,7 @@ This JSON example defines the log format policy for an environment: the error lo
 
 To add the Log Format policy using the web interface:
 
-1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in. Then, from the Launchpad menu, select **API Connectivity Manager**.
+1. In a web browser, go to the FQDN for your F5 NGINX Management Suite host and log in. Then, from the Launchpad menu, select **API Connectivity Manager**.
 2. On the left menu, select **Infrastructure**.
 3. On the *Workspaces* page, select a workspace in the list to which you'll add an environment.
 4. Select **Add** to add the environment.

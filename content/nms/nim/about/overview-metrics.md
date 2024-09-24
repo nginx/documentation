@@ -1,37 +1,13 @@
 ---
-aliases:
-- /analytics/metrics/reference/overview-metrics-metadata/
-- /tutorials/monitoring/overview-metrics-metadata/
-
-authors: []
-categories:
-- analytics
-date: "2021-12-21T12:00:00-07:00"
 description: Understanding how the NGINX Agent collects and reports metrics
+docs: DOCS-826
 doctypes:
 - reference
-draft: false
-journeys:
-- researching
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
-- read-only
 tags:
 - docs
-title: 'Instance Metrics Overview'
+title: Instance Metrics Overview
 toc: true
 weight: 300
-docs: "DOCS-826"
-aliases:
-- /nginx-instance-manager/about/overview-metrics/
 ---
 
 {{< shortversions "2.0.0" "latest" "nimvers" >}}
@@ -51,7 +27,7 @@ Instance Manager stores historical metrics data in an analytics database. Metric
 - Data older than 30 days but not older than 15 months are stored with 1 hour resolution.
 - Data older than 15 months are stored with 1 day resolution.
 
-### NGINX Plus Metrics
+### F5 NGINX Plus Metrics
 
 Enable the NGINX Plus API to collect NGINX Plus metrics by uncommenting the `/api/` location section in `/etc/nginx/conf.d/default.conf`:
 

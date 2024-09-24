@@ -1,16 +1,12 @@
 ---
-title: "Set Up an API Gateway Environment"
-date: 2022-07-15T10:24:20-06:00
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Learn how to use NGINX Management Suite API Connectivity Manager to configure an API Gateway."
-# Assign weights in increments of 100
-weight: 100
+description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to configure
+  an API Gateway.
+docs: DOCS-921
+tags:
+- docs
+title: Set Up an API Gateway Environment
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-921"
+weight: 100
 ---
 
 {{< shortversions "1.1.0" "latest" "acmvers" >}}
@@ -26,16 +22,18 @@ Before proceeding with this guide, you should familiarize yourself with the [API
 
 ## Add an Infrastructure Workspace
 
-First, you'll need to create an Infrastructure Workspace. 
+First, you'll need to create an Infrastructure Workspace.
 This is a logical grouping that allows for separation between business units or teams.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method      | Endpoint |
 |-------------|----------|
-| POST| `/infrastructure/workspaces`| 
+| POST| `/infrastructure/workspaces`|
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ```json
 {
@@ -53,22 +51,24 @@ This is a logical grouping that allows for separation between business units or 
 
 ## Add an Environment
 
-Next, add an Environment. 
+Next, add an Environment.
 
-Environments contain **API Gateways** and **Develper Portals**. 
+Environments contain **API Gateways** and **Develper Portals**.
 Use the appropriate example below to deploy an API Gateway with either HTTP, HTTP2, or HTTPS.
 
 ### HTTP
 
 > {{< fa "lightbulb" >}} Use this example to get up and running quickly in a demo environment.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method      | Endpoint |
 |-------------|----------|
-| POST| `/infrastructure/workspaces/{{infraWorkspaceName}}/environments`| 
+| POST| `/infrastructure/workspaces/{{infraWorkspaceName}}/environments`|
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ```json
 {
@@ -88,9 +88,9 @@ Use the appropriate example below to deploy an API Gateway with either HTTP, HTT
 }
 ```
 
-### HTTPS 
+### HTTPS
 
-To deploy a cluster that uses HTTPS for secure inbound communication, you'll add the **TLS Inbound** policy. 
+To deploy a cluster that uses HTTPS for secure inbound communication, you'll add the **TLS Inbound** policy.
 Because this is done at the Infrastructure level, this is considered a "Global Policy".
 
 > {{< fa "lightbulb" >}} You need to provide a valid TLS server certificate and key in this API call.
@@ -99,13 +99,15 @@ Because this is done at the Infrastructure level, this is considered a "Global P
 Need to add requirements for sending this info? Base64 encoding required?
 {{</comment>}}
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method      | Endpoint |
 |-------------|----------|
-| POST| `/infrastructure/workspaces/{{infraWorkspaceName}}/environments`| 
+| POST| `/infrastructure/workspaces/{{infraWorkspaceName}}/environments`|
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ```json
 {
@@ -142,13 +144,15 @@ Because this is done at the Infrastructure level, this is considered a "Global P
 
 > {{< fa "lightbulb" >}} You need to provide a valid TLS server certificate and key in this API call.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method      | Endpoint |
 |-------------|----------|
 | POST| `/infrastructure/workspaces/{{infraWorkspaceName}}/environments`|
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ```json
 {
@@ -185,19 +189,19 @@ Because this is done at the Infrastructure level, this is considered a "Global P
 }
 ```
 
-## Onboard NGINX Plus Instances into the Cluster
+## Onboard F5 NGINX Plus Instances into the Cluster
 
 Take the steps in this section to install the NGINX Agent on the data plane instances to onboard them into the proxy cluster that you created in the [previous step](#add-an-environment).
 
-To do so, you need to interact directly with the NGINX Plus data plane hosts. 
+To do so, you need to interact directly with the NGINX Plus data plane hosts.
 
-- SSH access to the hosts and `sudo` permissions are required. 
-- You can add up to three NGINX Plus data plane instances to the cluster. 
+- SSH access to the hosts and `sudo` permissions are required.
+- You can add up to three NGINX Plus data plane instances to the cluster.
 
 ### Install NGINX Agent on the Data Plane Hosts {#onboard-nginx-plus}
 
 1. Use SSH to connect and log in to each of the NGINX Plus data plane hosts that you want to add to the API Gateway cluster.
-1. Run the onboarding command as root using cURL to download, install, configure, and start the NGINX Agent package. 
+1. Run the onboarding command as root using cURL to download, install, configure, and start the NGINX Agent package.
 
    - Replace `{{nms-fqdn}}` in the example command with the FQDN or IP address of your API Connectivity Manager management plane host.
    - Make sure `-g {{clusterName}}` uses the name of your API Gateway cluster.
@@ -210,13 +214,16 @@ To do so, you need to interact directly with the NGINX Plus data plane hosts.
 ### Verify the Settings
 
 Try sending traffic to the hostname you configured for the API Gateway. Send a PUT request to the endpoint shown below to update the Environment.
+
 1. Send a GET request to the endpoint shown below to verify that the instances were added to the Clusters.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method      | Endpoint |
 |-------------|----------|
-| PUT | `/infrastructure/workspaces/{{infraWorkspaceName}}/environments/{{environmentName}}`| 
-| GET | `/infrastructure/workspaces/{{infraWorkspaceName}}/environments/{{environmentName}}?includes=instances&includes=status`| 
+| PUT | `/infrastructure/workspaces/{{infraWorkspaceName}}/environments/{{environmentName}}`|
+| GET | `/infrastructure/workspaces/{{infraWorkspaceName}}/environments/{{environmentName}}?includes=instances&includes=status`|
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+

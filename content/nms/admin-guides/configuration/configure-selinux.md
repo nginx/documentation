@@ -1,30 +1,21 @@
 ---
-title: "Configure SELinux"
-date: 2021-12-21T12:00:00-07:00
-draft: false
-description: "Learn how to load the provided NGINX Management Suite SELinux policy to secure your NGINX Management Suite deployment."
-# Assign weights in increments of 100
-weight: 250
+description: Learn how to load the provided F5 NGINX Management Suite SELinux policy
+  to secure your NGINX Management Suite deployment.
+docs: DOCS-796
+doctypes:
+- task
+tags:
+- docs
+title: Configure SELinux
 toc: true
-tags: [ "docs" ]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["security"]
-doctypes: ["task"]
-docs: "DOCS-796"
-aliases:
-- /nginx-instance-manager/admin-guide/selinux-guide/
-- /nginx-instance-manager/admin-guide/getting-started/selinux-guide/
+weight: 250
 ---
-
-{{< custom-styles >}}
 
 {{< shortversions "2.0.0" "latest" "nimvers" >}}
 
 ## Overview
 
-You can use the optional SELinux policy module included in the package to secure NGINX Management Suite operations with flexible, mandatory access control that follows the principle of least privilege.
+You can use the optional SELinux policy module included in the package to secure F5 NGINX Management Suite operations with flexible, mandatory access control that follows the principle of least privilege.
 
 The scope of the SELinux policy allows NGINX Management Suite to perform all operations needed to support the default configuration. This includes inter-process communication on the default Unix sockets and TCP as an alternative. Other changes may require manual adjustments to the default policy for the application to work.
 
@@ -37,7 +28,7 @@ The scope of the SELinux policy allows NGINX Management Suite to perform all ope
 To complete this tutorial, take the following preparatory steps:
 
 1. Enable SELinux on your system.
-2. Install the following tools: `load_policy`, `semodule`, and `restorecon`.  
+2. Install the following tools: `load_policy`, `semodule`, and `restorecon`.
 3. [Install NGINX Management Suite]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}) with SELinux module files in place.
 
 {{< important >}}SELinux can be configured to use `permissive` mode. In `permissive` mode, policy violations are logged instead of enforced. Make sure you know which mode your SELinux configuration uses.{{< /important >}}
@@ -87,27 +78,7 @@ To use the SELinux policy that's included with NGINX Management Suite, take the 
    sudo restorecon -F -R /var/log/nms
    ```
 
-1. (API Connectivity Manager) If you installed API Connectivity Manager, run the following additional commands to restore the default SELinux labels for the following files and directories:
-
-    ```bash
-    sudo restorecon -F -R /usr/bin/nms-acm
-    sudo restorecon -F -R /usr/lib/systemd/system/nms-acm.service
-    sudo restorecon -F -R /var/lib/nms/modules/acm.json
-    ```
-
-1. (App Delivery Manager) If you installed App Delivery Manager, run the following additional commands to restore the default SELinux labels for the following files and directories:
-
-    {{< beta-badge >}}
-
-    ```bash
-    sudo semodule -n -i /usr/share/selinux/packages/nms-adm.pp
-    sudo /usr/sbin/load_policy
-    sudo restorecon -F -R /usr/bin/nms-adm
-    sudo restorecon -F -R /usr/lib/systemd/system/nms-adm.service
-    sudo restorecon -F -R /var/lib/nms/modules/adm.json
-    ```
-
-2. Restart the NGINX Management Suite services:
+1. Restart the NGINX Management Suite services:
 
     ```bash
     sudo systemctl restart nms
@@ -190,10 +161,10 @@ sudo setsebool -P httpd_can_network_connect 1
 
 ## Recommended Resources
 
-- https://man7.org/linux/man-pages/man8/selinux.8.html
-- https://www.redhat.com/en/topics/linux/what-is-selinux
-- https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/using_selinux
-- https://wiki.centos.org/HowTos/SELinux
-- https://wiki.gentoo.org/wiki/SELinux
-- https://opensource.com/business/13/11/selinux-policy-guide
-- https://www.nginx.com/blog/using-nginx-plus-with-selinux/
+- <https://man7.org/linux/man-pages/man8/selinux.8.html>
+- <https://www.redhat.com/en/topics/linux/what-is-selinux>
+- <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/using_selinux>
+- <https://wiki.centos.org/HowTos/SELinux>
+- <https://wiki.gentoo.org/wiki/SELinux>
+- <https://opensource.com/business/13/11/selinux-policy-guide>
+- <https://www.nginx.com/blog/using-nginx-plus-with-selinux/>

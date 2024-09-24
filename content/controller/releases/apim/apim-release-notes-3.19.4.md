@@ -1,20 +1,11 @@
-+++
-authors = []
-categories = ["installation", "infrastructure", "platform management", "services", "api management", "service mesh", "security", "analytics"]
-date = "2021-05-31T12:28:23+01:00"
-description = "These release notes contain information about new features, improvements, known issues, and bug fixes in the NGINX Controller API Management Module."
-doctypes = ["reference"]
-draft = false
-journeys = ["researching", "getting started", "using", "renewing", "self service"]
-personas = ["devops", "netops", "secops", "support"]
-roles = ["admin", "user", "read-only"]
-tags = ["docs"]
-title = "Release Notes 3.19.4"
-toc = true
-weight = 93
-docs = "DOCS-888"
-
-+++
+---
+description: These release notes contain information about new features, improvements,
+  known issues, and bug fixes in the NGINX Controller API Management Module.
+docs: DOCS-888
+title: Release Notes 3.19.4
+toc: true
+weight: 93
+---
 
 {{< include "controller/apim-rn-preamble.md" >}}
 
@@ -54,7 +45,7 @@ The following issues are known to be present in this release. Look for updates t
 
 - **Developer Portal fails to load when referencing a deleted API (38713)**
 
-  If an API published to a developer portal is deleted, the developer portal will fail to load completely. 
+  If an API published to a developer portal is deleted, the developer portal will fail to load completely.
 
 ## Supported NGINX Plus Versions
 

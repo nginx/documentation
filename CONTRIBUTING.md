@@ -2,10 +2,12 @@
 
 The following is a set of guidelines for contributing to this project. We really appreciate that you are considering contributing!
 
+## ✨ Getting Started
 
-## Getting Started
+You will need to install Hugo to build and preview docs in your local development environment. 
+Refer to the [Hugo installation instructions](https://gohugo.io/getting-started/installing/) for more information.
 
-Follow our [Getting Started Guide](https://github.com/nginxinc/docs/blob/main/README.md#Getting-Started) to get this project up and running.
+**NOTE**: We are currently running [Hugo v0.134.2](https://github.com/gohugoio/hugo/releases/tag/v0.134.2) in production.
 
 ## Local Docs Development
 

@@ -1,3 +1,7 @@
+---
+docs: DOCS-1309
+---
+
 When deploying the Developer Portal using a helm chart, you can configure TLS to secure communication between the NGINX API Gateway and backend API service.
 
 To use TLS with the backend API service, you need the following:
@@ -10,6 +14,7 @@ To use TLS with the backend API service, you need the following:
 Set the following configuration options to use TLS with the backend API service:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Parameter                   | Value    |
 | --------------------------- | -------- |
 | `api.db.external`           | `false`  |
@@ -17,4 +22,5 @@ Set the following configuration options to use TLS with the backend API service:
 | `api.tls.clientNames`       | ``       |
 | `api.tls.clientValidation`  | `true`   |
 | `api.tls.secretName`        | `test`   |
+
 {{% /bootstrap-table %}}

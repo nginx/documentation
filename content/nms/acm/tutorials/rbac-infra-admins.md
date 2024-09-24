@@ -1,34 +1,20 @@
 ---
-title: "Set Up RBAC for Infra Admins"
-date: 2023-03-02T13:09:51-08:00
-# Change draft status to false to publish doc
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Learn how to set up role-based access control (RBAC) for Infra Admins using the built-in and custom roles available in the NGINX Management Suite API Connectivity Manager."
-# Assign weights in increments of 100
-weight: 115
+description: Learn how to set up role-based access control (RBAC) for Infra Admins
+  using the built-in and custom roles available in the F5 NGINX Management Suite API
+  Connectivity Manager.
+docs: DOCS-1174
+doctypes:
+- tutorial
+tags:
+- docs
+title: Set Up RBAC for Infra Admins
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1174"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["tutorial"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
+weight: 115
 ---
-
-{{< custom-styles >}}
 
 ## Overview
 
-This tutorial will show you how to use the Role-Based Access Control (RBAC) features of API Connectivity Manager to give Infra Admins tailored levels of access to features in NGINX Management Suite. You will learn how to create roles to grant users access to workspaces and features, as well as how to add and assign users to those roles.
+This tutorial will show you how to use the Role-Based Access Control (RBAC) features of API Connectivity Manager to give Infra Admins tailored levels of access to features in F5 NGINX Management Suite. You will learn how to create roles to grant users access to workspaces and features, as well as how to add and assign users to those roles.
 
 ### Intended Audience
 
@@ -138,7 +124,7 @@ To add a user to NGINX Management Suite:
 1. On the **Create User** form, enter the details for the user:
 
    - **Username**: A unique name to identify the user. For example, "jon-manzana".
-   - **Email**: The user's email address. For example, "j.manzana@acmecorp.com".
+   - **Email**: The user's email address. For example, "<j.manzana@acmecorp.com>".
    - **First Name**: The user's first name. For example, "Jon".
    - **Last Name**: The user's last name. For example, "Manzana".
    - **Description**: An optional brief description of the user. For example, "Sr. Infrastructure Administrator".

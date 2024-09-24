@@ -1,20 +1,8 @@
 ---
-authors: []
-categories:
-- services
-- app management
-date: "2020-10-26T15:32:41-06:00"
 description: Create, view, and edit Apps and Components.
 docs: DOCS-478
 doctypes:
 - task
-draft: false
-journeys:
-- using
-personas:
-- devops
-roles:
-- admin
 tags:
 - docs
 title: Manage Apps & Components
@@ -26,7 +14,7 @@ weight: 300
 
 Follow the steps in this topic to learn how to create and manage Apps and App Components.
 
-{{< tip >}}You can also use the NGINX Controller API to create Apps and Components. See the [NGINX Controller API Reference]({{< relref "/controller/api/_index.md" >}}) for details.{{< /tip >}}
+{{< tip >}}You can also use the F5 NGINX Controller API to create Apps and Components. See the [NGINX Controller API Reference]({{< relref "/controller/api/_index.md" >}}) for details.{{< /tip >}}
 &nbsp;
 
 ## Before You Begin
@@ -60,7 +48,7 @@ To create a Component:
 1. Select the NGINX Controller menu icon, then select **Services**.
 1. On the **Services** menu, select **Apps**.
 1. On the **Apps** menu, in the **Recent Apps** section, select the name of the App that you want to add the Component to.
-1. On the Overview page for your App, select **Create Component**. 
+1. On the Overview page for your App, select **Create Component**.
 1. Then, complete each of the configuration sections as needed:
 
    - [General Configuration](#general-configuration)
@@ -72,7 +60,7 @@ To create a Component:
    - [Errors and Logs](#errors-and-logs)
    - [Programmability](#programmability)
    - [Caching](#caching)
-   - [Snippets](#snippets)   
+   - [Snippets](#snippets)
    - [Rate Limiting](#rate-limiting)
    - [Authentication](#authentication)
    - [Security](#security)
@@ -132,7 +120,7 @@ Example TCP/UDP URI definitions:
 On the **Create App Component** *URIs* page:
 
 1. Define the **URIs**:
-  
+
     - Select **Add URI**.
     - In the **URI** box, type the URI for the Component.
     - (Optional) Select a **Match Method** (applicable only to Web Components).
@@ -222,7 +210,7 @@ On the **Create App Component** *Monitoring* page:
     {{< see-also>}}
 Refer to the [`ngx_http_upstream_hc_module` docs](http://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check) for more information about these options.
     {{< /see-also >}}
-    
+
 ### Errors and Logs
 
 On the **Create App Component** *Logs* page:
@@ -238,7 +226,7 @@ On the **Create App Component** *Logs* page:
     {{< see-also >}}
 Refer to the [`ngx_http_log_module` docs](http://nginx.org/en/docs/http/ngx_http_log_module.html) for more information about these options.
     {{< /see-also >}}
-    
+
 ### Programmability
 
 On the **Create App Component** *Programmability* page:
@@ -254,7 +242,7 @@ On the **Create App Component** *Programmability* page:
     {{< see-also >}}
 Refer to the [`ngx_http_rewrite_module` docs](http://nginx.org/en/docs/http/ngx_http_rewrite_module.html) for more information about these options.
     {{< /see-also >}}
-    
+
 ### Caching
 
 {{< note >}}
@@ -311,15 +299,15 @@ On the **Create App Component** *Snippets* page:
     - *Add URI Snippet*: Adds NGINX directives to the component's `server` and `location` blocks.
     - *Add Workload Group Snippet*: Adds NGINX directives to the component's `upstream` block(s).
 
-1. Paste or type the desired snippet into the text field. 
+1. Paste or type the desired snippet into the text field.
 
-   Snippets should follow the standard `nginx.conf` format.   
+   Snippets should follow the standard `nginx.conf` format.
    For example, the below URI snippet adds the `proxy_set_header` directive to the component's `server` block.
-      
+
    ```Nginx configuration file
    proxy_set_header Host $proxy_host;
    ```
-   
+
    {{< caution >}}When you use Snippets to customize your NGINX configuration, your changes are applied to the `nginx.conf` file *as is*. NGINX Controller does not verify that your configuration is valid before applying the snippet. We strongly recommend verifying Snippets in a lab environment before making any changes in production.{{< /caution >}}
 
 1. Select **Next** to preview the REST API call for your component, or **Submit** to save and submit your changes.

@@ -1,5 +1,5 @@
 ---
-description: 'Integrate popular third-party services with NGINX Controller. '
+description: 'Integrate popular third-party services with F5 NGINX Controller. '
 menu:
   docs:
     parent: Platform

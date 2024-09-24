@@ -1,17 +1,19 @@
 ---
-title: "OpenID Connect Relying Party Policy"
-draft: false
-description: "As an Infrastructure Administrator, use this guide to configure OpenID Connect policy to enable Single Sign On for the gateways."
-weight: 910
+description: As an Infrastructure Administrator, use this guide to configure OpenID
+  Connect policy to enable Single Sign On for the gateways.
+docs: DOCS-1134
+doctypes:
+- API Connectivity Manager
+- API management
+- task
+- reference
+tags:
+- docs
+title: OpenID Connect Relying Party Policy
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1134"
-doctypes: ["API Connectivity Manager", "API management", "task", "reference"]
-journeys: ["getting started", "using"]
-personas: ["Platform Ops", "Infra Admins"]
+weight: 910
+title: OpenID Connect
 ---
-
-{{<custom-styles>}}
 
 ---
 
@@ -27,7 +29,7 @@ OpenID Connect (OIDC) builds on OAuth 2.0 to offer an identity layer and a unifi
 
 The OpenID Connect policy for API Connectivity Manager provides users with a convenient and secure single sign-on experience, allowing them to log in to multiple OAuth-enabled applications with a single set of credentials. This policy can be easily integrated with any compatible identity provider, providing single sign-on access to both API gateways and Developer Portals.
 
-#### Intended Audience
+### Intended Audience
 
 {{< include "acm/how-to/policies/api-owner-persona.md">}}
 
@@ -63,7 +65,7 @@ To apply the OpenID Connect (OIDC) policy or make changes to it, here's what you
 
 ## Policy Settings
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
 <table>
 <thead>
@@ -314,7 +316,7 @@ To apply the OpenID Connect (OIDC) policy or make changes to it, here's what you
 
 
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ---
 
@@ -330,13 +332,15 @@ You can set up an OIDC policy by using either the web interface or the REST API.
 
 To apply the OpenID Connect policy using the REST API, send an HTTP `POST` request to the Environments endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                                              |
 |--------|-----------------------------------------------------------------------|
 | POST   | `/api/v1/infrastructure/workspaces/{proxyWorkspaceName}/environments` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <detals>
 <summary>JSON request</summary>
@@ -399,7 +403,7 @@ This JSON defines an OpenID Connect (OIDC) authorization policy. It specifies th
 1. Locate the **OpenID Connect Relying Party** policy in the list of policies. On the **Actions** menu (represented by an ellipsis, `...`), select **Add Policy**.
 1. In the API Connectivity Manager user interface, go to **Infrastructure > Workspaces > Environments** and select the **Edit Advanced Config** from the **Actions** menu for the cluster you want to set up.
 1. Select the **Global Policies** tab.
-1. For **OpenID Connect Relying Party** select **Add Policy** from the policy's **Actions** menu. 
+1. For **OpenID Connect Relying Party** select **Add Policy** from the policy's **Actions** menu.
 1. Update **Application Settings**.
 
 {{< include "acm/how-to/update-application-settings.md" >}}
@@ -416,8 +420,8 @@ This JSON defines an OpenID Connect (OIDC) authorization policy. It specifies th
 
    You can customize how the proxy should handle the following error conditions:
 
-   - when Client ID is not supplied
-   - when there is no match for the Client ID
+- when Client ID is not supplied
+- when there is no match for the Client ID
 
    Specify the HTTP error code in the box next to the error condition. The specified error code will be displayed when the related error condition is true.
 

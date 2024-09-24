@@ -1,34 +1,9 @@
 ---
-authors: []
-categories:
-- installation
-- infrastructure
-- platform management
-- services
-- api management
-- service mesh
-- security
-- analytics
-date: "2020-10-26T15:32:41-06:00"
-description: This quick-start tutorial shows you how to get started using NGINX Controller
+description: This quick-start tutorial shows you how to get started using F5 NGINX Controller
   with NGINX Plus.
 docs: DOCS-260
 doctypes:
 - tutorial
-draft: false
-journeys:
-- getting started
-menu:
-  docs:
-    parent: Installation
-    weight: 20
-personas:
-- devops
-- netops
-- secops
-roles:
-- admin
-- user
 tags:
 - docs
 title: Trial NGINX Controller with NGINX Plus
@@ -38,7 +13,7 @@ weight: 110
 
 ## Overview
 
-This quick-start tutorial shows you how to get started using NGINX Controller with NGINX Plus.
+This quick-start tutorial shows you how to get started using F5 NGINX Controller with NGINX Plus.
 
 {{< caution >}}In this tutorial, NGINX Controller will install an embedded, self-hosted PostgreSQL database suitable for demo and trial purposes only. **These instructions are not meant for use in production environments**.{{< /caution >}}
 
@@ -140,7 +115,7 @@ To install NGINX Controller, take the following steps:
       - **Last name**: The last name for the initial admin user.
       - **Email address**: The contact email address for the initial admin user.
       - **Password**: The initial admin's password. Passwords must be 6-64 characters long and must include letters and digits.
-    - **FQDN**: Fully qualified domain name (FQDN) -- a resolvable domain name for the NGINX Controller server. You can use the FQDN to access the NGINX Controller web interface. 
+    - **FQDN**: Fully qualified domain name (FQDN) -- a resolvable domain name for the NGINX Controller server. You can use the FQDN to access the NGINX Controller web interface.
       Additionally, the FQDN is used by Controller Agents when connecting to NGINX Controller.
     - **SSL/TLS certificates**: Type `y` to generate and use self-signed certs for running NGINX Controller over HTTPS, or type `n` to provide your own certs.
 
@@ -182,7 +157,7 @@ To add a license using the [NGINX Controller REST API]({{< relref "/controller/a
 ### Prerequisites
 
 - Make sure to review the [NGINX Plus Technical Specifications Guide](https://docs.nginx.com/nginx/technical-specs/) for the requirements for your distribution and desired configuration.
-- You'll need the NGINX Plus certificate and public key files (`nginx-repo.crt` and `nginx-repo.key`) that were provided when you signed up for the trial license. If you don't have these files, you can use the [NGINX Controller REST API](https://docs.nginx.com/nginx-controller/api/reference/ctlr-v1) to download them.
+- You'll need the NGINX Plus certificate and public key files (`nginx-repo.crt` and `nginx-repo.key`) that were provided when you signed up for the trial license. If you don't have these files, you can use the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}) to download them.
 
 #### How to Download the NGINX Plus Cert and Key using the NGINX Controller API
 
@@ -195,7 +170,7 @@ You can send a GET request to the login endpoint to find the status of the sessi
 For example:
 
 - Login and capture the session cookie:
-  
+
   ```curl
   curl -c cookie.txt -X POST --url 'https://198.51.100.10/api/v1/platform/login' --header 'Content-Type: application/json' --data '{"credentials": {"type": "BASIC","username": "arthur@arthurdent.net","password": "Towel$123"}}'
   ```
@@ -226,7 +201,7 @@ For example:
   ```
 
 {{< note >}}
-If you are using a self-signed certificate you will need to add `-k` (allow insecure connections) to your curl command to be able to download your NGINX Plus certificate and key bundle. 
+If you are using a self-signed certificate you will need to add `-k` (allow insecure connections) to your curl command to be able to download your NGINX Plus certificate and key bundle.
 {{< /note >}}
 
 

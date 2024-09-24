@@ -1,30 +1,26 @@
 ---
-doctypes:
-- reference
-- troubleshooting
-title: Help
-description: NGINX Management Suite documentation and help.
-toc: false
-docs: "DOCS-898"
 _build:
   list: never
   publishResources: true
   render: always
+description: F5 NGINX Management Suite documentation and help.
+docs: DOCS-898
+doctypes:
+- reference
+- troubleshooting
+title: Help
+toc: false
 ---
 
 ## Overview
 
-NGINX Management Suite is a family of management plane solutions that enable governance of the data plane to easily scale, secure, and monitor applications and APIs. It consists of:
+F5 NGINX Management Suite is a family of management plane solutions that enable governance of the data plane to easily scale, secure, and monitor applications and APIs. It consists of:
 
 - **Instance Manager:** Configure, scale, and manage NGINX Open Source, NGINX Plus, and NGINX App Protect WAF instances.
 
-- **API Connectivity Manager:** Enable self-service and automation of API delivery. Deploy, configure, secure, monitor, and govern API gateways at scale.
-
-- **App Delivery Manager:** Enable self-service and automation of applications by Platform Ops and App teams. Deploy, configure, monitor, secure, and govern applications at scale.
-
 - **Security Monitoring:** Monitor NGINX App Protect WAF instances,  analyze possible threats and identify opportunities for tuning your security policies.
 
-##  Documentation Sections
+## Documentation Sections
 
 The documentation for NGINX Management Suite is divided into the following sections:
 
@@ -43,14 +39,6 @@ The documentation for NGINX Management Suite is divided into the following secti
 ### [Instance Manager]({{< relref "/nms/nim/" >}})
 
 - Learn how to configure and use Instance Manager.
-
-### [API Connectivity Manager]({{< relref "/nms/acm/" >}})
-
-- Learn how to configure and use the API Connectivity Manager.
-
-### [App Delivery Manager]({{< relref "/nms/adm/" >}})
-
-- Learn how to configure and use the App Delivery Manager.
 
 ### [Security Monitoring]({{< relref "/nms/security/" >}})
 
@@ -81,4 +69,3 @@ Check out some of our most consulted topics:
 ## What's Next
 
 - [Get support for NGINX Management Suite]({{< relref "/nms/support/" >}})
-

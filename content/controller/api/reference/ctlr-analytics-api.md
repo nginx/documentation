@@ -1,15 +1,11 @@
 ---
-categories:
-- reference
-date: "2020-11-5T14:03:41-06:00"
-description: Represents the state of the NGINX Controller Analytics REST API
-# Doctypes: reference and tags: api must be set to load the ReDoc js
+description: Represents the state of the F5 NGINX Controller Analytics REST API.
+docs: DOCS-1279
 doctypes:
-- reference
+  - reference
+type: redoc
 tags:
-- api
-draft: false
-layout: redoc-single
+  - api
 title: Analytics API
 toc: false
 weight: 200

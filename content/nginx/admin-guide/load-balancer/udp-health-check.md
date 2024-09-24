@@ -1,6 +1,6 @@
 ---
-description: This chapter describes how to configure different types of health checks
-  for UDP servers in a load‑balanced upstream server group.
+description: "This chapter describes how to configure different types of health checks\
+  \ for UDP servers in a load\u2011balanced upstream server group."
 docs: DOCS-421
 doctypes:
 - task
@@ -9,11 +9,10 @@ toc: true
 weight: 500
 ---
 
-
 <span id="prereq"></span>
 ## Prerequisites
 
-* You have configured an upstream group of servers that handles UDP network traffic (DNS, RADIUS, syslog) in the [`stream {}`](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#stream) context, for example:
+- You have configured an upstream group of servers that handles UDP network traffic (DNS, RADIUS, syslog) in the [`stream {}`](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#stream) context, for example:
 
     ```nginx
     stream {
@@ -27,7 +26,7 @@ weight: 500
     }
     ```
 
-* You have configured a server that passes UDP datagrams to the upstream server group:  
+- You have configured a server that passes UDP datagrams to the upstream server group:
 
     ```nginx
     stream {
@@ -42,12 +41,13 @@ weight: 500
         #...
     }
     ```
+
     See [TCP and UDP Load Balancing]({{< relref "../load-balancer/tcp-udp-load-balancer.md" >}}) for details.
 
 <span id="hc_passive"></span>
 ## Passive UDP Health Checks
 
-NGINX Open Source or NGINX Plus can mark the server as unavailable and stop sending UDP datagrams to it for some time if the server replies with an error or times out.
+NGINX Open Source or F5 NGINX Plus can mark the server as unavailable and stop sending UDP datagrams to it for some time if the server replies with an error or times out.
 
 The number of consecutive failed connection attempts within a certain time period is set with the [`max_fails`](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#max_fails) parameter for an [`upstream server`](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#server) (default value is `1`).
 
@@ -105,9 +105,9 @@ A basic UDP health check assumes that NGINX Plus sends the “nginx health check
 
 You can fine‑tune the health check by specifying the following parameters to the [`health_check`](https://nginx.org/en/docs/stream/ngx_stream_upstream_hc_module.html#health_check) directive:
 
-* `interval`– How often (in seconds) NGINX Plus sends health check requests (default is `5` seconds)
-* `passes`– Number of consecutive health checks the server must respond to to be considered healthy (default is `1`)
-* `fails`– Number of consecutive health checks the server must fail to respond to to be considered unhealthy (default is `1`)
+- `interval`– How often (in seconds) NGINX Plus sends health check requests (default is `5` seconds)
+- `passes`– Number of consecutive health checks the server must respond to to be considered healthy (default is `1`)
+- `fails`– Number of consecutive health checks the server must fail to respond to to be considered unhealthy (default is `1`)
 
 ```nginx
 server {
@@ -150,8 +150,8 @@ You can verify server responses to health checks by configuring a number of test
     ```
 
 3. In the `match {}` block, specify conditions or tests under which a health check succeeds. This is done with `send` and `expect` parameters:
-    * [`send`](https://nginx.org/en/docs/stream/ngx_stream_upstream_hc_module.html#match_send)– The text string or hexadecimal literals (“/x” followed by two hex digits) to send to the server
-    * [`expect`](https://nginx.org/en/docs/stream/ngx_stream_upstream_hc_module.html#match_expect)– Literal string or regular expression that the data returned by the server needs to match
+    - [`send`](https://nginx.org/en/docs/stream/ngx_stream_upstream_hc_module.html#match_send)– The text string or hexadecimal literals (“/x” followed by two hex digits) to send to the server
+    - [`expect`](https://nginx.org/en/docs/stream/ngx_stream_upstream_hc_module.html#match_expect)– Literal string or regular expression that the data returned by the server needs to match
 
     These parameters can be used in different combinations, but no more than one `send` and one `expect` parameter can be specified at a time.
 

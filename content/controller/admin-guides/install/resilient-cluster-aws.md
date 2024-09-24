@@ -1,22 +1,9 @@
 ---
-authors: []
-categories:
-- installation
-date: "2020-10-21T14:43:55-07:00"
-description: This guide explains how to deploy NGINX Controller as a multi-node resilient
+description: This guide explains how to deploy F5 NGINX Controller as a multi-node resilient.
   cluster on AWS.
 docs: DOCS-257
 doctypes:
 - tutorial
-draft: false
-journeys:
-- getting started
-personas:
-- devops
-- netops
-- secops
-roles:
-- admin
 tags:
 - docs
 title: Deploy NGINX Controller as a Resilient Cluster on AWS
@@ -26,7 +13,7 @@ weight: 310
 
 ## Overview
 
-Complete the steps in this guide to deploy NGINX Controller as a resilient, three-node cluster on AWS. A multi-node cluster ensures that NGINX Controller stays up even if one of the control-plane hosts becomes unavailable.
+Complete the steps in this guide to deploy F5 NGINX Controller as a resilient, three-node cluster on AWS. A multi-node cluster ensures that NGINX Controller stays up even if one of the control-plane hosts becomes unavailable.
 
 ### Failure Tolerance
 
@@ -112,7 +99,7 @@ Things you'll need before installing NGINX Controller as a resilient cluster:
 If you are installing NGINX Controller on [AWS EC2 instances](https://aws.amazon.com/ec2/getting-started/) and plan to use EBS volumes for the analytics and/or config database, you will need to add an IAM role like the one shown below. This will also allow the automatic creation of Elastic Load Balancers (ELBs). Additionally, for successful automatic creation of ELBs, all the EC2 instances that are or will be part of the cluster must be tagged with the following key-value pair:
   `kubernetes.io/cluster/NGINX-CONTROLLER : owned`
 
-```json 
+```json
 {
   "Version": "2012-10-17",
   "Statement": [

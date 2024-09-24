@@ -1,5 +1,5 @@
 ---
-description: Learn how to use the Brotli module with NGINX Plus
+description: Learn how to use the Brotli module with F5 NGINX Plus
 docs: DOCS-381
 doctypes:
 - task
@@ -12,10 +12,10 @@ weight: 100
 
 Brotli is a general‑purpose, lossless data compression algorithm that uses a variant of the LZ77 algorithm, Huffman coding, and second‑order context modeling. Its compression ratio is comparable to the best currently available general‑purpose compression methods. Its speed is similar to [DEFLATE](https://www.ietf.org/rfc/rfc1951.txt) but with denser compression.
 
-The [ngx_brotli](https://github.com/google/ngx_brotli) module enables Brotli compression in NGINX Plus and consists of two modules:
+The [ngx_brotli](https://github.com/google/ngx_brotli) module enables Brotli compression in F5 NGINX Plus and consists of two modules:
 
-* `ngx_brotli filter module` – for compressing responses on-the-fly
-* `ngx_brotli static module` - for serving pre-compressed files
+- `ngx_brotli filter module` – for compressing responses on-the-fly
+- `ngx_brotli static module` - for serving pre-compressed files
 
 <span id="prerequisites"></span>
 
@@ -25,47 +25,59 @@ The [ngx_brotli](https://github.com/google/ngx_brotli) module enables Brotli com
 
 2. If required, install the **epel-release** dependency
 
-   * for Amazon Linux 2 LTS:
+   - for Amazon Linux 2 LTS:
 
    ```shell
-   $ sudo amazon-linux-extras install epel -y
+   sudo amazon-linux-extras install epel -y
    ```
 
-   * for CentOS, Oracle Linux, and RHEL:
+   - for CentOS, Oracle Linux, and RHEL:
 
    ```shell
-   $ sudo yum install epel-release -y
+   sudo yum install epel-release -y
    ```
 
 <span id="install"></span>
 
 ## Installation
 
-Install the `nginx-plus-module-brotli` module
+Install the Brotli module package `nginx-plus-module-brotli`.
 
-*  for Amazon Linux 2 LTS, CentOS, Oracle Linux, and RHEL:
+- for Amazon Linux 2 LTS, CentOS, Oracle Linux, and RHEL:
 
    ```shell
-   $ yum install nginx-plus-module-brotli
+   yum install nginx-plus-module-brotli
    ```
 
-*  for Debian and Ubuntu:
+- for Amazon Linux 2023, AlmaLinux, Rocky Linux:
 
    ```shell
-   $ apt-get install nginx-plus-module-brotli
+   dnf install nginx-plus-module-brotli
    ```
 
-*  for SLES 15:
-   
+- for Debian and Ubuntu:
+
    ```shell
-   $ zypper install nginx-plus-module-brotli
+   apt-get install nginx-plus-module-brotli
+   ```
+
+- for SLES 15:
+
+   ```shell
+   zypper install nginx-plus-module-brotli
+   ```
+
+- for FreeBSD:
+
+   ```shell
+   pkg install nginx-plus-module-brotli
    ```
 
 <span id="configure"></span>
 
-## NGINX Plus Configuration
+## Configuration
 
-After installation you will need to enable and configure Brotli modules in NGINX Plus configuration file **nginx.conf**. 
+After installation you will need to enable and configure Brotli modules in NGINX Plus configuration file **nginx.conf**.
 
 1. Enable dynamic loading of Brotli modules with the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directives specified in the top-level (“`main`”) context:
 
@@ -93,15 +105,15 @@ After installation you will need to enable and configure Brotli modules in NGINX
 3. Test the configuration and reload NGINX Plus to enable the module:
 
    ```shell
-   $ nginx -t && nginx -s reload
+   nginx -t && nginx -s reload
    ```
 
 
 <span id="info"></span>
 ## More Info
 
-* [NGINX Module for Brotli Compression Reference](https://github.com/google/ngx_brotli)
+- [NGINX Module for Brotli Compression Reference](https://github.com/google/ngx_brotli)
 
-* [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
 
-* [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})

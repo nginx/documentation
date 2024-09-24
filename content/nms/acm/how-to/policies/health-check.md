@@ -1,30 +1,15 @@
 ---
-title: "Health Check"
-date: 2023-02-07T16:13:37-08:00
-# Change draft status to false to publish doc
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Learn how to create, configure, and implement health check policies for your HTTP and gRPC API Proxies using NGINX Management Suite API Connectivity Manager."
-# Assign weights in increments of 100
-weight: 610
+description: Learn how to create, configure, and implement health check policies for
+  your HTTP and gRPC API Proxies using F5 NGINX Management Suite API Connectivity Manager.
+docs: DOCS-1125
+doctypes:
+- reference
+tags:
+- docs
+title: Health Check
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1125"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "security", "analytics"]
-doctypes: ["reference"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
+weight: 610
 ---
-
-{{<custom-styles>}}
 
 ## Overview
 
@@ -32,14 +17,14 @@ authors: []
 
 ## About the Policy
 
-API Connectivity Manager can configure your API Proxies to continually test your backend service targets (upstream servers), avoid the servers that have failed, and gracefully add the recovered services to a load-balanced group. This continuous testing is also known as "Active Health Checks," whereas "Passive Health Checks" monitor transactions as they occur.  
+API Connectivity Manager can configure your API Proxies to continually test your backend service targets (upstream servers), avoid the servers that have failed, and gracefully add the recovered services to a load-balanced group. This continuous testing is also known as "Active Health Checks," whereas "Passive Health Checks" monitor transactions as they occur.
 
 More information on NGINX health checks can be found at:
 
-- https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check
-- https://docs.nginx.com/nginx/admin-guide/load-balancer/grpc-health-check/
+- <https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check>
+- <https://docs.nginx.com/nginx/admin-guide/load-balancer/grpc-health-check/>
 
-#### Intended Audience
+### Intended Audience
 
 {{< include "acm/how-to/policies/api-owner-persona.md">}}
 
@@ -58,18 +43,19 @@ To complete the steps in this guide, you need the following:
 
 ### Policy Settings
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field                                                          | Datatype | Possible Values            | <div style="width:400px">Description</div>                                                                                                           | Required | Default value |
 |----------------------------------------------------------------|----------|----------------------------|-----------------------------------------------------------------------------------------------------------------------|----------|---------------|
 | `targetBackendPolicyLabel`                                     | string   | Example: `default`         | This field is used to target a specific backend by label.                                                             | No       | `default`     |
 | `transportProtocol`                                            | string   | One of `["http"]`          | The transport protocol used by the service. Only http is supported for now.                                           | No       | `http`        |
-| `isMandatory`                                                  | bool     | `true/false`               | Requires every newly added server to pass all configured health checks before NGINX Plus sends traffic to it.         | No       | `false`       |
+| `isMandatory`                                                  | bool     | `true/false`               | Requires every newly added server to pass all configured health checks before F5 NGINX Plus sends traffic to it.         | No       | `false`       |
 | `persistent`                                                   | bool     | `true/false`               | Determines whether previous state is remembered after reloading configuration.                                        | No       | `false`       |
 | `port`                                                         | int      | In range `1-65535`         | The port on the service that will provide the health check.                                                           | No       | N/A           |
 | `interval`                                                     | int      | Integer (Max 2147483647)   | The length of time between each health check sent from Nginx to the respective service.                               | No       | 5             |
 | `unhealthyThreshold`                                           | int      | Integer (Max 2147483647)   | Denotes the number of failed checks before the service is considered unhealthy.                                       | No       | 1             |
-| `healthyThreshold`                                             | int      | Integer (Max 2147483647)   | Denotes the number of successful checks before the service is considered healthy.                                     | No       | 1             | 
+| `healthyThreshold`                                             | int      | Integer (Max 2147483647)   | Denotes the number of successful checks before the service is considered healthy.                                     | No       | 1             |
 | `http`<br>`.uriPath`                                           | string   | Example: `/health`         | The URI used for the health check and is appended to the server domain name or IP address                             | No       | `/`           |
 | `http`<br>`.responseMatch`<br>`.statusCode`<br>`.exact`        | int      | In range `100-599`         | List of specific status codes to match against                                                                        | No       | N/A           |
 | `http`<br>`.responseMatch`<br>`.statusCode`<br>`.range`        | string   | Example: `["200-399"]`     | List of status code ranges to match against                                                                           | No       | N/A           |
@@ -83,7 +69,7 @@ To complete the steps in this guide, you need the following:
 | `readTimeout`                                                  | string   | Example: `60s`             | Sets a timeout for reading a response from the proxied server.  Uses NGINX time measurement syntax                    | No       | `1s`          |
 
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ### Create an HTTP Health Check Policy
 
@@ -95,13 +81,15 @@ To complete the steps in this guide, you need the following:
 
 To create an HTTP health check policy, send an HTTP `POST` to the Proxies endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Method   | Endpoint                                                |
 |----------|---------------------------------------------------------|
 | `POST`   | `/services/workspaces/{SERVICE_WORKSPACE_NAME}/proxies` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <details open>
 <summary>JSON request</summary>
@@ -215,8 +203,9 @@ To complete the steps in this guide, you need the following:
 
 ### Policy Settings
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field                  | Datatype | Possible Values            | Description                                                                                                                 | Required | Default value |
 |------------------------|----------|----------------------------|-----------------------------------------------------------------------------------------------------------------------------|----------|---------------|
 | `targetBackendLabel`   | string   | Example: `default`         | This field is used to target a specific backend by label.                                                                   | No       | `default`     |
@@ -232,7 +221,7 @@ To complete the steps in this guide, you need the following:
 | `readTimeout`          | string   | Example: `60s`             | Sets a timeout for reading a response from the proxied server.  Uses NGINX time measurement syntax                          | No       | `1s`          |
 
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ### Create a gRPC Health Check Policy
 
@@ -244,13 +233,15 @@ To complete the steps in this guide, you need the following:
 
 To create a gRPC health check policy, send an HTTP `POST` to the Proxies endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Method   | Endpoint                                                |
 |----------|---------------------------------------------------------|
 | `POST`   | `/services/workspaces/<SERVICE_WORKSPACE_NAME>/proxies` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <details open>
 <summary>JSON request</summary>

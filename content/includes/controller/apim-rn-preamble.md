@@ -1,3 +1,7 @@
+---
+docs: DOCS-1306
+---
+
 We encourage you to install the latest version of the NGINX Controller APIM module to take advantage of the newest features and updates.
 
 Technical support is provided for earlier versions that were released within two years of the current release.

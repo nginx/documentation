@@ -1,5 +1,5 @@
 ---
-description: Deployment guides for NGINX Plus in the Amazon Web Services (AWS) cloud
+description: Deployment guides for F5 NGINX Plus in the Amazon Web Services (AWS) cloud
   environment.
 menu:
   docs:

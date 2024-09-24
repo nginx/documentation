@@ -1,17 +1,15 @@
 ---
-aliases:
-- /analytics/dimensions/reference/catalog/
-description: Information about all of the Events collected by NGINX Controller
-  Agent
-title: Events Catalog
-type: catalogs
-toc: false
-weight: 30
-docs: "DOCS-1132"
 catalog: true
-aliases:
-- /nginx-instance-manager/reference/catalogs/events/
-- /nginx-management-suite/nim/reference/catalogs/events/
+description: Information about all of the Events collected by NGINX Controller Agent
+docs: DOCS-1132
+doctypes:
+- reference
+tags:
+- docs
+title: Events Catalog
+toc: true
+catalogType: nms.catalogs.events
+weight: 20
 ---
 
 {{< catalogs-events >}}

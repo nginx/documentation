@@ -1,15 +1,5 @@
 ---
-authors: []
-categories:
-- installation
-- platform management
-- load balancing
-- api management
-- service mesh
-- security
-- analytics
-date: "2020-10-26T15:32:41-06:00"
-description: View key metrics for all of your monitored systems
+description: View key metrics for all of your monitored systems.
 docs: DOCS-773
 doctypes:
 - task
@@ -17,22 +7,6 @@ doctypes:
 - concept
 - reference
 - troubleshooting
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- renewing
-- self service
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
-- read-only
 tags:
 - docs
 title: View System Metrics Graphs
@@ -42,7 +16,7 @@ weight: 70
 
 ## Overview
 
-You can use the NGINX Controller **Graphs** viewer to view key metrics for all of your monitored systems.
+You can use the F5 NGINX Controller **Graphs** viewer to view key metrics for all of your monitored systems.
 
 ## Before You Begin
 
@@ -55,7 +29,7 @@ Take the steps below to view metrics graphs for your individual systems.
 
 1. Open the NGINX Controller user interface and log in.
 2. Select the NGINX Controller menu icon, then select **Infrastructure**.
-3. On the **Infrastructure** menu, select **Analytics**. 
+3. On the **Infrastructure** menu, select **Analytics**.
 4. Select the desired Instance from the list to view its graphs.
 
 ## Graphs

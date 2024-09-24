@@ -7,13 +7,10 @@
       <loc>https://docs.nginx.com/nginx-ingress-controller/sitemap.xml</loc>
     </sitemap>
     <sitemap>
-      <loc>https://docs.nginx.com/nginx-service-mesh/sitemap.xml</loc>
+      <loc>https://docs.nginx.com/nginx-gateway-fabric/sitemap.xml</loc>
     </sitemap>
     <sitemap>
       <loc>https://docs.nginx.com/nginxaas/azure/sitemap.xml</loc>
-    </sitemap>
-    <sitemap>
-      <loc>https://docs.nginx.com/nginx-amplify/sitemap.xml</loc>
     </sitemap>
     <sitemap>
       <loc>https://docs.nginx.com/nginx-agent/sitemap.xml</loc>

@@ -1,21 +1,15 @@
 ---
-title: Learn about Policies
-description: Learn about the policies available for use in NGINX Management Suite API Connectivity Manager.
-weight: 200
-draft: false
+description: Learn about the policies available for use in F5 NGINX Management Suite
+  API Connectivity Manager.
+docs: DOCS-932
+doctypes:
+- conceptual
+tags:
+- docs
+title: Available Policies
 toc: true
-tags: [ "docs" ]
-categories: ["API Connectivity Manager"]
-doctypes: ["conceptual"]
-journeys: ["researching", "getting started", "using", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
-docs: "DOCS-932"
-
+weight: 500
 ---
-
-{{< custom-styles >}}
 
 {{< shortversions "1.1.0" "latest" "acmvers" >}}
 
@@ -30,10 +24,12 @@ This page gives an overview of the available policies in API Connectivity Manage
 There are two types of policies for API Connectivity Manager:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Policy Type                                    | Description                                                                                                                                             |
 |------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [Global&nbsp;policies](#global-policies)       | Global policies, typically managed by an Enterprise Security or Support team, are onboarded as a one-time task when onboarding an API. Global policies are enforced for all of the APIs in an environment.                 |
 | [API&nbsp;proxy&nbsp;policies](#api-proxy-policies) | When onboarding APIs to API Connectivity Manager, API owners define API-level policies to enforce security and behavior characteristics for their APIs. |
+
 {{</bootstrap-table>}}
 
 ### Global Policies {#global-policies}

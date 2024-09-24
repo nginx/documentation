@@ -1,10 +1,11 @@
 ---
-docs:
+docs: DOCS-1297
 ---
 
 API Connectivity Manager includes the following features:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Feature           | Description                                                  |
 |-------------------|--------------------------------------------------------------|
 | API Docs          | View and manage API documentation published to a Dev Portal. |
@@ -16,4 +17,5 @@ API Connectivity Manager includes the following features:
 | Proxy Clusters    | Create, configure, and manage proxy clusters.                |
 | Proxy Config      | Create and manage proxies.                                   |
 | Service Workspace | Customize and manage Service workspaces.                     |
+
 {{</bootstrap-table>}}

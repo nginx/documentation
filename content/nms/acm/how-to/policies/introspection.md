@@ -1,19 +1,17 @@
 ---
-Title: "OAuth2 Introspection"
-date: 2022-10-10T10:47:51+01:00
-draft: false
-description: "API Owners can restrict access to their APIs with OAuth2 tokens. The policy is configured to grant access to APIs after 
-              having tokens introspected."
-weight: 800
+description: API Owners can restrict access to their APIs with OAuth2 tokens. The
+  policy is configured to grant access to APIs after having tokens introspected.
+docs: DOCS-953
+doctypes:
+- API Connectivity Manager
+- api management
+- concept
+tags:
+- docs
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-953"
-doctypes: ["API Connectivity Manager", "api management", "concept"]
-journeys: ["getting started", "using"]
-personas: ["secops"]
+weight: 800
+Title: Introspection
 ---
-
-{{<custom-styles>}}
 
 ## Overview
 
@@ -69,18 +67,18 @@ handshake. This solution lets the server know which certificate it should use fo
 Some Authorization Servers require SNI to be enabled during the OAuth Introspection request SSL handshake. When an Authorization server needs SNI, the following error messages will appear in the NGINX error logs on the data plane proxy host.
 
 ```log
-2022/12/04 15:24:43 [warn] 9501#9501: *73 upstream server temporarily disabled while SSL 
-handshaking to upstream, client: 10.0.0.1, server: api.io, 
-request: "GET /api HTTP/1.1", subrequest: "/_oauth2_send_introspection_request_0a2f6842_default", 
+2022/12/04 15:24:43 [warn] 9501#9501: *73 upstream server temporarily disabled while SSL
+handshaking to upstream, client: 10.0.0.1, server: api.io,
+request: "GET /api HTTP/1.1", subrequest: "/_oauth2_send_introspection_request_0a2f6842_default",
 upstream: "https://test.oauth.com:443/test/oauth2/introspect", host: "api.io"
 
-2022/12/04 15:24:43 [error] 9501#9501: *73 js: OAuth unexpected response from introspection server 
+2022/12/04 15:24:43 [error] 9501#9501: *73 js: OAuth unexpected response from introspection server
 (HTTP 502): {"message":"Bad Gateway","status":"502"}
 
-2022/12/04 15:25:27 [error] 9500#9500: *79 SSL_do_handshake() failed (SSL: error:14094410:SSL 
-routines:ssl3_read_bytes:sslv3 alert handshake failure:SSL alert number 40) while SSL handshaking 
-to upstream, client: 10.0.0.1, server: api.io, request: "GET /api HTTP/1.1", 
-subrequest: "/_oauth2_send_introspection_request_0a2f6842_default", 
+2022/12/04 15:25:27 [error] 9500#9500: *79 SSL_do_handshake() failed (SSL: error:14094410:SSL
+routines:ssl3_read_bytes:sslv3 alert handshake failure:SSL alert number 40) while SSL handshaking
+to upstream, client: 10.0.0.1, server: api.io, request: "GET /api HTTP/1.1",
+subrequest: "/_oauth2_send_introspection_request_0a2f6842_default",
 upstream: "https://test.oauth.com:443/test/oauth2/introspect", host: "api.io"
 ```
 
@@ -110,7 +108,7 @@ To enable sending the SNI with the OAuth Introspection request, set the `oauth-i
 If the override value provided in `action.proxyTLSName` is incorrect, the Authorization Server should respond with a `4xx` client error code. The following error log is an example of an incorrect override `action.proxyTLSName` found in the NGINX error logs on the data plane proxy host.
 
 ```log
-2022/12/04 15:27:12 [error] 7477#7477: *50 js: OAuth unexpected response from 
+2022/12/04 15:27:12 [error] 7477#7477: *50 js: OAuth unexpected response from
 introspection server (HTTP 403): Forbidden
 ```
 

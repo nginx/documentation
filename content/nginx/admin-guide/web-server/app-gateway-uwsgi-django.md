@@ -1,5 +1,5 @@
 ---
-description: Configure NGINX and NGINX Plus as an application gateway for uWSGI and
+description: Configure NGINX and F5 NGINX Plus as an application gateway for uWSGI and
   Django.
 docs: DOCS-439
 doctypes:
@@ -9,8 +9,7 @@ toc: true
 weight: 500
 ---
 
-
-This article explains how to use NGINX or NGINX Plus as an application gateway with uWSGI and Django.
+This article explains how to use NGINX or F5 NGINX Plus as an application gateway with uWSGI and Django.
 
 <span id="intro"></span>
 ## Introduction
@@ -91,7 +90,7 @@ http {
 }
 ```
 
-Notice that the configuration defines an upstream called **django**. The port number on the server in the group, 29000, matches the one the uWSGI server binds to, as specified by the `socket` argument in the sample `uwsgi` command. 
+Notice that the configuration defines an upstream called **django**. The port number on the server in the group, 29000, matches the one the uWSGI server binds to, as specified by the `socket` argument in the sample `uwsgi` command.
 
 Serving of static content is offloaded to NGINX or NGINX Plus, which serves it directly from **/var/django/projects/myapp/static**. Traffic to the application at **/main** is proxied and bridged from HTTP to the uwsgi protocol and passed to the Django app running inside a uWSGI application container.
 
@@ -103,7 +102,7 @@ Lightweight, heterogeneous application environments are becoming an increasingly
 Using NGINX and NGINX Plus in front of an application container has become a common way to free applications from the burden of HTTP traffic management, and to protect the application from unexpected spikes of user traffic, malicious behavior, denial‑of‑service (DoS) attacks, and more. Unbundling real‑world, external HTTP traffic from the actual application allows the developer to fully focus on the application logic, and leave the web acceleration and fundamental HTTP traffic security tasks to NGINX or NGINX Plus.
 
 <span id="resources"></span>
-##Resources
+## Resources
 
-*   [NGINX support](https://uwsgi-docs.readthedocs.io/en/latest/Nginx.html) in the uWSGI project documentation
-*   [How to use Django with uWSGI](https://docs.djangoproject.com/en/1.11/howto/deployment/wsgi/uwsgi/) in the Django project documentation
+- [NGINX support](https://uwsgi-docs.readthedocs.io/en/latest/Nginx.html) in the uWSGI project documentation
+- [How to use Django with uWSGI](https://docs.djangoproject.com/en/1.11/howto/deployment/wsgi/uwsgi/) in the Django project documentation

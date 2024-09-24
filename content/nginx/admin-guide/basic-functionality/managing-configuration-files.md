@@ -1,5 +1,5 @@
 ---
-description: Understand the basic elements in an NGINX or NGINX Plus configuration
+description: Understand the basic elements in an NGINX or F5 NGINX Plus configuration
   file, including directives and contexts.
 docs: DOCS-378
 doctypes:
@@ -8,9 +8,6 @@ title: Creating NGINX Plus and NGINX Configuration Files
 toc: true
 weight: 200
 ---
-
-
-
 
 NGINX and NGINX Plus are similar to other services in that they use a text‑based configuration file written in a particular format. By default the file is named **nginx.conf** and for NGINX Plus is placed in the <span style="white-space: nowrap;">**/etc/nginx**</span> directory. (For NGINX Open Source , the location depends on the package system used to install NGINX and the operating system. It is typically one of <span style="white-space: nowrap;">**/usr/local/nginx/conf**</span>, <span style="white-space: nowrap;">**/etc/nginx**</span>, or <span style="white-space: nowrap;">**/usr/local/etc/nginx**</span>.)
 
@@ -37,10 +34,10 @@ include conf.d/exchange-enhanced;
 
 A few top‑level directives, referred to as _contexts_, group together the directives that apply to different traffic types:
 
-*   [events](https://nginx.org/en/docs/ngx_core_module.html#events) – General connection processing
-*   [http](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) – HTTP traffic
-*   [mail](https://nginx.org/en/docs/mail/ngx_mail_core_module.html#mail) – Mail traffic
-*   [stream](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#stream) – TCP and UDP traffic
+- [events](https://nginx.org/en/docs/ngx_core_module.html#events) – General connection processing
+- [http](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) – HTTP traffic
+- [mail](https://nginx.org/en/docs/mail/ngx_mail_core_module.html#mail) – Mail traffic
+- [stream](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#stream) – TCP and UDP traffic
 
 Directives placed outside of these contexts are said to be in the _main_ context.
 
@@ -63,18 +60,18 @@ events {
 }
 
 http {
-    # Configuration specific to HTTP and affecting all virtual servers  
+    # Configuration specific to HTTP and affecting all virtual servers
 
     server {
-        # configuration of HTTP virtual server 1       
+        # configuration of HTTP virtual server 1
         location /one {
             # configuration for processing URIs starting with '/one'
         }
         location /two {
             # configuration for processing URIs starting with '/two'
         }
-    } 
-    
+    }
+
     server {
         # configuration of HTTP virtual server 2
     }
@@ -83,7 +80,7 @@ http {
 stream {
     # Configuration specific to TCP/UDP and affecting all virtual servers
     server {
-        # configuration of TCP virtual server 1 
+        # configuration of TCP virtual server 1
     }
 }
 ```

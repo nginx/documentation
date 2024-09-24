@@ -9,54 +9,76 @@ toc: true
 weight: 100
 ---
 
-
 <span id="overview"></span>
 ## Module Overview
 
 The module provides [OpenTelemetry](https://opentelemetry.io/) distributed tracing support. The module supports [W3C](https://w3c.github.io/trace-context/) context propagation and OTLP/gRPC export protocol.
 
- {{< note >}} the code of NGINX OpenTelemetry module is open source since [NGINX Open Source](https://nginx.org) 1.25.2 and [NGINX Plus Release 30](https://docs.nginx.com/nginx/releases/#nginxplusrelease-30-r30). The source code is available on [GitHub](https://github.com/nginxinc/nginx-otel).{{< /note >}}
+ {{< note >}} the code of NGINX OpenTelemetry module is open source since [NGINX Open Source](https://nginx.org) 1.25.2 and <a href="../../../releases/#r30">F5 NGINX Plus Release 30</a>. The source code is available on [GitHub](https://github.com/nginxinc/nginx-otel).{{< /note >}}
+
 
 <span id="install"></span>
-## Installation Instructions
+## Installation
 
-1. Install the OpenTelemetry module.
+1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
-   For Amazon Linux, Alma/Rocky Linux, CentOS, Oracle Linux, and RHEL:
-   
+2. Install the OpenTelemetry module package `nginx-plus-module-otel`.
+
+   For CentOS, Oracle Linux, and RHEL:
+
    ```shell
-   $ yum install nginx-plus-module-otel
+   yum install nginx-plus-module-otel
    ```
-   
-   For Debian and Ubuntu:
-   
+
+   For Amazon Linux 2023, AlmaLinux, Rocky Linux:
+
    ```shell
-   $ apt-get install nginx-plus-module-otel
+   dnf install nginx-plus-module-otel
+   ```
+
+   For Debian and Ubuntu:
+
+   ```shell
+   apt-get install nginx-plus-module-otel
    ```
 
    For SLES:
-   
+
    ```shell
-   $ zypper install nginx-plus-module-otel
+   zypper install nginx-plus-module-otel
    ```
+
    For Alpine:
 
    ```shell
-   $ apk add nginx-plus-module-otel
+   apk add nginx-plus-module-otel
    ```
 
-    {{< note >}} the OpenTelemetry module cannot be installed on RHEL/Oracle Linux/AlmaLinux/Rocky Linux 7, Ubuntu 18.04, and Amazon Linux 2. {{< /note >}}
+   For FreeBSD:
 
-2. Put the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
+   ```shell
+   pkg install nginx-plus-module-otel
+   ```
+
+   {{< note >}} the OpenTelemetry module cannot be installed on RHEL/Oracle Linux/AlmaLinux/Rocky Linux 7, Ubuntu 18.04, and Amazon Linux 2. {{< /note >}}
+
+
+<span id="configure"></span>
+
+## Configuration
+
+After installation you will need to enable and configure the module in NGINX Plus configuration file `nginx.conf`.
+
+1. Enable dynamic loading of the module with the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive specified in the top-level (“`main`”) context:
 
    ```nginx
    load_module modules/ngx_otel_module.so;
    ```
 
-3. Reload NGINX Plus to enable the module:
+2. Test the configuration and reload NGINX Plus to enable the module:
 
    ```shell
-   $ nginx -t && nginx -s reload
+   nginx -t && nginx -s reload
    ```
 
 
@@ -74,10 +96,10 @@ The module provides [OpenTelemetry](https://opentelemetry.io/) distributed traci
 
 Specifies OTel data export parameters:
 
-- `endpoint` &mdash; the address of OTLP/gRPC endpoint that will accept telemetry data. 
-- `interval` &mdash; the maximum interval between two exports, by default is 5 seconds. 
-- `batch_size` &mdash; the maximum number of spans to be sent in one batch per worker, by default is `512`. 
-- `batch_count` &mdash; the number of pending batches per worker, spans exceeding the limit are dropped, by default is `4`. 
+- `endpoint` &mdash; the address of OTLP/gRPC endpoint that will accept telemetry data.
+- `interval` &mdash; the maximum interval between two exports, by default is 5 seconds.
+- `batch_size` &mdash; the maximum number of spans to be sent in one batch per worker, by default is `512`.
+- `batch_count` &mdash; the number of pending batches per worker, spans exceeding the limit are dropped, by default is `4`.
 
 **Example:**
 
@@ -89,6 +111,7 @@ otel_exporter {
     batch_count 4;
 }
 ```
+
 <br>
 
 <span id="otel_service_name"></span>
@@ -131,6 +154,7 @@ server {
     }
 }
 ```
+
 <br>
 
 <span id="otel_trace_context"></span>
@@ -144,11 +168,12 @@ server {
 
 Specifies how to propagate [traceparent/tracestate](https://www.w3.org/TR/trace-context/#design-overview) headers:
 
-- `extract` &mdash; uses an existing trace context from the request, so that the identifiers of a [trace](#var_otel_trace_id) and the [parent span](#var_otel_parent_id) are inherited from the incoming request. 
-- `inject` &mdash; adds a new context to the request, overwriting existing headers, if any. 
-- `propagate` &mdash; updates the existing context (combines `extract` and `inject`). 
-- `ignore` &mdash; skips context headers processing. 
+- `extract` &mdash; uses an existing trace context from the request, so that the identifiers of a [trace](#var_otel_trace_id) and the [parent span](#var_otel_parent_id) are inherited from the incoming request.
+- `inject` &mdash; adds a new context to the request, overwriting existing headers, if any.
+- `propagate` &mdash; updates the existing context (combines `extract` and `inject`).
+- `ignore` &mdash; skips context headers processing.
 <br>
+
 <br>
 
 <span id="otel_span_name"></span>
@@ -167,13 +192,13 @@ Defines the name of the OTel [span](https://opentelemetry.io/docs/concepts/obser
 <span id="otel_span_attr"></span>
 ### `otel_span_attr`
 
-**Syntax:** ` otel_span_attr` <i>name</i> <i>value</i>;
+**Syntax:** `otel_span_attr` <i>name</i> <i>value</i>;
 
 **Default:** &mdash;
 
 **Context:** [`http`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http), [`server`](https://nginx.org/en/docs/http/ngx_http_core_module.html#server), [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location)
 
-Adds a custom OTel span attribute. The value can contain variables. 
+Adds a custom OTel span attribute. The value can contain variables.
 <br>
 
 
@@ -281,8 +306,8 @@ http {
 <span id="info"></span>
 ## More Info
 
-* [NGINX OpenTelemetry module on GitHub](https://github.com/nginxinc/nginx-otel)
+- [NGINX OpenTelemetry module on GitHub](https://github.com/nginxinc/nginx-otel)
 
-* [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
 
-* [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})

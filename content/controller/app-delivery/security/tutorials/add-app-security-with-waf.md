@@ -1,26 +1,9 @@
 ---
-authors: []
-categories:
-- services
-- apps
-- security
-date: "2020-10-26T15:32:41-06:00"
-description: How to add NGINX Controller App Security to your applications.
+description: How to add F5 NGINX Controller App Security to your applications.
 docs: DOCS-484
 doctypes:
 - concept
 - reference
-draft: false
-journeys:
-- researching
-- using
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
 tags:
 - task
 title: Manage App Security
@@ -30,7 +13,7 @@ weight: 100
 
 ## Overview
 
-You can use the App Security add-on for NGINX Controller ADC to enable Web Application Firewall (WAF) capabilities to protect your applications. WAF lets you flag or block suspicious requests or attacks. WAF can be added to individual app components.
+You can use the App Security add-on for F5 NGINX Controller ADC to enable Web Application Firewall (WAF) capabilities to protect your applications. WAF lets you flag or block suspicious requests or attacks. WAF can be added to individual app components.
 
 
 ## Before You Begin
@@ -150,14 +133,13 @@ This JSON object should be added to the Component endpoint similar to the follow
 
 ## Enable WAF for a Component Using Your Own NGINX App Protect WAF Policy
 
-Instead of using NGINX Controller's default policy for WAF, you can [bring your own NGINX App Protect Policy]({{< relref "/controller/app-delivery/security/concepts/bring-your-own-policy.md" >}}) for use in a Security Strategy to protect your app components. 
+Instead of using NGINX Controller's default policy for WAF, you can [bring your own NGINX App Protect Policy]({{< relref "/controller/app-delivery/security/concepts/bring-your-own-policy.md" >}}) for use in a Security Strategy to protect your app components.
 
-To do so, you first need to upload your NGINX App Protect WAF declarative JSON policy to the Security Policy endpoint and reference it in a Security Strategy. Then, you can reference the Security Strategy in the Component where you are enabling WAF. 
+To do so, you first need to upload your NGINX App Protect WAF declarative JSON policy to the Security Policy endpoint and reference it in a Security Strategy. Then, you can reference the Security Strategy in the Component where you are enabling WAF.
 
 ### Upload your NGINX App Protect WAF Policy
 
-To upload your NGINX App Protect declarative JSON Policy to NGINX Controller, use an HTTP client like cURL and send a `PUT` request to the [Security Policy REST API}(https://docs.nginx.com/nginx-controller/api/reference/ctlr-v1/adc/docs/policies/v1/content/intro) endpoint. 
-
+To upload your NGINX App Protect declarative JSON Policy to NGINX Controller, use an HTTP client like cURL and send a `PUT` request to the [Security Policy REST API}(https://docs.nginx.com/nginx-controller/api/ctlr-adc-api/)
 The JSON object should be similar to the example below:
 
 ```json
@@ -176,7 +158,7 @@ The JSON object should be similar to the example below:
 
 ### Create or Update a Security Strategy with a BYO NGINX App Protect WAF Policy
 
-You can create or update a Security Strategy that references a BYO NGINX App Protect WAF policy by sending a `PUT` request to the [Strategies REST API](https://docs.nginx.com/nginx-controller/api/reference/ctlr-v1/adc/docs/strategies/v1/content/intro) endpoint.
+You can create or update a Security Strategy that references a BYO NGINX App Protect WAF policy by sending a `PUT` request to the [Strategies REST API](https://docs.nginx.com/nginx-controller/api/ctlr-adc-api/) endpoint.
 
 The JSON object should be similar to the example below:
 
@@ -203,9 +185,9 @@ The JSON object should be similar to the example below:
 
 ### Add a BYO NGINX App Protect WAF policy to an App Component
 
-To add your BYO NGINX App Protect Policy to your App(s), you need to add a reference to the Security Strategy that contains the policy to your App Component. 
+To add your BYO NGINX App Protect Policy to your App(s), you need to add a reference to the Security Strategy that contains the policy to your App Component.
 
-To do so, send a `PUT` request to the [Components REST API](https://docs.nginx.com/nginx-controller/api/reference/ctlr-v1/adc/docs/components/v1/content/intro) endpoint.
+To do so, send a `PUT` request to the [Components REST API](https://docs.nginx.com/nginx-controller/api/ctlr-adc-api/#tag/Components) endpoint.
 
 The JSON object should be similar to the example below:
 

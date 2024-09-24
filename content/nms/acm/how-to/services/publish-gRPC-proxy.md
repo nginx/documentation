@@ -1,26 +1,21 @@
 ---
-title: "Publish a gRPC API Proxy"
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Learn how to use NGINX Management Suite API Connectivity Manager to publish a gRPC Proxy and manage traffic to gRPC services."
-# Assign weights in increments of 100
-weight: 300
+description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to publish
+  a gRPC Proxy and manage traffic to gRPC services.
+docs: DOCS-997
+doctypes:
+- task
+tags:
+- docs
+title: Publish a gRPC API Proxy
 toc: true
-categories: ["API Connectivity Manager", "API Proxy", "gRPC"]
-doctypes: ["task"]
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-997"
+weight: 300
 ---
-
-{{< custom-styles >}}
 
 {{< shortversions "1.2.0" "latest" "acmvers" >}}
 
 ## Overview
 
-gRPC has emerged as an alternative approach to building distributed applications, particularly microservice applications. API Connectivity Manager supports publishing gRPC services. 
+gRPC has emerged as an alternative approach to building distributed applications, particularly microservice applications. API Connectivity Manager supports publishing gRPC services.
 The following document describes how to publish a gRPC API proxy using the API Connectivity Manager API or UI. Additionally, this guide outlines the process of setting up a gRPC Echo Server to validate the functionality of the published proxy.
 
 
@@ -32,9 +27,11 @@ The following document describes how to publish a gRPC API proxy using the API C
 Send a POST request to publish the gRPC API proxy.
 
 {{<bootstrap-table "table">}}
+
 | Method   | Endpoint                                                |
 |----------|---------------------------------------------------------|
 | `POST`   | `/services/workspaces/<SERVICE_WORKSPACE_NAME>/proxies` |
+
 {{</bootstrap-table>}}
 
 ```json
@@ -65,8 +62,8 @@ Send a POST request to publish the gRPC API proxy.
 }
 ```
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
+
 
 {{%/tab%}}
 {{%tab name="UI"%}}
@@ -91,17 +88,19 @@ You should now have a published gRPC API proxy with a Lifecycle Status of succes
 
 {{<tabs name="grpc_policy_service">}}
 {{%tab name="API"%}}
-    
+
 Send a POST request to publish the gRPC proxy.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method   | Endpoint                                                |
 |----------|---------------------------------------------------------|
 | `POST`   | `/services/workspaces/<SERVICE_WORKSPACE_NAME>/proxies` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
-    
+
+
 ```json
 {
     "name": "dev-grpc-hello",
@@ -129,14 +128,15 @@ Send a POST request to publish the gRPC proxy.
     }
 }
 ```
-    
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
+
+
 
 {{%/tab%}}
 {{%tab name="UI"%}}
 
 To configure the proxy to route by service:
+
 1. Open the proxy and select **Ingress**.
 1. Type "helloWorld.Greeter" in the **Service Name** field.
 1. Select **Save and Publish**.
@@ -149,17 +149,19 @@ To configure the proxy to route by service:
 
 {{<tabs name="grpc_policy_routes">}}
 {{%tab name="API"%}}
-    
+
 Send a POST request to publish the gRPC proxy.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method   | Endpoint                                                |
 |----------|---------------------------------------------------------|
 | `POST`   | `/services/workspaces/<SERVICE_WORKSPACE_NAME>/proxies` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
-    
+
+
 ```json
 {
     "name": "dev-grpc-hello",
@@ -198,14 +200,15 @@ Send a POST request to publish the gRPC proxy.
 }
 ```
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
+
 
 {{%/tab%}}
 {{%tab name="UI"%}}
 
 
-To configure the proxy with an advanced route 
+To configure the proxy with an advanced route
+
 1. Open the proxy and select the **Ingress**.
 1. Select **Add route** and enter the **GRPC Method**; for example, "SayGoodbye".
 1. Select **Save and Publish**.
@@ -218,17 +221,19 @@ To configure the proxy with an advanced route
 ## Service-Level Routing using Labels
 {{<tabs name="grpc_policy_labels">}}
 {{%tab name="API"%}}
-    
+
 Send a POST request to publish the gRPC proxy.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method   | Endpoint                                                |
 |----------|---------------------------------------------------------|
 | `POST`   | `/services/workspaces/<SERVICE_WORKSPACE_NAME>/proxies` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
-    
+
+
 ```json
 {
     "name": "dev-grpc-hello",
@@ -263,7 +268,7 @@ Send a POST request to publish the gRPC proxy.
                     }
                 }
             ]
-          },        
+          },
           {
              "label": {
               "targetName": "custom"
@@ -286,8 +291,8 @@ Send a POST request to publish the gRPC proxy.
 ```
 
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
+
 
 {{%/tab%}}
 {{%tab name="UI"%}}
@@ -344,30 +349,31 @@ From a command line terminal:
    source echo-servers/bin/activate
    pip install grpcio protobuf grpcio-tools
    ```
+
 1. Create a file named `helloworld.proto` and add the following content:
-   
+
    ```shell
    syntax = "proto3";
-   
+
    package helloworld;
-   
+
    service Greeter {
        rpc SayHello (HelloRequest) returns (HelloReply) {}
        rpc SayGoodbye (GoodbyeRequest) returns (GoodbyeReply) {}
    }
-   
+
    message HelloRequest {
        string name = 1;
    }
-   
+
    message HelloReply {
        string message = 1;
    }
-   
+
    message GoodbyeRequest {
        string name = 1;
    }
-   
+
    message GoodbyeReply {
        string message = 1;
    }
@@ -381,23 +387,23 @@ From a command line terminal:
    import helloworld_pb2
    import helloworld_pb2_grpc
    from concurrent import futures
-   
+
    class GreeterServicer(helloworld_pb2_grpc.GreeterServicer):
        def SayHello(self, request, context):
            response = helloworld_pb2.HelloReply(message='Hello, ' + request.name)
            return response
-           
+
        def SayGoodbye(self, request, context):
            response = helloworld_pb2.GoodbyeReply(message='Goodbye, ' + request.name)
            return response
-   
+
    def serve():
        server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
        helloworld_pb2_grpc.add_GreeterServicer_to_server(GreeterServicer(), server)
        server.add_insecure_port('[::]:50051')
        server.start()
        server.wait_for_termination()
-   
+
    if __name__ == '__main__':
        serve()
    ```

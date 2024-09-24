@@ -1,35 +1,18 @@
 ---
-title: "Frequently Used Helm Configurations"
-date: 2023-05-09T13:10:32-07:00
-# Change draft status to false to publish doc.
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: ""
-# Assign weights in increments of 100
-weight: 100
+description: ''
+docs: DOCS-1275
+doctypes:
+- task
+tags:
+- docs
+title: Frequently Used Helm Configurations
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-000"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["task"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
-
+weight: 400
 ---
-
-{{< custom-styles >}}
 
 ## Overview
 
-Choose from the following options to view frequently used configurations for the NGINX Management Suite. To apply any of these configurations, modify the `values.yaml` file accordingly.
+Choose from the following options to view frequently used configurations for the F5 NGINX Management Suite. To apply any of these configurations, modify the `values.yaml` file accordingly.
 
 {{<see-also>}}Refer to the [Configurable Helm Settings]({{< relref "/nms/installation/kubernetes/nms-helm-config-options.md" >}}) reference guide for the complete list of configurable parameters and default values used by the NGINX Management Suite and modules when installing from a Helm chart. {{</see-also>}}
 
@@ -102,7 +85,7 @@ To use NGINX Plus for the API Gateway, take the following steps:
 
 1. Build your own Docker image for NGINX Plus API Gateway by providing your `nginx-repo.crt` and `nginx-repo.key`. Download the certificate (nginx-repo.crt) and key (nginx-repo.key) from the [MyF5 website](https://my.f5.com) and add them to your build context.
 
-    You can use the following example Docker image and the instructions within it. In this example, we use `apigw:<version>` as the base image, obtained when we completed the [Downloaded and extracted the Helm package]({{< relref " /nms/installation/kubernetes/deploy-instance-manager.md#download-helm-package" >}}), which we've extended to use NGINX Plus instead of NGINX OSS.
+    You can use the following example Docker image and the instructions within it. In this example, we use `apigw:<version>` as the base image, obtained when we completed the [Downloaded and extracted the Helm package]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md#download-helm-package" >}}), which we've extended to use NGINX Plus instead of NGINX OSS.
 
     <br>
 
@@ -159,7 +142,7 @@ To use NGINX Plus for the API Gateway, take the following steps:
            # nginx-plus-module-perl=${NGINX_VERSION}-${PKG_RELEASE} \
            # nginx-plus-module-njs=${NGINX_VERSION}.${NJS_VERSION}-${PKG_RELEASE} \
        " \
-       KEY_SHA512="e7fa8303923d9b95db37a77ad46c68fd4755ff935d0a534d26eba83de193c76166c68bfe7f65471bf8881004ef4aa6df3e34689c305662750c0172fca5d8552a *stdin" \
+       KEY_SHA512="de7031fdac1354096d3388d6f711a508328ce66c168967ee0658c294226d6e7a161ce7f2628d577d56f8b63ff6892cc576af6f7ef2a6aa2e17c62ff7b6bf0d98 *stdin" \
        && apk add --no-cache --virtual .cert-deps \
            openssl vim \
        && wget -O /tmp/nginx_signing.rsa.pub https://nginx.org/keys/nginx_signing.rsa.pub \

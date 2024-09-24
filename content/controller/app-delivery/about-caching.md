@@ -1,18 +1,9 @@
 ---
-categories:
-- app management
-date: "2021-12-07T11:50:26-07:00"
-description: Learn how NGINX Controller handles caching configurations and what NGINX
+description: Learn how F5 NGINX Controller handles caching configurations and what NGINX
   cache directives are supported.
 docs: DOCS-339
 doctypes:
 - concept
-draft: false
-journeys:
-- researching
-- using
-personas:
-- appdev
 tags:
 - docs
 title: About Caching
@@ -22,7 +13,7 @@ weight: 200
 
 ## Overview
 
-The NGINX Controller Application Delivery (AD) module lets you configure content caching by using either the user interface (UI) or the [Components REST API](https://docs.nginx.com/nginx-controller/api/reference/ctlr-v1/adc/docs/components/v1/paths/POST/services/environments/(environmentName)/apps/(appName)/components).
+The F5 NGINX Controller Application Delivery (AD) module lets you configure content caching by using either the user interface (UI) or the [Components REST API](https://docs.nginx.com/nginx-controller/api/ctlr-adc-api/#tag/Components).
 
 ## Basic Caching
 

@@ -1,36 +1,21 @@
 ---
-title: "Prerequisites"
-date: 2023-04-06T11:20:51-07:00
-# Change draft status to false to publish doc
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Follow the steps in this guide to install the prerequisites for NGINX Management Suite."
-# Assign weights in increments of 100
-weight: 1
+description: Follow the steps in this guide to install the prerequisites for NGINX
+  Management Suite.
+docs: DOCS-1212
+doctypes:
+- tutorial
+tags:
+- docs
+title: Prerequisites
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1212"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["tutorial"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
+weight: 1
 ---
-
-{{< custom-styles >}}
 
 ## Overview
 
 ### Requirements {#requirements}
 
-To install NGINX Management Suite, you need the following:
+To install F5 NGINX Management Suite, you need the following:
 
 - A trial or paid subscription for NGINX Management Suite. [Sign up for NGINX Management Suite at MyF5](https://account.f5.com/myf5).
 - A Linux instance to host the NGINX Management Suite platform and modules
@@ -213,7 +198,7 @@ To install and enable Vault, take the following steps:
 
 - Follow Vault's instructions to [install Vault 1.8.8 or later](https://www.vaultproject.io/docs/install) for your distribution.
 - Ensure you are running Vault in a [Production Hardened Environment](https://learn.hashicorp.com/tutorials/vault/production-hardening).
-- After [installing NGINX Management Suite](#install-nms-modules), follow the steps to [Configure Vault for Storing Secrets]({{< relref "/nms/admin-guides/configuration/configure-vault.md" >}}).
+- After [installing NGINX Management Suite]({{< relref "/nms/installation/vm-bare-metal/">}}), follow the steps to [Configure Vault for Storing Secrets]({{< relref "/nms/admin-guides/configuration/configure-vault.md" >}}).
 
 ---
 
@@ -230,6 +215,4 @@ To install NGINX Management Suite, you need to add the official repository to pu
 ### Install NGINX Management Suite Modules
 
 - [Install Instance Manager]({{< relref "/nms/installation/vm-bare-metal/install-nim.md" >}})
-- [Install API Connectivity Manager]({{< relref "/nms/installation/vm-bare-metal/install-acm.md" >}})
-- [Install App Delivery Manager]({{< relref "/nms/installation/vm-bare-metal/install-adm.md" >}})
 - [Install Security Monitoring]({{< relref "/nms/installation/vm-bare-metal/install-security-monitoring.md" >}})

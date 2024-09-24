@@ -1,28 +1,14 @@
 ---
-categories:
-- examples
-date: "2021-12-21T12:00:00-07:00"
-description: This topic explains how to use Instance Manager with containers.
+description: This topic explains how to use F5 NGINX Instance Manager with containers.
+docs: DOCS-823
 doctypes:
 - tutorial
 draft: true
-journeys:
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
 tags:
 - docs
 title: Using Instance Manager with Containers
 toc: true
-versions: []
 weight: 700
-docs: "DOCS-823"
-aliases:
-- /nginx-instance-manager/tutorials/containers/
 ---
 
 {{< shortversions "2.1.0" "latest" "nimvers" >}}
@@ -42,7 +28,7 @@ To complete this tutorial, you need the following:
 
 ## Build and run NGINX Agent containers
 
-For information on how to build and run NGINX Agent containers see [NGINX Agent: Docker Images](https://docs.nginx.com/nginx-agent/docker-images/) 
+For information on how to build and run NGINX Agent containers see [NGINX Agent: Docker Images](https://docs.nginx.com/nginx-agent/docker-images/)
 
 ## Next Steps {#next}
 

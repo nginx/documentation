@@ -1,11 +1,9 @@
 ---
-date: "2021-06-29T16:32:57-07:00"
 description: How to set up Kubernetes-native API Gateways using Instance Groups (requires
-  the API Management module)
+  the API Management module).
 docs: DOCS-775
 doctypes:
 - tutorial
-draft: false
 tags:
 - docs
 title: Manage Containerized Instances
@@ -15,7 +13,7 @@ weight: 15
 
 ## Overview
 
-{{< important >}} Instance groups are supported in the NGINX Controller API Management module beginning with version 3.18-APIM. Instance groups are supported in the NGINX Controller Application Delivery module versions 3.20, 3.21, and 3.22.
+{{< important >}} Instance groups are supported in the F5 NGINX Controller API Management module beginning with version 3.18-APIM. Instance groups are supported in the NGINX Controller Application Delivery module versions 3.20, 3.21, and 3.22.
 {{< /important >}}
 
 Instance groups allow an API Gateway to be native in Kubernetes.
@@ -96,7 +94,7 @@ If you are using the included Kubernetes DNS -- for example, CoreDNS or KubeDNS 
         }
     }
 
-    } 
+    }
 ```
 
 To make the best of use of NGINX and its load-balancing capabilities for the workload pods, we recommend running the Kubernetes services as Headless (setting `ClusterIP` to `None` in the deployment). In this mode, the DNS configuration returns A records that point directly to the Pods backing the service instead of the single cluster IP or Kubernetes Load Balancer IP.

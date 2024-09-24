@@ -9,56 +9,75 @@ toc: true
 weight: 100
 ---
 
-
 <span id="install"></span>
-## Installation Instructions
+## Installation
 
-1. Install the Image-Filter module.
+1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
-   For Amazon Linux, CentOS, Oracle Linux, and RHEL:
-  
+2. Install the Image-Filter module package `nginx-plus-module-image-filter`.
+
+   For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
+
    ```shell
-   $ yum install nginx-plus-module-image-filter
+   yum install nginx-plus-module-image-filter
    ```
-   
-   For Debian and Ubuntu:
-  
+
+   For Amazon Linux 2023, AlmaLinux, Rocky Linux:
+
    ```shell
-   $ apt-get install nginx-plus-module-image-filter
+   dnf install nginx-plus-module-image-filter
+   ```
+
+   For Debian and Ubuntu:
+
+   ```shell
+   apt-get install nginx-plus-module-image-filter
    ```
 
    For SLES:
-  
+
    ```shell
-   $ zypper install nginx-plus-module-image-filter
+   zypper install nginx-plus-module-image-filter
    ```
 
    For Alpine:
 
    ```shell
-   $ apk add nginx-plus-module-image-filter
+   apk add nginx-plus-module-image-filter
    ```
 
-2. Put the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive in the top‑level (“`main`”) context of NGINX Plus configuration file, **nginx.conf**:
+   For FreeBSD:
+
+   ```shell
+   pkg install nginx-plus-module-image-filter
+   ```
+
+<span id="configure"></span>
+
+## Configuration
+
+After installation you will need to enable and configure the module in F5 NGINX Plus configuration file `nginx.conf`.
+
+1. Enable dynamic loading of the module with the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive specified in the top-level (“`main`”) context:
 
    ```nginx
    load_module modules/ngx_http_image_filter_module.so;
    ```
 
-3. Perform additional configuration as required by the [module](https://nginx.org/en/docs/http/ngx_http_image_filter_module.html).
+2. Perform additional configuration as required by the [module](https://nginx.org/en/docs/http/ngx_http_image_filter_module.html).
 
-4. Reload NGINX Plus to enable the module:
+3. Test the configuration and reload NGINX Plus to enable the module:
 
    ```shell
-   $ nginx -t && nginx -s reload
+   nginx -t && nginx -s reload
    ```
 
 
 <span id="info"></span>
 ## More Info
 
-* [NGINX Image Filter Module Reference](https://nginx.org/en/docs/http/ngx_http_image_filter_module.html)
+- [NGINX Image Filter Module Reference](https://nginx.org/en/docs/http/ngx_http_image_filter_module.html)
 
-* [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
 
-* [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})

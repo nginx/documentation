@@ -1,28 +1,17 @@
 ---
-categories:
-- examples
 description: How to use Visual Studio Code with the Instance Manager extension
+docs: DOCS-830
 doctypes:
 - tutorial
 draft: true
-journeys:
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
 tags:
 - docs
 title: Visual Studio Code plugin for Instance Manager
 toc: true
-versions: []
 weight: 800
-docs: "DOCS-830"
 ---
 
-<!-- vale off --> 
+<!-- vale off -->
 <!-- remove the vale comment and this one before flipping draft status -->
 
 {{< shortversions "2.0.0" "latest" "nimvers" >}}
@@ -43,7 +32,7 @@ The VS Code plugin is based off the F5 VS Code plugin that enables AS3 language 
 
 ## Prerequisites {#prerequisites}
 
-1. NGINX Management Suite already configured and running.
+1. F5 NGINX Management Suite already configured and running.
 2. NGINX Agent installed on any NGINX Instances you want to manage.
 3. Basic Authentication to connect to Instance Manager.
 
@@ -55,7 +44,7 @@ Assuming you already have Visual Studio Code installed and running.  Simply navi
 
 ## Configure the VS Code Plugin {#configure-plugin}
 
-Click on the gear icon and you will see a configuration file which may have existing entries or you may need to add these.  You will need to use Basic auth for this current version and will need to know the username and password.  
+Click on the gear icon and you will see a configuration file which may have existing entries or you may need to add these.  You will need to use Basic auth for this current version and will need to know the username and password.
 
 ## What's Next
 

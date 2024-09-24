@@ -1,26 +1,17 @@
 ---
-title: "Install SQLite"
-date: 2022-12-13T13:17:52-08:00
-# Change draft status to false to publish doc.
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Follow the steps in this guide to install SQLite for your specific Linux operating system."
-# Assign weights in increments of 100
-weight: 10
+description: Follow the steps in this guide to install SQLite for your specific Linux
+  operating system.
+docs: DOCS-1270
+tags:
+- docs
+title: Install SQLite
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: 
-
+weight: 10
 ---
-
-{{< custom-styles >}}
 
 ## Installing SQLite for Your Linux Distribution
 
-To [back up NGINX Management Suite]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md" >}}), you need to have SQLite installed. Follow the steps to install SQLite for your operating system. Note that some older versions of Linux might require additional special steps, explained below. 
+To [back up F5 NGINX Management Suite]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md" >}}), you need to have SQLite installed. Follow the steps to install SQLite for your operating system. Note that some older versions of Linux might require additional special steps, explained below.
 
 <br>
 
@@ -73,7 +64,7 @@ To install SQLite on your system, run the appropriate command(s) for your Linux 
     sudo apt-get update
     sudo apt-get install -y sqlite3
     ```
-    
+
 - For Debian (buster/sid) and Ubuntu 18.04:
 
     ```bash
@@ -86,11 +77,11 @@ To install SQLite on your system, run the appropriate command(s) for your Linux 
           libtool \
           diffutils \
           file
-  
+
     LIBUV=1.43.0
     RAFT=0.16.0
     SQLITE3=3410100
-    
+
     curl -L -o libuv.tar.gz https://github.com/libuv/libuv/archive/refs/tags/v${LIBUV}.tar.gz && \
         tar -zxf libuv.tar.gz && cd libuv-${LIBUV} && sh autogen.sh && ./configure --prefix=/usr --enable-shared=no && make && make install && cd .. && rm -rf libuv.tar.gz libuv-${LIBUV}
     curl -L -o raft.tar.gz https://github.com/canonical/raft/archive/refs/tags/v${RAFT}.tar.gz && \

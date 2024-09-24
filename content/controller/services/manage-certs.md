@@ -1,21 +1,8 @@
 ---
-authors: []
-categories:
-- services
-- certs
-- security
-date: "2020-10-26T15:32:41-06:00"
-description: Create, apply, and mange Certs to use with your environments
+description: Create, apply, and mange Certs to use with your environments.
 docs: DOCS-371
 doctypes:
 - tutorial
-draft: false
-journeys:
-- using
-personas:
-- devops
-roles:
-- admin
 tags:
 - docs
 title: Manage Certs
@@ -28,17 +15,17 @@ weight: 120
 Follow the steps in this topic to create and use Certs with an [Environment]({{< relref "/controller/services/manage-environments.md" >}}).
 
 {{< tip >}}
-If you prefer, you can use the NGINX Controller API to create and manage certificates. Refer to the [NGINX Controller API reference guide]({{< relref "/controller/api/_index.md" >}}) (**Services > Certs API**) for details.
+If you prefer, you can use the F5 NGINX Controller API to create and manage certificates. Refer to the [NGINX Controller API reference guide]({{< relref "/controller/api/_index.md" >}}) (**Services > Certs API**) for details.
 {{< /tip >}}
 
 ## Before You Begin
 
-* [Create an environment]({{< relref "/controller/services/manage-environments.md#create-an-environment" >}})
+- [Create an environment]({{< relref "/controller/services/manage-environments.md#create-an-environment" >}})
 
 ## Objectives
 
-* Create a Cert
-* View, Edit, and Delete Certs
+- Create a Cert
+- View, Edit, and Delete Certs
 
 ## About Certificates
 
@@ -73,8 +60,8 @@ To view, edit, and delete Certs:
 
 ## What's Next
 
-* [Create an app]({{< relref "/controller/app-delivery/manage-apps.md" >}})
-* [Create a gateway]({{< relref "/controller/services/manage-gateways.md" >}})
+- [Create an app]({{< relref "/controller/app-delivery/manage-apps.md" >}})
+- [Create a gateway]({{< relref "/controller/services/manage-gateways.md" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

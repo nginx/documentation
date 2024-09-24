@@ -1,35 +1,22 @@
 ---
-title: "Working with Resource Groups"
-# Change draft status to false to publish doc.
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Learn how to use NGINX Management Suite Instance Manager to create  resource groups. These groups are used to manage multiple resources like instances, instance groups, and certificates as a single RBAC permission object."
-# Assign weights in increments of 100
-weight: 300
+description: Learn how to use F5 NGINX Management Suite Instance Manager to create  resource
+  groups. These groups are used to manage multiple resources like instances, instance
+  groups, and certificates as a single RBAC permission object.
+docs: DOCS-1271
+doctypes:
+- tutorial
+tags:
+- docs
+title: Working with Resource Groups
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["infrastructure", "Resource Groups", "rbac"]
-doctypes: ["tutorial"]
-journeys: ["using"]
-personas: ["devops", "netops", "secops"]
-versions: []
-authors: []
-aliases:
-- /nim/how-to/manage-resource-groups/
+weight: 300
 ---
 
-{{< custom-styles >}}
 {{< shortversions "2.12.0" "latest" "nimvers" >}}
 
 ## What Is a Resource Group?
 
-Resource groups are containers that can house various resources, such as instances, instance groups, and certificates, that you can manage collectively. With resource groups, you can set up RBAC permissions for multiple resources as one entity. This is different from [Instance Groups]({{< relref "nms/nim/how-to/nginx/manage-instance-groups.md" >}}), which act like a cluster where all instances must share the same configuration. Resource groups don't have this limitation. They function solely as an RBAC object, allowing you to manage multiple resources as if they were one item.
+Resource groups are containers that can house various resources, such as instances, instance groups, and certificates, that you can manage collectively. With resource groups, you can set up RBAC permissions for multiple resources as one entity. This is different from [Instance Groups]({{< relref "nms/nim/how-to/instances/manage-instance-groups.md" >}}), which act like a cluster where all instances must share the same configuration. Resource groups don't have this limitation. They function solely as an RBAC object, allowing you to manage multiple resources as if they were one item.
 
 
 ---
@@ -38,7 +25,7 @@ Resource groups are containers that can house various resources, such as instanc
 
 To complete the instructions in this guide, you need the following:
 
-- An installed version of [NGINX Management Suite Instance Manager]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}})
+- An installed version of [F5 NGINX Management Suite Instance Manager]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}})
 - One or more NGINX data plane instances
 
 ---
@@ -83,13 +70,15 @@ To create a  resource group using the web interface:
 
 To create a  resource group using the REST API, send an HTTP `POST` request to the Resource Groups endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                             |
 |--------|------------------------------------------------------|
 | `POST` | `https://<NMS_FQDN>/api/platform/v1/resource-groups` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <details open>
 <summary>JSON request</summary>
@@ -103,7 +92,7 @@ The following request creates a  resource group named `my-resource-group` with t
       "module": "Instance Manager",
       "name": "my-system",
       "object": "Systems",
-      "uid": "9bad47e6-5ed4-4522-96c0-6f507c2e7198"    
+      "uid": "9bad47e6-5ed4-4522-96c0-6f507c2e7198"
     }
   ],
   "description": "my resource group",
@@ -159,13 +148,15 @@ The direct add method saves you from having to build the entire list of all reso
 
 To add a resource to a  resource group with the Direct Add API, send an HTTP `POST` request to the Resource Groups endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                                                          |
 |--------|-----------------------------------------------------------------------------------|
 | `POST` | `https://<NMS_FQDN>/api/platform/v1/resource-groups/{resourceGroupUid}/resources` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <details open>
 <summary>JSON request</summary>
@@ -190,7 +181,7 @@ To add one ore more resources to a  resource group by updating the  resource gro
    `GET https://<NMS_FQDN>/api/platform/v1/resource-groups/{resourceGroupUid}`
 
 2. Manually insert the new resource(s) to the `resources` list in the JSON.
-3. Update the  resource group using the modified JSON: 
+3. Update the  resource group using the modified JSON:
 
    `PUT https://<NMS_FQDN>/api/platform/v1/resource-groups/{resourceGroupUid}`
 
@@ -230,13 +221,15 @@ To remove resources from an existing  resource group using the web interface:
 
 To remove a resource from a  resource group using the REST API, send an HTTP `DELETE` request to the Resource Groups endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method   | Endpoint                                                                                                                    |
 |----------|-----------------------------------------------------------------------------------------------------------------------------|
 | `DELETE` | `https://<NMS_FQDN>/api/platform/v1/resource-groups/{resourceGroupUid}/resources/{resourceUid}?moduleName=Instance Manager` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 {{%/tab%}}
 
@@ -263,13 +256,15 @@ To delete a  resource group using the web interface, follow these steps:
 
 To delete a  resource group using the REST API, send an HTTP `DELETE` request to the Resource Groups endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method   | Endpoint                                                                |
 |----------|-------------------------------------------------------------------------|
 | `DELETE` | `https://<NMS_FQDN>/api/platform/v1/resource-groups/{resourceGroupUid}` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 {{%/tab%}}
 
@@ -294,23 +289,27 @@ To see the list of existing resource groups using the web interface, follow thes
 
 To view the list of resource groups (omitting resources detail) using the REST API, send an HTTP `GET` request to the Resource Groups endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                                               |
 |--------|------------------------------------------------------------------------|
 | `GET`  | `https://<NMS_FQDN>/api/platform/v1/resource-groups?showDetails=false` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 To view the list of resource groups (including resources detail) using the REST API, send an HTTP `GET` request to the Resource Groups endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                                              |
 |--------|-----------------------------------------------------------------------|
 | `GET`  | `https://<NMS_FQDN>/api/platform/v1/resource-groups?showDetails=true` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 {{%/tab%}}
 
@@ -337,13 +336,15 @@ To see the list resources associated with a  resource group:
 
 To view the instances in a  resource group using the REST API, send an HTTP `GET` request to the Resource Groups endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                                                |
 |--------|-------------------------------------------------------------------------|
 | `GET`  | `https://<NMS_FQDN>/api/platform/v1/resource-groups/{resourceGroupUid}` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 {{%/tab%}}
 

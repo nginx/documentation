@@ -52,6 +52,111 @@
    "properties" : {
       "policy" : {
          "properties" : {
+            "access-profiles" : {
+               "oneOf" : [
+                  {
+                     "items" : {
+                        "properties" : {
+                           "$action" : {
+                              "enum" : [
+                                 "delete"
+                              ],
+                              "type" : "string"
+                           },
+                           "description" : {
+                              "type" : "string"
+                           },
+                           "enforceMaximumLength" : {
+                              "default" : true,
+                              "type" : "boolean"
+                           },
+                           "enforceValidityPeriod" : {
+                              "default" : true,
+                              "type" : "boolean"
+                           },
+                           "keyFiles" : {
+                              "items" : {
+                                 "properties" : {
+                                    "contents" : {
+                                       "type" : "string"
+                                    },
+                                    "fileName" : {
+                                       "type" : "string"
+                                    }
+                                 },
+                                 "required" : [
+                                    "contents",
+                                    "fileName"
+                                 ],
+                                 "type" : "object"
+                              },
+                              "type" : "array"
+                           },
+                           "location" : {
+                              "properties" : {
+                                 "in" : {
+                                    "default" : "header",
+                                    "enum" : [
+                                       "header",
+                                       "query"
+                                    ],
+                                    "type" : "string"
+                                 },
+                                 "name" : {
+                                    "default" : "authorization",
+                                    "type" : "string"
+                                 }
+                              },
+                              "type" : "object"
+                           },
+                           "maximumLength" : {
+                              "default" : 2000,
+                              "type" : "integer"
+                           },
+                           "name" : {
+                              "type" : "string"
+                           },
+                           "type" : {
+                              "default" : "jwt",
+                              "enum" : [
+                                 "jwt"
+                              ],
+                              "type" : "string"
+                           },
+                           "usernameExtraction" : {
+                              "properties" : {
+                                 "claimPropertyName" : {
+                                    "default" : "sub",
+                                    "type" : "string"
+                                 },
+                                 "enabled" : {
+                                    "default" : true,
+                                    "type" : "boolean"
+                                 },
+                                 "isMandatory" : {
+                                    "default" : true,
+                                    "type" : "boolean"
+                                 }
+                              },
+                              "type" : "object"
+                           },
+                           "verifyDigitalSignature" : {
+                              "default" : true,
+                              "type" : "boolean"
+                           }
+                        },
+                        "required" : [
+                           "name"
+                        ],
+                        "type" : "object"
+                     },
+                     "type" : "array"
+                  },
+                  {
+                     "$ref" : "#/definitions/reference"
+                  }
+               ]
+            },
             "applicationLanguage" : {
                "default" : "utf-8",
                "description" : "The character encoding for the application. The character encoding determines how the policy processes the character sets. The default is utf-8.",
@@ -177,7 +282,7 @@
                                     "type" : "integer"
                                  },
                                  "maxHeaders" : {
-                                    "default" : 20,
+                                    "default" : 30,
                                     "description" : "Defines maximum allowed number of headers in request.\nRelevant only for the 'Check maximum number of headers' sub-violation",
                                     "maximum" : 150,
                                     "minimum" : 1,
@@ -221,6 +326,10 @@
                                  },
                                  "name" : {
                                     "enum" : [
+                                       "VIOL_ACCESS_UNAUTHORIZED",
+                                       "VIOL_ACCESS_INVALID",
+                                       "VIOL_ACCESS_MALFORMED",
+                                       "VIOL_ACCESS_MISSING",
                                        "VIOL_ASM_COOKIE_MODIFIED",
                                        "VIOL_BLACKLISTED_IP",
                                        "VIOL_COOKIE_EXPIRED",
@@ -279,7 +388,9 @@
                                        "VIOL_URL_LENGTH",
                                        "VIOL_URL_METACHAR",
                                        "VIOL_XML_FORMAT",
-                                       "VIOL_XML_MALFORMED"
+                                       "VIOL_XML_MALFORMED",
+                                       "VIOL_GEOLOCATION",
+                                       "VIOL_WEBSOCKET_BAD_REQUEST"
                                     ],
                                     "type" : "string"
                                  }
@@ -384,11 +495,13 @@
                                           "type" : "string"
                                        },
                                        "maxVersion" : {
+                                          "default" : 0,
                                           "maximum" : 2147483647,
                                           "minimum" : 0,
                                           "type" : "integer"
                                        },
                                        "minVersion" : {
+                                          "default" : 0,
                                           "maximum" : 2147483647,
                                           "minimum" : 0,
                                           "type" : "integer"
@@ -853,6 +966,19 @@
                            "description" : "If *true* the system considers credit card numbers as sensitive data.",
                            "type" : "boolean"
                         },
+                        "customPatterns" : {
+                           "default" : false,
+                           "description" : "If *true* the system recognizes customized patterns as sensitive data.",
+                           "type" : "boolean"
+                        },
+                        "customPatternsList" : {
+                           "default" : [],
+                           "description" : "List of PCRE regular expressions that specify the sensitive data patterns.",
+                           "items" : {
+                              "type" : "string"
+                           },
+                           "type" : "array"
+                        },
                         "enabled" : {
                            "default" : false,
                            "description" : "If *true* the system protects sensitive data.",
@@ -875,6 +1001,20 @@
                            },
                            "type" : "array"
                         },
+                        "firstCustomCharactersToExpose" : {
+                           "default" : 0,
+                           "description" : "Specifies the number of first alphanumeric characters in Custom patterns that are exposed.",
+                           "maximum" : 255,
+                           "minimum" : 0,
+                           "type" : "integer"
+                        },
+                        "lastCustomCharactersToExpose" : {
+                           "default" : 0,
+                           "description" : "Specifies the number of last alphanumeric characters in Custom patterns that are exposed.",
+                           "maximum" : 255,
+                           "minimum" : 0,
+                           "type" : "integer"
+                        },
                         "maskData" : {
                            "default" : false,
                            "description" : "If *true* the system intercepts the returned responses to mask sensitive data.",
@@ -896,6 +1036,292 @@
             "description" : {
                "description" : "Specifies the description of the policy.",
                "type" : "string"
+            },
+            "disallowed-geolocations" : {
+               "oneOf" : [
+                  {
+                     "items" : {
+                        "description" : "Specifies a list of countries that may not access the web application.",
+                        "properties" : {
+                           "$action" : {
+                              "enum" : [
+                                 "delete"
+                              ],
+                              "type" : "string"
+                           },
+                           "countryCode" : {
+                              "description" : "Specifies the ISO country code of the selected country.",
+                              "type" : "string"
+                           },
+                           "countryName" : {
+                              "description" : "Specifies the name of the country.",
+                              "enum" : [
+                                 "Afghanistan",
+                                 "Aland Islands",
+                                 "Albania",
+                                 "Algeria",
+                                 "American Samoa",
+                                 "Andorra",
+                                 "Angola",
+                                 "Anguilla",
+                                 "Anonymous Proxy",
+                                 "Antarctica",
+                                 "Antigua and Barbuda",
+                                 "Argentina",
+                                 "Armenia",
+                                 "Aruba",
+                                 "Australia",
+                                 "Austria",
+                                 "Azerbaijan",
+                                 "Bahamas",
+                                 "Bahrain",
+                                 "Bangladesh",
+                                 "Barbados",
+                                 "Belarus",
+                                 "Belgium",
+                                 "Belize",
+                                 "Benin",
+                                 "Bermuda",
+                                 "Bhutan",
+                                 "Bolivia",
+                                 "Bosnia and Herzegovina",
+                                 "Botswana",
+                                 "Bouvet Island",
+                                 "Brazil",
+                                 "British Indian Ocean Territory",
+                                 "Brunei Darussalam",
+                                 "Bulgaria",
+                                 "Burkina Faso",
+                                 "Burundi",
+                                 "Cambodia",
+                                 "Cameroon",
+                                 "Canada",
+                                 "Cape Verde",
+                                 "Cayman Islands",
+                                 "Central African Republic",
+                                 "Chad",
+                                 "Chile",
+                                 "China",
+                                 "Christmas Island",
+                                 "Cocos (Keeling) Islands",
+                                 "Colombia",
+                                 "Comoros",
+                                 "Congo",
+                                 "Congo, The Democratic Republic of the",
+                                 "Cook Islands",
+                                 "Costa Rica",
+                                 "Cote D'Ivoire",
+                                 "Croatia",
+                                 "Cuba",
+                                 "Cyprus",
+                                 "Czech Republic",
+                                 "Denmark",
+                                 "Djibouti",
+                                 "Dominica",
+                                 "Dominican Republic",
+                                 "Ecuador",
+                                 "Egypt",
+                                 "El Salvador",
+                                 "Equatorial Guinea",
+                                 "Eritrea",
+                                 "Estonia",
+                                 "Ethiopia",
+                                 "Falkland Islands (Malvinas)",
+                                 "Faroe Islands",
+                                 "Fiji",
+                                 "Finland",
+                                 "France",
+                                 "France, Metropolitan",
+                                 "French Guiana",
+                                 "French Polynesia",
+                                 "French Southern Territories",
+                                 "Gabon",
+                                 "Gambia",
+                                 "Georgia",
+                                 "Germany",
+                                 "Ghana",
+                                 "Gibraltar",
+                                 "Greece",
+                                 "Greenland",
+                                 "Grenada",
+                                 "Guadeloupe",
+                                 "Guam",
+                                 "Guatemala",
+                                 "Guernsey",
+                                 "Guinea",
+                                 "Guinea-Bissau",
+                                 "Guyana",
+                                 "Haiti",
+                                 "Heard Island and McDonald Islands",
+                                 "Holy See (Vatican City State)",
+                                 "Honduras",
+                                 "Hong Kong",
+                                 "Hungary",
+                                 "Iceland",
+                                 "India",
+                                 "Indonesia",
+                                 "Iran, Islamic Republic of",
+                                 "Iraq",
+                                 "Ireland",
+                                 "Isle of Man",
+                                 "Israel",
+                                 "Italy",
+                                 "Jamaica",
+                                 "Japan",
+                                 "Jersey",
+                                 "Jordan",
+                                 "Kazakhstan",
+                                 "Kenya",
+                                 "Kiribati",
+                                 "Korea, Democratic People's Republic of",
+                                 "Korea, Republic of",
+                                 "Kuwait",
+                                 "Kyrgyzstan",
+                                 "Lao People's Democratic Republic",
+                                 "Latvia",
+                                 "Lebanon",
+                                 "Lesotho",
+                                 "Liberia",
+                                 "Libyan Arab Jamahiriya",
+                                 "Liechtenstein",
+                                 "Lithuania",
+                                 "Luxembourg",
+                                 "Macau",
+                                 "Macedonia",
+                                 "Madagascar",
+                                 "Malawi",
+                                 "Malaysia",
+                                 "Maldives",
+                                 "Mali",
+                                 "Malta",
+                                 "Marshall Islands",
+                                 "Martinique",
+                                 "Mauritania",
+                                 "Mauritius",
+                                 "Mayotte",
+                                 "Mexico",
+                                 "Micronesia, Federated States of",
+                                 "Moldova, Republic of",
+                                 "Monaco",
+                                 "Mongolia",
+                                 "Montenegro",
+                                 "Montserrat",
+                                 "Morocco",
+                                 "Mozambique",
+                                 "Myanmar",
+                                 "N/A",
+                                 "Namibia",
+                                 "Nauru",
+                                 "Nepal",
+                                 "Netherlands",
+                                 "Netherlands Antilles",
+                                 "New Caledonia",
+                                 "New Zealand",
+                                 "Nicaragua",
+                                 "Niger",
+                                 "Nigeria",
+                                 "Niue",
+                                 "Norfolk Island",
+                                 "Northern Mariana Islands",
+                                 "Norway",
+                                 "Oman",
+                                 "Other",
+                                 "Pakistan",
+                                 "Palau",
+                                 "Palestinian Territory",
+                                 "Panama",
+                                 "Papua New Guinea",
+                                 "Paraguay",
+                                 "Peru",
+                                 "Philippines",
+                                 "Pitcairn Islands",
+                                 "Poland",
+                                 "Portugal",
+                                 "Puerto Rico",
+                                 "Qatar",
+                                 "Reunion",
+                                 "Romania",
+                                 "Russian Federation",
+                                 "Rwanda",
+                                 "Saint Barthelemy",
+                                 "Saint Helena",
+                                 "Saint Kitts and Nevis",
+                                 "Saint Lucia",
+                                 "Saint Martin",
+                                 "Saint Pierre and Miquelon",
+                                 "Saint Vincent and the Grenadines",
+                                 "Samoa",
+                                 "San Marino",
+                                 "Sao Tome and Principe",
+                                 "Satellite Provider",
+                                 "Saudi Arabia",
+                                 "Senegal",
+                                 "Serbia",
+                                 "Seychelles",
+                                 "Sierra Leone",
+                                 "Singapore",
+                                 "Slovakia",
+                                 "Slovenia",
+                                 "Solomon Islands",
+                                 "Somalia",
+                                 "South Africa",
+                                 "South Georgia and the South Sandwich Islands",
+                                 "Spain",
+                                 "Sri Lanka",
+                                 "Sudan",
+                                 "Suriname",
+                                 "Svalbard and Jan Mayen",
+                                 "Swaziland",
+                                 "Sweden",
+                                 "Switzerland",
+                                 "Syrian Arab Republic",
+                                 "Taiwan",
+                                 "Tajikistan",
+                                 "Tanzania, United Republic of",
+                                 "Thailand",
+                                 "Timor-Leste",
+                                 "Togo",
+                                 "Tokelau",
+                                 "Tonga",
+                                 "Trinidad and Tobago",
+                                 "Tunisia",
+                                 "Turkey",
+                                 "Turkmenistan",
+                                 "Turks and Caicos Islands",
+                                 "Tuvalu",
+                                 "Uganda",
+                                 "Ukraine",
+                                 "United Arab Emirates",
+                                 "United Kingdom",
+                                 "United States",
+                                 "United States Minor Outlying Islands",
+                                 "Uruguay",
+                                 "Uzbekistan",
+                                 "Vanuatu",
+                                 "Venezuela",
+                                 "Vietnam",
+                                 "Virgin Islands, British",
+                                 "Virgin Islands, U.S.",
+                                 "Wallis and Futuna",
+                                 "Western Sahara",
+                                 "Yemen",
+                                 "Zambia",
+                                 "Zimbabwe"
+                              ],
+                              "type" : "string"
+                           }
+                        },
+                        "required" : [
+                           "countryName"
+                        ],
+                        "type" : "object"
+                     },
+                     "type" : "array"
+                  },
+                  {
+                     "$ref" : "#/definitions/reference"
+                  }
+               ]
             },
             "enforcementMode" : {
                "default" : "transparent",
@@ -1013,6 +1439,13 @@
                               "default" : false,
                               "description" : "Determines whether the responses to requests that match the respective file types are inspected for attack signature detection.\nThis attribute is relevant only to *allowed* file types.",
                               "type" : "boolean"
+                           },
+                           "responseCheckLength" : {
+                              "default" : 20000,
+                              "description" : "Determines how much of the response body will be checked for signatures.\nWhen value is set to 0, only the header will be checked.\nThis attribute is relevant only to *allowed* file types.",
+                              "maximum" : 10000000000,
+                              "minimum" : 0,
+                              "type" : "integer"
                            },
                            "type" : {
                               "default" : "explicit",
@@ -2100,6 +2533,17 @@
                         "type" : "object"
                      },
                      {
+                        "properties" : {
+                           "contents" : {
+                              "type" : "string"
+                           }
+                        },
+                        "required" : [
+                           "contents"
+                        ],
+                        "type" : "object"
+                     },
+                     {
                         "$ref" : "#/definitions/reference"
                      }
                   ]
@@ -2118,14 +2562,19 @@
                               ],
                               "type" : "string"
                            },
-                           "condition" : {
-                              "description" : "Specifies the condition under which the override rule should be applied.\n\nExample: \"clientIp != '10.0.0.5' and userAgent.lower().contains('WebRobot')\"\n\nCondition Syntax:\n\n- The condition consists of one or more clauses separated by **and**.\n\n  Example: \"clientIp == '10.0.0.5' and host.startsWith('internal')\"\n\n- Each clause can optionally start with **not** - to negate the expression.\n\n  Example: \"not clientIp == '127.0.0.1'\"\n\n- A clause can be a simple comparison between two value expressions, or a boolean function applied to a literal value.\n\nSupported comparison operators:\n\n  - **==** - Checks for equality between two value expressions.\n  - **!=** - Checks for inequality between two value expressions.\n\n  Example: \"clientIp != '10.0.0.5'\" (equivalent to \"not clientIp == '10.0.0.5'\")\n\nSupported boolean functions:\n\n  - **matches**: Performs an exact match of a value expression, equivalent to **==**.\n  - **startsWith**: Checks if a value expression starts with a specific substring.\n  - **contains**: Checks if a value expression contains a specific substring.\n\n  Example: \"uri.startsWith('/api')\"\n\n**Note**: Functions \"startsWith\" and \"contains\" are not applicable to the \"clientIp\" attribute. Regular expressions are not supported.\n\n- Value expressions can be a request attribute, literal value, or a value function.\n- A literal can be a string value enclosed in single quotes, or can be the keyword \"null\" without quotes.\n\n  Example: \"userAgent == null\"\n\nSupported value functions:\n\n  - **lower**: Any boolean function applied on the resulting string will be **case insensitive**. Applicable to ANSI characters only.\n\n  Example: \"uri.lower().contains('BaR')\" will match the URI \"/Foo/bAr\"\n\nRequest Attributes:\n\n- **clientIp**: Client IP address in canonical IPv4 or IPv6 format. Use CIDR notation for subnet definition. Example: *192.168.1.2* or *fd00:1::/48*. If *trustXff* (X-Forwarded-For) is enabled in the containing policy, then the value is taken from the configured header (XFF or other). The only supported boolean function for the clientIP attribute is *matches*.\n- **host**: The value of the Host header\n- **method**: The HTTP method in the request\n- **uri**: The URI (path part) of the request\n- **userAgent**: The value of the User-Agent header, or *null* (without quotes) if not present",
+                           "actionType" : {
+                              "default" : "extend-policy",
+                              "description" : "The action to take when the override rule is matched. Possible values are:\n\n- **extend-policy**: The override policy inherits the containing policy settings, allowing only the required settings to be overridden.\n- **replace-policy**: The override policy must be a valid declarative policy that includes a name, template and all necessary settings.\n- **violation**: The request is blocked and a the VIOL_RULE is logged based on the provided violation settings.",
+                              "enum" : [
+                                 "extend-policy",
+                                 "replace-policy",
+                                 "violation"
+                              ],
                               "type" : "string"
                            },
-                           "extendsPolicy" : {
-                              "default" : true,
-                              "description" : "If *true* - the override policy inherits the containing policy settings, allowing only the required settings to be overridden.\nIf *false* - the override policy must be a valid declarative policy that includes a name, template and all necessary settings.\nThe default is *true*.",
-                              "type" : "boolean"
+                           "condition" : {
+                              "description" : "Specifies the condition under which the override rule should be applied.\n\nExample: \"clientIp != '10.0.0.5' and userAgent.lower().contains('WebRobot')\"\n\nCondition Syntax:\n\n- The condition consists of one or more clauses separated by **and** or **or**.\n\n  Example: \"clientIp == '10.0.0.5' and (host.startsWith('internal') or uri.contains('api'))\"\n\n- Each clause can optionally start with **not** - to negate the expression.\n\n  Example: \"not clientIp == '127.0.0.1'\"\n\n- **not** can also be used to negate a parenthesized expression.\n\n  Example: \"not (method == 'GET' or method == 'PUT')\"\n\n- A clause can be a simple comparison between two value expressions, or a boolean function applied to a literal value.\n\nSupported comparison operators:\n\n  - **==** - Checks for equality between two value expressions.\n  - **!=** - Checks for inequality between two value expressions.\n\n  Example: \"clientIp != '10.0.0.5'\" (equivalent to \"not clientIp == '10.0.0.5'\")\n\nSupported boolean functions:\n\n  - **matches**: Performs an exact match of a value expression, equivalent to **==**.\n  - **startsWith**: Checks if a value expression starts with a specific substring.\n  - **contains**: Checks if a value expression contains a specific substring.\n\n  Example: \"uri.startsWith('/api')\"\n\n**Note**: Functions \"startsWith\" and \"contains\" are not applicable to the \"clientIp\" attribute. Regular expressions are not supported.\n\n- Value expressions can be a request attribute, literal value, or a value function.\n- A literal can be a string value enclosed in single quotes, or can be the keyword \"null\" without quotes.\n\n  Example: \"userAgent == null\"\n\nSupported value functions:\n\n  - **lower**: Any boolean function applied on the resulting string will be **case insensitive**. Applicable to ANSI characters only.\n\n  Example: \"uri.lower().contains('BaR')\" will match the URI \"/Foo/bAr\"\n\nRequest Attributes:\n\n- **clientIp**: Client IP address in canonical IPv4 or IPv6 format. Use CIDR notation for subnet definition. Example: *192.168.1.2* or *fd00:1::/48*. If *trustXff* (X-Forwarded-For) is enabled in the containing policy, then the value is taken from the configured header (XFF or other). The only supported boolean function for the clientIP attribute is *matches*.\n- **host**: The value of the Host header\n- **method**: The HTTP method in the request\n- **uri**: The URI (path part) of the request\n- **userAgent**: The value of the User-Agent header, or *null* (without quotes) if not present\n- **geolocation**: The geolocation of the client IP address. The value is the ISO 3166 two-letter code of the respective country.\n- **parameters['<name>']**: (map-type) The value of the specified parameter name (limited to query string parameters). Example: \"parameters['id'] == '11'\"\n- **cookies['<name>']**: (map-type) The value of the specified cookie name. Example: \"cookies['Path'].contains('product')\"\n- **headers['<name>']**: (map-type) The value of the specified header name. Example: \"headers['Accept'].startsWith('application')\"\n\n**Note**: The \"headers['<name>']\" attribute does not support 'Cookie' as a header name.",
+                              "type" : "string"
                            },
                            "name" : {
                               "description" : "The unique name of the override rule. Cannot contain spaces or special characters.",
@@ -2134,6 +2583,43 @@
                            "override" : {
                               "description" : "The overriding security policy definition.",
                               "type" : "string"
+                           },
+                           "violation" : {
+                              "description" : "Contains the details of the raised VIOL_RULE violation.\nMandatory if action-type is violation.",
+                              "properties" : {
+                                 "alarm" : {
+                                    "default" : true,
+                                    "description" : "Whether the violation should be marked in the security log and cause the request to be classified as \"illegal\".",
+                                    "type" : "boolean"
+                                 },
+                                 "attackType" : {
+                                    "description" : "The attack type associated with the violation in the present rule. This is reflected in the security log.\nMandatory.",
+                                    "properties" : {
+                                       "name" : {
+                                          "description" : "The name of the attack type.\nMandatory.",
+                                          "type" : "string"
+                                       }
+                                    },
+                                    "type" : "object"
+                                 },
+                                 "block" : {
+                                    "default" : false,
+                                    "description" : "Whether the violation should cause the request to be blocked. On other words: the block flag of the VIOL_RULE for the present rule.",
+                                    "type" : "boolean"
+                                 },
+                                 "description" : {
+                                    "description" : "Textual description of the violation in the present rule.\nLimited to 200 characters.\nNot Mandatory.",
+                                    "type" : "string"
+                                 },
+                                 "rating" : {
+                                    "default" : 3,
+                                    "description" : "The violation rating that the present rule violation  will induce. In other words, the violation rating of the request will be the maximum between this value and the calculated value based on the other violations in the request.\nIf not specified and there is no other violation, then the VR is 3.",
+                                    "maximum" : 5,
+                                    "minimum" : 3,
+                                    "type" : "integer"
+                                 }
+                              },
+                              "type" : "object"
                            }
                         },
                         "required" : [
@@ -2172,7 +2658,7 @@
                            },
                            "arraySerializationFormat" : {
                               "default" : "csv",
-                              "description" : "Specifies type of serialization for array of primitives parameter.\nSerialization defines how multiple values are delimited - format that can be transmitted and reconstructed later:\n - **pipe**: pipe-separated values. Array color=[\"blue\",\"black\"] -> color=blue|black.\n - **form**: ampersand-separated values. Array color=[\"blue\",\"black\"] -> color=blue,black.\n - **matrix**: semicolon-prefixed values. Array color=[\"blue\",\"black\"] -> ;color=blue,black.\n - **tsv**: tab-separated values. Aarray color=[\"blue\",\"black\"] -> color=blue\\tblack.\n - **csv**: comma-separated values. Array color=[\"blue\",\"black\"] -> color=blue,black.\n - **label**: dot-prefixed values. Array color=[\"blue\",\"black\"] -> .blue.black.\n - **multi**: multiple parameter instances rather than multiple values. Array color=[\"blue\",\"black\"] -> color=blue&color=black.\n - **ssv**: space-separated values. Array color=[\"blue\",\"black\"] -> color=blue black.\n - **multipart**: defines array of files.\n\n**Notes**:\n - This attribute is relevant only for parameters with **array** *valueType*.\n - **multi** and **form** serializations can be defined for parameter with *query*, *form-data* or *cookie* locations only.\n - **multipart** serialization can be defined for parameter with *form-data* location only.\n - **matrix** and **label** serializations can be defined for parameter with *path* location only.",
+                              "description" : "Specifies type of serialization for array of primitives parameter.\nSerialization defines how multiple values are delimited - format that can be transmitted and reconstructed later:\n\n - **pipe**: pipe-separated values. Array color=[\"blue\",\"black\"] -> color=blue|black.\n - **form**: ampersand-separated values. Array color=[\"blue\",\"black\"] -> color=blue,black.\n - **matrix**: semicolon-prefixed values. Array color=[\"blue\",\"black\"] -> ;color=blue,black.\n - **tsv**: tab-separated values. Array color=[\"blue\",\"black\"] -> color=blue\\tblack.\n - **csv**: comma-separated values. Array color=[\"blue\",\"black\"] -> color=blue,black.\n - **label**: dot-prefixed values. Array color=[\"blue\",\"black\"] -> .blue.black.\n - **multi**: multiple parameter instances rather than multiple values. Array color=[\"blue\",\"black\"] -> color=blue&color=black.\n - **ssv**: space-separated values. Array color=[\"blue\",\"black\"] -> color=blue black.\n - **multipart**: defines array of files.\n\n**Notes**:\n\n - This attribute is relevant only for parameters with **array** *valueType*.\n - **multi** and **form** serializations can be defined for parameter with *query*, *form-data* or *cookie* locations only.\n - **multipart** serialization can be defined for parameter with *form-data* location only.\n - **matrix** and **label** serializations can be defined for parameter with *path* location only.",
                               "enum" : [
                                  "csv",
                                  "form",
@@ -2401,7 +2887,7 @@
                            },
                            "objectSerializationStyle" : {
                               "default" : "simple",
-                              "description" : "Specifies the type of serialization for an object or complex array parameter.\nSerialization defines how multiple values are delimited - format that can be transmitted and reconstructed later:\n - **pipe-delimited**: pipe-separated values. Object color={\"R\":100,\"G\":200} -> color=R|100|G|200.\n - **form**: ampersand-separated values. Object color={\"R\":100,\"G\":200} -> color=R,100,G,200 if *explodeObjectSerialization* set to **false** or -> R=100&G=200 if *explodeObjectSerialization* set to **true**.\n - **space-delimited**: space-separated values. Object color={\"R\":100,\"G\":200} -> color=R 100 G 200.\n - **deep-object**: rendering nested objects. Object color={\"R\":100,\"G\":200} -> color[R]=100&color[G]=200.\n - **matrix**: semicolon-prefixed values. Object color={\"R\":100,\"G\":200} -> ;color=R,100,G,200 if *explodeObjectSerialization* set to **false** or -> ;R=100;G=200 if *explodeObjectSerialization* set to **true**.\n - **simple**: comma-separated values. Object color={\"R\":100,\"G\":200} -> R,100,G,200 if *explodeObjectSerialization* set to **false** or -> R=100,G=200 if *explodeObjectSerialization* set to **true**.\n - **label**: dot-prefixed values. Object color={\"R\":100,\"G\":200} -> .R.100.G.200 if *explodeObjectSerialization* set to **false** or -> .R=100.G=200 if *explodeObjectSerialization* set to **true**.\n\n**Notes**:\n - This attribute is relevant only for parameters with **object** or **openapi-array** *valueType*.\n - **form** serialization can be defined for a parameter with *query*, *form-data* or *cookie* locations only.\n - **matrix** and **label** serializations can be defined for an array parameter with *path* location only.\n - **simple** serializations can be defined for a parameter with *path* and *header* locations only.\n - **deep-object** serialization can be defined for a parameter with *query* or *form-data* locations only.",
+                              "description" : "Specifies the type of serialization for an object or complex array parameter.\nSerialization defines how multiple values are delimited - format that can be transmitted and reconstructed later:\n\n - **pipe-delimited**: pipe-separated values. Object color={\"R\":100,\"G\":200} -> color=R|100|G|200.\n - **form**: ampersand-separated values. Object color={\"R\":100,\"G\":200} -> color=R,100,G,200 if *explodeObjectSerialization* set to **false** or -> R=100&G=200 if *explodeObjectSerialization* set to **true**.\n - **space-delimited**: space-separated values. Object color={\"R\":100,\"G\":200} -> color=R 100 G 200.\n - **deep-object**: rendering nested objects. Object color={\"R\":100,\"G\":200} -> color[R]=100&color[G]=200.\n - **matrix**: semicolon-prefixed values. Object color={\"R\":100,\"G\":200} -> ;color=R,100,G,200 if *explodeObjectSerialization* set to **false** or -> ;R=100;G=200 if *explodeObjectSerialization* set to **true**.\n - **simple**: comma-separated values. Object color={\"R\":100,\"G\":200} -> R,100,G,200 if *explodeObjectSerialization* set to **false** or -> R=100,G=200 if *explodeObjectSerialization* set to **true**.\n - **label**: dot-prefixed values. Object color={\"R\":100,\"G\":200} -> .R.100.G.200 if *explodeObjectSerialization* set to **false** or -> .R=100.G=200 if *explodeObjectSerialization* set to **true**.\n\n**Notes**:\n\n - This attribute is relevant only for parameters with **object** or **openapi-array** *valueType*.\n - **form** serialization can be defined for a parameter with *query*, *form-data* or *cookie* locations only.\n - **matrix** and **label** serializations can be defined for an array parameter with *path* location only.\n - **simple** serializations can be defined for a parameter with *path* and *header* locations only.\n - **deep-object** serialization can be defined for a parameter with *query* or *form-data* locations only.",
                               "enum" : [
                                  "deep-object",
                                  "form",
@@ -2539,6 +3025,11 @@
                      "$ref" : "#/definitions/reference"
                   }
                ]
+            },
+            "performStaging" : {
+               "default" : true,
+               "description" : "Determines staging handling for all applicable entities in the policy, such as signatures, URLs, parameters, and cookies. If disabled, all entities will be enforced and any violations triggered will be considered illegal.",
+               "type" : "boolean"
             },
             "response-pages" : {
                "oneOf" : [
@@ -2919,6 +3410,12 @@
                                  }
                               },
                               "type" : "object"
+                           },
+                           "stagingCertificationDatetime" : {
+                              "enum" : [
+                                 ""
+                              ],
+                              "type" : "string"
                            }
                         },
                         "required" : [
@@ -2945,6 +3442,16 @@
                               "medium"
                            ],
                            "type" : "string"
+                        },
+                        "signatureStaging" : {
+                           "default" : true,
+                           "type" : "boolean"
+                        },
+                        "stagingCertificationDatetime" : {
+                           "enum" : [
+                              ""
+                           ],
+                           "type" : "string"
                         }
                      },
                      "type" : "object"
@@ -2968,6 +3475,11 @@
                            "name" : {
                               "description" : "The signature name which, along with the signature tag, identifies the signature.",
                               "type" : "string"
+                           },
+                           "performStaging" : {
+                              "default" : true,
+                              "description" : "Specifies, if true, that the signature is in staging.\nThe system does not enforce signatures in staging. Instead, the system records the request information and keeps it for a period of time\n(the Enforcement Readiness Period whose default time period is 7 days).\nSpecifies, when false, that the staging feature is not in use, and that the system enforces the signatures' Learn/Alarm/Block settings immediately.\n(Blocking is performed only if the security policy's enforcement mode is Blocking.)",
+                              "type" : "boolean"
                            },
                            "signatureId" : {
                               "description" : "The signature ID which identifies the signature.",
@@ -3046,6 +3558,10 @@
                               ],
                               "type" : "string"
                            },
+                           "accessProfile" : {
+                              "$ref" : "#/properties/policy/properties/access-profiles/oneOf/0/items",
+                              "type" : "object"
+                           },
                            "allowRenderingInFrames" : {
                               "default" : "never",
                               "description" : "Specifies the conditions for when the browser should allow this URL to be rendered in a frame or iframe.\nnever: Specifies that this URL must never be rendered in a frame or iframe. The web application instructs browsers to hide, or disable, frame and iframe parts of this URL.\nonly-same: Specifies that the browser may load the frame or iframe if the referring page is from the same protocol, port, and domain as this URL. This limits the user to navigate only within the same web application.",
@@ -3063,6 +3579,23 @@
                               "default" : true,
                               "description" : "Specifies, when true, that you want attack signatures and threat campaigns to be detected on this URL and possibly override the security policy settings of an attack signature or threat campaign specifically for this URL. After you enable this setting, the system displays a list of attack signatures and threat campaigns.",
                               "type" : "boolean"
+                           },
+                           "authorizationRules" : {
+                              "items" : {
+                                 "properties" : {
+                                    "condition" : {
+                                       "type" : "string"
+                                    },
+                                    "name" : {
+                                       "type" : "string"
+                                    }
+                                 },
+                                 "required" : [
+                                    "name"
+                                 ],
+                                 "type" : "object"
+                              },
+                              "type" : "array"
                            },
                            "canChangeDomainCookie" : {
                               "default" : false,

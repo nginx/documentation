@@ -1,5 +1,5 @@
 ---
-docs: DOCS-000
+docs: DOCS-1301
 ---
 
 {{< call-out "important" "User Groups require an OIDC identity provider" >}}User groups require an external identity provider configured for OpenID Connect (OIDC) authentication, as described in the [Getting Started with OIDC]({{< relref "/nms/admin-guides/authentication/oidc/getting-started-oidc.md" >}}). Users from an external identity provider cannot be assigned roles directly in NGINX Management Suite. Instead, they inherit roles by being members of user groups.{{< /call-out >}}

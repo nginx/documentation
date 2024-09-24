@@ -1,5 +1,5 @@
 ---
-description: This chapter describes how to use NGINX Plus to synchronize shared memory
+description: This article describes how to use F5 NGINX Plus to synchronize shared memory
   zones across NGINX cluster nodes including sticky learn session persistence, requests
   limiting, and key-value store data.
 docs: DOCS-407
@@ -13,10 +13,11 @@ weight: 400
 <span id="intro"></span>
 ## Introduction
 
-If several NGINX Plus instances are organized in a cluster, they can share some state data between them, including:
-* [sticky learn](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/#sticky) session persistence
-* [requests limiting](https://docs.nginx.com/nginx/admin-guide/security-controls/controlling-access-proxied-http/#limit_req)
-* [key-value storage](https://nginx.org/en/docs/http/ngx_http_keyval_module.html#keyval_zone)
+If several F5 NGINX Plus instances are organized in a cluster, they can share some state data between them, including:
+
+- [sticky learn](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/#sticky) session persistence
+- [requests limiting](https://docs.nginx.com/nginx/admin-guide/security-controls/controlling-access-proxied-http/#limit_req)
+- [key-value storage](https://nginx.org/en/docs/http/ngx_http_keyval_module.html#keyval_zone)
 
 All NGINX Plus instances can exchange state data with all other members in a cluster, provided that the shared memory zone has the same name on all cluster members.
 
@@ -24,8 +25,8 @@ All NGINX Plus instances can exchange state data with all other members in a clu
 <span id="prerequisites"></span>
 ## Prerequisites
 
-* <a href="../../../releases/#r16">NGINX Plus R16</a> for sharing limits of requests processing and key-value data across the cluster
-* <a href="../../../releases/#r15">NGINX Plus R15</a> for sharing limits of sticky learn data across the cluster
+- <a href="../../../releases/#r16">NGINX Plus R16</a> for sharing limits of requests processing and key-value data across the cluster
+- <a href="../../../releases/#r15">NGINX Plus R15</a> for sharing limits of sticky learn data across the cluster
 
 State sharing across a cluster is eventually consistent by nature. It is strongly recommended using data-center grade networks for clustering traffic, as latency, low bandwidth, and packet loss will have a significant negative impact on state consistency. We do not recommend stretching clusters over the Internet, regions, or availability zones.
 
@@ -60,6 +61,7 @@ For each NGINX instance in a cluster, open the NGINX configuration file and perf
         }
     }
    ```
+
    Otherwise, each cluster node can be added statically as a separate line of the [`zone_sync_server`](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html#zone_sync_server) directive:
 
    ```nginx
@@ -129,8 +131,7 @@ For each NGINX instance in a cluster, open the NGINX configuration file and perf
             zone_sync;
             zone_sync_server    nginx-cluster.example.com:9000 resolve;
 
-            zone_sync_ssl;
-
+            zone_sync_ssl                     on;
             zone_sync_ssl_verify              on;
             zone_sync_ssl_trusted_certificate /etc/ssl/server_ca.pem;
             #...
@@ -158,8 +159,7 @@ For each NGINX instance in a cluster, open the NGINX configuration file and perf
             zone_sync;
             zone_sync_server    nginx-cluster.example.com:9000 resolve;
 
-            zone_sync_ssl;
-
+            zone_sync_ssl                     on;
             zone_sync_ssl_verify              on;
             zone_sync_ssl_trusted_certificate /etc/ssl/server_ca.pem;
 
@@ -209,8 +209,9 @@ zone_sync_timeout                5s;
 ### Starting a Node
 
 To start a new node:
- * in case of DNS, update a DNS record of a cluster hostname with the IP address of the new node and start an instance
- * in case of statically added nodes, add the node's address to nginx configuration file and reload all other nodes
+
+- in case of DNS, update a DNS record of a cluster hostname with the IP address of the new node and start an instance
+- in case of statically added nodes, add the node's address to nginx configuration file and reload all other nodes
 
 When the node is started, it discovers other nodes from DNS or static configuration and starts sending updates. Other nodes eventually discover the new node using DNS and start pushing updates to it.
 
@@ -219,9 +220,11 @@ When the node is started, it discovers other nodes from DNS or static configurat
 ### Stopping a Node
 
 To stop a node, send the 'QUIT' signal:
+
 ```shell
 nginx -s quit
 ```
+
 As soon as the node receives the signal, it finishes zone synchronization and gracefully closes open connections.
 
 
@@ -229,8 +232,9 @@ As soon as the node receives the signal, it finishes zone synchronization and gr
 ### Removing a Node
 
 To remove a node:
- * in case of DNS, update a DNS record of a cluster hostname and remove the node's IP address
- * in case of statically added nodes, remove the node's address from nginx configuration file on each node and reload each node.
+
+- in case of DNS, update a DNS record of a cluster hostname and remove the node's IP address
+- in case of statically added nodes, remove the node's address from nginx configuration file on each node and reload each node.
 
 When the node is removed, other nodes close connections to the removed node and will no longer try to connect to it. After the node is removed, it can be stopped.
 
@@ -262,6 +266,7 @@ server {
 		}
 }
 ```
+
 See [Enabling Session Persistence](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/#sticky) for information how to configure the "sticky learn" session persistence method.
 
 
@@ -282,6 +287,7 @@ server {
     }
 }
 ```
+
 The zone name also must be the same in all other NGINX nodes in the cluster.
 
 See [Limiting the Request Rate](https://docs.nginx.com/nginx/admin-guide/security-controls/controlling-access-proxied-http/#limit_req) for more information.
@@ -315,10 +321,11 @@ See [Dynamic Denylisting of IP Addresses]({{< relref "/nginx/admin-guide/securit
 ## Monitoring Cluster State
 
 Cluster state data can be monitored with [NGINX Plus API metrics](https://nginx.org/en/docs/http/ngx_http_api_module.html#stream_zone_sync_):
- * names of shared memory zones
- * total number of records on node
- * number of records that needs to be sent
- * sync status per each node in the cluster
+
+- names of shared memory zones
+- total number of records on node
+- number of records that needs to be sent
+- sync status per each node in the cluster
 
 
 <span id="monitor_api_config"></span>
@@ -339,6 +346,7 @@ In order to get access to API metrics, you will need to configure the API:
         }
     }
     ```
+
 2. It is highly recommended to [restrict access]({{< relref "/nginx/admin-guide/security-controls/controlling-access-proxied-http.md" >}}) to this location, for example by allowing access only from localhost (`127.0.0.1`), and by restricting access to `PATCH`, `POST`, and `DELETE` methods to some users with HTTP basic authentication:
 
    ```nginx
@@ -360,17 +368,20 @@ In order to get access to API metrics, you will need to configure the API:
         }
     }
     ```
+
 See [Using the API for Dynamic Configuration](https://docs.nginx.com/nginx/admin-guide/load-balancer/dynamic-configuration-api/#api_use) for instructions how to configure and use NGINX Plus API.
 
 
 <span id="monitor_api_use"></span>
 ## Polling Sync Status with the API
 To get the synchronization status of the shared memory zone, send the API command, for example, with `curl`:
+
 ```shell
-$ curl -s '127.0.0.1/api/9/stream/zone_sync' | jq
+curl -s '127.0.0.1/api/9/stream/zone_sync' | jq
 ```
 
 The output will be:
+
 ```json
 {
   "zones" : {
@@ -393,4 +404,4 @@ The output will be:
 }
 ```
 
-If all nodes have approximately the same number of records (`records_total`) and almost empty outgoing queue (`records_pending`), the cluster may be considered healthy.
+If all nodes have approximately the same number of records ([`records_total`](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_zone_sync_zone)) and almost empty outgoing queue ([`records_pending`](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_zone_sync_zone)), the cluster may be considered healthy.

@@ -1,23 +1,8 @@
 ---
-aliases:
-- /api-management/about-dev-portals/
-authors:
-- ashutosh
-categories:
-- services
-- api management
-- developer portal
-date: "2020-10-26T15:32:41-06:00"
 description: Learn how to create and manage Developer Portals for your API documentation.
 docs: DOCS-570
 doctypes:
 - tutorial
-draft: false
-personas:
-- devops
-- secops
-roles:
-- admin
 tags:
 - docs
 title: Manage Developer Portals
@@ -27,7 +12,7 @@ weight: 120
 
 ## Overview
 
-You can use NGINX Controller Developer Portals (also called 'Dev Portals') to create and manage beautiful, easy-to-use API reference documentation to support your [Published APIs]({{< relref "/controller/api-management/manage-apis.md#publish-an-api" >}}).
+You can use F5 NGINX Controller Developer Portals (also called 'Dev Portals') to create and manage beautiful, easy-to-use API reference documentation to support your [Published APIs]({{< relref "/controller/api-management/manage-apis.md#publish-an-api" >}}).
 
 ## About Developer Portals
 

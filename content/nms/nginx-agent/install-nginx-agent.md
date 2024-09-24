@@ -1,37 +1,21 @@
 ---
-title: Install and Configure NGINX Agent
-description: 'Follow the instructions in this guide to install and configure the NGINX Agent on your data plane systems.'
-categories:
-- installation
-date: "2021-12-21T12:00:00-07:00"
+description: Follow the instructions in this guide to install and configure the NGINX
+  Agent on your data plane systems.
+docs: DOCS-800
 doctypes:
 - tutorial
-draft: false
-journeys:
-- getting started
-- using
-personas:
-- devops
-- netops
-- secops
-- support
 tags:
 - docs
+title: Install and Configure NGINX Agent
 toc: true
-versions: []
 weight: 100
-docs: "DOCS-800"
-aliases:
-- /getting-started/installation/install-nginx-agent/
 ---
-
-{{<custom-styles>}}
 
 ## Prerequisites
 
 This section lists the prerequisites for installing and configuring NGINX Agent. Follow the steps below to complete the requirements:
 
-1. [NGINX Management Suite is installed on a server]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}).
+1. [F5 NGINX Management Suite is installed on a server]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}).
 
     {{<note>}} When installing and configuring NGINX Management Suite, take note of the fully qualified domain name (FQDN) and gRPC port number. You'll need this information to properly configure the NGINX Agent to communicate with NGINX Management Suite.
     {{</note>}}
@@ -79,13 +63,17 @@ You can choose one of the following two methods to install the NGINX Agent on yo
 - Install via the NGINX Management Suite API Gateway
 - Install from packages downloaded from [MyF5 Customer Portal](https://account.f5.com/myf5) or from your NGINX/F5 sales team.
 
+{{< note >}} You can also install NGINX Agent in the following ways:
+
+- From the [GitHub releases](https://docs.nginx.com/nginx-agent/installation-upgrade/installation-github/)
+- From the [NGINX Repository](https://docs.nginx.com/nginx-agent/installation-upgrade/installation-oss/)
+- From the [NGINX Plus Repository](https://docs.nginx.com/nginx-agent/installation-upgrade/installation-plus/).
+
+{{< /note >}}
+
 ### Install using the API
 
 {{< include "agent/installation/install-agent-api.md" >}}
-
-### Install from Package Files
-
-{{< include "agent/installation/install-agent-package.md" >}}
 
 ---
 
@@ -181,9 +169,11 @@ Examples of the configuration files are provided below:
 In the following example `nginx-agent.conf` file, you can change the `server.host` and `server.grpcPort` to connect to the NGINX Management Suite.
 
 If NGINX Agent was previously installed for data reporting purposes only, you may need to find and remove the following line from the NGINX Agent configuration file:
-```
+
+```none
 features: registration,dataplane-status
 ```
+
 {{</note>}}
 
 ```nginx {hl_lines=[13]}
@@ -192,9 +182,9 @@ features: registration,dataplane-status
 #
 # Configuration file for NGINX Agent.
 #
-# This file tracks agent configuration values that are meant to be statically set. There  
+# This file tracks agent configuration values that are meant to be statically set. There
 # are additional agent configuration values that are set via the API and agent install script
-# which can be found in /var/lib/nginx-agent/agent-dynamic.conf. 
+# which can be found in /var/lib/nginx-agent/agent-dynamic.conf.
 
 # specify the server grpc port to connect to
 server:
@@ -270,7 +260,7 @@ nginx_app_protect:
 # The agent configuration value that the agent install script can modify are as follows:
 #    - instance_group
 
-instance_group: devenv-group 
+instance_group: devenv-group
 tags:
   - devenv
   - test
@@ -279,122 +269,87 @@ tags:
 </details>
 
 
-### NGINX Agent CLI Flags & Usage {#nginx-agent-cli-flags-usage}
+## CLI Flags & Environment Variables
 
-This section displays the configurable options for the NGINX Agent that can be set with CLI flags. See the CLI flags and their uses in the figure below:
+This section details the CLI flags and corresponding environment variables used to configure the NGINX Agent.
 
-<details open>
-  <summary>NGINX Agent CLI flags & usage</summary>
+### Usage
 
-```text
-Usage:
-  nginx-agent [flags]
-  nginx-agent [command]
+#### CLI Flags
 
-Available Commands:
-  completion  Generate completion script.
-  help        Help about any command
-
-Flags:
-      --api-cert string                                  The cert used by the Agent API.
-      --api-host string                                  The host used by the Agent API. (default "127.0.0.1")
-      --api-key string                                   The key used by the Agent API.
-      --api-port int                                     The desired port to use for nginx-agent to expose for HTTP traffic.
-      --config-dirs string                               Defines the paths that you want to grant nginx-agent read/write access to. This key is formatted as a string and follows Unix PATH format. (default "/etc/nginx:/usr/local/etc/nginx:/usr/share/nginx/modules:/etc/nms")
-      --dataplane-report-interval duration               The amount of time the agent will report on the dataplane. After this period of time it will send a snapshot of the dataplane information. (default 24h0m0s)
-      --dataplane-status-poll-interval duration          The frequency the agent will check the dataplane for changes. Used as a "heartbeat" to keep the gRPC connections alive. (default 30s)
-      --display-name string                              The instance's 'name' value.
-      --features strings                                 A comma-separated list of features enabled for the agent. (default [registration,nginx-config-async,nginx-ssl-config,nginx-counting,metrics,metrics-throttle,dataplane-status,process-watcher,file-watcher,activity-events,agent-api])
-  -h, --help                                             help for nginx-agent
-      --instance-group string                            The instance's 'group' value.
-      --log-level string                                 The desired verbosity level for logging messages from nginx-agent. Available options, in order of severity from highest to lowest, are: panic, fatal, error, info, debug, and trace. (default "info")
-      --log-path string                                  The path to output log messages to. If the default path doesn't exist, log messages are output to stdout/stderr. (default "/var/log/nginx-agent")
-      --metrics-bulk-size int                            The amount of metrics reports collected before sending the data back to the server. (default 20)
-      --metrics-collection-interval duration             Sets the interval, in seconds, at which metrics are collected. (default 15s)
-      --metrics-mode string                              Sets the desired metrics collection mode: streaming or aggregation. (default "aggregated")
-      --metrics-report-interval duration                 The polling period specified for a single set of metrics being collected. (default 1m0s)
-      --nginx-config-reload-monitoring-period duration   The duration the NGINX Agent will monitor error logs after a NGINX reload (default 10s)
-      --nginx-exclude-logs string                        One or more NGINX access log paths that you want to exclude from metrics collection. This key is formatted as a string and multiple values should be provided as a comma-separated list.
-      --nginx-socket string                              The NGINX Plus counting unix socket location. (default "unix:/var/run/nginx-agent/nginx.sock")
-      --nginx-treat-warnings-as-errors                   On nginx -t, treat warnings as failures on configuration application.
-      --server-command string                            The name of the command server sent in the tls configuration.
-      --server-grpcport int                              The desired GRPC port to use for nginx-agent traffic.
-      --server-host string                               The IP address of the server host. IPv4 addresses and hostnames are supported.
-      --server-metrics string                            The name of the metrics server sent in the tls configuration.
-      --server-token string                              An authentication token that grants nginx-agent access to the commander and metrics services. Auto-generated by default. (default "750d0148-c4b2-499a-9011-ca5a8c752d52")
-      --tags strings                                     A comma-separated list of tags to add to the current instance or machine, to be used for inventory purposes.
-      --tls-ca string                                    The path to the CA certificate file to use for TLS.
-      --tls-cert string                                  The path to the certificate file to use for TLS.
-      --tls-enable                                       Enables TLS for secure communications.
-      --tls-key string                                   The path to the certificate key file to use for TLS.
-      --tls-skip-verify                                  Only intended for demonstration, sets InsecureSkipVerify for gRPC TLS credentials
-  -v, --version                                          version for nginx-agent
-
-Use "nginx-agent [command] --help" for more information about a command.
+```sh
+nginx-agent [flags]
 ```
 
-{{< note >}}
-The following commands were deprecated In Instance Manager v2.1:
+#### Environment Variables
 
-- `--instance-name`
-- `--location`
+```sh
+export ENV_VARIABLE_NAME="value"
+nginx-agent
+```
 
-{{< /note >}}
+### CLI Flags and Environment Variables
 
-</details>
+{{< warning >}}
 
-#### NGINX Agent Config Dirs Option
+Before version 2.35.0, the environment variables were prefixed with `NMS_` instead of `NGINX_AGENT_`.
 
-Use the `--config-dirs` command-line option, or the `config_dirs` key in the `nginx-agent.conf` file, to identify the directories the NGINX Agent can read from or write to. This setting also defines the location to which you can upload config files when using NGINX Management Suite Instance Manager. The NGINX Agent cannot write to directories outside the specified location when updating a config and cannot upload files to directories outside of the configured location.
-The NGINX Agent follows NGINX configuration directives to file paths outside the designated directories and reads certificates' metadata. The NGINX Agent uses the following directives:
+If you are upgrading from an older version, update your configuration accordingly.
+
+{{< /warning >}}
+
+{{<bootstrap-table "table table-responsive table-bordered">}}
+| CLI flag                                    | Environment variable                 | Description                                                                 |
+|---------------------------------------------|--------------------------------------|-----------------------------------------------------------------------------|
+| `--api-cert`                                | `NGINX_AGENT_API_CERT`                       | Specifies the certificate used by the Agent API.                            |
+| `--api-host`                                | `NGINX_AGENT_API_HOST`                       | Sets the host used by the Agent API. Default: *127.0.0.1*                   |
+| `--api-key`                                 | `NGINX_AGENT_API_KEY`                        | Specifies the key used by the Agent API.                                    |
+| `--api-port`                                | `NGINX_AGENT_API_PORT`                       | Sets the port for exposing nginx-agent to HTTP traffic.                     |
+| `--config-dirs`                             | `NGINX_AGENT_CONFIG_DIRS`                    | Defines directories NGINX Agent can read/write. Default: *"/etc/nginx:/usr/local/etc/nginx:/usr/share/nginx/modules:/etc/nms"* |
+| `--dataplane-report-interval`               | `NGINX_AGENT_DATAPLANE_REPORT_INTERVAL`      | Sets the interval for dataplane reporting. Default: *24h0m0s*               |
+| `--dataplane-status-poll-interval`          | `NGINX_AGENT_DATAPLANE_STATUS_POLL_INTERVAL` | Sets the interval for polling dataplane status. Default: *30s*              |
+| `--display-name`                            | `NGINX_AGENT_DISPLAY_NAME`                   | Sets the instance's display name.                                           |
+| `--dynamic-config-path`                     | `NGINX_AGENT_DYNAMIC_CONFIG_PATH`            | Specifies the path of the Agent dynamic config file. Default: *"/var/lib/nginx-agent/agent-dynamic.conf"* |
+| `--features`                                | `NGINX_AGENT_FEATURES`                       | Specifies a comma-separated list of features enabled for the agent. Default: *[registration, nginx-config-async, nginx-ssl-config, nginx-counting, metrics, dataplane-status, process-watcher, file-watcher, activity-events, agent-api]* |
+| `--ignore-directives`                       |                                      | Specifies a comma-separated list of directives to ignore for sensitive info.|
+| `--instance-group`                          | `NGINX_AGENT_INSTANCE_GROUP`                 | Sets the instance's group value.                                            |
+| `--log-level`                               | `NGINX_AGENT_LOG_LEVEL`                      | Sets the logging level (e.g., panic, fatal, error, info, debug, trace). Default: *info* |
+| `--log-path`                                | `NGINX_AGENT_LOG_PATH`                       | Specifies the path to output log messages.                                  |
+| `--metrics-bulk-size`                       | `NGINX_AGENT_METRICS_BULK_SIZE`              | Specifies the number of metrics reports collected before sending data. Default: *20* |
+| `--metrics-collection-interval`             | `NGINX_AGENT_METRICS_COLLECTION_INTERVAL`    | Sets the interval for metrics collection. Default: *15s*                    |
+| `--metrics-mode`                            | `NGINX_AGENT_METRICS_MODE`                   | Sets the metrics collection mode: streaming or aggregation. Default: *aggregated* |
+| `--metrics-report-interval`                 | `NGINX_AGENT_METRICS_REPORT_INTERVAL`        | Sets the interval for reporting collected metrics. Default: *1m0s*          |
+| `--nginx-config-reload-monitoring-period`   |                                      | Sets the duration to monitor error logs after an NGINX reload. Default: *10s* |
+| `--nginx-exclude-logs`                      | `NGINX_AGENT_NGINX_EXCLUDE_LOGS`             | Specifies paths of NGINX access logs to exclude from metrics collection.    |
+| `--nginx-socket`                            | `NGINX_AGENT_NGINX_SOCKET`                   | Specifies the location of the NGINX Plus counting Unix socket. Default: *unix:/var/run/nginx-agent/nginx.sock* |
+| `--nginx-treat-warnings-as-errors`          | `NGINX_AGENT_NGINX_TREAT_WARNINGS_AS_ERRORS` | Treats warnings as failures on configuration application.                   |
+| `--queue-size`                              | `NGINX_AGENT_QUEUE_SIZE`                     | Specifies the size of the NGINX Agent internal queue.                       |
+| `--server-command`                          |                                      | Specifies the name of the command server sent in the TLS configuration.     |
+| `--server-grpcport`                         | `NGINX_AGENT_SERVER_GRPCPORT`                | Sets the desired GRPC port for NGINX Agent traffic.                         |
+| `--server-host`                             | `NGINX_AGENT_SERVER_HOST`                    | Specifies the IP address of the server host.                                |
+| `--server-metrics`                          |                                      | Specifies the name of the metrics server sent in the TLS configuration.     |
+| `--server-token`                            | `NGINX_AGENT_SERVER_TOKEN`                   | Sets the authentication token for accessing the commander and metrics services. Default: *e202f883-54c6-4702-be15-3ba6e507879a* |
+| `--tags`                                    | `NGINX_AGENT_TAGS`                           | Specifies a comma-separated list of tags for the instance or machine.       |
+| `--tls-ca`                                  | `NGINX_AGENT_TLS_CA`                         | Specifies the path to the CA certificate file for TLS.                      |
+| `--tls-cert`                                | `NGINX_AGENT_TLS_CERT`                       | Specifies the path to the certificate file for TLS.                         |
+| `--tls-enable`                              | `NGINX_AGENT_TLS_ENABLE`                     | Enables TLS for secure communications.                                      |
+| `--tls-key`                                 | `NGINX_AGENT_TLS_KEY`                        | Specifies the path to the certificate key file for TLS.                     |
+| `--tls-skip-verify`                         | `NGINX_AGENT_TLS_SKIP_VERIFY`                | Insecurely skips verification for gRPC TLS credentials.                     |
+{{</bootstrap-table>}}
+
+<br>
+
+{{<note>}}
+Use the `--config-dirs` command-line option, or the `config_dirs` key in the `nginx-agent.conf` file, to identify the directories NGINX Agent can read from or write to. This setting also defines the location to which you can upload config files when using a control plane.
+
+NGINX Agent cannot write to directories outside the specified location when updating a config and cannot upload files to directories outside of the configured location.
+
+NGINX Agent follows NGINX configuration directives to file paths outside the designated directories and reads certificates' metadata. NGINX Agent uses the following directives:
 
 - [`ssl_certificate`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate)
 
-### NGINX Agent Environment Variables
+{{</note>}}
 
-This section displays the configurable options for the NGINX Agent that can be set with environment variables. A list of the configurable environment variables can be seen below:
-
-<details open>
-  <summary>NGINX Agent Environment Variables</summary>
-
-```text
-- NMS_INSTANCE_GROUP
-- NMS_DISPLAY_NAME
-- NMS_FEATURES
-- NMS_LOG_LEVEL
-- NMS_LOG_PATH
-- NMS_PATH
-- NMS_METRICS_COLLECTION_INTERVAL
-- NMS_METRICS_MODE
-- NMS_METRICS_BULK_SIZE
-- NMS_METRICS_REPORT_INTERVAL
-- NMS_NGINX_EXCLUDE_LOGS
-- NMS_NGINX_SOCKET
-- NMS_SERVER_GRPCPORT
-- NMS_SERVER_HOST
-- NMS_SERVER_TOKEN
-- NMS_SERVER_COMMAND
-- NMS_SERVER_METRICS
-- NMS_TAGS
-- NMS_TLS_CA
-- NMS_TLS_CERT
-- NMS_TLS_ENABLE
-- NMS_TLS_KEY
-- NMS_TLS_SKIP_VERIFY
-- NMS_CONFIG_DIRS
-- NMS_DATAPLANE_REPORT_INTERVAL
-- NMS_DATAPLANE_STATUS_POLL_INTERVAL
-- NMS_NGINX_APP_PROTECT_REPORT_INTERVAL
-- NMS_ADVANCED_METRICS_AGGREGATION_PERIOD
-- NMS_ADVANCED_METRICS_PUBLISHING-PERIOD
-- NMS_ADVANCED_METRICS_SOCKET_PATH
-- NMS_ADVANCED_METRICS_TABLE_SIZES_LIMITS_PRIORITY_TABLE_MAX_SIZE
-- NMS_ADVANCED_METRICS_TABLE_SIZES_LIMITS_PRIORITY_TABLE_THRESHOLD
-- NMS_ADVANCED_METRICS_TABLE_SIZES_LIMITS_STAGING_TABLE_MAX_SIZE
-- NMS_ADVANCED_METRICS_TABLE_SIZES_LIMITS_STAGING_TABLE_THRESHOLD
-```
-
-</details>
 
 ### Enable NGINX App Protect WAF Status Reporting
 
@@ -402,7 +357,7 @@ You can configure NGINX Agent to report the following NGINX App Protect WAF inst
 
 - the current version of NGINX App Protect WAF
 - the current status of NGINX App Protect WAF (active or inactive)
-- the Attack Signatures package version 
+- the Attack Signatures package version
 - the Threat Campaigns package version
 
 You can also configure NGINX Agent to enable the publication of precompiled NGINX App Protect policies and log profiles from the NGINX Management Suite.
@@ -425,6 +380,7 @@ nginx_app_protect:
 ```
 
 Additionally, you can use the agent installation script to add these fields:
+
   ```bash
   # Download install script via API
   curl https://<NMS_FQDN>/install/nginx-agent > install.sh
@@ -432,7 +388,7 @@ Additionally, you can use the agent installation script to add these fields:
   # Specify the -m | --nginx-app-protect-mode flag to set up management of NGINX App Protect on
   # the instance. In the example below we specify 'precompiled-publication' for the flag value
   # which will make the config field 'precompiled_publication' set to 'true', if you would like to
-  # set the config field 'precompiled_publication' to 'false' you can specify 'none' as the flag value. 
+  # set the config field 'precompiled_publication' to 'false' you can specify 'none' as the flag value.
   sudo sh ./install.sh --nginx-app-protect-mode precompiled-publication
   ```
 
@@ -478,10 +434,17 @@ For additional information on using NGINX with SELinux, refer to the guide [Usin
 
 {{< important >}}By default, communication between the NGINX Agent and NGINX Management Suite is unsecured.{{< /important >}}
 
-For instructions on how configure mTLS to secure communication between the NGINX Agent and NGINX Management Suite, see [NGINX Agent TLS Settings]({{< relref "/nms/nginx-agent/encrypt-nginx-agent-comms.md" >}}).
+For instructions on how configure mTLS to secure communication between the NGINX Agent and NGINX Management Suite, see [NGINX Agent TLS Settings](https://docs.nginx.com/nginx-agent/configuration/encrypt-communication/).
 
 ---
 
 ## NGINX Metrics
 
 After you register an NGINX instance with NGINX Management Suite, the NGINX Agent will collect and report metrics. For more information about the metrics that are reported, see [Overview: Instance Metrics]({{< relref "/nms/nim/about/overview-metrics.md" >}}).
+
+## Container Support
+NGINX Agent is a companion daemon for NGINX Open Source or NGINX Plus instances and must run in the same container to work. The NGINX Agent repository includes [Dockerfiles](https://github.com/nginx/agent/tree/main/scripts/docker/official/) that can be used to build custom container images. Images are created with an NGINX Open Source or NGINX Plus instance and are available for various operating systems.
+
+See the requirements and supported operating systems in the [NGINX Agent Technical Specifications](https://docs.nginx.com/nginx-agent/technical-specifications/) topic.
+
+See the [Build Container Images](https://docs.nginx.com/nginx-agent/installation-upgrade/container-environments/docker-images/) topic for instructions on building container images.

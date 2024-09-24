@@ -1,24 +1,9 @@
 ---
-authors: []
-categories:
-- platform management
-- security
-date: "2020-10-26T15:32:41-06:00"
-description: Set up Active Directory authentication for NGINX Controller using OIDC with Azure Active Directory or LDAP, LDAPs, and StartTLS with Windows Active Directory.
+description: Set up Active Directory authentication for F5 NGINX Controller using OIDC
+  with Microsoft Entra or LDAP, LDAPs, and StartTLS with Windows Active Directory.
 docs: DOCS-782
 doctypes:
 - tutorial
-draft: false
-journeys:
-- using
-menu:
-  docs:
-    parent: Access Management
-personas:
-- netops
-- secops
-roles:
-- admin
 tags:
 - docs
 title: Configure Active Directory Integration
@@ -28,26 +13,26 @@ weight: 10
 
 ## Overview
 
-By completing the steps in this guide, you will learn how to add an Active Directory (AD) integration to NGINX Controller. NGINX Controller supports the following AD types and protocols:
+By completing the steps in this guide, you will learn how to add an Active Directory (AD) integration to F5 NGINX Controller. NGINX Controller supports the following AD types and protocols:
 
-- Azure Active Directory: OpenID Connect (OIDC) over HTTPS;
+- Microsoft Entra: OpenID Connect (OIDC) over HTTPS;
 - Windows Active Directory: unencrypted LDAP, LDAPS, and StartTLS.
 
 ## Before You Begin
 
 Before proceeding with this guide, complete the steps in the appropriate prerequisites section for the type of Active Directory integration that you want to create.
 
-### Azure Active Directory {#azure-prerequisites}
+### Microsoft Entra {#entra-prerequisites}
 
-To configure an auth provider in Azure Active Directory using OIDC over HTTPS, complete the following prerequisites.
+To configure an auth provider in Microsoft Entra using OIDC over HTTPS, complete the following prerequisites.
 
-1. Create an Azure Active Directory Tenant and App Registration.
+1. Create an Microsoft Entra Tenant and App Registration.
 
-   Refer to the Microsoft Azure AD Quick Start Guide for instructions: 
-   - [Set up Azure Active Directory Tenant](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-create-new-tenant)
-   - [Register App](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app)
+   Refer to the Microsoft Microsoft Entra Quick Start Guide for instructions:
+   - [Set up Microsoft Entra Tenant](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-create-new-tenant)
+   - [Register App](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app)
 
-1. Record your tenant ID, as well as the Client ID and Client Secret(s) for your App. Keep them handy, you will need this information to set up the Azure AD Auth Provider in NGINX Controller.
+1. Record your tenant ID, as well as the Client ID and Client Secret(s) for your App. Keep them handy, you will need this information to set up the Microsoft Entra Auth Provider in NGINX Controller.
 
     {{< important >}}Microsoft Azure will only display the Client Secret once, during the App Registration process. Be sure to keep this information somewhere safe so you can refer to it later.{{< /important >}}
 
@@ -60,7 +45,7 @@ To configure an auth provider in Azure Active Directory using OIDC over HTTPS, c
 
     {{< tip >}}These permissions require approval from the Azure admin. {{< /tip >}}
 
-1. Make sure that you can contact Azure Active Directory from the host on which you are running NGINX Controller.
+1. Make sure that you can contact Microsoft Entra from the host on which you are running NGINX Controller.
 
 ### Windows Server Active Directory {#windows-prerequisites}
 
@@ -89,23 +74,23 @@ Take the steps below to create a new Authentication Provider by using the NGINX 
 1. Select the NGINX Controller menu icon, then select **Platform**.
 1. On the **Platform** menu, select **Auth Providers**.
 1. On the **Auth Providers** menu, select the **Create Auth Provider** quick action.
-1. Select the desired type of authentication provider in the **Authentication Provider Type** list. 
+1. Select the desired type of authentication provider in the **Authentication Provider Type** list.
 1. Next, proceed to the appropriate section for the type of Authentication Provider you selected:
 
-   - [Azure Active Directory](#setup-azure-ad)
+   - [Microsoft Entra](#setup-entra)
    - [Windows Active Directory](#setup-windows-ad)
-   
-## Set up an Azure Active Directory Auth Provider {#set-up-azure-ad}
+
+## Set up an Microsoft Entra Auth Provider {#set-up-entra}
 
 {{< fa "arrow-circle-right" >}} **Introduced in NGINX Controller ADC v3.22**
 
-In the previous section, you selected **Azure Active Directory** from the **Authentication Provider Type** list. Next, you'll set up the Auth Provider so it can connect to Azure Active Directory (AD).
+In the previous section, you selected **Microsoft Entra** from the **Authentication Provider Type** list. Next, you'll set up the Auth Provider so it can connect to Microsoft Entra.
 
 1. Add a name for the Auth Provider.
 
     {{< important >}}This name is a permanent setting that cannot be changed.{{< /important >}}
 
-    This is the name that your users will be able to select as the authentication provider when logging in to NGINX Controller. Be sure the name you provide is accurate and easy to identify. 
+    This is the name that your users will be able to select as the authentication provider when logging in to NGINX Controller. Be sure the name you provide is accurate and easy to identify.
 
 1. (Optional) Add a display name. This will be displayed in the NGINX Controller user interface.
 1. (Optional) Add a description.
@@ -117,19 +102,19 @@ On the Auth Provider *OIDC Config* page, provide the following settings:
 
 1. Provider URI: This is the authority URL that authorizes access to the OpenID Connect (OIDC) metadata document. NGINX Controller forwards authentication requests to this URL. This URL contains the `{tenant}` that you created earlier.
 
-   Refer to the [Microsoft Azure AD OIDC documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-protocols-oidc#fetch-the-openid-connect-metadata-document) for more information about the OIDC responses.
+   Refer to the [Microsoft Microsoft Entra OIDC documentation](https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc#fetch-the-openid-connect-metadata-document) for more information about the OIDC responses.
 
-   For example, the following Provider URI would allow users from the specified Azure Active Directory (AD) tenant to log in to NGINX Controller:
+   For example, the following Provider URI would allow users from the specified Microsoft Entra tenant to log in to NGINX Controller:
 
     ```lang-none
     "https://login.microsoftonline.com/12345678-90ab-cdef-1234-567890abcdef/v2.0"
     ```
 
-1. Client ID: This is the client ID from your Azure AD App Registration.
+1. Client ID: This is the client ID from your Microsoft Entra App Registration.
 
-1. Client Secret: This is the secret that you created with your Azure AD App Registration.
+1. Client Secret: This is the secret that you created with your Microsoft Entra App Registration.
 
-1. Scopes: This defines the permissions the Auth Provider requests from Azure. 
+1. Scopes: This defines the permissions the Auth Provider requests from Azure.
 
     The default scopes are:
 
@@ -141,57 +126,57 @@ On the Auth Provider *OIDC Config* page, provide the following settings:
 
 1. Select **Next**.
 
-### Set up Azure Active Directory Groups {#set-up-azure-groups}
+### Set up Microsoft Entra Groups {#set-up-entra-groups}
 
 On the NGINX Controller Auth Provider *Group Setup* page, provide the following information:
 
-1. (Optional) Poll interval: This is the interval at which NGINX Controller fetches updated information, including the Groups list, from Azure Active Directory (AD). 
+1. (Optional) Poll interval: This is the interval at which NGINX Controller fetches updated information, including the Groups list, from Microsoft Entra.
 
     - The value must be defined in seconds.
     - The minimum allowed value is 300 seconds (5 minutes).
     - The default value is 3600 seconds (1 hour).
 
     {{< important >}}
-Consider how you want to set this field carefully.  
-While deletions in Azure AD are reflected in NGINX Controller immediately, changes such as group permission updates or user reassignments are not. This means that, when using the default poll interval, it could take up to an hour for changes in Azure AD to be reflected in NGINX Controller.
+Consider how you want to set this field carefully.
+While deletions in Microsoft Entra are reflected in NGINX Controller immediately, changes such as group permission updates or user reassignments are not. This means that, when using the default poll interval, it could take up to an hour for changes in Microsoft Entra to be reflected in NGINX Controller.
     {{< /important >}}
 
-1. (Optional) Cache timeout: This is the time, in seconds, to wait before considering the AD Groups list to be outdated, or, "stale". 
+1. (Optional) Cache timeout: This is the time, in seconds, to wait before considering the AD Groups list to be outdated, or, "stale".
 
-    - This value should be double the poll interval. 
+    - This value should be double the poll interval.
     - The minimum allowed value is 600 seconds (10 minutes).
     - The default value is 7200 seconds (2 hours).
 
-1. (Optional) Honor stale Azure Active Directory groups: This setting determines whether NGINX Controller will allow or deny login requests from users in stale AD groups.
+1. (Optional) Honor stale Microsoft Entra groups: This setting determines whether NGINX Controller will allow or deny login requests from users in stale AD groups.
 
-    - `ENABLE` - Honor stale Azure AD groups.
-    - `DISABLE` (default) - Do not honor stale Azure AD groups.
+    - `ENABLE` - Honor stale Microsoft Entra groups.
+    - `DISABLE` (default) - Do not honor stale Microsoft Entra groups.
 
-1. (Optional) Group search filter: This is the search filter that you want to use to return group results. 
+1. (Optional) Group search filter: This is the search filter that you want to use to return group results.
 
-    - This value **must be enclosed in parentheses**. 
+    - This value **must be enclosed in parentheses**.
     - The allowed syntax for the filters can be found in the [Microsoft documentation](https://docs.microsoft.com/en-us/graph/query-parameters#filter-parameter).
-    - The default behavior is to return the first 100 groups. 
-    - You need to set up Groups if you want to use NGINX Controller role-based access control (RBAC). 
+    - The default behavior is to return the first 100 groups.
+    - You need to set up Groups if you want to use NGINX Controller role-based access control (RBAC).
 
-1. Select **Next** to review and record the NGINX Controller API call that sets up the Azure AD auth provider. 
-1. Select **Submit** to create the Auth Provider. The NGINX Controller UI will display a redirect URI when the Auth Provider setup is complete.  
+1. Select **Next** to review and record the NGINX Controller API call that sets up the Microsoft Entra auth provider.
+1. Select **Submit** to create the Auth Provider. The NGINX Controller UI will display a redirect URI when the Auth Provider setup is complete.
 1. Copy the redirect URI and add it to your Azure App Registration.
-   Refer to the Microsoft Azure AD Quick Start guide for instructions: [Add a Redirect URI](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app#add-a-redirect-uri).
+   Refer to the Microsoft Microsoft Entra Quick Start guide for instructions: [Add a Redirect URI](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app#add-a-redirect-uri).
 
-### Set Up Role-Based Access Control with Azure AD {#set-up-rbac-azure-ad}
+### Set Up Role-Based Access Control with Microsoft Entra {#set-up-rbac-azure-ad}
 
-In order to use role-based access control (RBAC) with Azure Active Directory (AD), you need to map groups from the Azure AD tenant to NGINX Controller RBAC roles. 
+In order to use role-based access control (RBAC) with Microsoft Entra (AD), you need to map groups from the Microsoft Entra tenant to NGINX Controller RBAC roles.
 
 {{< important >}}
-You should complete this step immediately after creating the Azure AD authentication provider, before any other changes can be made.
+You should complete this step immediately after creating the Microsoft Entra authentication provider, before any other changes can be made.
 {{< /important >}}
 
-1. If you haven't already done so, [create the Role(s) and Role group]({{< relref "manage-roles" >}}) that you want to map the Azure AD permissions to. 
-1. On the **Platform** menu in the NGINX Controller user interface, select **Auth Providers**, then select the Auth Provider that contains the Azure AD configuration.
+1. If you haven't already done so, [create the Role(s) and Role group]({{< relref "manage-roles" >}}) that you want to map the Microsoft Entra permissions to.
+1. On the **Platform** menu in the NGINX Controller user interface, select **Auth Providers**, then select the Auth Provider that contains the Microsoft Entra configuration.
 1. Set up the Auth Provider *Group Mappings*:
 
-    - Provide the name of the Azure AD Group that you want to use.
+    - Provide the name of the Microsoft Entra Group that you want to use.
 
       {{< tip >}}The Group filter determines which Groups are available for this setting. Be sure the Group that you want to add is included by your group filter. {{< /tip >}}
 
@@ -200,9 +185,9 @@ You should complete this step immediately after creating the Azure AD authentica
         - `ENABLE`:  match the case of the external group name exactly.
         - DISABLE` (default): the match should be case-insensitive.
 
-    - Select the name of the NGINX Controller role group that you want to map the Azure AD group to.
+    - Select the name of the NGINX Controller role group that you want to map the Microsoft Entra group to.
 
-    - Select **Next** to review and record the NGINX Controller API call that sets up the Azure AD Group mappings. 
+    - Select **Next** to review and record the NGINX Controller API call that sets up the Microsoft Entra Group mappings.
     - Select **Submit** to complete the RBAC setup.
 
 ## Set up a Windows Active Directory Auth Provider {#set-up-windows-ad}
@@ -213,7 +198,7 @@ In the previous section, you selected **Active Directory** from the **Authentica
 
     {{< important >}}This name is a permanent setting that cannot be changed.{{< /important >}}
 
-    This is the name that your users will be able to select as the authentication provider when logging in to NGINX Controller. Be sure the name you provide is accurate and easy to identify. 
+    This is the name that your users will be able to select as the authentication provider when logging in to NGINX Controller. Be sure the name you provide is accurate and easy to identify.
 
 1. (Optional) Add a display name. This will be displayed in the NGINX Controller user interface.
 1. (Optional) Add a description.
@@ -224,7 +209,7 @@ In the previous section, you selected **Active Directory** from the **Authentica
 
 1. Specify the login domain.
 
-    The login domain applies to usernames that don't have a domain specified (for example, if a user logs in as "nedflanders", as opposed to `EVERGREEN\nedflanders` or `nedflanders@evergreen.ter`). 
+    The login domain applies to usernames that don't have a domain specified (for example, if a user logs in as "nedflanders", as opposed to `EVERGREEN\nedflanders` or `nedflanders@evergreen.ter`).
 
 1. Select **Next**.
 
@@ -232,16 +217,16 @@ In the previous section, you selected **Active Directory** from the **Authentica
 
 On the Auth Provider *Connection* page, provide the following settings:
 
-1. The LDAP domain to authenticate against as a domain-component. 
-    
-    - NGINX Controller can bind to **one domain** for each configured Active Directory (AD) Authentication Provider. 
+1. The LDAP domain to authenticate against as a domain-component.
+
+    - NGINX Controller can bind to **one domain** for each configured Active Directory (AD) Authentication Provider.
     - **This field cannot be updated**.
 
     For example:
 
     ```lang-none
     DC=mydomain,DC=example,DC=com
-    ```  
+    ```
 
 1. Add the connection URI.
 
@@ -257,7 +242,7 @@ On the Auth Provider *Connection* page, provide the following settings:
     ldaps://dc2.mydomain2.com
     ```
 
-1. In the **SSL Parameters** list, select the SSL connection mode.  
+1. In the **SSL Parameters** list, select the SSL connection mode.
     NGINX Controller supports the following options for  connections from NGINX Controller to the Active Directory server:
 
     - `PLAIN_TEXT` (Not secured) - Unencrypted connection. Does not require SSL certificates.
@@ -270,8 +255,8 @@ Use this mode only if you accept the risks associated with using unencrypted LDA
 
     - `VERIFY_CA`(Most secure) - **Recommended for production environments**. Verify the certificate authority of the Active Directory connection. The server is verified by checking the certificate chain up to the root certificate stored on the client.
 
-1. (Optional) Add the certificate to use for verification.  
-    
+1. (Optional) Add the certificate to use for verification.
+
     - If you generated a self-signed certificate for Active Directory Certificate Services, or if the certificate wasn't issued by a certificate authority, then you must add the certificate to use for verification.
     - You can either paste the certificate into the **Certificate** form or upload the file.
 
@@ -282,8 +267,8 @@ Use this mode only if you accept the risks associated with using unencrypted LDA
 On the Auth Provider *User Binding* page, provide the following settings that will allow NGINX Controller to authenticate to the Active Directory (AD.
 
 1. Authentication type: The type of authentication to use to connect to the Active Directory (AD).
-1. Bind username: This is a username that will be used to access the AD. 
-    For example, `domain\example.user` or `example.user@mydomain`. 
+1. Bind username: This is a username that will be used to access the AD.
+    For example, `domain\example.user` or `example.user@mydomain`.
 
     {{< tip >}}
 You can use either format. This setting isn't governed by the username format that you defined on the Auth Provider *Connection* page.
@@ -295,20 +280,20 @@ You can use either format. This setting isn't governed by the username format th
 
 On the NGINX Controller Auth Provider *Group Setup* page, provide the following information:
 
-1. (Optional) Poll interval: This is the interval at which NGINX Controller fetches updated information, including the Groups list, from the Active Directory (AD). 
+1. (Optional) Poll interval: This is the interval at which NGINX Controller fetches updated information, including the Groups list, from the Active Directory (AD).
 
     - The value must be defined in seconds.
     - The minimum allowed value is 300 seconds (5 minutes).
     - The default value is 3600 seconds (1 hour).
 
     {{< important >}}
-Consider how you want to set this field carefully.  
+Consider how you want to set this field carefully.
 While deletions in the AD are reflected in NGINX Controller immediately, changes such as group permissions updates or user reassignments are not. This means that, when using the default poll interval, it could take up to an hour for changes to the AD to be reflected in NGINX Controller.
     {{< /important >}}
 
-1. (Optional) Cache timeout: This is the time, in seconds, to wait before considering the AD Groups list to be outdated, or, "stale". 
+1. (Optional) Cache timeout: This is the time, in seconds, to wait before considering the AD Groups list to be outdated, or, "stale".
 
-    - This value should be double the poll interval. 
+    - This value should be double the poll interval.
     - The minimum allowed value is 600 seconds (10 minutes).
     - The default value is 7200 seconds (2 hours).
 
@@ -317,10 +302,10 @@ While deletions in the AD are reflected in NGINX Controller immediately, changes
     - `ENABLE` - Honor stale AD groups.
     - `DISABLE` (default) - Do not honor stale AD groups.
 
-1. (Optional) Group search filter: This is the search filter that you want to use to return group results within a root domain. This value **must be enclosed in parentheses**. 
-    
+1. (Optional) Group search filter: This is the search filter that you want to use to return group results within a root domain. This value **must be enclosed in parentheses**.
+
     Examples:
-    - Search all groups under the base domain: 
+    - Search all groups under the base domain:
 
       ```lang-none
       (objectClass=group)
@@ -348,7 +333,7 @@ While deletions in the AD are reflected in NGINX Controller immediately, changes
       (&(objectClass=group)(CN=*Engineering*))
       ```
 
-      In this example, we've combined the `&` with a wildcard (`*`) to search for results in 
+      In this example, we've combined the `&` with a wildcard (`*`) to search for results in
  `objectClass=group` **AND** for CN that includes the word 'Engineering'.
 
     - Exclude entities using the exclamation point '!':
@@ -371,9 +356,9 @@ While deletions in the AD are reflected in NGINX Controller immediately, changes
 
 ### Set up Role-Based Access Control with Active Directory {#set-up-windows-ad-rbac}
 
-In order to use role-based access control (RBAC) with Active Directory (AD), you need to map groups from the AD to NGINX Controller RBAC roles. 
+In order to use role-based access control (RBAC) with Active Directory (AD), you need to map groups from the AD to NGINX Controller RBAC roles.
 
-1. If you haven't already done so, [create the Role(s) and Role group]({{< relref "manage-roles" >}}) that you want to map the AD permissions to. 
+1. If you haven't already done so, [create the Role(s) and Role group]({{< relref "manage-roles" >}}) that you want to map the AD permissions to.
 1. On the **Platform** menu in the NGINX Controller user interface, select **Auth Providers**, then select the Auth Provider that contains the AD integration.
 1. Add the name of the external AD group that you want to map to.
 
@@ -389,7 +374,7 @@ In order to use role-based access control (RBAC) with Active Directory (AD), you
     1. `DISABLE` (default): the match should be case-insensitive.
 
 1. Select the name of the NGINX Controller Role group that you want to map to.
-1. Select **Next** to review and record the NGINX Controller API call that sets up the AD integration. 
+1. Select **Next** to review and record the NGINX Controller API call that sets up the AD integration.
 1. Select **Submit** to create the Authentication Provider.
 
 ## Manage an Existing Authentication Provider {#manage-auth-provider}

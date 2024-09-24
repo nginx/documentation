@@ -1,14 +1,14 @@
 ---
-title: "Publish an HTTP API"
-date: 2022-08-09T14:01:32+01:00
-draft: false
-description: "Learn how to use NGINX Management Suite API Connectivity Manager to publish APIs to your API Gateway."
-weight: 100
+description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to publish
+  APIs to your API Gateway.
+docs: DOCS-927
+doctypes:
+- task
+tags:
+- docs
+title: Publish an HTTP API
 toc: true
-tags: ["docs"]
-docs: "DOCS-927"
-categories: ["API Connectivity Manager", "api management"]
-doctypes: ["task"]
+weight: 100
 ---
 
 {{< shortversions "1.1.0" "latest" "acmvers" >}}

@@ -1,17 +1,17 @@
 ---
-title: "Allowed HTTP Methods"
-draft: false
-description: Learn how to block unwelcome requests to an endpoint by using the Allowed HTTP Methods policy in NGINX Management Suite API Connectivity Manager.
-weight: 350
+description: Learn how to block unwelcome requests to an endpoint by using the Allowed
+  HTTP Methods policy in F5 NGINX Management Suite API Connectivity Manager.
+docs: DOCS-1121
+doctypes:
+- API Connectivity Manager
+- api management
+- concept
+tags:
+- docs
+title: Allowed HTTP Methods
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1121"
-doctypes: ["API Connectivity Manager", "api management", "concept"]
-journeys: ["getting started", "using"]
-personas: ["devops"]
+weight: 350
 ---
-
-{{<custom-styles>}}
 
 ## Overview
 
@@ -23,7 +23,7 @@ personas: ["devops"]
 
 Use the *Allowed HTTP Methods* policy to specify which methods you want to allow, while automatically blocking all the others. As an example, you could allow only `GET` requests for static content.
 
-#### Intended Audience
+### Intended Audience
 
 {{< include "acm/how-to/policies/infra-admin-persona.md">}}
 
@@ -41,14 +41,16 @@ To complete the steps in this guide, you need the following:
 
 ## Policy Settings
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Field            | Type  | Possible Values                                                        | Description                                                                                                                                                                                                                                                                                                                | Required | Default&nbsp;value    |
 |------------------|-------|------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|-----------------------|
 | `allowedMethods` | array | `GET`, `PUT`, `POST`, `PATCH`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE` | <p>This array contains all of the possible HTTP methods.</p><p>Methods listed in `allowedMethods` will be accepted; any omitted methods will be blocked with a return code of `405 Method Not Allowed` (default), or a code of your choice.</p><p>Note: `HEAD` requests are treated the same as `GET` requests.</p> | Yes      |                       |
 | `returnCode`     | int   | In range `400-599`                                                     | The status code to be returned if a method isn't included in the `allowedMethods` array.                                                                                                                                                                                                                                   | No       | System assigned `405` |
+
 {{< /bootstrap-table >}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 ---
 
@@ -68,13 +70,15 @@ Follow these steps to restrict which HTTP methods clients can use to access your
 
 To create an *Allowed HTTP Methods* policy using the REST API, send an HTTP `POST` request to the Proxies endpoint.
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                           |
 |--------|----------------------------------------------------|
 | `POST` | `/services/workspaces/{service-workspace}/proxies` |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 <details open>
 <summary>JSON request</summary>
@@ -124,7 +128,7 @@ To create an *Allowed HTTP Methods* policy using the web interface:
    - **Allow following HTTP Methods**: Specify the HTTP methods you want to allow. Any methods that aren't included will be blocked.
    - **Custom response code for non-matching requests**: Specify the status code to return for blocked methods. The default is `405 Method Not Allowed`.
 
-8. Select **Add** to apply the policy to the API proxy. 
+8. Select **Add** to apply the policy to the API proxy.
 9. Select **Save and Publish** to deploy the configuration to the API Proxy.
 
 {{%/tab%}}

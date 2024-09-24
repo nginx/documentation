@@ -1,30 +1,15 @@
 ---
-title: "Install or Upgrade Security Monitoring"
-date: 2023-04-06T12:00:00-07:00
-# Change draft status to false to publish doc
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Follow the steps in this guide to install or upgrade or upgrade the NGINX Management Suite Security Monitoring module."
-# Assign weights in increments of 100
-weight: 40
+description: Follow the steps in this guide to install or upgrade or upgrade the NGINX
+  Management Suite Security Monitoring module.
+docs: DOCS-1208
+doctypes:
+- tutorial
+tags:
+- docs
+title: Install or Upgrade Security Monitoring
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1208"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["tutorial"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
+weight: 40
 ---
-
-{{< custom-styles >}}
 
 ---
 
@@ -56,22 +41,7 @@ authors: []
      sudo yum -y install nms-sm
      ```
 
-1. Restart the NGINX Management Suite services:
-
-    ```bash
-    sudo systemctl restart nms
-    ```
-
-    NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
-
-1. Restart the NGINX web server:
-
-   ```bash
-   sudo systemctl restart nginx
-   ```
-
 {{%/tab%}}
-
 {{%tab name="Debian, Ubuntu, Deb-Based"%}}
 
 1. To install the latest version of the Security Monitoring module, run the following commands:
@@ -81,7 +51,11 @@ authors: []
     sudo apt-get install -y nms-sm
     ```
 
-1. Restart the NGINX Management Suite services:
+{{%/tab%}}
+
+{{</tabs>}}
+
+2. Restart the F5 NGINX Management Suite services:
 
     ```bash
     sudo systemctl restart nms
@@ -89,15 +63,18 @@ authors: []
 
     NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
 
-1. Restart the NGINX web server:
+3. Restart the NGINX web server:
 
    ```bash
    sudo systemctl restart nginx
    ```
 
-{{%/tab%}}
+4. If running Security Monitoring v1.7.0 or higher, start the module:
 
-{{</tabs>}}
+   ```bash
+   sudo systemctl start nms-sm
+   ```
+
 
 ### Accessing the Web Interface
 
@@ -154,7 +131,13 @@ Refer to the [Add a License]({{< relref "/nms/installation/add-license.md" >}}) 
    sudo systemctl restart nginx
    ```
 
-4. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Management suite.
+4. If running Security Monitoring v1.7.0 or higher, start the module:
+
+   ```bash
+   sudo systemctl start nms-sm
+   ```
+
+5. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Management suite.
 
 ---
 
@@ -165,8 +148,3 @@ Refer to the [Add a License]({{< relref "/nms/installation/add-license.md" >}}) 
 To set up your NGINX App Protect WAF data plane instances for use with Security Monitoring, refer to the following instructions:
 
 - [Set Up App Protect Instances for Security Monitoring]({{< relref "/nms/security/how-to/set-up-app-protect-instances" >}})
-
-### Install Other NGINX Management Suite Modules
-
-- [Install API Connectivity Manager]({{< relref "/nms/installation/vm-bare-metal/install-acm.md" >}})
-- [Install App Delivery Manager]({{< relref "/nms/installation/vm-bare-metal/install-adm.md" >}})

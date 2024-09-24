@@ -1,34 +1,10 @@
 ---
-authors: []
-categories:
-- live activity monitoring
-date: "2021-04-14T13:32:41+00:00"
-description: Learn about the NGINX App Protect DoS Live Activity Monitoring.
-docs: DOCS-670
+description: Learn about the F5 NGINX App Protect DoS Live Activity Monitoring.
+docs: DOCS-1389
 doctypes:
 - task
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: monitoring
-    weight: 45
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 title: NGINX App Protect DoS Live Activity Monitoring
 toc: true
-versions:
-- "4.2"
 weight: 140
 ---
 
@@ -36,27 +12,31 @@ weight: 140
 
 ## Overview
 
-NGINX App Protect DoS provides various monitoring tools for your application:<br>
-- The interactive App Protect DoS Dashboard page - a real-time live activity monitoring interface that shows the status and information of the Protected Objects.<br>
-- NGINX App Protect DoS REST API - an interface that provides extended metrics information of the Protected Objects.
+F5 NGINX App Protect DoS offers a variety of application monitoring tools:
+
+- **App Protect DoS Dashboard Page**: This dynamic interface provides real-time monitoring and details of Protected Objects.
+- **NGINX App Protect DoS REST API**: This interface offers comprehensive metrics about the Protected Objects.
 
 ## Prerequisites
 
-- NGINX Plus R26 and later for NGINX App Protect DoS REST API and the DoS Dashboard
+- NGINX Plus R26 or later is required for accessing the NGINX App Protect DoS REST API and the DoS Dashboard.
 
-## Configuring the API
+## API Configuration Steps
 
-To enable the API:
-- In the `http` context, specify a `server` block that will be responsible for the API:
+To activate the API:
+
+- Define a `server` block within the `http` context to handle the API:
+
   ```nginx
   http {
       server {
-          # your api configuration will be here
+          # insert your API configuration here
       }
   }
   ```
 
-- Create a `location` for API requests and specify the `app_protect_dos_api` directive in this location:
+- Create a `location` for API requests and include the `app_protect_dos_api` directive:
+
   ```nginx
   http {
       # ...
@@ -71,7 +51,8 @@ To enable the API:
   }
   ```
 
-- It is recommended restricting access to the API location, for example, allow access only from local networks with allow and deny directives:
+- Limit API location access, for example, permit only local network access using `allow` and `deny` directives:
+
   ```nginx
   http {
       # ...
@@ -87,7 +68,8 @@ To enable the API:
   }
   ```
 
-- It is also recommended restricting access to PATCH, POST, and DELETE methods to particular users. This can be done by implementing HTTP basic authentication:
+- Implement HTTP basic authentication to restrict access to PATCH, POST, and DELETE methods to certain users:
+
   ```nginx
   http {
       # ...
@@ -107,7 +89,8 @@ To enable the API:
   }
   ```
 
-- Enable the DoS Dashboard by specifying the /dashboard-dos.html location. By default the DoS Dashboard is located in the root directory (for example, /usr/share/nginx/html) specified by the root directive:
+- Enable the DoS Dashboard by defining the /dashboard-dos.html location, which is typically in the root directory:
+
   ```nginx
   http {
       # ...
@@ -132,13 +115,15 @@ To enable the API:
 
 ## Using the Dashboard
 ### Accessing the Dashboard
-In the address bar of your browser, type in the address that corresponds to your Dashboard page (in our example `http://192.168.1.23/dashboard-dos.html`). This will display the Dashboard page located at `/usr/share/nginx/html` as specified in the root directive.
+To view the Dashboard, enter the corresponding address in your browser's address bar.<br>
+For example, "http://192.168.1.23/dashboard-dos.html" will show the Dashboard page located in /usr/share/nginx/html as indicated in the root directive.
 
 ### DoS Tab Overview
-The **DoS** tab provides live statistics, configuration, and traffic graph per Protected Object.<br>
-In case of deployment with arbitrator and multiple NGINX App Protect DoS instances, the statistics will be aggregated.
+The **DoS** tab displays real-time statistics, settings, and traffic graphs for each Protected Object.<br>
+In multi-instance environments with an arbitrator, these statistics will be combined.
 
 {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+
 | Metric name  | Values  | Description |
 |:--------------- |:------- |:-----------|
 | Name  | - | The name of the Protected Object, as defined by the `app_protect_dos_name` directive (or auto-generated if not present)  |
@@ -155,18 +140,28 @@ In case of deployment with arbitrator and multiple NGINX App Protect DoS instanc
 | Bad Actors  | [on\|off]  | As defined by the `bad_actors` object in the JSON policy file from the `app_protect_dos_policy_file` directive  |
 | Automation Tools Detection | [on\|off] | As defined by the `automation_tools_detection` object in the JSON policy file from the `app_protect_dos_policy_file` directive |
 | TLS Fingerprint| [on\|off] | As defined by the `tls_fingerprint` object in the JSON policy file from the `app_protect_dos_policy_file` directive |
+
 {{</bootstrap-table>}}
 <br>
 
-The graph is a stacked graph which consists of two metrics - `Passthrough Requests` and `Mitigations`, both are per second.
-- `Passthrough Requests` shows the number of requests that passed to the backend server.
-- `Mitigations` shows the number of mitigated requests.
-<br>
-The combination of the two metrics, at any second, is the total number of incoming requests.<br>
+### Graph Representation
+The displayed graph is a stacked composition, encompassing two specific metrics: `Passthrough Requests` and `Mitigations`, with both metrics measured on a per-second basis.
+
+- `Passthrough Requests` represents the count of requests successfully forwarded to the backend server.
+- `Mitigations` indicates the quantity of requests that have been mitigated.
+  <br>
+  The sum of these two metrics at any given moment provides the aggregate count of incoming requests.
+
+### Status Color Indicators
+
+- **Green**: Indicates a normal state, with no attack and optimal server health.
+- **Yellow**: Indicates the presence of either an active attack or diminished server health.
+- **Red**: Indicates a severe scenario, where the object is experiencing an attack combined with poor health.
 
 ### Configuring Dashboard Options
 You can configure the dashboard by clicking the Gear button in the Tabs menu.<br>
 **Update every N sec** - updates the Dashboard data after the specified number of seconds, default is 1 second.<br>
+<br>
 
 ## Using the REST API
 Statistics of your server infrastructure can be managed with the REST API interface. The API is based on standard HTTP requests: statistics can be obtained with `GET` requests.
@@ -177,27 +172,28 @@ The status information of any element can be accessed with a slash-separated URL
 `http://192.168.1.23/api/dos/1/protected_objects`
 
 where:
-- `/api` is the location you have configured in the NGINX configuration file for the API
-- `/dos` is a prefix which differentiates NGINX App Protect DoS API from Nginx Plus API
-- `/1` is the API version, the current API version is 1
-- `/protected_objects` is the path to the resource
 
-The requested information is returned in the JSON data format.
+- `/api` represents the configured endpoint in your NGINX setup for API access.
+- `/dos` differentiates the App Protect DoS API from other NGINX Plus APIs.
+- `/1` indicates the API version you are using, with the current version being 1.
+- `/protected_objects` points to the specific resource or data you want to access.
 
-To get the list of all available rootpoints, send the GET request with the ‘curl’ command in terminal (in the example, JSON pretty print extension “json_pp” is used):
+Responses from the API are in JSON format for easy parsing and analysis.
+
+To view all primary endpoints, use a GET request via 'curl' in the terminal:
 
 ```shell
 curl -s 'http://192.168.1.23/api/dos/1/' | json_pp
 ```
 
-The JSON data returned:
+This command returns a JSON array listing the main access points, like:
+
 ```json
-[
-   "protected_objects"
-] 
+["protected_objects"]
 ```
 
-To get the statistics for a particular endpoint, send the following GET request:
+For obtaining detailed statistics about a particular endpoint, execute a similar GET request:
+
 ```shell
 curl -s 'http://192.168.1.23/api/dos/1/protected_objects' | json_pp
 ```
@@ -206,14 +202,17 @@ curl -s 'http://192.168.1.23/api/dos/1/protected_objects' | json_pp
 
 #### Endpoints
 {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+
 | Path  | Description |
 |:------ |:-----------|
 | /  | Return list of root endpoints  |
 | /protected_objects/  | Return statistics of all Protected Objects  |
 | /protected_objects/{protectedObjectName}  | Return statistics of a Protected Object  |
+
 {{</bootstrap-table>}}
 
-Example response for `/protected_objects` endpoint:
+An example response from the `/protected_objects` endpoint could be:
+
 ```json
 {
     "po_1": {

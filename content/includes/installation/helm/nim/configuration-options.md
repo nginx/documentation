@@ -1,9 +1,13 @@
+---
+docs: DOCS-1321
+---
+
 The following table lists the configurable parameters and default values for the NGINX Management Suite platform when installing from a Helm chart.
 
 To modify a configuration for an existing release, run the `helm upgrade` command and use `-f <my-values-file>`, where `my-values-file` is a path to a values file with your desired configuration.
 
-{{% table %}}
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+
 | Parameter | Description | Default |
 |:-----------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------|
 | `nms-hybrid.adminPasswordHash`                        | The hashed value of the password for the  admin user.<br>To generate the hash using `openssl`, run a command similar to the following example: `openssl passwd -1 "YouPassword123#"` | N/A |
@@ -30,7 +34,7 @@ To modify a configuration for an existing release, run the `helm upgrade` comman
 | `nms-hybrid.externalClickhouse.password`              | Password of external ClickHouse service. |  |
 | `nms-hybrid.serviceAccount.annotations`               | Set custom annotations for the service account used by NGINX Management Suite. | `{}` |
 | `nms-hybrid.apigw.name`                               | Name used for API Gateway resources. | `apigw` |
-| `nms-hybrid.apigw.tlsSecret`                          | By default, this helm chart creates its own Certificate Authority (CA) to self-sign the HTTPS server cert key pairs; these are not managed by NGINX Management Suite. You can bring your own NGINX API Gateway certificates for hosting the HTTPS NGINX Management Suite server by setting "tlsSecret" to an existing Kubernetes secret name in the namespace targeted by the chart. The secret should include `tls.crt`, `tls.key`, and `ca.pem` in the data object. We recommend using a self-provisioned "tlsSecret" for production scenarios.<br /><br />For an example, refer to the "Use your own certificates" section in [Common Helm Chart Configurations]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md#common-helm-chart-configurations" >}}). |  |
+| `nms-hybrid.apigw.tlsSecret`                          | By default, this helm chart creates its own Certificate Authority (CA) to self-sign the HTTPS server cert key pairs; these are not managed by NGINX Management Suite. You can bring your own NGINX API Gateway certificates for hosting the HTTPS NGINX Management Suite server by setting "tlsSecret" to an existing Kubernetes secret name in the namespace targeted by the chart. The secret should include `tls.crt`, `tls.key`, and `ca.pem` in the data object. We recommend using a self-provisioned "tlsSecret" for production scenarios.<br /><br />For an example, refer to the "Use your own certificates" section in [Frequently Used Helm Configurations]({{< relref "/nms/installation/kubernetes/frequently-used-helm-configs.md#use-your-own-certificates" >}}). |  |
 | `nms-hybrid.apigw.image.repository`                   | Repository name and path for the `apigw` image. | `apigw` |
 | `nms-hybrid.apigw.image.tag`                          | Tag used for pulling images from registry. | `latest` |
 | `nms-hybrid.apigw.image.pullPolicy`                   | Image pull policy. | `IfNotPresent` |
@@ -106,9 +110,8 @@ To modify a configuration for an existing release, run the `helm upgrade` comman
 | `nms-hybrid.utility.image.repository`                 | Repository name and path for the `utility` image. | `utility` |
 | `nms-hybrid.utility.image.tag`                        | Tag used for pulling images from registry. | `latest` |
 | `nms-hybrid.utility.image.pullPolicy`                 | Image pull policy. | `IfNotPresent` |
-| `nms-hybrid.nic`                                      | To enable NGINX Ingress Controller Virtual Server | See [NGINX Ingress Controller Virtual Server](#nginx-ingress-controller-virtual-server) for details |
+
 {{</bootstrap-table>}}
-{{% /table %}}
 
 ##### Instance Manager Dqlite Storage Configuration
 
@@ -154,34 +157,3 @@ tolerations:
 ```
 
 For more information, refer to the official Kubernetes [Taints and Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) documentation.
-
-##### NGINX Ingress Controller Virtual Server
-
-Example snippet to enable a NGINX Ingress Controller Virtual Server with Instance Manager service as an upstream.
-
-```yaml
-nic:
-  # set to true to configure NGINX Ingress Controller VirtualServer.
-  enabled: true
-  # Optional. Defaults to "nms" otherwise.
-  name: nms
-  # required
-  host: hello.example.com
-  # Optional
-  httpSnippets:
-  # Optional
-  serverSnippets:
-  # Optional
-  ingressClassName: nginx
-  # Optional. A default upstream to NGINX Instance Manager APIGW service is created for you.
-  # If you have a need to configure other upstreams, list here.
-  upstreams: []
-  # Optional
-  routes:
-    - path: /
-      action:
-        proxy:
-          upstream: ${NGINX_Instance_Manager_Service_Name}
-  # Optional
-  policies: []
-```

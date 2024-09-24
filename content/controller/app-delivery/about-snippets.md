@@ -1,15 +1,7 @@
 ---
-categories:
-- app management
-date: "2021-12-13T15:08:15-07:00"
 docs: DOCS-340
 doctypes:
 - concept
-journeys:
-- researching
-- using
-personas:
-- appdev
 tags:
 - docs
 title: About Snippets
@@ -19,10 +11,10 @@ weight: 300
 
 ## Overview
 
-The NGINX Controller Application Delivery (AD) module lets you configure NGINX directives that aren't represented in the NGINX Controller API via "config snippets", or "Snippets". You can do so by using either the user interface (UI) or the [Application Delivery REST API](https://docs.nginx.com/nginx-controller/api/reference/ctlr-v1/adc/docs/intro/endpoints).
+The F5 NGINX Controller Application Delivery (AD) module lets you configure NGINX directives that aren't represented in the NGINX Controller API via "config snippets", or "Snippets". You can do so by using either the user interface (UI) or the [Application Delivery REST API](https://docs.nginx.com/nginx-controller/api/ctlr-adc-api/).
 
 {{< caution >}}
-When you use Snippets to customize your NGINX configuration, your changes are applied to the `nginx.conf` file *as is*. NGINX Controller does not verify that your configuration is valid before applying the snippet. 
+When you use Snippets to customize your NGINX configuration, your changes are applied to the `nginx.conf` file *as is*. NGINX Controller does not verify that your configuration is valid before applying the snippet.
 
 We strongly recommend verifying Snippets in a lab environment before making any changes in production.
 {{< /caution >}}
@@ -54,16 +46,16 @@ It's important to avoid adding conflicting snippets to the same [context](https:
 
 ### NGINX Variables
 
-NGINX configurations commonly use [NGINX variables](https://nginx.org/en/docs/varindex.html) or custom variables. If you prefer to configure NGINX Controller by using the REST API, you may run into problems with variable expansion when sending JSON as part of a `curl` request using th `-d` flag. The recommended best practice for this is to reference the JSON in a data file instead of sending the string as part of the request. An alternative is to redefine the variable to itself, which allows the variable to pass through to the NGINX configuration. If you're using the NGINX `$host` variable in your JSON data -- represented by the `<data>` placeholder in the example below -- you would define the variable before the curl request as follows: 
+NGINX configurations commonly use [NGINX variables](https://nginx.org/en/docs/varindex.html) or custom variables. If you prefer to configure NGINX Controller by using the REST API, you may run into problems with variable expansion when sending JSON as part of a `curl` request using th `-d` flag. The recommended best practice for this is to reference the JSON in a data file instead of sending the string as part of the request. An alternative is to redefine the variable to itself, which allows the variable to pass through to the NGINX configuration. If you're using the NGINX `$host` variable in your JSON data -- represented by the `<data>` placeholder in the example below -- you would define the variable before the curl request as follows:
 
-```
+```none
 host='$host' curl -s -k -H "Content-Type: application/json" -X PUT -d "<data>" https://192.168.100.10:80/
 ```
 
-## Usage Examples 
+## Usage Examples
 
 {{< caution >}}
-The examples provided here are intended for demonstration purposes only. 
+The examples provided here are intended for demonstration purposes only.
 We strongly recommend verifying Snippets in a lab environment before making any changes in production.
 {{< /caution >}}
 
@@ -89,7 +81,7 @@ For example:
                     "directives": [
                         {
                             "directive": "add_header",
-                            "args": ["Strict-Transport-Security", "max-age=31536000; includeSubDomains", "always"] 
+                            "args": ["Strict-Transport-Security", "max-age=31536000; includeSubDomains", "always"]
                         }
                     ]
                 }
@@ -132,20 +124,20 @@ You can add IP addresses to your allow- or deny-list by using the `allow` or `de
                     "directives": [
                         {
                             "directive": "deny",
-                            "args": ["192.0.2.2"] 
+                            "args": ["192.0.2.2"]
                         },
                         {
                             "directive": "allow",
-                            "args": ["192.0.2.1/24"] 
-                        },    
+                            "args": ["192.0.2.1/24"]
+                        },
                                                 {
                             "directive": "allow",
-                            "args": ["2001:0db8::/32"] 
-                        },    
+                            "args": ["2001:0db8::/32"]
+                        },
                                                 {
                             "directive": "deny",
-                            "args": ["all"] 
-                        }          
+                            "args": ["all"]
+                        }
                     ]
                 }
             ]
@@ -169,7 +161,7 @@ You can add IP addresses to your allow- or deny-list by using the `allow` or `de
 
 ### Load the NGINX Prometheus Module
 
-In order to use the [NGINX Prometheus-njs]https://docs.nginx.com/nginx/admin-guide/dynamic-modules/prometheus-njs/) module with NGINX Controller, you need to use` load_module` in the `main` context, `js_import` in the `http` context, and `js_content` in the `location`. NGINX Controller automatically enables the location api `location /api`, which is also required for metrics reporting.
+In order to use the [NGINX Prometheus-njs](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/prometheus-njs/) module with NGINX Controller, you need to use`load_module` in the `main` context, `js_import` in the `http` context, and `js_content` in the `location`. NGINX Controller automatically enables the location api `location /api`, which is also required for metrics reporting.
 
 After installing the module, add the following Snippets to your gateway. This will add `load_module` and `js_import`:
 
@@ -559,7 +551,7 @@ Add `listen` directives with parameters in URI Snippets. To learn more about wha
 - [`stream` listen options](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#listen)
 - [`http` listen options](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen)
 
-{{< note >}} 
+{{< note >}}
 
 The `reuseport` parameter creates an individual listening socket for each worker process. See [`reuseport` option](https://nginx.org/en/docs/http/ngx_http_core_module.html#reuseport).
 

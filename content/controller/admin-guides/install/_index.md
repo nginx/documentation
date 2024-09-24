@@ -1,5 +1,5 @@
 ---
-description: Learn how to install and update NGINX Controller and the NGINX Controller
+description: Learn how to install and update F5 NGINX Controller and the NGINX Controller
   Agent.
 menu:
   docs:

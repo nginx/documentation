@@ -1,6 +1,5 @@
 ---
-date: "2020-10-26T15:32:41-06:00"
-description: Learn about NGINX Controller Application Delivery concepts.
+description: Learn about F5 NGINX Controller Application Delivery concepts.
 docs: DOCS-474
 title: About Application Delivery
 toc: true
@@ -9,7 +8,7 @@ weight: 100
 
 ## Apps
 
-In NGINX Controller, an App serves as a container for one or more Components. Components represent the backend services that comprise your application. Together, an App and its Components represent the logical partitioning of your application into its composite parts. For example, a Component might correspond to a particular microservice within your application. Each Component you add to an App represents one or more paths via which traffic can reach that microservice.
+In F5 NGINX Controller, an App serves as a container for one or more Components. Components represent the backend services that comprise your application. Together, an App and its Components represent the logical partitioning of your application into its composite parts. For example, a Component might correspond to a particular microservice within your application. Each Component you add to an App represents one or more paths via which traffic can reach that microservice.
 
 All Apps and Components live within an [Environment]({{< relref "/controller/services/manage-environments.md" >}}). This means that in order to have access to a particular App, a User needs to have permission to access its Environment. If you need access to an Environment or App, contact your administrator.
 
@@ -25,8 +24,8 @@ Components can be instantiated on multiple paths corresponding to the placements
 
 When you configure a Component, you can choose to:
 
-- inherit resources and configurations from the Gateway; 
-- create and define new resources and configurations specific to the Component; or 
+- inherit resources and configurations from the Gateway;
+- create and define new resources and configurations specific to the Component; or
 - use a combination of inherited and Component-specific configurations.
 
 For example, a Gateway's ingress definition might include the URIs for a Service's FQDN(s) and the associated TLS [certificates]({{< relref "/controller/services/manage-certs.md" >}}), while the Component's ingress definition would contain relative URIs for the FQDN defined in the Gateway:

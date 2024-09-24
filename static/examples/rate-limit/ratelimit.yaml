@@ -1,0 +1,16 @@
+apiVersion: specs.smi.nginx.com/v1alpha2
+kind: RateLimit
+metadata:
+  name: ratelimit-v1
+  namespace: default
+spec:
+  destination:
+    kind: Service
+    name: dest-svc
+    namespace: default
+  sources:
+  - kind: Deployment
+    name: client-v1
+    namespace: default
+  name: 10rm
+  rate: 10r/m # breaks down to 1 request every 6 seconds

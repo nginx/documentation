@@ -9,7 +9,6 @@ toc: true
 weight: 200
 ---
 
-
 This article describes how to configure logging of errors and processed requests in NGINX Open Source and NGINX Plus.
 
 <span id="error_log"></span>
@@ -53,10 +52,10 @@ http {
 
 Another example of the log format enables tracking different time values between NGINX and an upstream server that may help to diagnose a problem if your website experience slowdowns. You can use the following variables to log the indicated time values:
 
-*   [`$upstream_connect_time`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_connect_time) – The time spent on establishing a connection with an upstream server
-*   [`$upstream_header_time`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_header_time) – The time between establishing a connection and receiving the first byte of the response header from the upstream server
-*   [`$upstream_response_time`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_response_time) – The time between establishing a connection and receiving the last byte of the response body from the upstream server
-*   [`$request_time`](https://nginx.org/en/docs/http/ngx_http_log_module.html#var_request_time) – The total time spent processing a request
+- [`$upstream_connect_time`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_connect_time) – The time spent on establishing a connection with an upstream server
+- [`$upstream_header_time`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_header_time) – The time between establishing a connection and receiving the first byte of the response header from the upstream server
+- [`$upstream_response_time`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_response_time) – The time between establishing a connection and receiving the last byte of the response body from the upstream server
+- [`$request_time`](https://nginx.org/en/docs/http/ngx_http_log_module.html#var_request_time) – The total time spent processing a request
 
 All time values are measured in seconds with millisecond resolution.
 
@@ -76,10 +75,10 @@ http {
 
 When reading the resulting time values, keep the following in mind:
 
-*   When a request is processed through several servers, the variable contains several values separated by commas
-*   When there is an internal redirect from one upstream group to another, the values are separated by semicolons
-*   When a request is unable to reach an upstream server or a full header cannot be received, the variable contains `0` (zero)
-*   In case of internal error while connecting to an upstream or when a reply is taken from the cache, the variable contains `-` (hyphen)
+- When a request is processed through several servers, the variable contains several values separated by commas
+- When there is an internal redirect from one upstream group to another, the values are separated by semicolons
+- When a request is unable to reach an upstream server or a full header cannot be received, the variable contains `0` (zero)
+- In case of internal error while connecting to an upstream or when a reply is taken from the cache, the variable contains `-` (hyphen)
 
 Logging can be optimized by enabling the buffer for log messages and the cache of descriptors of frequently used log files whose names contain variables. To enable buffering use the `buffer` parameter of the [access_log](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log) directive to specify the size of the buffer. The buffered messages are then written to the log file when the next log message does not fit into the buffer as well as in some other [cases](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log).
 
@@ -108,7 +107,7 @@ access_log /path/to/access.log combined if=$loggable;
 <span id="tls_sample"></span>
 ## Usecase: Sampling TLS Parameters
 
-Many clients use TLS versions older than TLS 1.3. Though many ciphers are declared insecure, older implementations still use them; ECC certificates offer greater performance than RSA, but not all clients can accept ECC. Many TLS attacks rely on a “man in the middle” who intercepts the cipher negotiation handshake and forces the client and server to select a less secure cipher. Therefore, it’s important to configure NGINX Plus to not support weak or legacy ciphers, but doing so may exclude legacy clients.
+Many clients use TLS versions older than TLS 1.3. Though many ciphers are declared insecure, older implementations still use them; ECC certificates offer greater performance than RSA, but not all clients can accept ECC. Many TLS attacks rely on a “man in the middle” who intercepts the cipher negotiation handshake and forces the client and server to select a less secure cipher. Therefore, it’s important to configure F5 NGINX Plus to not support weak or legacy ciphers, but doing so may exclude legacy clients.
 
 You can evaluate the SSL data obtained from the client and determine what proportion of clients get excluded if support for older SSL protocols and ciphers is removed.
 
@@ -168,6 +167,7 @@ In this example, each client is identified by its unique combination of IP addre
    ```
 
    In this output, low‑volume, less secure ciphers are identified:
+
    ```shell
    ECDHE-RSA-AES128-GCM-SHA256 =========================
    ECDHE-RSA-AES256-GCM-SHA384 ========

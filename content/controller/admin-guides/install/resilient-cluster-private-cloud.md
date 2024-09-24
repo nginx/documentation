@@ -1,22 +1,9 @@
 ---
-authors: []
-categories:
-- installation
-date: "2020-10-21T14:43:55-07:00"
-description: This guide explains how to deploy NGINX Controller as a multi-node resilient
+description: This guide explains how to deploy F5 NGINX Controller as a multi-node resilient
   cluster on a private cloud.
 docs: DOCS-258
 doctypes:
 - tutorial
-draft: false
-journeys:
-- getting started
-personas:
-- devops
-- netops
-- secops
-roles:
-- admin
 tags:
 - docs
 title: Deploy NGINX Controller as a Resilient Cluster on a Private Cloud
@@ -26,7 +13,7 @@ weight: 300
 
 ## Overview
 
-Complete the steps in this guide to deploy NGINX Controller as a resilient, three-node cluster on your private cloud. A multi-node cluster ensures that NGINX Controller stays up even if one of the control-plane hosts becomes unavailable.
+Complete the steps in this guide to deploy F5 NGINX Controller as a resilient, three-node cluster on your private cloud. A multi-node cluster ensures that NGINX Controller stays up even if one of the control-plane hosts becomes unavailable.
 
 The diagram below shows how the different objects in a multi-node NGINX Controller cluster relate to each other. The control nodes communicate with an embedded, self-hosted database that is stored on an external volume. The NGINX Controller Agent -- and NGINX Controller users -- can access the cluster via a load balancer or floating IP address that is associated with NGINX Controller's FQDN. If a node in the cluster becomes unavailable for any reason, traffic is re-routed automatically to an available node.
 

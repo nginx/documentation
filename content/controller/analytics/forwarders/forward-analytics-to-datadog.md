@@ -1,22 +1,8 @@
 ---
-authors: []
-categories:
-- analytics
-date: "2020-10-26T15:32:41-06:00"
-description: How to forward Analytics data to Datadog
+description: How to forward Analytics data to Datadog.
 docs: DOCS-531
 doctypes:
 - tutorial
-draft: false
-journeys:
-- using
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
 tags:
 - docs
 title: Forward Analytics Data to Datadog
@@ -26,7 +12,7 @@ weight: 100
 
 ## Overview
 
-Follow the steps in this guide to set up an NGINX Controller Integration that forwards data to [Datadog](https://www.datadoghq.com/).
+Follow the steps in this guide to set up an F5 NGINX Controller Integration that forwards data to [Datadog](https://www.datadoghq.com/).
 
 ## Before You Begin
 
@@ -58,7 +44,7 @@ Take the following steps to create a Forwarder for Datadog:
 - Example usage when selecting events: `"filter=type='security violation' AND app='my-app'"`
 
 13. (Optional) Add additional **Streams** as required using the **Add Stream** button.
-    
+
 {{< important >}}
 
 Each metric will be prefixed with a common namespace -- such as "nginx-controller" -- before it is sent to Datadog. This prefix is used by Datadog only and is not applied to any of the internal NGINX Controller metrics. Refer to the [metrics catalog]({{< relref "/controller/analytics/catalogs/metrics.md" >}}) for the full list of valid metric names.

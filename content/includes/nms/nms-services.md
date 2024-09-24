@@ -1,6 +1,7 @@
 The following table lists the services that are installed with NGINX Management Suite. The "Platform" services are installed with Instance Manager, which is the foundation for the NGINX Management Suite platform.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Service                | <div style="width:200px">Used By</div> | Description                                                                                                                                                                                                                                          |
 |------------------------|----------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | nms                    | Platform                               | A pseudo service used to start the other `nms-*` services.                                                                                                                                                                                           |
@@ -9,6 +10,7 @@ The following table lists the services that are installed with NGINX Management 
 | nms-ingestion          | Platform                               | The ingestion service collects metrics, security violations, and events not sent to the data plane manager service by the NGINX Agent. This information can be forwarded to external data stores.                                                    |
 | nms&#8209;integrations | Platform                               | The integrations process includes features for interacting with external components, like configuring [NGINX App Protect WAF policies]({{< relref "/nms/nim/how-to/app-protect/setup-waf-config-management.md" >}}), managing threat campaigns, and more. |
 | nms-acm                | API&nbsp;Connectivity Manager          | The API Connectivity Manager service.                                                                                                                                                                                                                |
+
 {{</bootstrap-table>}}
 
 <br>

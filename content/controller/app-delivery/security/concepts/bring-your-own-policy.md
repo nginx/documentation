@@ -1,23 +1,8 @@
 ---
-authors:
-- noumba
-categories:
-- security
-date: "2021-05-03T10:20:39-06:00"
-description: Learn how to use your own NGINX App Protect WAF policies with NGINX Controller
+description: Learn how to use your own F5 NGINX App Protect WAF policies with NGINX Controller.
 docs: DOCS-481
 doctypes:
 - concept
-draft: false
-journeys:
-- researching
-- using
-personas:
-- devops
-- netops
-- secops
-roles:
-- admin
 tags:
 - docs
 title: Bring Your Own WAF Policy
@@ -25,10 +10,9 @@ toc: true
 weight: 300
 ---
 
-
 ## Overview
 
-You can use the App Security Add-on for NGINX Controller ADC to bring your own ("BYO") NGINX App Protect policies into NGINX Controller. This lets you use your existing declarative JSON policies from NGINX App Protect to protect your ADC app components.
+You can use the App Security Add-on for F5 NGINX Controller ADC to bring your own ("BYO") NGINX App Protect policies into NGINX Controller. This lets you use your existing declarative JSON policies from NGINX App Protect to protect your ADC app components.
 
 A BYO NGINX App Protect policy lets you maintain consistent Security Policies across your F5 WAF and NGINX WAF deployments. For example, say you already use F5 BIG-IP Application Security Manager (ASM) or F5 Advanced WAF and are now adopting NGINX Controller App Security. You can convert your XML Security Policies to an NGINX App Protect policy by using the [NGINX App Protect Policy Converter tool](https://docs.nginx.com/nginx-app-protect/configuration/#policy-converter).
 
@@ -48,12 +32,12 @@ With a BYO NGINX App Protect policy, you can also provide customized security by
 The BYO NGINX App Protect policy uses the concept of a [Security Strategy]({{< relref "/controller/app-delivery/security/concepts/what-is-waf.md#security-policy-and-security-strategy" >}})
 
 With the BYO NGINX App Protect policy feature, you can specify the exact NGINX App Protect policy for the Security Strategy. Then, the Security Strategy can be shared across -- and referenced by -- multiple app components.
-A Security Strategy can be comprised of various app-security-related Security Policies. NGINX Controller includes a custom NGINX App Protect WAF policy, which can be assigned to a Security Strategy. 
+A Security Strategy can be comprised of various app-security-related Security Policies. NGINX Controller includes a custom NGINX App Protect WAF policy, which can be assigned to a Security Strategy.
 
 You can also add a BYO NGINX App Protect WAF policy in JSON format to NGINX Controller "as-is" for use in a Security Strategy.
 
 
-An **App Component** contains a reference to a **Security Strategy**, which, in turn, references a Security Policy. This Security Policy contains the **NGINX App Protect WAF policy**.  
+An **App Component** contains a reference to a **Security Strategy**, which, in turn, references a Security Policy. This Security Policy contains the **NGINX App Protect WAF policy**.
 
 Refer to the topic [Enable WAF for a Component Using Your Own NGINX App Protect Policy]({{< relref "/controller/app-delivery/security/tutorials/add-app-security-with-waf.md#enable-waf-for-a-component-using-your-own-nap-policy-beta" >}}) to get started.
 

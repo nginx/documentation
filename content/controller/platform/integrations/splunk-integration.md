@@ -1,7 +1,5 @@
 ---
-date: "2021-09-01T10:36:30-07:00"
 docs: DOCS-566
-draft: false
 title: Splunk Integration
 weight: 40
 ---
@@ -18,7 +16,7 @@ weight: 40
 6. Select **Save**.
 
 
-### Set up Splunk to Monitor Data 
+### Set up Splunk to Monitor Data
 
 1. Open the Splunk web interface and log in.
 2. On the Explore Splunk Enterprise menu, select **Add Data**.
@@ -29,7 +27,7 @@ weight: 40
 7. Select **Next**.
 8. On the Add Data *Input Settings* page, select one or more of the available Splunk Indexes with the appropriate *Index Data Type*.
 9. Select **Review**.
-10. On the summary page, copy and save the token value. **You'll configure NGINX Controller with this value later**.
+10. On the summary page, copy and save the token value. **You'll configure F5 NGINX Controller with this value later**.
 
 ## Add a Splunk Integration
 

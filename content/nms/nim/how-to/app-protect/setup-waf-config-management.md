@@ -1,26 +1,21 @@
 ---
-title: "Manage Your App Protect WAF Configs"
-date: 2022-11-14T12:00:00-07:00
-description: "Learn how to use NGINX Management Suite Instance Manager to secure your applications with NGINX App Protect WAF security policies."
-# Assign weights in increments of 100
-weight: 100
-draft: false
+description: Learn how to use F5 NGINX Management Suite Instance Manager to secure your
+  applications with NGINX App Protect WAF security policies.
+docs: DOCS-996
+doctypes:
+- task
+tags:
+- docs
+title: Manage Your App Protect WAF Configs
 toc: true
-tags: ["docs"]
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-doctypes: ["task"]
-docs: "DOCS-996"
+weight: 100
 ---
-
-{{<custom-styles>}}
 
 {{< shortversions "2.6.0" "latest" "nimvers" >}}
 
 ## Overview
 
-Instance Manager helps you manage your NGINX App Protect WAF configurations, making it easy to stay secure. This guide shows you how to set up Instance Manager to configure and manage NGINX App Protect WAF.
+Instance Manager helps you manage your F5 NGINX App Protect WAF configurations, making it easy to stay secure. This guide shows you how to set up Instance Manager to configure and manage NGINX App Protect WAF.
 
 ### Before You Begin
 
@@ -53,7 +48,7 @@ Be sure to download and install the correct WAF compiler version for your enviro
 
 - Each NGINX App Protect version has a corresponding WAF compiler version. You must install the WAF compiler that matches the version of NGINX App Protect that you have running.
 - If you have different NGINX App Protect versions running, install the correct WAF compiler package for each on the management plane host. Instance Manager will use the correct WAF compiler for each version to bundle the security configurations.
-- You can create [instance groups]({{< relref "/nms/nim/how-to/nginx/manage-instance-groups" >}}) to keep track of and manage all instances that have the same version installed.
+- You can create [instance groups]({{< relref "/nms/nim/how-to/instances/manage-instance-groups" >}}) to keep track of and manage all instances that have the same version installed.
 
 For more information about the WAF compiler, refer to the [Security Bundle Compilation]({{< relref "/nms/nim/about/app-protect-waf-cm-overview#security-bundle" >}}) section of the Policy Configuration overview topic.
 
@@ -62,8 +57,17 @@ For more information about the WAF compiler, refer to the [Security Bundle Compi
 The following table shows the NGINX App Protect WAF Release version and its corresponding WAF compiler version:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | NGINX App Protect WAF Release version | WAF Compiler               |
 |---------------------------------------|----------------------------|
+| NGINX App Protect WAF 5.2.0           | nms-nap-compiler-v5.48.0   |
+| NGINX App Protect WAF 5.1.0           | nms-nap-compiler-v5.17.0   |
+| NGINX App Protect WAF 4.10.0          | nms-nap-compiler-v5.48.0   |
+| NGINX App Protect WAF 4.9.0           | nms-nap-compiler-v5.17.0   |
+| NGINX App Protect WAF 4.8.1           | nms-nap-compiler-v4.815.0  |
+| NGINX App Protect WAF 4.8.0           | nms-nap-compiler-v4.762.0  |
+| NGINX App Protect WAF 4.7.0           | nms-nap-compiler-v4.641.0  |
+| NGINX App Protect WAF 4.6.0           | nms-nap-compiler-v4.583.0  |
 | NGINX App Protect WAF 4.5.0           | nms-nap-compiler-v4.457.0  |
 | NGINX App Protect WAF 4.4.0           | nms-nap-compiler-v4.402.0  |
 | NGINX App Protect WAF 4.3.0           | nms-nap-compiler-v4.279.0  |
@@ -71,11 +75,13 @@ The following table shows the NGINX App Protect WAF Release version and its corr
 | NGINX App Protect WAF 4.1.0           | nms-nap-compiler-v4.100.1  |
 | NGINX App Protect WAF 4.0.0           | nms-nap-compiler-v4.2.0    |
 | NGINX App Protect WAF 3.12.2          | nms-nap-compiler-v3.1088.2 |
+
 {{</bootstrap-table>}}
 
 <br>
 
 {{<note>}}
+
 - The install commands in this guide use an example version to show the correct command format.
 
   Be sure to replace the version string in the example with the correct version to suit your needs.
@@ -90,13 +96,15 @@ The following table shows the NGINX App Protect WAF Release version and its corr
 Install the WAF compiler, then restart the `nms-integrations` service:
 
 ```bash
-sudo apt-get install nms-nap-compiler-v4.457.0
+sudo apt-get install nms-nap-compiler-v4.815.0
 ```
 
 {{<note>}}
+
 - If you want to have more than one version of the `nms-nap-compiler` installed on your system at once, you'll need to append `-o Dpkg::Options::="--force-overwrite"` to the `nms-nap-compiler` installation commands after your initial `nms-nap-compiler` installation. For example, the installation command would look like this:
+
 ```bash
-sudo apt-get install nms-nap-compiler-v4.457.0 -o Dpkg::Options::="--force-overwrite"
+sudo apt-get install nms-nap-compiler-v4.815.0 -o Dpkg::Options::="--force-overwrite"
 ```
 
 {{</note>}}
@@ -108,7 +116,7 @@ Download the file dependencies.repo to `/etc/yum.repos.d`, enable the `codeready
 ```bash
 sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
 sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
-sudo yum install nms-nap-compiler-v4.457.0
+sudo yum install nms-nap-compiler-v4.815.0
 ```
 
 ### RHEL 7.4 or later; CentOS
@@ -117,7 +125,7 @@ Download the file `dependencies.repo` to `/etc/yum.repos.d`, enable the RHEL 7 s
 ```bash
 sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
 sudo yum-config-manager --enable rhui-REGION-rhel-server-optional rhui-REGION-rhel-server-releases rhel-7-server-optional-rpms
-sudo yum install nms-nap-compiler-v4.457.0
+sudo yum install nms-nap-compiler-v4.815.0
 ```
 
 ### Amazon Linux 2 LTS
@@ -129,7 +137,7 @@ sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-7.re
 sudo amazon-linux-extras enable epel
 sudo yum clean metadata
 sudo yum install epel-release
-sudo yum install nms-nap-compiler-v4.457.0
+sudo yum install nms-nap-compiler-v4.815.0
 ```
 
 ### Oracle Linux 7.4 or later
@@ -138,7 +146,7 @@ Download the file `dependencies.repo` to `/etc/yum.repos.d`, enable the `ol8_cod
 ```bash
 sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
 sudo yum-config-manager --enable ol8_codeready_builder
-sudo yum install nms-nap-compiler-v4.457.0
+sudo yum install nms-nap-compiler-v4.815.0
 ```
 
 ### Download from MyF5
@@ -239,9 +247,9 @@ You will need to use your NGINX repo certificates to setup automatic retrieval o
     <details open>
     <summary>Example request</summary>
 
-    ```bash
+    ```shell
     curl -X POST 'https://{{NMS_FQDN}}//api/platform/v1/certs'  \
-        --header "Authorization: Bearer xxxxx.yyyyy.zzzzz"      \
+        --header "Authorization: Bearer <access token>"      \
         --header "Content-Type: application/json"                \
         -d@nginx-repo-certs.json
     ```
@@ -348,7 +356,7 @@ error when creating the nginx repo retriever - NGINX repo certificates not found
 
 1. Using a file archive utility, such as *tar*, bundle the three files into a single `.tgz` file. For example:
 
-    ``` bash
+    ```shell
     tar –czvf attack-signatures.tgz signatures.bin.tgz signature_update.yaml version
     ```
 
@@ -359,9 +367,9 @@ You will need to use the [Instance Manager REST API]({{< relref "/nms/nim/about/
 <details open>
 <summary>Attack Signatures Example</summary>
 
-```bash
+```shell
 curl -X POST 'https://{{NMS_FQDN}}//api/platform/v1/security/attack-signatures' \
-    --header "Authorization: Bearer xxxxx.yyyyy.zzzzz"      \
+    --header "Authorization: Bearer <access token>"      \
     --form 'revisionTimestamp="2022.11.16"'                 \
     --form 'filename=@"/attack-signatures.tgz"'
 ```
@@ -371,9 +379,9 @@ curl -X POST 'https://{{NMS_FQDN}}//api/platform/v1/security/attack-signatures' 
 <details open>
 <summary>Threat Campaigns Example</summary>
 
-```bash
+```shell
 curl -X POST 'https://{{NMS_FQDN}}//api/platform/v1/security/threat-campaigns' \
-    --header "Authorization: Bearer xxxxx.yyyyy.zzzzz"      \
+    --header "Authorization: Bearer <access token>"      \
     --form 'revisionTimestamp="2022.11.15"'                 \
     --form 'filename=@"/threat-campaigns.tgz"'
 ```
@@ -392,6 +400,7 @@ To ensure that the dashboards show the most up-to-date information, you need to 
 
 ## Setup Compiler Resource Pruning
 You can configure the following compiler resources to prune automatically:
+
 - Compiled Security Policies
 - Compiled Security Log Profiles
 - Attack Signatures
@@ -517,14 +526,16 @@ You can query the Instance Manager REST API to verify the following information:
 - NGINX App Protect WAF running status
 - Total number of instances with NGINX App Protect WAF installed, out of the total number of NGINX instances
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                     |
 |--------|------------------------------|
 | GET    | `/api/platform/v1/instances` |
 | GET    | `/api/platform/v1/systems`   |
+
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 - Send an HTTP `GET` request to the `/api/platform/v1/systems` endpoint to find out what version of NGINX App Protect is running. This response will also show the Threat Campaign and Attack Signature package versions running on each instance.
 
@@ -573,6 +584,67 @@ You can query the Instance Manager REST API to verify the following information:
 
 {{%/tab%}}
 {{</tabs>}}
+
+### Configure Docker Compose for NGINX App Protect WAF Version 5
+
+Version 5 of NGINX App Protect WAF provides a container-based architecture that requires some configuration changes to operate with Instance Manager.
+
+1. Edit the `docker-compose.yaml` you created according to [NGINX App Protect WAF](https://docs.nginx.com/nginx-app-protect-waf/v5/admin-guide/install/) to provide the containers with read access to the policies and log profiles written to the instance by Instance Manager.
+
+    - Add the line `user: 101:nginx-agent-group` to each service, where `nginx-agent-group` is the ID of the NGINX Agent group. The value of this group ID can be determined with
+
+    ```bash
+    cat /etc/group
+    ```
+
+    - Add the directory `/etc/nms` to the volume maps for both services
+
+    For example:
+
+    ```yaml
+    version: "3.9"
+
+    services:
+      waf-enforcer:
+        container_name: waf-enforcer
+        image: private-registry.nginx.com/nap/waf-enforcer:5.2.0
+        user: 101:1002
+        environment:
+          - ENFORCER_PORT=50000
+        ports:
+          - "50000:50000"
+        volumes:
+          - /opt/app_protect/bd_config:/opt/app_protect/bd_config
+          - /etc/nms:/etc/nms
+        networks:
+          - waf_network
+        restart: always
+
+      waf-config-mgr:
+        container_name: waf-config-mgr
+        image: private-registry.nginx.com/nap/waf-config-mgr:5.2.0
+        user: 101:1002
+        volumes:
+          - /opt/app_protect/bd_config:/opt/app_protect/bd_config
+          - /opt/app_protect/config:/opt/app_protect/config
+          - /etc/app_protect/conf:/etc/app_protect/conf
+          - /etc/nms:/etc/nms
+        restart: always
+        network_mode: none
+        depends_on:
+          waf-enforcer:
+            condition: service_started
+
+    networks:
+      waf_network:
+        driver: bridge
+    ```
+
+1. Restart the containers:
+
+    ``` bash
+    docker compose restart
+    ```
 
 ---
 
@@ -707,9 +779,9 @@ To do so, take the steps below for each policy:
 
     For example:
 
-    ``` bash
+    ```shell
     curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/policies \
-    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz" --ContentType application/json \
+    -H "Authorization: Bearer <access token>" --ContentType application/json \
     -d '{"content": "ewogICAgInBvbGljeSI6[CONTENT_SNIPPED]QogICAgfQp9CiAgICAgICAgCg==", \
     "metadata": {"description": "Ignore cross-site scripting is a security policy that intentionally ignores cross site scripting.", \
     "displayName": "Ignore cross-site scripting example", "name": "ignore-xss-example"}}'
@@ -736,9 +808,9 @@ To do so, take the steps below for each policy:
 
 1. Verify that your policies have been onboarded by sending an HTTP `GET` request to the `/api/platform/v1/security/policies` endpoint:
 
-    ``` bash
+    ```shell
     curl -X GET https://{{NMS_FQDN}}/api/platform/v1/security/policies \
-    -H "Authorization: Bearer xxxxx.yyyyy.zzzzz"
+    -H "Authorization: Bearer <access token>z"
     ```
 
     You should receive a success response similar to the example below:
@@ -848,6 +920,20 @@ app_protect_security_log "/etc/nms/secops_dashboard.tgz" syslog:server=127.0.0.1
 
 Refer to the [Security Monitoring setup guide]({{< relref "/nms/security/how-to/set-up-app-protect-instances" >}}) to learn more. {{</note>}}
 
+{{<important>}}
+NGINX configuration for NGINX App Protect Version 5 requires the following changes:
+
+- The `app_protect_enforcer_address` directive must be included within the `http` context of the NGINX configuration:
+
+   ```nginx
+   app_protect_enforcer_address 127.0.0.1:50000;
+   ```
+
+- JSON policies and log profiles are not supported for Version 5, so all policies and log profiles must be precompiled and the `precompiled_publication` attribute in the NGINX Agent configuration must be set to `true`.
+
+Refer to the [NGINX App Protect WAF Configuration Guide](https://docs.nginx.com/nginx-app-protect-waf/v5/configuration-guide/configuration/) to learn more.
+{{</important>}}
+
 Additional example configurations tailored for NGINX features can be found in the [NGINX App Protect WAF Configuration Guide](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#interaction-with-nginx-features).
 
 <br>
@@ -871,15 +957,16 @@ Additional example configurations tailored for NGINX features can be found in th
 
 {{< see-also >}}{{< include "nim/how-to-access-nim-api.md" >}}{{< /see-also >}}
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
 {{<bootstrap-table "table">}}
+
 | Method | Endpoint                                                            |
 |--------|---------------------------------------------------------------------|
 | GET    | `/api/platform/v1/systems/{systemUID}/instances`                    |
 | POST   | `/api/platform/v1/security/{systemUID}/instances/{nginxUID}/config` |
 
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 1. Send an HTTP `GET` request to the `/api/platform/v1/systems/{systemUID}/instances` endpoint. This returns a list of all instances from which you can find the unique identifier (UID) of the instance that you want to update.
 1. Add the desired configurations to your `nginx.conf` file, or to any other configuration file that's within the context defined in the NGINX Agent `config_dirs` setting.
@@ -903,8 +990,8 @@ Additional example configurations tailored for NGINX features can be found in th
 
     > **Important!** Before deploying an updated configuration to an instance group, ensure that all instances in the group have the same version of NGINX App Protect WAF installed. Otherwise, the deployment may fail.
 
-    ``` bash
-    curl -X POST https://{{NMS_FQDN}}/api/platform/v1/systems/{systemUID}/instances/{nginxUID}/config -H "Authorization: Bearer xxxxx.yyyyy.zzzzz" \
+    ```shell
+    curl -X POST https://{{NMS_FQDN}}/api/platform/v1/systems/{systemUID}/instances/{nginxUID}/config -H "Authorization: Bearer <access token>" \
         --Content-Type application/json -d @
     ```
 
@@ -1002,24 +1089,24 @@ Check if the WAF compiler has been installed and is working properly by viewing 
 sudo /opt/nms-nap-compiler/app_protect-<version>/bin/apcompile -h
 ```
 
-For example, to view the help description for WAF compiler 4.457.0, run the following command:
+For example, to view the help description for WAF compiler 4.815.0, run the following command:
 
 ``` bash
-sudo /opt/nms-nap-compiler/app_protect-4.457.0/bin/apcompile -h
+sudo /opt/nms-nap-compiler/app_protect-4.815.0/bin/apcompile -h
 ```
 
 The output looks similar to the following example:
 
 ```text
 USAGE:
-    /opt/nms-nap-compiler/app_protect-4.457.0/bin/apcompile <options>
+    /opt/nms-nap-compiler/app_protect-4.815.0/bin/apcompile <options>
 
 Examples:
-    /opt/nms-nap-compiler/app_protect-4.457.0/bin/apcompile -p /path/to/policy.json -o mypolicy.tgz
-    /opt/nms-nap-compiler/app_protect-4.457.0/bin/apcompile -p policyA.json -g myglobal.json -o /path/to/policyA_bundle.tgz
-    /opt/nms-nap-compiler/app_protect-4.457.0/bin/apcompile -g myglobalsettings.json --global-state-outfile /path/to/myglobalstate.tgz
-    /opt/nms-nap-compiler/app_protect-4.457.0/bin/apcompile -b /path/to/policy_bundle.tgz --dump
-    /opt/nms-nap-compiler/app_protect-4.457.0/bin/apcompile -l logprofA.json -o /path/to/logprofA_bundle.tgz
+    /opt/nms-nap-compiler/app_protect-4.815.0/bin/apcompile -p /path/to/policy.json -o mypolicy.tgz
+    /opt/nms-nap-compiler/app_protect-4.815.0/bin/apcompile -p policyA.json -g myglobal.json -o /path/to/policyA_bundle.tgz
+    /opt/nms-nap-compiler/app_protect-4.815.0/bin/apcompile -g myglobalsettings.json --global-state-outfile /path/to/myglobalstate.tgz
+    /opt/nms-nap-compiler/app_protect-4.815.0/bin/apcompile -b /path/to/policy_bundle.tgz --dump
+    /opt/nms-nap-compiler/app_protect-4.815.0/bin/apcompile -l logprofA.json -o /path/to/logprofA_bundle.tgz
 ...
 ```
 
@@ -1032,7 +1119,7 @@ Examples:
 
 Configure NGINX Agent on your NGINX App Protect WAF instance with settings similar to the following example:
 
-*/etc/nginx-agent/nginx-agent.conf*
+"/etc/nginx-agent/nginx-agent.conf"
 
 ```yaml
 # path to aux file dirs can also be added

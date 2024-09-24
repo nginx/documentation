@@ -1,7 +1,5 @@
 ---
-date: "2021-09-01T10:36:18-07:00"
 docs: DOCS-567
-draft: false
 title: Syslog Integration
 weight: 30
 ---
@@ -65,7 +63,7 @@ log {
 
 Take the following steps to create an Integration for syslog:
 
-1. Open the NGINX Controller user interface and log in.
+1. Open the F5 NGINX Controller user interface and log in.
 2. Select the NGINX Controller menu icon, then select **Platform**.
 3. On the **Platform** menu, select **Integrations**.
 4. On the **Integrations** menu, select the **Create Integration** quick action.

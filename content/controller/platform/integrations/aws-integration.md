@@ -1,20 +1,8 @@
 ---
-authors: []
-categories:
-- infrastructure
-- platform management
-date: "2021-09-01T10:36:03-07:00"
-description: Integrate NGINX Controller with Amazon Web Services
+description: Integrate F5 NGINX Controller with Amazon Web Services.
 docs: DOCS-785
 doctypes:
 - tutorial
-draft: false
-journeys:
-- using
-personas:
-- devops
-roles:
-- admin
 tags:
 - docs
 title: AWS Integration
@@ -40,7 +28,7 @@ In addition, you'll need to copy and save the following [AWS security credential
 
 To create an AWS Integration, take the following steps:
 
-1. Open the NGINX Controller user interface and log in.
+1. Open the F5 NGINX Controller user interface and log in.
 1. Select the NGINX Controller menu icon, then select **Platform**.
 1. On the **Platform** menu, select **Integrations**.
 1. On the **Integrations** menu, select the **Create Integration** quick action.

@@ -1,23 +1,8 @@
 ---
-authors: []
-categories:
-- services
-- gateways
-- app management
-date: "2020-10-26T15:32:41-06:00"
-description: Create, view, and edit Gateways
+description: Create, view, and edit Gateways.
 docs: DOCS-373
 doctypes:
 - tutorial
-draft: false
-journeys:
-- using
-- renewing
-personas:
-- devops
-- netops
-roles:
-- admin
 tags:
 - docs
 title: Manage Gateways
@@ -29,7 +14,7 @@ weight: 120
 
 
 
-A **Gateway** represents the initial network entry point of application and/or API traffic into an NGINX instance in the traffic data path. You can share the same gateway for both application and API traffic.
+A **Gateway** represents the initial network entry point of application and/or API traffic into an F5 NGINX instance in the traffic data path. You can share the same gateway for both application and API traffic.
 
 In a gateway, you define a group of **Ingress URIs** and **Certificates** that can then be used by [Application Components]({{< relref "/controller/app-delivery/about-app-delivery.md#components" >}}). Adding these definitions at the gateway level means you don't have to define the URIs and certificates for each component. Instead, you can inherit these settings from the gateway and only configure each component's relative path(s). Alternatively, you can fully define the URI in the component; doing so will override any settings defined for the gateway.
 
@@ -67,24 +52,28 @@ Let's say we created a gateway with an **Ingress URI** definition that contains 
 
 In the app component's ingress settings, we define a **Web URI** that uses a relative path. Together, the gateway URI -- "app.acme.com" -- and the component URIs -- "/widgets" -- form the absolute URI for our application: "app.acme.com/widgets". The component uses the certificate configured at the gateway level to secure traffic.
 
-{{% table %}}
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+
 |Object | Name | URIs | TLS Setting |
 |---|---|---|---|
 |Gateway|acme-app-gw|`https://app.acme.com`| `acme-cert-1` <br/> (custom TLS setting for this URI) |
 |Web component|acme-app-widgets|`/widgets`| `acme-cert-1` <br/> (inherited from acme-app-gw) |
-{{% /table %}}
+
+{{</bootstrap-table>}}
 
 Next, we will add some **TCP/UDP** settings.
 
 In the gateway, we add the TCP/UDP URI noted earlier: `tcp+tls://192.168.1.5:100-104` and a custom TLS setting of `acme-cert-2` for this URI. Then, we add a new TCP/UDP component with the URI `tcp+tls://192.168.1.5:100`.
 
-{{% table %}}
+{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+
 |Object | Name | URIs | TLS Setting |
 |---|---|---|---|
 |Gateway|acme-app-gw|`https://app.acme.com`, <br/> `tcp+tls://192.168.1.5:100-104`| `acme-cert-1` <br/> `acme-cert-2`|
 |Web component|acme-app-widgets|`/widgets`| `acme-cert-1` <br/> (inherited from acme-app-gw) |
 |TCP/UDP component|acme-app-tcp-udp|`tcp+tls://192.168.1.5:100`| `acme-cert-2` <br/> (inherited from acme-app-gw) |
-{{% /table %}}
+
+{{</bootstrap-table>}}
 
 In this configuration:
 
@@ -96,7 +85,7 @@ In this configuration:
 
 Gateways include **placements** that reference physical NGINX **instances** or **instance groups** (for example, an AWS cloud autoscale group).
 
-Placements define the **physical machines** that are used to manifest a particular path associated with a component.  
+Placements define the **physical machines** that are used to manifest a particular path associated with a component.
 
 When multiple placements are defined within a gateway, each placement represents a **resilient path** for any component that references that gateway.
 
@@ -196,9 +185,9 @@ On the **Gateways** > **Create Gateway** > **Additional** page:
    - `Explicitly Disable` - disable keep alive.
 
 1. (Optional) Add [**Config Snippets**]({{< relref "/controller/app-delivery/about-snippets.md" >}}) to customize your NGINX configuration.
-   
+
    {{< caution >}}
-   When you use Snippets to customize your NGINX configuration, your changes are applied to the `nginx.conf` file *as is*. NGINX Controller does not verify that your configuration is valid before applying the snippet. 
+   When you use Snippets to customize your NGINX configuration, your changes are applied to the `nginx.conf` file *as is*. NGINX Controller does not verify that your configuration is valid before applying the snippet.
 
    We strongly recommend verifying Snippets in a lab environment before making any changes in production.
    {{< /caution >}}

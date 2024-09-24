@@ -1,25 +1,9 @@
 ---
-authors: []
-categories:
-- installation
-- platform management
-date: "2020-12-06T13:55:05-08:00"
-description: Learn how to back up your NGINX Controller cluster configuration and
+description: Learn how to back up your F5 NGINX Controller cluster configuration and
   encryption keys.
 docs: DOCS-247
 doctypes:
 - task
-draft: false
-journeys:
-- getting started
-- using
-- self service
-personas:
-- devops
-- netops
-- secops
-roles:
-- admin
 tags:
 - docs
 title: Back Up & Restore Cluster Config and Encryption Keys
@@ -29,7 +13,7 @@ weight: 97
 
 ## Overview
 
-After installing NGINX Controller, you should back up the cluster config and encryption keys. You'll need these if you ever need to restore the NGINX config database on top of a new NGINX Controller installation.
+After installing F5 NGINX Controller, you should back up the cluster config and encryption keys. You'll need these if you ever need to restore the NGINX config database on top of a new NGINX Controller installation.
 
 - To back up the NGINX Controller cluster configuration and encryption keys:
 

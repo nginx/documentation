@@ -1,7 +1,6 @@
 ---
-description: "The guides in this section feature end-to-end examples that will help you get the most out of NGINX Management Suite API Connectivity Manager."
+description: "The guides in this section feature end-to-end examples that will help you get the most out of F5 NGINX Management Suite API Connectivity Manager."
 title: Tutorials
 weight: 600
-draft: false
 url: /nginx-management-suite/acm/tutorials/
 ---

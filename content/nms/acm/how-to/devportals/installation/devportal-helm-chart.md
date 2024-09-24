@@ -1,30 +1,15 @@
 ---
-title: "Deploy the Developer Portal from a Helm chart"
-date: 2022-12-14T16:34:44-08:00
-# Change draft status to false to publish doc
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Follow the steps in the guide to deploy the API Connectivity Manager Developer Portal to Kubernetes using a Helm chart."
-# Assign weights in increments of 100
-weight: 20
+description: Follow the steps in the guide to deploy the API Connectivity Manager
+  Developer Portal to Kubernetes using a Helm chart.
+docs: DOCS-1110
+doctypes:
+- tutorial
+tags:
+- docs
+title: Deploy the Developer Portal from a Helm chart
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1110"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["tutorial"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
+weight: 20
 ---
-
-{{<custom-styles>}}
 
 {{< shortversions "1.3.0" "latest" "acmvers" >}}
 
@@ -42,7 +27,7 @@ To complete the steps in this section, you need the following:
 - An installed, licensed, and running version of API Connectivity manager
 - A installed version of Helm v3.10.0 or newer
 - An [externally-accessible private Docker registry](https://docs.docker.com/registry/deploying/) to push the container images to
-- Your NGINX Plus certificate and key files, which you can download from [MyF5](https://my.f5.com/manage/s/)
+- Your F5 NGINX Plus certificate and key files, which you can download from [MyF5](https://my.f5.com/manage/s/)
 
 {{<see-also>}}
 
@@ -60,10 +45,10 @@ To complete the steps in this section, you need the following:
 2. In the NGINX products list, select **NGINX API Connectivity Manager**.
 3. Select the following download options. Pick the version that you require; in this guide, we've chosen 1.3.0 as an example:
 
-    **Product version:** 1.3.0  
-    **Linux distribution:** Ubuntu  
-    **Distribution Version:** 20.04  
-    **Architecture:** amd64  
+    **Product version:** 1.3.0
+    **Linux distribution:** Ubuntu
+    **Distribution Version:** 20.04
+    **Architecture:** amd64
 
 4. Download the `nginx-devportal-api-<version>-img.tar.gz` file.
 5. Download the `nginx-devportal-apigw-<version>-img.tar.gz` file.
@@ -72,7 +57,6 @@ To complete the steps in this section, you need the following:
    {{</ note >}}
 
 ---
-
 
 ## Load Docker Images {#load-docker-image}
 
@@ -109,7 +93,7 @@ To complete the steps in this section, you need the following:
    In the example output above, `nginx-devportal-api` is the image name and `1.5.0` is the tag for the first image. For the second image `nginx-devportal-apigw` is the image name and `1.5.0-r28` is the tag (where `1.5.0` is the release version and `r28` is the NGINX Plus version). The image names or tags could be different depending on the product version you downloaded from MyF5.
    {{</important>}}
 
-   ### (Optional) Build the API Gateway Container Image {#build-apigw-docker-image}
+### (Optional) Build the API Gateway Container Image {#build-apigw-docker-image}
    {{< note >}}
    This is step is only required for versions of API Connectivity Manager Developer Portal prior to `1.5.0` or if you require a specific release of NGINX Plus that is not provided on MyF5.
    {{< /note >}}
@@ -117,6 +101,7 @@ To complete the steps in this section, you need the following:
    <summary><i class="fa-solid fa-circle-info"></i> Build the API Gateway Container Image</summary>
    {{< include "installation/helm/acm/dev-portal-helm-configurations/build-helm-devportal-apigw-image.md">}}
    </details>
+
 ---
 
 ## Push Images to Private Registry {#push-images-private-registry}
@@ -192,7 +177,7 @@ A Helm `values.yaml` file is a configuration file you can use to customize the i
     - Replace `<my-docker-registry>` with your private Docker registry.
     - Replace `<version>` with the tag you used when [pushing the images to your private registry](#push-images-private-registry).
     - In the `imagePullSecrets` section, add the credentials for your private Docker registry.
-   
+
    {{<note>}}The contents of `api.acm.client.caSecret.key` can be obtained from the `/etc/nms/certs/apigw/ca.pem` on the control plane.{{</note>}}
 
     This `values.yaml` file specifies the Docker images to be used for the NGINX Developer Portal `apigw` and `api` components, including the repository (`<my-docker-registry>`) and tag (`version`) of each image. It also specifies that a secret called `regcred` should be used for image pulls.
@@ -203,7 +188,7 @@ A Helm `values.yaml` file is a configuration file you can use to customize the i
 
 ## Install the Chart
 
-The Developer Portal does not require (although it is recommended) a dedicated namespace for the data plane. You can create this namespace yourself, or you can allow Helm to create it for you by using the `--create-namespace` flag when installing.  
+The Developer Portal does not require (although it is recommended) a dedicated namespace for the data plane. You can create this namespace yourself, or you can allow Helm to create it for you by using the `--create-namespace` flag when installing.
 
 {{< note >}}
 If persistent storage is not configured in your cluster, set the `apigw.persistence.enabled` and `api.persistence.enabled` values to `false` either in the values file or using the `--set` helm commands.

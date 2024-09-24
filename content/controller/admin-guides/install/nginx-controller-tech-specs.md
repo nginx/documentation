@@ -1,30 +1,8 @@
 ---
-authors: []
-categories:
-- installation
-date: "2020-10-26T15:32:41-06:00"
-description: Guidelines and recommendations for configuring NGINX Controller.
+description: Guidelines and recommendations for configuring F5 NGINX Controller.
 docs: DOCS-256
 doctypes:
 - reference
-draft: false
-journeys:
-- researching
-- getting started
-- using
-- self service
-menu:
-  docs:
-    parent: Installation
-    weight: 10
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
-- user
 tags:
 - docs
 title: NGINX Controller Tech Specs
@@ -34,11 +12,40 @@ weight: 100
 
 ## Overview
 
-This guide lists the technical recommendations for NGINX Controller v3 and NGINX Controller Agent. Review this guide before installing or updating NGINX Controller or NGINX Controller Agent.
+This guide lists the technical recommendations for F5 NGINX Controller v3 and NGINX Controller Agent. Review this guide before installing or updating NGINX Controller or NGINX Controller Agent.
 
 ## Supported Distributions
 
-{{< include "controller/supported-distributions.md" >}}
+NGINX Controller, the NGINX Controller Agent, and the NGINX Controller Application Security Add-on support the following distributions and architectures.
+
+{{< see-also >}}Refer to the [NGINX Plus Technical Specifications](https://docs.nginx.com/nginx/technical-specs/) guide for the distributions that NGINX Plus supports.{{< /see-also >}}
+
+{{< bootstrap-table "table table-striped table-bordered" >}}
+
+|Distribution<br>and Version|NGINX Controller <br> (Control Plane)|Agent <br> (Data Plane)|ADC App. Sec.<br>(Data Plane)|APIM Adv. Sec.<br>(Data Plane)|Notes|
+|--- |--- |--- |--- |--- |--- |
+|Amazon Linux<br>2<br>(x86_64)| Not supported|v3.0+ |Not supported|Not supported| |
+|Amazon Linux<br>2017.09+<br>(x86_64)| Not supported |v3.0+|Not supported |Not supported| |
+|CentOS<br>6.5+<br>(x86_64)| Not supported |v3.0+| Not supported |Not supported| &#8226; CentOS 6.5 and later versions in the CentOS 6 family are partially supported. <br> &#8226; This distribution does not support <a href="#avrd">AVRD</a>.|
+|CentOS<br>7.4+<br>(x86_64)|v3.0+|v3.0+ | v3.12+ |v3.19+| &#8226; CentOS 7.4 and later versions in the CentOS 7 family are supported.|
+|Debian<br>8<br>(x86_64)| Not supported |v3.0–3.21|Not supported|Not supported|&#8226; This distribution does not support <a href="#avrd">AVRD</a>.|
+|Debian<br>9<br>(x86_64)|v3.0+|v3.0–3.21 | v3.12+ |v3.19+ | |
+|Debian<br>10<br>(x86_64)| Not supported |v3.17+ | v3.17+ |v3.19+| See the [NGINX Plus Admin Guide](https://docs.nginx.com/nginx/) for requirements for Debian 10. |
+|Red Hat Enterprise Linux<br>6.5+| Not supported |v3.0+| Not supported | Not supported| &#8226; RHEL 6.5 and later versions in the RHEL 6 family are partially supported.|
+|Red Hat Enterprise Linux<br>7.4+<br>(x86_64)|v3.5+|v3.5+ | v3.12+|v3.19+| &#8226; RHEL 7.4 and later versions in the RHEL 7 family are supported.<br>&#8226; SELinux may interfere with NGINX Controller installation and operation. If you do enable SELinux, it must use permissive mode. Use of enforcing mode is not supported. |
+|Red Hat Enterprise Linux<br>8.0+<br>(x86_64)|v3.22+|v3.22+ | v3.22+| Not supported | &#8226; RHEL 8.0 and later versions in the RHEL 8 family are supported. <br>&#8226; SELinux may interfere with NGINX Controller installation and operation. If you do enable SELinux, it must use permissive mode. Use of enforcing mode is not supported. |
+|Ubuntu<br>18.04 LTS<br>(x86_64)|v3.0+|v3.0+ |v3.13+|v3.19+| |
+|Ubuntu<br>20.04 LTS<br>(x86_64)|v3.20+|v3.12+|v3.16.1+|v3.19+| |
+
+{{< /bootstrap-table >}}
+
+
+<a name="avrd"></a>
+
+#### Analytics, Visibility, and Reporting Daemon (AVRD)
+
+NGINX Controller v3.1 and later use an Analytics, Visibility, and Reporting daemon (AVRD) to aggregate and report app-centric metrics, which you can use to track and check the health of your apps. To learn more about these metrics, see the [NGINX Metrics Catalog]({{< relref "/controller/analytics/catalogs/metrics.md" >}}) topic.
+
 
 &nbsp;
 
@@ -51,12 +58,14 @@ The following table shows the minimum storage requirements we recommend for NGIN
 We recommend using a local volume for the analytics and config databases for trial deployments, for simplicity's sake so you can get started using NGINX Controller right away. For production environments, we recommend using an external volume for the databases for resiliency.
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
+
 | Resource | Path(s) | Minimum Storage |
 |-|-|-|
 | NGINX&nbsp;Controller | <code style="white-space:nowrap;">/opt/nginx-controller</code> | 80&nbsp;GB |
 | Analytics database |  <code style="white-space:nowrap;">/opt/nginx-controller/clickhouse_data</code>  | &#8226;&nbsp;50&nbsp;GB <br> &#8226;&nbsp;150&nbsp;GB if App Security is enabled |
 | Config database | <code style="white-space:nowrap;">/opt/nginx-controller/postgres_data</code> | 10&nbsp;GB |
 | Logs  | &#8226;&nbsp;<code style="white-space:nowrap;">/var/log/nginx-controller</code> <br> &#8226;&nbsp;<code style="white-space:nowrap;">/var/log/journal</code> <br> &#8226;&nbsp;<code style="white-space:nowrap;">/var/log/pods</code> <br> &#8226;&nbsp;<code style="white-space:nowrap;">/var/lib/docker/containers</code> <br> &#8226;&nbsp;<code style="white-space:nowrap;">/var/lib/kubelet</code> <br> &#8226;&nbsp;<code style="white-space:nowrap;">/var/lib/kubernetes</code>| 15&nbsp;GB cumulative |
+
 {{< /bootstrap-table >}}
 
 
@@ -78,10 +87,30 @@ You can deploy NGINX Controller v3 into the following environments:
 
 ## NGINX Plus Instances
 
-NGINX Controller, using the Controller Agent, can monitor and manage up to 100 [NGINX Plus](https://www.nginx.com/products/nginx/) instances. When using Controller App Security, NGINX Controller can monitor and manage up to 30 NGINX Plus instances with NGINX App Protect installed.
+NGINX Controller, using the Controller Agent, can monitor and manage up to 100 [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) instances. When using Controller App Security, NGINX Controller can monitor and manage up to 30 NGINX Plus instances with NGINX App Protect installed.
 
 
-{{<include "controller/supported-nginx-plus-versions.md">}}
+NGINX Controller supports the following [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) versions:
+
+{{< bootstrap-table "table table-striped table-bordered" >}}
+
+| NGINX Plus | NGINX Controller | NGINX Controller ADC | NGINX Controller APIM |
+|------------|------------------|----------------------|-----------------------|
+| R30        | Not supported    | 3.22.9+              | Not supported         |
+| R29        | Not supported    | 3.22.9+              | 3.19.6+               |
+| R28        | Not supported    | 3.22.6+              | 3.19.6+               |
+| R27        | Not supported    | 3.22.4+              | 3.19.6+               |
+| R26        | Not supported    | 3.22.2+              | 3.19.6+               |
+| R25        | Not supported    | 3.20.1+              | 3.19.2+               |
+| R24        | 3.17+            | 3.20+                | 3.18+                 |
+| R23        | 3.12+            | 3.20.0 - 3.22.2      | 3.18+                 |
+| R22        | 3.5+             | 3.20.0 - 3.22.1      | 3.18+                 |
+| R21        | 3.5 - 3.12       | Not supported        | Not supported         |
+| R20        | 3.0 - 3.12       | Not supported        | Not supported         |
+| R19        | 2.6 - 3.5        | Not supported        | Not supported         |
+
+{{< /bootstrap-table >}}
+
 
 &nbsp;
 
@@ -141,7 +170,7 @@ We recommend using a local volume for the analytics and config databases for tri
 
 &nbsp;
 
-#### Local Storage
+### Local Storage
 
 When using local storage for the analytics and/or config database, we recommend the following specs:
 
@@ -154,7 +183,7 @@ To conserve IO and/or disk space, you can use a separate disk for the local stor
 
 &nbsp;
 
-#### NFS
+### NFS
 
 To use NFS for external storage for the analytics and/or config database, consider the following:
 
@@ -166,7 +195,7 @@ To use NFS for external storage for the analytics and/or config database, consid
 
 &nbsp;
 
-#### AWS EBS
+### AWS EBS
 
 {{< important >}}
 If you plan to run NGINX Controller on AWS EC2 instances, we recommend using NFS shares for the external volumes. Using EBS shares for multi-node clusters is not recommended because of the [EBS Availability Zone limitations](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volumes-multi.html#considerations); for example, the requirement to have EC2 instances and EBS volumes in the same Availability Zone.
@@ -221,7 +250,7 @@ You will need add an IAM role like that shown below.
 
 - IAM Role for [Multi-Node Installation]({{< relref "/controller/admin-guides/install/resilient-cluster-aws.md" >}})
 
-  ```json 
+  ```json
   {
     "Version": "2012-10-17",
     "Statement": [
@@ -323,7 +352,7 @@ Configure NGINX Controller with the following firewall settings:
 |Port| Used by | Used for|
 |---|---|---|
 | 5432 TCP | NGINX Controller database | Incoming connections to the NGINX Controller database from the NGINX Controller host. This is the default PostgreSQL port. |
-443 TCP | &bull; NGINX Controller <br/> &bull; NGINX Controller licensing | &bull; Incoming connections to NGINX Controller from a browser; for example, from an internal network and NGINX Plus instances <br/> &bull; Incoming and outgoing connections used to used to validate the entitlements for your NGINX Controller license |
+| 443 TCP | &bull; NGINX Controller <br/> &bull; NGINX Controller licensing | &bull; Incoming connections to NGINX Controller from a browser; for example, from an internal network and NGINX Plus instances <br/> &bull; Incoming and outgoing connections used to used to validate the entitlements for your NGINX Controller license |
 | 8443 TCP | NGINX Controller | Incoming connections from NGINX Plus instances <br>You need to **open** port 8443 TCP if you're running **NGINX Controller v3.18.2 or earlier**|
 | 8883 TCP | NGINX Controller licensing | Incoming and outgoing connections used to validate the entitlements for your NGINX Controller license <br> Port 8883 TCP needs to be **opened** only if you're running **NGINX Controller v3.15 or earlier**|
 

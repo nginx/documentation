@@ -1,26 +1,9 @@
 ---
-authors: []
-categories:
-- services
-- apps
-- security
-date: null
 description: How to tune WAF for your App.
 docs: DOCS-486
 doctypes:
 - concept
 - reference
-draft: false
-journeys:
-- researching
-- using
-personas:
-- devops
-- netops
-- secops
-- support
-roles:
-- admin
 tags:
 - task
 title: Manage WAF Tuning for App Components
@@ -34,7 +17,7 @@ WAF Tuning helps remove false positives or exceptions from Security Events.
 
 ## Disable Attack Signatures
 
-To help determine which signatures may be causing false positives, go to the Security Analytics page of the app component. Go to the WAF Tuning tab, where NGINX Controller provides this information.
+To help determine which signatures may be causing false positives, go to the Security Analytics page of the app component. Go to the WAF Tuning tab, where F5 NGINX Controller provides this information.
 
 To disable signatures, take the steps below.
 

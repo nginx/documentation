@@ -1,0 +1,31 @@
+---
+apiVersion: specs.smi-spec.io/v1alpha3
+kind: HTTPRouteGroup
+metadata:
+  name: route-group
+spec:
+  matches:
+  - name: destination-traffic
+    methods:
+    - GET
+    pathRegex: "/echo"
+    headers:
+      X-Demo-1: "^demo-1$"
+      x-demo-2: "demo"
+---
+apiVersion: access.smi-spec.io/v1alpha2
+kind: TrafficTarget
+metadata:
+  name: traffic-target
+spec:
+  destination:
+    kind: ServiceAccount
+    name: destination-sa
+  rules:
+  - kind: HTTPRouteGroup
+    name: route-group
+    matches:
+    - destination-traffic
+  sources:
+  - kind: ServiceAccount
+    name: source-allowed-sa

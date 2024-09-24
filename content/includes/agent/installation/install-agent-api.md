@@ -1,4 +1,4 @@
-You can install the NGINX Agent using `curl`, `wget`, or any command-line tool for transferring data with URLs. If the NGINX Management Suite host is not set up with valid TLS certificates, you can use the available insecure flags of those tools. See the following examples:
+**Note**: To complete this step, make sure that `gpg` is installed on your system. You can install NGINX Agent using various command-line tools like `curl` or `wget`. If your NGINX Management Suite host is not set up with valid TLS certificates, you can use the insecure flags provided by those tools. See the following examples:
 
 {{<tabs name="install-agent-api">}}
 
@@ -16,7 +16,7 @@ You can install the NGINX Agent using `curl`, `wget`, or any command-line tool f
   curl --insecure https://<NMS_FQDN>/install/nginx-agent | sudo sh
   ```
 
-  Modules including App Delivery Manager and API Connectivity Manager take advantage of the [instance group]({{< relref "/nms/nim/how-to/nginx/manage-instance-groups.md" >}}) feature for managing NGINX instances.  You can add your NGINX instance to an existing instance group or create one using `--instance-group` or `-g` flag when installing NGINX Agent.  
+  You can add your NGINX instance to an existing instance group or create one using `--instance-group` or `-g` flag when installing NGINX Agent.
 
   The following example shows how to download and run the script with the optional `--instance-group` flag adding the NGINX instance to the instance group **my-instance-group**:
 
@@ -57,7 +57,7 @@ You can install the NGINX Agent using `curl`, `wget`, or any command-line tool f
   wget --no-check-certificate https://<NMS_FQDN>/install/nginx-agent -O - | sudo sh
   ```
 
-   Modules including App Delivery Manager and API Connectivity Manager take advantage of the [instance group]({{< relref "/nms/nim/how-to/nginx/manage-instance-groups.md" >}}) feature for managing NGINX Instances.  When you install the NGINX Agent, you can use the  `--instance-group` or `-g` flag to add your NGINX instance to an existing instance group or to a new group that you specify. 
+   When you install the NGINX Agent, you can use the  `--instance-group` or `-g` flag to add your NGINX instance to an existing instance group or to a new group that you specify.
 
    The following example downloads and runs the NGINX Agent install script with the optional `--instance-group` flag, adding the NGINX instance to the instance group **my-instance-group**:
 

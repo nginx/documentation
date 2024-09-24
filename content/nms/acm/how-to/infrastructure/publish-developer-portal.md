@@ -1,22 +1,14 @@
 ---
-categories:
-- installation
-- configuration
-description: "Learn how to use the NGINX Management Suite API Connectivity Manager web interface to create, update, or delete a Developer Portal."
+description: Learn how to use the F5 NGINX Management Suite API Connectivity Manager
+  web interface to create, update, or delete a Developer Portal.
+docs: DOCS-901
 doctypes:
 - task
-draft: false
-journeys:
-- getting started
-- using
 tags:
 - docs
 title: Publish a Developer Portal
 toc: true
-versions: []
-categories: ["developer portal"]
 weight: 300
-docs: "DOCS-901"
 ---
 
 {{< shortversions "1.1.0" "latest" "acmvers" >}}
@@ -29,7 +21,7 @@ You can also modify and delete your Developer Portals using API Connectivity Man
 
 ### Before You Begin
 
-Complete the following prerequisites before proceeding with this guide: 
+Complete the following prerequisites before proceeding with this guide:
 
 - API Connectivity Manager is installed, licensed, and running.
 - Your [Infrastructure]({{< relref "/nms/acm/how-to/infrastructure/manage-api-infrastructure.md" >}}) has one or more Environments with a [Developer Portal]({{< relref "/nms/acm/getting-started/add-devportal" >}}) cluster.
@@ -51,12 +43,12 @@ Complete the following prerequisites before proceeding with this guide:
    - **Name**: (required) A name can be any combination of lowercase letters, hyphens, numbers, or underscores. Spaces and capital letters are not allowed.
    - **Description**: (optional; 150-character limit) The description should help others in your organization understand the nature or purpose of the Workspace.
 1. (Optional) Select the **Contact Information** box to designate someone as the Workspace's owner. Then, provide the following information:
-    
+
     - **Contact Name**
-    - **Contact Email** 
+    - **Contact Email**
     - **Slack**: The contact's Slack handle
 
-1. Select **Create** to save your changes. 
+1. Select **Create** to save your changes.
 
 
 ## Modify Developer Portal Resources

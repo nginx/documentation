@@ -1,25 +1,8 @@
 ---
-authors: []
-categories:
-- platform management
-- account settings
-date: "2020-10-26T15:32:41-06:00"
-description: Create and manage User resources
+description: Create and manage User resources.
 docs: DOCS-784
 doctypes:
 - tutorial
-draft: false
-journeys:
-- researching
-- getting started
-- using
-menu:
-  docs:
-    parent: Access Management
-personas:
-- devops
-roles:
-- admin
 tags:
 - docs
 title: Manage Users
@@ -31,7 +14,7 @@ weight: 20
 
 This topic explains how to create and manage User resources.
 
-A User resource represents an NGINX Controller User account. [Assign Roles to Users]({{< relref "/controller/platform/access-management/manage-roles.md" >}}) to define what actions Users can perform in NGINX Controller and what [Environment(s)]({{< relref "/controller/services/manage-environments.md" >}}) Users can access.
+A User resource represents an F5 NGINX Controller User account. [Assign Roles to Users]({{< relref "/controller/platform/access-management/manage-roles.md" >}}) to define what actions Users can perform in NGINX Controller and what [Environment(s)]({{< relref "/controller/services/manage-environments.md" >}}) Users can access.
 
 By default, all users have `READ` permissions for Analytics, Users, Roles, and Licenses. You can use the `/platform/roles` endpoint in the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}) to extend or narrow this default set of permissions.
 

@@ -1,31 +1,15 @@
 ---
-title: "Create and Manage Roles"
-date: 2023-08-03T10:50:23-07:00
-# Change draft status to false to publish doc.
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: "Learn how to easily create and manage user roles with NGINX Management Suite to tailor access according to your needs."
-# Assign weights in increments of 100
-weight: 200
+description: Learn how to easily create and manage user roles with F5 NGINX Management
+  Suite to tailor access according to your needs.
+docs: DOCS-1272
+doctypes:
+- task
+tags:
+- docs
+title: Create and Manage Roles
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-000"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["task"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
-
+weight: 200
 ---
-
-{{< custom-styles >}}
 
 <style>
 h2 {
@@ -36,7 +20,7 @@ h2 {
 
 ## Overview
 
-The NGINX Management Suite emphasizes role-based user access control. The suite includes a predefined `admin` role for initial setup and administration, but it doesn't stop there. Roles designed specifically for API Owners and Infrastructure Admins, for instance, let organizations finely delineate responsibilities and permissions. If these built-in roles don't meet your needs, it's easy to create your own.
+The F5 NGINX Management Suite emphasizes role-based user access control. The suite includes a predefined `admin` role for initial setup and administration, but it doesn't stop there. Roles designed specifically for API Owners and Infrastructure Admins, for instance, let organizations finely delineate responsibilities and permissions. If these built-in roles don't meet your needs, it's easy to create your own.
 
 ## Create Roles {#create-roles}
 
@@ -45,29 +29,6 @@ The NGINX Management Suite emphasizes role-based user access control. The suite 
 ## Edit Roles {#edit-roles}
 
 {{< include "admin-guides/rbac/edit-roles.md" >}}
-
-## Built-In Roles
-
-### API Connectivity Manager
-
-API Connectivity Manager comes pre-configured with roles suitable for API Owners and Infrastructure Admins.
-
-- **API Owner**: The individuals or teams who are responsible for designing, creating, and maintaining APIs.
-- **Infrastructure Admin**: Infrastructure Administrators ensure uniform governance across an organization’s infrastructure by setting policies at the infrastructure level, enabling teams to build APIs without interruption while adhering to the organization’s standards.
-
-#### ACM API Owner {#acm-api-owner}
-
-{{< include "acm/rbac/api-owner-role.md" >}}
-
-{{<see-also>}}The tutorial [Set Up RBAC for API Owners]({{< relref "/nms/acm/tutorials/rbac-api-owners.md">}}) provides an example of how to configure RBAC for API owners.{{</see-also>}}
-
-<br>
-
-#### ACM Infra Admin {#acm-infra-admin}
-
-{{< include "acm/rbac/infra-admin-role.md" >}}
-
-{{<see-also>}}The tutorial [Set Up RBAC for Infra Admins]({{< relref "/nms/acm/tutorials/rbac-infra-admins.md">}}) provides an example of how to configure RBAC for Infrastructure Administrators.{{</see-also>}}
 
 ## Next Steps
 

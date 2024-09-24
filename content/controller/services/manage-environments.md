@@ -1,21 +1,8 @@
 ---
-authors: []
-categories:
-- services
-- environment
-date: "2020-10-26T15:32:41-06:00"
 description: Create and manage environments to use with your apps, gateways, and certs.
 docs: DOCS-372
 doctypes:
 - tutorial
-draft: false
-journeys:
-- researching
-- using
-personas:
-- devops
-roles:
-- admin
 tags:
 - docs
 title: Manage Environments
@@ -25,7 +12,7 @@ weight: 100
 
 ## Overview
 
-This page contains instructions for creating and managing Environments in the NGINX Controller user interface.
+This page contains instructions for creating and managing Environments in the F5 NGINX Controller user interface.
 
 {{< tip >}}
 If you prefer, you can use the NGINX Controller API to create and manage Environments. See the [NGINX Controller API reference guide]({{< relref "/controller/api/_index.md" >}}) (**Services > Environments**) for details.
@@ -33,8 +20,8 @@ If you prefer, you can use the NGINX Controller API to create and manage Environ
 
 ## Objective
 
-* Create an Environment
-* View, edit, and delete environments
+- Create an Environment
+- View, edit, and delete environments
 
 ## About Environments
 
@@ -71,11 +58,11 @@ To view, edit, and delete environments:
 
 ## What's Next
 
-* [Give Users and Roles access to your Environment]({{< relref "/controller/platform/access-management/manage-users.md" >}})
-* [Create or Upload Certificates]({{< relref "/controller/services/manage-certs.md#create-a-cert" >}})
-* [Create a Gateway]({{< relref "/controller/services/manage-gateways.md#create-a-gateway" >}})
-* [Create an Application]({{< relref "/controller/app-delivery/manage-apps.md#create-an-app" >}})
-* [Create App Components]({{< relref "/controller/app-delivery/manage-apps.md#create-a-component" >}})
+- [Give Users and Roles access to your Environment]({{< relref "/controller/platform/access-management/manage-users.md" >}})
+- [Create or Upload Certificates]({{< relref "/controller/services/manage-certs.md#create-a-cert" >}})
+- [Create a Gateway]({{< relref "/controller/services/manage-gateways.md#create-a-gateway" >}})
+- [Create an Application]({{< relref "/controller/app-delivery/manage-apps.md#create-an-app" >}})
+- [Create App Components]({{< relref "/controller/app-delivery/manage-apps.md#create-a-component" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

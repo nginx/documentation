@@ -7,7 +7,7 @@ You can set up OIDC policy by using either the web interface or the REST API.
 
 1. In the API Connectivity Manager user interface, go to **Infrastructure > Workspaces > Environments** and select the **Edit Advanced Config** from the **Actions** menu for the cluster you want to set up.
 2. Select the **Global Policies** tab.
-3. For **OpenID Connect Relying Party** select **Add Policy** from the policy's **Actions** menu. 
+3. For **OpenID Connect Relying Party** select **Add Policy** from the policy's **Actions** menu.
 4. Update **Application Settings**.
 
 {{< include "acm/how-to/update-application-settings.md" >}}
@@ -37,13 +37,17 @@ You can set up OIDC policy by using either the web interface or the REST API.
 
 1. Send a POST request to add the OIDC policy to the cluster.
 
-   {{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
+
    {{<bootstrap-table "table">}}
+
    | Method      | Endpoint |
    |-------------|----------|
-   | POST | `/api/v1/infrastructure/workspaces/{{proxyWorkspaceName}}/environments`| 
-   {{</bootstrap-table>}}
-   {{< raw-html>}}</div>{{</raw-html>}}
+   | POST | `/api/v1/infrastructure/workspaces/{{proxyWorkspaceName}}/environments`|
+
+
+
+ {{</bootstrap-table>}}
+
 
     ```json
     {
@@ -83,6 +87,7 @@ You can set up OIDC policy by using either the web interface or the REST API.
         ]
     }
     ```
+
     {{%/tab%}}
 {{</tabs>}}
 

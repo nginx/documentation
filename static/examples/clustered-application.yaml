@@ -1,0 +1,110 @@
+apiVersion: access.smi-spec.io/v1alpha2
+kind: TrafficTarget
+metadata:
+  name: application-management-traffic
+  namespace: <Namespace>
+spec:
+  destination:
+    kind: ServiceAccount
+    name: <Application Service Account>
+    port: 8222
+  rules:
+    - kind: TCPRoute
+      name: application-tcp-route
+    - kind: HTTPRouteGroup
+      name: application-http-routes
+      matches:
+        - management
+  sources:
+    - kind: ServiceAccount
+      name: <Application Service Account>
+---
+apiVersion: access.smi-spec.io/v1alpha2
+kind: TrafficTarget
+metadata:
+  name: application-clustering-traffic
+  namespace: <Namespace>
+spec:
+  destination:
+    kind: ServiceAccount
+    name: <Application Service Account>
+    port: 6222
+  rules:
+    - kind: TCPRoute
+      name: application-tcp-route
+    - kind: HTTPRouteGroup
+      name: application-http-routes
+      matches:
+        - clustering
+  sources:
+    - kind: ServiceAccount
+      name: <Application Service Account>
+---
+apiVersion: access.smi-spec.io/v1alpha2
+kind: TrafficTarget
+metadata:
+  name: client-target
+  namespace: <Namespace>
+spec:
+  destination:
+    kind: ServiceAccount
+    name: <Application Service Account>
+    port: 4222
+  rules:
+    - kind: TCPRoute
+      name: application-tcp-route
+    - kind: HTTPRouteGroup
+      name: application-http-routes
+      matches:
+        - clients
+  sources:
+    - kind: ServiceAccount
+      name: <Client Service Account>
+---
+apiVersion: access.smi-spec.io/v1alpha2
+kind: TrafficTarget
+metadata:
+  name: metrics-target
+  namespace: <Namespace>
+spec:
+  destination:
+    kind: ServiceAccount
+    name: <Application Service Account>
+    port: 7777
+  rules:
+    - kind: TCPRoute
+      name: application-tcp-route
+    - kind: HTTPRouteGroup
+      name: application-http-routes
+      matches:
+        - metrics
+  sources:
+    - kind: ServiceAccount
+      name: <Prometheus Service Account>
+---
+apiVersion: specs.smi-spec.io/v1alpha3
+kind: HTTPRouteGroup
+metadata:
+  name: application-http-routes
+  namespace: <Namespace>
+spec:
+  matches:
+    - name: clients
+      pathRegex: "*"
+      methods: ["*"]
+    - name: management
+      pathRegex: "*"
+      methods: ["*"]
+    - name: clustering
+      pathRegex: "*"
+      methods: ["*"]
+    - name: metrics
+      pathRegex: "*"
+      methods: ["*"]
+---
+apiVersion: specs.smi-spec.io/v1alpha3
+kind: TCPRoute
+metadata:
+  name: application-tcp-route
+  namespace: <Namespace>
+---
