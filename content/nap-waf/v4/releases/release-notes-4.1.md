@@ -18,7 +18,7 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 
 ### New Features
 
-- [Alpine 3.16 Support]({{< relref "/nap-waf/v4/admin-guide/install.md#alpine-316-installation" >}})
+- [Alpine 3.16 Support]({{< relref "/nap-waf/v4/admin-guide/install.md#alpine-316--alpine-317-installation" >}})
 - [Apreload - NGINX App Protect WAF Standalone Configuration]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#nginx-app-protect-waf-standalone-configuration" >}})
 
 ### Supported Packages

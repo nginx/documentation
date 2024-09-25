@@ -41,7 +41,7 @@ Refer to the [NGINX App Protect WAF Release Notes]({{< relref "/nap-waf/v5/relea
 
 Here's how you can verify if the upgrade was successful:
 
-- **Check NGINX App Protect version**: Confirm the upgrade by checking the 'build' version of NGINX App Protect in Instance Manager. Ensure the details reflect the latest deployment and status. Use the command:
+- **Check NGINX App Protect Version**: Confirm the upgrade by checking the 'build' version of NGINX App Protect in Instance Manager. Ensure the details reflect the latest deployment and status. Use the command:
 
    ``` bash
    sudo more /etc/nms/app_protect_metadata.json

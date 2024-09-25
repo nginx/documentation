@@ -65,7 +65,7 @@ The sections just below review the common policy feature configurations using ex
 
 A policy's enforcement mode can be:
 
-- **Blocking:** Any illegal or suspicious requests are logged and blocked.
+- **Blocking:** Any illegal or suspicious requests are logged and blocked.  This is the default enforcement mode for the default policy and any added policy unless changed to Transparent.
 - **Transparent:** Any illegal or suspicious requests are logged but not blocked.
 
 Specific security features can be defined as blocked or transparent in the policy.

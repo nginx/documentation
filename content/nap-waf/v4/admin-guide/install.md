@@ -28,17 +28,18 @@ NGINX Plus Release 22 and later supports NGINX App Protect WAF.
 
 NGINX App Protect WAF supports the following operating systems:
 
-- [CentOS/RHEL 7.4.x and above](#centos-74-installation)
+- [CentOS/RHEL 7.4.x and above](#centos-74-installation) - (Deprecated starting from release 4.11)
 - [RHEL 8.1.x and above](#rhel-81-installation)
 - [RHEL 9 and above](#rhel-9-installation)
 - [Oracle Linux 8.1.x and above](#oracle-linux-81-installation)
-- [Amazon Linux 2](#amazon-linux-2-lts-installation)
+- [Amazon Linux 2](#amazon-linux-2-lts-installation) - (Deprecated starting from release 4.11)
 - [Debian 10 (Buster)](#debian-10--debian-11--debian-12-installation) - (Deprecated starting from NGINX Plus R28)
 - [Debian 11 (Bullseye)](#debian-10--debian-11--debian-12-installation)
 - [Debian 12 (Bookworm)](#debian-10--debian-11--debian-12-installation)
-- [Ubuntu 18.04 (Bionic)](#ubuntu-1804--ubuntu-2004--ubuntu-2204-installation) - (Deprecated starting from NGINX Plus R30)
-- [Ubuntu 20.04 (Focal)](#ubuntu-1804--ubuntu-2004--ubuntu-2204-installation)
-- [Ubuntu 22.04 (Jammy)](#ubuntu-1804--ubuntu-2004--ubuntu-2204-installation)
+- [Ubuntu 18.04 (Bionic)](#ubuntu-1804--ubuntu-2004--ubuntu-2204--ubuntu-2404-installation) - (Deprecated starting from NGINX Plus R30)
+- [Ubuntu 20.04 (Focal)](#ubuntu-1804--ubuntu-2004--ubuntu-2204--ubuntu-2404-installation)
+- [Ubuntu 22.04 (Jammy)](#ubuntu-1804--ubuntu-2004--ubuntu-2204--ubuntu-2404-installation)
+- [Ubuntu 24.04 (Noble)](#ubuntu-1804--ubuntu-2004--ubuntu-2204--ubuntu-2404-installation)
 - [Alpine 3.16](#alpine-316--alpine-317-installation)
 - [Alpine 3.17](#alpine-316--alpine-317-installation)
 
@@ -852,9 +853,11 @@ If a user other than **nginx** is to be used, note the following:
 6. Download and add the NGINX signing keys:
 
     ```shell
-    sudo wget https://cs.nginx.com/static/keys/nginx_signing.key && sudo apt-key add nginx_signing.key
+    wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | \
+    sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
 
-    sudo wget https://cs.nginx.com/static/keys/app-protect-security-updates.key && sudo apt-key add app-protect-security-updates.key
+    wget -qO - https://cs.nginx.com/static/keys/app-protect-security-updates.key | gpg --dearmor | \
+    sudo tee /usr/share/keyrings/app-protect-security-updates.gpg >/dev/null
     ```
 
 7. Remove any previous NGINX Plus repository and apt configuration files:
@@ -868,15 +871,21 @@ If a user other than **nginx** is to be used, note the following:
 8. Add NGINX Plus repository:
 
     ```shell
-    printf "deb https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-plus.list
+    printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+    https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | \
+    sudo tee /etc/apt/sources.list.d/nginx-plus.list
     ```
 
 9. Add NGINX App Protect WAF repositories:
 
     ```shell
-    printf "deb https://pkgs.nginx.com/app-protect/debian `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-app-protect.list
+    printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+    https://pkgs.nginx.com/app-protect/debian `lsb_release -cs` nginx-plus\n" | \
+    sudo tee /etc/apt/sources.list.d/nginx-app-protect.list
 
-    printf "deb https://pkgs.nginx.com/app-protect-security-updates/debian `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
+    printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg] \
+    https://pkgs.nginx.com/app-protect-security-updates/debian `lsb_release -cs` nginx-plus\n" | \
+    sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
     ```
 
 10. Download the apt configuration to `/etc/apt/apt.conf.d`:
@@ -947,7 +956,7 @@ If a user other than **nginx** is to be used, note the following:
 {{< /note >}}
 
 
-## Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04 Installation
+## Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04 / Ubuntu 24.04 Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -980,10 +989,11 @@ If a user other than **nginx** is to be used, note the following:
 6. Download and add the NGINX signing keys:
 
     ```shell
-    sudo wget https://cs.nginx.com/static/keys/nginx_signing.key && sudo apt-key add nginx_signing.key
+    wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | \
+    gpg --dearmor | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
 
-    sudo wget https://cs.nginx.com/static/keys/app-protect-security-updates.key && sudo apt-key add app-protect-security-updates.key
-
+    wget -qO - https://cs.nginx.com/static/keys/app-protect-security-updates.key | \
+    gpg --dearmor | sudo tee /usr/share/keyrings/app-protect-security-updates.gpg >/dev/null
     ```
 
 7. Remove any previous NGINX Plus repository and apt configuration files:
@@ -997,16 +1007,21 @@ If a user other than **nginx** is to be used, note the following:
 8. Add NGINX Plus repository:
 
     ```shell
-    printf "deb https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-plus.list
+    printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+    https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | \
+    sudo tee /etc/apt/sources.list.d/nginx-plus.list
     ```
 
 9. Add NGINX App Protect WAF repositories:
 
     ```shell
-    printf "deb https://pkgs.nginx.com/app-protect/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-app-protect.list
+    printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+    https://pkgs.nginx.com/app-protect/ubuntu `lsb_release -cs` nginx-plus\n" | \
+    sudo tee /etc/apt/sources.list.d/nginx-app-protect.list
 
-    printf "deb https://pkgs.nginx.com/app-protect-security-updates/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
-
+    printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg] \
+    https://pkgs.nginx.com/app-protect-security-updates/ubuntu `lsb_release -cs` nginx-plus\n" | \
+    sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
     ```
 
 10. Download the apt configuration to `/etc/apt/apt.conf.d`:
@@ -1039,7 +1054,7 @@ If a user other than **nginx** is to be used, note the following:
     app-protect=23+3.263.0-1~[OS_CODENAME]
     ```
 
-    Replace the [OS_CODENAME] in above the example with: **bionic** for Ubuntu 18.04, **focal** for Ubuntu 20.04 and **jammy** for Ubuntu 22.04.
+    Replace the [OS_CODENAME] in above the example with: **bionic** for Ubuntu 18.04, **focal** for Ubuntu 20.04, **jammy** for Ubuntu 22.04 and **noble** for Ubuntu 24.04.
     <br>
     <br>
 
@@ -1074,7 +1089,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo systemctl start nginx
     ```
 
-{{< note >}} Ubuntu 20.04 / Ubuntu 22.04 activates **AppArmor** by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
+{{< note >}} Ubuntu 20.04 / Ubuntu 22.04 / Ubuntu 24.04 activates **AppArmor** by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
 {{< /note >}}
 
 
@@ -1289,7 +1304,7 @@ If a user other than **nginx** is to be used, note the following:
         ```
 
     **Notes:**
-    - The `--no-cache` option tells Docker/Podman to build the image from scratch and ensures the installation of the latest version of NGINX Plus and NGINX App Protect WAF. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the cache.
+    - The `--no-cache` option tells Docker/Podman to build the image from scratch and ensures the installation of the latest version of NGINX Plus and NGINX App Protect WAF 4.x. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the cache.
     - For RHEL:<br>
     The subscription-manager is disabled when running inside containers based on Red Hat Universal Base images. You will need a registered and subscribed RHEL system.
 
@@ -1549,15 +1564,23 @@ FROM debian:${OS_CODENAME}
 RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2
 
 # Download and add the NGINX signing keys:
-RUN wget https://cs.nginx.com/static/keys/nginx_signing.key && apt-key add nginx_signing.key \
-    && wget https://cs.nginx.com/static/keys/app-protect-security-updates.key && apt-key add app-protect-security-updates.key
+RUN wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | \
+    gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+RUN wget -qO - https://cs.nginx.com/static/keys/app-protect-security-updates.key | \
+    gpg --dearmor | tee /usr/share/keyrings/app-protect-security-updates.gpg >/dev/null
 
 # Add NGINX Plus repository:
-RUN printf "deb https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list
+RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+    https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | \
+    tee /etc/apt/sources.list.d/nginx-plus.list
 
 # Add NGINX App Protect WAF repositories:
-RUN printf "deb https://pkgs.nginx.com/app-protect/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect.list \
-    && printf "deb https://pkgs.nginx.com/app-protect-security-updates/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/app-protect-security-updates.list
+RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+    https://pkgs.nginx.com/app-protect/debian `lsb_release -cs` nginx-plus\n" | \
+    tee /etc/apt/sources.list.d/nginx-app-protect.list
+RUN printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg] \
+    https://pkgs.nginx.com/app-protect-security-updates/debian `lsb_release -cs` nginx-plus\n" | \
+    tee /etc/apt/sources.list.d/app-protect-security-updates.list
 
 # Download the apt configuration to `/etc/apt/apt.conf.d`:
 RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
@@ -1579,28 +1602,36 @@ CMD ["sh", "/root/entrypoint.sh"]
 ```
 
 
-### Ubuntu 18.04 (Bionic) / 20.04 (Focal) / 22.04 (Jammy) Docker Deployment Example
+### Ubuntu 18.04 (Bionic) / 20.04 (Focal) / 22.04 (Jammy) / 24.04 (Noble) Docker Deployment Example
 
 ```dockerfile
 ARG OS_CODENAME
-# Where OS_CODENAME can be: bionic/focal/jammy
+# Where OS_CODENAME can be: bionic/focal/jammy/noble
 # syntax=docker/dockerfile:1
-# For Ubuntu 18.04 / 20.04 /22.04:
+# For Ubuntu 18.04 / 20.04 /22.04 / 24.04:
 FROM ubuntu:${OS_CODENAME}
 
 # Install prerequisite packages:
 RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2
 
 # Download and add the NGINX signing keys:
-RUN wget https://cs.nginx.com/static/keys/nginx_signing.key && apt-key add nginx_signing.key \
-    && wget https://cs.nginx.com/static/keys/app-protect-security-updates.key && apt-key add app-protect-security-updates.key
+RUN wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | \
+    gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+RUN wget -qO - https://cs.nginx.com/static/keys/app-protect-security-updates.key | \
+    gpg --dearmor | tee /usr/share/keyrings/app-protect-security-updates.gpg >/dev/null
 
 # Add NGINX Plus repository:
-RUN printf "deb https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list
+RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+    https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | \
+    tee /etc/apt/sources.list.d/nginx-plus.list
 
 # Add NGINX App Protect WAF repositories:
-RUN printf "deb https://pkgs.nginx.com/app-protect/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect.list \
-    && printf "deb https://pkgs.nginx.com/app-protect-security-updates/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/app-protect-security-updates.list
+RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+    https://pkgs.nginx.com/app-protect/ubuntu `lsb_release -cs` nginx-plus\n" | \
+    tee /etc/apt/sources.list.d/nginx-app-protect.list
+RUN printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg] \
+    https://pkgs.nginx.com/app-protect-security-updates/ubuntu `lsb_release -cs` nginx-plus\n" | \
+    tee /etc/apt/sources.list.d/app-protect-security-updates.list
 
 # Download the apt configuration to `/etc/apt/apt.conf.d`:
 RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
@@ -1690,15 +1721,15 @@ You need root permissions to execute the following steps.
         ```
 
     **Notes:**
-    - The `--no-cache` option tells Docker/Podman to build the image from scratch and ensures the installation of the latest version of NGINX Plus and NGINX App Protect WAF. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the cache.
+    - The `--no-cache` option tells Docker/Podman to build the image from scratch and ensures the installation of the latest version of NGINX Plus and NGINX App Protect WAF 4.x. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the cache.
     - For RHEL:<br>
     The subscription-manager is disabled when running inside containers based on Red Hat Universal Base images. You will need a registered and subscribed RHEL system.
 
 4. Create a temporary folder and copy your XML policy file(s) to it:
 
     ```shell
-    mkdir /tmp/converter
-    cp policy.xml /tmp/converter/
+    mkdir /tmp/convert
+    cp policy.xml /tmp/convert/
     ```
 
 5. Run the docker image with the temporary folder as a mounted volume on the container, and run the policy converter script:
@@ -1965,12 +1996,18 @@ FROM debian:bullseye/bookworm
 RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2
 
 # Download and add the NGINX signing keys:
-RUN wget https://cs.nginx.com/static/keys/nginx_signing.key && apt-key add nginx_signing.key \
-    && wget https://cs.nginx.com/static/keys/app-protect-security-updates.key && apt-key add app-protect-security-updates.key
+RUN wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | \
+    gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+RUN wget -qO - https://cs.nginx.com/static/keys/app-protect-security-updates.key | \
+    gpg --dearmor | tee /usr/share/keyrings/app-protect-security-updates.gpg >/dev/null
 
 # Add NGINX App Protect WAF repositories:
-RUN printf "deb https://pkgs.nginx.com/app-protect/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect.list \
-    && printf "deb https://pkgs.nginx.com/app-protect-security-updates/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/app-protect-security-updates.list
+RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+    https://pkgs.nginx.com/app-protect/debian `lsb_release -cs` nginx-plus\n" | \
+    tee /etc/apt/sources.list.d/nginx-app-protect.list 
+RUN printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg] \
+    https://pkgs.nginx.com/app-protect-security-updates/debian `lsb_release -cs` nginx-plus\n" | \
+    tee /etc/apt/sources.list.d/app-protect-security-updates.list
 
 # Download the apt configuration to `/etc/apt/apt.conf.d`:
 RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
@@ -1981,25 +2018,31 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect-compiler
 ```
 
-### Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04 Converter Docker Deployment Example
+### Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04 / Ubuntu 24.04 Converter Docker Deployment Example
 
 ```dockerfile
 ARG OS_CODENAME
-# Where OS_CODENAME can be: bionic/focal/jammy
+# Where OS_CODENAME can be: bionic/focal/jammy/noble
 # syntax=docker/dockerfile:1
-# For Ubuntu 18.04 / 20.04 /22.04:
+# For Ubuntu 18.04 / 20.04 /22.04 / 24.04:
 FROM ubuntu:${OS_CODENAME}
 
 # Install prerequisite packages:
 RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2
 
 # Download and add the NGINX signing keys:
-RUN wget https://cs.nginx.com/static/keys/nginx_signing.key && apt-key add nginx_signing.key \
-    && wget https://cs.nginx.com/static/keys/app-protect-security-updates.key && apt-key add app-protect-security-updates.key
+RUN wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | \
+    gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+RUN wget -qO - https://cs.nginx.com/static/keys/app-protect-security-updates.key | \
+    gpg --dearmor | tee /usr/share/keyrings/app-protect-security-updates.gpg >/dev/null
 
 # Add NGINX App Protect WAF repositories:
-RUN printf "deb https://pkgs.nginx.com/app-protect/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect.list \
-    && printf "deb https://pkgs.nginx.com/app-protect-security-updates/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/app-protect-security-updates.list
+RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+    https://pkgs.nginx.com/app-protect/ubuntu `lsb_release -cs` nginx-plus\n" | \
+    tee /etc/apt/sources.list.d/nginx-app-protect.list 
+RUN printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg] \ 
+    https://pkgs.nginx.com/app-protect-security-updates/ubuntu `lsb_release -cs` nginx-plus\n" | \
+    tee /etc/apt/sources.list.d/app-protect-security-updates.list
 
 # Download the apt configuration to `/etc/apt/apt.conf.d`:
 RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
@@ -2330,13 +2373,16 @@ After having updated the Attack Signature package you have to reload the configu
 1. Add NGINX App Protect WAF Security Updates repository:
 
     ```shell
-    printf "deb https://pkgs.nginx.com/app-protect-security-updates/debian `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
+    printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg] \
+    https://pkgs.nginx.com/app-protect-security-updates/debian `lsb_release -cs` nginx-plus\n" | \
+    sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
     ```
 
 2. Download and add the NGINX App Protect WAF signatures signing key:
 
     ```shell
-    sudo wget https://cs.nginx.com/static/keys/app-protect-security-updates.key && sudo apt-key add app-protect-security-updates.key
+    sudo wget https://cs.nginx.com/static/keys/app-protect-security-updates.key | \
+    gpg --dearmor | sudo tee /usr/share/keyrings/app-protect-security-updates.gpg >/dev/null
     ```
 
 3. Download the apt configuration to `/etc/apt/apt.conf.d`:
@@ -2382,13 +2428,16 @@ After having updated the Attack Signature package you have to reload the configu
 1. Add NGINX App Protect WAF Security Updates repository:
 
     ```shell
-    printf "deb https://pkgs.nginx.com/app-protect-security-updates/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
+    printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg] \
+    https://pkgs.nginx.com/app-protect-security-updates/ubuntu `lsb_release -cs` nginx-plus\n" | \
+    sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
     ```
 
 2. Download and add the NGINX App Protect WAF signatures signing key:
 
     ```shell
-    sudo wget https://cs.nginx.com/static/keys/app-protect-security-updates.key && sudo apt-key add app-protect-security-updates.key
+    sudo wget https://cs.nginx.com/static/keys/app-protect-security-updates.key | \
+    gpg --dearmor | sudo tee /usr/share/keyrings/app-protect-security-updates.gpg >/dev/null
     ```
 
 3. Download the apt configuration to `/etc/apt/apt.conf.d`:
@@ -2427,6 +2476,12 @@ After having updated the Attack Signature package you have to reload the configu
 
     ```shell
     sudo apt-get install app-protect-attack-signatures=2020.07.16-1~jammy
+    ```
+
+    For Ubuntu 24.04:
+
+    ```shell
+    sudo apt-get install app-protect-attack-signatures=2020.07.16-1~noble
     ```
 
 ### Alpine 3.16 / Alpine 3.17
@@ -2614,13 +2669,16 @@ Example: app-protect-threat-campaigns-2022.07.21
 1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
     ```shell
-    printf "deb https://pkgs.nginx.com/app-protect-security-updates/debian `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
+    printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg] \
+    https://pkgs.nginx.com/app-protect-security-updates/debian `lsb_release -cs` nginx-plus\n" | \
+    sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
     ```
 
 2. Download and add the NGINX App Protect WAF Threat Campaigns signing key:
 
     ```shell
-    sudo wget https://cs.nginx.com/static/keys/app-protect-security-updates.key && sudo apt-key add app-protect-security-updates.key
+    sudo wget https://cs.nginx.com/static/keys/app-protect-security-updates.key | \
+    gpg --dearmor | sudo tee /usr/share/keyrings/app-protect-security-updates.gpg >/dev/null
     ```
 
 3. Download the apt configuration to `/etc/apt/apt.conf.d`:
@@ -2666,13 +2724,16 @@ Example: app-protect-threat-campaigns-2022.07.21
 1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
     ```shell
-    printf "deb https://pkgs.nginx.com/app-protect-security-updates/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
+    printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg] \
+    https://pkgs.nginx.com/app-protect-security-updates/ubuntu `lsb_release -cs` nginx-plus\n" | \
+    sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
     ```
 
 2. Download and add the NGINX App Protect WAF Threat Campaigns signing key:
 
     ```shell
-    sudo wget https://cs.nginx.com/static/keys/app-protect-security-updates.key && sudo apt-key add app-protect-security-updates.key
+    sudo wget https://cs.nginx.com/static/keys/app-protect-security-updates.key | \
+    gpg --dearmor | sudo tee /usr/share/keyrings/app-protect-security-updates.gpg >/dev/null
     ```
 
 3. Download the apt configuration to `/etc/apt/apt.conf.d`:
@@ -2711,6 +2772,12 @@ Example: app-protect-threat-campaigns-2022.07.21
 
     ```shell
     sudo apt-get install app-protect-threat-campaigns=2020.08.05-1~jammy
+    ```
+
+    For Ubuntu 24.04:
+
+    ```shell
+    sudo apt-get install app-protect-attack-signatures=2024.06.26-1~noble
     ```
 
 ## Updating App Protect Bot Signatures
@@ -2854,13 +2921,16 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
 1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
     ```shell
-    printf "deb https://pkgs.nginx.com/app-protect-security-updates/debian `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
+    printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg] \
+    https://pkgs.nginx.com/app-protect-security-updates/debian `lsb_release -cs` nginx-plus\n" | \
+    sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
     ```
 
 2. Download and add the NGINX App Protect WAF Bot Signatures signing key:
 
     ```shell
-    sudo wget https://cs.nginx.com/static/keys/app-protect-security-updates.key && sudo apt-key add app-protect-security-updates.key
+    sudo wget https://cs.nginx.com/static/keys/app-protect-security-updates.key | \
+    gpg --dearmor | sudo tee /usr/share/keyrings/app-protect-security-updates.gpg >/dev/null
     ```
 
 3. Download the apt configuration to `/etc/apt/apt.conf.d`:
@@ -2901,13 +2971,16 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
 1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
     ```shell
-    printf "deb https://pkgs.nginx.com/app-protect-security-updates/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
+    printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg] \
+    https://pkgs.nginx.com/app-protect-security-updates/ubuntu `lsb_release -cs` nginx-plus\n" | \
+    sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
     ```
 
 2. Download and add the NGINX App Protect WAF Bot Signatures signing key:
 
     ```shell
-    sudo wget https://cs.nginx.com/static/keys/app-protect-security-updates.key && sudo apt-key add app-protect-security-updates.key
+    sudo wget https://cs.nginx.com/static/keys/app-protect-security-updates.key | \
+    gpg --dearmor | sudo tee /usr/share/keyrings/app-protect-security-updates.gpg >/dev/null
     ```
 
 3. Download the apt configuration to `/etc/apt/apt.conf.d`:
@@ -2942,10 +3015,16 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     sudo apt-get install app-protect-bot-signatures=2023.11.14~jammy
     ```
 
+    For Ubuntu 24.04:
+
+    ```shell
+    sudo apt-get install app-protect-bot-signatures=2024.06.23~noble
+    ```
+
 
 ## Upgrading App Protect
 
-You can upgrade to the latest NGINX Plus and App Protect versions by downloading and installing the latest NGINX App Protect WAF package. When upgrading from this package, App Protect will be uninstalled and reinstalled. The old default security policy is deleted and the new default security policy is installed. If you have created a custom security policy, the policy persists and you will need to update `nginx.conf` and point to the custom security policy by referencing the json file (using the full path).
+You can upgrade to the latest NGINX Plus and App Protect 4.x versions by downloading and installing the latest NGINX App Protect WAF 4.x package. When upgrading from this package, App Protect will be uninstalled and reinstalled. The old default security policy is deleted and the new default security policy is installed. If you have created a custom security policy, the policy persists and you will need to update `nginx.conf` and point to the custom security policy by referencing the json file (using the full path).
 
 After upgrading the NGINX App Protect WAF version, restart NGINX manually:
 
@@ -2953,7 +3032,7 @@ After upgrading the NGINX App Protect WAF version, restart NGINX manually:
 sudo systemctl restart nginx
 ```
 
-In case of using the prebuilt SELinux policy module for NGINX App Protect WAF (app-protect-selinux) - upgrade it by installing the latest available version.
+In case of using the prebuilt SELinux policy module for NGINX App Protect WAF (app-protect-selinux) - upgrade it by installing the latest 4.x available version.
 
 ## Uninstall App Protect
 
@@ -2981,7 +3060,7 @@ app-protect-selinux
 sudo dnf remove app-protect app-protect-selinux
 ```
 
-### Debian 11 / Debian 12 / Ubuntu 20.04 / Ubuntu 22.04
+### Debian 11 / Debian 12 / Ubuntu 20.04 / Ubuntu 22.04 / Ubuntu 24.04
 
 ```shell
 sudo apt-get remove app-protect \
@@ -3071,14 +3150,14 @@ app-protect-bot-signatures
     app-protect=27+3.1088.2-1~[OS_CODENAME]
     ```
 
-    **Note**: Replace the [OS_CODENAME] in the above command with: **bionic** for Ubuntu 18.04, **focal** for Ubuntu 20.04 and **jammy** for Ubuntu 22.04.
+    **Note**: Replace the [OS_CODENAME] in the above command with: **bionic** for Ubuntu 18.04, **focal** for Ubuntu 20.04, **jammy** for Ubuntu 22.04 and **noble** for Ubuntu 24.04.
 
 
 ## Upgrading App Protect to the latest version
 
 ### CentOS / RHEL 7.4.x / Amazon Linux 2
 
-- Upgrade the NGINX App Protect WAF to the latest version:
+- Upgrade the NGINX App Protect WAF to the latest 4.x version:
 
     ```shell
     sudo yum -y update app-protect
@@ -3086,7 +3165,7 @@ app-protect-bot-signatures
 
 ### RHEL 8.1+ / Oracle Linux 8.1+ / RHEL 9+
 
-- Upgrade the NGINX App Protect WAF to the latest version:
+- Upgrade the NGINX App Protect WAF to the latest 4.x version:
 
     ```shell
     sudo dnf -y update app-protect
@@ -3094,7 +3173,7 @@ app-protect-bot-signatures
 
 ### Debian 10 / Debian 11 / Debian 12 / Ubuntu 18.04 / Ubuntu 20.04 / Ubuntu 22.04
 
-- Upgrade the NGINX App Protect WAF to the latest version:
+- Upgrade the NGINX App Protect WAF to the latest 4.x version:
 
     ```shell
     sudo apt-get update && apt-get install -y app-protect

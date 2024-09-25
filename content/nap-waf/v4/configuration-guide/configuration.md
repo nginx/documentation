@@ -19,7 +19,7 @@ When configuring NGINX App Protect WAF, `app_protect_enable` should always be en
 {{< /important >}}
 
 ## Supported Security Policy Features
-{{< include "nap-waf/config/common/supported-security-policy-features.md" >}}
+{{< include "nap-waf/config/v4/supported-security-policy-features-v4.md" >}}
 
 ### Disallowed File Types
 {{< include "nap-waf/config/common/disallowed-file-types.md" >}}
@@ -110,7 +110,7 @@ See [signature sets](#signature-sets) for configuring the signature sets include
 {{< include "nap-waf/config/common/user-defined-browser-control.md" >}}
 
 
-#### Deny, Allow and Never Log Lists
+#### Deny and Allow IP Lists
 
 {{< include "nap-waf/config/common/deny-allow-never-log-lists.md" >}}
 
@@ -346,6 +346,7 @@ See [signature sets](#signature-sets) for configuring the signature sets include
 ### JSON Web Token Violations
 
 {{< include "nap-waf/config/common/json-web-tokens-violations.md" >}}
+
 
 ### Violation Rating Calculation
 {{< include "nap-waf/config/common/json-web-tokens-violation-rating.md" >}}

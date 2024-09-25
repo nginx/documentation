@@ -21,28 +21,29 @@ The JSON Web Token consists of three parts: the **Header**, **Claims** and **Sig
 
     ```json
     {
-    "sub": "1234567890",
-    "name": "John Doe",
-    "iat": 1654591231,
-    "nbf": 1654607591,
-    "exp": 1654608348
+      "sub": "1234567890",
+      "name": "John Doe",
+      "iat": 1654591231,
+      "nbf": 1654607591,
+      "exp": 1654608348
     }
     ```
-    In the example above, the payload contains several claims:
 
-    - sub (Subject): Represents the subject of the JWT, typically the user or entity for which the token was created.
+In example above, the payload contains several claims:
 
-    - name (Issuer): Indicates the entity that issued the JWT. It is a string that identifies the issuer of the token.
+- sub (Subject) - Represents the subject of the JWT, typically the user or entity for which the token was created.
 
-    - iat (Issued At): Indicates the time at which the token was issued. Like exp, it is represented as a timestamp.
+- name (Issuer) - Indicates the entity that issued the JWT. It is a string that identifies the issuer of the token.
 
-    - nbf (Not Before): Indicates the time before which the token should not be considered valid.
+- iat (Issued At) - Indicates the time at which the token was issued. Like exp, it is represented as a timestamp.
 
-    - exp (Expiration Time): Specifies the expiration time of the token. It is represented as a numeric timestamp (e.g., 1654608348), and the token is considered invalid after this time.
+- nbf (Not Before) - Specifies the time before which the token should not be considered valid.
 
-    These claims provide information about the JWT and can be used by the recipient to verify the token's authenticity and determine its validity. Additionally, you can include custom claims in the payload to carry additional information specific to your application.
+- exp (Expiration Time) - Specifies the expiration time of the token. It is represented as a numeric timestamp (e.g., 1654608348), and the token is considered invalid after this time.
 
-- **Signature**: To create the signature part, the header and payload are encoded using a specified algorithm and a secret key. This signature can be used to verify the authenticity of the token and to ensure that it has not been tampered with during transmission. The signature is computed based on the algorithm and the keys used and also Base64-encoded.
+These claims provide information about the JWT and can be used by the recipient to verify the token's authenticity and determine its validity. Additionally, you can include custom claims in the payload to carry additional information specific to your application.
+
+- **Signature** - To create the signature part, the header and payload are encoded using a specified algorithm and a secret key. This signature can be used to verify the authenticity of the token and to ensure that it has not been tampered with during transmission. The signature is computed based on the algorithm and the keys used and also Base64-encoded.
 
 #### NGINX App Protect WAF supports the following types of JWT:
 
