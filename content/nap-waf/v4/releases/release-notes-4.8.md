@@ -70,6 +70,6 @@ February 6, 2024
 - 10156 Fixed - Chunked requests connection is stuck in CLOSE_WAIT state.
 
 
-### **Important Notes**
+### **Important Note**
 
 - Actionable Rules and Geolocation are now supported in [Policy Override Rules]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#override-rules" >}}).

@@ -46,9 +46,9 @@ Starting with NGINX App Protect WAF release version 4.6, the [`app_protect_compr
 
 #### Handling Decompression
 
-Now by default the enforcer will decompress all the HTTP compressed payload request and will apply the enforcment. The supported compression algorithms for this feature are "**gzip**" and "**deflate**". There will be no decompression, if the compression method is not supported.
+Now by default the enforcer will decompress all the HTTP compressed payload request and will apply the enforcement. The supported compression algorithms for this feature are "**gzip**" and "**deflate**". There will be no decompression, if the compression method is not supported.
 
-The 'Content-Encoding' header must match the compression algorithm used while sending compressed payload in a HTTP request, else the enfocer will fail to decompress the payload.
+The 'Content-Encoding' header must match the compression algorithm used while sending compressed payload in a HTTP request, else the enforcer will fail to decompress the payload.
 
 The decompressed request must not exceed the size limit of 10 MB. If it does exceed this limit, NGINX App Protect WAF will only decompress the first 10 KB, ignoring the remainder, and trigger the `VIOL_REQUEST_MAX_LENGTH` violation, just as it would for an uncompressed request that exceeds 10 MB.
 

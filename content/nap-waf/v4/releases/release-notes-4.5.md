@@ -25,7 +25,7 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 
 In this release, NGINX App Protect WAF supports NGINX Plus R30.
 
-- [Alpine 3.17 Support]({{< relref "/nap-waf/v4/admin-guide/install.md#alpine-317-installation" >}})
+- [Alpine 3.17 Support]({{< relref "/nap-waf/v4/admin-guide/install.md#alpine-316--alpine-317-installation" >}})
 
 ### Supported Packages
 

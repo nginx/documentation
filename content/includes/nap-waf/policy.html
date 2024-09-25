@@ -382,13 +382,20 @@
 <td></td>
 </tr>
 <tr class="even">
+<td><code>wafEngineVersion</code></td>
+<td>No</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
 <td><a href="#policy/whitelist-ips">whitelist-ips</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>An IP address exception is an IP address that you want the system to treat in a specific way for a security policy. You can use the IP address exception feature to create exceptions for IP addresses of internal tools that your company uses, such as penetration tools, manual or automatic scanners, or web scraping tools. You can add an IP address exception and instruct the system how to handle traffic coming from that address.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/xml-profiles">xml-profiles</a></td>
 <td>Yes</td>
 <td>array of objects</td>
@@ -440,6 +447,12 @@
 </thead>
 <tbody>
 <tr class="odd">
+<td><code>derivedFrom</code></td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
 <td><code>name</code></td>
 <td>string</td>
 <td>Specifies the name of the template used for the policy creation.</td>
@@ -1971,10 +1984,8 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>idlFile</code></td>
-<td><ul>
-<li>object</li>
-</ul></td>
+<td><a href="#policy/graphql-profiles/idlFiles/idlFile">idlFile</a></td>
+<td>object</td>
 <td></td>
 <td></td>
 </tr>
@@ -1984,6 +1995,25 @@
 <td></td>
 <td></td>
 </tr>
+</tbody>
+</table>
+<h4 id="policy/graphql-profiles/idlFiles/idlFile">idlFile</h4>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
 </tbody>
 </table>
 <h3 id="policy/graphql-profiles/metacharOverrides">metacharOverrides</h3>
@@ -2253,10 +2283,8 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>idlFile</code></td>
-<td><ul>
-<li>object</li>
-</ul></td>
+<td><a href="#policy/grpc-profiles/idlFiles/idlFile">idlFile</a></td>
+<td>object</td>
 <td></td>
 <td></td>
 </tr>
@@ -2278,6 +2306,25 @@
 <td></td>
 <td></td>
 </tr>
+</tbody>
+</table>
+<h4 id="policy/grpc-profiles/idlFiles/idlFile">idlFile</h4>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
 </tbody>
 </table>
 <h3 id="policy/grpc-profiles/signatureOverrides">signatureOverrides</h3>
@@ -2372,18 +2419,24 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>allowRepeatedOccurrences</code></td>
+<td><code>allowEmptyValue</code></td>
 <td>boolean</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="even">
-<td><code>checkSignatures</code></td>
+<td><code>allowRepeatedOccurrences</code></td>
 <td>boolean</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="odd">
+<td><code>checkSignatures</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
 <td><p><code>decodeValueAsBase64</code></p></td>
 <td><p>string</p></td>
 <td><p>Specifies whether the the system should detect or require values to be Base64 encoded:</p>
@@ -2400,25 +2453,25 @@
 <li>required</li>
 </ul></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>htmlNormalization</code></td>
 <td>boolean</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>mandatory</code></td>
 <td>boolean</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>maskValueInLogs</code></td>
 <td>boolean</td>
 <td>Specifies, when true, that the headers's value will be masked in the request log.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p><code>name</code></p></td>
 <td><p>string</p></td>
 <td><p>Specifies the HTTP header name. The header name length is limited to 254 characters.</p>
@@ -2443,25 +2496,25 @@
 <p><strong>Note</strong>: Wildcards do not match regular expressions. Do not use a regular expression as a wildcard.</p></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>normalizationViolations</code></td>
 <td>boolean</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>percentDecoding</code></td>
 <td>boolean</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/headers/signatureOverrides">signatureOverrides</a></td>
 <td>array of objects</td>
 <td>Array of signature overrides. Specifies attack signatures whose security policy settings are overridden for this header, and which action the security policy takes when it discovers a request for this header that matches these attack signatures.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>type</code></td>
 <td>string</td>
 <td>Determines the type of the <strong>name</strong> attribute. Only when setting the type to wildcard will the special wildcard characters in the name be interpreted as such.</td>
@@ -2470,13 +2523,13 @@
 <li>wildcard</li>
 </ul></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>urlNormalization</code></td>
 <td>boolean</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>wildcardOrder</code></td>
 <td>integer</td>
 <td>Specifies the order index for wildcard header matching. Wildcard headers with lower wildcard order will get checked for a match prior to headers with higher wildcard order.</td>
@@ -2851,13 +2904,30 @@
 <td></td>
 </tr>
 <tr class="odd">
-<td><code>jsonValidationFile</code></td>
-<td><ul>
-<li>object</li>
-</ul></td>
+<td><a href="#policy/json-profiles/validationFiles/jsonValidationFile">jsonValidationFile</a></td>
+<td>object</td>
 <td></td>
 <td></td>
 </tr>
+</tbody>
+</table>
+<h4 id="policy/json-profiles/validationFiles/jsonValidationFile">jsonValidationFile</h4>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
 </tbody>
 </table>
 <h2 id="policy/json-validation-files">json-validation-files</h2>
@@ -4125,6 +4195,12 @@
 <td></td>
 </tr>
 <tr class="odd">
+<td><code>learn</code></td>
+<td>boolean</td>
+<td>If enabled - when a signature from this signature set is detected in a request -the policy builder creates a learning suggestion to disable it.</td>
+<td></td>
+</tr>
+<tr class="even">
 <td><code>name</code></td>
 <td>string</td>
 <td>Signature set name.</td>
@@ -4515,24 +4591,30 @@
 <td></td>
 </tr>
 <tr class="even">
+<td><code>learn</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
 <td><code>name</code></td>
 <td>string</td>
 <td>The signature name which, along with the signature tag, identifies the signature.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>performStaging</code></td>
 <td>boolean</td>
 <td>Specifies, if true, that the signature is in staging. The system does not enforce signatures in staging. Instead, the system records the request information and keeps it for a period of time (the Enforcement Readiness Period whose default time period is 7 days). Specifies, when false, that the staging feature is not in use, and that the system enforces the signatures' Learn/Alarm/Block settings immediately. (Blocking is performed only if the security policy's enforcement mode is Blocking.)</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>signatureId</code></td>
 <td>integer</td>
 <td>The signature ID which identifies the signature.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>tag</code></td>
 <td>string</td>
 <td>The signature tag which, along with the signature name, identifies the signature.</td>
@@ -5615,6 +5697,12 @@
 <td></td>
 </tr>
 <tr class="odd">
+<td><code>learn</code></td>
+<td>boolean</td>
+<td>Defines if sub-violation is learned. Sub-violations are learned only when learn is enabled for the 'Evasion technique detected' (VIOL_EVASION) violation.</td>
+<td></td>
+</tr>
+<tr class="even">
 <td><code>maxDecodingPasses</code></td>
 <td>integer minimum: 2 maximum: 5</td>
 <td>Defines how many times the system decodes URI and parameter values before the request is considered an evasion. Relevant only for the 'Multiple decoding' sub-violation.</td>
@@ -5667,18 +5755,24 @@
 <td></td>
 </tr>
 <tr class="odd">
+<td><code>learn</code></td>
+<td>boolean</td>
+<td>Defines if sub-violation is learned. Sub-violations is learned only when learn is enabled for the 'HTTP protocol compliance failed' (VIOL_HTTP_PROTOCOL) violation</td>
+<td></td>
+</tr>
+<tr class="even">
 <td><code>maxCookies</code></td>
 <td>integer minimum: 1 maximum: 100</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>maxHeaders</code></td>
 <td>integer minimum: 1 maximum: 150</td>
 <td>Defines maximum allowed number of headers in request. Relevant only for the 'Check maximum number of headers' sub-violation</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>maxParams</code></td>
 <td>integer minimum: 1 maximum: 5000</td>
 <td>Defines maximum allowed number of parameters in request. Relevant only for the 'Check maximum number of parameters' sub-violation</td>
@@ -5722,6 +5816,12 @@
 <td></td>
 </tr>
 <tr class="even">
+<td><code>learn</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
 <td><code>name</code></td>
 <td>string</td>
 <td></td>

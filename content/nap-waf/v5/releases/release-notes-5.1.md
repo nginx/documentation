@@ -11,21 +11,21 @@ weight: 900
 April 18, 2024
 
 {{< note >}}
- All existing policy bundles and log bundles must be recompiled post upgrade using this version's WAF compiler. Older bundles will be detected and disallowed.
+All existing policy bundles and log bundles must be recompiled post upgrade using this version's WAF compiler. Older bundles will be detected and disallowed.
 {{< /note >}}
 
 ### New Features
 
 In this release, F5 NGINX App Protect WAF supports NGINX Open Source 1.25.4 and NGINX Plus R31 P1.
 
-- [Authorization Rules in URLs]({{<relref "nap-waf/v5/configuration-guide/configuration.md#authorization-rules-in-urls">}})
-- New [JSON Web Token]({{<relref "nap-waf/v5/configuration-guide/configuration.md##json-web-token-protection">}}) signature signing algorithm support for:
+- [Authorization Rules in URLs]({{< relref "nap-waf/v5/configuration-guide/configuration.md#authorization-rules-in-urls" >}})
+- New [JSON Web Token]({{< relref "nap-waf/v5/configuration-guide/configuration.md#json-web-token-protection" >}}) signature signing algorithm support for:
 
     - **RSA**: RS256, RS384, RS512
     - **PSS**: PS256, PS384, PS512
     - **ECDSA**: ES256, ES256K, ES384, ES512
     - **EdDSA**
-- [Time-Based Signature Staging]({{<relref "nap-waf/v5/configuration-guide/configuration.md#time-based-signature-staging">}})
+- [Time-Based Signature Staging]({{< relref "nap-waf/v5/configuration-guide/configuration.md#time-based-signature-staging" >}})
 
 ### Supported Packages
 
