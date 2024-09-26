@@ -66,7 +66,7 @@ F5 NGINX ModSecurity WAF is a module for NGINX Plus.
 - 19.10 (x86_64)
 - 20.04 (x86_64)
 
-**Note:** CentOS/Oracle/Red Hat Enterprise Linux 6.5 users please see [this advisory](https://www.nginx.com/blog/nginx-se-linux-changes-upgrading-rhel-6-6/) when upgrading to version 6.6.
+**Note:** CentOS/Oracle/Red Hat Enterprise Linux 6.5 users please see [this advisory](https://www.f5.com/company/blog/nginx/using-nginx-plus-with-selinux) when upgrading to version 6.6.
 
 **Note:** i386 and x86_64 support only, no aarch64 or ppc64le
 
