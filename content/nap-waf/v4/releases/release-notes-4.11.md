@@ -23,11 +23,7 @@ Release 4.8.1 cannot be upgraded to v4.11. You must uninstall 4.8.1 and install 
 
 #### App Protect
 
-##### Alpine Linux 3.16 
-
-- app-protect-32.5.144.0-r1.apk
-
-##### Alpine Linux 3.17
+##### Alpine Linux 3.16 / Alpine Linux 3.17
 
 - app-protect-32.5.144.0-r1.apk
 
