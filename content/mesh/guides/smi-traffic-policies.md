@@ -29,7 +29,7 @@ You can use the SMI [TrafficSplit spec](https://github.com/servicemeshinterface/
 
 <!-- vale on -->
 
-NGINX Service Mesh is also compatible with [Flagger](https://www.weave.works/blog/flagger-smi) and other SMI-compatible projects.
+NGINX Service Mesh is also compatible with Flagger and other SMI-compatible projects.
 
 The [Deployments using Traffic Splitting]( {{< ref "/mesh/tutorials/trafficsplit-deployments.md" >}} ) tutorial provides a walkthrough of using traffic splits in a deployment.
 
