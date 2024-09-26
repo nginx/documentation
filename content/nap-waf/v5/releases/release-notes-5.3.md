@@ -45,11 +45,7 @@ All existing policy bundles and log bundles must be recompiled post upgrade usin
 
 ##### Ubuntu 24.04
 
-- app-protect-module-oss_1.25.5+5.144.0-1~noble_amd64.deb
-
-##### RHEL 7.4+ / CentOS 7.4+ / Amazon Linux 2	
-
-- app-protect-module-oss-1.25.5+5.144.0-1.el7.ngx.x86_64.rpm	
+- app-protect-module-oss_1.25.5+5.144.0-1~noble_amd64.deb	
 
 ##### RHEL 8.1+ / Oracle Linux 8.1+
 
@@ -84,10 +80,6 @@ All existing policy bundles and log bundles must be recompiled post upgrade usin
 ##### Ubuntu 24.04
 
 - app-protect-module-plus_32+5.144.0-1~noble_amd64.deb
-
-##### RHEL 7.4+ / CentOS 7.4+ / Amazon Linux 2	
-
-- app-protect-module-plus-32+5.144.0-1.el7.ngx.x86_64.rpm
 
 ##### RHEL 8.1+ / Oracle Linux 8.1+
 
