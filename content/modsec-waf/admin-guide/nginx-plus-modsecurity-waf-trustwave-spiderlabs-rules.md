@@ -18,7 +18,7 @@ This chapter explains how to configure the Commercial ModSecurity Rules from Tru
 
 <a target="_blank" href="https://docs.nginx.com/nginx/releases/#nginx-plus-release-12-r12">NGINX Plus Release 12</a> and later supports the [NGINX ModSecurity WAF](https://www.nginx.com/products/nginx/modules/nginx-waf/), which protects web applications against SQL Injection (SQLi), Remote Code Execution (RCE), Local File Include (LFI), cross -site scripting (XSS), and many other types of attack.
 
-The [Commercial ModSecurity Rules](http://modsecurity.org/commercial-rules.html) from Trustwave SpiderLabs (which we refer to as the Trustwave Rules in this chapter) complement the [Open Web Application Security Project Core Rule Set](https://www.owasp.org/index.php/Category:OWASP_ModSecurity_Core_Rule_Set_Project) (OWASP CRS) with protection against specific attacks for many common applications including ASP.NET, Joomla, and WordPress. Additionally, the Trustwave SpiderLabs Rules provide IP reputation along with other capabilities, and are updated daily.
+The Commercial ModSecurity Rules from Trustwave SpiderLabs (which we refer to as the Trustwave Rules in this chapter) complement the [Open Web Application Security Project Core Rule Set](https://www.owasp.org/index.php/Category:OWASP_ModSecurity_Core_Rule_Set_Project) (OWASP CRS) with protection against specific attacks for many common applications including ASP.NET, Joomla, and WordPress. Additionally, the Trustwave SpiderLabs Rules provide IP reputation along with other capabilities, and are updated daily.
 
 This chapter builds on the basic configuration created in the [Installing the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-installation-logging.md" >}}) chapter, showing how to configure the Trustwave Rules to protect the demo web application configured in that chapter.
 
@@ -30,7 +30,7 @@ The NGINX ModSecurity WAF also supports the OWASP CRS as described in [Using the
 
 The NGINX ModSecurity WAF is available to NGINX Plus customers as a downloaded dynamic module at an additional cost. You can [try the NGINX ModSecurity WAF free for 30 days](https://www.nginx.com/free-trial-request/). To purchase or add the NGINX ModSecurity WAF to an existing NGINX Plus subscription, [contact the NGINX sales team](https://www.nginx.com/contact-sales/).
 
-You must [purchase the Trustwave Rules](https://ssl.trustwave.com/web-application-firewall) directly from Trustwave SpiderLabs.
+You must purchase the Trustwave Rules directly from Trustwave SpiderLabs.
 
 As noted above, this chapter builds on [Installing the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-installation-logging.md" >}}) and assumes you have followed the instructions there to configure both the demo application and NGINX Plus as a reverse proxy.
 
@@ -38,7 +38,7 @@ As noted above, this chapter builds on [Installing the NGINX ModSecurity WAF]({{
 
 ## Configuring the Trustwave SpiderLabs Rules
 
-[Purchasing](https://ssl.trustwave.com/web-application-firewall) the Trustwave Rules gives you access to the [ModSecurity Dashboard](https://dashboard.modsecurity.org/), which is a web portal where you can customize the Trustwave Rules on individual instances of the NGINX ModSecurity WAF (and other ModSecurity installations). The Dashboard simplifies configuration compared to the OWASP CRS, in two ways:
+Purchasing the Trustwave Rules gives you access to the ModSecurity Dashboard, which is a web portal where you can customize the Trustwave Rules on individual instances of the NGINX ModSecurity WAF (and other ModSecurity installations). The Dashboard simplifies configuration compared to the OWASP CRS, in two ways:
 
 - You don’t need to download rules onto individual NGINX Plus instances, because the NGINX ModSecurity WAF dynamic module downloads them automatically when the `SecRemoteRules` directive is included in the NGINX ModSecurity WAF configuration (see [Step 3](#waf-trustwave_configure-your-server) in the next section).
 - You enable and disable rules -- a significant part of the configuration process -- with a GUI on the Dashboard instead of in NGINX ModSecurity WAF configuration files.
@@ -53,7 +53,7 @@ Detailed instructions for using the Dashboard are not provided here. For more in
 
 To configure the Trustwave Rules for the demo application, perform the following steps:
 
-1. Log in to the [ModSecurity Dashboard](https://dashboard.modsecurity.org/) and start the Configuration Wizard.
+1. Log in to the ModSecurity Dashboard and start the Configuration Wizard.
 
 2. Create a profile, enabling rules that are relevant for your application. None of the existing rules actually apply to our demo application, but for the purposes of this step select the WordPress‑related rules. You can also enable additional options, such as IP reputation.
 
@@ -140,6 +140,6 @@ For information about using the OWASP CRS with the NGINX ModSecurity WAF, see [U
 
 ## Resources
 
-- [Commercial ModSecurity Rules from Trustwave SpiderLabs](http://modsecurity.org/commercial-rules.html)
-- [ModSecurity Dashboard](https://dashboard.modsecurity.org/)
+- [Commercial ModSecurity Rules from Trustwave SpiderLabs](http://modsecurity.org)
+- [ModSecurity Dashboard](https://modsecurity.org/)
 - [ModSecurity Reference Manual](https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual-(v2.x)#ModSecurityreg_Reference_Manual)
