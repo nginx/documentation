@@ -31,10 +31,6 @@ Release 4.8.1 cannot be upgraded to v4.11. You must uninstall 4.8.1 and install 
 
 - app-protect-32.5.144.0-r1.apk
 
-##### CentOS 7.4+ / RHEL 7.4+ / Amazon Linux 2	
-
-- app-protect-32+5.144.0-1.el7.ngx.x86_64.rpm	
-
 ##### Debian 11
 
 - app-protect_32+5.144.0-1~bullseye_amd64.deb
