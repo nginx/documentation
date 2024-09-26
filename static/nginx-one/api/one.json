@@ -24,7 +24,7 @@
   "tags": [
     {
       "name": "Data Plane Key",
-      "description": "The `DataPlaneKey` object represents a secure token required to establish a connection between your NGINX instances and NGINX One. \nAs a fundamental security measure, the data plane key ensures that only trusted NGINX instances can register and communicate with NGINX One. \n\nData plane keys expire after one year. This is the default setting if you don't specify an expiration time when you create a key. \nIf necessary, you can update the data plane key later to extend its expiration.\n\nRevoking a data plane key will disconnect the associated NGINX instances from NGINX One.\n\n**IMPORTANT** Data plane keys are not saved and are displayed only once when you generate them. You should save this key in a secure location for future reference.\n",
+      "description": "The `DataPlaneKey` object represents a secure token required to establish a connection between your NGINX instances and NGINX One Console. \nAs a fundamental security measure, the data plane key ensures that only trusted NGINX instances can register and communicate with NGINX One Console. \n\nData plane keys expire after one year. This is the default setting if you don't specify an expiration time when you create a key. \nIf necessary, you can update the data plane key later to extend its expiration.\n\nRevoking a data plane key will disconnect the associated NGINX instances from NGINX One Console.\n\n**IMPORTANT** Data plane keys are not saved and are displayed only once when you generate them. You should save this key in a secure location for future reference.\n",
       "x-displayName": "Data Plane Key"
     },
     {
@@ -34,17 +34,17 @@
     },
     {
       "name": "Config Sync Groups",
-      "description": "The `ConfigSyncGroups` object represents a NGINX config sync group where `Instances` are grouped to have same configuration. \nYou can access detailed information about each NGINX config sync group, including its configuration analysis and operational status.\n",
+      "description": "The `ConfigSyncGroups` object represents NGINX config sync group where `Instances` are grouped to have same configuration. \nYou can access detailed information about each NGINX config sync group, including its configuration analysis and operational status.\n",
       "x-displayName": "Config Sync Groups"
     },
     {
       "name": "CVEs",
-      "description": "The `CVEs` object represents the security advisories published for all the F5 products supported by NGINX One.\n",
+      "description": "The `CVEs` object represents the security advisories published for all the F5 products supported by NGINX One Console\n",
       "x-displayName": "CVEs"
     },
     {
       "name": "Metrics",
-      "description": "Get system metrics for your NGINX data plane instances. These metrics are collected by the NGINX Agent and reported to NGINX One.\n",
+      "description": "Get system metrics for your NGINX data plane instances. These metrics are collected by the NGINX Agent and reported to NGINX One Console.\n",
       "x-displayName": "Metrics"
     }
   ],
@@ -122,7 +122,7 @@
         "x-nginx-one-action": "create",
         "x-nginx-one-entity": "data plane key",
         "summary": "Create a data plane key",
-        "description": "Creates a unique data plane key that you can use to register NGINX instances with NGINX One.\n\n**IMPORTANT**: Save the data plane key somewhere secure for reference. The key is displayed only once and cannot be retrieved again.\n",
+        "description": "Creates a unique data plane key that you can use to register NGINX instances with NGINX One Console.\n\n**IMPORTANT**: Save the data plane key somewhere secure for reference. The key is displayed only once and cannot be retrieved again.\n",
         "operationId": "createDataPlaneKey",
         "requestBody": {
           "required": true,
@@ -417,7 +417,7 @@
         "x-nginx-one-action": "revoke",
         "x-nginx-one-entity": "data plane key",
         "summary": "Revoke a data plane key",
-        "description": "Revoke an existing data plane key.\n\n**IMPORTANT**: When you revoke a data plane key, all NGINX instances registered with this key will be disconnected from NGINX One.\n",
+        "description": "Revoke an existing data plane key.\n\n**IMPORTANT**: When you revoke a data plane key, all NGINX instances registered with this key will be disconnected from NGINX One Console.\n",
         "operationId": "revokeDataPlaneKey",
         "parameters": [
           {
@@ -469,7 +469,7 @@
           "Instances"
         ],
         "summary": "Retrieve a summary for all instances",
-        "description": "Retrieves a comprehensive summary for all NGINX instances, which includes details such as:\n  * Certificate status and associations\n  * Operating system details\n  * Version of the NGINX Agent\n  * Overall system status\n",
+        "description": "Retrieves a comprehensive summary for all NGINX instances, which includes details such as:\n  * Certificate status and associations\n  * Operating system details\n  * Version of NGINX Agent\n  * Overall system status\n",
         "operationId": "listSummary",
         "responses": {
           "200": {
@@ -512,7 +512,7 @@
         ],
         "summary": "List all instances",
         "operationId": "listInstances",
-        "description": "Returns a list of all NGINX instances, providing details such as:\n  * Unique identifiers for each instance\n  * Timestamps for key actions (like registration and last report)\n  * Information about the NGINX build\n  * Version of the NGINX Agent\n",
+        "description": "Returns a list of all NGINX instances, providing details such as:\n  * Unique identifiers for each instance\n  * Timestamps for key actions (like registration and last report)\n  * Information about NGINX build\n  * Version of NGINX Agent\n",
         "parameters": [
           {
             "$ref": "#/components/parameters/Paginated"
@@ -631,7 +631,7 @@
           "Instances"
         ],
         "summary": "Retrieve an instance's security advisories (CVEs)",
-        "description": "Retrieves a list of the security advisories (CVEs) for an NGINX instance.",
+        "description": "Retrieves a list of the security advisories (CVEs) for NGINX instance.",
         "operationId": "listInstanceSecurityAdvisories",
         "parameters": [
           {
@@ -691,7 +691,7 @@
           "Instances"
         ],
         "summary": "Retrieve an instance",
-        "description": "Retrieves the details for an NGINX instance, including\n* Hostname\n* System status\n* Timestamps of key actions (registration, last reported, etc.)\n* NGINX build information\n* Certificate data\n* Operating system version\n* NGINX Agent version\n* Config Sync Group membership details\n",
+        "description": "Retrieves the details for NGINX instance, including\n* Hostname\n* System status\n* Timestamps of key actions (registration, last reported, etc.)\n* NGINX build information\n* Certificate data\n* Operating system version\n* NGINX Agent version\n* Config Sync Group membership details\n",
         "operationId": "getInstance",
         "parameters": [
           {
@@ -700,7 +700,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully retrieved the details of the NGINX instance.",
+            "description": "Successfully retrieved the details of NGINX instance.",
             "content": {
               "application/json": {
                 "schema": {
@@ -748,7 +748,7 @@
         "x-nginx-one-action": "delete",
         "x-nginx-one-entity": "NGINX instance",
         "summary": "Delete an instance",
-        "description": "Deletes an NGINX instance. Associations with certificates will be cleaned up.\n",
+        "description": "Deletes NGINX instance. Associations with certificates will be cleaned up.\n",
         "operationId": "deleteInstance",
         "parameters": [
           {
@@ -757,7 +757,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Successfully deleted the NGINX instance."
+            "description": "Successfully deleted NGINX instance."
           },
           "401": {
             "description": "Access denied.",
@@ -867,11 +867,11 @@
           "Instances"
         ],
         "summary": "Retrieve an analysis report for an instance's configuration",
-        "description": "Analyzes the configuration of an NGINX instance and returns a detailed report.\nThe report includes insights, identified issues, and recommendations for optimizing and troubleshooting.\n",
+        "description": "Analyzes the configuration of NGINX instance and returns a detailed report.\nThe report includes insights, identified issues, and recommendations for optimizing and troubleshooting.\n",
         "operationId": "getInstanceConfigReport",
         "responses": {
           "200": {
-            "description": "Successfully retrieved the NGINX configuration analysis for the specified instance.",
+            "description": "Successfully retrieved NGINX configuration analysis for the specified instance.",
             "content": {
               "application/json": {
                 "schema": {
@@ -881,7 +881,7 @@
             }
           },
           "204": {
-            "description": "The requested instance exists, but analysis of the NGINX configuration is not yet completed. Please retry the request at a later time to retrieve the report."
+            "description": "The requested instance exists, but analysis of NGINX configuration is not yet completed. Please retry the request at a later time to retrieve the report."
           },
           "404": {
             "description": "The NGINX instance with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
@@ -1061,7 +1061,7 @@
           "Instances"
         ],
         "summary": "Retrieve an instance's configuration details",
-        "description": "Returns the configuration details for an NGINX instance, including: \n* Main configuration path\n* Details about configuration files\n* Details about auxiliary files\n* Unique identifiers\n",
+        "description": "Returns the configuration details for NGINX instance, including: \n* Main configuration path\n* Details about configuration files\n* Details about auxiliary files\n* Unique identifiers\n",
         "operationId": "getInstanceConfig",
         "responses": {
           "200": {
@@ -1262,7 +1262,7 @@
           "Instances"
         ],
         "summary": "Retrieves the stored NGINX configurations for an instance",
-        "description": "Returns a list of all configurations for a NGINX instance. Only the last 5 are kept on the NGINX One Console for a NGINX instance.",
+        "description": "Returns a list of all configurations for NGINX instance. Only the last 5 are kept on NGINX One Console for NGINX instance.",
         "operationId": "listInstanceConfigurations",
         "responses": {
           "200": {
@@ -1325,7 +1325,7 @@
           "Instances"
         ],
         "summary": "Retrieve an instance's configuration details",
-        "description": "Returns the configuration details for an NGINX instance, including: \n* Main configuration path\n* Details about configuration files\n* Details about auxiliary files\n* Unique identifiers\n",
+        "description": "Returns the configuration details for NGINX instance, including: \n* Main configuration path\n* Details about configuration files\n* Details about auxiliary files\n* Unique identifiers\n",
         "operationId": "getInstanceConfigWithObjectID",
         "responses": {
           "200": {
@@ -1377,7 +1377,7 @@
           "Instances"
         ],
         "summary": "Retrieve the publications for an instance",
-        "description": "Returns a list of all publications for a NGINX instance.",
+        "description": "Returns a list of all publications for NGINX instance.",
         "operationId": "listInstancePublications",
         "parameters": [
           {
@@ -1426,8 +1426,8 @@
         "tags": [
           "Instances"
         ],
-        "summary": "Retrieve a publication for an NGINX instance.",
-        "description": "Returns a specific publication for an NGINX instance. Only 5 previous entries of Publication are kept for each NGINX instance.",
+        "summary": "Retrieve a publication for NGINX instance.",
+        "description": "Returns a specific publication for NGINX instance. Only 5 previous entries of Publication are kept for each NGINX instance.",
         "operationId": "getInstancePublication",
         "parameters": [
           {
@@ -1488,7 +1488,7 @@
         "tags": [
           "Config Sync Groups"
         ],
-        "summary": "Create an NGINX config sync group",
+        "summary": "Create NGINX config sync group",
         "operationId": "createConfigSyncGroup",
         "description": "Create NGINX config sync group with a unique name to identify it within the tenant namespace.\n",
         "requestBody": {
@@ -1550,7 +1550,7 @@
         ],
         "summary": "List all config sync groups",
         "operationId": "listConfigSyncGroups",
-        "description": "Returns a list of all NGINX config sync groups, providing details such as:\n  * Name of the config sync group\n  * List of instance with details\n  * Version of the NGINX configuration that's expected to be on all listed instances\n  * Status of apply configuration operation  \n  * Timestamp of last reported action\n",
+        "description": "Returns a list of all NGINX config sync groups, providing details such as:\n  * Name of the config sync group\n  * List of instance with details\n  * Version of NGINX configuration that's expected to be on all listed instances\n  * Status of apply configuration operation  \n  * Timestamp of last reported action\n",
         "parameters": [
           {
             "$ref": "#/components/parameters/Paginated"
@@ -1621,12 +1621,12 @@
         "tags": [
           "Config Sync Groups"
         ],
-        "summary": "Retrieve an NGINX config sync group",
-        "description": "Retrieve the details for an NGINX config sync group, including:\n* name\n* Instances and details of each instance\n* Timestamp of last reported action\n* NGINX config version on the config sync group\n* Certificate summary referenced by config sync group members\n* NGINX config sync operation status\n* Last config sync group publication operation status\n",
+        "summary": "Retrieve NGINX config sync group",
+        "description": "Retrieve the details for NGINX config sync group, including:\n* name\n* Instances and details of each instance\n* Timestamp of last reported action\n* NGINX config version on the config sync group\n* Certificate summary referenced by config sync group members\n* NGINX config sync operation status\n* Last config sync group publication operation status\n",
         "operationId": "getConfigSyncGroup",
         "responses": {
           "200": {
-            "description": "Successfully retrieved the details of the NGINX config sync group.",
+            "description": "Successfully retrieved the details of NGINX config sync group.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1673,12 +1673,12 @@
         "tags": [
           "Config Sync Groups"
         ],
-        "summary": "Delete an NGINX config sync group",
-        "description": "Delete a NGINX config sync group from the NGINX One console. You can delete a config sync group, only if it contains no NGINX instances.\n",
+        "summary": "Delete NGINX config sync group",
+        "description": "Delete NGINX config sync group from NGINX One Console. You can delete a config sync group, only if it contains no NGINX instances.\n",
         "operationId": "deleteConfigSyncGroup",
         "responses": {
           "204": {
-            "description": "Successfully deleted the NGINX config sync group"
+            "description": "Successfully deleted NGINX config sync group"
           },
           "401": {
             "description": "Access denied",
@@ -1724,7 +1724,7 @@
           "Config Sync Groups"
         ],
         "summary": "Retrieve a config sync group's configuration details",
-        "description": "Returns the configuration details for a NGINX config sync group, including: \n* Main configuration path\n* Details about configuration files\n* Details about auxiliary files\n* Unique identifiers\n",
+        "description": "Returns the configuration details for NGINX config sync group, including: \n* Main configuration path\n* Details about configuration files\n* Details about auxiliary files\n* Unique identifiers\n",
         "operationId": "getConfigSyncGroupConfig",
         "responses": {
           "200": {
@@ -1790,7 +1790,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successfully stored the configuration of the NGINX config sync group.",
+            "description": "Successfully stored the configuration of NGINX config sync group.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1872,7 +1872,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successfully stored the configuration of the NGINX config sync group",
+            "description": "Successfully stored the configuration of NGINX config sync group",
             "content": {
               "application/json": {
                 "schema": {
@@ -1944,8 +1944,8 @@
         "tags": [
           "Config Sync Groups"
         ],
-        "summary": "Retrieves stored NGINX configurations for a NGINX config sync group",
-        "description": "Returns a list of all configurations for a NGINX config sync group. Only the last 5 are kept on the NGINX One Console for a NGINX config sync group.",
+        "summary": "Retrieves stored NGINX configurations for NGINX config sync group",
+        "description": "Returns a list of all configurations for NGINX config sync group. Only the last 5 are kept on NGINX One Console for NGINX config sync group.",
         "operationId": "listConfigSyncGroupConfigurations",
         "responses": {
           "200": {
@@ -2007,8 +2007,8 @@
         "tags": [
           "Config Sync Groups"
         ],
-        "summary": "Retrieve details the NGINX config sync group",
-        "description": "Returns the configuration details for an NGINX config sync group, including: \n* Main configuration path\n* Details about configuration files\n* Details about auxiliary files\n* Unique identifiers\n",
+        "summary": "Retrieve details NGINX config sync group",
+        "description": "Returns the configuration details for NGINX config sync group, including: \n* Main configuration path\n* Details about configuration files\n* Details about auxiliary files\n* Unique identifiers\n",
         "operationId": "getConfigSyncGroupConfigWithObjectID",
         "responses": {
           "200": {
@@ -2064,8 +2064,8 @@
         "tags": [
           "Config Sync Groups"
         ],
-        "summary": "Retrieve the publications for the NGINX config sync group",
-        "description": "Returns a list of publications for a NGINX config sync group, providing details such as:\n  * Current status along with reason(s) including the target instance object, cause and relevant message\n  * Configuration version\n",
+        "summary": "Retrieve the publications for NGINX config sync group",
+        "description": "Returns a list of publications for NGINX config sync group, providing details such as:\n  * Current status along with reason(s) including the target instance object, cause and relevant message\n  * Configuration version\n",
         "operationId": "listConfigSyncGroupPublications",
         "responses": {
           "200": {
@@ -2127,8 +2127,8 @@
         "tags": [
           "Config Sync Groups"
         ],
-        "summary": "Retrieve the publications for the NGINX config sync group, providing details such as:\n    * Current status along with reason(s) including the target instance object, cause and relevant message\n    * Configuration version\n",
-        "description": "Returns a publication for a NGINX config sync group.",
+        "summary": "Retrieve the publications for NGINX config sync group, providing details such as:\n    * Current status along with reason(s) including the target instance object, cause and relevant message\n    * Configuration version\n",
+        "description": "Returns a publication for NGINX config sync group.",
         "operationId": "getConfigSyncGroupPublication",
         "responses": {
           "200": {
@@ -2184,12 +2184,12 @@
         "tags": [
           "Config Sync Groups"
         ],
-        "summary": "Retrieve an analysis report for the configuration of an NGINX config sync group",
-        "description": "Analyzes the configuration of an NGINX config sync group and returns a detailed report.\nThe report includes insights, identified issues, and recommendations for optimizing and troubleshooting.\n",
+        "summary": "Retrieve an analysis report for the configuration of NGINX config sync group",
+        "description": "Analyzes the configuration of NGINX config sync group and returns a detailed report.\nThe report includes insights, identified issues, and recommendations for optimizing and troubleshooting.\n",
         "operationId": "getConfigSyncGroupConfigReport",
         "responses": {
           "200": {
-            "description": "Successfully retrieved the NGINX configuration analysis for the specified config sync group.",
+            "description": "Successfully retrieved NGINX configuration analysis for the specified config sync group.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2199,7 +2199,7 @@
             }
           },
           "204": {
-            "description": "The requested config sync group exists, but analysis of the NGINX configuration is not yet completed. Please retry the request at a later time to retrieve the report."
+            "description": "The requested config sync group exists, but analysis of NGINX configuration is not yet completed. Please retry the request at a later time to retrieve the report."
           },
           "404": {
             "description": "The NGINX config sync group with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
@@ -2229,8 +2229,8 @@
         "tags": [
           "Config Sync Groups"
         ],
-        "summary": "Generate an analysis report for the configuration of the NGINX config sync group",
-        "description": "Returns an analysis report for the configuration of the NGINX config sync group. This report includes insights, identified issues, and recommendations for optimizing and troubleshooting. Note that this operation is for analysis purposes only and does not apply any changes to the configuration. The report is not stored and is provided only in the API response. To publish the configuration, use the `PUT /config-sync-groups/{configSyncGroupObjectID}/config` endpoint.",
+        "summary": "Generate an analysis report for the configuration of NGINX config sync group",
+        "description": "Returns an analysis report for the configuration of NGINX config sync group. This report includes insights, identified issues, and recommendations for optimizing and troubleshooting. Note that this operation is for analysis purposes only and does not apply any changes to the configuration. The report is not stored and is provided only in the API response. To publish the configuration, use the `PUT /config-sync-groups/{configSyncGroupObjectID}/config` endpoint.",
         "operationId": "analyzeConfigSyncGroupConfig",
         "requestBody": {
           "required": true,
@@ -2302,7 +2302,7 @@
           "Config Sync Groups"
         ],
         "summary": "Generate an analysis report for the configuration of the modified NGINX config sync group",
-        "description": "Analyzes the provided partial updates merging with an existing configuration of an NGINX config sync group. Generates a report detailing potential issues along with optimization suggestions. \nThis analysis accounts for additive updates made to NGINX configuration. To delete files, omit the `file.contents` field. \nThis method compares the provided `config_version` with the current NGINX config sync group's configuration to detect conflicts, which may arise if the `config_version` does not match due to an out-of-band update. \nNote that this operation is for analysis purposes only and does not apply any changes to the configuration. \nThe report is not stored and is provided only in the API response.\nTo publish the configuration, use the `PATCH /config-sync-groups/{configSyncGroupObjectID}/config` endpoint.\n",
+        "description": "Analyzes the provided partial updates merging with an existing configuration of NGINX config sync group. Generates a report detailing potential issues along with optimization suggestions. \nThis analysis accounts for additive updates made to NGINX configuration. To delete files, omit the `file.contents` field. \nThis method compares the provided `config_version` with the current NGINX config sync group's configuration to detect conflicts, which may arise if the `config_version` does not match due to an out-of-band update. \nNote that this operation is for analysis purposes only and does not apply any changes to the configuration. \nThe report is not stored and is provided only in the API response.\nTo publish the configuration, use the `PATCH /config-sync-groups/{configSyncGroupObjectID}/config` endpoint.\n",
         "operationId": "analyzeConfigSyncGroupConfigPatch",
         "requestBody": {
           "required": true,
@@ -3470,7 +3470,8 @@
         "type": "object",
         "description": "Part of bulk operation on a data plane key, only `delete` is supported.",
         "required": [
-          "action"
+          "action",
+          "object_id"
         ],
         "properties": {
           "object_id": {
@@ -4905,6 +4906,59 @@
           "config_version": "Cm1hcCAkdXJpICRtYXBwZWRfc2V",
           "created_at": "2023-08-10T16:59:15Z",
           "modified_at": "2023-08-10T16:59:15Z"
+        }
+      },
+      "ServiceDiscoveryServerQuery": {
+        "type": "object",
+        "minProperties": 1,
+        "properties": {
+          "regexp": {
+            "type": "string"
+          },
+          "port": {
+            "type": "string"
+          }
+        }
+      },
+      "ServiceDiscoveryQueryRequest": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ServiceDiscoveryServerQuery"
+        }
+      },
+      "ServiceDiscoveryServer": {
+        "type": "object",
+        "required": [
+          "server_name",
+          "domains",
+          "locations",
+          "port"
+        ],
+        "properties": {
+          "server_name": {
+            "type": "string"
+          },
+          "domains": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "locations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "port": {
+            "type": "string"
+          }
+        }
+      },
+      "ServiceDiscoveryServers": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ServiceDiscoveryServer"
         }
       },
       "FeatureFlagKey": {
@@ -6367,7 +6421,7 @@
       "MetricDimension": {
         "type": "string",
         "default": "display_name",
-        "description": "Static list of all metric dimensions.\n  * `display_name` - The display name of the NGINX instance.\n  * `file_path` - Path to a desired file.\n  * `parent_hostname` - The hostname of the NGINX Plus instance.\n  * `instance_object_id` - Instance Object ID is the unique identifier for an Instance registered with Control Plane.\n  * `location_zone` - The name of an HTTP location zone.\n  * `mount_point` - A filesystem mount point.\n  * `namespace` - The Namespace associated with the metric data.\n  * `network_interface` - A server network interface.\n  * `nginx_id` - The unique identifier of an nginx instance running on the data plane.\n  * `server_zone` - The name of an HTTP or Stream server zone.\n  * `system_id` - The unique identifier of the the operating system where nginx-agent is running.\n  * `tenant` - The Tenant associated with the metric data.\n",
+        "description": "Static list of all metric dimensions.\n  * `display_name` - The display name of the NGINX instance.\n  * `file_path` - Path to a desired file.\n  * `parent_hostname` - The hostname of the NGINX Plus instance.\n  * `instance_object_id` - Instance Object ID is the unique identifier for an Instance registered with NGINX One Console.\n  * `location_zone` - The name of an HTTP location zone.\n  * `mount_point` - A filesystem mount point.\n  * `namespace` - The Namespace associated with the metric data.\n  * `network_interface` - A server network interface.\n  * `nginx_id` - The unique identifier of an nginx instance running on the data plane.\n  * `server_zone` - The name of an HTTP or Stream server zone.\n  * `system_id` - The unique identifier of the the operating system where nginx-agent is running.\n  * `tenant` - The Tenant associated with the metric data.\n  * `csg_object_id` - Config Sync Group Object ID is the unique identifier for a Config Sync Group registered with NGINX One Console.\n",
         "enum": [
           "display_name",
           "file_path",
@@ -6380,7 +6434,8 @@
           "nginx_id",
           "server_zone",
           "system_id",
-          "tenant"
+          "tenant",
+          "csg_object_id"
         ],
         "x-enum-varnames": [
           "metric_dimension_display_name",
@@ -6394,7 +6449,8 @@
           "metric_dimension_nginx_id",
           "metric_dimension_server_zone",
           "metric_dimension_system_id",
-          "metric_dimension_tenant"
+          "metric_dimension_tenant",
+          "metric_dimension_csg_object_id"
         ]
       },
       "BaseMetricQueryRequest": {
@@ -6717,112 +6773,112 @@
       },
       "MetricNginxHttpRequestCount": {
         "type": "string",
-        "description": "Total number of client requests.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "description": "Total number of client requests.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
         "enum": [
           "nginx.http.request.count"
         ]
       },
       "MetricNginxHttpStatus4xx": {
         "type": "string",
-        "description": "Number of requests with HTTP status codes 4xx.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "description": "Number of requests with HTTP status codes 4xx.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
         "enum": [
           "nginx.http.status.4xx"
         ]
       },
       "MetricNginxHttpStatus5xx": {
         "type": "string",
-        "description": "Number of requests with HTTP status codes 5xx.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "description": "Number of requests with HTTP status codes 5xx.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
         "enum": [
           "nginx.http.status.5xx"
         ]
       },
       "MetricPlusHttpRequestCount": {
         "type": "string",
-        "description": "The total number of client requests received from clients.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * server_zone\n  * location_zone\n",
+        "description": "The total number of client requests received from clients.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * server_zone\n  * location_zone\n",
         "enum": [
           "plus.http.request.count"
         ]
       },
       "MetricPlusHttpStatus4xx": {
         "type": "string",
-        "description": "Number of requests with HTTP status codes 4xx.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * server_zone\n  * location_zone\n",
+        "description": "Number of requests with HTTP status codes 4xx.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * server_zone\n  * location_zone\n",
         "enum": [
           "plus.http.status.4xx"
         ]
       },
       "MetricPlusHttpStatus5xx": {
         "type": "string",
-        "description": "Number of requests with HTTP status codes 5xx.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * server_zone\n  * location_zone\n",
+        "description": "Number of requests with HTTP status codes 5xx.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * server_zone\n  * location_zone\n",
         "enum": [
           "plus.http.status.5xx"
         ]
       },
       "MetricSystemCpuSystem": {
         "type": "string",
-        "description": "Total system CPU utilization, percentage.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "description": "Total system CPU utilization, percentage.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
         "enum": [
           "system.cpu.system"
         ]
       },
       "MetricSystemCpuUser": {
         "type": "string",
-        "description": "User CPU utilization, percentage.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "description": "User CPU utilization, percentage.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
         "enum": [
           "system.cpu.user"
         ]
       },
       "MetricSystemDiskInUse": {
         "type": "string",
-        "description": "System disk usage statistic, percentage.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * mount_point\n",
+        "description": "System disk usage statistic, percentage.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * mount_point\n",
         "enum": [
           "system.disk.in_use"
         ]
       },
       "MetricSystemDiskTotal": {
         "type": "string",
-        "description": "Total available system disk usage statistic, bytes.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * mount_point\n",
+        "description": "Total available system disk usage statistic, bytes.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * mount_point\n",
         "enum": [
           "system.disk.total"
         ]
       },
       "MetricSystemDiskUsed": {
         "type": "string",
-        "description": "In-use system disk usage statistic, bytes.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * mount_point\n",
+        "description": "In-use system disk usage statistic, bytes.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * mount_point\n",
         "enum": [
           "system.disk.used"
         ]
       },
       "MetricSystemMemoryPctUsed": {
         "type": "string",
-        "description": "Statistic about system memory usage, percentage.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "description": "Statistic about system memory usage, percentage.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
         "enum": [
           "system.mem.pct_used"
         ]
       },
       "MetricSystemMemoryTotal": {
         "type": "string",
-        "description": "Total available statistic about system memory usage, bytes.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "description": "Total available statistic about system memory usage, bytes.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
         "enum": [
           "system.mem.total"
         ]
       },
       "MetricSystemMemoryUsed": {
         "type": "string",
-        "description": "In-use statistic about system memory usage, bytes.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "description": "In-use statistic about system memory usage, bytes.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
         "enum": [
           "system.mem.used"
         ]
       },
       "MetricSystemNetBytesReceived": {
         "type": "string",
-        "description": "Network I/O statistics. Number of bytes received per network interface.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * network_interface\n",
+        "description": "Network I/O statistics. Number of bytes received per network interface.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * network_interface\n",
         "enum": [
           "system.net.bytes_rcvd"
         ]
       },
       "MetricSystemNetBytesSent": {
         "type": "string",
-        "description": "Network I/O statistics. Number of bytes sent per network interface.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * network_interface\n",
+        "description": "Network I/O statistics. Number of bytes sent per network interface.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * network_interface\n",
         "enum": [
           "system.net.bytes_sent"
         ]
@@ -6928,7 +6984,7 @@
         "properties": {
           "received": {
             "type": "integer",
-            "description": "Total http bytes received by an NGINX Instance from clients/upstreams",
+            "description": "Total http bytes received by NGINX Instance from clients/upstreams",
             "minimum": 0
           },
           "sent": {
@@ -6946,7 +7002,7 @@
       },
       "NginxUsageTrackingRequest": {
         "type": "object",
-        "description": "Request structure for sending usage information.",
+        "description": "Request structure for sending usage information",
         "required": [
           "version",
           "uuid",
@@ -7233,7 +7289,7 @@
           "choices": [
             {
               "index": 0,
-              "text": "# This is an H1\nThis is normal text.\nThis is normal text with a `monospaced item` included.\n\n## This is an H2\nThis is normal text\nThere is a list of things:\n* Thing one\n* Thing two\n\nThis is an ordered list of things\n1. Thing one\n2. Thing two\n\n### This is an H3\nHere follows a code block tagged with nginx for the language\n```nginx\nserver {\n\tlisten              443 ssl;\n    server_name         www.example.com;\n    ssl_certificate     www.example.com.crt;\n    ssl_certificate_key www.example.com.key;\n    ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;\n    ssl_ciphers         HIGH:!aNULL:!MD5;\n}\n```\nAnd now here is a code block without a language tag:\n```\nserver {\n\tlisten              443 ssl;\n    server_name         www.example.com;\n    ssl_certificate     www.example.com.crt;\n    ssl_certificate_key www.example.com.key;\n    ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;\n    ssl_ciphers         HIGH:!aNULL:!MD5;\n}\n```\nThis has been markdown. 감사합니다.",
+              "text": "\n\nA dog is a domesticated mammal, a member of the species Canis lupus familiaris. Dogs are often referred to as \"man's best friend\" due to their long history of companionship with humans. They are highly social animals and thrive on interaction with their human families and other dogs. Dogs come in a wide range of sizes, shapes, and breeds, each with its unique characteristics and needs.\n\nA cat is a domesticated mammal, a member of the Felidae family. Cats are often independent and self-sufficient animals, but they also enjoy companionship with their human families and other cats. They are agile and graceful animals, known for their ability to jump high and climb trees. Cats come in a wide range of sizes, shapes, and breeds, each with its unique characteristics and needs.\n\nBoth dogs and cats have been domesticated for thousands of years and have become beloved companions for many people around the world. They each have their unique personalities and needs, and choosing between a dog and a cat ultimately comes down to personal preference and lifestyle.",
               "logprobs": null,
               "finish_reason": "stop"
             }
@@ -7306,7 +7362,7 @@
       ]
     },
     {
-      "name": "Manage NGINX One Settings",
+      "name": "Manage NGINX One Console Settings",
       "tags": [
         "Settings"
       ]
