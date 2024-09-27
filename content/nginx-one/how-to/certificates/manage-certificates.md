@@ -12,13 +12,13 @@ weight: 100
 
 ## Overview
 
-This guide explains how you can manage SSL/TLS certificates at the F5 NGINX One Console. Valid certificates support encrypted connections between NGINX and your users. 
+This guide explains how you can manage SSL/TLS certificates with the F5 NGINX One Console. Valid certificates support encrypted connections between NGINX and your users. 
 
-For more information on how you can use these certificates to secure your servers, see the [Security controls]({{< relref "../../../nginx/admin-guide/security-controls/terminating-ssl-http.md" >}}).
+For more information on how you can use these certificates to secure your servers, refer to the [Security controls]({{< relref "../../../nginx/admin-guide/security-controls/terminating-ssl-http.md" >}}).
 
 ## Before you start
 
-Before you create and manage certificates at the NGINX One Console make sure:
+Before you add and manage certificates with the NGINX One Console make sure:
 
 - You have access to the NGINX One Console
 - You have the necessary permissions to create and manage SSL/TLS certificates
@@ -52,9 +52,9 @@ In such cases, you may get websites that present "Your connection is not private
 
 Follow these steps to review existing certificates for your instances. 
 
-On the left-hand pane, select Certificates. In the window that appears, you see:
+On the left-hand pane, select **Certificates**. In the window that appears, you see:
 
-- Certificate Status. This includes:
+- **Certificate Status**. This includes:
 
   - Total number of certificates
   - Valid certificates that expire more than 30 days from now
@@ -73,7 +73,7 @@ You can **Add Filter** to filter certificates by:
 - Subject Name
 - Type
 
-The Export option supports exports of basic cert file information to a CSV file. It does _not_ include the content of the public certificate or the private key.
+The Export option supports exports of basic certification file information to a CSV file. It does _not_ include the content of the public certificate or the private key.
 
 ## Add a new certificate
 
