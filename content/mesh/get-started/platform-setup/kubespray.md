@@ -14,7 +14,7 @@ docs: "DOCS-685"
 This section only applies to Kubespray versions older than v2.16.0.
 {{< /important >}}
 
-When creating a new cluster, you need to pass some extra flags to kubespray using [group_vars](https://github.com/kubernetes-sigs/kubespray/blob/master/docs/vars.md). Add the following to `inventory/<your cluster>/group_vars/k8s-cluster/k8s-cluster.yml`:
+When creating a new cluster, you need to pass some extra flags to kubespray using [group_vars](https://github.com/kubernetes-sigs/kubespray/blob/master/docs/ansible/vars.md). Add the following to `inventory/<your cluster>/group_vars/k8s-cluster/k8s-cluster.yml`:
 
 ```yaml
 kube_kubeadm_apiserver_extra_args:

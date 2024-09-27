@@ -169,7 +169,7 @@ Follow the [instructions](https://docs.nginx.com/nginx-ingress-controller/instal
 Set the `nginxServiceMesh.enable` parameter to `true`.
 {{< note >}} This will configure NGINX Ingress Controller to route ingress traffic to NGINX Service Mesh workloads. If you would like to enable egress traffic, refer to the [Enable Egress](#enable-with-helm) section of this guide. {{< /note >}}
 
-The [`values-nsm.yaml`](https://github.com/nginxinc/kubernetes-ingress/blob/master/deployments/helm-chart/values-nsm.yaml) file contains all the configuration parameters that are relevant for integration with NGINX Service Mesh. You can use this file if you are installing NGINX Ingress Controller via chart sources.
+The [`values-nsm.yaml`](https://github.com/nginxinc/kubernetes-ingress/blob/main/charts/nginx-ingress/values-nsm.yaml) file contains all the configuration parameters that are relevant for integration with NGINX Service Mesh. You can use this file if you are installing NGINX Ingress Controller via chart sources.
 
 ## Expose your applications
 
