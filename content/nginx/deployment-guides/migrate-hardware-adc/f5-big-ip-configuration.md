@@ -25,7 +25,7 @@ NGINX Plus and <span style="white-space: nowrap;">BIG-IP LTM</span> both act as
 - [High‑performance reverse proxy]({{< relref "../../admin-guide/web-server/reverse-proxy.md" >}})
 - [Caching and offload of dynamic and static content]({{< relref "../../admin-guide/content-cache/content-caching.md" >}})
 - [Adaptive streaming to deliver audio and video to any device](https://www.nginx.com/products/nginx/streaming-media/)
-- [Application-aware health checks](https://www.nginx.com/products/nginx/load-balancing/#health-checks) and [high availability](https://www.nginx.com/products/nginx/high-availability/)
+- [Application-aware health checks](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/) and [high availability](https://docs.nginx.com/nginx/admin-guide/high-availability/)
 - [Advanced activity monitoring available via a dashboard or API](https://www.nginx.com/products/nginx/live-activity-monitoring/)
 - [Management and real‑time configuration changes with DevOps‑friendly tools](https://www.nginx.com/products/nginx/load-balancing/#load-balancing-api)
 
@@ -371,7 +371,7 @@ Directive documentation: [keepalive](https://nginx.org/en/docs/http/ngx_http_ups
 <span id="health-checks"></span>
 ### Monitors (Health Checks)
 
-F5 <span style="white-space: nowrap;">BIG-IP LTM</span> uses the term _monitor_ to refer to the process of verifying that a server is functioning correctly, while NGINX Plus uses [_health check_](https://www.nginx.com/products/nginx/load-balancing/#health-checks). In an <span style="white-space: nowrap;">BIG-IP LTM</span> configuration, the monitor is associated directly with a pool and applied to each node in the pool, whereas NGINX Plus places the health check in a `location` block.
+F5 <span style="white-space: nowrap;">BIG-IP LTM</span> uses the term _monitor_ to refer to the process of verifying that a server is functioning correctly, while NGINX Plus uses [_health check_](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/). In an <span style="white-space: nowrap;">BIG-IP LTM</span> configuration, the monitor is associated directly with a pool and applied to each node in the pool, whereas NGINX Plus places the health check in a `location` block.
 
 The `interval` argument to the following <span style="white-space: nowrap;">BIG-IP LTM</span> `create` command configures <span style="white-space: nowrap;">BIG-IP LTM</span> to check the server every 5 seconds, which corresponds to the default frequency for NGINX Plus. NGINX Plus does not need the <span style="white-space: nowrap;">BIG-IP LTM</span> `timeout` parameter as it implements the timeout function with the `interval` and `fails` parameters.
 
