@@ -148,9 +148,8 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     ```nginx
     app_protect_dos_enable on;
-    app_protect_dos_name "vs-example";
-    app_protect_dos_policy_file "/etc/app_protect_dos/BADOSDefaultPolicy.json";
-    app_protect_dos_monitor "example.com/";
+    app_protect_dos_name "App1";
+    app_protect_dos_monitor uri=serv:80/; # Assuming server_name "serv" on port 80, with the root path "/"
     ```
 
 13. Configure the SELinux to allow NGINX App Protect DoS:
@@ -328,9 +327,8 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     ```nginx
     app_protect_dos_enable on;
-    app_protect_dos_name "vs-example";
-    app_protect_dos_policy_file "/etc/app_protect_dos/BADOSDefaultPolicy.json";
-    app_protect_dos_monitor "example.com/";
+    app_protect_dos_name "App1";
+    app_protect_dos_monitor uri=serv:80/; # Assuming server_name "serv" on port 80, with the root path "/"
     ```
 
 14. Configure the SELinux to allow NGINX App Protect DoS:
@@ -496,9 +494,8 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     ```nginx
     app_protect_dos_enable on;
-    app_protect_dos_name "vs-example";
-    app_protect_dos_policy_file "/etc/app_protect_dos/BADOSDefaultPolicy.json";
-    app_protect_dos_monitor "example.com/";
+    app_protect_dos_name "App1";
+    app_protect_dos_monitor uri=serv:80/; # Assuming server_name "serv" on port 80, with the root path "/"
     ```
 
 14. Enable the L4 accelerated mitigation feature (RHEL 8.6+) in an `http` context in the `nginx.conf` file:
@@ -710,9 +707,8 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     ```nginx
     app_protect_dos_enable on;
-    app_protect_dos_name "vs-example";
-    app_protect_dos_policy_file "/etc/app_protect_dos/BADOSDefaultPolicy.json";
-    app_protect_dos_monitor "example.com/";
+    app_protect_dos_name "App1";
+    app_protect_dos_monitor uri=serv:80/; # Assuming server_name "serv" on port 80, with the root path "/"
     ```
 
 14. Enable L4 accelerated mitigation feature (RHEL 8.6+) on an `http` context in the `nginx.conf` file:
@@ -985,9 +981,8 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     ```nginx
     app_protect_dos_enable on;
-    app_protect_dos_name "vs-example";
-    app_protect_dos_policy_file "/etc/app_protect_dos/BADOSDefaultPolicy.json";
-    app_protect_dos_monitor "example.com/";
+    app_protect_dos_name "App1";
+    app_protect_dos_monitor uri=serv:80/; # Assuming server_name "serv" on port 80, with the root path "/"
     ```
 
 15. Enable L4 accelerated mitigation feature (Debian 11 / Debian 12 / Ubuntu 20.04 / Ubuntu 22.04) on an `http` context in the `nginx.conf` file:
@@ -1115,9 +1110,8 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     ```nginx
     app_protect_dos_enable on;
-    app_protect_dos_name "vs-example";
-    app_protect_dos_policy_file "/etc/app_protect_dos/BADOSDefaultPolicy.json";
-    app_protect_dos_monitor "example.com/";
+    app_protect_dos_name "App1";
+    app_protect_dos_monitor uri=serv:80/; # Assuming server_name "serv" on port 80, with the root path "/"
     ```
 
 15. Enable L4 accelerated mitigation feature on an `http` context in the `nginx.conf` file:
@@ -1191,7 +1185,7 @@ You need root permissions to execute the following steps.
 
             location / {
                 app_protect_dos_enable on; # Enable NGINX App Protect DoS in this block
-                app_protect_dos_name "serv80"; # PO name
+                app_protect_dos_name "App80"; # PO name
                 app_protect_dos_monitor uri=http://serv80/; # Health monitoring
                 proxy_pass http://1.2.3.4:80;
             }
@@ -1217,7 +1211,7 @@ You need root permissions to execute the following steps.
 
             location / {
                 app_protect_dos_enable on;
-                app_protect_dos_name "serv_grpc";
+                app_protect_dos_name "AppGRPC";
                 app_protect_dos_monitor uri=https://serv_grpc:443/service/method protocol=grpc; # mandatory for gRPC
                 grpc_pass grpc://1.2.3.4:1001;
             }
@@ -1264,7 +1258,7 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     export LD_LIBRARY_PATH
 
     # run processes
-    /bin/su -s /bin/bash -c "/usr/bin/adminstall --daemons 1 --memory 200 > ${LOGDIR}/adminstall.log 2>&1" ${USER}
+    /bin/su -s /bin/bash -c "/usr/bin/adminstall > ${LOGDIR}/adminstall.log 2>&1" ${USER}
     /usr/sbin/nginx -g 'daemon off;' &
     /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
     ```
@@ -1283,7 +1277,7 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
 
     # run processes
-    /bin/su -s /bin/bash -c "/usr/bin/adminstall --daemons 1 --memory 200 > ${LOGDIR}/adminstall.log 2>&1" ${USER}
+    /bin/su -s /bin/bash -c "/usr/bin/adminstall > ${LOGDIR}/adminstall.log 2>&1" ${USER}
     /usr/sbin/nginx -g 'daemon off;' &
     /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
     ```
@@ -1674,12 +1668,8 @@ You need root permissions to execute the following steps.
             app_protect_dos_policy_file "/etc/app_protect_dos/BADOSDefaultPolicy.json";
 
             location / {
-                app_protect_enable on;
-                app_protect_name "serv80";
-                client_max_body_size 0;
-
                 app_protect_dos_enable on;
-                app_protect_dos_name "serv80";
+                app_protect_dos_name "App80";
                 app_protect_dos_monitor uri=http://serv80/;
 
                 proxy_pass http://1.2.3.4:80;
@@ -1706,7 +1696,7 @@ You need root permissions to execute the following steps.
 
             location / {
                 app_protect_dos_enable on;
-                app_protect_dos_name "serv_grpc";
+                app_protect_dos_name "AppGRPC";
                 app_protect_dos_monitor uri=https://serv_grpc:443/service/method protocol=grpc; # mandatory for gRPC
                 grpc_pass grpc://1.2.3.4:1001;
             }
@@ -2292,7 +2282,7 @@ chmod 755 /var/run/adm /tmp/cores ${LOGDIR}
 chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
 
 # run processes
-/bin/su -s /bin/bash -c "/usr/bin/adminstall --daemons 1 --memory 200 > ${LOGDIR}/adminstall.log 2>&1" ${USER}
+/bin/su -s /bin/bash -c "/usr/bin/adminstall > ${LOGDIR}/adminstall.log 2>&1" ${USER}
 /usr/sbin/nginx -g 'daemon off;' &
 /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
 ```
@@ -2348,7 +2338,7 @@ http {
 
         location / {
             app_protect_dos_enable on;
-            app_protect_dos_name "serv";
+            app_protect_dos_name "App1";
             app_protect_dos_monitor uri=http://serv:80/ protocol=http1;
             proxy_pass http://1.2.3.4:80;
         }

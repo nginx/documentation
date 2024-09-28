@@ -90,11 +90,11 @@ If the configuration file doesn't exist or its attributes are invalid, default v
 
 {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
 
-| Parameter name  | Values  | Default |Description |
-|:--------------- |:------- |:--------|:-----------|
+| Parameter name  | Values  | Default | Description                                                                                                                                                                                                                                        |
+|:--------------- |:------- |:--------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | mitigation_mode | standard / conservative / none | standard| **Standard** - module allowed to use global rate mitigation <br> **Conservative** - module is not allowed to use global rate but only Signatures/Bad Actors mitigation <br> **None** - module is not allowed to mitigate. Only to learn and report. |
-| signatures  | [on\|off] | on| Enable mitigation by Signatures algorithm |
-| bad_actors  | [on\|off]  | on|  Enable mitigation by Bad Actors algorithm |
+| signatures  | [on\|off] | on| Enable Signatures mechanism |
+| bad_actors  | [on\|off]  | on|  Enable Bad Actors mechanism |
 | automation_tools_detection | [on\|off] | on |Enable the usage of automation tools detection (via cookies and redirect) |
 | tls_fingerprint| [on\|off] | on | Enable source identification using TLS fingerprinting|
 

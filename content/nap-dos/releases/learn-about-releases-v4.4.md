@@ -64,9 +64,3 @@ In this release, NGINX App Protect DoS supports NGINX Plus R32.
 #### NGINX Plus
 
 - NGINX Plus R32
-
-
-### Important Notes
-
-
-- When using a large number of Protected Objects, the Signatures mitigation mechanism will be disabled to ensure optimal performance, while all other detection mechanisms will remain intact.
