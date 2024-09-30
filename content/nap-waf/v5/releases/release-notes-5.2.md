@@ -11,7 +11,7 @@ weight: 890
 May 29, 2024
 
 {{< note >}}
- All existing policy bundles and log bundles must be recompiled post upgrade using this version's WAF compiler. Older bundles will be detected and disallowed.
+All existing policy bundles and log bundles must be recompiled post upgrade using this version's WAF compiler. Older bundles will be detected and disallowed.
 {{< /note >}}
 
 ### New Features
@@ -88,7 +88,7 @@ In this release, F5 NGINX App Protect WAF supports NGINX Open Source 1.25.5 and 
 
 ##### RHEL 9+
 
-- app-protect-module-plus-33+5.48.0-1.el9.ngx.x86_64.rpm
+- app-protect-module-plus-32+5.48.0-1.el9.ngx.x86_64.rpm
 
 ### Resolved Issues
 

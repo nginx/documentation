@@ -25,7 +25,7 @@ The [Appendix](#appendix) provides instructions for creating EC2 instances with 
 - [High‑performance reverse proxy]({{< relref "../../admin-guide/web-server/reverse-proxy.md" >}})
 - [Caching and offload of dynamic and static content]({{< relref "../../admin-guide/content-cache/content-caching.md" >}})
 - [Adaptive streaming to deliver audio and video to any device](https://www.nginx.com/products/nginx/streaming-media/)
-- [Application-aware health checks](https://www.nginx.com/products/nginx/load-balancing/#health-checks) and [high availability](https://www.nginx.com/products/nginx/high-availability/)
+- [Application-aware health checks](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/) and [high availability](https://docs.nginx.com/nginx/admin-guide/high-availability/)
 - [Advanced activity monitoring available via a dashboard or API](https://www.nginx.com/products/nginx/live-activity-monitoring/)
 - [Management and real‑time configuration changes with DevOps‑friendly tools](https://www.nginx.com/products/nginx/load-balancing/#load-balancing-api)
 
@@ -40,7 +40,7 @@ The setup for global server load balancing (GSLB) in this guide combines Amazon 
 
 Route 53 is a Domain Name System (DNS) service that performs global server load balancing by routing each request to the AWS region closest to the requester's location. This guide uses two regions: <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West (Oregon)</span> and <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US East (N. Virginia)</span>.
 
-In each region, two or more NGINX Plus load balancers are deployed in a high‑availability (HA) configuration. In this guide, there are two NGINX Plus load balancer instances per region. You can also use NGINX Open Source for this purpose, but it lacks the [application health checks](https://www.nginx.com/products/nginx/load-balancing/#health-checks) that make for more precise error detection. For simplicity, we'll refer to NGINX Plus load balancers throughout this guide, noting when features specific to NGINX Plus are used.
+In each region, two or more NGINX Plus load balancers are deployed in a high‑availability (HA) configuration. In this guide, there are two NGINX Plus load balancer instances per region. You can also use NGINX Open Source for this purpose, but it lacks the [application health checks](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/) that make for more precise error detection. For simplicity, we'll refer to NGINX Plus load balancers throughout this guide, noting when features specific to NGINX Plus are used.
 
 The NGINX Plus instances load balance traffic across web or app servers in their region. The diagram shows four backend servers, but you can deploy as many as needed. In this guide, there are two NGINX Open Source web servers in each region (four total); each one serves a customized static page identifying the server so you can track how load balancing is working.
 
@@ -234,7 +234,7 @@ When you have finished configuring all six health checks, the **Health checks** 
 <span id="nginx-plus-health-checks"></span>
 ### Configuring NGINX Plus Application Health Checks
 
-When you are using the NGINX Plus load balancer, we recommend that you to configure [application health checks](https://www.nginx.com/products/nginx/load-balancing/#health-checks) of your backend servers. You can configure NGINX Plus to check more than simply whether a server is responding or returning `5_xx_` – for example, checking whether the content returned by the server is correct. When a server fails a health check, NGINX Plus removes it from the load‑balancing rotation until it passes a configured number of consecutive health checks. If all backend servers are down, NGINX Plus sends a `5_xx_` error to Route 53, which triggers a failover to another region.
+When you are using the NGINX Plus load balancer, we recommend that you to configure [application health checks](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/) of your backend servers. You can configure NGINX Plus to check more than simply whether a server is responding or returning `5_xx_` – for example, checking whether the content returned by the server is correct. When a server fails a health check, NGINX Plus removes it from the load‑balancing rotation until it passes a configured number of consecutive health checks. If all backend servers are down, NGINX Plus sends a `5_xx_` error to Route 53, which triggers a failover to another region.
 
 These instructions assume that you have configured NGINX Plus on two EC2 instances in each region, as instructed in [Configuring NGINX Plus on the Load Balancers](#configure-load-balancers).
 

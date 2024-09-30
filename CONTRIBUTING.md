@@ -4,10 +4,10 @@ The following is a set of guidelines for contributing to this project. We really
 
 ## ✨ Getting Started
 
-You will need to install Hugo to build and preview docs in your local development environment. 
+You will need to install Hugo _or_ Docker to build and preview docs in your local development environment.
 Refer to the [Hugo installation instructions](https://gohugo.io/getting-started/installing/) for more information.
 
-**NOTE**: We are currently running [Hugo v0.115.3](https://github.com/gohugoio/hugo/releases/tag/v0.115.3) in production.
+**NOTE**: We are currently running [Hugo v0.134.2](https://github.com/gohugoio/hugo/releases/tag/v0.134.2) in production.
 
 ## Local Docs Development
 
@@ -15,8 +15,8 @@ To build the docs locally, run the desired `make` command from the docs director
 
 ```text
 make docs           -   runs a local hugo server so you can view docs in your browser while you work
-make hugo-mod       -   cleans the Hugo module cache and fetches the latest version of the theme module
-make docs-drafts    -   runs the local hugo server and includes all docs marked with `draft: true`
+make hugo-update    -   cleans the Hugo module cache and fetches the latest version of the theme module
+make drafts         -   runs the local hugo server and includes all docs marked with `draft: true`
 make clean          -   removes the local `public` directory, which is the default output path used by Hugo
 ```
 
@@ -40,7 +40,7 @@ The available content types (`kind`) are:
 
 - concept: Helps a customer learn about a specific feature or feature set.
 - tutorial: Walks a customer through an example use case scenario; results in a functional PoC environment.
-- reference: Describes an API, command line tool, config options, etc.; should be generated automatically from source code. 
+- reference: Describes an API, command line tool, config options, etc.; should be generated automatically from source code.
 - troubleshooting: Helps a customer solve a specific problem.
 - openapi: Contains front-matter and shortcode for rendering an openapi.yaml spec.
 
@@ -48,7 +48,7 @@ The available content types (`kind`) are:
 
 ### How to format internal links
 
-Format links as [Hugo refs](https://gohugo.io/content-management/cross-references/). 
+Format links as [Hugo refs](https://gohugo.io/content-management/cross-references/).
 
 - File extensions are optional.
 - You can use relative paths or just the filename. (**Paths without a leading / are first resolved relative to the current page, then to the remainder of the site.**)
@@ -62,7 +62,7 @@ To install <product>, refer to the [installation instructions]({{< ref "install"
 
 ### How to use Hugo shortcodes
 
-You can use [Hugo shortcodes](/docs/themes/f5-hugo/layouts/shortcodes/) to do things like format callouts, add images, and reuse content across different docs. 
+You can use [Hugo shortcodes](/docs/themes/f5-hugo/layouts/shortcodes/) to do things like format callouts, add images, and reuse content across different docs.
 
 For example, to use the note callout:
 
@@ -74,7 +74,7 @@ The callout shortcodes also support multi-line blocks:
 
 ```md
 {{< caution >}}
-You should probably never do this specific thing in a production environment. 
+You should probably never do this specific thing in a production environment.
 
 If you do, and things break, don't say we didn't warn you.
 {{< /caution >}}
@@ -104,8 +104,8 @@ A few more fun shortcodes:
 
 To run the markdownlint check, run the following command from the docs directory:
 
-  ```bash
-  markdownlint -c docs/mdlint_conf.json content
-  ```
+```bash
+markdownlint -c docs/mdlint_conf.json content
+```
 
 > Note: You can run this tool on an entire directory or on an individual file.

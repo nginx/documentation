@@ -245,6 +245,7 @@ The table below lists attributes that are generated in the security logs. When u
 
 
 {{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
+
 |Attribute Name | Description | Included in formats |
 | ---| ---| --- |
 | attack_type | A list of comma separated names of suspected attacks identified in a transaction. | default, grpc |
@@ -292,6 +293,7 @@ The table below lists attributes that are generated in the security logs. When u
 |violations | Comma-separated list of logical violation names (e.g., `VIOL_ATTACK_SIGNATURES`, `VIOL_HTTP_PROTOCOL`). | default, grpc |
 |vs_name | A unique identifier of the location in the nginx.conf file that this request is associated with. It contains the line number of the containing server block in nginx.conf, the server name, a numeric discriminator that distinguishes between multiple entries within the same server, and the location name.  For example: ’34-mydomain.com:0-~/.*php(2). | default, grpc |
 |x_forwarded_for_header_value | `X-Forwarded-For` header information. This option is commonly used when proxies are involved to track the originator of the request. | default, grpc |
+
 {{</bootstrap-table>}}
 
 ### Blocking Observability

@@ -15,9 +15,10 @@ This guide explains the F5 NGINX App Protect WAF security features and how to us
 
 For more information on the NGINX App Protect WAF security features, see [NGINX App Protect WAF Terminology](#nginx-app-protect-waf-terminology).
 
+
 ## Supported Security Policy Features
 
-{{< include "nap-waf/config/common/supported-security-policy-features.md" >}}
+{{< include "nap-waf/config/v5/supported-security-policy-features-v5.md" >}}
 
 ### Disallowed File Types
 
@@ -160,7 +161,7 @@ app_protect_policy_file /policies_mount/new_default_policy.tgz;
 
 {{< include "nap-waf/config/common/user-defined-browser-control.md" >}}
 
-#### Deny, Allow and Never Log Lists
+#### Deny and Allow IP Lists
 
 {{< include "nap-waf/config/common/deny-allow-never-log-lists.md" >}}
 
@@ -381,7 +382,6 @@ app_protect_policy_file /policies_mount/new_default_policy.tgz;
 
 {{< include "nap-waf/config/v5/json-web-tokens-auth-rules-urls-v5.md" >}}
 
-
 ### Attack Signatures
 
 {{< include "nap-waf/config/common/json-web-tokens-attack-sigs.md" >}}
@@ -397,6 +397,16 @@ app_protect_policy_file /policies_mount/new_default_policy.tgz;
 ### Other References
 
 {{< include "nap-waf/config/common/json-web-tokens-other-references.md" >}}
+
+## Secure Traffic Between NGINX and App Protect Enforcer using mTLS
+
+### Overview
+
+{{< include "nap-waf/config/v5/mtls-overview-v5.md" >}}
+
+### mTLS Configuration
+
+{{< include "nap-waf/config/v5/mtls-configuration-v5.md" >}}
 
 ## Custom Dimensions Log Entries
 

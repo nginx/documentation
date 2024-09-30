@@ -26,7 +26,7 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 
 ### New Features
 
-- [Debian 11 Support]({{< relref "/nap-waf/v4/admin-guide/install.md#debian-11-installation" >}})
+- [Debian 11 Support]({{< relref "/nap-waf/v4/admin-guide/install.md#debian-10--debian-11--debian-12-installation" >}})
 - [gRPC Protection for Bidirectional Streaming]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#grpc-protection-for-bidirectional-streaming" >}})
 - [Product Release Info File]({{< relref "/nap-waf/v4/troubleshooting-guide/troubleshooting.md#opening-a-support-ticket" >}})
 

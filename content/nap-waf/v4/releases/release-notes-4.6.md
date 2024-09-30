@@ -25,7 +25,7 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 
 ### New Features
 
-- [Ubuntu 22.04 Support]({{< relref "/nap-waf/v4/admin-guide/install.md#ubuntu-1804--ubuntu-2004--ubuntu-2204-installation" >}})
+- [Ubuntu 22.04 Support]({{< relref "/nap-waf/v4/admin-guide/install.md#ubuntu-1804--ubuntu-2004--ubuntu-2204--ubuntu-2404-installation" >}}) 
 - [JSON Web Token Protection]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#json-web-token-protection" >}})
 - [Custom Dimensions Log Entries]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#custom-dimensions-log-entries" >}})
 

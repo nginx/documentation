@@ -76,18 +76,42 @@
                            },
                            "keyFiles" : {
                               "items" : {
+                                 "oneOf" : [
+                                    {
+                                       "required" : [
+                                          "contents",
+                                          "fileName"
+                                       ]
+                                    },
+                                    {
+                                       "required" : [
+                                          "fileName",
+                                          "$ref"
+                                       ]
+                                    },
+                                    {
+                                       "required" : [
+                                          "fileName",
+                                          "link"
+                                       ]
+                                    }
+                                 ],
                                  "properties" : {
+                                    "$ref" : {
+                                       "format" : "uri",
+                                       "type" : "string"
+                                    },
                                     "contents" : {
                                        "type" : "string"
                                     },
                                     "fileName" : {
                                        "type" : "string"
+                                    },
+                                    "link" : {
+                                       "format" : "uri",
+                                       "type" : "string"
                                     }
                                  },
-                                 "required" : [
-                                    "contents",
-                                    "fileName"
-                                 ],
                                  "type" : "object"
                               },
                               "type" : "array"
@@ -224,6 +248,11 @@
                                     "description" : "Defines if sub-violation is enforced - alarmed or blocked, according to the 'Evasion technique detected' (VIOL_EVASION) violation blocking settings.",
                                     "type" : "boolean"
                                  },
+                                 "learn" : {
+                                    "default" : true,
+                                    "description" : "Defines if sub-violation is learned. Sub-violations are learned only when learn is enabled for the 'Evasion technique detected' (VIOL_EVASION) violation.",
+                                    "type" : "boolean"
+                                 },
                                  "maxDecodingPasses" : {
                                     "default" : 2,
                                     "description" : "Defines how many times the system decodes URI and parameter values before the request is considered an evasion.\nRelevant only for the 'Multiple decoding' sub-violation.",
@@ -275,6 +304,11 @@
                                     "description" : "Defines if sub-violation is enforced - alarmed or blocked, according to the 'HTTP protocol compliance failed' (VIOL_HTTP_PROTOCOL) violation blocking settings",
                                     "type" : "boolean"
                                  },
+                                 "learn" : {
+                                    "default" : true,
+                                    "description" : "Defines if sub-violation is learned. Sub-violations is learned only when learn is enabled for the 'HTTP protocol compliance failed' (VIOL_HTTP_PROTOCOL) violation",
+                                    "type" : "boolean"
+                                 },
                                  "maxCookies" : {
                                     "default" : 50,
                                     "maximum" : 100,
@@ -323,6 +357,10 @@
                                  },
                                  "description" : {
                                     "type" : "string"
+                                 },
+                                 "learn" : {
+                                    "default" : false,
+                                    "type" : "boolean"
                                  },
                                  "name" : {
                                     "enum" : [
@@ -1665,12 +1703,15 @@
                               "items" : {
                                  "properties" : {
                                     "idlFile" : {
-                                       "oneOf" : [
+                                       "anyOf" : [
                                           {
                                              "$ref" : "#/properties/policy/properties/idl-files/oneOf/0/items"
                                           },
                                           {
                                              "properties" : {
+                                                "fileName" : {
+                                                   "type" : "string"
+                                                },
                                                 "id" : {
                                                    "type" : "string"
                                                 }
@@ -1684,6 +1725,9 @@
                                              "properties" : {
                                                 "fileName" : {
                                                    "type" : "string"
+                                                },
+                                                "id" : {
+                                                   "type" : "string"
                                                 }
                                              },
                                              "required" : [
@@ -1691,7 +1735,8 @@
                                              ],
                                              "type" : "object"
                                           }
-                                       ]
+                                       ],
+                                       "type" : "object"
                                     },
                                     "isPrimary" : {
                                        "type" : "boolean"
@@ -1859,12 +1904,15 @@
                               "items" : {
                                  "properties" : {
                                     "idlFile" : {
-                                       "oneOf" : [
+                                       "anyOf" : [
                                           {
                                              "$ref" : "#/properties/policy/properties/idl-files/oneOf/0/items"
                                           },
                                           {
                                              "properties" : {
+                                                "fileName" : {
+                                                   "type" : "string"
+                                                },
                                                 "id" : {
                                                    "type" : "string"
                                                 }
@@ -1878,6 +1926,9 @@
                                              "properties" : {
                                                 "fileName" : {
                                                    "type" : "string"
+                                                },
+                                                "id" : {
+                                                   "type" : "string"
                                                 }
                                              },
                                              "required" : [
@@ -1885,7 +1936,8 @@
                                              ],
                                              "type" : "object"
                                           }
-                                       ]
+                                       ],
+                                       "type" : "object"
                                     },
                                     "importUrl" : {
                                        "type" : "string"
@@ -1989,6 +2041,10 @@
                                  "delete"
                               ],
                               "type" : "string"
+                           },
+                           "allowEmptyValue" : {
+                              "default" : false,
+                              "type" : "boolean"
                            },
                            "allowRepeatedOccurrences" : {
                               "default" : true,
@@ -2357,12 +2413,15 @@
                                        "type" : "boolean"
                                     },
                                     "jsonValidationFile" : {
-                                       "oneOf" : [
+                                       "anyOf" : [
                                           {
                                              "$ref" : "#/properties/policy/properties/json-validation-files/oneOf/0/items"
                                           },
                                           {
                                              "properties" : {
+                                                "fileName" : {
+                                                   "type" : "string"
+                                                },
                                                 "id" : {
                                                    "type" : "string"
                                                 }
@@ -2376,6 +2435,9 @@
                                              "properties" : {
                                                 "fileName" : {
                                                    "type" : "string"
+                                                },
+                                                "id" : {
+                                                   "type" : "string"
                                                 }
                                              },
                                              "required" : [
@@ -2383,7 +2445,8 @@
                                              ],
                                              "type" : "object"
                                           }
-                                       ]
+                                       ],
+                                       "type" : "object"
                                     }
                                  },
                                  "required" : [
@@ -3262,6 +3325,11 @@
                               "description" : "If enabled - when a signature from this signature set is detected in a request - the request is blocked.",
                               "type" : "boolean"
                            },
+                           "learn" : {
+                              "default" : true,
+                              "description" : "If enabled - when a signature from this signature set is detected in a request -the policy builder creates a learning suggestion to disable it.",
+                              "type" : "boolean"
+                           },
                            "name" : {
                               "description" : "Signature set name.",
                               "type" : "string"
@@ -3472,6 +3540,9 @@
                               "description" : "Specifies, if true, that the signature is enabled on the security policy. When false, the signature is disable on the security policy.",
                               "type" : "boolean"
                            },
+                           "learn" : {
+                              "type" : "boolean"
+                           },
                            "name" : {
                               "description" : "The signature name which, along with the signature tag, identifies the signature.",
                               "type" : "string"
@@ -3502,6 +3573,9 @@
             "template" : {
                "description" : "Specifies the template to populate the default attributes of a new policy.",
                "properties" : {
+                  "derivedFrom" : {
+                     "type" : "string"
+                  },
                   "name" : {
                      "description" : "Specifies the name of the template used for the policy creation.",
                      "enum" : [
@@ -3998,6 +4072,9 @@
                      "$ref" : "#/definitions/reference"
                   }
                ]
+            },
+            "wafEngineVersion" : {
+               "type" : "string"
             },
             "whitelist-ips" : {
                "oneOf" : [

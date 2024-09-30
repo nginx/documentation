@@ -21,7 +21,7 @@ These release notes provide general information and describe known issues for NG
   - [Updates](#updates)
   - [Resolved Issues](#resolved-issues)
   - [Known Issues](#known-issues)
-  - {{< link "/about/mesh-tech-specs" "Supported Versions" >}}
+  - [Supported Versions]({{< relref "mesh/about/mesh-tech-specs.md" >}})
 
 <br/>
 <br/>

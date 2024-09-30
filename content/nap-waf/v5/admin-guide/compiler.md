@@ -11,7 +11,7 @@ weight: 500
 
 ## Overview
 
-The F5 NGINX App Protect WAF v5 ompiler is a tool that compiles security policies and logging profiles from JSON format to a bundle file that the Enforcer can consume and apply. The bundle file is then referenced in the nginx configuration file. The compiler is packaged as a Docker image and can be run using the Docker CLI or involved during a CI/CD process.
+The F5 NGINX App Protect WAF v5 Compiler is a tool that compiles security policies and logging profiles from JSON format to a bundle file that the Enforcer can consume and apply. The bundle file is then referenced in the nginx configuration file. The compiler is packaged as a Docker image and can be run using the Docker CLI or involved during a CI/CD process.
 
 ## Use Cases
 
@@ -147,7 +147,7 @@ Compilation with global settings:
 ```shell
 docker run --rm \
  -v $(pwd):$(pwd) \
- waf-compiler-<version-tag>:custom \
+ waf-compiler-1.0.0:custom \
  -g $(pwd)/global_settings.json -p $(pwd)/policy.json -o $(pwd)/compiled_policy.tgz
 ```
 
@@ -156,7 +156,7 @@ Using `-include-source`, you can incorporate the source of the policy (as `polic
 ```shell
 docker run --rm \
  -v $(pwd):$(pwd) \
- waf-compiler-<version-tag>:custom \
+ waf-compiler-1.0.0:custom \
  -include-source -full-export -g $(pwd)/global_settings.json -p $(pwd)/policy.json -o $(pwd)/compiled_policy.tgz
 ```
 

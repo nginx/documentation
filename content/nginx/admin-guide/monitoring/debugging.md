@@ -245,7 +245,7 @@ Perform the following steps in your operating system:
 3. Disable the limit for the maximum size of a core dump file:
 
     ```shell
-    ulimit -c unlimited
+    sudo prlimit --core=unlimited:unlimited --pid $(cat /run/nginx.pid)
     ```
 
     If the operation ends up with “Cannot modify limit: operation not permitted”, run the command:

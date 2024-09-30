@@ -88,7 +88,7 @@ Before continuing, check the NGINX Ingress Controller [supported versions](#supp
 #### NGINX OSS Ingress Controller
 
 1. Build or Pull the NGINX OSS Ingress Controller image:
-    - [Create and push your NGINX Docker image](https://docs.nginx.com/nginx-ingress-controller/installation/building-ingress-controller-image/).
+    - [Create and push your NGINX Docker image](https://docs.nginx.com/nginx-ingress-controller/installation/build-nginx-ingress-controller/).
     - For NGINX OSS Ingress you can also [pull the NGINX Docker image](https://docs.nginx.com/nginx-ingress-controller/installation/pulling-ingress-controller-image/).
 1. Set up Kubernetes Resources for [NGINX Ingress Controller](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/) using Kubernetes manifests:
     - [Configure role-based access control (RBAC)](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/#1-configure-rbac)
@@ -124,14 +124,14 @@ Before continuing, check the NGINX Ingress Controller [supported versions](#supp
 #### NGINX Plus Ingress Controller
 
 1. Build or Pull the NGINX Plus Ingress Controller image:
-    - [Create and push your NGINX Plus Docker image](https://docs.nginx.com/nginx-ingress-controller/installation/building-ingress-controller-image/).
+    - [Create and push your NGINX Plus Docker image](https://docs.nginx.com/nginx-ingress-controller/installation/build-nginx-ingress-controller/).
     - For NGINX Plus Ingress releases >= `1.12.0` you can also [pull the NGINX Plus Docker image](https://docs.nginx.com/nginx-ingress-controller/installation/pulling-ingress-controller-image/).
 1. Set up Kubernetes Resources for [NGINX Plus Ingress Controller](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/) using Kubernetes manifests:
     - [Configure role-based access control (RBAC)](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/#1-configure-rbac)
     - [Create Common Resources](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/#2-create-common-resources)
 1. Create the NGINX Plus Ingress Controller as a **Deployment** or **DaemonSet** in Kubernetes using one of the following example manifests:
-    - Kubernetes Deployment: {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/nginx-plus-ingress.yaml" "`nginx-ingress-controller/nginx-plus-ingress.yaml`" >}}
-    - Kubernetes DaemonSet: {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/nginx-plus-ingress-daemonset.yaml" "`nginx-ingress-controller/nginx-plus-ingress-daemonset.yaml`" >}}
+    - Kubernetes Deployment: {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/plus/nginx-plus-ingress.yaml" "`nginx-ingress-controller/plus/nginx-plus-ingress.yaml`" >}}
+    - Kubernetes DaemonSet: {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/plus/nginx-plus-ingress-daemonset.yaml" "`nginx-ingress-controller/plus/nginx-plus-ingress-daemonset.yaml`" >}}
     - OpenShift Deployment: {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/openshift/nginx-plus-ingress.yaml" "`nginx-ingress-controller/openshift/nginx-plus-ingress.yaml`" >}}
     - Openshift DaemonSet:  {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/openshift/nginx-plus-ingress-daemonset.yaml" "`nginx-ingress-controller/openshift/nginx-plus-ingress-daemonset.yaml`" >}}
       {{< note >}} The provided manifests configure NGINX Plus Ingress Controller for ingress traffic only. If you would like to enable egress traffic, refer to the [Enable Egress](#enable-with-manifests) section of this guide. {{< /note >}}
@@ -169,7 +169,7 @@ Follow the [instructions](https://docs.nginx.com/nginx-ingress-controller/instal
 Set the `nginxServiceMesh.enable` parameter to `true`.
 {{< note >}} This will configure NGINX Ingress Controller to route ingress traffic to NGINX Service Mesh workloads. If you would like to enable egress traffic, refer to the [Enable Egress](#enable-with-helm) section of this guide. {{< /note >}}
 
-The [`values-nsm.yaml`](https://github.com/nginxinc/kubernetes-ingress/blob/master/deployments/helm-chart/values-nsm.yaml) file contains all the configuration parameters that are relevant for integration with NGINX Service Mesh. You can use this file if you are installing NGINX Ingress Controller via chart sources.
+The [`values-nsm.yaml`](https://github.com/nginxinc/kubernetes-ingress/blob/main/charts/nginx-ingress/values-nsm.yaml) file contains all the configuration parameters that are relevant for integration with NGINX Service Mesh. You can use this file if you are installing NGINX Ingress Controller via chart sources.
 
 ## Expose your applications
 

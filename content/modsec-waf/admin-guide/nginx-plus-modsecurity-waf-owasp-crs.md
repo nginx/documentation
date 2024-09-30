@@ -17,7 +17,7 @@ This chapter explains how to enable and test the Open Web Application Security P
 
 <a target="_blank" href="https://docs.nginx.com/nginx/releases/#nginx-plus-release-12-r12">F5 NGINX Plus Release 12</a> and later supports the [NGINX ModSecurity WAF](https://www.nginx.com/products/nginx/modules/nginx-waf/). The OWASP CRS provides the rules for the NGINX ModSecurity WAF to block SQL Injection (SQLi), Remote Code Execution (RCE), Local File Include (LFI), cross&#8209;site scripting (XSS), and many other attacks.
 
-This chapter explains how to enable and test the [Open Web Application Security Project Core Rule Set](https://www.owasp.org/index.php/Category:OWASP_ModSecurity_Core_Rule_Set_Project) (OWASP CRS) for use with the NGINX ModSecurity WAF. The OWASP CRS includes signatures and patterns that detect many types of [generic attacks](https://modsecurity.org/crs). The latest version (CRS 3) includes significant improvements, including a reduction in false positives.
+This chapter explains how to enable and test the [Open Web Application Security Project Core Rule Set](https://owasp.org/www-project-modsecurity-core-rule-set/) (OWASP CRS) for use with the NGINX ModSecurity WAF. The OWASP CRS includes signatures and patterns that detect many types of generic attacks. The latest version (CRS 3) includes significant improvements, including a reduction in false positives.
 
 This chapter builds on the basic configuration in [Installing the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-installation-logging.md" >}}), showing how the CRS protects the demo web application created in that chapter. Before enabling the CRS, we run a scanning tool that generates attack traffic and reports the vulnerabilities it finds. We then enable the CRS and observe how it blocks most malicious requests, protecting our application against common attacks.
 
@@ -242,6 +242,6 @@ For imformation about another supported ModSecurity rule set, see [Using the Mod
 
 ## Resources
 
-- [OWASP ModSecurity Core Rule Set (CRS)](https://modsecurity.org/crs/)
+- [OWASP ModSecurity Core Rule Set (CRS)](https://owasp.org/www-project-modsecurity-core-rule-set/)
 - [Nikto scanning tool](https://github.com/sullo/nikto)
 - [ModSecurity Reference Manual](https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual-v2.x#ModSecurityreg_Reference_Manual)

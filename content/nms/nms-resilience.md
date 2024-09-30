@@ -25,7 +25,7 @@ Resilience refers to a system's ability to bounce back from failures or disrupti
 
 ## How is NGINX Management Suite Resilient?
 
-As the control plane for NGINX Open Source and NGINX Plus instances, the NGINX Management Suite is designed for resilience. Although NGINX Management Suite does not provide the same [high-availability guarantees as the data plane](https://www.nginx.com/products/nginx/high-availability/), it is capable of quickly recovering from problems if they arise.
+As the control plane for NGINX Open Source and NGINX Plus instances, the NGINX Management Suite is designed for resilience. Although NGINX Management Suite does not provide the same [high-availability guarantees as the data plane](https://docs.nginx.com/nginx/admin-guide/high-availability/), it is capable of quickly recovering from problems if they arise.
 
 ### Platform Services
 

@@ -26,7 +26,7 @@ on:
 
 jobs:
   call-docs-build-push:
-    uses: nginxinc/docs-actions/.github/workflows/docs-build-push.yml@main
+    uses: nginxinc/docs-actions/.github/workflows/docs-build-push.yml@f88844356d32c94be057b60033b3a933bebabf77 # v1.0.5
     with:
       production_url_path: ""
       preview_url_path: "/previews/docs"
