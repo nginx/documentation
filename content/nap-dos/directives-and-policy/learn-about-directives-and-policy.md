@@ -320,11 +320,11 @@ While `/etc/app_protect_dos/log-default.json` is:
 
 This directive has 3 arguments.
 
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{<bootstrap-table "table table-bordered table-striped table-sm">}}
 
 | First argument | Second argument | Third argument |
 | :-------------- | :--------------- | :-------------- |
-| [on\|off] <br> depending if this feature should be enabled or disabled.| URI <br> Syntax is: `uri:___` | Port <br> Syntax is: `port:____`|
+| [on\|off] depending if this feature should be enabled or disabled. | URI Syntax is: `uri:___` | Port Syntax is: `port:____` |
 
 {{</bootstrap-table>}}
 
@@ -346,13 +346,14 @@ app_protect_dos_liveness on uri:/liveness port:8090;
 
 This directive has 3 arguments.
 
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{<bootstrap-table "table table-bordered table-striped table-sm">}}
 
 | First argument | Second argument | Third argument |
 | :-------------- | :--------------- | :-------------- |
-| [on\|off] <br> depending if this feature should be enabled or disabled.| URI <br> Syntax is: `uri:___`| Port <br> Syntax is: `port:____`|
+| [on\|off] depending if this feature should be enabled or disabled. | URI Syntax is: `uri:___` | Port Syntax is: `port:____` |
 
 {{</bootstrap-table>}}
+
 
    {{< note >}}
 Second and Third arguments are optional; if one or more is not written, the default will take place.

@@ -711,7 +711,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     app_protect_dos_monitor uri=serv:80/; # Assuming server_name "serv" on port 80, with the root path "/"
     ```
 
-14. Enable L4 accelerated mitigation feature (RHEL 8.6+) on an `http` context in the `nginx.conf` file:
+14. Enable the L4 accelerated mitigation feature (RHEL 8.6+) in the `http` context of the `nginx.conf` file:
 
     ```nginx
     app_protect_dos_accelerated_mitigation on;
@@ -985,7 +985,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     app_protect_dos_monitor uri=serv:80/; # Assuming server_name "serv" on port 80, with the root path "/"
     ```
 
-15. Enable L4 accelerated mitigation feature (Debian 11 / Debian 12 / Ubuntu 20.04 / Ubuntu 22.04) on an `http` context in the `nginx.conf` file:
+15. Enable the L4 accelerated mitigation feature (Debian 11 / Debian 12 / Ubuntu 20.04 / Ubuntu 22.04) on the `http` context of the `nginx.conf` file:
 
     ```nginx
     app_protect_dos_accelerated_mitigation on;
@@ -1114,7 +1114,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     app_protect_dos_monitor uri=serv:80/; # Assuming server_name "serv" on port 80, with the root path "/"
     ```
 
-15. Enable L4 accelerated mitigation feature on an `http` context in the `nginx.conf` file:
+15. Enable the L4 accelerated mitigation feature on the `http` context of the `nginx.conf` file:
 
     ```nginx
     app_protect_dos_accelerated_mitigation on;
@@ -1712,15 +1712,13 @@ You need root permissions to execute the following steps.
 Make sure to replace upstream and proxy pass directives in this example with relevant application backend settings.
 {{< /important >}}
 
-5. For L4 accelerated mitigation feature: <br />
-   Need to remove from the`nginx.conf` file the the line:<br />
-
-   ```nginx
+5. For the L4 accelerated mitigation feature: <br />
+   The following line in the `nginx.conf` file needs to be modified:<br />
+   Change:
+    ```nginx
    user nginx;
    ```
-
-   to
-
+   To:
    ```nginx
    user root;
    ```
