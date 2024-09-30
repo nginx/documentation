@@ -167,7 +167,7 @@ To quickly set up an environment with NGINX Plus, NGINX App Protect WAF and NGIN
     app_protect_dos_enable on;
     app_protect_dos_name "App1";
     app_protect_dos_policy_file "/etc/app_protect_dos/BADOSDefaultPolicy.json";
-    app_protect_dos_monitor uri="example:80/";
+    app_protect_dos_monitor uri=serv:80/; # Assuming server_name "serv" on port 80, with the root path "/"
     ```
 
     c. Enable L4 accelerated mitigation feature (for Debian11/Ubuntu20.04/RHEL8) on an http context in the `nginx.conf` file:
