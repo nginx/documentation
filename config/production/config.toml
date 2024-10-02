@@ -1,6 +1,6 @@
 baseURL = "https://docs.nginx.com"
 title = "NGINX Documentation"
-
+enableGitInfo = true
 [privacy]
   [privacy.disqus]
     disable = false
