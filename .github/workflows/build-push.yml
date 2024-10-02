@@ -25,7 +25,21 @@ on:
       - "staging"
 
 jobs:
+  prod-check-branch:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Output variables
+        run: |
+          echo "Environment: ${{ inputs.environment }}"
+          echo "Branch: ${{ github.ref }}"
+      - name: Checks to see that main branch is selected if deploying to prod
+        if: ${{ inputs.environment == 'prod' && github.ref != 'refs/heads/main' }}
+        run: |
+          echo "Deployment to 'prod' can only be done from the 'main' branch."
+          exit 1
+
   call-docs-build-push:
+    needs: prod-check-branch
     uses: nginxinc/docs-actions/.github/workflows/docs-build-push.yml@69843fb5d009e99750e50c23e90c23a899e4637e # v1.0.6
     with:
       production_url_path: ""
