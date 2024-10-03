@@ -75,7 +75,7 @@ You can **Add Filter** to filter certificates by:
 
 The Export option supports exports of basic certification file information to a CSV file. It does _not_ include the content of the public certificate or the private key.
 
-## Add a new certificate
+## Add a new certificate or bundle
 
 To add a new certificate, select **Add Certificate**. In the window that appears, you can add a certificate name. If you don't add a name, NGINX One will add a name for you, based on the expiration date for the certificate.
 
@@ -89,7 +89,7 @@ In each case, you can upload files directly, or enter the content of the certifi
 - **Certificate Details**, with the Subject Name, start and end dates. 
 - **Key Details**, with the encryption key size and algorithm, such as RSA
 
-## Edit an existing certificate
+## Edit an existing certificate or bundle
 
 You can modify existing certificates from the **Certificates** screen. Select the certificate of your choice. Depending on the type of certificate, you'll then see either a **Edit Certificate** or **Edit CA Bundle** option. The NGINX One Console then presents a window with the same options as shown when you [Add a new certificate](#add-a-new-certificate).
 
