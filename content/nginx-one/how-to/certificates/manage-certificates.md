@@ -14,7 +14,7 @@ weight: 100
 
 This guide explains how you can manage SSL/TLS certificates with the F5 NGINX One Console. Valid certificates support encrypted connections between NGINX and your users. 
 
-For more information on how you can use these certificates to secure your servers, refer to the [Security controls]({{< relref "../../../nginx/admin-guide/security-controls/terminating-ssl-http.md" >}}).
+For more information on how you can use these certificates to secure your servers, refer to the section on [NGINX SSL termination]({{< relref "../../../nginx/admin-guide/security-controls/terminating-ssl-http.md" >}}).
 
 ## Before you start
 
@@ -54,14 +54,14 @@ Follow these steps to review existing certificates for your instances.
 
 On the left-hand pane, select **Certificates**. In the window that appears, you see:
 
-- **Certificate Status**. This includes:
+- **Certificate Status** 
 
   - Total number of certificates
   - Valid certificates that expire more than 30 days from now
   - Valid certificates that expire within the next 30 days
   - Expired certificates
 
-- Management Status
+- **Management Status**
 
   - Managed certificates can be administered remotely, from a deployment or through the API
   - Unmanaged certificates are listed. While you can convert an unmanaged certificate to managed, you may have to repeat installing the certificate and key.
@@ -100,6 +100,6 @@ Certificates menu, select **Unmanaged**. You should see a list of **Unmanaged Ce
 
 - Select a certificate
 - Select **Convert to Managed**
-- In the window that appears, you can now include the same information as shown in the [Add a new certificate](#add-a-new-certificate) section.
+- In the window that appears, you can now include the same information as shown in the [Add a new certificate](#add-a-new-certificate) section
 
 Once you've completed the process, NGINX One reassigns this as a managed certificate, and assigns it to the associated instance or config sync group.
