@@ -7310,18 +7310,6 @@
       "tags": [
         "Settings"
       ]
-    },
-    {
-      "name": "NGINX Usage API",
-      "tags": [
-        "Usage"
-      ]
-    },
-    {
-      "name": "Chatbot API",
-      "tags": [
-        "Chatbot"
-      ]
     }
   ]
 }
