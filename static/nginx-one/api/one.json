@@ -33,6 +33,11 @@
       "x-displayName": "Instances"
     },
     {
+      "name": "Config Sync Groups",
+      "description": "The `ConfigSyncGroups` object represents a NGINX config sync group where `Instances` are grouped to have same configuration. \nYou can access detailed information about each NGINX config sync group, including its configuration analysis and operational status.\n",
+      "x-displayName": "Config Sync Groups"
+    },
+    {
       "name": "CVEs",
       "description": "The `CVEs` object represents the security advisories published for all the F5 products supported by NGINX One.\n",
       "x-displayName": "CVEs"
@@ -41,15 +46,6 @@
       "name": "Metrics",
       "description": "Get system metrics for your NGINX data plane instances. These metrics are collected by the NGINX Agent and reported to NGINX One.\n",
       "x-displayName": "Metrics"
-    },
-    {
-      "name": "Catalogs",
-      "description": "Get details about the available metrics and dimensions in the Metrics and Dimensions catalogs.\n",
-      "x-displayName": "Catalogs"
-    },
-    {
-      "name": "Usage",
-      "x-displayName": "Usage"
     }
   ],
   "paths": {
@@ -161,6 +157,58 @@
           },
           "400": {
             "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "x-nginx-one-action": "perform bulk operation",
+        "x-nginx-one-entity": "data plane key",
+        "tags": [
+          "Data Plane Key"
+        ],
+        "summary": "Bulk operation on multiple data plane keys.",
+        "operationId": "BulkDataPlaneKeys",
+        "description": "Performs bulk operation on one or more data plane keys, only delete is supported.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DataPlaneKeyBulkRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Batch request completed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataPlaneKeyBulkResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
             "content": {
               "application/json": {
                 "schema": {
@@ -523,6 +571,58 @@
             }
           }
         }
+      },
+      "patch": {
+        "x-nginx-one-action": "bulk",
+        "x-nginx-one-entity": "NGINX instance",
+        "tags": [
+          "Instances"
+        ],
+        "summary": "Bulk operation on multiple instances.",
+        "operationId": "BulkInstances",
+        "description": "Performs bulk operation on one or more NGINX instances, only delete is supported.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstanceBulkRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Batch request completed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstanceBulkResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/instances/{instanceObjectID}/cves": {
@@ -591,7 +691,7 @@
           "Instances"
         ],
         "summary": "Retrieve an instance",
-        "description": "Retrieves the details for an NGINX instance, including\n* Hostname\n* System status\n* Timestamps of key actions (registration, last reported, etc.)\n* NGINX build information\n* Certificate data\n* Operating system version\n* NGINX Agent version\n* Cluster membership details\n",
+        "description": "Retrieves the details for an NGINX instance, including\n* Hostname\n* System status\n* Timestamps of key actions (registration, last reported, etc.)\n* NGINX build information\n* Certificate data\n* Operating system version\n* NGINX Agent version\n* Config Sync Group membership details\n",
         "operationId": "getInstance",
         "parameters": [
           {
@@ -692,6 +792,70 @@
         }
       }
     },
+    "/instances/parse-nginx-config": {
+      "put": {
+        "tags": [
+          "Instances"
+        ],
+        "x-nginx-one-action": "parse",
+        "x-nginx-one-entity": "NGINX instance configuration",
+        "summary": "Generate a crossplane representation of provided NGINX configuration.",
+        "description": "Returns a crossplane representation of provided NGINX config.",
+        "operationId": "parseNginxConfig",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NginxConfigRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully parsed the provided NGINX configuration.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParsedNginxConfig"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/instances/{instanceObjectID}/config-report": {
       "parameters": [
         {
@@ -715,6 +879,9 @@
                 }
               }
             }
+          },
+          "204": {
+            "description": "The requested instance exists, but analysis of the NGINX configuration is not yet completed. Please retry the request at a later time to retrieve the report."
           },
           "404": {
             "description": "The NGINX instance with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
@@ -1314,9 +1481,902 @@
         }
       }
     },
+    "/config-sync-groups": {
+      "post": {
+        "x-nginx-one-action": "create",
+        "x-nginx-one-entity": "NGINX config sync group",
+        "tags": [
+          "Config Sync Groups"
+        ],
+        "summary": "Create an NGINX config sync group",
+        "operationId": "createConfigSyncGroup",
+        "description": "Create NGINX config sync group with a unique name to identify it within the tenant namespace.\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfigSyncGroupCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully created NGINX config sync group",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfigSyncGroupCreateResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The NGINX config sync group can't be created because the name is already in use",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Config Sync Groups"
+        ],
+        "summary": "List all config sync groups",
+        "operationId": "listConfigSyncGroups",
+        "description": "Returns a list of all NGINX config sync groups, providing details such as:\n  * Name of the config sync group\n  * List of instance with details\n  * Version of the NGINX configuration that's expected to be on all listed instances\n  * Status of apply configuration operation  \n  * Timestamp of last reported action\n",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldConfigSyncGroups"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameConfigSyncGroups"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of NGINX config sync groups.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfigSyncGroupListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/config-sync-groups/{configSyncGroupObjectID}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ConfigSyncGroupParamObjectID"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Config Sync Groups"
+        ],
+        "summary": "Retrieve an NGINX config sync group",
+        "description": "Retrieve the details for an NGINX config sync group, including:\n* name\n* Instances and details of each instance\n* Timestamp of last reported action\n* NGINX config version on the config sync group\n* Certificate summary referenced by config sync group members\n* NGINX config sync operation status\n* Last config sync group publication operation status\n",
+        "operationId": "getConfigSyncGroup",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the details of the NGINX config sync group.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfigSyncGroupDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX config sync group with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "x-nginx-one-action": "delete",
+        "x-nginx-one-entity": "NGINX config sync group",
+        "tags": [
+          "Config Sync Groups"
+        ],
+        "summary": "Delete an NGINX config sync group",
+        "description": "Delete a NGINX config sync group from the NGINX One console. You can delete a config sync group, only if it contains no NGINX instances.\n",
+        "operationId": "deleteConfigSyncGroup",
+        "responses": {
+          "204": {
+            "description": "Successfully deleted the NGINX config sync group"
+          },
+          "401": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX config sync group with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/config-sync-groups/{configSyncGroupObjectID}/config": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ConfigSyncGroupParamObjectID"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Config Sync Groups"
+        ],
+        "summary": "Retrieve a config sync group's configuration details",
+        "description": "Returns the configuration details for a NGINX config sync group, including: \n* Main configuration path\n* Details about configuration files\n* Details about auxiliary files\n* Unique identifiers\n",
+        "operationId": "getConfigSyncGroupConfig",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the configuration details for the specified NGINX config sync group.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NginxConfig"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX config sync group with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Config Sync Groups"
+        ],
+        "x-nginx-one-action": "create",
+        "x-nginx-one-entity": "NGINX config sync group configuration",
+        "summary": "Publish a configuration to NGINX config sync group",
+        "description": "Publishes a new or updated NGINX configuration to the specified config sync group. \nIf no existing configuration is found, a new one is created; otherwise, the current configuration is overwritten.\n",
+        "operationId": "publishConfigSyncGroupConfig",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NginxConfigRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully stored the configuration of the NGINX config sync group.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NginxConfig"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "The request to publish the configuration has been accepted and is being processed. To check the publication status, make a GET request to /config-sync-groups/{configSyncGroupObjectID}/publications.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfigSyncGroupPublication"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX config sync group with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Config Sync Groups"
+        ],
+        "x-nginx-one-action": "update",
+        "x-nginx-one-entity": "NGINX config sync group configuration",
+        "summary": "Apply partial updates to config sync group's configuration",
+        "description": "Applies the specified partial updates to an existing NGINX configuration. Details:\n  * This endpoint accepts additive updates to `NginxConfig`. \n  * To delete files, omit the `file.contents` field. \n  * This method compares the provided config_version with the current NGINX config sync group configuration to detect conflicts, which may arise if the config_version does not match due to an out-of-band update.\n",
+        "operationId": "patchConfigSyncGroupConfig",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NginxConfigRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully stored the configuration of the NGINX config sync group",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NginxConfig"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "The request to publish the configuration has been accepted and is being processed. To check the publication status, make a GET request to /config-sync-groups/{configSyncGroupObjectID}/publications.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicationInstance"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX config sync group with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/config-sync-groups/{configSyncGroupObjectID}/configs": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ConfigSyncGroupParamObjectID"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Config Sync Groups"
+        ],
+        "summary": "Retrieves stored NGINX configurations for a NGINX config sync group",
+        "description": "Returns a list of all configurations for a NGINX config sync group. Only the last 5 are kept on the NGINX One Console for a NGINX config sync group.",
+        "operationId": "listConfigSyncGroupConfigurations",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of NGINX configurations for the specified NGINX config sync group.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NginxConfigMeta"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX config sync group with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/config-sync-groups/{configSyncGroupObjectID}/config/{configSyncGroupConfigurationObjectID}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ConfigSyncGroupParamObjectID"
+        },
+        {
+          "$ref": "#/components/parameters/ConfigSyncGroupConfigurationParamObjectID"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Config Sync Groups"
+        ],
+        "summary": "Retrieve details the NGINX config sync group",
+        "description": "Returns the configuration details for an NGINX config sync group, including: \n* Main configuration path\n* Details about configuration files\n* Details about auxiliary files\n* Unique identifiers\n",
+        "operationId": "getConfigSyncGroupConfigWithObjectID",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the configuration details for the specified NGINX config sync group and NGINX configuration.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NginxConfig"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX config sync group or NGINX configuration with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/config-sync-groups/{configSyncGroupObjectID}/publications": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ConfigSyncGroupParamObjectID"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Config Sync Groups"
+        ],
+        "summary": "Retrieve the publications for the NGINX config sync group",
+        "description": "Returns a list of publications for a NGINX config sync group, providing details such as:\n  * Current status along with reason(s) including the target instance object, cause and relevant message\n  * Configuration version\n",
+        "operationId": "listConfigSyncGroupPublications",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of all publications for the specified NGINX config sync group.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ConfigSyncGroupPublication"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX config sync group with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/config-sync-groups/{configSyncGroupObjectID}/publications/{publicationObjectID}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ConfigSyncGroupParamObjectID"
+        },
+        {
+          "$ref": "#/components/parameters/PublicationParamObjectID"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Config Sync Groups"
+        ],
+        "summary": "Retrieve the publications for the NGINX config sync group, providing details such as:\n    * Current status along with reason(s) including the target instance object, cause and relevant message\n    * Configuration version\n",
+        "description": "Returns a publication for a NGINX config sync group.",
+        "operationId": "getConfigSyncGroupPublication",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the publication for the specified NGINX config sync group.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfigSyncGroupPublication"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX config sync group with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/config-sync-groups/{configSyncGroupObjectID}/config-report": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ConfigSyncGroupParamObjectID"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Config Sync Groups"
+        ],
+        "summary": "Retrieve an analysis report for the configuration of an NGINX config sync group",
+        "description": "Analyzes the configuration of an NGINX config sync group and returns a detailed report.\nThe report includes insights, identified issues, and recommendations for optimizing and troubleshooting.\n",
+        "operationId": "getConfigSyncGroupConfigReport",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the NGINX configuration analysis for the specified config sync group.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NginxConfigReports"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "The requested config sync group exists, but analysis of the NGINX configuration is not yet completed. Please retry the request at a later time to retrieve the report."
+          },
+          "404": {
+            "description": "The NGINX config sync group with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "x-nginx-one-action": "analyze",
+        "x-nginx-one-entity": "NGINX config sync group configuration",
+        "tags": [
+          "Config Sync Groups"
+        ],
+        "summary": "Generate an analysis report for the configuration of the NGINX config sync group",
+        "description": "Returns an analysis report for the configuration of the NGINX config sync group. This report includes insights, identified issues, and recommendations for optimizing and troubleshooting. Note that this operation is for analysis purposes only and does not apply any changes to the configuration. The report is not stored and is provided only in the API response. To publish the configuration, use the `PUT /config-sync-groups/{configSyncGroupObjectID}/config` endpoint.",
+        "operationId": "analyzeConfigSyncGroupConfig",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NginxConfigRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully analyzed the provided NGINX configuration.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NginxConfigReports"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX config sync group with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "x-nginx-one-action": "analyze",
+        "x-nginx-one-entity": "NGINX config sync group configuration",
+        "tags": [
+          "Config Sync Groups"
+        ],
+        "summary": "Generate an analysis report for the configuration of the modified NGINX config sync group",
+        "description": "Analyzes the provided partial updates merging with an existing configuration of an NGINX config sync group. Generates a report detailing potential issues along with optimization suggestions. \nThis analysis accounts for additive updates made to NGINX configuration. To delete files, omit the `file.contents` field. \nThis method compares the provided `config_version` with the current NGINX config sync group's configuration to detect conflicts, which may arise if the `config_version` does not match due to an out-of-band update. \nNote that this operation is for analysis purposes only and does not apply any changes to the configuration. \nThe report is not stored and is provided only in the API response.\nTo publish the configuration, use the `PATCH /config-sync-groups/{configSyncGroupObjectID}/config` endpoint.\n",
+        "operationId": "analyzeConfigSyncGroupConfigPatch",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NginxConfigRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully analyzed the provided NGINX configuration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NginxConfigReports"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX config sync group with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/certificates/{certificateObjectID}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/CertificateParamObjectID"
+        }
+      ]
+    },
     "/cves": {
       "get": {
-        "x-feature-flag": "nginx-cves",
         "tags": [
           "CVEs"
         ],
@@ -1376,7 +2436,6 @@
     },
     "/cves/{nginxCVEID}": {
       "get": {
-        "x-feature-flag": "nginx-cves",
         "tags": [
           "CVEs"
         ],
@@ -1434,7 +2493,6 @@
     },
     "/cves/{nginxCVEID}/impacted_instances": {
       "get": {
-        "x-feature-flag": "nginx-cves",
         "tags": [
           "CVEs"
         ],
@@ -1505,105 +2563,170 @@
         }
       }
     },
-    "/monitor/metrics": {
+    "/events": {
       "get": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Retrieve system events.",
+        "description": "Retrieves a list of the system events.",
+        "operationId": "listEvents",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldEvents"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of events.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventsListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/events/{eventObjectID}": {
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "operationId": "getEvent",
+        "summary": "Retrieve specific event.",
+        "description": "Retrieve a specific event using the event object_id.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/EventParamObjectID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the details of the event.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Event"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The Event with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitor/metrics_query": {
+      "post": {
         "tags": [
           "Metrics"
         ],
         "summary": "Retrieve system metrics for instances",
-        "operationId": "queryMetrics",
-        "description": "Returns system metrics for NGINX instances based on query parameters.\n\nYou can filter metrics by name and timestamp, aggregate metrics over a configurable period of time, and group metrics by dimension.\n",
-        "parameters": [
-          {
-            "name": "names",
-            "in": "query",
-            "description": "Specify the metrics you want details for.\n\nUsage: \n* List multiple metric names as a comma-separated list.\n* You can aggregate metrics with `AVG`, `SUM`, `COUNT`, `MIN`, `MAX`, `RATE`.\n* Metrics with aggregates require a `start_time`.\n* If you combine aggregated and non-aggregated metrics in a single query, any `group_by` clause applies only to the aggregated metrics.\n",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "AVG(agent.cpu.system),SUM(plus.upstream.bytes_rcvd)"
-            }
-          },
-          {
-            "name": "group_by",
-            "in": "query",
-            "description": "Group the query results by the specified dimension(s).\n\nUsage:\n* List multiple dimensions as a comma-separated list.\n* For `group_by` to work, all metrics in the `names` parameter must be aggregated.\n",
-            "schema": {
-              "type": "string",
-              "example": "server_zone"
-            }
-          },
-          {
-            "name": "series_limit",
-            "in": "query",
-            "description": "Sets the maximum number of series that can be returned. \n\nUsage:\n* Must be used with `order_series_by`.\n* Cannot be used together with `dimensions`.\n* Requires exactly one `group_by` parameter.\n\n\nNotes:\n* Always returns an additional series with a dimension named `all`, aggregating the values of all metrics included in the results.\n* A series with a dimension named `other` may be returned, aggregating the values of metrics not included in the results.\n",
-            "schema": {
-              "type": "integer",
-              "example": 25
-            }
-          },
-          {
-            "name": "order_series_by",
-            "in": "query",
-            "description": "Sets the sort order of the metric series in your results.\n\nUsage:\n\n* Must be used with `series_limit`.\n",
-            "schema": {
-              "type": "string",
-              "default": "SUM DESC",
-              "example": "MAX DESC"
-            }
-          },
-          {
-            "name": "dimensions",
-            "in": "query",
-            "description": "List the dimensions to include in the response for each metric series.\n\nUsage:\n\n* List dimensions as a comma-separated list. Dimensions not specified in this parameter will be hidden in the results.\n* Cannot be used with `series_limit`.\n* If you specify dimensions in `group_by`, you don't need to list them again in `dimensions`. \nHowever, if you are using `group_by`, then any dimensions you list in `dimensions` must also be included in `group_by`.\n* To return a single series, specify the metric name with aggregation (for example, `AVG(agent.cpu.system)`) and leave the `dimensions` parameter empty. \n",
-            "schema": {
-              "type": "string",
-              "example": "server_zone"
-            }
-          },
-          {
-            "name": "start_time",
-            "in": "query",
-            "description": "Sets the beginning of the time period for your metrics query (inclusive).\n\nUsage:\n* `start_time` is required if `end_time` is specified.\n* If `start_time` isn't provided, the API returns the latest metrics.\n* `start_time` is required for aggregated metrics in order to calculate the `resolution` (granularity).\n",
-            "schema": {
-              "$ref": "#/components/schemas/Time"
-            },
-            "example": "now-5h"
-          },
-          {
-            "name": "end_time",
-            "in": "query",
-            "description": "Sets the end point for the time period for your metrics query (non-inclusive).\n\nUsage:\n* Must be greater than `start_time`.\n* If `start_time` is specified and `end_time` is not, `end_time` defaults to the current time.\n",
-            "schema": {
-              "$ref": "#/components/schemas/Time"
-            }
-          },
-          {
-            "name": "filter",
-            "in": "query",
-            "description": "Filters results based on key value pairs.\n\nUsage:\n* Format as one or more predicates in the form of `<key><operator><value>`.\n  * `<key>`: The dimension name you want to filter on.\n  * `<operator>`: The possible operators (`=`, `!=`, `<`, `<=`, `>`, `>=`, `in`, `not`) you can use for comparison or condition checking.\n  * `<value>`: The value of the dimension to filter against. Enclose `<value>` in single quotes `' '`.\n  * `<key>` and `<value>` are case sensitive.\n\nFor more complex filtering:\n\n* Combine predicates into logical expressions using `AND`, `OR`, and parentheses `( )`. \n* Use a wildcard `*` for matching partial values. \n",
-            "schema": {
-              "type": "string",
-              "example": "((server_zone!='server_zone_1' OR server_zone='server_zone_2') AND nginx_id in ('id1', 'id2')) AND (system.tags!='*tag1*')"
-            }
-          },
-          {
-            "name": "resolution",
-            "in": "query",
-            "description": "Specifies the level of granularity for time series data in your results. Applicable only for endpoints that return time series data.\n\nUsage: \n* Specify as a string with a number followed by a unit of time, such as `y` (years), `M` (months), `w` (weeks), `d` (days), `h` (hours), `m` (minutes) or `s` (seconds).\n* Metrics in `names` must be aggregated.\n* `start_time` is required.\n* If `resolution` is not set, the API returns the maximum resolution (`end_time` - `start_time`).\n",
-            "schema": {
-              "type": "string",
-              "example": "30s"
+        "operationId": "queryMetricsInput",
+        "description": "Returns (up to 10,000) system metrics for NGINX instances based on query parameters.\n\nYou can filter metrics by name and timestamp, aggregate metrics over a configurable period of time, and group metrics by dimension.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MetricQueryRequest",
+                "example": {
+                  "start_time": "now-1h",
+                  "end_time": "now",
+                  "resolution": "5m",
+                  "names": [
+                    {
+                      "name": "system.cpu.system",
+                      "aggregate": "avg"
+                    },
+                    {
+                      "name": "nginx.http.request.count",
+                      "aggregate": "sum"
+                    }
+                  ],
+                  "order_by": [
+                    {
+                      "direction": "asc",
+                      "dimension": "instance_object_id"
+                    }
+                  ]
+                }
+              }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "Successfully retrieved system metrics.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MetricQueryResult"
+                  "$ref": "#/components/schemas/MetricQueryResultEx"
                 }
               }
             }
@@ -1641,54 +2764,43 @@
         }
       }
     },
-    "/monitor/catalogs/metrics": {
-      "get": {
+    "/monitor/metrics_query_topx": {
+      "post": {
         "tags": [
-          "Catalogs"
+          "Metrics"
         ],
-        "summary": "List all metrics",
-        "operationId": "listMetricsDescriptions",
-        "description": "Returns a list of all the metric resources in the Metrics Catalog. \nThis catalog provides detailed definitions of each metric, helping you to better understand the available metrics and refine your analytics queries. \n",
-        "responses": {
-          "200": {
-            "description": "Successfully retrieved the list of metrics.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MetricsDescriptionsResponse"
+        "summary": "Retrieve system metrics for instances with series limit",
+        "operationId": "queryMetricsInputTopX",
+        "description": "Returns (up to 10,000) system metrics for NGINX instances with series limit based on query parameters.\n\nYou can filter metrics by name and timestamp, aggregate metrics over a configurable period of time, and group metrics by dimension.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MetricTopXQueryRequest",
+                "example": {
+                  "start_time": "now-1h",
+                  "end_time": "now",
+                  "resolution": "1m",
+                  "metrics": [
+                    {
+                      "aggregate": "sum",
+                      "name": "nginx.http.request.count"
+                    }
+                  ],
+                  "series_limit": 1,
+                  "group_series_by": "instance_object_id"
                 }
               }
             }
           }
-        }
-      }
-    },
-    "/monitor/catalogs/metrics/{metricName}": {
-      "get": {
-        "tags": [
-          "Catalogs"
-        ],
-        "summary": "Retrieve a metric description",
-        "operationId": "getMetricDescription",
-        "description": "Retrieves detailed information about a metric resource in the Metrics Catalog.\nThis detailed view helps you see how a metric can be used for monitoring and analytics.\n\nThe response includes:\n* Name and description of the metric, explaining what it measures.\n* Applicable types of aggregations (for example `AVG`, `SUM`).\n* Categories to which the metric belongs, like 'nginx'.\n* Associated dimensions, showing different ways to analyze the metric.\n* Type and unit of the metric, such as 'incremental' and 'bytes'.\n",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "metricName",
-            "description": "The name of the metric resource you want details for. This name is used to identify the metric in the Metrics Catalog.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        },
         "responses": {
           "200": {
-            "description": "Successfully retrieved the details for the metric resource.",
+            "description": "Successfully retrieved system metrics.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MetricDescriptionRecord"
+                  "$ref": "#/components/schemas/MetricQueryResultEx"
                 }
               }
             }
@@ -1704,7 +2816,17 @@
             }
           },
           "404": {
-            "description": "The requested metric resource resource was not found. Check that the resource name provided is correct and corresponds to an existing resource.",
+            "description": "The requested metric resource was not found. Check that the resource name provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1716,77 +2838,65 @@
         }
       }
     },
-    "/monitor/catalogs/dimensions": {
+    "/settings/instance-cleanup": {
       "get": {
         "tags": [
-          "Catalogs"
+          "Settings"
         ],
-        "summary": "List all dimensions",
-        "operationId": "listDimensionsDescriptions",
-        "description": "Returns a list of all the dimension resources in the Dimensions Catalog.\n\nDimensions let you categorize and filter metrics data. \nTo get detailed information about a particular dimension, use the [Retrieve a dimension description](#operation/getDimensionDescription) endpoint.\n",
+        "summary": "Retrieve settings",
+        "description": "Retrieves settings for NGINX Instance cleanup\n",
+        "operationId": "getSettingInstanceCleanup",
         "responses": {
           "200": {
-            "description": "Successfully retrieved the list of dimensions.",
+            "description": "Successfully retrieved the setting for NGINX Instance cleanup.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DimensionsDescriptionsResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/monitor/catalogs/dimensions/{dimensionName}": {
-      "get": {
-        "tags": [
-          "Catalogs"
-        ],
-        "summary": "Retrieve a dimension description",
-        "operationId": "getDimensionDescription",
-        "description": "Retrieves the details for a specific dimension.\n",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "dimensionName",
-            "description": "The name of the dimension you want details for. This name is used to identify the dimension in the Dimensions Catalog.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully retrieved the details for the dimension resource.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DimensionDescriptionRecord"
+                  "$ref": "#/components/schemas/SettingsInstanceCleanup"
                 }
               }
             }
           },
           "400": {
-            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "$ref": "#/components/responses/InvalidRequest"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      },
+      "put": {
+        "x-nginx-one-action": "update",
+        "x-nginx-one-entity": "NGINX Instance Cleanup Setting",
+        "tags": [
+          "Settings"
+        ],
+        "summary": "Update settings",
+        "description": "Update settings for NGINX Instance cleanup\n",
+        "operationId": "updateSettingInstanceCleanup",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SettingsInstanceCleanup"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated settings for NGINX Instance cleanup.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Error"
+                  "$ref": "#/components/schemas/SettingsInstanceCleanup"
                 }
               }
             }
           },
-          "404": {
-            "description": "The requested dimension resource was not found. Check that the resource name provided is correct and corresponds to an existing resource.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
           }
         }
       }
@@ -1940,21 +3050,21 @@
         "description": "A globally unique identifier for a Publication.\n",
         "required": true
       },
-      "FilterFieldClusters": {
+      "FilterFieldConfigSyncGroups": {
         "name": "filter_fields",
         "in": "query",
         "description": "An array of strings indicating which fields to filter by (for example, `name`, `config_status`). This parameter works in conjunction with `filter_values` and `filter_ops`.\n",
         "schema": {
           "type": "array",
           "items": {
-            "$ref": "#/components/schemas/FilterNameClusters"
+            "$ref": "#/components/schemas/FilterNameConfigSyncGroups"
           }
         }
       },
-      "SortNameClusters": {
-        "name": "sort_clusters",
+      "SortNameConfigSyncGroups": {
+        "name": "sort_config_sync_groups",
         "in": "query",
-        "description": "Sort clusters by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
+        "description": "Sort config sync groups by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
         "schema": {
           "type": "array",
           "items": {
@@ -1963,27 +3073,27 @@
               "name"
             ],
             "x-enum-varnames": [
-              "sort_name_cluster_name"
+              "sort_name_config_sync_group_name"
             ]
           }
         }
       },
-      "ClusterParamObjectID": {
-        "name": "clusterObjectID",
+      "ConfigSyncGroupParamObjectID": {
+        "name": "configSyncGroupObjectID",
         "in": "path",
         "schema": {
-          "$ref": "#/components/schemas/ClusterObjectID"
+          "$ref": "#/components/schemas/configSyncGroupObjectID"
         },
-        "description": "A globally unique identifier for the NGINX cluster.\n",
+        "description": "A globally unique identifier for the NGINX config sync group.\n",
         "required": true
       },
-      "ClusterConfigurationParamObjectID": {
-        "name": "clusterConfigurationObjectID",
+      "ConfigSyncGroupConfigurationParamObjectID": {
+        "name": "configSyncGroupConfigurationObjectID",
         "in": "path",
         "schema": {
           "$ref": "#/components/schemas/NginxConfigObjectID"
         },
-        "description": "A globally unique identifier for the NGINX cluster configuration.\n",
+        "description": "A globally unique identifier for the NGINX config sync group configuration.\n",
         "required": true
       },
       "FilterFieldCertificates": {
@@ -2029,6 +3139,34 @@
         "description": "A globally unique identifier for the certificate.\n",
         "required": true
       },
+      "FilterFieldCertificateDeployments": {
+        "name": "filter_fields",
+        "in": "query",
+        "description": "Filter options for certificate deployments; used in conjunction with other filter parameters having the same array length.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/FilterNameCertificateDeployments"
+          }
+        }
+      },
+      "SortNameCertificateDeployments": {
+        "name": "sort_certificate_deployments",
+        "in": "query",
+        "description": "Sort certificate deployments by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name"
+            ],
+            "x-enum-varnames": [
+              "sort_name_certificate_deployments_name"
+            ]
+          }
+        }
+      },
       "SortNameCVEs": {
         "name": "sort_cves",
         "in": "query",
@@ -2056,7 +3194,8 @@
         "name": "nginxCVEID",
         "in": "path",
         "schema": {
-          "type": "string"
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{4,19}$"
         },
         "description": "A globally unique identifier for NGINX CVE.\n",
         "required": true
@@ -2090,6 +3229,15 @@
             "$ref": "#/components/schemas/FilterNameEvents"
           }
         }
+      },
+      "EventParamObjectID": {
+        "name": "eventObjectID",
+        "in": "path",
+        "schema": {
+          "$ref": "#/components/schemas/EventObjectID"
+        },
+        "description": "A globally unique identifier for an event.\n",
+        "required": true
       }
     },
     "schemas": {
@@ -2301,6 +3449,111 @@
             "format": "date-time",
             "description": "The date and time when the data plane key will expire."
           }
+        }
+      },
+      "BulkRequestAction": {
+        "type": "string",
+        "default": "modify",
+        "description": "Bulk action to perform:\n  * `create` creates a new object given all required elements.\n  * `modify` updates one or more elements of an existing object.\n  * `delete` removes the existing object.\n",
+        "enum": [
+          "create",
+          "modify",
+          "delete"
+        ],
+        "x-enum-varnames": [
+          "bulk_action_create",
+          "bulk_action_modify",
+          "bulk_action_delete"
+        ]
+      },
+      "DataPlaneKeyBulkRequestData": {
+        "type": "object",
+        "description": "Part of bulk operation on a data plane key, only `delete` is supported.",
+        "required": [
+          "action"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/DataPlaneKeyObjectID"
+          },
+          "action": {
+            "$ref": "#/components/schemas/BulkRequestAction"
+          }
+        },
+        "example": {
+          "object_id": "key_-uvR3F2TQGm18jnl7bpaGw",
+          "action": "delete"
+        }
+      },
+      "DataPlaneKeyBulkRequest": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/DataPlaneKeyBulkRequestData"
+        },
+        "minItems": 1,
+        "maxItems": 50,
+        "example": [
+          {
+            "object_id": "key_-uvR3F2TQGm18jnl7bpaGw",
+            "action": "delete"
+          },
+          {
+            "object_id": "key_PL0c1XodRemmzVEjiXSsTg",
+            "action": "delete"
+          }
+        ]
+      },
+      "ObjectID": {
+        "description": "A globally unique identifier.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^\\w+_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
+      },
+      "BulkRequestObjectStatus": {
+        "type": "object",
+        "required": [
+          "outcome"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/ObjectID"
+          },
+          "name": {
+            "type": "string",
+            "description": "this is the user facing name of the object."
+          },
+          "outcome": {
+            "type": "string",
+            "description": "This is the outcome that corresponds to the action.\n* deleted - the object deletion was processed, and the object was deleted.\n* accepted - the request was accepted, and will be processed.\n* failed - the request failed, see failure_reason for more details.\n* invalid - the request was invalid, see failure_reason for more details.\n",
+            "enum": [
+              "deleted",
+              "accepted",
+              "failed",
+              "invalid"
+            ],
+            "x-enum-varnames": [
+              "build_request_object_status_deleted",
+              "build_request_object_status_accepted",
+              "build_request_object_status_failed",
+              "build_request_object_status_invalid"
+            ]
+          },
+          "failure_reason": {
+            "type": "string",
+            "description": "this is the failure reason populated when outcome is 'failed' or 'invalid'."
+          }
+        }
+      },
+      "DataPlaneKeyBulkResponse": {
+        "description": "The data plane key bulk outcome.",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/BulkRequestObjectStatus"
         }
       },
       "DataPlaneKeyUpdateRequest": {
@@ -2782,21 +4035,6 @@
           ]
         }
       },
-      "BulkRequestAction": {
-        "type": "string",
-        "default": "modify",
-        "description": "Bulk action to perform:\n  * `create` creates a new object given all required elements.\n  * `modify` updates one or more elements of an existing object.\n  * `delete` removes the existing object.\n",
-        "enum": [
-          "create",
-          "modify",
-          "delete"
-        ],
-        "x-enum-varnames": [
-          "bulk_action_create",
-          "bulk_action_modify",
-          "bulk_action_delete"
-        ]
-      },
       "InstanceBulkRequestData": {
         "type": "object",
         "description": "Part of bulk operation on a NGINX instance, only `delete` is supported.",
@@ -2832,52 +4070,6 @@
             "action": "delete"
           }
         ]
-      },
-      "ObjectID": {
-        "description": "A globally unique identifier.",
-        "type": "string",
-        "format": "object_id",
-        "pattern": "^\\w+_.*",
-        "x-go-type": "objects.ID",
-        "x-go-type-import": {
-          "name": "objects",
-          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
-        }
-      },
-      "BulkRequestObjectStatus": {
-        "type": "object",
-        "required": [
-          "outcome"
-        ],
-        "properties": {
-          "object_id": {
-            "$ref": "#/components/schemas/ObjectID"
-          },
-          "name": {
-            "type": "string",
-            "description": "this is the user facing name of the object."
-          },
-          "outcome": {
-            "type": "string",
-            "description": "This is the outcome that corresponds to the action.\n* deleted - the object deletion was processed, and the object was deleted.\n* accepted - the request was accepted, and will be processed.\n* failed - the request failed, see failure_reason for more details.\n* invalid - the request was invalid, see failure_reason for more details.\n",
-            "enum": [
-              "deleted",
-              "accepted",
-              "failed",
-              "invalid"
-            ],
-            "x-enum-varnames": [
-              "build_request_object_status_deleted",
-              "build_request_object_status_accepted",
-              "build_request_object_status_failed",
-              "build_request_object_status_invalid"
-            ]
-          },
-          "failure_reason": {
-            "type": "string",
-            "description": "this is the failure reason populated when outcome is 'failed' or 'invalid'."
-          }
-        }
       },
       "InstanceBulkResponse": {
         "description": "The NGINX instance bulk outcome.",
@@ -3015,47 +4207,47 @@
           "version_id": "18.04"
         }
       },
-      "ClusterObjectID": {
-        "description": "A globally unique identifier for the NGINX cluster.",
+      "configSyncGroupObjectID": {
+        "description": "A globally unique identifier for the NGINX config sync group.",
         "type": "string",
         "format": "object_id",
-        "pattern": "^clust_.*",
+        "pattern": "^csg_.*",
         "x-go-type": "objects.ID",
         "x-go-type-import": {
           "name": "objects",
           "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
         }
       },
-      "ClusterMeta": {
+      "ConfigSyncGroupMeta": {
         "type": "object",
-        "description": "Meta information of the NGINX cluster including:\n* NGINX cluster object ID\n* unique name of the cluster in the tenant namespace\n* last publication timestamp\n",
+        "description": "Meta information of the NGINX config sync group including:\n* NGINX config sync group object ID\n* unique name of the config sync group in the tenant namespace\n* last publication timestamp\n",
         "required": [
           "object_id",
           "name"
         ],
         "properties": {
           "object_id": {
-            "$ref": "#/components/schemas/ClusterObjectID"
+            "$ref": "#/components/schemas/configSyncGroupObjectID"
           },
           "name": {
-            "description": "Name of the Nginx cluster.",
+            "description": "Name of the Nginx config sync group.",
             "type": "string"
           },
           "last_publication": {
-            "description": "The date and time of the most recent cluster publication.",
+            "description": "The date and time of the most recent config sync group publication.",
             "type": "string",
             "format": "date-time"
           }
         },
         "example": {
-          "object_id": "clust_-uvR3F2TQGm18jnl7bpaGw",
-          "name": "test-cluster",
+          "object_id": "csg_-uvR3F2TQGm18jnl7bpaGw",
+          "name": "test-config-sync-group",
           "last_publication": "2023-12-06T22:37:24.120114Z"
         }
       },
       "ConfigSyncStatus": {
         "type": "string",
-        "description": "The current config sync status of the NGINX cluster, with the following possible values:\n* `unknown` - The status cannot be determined at this moment.\n* `in_sync` - All Nginx instances in cluster have same config as indicated by config_version.\n* `out_of_sync` - Some Nginx instances in cluster have config different than indicated by config_version.\n* `sync_in_progress` - The operation of applying config_version to all Nginx instances in cluster is in progress.\n",
+        "description": "The current config sync status of the NGINX config sync group, with the following possible values:\n* `unknown` - The status cannot be determined at this moment.\n* `in_sync` - All Nginx instances in config sync group have same config as indicated by config_version.\n* `out_of_sync` - Some Nginx instances in config sync group have config different than indicated by config_version.\n* `sync_in_progress` - The operation of applying config_version to all Nginx instances in config sync group is in progress.\n",
         "enum": [
           "unknown",
           "in_sync",
@@ -3063,20 +4255,20 @@
           "sync_in_progress"
         ],
         "x-enum-varnames": [
-          "nginx_cluster_config_status_unknown",
-          "nginx_cluster_config_status_in_sync",
-          "nginx_cluster_config_status_out_of_sync",
-          "nginx_cluster_config_status_in_progress"
+          "nginx_config_sync_group_config_status_unknown",
+          "nginx_config_sync_group_config_status_in_sync",
+          "nginx_config_sync_group_config_status_out_of_sync",
+          "nginx_config_sync_group_config_status_in_progress"
         ]
       },
-      "ClusterInstanceMeta": {
+      "ConfigSyncGroupInstanceMeta": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/ClusterMeta"
+            "$ref": "#/components/schemas/ConfigSyncGroupMeta"
           },
           {
             "type": "object",
-            "description": "Additional details on instance in the NGINX cluster including:\n* config sync status\n",
+            "description": "Additional details on instance in the NGINX config sync group including:\n* config sync status\n",
             "properties": {
               "instance_config_status": {
                 "$ref": "#/components/schemas/ConfigSyncStatus"
@@ -3105,8 +4297,8 @@
               "os": {
                 "$ref": "#/components/schemas/OperatingSystem"
               },
-              "cluster": {
-                "$ref": "#/components/schemas/ClusterInstanceMeta"
+              "config_sync_group": {
+                "$ref": "#/components/schemas/ConfigSyncGroupInstanceMeta"
               }
             }
           }
@@ -3145,6 +4337,227 @@
           "status": "unknown",
           "system_id": "b2c0b6a8-8b6a-3a8f-a541-17d8899c119a",
           "object_id": "inst_-uvR3F2TQGm18jnl7bpaGw"
+        }
+      },
+      "FileDataRequest": {
+        "type": "object",
+        "description": "Details about a file, name, and content.",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The file's relative path to the parent directory, absolute path also accepted.",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "contents": {
+            "type": "string",
+            "format": "byte",
+            "description": "The base64-encoded contents of the file.",
+            "maxLength": 3145728
+          }
+        }
+      },
+      "DirectoryRequestWithFileContent": {
+        "type": "object",
+        "description": "Represents a directory and its contents, detailing the directory's full path, and the files within it.",
+        "required": [
+          "name",
+          "files"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The complete path of the directory."
+          },
+          "files": {
+            "type": "array",
+            "description": "The list of files in the directory.",
+            "items": {
+              "$ref": "#/components/schemas/FileDataRequest"
+            }
+          }
+        }
+      },
+      "NginxConfigObjectRequest": {
+        "type": "object",
+        "description": "Details of an NGINX configuration, the main configuration path, and the configuration directories.\n",
+        "required": [
+          "conf_path",
+          "configs"
+        ],
+        "properties": {
+          "config_version": {
+            "type": "string",
+            "description": "A hash that uniquely identifies the contents of the config object. Can be used to detect change when updating the NginxConfig.\n"
+          },
+          "conf_path": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096,
+            "description": "The full path to the main NGINX configuration file. This corresponds to the `--conf-path` parameter used in the NGINX binary.\n",
+            "example": "/etc/nginx/nginx.conf."
+          },
+          "configs": {
+            "type": "array",
+            "description": "An array of directories containing NGINX configuration files.",
+            "items": {
+              "$ref": "#/components/schemas/DirectoryRequestWithFileContent"
+            }
+          },
+          "aux": {
+            "type": "array",
+            "description": "An array of auxiliary directory contents related to the NGINX configuration. When auxiliary contents are\nprovided, they become the authoritative source of non-NGINX configuration content. Please ensure the\nprovided contents are complete, missing files that are referenced in the NGINX configuration can cause\nNGINX reload failure. When not provided, the previous known auxiliary contents will be used as part of\npublish.\n",
+            "items": {
+              "$ref": "#/components/schemas/DirectoryRequestWithFileContent"
+            }
+          }
+        }
+      },
+      "NginxConfigPayload": {
+        "type": "object",
+        "description": "Details of Aux File Payload that goes with an NGINX configuration. Provide hints for the backend system on \nadditional file contents that should be part of the NGINX Config Publication.\nCan be used to deploy files related to SSL certificates, to a data plane instance.\n* If the `type` is `managed_certificate` or `managed_key`, you need to specify an `object_id`.\n* The `object_id` must represent a managed certificate object, or a `400 Bad Request` is returned.\n* The `contents` field is optional and is ignored if included.\n* The NGINX One Console supports deploying only managed certificates and keys. If you use \n`inline_content` and `inline_secret` for certificates or keys, respectively, changes to these files\non a data plane instance won't be tracked. When you retrieve certificate deployment details, \nonly the file paths of managed certificates and keys will be shown.\n* If you use `inline_content` and `inline_secret` in your NGINX configuration, the NGINX One Console \nwill detect them. When they are used as SSL directives for certificates and keys, the certificates \nwill be listed as `unmanaged_certificate` in the certificate deployment details.\n",
+        "required": [
+          "type",
+          "paths"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Types of Aux File Payload:\n  - inline_secret     - indicates the provided content for the payload should be stored in a secret location, and removed after the publication is done.\n  - inline_content    - indicates the provided content for the payload should be stored, and removed after the publication is done. Note, the contents may end up in the `aux` content if used in this NGINX configuration.\n  - unmanaged_certificate - indicates certificate content for an unmanaged certificate detected from a data plane instance through NGINX configurations. Will be filtered and ignored in the payload deployment.\n  - managed_certificate - indicates public certificates managed by NGINX One Console.\n  - managed_key - indicates a private key managed by NGINX One Console.\n",
+            "enum": [
+              "inline_secret",
+              "inline_content",
+              "unmanaged_certificate",
+              "managed_certificate",
+              "managed_key"
+            ],
+            "x-enum-varnames": [
+              "nginx_config_payload_inline_secret",
+              "nginx_config_payload_inline_content",
+              "nginx_config_payload_unmanaged_certificate",
+              "nginx_config_payload_managed_certificate",
+              "nginx_config_payload_managed_key"
+            ]
+          },
+          "contents": {
+            "type": "string",
+            "format": "base64",
+            "description": "The base64-encoded contents of the file.",
+            "maxLength": 3145728
+          },
+          "object_id": {
+            "$ref": "#/components/schemas/CertificateObjectID"
+          },
+          "paths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "example": {
+          "type": "inline_content",
+          "contents": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURUVENDQWpXZ0F3SUJBZ0lVVkcycitidUwwRk83U1FVeUtoVkNTN3YyRHZZd0RRWUpLb1pJaHZjTkFRRUwKQlFBd05qRVNNQkFHQTFVRUF3d0piRzlqWVd4b2IzTjBNUk13RVFZRFZRUUtEQXBPUjBsT1dDQkpibU11TVFzdwpDUVlEVlFRR0V3SlZVekFlRncweU5EQTBNall5TURVeE5ERmFGdzB5TkRBME1qY3lNRFV4TkRGYU1EWXhFakFRCkJnTlZCQU1NQ1d4dlkyRnNhRzl6ZERFVE1CRUdBMVVFQ2d3S1RrZEpUbGdnU1c1akxqRUxNQWtHQTFVRUJoTUMKVlZNd2dnRWlNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0SUJEd0F3Z2dFS0FvSUJBUUMyb0FJVU9HMkxGMFVGclpMeQp5aWhZRjBZWjdYTWFYZnZ4dWJMYVZZdUdJNjlYN1FQRUJtUXp2OXdod25aUktDUExDZHVCNG04Y0o3Q3BGenRHCldPYVFMbmNxVVA4RFU1aHlQeFBSbmZUdFFBcUdiMDJRZ1RVQXY1QkpJMFZheGhCcnNaemd0KzgyM3ZoTTZTUHcKMGdSc1NZRlFpKzVDWW9MMWZNSWdhS0N2Ri9zZGl5cHZFQ0JDZVZyTWZFZ0pGSVJBQ1kvdFBzdEsvTkxwKzlmawppZ3hFMlYxcldoSGdvRmhZRm5YYnVqM2RIMHJLai9DVlM5anZMMk9vRTlvenM5MkRVLytySGJ6eFR3QndVQjBzCmVPS2hPY2d2cENyTVlSUWxUUlhmWVJmV0NLN2Q2Mk1JR3kvajcvV1VieDFOYzl4MjJzUitydVRlZkxnRTA2NWgKMldDZkFnTUJBQUdqVXpCUk1CMEdBMVVkRGdRV0JCUnZnamkxWlByZlVBMnRlWlRMUGE0djlzdHFXakFmQmdOVgpIU01FR0RBV2dCUnZnamkxWlByZlVBMnRlWlRMUGE0djlzdHFXakFQQmdOVkhSTUJBZjhFQlRBREFRSC9NQTBHCkNTcUdTSWIzRFFFQkN3VUFBNElCQVFCNC9VM3lrMFYzMTFNRFQvaEttbFJ4MWRqalRyMlhIQnVEcXZYY3BIRTQKVDJwZ0xnWURwN2tmUTQrdnlHWUt1cndEc0F1VDhEZCtUUUZLZEIraEFGRzMyazlxS1RyY1ZCZ2tNSjIwQitvWQp4T2diWW5zVnpiTDhXL0hOR3BlbDkrbThwYURtMGRXNzhMUit5UnJleDVlY2pjYWlZMDg3b0dHNlJDeWhyUVd4CkpkdkFvNlU1ejl3TnVhNmMyNlY2cy84Yit6SkJWektGZ0tQNVVGL2lIcGJVNW1QcVMwWlk4ckhRLzZPTHRGRjgKZ1J2UUlRZjZLSjRmOXlUOFBYSHBIdGJCMzEzaWh2Z09wWW9la3lIWTZaSmllTWhkd0J4MzB1N3d2Uy9POEluYwpsZWZzTkxUcWFTM2JWdldLeUFaVlZyenFtU043aGh4QWZrc0RZelBFbkF3OAotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0t",
+          "paths": [
+            "/etc/nginx/ssl/server.crt"
+          ]
+        }
+      },
+      "NginxConfigPayloads": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/NginxConfigPayload"
+        }
+      },
+      "NginxConfigRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/NginxConfigObjectRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "payloads": {
+                "$ref": "#/components/schemas/NginxConfigPayloads"
+              }
+            }
+          }
+        ]
+      },
+      "NginxConfigDirectives": {
+        "type": "array",
+        "x-go-type": "xp.Directives",
+        "x-go-type-import": {
+          "name": "xp",
+          "path": "github.com/nginxinc/nginx-go-crossplane"
+        },
+        "items": {
+          "$ref": "#/components/schemas/NginxConfigDirective"
+        }
+      },
+      "NginxConfigDirective": {
+        "type": "object",
+        "x-go-type": "xp.Directive",
+        "x-go-type-import": {
+          "name": "xp",
+          "path": "github.com/nginxinc/nginx-go-crossplane"
+        },
+        "required": [
+          "directive",
+          "line",
+          "args"
+        ],
+        "properties": {
+          "directive": {
+            "type": "string"
+          },
+          "line": {
+            "type": "integer"
+          },
+          "args": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "file": {
+            "type": "string"
+          },
+          "includes": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "block": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NginxConfigDirectives"
+            }
+          },
+          "comment": {
+            "type": "string"
+          }
+        }
+      },
+      "ParsedNginxConfig": {
+        "type": "object",
+        "required": [
+          "file",
+          "parsed"
+        ],
+        "properties": {
+          "file": {
+            "type": "string",
+            "description": "NGINX Instance configuration file, corresponds to the conf-path."
+          },
+          "parsed": {
+            "$ref": "#/components/schemas/NginxConfigDirectives"
+          }
         }
       },
       "NginxConfigProblem": {
@@ -3206,146 +4619,6 @@
         "items": {
           "$ref": "#/components/schemas/NginxConfigReport"
         }
-      },
-      "FileDataRequest": {
-        "type": "object",
-        "description": "Details about a file, name, and content.",
-        "required": [
-          "name"
-        ],
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "The file's relative path to the parent directory, absolute path also accepted.",
-            "minLength": 1,
-            "maxLength": 4096
-          },
-          "contents": {
-            "type": "string",
-            "format": "byte",
-            "description": "The base64-encoded contents of the file.",
-            "maxLength": 3145728
-          }
-        }
-      },
-      "DirectoryRequestWithFileContent": {
-        "type": "object",
-        "description": "Represents a directory and its contents, detailing the directory's full path, and the files within it.",
-        "required": [
-          "files"
-        ],
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "The complete path of the directory."
-          },
-          "files": {
-            "type": "array",
-            "description": "The list of files in the directory.",
-            "items": {
-              "$ref": "#/components/schemas/FileDataRequest"
-            }
-          }
-        }
-      },
-      "NginxConfigObjectRequest": {
-        "type": "object",
-        "description": "Details of an NGINX configuration, the main configuration path, and the configuration directories.\n",
-        "required": [
-          "conf_path",
-          "configs"
-        ],
-        "properties": {
-          "config_version": {
-            "type": "string",
-            "description": "A hash that uniquely identifies the contents of the config object. Can be used to detect change when updating the NginxConfig.\n"
-          },
-          "conf_path": {
-            "type": "string",
-            "description": "The full path to the main NGINX configuration file. This corresponds to the `--conf-path` parameter used in the NGINX binary.\n",
-            "example": "/etc/nginx/nginx.conf."
-          },
-          "configs": {
-            "type": "array",
-            "description": "An array of directories containing NGINX configuration files.",
-            "items": {
-              "$ref": "#/components/schemas/DirectoryRequestWithFileContent"
-            }
-          },
-          "aux": {
-            "type": "array",
-            "description": "An array of auxiliary directory contents related to the NGINX configuration. When auxiliary contents are\nprovided, they become the authoritative source of non-NGINX configuration content. Please ensure the\nprovided contents are complete, missing files that are referenced in the NGINX configuration can cause\nNGINX reload failure. When not provided, the previous known auxiliary contents will be used as part of\npublish.\n",
-            "items": {
-              "$ref": "#/components/schemas/DirectoryRequestWithFileContent"
-            }
-          }
-        }
-      },
-      "NginxConfigPayload": {
-        "type": "object",
-        "description": "Details of Aux File Payload that goes with an NGINX configuration. Provide hints for the backend system on additional file contents that should be part of the NGINX Config Publication.\n",
-        "required": [
-          "type",
-          "paths"
-        ],
-        "properties": {
-          "type": {
-            "type": "string",
-            "description": "Types of Aux File Payload:\n  - inline_secret     - indicates the provided content for the payload should be stored in a secret location, and removed after the publication is done.\n  - inline_content    - indicates the provided content for the payload should be stored, and removed the publication is done. Note, the contents may end up in the `aux` content.\n  - unmanaged_certificate - indicates certificate content for an unmanaged certificate detected through NGINX configurations.\n",
-            "enum": [
-              "inline_secret",
-              "inline_content",
-              "unmanaged_certificate"
-            ],
-            "x-enum-varnames": [
-              "nginx_config_payload_inline_secret",
-              "nginx_config_payload_inline_content",
-              "nginx_config_payload_unmanaged_certificate"
-            ]
-          },
-          "contents": {
-            "type": "string",
-            "format": "byte",
-            "maxLength": 3145728
-          },
-          "object_id": {
-            "$ref": "#/components/schemas/CertificateObjectID"
-          },
-          "paths": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        },
-        "example": {
-          "type": "inline_content",
-          "contents": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURUVENDQWpXZ0F3SUJBZ0lVVkcycitidUwwRk83U1FVeUtoVkNTN3YyRHZZd0RRWUpLb1pJaHZjTkFRRUwKQlFBd05qRVNNQkFHQTFVRUF3d0piRzlqWVd4b2IzTjBNUk13RVFZRFZRUUtEQXBPUjBsT1dDQkpibU11TVFzdwpDUVlEVlFRR0V3SlZVekFlRncweU5EQTBNall5TURVeE5ERmFGdzB5TkRBME1qY3lNRFV4TkRGYU1EWXhFakFRCkJnTlZCQU1NQ1d4dlkyRnNhRzl6ZERFVE1CRUdBMVVFQ2d3S1RrZEpUbGdnU1c1akxqRUxNQWtHQTFVRUJoTUMKVlZNd2dnRWlNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0SUJEd0F3Z2dFS0FvSUJBUUMyb0FJVU9HMkxGMFVGclpMeQp5aWhZRjBZWjdYTWFYZnZ4dWJMYVZZdUdJNjlYN1FQRUJtUXp2OXdod25aUktDUExDZHVCNG04Y0o3Q3BGenRHCldPYVFMbmNxVVA4RFU1aHlQeFBSbmZUdFFBcUdiMDJRZ1RVQXY1QkpJMFZheGhCcnNaemd0KzgyM3ZoTTZTUHcKMGdSc1NZRlFpKzVDWW9MMWZNSWdhS0N2Ri9zZGl5cHZFQ0JDZVZyTWZFZ0pGSVJBQ1kvdFBzdEsvTkxwKzlmawppZ3hFMlYxcldoSGdvRmhZRm5YYnVqM2RIMHJLai9DVlM5anZMMk9vRTlvenM5MkRVLytySGJ6eFR3QndVQjBzCmVPS2hPY2d2cENyTVlSUWxUUlhmWVJmV0NLN2Q2Mk1JR3kvajcvV1VieDFOYzl4MjJzUitydVRlZkxnRTA2NWgKMldDZkFnTUJBQUdqVXpCUk1CMEdBMVVkRGdRV0JCUnZnamkxWlByZlVBMnRlWlRMUGE0djlzdHFXakFmQmdOVgpIU01FR0RBV2dCUnZnamkxWlByZlVBMnRlWlRMUGE0djlzdHFXakFQQmdOVkhSTUJBZjhFQlRBREFRSC9NQTBHCkNTcUdTSWIzRFFFQkN3VUFBNElCQVFCNC9VM3lrMFYzMTFNRFQvaEttbFJ4MWRqalRyMlhIQnVEcXZYY3BIRTQKVDJwZ0xnWURwN2tmUTQrdnlHWUt1cndEc0F1VDhEZCtUUUZLZEIraEFGRzMyazlxS1RyY1ZCZ2tNSjIwQitvWQp4T2diWW5zVnpiTDhXL0hOR3BlbDkrbThwYURtMGRXNzhMUit5UnJleDVlY2pjYWlZMDg3b0dHNlJDeWhyUVd4CkpkdkFvNlU1ejl3TnVhNmMyNlY2cy84Yit6SkJWektGZ0tQNVVGL2lIcGJVNW1QcVMwWlk4ckhRLzZPTHRGRjgKZ1J2UUlRZjZLSjRmOXlUOFBYSHBIdGJCMzEzaWh2Z09wWW9la3lIWTZaSmllTWhkd0J4MzB1N3d2Uy9POEluYwpsZWZzTkxUcWFTM2JWdldLeUFaVlZyenFtU043aGh4QWZrc0RZelBFbkF3OAotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0t",
-          "paths": [
-            "/etc/nginx/ssl/server.crt"
-          ]
-        }
-      },
-      "NginxConfigPayloads": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/NginxConfigPayload"
-        }
-      },
-      "NginxConfigRequest": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/NginxConfigObjectRequest"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "payloads": {
-                "$ref": "#/components/schemas/NginxConfigPayloads"
-              }
-            }
-          }
-        ]
       },
       "FileData": {
         "type": "object",
@@ -3424,6 +4697,8 @@
           },
           "conf_path": {
             "type": "string",
+            "minLength": 1,
+            "maxLength": 4096,
             "description": "The full path to the main NGINX configuration file. This corresponds to the `--conf-path` parameter used in the NGINX binary.\n",
             "example": "/etc/nginx/nginx.conf."
           },
@@ -3636,21 +4911,21 @@
         "type": "string",
         "description": "String representation of a feature flag key."
       },
-      "FilterNameClusters": {
+      "FilterNameConfigSyncGroups": {
         "type": "string",
-        "description": "Keywords for clusters filters.\nWhen filtering on `config_status`, only the following `filter_values` are supported:\n  * in_sync\n  * out_of_sync\n  * sync_in_progress\n",
+        "description": "Keywords for config sync groups filters.\nWhen filtering on `config_status`, only the following `filter_values` are supported:\n  * in_sync\n  * out_of_sync\n  * sync_in_progress\n  * unknown\n",
         "enum": [
           "name",
           "config_status"
         ],
         "x-enum-varnames": [
-          "filter_name_cluster_name",
-          "filter_name_cluster_config_status"
+          "filter_name_config_sync_group_name",
+          "filter_name_config_sync_group_config_status"
         ]
       },
-      "ListClusterObject": {
+      "ListConfigSyncGroupObject": {
         "type": "object",
-        "description": "Summary information of the NGINX cluster.",
+        "description": "Summary information of the NGINX config sync group.",
         "required": [
           "object_id",
           "name",
@@ -3659,14 +4934,14 @@
         ],
         "properties": {
           "object_id": {
-            "$ref": "#/components/schemas/ClusterObjectID"
+            "$ref": "#/components/schemas/configSyncGroupObjectID"
           },
           "name": {
-            "description": "Name of the Nginx cluster.",
+            "description": "Name of the Nginx config sync group.",
             "type": "string"
           },
           "instances_count": {
-            "description": "Number of instances in the Nginx cluster.",
+            "description": "Number of instances in the Nginx config sync group.",
             "type": "integer"
           },
           "config_status": {
@@ -3677,23 +4952,23 @@
           }
         }
       },
-      "ClusterListResponse": {
+      "ConfigSyncGroupListResponse": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PaginationResponse"
           },
           {
             "type": "object",
-            "description": "List of Nginx clusters.",
+            "description": "List of Nginx config sync groups.",
             "required": [
               "items"
             ],
             "properties": {
               "items": {
-                "description": "An array of Cluster objects.",
+                "description": "An array of Config Sync Group objects.",
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/ListClusterObject"
+                  "$ref": "#/components/schemas/ListConfigSyncGroupObject"
                 }
               }
             }
@@ -3705,52 +4980,52 @@
           "items_per_page": 100,
           "items": [
             {
-              "object_id": "clust_-uvR3F2TQGm18jnl7bpaGw",
-              "name": "test-cluster",
+              "object_id": "csg_-uvR3F2TQGm18jnl7bpaGw",
+              "name": "test-config-sync-group",
               "config_status": "in_sync",
               "instances_count": 1
             }
           ]
         }
       },
-      "ClusterCreateRequest": {
-        "description": "Body to create a Nginx cluster.",
+      "ConfigSyncGroupCreateRequest": {
+        "description": "Body to create a Nginx config sync group.",
         "required": [
           "name"
         ],
         "properties": {
           "name": {
             "type": "string",
-            "description": "A name to uniquely identify the Nginx cluster in a given tenant namespace.",
+            "description": "A name to uniquely identify the Nginx config sync group in a given tenant namespace.",
             "minLength": 1,
             "maxLength": 256
           }
         },
         "example": {
-          "name": "my-nginx-cluster"
+          "name": "my-nginx-config-sync-group"
         }
       },
-      "ClusterCreateResponse": {
-        "description": "Response to a create Nginx cluster request.",
+      "ConfigSyncGroupCreateResponse": {
+        "description": "Response to a create Nginx config sync group request.",
         "required": [
           "object_id",
           "name"
         ],
         "properties": {
           "object_id": {
-            "$ref": "#/components/schemas/ClusterObjectID"
+            "$ref": "#/components/schemas/configSyncGroupObjectID"
           },
           "name": {
-            "description": "Name of the Nginx cluster.",
+            "description": "Name of the Nginx config sync group.",
             "type": "string"
           }
         },
         "example": {
-          "name": "my-nginx-cluster",
-          "object_id": "clust_Tet21AeYTHCj7taOwVfzyw"
+          "name": "my-nginx-config-sync-group",
+          "object_id": "csg_Tet21AeYTHCj7taOwVfzyw"
         }
       },
-      "ClusterInstance": {
+      "ConfigSyncGroupInstance": {
         "allOf": [
           {
             "$ref": "#/components/schemas/Instance"
@@ -3766,16 +5041,16 @@
                 "$ref": "#/components/schemas/ConfigSyncStatus"
               },
               "config_version": {
-                "description": "A computed hash of current config on the cluster.",
+                "description": "A computed hash of current config on the config sync group.",
                 "type": "string"
               }
             }
           }
         ]
       },
-      "ClusterPublicationStatus": {
+      "ConfigSyncGroupPublicationStatus": {
         "type": "string",
-        "description": "The status on the last publication issued on this cluster:\n* `pending` - The publication request has been accepted and is currently processing.\n* `failed` - The publication attempt failed.\n* `succeeded` - The publication was successful.\n* `partially_succeeded` - The publication attempt had one or more failures.\n",
+        "description": "The status on the last publication issued on this config sync group:\n* `pending` - The publication request has been accepted and is currently processing.\n* `failed` - The publication attempt failed.\n* `succeeded` - The publication was successful.\n* `partially_succeeded` - The publication attempt had one or more failures.\n",
         "enum": [
           "pending",
           "failed",
@@ -3783,44 +5058,44 @@
           "partially_succeeded"
         ],
         "x-enum-varnames": [
-          "publication_cluster_status_pending",
-          "publication_cluster_status_failed",
-          "publication_cluster_status_succeeded",
-          "publication_cluster_status_partially_succeeded"
+          "publication_config_sync_group_status_pending",
+          "publication_config_sync_group_status_failed",
+          "publication_config_sync_group_status_succeeded",
+          "publication_config_sync_group_status_partially_succeeded"
         ]
       },
-      "Cluster": {
+      "ConfigSyncGroup": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/ClusterMeta"
+            "$ref": "#/components/schemas/ConfigSyncGroupMeta"
           },
           {
             "type": "object",
-            "description": "Additional information of the NGINX cluster including:\n* config sync status\n* config checksum\n* instances\n* last known publication status\n",
+            "description": "Additional information of the NGINX config sync group including:\n* config sync status\n* config checksum\n* instances\n* last known publication status\n",
             "properties": {
               "config_status": {
                 "$ref": "#/components/schemas/ConfigSyncStatus"
               },
               "config_version": {
-                "description": "A computed hash of current config on the cluster.",
+                "description": "A computed hash of current config on the config sync group.",
                 "type": "string"
               },
               "instances": {
                 "description": "An array of Instance objects.",
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/ClusterInstance"
+                  "$ref": "#/components/schemas/ConfigSyncGroupInstance"
                 }
               },
               "last_publication_status": {
-                "$ref": "#/components/schemas/ClusterPublicationStatus"
+                "$ref": "#/components/schemas/ConfigSyncGroupPublicationStatus"
               }
             }
           }
         ],
         "example": {
-          "object_id": "clust_-uvR3F2TQGm18jnl7bpaGw",
-          "name": "test-cluster",
+          "object_id": "csg_-uvR3F2TQGm18jnl7bpaGw",
+          "name": "test-config-sync-group",
           "last_reported": "2023-12-06T22:37:24.120114Z",
           "config_status": "in_sync",
           "config_version": "uvR3F2TQGm18jnl7bpaGw",
@@ -3845,16 +5120,16 @@
           ]
         }
       },
-      "ClusterDetails": {
+      "ConfigSyncGroupDetails": {
         "type": "object",
-        "description": "Detailed information of the NGINX cluster.",
+        "description": "Detailed information of the NGINX config sync group.",
         "allOf": [
           {
-            "$ref": "#/components/schemas/Cluster"
+            "$ref": "#/components/schemas/ConfigSyncGroup"
           }
         ]
       },
-      "ClusterPublicationStatusReason": {
+      "ConfigSyncGroupPublicationStatusReason": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PublicationStatusCause"
@@ -3872,8 +5147,8 @@
           }
         ]
       },
-      "ClusterPublication": {
-        "description": "Details of a publication request for the NGINX cluster.",
+      "ConfigSyncGroupPublication": {
+        "description": "Details of a publication request for the NGINX config sync group.",
         "required": [
           "status",
           "created_at",
@@ -3884,7 +5159,7 @@
             "$ref": "#/components/schemas/PublicationObjectID"
           },
           "status": {
-            "$ref": "#/components/schemas/ClusterPublicationStatus"
+            "$ref": "#/components/schemas/ConfigSyncGroupPublicationStatus"
           },
           "created_at": {
             "type": "string",
@@ -3900,7 +5175,7 @@
             "description": "Detailed failure reasons on each instance's publication, when 'status' is in 'failed' or 'partially_succeeded'",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ClusterPublicationStatusReason"
+              "$ref": "#/components/schemas/ConfigSyncGroupPublicationStatusReason"
             }
           },
           "config_version": {
@@ -3968,6 +5243,10 @@
         ]
       },
       "CertificateObjectMetadata": {
+        "required": [
+          "management",
+          "type"
+        ],
         "properties": {
           "name": {
             "description": "Name of the certificate, optionally specified upon creation",
@@ -3988,10 +5267,6 @@
             "format": "int64"
           }
         },
-        "required": [
-          "management",
-          "type"
-        ],
         "example": {
           "name": "example-ca-bundle",
           "object_id": "cert_Tet21AeYTHCj7taOwVfzyw",
@@ -4122,20 +5397,19 @@
         "properties": {
           "public_certs": {
             "type": "string",
-            "format": "byte",
+            "format": "base64",
             "maxLength": 3145728,
-            "description": "Base64-encoded PEM-formatted certificate information. \nThis field can include a leaf certificate along with its full chain of trust or a CA bundle. \nFor leaf certificates, the accompanying `privateKey` is required to authenticate the certificate's validity. \nCA bundles do not require a private key and may consist of certificates from different CA chains.\n"
+            "description": "Base64-encoded PEM-formatted certificate information. \nThe `public_certs` field can include a leaf certificate along with its full chain of trust or a CA bundle. \nFor leaf certificates, the accompanying `private_key` is required to authenticate the certificate's validity. \nCA bundles contain trusted CA certificates and may consist of certificates from different CA chains. A private\nkey should not be included in a CA bundle.\n"
           },
           "private_key": {
             "type": "string",
-            "format": "byte",
+            "format": "base64",
             "maxLength": 3145728,
-            "description": "Base64-encoded private key string for the leaf certificate, required only for certificate-key pairs. \nFor CA bundles, this key is optional and used when available to verify the certificate's authenticity.\n"
+            "description": "Base64-encoded private key string for the leaf certificate, required only for certificate-key pairs to \nverify the certificate's authenticity.\n"
           }
         },
         "example": {
-          "public_certs": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUUzb3lkdWVPQU5KSGh2TDN5dkpkVHBob2V2NUdPN2dvK0J5WU9PL2w1NHU1TzJQeE1lWCtBakFiNkF4bXEKbGl2SXVodz0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ==",
-          "private_key": ""
+          "public_certs": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUUzb3lkdWVPQU5KSGh2TDN5dkpkVHBob2V2NUdPN2dvK0J5WU9PL2w1NHU1TzJQeE1lWCtBakFiNkF4bXEKbGl2SXVodz0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ=="
         }
       },
       "CertificateRequest": {
@@ -4168,19 +5442,11 @@
         "type": "object",
         "required": [
           "status",
-          "version",
           "serial_number",
           "signature_algorithm",
-          "issuer",
           "not_before",
           "not_after",
-          "subject",
-          "subject_alternative_name",
           "public_key_type",
-          "common_name",
-          "authority_key_identifier",
-          "subject_key_identifier",
-          "thumbprint_algorithm",
           "thumbprint"
         ],
         "properties": {
@@ -4380,6 +5646,196 @@
           "created_at": "2023-10-01T00:00:00Z"
         }
       },
+      "CertificateUpdateContent": {
+        "type": "object",
+        "description": "Defines the PEM-formatted certificate content which includes the certificates and corresponding private key, all encoded in base64.\n",
+        "properties": {
+          "public_certs": {
+            "type": "string",
+            "format": "base64",
+            "maxLength": 3145728,
+            "description": "Base64-encoded PEM-formatted certificate information. \nThis is used for updating an existing certificate object. The schema is the same as `CertificateContent`,\nthe only difference is that both `public_certs` and `private_key` fields are optional. There are three use\ncases for this schema:\n* the below update can be done on either a Cert Key Pair or a CA Bundle:\n  * when only `public_certs` is populated, update the public certificates on a certificate object. \n  The updated public certificates will be validated against the existing private key.\n* the below update can be done only on a Cert Key Pair:\n  * when only `private_key` is populated, update only the private key on a certificate object. \n  The updated private key will be validated against the existing public certificates.\n  * when both `public_certs` and `private_key` fields are populated, update both of them on a certificate \n  object.\n"
+          },
+          "private_key": {
+            "type": "string",
+            "format": "base64",
+            "maxLength": 3145728,
+            "description": "Base64-encoded private key string for the leaf certificate, required only for certificate-key pairs to \nverify the certificate's authenticity.\n"
+          }
+        },
+        "example": {
+          "private_key": "LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFM295ZHVlT0FOSkhodkwzeXZKZFRwaG9ldjVHTzdnbytCeVlPTy9sNTR1NU8yUHhNZVgrQWpBYjZBeG1xCmxpdkl1aHc9Ci0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0t"
+        }
+      },
+      "CertificateUpdateRequest": {
+        "type": "object",
+        "description": "Request structure for updating a certificate object. If key provided, it will be validated against the \nexisting leaf certificate stored under the certificate object.\n* Update for an unmanaged certificate object:\n  * This converts the unmanaged certificate object to managed.\n  * `public_certs` should always be provided during the conversion.\n  * When key is provided, this certificate object is converted to a managed Cert Key Pair. Otherwise, it is\n  converted to a managed CA Bundle.\n",
+        "properties": {
+          "name": {
+            "description": "A name for the certificate, making it identifiable among others.",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "content": {
+            "$ref": "#/components/schemas/CertificateUpdateContent"
+          }
+        },
+        "example": {
+          "name": "example-cert-object",
+          "content": {
+            "public_certs": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUUzb3lkdWVPQU5KSGh2TDN5dkpkVHBob2V2NUdPN2dvK0J5WU9PL2w1NHU1TzJQeE1lWCtBakFiNkF4bXEKbGl2SXVodz0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ=="
+          }
+        }
+      },
+      "FilterNameCertificateDeployments": {
+        "type": "string",
+        "description": "Keywords for certificate deployment filters.\nWhen filtering on `association_type`, only the following `filter_values` are supported:\n  * instance\n  * config_sync_group\nWhen filtering on `deployment_status`, only the following `filter_values` are supported:\n  * latest\n  * stale\n",
+        "enum": [
+          "name",
+          "association_type",
+          "deployment_status"
+        ],
+        "x-enum-varnames": [
+          "filter_name_certificate_deployments_name",
+          "filter_name_certificate_deployments_association_type",
+          "filter_name_certificate_deployments_deployment_status"
+        ]
+      },
+      "CertificateAssociationType": {
+        "type": "string",
+        "description": "Certificate association type:\n  * `instance` - This certificate deployment is for an instance.\n  * `config_sync_group` - This certificate deployment is for a config sync group.\n",
+        "enum": [
+          "instance",
+          "config_sync_group"
+        ],
+        "x-enum-varnames": [
+          "certificate_association_type_instance",
+          "certificate_association_type_config_sync_group"
+        ]
+      },
+      "CertificateDeploymentStatus": {
+        "type": "string",
+        "description": "Certificate deployment status:\n  * `latest` - This certificate deployment is up to date with the latest certificates and key.\n  * `stale` - This certificate deployment is outdated and needs to deploy the latest certificates and key.\n  * `unmanaged` - This certificate deployment is unmanaged by NGINX One Console.\n",
+        "enum": [
+          "latest",
+          "stale",
+          "unmanaged"
+        ],
+        "x-enum-varnames": [
+          "certificate_deployment_status_latest",
+          "certificate_deployment_status_stale",
+          "certificate_deployment_status_unmanaged"
+        ]
+      },
+      "CertificateDeployment": {
+        "type": "object",
+        "description": "Response structure containing certificate deployment details for an SSL certificate, which include\n  * `association_type` represents type of the object affected by this certificate deployment, which is either\n  an instance or config sync group\n  * `object_id` represents the object ID for the associated instance or config sync group\n  * `name` for either the host name of an instance or the name of a config sync group\n  * `deployment_status`:\n    * `latest`: deployment is up to date with the latest updated certificate and key contents\n    * `stale`: deployment for either certificates or key is outdated, requires a redeployment with the latest contents\n  * `cert_paths` represents the file paths used for deploying public certificates of this certificate object\n  * `key_paths` represents the file paths used for deploying the private key of this certificate object, if a\n  private key is present\n",
+        "required": [
+          "association_type",
+          "object_id",
+          "name",
+          "deployment_status",
+          "cert_paths"
+        ],
+        "properties": {
+          "association_type": {
+            "$ref": "#/components/schemas/CertificateAssociationType"
+          },
+          "object_id": {
+            "$ref": "#/components/schemas/ObjectID"
+          },
+          "name": {
+            "type": "string",
+            "description": "The host name of an instance or the name of a config sync group."
+          },
+          "deployment_status": {
+            "$ref": "#/components/schemas/CertificateDeploymentStatus"
+          },
+          "cert_paths": {
+            "description": "Deployment file paths for public certificates.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "key_paths": {
+            "description": "Deployment file paths for the private key.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "example": {
+          "association_type": "instance",
+          "name": "instance-host-name",
+          "object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
+          "deployment_status": "latest",
+          "cert_paths": [
+            "/etc/nginx/example.crt",
+            "/etc/nginx/certs/cert.crt"
+          ],
+          "key_paths": [
+            "/etc/nginx/example.key"
+          ]
+        }
+      },
+      "CertificateDeploymentListResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          },
+          {
+            "type": "object",
+            "description": "List of certificate deployments for a SSL certificate.",
+            "required": [
+              "deployments"
+            ],
+            "properties": {
+              "deployments": {
+                "description": "An array of certificate deployments for an SSL certificate. If this certificate object represents a \nCA bundle, there will be only public certificate file paths in the certificate deployment details.\n",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CertificateDeployment"
+                }
+              }
+            }
+          }
+        ],
+        "example": {
+          "count": 2,
+          "start_index": 1,
+          "items_per_page": 100,
+          "deployments": [
+            {
+              "association_type": "instance",
+              "name": "instance-host-name",
+              "object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
+              "deployment_status": "latest",
+              "cert_paths": [
+                "/etc/nginx/example.crt",
+                "/etc/nginx/certs/cert.crt"
+              ],
+              "key_paths": [
+                "/etc/nginx/example.key"
+              ]
+            },
+            {
+              "association_type": "config_sync_group",
+              "name": "group1",
+              "object_id": "csg_vfr5Oqv-AhxGzyqTXW-Ubw",
+              "deployment_status": "stale",
+              "cert_paths": [
+                "/etc/nginx/cert.crt"
+              ],
+              "key_paths": [
+                "/etc/nginx/server.key"
+              ]
+            }
+          ]
+        }
+      },
       "NginxCVEObject": {
         "type": "object",
         "required": [
@@ -4395,7 +5851,6 @@
             "type": "string"
           },
           "severity": {
-            "description": "The urgency or impact level of the security advisory.",
             "$ref": "#/components/schemas/CveSeverityType"
           },
           "info": {
@@ -4655,11 +6110,11 @@
             "type": "string",
             "description": "type of event, indication for affected object type.",
             "enum": [
-              "instances",
+              "instance_cleanup",
               "certificates"
             ],
             "x-enum-varnames": [
-              "event_type_instances",
+              "event_type_instance_cleanup",
               "event_type_certificates"
             ]
           },
@@ -4669,15 +6124,19 @@
           "affected_object_id": {
             "$ref": "#/components/schemas/ObjectID"
           },
+          "hostname": {
+            "type": "string",
+            "description": "hostname of the affected instance, if any."
+          },
           "message": {
             "type": "string",
             "description": "Details regarding the event.",
-            "example": "Instance \"demo-1\" deleted by instance clean up after \"unavailable\" for 25 hours."
+            "example": "Instance \"demo-1\" deleted by instance cleanup after \"unavailable\" for 25 hours."
           }
         },
         "example": {
           "timestamp": "2024-02-04T09:57:36.088757764Z",
-          "type": "instances",
+          "type": "instance_cleanup",
           "object_id": "event_-uvR3F2TQGm18jnl7bpaGw",
           "affected_object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
           "message": "ip-170.0.1 deleted after age out period of 3 hours, last seen 2023-08-07T09:57:36.088757764Z"
@@ -4706,8 +6165,12 @@
           }
         ]
       },
-      "MetricQueryResult": {
+      "MetricQueryResultEx": {
         "type": "object",
+        "required": [
+          "query_metadata",
+          "metrics"
+        ],
         "properties": {
           "query_metadata": {
             "$ref": "#/components/schemas/MetricQueryMetadata"
@@ -4716,21 +6179,8 @@
             "description": "An array of Metric objects, each including the name of the metric resource, aggregate function, and series details.",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Metric"
+              "$ref": "#/components/schemas/MetricEx"
             }
-          },
-          "response_metadata": {
-            "$ref": "#/components/schemas/MetricResponseMetadata"
-          }
-        }
-      },
-      "MetricResponseMetadata": {
-        "description": "needs a description.",
-        "type": "object",
-        "properties": {
-          "warning": {
-            "description": "needs a description.",
-            "type": "string"
           }
         }
       },
@@ -4757,74 +6207,106 @@
           }
         }
       },
-      "Metric": {
+      "MetricEx": {
         "type": "object",
+        "required": [
+          "metric",
+          "series"
+        ],
         "description": "This object represents a metric, including the name of the metric resource, aggregate function, and series details.\n",
         "properties": {
-          "name": {
-            "description": "The name of the metric resource.\n",
-            "type": "string",
-            "example": "plus.upstream.response.count"
+          "metric": {
+            "$ref": "#/components/schemas/MetricName"
           },
-          "aggr": {
-            "description": "The aggregation function applied to the metric.\n",
-            "type": "string",
-            "enum": [
-              "AVG",
-              "COUNT",
-              "SUM",
-              "MAX",
-              "MIN",
-              "RATE"
-            ],
-            "example": "AVG"
+          "aggregate": {
+            "$ref": "#/components/schemas/MetricAggregation"
           },
           "series": {
             "description": "An array of data points aligned along one or more dimensions from the Dimensions Catalog.\n",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Series"
-            }
+              "$ref": "#/components/schemas/SeriesEx"
+            },
+            "example": [
+              {
+                "dimensions": {
+                  "nginx_id": "some-instance-obj-1",
+                  "parent_hostname": "hostname-for-instance-1"
+                },
+                "data": [
+                  {
+                    "timestamp": "2019-08-07T09:57:30Z",
+                    "value": 10
+                  }
+                ]
+              },
+              {
+                "dimensions": {
+                  "nginx_id": "some-instance-obj-2",
+                  "parent_hostname": "hostname-for-instance-2"
+                },
+                "data": [
+                  {
+                    "timestamp": "2019-08-07T09:58:30Z",
+                    "value": 5
+                  }
+                ]
+              }
+            ]
           }
         }
       },
-      "Series": {
+      "SeriesEx": {
         "description": "This object represents a set of data points aligned along one or more dimensions from the Dimensions Catalog.",
         "type": "object",
+        "required": [
+          "dimensions",
+          "data"
+        ],
         "properties": {
           "dimensions": {
-            "description": "This object represents a set of data points aligned along one or more dimensions from the Dimensions Catalog.\n",
+            "description": "This object represents a set of data points aligned along one or more dimensions.\n",
             "type": "object",
             "additionalProperties": {
-              "description": "The names of the dimensions used in the metrics query.\n",
+              "description": "The name(s) of the dimensions used in the metrics query.\n",
               "type": "string"
             },
             "example": {
-              "server_zone": "prod_zone"
+              "nginx_id": "some-instance-object-id",
+              "parent_hostname": "hostname-for-instance"
             }
           },
-          "timestamps": {
-            "description": "An array of date-time strings that represent when each data point in the series was recorded.\n",
+          "data": {
+            "description": "Array of data points for a metric.\n",
             "type": "array",
             "items": {
-              "type": "string",
-              "format": "date-time"
+              "$ref": "#/components/schemas/MetricData"
             },
             "example": [
-              "2019-08-07T09:57:30",
-              "2019-08-07T09:57:35"
+              {
+                "timestamp": "2019-08-07T09:57:30Z",
+                "value": 10
+              }
             ]
+          }
+        }
+      },
+      "MetricData": {
+        "type": "object",
+        "required": [
+          "timestamp",
+          "value"
+        ],
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "description": "A date-time string that represent when the data point in the series was recorded.\n",
+            "format": "date-time"
           },
-          "values": {
-            "description": "An array of values for the metric recorded at each timestamp.\n",
-            "type": "array",
-            "items": {
-              "type": "number"
-            },
-            "example": [
-              4.2,
-              4.4
-            ]
+          "value": {
+            "type": "number",
+            "nullable": true,
+            "description": "A value for the data, where `null` indicates a gap.\n"
           }
         }
       },
@@ -4833,222 +6315,559 @@
         "type": "string",
         "example": "2019-08-07T09:57:36.088757764Z"
       },
-      "MetricDescriptionResponse": {
-        "$ref": "#/components/schemas/MetricDescriptionRecord"
+      "StartTime": {
+        "description": "Sets the beginning of the time period for your metrics query (inclusive).\n\nUsage:\n* `start_time` is required if `end_time` is specified.\n* If `start_time` isn't provided, the API returns the latest metrics.\n* `start_time` is required for aggregated metrics in order to calculate the `resolution` (granularity).\n\nTime can be specified in two ways:\n* Using ISO 8601 format. For example, \"2019-08-07T09:57:36.088757764Z\".\n* As an offset from the current time. For the offset, use `+` or `-`, followed by a number and the appropriate time unit. The time unit can can be `y` (years), `M` (months), `w` (weeks), `d` (days), `h` (hours), `m` (minutes), or `s` (seconds). \nExample of an offset: \"now-3h\" (3 hours before now).\n",
+        "type": "string",
+        "example": "2019-08-07T09:57:36.088757764Z"
       },
-      "MetricDescriptionRecord": {
-        "type": "object",
-        "required": [
-          "metadata"
+      "EndTime": {
+        "description": "Sets the end point for the time period for your metrics query (non-inclusive).\n\nUsage:\n* Must be greater than `start_time`.\n* If `start_time` is specified and `end_time` is not, `end_time` defaults to the current time.\n\nTime can be specified in two ways:\n* Using ISO 8601 format. For example, \"2019-08-07T09:57:36.088757764Z\".\n* As an offset from the current time. For the offset, use `+` or `-`, followed by a number and the appropriate time unit. The time unit can can be `y` (years), `M` (months), `w` (weeks), `d` (days), `h` (hours), `m` (minutes), or `s` (seconds). \nExample of an offset: \"now-3h\" (3 hours before now).\n",
+        "type": "string",
+        "example": "2019-08-07T09:57:36.088757764Z"
+      },
+      "MetricAggregation": {
+        "type": "string",
+        "description": "Static list of aggregation functions that can be applied to a compatible metric.\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n",
+        "enum": [
+          "min",
+          "max",
+          "sum",
+          "avg",
+          "rate"
         ],
-        "properties": {
-          "name": {
-            "description": "The name of the metric resource.",
-            "type": "string",
-            "example": "nginx.http.request.bytes_sent"
-          },
-          "description": {
-            "description": "A description of what the metric measures.",
-            "type": "string",
-            "example": "Number of bytes sent to clients."
-          },
-          "unit": {
-            "description": "The measurement scale or data type for the metric's value.\n",
-            "type": "string",
-            "example": "bytes"
-          },
-          "aggregations": {
-            "description": "The supported aggregate functions for the metric.",
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "AVG",
-                "COUNT",
-                "SUM",
-                "MAX",
-                "MIN",
-                "RATE"
-              ]
-            },
-            "example": [
-              "AVG",
-              "SUM"
-            ]
-          },
-          "type": {
-            "description": "The nature of the metric. Examples include `counter` (a cumulative metric that generally grows over time and can reset) and \n`gauge` (a value that can fluctuate, increasing or decreasing over time).\n",
-            "type": "string",
-            "enum": [
-              "counter",
-              "gauge",
-              "incremental"
-            ],
-            "example": "counter"
-          },
-          "categories": {
-            "description": "Categories are used to organize metrics into specific groups. For example, `nginx` or `system`.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "example": [
-              "nginx"
-            ]
-          },
-          "dimensions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ResourceRef"
-            },
-            "description": "An array dimensions that apply to the metric resource. "
-          }
+        "x-enum-varnames": [
+          "metric_aggregation_min",
+          "metric_aggregation_max",
+          "metric_aggregation_sum",
+          "metric_aggregation_avg",
+          "metric_aggregation_rate"
+        ]
+      },
+      "MetricDimensions": {
+        "type": "array",
+        "description": "List the dimensions to include in the response for each metric series.\n\nUsage:\n\n* Specify the list of dimensions. Dimensions not specified in this parameter will be hidden in the results.\n* If you specify dimensions in `group_by`, you don't need to list them again in `dimensions`. \nHowever, if you are using `group_by`, then any dimensions you list in `dimensions` must also be included in `group_by`.\n  * To return a single series, specify the metric name with aggregation (for example, `{ \"name\": \"agent.cpu.system\", \"aggregate\": \"avg\" }`) and leave the `dimensions` parameter empty.\n",
+        "items": {
+          "$ref": "#/components/schemas/MetricDimension"
         }
       },
-      "MetricsDescriptionsResponse": {
-        "type": "object",
-        "properties": {
-          "items": {
-            "description": "An array of metric resource descriptions.",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MetricDescriptionRecord"
-            }
-          }
+      "GroupByDimensions": {
+        "type": "array",
+        "description": "Group the query results by the specified dimension(s).\n\nUsage:\n* Specify the list of dimensions.\n* For `group_by` to work, all metrics in the `names` parameter must be aggregated.\n",
+        "items": {
+          "$ref": "#/components/schemas/MetricDimension"
         }
       },
-      "DimensionDescriptionResponse": {
-        "$ref": "#/components/schemas/DimensionDescriptionRecord"
+      "TopXMetricDimensions": {
+        "type": "array",
+        "description": "List additional dimensions to include in the response for each metric series. The dimension specified by `group_series_by` will be included by default.\n",
+        "items": {
+          "$ref": "#/components/schemas/MetricDimension"
+        }
       },
-      "DimensionDescriptionRecord": {
+      "MetricDimension": {
+        "type": "string",
+        "default": "display_name",
+        "description": "Static list of all metric dimensions.\n  * `display_name` - The display name of the NGINX instance.\n  * `file_path` - Path to a desired file.\n  * `parent_hostname` - The hostname of the NGINX Plus instance.\n  * `instance_object_id` - Instance Object ID is the unique identifier for an Instance registered with Control Plane.\n  * `location_zone` - The name of an HTTP location zone.\n  * `mount_point` - A filesystem mount point.\n  * `namespace` - The Namespace associated with the metric data.\n  * `network_interface` - A server network interface.\n  * `nginx_id` - The unique identifier of an nginx instance running on the data plane.\n  * `server_zone` - The name of an HTTP or Stream server zone.\n  * `system_id` - The unique identifier of the the operating system where nginx-agent is running.\n  * `tenant` - The Tenant associated with the metric data.\n",
+        "enum": [
+          "display_name",
+          "file_path",
+          "parent_hostname",
+          "instance_object_id",
+          "location_zone",
+          "mount_point",
+          "namespace",
+          "network_interface",
+          "nginx_id",
+          "server_zone",
+          "system_id",
+          "tenant"
+        ],
+        "x-enum-varnames": [
+          "metric_dimension_display_name",
+          "metric_dimension_file_path",
+          "metric_dimension_hostname",
+          "metric_dimension_instance_object_id",
+          "metric_dimension_location_zone",
+          "metric_dimension_mount_point",
+          "metric_dimension_namespace",
+          "metric_dimension_network_interface",
+          "metric_dimension_nginx_id",
+          "metric_dimension_server_zone",
+          "metric_dimension_system_id",
+          "metric_dimension_tenant"
+        ]
+      },
+      "BaseMetricQueryRequest": {
         "type": "object",
         "required": [
-          "metadata"
+          "metrics"
         ],
         "properties": {
-          "name": {
-            "description": "The name of the dimension resource.",
-            "type": "string",
-            "example": "instance"
-          },
-          "description": {
-            "description": "An explanation of what the dimension represents or measures in the context of the metric.",
-            "type": "string",
-            "example": "Instance name."
-          },
-          "type": {
-            "description": "The data type for the dimension. For example, `string`.",
-            "type": "string",
-            "enum": [
-              "string",
-              "int",
-              "list"
-            ],
-            "example": "string"
-          },
           "metrics": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ResourceRef"
-            },
-            "description": "An array of metrics that the dimension resource applies to."
-          }
-        }
-      },
-      "DimensionsDescriptionsResponse": {
-        "type": "object",
-        "properties": {
-          "items": {
-            "description": "An array of dimension resource descriptions.",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DimensionDescriptionRecord"
-            }
-          }
-        }
-      },
-      "ResourceRef": {
-        "type": "object",
-        "required": [
-          "ref"
-        ],
-        "properties": {
-          "ref": {
-            "type": "string",
-            "example": "/monitor/catalogs/dimensions/system_id",
-            "description": "A URI that points directly to the resource within the API.\n"
+            "$ref": "#/components/schemas/MetricNames"
           },
-          "links": {
-            "$ref": "#/components/schemas/NamedLinks"
+          "filter": {
+            "$ref": "#/components/schemas/MetricFilters"
+          },
+          "start_time": {
+            "$ref": "#/components/schemas/StartTime"
+          },
+          "end_time": {
+            "$ref": "#/components/schemas/EndTime"
+          },
+          "resolution": {
+            "type": "string",
+            "description": "Specifies the level of granularity for time series data in your results. Applicable only for endpoints that return time series data.\n\nUsage: \n* Specify as a string with a number followed by a unit of time, such as `y` (years), `M` (months), `w` (weeks), `d` (days), `h` (hours), `m` (minutes) or `s` (seconds).\n* Metrics in `names` must be aggregated.\n* `start_time` is required.\n* If `resolution` is not set, the API returns the maximum resolution (`end_time` - `start_time`).\n",
+            "example": "30s"
           }
         }
       },
-      "NamedLinks": {
+      "MetricQueryRequest": {
+        "type": "object",
         "allOf": [
           {
-            "$ref": "#/components/schemas/SelfLinks"
+            "$ref": "#/components/schemas/BaseMetricQueryRequest"
           },
           {
             "type": "object",
-            "description": "Contains information about the resource being referred to, including the resource name and display name. \nThis information is useful for consumers of the API who may need to perform further processing.\n\nThis object is only present in responses.\n",
             "properties": {
-              "name": {
-                "type": "string",
-                "example": "system_id",
-                "description": "The name of the resource.\n"
+              "dimensions": {
+                "$ref": "#/components/schemas/MetricDimensions"
               },
-              "display_name": {
-                "type": "string",
-                "example": "system ID",
-                "description": "A user-friendly display name for the resource."
+              "group_by": {
+                "$ref": "#/components/schemas/GroupByDimensions"
+              },
+              "order_by": {
+                "description": "List the order by for dimension(s).\n\nUsage:\n\n* Must be a dimension included by `dimensions` or `group_by`.\n",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/OrderBy"
+                }
               }
             }
           }
         ]
       },
-      "SelfLinks": {
+      "MetricTopXQueryRequest": {
         "type": "object",
-        "description": "This object represents links to a resource, including the complete API path fragment, the resource name, and the resource's user-friendly display name. \nThis object is used only in responses.\n",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseMetricQueryRequest"
+          },
+          {
+            "type": "object",
+            "required": [
+              "series_limit",
+              "group_series_by"
+            ],
+            "properties": {
+              "dimensions": {
+                "$ref": "#/components/schemas/TopXMetricDimensions"
+              },
+              "series_limit": {
+                "type": "integer",
+                "example": 25,
+                "description": "Sets the maximum number of series that can be returned.                \n\nNotes:\n* Always returns an additional series with a dimension named `all`, aggregating the values of all metrics included in the results.\n* A series with a dimension named `other` may be returned, aggregating the values of metrics not included in the results.\n"
+              },
+              "group_series_by": {
+                "$ref": "#/components/schemas/MetricDimension"
+              },
+              "order_series_by": {
+                "$ref": "#/components/schemas/OrderSeriesBy"
+              }
+            }
+          }
+        ]
+      },
+      "MetricNames": {
+        "type": "array",
+        "description": "Specify the metrics you want details for.\n\nUsage: \n* List multiple metrics as json objects.\n  * You can aggregate metrics with `avg`, `sum`, `min`, `max`, `rate`.\n* Metrics with aggregates require a `start_time`.\n* If you combine aggregated and non-aggregated metrics in a single query, any `group_by` clause applies only to the aggregated metrics.\n",
+        "items": {
+          "$ref": "#/components/schemas/MetricQuery"
+        },
+        "example": [
+          {
+            "name": "system.cpu.system",
+            "aggregate": "avg"
+          }
+        ]
+      },
+      "MetricQuery": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
         "properties": {
-          "rel": {
-            "type": "string",
-            "example": "/api/v1/monitor/catalogs/dimensions/system_id",
-            "description": "The complete path fragment of a URI that, when combined with a base URL, can be used to construct a query to the dimension resource.\n"
+          "name": {
+            "$ref": "#/components/schemas/MetricName"
+          },
+          "aggregate": {
+            "$ref": "#/components/schemas/MetricAggregation"
           }
         }
       },
-      "SettingsInstanceCleanUp": {
+      "MetricFilterPredicate": {
+        "type": "string",
+        "enum": [
+          "AND",
+          "OR"
+        ],
+        "x-enum-varnames": [
+          "metric_filter_predicate_and",
+          "metric_filter_predicate_or"
+        ]
+      },
+      "MetricFilters": {
+        "type": "array",
+        "description": "Filter results based on dimension operations against one or more values.\n\nUsage:\n* Format as one or more predicates by providing all required elements.\n  * `dimension`: The dimension name you want to filter on.\n  * `operator`: The possible operators (`=`, `!=`, `<`, `<=`, `>`, `>=`, `in`, `not`) you can use for comparison or condition checking.\n  * `value`: Case sensitive value of the dimension to filter against.\n\nFor more complex filtering:\n\n* Specify a `predicate` for logical expressions (`AND`,`OR`). \n* Use a wildcard `*` in the `value` for matching partial values.\n",
+        "items": {
+          "$ref": "#/components/schemas/MetricFilterSet"
+        },
+        "example": [
+          {
+            "filterSet": [
+              {
+                "dimension": "server_zone",
+                "operator": "!=",
+                "values": [
+                  "server_zone_1"
+                ]
+              },
+              {
+                "predicate": "OR",
+                "dimension": "server_zone",
+                "operator": "=",
+                "values": [
+                  "server_zone_2"
+                ]
+              }
+            ]
+          },
+          {
+            "predicate": "AND",
+            "filterSet": [
+              {
+                "dimension": "nginx_id",
+                "operator": "in",
+                "values": [
+                  "id1",
+                  "id2"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "MetricFilterSet": {
         "type": "object",
-        "description": "Preferences for automatic clean up of stale NGINX One Instances.",
+        "description": "Encapsulates one or more `MetricFilter` object(s) to be grouped together.\n",
         "required": [
-          "enabled"
+          "filterSet"
         ],
         "properties": {
-          "enabled": {
-            "type": "boolean",
-            "default": false,
-            "description": "When enable, NGINX One backend service will automatically clean up NGINX instances that have been\n`unavailable` for set amount of time. Use age out duration to set the deadline for clean up.\n"
+          "predicate": {
+            "$ref": "#/components/schemas/MetricFilterPredicate"
           },
+          "filterSet": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetricFilter"
+            }
+          }
+        }
+      },
+      "MetricFilter": {
+        "type": "object",
+        "required": [
+          "dimension",
+          "operator",
+          "values"
+        ],
+        "properties": {
+          "dimension": {
+            "$ref": "#/components/schemas/MetricDimension"
+          },
+          "operator": {
+            "type": "string",
+            "description": "Static list of all operations supported by filtering\n\n* The `=`, `!=` only use the first element of the `values` array. Wildcards for partial matching is supported.\n* The `in` and `not` both use all elements in the `values` array. Wildcards for partial matching is NOT supported.\n",
+            "enum": [
+              "=",
+              "!=",
+              "in",
+              "not"
+            ],
+            "x-enum-varnames": [
+              "metric_filter_equal",
+              "metric_filter_not_equal",
+              "metric_filter_in",
+              "metric_filter_not"
+            ]
+          },
+          "values": {
+            "type": "array",
+            "description": "Single value used for all operators except `in` and `not`.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "predicate": {
+            "$ref": "#/components/schemas/MetricFilterPredicate"
+          }
+        }
+      },
+      "OrderDirection": {
+        "type": "string",
+        "enum": [
+          "asc",
+          "desc"
+        ],
+        "x-enum-varnames": [
+          "order_by_asc",
+          "order_by_desc"
+        ],
+        "default": "desc"
+      },
+      "OrderBy": {
+        "type": "object",
+        "description": "Sort order of the metric series in your results.\n\nUsage:\n* Provide all required elements.              \n  * `direction`: The sorting direction either `desc` or `asc`.\n  * `dimension`: The dimension for ordering.\n",
+        "required": [
+          "direction",
+          "dimension"
+        ],
+        "properties": {
+          "direction": {
+            "$ref": "#/components/schemas/OrderDirection"
+          },
+          "dimension": {
+            "$ref": "#/components/schemas/MetricDimension"
+          }
+        }
+      },
+      "OrderSeriesBy": {
+        "type": "object",
+        "description": "Sort order of the metric series in your results.\n\nUsage:\n* Provide all required elements.              \n  * `direction`: The sorting direction either `desc` or `asc`.\n  * `aggregate`: The aggregating function.\n",
+        "required": [
+          "direction",
+          "aggregate"
+        ],
+        "properties": {
+          "direction": {
+            "$ref": "#/components/schemas/OrderDirection"
+          },
+          "aggregate": {
+            "$ref": "#/components/schemas/MetricAggregation",
+            "default": "sum"
+          }
+        }
+      },
+      "MetricName": {
+        "type": "string",
+        "description": "Metric names available for querying.\n",
+        "example": "nginx.http.request.count",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/MetricNginxHttpRequestCount"
+          },
+          {
+            "$ref": "#/components/schemas/MetricNginxHttpStatus4xx"
+          },
+          {
+            "$ref": "#/components/schemas/MetricNginxHttpStatus5xx"
+          },
+          {
+            "$ref": "#/components/schemas/MetricPlusHttpRequestCount"
+          },
+          {
+            "$ref": "#/components/schemas/MetricPlusHttpStatus4xx"
+          },
+          {
+            "$ref": "#/components/schemas/MetricPlusHttpStatus5xx"
+          },
+          {
+            "$ref": "#/components/schemas/MetricSystemCpuSystem"
+          },
+          {
+            "$ref": "#/components/schemas/MetricSystemCpuUser"
+          },
+          {
+            "$ref": "#/components/schemas/MetricSystemDiskInUse"
+          },
+          {
+            "$ref": "#/components/schemas/MetricSystemDiskTotal"
+          },
+          {
+            "$ref": "#/components/schemas/MetricSystemDiskUsed"
+          },
+          {
+            "$ref": "#/components/schemas/MetricSystemMemoryPctUsed"
+          },
+          {
+            "$ref": "#/components/schemas/MetricSystemMemoryTotal"
+          },
+          {
+            "$ref": "#/components/schemas/MetricSystemMemoryUsed"
+          },
+          {
+            "$ref": "#/components/schemas/MetricSystemNetBytesReceived"
+          },
+          {
+            "$ref": "#/components/schemas/MetricSystemNetBytesSent"
+          }
+        ]
+      },
+      "MetricNginxHttpRequestCount": {
+        "type": "string",
+        "description": "Total number of client requests.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "enum": [
+          "nginx.http.request.count"
+        ]
+      },
+      "MetricNginxHttpStatus4xx": {
+        "type": "string",
+        "description": "Number of requests with HTTP status codes 4xx.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "enum": [
+          "nginx.http.status.4xx"
+        ]
+      },
+      "MetricNginxHttpStatus5xx": {
+        "type": "string",
+        "description": "Number of requests with HTTP status codes 5xx.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "enum": [
+          "nginx.http.status.5xx"
+        ]
+      },
+      "MetricPlusHttpRequestCount": {
+        "type": "string",
+        "description": "The total number of client requests received from clients.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * server_zone\n  * location_zone\n",
+        "enum": [
+          "plus.http.request.count"
+        ]
+      },
+      "MetricPlusHttpStatus4xx": {
+        "type": "string",
+        "description": "Number of requests with HTTP status codes 4xx.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * server_zone\n  * location_zone\n",
+        "enum": [
+          "plus.http.status.4xx"
+        ]
+      },
+      "MetricPlusHttpStatus5xx": {
+        "type": "string",
+        "description": "Number of requests with HTTP status codes 5xx.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * server_zone\n  * location_zone\n",
+        "enum": [
+          "plus.http.status.5xx"
+        ]
+      },
+      "MetricSystemCpuSystem": {
+        "type": "string",
+        "description": "Total system CPU utilization, percentage.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "enum": [
+          "system.cpu.system"
+        ]
+      },
+      "MetricSystemCpuUser": {
+        "type": "string",
+        "description": "User CPU utilization, percentage.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "enum": [
+          "system.cpu.user"
+        ]
+      },
+      "MetricSystemDiskInUse": {
+        "type": "string",
+        "description": "System disk usage statistic, percentage.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * mount_point\n",
+        "enum": [
+          "system.disk.in_use"
+        ]
+      },
+      "MetricSystemDiskTotal": {
+        "type": "string",
+        "description": "Total available system disk usage statistic, bytes.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * mount_point\n",
+        "enum": [
+          "system.disk.total"
+        ]
+      },
+      "MetricSystemDiskUsed": {
+        "type": "string",
+        "description": "In-use system disk usage statistic, bytes.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * mount_point\n",
+        "enum": [
+          "system.disk.used"
+        ]
+      },
+      "MetricSystemMemoryPctUsed": {
+        "type": "string",
+        "description": "Statistic about system memory usage, percentage.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "enum": [
+          "system.mem.pct_used"
+        ]
+      },
+      "MetricSystemMemoryTotal": {
+        "type": "string",
+        "description": "Total available statistic about system memory usage, bytes.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "enum": [
+          "system.mem.total"
+        ]
+      },
+      "MetricSystemMemoryUsed": {
+        "type": "string",
+        "description": "In-use statistic about system memory usage, bytes.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "enum": [
+          "system.mem.used"
+        ]
+      },
+      "MetricSystemNetBytesReceived": {
+        "type": "string",
+        "description": "Network I/O statistics. Number of bytes received per network interface.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * network_interface\n",
+        "enum": [
+          "system.net.bytes_rcvd"
+        ]
+      },
+      "MetricSystemNetBytesSent": {
+        "type": "string",
+        "description": "Network I/O statistics. Number of bytes sent per network interface.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * network_interface\n",
+        "enum": [
+          "system.net.bytes_sent"
+        ]
+      },
+      "SettingsInstanceCleanup": {
+        "type": "object",
+        "description": "Preferences for automatic cleanup of stale NGINX One Instances.",
+        "required": [
+          "age_out_duration"
+        ],
+        "properties": {
           "age_out_duration": {
             "type": "integer",
             "format": "int32",
-            "description": "Specify the age of `unavailable` NGINX instances for clean up. NGINX instances older than this value in hours will be deleted automatically. Events related to automatically deleted NGINX instances will show up in `/events` API.",
+            "description": "Specify the age of `unavailable` NGINX instances for clean up. NGINX instances older than this value in hours will be deleted automatically. Events related to automatically deleted NGINX instances will show up in `/events` API. '0' value disables the automatic clean up of `unavailable` NGINX instances.",
             "default": 3,
-            "minimum": 1,
+            "minimum": 0,
             "maximum": 720
           }
         },
         "example": {
-          "enabled": false,
           "age_out_duration": 3
         }
       },
-      "Settings": {
+      "SettingsACMEIntegration": {
         "type": "object",
-        "description": "Preferences for NGINX One service.",
+        "description": "ACME Integration to provision SSL certificates",
+        "required": [
+          "tos_accepted"
+        ],
         "properties": {
-          "instance_clean_up": {
-            "$ref": "#/components/schemas/SettingsInstanceCleanUp"
+          "tos_accepted": {
+            "type": "boolean",
+            "description": "Accept or deny terms of service for ACME server \n* true - Registers ACME account with the associated server\n* false - Deletes registered ACME account with the associated server\n",
+            "default": false
+          },
+          "server": {
+            "type": "string",
+            "description": "Name of ACME server to get SSL certificates from\n* `LE` - Let's Encrypt\n",
+            "enum": [
+              "LE"
+            ],
+            "x-enum-varnames": [
+              "acme_integration_server_lets_encrypt"
+            ]
           }
         }
       },
@@ -5130,7 +6949,6 @@
         "description": "Request structure for sending usage information.",
         "required": [
           "version",
-          "hostname",
           "uuid",
           "nap",
           "start_time",
@@ -5147,7 +6965,7 @@
             "type": "string",
             "description": "Hostname of the NGINX instance.",
             "minLength": 3,
-            "maxLength": 20
+            "maxLength": 255
           },
           "uuid": {
             "type": "string",
@@ -5184,6 +7002,125 @@
             "type": "integer",
             "description": "Usage collection end time (Unix epoch).",
             "minimum": 0
+          }
+        }
+      },
+      "ChatbotMessage": {
+        "type": "object",
+        "description": "A singular message representing the actual content to be sent to AI Gateway.",
+        "properties": {
+          "role": {
+            "description": "The persona sending the prompt. Can be 'user' or 'assistant'.",
+            "type": "string",
+            "enum": [
+              "user",
+              "assistant"
+            ],
+            "x-enum-varnames": [
+              "chatbot_role_user",
+              "chatbot_role_assistant"
+            ]
+          },
+          "content": {
+            "description": "The prompt to be sent.",
+            "type": "string",
+            "maxLength": 2048
+          }
+        },
+        "required": [
+          "role",
+          "content"
+        ]
+      },
+      "ChatbotRequest": {
+        "type": "object",
+        "description": "Request structure for sending a prompt to the AI Gateway LLM.",
+        "properties": {
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChatbotMessage"
+            }
+          }
+        },
+        "required": [
+          "messages"
+        ]
+      },
+      "ChatbotResponseChoice": {
+        "type": "object",
+        "description": "An individual completion option in response to the prompt.",
+        "properties": {
+          "index": {
+            "description": "The index of the value in the array of completions.",
+            "type": "integer",
+            "format": "int16"
+          },
+          "text": {
+            "description": "The text of completion.",
+            "type": "string"
+          }
+        }
+      },
+      "ChatbotResponseUsage": {
+        "type": "object",
+        "description": "Usage details for the response",
+        "properties": {
+          "prompt_tokens": {
+            "description": "The number of tokens in the prompt",
+            "type": "integer",
+            "format": "int32"
+          },
+          "total_tokens": {
+            "description": "The total number of tokens used",
+            "type": "integer",
+            "format": "int32"
+          },
+          "completion_tokens": {
+            "description": "The number of tokens in the completion",
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ChatbotResponse": {
+        "type": "object",
+        "description": "Response structure containing details of the LLM's response to the prompt.",
+        "required": [
+          "id",
+          "model",
+          "created",
+          "choices",
+          "object",
+          "usage"
+        ],
+        "properties": {
+          "id": {
+            "description": "The identifier for the response generated by the AI Gateway.",
+            "type": "string"
+          },
+          "model": {
+            "description": "The model name used to produce the response.",
+            "type": "string"
+          },
+          "created": {
+            "description": "The time when the response was created.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "choices": {
+            "description": "An array of possible completions in response to the prompt given by the 'user' persona.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChatbotResponseChoice"
+            }
+          },
+          "object": {
+            "description": "The type of the object that the JSON is describing - will be 'text_completion'",
+            "type": "string"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/ChatbotResponseUsage"
           }
         }
       }
@@ -5276,6 +7213,59 @@
           "start_time": 0,
           "end_time": 0
         }
+      },
+      "ChatbotRequest": {
+        "value": {
+          "messages": [
+            {
+              "role": "user",
+              "content": "What is a dog and a cat?"
+            }
+          ]
+        }
+      },
+      "ChatbotResponse": {
+        "value": {
+          "id": "cmpl-8a17ba557d904b2287bbf4e1ae22433b",
+          "object": "text_completion",
+          "created": "2023-10-01T00:00:00Z",
+          "model": "/opt/xcdf/model/mistral-7b-instruct-v2_v3/artifacts/Mistral-7B-Instruct-v0.2",
+          "choices": [
+            {
+              "index": 0,
+              "text": "# This is an H1\nThis is normal text.\nThis is normal text with a `monospaced item` included.\n\n## This is an H2\nThis is normal text\nThere is a list of things:\n* Thing one\n* Thing two\n\nThis is an ordered list of things\n1. Thing one\n2. Thing two\n\n### This is an H3\nHere follows a code block tagged with nginx for the language\n```nginx\nserver {\n\tlisten              443 ssl;\n    server_name         www.example.com;\n    ssl_certificate     www.example.com.crt;\n    ssl_certificate_key www.example.com.key;\n    ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;\n    ssl_ciphers         HIGH:!aNULL:!MD5;\n}\n```\nAnd now here is a code block without a language tag:\n```\nserver {\n\tlisten              443 ssl;\n    server_name         www.example.com;\n    ssl_certificate     www.example.com.crt;\n    ssl_certificate_key www.example.com.key;\n    ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;\n    ssl_ciphers         HIGH:!aNULL:!MD5;\n}\n```\nThis has been markdown. 감사합니다.",
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 9,
+            "total_tokens": 247,
+            "completion_tokens": 238
+          }
+        }
+      }
+    },
+    "responses": {
+      "InvalidRequest": {
+        "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "InternalServerErr": {
+        "description": "An unexpected error occurred on the server. Please try the request again later.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
       }
     },
     "securitySchemes": {
@@ -5302,16 +7292,35 @@
       "name": "Manage NGINX Instances",
       "tags": [
         "Instances",
-        "Clusters",
+        "Feature Flags",
+        "Config Sync Groups",
         "Certificates",
-        "CVEs"
+        "CVEs",
+        "Events"
       ]
     },
     {
       "name": "Monitor NGINX Instances",
       "tags": [
-        "Metrics",
-        "Catalogs"
+        "Metrics"
+      ]
+    },
+    {
+      "name": "Manage NGINX One Settings",
+      "tags": [
+        "Settings"
+      ]
+    },
+    {
+      "name": "NGINX Usage API",
+      "tags": [
+        "Usage"
+      ]
+    },
+    {
+      "name": "Chatbot API",
+      "tags": [
+        "Chatbot"
       ]
     }
   ]
