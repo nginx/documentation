@@ -84,4 +84,4 @@ In the **Choose Certificate** drop-down, select the managed certificate of your 
 
 - [Create and manage data plane keys]({{< relref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}})
 - [View and edit NGINX configurations]({{< relref "/nginx-one/how-to/nginx-configs/view-edit-nginx-configurations.md" >}})
-- [Manage certificates]({{< relref "/nginx-one/how-to/nginx-configs/manage-certificates.md" >}})
+- [Manage certificates]({{< relref "/nginx-one/how-to/certificates/manage-certificates.md" >}})
