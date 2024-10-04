@@ -33,6 +33,18 @@ You can use the NGINX One Console to add a file to a specific instance. To do so
 
 1. Select the instance to manage.
 1. Select the **Configuration** tab.
+
+   {{< tip >}}
+
+   From this window, select the file of your choice. If you want to delete this
+   file, Select **Edit Configuration** and select the Trash icon.
+
+   If this was a mistake, a revert button appears. But do not wait. As noted in
+   one of the UI messages, "This action cannot be undone once you publish the
+   configuration."
+
+   {{< /tip >}}
+
 1. Select **Edit Configuration**.
 1. In the **Edit Configuration** window that appears, select **Add File**.
 
@@ -43,13 +55,9 @@ limits writes to the `/etc/nginx` directory (and subdirectories).
 
 Enter the name of the desired configuration file, such as `abc.conf` and select **Add**. The configuration file appears in the **Edit Configuration** window.
 
-{{< tip >}}
-
-If you want to delete a file, select it in the **Edit Configuration** menu. You can then delete the file by selecting the trash icon. The exception is certificate files. To delete those, see how you can [Manage certificates]({{< relref "/nginx-one/how-to/certificates/manage-certificates.md#delete-certificates" >}}).
-
-{{< /tip >}}
-
 ### New SSL Certificate or CA Bundle
+
+First you can select the toggle to allow NGINX One Console to manaage the new certificate or bundle.
 
 <!-- Candidate for an "include". Common content with add-file.md -->
 In the screen that appears, you can add a certificate name. If you don't add a name, NGINX One will add a name for you, based on the expiration date for the certificate.
@@ -63,6 +71,13 @@ In each case, you can upload files directly, or enter the content of the certifi
 
 - **Certificate Details**, with the Subject Name, start and end dates. 
 - **Key Details**, with the encryption key size and algorithm, such as RSA
+
+  {{< tip >}}
+
+  Make sure to specify the path to your certificate in your NGINX configuration,
+  with the `ssl_certificate` and `ssl_certificate_key` directives.
+
+  {{< /tip >}}
 <!-- end potential "include" -->
 
 ### Existing SSL Certificate or CA Bundle
