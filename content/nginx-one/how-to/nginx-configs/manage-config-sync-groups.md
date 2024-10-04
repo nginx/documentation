@@ -6,7 +6,7 @@ tags:
     - docs
 title: Manage config sync groups
 toc: true
-weight: 200
+weight: 300
 ---
 
 

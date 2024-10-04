@@ -15,7 +15,7 @@ To view and edit an NGINX configuration, follow these steps:
 
 1. On the left menu, select **Instances**.
 2. Select the instance you want to view the configuration for.
-3. Select **View Configuration** to see the current configuration for the NGINX instance.
+3. Select the **Configuration** tab to see the current configuration for the NGINX instance.
 4. Select **Edit Configuration** to make changes to the current configuration.
 5. Make your changes to the configuration files. The config analyzer will let you know if there are any errors.
 6. When you are satisfied with the changes, select **Next**.
