@@ -48,8 +48,7 @@ You can use the NGINX One Console to add a file to a specific instance. To do so
 1. Select **Edit Configuration**.
 1. In the **Edit Configuration** window that appears, select **Add File**.
 
-You now have four options, described in the sections which follow. When you set up a new configuation file, SSL Certificate, or CA Bundle, the NGINX One Console
-limits writes to the `/etc/nginx` directory (and subdirectories).
+You now have four options, described in the sections which follow.
 
 ### New Configuration File
 
@@ -86,8 +85,8 @@ With this option, You can incorporate [Managed certificates]({{< relref "/nginx-
 In the **Choose Certificate** drop-down, select the managed certificate of your choice, and select **Add**. You can then:
 
 1. Review details of the certificate. The next steps depend on whether the certificate is a CA bundle or a certificate / key pair.
-1. Enter the **Certificate File Path**, such as `/etc/nginx/ssl/mycert.crt`.
-1. If you selected a key pair, you'll also enter the **Key File Path**, such as `/etc/nginx/ssl/mycert.key`.
+1. Enter the **Certificate File Path**, such as `/etc/ssl/nginx/mycert.crt`.
+1. If you selected a key pair, you'll also enter the **Key File Path**, such as `/etc/ssl/nginx/mycert.key`.
 1. Select **Add**. You should now be returned to the **Edit Configuration** window.
    You should now see the files you specified in the directory tree.
 1. Select **Next** and then **Save and Publish**.
