@@ -48,7 +48,7 @@ You can use the NGINX One Console to add a file to a specific instance. To do so
 1. Select **Edit Configuration**.
 1. In the **Edit Configuration** window that appears, select **Add File**.
 
-You now have four options, described in the sections which follow.
+You now have multiple options, described in the sections which follow.
 
 ### New Configuration File
 

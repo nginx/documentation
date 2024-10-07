@@ -32,10 +32,15 @@ log in to https://my.f5.com/. From there, you can download the following files:
 
 Alternatively, if you have your own certificates from a Certificate Authority (CA), you can use:
 
-- SSL Certificate (with a `.cer` file extension)
+- SSL Certificate (with a `.cer` or `.pem` file extension)
 - Privacy certificate (with a `.pem` file extension)
 
 The NGINX One Console allows you to upload these certificates as text and as files.
+
+Make sure your certificates, keys, and pem files are encrypted to one of the following standards:
+
+- RSA (at least 2048 bits)
+- ECDSA
 
 For NGINX configuration, these files are typically associated with the following NGINX configuration directives:
 
@@ -68,11 +73,12 @@ On the left-hand pane, select **Certificates**. In the window that appears, you 
   - Valid certificates that expire more than 30 days from now
   - Valid certificates that expire within the next 30 days
   - Expired certificates
+- Certificates that are not yet valid
 
 - **Management Status**
 
-  - Managed certificates can be administered remotely, from a deployment or through the API
-  - Unmanaged certificates are listed. While you can convert an unmanaged certificate to managed, you may have to repeat installing the certificate and key.
+  - Managed certificates can be administered remotely, through the NGINX One Console or through the API
+  - Unmanaged certificates are listed. While you can convert an unmanaged certificate to managed, you may need to upload the certificate and the key during the conversion.
 
 You can **Add Filter** to filter certificates by:
 
@@ -111,14 +117,14 @@ To delete a certificate, find the name in the **Certificates** screen. Find the 
 
 ## Managed and unmanaged certificates
 
-If you've added an instance to NGINX One, as described in [Manage config sync groups]({{< relref "../nginx-configs/manage-config-sync-groups.md" >}}) (/nginx-one/how-to/nginx-configs/manage-config-sync-groups), the associated SSL/TLS certificates may not yet be managed. To do so from the
+If you've added an instance to NGINX One, as described in [Manage config sync groups]({{< relref "../nginx-configs/manage-config-sync-groups.md#manage-config-sync-group-management" >}}), the associated SSL/TLS certificates may not yet be managed. To do so from the
 Certificates menu, select **Unmanaged**. You should see a list of **Unmanaged Certificates or CA Bundles**. Then:
 
 - Select a certificate
 - Select **Convert to Managed**
 - In the window that appears, you can now include the same information as shown in the [Add a new certificate](#add-a-new-certificate) section
 
-Once you've completed the process, NGINX One reassigns this as a managed certificate, and assigns it to the associated instance or config sync group.
+<!-- Once you've completed the process, NGINX One reassigns this as a managed certificate, and assigns it to the associated instance or config sync group. -->
 
 ## See also
 
