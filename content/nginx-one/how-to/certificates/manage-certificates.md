@@ -37,6 +37,14 @@ Alternatively, if you have your own certificates from a Certificate Authority (C
 
 The NGINX One Console allows you to upload these certificates as text and as files.
 
+For NGINX configuration, these files are typically associated with the following NGINX configuration directives:
+
+- [`ssl_certificate`](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_certificate)
+- [`ssl_certificate_key`](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_certificate_key)
+- [`ssl_trusted_certificate`](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_trusted_certificate)
+
+- 
+
 ## Important considerations
 
 Most websites include valid information from public keys and certificates or CA bundles. However,the NGINX One Console accepts, but provides warnings for these use cases:
@@ -111,3 +119,9 @@ Certificates menu, select **Unmanaged**. You should see a list of **Unmanaged Ce
 - In the window that appears, you can now include the same information as shown in the [Add a new certificate](#add-a-new-certificate) section
 
 Once you've completed the process, NGINX One reassigns this as a managed certificate, and assigns it to the associated instance or config sync group.
+
+## See also
+
+- [Create and manage data plane keys]({{< relref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}})
+- [View and edit NGINX configurations]({{< relref "/nginx-one/how-to/nginx-configs/view-edit-nginx-configurations.md" >}})
+- [Add a file in a configuration]({{< relref "/nginx-one/how-to/nginx-configs/add-file.md" >}})
