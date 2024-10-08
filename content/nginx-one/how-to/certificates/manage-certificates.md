@@ -44,7 +44,7 @@ Make sure your certificates, keys, and pem files are encrypted to one of the fol
 - RSA
 - ECDSA
 
-If you use one of these keys, the US National Institute of Standards and Technology, in [Publication 800-57 Part 3 (PDF)](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57Pt3r1.pdf) recommends a key size of at least
+If you use one of these keys, the US National Institute of Standards and Technology, in [Publication 800-57 Part 3 (PDF)](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57Pt3r1.pdf), recommends a key size of at least
 2048 bits. It also has recommnedations for ECDSA.
 
 ### Cite certificates in NGINX configuration
