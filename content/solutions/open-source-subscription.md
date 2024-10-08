@@ -7,10 +7,6 @@ tags:
 title: Install NGINX Open Source Subscription
 toc: true
 weight: 300
-build:
-  list: never
-  publishResources: true
-  render: always
 ---
 
 ## Overview

@@ -7,10 +7,6 @@ tags:
 title: Install the Connectivity Stack for Kubernetes
 toc: true
 weight: 300
-build:
-  list: never
-  publishResources: true
-  render: always
 ---
 
 ## Overview
