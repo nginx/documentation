@@ -24,6 +24,8 @@ Before you add and manage certificates with the NGINX One Console make sure:
 - You have the necessary permissions to create and manage SSL/TLS certificates
 - Your SSL/TLS certificates and keys match
 
+### SSL/TLS certificates and more
+
 When this document refers to certificates, it normally also refers to the corresponding key. If you have an NGINX subscription, 
 log in to https://my.f5.com/. From there, you can download the following files:
 
@@ -39,16 +41,22 @@ The NGINX One Console allows you to upload these certificates as text and as fil
 
 Make sure your certificates, keys, and pem files are encrypted to one of the following standards:
 
-- RSA (at least 2048 bits)
+- RSA
 - ECDSA
 
-For NGINX configuration, these files are typically associated with the following NGINX configuration directives:
+If you use one of these keys, the US National Institute of Standards and Technology, in [Publication 800-57 Part 3 (PDF)](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57Pt3r1.pdf) recommends a key size of at least
+2048 bits. It also has recommnedations for ECDSA.
+
+### Cite certificates in NGINX configuration
+
+For NGINX configuration, these files are typically associated with the following NGINX directives:
 
 - [`ssl_certificate`](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_certificate)
 - [`ssl_certificate_key`](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_certificate_key)
 - [`ssl_trusted_certificate`](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_trusted_certificate)
-
-- 
+- [`ssl_client_certificate`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_client_certificate)
+- [`proxy_ssl_certificate`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_certificate)
+- [`proxy_ssl_certificate_key`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_certificate_key)
 
 ## Important considerations
 
