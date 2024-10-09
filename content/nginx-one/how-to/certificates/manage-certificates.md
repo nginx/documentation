@@ -125,8 +125,14 @@ To delete a certificate, find the name in the **Certificates** screen. Find the 
 
 ## Managed and unmanaged certificates
 
-If you've added an instance to NGINX One, as described in [Manage config sync groups]({{< relref "../nginx-configs/manage-config-sync-groups.md#manage-config-sync-group-management" >}}), the associated SSL/TLS certificates may not yet be managed. To do so from the
-Certificates menu, select **Unmanaged**. You should see a list of **Unmanaged Certificates or CA Bundles**. Then:
+If you register an instance to NGINX One Console, as described in [Add your NGINX instances to NGINX One]({{< relref "../../getting-started.md#add-your-nginx-instances-to-nginx-one" >}}), and the associated SSL/TLS certificates:
+
+- Are used in their NGINX configuration
+- Do _not_ match an existing managed SSL certificate/CA bundle
+
+These certificates may be **Unmanaged**.
+
+To convert these cerificates to managed, start with the Certificates menu, and select **Unmanaged**. You should see a list of **Unmanaged Certificates or CA Bundles**. Then:
 
 - Select a certificate
 - Select **Convert to Managed**
