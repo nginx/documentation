@@ -55,7 +55,7 @@ jobs:
           fi
 
           mkdir coveo/
-          echo "{\"token\": \"$SEARCH_TOKEN\", \"org_id\": ${COVEO_ORG_ID}}" > coveo/search_token.json
+          echo "{\"token\": \"$SEARCH_TOKEN\", \"org_id\": \"${COVEO_ORG_ID}\"}" > coveo/search_token.json
 
       - name: Upload token for ${{matrix.env_name}}
         uses: actions/upload-artifact@v4
