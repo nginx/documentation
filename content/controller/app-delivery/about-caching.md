@@ -49,7 +49,7 @@ When you define a split cache, NGINX Controller adds a `split_clients` configura
 ## Advanced Caching
 
 As noted earlier in this topic, you can use Caching to manage basic caching use cases.
-To add any of the [`ngx_http_proxy_module`](http://nginx.org/en/docs/http/ngx_http_proxy_module.htm) cache directives listed below, use NGINX Controller **Snippets**.
+To add any of the [`ngx_http_proxy_module`](http://nginx.org/en/docs/http/ngx_http_proxy_module.html) cache directives listed below, use NGINX Controller **Snippets**.
 
 - [`proxy_cache_background_update`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_background_update)
 - [`proxy_cache_bypass`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_bypass)
