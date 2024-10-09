@@ -130,7 +130,7 @@ If you register an instance to NGINX One Console, as described in [Add your NGIN
 - Are used in their NGINX configuration
 - Do _not_ match an existing managed SSL certificate/CA bundle
 
-These certificates may be **Unmanaged**.
+These certificates will appear in the list of unmanaged certificates.
 
 To convert these cerificates to managed, start with the Certificates menu, and select **Unmanaged**. You should see a list of **Unmanaged Certificates or CA Bundles**. Then:
 
