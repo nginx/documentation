@@ -32,7 +32,7 @@ Before you add and manage certificates with the NGINX One Console make sure:
 
 ### SSL/TLS certificates and more
 
-When managing certificates, keys, and Certificate Authority (CA) files, you may need a copy to upload them to NGINX One Console.
+NGINX One Console supports certificates for access to repositories. You may need a copy of these files to upload them to NGINX One Console.
 If you have an NGINX subscription, log in to https://my.f5.com/. From there, you can download the following files:
 
 - SSL Certificate (with a `.crt` file extension)
