@@ -27,23 +27,18 @@ For more information on how you can use these certificates to secure your server
 Before you add and manage certificates with the NGINX One Console make sure:
 
 - You have access to the NGINX One Console
-- You have access through the F5 Distributed Cloud role, as described in the [Authentication]({{< relref "../../api/authentication.md" >}}) guide, to create and manage SSL/TLS certificates
+- You have access through the F5 Distributed Cloud role, as described in the [Authentication]({{< relref "../../api/authentication.md" >}}) guide, to manage SSL/TLS certificates
+  - You have the `f5xc-nginx-one-user` role for your account
 - Your SSL/TLS certificates and keys match
 
 ### SSL/TLS certificates and more
 
-NGINX One Console supports certificates for access to repositories. You may need a copy of these files to upload them to NGINX One Console.
-If you have an NGINX subscription, log in to https://my.f5.com/. From there, you can download the following files:
-
-- SSL Certificate (with a `.crt` file extension)
-- Private Key (with a `.key` file extension)
-
-Alternatively, if you have your own certificates from a Certificate Authority (CA), you can use:
+NGINX One Console supports certificates for access to repositories. You may need a copy of these files from your Certificate Authority (CA)  to upload them to NGINX One Console:
 
 - SSL Certificate (with a `.cer` or `.pem` file extension)
 - Privacy certificate (with a `.pem` file extension)
 
-The NGINX One Console allows you to upload these certificates as text and as files.
+The NGINX One Console allows you to upload these certificates as text and as files. You can also upload your own certificate files (with .crt and .key file extensions).
 
 Make sure your certificates, keys, and pem files are encrypted to one of the following standards:
 
