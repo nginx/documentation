@@ -26,3 +26,5 @@ When you're ready to merge a PR, run through this checklist and mark each step a
 - [ ] Verify that the doc follows the appropriate content template.
 - [ ] Add technical and docs reviewers. Refer to the appropriate CODEOWNERS file, which includes authorized teams of reviewers.
 - [ ] Share the PR for review in the [`#nginx-doc-reviews`](https://f5.enterprise.slack.com/archives/C04PYFULN91) channel in Slack.
+
+- [ ] After the PR is merged, delete the branch (unless it's still in use)
