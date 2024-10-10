@@ -14,6 +14,12 @@ weight: 100
 
 This guide explains how you can manage SSL/TLS certificates with the F5 NGINX One Console. Valid certificates support encrypted connections between NGINX and your users. 
 
+From the NGINX One Console you can:
+
+- Monitor all certificates configured for use by your connected NGINX Instances.
+- Ensure that your certificates are current and correct.
+- Manage your certificates from a central location. This can help you simplify operations and remotely update, rotate, and deploy those certificates.
+
 For more information on how you can use these certificates to secure your servers, refer to the section on [NGINX SSL termination]({{< relref "../../../nginx/admin-guide/security-controls/terminating-ssl-http.md" >}}).
 
 ## Before you start
@@ -21,13 +27,13 @@ For more information on how you can use these certificates to secure your server
 Before you add and manage certificates with the NGINX One Console make sure:
 
 - You have access to the NGINX One Console
-- You have the necessary permissions to create and manage SSL/TLS certificates
+- You have access through the F5 Distributed Cloud role, as described in the [Authentication]({{< relref "../../api/authentication.md" >}}) guide, to create and manage SSL/TLS certificates
 - Your SSL/TLS certificates and keys match
 
 ### SSL/TLS certificates and more
 
-When this document refers to certificates, it normally also refers to the corresponding key. If you have an NGINX subscription, 
-log in to https://my.f5.com/. From there, you can download the following files:
+When managing certificates, keys, and Certificate Authority (CA) files, you may need a copy to upload them to NGINX One Console.
+If you have an NGINX subscription, log in to https://my.f5.com/. From there, you can download the following files:
 
 - SSL Certificate (with a `.crt` file extension)
 - Private Key (with a `.key` file extension)
@@ -77,7 +83,9 @@ On the left-hand pane, select **Certificates**. In the window that appears, you 
 
 - **Certificate Status** 
 
-  - Total number of certificates
+  - Total number of certificates in one of these categories;
+    - Managed by NGINX One Console
+    - Detected on connected NGINX instances
   - Valid certificates that expire more than 30 days from now
   - Valid certificates that expire within the next 30 days
   - Expired certificates
@@ -85,8 +93,10 @@ On the left-hand pane, select **Certificates**. In the window that appears, you 
 
 - **Management Status**
 
-  - Managed certificates can be administered remotely, through the NGINX One Console or through the API
-  - Unmanaged certificates are listed. While you can convert an unmanaged certificate to managed, you may need to upload the certificate and the key during the conversion.
+  - Managed certificates are stored on NGINX One Console.
+    - You can use NGINX One Console to deploy, administer, and update certificates remotely.
+  - Unmanaged certificates are detected by NGINX One Console through the connected NGINX instance configuration. 
+    - If you choose to convert an unmanaged certificate to managed, you may need to upload the certificate and the key during the conversion.
 
 You can **Add Filter** to filter certificates by:
 
