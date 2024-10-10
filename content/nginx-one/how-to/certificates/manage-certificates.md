@@ -142,6 +142,8 @@ If you register an instance to NGINX One Console, as described in [Add your NGIN
 
 These certificates will appear in the list of unmanaged certificates.
 
+We recommend that you convert your unmanaged certificates. Converting to a managed certificate allows you to centrally manage, update, and deploy a certificate to your NGINX instances from the NGINX One Console.
+
 To convert these cerificates to managed, start with the Certificates menu, and select **Unmanaged**. You should see a list of **Unmanaged Certificates or CA Bundles**. Then:
 
 - Select a certificate
