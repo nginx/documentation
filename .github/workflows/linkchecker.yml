@@ -1,0 +1,75 @@
+# Using https://github.com/wummel/linkchecker to test NGINX Documentation
+# Recursively checks all internal and external links in the docs.
+# Warnings for redirects are disabled
+# To ignore a url use the --ignore-url param. eg --ignore-url ^http://www.example.com
+
+name: QE LinkChecker
+
+# This workflow runs on a schedule or can be run manually
+on:
+  workflow_dispatch:
+  schedule:
+    # Runs every day at 7am UTC
+    - cron: '0 7 * * *'
+
+jobs:
+  nginx-one:
+    runs-on: ubuntu-latest
+    steps:
+      # Install LinkChecker
+      - name: Install LinkChecker
+        run: sudo apt-get update && sudo apt-get install -y linkchecker
+      # Run LinkChecker on nginx-one docs
+      - name: Run LinkChecker nginx-one
+        run: linkchecker https://docs.nginx.com/nginx-one/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com
+  
+  nginx-app-protect-dos:
+    runs-on: ubuntu-latest
+    steps:
+      # Install LinkChecker
+      - name: Install LinkChecker
+        run: sudo apt-get update && sudo apt-get install -y linkchecker
+      # Run LinkChecker on nginx-app-protect-dos docs
+      - name: Run LinkChecker nginx-app-protect-dos
+        run: linkchecker https://docs.nginx.com/nginx-app-protect-dos/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com --ignore-url ^http://serv/
+  
+  nginx-app-protect-waf:
+    runs-on: ubuntu-latest
+    steps:
+      # Install LinkChecker
+      - name: Install LinkChecker
+        run: sudo apt-get update && sudo apt-get install -y linkchecker
+      # Step : Run LinkChecker on nginx-app-protect-waf docs
+      - name: Run LinkChecker nginx-app-protect-waf
+        run: linkchecker https://docs.nginx.com/nginx-app-protect-waf/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com --ignore-url ^http://www.example.com --ignore-url ^file:// --ignore-url ^https://www.fastbot.de
+
+  nginx-service-mesh:
+    runs-on: ubuntu-latest
+    steps:
+      # Install LinkChecker
+      - name: Install LinkChecker
+        run: sudo apt-get update && sudo apt-get install -y linkchecker
+      # Run LinkChecker on nginx-service-mesh docs
+      - name: Run LinkChecker nginx-service-mesh
+        run: linkchecker https://docs.nginx.com/nginx-service-mesh/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com --ignore-url ^http://localhost --ignore-url ^https://lightstep.com
+
+  nginx-amplify:
+    runs-on: ubuntu-latest
+    steps:
+      # Install LinkChecker
+      - name: Install LinkChecker
+        run: sudo apt-get update && sudo apt-get install -y linkchecker
+      # Run LinkChecker on nginx-amplify docs
+      - name: Run LinkChecker nginx-amplify
+        run: linkchecker https://docs.nginx.com/nginx-amplify/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com
+
+  nginx-controller:
+    runs-on: ubuntu-latest
+    steps:
+      # Install LinkChecker
+      - name: Install LinkChecker
+        run: sudo apt-get update && sudo apt-get install -y linkchecker
+      # Run LinkChecker on nginx-controller docs
+      - name: Run LinkChecker nginx-controller
+        run: linkchecker https://docs.nginx.com/nginx-controller/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com
+  

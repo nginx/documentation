@@ -687,7 +687,7 @@ The following issues are known to be present in this release. Look for updates t
 
   **Workaround:**
 
-  You can access the Catalogs and Dev Portals API overview pages in the NGINX Controller docs online. To do so, go to [https://docs.nginx.com/nginx-controller/api/reference/ctlr-v1](https://docs.nginx.com/nginx-controller/api/reference/ctlr-v1) and navigate to the overview page for the desired endpoint.
+  You can access the Catalogs and Dev Portals API overview pages in the NGINX Controller docs online. To do so, go to [https://docs.nginx.com/nginx-controller/api/reference/ctlr-v1]({{< relref "/controller/api/_index.md" >}}) and navigate to the overview page for the desired endpoint.
 
 <span id="3150-supported"></a>
 

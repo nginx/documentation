@@ -374,6 +374,27 @@ Ensure content and screenshots are anonymized and don't contain sensitive inform
 - Limit the use of links to external (non-F5) sources. When necessary, only link to reputable sources and foundational sites, such as GitHub.com, Google.com, and Microsoft.com.
   - This helps minimize the risk of prompt injection.
 
+## Guidelines for `includes`
+
+In an ideal world, we'd "write once, publish everywhere." It's possible with a concept known as `includes`, where an entry such as:
+
+```
+{{< include "controller/helper-script-prereqs.md" >}}
+```
+
+automatically pulls content from the `helper-script-prereqs.md` file in the `content/includes/controller` subdirectory.
+
+As includes disrupt the flow when reading a markdown file, we encourage you to follow these guidelines:
+
+- Keep includes to a minimum
+- Set up includes in "small snippets"
+- Use includes on content that _rarely_ changes
+- Create includes for content that's repeated at least three times
+- Don’t add headers (like H2s) inside includes. Headers in includes don’t show up in the in-doc TOC. Plus, while an H2 might make sense in the include on its own, it may not fit well under an H4 in the main document. Headers should be added at the doc level.
+- Don’t nest includes inside other includes. While this technically works, it makes reviews harder.
+
+If you don't use an include with repeated content, include a `<!-- comment -->` which refers to other files with the same content.
+
 ## Revision history
 
 The following table describes the history of all decisions and revisions made to
@@ -382,6 +403,7 @@ this style guide over time. This guide uses the Major.Minor.Patch
 
 | Edition | Date          | Lead Author(s) | Comments                                              |
 |---------|---------------|----------------|-------------------------------------------------------|
+| 1.5   | October 3, 2024 | Mike Jang  | Include guidelines for "includes"                      |
 | 1.4   | Septemter 20, 2024 | Mike Jang  | Organize and clarify info on sensitive content |
 | 1.3   | August 12, 2024 | Jon Torre  | Include additional rules for product names |
 | 1.2   | June 21, 2024 | Travis Martin  | Added link to BBC's examples for effective alt images |

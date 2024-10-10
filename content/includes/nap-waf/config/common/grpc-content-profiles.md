@@ -101,7 +101,7 @@ An alternative and probably more convenient way to specify all the IDL files, th
     "idlFile": {
         "$ref": "file:///grpc_files/album_service_files.tgz"
     },
-    "primaryIdlFilename": "album_service.proto"
+    "primaryIdlFileName": "album_service.proto"
 }]
 ```
 

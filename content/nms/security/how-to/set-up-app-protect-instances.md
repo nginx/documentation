@@ -212,6 +212,7 @@ Take the steps below to update your NGINX App Protect WAF configurations by usin
 1. Next, edit the desired configuration file. You will add directives that reference the security policies bundle and enable the NGINX App Protect WAF logs required by the Security Monitoring dashboards. An example configuration is provided below.
 
    ```nginx
+      app_protect_enable on;
       app_protect_policy_file "/etc/nms/NginxDefaultPolicy.tgz";
       app_protect_security_log_enable on;
       app_protect_security_log "/etc/nms/secops_dashboard.tgz" syslog:server=127.0.0.1:514;
