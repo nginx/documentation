@@ -22,7 +22,7 @@ on:
       - "*"
   push:
     branches:
-      - "staging"
+      - "nim-release-2.18.0"
 
 jobs:
   prod-check-branch:
@@ -49,7 +49,7 @@ jobs:
       doc_type: "hugo"
       environment: ${{inputs.environment}}
       force_hugo_theme_version: ${{inputs.hugo_theme_override}}
-      auto_deploy_branch: "staging"
+      auto_deploy_branch: "nim-release-2.18.0"
       auto_deploy_env: "staging"
     secrets:
       AZURE_CREDENTIALS: ${{secrets.AZURE_CREDENTIALS}}
