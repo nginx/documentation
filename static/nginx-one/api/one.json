@@ -38,6 +38,11 @@
       "x-displayName": "Config Sync Groups"
     },
     {
+      "name": "Certificates",
+      "description": "The `Certificates` object in NGINX One Console represents an SSL certificate, covering both managed and unmanaged types. \nYou can view essential details like issuer, expiration status, and the instances where each certificate is deployed.\n",
+      "x-displayName": "Certificates"
+    },
+    {
       "name": "CVEs",
       "description": "The `CVEs` object represents the security advisories published for all the F5 products supported by NGINX One Console\n",
       "x-displayName": "CVEs"
@@ -2368,12 +2373,461 @@
         }
       }
     },
+    "/certificates": {
+      "get": {
+        "x-feature-flag": "cert-mgmt",
+        "tags": [
+          "Certificates"
+        ],
+        "summary": "List all SSL certificates",
+        "description": "Returns a paginated list showing metadata for every SSL certificate.\n",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldCertificates"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameCertificates"
+          }
+        ],
+        "operationId": "listCertificates",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of SSL certificates.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CertificateListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "x-nginx-one-action": "create",
+        "x-nginx-one-entity": "NGINX certificate",
+        "x-feature-flag": "cert-mgmt",
+        "tags": [
+          "Certificates"
+        ],
+        "summary": "Create an SSL certificate",
+        "operationId": "createCertificate",
+        "description": "Creates a new SSL certificate with an optional name. \nYou must supply the certificate's content in base64-encoded PEM format.\nAny warnings will be displayed only upon creation of the certificate object, and\nis not retrievable after it is created.\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CertificateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully created the SSL certificate.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CertificateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/certificates/parse": {
+      "post": {
+        "x-feature-flag": "cert-mgmt",
+        "x-nginx-one-action": "validate",
+        "x-nginx-one-entity": "NGINX certificate",
+        "tags": [
+          "Certificates"
+        ],
+        "summary": "Parse and validate an SSL certificate",
+        "operationId": "parseCertificate",
+        "description": "This endpoint parses and validates an SSL certificate's format. \nIt checks the provided PEM files and verifies that the public certificates follow the correct X.509 format. \nIf the certificate cannot be parsed, an error will be returned. \nOtherwise, as long as the certificate is parsable, a `200 OK` status will be returned even if there are issues \nsuch as mismatched private keys or expired certificates. Details of any issues found will be shown in the \"warnings\" field of the response.\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CertificateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully parsed and validated the SSL certificate.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CertificateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/certificates/{certificateObjectID}": {
       "parameters": [
         {
           "$ref": "#/components/parameters/CertificateParamObjectID"
         }
-      ]
+      ],
+      "get": {
+        "x-feature-flag": "cert-mgmt",
+        "tags": [
+          "Certificates"
+        ],
+        "summary": "Retrieve an SSL certificate",
+        "operationId": "getCertificate",
+        "description": "Retrieves the details for an SSL certificate, including:\n* Object ID that uniquely identifies this certificate object\n* SSL certificate type (managed or unmanaged by NGINX One Console)\n* Certificate type (whether it is a CA bundle or a certificate-key pair)\n* Subject name of the leaf certificate, or the soonest-expiring CA in a bundle\n  - This subject name will be the DNS name in the SAN extension of the certificate. If not present, it will be the certificate's common name\n* Status of the certificate (valid, expiring, expired)\n* Validity period, if applicable to multiple certificates\n* Metadata for each public certificate if multiples are provided\n* Private key metadata, if available\n",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the details of the SSL certificate.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CertificateResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The SSL certificate with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "x-nginx-one-action": "update",
+        "x-nginx-one-entity": "NGINX certificate",
+        "x-feature-flag": "cert-mgmt",
+        "tags": [
+          "Certificates"
+        ],
+        "summary": "Update an SSL certificate",
+        "operationId": "updateCertificate",
+        "description": "Updates public certificates, private keys, or both. \nThis endpoint can also be used to update a Certificate Authority (CA) bundle.\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CertificateUpdateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated the specified SSL certificate.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CertificateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The SSL certificate with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "x-nginx-one-action": "delete",
+        "x-nginx-one-entity": "NGINX certificate",
+        "x-feature-flag": "cert-mgmt",
+        "tags": [
+          "Certificates"
+        ],
+        "summary": "Delete an SSL certificate",
+        "operationId": "deleteCertificate",
+        "description": "Deletes an SSL certificate from NGINX One Console.",
+        "responses": {
+          "204": {
+            "description": "Successfully deleted the SSL certificate."
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The SSL certificate with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/certificates/{certificateObjectID}/deployments": {
+      "get": {
+        "x-feature-flag": "cert-mgmt",
+        "tags": [
+          "Certificates"
+        ],
+        "summary": "List SSL certificate deployments",
+        "description": "Returns a paginated list showing all the deployments for a SSL certificate and assigned file path(s).\n",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/CertificateParamObjectID"
+          },
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldCertificateDeployments"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameCertificateDeployments"
+          }
+        ],
+        "operationId": "listCertificateDeployments",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of SSL certificate deployments.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CertificateDeploymentListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The SSL certificate with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
     },
     "/cves": {
       "get": {
