@@ -1,7 +1,9 @@
 # Contributing guidelines
 
-The following is a set of guidelines for contributing to this project.
-We really appreciate your desire to contribute!
+The following is a set of guidelines for community contributions to this
+project. We really appreciate your desire to contribute!
+
+If you are an F5/NGINX employee, see the following guidance [For F5/NGINX Employees](./F5-NGINX-team-notes.md).
 
 ## Table of contents
 
@@ -35,7 +37,7 @@ we encourage you to use
 
 ## Submit a Pull Request
 
-To contribute to NGINX documentation, follow these steps:
+To contribute to F5 NGINX documentation, follow these steps:
 
 - Fork the NGINX repository
 - Create a branch

@@ -22,7 +22,7 @@ When you set up an image, this is the standard format:
 
 {{< img src="path/to/images/file-name.png" alt="descriptive text for screenreaders" >}}
 
-You'll find images in the [static](../static) subdirectory, in a directory assocaited with the documentation. For example, if you've set up the `file-name.png`
+You'll find images in the [static](../static) subdirectory, in a directory associated with the documentation. For example, if you've set up the `file-name.png`
 image, you should copy that file to the `static/path/to/images` directory.
 
 ## Build documentation locally
