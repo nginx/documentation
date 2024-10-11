@@ -10,12 +10,10 @@
 
 If you want to contribute to F5 NGINX documentation, you've come to the right place. We've organized a series of README-type files to help you get started:
 
-- [Get started](/GET_STARTED.md) to help you get started with NGINX and our documentation.
 - [Contributing](/CONTRIBUTING.md) describes how you can contribute to our documentation.
-  - [Contributing with Git](/CONTRIBUTING_GIT.md) describes how you can contribute (and check your work) with Git and command line tools.
+  - [Contributing guidelines for experts](/CONTRIBUTING_DOCS.md) describes how you can contribute (and check your work) with Hugo, our static site generator
 - [Code of Conduct](/CODE_OF_CONDUCT.md) describes expectations in the NGINX open source community.
-- [Creative Commons License](/LICENSE) shows the Creative Commons license associated with work on this repository.
-- [Prerequisties](/PREREQUISITES.md) lists the hardware and software that you need to get started with NGINX.
+- [License](/LICENSE) shows the license associated with work on this repository.
 - [Security](/SECURITY.md) describes the procedures we would like you to follow if you find a security issue.
 - [Support](/SUPPORT.md) lists how you can get support as a customer or a community member.
 

@@ -8,20 +8,9 @@ Don't know how something in this project works? Curious if this project can achi
 
 Alternatively, open a [discussion](https://github.com/nginxinc/oss-docs/discussions) in this repository.
 
-If you know the answer, open a pull request!
-<!-- Add a link to GH issues, Discourse, F5 Dev Central, Qualtrix?-->
-
 ## NGINX Specific Questions and/or Issues
 
 This isn't the right place to get support for NGINX specific questions, but the following resources are available below. Thanks for your understanding!
-
-<!-- ### Discourse
-
-We have a community [Slack](https://nginxcommunity.slack.com/)!
-
-If you are not a member, click [here](https://community.nginx.org/joinslack) to sign up. (Let us know if the link does not seem to be working at <nginx-oss-community@f5.com>!)
-
-Once you join, check out the `#beginner-questions` and `nginx-users` channels :) -->
 
 ### Mailing List
 

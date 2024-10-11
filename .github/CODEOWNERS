@@ -2,7 +2,7 @@
 # the noted directories.
 #
 # If you want to add, modify, or delete files in any of these directories,
-# open a pull request. Then add the approrpriate group name (without the `@`)
+# open a pull request. Then add the appropriate group name (without the `@`)
 # to the list of "Reviewers."
 #
 # Order is important; the last matching pattern takes precedence. 

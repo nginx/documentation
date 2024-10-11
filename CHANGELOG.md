@@ -4,4 +4,4 @@
 
 ## 1.0.0 (Month Date, Year)
 
-Initial open source release of the documentation repository for enterprise NGINX products. The content was previously in a closed repository.
+Initial open source release of the documentation repository for enterprise NGINX products. This is a filtered mirror of an internal repository.
