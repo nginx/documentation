@@ -5,6 +5,8 @@
 
 # testing
 /coverage
+*/test-results
+*/playwright-report
 
 # production
 ./public
