@@ -33,14 +33,15 @@ Before you add and manage certificates with the NGINX One Console make sure:
 
 ### SSL/TLS certificates and more
 
-NGINX One Console supports certificates for access to repositories. You may need a copy of these files from your Certificate Authority (CA)  to upload them to NGINX One Console:
+You need a copy of these files from your Certificate Authority (CA)  to upload them to NGINX One Console:
 
-- SSL Certificate (with a `.cer` or `.pem` file extension)
-- Privacy certificate (with a `.pem` file extension)
+- SSL Certificate in [PEM format](https://en.wikipedia.org/wiki/Privacy-Enhanced_Mail)
+- Private key in PEM format
 
-The NGINX One Console allows you to upload these certificates as text and as files. You can also upload your own certificate files (with .crt and .key file extensions).
+The NGINX One Console allows you to upload these certificates and keys as plain text. You can also upload your own certificate and key files.
 
-Make sure your certificates, keys, and pem files are encrypted to one of the following standards:
+
+Your certificates and private keys must use one of the following supported algorithms:
 
 - RSA
 - ECDSA
@@ -61,7 +62,7 @@ For NGINX configuration, these files are typically associated with the following
 
 ## Important considerations
 
-Most websites include valid information from public keys and certificates or CA bundles. However,the NGINX One Console accepts, but provides warnings for these use cases:
+Most websites include valid information from public keys and certificates or CA bundles. However, the NGINX One Console accepts, but provides warnings for these use cases:
 
 - When the public certificate is expired
 - When the leaf certificate part of a certificate chain is expired
