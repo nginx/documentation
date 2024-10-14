@@ -28,7 +28,7 @@ Before you add and manage certificates with the NGINX One Console make sure:
 
 - You have access to the NGINX One Console
 - You have access through the F5 Distributed Cloud role, as described in the [Authentication]({{< relref "../../api/authentication.md" >}}) guide, to manage SSL/TLS certificates
-  - You have the `f5xc-nginx-one-user` role for your account
+  - You have a role such as `f5xc-nginx-one-user`, or a similar custom role for your account. To create or assign the role, follow the instructions for [Custom Roles](https://docs.cloud.f5.com/docs-v2/administration/how-tos/user-mgmt/roles). 
 - Your SSL/TLS certificates and keys match
 
 ### SSL/TLS certificates and more
