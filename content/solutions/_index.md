@@ -13,11 +13,9 @@ weight: 1
 
 ### What's new
 
-Starting with NGINX Plus R33, expected in **Q4 of 2024**, all **NGINX Plus instances will require a valid JSON Web Token (JWT).**
+Starting with NGINX Plus R33, expected in **Q4 of 2024**, all **NGINX Plus instances will require a valid JSON Web Token (JWT)**. The JWT is tied to your subscription, not individual instances, and is used to **validate your subscription** and **report telemetry data**. In internet-connected environments, telemetry is sent to F5’s licensing endpoint. In offline environments, telemetry is routed through [NGINX Instance Manager]({{< relref "/nms/nim" >}}).
 
-This requirement is part of F5’s broader licensing program and aligns with industry best practices. The JWT will streamline subscription renewals and usage reporting, helping you manage your NGINX Plus subscription more efficiently. The [telemetry data](#telemetry) we collect helps us improve our products and services to better meet your needs.
-
-The JWT is required for **validating your subscription** and **reporting telemetry data**. For environments connected to the internet, telemetry is automatically sent to F5’s licensing endpoint. In offline environments, telemetry is routed through [NGINX Instance Manager]({{< relref "/nms/nim" >}}).
+This change is part of F5's broader licensing program, designed to make subscription renewals and usage reporting easier. The [telemetry data](#telemetry) helps us improve our products and services to better meet your needs.
 
 ##### What this means for you
 
