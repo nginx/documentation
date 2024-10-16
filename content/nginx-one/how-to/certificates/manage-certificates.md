@@ -22,6 +22,12 @@ From the NGINX One Console you can:
 
 For more information on how you can use these certificates to secure your servers, refer to the section on [NGINX SSL termination]({{< relref "../../../nginx/admin-guide/security-controls/terminating-ssl-http.md" >}}).
 
+{{< tip >}}
+
+If you are managing the certificate from NGINX One Console, we recommend that you avoid directly manipulating the files on the data plane.
+
+{{< /tip >}}
+
 ## Before you start
 
 Before you add and manage certificates with the NGINX One Console make sure:
