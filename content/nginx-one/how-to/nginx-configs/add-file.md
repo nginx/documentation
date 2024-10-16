@@ -13,7 +13,7 @@ weight: 200
 ## Overview
 
 This guide explains how to add files in the F5 NGINX One Console. While you can manage files in the CLI, the NGINX One Console supports editing in
-a UI that resembles an Integrated Development Environment (IDE), with recommendsations.
+a UI that resembles an Integrated Development Environment (IDE), with recommendations.
 
 ## Before you start
 
@@ -91,7 +91,7 @@ In the **Choose Certificate** drop-down, select the managed certificate of your 
    You should now see the files you specified in the directory tree.
 1. Select **Next** and then **Save and Publish**.
    You may see a message that suggests publication is in progress.
-   - If the instance is not online, **Save and Publish** will not work.
+   - If the instance is offline, **Save and Publish** does not work.
 1. When publication is complete, you're taken back to the **Configuration** tab. You should see the updated configuration in the window.
 
 ## See also

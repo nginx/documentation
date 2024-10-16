@@ -28,20 +28,19 @@ Before you add and manage certificates with the NGINX One Console make sure:
 
 - You have access to the NGINX One Console
 - You have access through the F5 Distributed Cloud role, as described in the [Authentication]({{< relref "../../api/authentication.md" >}}) guide, to manage SSL/TLS certificates
-  - You have a role such as `f5xc-nginx-one-user`, or a similar custom role for your account. To create or assign the role, follow the instructions for [Custom Roles](https://docs.cloud.f5.com/docs-v2/administration/how-tos/user-mgmt/roles). 
+  - You have the `f5xc-nginx-one-user` role for your account
 - Your SSL/TLS certificates and keys match
 
 ### SSL/TLS certificates and more
 
-You need a copy of these files from your Certificate Authority (CA)  to upload them to NGINX One Console:
+NGINX One Console supports certificates for access to repositories. You may need a copy of these files from your Certificate Authority (CA)  to upload them to NGINX One Console:
 
-- SSL Certificate in [PEM format](https://en.wikipedia.org/wiki/Privacy-Enhanced_Mail)
-- Private key in PEM format
+- SSL Certificate (with a `.cer` or `.pem` file extension)
+- Privacy certificate (with a `.pem` file extension)
 
-The NGINX One Console allows you to upload these certificates and keys as plain text. You can also upload your own certificate and key files.
+The NGINX One Console allows you to upload these certificates as text and as files. You can also upload your own certificate files (with .crt and .key file extensions).
 
-
-Your certificates and private keys must use one of the following supported algorithms:
+Make sure your certificates, keys, and pem files are encrypted to one of the following standards:
 
 - RSA
 - ECDSA
@@ -62,7 +61,7 @@ For NGINX configuration, these files are typically associated with the following
 
 ## Important considerations
 
-Most websites include valid information from public keys and certificates or CA bundles. However, the NGINX One Console accepts, but provides warnings for these use cases:
+Most websites include valid information from public keys and certificates or CA bundles. However,the NGINX One Console accepts, but provides warnings for these use cases:
 
 - When the public certificate is expired
 - When the leaf certificate part of a certificate chain is expired
@@ -78,17 +77,15 @@ Follow these steps to review existing certificates for your instances.
 On the left-hand pane, select **Certificates**. In the window that appears, you see:
 
 - **Certificate Status** 
-
   - Total number of certificates in one of these categories;
     - Managed by NGINX One Console
     - Detected on connected NGINX instances
   - Valid certificates that expire more than 30 days from now
   - Valid certificates that expire within the next 30 days
   - Expired certificates
-- Certificates that are not yet valid
+  - Certificates that are not yet valid
 
 - **Management Status**
-
   - Managed certificates are stored on NGINX One Console.
     - You can use NGINX One Console to deploy, administer, and update certificates remotely.
   - Unmanaged certificates are detected by NGINX One Console through the connected NGINX instance configuration. 
@@ -136,7 +133,7 @@ If you register an instance to NGINX One Console, as described in [Add your NGIN
 - Are used in their NGINX configuration
 - Do _not_ match an existing managed SSL certificate/CA bundle
 
-These certificates will appear in the list of unmanaged certificates.
+These certificates appear in the list of unmanaged certificates.
 
 We recommend that you convert your unmanaged certificates. Converting to a managed certificate allows you to centrally manage, update, and deploy a certificate to your NGINX instances from the NGINX One Console.
 
