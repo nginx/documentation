@@ -345,6 +345,20 @@ When writing new documentation, use the following [templates](/templates):
 - Troubleshooting
 - Tutorial
 
+## Titles: use sentence case
+
+Use [sentence case](https://docs.microsoft.com/en-us/style-guide/text-formatting/using-type/use-sentence-style-capitalization) predominately. Use Title Case only when referring to specific API objects by name or when matching the UI.
+
+Examples:
+
+- "To create an App, select ..." 
+- GET Get the details for a single Certificate
+- Description: "Returns the metadata and status for the specified Certificate." 
+- On the Overview page for your app, select **Create Component** (where Create Component is from the UI).. 
+- GET Get the details for a single certificate. 
+- Description: "Returns the metadata and status for the specified certificate." 
+- Send a PUT request to the Roles endpoint to create a new role.
+
 ## Guidelines for screenshots
 
 Only use screenshots when absolutely necessary, as they can be hard to keep up-to-date. Minimize their use to avoid frequent updates. Screenshots can quickly become outdated with changes in user interfaces or software versions, leading to user confusion. Consider if clear, concise written instructions can convey the information instead of a screenshot.
