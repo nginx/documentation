@@ -60,7 +60,7 @@ our documentation as described in our [support](./SUPPORT.md) page.
   - Add more detailed description in the body of the git message (`git commit -a` to give you more space and time in
     your text editor to write a good message instead of `git commit -am`)
 
-### Docuemntation style guide
+### Documentation style guide
 
 For detailed guidance, see our documentation [style guide](./templates/style-guide.md).
 
