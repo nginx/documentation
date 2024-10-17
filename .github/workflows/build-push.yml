@@ -52,5 +52,5 @@ jobs:
       auto_deploy_branch: "nim-release-2.18.0"
       auto_deploy_env: "staging"
     secrets:
-      AZURE_CREDENTIALS: ${{secrets.AZURE_CREDENTIALS}}
-      AZURE_KEY_VAULT: ${{secrets.AZURE_KEY_VAULT}}
+      AZURE_CREDENTIALS: ${{secrets.AZURE_CREDENTIALS_DOCS}}
+      AZURE_KEY_VAULT: ${{secrets.AZURE_KEY_VAULT_DOCS}}
