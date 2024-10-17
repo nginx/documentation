@@ -1,57 +1,92 @@
-# Contributing Guidelines
+# Contributing guidelines
 
-The following is a set of guidelines for contributing to this project. We really appreciate that you are considering contributing!
+The following is a set of guidelines for community contributions to this
+project. We really appreciate your desire to contribute!
 
-#### Table Of Contents
+If you are an F5/NGINX employee, see the following guidance [For F5/NGINX Employees](./F5-NGINX-team-notes.md).
 
-[Getting Started](#getting-started)
+## Table of contents
 
-[Contributing](#contributing)
+- [Report a Bug](#report-a-bug)
+- [Suggest a Feature or Enhancement](#suggest-a-feature-or-enhancement)
+- [Open a Discussion](#open-a-discussion)
+- [Submit a Pull Request](#submit-a-pull-request)
+  - Review our [Git style guide](#git-style-guide)
+  - Review our Documentation [style guide](./templates/style-guide.md)
+- [Issue Lifecycle](#issue-lifecycle)
+- [Content edited elsewhere](#content-edited-elsewhere)
+- [F5 Contributor License Agreement (CLA)](#f5-contributor-license-agreement)
 
-[Code Guidelines](#code-guidelines)
+## Report a bug
 
-[Code of Conduct](/CODE_OF_CONDUCT.md)
+To report a bug, open an issue on GitHub with the label `bug` using the
+available bug report issue template. Before reporting a bug, make sure the
+issue has not already been reported.
 
-## Getting Started
+## Suggest a feature or enhancement
 
-Follow the instructions on the README's [Getting Started](/README.md#Getting-Started) section to get this project up and running.
+To suggest a feature or enhancement, open an issue on GitHub with the label
+`feature` or `enhancement` using the available feature request issue template.
+Please ensure the feature or enhancement has not already been suggested.
 
-<!-- ### Project Structure (OPTIONAL) -->
+## Open a discussion
 
-## Contributing
+If you want to start a conversation with the community and maintainers,
+we encourage you to use
+[GitHub Discussions](https://github.com/nginxinc/oss-docs/discussions).
 
-### Report a Bug
+## Submit a Pull Request
 
-To report a bug, open an issue on GitHub with the label `bug` using the available bug report issue template. Please ensure the bug has not already been reported. **If the bug is a potential security vulnerability, please report it using our [security policy](/SECURITY.md).**
+To contribute to F5 NGINX documentation, follow these steps:
 
-### Suggest a Feature or Enhancement
+- Fork the NGINX repository
+- Create a branch
+- Implement your changes in your branch
+- Submit a pull request (PR) when your changes are ready for review
 
-To suggest a feature or enhancement, please create an issue on GitHub with the label `enhancement` using the available [feature request template](/.github/feature_request_template.md). Please ensure the feature or enhancement has not already been suggested.
+Alternatively, you're welcome to suggest improvements to highlight problems with
+our documentation as described in our [support](./SUPPORT.md) page.
 
-### Open a Pull Request (PR)
+### Git Style Guide
 
-- Fork the repo, create a branch, implement your changes, add any relevant tests, and submit a PR when your changes are **tested** and ready for review.
-- Fill in the [PR template](/.github/pull_request_template.md).
+- Keep a clean, concise and meaningful Git commit history on your branch, rebasing locally and squashing before you submit a PR
+- Follow the guidelines of writing a good commit message as described here <https://chris.beams.io/posts/git-commit/>
+  and summarized in the next few points:
 
-**Note:** If you'd like to implement a new feature, please consider creating a [feature request issue](/.github/feature_request_template.md) first to start a discussion about the feature.
+  - In the subject line, use the present tense ("Add feature" not "Added feature")
+  - In the subject line, use the imperative mood ("Move cursor to..." not "Moves cursor to...")
+  - Limit the subject line to 72 characters or less
+  - Reference issues and pull requests liberally after the subject line
+  - Add more detailed description in the body of the git message (`git commit -a` to give you more space and time in
+    your text editor to write a good message instead of `git commit -am`)
 
-#### F5 Contributor License Agreement (CLA)
+### Documentation style guide
+
+For detailed guidance, see our documentation [style guide](./templates/style-guide.md).
+
+## Issue lifecycle
+
+To ensure a balance between work carried out by the NGINX team while encouraging community involvement on this project, we use the following
+issue lifecycle:
+
+- A new issue is created by a community member
+- An owner on the NGINX team is assigned to the issue; this owner shepherds the issue through the subsequent stages in the issue lifecycle
+- The owner assigns one or more [labels](https://github.com/nginxinc/oss-docs/issues/labels) to the issue
+- The owner, in collaboration with the community member, determines what milestone to attach to an issue. They may be milestones correspond to product releases
+
+## Content edited elsewhere
+
+This repository does not include all documentation available at https://docs.nginx.com. Other relevant repositories include:
+
+- [NGINX Open Source](https://github.com/nginx/nginx)
+- [NGINX Unit](https://github.com/nginx/unit)
+- [NGINX Ingress Controller](https://github.com/nginxinc/kubernetes-ingress/)
+- [NGINX Gateway Fabric](https://github.com/nginxinc/nginx-gateway-fabric)
+
+You can find documentation source code in the `docs` or `site` subdirectories.
+
+## F5 Contributor License Agreement
 
 F5 requires all external contributors to agree to the terms of the F5 CLA (available [here](https://github.com/f5/.github/blob/main/CLA/cla-markdown.md)) before any of their changes can be incorporated into an F5 Open Source repository.
 
 If you have not yet agreed to the F5 CLA terms and submit a PR to this repository, a bot will prompt you to view and agree to the F5 CLA. You will have to agree to the F5 CLA terms through a comment in the PR before any of your changes can be merged. Your agreement signature will be safely stored by F5 and no longer be required in future PRs.
-
-## Code Guidelines
-
-<!-- ### Go/Python/Bash/etc... Guidelines (OPTIONAL) -->
-
-### Git Guidelines
-
-- Keep a clean, concise and meaningful git commit history on your branch (within reason), rebasing locally and squashing before submitting a PR.
-- If possible and/or relevant, use the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) format when writing a commit message, so that changelogs can be automatically generated.
-- Follow the guidelines of writing a good commit message as described here <https://chris.beams.io/posts/git-commit/> and summarized in the next few points:
-  - In the subject line, use the present tense ("Add feature" not "Added feature").
-  - In the subject line, use the imperative mood ("Move cursor to..." not "Moves cursor to...").
-  - Limit the subject line to 72 characters or less.
-  - Reference issues and pull requests liberally after the subject line.
-  - Add more detailed description in the body of the git message (`git commit -a` to give you more space and time in your text editor to write a good message instead of `git commit -am`).
