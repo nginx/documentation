@@ -1,0 +1,16 @@
+name: Daily Deploy Docs CRON
+
+on:
+    workflow_dispatch:
+    schedule:
+        # * is a special character in YAML so you have to quote this string
+        - cron: '0 17 * * *'
+        - cron: '0 1 * * *'
+jobs:
+    trigger:
+        uses: nginxinc/docs/.github/workflows/build-push.yml@main
+        with:
+            environment: "dev"
+        secrets:
+            AZURE_CREDENTIALS: ${{secrets.AZURE_CREDENTIALS}}
+            AZURE_KEY_VAULT: ${{secrets.AZURE_KEY_VAULT}}

@@ -1,5 +1,17 @@
 name: Build and deploy (docs)
 on:
+  workflow_call:
+    inputs:
+      environment:
+        description: "Deployment environment. Must be one of preview, dev, staging, or prod"
+        required: true
+        default: preview
+        type: string
+    secrets:
+      AZURE_CREDENTIALS:
+        required: true
+      AZURE_KEY_VAULT:
+        required: true
   workflow_dispatch:
     inputs:
       environment:
