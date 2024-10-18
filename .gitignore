@@ -1,16 +1,45 @@
-# Any private crt and keys #
-############################
-*.crt
-*.key
-*~
-\#*
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+**/.DS_Store
 
-# OS Specific #
-###############
-Thumbs.db
-.DS_Store
-.vscode
+# dependencies
 
-# Logs #
-########
-*.log
+# testing
+/coverage
+*/test-results
+*/playwright-report
+
+# production
+./public
+
+# misc
+*.pem
+
+# local env files
+.env*.local
+
+# watchdocs
+watchdocs.json
+
+# Local Hugo artifacts
+public/*
+.hugo_build.lock
+resources/
+*.orig
+
+# Local development artifacts
+.markdownlint.json
+**/.vscode/
+**/.idea/
+
+# Local Netlify artifacts
+.netlify/plugins/*
+.netlify/
+
+# Local Lighthouse artifacts
+lighthouse-reports
+
+*.pyc
+build
+*.swp
+*.mo
+node_modules

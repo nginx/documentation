@@ -14,18 +14,18 @@
 # Each line is a file pattern followed by one or more owners.
 
 # DocOps
-*                           @nginxinc/nginx-docs
+*                           @nginx/nginx-docs
 # NGINX Plus
-content/nginx/*             @nginxinc/plus-docs-approvers
+content/nginx/*             @nginx/plus-docs-approvers
 # NGINX Agent
-content/nginx/nms/agent/*   @nginxinc/agent-docs-approvers
+content/nginx/nms/agent/*   @nginx/agent-docs-approvers
 # NGINX One
-content/nginx-one/*         @nginxinc/one-docs-approvers
+content/nginx-one/*         @nginx/one-docs-approvers
 # NGINX Instance Manager
-content/nms/nim/*           @nginxinc/nim-docs-approvers
-content/nim/*               @nginxinc/nim-docs-approvers
+content/nms/nim/*           @nginx/nim-docs-approvers
+content/nim/*               @nginx/nim-docs-approvers
 # NGINX App Protect WAF
-content/nap-waf/*           @nginxinc/nap-docs-approvers
-data/nap-waf/*              @nginxinc/nap-docs-approvers
+content/nap-waf/*           @nginx/nap-docs-approvers
+data/nap-waf/*              @nginx/nap-docs-approvers
 # NGINX App Protect DoS
-content/nap-dos/*           @nginxinc/dos-docs-approvers
+content/nap-dos/*           @nginx/dos-docs-approvers
