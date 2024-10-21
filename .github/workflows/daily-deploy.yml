@@ -12,5 +12,5 @@ jobs:
         with:
             environment: "dev"
         secrets:
-            AZURE_CREDENTIALS: ${{secrets.AZURE_CREDENTIALS}}
-            AZURE_KEY_VAULT: ${{secrets.AZURE_KEY_VAULT}}
+            AZURE_CREDENTIALS_DOCS: ${{secrets.AZURE_CREDENTIALS_DOCS}}
+            AZURE_KEY_VAULT_DOCS: ${{secrets.AZURE_KEY_VAULT_DOCS}}
