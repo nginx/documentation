@@ -38,7 +38,7 @@ make hugo-get      - Updates the go module file with the latest version of the t
 make hugo-tidy     - Removes unnecessary dependencies from the go module file.
 make hugo-update   - Runs the hugo-get and hugo-tidy targets in sequence.
 make lint-markdown - Runs [markdownlint](https://github.com/DavidAnson/markdownlint) on the content folder.
-make link-check    - Runs [markdown-link-check](https://github.com/tcort/markdown-link-check) on all Markdown files.
+make link-check    - Runs [markdown-link-check](https://github.com/tcort/markdown-link-check) on all Markdown files. Requires a running instance of Docker.
 make clean         - Removes the local `public` directory, which is the default output path used by Hugo.
 ```
 
@@ -147,10 +147,10 @@ Here are some other shortcodes:
 
 ## Linting
 
-To run the markdownlint check, run the following command from the docs directory:
+To run the markdownlint check, run the following command, which uses the .markdownlint.yaml file to specify rules. For `<content>`, specify the path to your Markdown files:
 
 ```bash
-markdownlint -c docs/mdlint_conf.json content
+markdownlint -c .markdownlint.yaml <content>
 ```
 
 > Note: You can run this tool on an entire directory or on an individual file.
