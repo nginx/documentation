@@ -24,5 +24,6 @@ When you're ready to merge a PR, run through this checklist and mark each step a
 - [ ] Review the doc for spelling errors.
 - [ ] Verify that all links in the doc work.
 - [ ] Verify that the doc follows the appropriate content template.
-- [ ] Add technical and docs reviewers.
+- [ ] Add technical and docs reviewers. Refer to the appropriate CODEOWNERS file, which includes authorized teams of reviewers.
 - [ ] Share the PR for review in the [`#nginx-doc-reviews`](https://f5.enterprise.slack.com/archives/C04PYFULN91) channel in Slack.
+

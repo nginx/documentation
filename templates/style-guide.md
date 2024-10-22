@@ -345,6 +345,20 @@ When writing new documentation, use the following [templates](/templates):
 - Troubleshooting
 - Tutorial
 
+## Titles: use sentence case
+
+Use [sentence case](https://docs.microsoft.com/en-us/style-guide/text-formatting/using-type/use-sentence-style-capitalization) predominately. Use Title Case only when referring to specific API objects by name or when matching the UI.
+
+Examples:
+
+- "To create an App, select ..." 
+- GET Get the details for a single Certificate
+- Description: "Returns the metadata and status for the specified Certificate." 
+- On the Overview page for your app, select **Create Component** (where Create Component is from the UI).. 
+- GET Get the details for a single certificate. 
+- Description: "Returns the metadata and status for the specified certificate." 
+- Send a PUT request to the Roles endpoint to create a new role.
+
 ## Guidelines for screenshots
 
 Only use screenshots when absolutely necessary, as they can be hard to keep up-to-date. Minimize their use to avoid frequent updates. Screenshots can quickly become outdated with changes in user interfaces or software versions, leading to user confusion. Consider if clear, concise written instructions can convey the information instead of a screenshot.
@@ -394,6 +408,49 @@ As includes disrupt the flow when reading a markdown file, we encourage you to f
 - Don’t nest includes inside other includes. While this technically works, it makes reviews harder.
 
 If you don't use an include with repeated content, include a `<!-- comment -->` which refers to other files with the same content.
+
+## Guidelines for command-line operations
+
+### Restarting vs. reloading NGINX
+
+When managing NGINX through the command line, it’s important to choose the right command based on its effect on users and connections.
+
+Before reloading or restarting NGINX, always check the syntax of the NGINX configuration to avoid potential errors. Use the following command:
+
+```bash
+sudo nginx -t
+```
+
+
+- **sudo systemctl nginx reload**  
+  Use `reload` to apply configuration changes without stopping active connections. This keeps the NGINX service running while updating the configuration. It’s the preferred option for most changes because it avoids downtime and doesn’t interrupt users.
+
+  *Note*: While `nginx -s reload` is also available, it works differently by reading the configuration file twice: once when sending the signal and again when the master process reloads. `nginx -s reload` is typically used in environments that don’t use `systemd`, such as Windows. On most modern Linux distributions that use `systemd`, it’s better to use `systemctl reload nginx` because it integrates directly with the system’s service manager.
+
+  Example:
+
+  ```bash
+  sudo systemctl reload nginx
+  ```
+
+- **sudo systemct restart nginx**
+  Use restart when you need to fully stop and start NGINX, such as for software upgrades or clearing memory. This action will:
+  - Drop all active connections, causing a temporary service interruption.
+  - Reinitialize worker processes, which clears any in-memory states, including cached data.
+  - Reload all modules and configurations. If there’s an error in the configuration, the restart will fail, potentially bringing down the service until the issue is resolved.
+  - Reset logging, depending on your log rotation setup.
+  - Clear any temporary files or ongoing operations (such as uploads or downloads), which could disrupt users mid-process.
+
+  Example:
+
+  ```bash
+  sudo systemctl restart nginx
+  ```
+
+Key points:
+
+- **Reload** is usually the best option to avoid disrupting users and to apply changes without downtime.
+- **Restart** should only be used when necessary, with a clear warning about connection loss and potential disruption to ongoing operations.
 
 ## Revision history
 
