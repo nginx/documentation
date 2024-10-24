@@ -25,6 +25,8 @@ export default defineConfig({
         },
     ],
     use: {
+        // Base URL to use in actions like `await page.goto('/')`.
+        baseURL: 'https://docs.nginx.com',
         // Set Geolocation to Cork, Ireland
         geolocation: { longitude: -8.486316, latitude: 51.896893 },
         permissions: ['geolocation'],
