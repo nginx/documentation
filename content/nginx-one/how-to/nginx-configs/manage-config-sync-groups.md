@@ -34,7 +34,7 @@ Before you create and manage config sync groups, ensure:
 
 - **Configuration inheritance**: If the config sync group already has a configuration defined, that configuration will be pushed to instances when they join.
 
-- **Using an instance's configuration for the group configuration**: If an instance is the first to join a config sync group and the group's configuration hasn't been defined, the instance’s configuration will become the group’s configuration. Any instances added later will automatically inherit this configuration.
+- **Using an instance's configuration for the group configuration**: If an instance is the first to join a config sync group and the group's configuration hasn't been defined, the instance’s configuration will become the group’s configuration. Any instances added later will automatically inherit this configuration. If multiple instances join the config sync group at the same time, the instance config chosen is not deterministic. The recommendation is to first add a single instance to the config sync group, and then add any additional instances in a separate operation once the config sync group config has been established.
 
 - **Persistence of a config sync group's configuration**: The configuration for a config sync group persists until you delete the group. Even if you remove all instances, the group's configuration stays intact. Any new instances that join later will automatically inherit this configuration.
 
