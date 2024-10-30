@@ -39,7 +39,7 @@ Before you create and manage config sync groups, ensure:
   {{< note >}} If you add multiple instances to a single config sync group, simultaneously (with automation), there's a risk that the instance selects a random configuration. To prevent this problem, you should:                                                        
   
   1. Create a config sync group.
-  1. Add a configuration to the config sync group, to seed the configuration.
+  1. Add a configuration to the config sync group, so all instances inherit it.
   1. Add the instances in a separate operation.
   
   Your instances should synchronize with your desired configuration within 30 seconds. {{< /note >}}
