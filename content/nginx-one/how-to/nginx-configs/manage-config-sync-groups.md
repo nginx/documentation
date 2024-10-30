@@ -36,7 +36,7 @@ Before you create and manage config sync groups, ensure:
 
 - **Using an instance's configuration for the group configuration**: If an instance is the first to join a config sync group and the group's configuration hasn't been defined, the instance’s configuration will become the group’s configuration. Any instances added later will automatically inherit this configuration. 
 
-  {{< note >}} If you add multiple instances to a single config sync group, simultaneously (with automation), there's a risk that the instance selects a random configuration. To prevent   this problem, you should:                                                        
+  {{< note >}} If you add multiple instances to a single config sync group, simultaneously (with automation), there's a risk that the instance selects a random configuration. To prevent this problem, you should:                                                        
   
   1. Create a config sync group.
   1. Add a configuration to the config sync group, to seed the configuration.
