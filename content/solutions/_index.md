@@ -1,7 +1,6 @@
 ---
 title: "NGINX Plus R33: Pre-release guidance for automatic upgrades"
 type: "r33-pre-release"
-noindex: true
 docs: 
 tags:
 - docs

@@ -1,24 +1,9 @@
-import { test, expect, type Page } from '@playwright/test';
-
-async function handleConsentPopup(page: Page) {
-    const consentContent = page.locator('#truste-consent-content');
-    const isConsentContentVisibile = await consentContent.isVisible();
-    if(isConsentContentVisibile) {
-        const consentButton = page.locator('#truste-consent-required');
-        expect(consentButton).toBeVisible();
-        await consentButton.click();
-    }
-}
-
-let sleep = ms => new Promise(r => setTimeout(r, ms));
-let waitFor = async function waitFor(f){
-    while(!f()) await sleep(4000);
-    return f();
-};
-
+import { test, expect} from '@playwright/test';
+import { handleConsentPopup, waitFor } from '../tests/utils/commonUtils.ts'
+  
 test.describe("Testing search page", () => {
     test('Searchbar is visible', async ({ page }) => {
-        await page.goto("https://docs.nginx.com"); 
+        await page.goto('/'); 
         await waitFor(() => handleConsentPopup(page));
 
         const searchBox = page.locator('#searchbox');
@@ -29,12 +14,12 @@ test.describe("Testing search page", () => {
         await page.keyboard.insertText(searchValue);
         await page.keyboard.press('Enter');
 
-        await page.waitForURL(`https://docs.nginx.com/search.html#q=${searchValue}&sort=relevancy`);
+        await page.waitForURL(`/search.html#q=${searchValue}&sort=relevancy`);
         expect(await page.locator('div h1').innerHTML()).toBe('Search Results');
     });
 
     test('Search page returns results without error', async ({ page }) => {
-        await page.goto("https://docs.nginx.com/search.html#q=proxy&sort=relevancy"); 
+        await page.goto(`/search.html#q=proxy&sort=relevancy`); 
         await waitFor(() => handleConsentPopup(page));
         
         await page.waitForSelector('div.coveo-result-list-container');
