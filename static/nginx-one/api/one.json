@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "NGINX One Spec",
-    "description": "The API Reference documentation for NGINX One",
+    "title": "NGINX One Console Spec",
+    "description": "The API Reference documentation for NGINX One Console",
     "version": "v1"
   },
   "servers": [
@@ -38,14 +38,29 @@
       "x-displayName": "Config Sync Groups"
     },
     {
+      "name": "Certificates",
+      "description": "The `Certificates` object in the NGINX One console represents an SSL certificate, covering both managed and unmanaged types. \nYou can view essential details like issuer, expiration status, and the instances or config sync groups where each certificate is deployed.\n",
+      "x-displayName": "Certificates"
+    },
+    {
       "name": "CVEs",
       "description": "The `CVEs` object represents the security advisories published for all the F5 products supported by NGINX One.\n",
       "x-displayName": "CVEs"
     },
     {
+      "name": "Events",
+      "description": "Get a list of system events in the NGINX One console.\n",
+      "x-displayName": "Events"
+    },
+    {
       "name": "Metrics",
       "description": "Get system metrics for your NGINX data plane instances. These metrics are collected by the NGINX Agent and reported to NGINX One.\n",
       "x-displayName": "Metrics"
+    },
+    {
+      "name": "Settings",
+      "description": "Configuration option for different aspect of NGINX One service.\nYou can set NGINX Instance cleanup preferences.\n",
+      "x-displayName": "Settings"
     }
   ],
   "paths": {
@@ -792,70 +807,6 @@
         }
       }
     },
-    "/instances/parse-nginx-config": {
-      "put": {
-        "tags": [
-          "Instances"
-        ],
-        "x-nginx-one-action": "parse",
-        "x-nginx-one-entity": "NGINX instance configuration",
-        "summary": "Generate a crossplane representation of provided NGINX configuration.",
-        "description": "Returns a crossplane representation of provided NGINX config.",
-        "operationId": "parseNginxConfig",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NginxConfigRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successfully parsed the provided NGINX configuration.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ParsedNginxConfig"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Access denied.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/instances/{instanceObjectID}/config-report": {
       "parameters": [
         {
@@ -1061,7 +1012,7 @@
           "Instances"
         ],
         "summary": "Retrieve an instance's configuration details",
-        "description": "Returns the configuration details for an NGINX instance, including: \n* Main configuration path\n* Details about configuration files\n* Details about auxiliary files\n* Unique identifiers\n",
+        "description": "Returns the configuration details for an NGINX instance, including: \n* Main configuration path\n* Details about configuration files\n* Details about auxiliary files\n* Details about deployed payloads of managed SSL certificates and keys\n* Unique identifiers\n",
         "operationId": "getInstanceConfig",
         "responses": {
           "200": {
@@ -1113,7 +1064,7 @@
         "x-nginx-one-action": "create",
         "x-nginx-one-entity": "NGINX instance configuration",
         "summary": "Publish a configuration to an instance",
-        "description": "Publishes a new or updated NGINX configuration to the specified instance. \nIf no existing configuration is found, a new one is created; otherwise, the current configuration is overwritten. \nBefore publishing, use the `PUT /instances/{instanceObjectID}/config-report` endpoint to generate an analysis report for the provided configuration.\n",
+        "description": "Publishes a new or updated NGINX configuration to the specified instance. \nIf no existing configuration is found, a new one is created; otherwise, the current configuration is overwritten. \nBefore publishing, use the `PUT /instances/{instanceObjectID}/config-report` endpoint to generate an analysis report for the provided configuration.\nYou can specify `payloads` in the request to deploy managed certificates and keys to the dataplane. Include file paths\nfor each payload component.\n",
         "operationId": "publishInstanceConfig",
         "requestBody": {
           "required": true,
@@ -1584,6 +1535,58 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ConfigSyncGroupListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "x-nginx-one-action": "perform bulk operation",
+        "x-nginx-one-entity": "config sync group",
+        "tags": [
+          "Config Sync Groups"
+        ],
+        "summary": "Bulk operation on multiple config sync groups.",
+        "operationId": "BulkConfigSyncGroups",
+        "description": "Performs bulk operation on one or more config sync groups, only delete is supported.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfigSyncGroupBulkRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Batch request completed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfigSyncGroupBulkResponse"
                 }
               }
             }
@@ -2368,12 +2371,471 @@
         }
       }
     },
+    "/certificates": {
+      "get": {
+        "x-feature-flag": "cert-mgmt",
+        "tags": [
+          "Certificates"
+        ],
+        "summary": "List all SSL certificates",
+        "description": "Returns a paginated list showing metadata for every SSL certificate.\n",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldCertificates"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameCertificates"
+          }
+        ],
+        "operationId": "listCertificates",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of SSL certificates.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CertificateListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "x-nginx-one-action": "create",
+        "x-nginx-one-entity": "NGINX certificate",
+        "x-feature-flag": "cert-mgmt",
+        "tags": [
+          "Certificates"
+        ],
+        "summary": "Create an SSL certificate",
+        "operationId": "createCertificate",
+        "description": "Creates a new SSL certificate with an optional name. \nYou must supply the certificate's content in base64-encoded PEM format.\nAny warnings will be displayed only upon creation of the certificate object, and\nis not retrievable after it is created.\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CertificateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully created the SSL certificate.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CertificateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/certificates/parse": {
+      "post": {
+        "x-feature-flag": "cert-mgmt",
+        "x-nginx-one-action": "validate",
+        "x-nginx-one-entity": "NGINX certificate",
+        "tags": [
+          "Certificates"
+        ],
+        "summary": "Parse and validate an SSL certificate",
+        "operationId": "parseCertificate",
+        "description": "Parses and validates an SSL certificate. \nIt checks the provided PEM files and verifies that the public certificates follow the correct X.509 format. \nIf the certificate cannot be parsed, an error will be returned. \nOtherwise, as long as the certificate is parsable, a `200 OK` status will be returned even if there are issues \nsuch as mismatched private keys or expired certificates. Details of any issues found will be shown in the \"warnings\" field of the response.\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CertificateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully parsed and validated the SSL certificate.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CertificateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/certificates/{certificateObjectID}": {
       "parameters": [
         {
           "$ref": "#/components/parameters/CertificateParamObjectID"
         }
-      ]
+      ],
+      "get": {
+        "x-feature-flag": "cert-mgmt",
+        "tags": [
+          "Certificates"
+        ],
+        "summary": "Retrieve an SSL certificate",
+        "operationId": "getCertificate",
+        "description": "Retrieves the details for an SSL certificate, including:\n* Object ID that uniquely identifies this certificate object\n* SSL certificate type (managed or unmanaged by NGINX One Console)\n* Certificate type (whether it is a CA bundle or a certificate-key pair)\n* Subject name of the leaf certificate, or the soonest-expiring CA in a bundle\n  * This subject name will be the DNS name in the SAN extension of the certificate. If not present, it will be the certificate's common name\n* Status of the certificate (valid, expiring, expired)\n* Validity period, if applicable to multiple certificates\n* Metadata for each public certificate if multiples are provided\n* Private key metadata, if available\n",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the details of the SSL certificate.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CertificateResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The SSL certificate with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "x-nginx-one-action": "update",
+        "x-nginx-one-entity": "NGINX certificate",
+        "x-feature-flag": "cert-mgmt",
+        "tags": [
+          "Certificates"
+        ],
+        "summary": "Update an SSL certificate",
+        "operationId": "updateCertificate",
+        "description": "Updates public certificates, private keys, or both. \nThis endpoint can also be used to update a Certificate Authority (CA) bundle.\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CertificateUpdateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated the specified SSL certificate.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CertificateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The SSL certificate with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "x-nginx-one-action": "delete",
+        "x-nginx-one-entity": "NGINX certificate",
+        "x-feature-flag": "cert-mgmt",
+        "tags": [
+          "Certificates"
+        ],
+        "summary": "Delete an SSL certificate",
+        "operationId": "deleteCertificate",
+        "description": "Deletes a managed SSL certificate from the NGINX One console. This operation is disabled for unmanaged certificates, as they get cleaned up automatically when they are not used in any NGINX configuration.",
+        "responses": {
+          "204": {
+            "description": "Successfully deleted the SSL certificate."
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The SSL certificate with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/certificates/{certificateObjectID}/deployments": {
+      "get": {
+        "x-feature-flag": "cert-mgmt",
+        "tags": [
+          "Certificates"
+        ],
+        "summary": "List SSL certificate deployments",
+        "description": "Returns a paginated list showing all the deployments for a SSL certificate and assigned file path(s).\n",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/CertificateParamObjectID"
+          },
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldCertificateDeployments"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameCertificateDeployments"
+          }
+        ],
+        "operationId": "listCertificateDeployments",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of SSL certificate deployments.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CertificateDeploymentListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The SSL certificate with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
     },
     "/cves": {
       "get": {
@@ -2694,28 +3156,28 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MetricQueryRequest",
-                "example": {
-                  "start_time": "now-1h",
-                  "end_time": "now",
-                  "resolution": "5m",
-                  "names": [
-                    {
-                      "name": "system.cpu.system",
-                      "aggregate": "avg"
-                    },
-                    {
-                      "name": "nginx.http.request.count",
-                      "aggregate": "sum"
-                    }
-                  ],
-                  "order_by": [
-                    {
-                      "direction": "asc",
-                      "dimension": "instance_object_id"
-                    }
-                  ]
-                }
+                "$ref": "#/components/schemas/MetricQueryRequest"
+              },
+              "example": {
+                "start_time": "now-1h",
+                "end_time": "now",
+                "resolution": "5m",
+                "metrics": [
+                  {
+                    "name": "system.cpu.system",
+                    "aggregate": "avg"
+                  },
+                  {
+                    "name": "nginx.http.request.count",
+                    "aggregate": "sum"
+                  }
+                ],
+                "order_by": [
+                  {
+                    "direction": "asc",
+                    "dimension": "instance_object_id"
+                  }
+                ]
               }
             }
           }
@@ -2776,20 +3238,20 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MetricTopXQueryRequest",
-                "example": {
-                  "start_time": "now-1h",
-                  "end_time": "now",
-                  "resolution": "1m",
-                  "metrics": [
-                    {
-                      "aggregate": "sum",
-                      "name": "nginx.http.request.count"
-                    }
-                  ],
-                  "series_limit": 1,
-                  "group_series_by": "instance_object_id"
-                }
+                "$ref": "#/components/schemas/MetricTopXQueryRequest"
+              },
+              "example": {
+                "start_time": "now-1h",
+                "end_time": "now",
+                "resolution": "1m",
+                "metrics": [
+                  {
+                    "aggregate": "sum",
+                    "name": "nginx.http.request.count"
+                  }
+                ],
+                "series_limit": 1,
+                "group_series_by": "instance_object_id"
               }
             }
           }
@@ -2931,7 +3393,7 @@
           "type": "integer",
           "minimum": 1
         },
-        "description": "An integer that specifies the starting position of the results, starting at `1`.\nThis is parameter is not not applicable if `paginated` is `false`.\n"
+        "description": "An integer that specifies the starting position of the results, starting at `1`.\nThis parameter is not applicable if `paginated` is `false`.\n"
       },
       "FilterFieldDataPlaneKeys": {
         "name": "filter_fields",
@@ -3272,23 +3734,29 @@
         "type": "object",
         "description": "Outlines pagination details for list responses, including total results, start index, and items per page.",
         "required": [
+          "total",
           "count"
         ],
         "properties": {
+          "total": {
+            "type": "integer",
+            "description": "The absolute total number of the resource in the NGINX One Console.\n"
+          },
           "count": {
             "type": "integer",
             "description": "The total number of results generated by the list or query operation. \nThis number might be greater than the number of displayed resources, such as when pagination is in effect.\n"
           },
           "start_index": {
             "type": "integer",
-            "description": "The first result's starting position in the list. This is disregarded when `abridged=true`.\n"
+            "description": "The first result's starting position in the list. This is disregarded when `paginated=false`.\n"
           },
           "items_per_page": {
             "type": "integer",
-            "description": "The number of items to display per page. This is disregarded when `abridged=true`.\n"
+            "description": "The number of items to display per page. This is disregarded when `paginated=false`.\n"
           }
         },
         "example": {
+          "total": 101,
           "count": 1,
           "start_index": 1,
           "items_per_page": 100
@@ -3470,7 +3938,8 @@
         "type": "object",
         "description": "Part of bulk operation on a data plane key, only `delete` is supported.",
         "required": [
-          "action"
+          "action",
+          "object_id"
         ],
         "properties": {
           "object_id": {
@@ -3870,7 +4339,8 @@
             "type": "integer"
           },
           "not_ready": {
-            "description": "The number of certificates that are not ready to be used."
+            "description": "The number of certificates that are not ready to be used.",
+            "type": "integer"
           }
         }
       },
@@ -4013,6 +4483,7 @@
           }
         ],
         "example": {
+          "total": 10,
           "count": 1,
           "start_index": 1,
           "items_per_page": 100,
@@ -4116,17 +4587,46 @@
           "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
         }
       },
+      "CertificateType": {
+        "type": "string",
+        "description": "Certificate type:\n  * `ca_bundle` - This certificate object is a CA bundle.\n  * `cert_key` - This certificate object is consisted of public certificates and key.\n  * `unmanaged` - This certificate is not managed by NGINX One console and its type is unmanaged.\n",
+        "enum": [
+          "ca_bundle",
+          "cert_key",
+          "unmanaged"
+        ],
+        "x-enum-varnames": [
+          "certificate_type_ca_bundle",
+          "certificate_type_pem_cert_key",
+          "certificate_type_unmanaged"
+        ]
+      },
+      "CertificateDeploymentStatus": {
+        "type": "string",
+        "description": "Certificate deployment status:\n  * `latest` - This certificate deployment is up to date with the latest certificates and key.\n  * `stale` - This certificate deployment is outdated and needs to deploy the latest certificates and key.\n  * `unmanaged` - This certificate deployment is unmanaged by NGINX One Console.\n",
+        "enum": [
+          "latest",
+          "stale",
+          "unmanaged"
+        ],
+        "x-enum-varnames": [
+          "certificate_deployment_status_latest",
+          "certificate_deployment_status_stale",
+          "certificate_deployment_status_unmanaged"
+        ]
+      },
       "CertAssociation": {
         "type": "object",
         "description": "Details for a certificate that's associated with an instance.",
         "required": [
           "name",
-          "uid",
-          "paths",
-          "domain",
+          "object_id",
+          "cert_type",
+          "subject_name",
           "not_before",
           "not_after",
-          "status"
+          "cert_status",
+          "deployment_status"
         ],
         "properties": {
           "name": {
@@ -4136,9 +4636,12 @@
           "object_id": {
             "$ref": "#/components/schemas/CertificateObjectID"
           },
-          "paths": {
+          "cert_type": {
+            "$ref": "#/components/schemas/CertificateType"
+          },
+          "cert_paths": {
             "type": "array",
-            "description": "The list of file system paths where the certificate is installed. \nSince a single certificate may be applied in multiple contexts, all relevant paths are included.\n",
+            "description": "The list of file system paths where the certificate file is installed. \nSince a single certificate file may be applied in multiple contexts, all relevant paths are included.\n",
             "example": [
               "/etc/ssl/cert.pem",
               "/etc/ssl/cert.crt"
@@ -4147,12 +4650,26 @@
               "type": "string"
             }
           },
-          "domain": {
+          "key_paths": {
+            "type": "array",
+            "description": "The list of file system paths where the private key file is installed.\nSince a single key file may be applied in multiple contexts, all relevant paths are included.\n",
+            "example": [
+              "/etc/nginx/key.pem",
+              "/etc/ssl/server.key"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "deployment_status": {
+            "$ref": "#/components/schemas/CertificateDeploymentStatus"
+          },
+          "subject_name": {
             "type": "string",
-            "description": "Hostname or domain for the certificate. Usually the subject-alt-name (SAN) value for the certificate.",
+            "description": "Hostname or domain for the certificate. Usually the subject-alt-name (SAN) value for the certificate.\nif SAN is not present, this will be the certificate subject's common name.\n",
             "example": "nginx.com"
           },
-          "status": {
+          "cert_status": {
             "$ref": "#/components/schemas/CertificateStatus"
           },
           "not_before": {
@@ -4288,7 +4805,7 @@
             "type": "object",
             "properties": {
               "certs": {
-                "description": "An array detailing each certificate's information, including its friendly name, unique identifier, applicable file system paths, domain association, and validity dates. \nIt provides insights into the operational status of each certificate, such as whether it's currently valid, nearing expiration, or has already expired.\n",
+                "description": "An array detailing each certificate's information, including its friendly name, unique identifier, applicable file system paths, subject name, and validity dates. \nIt provides insights into the operational status of each certificate, such as whether it's currently valid, nearing expiration, is not ready to be used, or has already expired.\n",
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/CertAssociation"
@@ -4307,15 +4824,17 @@
           "agent_version": "v2.30.3",
           "certs": [
             {
-              "domain": "test.com",
+              "subject_name": "test.com",
               "name": "client",
+              "cert_type": "cert_key",
               "not_after": "2024-01-06T00:01:30Z",
               "not_before": "2023-12-07T00:01:30Z",
-              "paths": [
+              "cert_paths": [
                 "/etc/nginx/client.pem"
               ],
-              "status": "expiring",
-              "uid": "5f13a59c-0f33-427a-a160-c6ef3209939b"
+              "cert_status": "expiring",
+              "deployment_status": "latest",
+              "object_id": "cert_Tet21AeYTHCj7taOwVfzyw"
             }
           ],
           "hostname": "4d116619f106",
@@ -4337,6 +4856,66 @@
           "status": "unknown",
           "system_id": "b2c0b6a8-8b6a-3a8f-a541-17d8899c119a",
           "object_id": "inst_-uvR3F2TQGm18jnl7bpaGw"
+        }
+      },
+      "NginxConfigProblem": {
+        "type": "object",
+        "description": "Representation of a problem found during NGINX configuration analysis.",
+        "properties": {
+          "directive": {
+            "description": "Directive in the NGINX configuration where the issue is identified.",
+            "type": "string"
+          },
+          "file": {
+            "description": "File where the issue is detected.",
+            "type": "string"
+          },
+          "line": {
+            "description": "Line number in the configuration where the issue is found.",
+            "type": "integer"
+          }
+        }
+      },
+      "NginxConfigReport": {
+        "type": "object",
+        "description": "An analysis of the NGINX configuration, highlighting issues and their severity, and offering recommendations.",
+        "properties": {
+          "rule": {
+            "description": "The name of the configuration rule that was violated.",
+            "type": "string"
+          },
+          "info": {
+            "description": "A detailed description of the issue.",
+            "type": "string"
+          },
+          "severity": {
+            "description": "The severity level of the issue.",
+            "type": "string"
+          },
+          "category": {
+            "description": "Classification category of the issue.",
+            "type": "string"
+          },
+          "documentation": {
+            "description": "Links to documentation that can assist in resolving the identified issue.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "where": {
+            "description": "Specific locations in the configuration where issues were detected.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NginxConfigProblem"
+            }
+          }
+        }
+      },
+      "NginxConfigReports": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/NginxConfigReport"
         }
       },
       "FileDataRequest": {
@@ -4419,7 +4998,7 @@
       },
       "NginxConfigPayload": {
         "type": "object",
-        "description": "Details of Aux File Payload that goes with an NGINX configuration. Provide hints for the backend system on \nadditional file contents that should be part of the NGINX Config Publication.\nCan be used to deploy files related to SSL certificates, to a data plane instance.\n* If the `type` is `managed_certificate` or `managed_key`, you need to specify an `object_id`.\n* The `object_id` must represent a managed certificate object, or a `400 Bad Request` is returned.\n* The `contents` field is optional and is ignored if included.\n* The NGINX One Console supports deploying only managed certificates and keys. If you use \n`inline_content` and `inline_secret` for certificates or keys, respectively, changes to these files\non a data plane instance won't be tracked. When you retrieve certificate deployment details, \nonly the file paths of managed certificates and keys will be shown.\n* If you use `inline_content` and `inline_secret` in your NGINX configuration, the NGINX One Console \nwill detect them. When they are used as SSL directives for certificates and keys, the certificates \nwill be listed as `unmanaged_certificate` in the certificate deployment details.\n",
+        "description": "Details of Aux File Payload that goes with an NGINX configuration. Provide hints for the backend system on \nadditional file contents that should be part of the NGINX Config Publication.\nCan be used to deploy files related to SSL certificates, to a data plane instance.\n",
         "required": [
           "type",
           "paths"
@@ -4469,9 +5048,33 @@
       },
       "NginxConfigPayloads": {
         "type": "array",
+        "description": "An array of payloads that track the file paths of each SSL certificates and key, indicating where to deploy\nthem onto the data plane instance.\n* If the `type` is `managed_certificate` or `managed_key`, you need to specify an `object_id`.\n  * The `object_id` must represent a managed certificate object, or a `400 Bad Request` is returned. \n  * The `contents` field is optional and is ignored if included.\n* The NGINX One Console manages deployed file paths only for managed certificates and keys. If you don't want \nthem to be managed by NGINX One Console, `inline_content` and `inline_secret` can be used for certificates or \nkeys, respectively. When you retrieve certificate deployment details, only the file paths of managed \ncertificates and keys will be shown.\n* If you use `inline_content` and `inline_secret` in your NGINX configuration, the NGINX One Console \nwill detect them. When they are used as SSL directives of the NGINX configuration \nfor certificates and keys, the certificates will be listed as `unmanaged_certificate` in the certificate \ndeployment details.\n",
         "items": {
           "$ref": "#/components/schemas/NginxConfigPayload"
-        }
+        },
+        "example": [
+          {
+            "type": "managed_certificate",
+            "object_id": "cert_rto8NYiCQputrIasNx2NOA",
+            "paths": [
+              "/etc/nginx/cert.pem"
+            ]
+          },
+          {
+            "type": "managed_key",
+            "object_id": "cert_rto8NYiCQputrIasNx2NOA",
+            "paths": [
+              "/etc/nginx/key.pem"
+            ]
+          },
+          {
+            "type": "inline_content",
+            "contents": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURUVENDQWpXZ0F3SUJBZ0lVVkcycitidUwwRk83U1FVeUtoVkNTN3YyRHZZd0RRWUpLb1pJaHZjTkFRRUwKQlFBd05qRVNNQkFHQTFVRUF3d0piRzlqWVd4b2IzTjBNUk13RVFZRFZRUUtEQXBPUjBsT1dDQkpibU11TVFzdwpDUVlEVlFRR0V3SlZVekFlRncweU5EQTBNall5TURVeE5ERmFGdzB5TkRBME1qY3lNRFV4TkRGYU1EWXhFakFRCkJnTlZCQU1NQ1d4dlkyRnNhRzl6ZERFVE1CRUdBMVVFQ2d3S1RrZEpUbGdnU1c1akxqRUxNQWtHQTFVRUJoTUMKVlZNd2dnRWlNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0SUJEd0F3Z2dFS0FvSUJBUUMyb0FJVU9HMkxGMFVGclpMeQp5aWhZRjBZWjdYTWFYZnZ4dWJMYVZZdUdJNjlYN1FQRUJtUXp2OXdod25aUktDUExDZHVCNG04Y0o3Q3BGenRHCldPYVFMbmNxVVA4RFU1aHlQeFBSbmZUdFFBcUdiMDJRZ1RVQXY1QkpJMFZheGhCcnNaemd0KzgyM3ZoTTZTUHcKMGdSc1NZRlFpKzVDWW9MMWZNSWdhS0N2Ri9zZGl5cHZFQ0JDZVZyTWZFZ0pGSVJBQ1kvdFBzdEsvTkxwKzlmawppZ3hFMlYxcldoSGdvRmhZRm5YYnVqM2RIMHJLai9DVlM5anZMMk9vRTlvenM5MkRVLytySGJ6eFR3QndVQjBzCmVPS2hPY2d2cENyTVlSUWxUUlhmWVJmV0NLN2Q2Mk1JR3kvajcvV1VieDFOYzl4MjJzUitydVRlZkxnRTA2NWgKMldDZkFnTUJBQUdqVXpCUk1CMEdBMVVkRGdRV0JCUnZnamkxWlByZlVBMnRlWlRMUGE0djlzdHFXakFmQmdOVgpIU01FR0RBV2dCUnZnamkxWlByZlVBMnRlWlRMUGE0djlzdHFXakFQQmdOVkhSTUJBZjhFQlRBREFRSC9NQTBHCkNTcUdTSWIzRFFFQkN3VUFBNElCQVFCNC9VM3lrMFYzMTFNRFQvaEttbFJ4MWRqalRyMlhIQnVEcXZYY3BIRTQKVDJwZ0xnWURwN2tmUTQrdnlHWUt1cndEc0F1VDhEZCtUUUZLZEIraEFGRzMyazlxS1RyY1ZCZ2tNSjIwQitvWQp4T2diWW5zVnpiTDhXL0hOR3BlbDkrbThwYURtMGRXNzhMUit5UnJleDVlY2pjYWlZMDg3b0dHNlJDeWhyUVd4CkpkdkFvNlU1ejl3TnVhNmMyNlY2cy84Yit6SkJWektGZ0tQNVVGL2lIcGJVNW1QcVMwWlk4ckhRLzZPTHRGRjgKZ1J2UUlRZjZLSjRmOXlUOFBYSHBIdGJCMzEzaWh2Z09wWW9la3lIWTZaSmllTWhkd0J4MzB1N3d2Uy9POEluYwpsZWZzTkxUcWFTM2JWdldLeUFaVlZyenFtU043aGh4QWZrc0RZelBFbkF3OAotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0t",
+            "paths": [
+              "/etc/nginx/inline_cert.crt"
+            ]
+          }
+        ]
       },
       "NginxConfigRequest": {
         "allOf": [
@@ -4487,138 +5090,6 @@
             }
           }
         ]
-      },
-      "NginxConfigDirectives": {
-        "type": "array",
-        "x-go-type": "xp.Directives",
-        "x-go-type-import": {
-          "name": "xp",
-          "path": "github.com/nginxinc/nginx-go-crossplane"
-        },
-        "items": {
-          "$ref": "#/components/schemas/NginxConfigDirective"
-        }
-      },
-      "NginxConfigDirective": {
-        "type": "object",
-        "x-go-type": "xp.Directive",
-        "x-go-type-import": {
-          "name": "xp",
-          "path": "github.com/nginxinc/nginx-go-crossplane"
-        },
-        "required": [
-          "directive",
-          "line",
-          "args"
-        ],
-        "properties": {
-          "directive": {
-            "type": "string"
-          },
-          "line": {
-            "type": "integer"
-          },
-          "args": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "file": {
-            "type": "string"
-          },
-          "includes": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "block": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/NginxConfigDirectives"
-            }
-          },
-          "comment": {
-            "type": "string"
-          }
-        }
-      },
-      "ParsedNginxConfig": {
-        "type": "object",
-        "required": [
-          "file",
-          "parsed"
-        ],
-        "properties": {
-          "file": {
-            "type": "string",
-            "description": "NGINX Instance configuration file, corresponds to the conf-path."
-          },
-          "parsed": {
-            "$ref": "#/components/schemas/NginxConfigDirectives"
-          }
-        }
-      },
-      "NginxConfigProblem": {
-        "type": "object",
-        "description": "Representation of a problem found during NGINX configuration analysis.",
-        "properties": {
-          "directive": {
-            "description": "Directive in the NGINX configuration where the issue is identified.",
-            "type": "string"
-          },
-          "file": {
-            "description": "File where the issue is detected.",
-            "type": "string"
-          },
-          "line": {
-            "description": "Line number in the configuration where the issue is found.",
-            "type": "integer"
-          }
-        }
-      },
-      "NginxConfigReport": {
-        "type": "object",
-        "description": "An analysis of the NGINX configuration, highlighting issues and their severity, and offering recommendations.",
-        "properties": {
-          "rule": {
-            "description": "The name of the configuration rule that was violated.",
-            "type": "string"
-          },
-          "info": {
-            "description": "A detailed description of the issue.",
-            "type": "string"
-          },
-          "severity": {
-            "description": "The severity level of the issue.",
-            "type": "string"
-          },
-          "category": {
-            "description": "Classification category of the issue.",
-            "type": "string"
-          },
-          "documentation": {
-            "description": "Links to documentation that can assist in resolving the identified issue.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "where": {
-            "description": "Specific locations in the configuration where issues were detected.",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/NginxConfigProblem"
-            }
-          }
-        }
-      },
-      "NginxConfigReports": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/NginxConfigReport"
-        }
       },
       "FileData": {
         "type": "object",
@@ -4764,7 +5235,7 @@
         }
       },
       "NginxConfig": {
-        "description": "Details of an NGINX configuration, including its unique identifier, the main configuration path, the \nconfiguration directories, and the NGINX configuration payloads that indicate where they came from.\n",
+        "description": "Details of an NGINX configuration, including its unique identifier, the main configuration path, the \nconfiguration directories, and the NGINX configuration payloads that indicate where managed SSL certificates\nand keys were deployed to on the data plane instance.\n",
         "allOf": [
           {
             "$ref": "#/components/schemas/NginxConfigObject"
@@ -4907,10 +5378,6 @@
           "modified_at": "2023-08-10T16:59:15Z"
         }
       },
-      "FeatureFlagKey": {
-        "type": "string",
-        "description": "String representation of a feature flag key."
-      },
       "FilterNameConfigSyncGroups": {
         "type": "string",
         "description": "Keywords for config sync groups filters.\nWhen filtering on `config_status`, only the following `filter_values` are supported:\n  * in_sync\n  * out_of_sync\n  * sync_in_progress\n  * unknown\n",
@@ -4975,6 +5442,7 @@
           }
         ],
         "example": {
+          "total": 10,
           "count": 1,
           "start_index": 1,
           "items_per_page": 100,
@@ -5023,6 +5491,51 @@
         "example": {
           "name": "my-nginx-config-sync-group",
           "object_id": "csg_Tet21AeYTHCj7taOwVfzyw"
+        }
+      },
+      "ConfigSyncGroupBulkRequestData": {
+        "type": "object",
+        "description": "Part of bulk operation on a config sync group, only `delete` is supported.",
+        "required": [
+          "action",
+          "object_id"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/configSyncGroupObjectID"
+          },
+          "action": {
+            "$ref": "#/components/schemas/BulkRequestAction"
+          }
+        },
+        "example": {
+          "object_id": "csg_-uvR3F2TQGm18jnl7bpaGw",
+          "action": "delete"
+        }
+      },
+      "ConfigSyncGroupBulkRequest": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ConfigSyncGroupBulkRequestData"
+        },
+        "minItems": 1,
+        "maxItems": 50,
+        "example": [
+          {
+            "object_id": "csg_-uvR3F2TQGm18jnl7bpaGw",
+            "action": "delete"
+          },
+          {
+            "object_id": "csg_PL0c1XodRemmzVEjiXSsTg",
+            "action": "delete"
+          }
+        ]
+      },
+      "ConfigSyncGroupBulkResponse": {
+        "description": "The config sync group bulk outcome.",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/BulkRequestObjectStatus"
         }
       },
       "ConfigSyncGroupInstance": {
@@ -5228,20 +5741,6 @@
           "certificate_management_unmanaged"
         ]
       },
-      "CertificateType": {
-        "type": "string",
-        "description": "Certificate type:\n  * `ca_bundle` - This certificate object is a CA bundle.\n  * `cert_key` - This certificate object is consisted of public certificates and key.\n  * `unmanaged` - This certificate is not managed by NGINX One console and its type is unmanaged.\n",
-        "enum": [
-          "ca_bundle",
-          "cert_key",
-          "unmanaged"
-        ],
-        "x-enum-varnames": [
-          "certificate_type_ca_bundle",
-          "certificate_type_pem_cert_key",
-          "certificate_type_unmanaged"
-        ]
-      },
       "CertificateObjectMetadata": {
         "required": [
           "management",
@@ -5359,6 +5858,7 @@
           }
         ],
         "example": {
+          "total": 10,
           "count": 2,
           "start_index": 1,
           "items_per_page": 100,
@@ -5714,20 +6214,6 @@
           "certificate_association_type_config_sync_group"
         ]
       },
-      "CertificateDeploymentStatus": {
-        "type": "string",
-        "description": "Certificate deployment status:\n  * `latest` - This certificate deployment is up to date with the latest certificates and key.\n  * `stale` - This certificate deployment is outdated and needs to deploy the latest certificates and key.\n  * `unmanaged` - This certificate deployment is unmanaged by NGINX One Console.\n",
-        "enum": [
-          "latest",
-          "stale",
-          "unmanaged"
-        ],
-        "x-enum-varnames": [
-          "certificate_deployment_status_latest",
-          "certificate_deployment_status_stale",
-          "certificate_deployment_status_unmanaged"
-        ]
-      },
       "CertificateDeployment": {
         "type": "object",
         "description": "Response structure containing certificate deployment details for an SSL certificate, which include\n  * `association_type` represents type of the object affected by this certificate deployment, which is either\n  an instance or config sync group\n  * `object_id` represents the object ID for the associated instance or config sync group\n  * `name` for either the host name of an instance or the name of a config sync group\n  * `deployment_status`:\n    * `latest`: deployment is up to date with the latest updated certificate and key contents\n    * `stale`: deployment for either certificates or key is outdated, requires a redeployment with the latest contents\n  * `cert_paths` represents the file paths used for deploying public certificates of this certificate object\n  * `key_paths` represents the file paths used for deploying the private key of this certificate object, if a\n  private key is present\n",
@@ -5735,8 +6221,7 @@
           "association_type",
           "object_id",
           "name",
-          "deployment_status",
-          "cert_paths"
+          "deployment_status"
         ],
         "properties": {
           "association_type": {
@@ -5804,6 +6289,7 @@
           }
         ],
         "example": {
+          "total": 10,
           "count": 2,
           "start_index": 1,
           "items_per_page": 100,
@@ -6049,6 +6535,7 @@
               }
             },
             "example": {
+              "total": 10,
               "count": 1,
               "start_index": 1,
               "items_per_page": 100,
@@ -6305,15 +6792,11 @@
           },
           "value": {
             "type": "number",
+            "format": "double",
             "nullable": true,
             "description": "A value for the data, where `null` indicates a gap.\n"
           }
         }
-      },
-      "Time": {
-        "description": "Indicates a point in time.\n\nTime can be specified in two ways:\n* Using ISO 8601 format. For example, \"2019-08-07T09:57:36.088757764Z\".\n* As an offset from the current time. For the offset, use `+` or `-`, followed by a number and the appropriate time unit. The time unit can can be `y` (years), `M` (months), `w` (weeks), `d` (days), `h` (hours), `m` (minutes), or `s` (seconds). \nExample of an offset: \"now-3h\" (3 hours before now).\n",
-        "type": "string",
-        "example": "2019-08-07T09:57:36.088757764Z"
       },
       "StartTime": {
         "description": "Sets the beginning of the time period for your metrics query (inclusive).\n\nUsage:\n* `start_time` is required if `end_time` is specified.\n* If `start_time` isn't provided, the API returns the latest metrics.\n* `start_time` is required for aggregated metrics in order to calculate the `resolution` (granularity).\n\nTime can be specified in two ways:\n* Using ISO 8601 format. For example, \"2019-08-07T09:57:36.088757764Z\".\n* As an offset from the current time. For the offset, use `+` or `-`, followed by a number and the appropriate time unit. The time unit can can be `y` (years), `M` (months), `w` (weeks), `d` (days), `h` (hours), `m` (minutes), or `s` (seconds). \nExample of an offset: \"now-3h\" (3 hours before now).\n",
@@ -6367,7 +6850,7 @@
       "MetricDimension": {
         "type": "string",
         "default": "display_name",
-        "description": "Static list of all metric dimensions.\n  * `display_name` - The display name of the NGINX instance.\n  * `file_path` - Path to a desired file.\n  * `parent_hostname` - The hostname of the NGINX Plus instance.\n  * `instance_object_id` - Instance Object ID is the unique identifier for an Instance registered with Control Plane.\n  * `location_zone` - The name of an HTTP location zone.\n  * `mount_point` - A filesystem mount point.\n  * `namespace` - The Namespace associated with the metric data.\n  * `network_interface` - A server network interface.\n  * `nginx_id` - The unique identifier of an nginx instance running on the data plane.\n  * `server_zone` - The name of an HTTP or Stream server zone.\n  * `system_id` - The unique identifier of the the operating system where nginx-agent is running.\n  * `tenant` - The Tenant associated with the metric data.\n",
+        "description": "Static list of all metric dimensions.\n  * `display_name` - The display name of the NGINX instance.\n  * `file_path` - Path to a desired file.\n  * `parent_hostname` - The hostname of the NGINX Plus instance.\n  * `instance_object_id` - Instance Object ID is the unique identifier for an Instance registered with NGINX One Console.\n  * `location_zone` - The name of an HTTP location zone.\n  * `mount_point` - A filesystem mount point.\n  * `namespace` - The Namespace associated with the metric data.\n  * `network_interface` - A server network interface.\n  * `nginx_id` - The unique identifier of an nginx instance running on the data plane.\n  * `server_zone` - The name of an HTTP or Stream server zone.\n  * `system_id` - The unique identifier of the the operating system where nginx-agent is running.\n  * `tenant` - The Tenant associated with the metric data.\n  * `csg_object_id` - Config Sync Group Object ID is the unique identifier for a Config Sync Group registered with NGINX One Console.\n",
         "enum": [
           "display_name",
           "file_path",
@@ -6380,7 +6863,8 @@
           "nginx_id",
           "server_zone",
           "system_id",
-          "tenant"
+          "tenant",
+          "csg_object_id"
         ],
         "x-enum-varnames": [
           "metric_dimension_display_name",
@@ -6394,7 +6878,8 @@
           "metric_dimension_nginx_id",
           "metric_dimension_server_zone",
           "metric_dimension_system_id",
-          "metric_dimension_tenant"
+          "metric_dimension_tenant",
+          "metric_dimension_csg_object_id"
         ]
       },
       "BaseMetricQueryRequest": {
@@ -6717,112 +7202,112 @@
       },
       "MetricNginxHttpRequestCount": {
         "type": "string",
-        "description": "Total number of client requests.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "description": "Total number of client requests.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
         "enum": [
           "nginx.http.request.count"
         ]
       },
       "MetricNginxHttpStatus4xx": {
         "type": "string",
-        "description": "Number of requests with HTTP status codes 4xx.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "description": "Number of requests with HTTP status codes 4xx.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
         "enum": [
           "nginx.http.status.4xx"
         ]
       },
       "MetricNginxHttpStatus5xx": {
         "type": "string",
-        "description": "Number of requests with HTTP status codes 5xx.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "description": "Number of requests with HTTP status codes 5xx.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
         "enum": [
           "nginx.http.status.5xx"
         ]
       },
       "MetricPlusHttpRequestCount": {
         "type": "string",
-        "description": "The total number of client requests received from clients.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * server_zone\n  * location_zone\n",
+        "description": "The total number of client requests received from clients.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * server_zone\n  * location_zone\n",
         "enum": [
           "plus.http.request.count"
         ]
       },
       "MetricPlusHttpStatus4xx": {
         "type": "string",
-        "description": "Number of requests with HTTP status codes 4xx.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * server_zone\n  * location_zone\n",
+        "description": "Number of requests with HTTP status codes 4xx.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * server_zone\n  * location_zone\n",
         "enum": [
           "plus.http.status.4xx"
         ]
       },
       "MetricPlusHttpStatus5xx": {
         "type": "string",
-        "description": "Number of requests with HTTP status codes 5xx.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * server_zone\n  * location_zone\n",
+        "description": "Number of requests with HTTP status codes 5xx.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * server_zone\n  * location_zone\n",
         "enum": [
           "plus.http.status.5xx"
         ]
       },
       "MetricSystemCpuSystem": {
         "type": "string",
-        "description": "Total system CPU utilization, percentage.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "description": "Total system CPU utilization, percentage.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
         "enum": [
           "system.cpu.system"
         ]
       },
       "MetricSystemCpuUser": {
         "type": "string",
-        "description": "User CPU utilization, percentage.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "description": "User CPU utilization, percentage.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
         "enum": [
           "system.cpu.user"
         ]
       },
       "MetricSystemDiskInUse": {
         "type": "string",
-        "description": "System disk usage statistic, percentage.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * mount_point\n",
+        "description": "System disk usage statistic, percentage.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * mount_point\n",
         "enum": [
           "system.disk.in_use"
         ]
       },
       "MetricSystemDiskTotal": {
         "type": "string",
-        "description": "Total available system disk usage statistic, bytes.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * mount_point\n",
+        "description": "Total available system disk usage statistic, bytes.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * mount_point\n",
         "enum": [
           "system.disk.total"
         ]
       },
       "MetricSystemDiskUsed": {
         "type": "string",
-        "description": "In-use system disk usage statistic, bytes.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * mount_point\n",
+        "description": "In-use system disk usage statistic, bytes.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * mount_point\n",
         "enum": [
           "system.disk.used"
         ]
       },
       "MetricSystemMemoryPctUsed": {
         "type": "string",
-        "description": "Statistic about system memory usage, percentage.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "description": "Statistic about system memory usage, percentage.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
         "enum": [
           "system.mem.pct_used"
         ]
       },
       "MetricSystemMemoryTotal": {
         "type": "string",
-        "description": "Total available statistic about system memory usage, bytes.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "description": "Total available statistic about system memory usage, bytes.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
         "enum": [
           "system.mem.total"
         ]
       },
       "MetricSystemMemoryUsed": {
         "type": "string",
-        "description": "In-use statistic about system memory usage, bytes.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "description": "In-use statistic about system memory usage, bytes.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
         "enum": [
           "system.mem.used"
         ]
       },
       "MetricSystemNetBytesReceived": {
         "type": "string",
-        "description": "Network I/O statistics. Number of bytes received per network interface.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * network_interface\n",
+        "description": "Network I/O statistics. Number of bytes received per network interface.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * network_interface\n",
         "enum": [
           "system.net.bytes_rcvd"
         ]
       },
       "MetricSystemNetBytesSent": {
         "type": "string",
-        "description": "Network I/O statistics. Number of bytes sent per network interface.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * network_interface\n",
+        "description": "Network I/O statistics. Number of bytes sent per network interface.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * network_interface\n",
         "enum": [
           "system.net.bytes_sent"
         ]
@@ -6847,30 +7332,6 @@
           "age_out_duration": 3
         }
       },
-      "SettingsACMEIntegration": {
-        "type": "object",
-        "description": "ACME Integration to provision SSL certificates",
-        "required": [
-          "tos_accepted"
-        ],
-        "properties": {
-          "tos_accepted": {
-            "type": "boolean",
-            "description": "Accept or deny terms of service for ACME server \n* true - Registers ACME account with the associated server\n* false - Deletes registered ACME account with the associated server\n",
-            "default": false
-          },
-          "server": {
-            "type": "string",
-            "description": "Name of ACME server to get SSL certificates from\n* `LE` - Let's Encrypt\n",
-            "enum": [
-              "LE"
-            ],
-            "x-enum-varnames": [
-              "acme_integration_server_lets_encrypt"
-            ]
-          }
-        }
-      },
       "NginxUsageDeployment": {
         "type": "object",
         "required": [
@@ -6884,19 +7345,15 @@
             "description": "Type of integration for NGINX Instance",
             "enum": [
               "nic",
-              "ngf",
-              "n4a",
-              "nlk"
+              "ngf"
             ],
             "x-enum-varnames": [
               "integration_type_nic",
-              "integration_type_ngf",
-              "integration_type_n4a",
-              "integration_type_nlk"
+              "integration_type_ngf"
             ]
           },
           "cluster_id": {
-            "description": "UUID of the cluster where NGINX Instance is deployed",
+            "description": "UUID of the Kubernetes cluster where NGINX Instance is deployed",
             "type": "string",
             "format": "uuid"
           },
@@ -6912,37 +7369,67 @@
           }
         }
       },
-      "TotalUsage": {
+      "HttpUsage": {
         "type": "object",
         "properties": {
           "client": {
-            "$ref": "#/components/schemas/UsageBytes"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UsageMetrics"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "requests": {
+                    "type": "integer",
+                    "description": "Total requests handled by an NGINX Instance",
+                    "minimum": 0
+                  }
+                }
+              }
+            ]
           },
           "upstream": {
-            "$ref": "#/components/schemas/UsageBytes"
+            "$ref": "#/components/schemas/UsageMetrics"
           }
         }
       },
-      "UsageBytes": {
+      "StreamUsage": {
+        "type": "object",
+        "properties": {
+          "client": {
+            "$ref": "#/components/schemas/UsageMetrics"
+          },
+          "upstream": {
+            "$ref": "#/components/schemas/UsageMetrics"
+          }
+        }
+      },
+      "UsageMetrics": {
         "type": "object",
         "properties": {
           "received": {
             "type": "integer",
-            "description": "Total http bytes received by an NGINX Instance from clients/upstreams",
+            "description": "Total bytes received by an NGINX Instance from clients/upstreams",
             "minimum": 0
           },
           "sent": {
             "type": "integer",
-            "description": "Total http bytes sent by the NGINX Instance to clients/upstreams",
+            "description": "Total bytes sent by the NGINX Instance to clients/upstreams",
+            "minimum": 0
+          },
+          "connections": {
+            "type": "integer",
+            "description": "Total connections of the NGINX Instance with clients/upstreams",
             "minimum": 0
           }
         }
       },
       "NginxUsageHttp": {
-        "$ref": "#/components/schemas/TotalUsage"
+        "$ref": "#/components/schemas/HttpUsage"
       },
       "NginxUsageStream": {
-        "$ref": "#/components/schemas/TotalUsage"
+        "$ref": "#/components/schemas/StreamUsage"
       },
       "NginxUsageTrackingRequest": {
         "type": "object",
@@ -7002,125 +7489,21 @@
             "type": "integer",
             "description": "Usage collection end time (Unix epoch).",
             "minimum": 0
-          }
-        }
-      },
-      "ChatbotMessage": {
-        "type": "object",
-        "description": "A singular message representing the actual content to be sent to AI Gateway.",
-        "properties": {
-          "role": {
-            "description": "The persona sending the prompt. Can be 'user' or 'assistant'.",
-            "type": "string",
-            "enum": [
-              "user",
-              "assistant"
-            ],
-            "x-enum-varnames": [
-              "chatbot_role_user",
-              "chatbot_role_assistant"
-            ]
           },
-          "content": {
-            "description": "The prompt to be sent.",
-            "type": "string",
-            "maxLength": 2048
-          }
-        },
-        "required": [
-          "role",
-          "content"
-        ]
-      },
-      "ChatbotRequest": {
-        "type": "object",
-        "description": "Request structure for sending a prompt to the AI Gateway LLM.",
-        "properties": {
-          "messages": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ChatbotMessage"
-            }
-          }
-        },
-        "required": [
-          "messages"
-        ]
-      },
-      "ChatbotResponseChoice": {
-        "type": "object",
-        "description": "An individual completion option in response to the prompt.",
-        "properties": {
-          "index": {
-            "description": "The index of the value in the array of completions.",
+          "workers": {
             "type": "integer",
-            "format": "int16"
+            "description": "Number of workers running on the NGINX Instance",
+            "minimum": 0
           },
-          "text": {
-            "description": "The text of completion.",
-            "type": "string"
-          }
-        }
-      },
-      "ChatbotResponseUsage": {
-        "type": "object",
-        "description": "Usage details for the response",
-        "properties": {
-          "prompt_tokens": {
-            "description": "The number of tokens in the prompt",
+          "uptime": {
             "type": "integer",
-            "format": "int32"
+            "description": "Number of seconds the NGINX Instance has been continuously running",
+            "minimum": 0
           },
-          "total_tokens": {
-            "description": "The total number of tokens used",
+          "reloads": {
             "type": "integer",
-            "format": "int32"
-          },
-          "completion_tokens": {
-            "description": "The number of tokens in the completion",
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "ChatbotResponse": {
-        "type": "object",
-        "description": "Response structure containing details of the LLM's response to the prompt.",
-        "required": [
-          "id",
-          "model",
-          "created",
-          "choices",
-          "object",
-          "usage"
-        ],
-        "properties": {
-          "id": {
-            "description": "The identifier for the response generated by the AI Gateway.",
-            "type": "string"
-          },
-          "model": {
-            "description": "The model name used to produce the response.",
-            "type": "string"
-          },
-          "created": {
-            "description": "The time when the response was created.",
-            "type": "string",
-            "format": "date-time"
-          },
-          "choices": {
-            "description": "An array of possible completions in response to the prompt given by the 'user' persona.",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ChatbotResponseChoice"
-            }
-          },
-          "object": {
-            "description": "The type of the object that the JSON is describing - will be 'text_completion'",
-            "type": "string"
-          },
-          "usage": {
-            "$ref": "#/components/schemas/ChatbotResponseUsage"
+            "description": "Number of times the instance was reloaded during uptime",
+            "minimum": 0
           }
         }
       }
@@ -7128,6 +7511,7 @@
     "examples": {
       "DataPlaneKeys": {
         "value": {
+          "total": 10,
           "count": 2,
           "start_index": 1,
           "items_per_page": 100,
@@ -7187,21 +7571,26 @@
           "http": {
             "client": {
               "received": 0,
-              "sent": 0
+              "sent": 0,
+              "connections": 0,
+              "requests": 0
             },
             "upstream": {
               "received": 0,
-              "sent": 0
+              "sent": 0,
+              "connections": 0
             }
           },
           "stream": {
             "client": {
               "received": 0,
-              "sent": 0
+              "sent": 0,
+              "connections": 0
             },
             "upstream": {
               "received": 0,
-              "sent": 0
+              "sent": 0,
+              "connections": 0
             }
           },
           "deployment": {
@@ -7210,39 +7599,11 @@
             "cluster_node_count": 5,
             "installation_id": "238efb5a-2a59-48c5-96cf-7d195b8af044"
           },
+          "workers": 2,
+          "uptime": 120,
+          "reloads": 0,
           "start_time": 0,
           "end_time": 0
-        }
-      },
-      "ChatbotRequest": {
-        "value": {
-          "messages": [
-            {
-              "role": "user",
-              "content": "What is a dog and a cat?"
-            }
-          ]
-        }
-      },
-      "ChatbotResponse": {
-        "value": {
-          "id": "cmpl-8a17ba557d904b2287bbf4e1ae22433b",
-          "object": "text_completion",
-          "created": "2023-10-01T00:00:00Z",
-          "model": "/opt/xcdf/model/mistral-7b-instruct-v2_v3/artifacts/Mistral-7B-Instruct-v0.2",
-          "choices": [
-            {
-              "index": 0,
-              "text": "# This is an H1\nThis is normal text.\nThis is normal text with a `monospaced item` included.\n\n## This is an H2\nThis is normal text\nThere is a list of things:\n* Thing one\n* Thing two\n\nThis is an ordered list of things\n1. Thing one\n2. Thing two\n\n### This is an H3\nHere follows a code block tagged with nginx for the language\n```nginx\nserver {\n\tlisten              443 ssl;\n    server_name         www.example.com;\n    ssl_certificate     www.example.com.crt;\n    ssl_certificate_key www.example.com.key;\n    ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;\n    ssl_ciphers         HIGH:!aNULL:!MD5;\n}\n```\nAnd now here is a code block without a language tag:\n```\nserver {\n\tlisten              443 ssl;\n    server_name         www.example.com;\n    ssl_certificate     www.example.com.crt;\n    ssl_certificate_key www.example.com.key;\n    ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;\n    ssl_ciphers         HIGH:!aNULL:!MD5;\n}\n```\nThis has been markdown. 감사합니다.",
-              "logprobs": null,
-              "finish_reason": "stop"
-            }
-          ],
-          "usage": {
-            "prompt_tokens": 9,
-            "total_tokens": 247,
-            "completion_tokens": 238
-          }
         }
       }
     },
@@ -7273,11 +7634,6 @@
         "type": "http",
         "scheme": "bearer",
         "bearerFormat": "JWT"
-      },
-      "ApiKeyAuth": {
-        "type": "apiKey",
-        "in": "header",
-        "name": "Data-Plane-Key"
       }
     }
   },
@@ -7292,7 +7648,6 @@
       "name": "Manage NGINX Instances",
       "tags": [
         "Instances",
-        "Feature Flags",
         "Config Sync Groups",
         "Certificates",
         "CVEs",
