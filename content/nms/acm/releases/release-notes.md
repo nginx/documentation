@@ -15,7 +15,7 @@ weight: 100
 
 ## 1.9.3
 
-November 05, 2024
+November 06, 2024
 
 ### Upgrade Paths {#1-9-3-upgrade-paths}
 
