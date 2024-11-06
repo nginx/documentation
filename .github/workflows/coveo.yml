@@ -83,7 +83,7 @@ jobs:
 
       - name: Retrieve secrets from Keyvault
         id: keyvault
-        uses: azure/cli@965c8d7571d2231a54e321ddd07f7b10317f34d9
+        uses: azure/cli@089eac9d8cc39f5d003e94f8b65efc51076c9cbd
         with:
           inlineScript: |
             secrets_get=(productionHostname previewHostname resourceGroupName cdnProfileName cdnName accountName)
