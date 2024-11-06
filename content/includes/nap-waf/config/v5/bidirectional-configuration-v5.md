@@ -83,7 +83,7 @@ http {
         app_protect_enable on;
         app_protect_policy_file "/etc/app_protect/conf/grpc_policy.tgz";
         app_protect_security_log_enable on;
-        app_protect_security_log log_grpc_all /tmp/grpc.log;
+        app_protect_security_log "/etc/app_protect/conf/log_grpc_all.tgz" /tmp/grpc.log;
 
         grpc_socket_keepalive on;
         grpc_read_timeout 30m;

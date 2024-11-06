@@ -1264,7 +1264,7 @@ If a user other than **nginx** is to be used, note the following:
 
             app_protect_enable on;
             app_protect_security_log_enable on;
-            app_protect_security_log "/etc/nginx/custom_log_format.json" syslog:server=127.0.0.1:515;
+            app_protect_security_log "/etc/nginx/custom_log_format.json" syslog:server=127.0.0.1:514;
 
             location / {
                 client_max_body_size 0;

@@ -110,9 +110,9 @@ To enable mTLS in NGINX, you need to perform the following steps:
             proxy_http_version 1.1;
 
             app_protect_enable on;
-            app_protect_policy_file app_protect_default_policy;
+            app_protect_policy_file "/etc/app_protect/conf/app_protect_default_policy.tgz";
             app_protect_security_log_enable on;
-            app_protect_security_log log_all syslog:server=127.0.0.1:515;
+            app_protect_security_log "/etc/app_protect/conf/log_all.tgz" syslog:server=127.0.0.1:514;
     
             location / {
                 client_max_body_size 0;
