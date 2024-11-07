@@ -13,6 +13,46 @@ weight: 100
 
 ---
 
+## 1.9.3
+
+November 06, 2024
+
+### Upgrade Paths {#1-9-3-upgrade-paths}
+
+API Connectivity Manager  supports upgrades from these previous versions:
+
+- 1.6.0 - 1.9.2
+
+If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+{{< see-also >}}
+Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
+{{< /see-also >}}
+
+<br>
+
+<details closed>
+<summary><i class="fa-solid fa-circle-exclamation"></i> Dependencies with Instance Manager</summary>
+
+{{< include "tech-specs/acm-nim-dependencies.md" >}}
+
+</details>
+
+
+### What's New{#1-9-3-whats-new}
+This release includes the following updates:
+
+- {{% icon-feature %}} **Stability and performance improvements**<a name="1-9-3-whats-new-Stability-and-performance-improvements"></a>
+
+  This release includes stability and performance improvements.
+
+
+### Known Issues{#1-9-3-known-issues}
+
+You can find information about known issues in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
+
+---
+
 ## 1.9.2
 
 March 14, 2024

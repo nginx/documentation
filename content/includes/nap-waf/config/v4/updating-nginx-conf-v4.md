@@ -29,7 +29,7 @@ http {
     app_protect_user_defined_signatures "/etc/nginx/user_defined_signature_definitions.json";
 
     app_protect_security_log_enable on;
-    app_protect_security_log "/etc/app_protect/conf/log_default.json" syslog:server=127.0.0.1:515;
+    app_protect_security_log "/etc/app_protect/conf/log_default.json" syslog:server=127.0.0.1:514;
 
     server {
         listen       80;
