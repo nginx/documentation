@@ -15,7 +15,7 @@ weight: 100
 
 This guide shows you how to install and upgrade NGINX Instance Manager in environments without internet access. It covers key steps, including downloading packages, managing dependencies, and configuring the system for offline use. You’ll also learn how to set up NGINX Instance Manager in disconnected mode and update the CVE list manually to keep your system secure.
 
-{{<call-out "note" "Access the deprecated manual steps" "">}}If you prefer to follow the original manual steps, you can access the [deprecated guide](https://docs.nginx.com/nginx-instance-manager/disconnected/offline-install-guide-deprecated.md). Please note that this guide is no longer actively maintained and may not reflect the latest updates or best practices.{{</call-out>}}
+{{<call-out "note" "Access the deprecated manual steps" "">}}If you prefer to follow the original manual steps, you can access the [deprecated guide]({{< relref "nim/deprecated/offline-install-guide-deprecated.md" >}}). Please note that this guide is no longer actively maintained and may not reflect the latest updates or best practices.{{</call-out>}}
 
 ## Before you begin
 
