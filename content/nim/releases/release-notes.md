@@ -20,7 +20,7 @@ The release notes for F5 NGINX Management Suite Instance Manager highlight the l
 
 ## 2.18.0
 
-October 24, 2024
+November 8, 2024
 
 ### Upgrade Paths {#2-18-0-upgrade-paths}
 
