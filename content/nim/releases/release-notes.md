@@ -1,13 +1,11 @@
 ---
-description: These release notes list and describe the new features, enhancements,
-  and resolved issues in NGINX Management Suite Instance Manager.
 docs: DOCS-938
 title: Release Notes
 toc: true
 weight: 100
 ---
 
-The release notes for F5 NGINX Management Suite Instance Manager highlight the latest features, improvements, and bug fixes in each release. This document helps you stay up to date with the changes and enhancements introduced to improve stability, performance, and usability. For each version, you’ll find details about new features, known issues, and resolved problems, ensuring you get the most out of your NGINX instance management experience.
+The release notes for F5 NGINX Instance Manager highlight the latest features, improvements, and bug fixes in each release. This document helps you stay up to date with the changes and enhancements introduced to improve stability, performance, and usability. For each version, you’ll find details about new features, known issues, and resolved problems, ensuring you get the most out of your NGINX instance management experience.
 
 <details open>
 <summary><i class="fa-solid fa-info-circle"></i> Support for NGINX App Protect WAF</summary>
@@ -24,11 +22,11 @@ November 8, 2024
 
 ### Upgrade Paths {#2-18-0-upgrade-paths}
 
-Instance Manager supports upgrades from these previous versions:
+NGINX Instance Manager supports upgrades from these previous versions:
 
 - 2.15.x - 2.17.x
 
-If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-18-0-whats-new}
 This release includes the following updates:
@@ -88,11 +86,11 @@ November 06, 2024
 
 ### Upgrade Paths {#2-17-4-upgrade-paths}
 
-Instance Manager  supports upgrades from these previous versions:
+NGINX Instance Manager  supports upgrades from these previous versions:
 
 - 2.14.0 - 2.17.3
 
-If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-17-4-whats-new}
 This release includes the following updates:
@@ -114,11 +112,11 @@ September 13, 2024
 
 ### Upgrade Paths {#2-17-3-upgrade-paths}
 
-Instance Manager  supports upgrades from these previous versions:
+NGINX Instance Manager  supports upgrades from these previous versions:
 
 - 2.14.0 - 2.17.2
 
-If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-17-3-whats-new}
 This release includes the following updates:
@@ -140,11 +138,11 @@ August 21, 2024
 
 ### Upgrade Paths {#2-17-2-upgrade-paths}
 
-Instance Manager  supports upgrades from these previous versions:
+NGINX Instance Manager  supports upgrades from these previous versions:
 
 - 2.14.0 - 2.17.1
 
-If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-17-2-whats-new}
 This release includes the following updates:
@@ -166,11 +164,11 @@ July 24, 2024
 
 ### Upgrade Paths {#2-17-1-upgrade-paths}
 
-Instance Manager  supports upgrades from these previous versions:
+NGINX Instance Manager  supports upgrades from these previous versions:
 
 - 2.14.0 - 2.17.0
 
-If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-17-1-whats-new}
 This release includes the following updates:
@@ -192,11 +190,11 @@ July 10, 2024
 
 ### Upgrade Paths {#2-17-0-upgrade-paths}
 
-Instance Manager  supports upgrades from these previous versions:
+NGINX Instance Manager  supports upgrades from these previous versions:
 
 - 2.14.0 - 2.16.0
 
-If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-17-0-whats-new}
 This release includes the following updates:
@@ -268,11 +266,11 @@ April 18, 2024
 
 ### Upgrade Paths {#2-16-0-upgrade-paths}
 
-Instance Manager  supports upgrades from these previous versions:
+NGINX Instance Manager  supports upgrades from these previous versions:
 
 - 2.13.0 - 2.15.1
 
-If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-16-0-whats-new}
 This release includes the following updates:
