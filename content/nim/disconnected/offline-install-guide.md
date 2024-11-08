@@ -9,139 +9,92 @@ toc: true
 weight: 100
 ---
 
-{{<call-out "caution" "NGINX Plus R33 requires NGINX Instance Manager 2.18 or later" "fa-solid fa-triangle-exclamation">}}
-If your NGINX data plane instances are running NGINX Plus R33 or later, you must upgrade to NGINX Instance Manager 2.18 or later to support usage reporting. NGINX Plus R33 instances must report usage data to the F5 licensing endpoint or NGINX Instance Manager. Otherwise, they will stop processing user traffic.
-<br>
-<br>
-For more details about usage reporting and enforcement, see [About solution licenses]({{< relref "solutions/about-subscription-licenses.md" >}}).
-{{</call-out>}}
-
-<br>
-
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}
 
 ## Overview
 
-This guide explains how to install and upgrade NGINX Instance Manager in environments without Internet access. It covers key steps, including downloading packages, managing dependencies, and configuring the system for offline use. You’ll also learn how to set up NGINX Instance Manager in disconnected mode and manually update the CVE list to keep your system secure.
+This guide shows you how to install and upgrade NGINX Instance Manager in environments without internet access. It covers key steps, including downloading packages, managing dependencies, and configuring the system for offline use. You’ll also learn how to set up NGINX Instance Manager in disconnected mode and update the CVE list manually to keep your system secure.
+
+{{<call-out "note" "Access the deprecated manual steps" "">}}If you prefer to follow the original manual steps, you can access the [deprecated guide](https://docs.nginx.com/nginx-instance-manager/disconnected/offline-install-guide-deprecated.md). Please note that this guide is no longer actively maintained and may not reflect the latest updates or best practices.{{</call-out>}}
 
 ## Before you begin
 
-{{<call-out "important" "Complete the required prerequisites" "fas fa-exclamation-triangle">}}
-You must complete the following prerequisite steps **before** installing NGINX Instance Manager. **Skipping these steps could cause installation issues**.
-{{</call-out>}}
+You’ll need internet access for the steps in this section.
 
-### Security considerations
+### Download the SSL Certificate and Private Key from MyF5
 
-To ensure that your NGINX Instance Manager deployment remains secure, follow these recommendations:
+Download the SSL certificate and private key required for NGINX Instance Manager:
 
-- Install NGINX Instance Manager on a dedicated machine (bare metal, container, cloud, or VM).
-- Make sure no other services are running on the same machine.
-- Ensure the machine is not accessible from the Internet.
-- Place the machine behind a firewall.
+{{< include "licensing-and-reporting/download-nim-ssl_cert-and-private_key.md" >}}
 
-### Download package files
+## Download and run the installation script
 
-To complete the steps in this guide, you need to download the NGINX Instance Manager package files from the [MyF5 Customer Portal](https://account.f5.com/myf5).
+{{<fa "download">}} {{<link "/scripts/install-nim-bundle.sh" "Download the install-nim-bundle.sh script.">}}
 
-### Install local dependencies
+To run the script, enter the following command, replacing `<path/to/certificate.crt>` and `<path/to/private.key>` with the full paths and filenames of your SSL certificate and private key files:
 
-Local dependencies are common Linux packages like `curl` or `openssl`, which most Linux distributions include by default. When installing NGINX Instance Manager, your package manager will automatically install these dependencies. Without internet access, ensure your package manager can use a local package repository, such as a distribution DVD/ISO image or internal network mirror. Check your Linux distribution's documentation for details.
+```bash
+sudo bash install-nim-bundle.sh \
+  -c <path/to/certificate.crt> \
+  -k <path/to/private.key> \
+  -m offline \
+  -d <distribution>
+```
 
-{{< call-out "note" "RedHat on AWS" "fa-brands fa-aws" >}}If you're using AWS and can't attach remote or local RedHat package repositories, download the necessary packages on another RedHat machine and copy them to your target machine. Use the `yumdownloader` utility for this task: 
-<https://access.redhat.com/solutions/10154>.
-{{</ call-out >}}
+<br>
 
-### Download and install external dependencies
+By default, this command installs the latest version of NGINX Open Source. To install NGINX Plus or specify a different version of NGINX Open Source, use the `-p` or `-n` options as needed.
 
-External dependencies, such as ClickHouse and NGINX Plus, aren't included by default in standard Linux distributions. You need to manually download and transfer these to your offline system.
+<br>
 
-To download external dependencies:
+**Explanation of options:**
 
-1. Download the `fetch-external-dependencies.sh` script:
+- **`-c`**: Path to the SSL certificate file.
+- **`-k`**: Path to the private key file.
+- **`-m`**: Sets the installation mode (use `offline` for disconnected environments).
+- **`-d`**: Defines the target distribution (replace `<distribution>` with one of the supported options below).
+- **`-n`**: Installs a specific version of NGINX Open Source. Use `latest` to install the most recent version or specify a version like `1.27.1`. If neither `-n` nor `-p` is specified, the script defaults to installing the latest version of NGINX Open Source.
+- **`-p`**: Installs the specified version of NGINX Plus. Use `latest` for the newest version or a specific release like `R32`. Overrides the `-n` option if both are specified.
 
-    {{<fa "download">}} {{<link "/scripts/fetch-external-dependencies.sh" "Download fetch-external-dependencies.sh script">}}
 
-2. Run the script to download the external dependencies for your specific Linux distribution:
+**Supported distributions:**
 
-    ```bash
-    sudo bash fetch-external-dependencies.sh <linux distribution>
-    ```
+To get the latest list supported by the script, run the following command:
 
-    Supported Linux distributions:
+```bash
+grep '\-d distribution' install-nim-bundle.sh
+```
 
-    - `ubuntu20.04`
-    - `ubuntu22.04`
-    - `debian11`
-    - `debian12`
-    - `oracle7`
-    - `oracle8`
-    - `rhel8`
-    - `rhel9`
-    - `amzn2`
+The script downloads the required packages and adds them to a tarball file. You’ll need to copy this tarball to the target machine in the disconnected environment.
 
-    **For example**, to download external dependencies for Ubuntu 20.04:
+## Install NGINX Instance Manager
 
-    ```bash
-    sudo bash fetch-external-dependencies.sh ubuntu20.04
-    ```
+1. Copy the following files to the target system:
+   - `install-nim-bundle.sh` script
+   - SSL certificate file
+   - Private key file
+   - Tarball file with the required packages
 
-    This will create an archive, such as `nms-dependencies-ubuntu20.04.tar.gz`, containing the required dependencies.
-
-3. Copy the archive to your target machine and extract the contents:
-
-    {{< note >}}The bundled NGINX server package may conflict with existing versions of NGINX or NGINX Plus. Delete the package from the bundle if you want to keep your current version.{{</note >}}
-
-    - **For RHEL and RPM-Based systems**:
-
-        ```bash
-        tar -kzxvf nms-dependencies-<linux-distribution>.tar.gz
-        sudo rpm -ivh *.rpm
-        ```
-
-    - **For Debian, Ubuntu, Deb-based systems**:
-
-        ```bash
-        tar -kzxvf nms-dependencies-<linux-distribution>.tar.gz
-        sudo dpkg -i ./*.deb
-        ```
-
-    {{< include "installation/clickhouse-password.md" >}}
-
----
-
-## Install NGINX Instance Manager {#install-nim-offline}
-
-1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the NGINX Instance Manager package files.
-
-2. Install the NGINX Instance Manager package:
-
-   - **For RHEL and RPM-based systems**:
-
-        ```bash
-        sudo rpm -ivh --nosignature /home/<user>/nms-instance-manager_<version>.x86_64.rpm
-        ```
-
-   - **For Debian, Ubuntu, Deb-based systems**:
-
-        ```bash
-        sudo apt-get -y install -f /home/<user>/nms-instance-manager_<version>_amd64.deb
-        ```
-
-    {{< include "installation/default-admin-password.md" >}}
-
-3. Enable and start NGINX Instance Manager services:
+2. Run the installation script:
 
     ```bash
-    sudo systemctl enable nms nms-core nms-dpm nms-ingestion nms-integrations --now
+    sudo bash install-nim-bundle.sh \
+    -c <path/to/certificate.crt> 
+    -k <path/to/private.key> \
+    -m offline \
+    -d <distribution> \
+    -i <path/to/tarball.tar.gz>
     ```
 
-    {{< include "installation/nms-user.md" >}}
+3. **Save the admin password**. At the end of the process, you'll see an autogenerated password:
 
-4. Restart the NGINX web server:
+    ```bash
+    Regenerated Admin password: <encrypted password>
+    ```
+    
+    Save that password. You'll need it when you sign in to NGINX Instance Manager.
 
-   ```bash
-   sudo systemctl restart nginx
-   ```
+3. After installation, open a web browser, go to `https://<NIM-FQDN>` (the fully qualified domain name of the NGINX Instance Manager host), and log in.
 
 ---
 

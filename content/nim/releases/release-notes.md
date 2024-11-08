@@ -45,6 +45,8 @@ This release includes the following updates:
 
   The script installs NGINX (Plus or Open Source), ClickHouse, and NGINX Instance Manager. Customers only need their NGINX Plus certificate, key, and, for NGINX Plus R33 or later, a JWT downloaded from MyF5. Support for offline installations will be added in a future update.
 
+  Support for [offline installations]({{< relref "nim/disconnected/offline-install-guide.md" >}}) is also available for air-gapped environments.
+
 - {{% icon-feature %}} **Entitlement and visibility for NGINX Plus R33 – Telemetry reporting for network-restricted environments**<a name="2-18-0-whats-new-entitlement-and-visibility-for-nginx-plus-r33-telemetry-reporting-for-network-restricted-environments"></a>
 
   If NGINX Instance Manager has internet access, customers can [automatically or manually send the usage data to F5]({{< relref "nim/admin-guide/license/report-usage-connected-deployment.md" >}}) as part of the new NGINX Plus R33 changes.
@@ -71,8 +73,6 @@ This release has the following changes in default behavior:
 
 ### Resolved Issues{#2-18-0-resolved-issues}
 This release fixes the following issues. Select an issue's ID link to view its details.
-
-
 
 - {{% icon-resolved %}} Mismatch in date formats in custom date selection on NGINX usage graph [(45512)]({{< relref "/nim/releases/known-issues.md#45512" >}})<a name="2-17-0-resolved-issues-Users-receive-login-error-when-NGINX-Management-Suite-is-deployed-in-Kubernetes"></a>
 - {{% icon-resolved %}} Failure to notify user when template configuration publish fails [(44975)]({{< relref "/nim/releases/known-issues.md#44975" >}})<a name="2-17-0-resolved-issues-REST-API-does-not-work-until-you-log-into-the-web-interface-first"></a>
