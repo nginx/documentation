@@ -18,4 +18,4 @@ To publish a configuration file to an instance group:
    1. Edit the configuration files to make your desired changes. The config analyzer will let you know if there are any errors.
 
 1. Select **Publish** to apply the changes and publish them to the instance.
-1. (Optional) To save the file as a [staged config]({{< relref "/nms/nim/how-to/nginx/publish-configs#stage-configs" >}}), select **Save as**, then provide a name for the staged config.
+1. (Optional) To save the file as a [staged config]({{< relref "/nim/nginx-configs/publish-configs#stage-configs" >}}), select **Save as**, then provide a name for the staged config.

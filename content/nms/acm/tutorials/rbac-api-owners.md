@@ -21,7 +21,7 @@ This guide is meant for NGINX Management Suite Administrators who can add users 
 
 ### What is RBAC?
 
-{{< include "admin-guides/rbac/what-is-rbac.md" >}}
+{{< include "nim/rbac/what-is-rbac.md" >}}
 
 ---
 

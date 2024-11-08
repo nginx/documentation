@@ -11,7 +11,7 @@ The data plane platform has the following requirements:
 <details closed>
 <summary><i class="fa-solid fa-circle-info"></i> Supported Linux distributions</summary>
 
-{{< include "tech-specs/nms-supported-distros.md" >}}
+{{< include "nim/tech-specs/supported-distros.md" >}}
 
 </details>
 

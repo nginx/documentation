@@ -1,0 +1,9 @@
+<yandex>
+    <logger>
+        <level>fatal</level> <!-- set the logging level -->
+        <console>1</console>
+        <log>/dev/null</log>
+        <size>10M</size>
+        <count>1</count>
+    </logger>
+</yandex>

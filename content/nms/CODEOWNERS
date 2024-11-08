@@ -9,7 +9,7 @@ content/admin-guides/ @j.barrios @forsyth1 @jclopper @ssharma13 @n.mcelwain @jpu
 content/overview/tech-specs.md @j.barrios @forsyth1 @jclopper @n.mcelwain @jputrino @tmartin-nginx
 
 [NIM App Sec][1]
-content/nim/how-to/app-protect/ @noumba @j.barrios @i.ukpe @jputrino @tmartin-nginx
+content/nim/app-protect/ @noumba @j.barrios @i.ukpe @jputrino @tmartin-nginx
 
 [NIM][1]
 content/nim/ @forsyth1 @jclopper @j.barrios @ssharma13 @jputrino @tmartin-nginx

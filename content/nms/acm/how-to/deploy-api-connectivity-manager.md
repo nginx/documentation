@@ -19,13 +19,13 @@ Review the following requirements for API Connectivity Manager before continuing
 
 {{< important >}}To install API Connectivity Manager, you must first install Instance Manager. This is because API Connectivity Manager relies on features that are included with Instance Manager.{{< /important >}}
 
-- [Deploy Instance Manager on Kubernetes]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md" >}})
+- [Deploy Instance Manager on Kubernetes]({{< relref "/nim/deploy/kubernetes/deploy-using-helm.md" >}})
 
 ### Dependencies with Instance Manager
 
 Refer to the following table to see the module compatibility for each F5 NGINX Management Suite chart.
 
-{{< include "installation/helm/nms-chart-supported-module-versions.md" >}}
+{{< include "nim/kubernetes/nms-chart-supported-module-versions.md" >}}
 
 
 ---
@@ -161,7 +161,7 @@ To enable the API Connectivity Manager Module, take the following steps:
 
 {{<note>}}To complete the steps in this section, you need to have [OpenSSL 1.1.1](https://www.openssl.org/source/) or later installed.{{</note>}}
 
-{{< include "installation/helm/helm-upgrade-nms.md" >}}
+{{< include "nim/kubernetes/helm-upgrade-nms.md" >}}
 
 ### Upgrade Existing API Connectivity Manager Deployment {#upgrade-acm-helm}
 
@@ -179,7 +179,7 @@ If you've already deployed API Connectivity Manager and would like to upgrade to
 
 ## Access Web Interface
 
-{{< include "installation/helm/access-webui-helm.md" >}}
+{{< include "nim/kubernetes/access-webui-helm.md" >}}
 
 ---
 
@@ -187,7 +187,7 @@ If you've already deployed API Connectivity Manager and would like to upgrade to
 
 A valid license is required to make full use of all the features in API Connectivity Manager.
 
-Refer to the [Add a License]({{< relref "/nms/installation/add-license.md" >}}) topic for instructions on how to download and apply a trial license, subscription license, or Flexible Consumption Program license.
+Refer to the [Add a License]({{< relref "/nim/admin-guide/license/add-license.md" >}}) topic for instructions on how to download and apply a trial license, subscription license, or Flexible Consumption Program license.
 
 ---
 
@@ -199,7 +199,7 @@ Refer to the [Add a License]({{< relref "/nms/installation/add-license.md" >}}) 
 
 ## Troubleshooting
 
-{{< include "support/troubleshooting-guide.md" >}}
+
 
 For guidance on how to create a support package containing system and service details to share with NGINX Customer Support, refer to the guide [Create a Support Package from a Helm Installation]({{< relref "/nms/support/k8s-support-package.md" >}}).
 

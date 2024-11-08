@@ -40,7 +40,7 @@ To complete the steps in this guide, you need the following:
 - You have one or more [Environments with an API Gateway]({{< relref "/nms/acm/getting-started/add-api-gateway" >}}).
 - You have [published one or more API Gateways]({{< relref "/nms/acm/getting-started/publish-api-proxy" >}}).
 - You have [installed and set up NGINX App Protect]({{< relref "/nap-waf/v4/admin-guide/install-nms" >}}).
-- NGINX Management Suite Security Monitoring is [installed]({{< relref "/nms/installation/vm-bare-metal/install-security-monitoring.md" >}}) and running.
+- NGINX Management Suite Security Monitoring is [installed]({{< relref "/nim/monitoring/security-monitoring/deploy/install-security-monitoring.md" >}}) and running.
 
 ---
 
@@ -56,7 +56,7 @@ To create a new policy or modify an existing policy, you can navigate to the *Ap
 
 For information on how to configure an *App Protect* policy, please visit - [Configure NGINX App Protect WAF](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#policy-configuration-overview)
 
-To create an NGINX App Protect WAF policy to use in your Advanced Security policy, please see the [Create a Policy]({{< relref "/nms/nim/how-to/app-protect/manage-waf-security-policies#create-security-policy" >}}) documentation.
+To create an NGINX App Protect WAF policy to use in your Advanced Security policy, please see the [Create a Policy]({{< relref "/nim/app-protect/manage-waf-security-policies#create-security-policy" >}}) documentation.
 {{< /note >}}
 
 ---

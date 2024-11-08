@@ -37,7 +37,7 @@ To complete the instructions in this guide, you need the following:
    <details close>
    <summary><i class="fa-solid fa-circle-info"></i> Supported Linux distributions</summary>
 
-   {{< include "tech-specs/nms-supported-distros.md" >}}
+   {{< include "nim/tech-specs/supported-distros.md" >}}
 
    </details>
 
@@ -60,7 +60,7 @@ This section configures the hosts used in this tutorial. In the following table,
 
 ### Install NGINX Management Suite & API Connectivity Manager {#install-nsm-acm}
 
-1. Follow the steps in the [Installation Guide]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}) to set up NGINX Management Suite and API Connectivity Manager. You do not need to configure a Developer Portal for this tutorial.
+1. Follow the steps in the [Installation Guide]({{< relref "/nim/deploy/_index.md" >}}) to set up NGINX Management Suite and API Connectivity Manager. You do not need to configure a Developer Portal for this tutorial.
 
 ### Install NGINX Agent on Data Plane Host {#install-agent}
 

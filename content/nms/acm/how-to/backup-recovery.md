@@ -19,7 +19,7 @@ To complete the instructions in this guide, you need the following:
 
 - An installed version of Instance Manager
 - An installed version of API Connectivity Manager
-- Instance Manager versions older than 2.15.0 will require an installed version of SQLite. Refer to the [Install SQLite]({{< relref "/nms/admin-guides/maintenance/sqlite-installation.md" >}}) guide for installation instructions.
+- Instance Manager versions older than 2.15.0 will require an installed version of SQLite. Refer to the [Install SQLite]({{< relref "/nim/admin-guide/maintenance/sqlite-installation.md" >}}) guide for installation instructions.
 - The NGINX Management Suite services must be running:
 
     ```shell
@@ -138,7 +138,7 @@ To complete the instructions in this guide, you need the following:
 
 - An installed version of NGINX Management Suite and Instance Manager
 - An installed version of API Connectivity Manager
-- Instance Manager versions older than 2.15.0 will require an installed version of SQLite. Refer to the [Install SQLite]({{< relref "/nms/admin-guides/maintenance/sqlite-installation.md" >}}) guide for installation instructions.
+- Instance Manager versions older than 2.15.0 will require an installed version of SQLite. Refer to the [Install SQLite]({{< relref "/nim/admin-guide/maintenance/sqlite-installation.md" >}}) guide for installation instructions.
 
 
 <a name="root-access"></a>
@@ -167,7 +167,7 @@ To complete the instructions in this guide, you need the following:
 
     To back up and restore NGINX Management Suite in a Kubernetes cluster, you need to install the `utility` pod in your Kubernetes cluster. For each module you want to back up and restore, you need to configure the `utility` pod accordingly:
 
-    1. Update your [Helm Deployment values.yaml file]({{< relref "/nms/installation/kubernetes/deploy-instance-manager.md#configure-chart" >}}), add the `utility: true` line under `global` to enable the utility pod, and the required sections under `nmsModules` to  back up and restore API Connectivity Manager. Example below:
+    1. Update your [Helm Deployment values.yaml file]({{< relref "/nim/deploy/kubernetes/deploy-using-helm.md#configure-chart" >}}), add the `utility: true` line under `global` to enable the utility pod, and the required sections under `nmsModules` to  back up and restore API Connectivity Manager. Example below:
 
         ```yaml
         global:
@@ -178,7 +178,7 @@ To complete the instructions in this guide, you need the following:
                     addClaimsToUtility: true
         ```
 
-    1. [Upgrade your NGINX Management Suite deployment]({{< relref "/nms/installation/kubernetes/deploy-instance-manager#helm-upgrade-nim" >}}) to apply the changes.
+    1. [Upgrade your NGINX Management Suite deployment]({{< relref "/nim/deploy/kubernetes/deploy-using-helm#helm-upgrade-nim" >}}) to apply the changes.
 
     1. Download the NGINX Management Suite Helm chart for your currently installed version of NGINX Management Suite:
 

@@ -45,7 +45,7 @@ In the steps that follow, we will:
 
 To complete the instructions in this guide, you need the following:
 
-- [API Connectivity Manager is installed]({{< relref "/nms/acm/how-to/install-acm.md" >}}), [licensed]({{< relref "/nms/installation/add-license.md" >}}), and running
+- [API Connectivity Manager is installed]({{< relref "/nms/acm/how-to/install-acm.md" >}}), [licensed]({{< relref "/nim/admin-guide/license/add-license.md" >}}), and running
 - One or more [Service workspaces]({{< relref "/nms/acm/how-to/services/publish-api.md#create-a-service-workspace" >}})
 - One or more [Proxies]({{< relref "/nms/acm/how-to/services/publish-api.md" >}})
 

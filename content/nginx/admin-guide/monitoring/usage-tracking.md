@@ -9,7 +9,7 @@ toc: true
 weight: 600
 ---
 
-Tracking your [F5 NGINX Plus]({{< relref "nginx/" >}}) installations is straightforward with [NGINX Management Suite Instance Manager]({{< relref "nms/nim/">}}). If you're enrolled in a commercial program like the [F5 Flex Consumption Program](https://www.f5.com/products/get-f5/flex-consumption-program),you'll need to regularly report this data to F5.
+Tracking your [F5 NGINX Plus]({{< relref "nginx/" >}}) installations is straightforward with [NGINX Management Suite Instance Manager]({{< relref "nim">}}). If you're enrolled in a commercial program like the [F5 Flex Consumption Program](https://www.f5.com/products/get-f5/flex-consumption-program),you'll need to regularly report this data to F5.
 
 <style>
 h2 {
