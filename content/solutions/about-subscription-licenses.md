@@ -1,5 +1,5 @@
 ---
-title: "About subscription licenses"
+title: ""
 date: 2024-10-10T12:52:14-07:00
 # Change draft status to false to publish doc.
 # Description
@@ -21,7 +21,10 @@ journeys: ["researching", "getting started", "using", "renewing", "self service"
 personas: ["devops", "netops", "secops", "support"]
 versions: []
 authors: []
+noindex: true
 ---
+
+# About subscription licenses
 
 ## Overview
 
@@ -55,9 +58,7 @@ When installing or upgrading to NGINX Plus R33 or later, take the following step
 - **[Download and add a valid JWT license](#download-jwt)** to each NGINX Plus instance.
 - **[Set up your environment](#set-up-environment)** to allow NGINX Plus to send usage reports.  
 
-
 ---
-
 
 ## Add the JWT license {#add-jwt}
 
@@ -83,11 +84,7 @@ To ensure NGINX Plus R33 or later can send usage reports, follow these steps bas
 
 ### For internet-connected environments:
 
-Allow outbound HTTPS traffic on TCP port `443` to communicate with F5's licensing endpoint (`product.connect.nginx.com`). Ensure that the following IP addresses are allowed:
-
-- `3.135.72.139`
-- `3.133.232.50`
-- `52.14.85.249`
+{{< include "licensing-and-reporting/configure-internet-connected-environment.md" >}}
 
 ### For network-restricted environments
 
@@ -95,9 +92,13 @@ In environments where NGINX Plus instances cannot access the internet, you'll ne
 
 #### Configure NGINX Plus to report usage to NGINX Instance Manager
 
+{{<call-out "note" "Extra setup for self-signed certificates">}}If your NGINX Instance Manager environment uses self-signed certificates, see [Configure SSL verification for usage reporting with self-signed certificates]({{< relref "nim/system-configuration/secure-traffic.md#configure-ssl-verify" >}}).{{</call-out>}}
+
 To configure NGINX Plus R33 or later to report usage data to NGINX Instance Manger:
 
 {{< include "licensing-and-reporting/configure-nginx-plus-report-to-nim.md" >}}
+
+To send NGINX Plus usage reports to F5, follow the instructions in [Submit usage reports to F5 from NGINX Instance Manager](#submit-usage-reports-from-nim).
 
 ### Postpone reporting enforcement {#postpone-reporting-enforcement}
 
@@ -112,7 +113,6 @@ mgmt {
 ```
 
 {{<important>}}After 180 days, if usage reporting still hasn’t been established, NGINX Plus will stop processing traffic.{{</important>}}
-
 
 ---
 
@@ -137,14 +137,14 @@ mgmt {
 
 ### NGINX Instance Manager
 
-#### License NGINX Instance Manager
+The instructions below use the terms "internet-connected" and "network-restricted" to describe how NGINX Instance Manager accesses the internet.
 
-{{< note >}}A network-restricted environment (also called "disconnected" or "air-gapped") means the system doesn’t have internet access.{{</note>}}
+#### License NGINX Instance Manager
 
 - **Internet-connected**: Follow the steps in [Add license]({{< relref "nim/admin-guide/license/add-license.md" >}}).
 - **Network-restricted**: Follow the steps in [Add a license in a disconnected environment]({{< relref "nim/disconnected/add-license-disconnected-deployment.md" >}}).
 
-#### Submit usage reports to F5 from NGINX Instance Manager
+#### Submit usage reports to F5 from NGINX Instance Manager {#submit-usage-reports-from-nim}
 
 - **Internet-connected**: Follow the steps in [Report usage to F5]({{< relref "nim/admin-guide/license/report-usage-connected-deployment.md" >}}).
-- **Network-restricted**: Follow the steps in [Report usage in a network-restricted environment]({{< relref "nim/disconnected/report-usage-disconnected-deployment.md" >}}).
+- **Network-restricted**: Follow the steps in [Report usage to F5 in a network-restricted environment]({{< relref "nim/disconnected/report-usage-disconnected-deployment.md" >}}).

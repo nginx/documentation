@@ -1,5 +1,5 @@
 ---
-title: "Report usage in a disconnected environment"
+title: "Report usage to F5 in a disconnected environment"
 date: 2024-10-14T14:29:40-07:00
 # Change draft status to false to publish doc.
 draft: false

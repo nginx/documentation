@@ -12,9 +12,7 @@ docs:
     }
     ```
 
-    {{<call-out "note" "Extra setup for self-signed certificates">}}If your NGINX Instance Manager environment uses self-signed certificates, see [Configure SSL verification for usage reporting with self-signed certificates]({{< relref "nim/system-configuration/secure-traffic.md#configure-ssl-verify" >}}).{{</call-out>}}
-
-3. Validate the configuration and reload NGINX:
+3. Reload NGINX:
 
     ``` bash
     nginx -s reload

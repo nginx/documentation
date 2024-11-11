@@ -39,49 +39,51 @@ Follow the [pre-release steps](#steps) below to complete the process.
 
 - **No action needed**:  
   If you use NGINX Plus before R33 and haven’t enabled automatic upgrades, no action is required.
----
 
-## Pre-release action items for NGINX Plus R33 {#steps}
+---
 
 Complete these steps **before** NGINX R33 releases to prepare your systems.
 
-### Download the JWT from MyF5 {#jwt}
+## Add the JWT license {#add-jwt}
 
+Before you install or upgrade to NGINX Plus R33 or later, make sure to:
+
+### Download the license from MyF5 {#download-jwt}
+    
 {{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 
-### Apply the JWT
+### Copy the license to each NGINX Plus instance
 
 {{< include "licensing-and-reporting/apply-jwt.md" >}}
 
-##### Custom paths:
+#### Custom paths: {#custom-paths}
 
 {{< include "licensing-and-reporting/custom-paths-jwt.md" >}}
 
+---
 
-### Set up your network for reporting {#configure-network}
+## Set up your network for reporting {#configure-network}
 
 To ensure NGINX Plus R33 can report telemetry data, follow these steps based on your environment:
 
-#### For internet-connected environments:
+### For internet-connected environments:
 
-1. **Open port 443**:  
-   Allow outbound HTTPS traffic on TCP port 443 to communicate with F5's licensing endpoint (`product.connect.nginx.com`). Ensure that the following IP addresses are allowed:
+{{< include "licensing-and-reporting/configure-internet-connected-environment.md" >}}
 
-   - `3.135.72.139`
-   - `3.133.232.50`
-   - `52.14.85.249`
+### For network-restricted environments
 
-#### For partially connected environments:
+In environments where NGINX Plus instances cannot access the internet, you'll need NGINX Instance Manager to handle usage reporting.
 
-{{< include "licensing-and-reporting/disconnected-network-settings.md" >}}
+#### Configure NGINX Plus to report usage to NGINX Instance Manager
 
-#### For fully disconnected environments:
+To configure NGINX Plus R33 or later to report usage data to NGINX Instance Manger:
 
-Starting with **NGINX Instance Manager 2.18** (**coming soon**), you’ll be able to manually export usage reports for fully disconnected environments. You will need to:
+{{< include "licensing-and-reporting/configure-nginx-plus-report-to-nim.md" >}}
 
-1. **Export the usage report**: Manually export the usage report from NGINX Instance Manager.
-2. **Send the report to F5**: Submit the report to F5 for verification from a location with internet access.
-3. **Upload the acknowledgment**: After verification, upload the acknowledgment from F5 to NGINX Instance Manager.
+#### Submit usage reports to F5 from NGINX Instance Manager
+
+- **Internet-connected**: If NGINX Instance Manager is connected to the internet, see [Report usage to F5]({{< relref "nim/admin-guide/license/report-usage-connected-deployment.md" >}}) for instructions.
+- **Network-restricted**: If NGINX Instance Manager cannot access the internet, follow the steps in [Report usage to F5 in a network-restricted environment]({{< relref "nim/disconnected/report-usage-disconnected-deployment.md" >}}).
 
 ### Handling outages
 
@@ -92,12 +94,6 @@ If a temporary outage occurs, either on your side or F5’s:
 
 ---
 
-## What’s reported and how it’s protected {#telemetry}
+## What’s reported {#telemetry}
 
 {{< include "licensing-and-reporting/reported-usage-data.md" >}}
-
-### Security and privacy of reported data
-
-All communication between your NGINX Plus instances, NGINX Instance Manager, and F5’s licensing endpoint (`product.connect.nginx.com`) is protected using **SSL/TLS** encryption.
-
-Only **operational metrics** are reported — no **personally identifiable information (PII)** or **sensitive customer data** is transmitted.
