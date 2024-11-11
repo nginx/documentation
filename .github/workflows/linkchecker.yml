@@ -22,7 +22,27 @@ jobs:
       # Run LinkChecker on nginx-one docs
       - name: Run LinkChecker nginx-one
         run: linkchecker https://docs.nginx.com/nginx-one/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com
+
+  nginx-instance-manager:
+    runs-on: ubuntu-latest
+    steps:
+      # Install LinkChecker
+      - name: Install LinkChecker
+        run: sudo apt-get update && sudo apt-get install -y linkchecker
+      # Run LinkChecker on nginx-instance-manager docs
+      - name: Run LinkChecker nginx-instance-manager
+        run: linkchecker  https://docs.nginx.com/nginx-instance-manager/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com --ignore-url ^https://product.apis.f5.com --ignore-url ^https://product-s.apis.f5.com --ignore-url ^https://www.maxmind.com
   
+  nginx-solutions:
+    runs-on: ubuntu-latest
+    steps:
+      # Install LinkChecker
+      - name: Install LinkChecker
+        run: sudo apt-get update && sudo apt-get install -y linkchecker
+      # Run LinkChecker on nginx-solutions docs
+      - name: Run LinkChecker nginx-solutions
+        run: linkchecker https://docs.nginx.com/solutions/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com
+        
   nginx-app-protect-dos:
     runs-on: ubuntu-latest
     steps:
