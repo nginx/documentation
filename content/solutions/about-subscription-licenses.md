@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "About subscription licenses"
 date: 2024-10-10T12:52:14-07:00
 # Change draft status to false to publish doc.
 # Description
@@ -21,13 +21,12 @@ journeys: ["researching", "getting started", "using", "renewing", "self service"
 personas: ["devops", "netops", "secops", "support"]
 versions: []
 authors: []
-noindex: true
+build:
+  list: never
+  render: always
 ---
 
-# About subscription licenses
-
 ## Overview
-
 
 We’re updating NGINX Plus to align with F5’s entitlement and visibility policy, bringing benefits like fair and compliant usage, better visibility into license management, and improved customer support.
 
