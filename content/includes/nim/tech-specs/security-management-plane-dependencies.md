@@ -7,7 +7,7 @@ The Security Monitoring module requires the following versions of NGINX Instance
 
 | Security Monitoring | Instance Manager  |
 |---------------------|-------------------|
-| 1.7.1               | 2.14.1–2.17.3     |
+| 1.7.1               | 2.14.1–2.18.0     |
 | 1.7.0               | 2.14.0            |
 | 1.6.0               | 2.12.0–2.13.0     |
 | 1.5.0               | 2.11.0            |
