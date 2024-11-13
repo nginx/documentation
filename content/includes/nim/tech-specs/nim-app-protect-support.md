@@ -1,5 +1,5 @@
 ---
-doc: DOCS-1068
+docs: DOCS-1068
 ---
 
 NGINX Instance Manager supports the following versions of [NGINX App Protect WAF](https://docs.nginx.com/nginx-app-protect/):

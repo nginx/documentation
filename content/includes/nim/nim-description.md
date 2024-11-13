@@ -1,5 +1,5 @@
 ---
-docs: DOCS-000
+docs: "DOCS-1659"
 ---
 
 [NGINX Instance Manager]({{< relref "/nim/">}}) allows you to configure, scale, and manage NGINX Open Source and NGINX Plus instances at scale. Instance Manager provides a [REST API]({{< relref "/nim/fundamentals/api-overview">}}) and web-based graphical user interface (GUI) for managing NGINX instances across multiple servers, making it easier to configure, monitor, and troubleshoot NGINX deployments.

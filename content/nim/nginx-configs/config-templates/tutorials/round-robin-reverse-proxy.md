@@ -6,7 +6,7 @@ description: "Learn how to set up a round-robin reverse proxy using NGINX Instan
 weight: 100
 toc: true
 tags: [ "docs" ]
-docs: "DOCS-000"
+docs: "DOCS-1655"
 categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
 doctypes: ["tutorial"]
 journeys: ["getting started", "using"]

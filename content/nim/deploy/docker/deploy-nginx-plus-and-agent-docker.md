@@ -1,10 +1,10 @@
 ---
-docs:
+docs: "DOCS-1654"
 doctypes:
 - task
 tags:
 - docs
-title: Deploy NGINX Plus in a container (data plane)
+title: "Deploy NGINX Plus in a container (data plane)"
 toc: true
 weight: 200
 ---

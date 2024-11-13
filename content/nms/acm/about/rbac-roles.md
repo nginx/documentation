@@ -1,6 +1,7 @@
 ---
-title: RBAC roles
+title: "RBAC roles"
 weight: 600
+docs: "DOCS-1667"
 ---
 
 ## Built-In Roles

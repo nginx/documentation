@@ -7,11 +7,11 @@ doctypes:
 - deployment guide
 tags:
 - docs
-title: Deploy NGINX Instance Manager using Docker Compose
+title: "Deploy NGINX Instance Manager using Docker Compose"
 toc: true
 versions: []
 weight: 100
-docs:
+docs: "DOCS-1653"
 ---
 
 

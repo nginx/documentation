@@ -1,5 +1,5 @@
 ---
-docs: DOCS-000
+docs: "DOCS-1665"
 ---
 
 Helm charts are pre-configured packages of Kubernetes resources deployed with a single command, which allow you to to define, install, and upgrade Kubernetes applications. 

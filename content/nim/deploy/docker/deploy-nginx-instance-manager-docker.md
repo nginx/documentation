@@ -7,11 +7,11 @@ doctypes:
 - deployment guide
 tags:
 - docs
-title: Deploy in a single container
+title: "Deploy in a single container"
 toc: true
 versions: []
 weight: 100
-docs:
+docs: "DOCS-1652"
 ---
 
 {{< call-out "important" "Single container deployment not suitable for production" "fa-solid fa-triangle-exclamation" >}}
