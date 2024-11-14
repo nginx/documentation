@@ -97,7 +97,7 @@ Development mode sets the following default configuration:
 <details>
 <summary><i class="fa-solid fa-circle-info"></i> (Optional) Production mode default configuration</summary>
 
-For all conventional and production use cases, we recommend starting Keycloak in **Production mode**, which follows a "[secure by default](https://en.wikipedia.org/wiki/Secure_by_default)" principle.
+For all conventional and production use cases, we recommend starting Keycloak in **Production mode**, which follows a "secure by default" principle.
 
 Production mode sets the following default configuration:
 

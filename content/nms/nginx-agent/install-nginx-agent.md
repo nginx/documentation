@@ -443,7 +443,7 @@ For instructions on how configure mTLS to secure communication between the NGINX
 After you register an NGINX instance with NGINX Management Suite, the NGINX Agent will collect and report metrics. For more information about the metrics that are reported, see [Overview: Instance Metrics]({{< relref "/nim/monitoring/overview-metrics.md" >}}).
 
 ## Container Support
-NGINX Agent is a companion daemon for NGINX Open Source or NGINX Plus instances and must run in the same container to work. The NGINX Agent repository includes [Dockerfiles](https://github.com/nginx/agent/tree/main/scripts/docker/official/) that can be used to build custom container images. Images are created with an NGINX Open Source or NGINX Plus instance and are available for various operating systems.
+NGINX Agent is a companion daemon for NGINX Open Source or NGINX Plus instances and must run in the same container to work.
 
 See the requirements and supported operating systems in the [NGINX Agent Technical Specifications](https://docs.nginx.com/nginx-agent/technical-specifications/) topic.
 

@@ -181,7 +181,7 @@ The basic configuration below creates an API Proxy to a backend service.
 `"info.title"-"info.version"`
 
 - The string is "URL-ized", meaning any whitespace gets converted to dashes (`-`) and all letters are lowercase.
-If we used the OpenAPI example [Petstore API](https://github.com/OAI/OpenAPI-Specification/blob/main/examples/v3.0/petstore.yaml), the auto-generated name for the API Docs would be `petstore-v1`.
+If we used the OpenAPI example [Petstore API](https://github.com/OAI/OpenAPI-Specification/blob/main/tests/v3.0/pass/petstore.yaml), the auto-generated name for the API Docs would be `petstore-v1`.
 
 {{<tabs name="Publish API Proxy with OpenAPI Spec">}}
 
