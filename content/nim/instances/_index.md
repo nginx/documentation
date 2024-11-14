@@ -1,5 +1,5 @@
 ---
 title: NGINX instances
-weight: 30
+weight: 80
 url: /nginx-instance-manager/how-to/instances
 ---

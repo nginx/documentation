@@ -1,6 +1,6 @@
 ---
 description: This document lists and describes the known issues and possible workarounds
-  in the F5 NGINX Management Suite Security Monitoring module. Fixed issues are removed
+  in the F5 NGINX Security Monitoring module. Fixed issues are removed
   after **45 days**.
 docs: DOCS-1077
 tags:
@@ -20,7 +20,7 @@ weight: 200
 ## 1.7.0
 October 18, 2023
 
-### {{% icon-bug %}} Web interface fails to load after restarting NGINX Management Suite {#44587}
+### {{% icon-bug %}} Web interface fails to load after restarting NGINX Instance Manager {#44587}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
@@ -30,7 +30,7 @@ October 18, 2023
 
 {{</bootstrap-table>}}
 #### Description
-The NGINX Management Suite web interface can fail to load with a "Page not found"  error after restarting its service. The security monitoring module will fail to appear on the launchpad until the page is manually reloaded.
+The NGINX Instance Manager web interface can fail to load with a "Page not found"  error after restarting its service. The security monitoring module will fail to appear on the launchpad until the page is manually reloaded.
 
 #### Workaround
 
@@ -68,7 +68,7 @@ November 17, 2022
 
 {{</bootstrap-table>}}
 #### Description
-If you have Instance Manager 2.7 or earlier installed and attempt to enable both the API Connectivity Manager and Security Monitoring modules on the same NGINX Management Suite management plane, the API Connectivity Manager module will not load because of incompatibility issues with the Security Monitoring module.
+If you have Instance Manager 2.7 or earlier installed and attempt to enable both the API Connectivity Manager and Security Monitoring modules on the same NGINX Instance Manager management plane, the API Connectivity Manager module will not load because of incompatibility issues with the Security Monitoring module.
 
 #### Workaround
 

@@ -8,7 +8,7 @@ tags:
 - docs
 title: Query the Metrics API
 toc: true
-weight: 300
+weight: 200
 ---
 
 ## Overview
@@ -33,7 +33,7 @@ You can use the Metrics API to query for desired metric names and fine-tune the 
 
 ## Authentication
 
-You can use basic authentication or JWT authentication to access the Instance Manager REST API, as described in the [Instance Manager API Overview]({{< relref "/nim/fundamentals/api-overview#authentication" >}}).
+You can use basic authentication or JWT authentication to access the NGINX Instance Manager REST API, as described in the [NGINX Instance Manager API Overview]({{< relref "/nim/fundamentals/api-overview#authentication" >}}).
 
 The examples in this guide demonstrate using a "bearer" token for authentication. The token is sent using the "Authorization" request header field and "Bearer" schema.
 

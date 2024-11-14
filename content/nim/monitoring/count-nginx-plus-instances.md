@@ -1,6 +1,6 @@
 ---
 description: Tracking your [NGINX Plus]({{< relref "nginx/" >}}) installations is
-  straightforward with [NGINX Management Suite Instance Manager]({{< relref "nim/"
+  straightforward with [NGINX Instance Manager]({{< relref "nim/"
   >}}). If you're enrolled in a commercial program like the [F5 Flex Consumption Program](https://www.f5.com/products/get-f5/flex-consumption-program),
   you'll need to regularly report this data to F5.
 docs: DOCS-934
@@ -17,7 +17,7 @@ draft: true
 ## Overview
 
 Tracking your [NGINX Plus]({{< relref "nginx/" >}}) installations is
-  straightforward with [NGINX Management Suite Instance Manager]({{< relref "nim/"
+  straightforward with [NGINX Instance Manager]({{< relref "nim/"
   >}}). If you're enrolled in a commercial program like the [F5 Flex Consumption Program](https://www.f5.com/products/get-f5/flex-consumption-program),
   you'll need to regularly report this data to F5.
 

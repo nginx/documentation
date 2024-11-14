@@ -1,31 +1,30 @@
 ---
-description: Learn how to view events and metrics in F5 NGINX Management Suite Instance
-  Manager.
+description: Learn how to view events and metrics in F5 NGINX Instance Manager.
 docs: DOCS-847
 doctypes: task
 title: View events and metrics
 toc: true
-weight: 800
+weight: 300
 ---
 
 ## Overview
 
-F5 NGINX Management Suite Instance Manager provides events and metrics data for your instances. You can access this information in the user interface, or by using the REST API.
+F5 NGINX Instance Manager provides events and metrics data for your instances. You can access this information in the user interface, or by using the REST API.
 
-{{<note>}}This topic provides examples for using the REST API to view, sort, and filter Events data that can be applied across the NGINX Management Suite REST API.{{</note>}}
+{{<note>}}This topic provides examples for using the REST API to view, sort, and filter Events data that can be applied across the NGINX Instance Manager REST API.{{</note>}}
 
 ## View Events in the User Interface
 
-To view events in the Instance Manager user interface, take the following steps:
+To view events in the NGINX Instance Manager user interface, take the following steps:
 
-1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in.
+1. In a web browser, go to the FQDN for your NGINX Instance Manager host and log in.
 2. In the **Platform** section, select **Events**. The **Events** overview page lists the events from the last six hours, with the most recent event listed first.
 3. You can use the filters to filter events by level and time range, and sort events by selecting the column heading.
 4. Select an event from the list to view the details.
 
 ## Access Events data by using the REST API
 
-You can use the Events API to view Instance Manager events data. You can use basic authentication or JWT authentication to access the Instance Manager REST API, as described in the [Instance Manager API Overview]({{< relref "/nim/fundamentals/api-overview#authentication" >}}).
+You can use the Events API to view NGINX Instance Manager events data. You can use basic authentication or JWT authentication to access the NGINX Instance Manager REST API, as described in the [NGINX Instance Manager API Overview]({{< relref "/nim/fundamentals/api-overview#authentication" >}}).
 
 The examples in this guide demonstrate using a "bearer" token for authentication. The token is sent using the "Authorization" request header field and "Bearer" schema.
 
@@ -266,7 +265,7 @@ The **Metrics Summary** page includes a highlights section of the most important
 
 To view the metrics summary for an NGINX instance, take the following steps:
 
-1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in.
+1. In a web browser, go to the FQDN for your NGINX Instance Manager host and log in.
 2. Under **Modules**, select the **Instance Manager**.
 3. Select an instance on the **Instances** detail page.
 4. Select the **Metrics Summary** tab.

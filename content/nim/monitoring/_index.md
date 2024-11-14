@@ -1,5 +1,5 @@
 ---
 title: Monitoring
-weight: 10000
+weight: 60
 url: /nginx-instance-manager/how-to/monitoring
 ---

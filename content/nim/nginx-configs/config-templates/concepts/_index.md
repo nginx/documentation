@@ -1,7 +1,7 @@
 ---
 description: ""
 title: Overview
-weight: 1
+weight: 10
 url: /nginx-instance-manager/config-templates/concepts
 ---
 

@@ -1,5 +1,5 @@
 ---
 title: Platform administration
-weight: 4
+weight: 40
 url: /nginx-instance-manager/how-to/admin-guides/
 ---

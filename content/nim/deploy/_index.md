@@ -1,7 +1,7 @@
 ---
 title: Deploy
 description:
-weight: 2
+weight: 20
 url: /nginx-instance-manager/deploy/
 cascade:
    type: "nim-r33"

@@ -1,6 +1,6 @@
 ---
 description: These release notes list and describe the new features, enhancements,
-  and resolved issues in the F5 NGINX Management Suite Security Monitoring module.
+  and resolved issues in the F5 NGINX Security Monitoring module.
 docs: DOCS-1078
 doctypes:
 - reference
@@ -200,7 +200,7 @@ This release includes the following security updates:
 
 #### Mitigation
 
-- Avoid configuring trace-level logging in the NGINX Agent configuration file. For more information, refer to the [Configuring the NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent.md#configuring-the-nginx-agent ">}}) section of NGINX Management Suite documentation. If trace-level logging is required, ensure only trusted users have access to the log files.
+- Avoid configuring trace-level logging in the NGINX Agent configuration file. For more information, refer to the [Configuring the NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent.md#configuring-the-nginx-agent ">}}) section of NGINX Instance Manager documentation. If trace-level logging is required, ensure only trusted users have access to the log files.
 
 #### Fixed in
 
@@ -215,7 +215,7 @@ This release has the following changes in default behavior:
 
 - {{% icon-feature %}} **Improved error message when NGNIX Management Suite server is not running**<a name="1-3-0-changes-in-behavior-Improved-error-message-when-NGNIX-Management-Suite-server-is-not-running"></a>
 
-  The Security Monitoring module now displays the message "Upstream unavailable" when the NGINX Management Suite server is not running, instead of the previous message "Oops something went wrong."
+  The Security Monitoring module now displays the message "Upstream unavailable" when the NGINX Instance Manager server is not running, instead of the previous message "Oops something went wrong."
 
 - {{% icon-feature %}} **Single quotes are automatically escaped in filtered values**<a name="1-3-0-changes-in-behavior-Single-quotes-are-automatically-escaped-in-filtered-values"></a>
 
@@ -303,9 +303,9 @@ November 17, 2022
 ### What's New{#1-0-0-whats-new}
 This release includes the following updates:
 
-- {{% icon-feature %}} **Introducing the NGINX Management Suite Security Monitoring module**<a name="1-0-0-whats-new-Introducing-the-NGINX-Management-Suite-Security-Monitoring-module"></a>
+- {{% icon-feature %}} **Introducing the NGINX Security Monitoring module**<a name="1-0-0-whats-new-Introducing-the-NGINX-Management-Suite-Security-Monitoring-module"></a>
 
-  Use the NGINX Management Suite Security Monitoring module to monitor the NGINX App Protect WAF protection of your apps and APIs. View protection insights for analyzing possible threats and tuning policies.
+  Use the NGINX Security Monitoring module to monitor the NGINX App Protect WAF protection of your apps and APIs. View protection insights for analyzing possible threats and tuning policies.
 
   The Security Monitoring module includes the following:
 

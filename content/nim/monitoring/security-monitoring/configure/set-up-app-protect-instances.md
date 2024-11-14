@@ -1,6 +1,6 @@
 ---
 description: Learn how to set up F5 NGINX App Protect data plane instances for use with
-  the NGINX Management Suite Security Monitoring and Instance Manager modules.
+  the NGINX Security Monitoring and NGINX Instance Manager.
 docs: DOCS-1107
 doctypes:
 - task
@@ -13,10 +13,10 @@ weight: 100
 
 ## Overview
 
-F5 NGINX Management Suite Security Monitoring supports the following use cases:
+F5 NGINX Security Monitoring supports the following use cases:
 
-- **Security Monitoring only**: Use only the Security Monitoring module to monitor data from NGINX App Protect WAF instances. You will be able to review the security dashboards to assess potential threats and identify opportunities to fine-tune your policies. Your NGINX App Protect WAF configurations are managed outside of the NGINX Management Suite context.
-- **Security Monitoring and Instance Manager**: Use the Security Monitoring module with the NGINX Management Suite Instance Manager module. In addition to monitoring your application security, you will be able to manage your NGINX App Protect WAF  configurations and security policies in a single location and push pre-compiled updates to an instance or instance group.
+- **Security Monitoring only**: Use only the Security Monitoring module to monitor data from NGINX App Protect WAF instances. You will be able to review the security dashboards to assess potential threats and identify opportunities to fine-tune your policies. Your NGINX App Protect WAF configurations are managed outside of the NGINX Instance Manager context.
+- **Security Monitoring and Instance Manager**: Use the Security Monitoring module with the NGINX Instance Manager. In addition to monitoring your application security, you will be able to manage your NGINX App Protect WAF  configurations and security policies in a single location and push pre-compiled updates to an instance or instance group.
 
 ### Before You Begin
 
@@ -24,7 +24,7 @@ Complete the following prerequisites before proceeding with the steps in this gu
 
 1. If you are new to NGINX App Protect WAF, follow the instructions in the installation and configuration guides to get up and running:
 
-   - [Install NGINX App Protect WAF](https://docs.nginx.com/nginx-app-protect/admin-guide/install/) on one or more data plane instances. Each data plane instance must have connectivity to the NGINX Management Suite host.
+   - [Install NGINX App Protect WAF](https://docs.nginx.com/nginx-app-protect/admin-guide/install/) on one or more data plane instances. Each data plane instance must have connectivity to the NGINX Instance Manager host.
    - [Configure NGINX App Protect WAF](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#policy-configuration-overview) according to your needs on each of the data plane instance.
 
 1. Review the dependencies with NGINX App Protect WAF and NGINX Plus.
@@ -32,7 +32,7 @@ Complete the following prerequisites before proceeding with the steps in this gu
    {{< include "nim/tech-specs/security-data-plane-dependencies.md" >}}
 
 1. Determine your use case: **Security Monitoring only** or **Security Monitoring and Configuration Management**.
-1. [Install the NGINX Management Suite Security Monitoring module]({{< relref "/nim/monitoring/security-monitoring/deploy/install-security-monitoring.md" >}}) and [upload your license]({{< relref "/nim/admin-guide/license/add-license.md" >}}).
+1. [Install the NGINX Security Monitoring module]({{< relref "/nim/monitoring/security-monitoring/deploy/install-security-monitoring.md" >}}) and [upload your license]({{< relref "/nim/admin-guide/license/add-license.md" >}}).
 
 
 ## Install NGINX Agent {#agent-config}
@@ -46,13 +46,13 @@ NGINX Agent is a companion daemon for NGINX Open Source or NGINX Plus instance t
 Repeat the steps in this section on each NGINX App Protect WAF data plane host to install and configure NGINX Agent for use with  Security Monitoring. **These settings apply to both of the Security Monitoring use cases.**
 
 1. Use SSH to connect to the data plane host.
-1. Install the NGINX Agent package from the NGINX Management Suite host.
+1. Install the NGINX Agent package from the NGINX Instance Manager host.
 
    {{< include "agent/installation/install-agent-api.md" >}}
 
 1. Edit the `/etc/nginx-agent/nginx-agent.conf` file to add the `nap_monitoring` configuration.
 
-   Add the lines below to the end of the file. This enables NGINX Agent to send NGINX App Protect messages to the NGINX Management Suite management plane.
+   Add the lines below to the end of the file. This enables NGINX Agent to send NGINX App Protect messages to the NGINX Instance Manager management plane.
 
    ```yaml
    dataplane:
@@ -85,7 +85,7 @@ Repeat the steps in this section on each NGINX App Protect WAF data plane host t
    nginx_app_protect:
       # Report interval for NGINX App Protect details - the frequency the NGINX Agent checks NGINX App Protect for changes.
       report_interval: 15s
-      # Enable precompiled publication from the NGINX Management Suite (true) or perform compilation on the data plane host (false).
+      # Enable precompiled publication from the NGINX Instance Manager (true) or perform compilation on the data plane host (false).
       precompiled_publication: true
 
    # NGINX App Protect Monitoring config
@@ -196,15 +196,15 @@ Repeat the steps below on each NGINX App Protect WAF data plane instance.
    sudo systemctl restart nginx
    ```
 
-You should now be able to view data from your NGINX App Protect instances in the NGINX Management Suite Security Monitoring dashboards.
+You should now be able to view data from your NGINX App Protect instances in the NGINX Security Monitoring dashboards.
 
 ## Set up Instances for Security Monitoring with Instance Manager {#monitor-and-manage}
 
-Complete the steps in this section if you want to use the Security Monitoring module **and** Instance Manager. In this use case, you will use NGINX Management Suite to monitor threats and to manage your NGINX App Protect WAF configurations and security policies.
+Complete the steps in this section if you want to use the Security Monitoring module **and** Instance Manager. In this use case, you will use NGINX Instance Manager to monitor threats and to manage your NGINX App Protect WAF configurations and security policies.
 
 Take the steps below to update your NGINX App Protect WAF configurations by using Instance Manager.
 
-1. Log in to the NGINX Management Suite user interface and go to **Modules** > **Instance Manager**.
+1. Log in to the NGINX Instance Manager user interface and go to **Modules** > **Instance Manager**.
 1. Select **Instances** or **Instance Groups**, as appropriate.
 1. Select **Edit Config** from the **Actions** menu for the desired instance or instance group.
 1. Next, edit the desired configuration file. You will add directives that reference the security policies bundle and enable the NGINX App Protect WAF logs required by the Security Monitoring dashboards. An example configuration is provided below.
@@ -219,9 +219,9 @@ Take the steps below to update your NGINX App Protect WAF configurations by usin
 
    - Add the `app_protect_policy_file` directive with a reference to a security policy.
 
-      The policy reference must use the `.tgz` file extension when using Instance Manager to perform precompiled publication of NGINX App Protect WAF policies and log profiles. The file path referenced must exist on the NGINX Management Suite host, but it's ok if the policy file doesn't exist yet. If your Instance is not configured for precompiled publication, then use the `.json` file extension for polcies and log profiles. In this case, the file path referenced in the NGINX configuration must reside on the Instance.
+      The policy reference must use the `.tgz` file extension when using Instance Manager to perform precompiled publication of NGINX App Protect WAF policies and log profiles. The file path referenced must exist on the NGINX Instance Manager host, but it's ok if the policy file doesn't exist yet. If your Instance is not configured for precompiled publication, then use the `.json` file extension for polcies and log profiles. In this case, the file path referenced in the NGINX configuration must reside on the Instance.
 
-      If you are using custom security policies, at this stage, it's fine to use the default security policy shown in the example above. After completing the steps in this guide, refer to the instructions in [Set Up App Protect WAF Configuration Management]({{< relref "/nim/app-protect/setup-waf-config-management#add-waf-config" >}}) to add your custom security policy files to NGINX Management Suite and update your NGINX configuration.
+      If you are using custom security policies, at this stage, it's fine to use the default security policy shown in the example above. After completing the steps in this guide, refer to the instructions in [Set Up App Protect WAF Configuration Management]({{< relref "/nim/app-protect/setup-waf-config-management#add-waf-config" >}}) to add your custom security policy files to NGINX Instance Manager and update your NGINX configuration.
 
    - Add the `app_protect_security_log_enable on` and the `app_protect_security_log` directive to any NGINX context where NGINX App Protect WAF is enabled and you want to be able to review attack data.
 

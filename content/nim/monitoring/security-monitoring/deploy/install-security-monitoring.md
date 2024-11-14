@@ -56,13 +56,13 @@ Follow the steps in this guide to install or upgrade or upgrade the NGINX Securi
 
 {{</tabs>}}
 
-2. Restart the F5 NGINX Management Suite services:
+2. Restart the F5 NGINX Instance Manager services:
 
     ```bash
     sudo systemctl restart nms
     ```
 
-    NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
+    NGINX Instance Manager components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
 
 3. Restart the NGINX web server:
 
@@ -118,13 +118,13 @@ Refer to the [Add a License]({{< relref "/nim/admin-guide/license/add-license.md
 {{%/tab%}}
 {{</tabs>}}
 
-2. Restart the NGINX Management Suite platform services:
+2. Restart the NGINX Instance Manager platform services:
 
     ```bash
     sudo systemctl restart nms
     ```
 
-    NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
+    NGINX Instance Manager components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
 
 3. Restart the NGINX web server:
 
@@ -138,7 +138,7 @@ Refer to the [Add a License]({{< relref "/nim/admin-guide/license/add-license.md
    sudo systemctl start nms-sm
    ```
 
-5. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nim/system-configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Management suite.
+5. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nim/system-configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Instance Manager.
 
 ---
 

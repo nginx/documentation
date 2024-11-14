@@ -31,7 +31,7 @@ app_protect_security_log "/etc/app_protect/conf/log_sm.json" <Path to store log 
 # Example: app_protect_security_log "/etc/app_protect/conf/log_sm.json" /var/log/app_protect/security.log;
 ```
 
-1. Instance with Security Monitoring and Instance Manager
+1. Instance with Security Monitoring and NGINX Instance Manager
 
 ```nginx
 app_protect_policy_file "/etc/nms/NginxDefaultPolicy.tgz";

@@ -7,12 +7,12 @@ tags:
 - docs
 title: "Overview: NGINX instance metrics"
 toc: true
-weight: 300
+weight: 100
 ---
 
 ## Overview
 
-The data that Instance Manager collects can be divided into two categories:
+The data that NGINX Instance Manager collects can be divided into two categories:
 
 - **System metrics**: Data collected about the data plane system, such as CPU and memory usage.
 - **Traffic metrics**: Data related to processed traffic from sources such as NGINX OSS, NGINX Plus, or NGINX logs.
@@ -25,7 +25,7 @@ For the full list of metrics, see the [Metrics Catalog Reference]({{< relref "/n
 
 While the NGINX Agent is running on the host, it collects metrics at regular 15-second intervals. Metrics then are downsampled and sent to the Manager server once per minute.
 
-Instance Manager stores historical metrics data in an analytics database. Metrics are aggregated and rolled-up as follows:
+NGINX Instance Manager stores historical metrics data in an analytics database. Metrics are aggregated and rolled-up as follows:
 
 - Data not older than 8 days are stored with best possible resolution (usually 1 min).
 - Data older than 8 days but not older than 30 days are stored with 5 min resolution.
