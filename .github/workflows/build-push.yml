@@ -36,6 +36,10 @@ on:
     branches:
       - "nim-release-2.18.0"
 
+env:
+  FRONT_DOOR_USERNAME: ${{ secrets.FRONT_DOOR_USERNAME }}
+  FRONT_DOOR_PASSWORD: ${{ secrets.FRONT_DOOR_PASSWORD }}
+  GITHUB_PR_NUMBER: ${{ github.event.pull_request.number }}     
 jobs:
   prod-check-branch:
     runs-on: ubuntu-24.04
@@ -66,3 +70,62 @@ jobs:
     secrets:
       AZURE_CREDENTIALS: ${{secrets.AZURE_CREDENTIALS_DOCS}}
       AZURE_KEY_VAULT: ${{secrets.AZURE_KEY_VAULT_DOCS}}
+
+  lighthouseci:
+    needs: call-docs-build-push
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.workflow_run.head_branch }}
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Installing packages
+        run: npm install
+      - name: Generating lighthouse reports for PR and main...
+        run: | 
+            node lighthouse-script.js
+      - name: Compare the artifacts for negative differences in performance
+        run: |
+            FIELDS=("performance" "accessibility") 
+            for FIELD in "${FIELDS[@]}"; do
+                PR_VALUE=$(cat lighthouse-reports/pr-report.json | jq -r ".categories.$FIELD.score")
+                MAIN_VALUE=$(cat lighthouse-reports/main-report.json | jq -r ".categories.$FIELD.score")
+                echo "$FIELD: PR - $PR_VALUE | Main - $MAIN_VALUE"
+
+                if [ $FIELD = "performance" ]; then  
+                  LOWER_BOUND=$(echo "$MAIN_VALUE - 0.05" | bc)
+                  UPPER_BOUND=$(echo "$MAIN_VALUE + 0.05" | bc)
+                  if (( $(echo "$PR_VALUE < $LOWER_BOUND" | bc -l) || $(echo "$PR_VALUE > $UPPER_BOUND" | bc -l) )); then
+                      echo "Error: $FIELD score in PR ($PR_VALUE) is less than in MAIN ($MAIN_VALUE)"
+                      exit 1
+                  fi
+                else
+                  if (( $(echo "$PR_VALUE < $MAIN_VALUE" | bc -l) )); then
+                    echo "Error: $FIELD score in PR ($PR_VALUE) is less than in MAIN ($MAIN_VALUE)"
+                    exit 1
+                  fi
+                fi
+            done
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+            name: lighthouse-reports
+            path: lighthouse-reports/
+            retention-days: 30
+      - name: Add comment to PR
+        uses: actions/github-script@v6
+        if: always()
+        with:
+          script: |
+            const url = '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}';
+            const success = '${{ job.status }}' === 'success';
+            const body = `Lighthouse: ${success ? 'succeeded ✅' : 'failed ❌'}\n${url}`;
+
+            await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: body
+            })
