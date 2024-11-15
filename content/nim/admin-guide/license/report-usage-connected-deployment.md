@@ -35,22 +35,26 @@ See the steps below to configure NGINX Plus to report usage data to NGINX Instan
 
 {{<call-out "tip" "For network-restricted environments:" "" >}}If your deployment of NGINX Instance Manager doesn’t allow internet access, follow the steps in [Report usage data in network-restricted environments]({{< relref "nim/disconnected/report-usage-disconnected-deployment.md" >}}) to report usage data to F5.{{</call-out>}}
 
+---
+
 ## Before you begin
 
 Before submitting usage data to F5, first ensure that the appropriate network ports are open for NGINX Instance Manager to report to F5, and then configure NGINX Plus to report telemetry data to NGINX Instance Manager.
 
-### Configure network ports for reporting usage data
+### Configure network ports for reporting usage
 
 To allow NGINX Instance Manager to report usage data to F5, make sure port `443` is open for these URLs:
 
 - `https://product.apis.f5.com/`
 - `https://product-s.apis.f5.com/ee`
 
-### Configure NGINX Plus to report usage data to NGINX Instance Manager
+### Configure NGINX Plus to report usage to NGINX Instance Manager
 
 To configure NGINX Plus (R33 and later) to report usage data to NGINX Instance Manger:
 
 {{< include "licensing-and-reporting/configure-nginx-plus-report-to-nim.md" >}}
+
+---
 
 ## Submit usage report to F5
 
@@ -71,26 +75,8 @@ If you prefer submitting usage reports to F5 manually, follow these steps:
 3. On the **Licenses > Overview** page, turn off **Enable Continuous Connection**.
 4. To manually submit a usage report, select **Send Usage to F5**.
 
-
-## Reported usage metrics
-
-{{<call-out "tip" "See also: ngx_mgmt_module reference guide" "fa fa-sold fa-book" >}}For complete details about the `mgmt` module and directives, visit the [Module ngx_mgmt_module](https://nginx.org/en/docs/ngx_mgmt_module.html) reference guide.{{</call-out>}}
-
-NGINX Plus reports the following usage metrics **every hour** by default.
-
-Only operational metrics are reported — **no personally identifiable information (PII) or sensitive customer data is transmitted**.
-
-{{< include "licensing-and-reporting/ssl_verify.md" >}}
-
-{{< include "licensing-and-reporting/reported-usage-data.md" >}}
-
 ---
 
-## Handling outages {#handling-outages}
+## What's reported
 
-If a temporary outage occurs, either on your side or F5’s:
-
-- As long as your instance has successfully reported at least once, you'll have a **180-day grace period** to resolve the issue.  
-  During this grace period, NGINX Plus will continue running without any restrictions. 
-  
-  For more information about the reporting process, see [About subscription licenses]({{< relref "solutions/about-subscription-licenses.md" >}}).
+{{< include "licensing-and-reporting/reported-usage-data.md" >}}

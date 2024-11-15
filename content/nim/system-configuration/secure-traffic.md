@@ -469,46 +469,47 @@ To generate the necessary certificates, follow these steps. You can modify these
 
 ## Configure SSL verification for usage reporting with self-signed certificates {#configure-ssl-verify}
 
-{{<call-out "note" "Version requirements" "fa-solid fa-info-circle">}}
+{{<call-out "note" "Version requirements" "">}}
 Usage reporting for NGINX Plus R33 or later in network-restricted environments requires **NGINX Instance Manager version 2.18 or later**.
 {{</call-out>}}
 
-{{<call-out "tip" "See also: ngx_mgmt_module reference guide" "fa fa-sold fa-book" >}}For complete details about the `mgmt` module and directives, visit the [Module ngx_mgmt_module](https://nginx.org/en/docs/ngx_mgmt_module.html) reference guide.{{</call-out>}}
+Starting with NGINX Plus R33, NGINX Plus must report usage data to a reporting endpoint, such as NGINX Instance Manager. For more information, see [About subscription licenses]({{< relref "solutions/about-subscription-licenses.md" >}}).
 
-Starting with NGINX Plus R33, NGINX Plus must report telemetry data to a usage reporting endpoint, like NGINX Instance Manager. This data is used to [validate subscriptions and track usage metrics]({{< relref "solutions/about-subscription-licenses.md" >}}).
-
-The [`ssl_verify`](https://nginx.org/en/docs/ngx_mgmt_module.html#ssl_verify) directive in the [`mgmt`](https://nginx.org/en/docs/ngx_mgmt_module.html) block ensures that NGINX Plus connects to a trusted reporting endpoint by validating the server's SSL certificate. This prevents communication with untrusted or malicious endpoints. By default, `ssl_verify` is set to `on`, so NGINX Plus will verify the certificate before sending telemetry data.
+The [`ssl_verify`](https://nginx.org/en/docs/ngx_mgmt_module.html#ssl_verify) directive in the [`mgmt`](https://nginx.org/en/docs/ngx_mgmt_module.html) block ensures that NGINX Plus connects only to trusted reporting endpoints by validating the server's SSL certificate. The `ssl_verify` directive is set to `on` by default.
 
 ### Why `ssl_verify` is important
 
 When `ssl_verify` is enabled:
-- NGINX Plus checks the SSL certificate presented by NGINX Instance Manager, preventing communication with untrusted endpoints.
-- This ensures that telemetry data is securely transmitted and prevents man-in-the-middle (MITM) attacks.
 
-If `ssl_verify` fails (due to an untrusted certificate), telemetry reporting will not proceed, which can affect the validation of subscription entitlements and prevent NGINX Plus from functioning properly.
+- NGINX Plus validates the SSL certificate presented by NGINX Instance Manager, ensuring it's from a trusted source.
+- Secure telemetry transmission prevents man-in-the-middle (MITM) attacks.
+
+If the certificate is untrusted or invalid, telemetry reporting will fail. This failure can affect subscription validation and may prevent NGINX Plus from functioning properly.
 
 ### Trusting self-signed certificates
 
-If NGINX Instance Manager uses a self-signed certificate, configure NGINX Plus to trust the certificate. Use the [`ssl_trusted_certificate`](https://pp.nginx.com/yar/libxslt/en/docs/ngx_mgmt_module.html#ssl_trusted_certificate) directive to specify a file with trusted CA certificates in the PEM format:
+If NGINX Instance Manager uses a self-signed certificate, you must configure NGINX Plus to trust it explicitly. Use the [`ssl_trusted_certificate`](https://pp.nginx.com/yar/libxslt/en/docs/ngx_mgmt_module.html#ssl_trusted_certificate) directive to specify a PEM-formatted file that contains the trusted CA certificate:
 
 ```nginx
 mgmt {
+    usage_report endpoint=<NGINX-INSTANCE-MANAGER-FQDN>;
     ssl_verify on;
-    ssl_trusted_certificate <file>;
+    ssl_trusted_certificate <CA-CERT-FILE-FROM-NGINX-INSTANCE-MANAGER>;
+    ssl_name manager-server;
 }
 ```
 
+Using self-signed certificates requires careful configuration to avoid connection issues or potential vulnerabilities.
+
 ### Disabling `ssl_verify`
 
-Although it’s recommended to keep `ssl_verify` enabled for security reasons, you can disable it in certain cases, such as in testing environments or when using self-signed certificates. To disable `ssl_verify`, set the directive to `off` in the `mgmt` block:
+Disabling `ssl_verify` bypasses SSL certificate verification, which reduces security and is **not recommended** for production environments. However, you can disable it in specific cases, such as testing environments or troubleshooting connectivity issues:
 
 ```nginx
 mgmt {
     ssl_verify off;
 }
 ```
-
-{{<important>}}Disabling `ssl_verify` bypasses SSL certificate verification, which reduces security and is not recommended for production environments.{{</important>}}
 
 ---
 
