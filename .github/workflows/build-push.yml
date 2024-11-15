@@ -72,6 +72,7 @@ jobs:
       AZURE_KEY_VAULT: ${{secrets.AZURE_KEY_VAULT_DOCS}}
 
   lighthouseci:
+    if: github.event.pull_request
     needs: call-docs-build-push
     runs-on: ubuntu-latest
     steps:
