@@ -122,3 +122,13 @@ jobs:
       # Run LinkChecker on nginx-waf docs
       - name: Run LinkChecker nginx-waf
         run: linkchecker https://docs.nginx.com/nginx-waf/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com --ignore-url ^https://www.owasp.org/
+
+  nginx-management-suite:
+    runs-on: ubuntu-latest
+    steps:
+      # Install LinkChecker
+      - name: Install LinkChecker
+        run: sudo apt-get update && sudo apt-get install -y linkchecker
+      # Run LinkChecker on nginx-management-suite docs
+      - name: Run LinkChecker nginx-management-suite
+        run: linkchecker https://docs.nginx.com/nginx-management-suite/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com --ignore-url ^https://myserver.host.com --ignore-url ^https://oauth2.googleapis.com --ignore-url ^https://openidconnect.googleapis.com --ignore-url ^https://www.base64url.com/

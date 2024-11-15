@@ -50,13 +50,3 @@ jobs:
       # Run LinkChecker on nginx-agent docs
       - name: Run LinkChecker nginx-agent
         run: linkchecker https://docs.nginx.com/nginx-agent/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com --ignore-url ^http://localhost 
-
-  nginx-management-suite:
-    runs-on: ubuntu-latest
-    steps:
-      # Install LinkChecker
-      - name: Install LinkChecker
-        run: sudo apt-get update && sudo apt-get install -y linkchecker
-      # Run LinkChecker on nginx-management-suite docs
-      - name: Run LinkChecker nginx-management-suite
-        run: linkchecker https://docs.nginx.com/nginx-management-suite/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com --ignore-url ^https://myserver.host.com --ignore-url ^https://oauth2.googleapis.com --ignore-url ^https://openidconnect.googleapis.com --ignore-url ^https://www.base64url.com/
