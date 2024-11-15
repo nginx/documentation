@@ -1,19 +1,21 @@
 name: Lighthouse
 on: 
-  workflow_run:
-    workflows: [Build and deploy (docs)]
-    types:
-      - completed
+  pull_request:
+  issue_comment:
+    types: [created]
+
 env:
   FRONT_DOOR_USERNAME: ${{ secrets.FRONT_DOOR_USERNAME }}
   FRONT_DOOR_PASSWORD: ${{ secrets.FRONT_DOOR_PASSWORD }}
   GITHUB_PR_NUMBER: ${{ github.event.pull_request.number }}
 jobs:
   lighthouseci:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: (github.event.pull_request) || (github.event.issue.pull_request && github.actor == 'github-actions')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ steps.comment-branch.outputs.head_ref }}
       - uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -50,3 +52,19 @@ jobs:
             name: lighthouse-reports
             path: lighthouse-reports/
             retention-days: 30
+      - name: Add comment to PR
+        uses: actions/github-script@v6
+        if: always()
+        with:
+          script: |
+            const name = '${{ github.workflow  }}';
+            const url = '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}';
+            const success = '${{ job.status }}' === 'success';
+            const body = `${name}: ${success ? 'succeeded ✅' : 'failed ❌'}\n${url}`;
+
+            await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: body
+            })
