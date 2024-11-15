@@ -1,8 +1,8 @@
 name: Lighthouse
 on: 
-  pull_request:
-  issue_comment:
-    types: [created]
+  workflow_run:
+    workflows: [Build and deploy (docs)]
+    types: [completed]
 
 env:
   FRONT_DOOR_USERNAME: ${{ secrets.FRONT_DOOR_USERNAME }}
@@ -10,7 +10,7 @@ env:
   GITHUB_PR_NUMBER: ${{ github.event.pull_request.number }}
 jobs:
   lighthouseci:
-    if: (github.event.pull_request) || (github.event.issue.pull_request && github.actor == 'github-actions')
+    if: (github.event.pull_request)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
