@@ -1,11 +1,8 @@
 ---
-description: ''
-docs: DOCS-856
-doctypes:
-- task
-title: NGINX App Protect DoS Release 2.3
+title: NGINX App Protect DoS 2.3
 toc: true
 weight: 170
+docs: DOCS-856
 ---
 
 Here you can find the release information for F5 NGINX App Protect DoS v2.3. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
@@ -66,7 +63,10 @@ Port configuration should correspond to the port the server listens to.
     ```shell
         server {
             listen 8080;
-            location / {  app_protect_dos_monitor "myservice.com:8080";  }
+            server_name myservice.com;
+            location / {
+                app_protect_dos_monitor "myservice.com:8080/";  
+            }
         }
     ```
 

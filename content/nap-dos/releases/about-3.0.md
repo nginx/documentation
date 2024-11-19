@@ -1,23 +1,21 @@
 ---
-description: ''
-docs: DOCS-890
-doctypes:
-- task
-title: NGINX App Protect DoS Release 2.4
+title: NGINX App Protect DoS 3.0
 toc: true
-weight: 160
+weight: 150
+docs: DOCS-946
 ---
 
-Here you can find the release information for F5 NGINX App Protect DoS v2.4. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
+Here you can find the release information for F5 NGINX App Protect DoS v3.0. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
 
-## Release 2.4
+## Release 3.0
 
-June 28, 2022
+September 21, 2022
 
 ### New Features
 
-- [Support for Debian 11]({{< relref "learn-about-deployment.md#debian-10--debian-11-installation" >}})
-- Accelerated bad actors detection when the signatures mitigation is disabled.
+- L4 mitigation (with eBPF)
+- DoS Live Activity Monitoring with requests mitigation graphs
+- DoS Live Activity Monitoring support for multi-instances NGINX App Protect DoS setups (multi-VMs, multi-replicas)
 
 ### Supported Packages
 
@@ -25,43 +23,44 @@ June 28, 2022
 
 ##### CentOS 7.4+ / RHEL 7.4+ / UBI7
 
-- app-protect-dos-27+2.4.1-1.el7.ngx.el7.ngx.x86_64.rpm
+- app-protect-dos-27+3.0.3-1.el7.ngx.el7.ngx.x86_64.rpm
 
 ##### RHEL 8 / UBI8
 
-- app-protect-dos-27+2.4.1-1.el8.ngx.el8.ngx.x86_64.rpm
+- app-protect-dos-27+3.0.3-1.el8.ngx.el8.ngx.x86_64.rpm
 
 ##### Debian 10
 
-- app-protect-dos_27+2.4.1-1~buster_amd64.deb
+- app-protect-dos_27+3.0.3-1~buster_amd64.deb
 
 ##### Debian 11
 
-- app-protect-dos_27+2.4.1-1~bullseye_amd64.deb
+- app-protect-dos_27+3.0.3-1~bullseye_amd64.deb
 
 ##### Ubuntu 18.04
 
-- app-protect-dos_27+2.4.1-1~bionic_amd64.deb
+- app-protect-dos_27+3.0.3-1~bionic_amd64.deb
 
 ##### Ubuntu 20.04
 
-- app-protect-dos_27+2.4.1-1~focal_amd64.deb
+- app-protect-dos_27+3.0.3-1~focal_amd64.deb
 
 ##### Alpine 3.15
 
-- app-protect-dos-27.2.4.1-r1.apk
+- app-protect-dos-27.3.0.3-r1.apk
 
 #### NGINX Plus
 
 - NGINX Plus R27
 
-### Resolved Issues
-
-- Honoring allow/deny directives for restricting access to the NGINX App Protect DoS Live Activity Monitoring API location.
 
 ### Important Notes
 
-- If NGINX App Protect WAF is installed, app protect should be disabled for the location of DoS Live Activity Monitoring API
+- L4 (eBPF) mitigation helps mitigate volumetric attacks by slowing down the opening of TCP connections by the attackers.
+It is recommended to deploy NGINX App Protect DoS with L4 (eBPF) mitigation at the perimeter network or behind L3 load balancer.
+Installing NGINX App Protect DoS with L4 (eBPF) mitigation behind L4/L7 load balancer may result in the load balancer's starvation during an attack.
+
+- If NGINX App Protect WAF is installed, app protect should be disabled for the location of DoS Live Activity Monitoring API.
 
     For example:
 

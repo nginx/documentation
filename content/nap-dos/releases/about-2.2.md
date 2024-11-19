@@ -1,11 +1,8 @@
 ---
-description: ''
-docs: DOCS-839
-doctypes:
-- task
-title: NGINX App Protect DoS Release 2.2
+title: NGINX App Protect DoS 2.2
 toc: true
 weight: 180
+docs: DOCS-839
 ---
 
 Here you can find the release information for F5 NGINX App Protect DoS v2.2. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
@@ -63,10 +60,15 @@ In this release, support for NGINX App Protect DoS is added to NGINX Plus R26.
 
     For example:
 
+    ```shell
         server {
             listen 8080;
-            location / {  app_protect_dos_monitor "myservice.com:8080";  }
+            server_name myservice.com;
+            location / {
+                app_protect_dos_monitor "myservice.com:8080/";  
+            }
         }
+    ```
 - `proxy_request_buffering` off is not supported.
 
 - gRPC and HTTP/2 protection require active monitoring of the protected service. The directive `app_protect_dos_monitor` is mandatory for these use cases, otherwise, the attack will not be detected.

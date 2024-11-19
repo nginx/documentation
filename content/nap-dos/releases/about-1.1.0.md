@@ -1,11 +1,8 @@
 ---
-description: ''
-docs: DOCS-673
-doctypes:
-- task
-title: NGINX App Protect DoS Arbitrator Release 1.1.0
+title: NGINX App Protect DoS Arbitrator 1.1.0
 toc: true
 weight: 220
+docs: DOCS-673
 ---
 
 Here you can find the release information for F5 NGINX App Protect DoS Arbitrator v1.1.0.

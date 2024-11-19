@@ -1,25 +1,22 @@
 ---
-description: ''
-docs: DOCS-1203
-doctypes:
-- task
-title: NGINX App Protect DoS Release 4.1
+title: NGINX App Protect DoS 4.0
 toc: true
-weight: 110
+weight: 120
+docs: DOCS-1115
 ---
 
-Here you can find the release information for F5 NGINX App Protect DoS v4.1. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
+Here you can find the release information for F5 NGINX App Protect DoS v4.0. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
 
-## Release 4.1
+## Release 4.0
 
-May 2, 2023
-
-In this release, NGINX App Protect DoS supports NGINX Plus R29.
+January 31, 2023
 
 ### New Features
 
-- Support for NGINX Plus R29
-- Support for Rocky Linux 8
+- Distributed Denial of Service (DDoS) protection feature for WebSocket services. <br> Refer to the [Configuration Example]({{< relref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#monitor-directive-app_protect_dos_monitor" >}}) for WebSocket services here.<br>
+- DDoS protection against slow attacks has been improved using machine learning algorithm on all types of traffic.
+- `app_protect_dos_monitor` directive, which monitors the proxied server, supports a new type of protocol - "WebSocket".
+
 
 ### Supported Packages
 
@@ -27,36 +24,37 @@ In this release, NGINX App Protect DoS supports NGINX Plus R29.
 
 ##### CentOS 7.4+ / RHEL 7.4+ / UBI7
 
-- app-protect-dos-29+4.1.2-1.el7.ngx.x86_64.rpm
+- app-protect-dos-28+4.0.1-1.el7.ngx.x86_64.rpm
 
-##### RHEL 8 and Rocky Linux 8
+##### RHEL 8 / UBI8
 
-- app-protect-dos-29+4.1.2-1.el8.ngx.x86_64.rpm
+- app-protect-dos-28+4.0.1-1.el8.ngx.x86_64.rpm
 
 ##### Debian 11
 
-- app-protect-dos_29+4.1.2-1~bullseye_amd64.deb
+- app-protect-dos_28+4.0.1.-1~bullseye_amd64.deb
 
 ##### Ubuntu 18.04
 
-- app-protect-dos_29+4.1.2-1~bionic_amd64.deb
+- app-protect-dos_28+4.0.1-1~bionic_amd64.deb
 
 ##### Ubuntu 20.04
 
-- app-protect-dos_29+4.1.2-1~focal_amd64.deb
+- app-protect-dos_28+4.0.1-1~focal_amd64.deb
 
 ##### Alpine 3.15
 
-- app-protect-dos-29.4.1.2-r1.apk
+- app-protect-dos-28.4.0.1-r1.apk
 
 #### NGINX Plus
 
-- NGINX Plus R29
-
+- NGINX Plus R28
 
 ### Important Notes
 
-- Installing L4 accelerated mitigation feature (install `app-protect-dos-ebpf`) configures `nginx` and `admd` to run with root privileges.
+- WebSocket protection requires active monitoring of the protected service. The directive `app_protect_dos_monitor` is mandatory for these use cases, otherwise, the attack will not be detected.
+
+- Installing accelerated mitigation feature (install `app-protect-dos-ebpf`) configures `nginx` and `admd` to run with root privileges.
 
 - Support for `proxy_protocol` configuration: `proxy_protocol` monitor parameter should be used when the `listen` directive of the correspondent server block contains the `proxy_protocol` parameter.
 
@@ -82,16 +80,12 @@ In this release, NGINX App Protect DoS supports NGINX Plus R29.
         }
     ```
 
-- `proxy_request_buffering` off is not supported.
-
 - gRPC and HTTP/2 protection require active monitoring of the protected service. The directive `app_protect_dos_monitor` is mandatory for the attack to be detected.
 
 - [TLS fingerprint]({{< relref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#policy-directive-app_protect_dos_policy_file" >}}) feature is not used in CentOS 7.4 and RHEL 7 / UBI 7 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
 
 - Monitor directive `app_protect_dos_monitor` with `proxy_protocol` parameter can not be configured on Ubuntu 18.04. As a result, gRPC and HTTP/2 DoS protection for `proxy_protocol` configuration is not supported.
 
-- Slow POST attack always mitigates with block action while other types of attacks can also be mitigated with redirection or JS challenges.
+- Slow attack always mitigates with block action while other types of attacks can also be mitigated with redirection or JS challenges.
 
 - The recommended option of running NGINX Plus in a Docker Container is with the `daemon off` flag. It's mandatory for UBI 8.
-
-- The package dependencies for NGINX App Protect DoS have changed in this release, replacing the `curl` dependencies with `libcurl` only. For more information, see the [NGINX App Protect DoS Deployment Guide]({{< relref "/nap-dos/deployment-guide/learn-about-deployment.md#prerequisites" >}}).
