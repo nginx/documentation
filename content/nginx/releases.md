@@ -18,6 +18,69 @@ We do not issue updates for releases that have reached EoSD. For this reason, we
 The initial release dates for NGINX Plus are noted in this document.
 New releases are announced on the [NGINX Product Support Announcements](https://interact.f5.com/Customer-Preference-Center.html) mailing list.
 
+<span id="r33"></span>
+## NGINX Plus Release 33 (R33)
+_19 November 2024_<br/>
+_Based on NGINX Open Source 1.27.2_
+
+NGINX Plus R33 is a feature release:
+
+- Licensing: Each NGINX Plus instance now requires a JWT license file. The JWT must be obtained from [MyF5](https://account.f5.com/myf5) and is expected to be located at `/etc/nginx/` for Linux or
+`/usr/local/etc/nginx/` for FreeBSD or at the path specified by the [`license_token`](https://nginx.org/en/docs/ngx_mgmt_module.html#license_token) in the [`mgmt`](https://nginx.org/en/docs/ngx_mgmt_module.html) context.
+
+- NGINX usage reporting: Usage report is sent to F5 licensing endpoint [every hour](https://nginx.org/en/docs/ngx_mgmt_module.html#usage_report) using the [secure](https://nginx.org/en/docs/ngx_mgmt_module.html#ssl_verify) connection. The initial usage report should be sent once NGINX Plus starts after installation or upgrade to R33. If the initial usage report is not received by the endpoint, NGINX Plus will stop processing traffic. A 180-day grace period can be [enabled](https://nginx.org/en/docs/ngx_mgmt_module.html#enforce_initial_report) to submit the initial usage report.
+
+  Optionally, for network-restricted environments, reporting can be [configured](https://nginx.org/en/docs/ngx_mgmt_module.html#usage_report) to [NGINX Instance Manager]({{< relref "nim/index.md" >}}) from which the report can be sent to F5 licensing endpoint.
+
+  For more information about licensing and usage reporting, see [About subscription licenses]({{< relref "solutions/about-subscription-licenses.md" >}}) article and [`ngx_mgmt_module`](https://nginx.org/en/docs/ngx_mgmt_module.html) module documentation.
+
+- OCSP stapling support and client certificate validation with OCSP
+in the [stream](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html) module with the
+[`ssl_ocsp`](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_ocsp) and [`ssl_ocsp_responder`](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_ocsp_responder) directives.
+
+- SSL key logging with the
+`ssl_key_log` directive for [http](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_key_log), [stream](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_key_log),
+[proxy](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_key_log), [grpc](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_ssl_key_log), [uwsgi](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_ssl_key_log) that allows logging SSL keys created during client and upstream connections to the file.
+The argument is a file name in the `SSLKEYLOGFILE` format compatible with Wireshark.
+
+- SSL Certificate Caching: Fixed loading of trusted CA bundles containing entries with duplicate Distinguished Name (DN).
+
+- Change: the [`ssl_client_certificate`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_client_certificate) directive is not required for client SSL certificates verification.
+
+- Response trailers support in proxy with the [`proxy_pass_trailers`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_trailers) directive that allows passing trailer fields from a proxied server to a client.
+
+- The [NGINX JavaScript]({{< relref "nginx/admin-guide/dynamic-modules/nginscript.md" >}}) module was updated to version [0.8.7](https://nginx.org/en/docs/njs/changes.html#njs0.8.7), featuring QuickJS [runtime support](https://nginx.org/en/docs/njs/engine.html).
+
+- Added initial support for Post Quantum Cryptography.
+
+NGINX Plus R33 is supported on:
+
+- AlmaLinux 8, 9
+- Alpine Linux 3.17, 3.18, 3.19, 3.20
+- Amazon Linux 2 LTS, 2023
+- Debian 11, 12
+- FreeBSD 13, 14
+- Oracle Linux 8.1+, 9
+- RHEL 8.1+, 9.0+
+- Rocky Linux 8, 9
+- SUSE Linux Enterprise Server 12, 15 SP5+
+- Ubuntu 20.04 LTS, 22.04 LTS, 24.04 LTS
+
+**Notes:**
+
+- Alpine Linux 3.16 is removed
+- Alpine Linux 3.17 is deprecated
+- Alpine Linux 3.20 is new in this release
+- CentOS 7.4+ is removed
+- RHEL 7.4+ is removed
+- Oracle Linux 7.4+ is removed
+- SUSE Linux Enterprise Server 12 is deprecated
+- support for s390x architecture removed
+- the [Lua]({{< relref "nginx/admin-guide/dynamic-modules/lua.md" >}}) module is no longer available for SUSE Linux Enterprise Server 12
+
+More information: [Announcing NGINX Plus R33](https://community.f5.com/kb/technicalarticles/announcing-nginx-plus-r33-release/336403)
+
+
 <span id="r32"></span>
 ## NGINX Plus Release 32 (R32)
 _29 May 2024_<br/>

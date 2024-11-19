@@ -10,7 +10,7 @@ toc: true
 weight: 400
 ---
 
-NGINX Plus is available in binary form only; it is not available in source form. Please [inquire](https://www.nginx.com/contact-sales/) for additional platforms and modules.
+NGINX Plus is available only as a binary; it is not distributed as source code. For additional platforms and modules, [contact us](https://www.f5.com/products/get-f5).
 
 <span id="supported-distributions"></span>
 ## Supported Distributions
@@ -22,10 +22,10 @@ NGINX Plus is available in binary form only; it is not available in source form
 
 ### Alpine Linux
 
-- 3.16 (x86_64, aarch64)
 - 3.17 (x86_64, aarch64)
 - 3.18 (x86_64, aarch64)
 - 3.19 (x86_64, aarch64)
+- 3.20 (x86_64, aarch64)
 
 ### Amazon Linux
 
@@ -34,10 +34,6 @@ NGINX Plus is available in binary form only; it is not available in source form
 ### Amazon Linux 2
 
 - LTS (x86_64, aarch64)
-
-### CentOS
-
-- 7.4+ (x86_64, aarch64)
 
 ### Debian
 
@@ -51,15 +47,13 @@ NGINX Plus is available in binary form only; it is not available in source form
 
 ### Oracle Linux
 
-- 7.4+ (x86_64)
 - 8.1+ (x86_64, aarch64)
 - 9 (x86_64)
 
 ### Red Hat Enterprise Linux (RHEL)
 
-- 7.4+ (x86_64, aarch64)
-- 8.1+ (x86_64, aarch64, s390x)
-- 9.0+ (x86_64, aarch64, s390x)
+- 8.1+ (x86_64, aarch64)
+- 9.0+ (x86_64, aarch64)
 
 ### Rocky Linux
 
@@ -73,8 +67,8 @@ NGINX Plus is available in binary form only; it is not available in source form
 
 ### Ubuntu
 
-- 20.04 LTS (x86_64, aarch64, s390x)
-- 22.04 LTS (x86_64, aarch64, s390x)
+- 20.04 LTS (x86_64, aarch64)
+- 22.04 LTS (x86_64, aarch64)
 - 24.04 LTS (x86_64, aarch64)
 
 **Notes:**
@@ -86,14 +80,14 @@ Except as specified below, dynamic modules are supported on the [same distributi
 
 ### AppProtect
 - AlmaLinux/Rocky Linux: Not supported
-- Alpine Linux 3.16, Alpine Linux 3.17: x86_64 only
+- Alpine Linux: Not supported
 - Amazon Linux 2: x86_64 only
 - Amazon Linux 2023: Not supported
-- CentOS 7.4+: x86_64 only
-- Debian 11, Debian 12: x86_64 only
+- Debian 11: x86_64 only
 - FreeBSD: Not supported
 - Oracle Linux 8: x86_64 only
-- RHEL 7, RHEL 8, RHEL 9: x86_64 only
+- RHEL 8: x86_64 only
+- SLES: Not supported
 - Ubuntu 20.04: x86_64 only
 
 ### Brotli
@@ -104,7 +98,6 @@ Except as specified below, dynamic modules are supported on the [same distributi
 
 - RHEL/Oracle Linux/AlmaLinux/Rocky Linux 8.0+, 9: Not supported
 - FreeBSD: Not supported
-- Amazon Linux 2023: Not supported
 
 ### GeoIP2
 
@@ -118,11 +111,6 @@ Except as specified below, dynamic modules are supported on the [same distributi
 - Amazon Linux 2: Not supported
 - Amazon Linux 2023: Not supported
 
-### Lua
-
-- RHEL 8, RHEL9: s390x not supported
-- Ubuntu: s390x not supported
-
 ### NGINX sync
 
 - FreeBSD: Not supported
@@ -130,9 +118,8 @@ Except as specified below, dynamic modules are supported on the [same distributi
 
 ### OpenTelemetry
 
-- RHEL/CentOS/Oracle Linux/ 7: Not supported
-- SLES 12, SLES 15: Not supported
 - Amazon Linux 2: Not supported
+- SLES: Not supported
 
 ### OpenTracing
 
@@ -254,7 +241,7 @@ See [Sizing Guide for Deploying NGINX Plus on Bare Metal Servers](https://www.ng
 
 - [NGINX Plus API](https://nginx.org/en/docs/http/ngx_http_api_module.html) – Provide REST API for accessing metrics, configuring upstream server groups dynamically, and managing key-value pairs, without the need to reload NGINX configuration
 - [Key-Value Store](https://nginx.org/en/docs/http/ngx_http_keyval_module.html) – Create variables with values taken from key-value pairs managed by the [NGINX Plus API](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_keyvals_)
-- [Management](https://nginx.org/en/docs/ngx_mgmt_module.html) – Configure reporting of NGINX Plus installation to [NGINX Management Suite Instance Manager](https://docs.nginx.com/nginx-management-suite/about)
+- [Management](https://nginx.org/en/docs/ngx_mgmt_module.html) – Configure licensing and usage reporting of NGINX Plus installation to F5 licensing endpoint or [NGINX Instance Manager]({{< relref "nim/index.md" >}})
 
 ### TCP and UDP Proxying and Load Balancing
 
