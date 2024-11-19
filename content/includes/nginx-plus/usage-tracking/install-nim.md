@@ -2,7 +2,7 @@
 docs: DOCS-1355
 ---
 
-{{<note>}}A separate license for NGINX Management Suite is not required to track your NGINX product usage.{{</note>}}
+{{<note>}}A separate license for NGINX Instance Manager is not required to track your NGINX product usage.{{</note>}}
 
 To start reporting on your [NGINX Plus]({{< relref "nginx/" >}}) installations, you'll first need to install [NGINX Instance Manager]({{< relref "nim/" >}}) on a dedicated host. You can choose between two installation options: either on a virtual machine or bare metal server, or by deploying on a Kubernetes cluster. Instructions for both methods are below:
 

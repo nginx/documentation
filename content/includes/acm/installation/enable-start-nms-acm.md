@@ -12,9 +12,9 @@ To enable and start the API Connectivity Manager services, take the following st
     sudo systemctl start nms-acm
     ```
 
-    NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
+    NGINX Instance Manager components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
 
-3. To verify the NGINX Management Suite services are running, run the following command:
+3. To verify the NGINX Instance Manager services are running, run the following command:
 
     ```bash
     ps aufx | grep nms
@@ -27,7 +27,7 @@ To enable and start the API Connectivity Manager services, take the following st
    ```
 
 <details close>
-<summary><i class="fa-solid fa-circle-info"></i> Overview: NGINX Management Suite services</summary>
+<summary><i class="fa-solid fa-circle-info"></i> Overview: NGINX Instance Manager services</summary>
 
 {{< include "nms/nms-services.md" >}}
 

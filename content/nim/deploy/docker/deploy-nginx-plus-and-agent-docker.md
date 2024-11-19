@@ -182,7 +182,7 @@ Full list of CLI flags with their default values can be found in [CLI flags and 
 
 NGINX Plus instances that can be managed by NGINX Instance Manager can be accessed from the **NGINX Plus** tab.
 
-You can also scan for NGINX instances using the NGINX Instance Manager API; for more information, refer to [Scan NGINX Instances]({{< ref "/nim/instances/scan-instances.md" >}}).
+You can also scan for NGINX instances using the NGINX Instance Manager API; for more information, refer to [Scan NGINX Instances]({{< ref "/nim/nginx-instances/scan-instances.md" >}}).
 
 ### Troubleshooting unmanaged instances
 

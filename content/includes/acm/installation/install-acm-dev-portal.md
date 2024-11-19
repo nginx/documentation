@@ -18,7 +18,7 @@ The Developer Portal has the following platform requirements:
 
 ### Installation Steps
 
-1. Follow the steps to [add the NGINX Management Suite Repo](#add-yum-apt) to Yum or Apt.
+1. Follow the steps to [add the NGINX Instance Manager Repo](#add-yum-apt) to Yum or Apt.
 
 1. Run the following command(s) for your Linux distribution to install the Developer Portal:
 

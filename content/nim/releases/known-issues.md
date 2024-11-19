@@ -305,7 +305,7 @@ Oct 20 22:22:57 ip-127-0-0-1 <INT>[9527]: 2023-10-20T22:22:57.653Z	ERROR	nms-int
 
 #### Workaround
 
-Download manually the latest [Attack Signatures package, Threat Campaign package]({{< relref "/nim/app-protect/setup-waf-config-management.md#manually-update-packages" >}}), and [WAF Compiler]({{< relref "/nim/app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}).
+Download manually the latest [Attack Signatures package, Threat Campaign package]({{< relref "/nim/nginx-app-protect/setup-waf-config-management.md#manually-update-packages" >}}), and [WAF Compiler]({{< relref "/nim/nginx-app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}).
 
 ---
 
@@ -1235,7 +1235,7 @@ The default Attack Signature might be unavailable for publishing from Instance M
 
 #### Workaround
 
-[Download another (latest recommended) version of the Attack Signature and publish it]({{< relref "/nim/app-protect/setup-waf-config-management.md" >}}).  Attack Signature 2019.07.16 should be removed from the list when you refresh the web interface.
+[Download another (latest recommended) version of the Attack Signature and publish it]({{< relref "/nim/nginx-app-protect/setup-waf-config-management.md" >}}).  Attack Signature 2019.07.16 should be removed from the list when you refresh the web interface.
 
 ---
 

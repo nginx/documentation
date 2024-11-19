@@ -283,7 +283,7 @@ The result looks similar to the following:
 
 #### Description
 
-- When [scanning for NGINX instances]({{< relref "/nim/instances/scan-instances.md" >}}), the NGINX version is reported as `undefined` when NGINX App Protect is installed.
+- When [scanning for NGINX instances]({{< relref "/nim/nginx-instances/scan-instances.md" >}}), the NGINX version is reported as `undefined` when NGINX App Protect is installed.
 
 #### Resolution
 

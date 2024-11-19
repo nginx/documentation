@@ -414,7 +414,7 @@ This release includes the following updates:
 - {{% icon-feature %}} **Work with NGINX App Protect Bundles from Instance Manager**<a name="2-14-0-whats-new-Work-with-NGINX-App-Protect-Bundles-from-Instance-Manager"></a>
 
   Starting with Instance Manager 2.14, you can now use the "/security/policies/bundles" endpoint to create, read, update, and delete NGINX App Protect bundles, which allow faster deployment through pre-compilation of security policies, attack signatures, and threat-campaign.  For additional information on how to use the API endpoint, refer to your product API documentation.
-  To learn more about this feature, see the [Manage WAF Security Policies]({{< relref "/nim/app-protect/manage-waf-security-policies.md" >}}) documentation.
+  To learn more about this feature, see the [Manage WAF Security Policies]({{< relref "/nim/nginx-app-protect/manage-waf-security-policies.md" >}}) documentation.
 
 - {{% icon-feature %}} **Clickhouse LTS 23.8 support**<a name="2-14-0-whats-new-Clickhouse-LTS-23-8-support"></a>
 
@@ -931,11 +931,11 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Automatic retrieval of Attack Signatures and Threat Campaign updates to Instance Manager**<a name="2-8-0-whats-new-Automatic-retrieval-of-Attack-Signatures-and-Threat-Campaign-updates-to-Instance-Manager"></a>
 
-  Instance Manager now allows you to [set up automatic downloads of the most recent Attack Signature and Threat Campaign packages]({{< relref "/nim/app-protect/setup-waf-config-management.md##automatically-download-latest-packages" >}}). By publishing these updates to your App Protect instances from Instance Manager, you can ensure your applications are shielded from all recognized attack types.
+  Instance Manager now allows you to [set up automatic downloads of the most recent Attack Signature and Threat Campaign packages]({{< relref "/nim/nginx-app-protect/setup-waf-config-management.md##automatically-download-latest-packages" >}}). By publishing these updates to your App Protect instances from Instance Manager, you can ensure your applications are shielded from all recognized attack types.
 
 - {{% icon-feature %}} **Improved WAF Compiler error messages**<a name="2-8-0-whats-new-Improved-WAF-Compiler-error-messages"></a>
 
-  The messaging around [security policy compilation errors]({{< relref "/nim/app-protect/manage-waf-security-policies.md#check-for-compilation-errors" >}}) has been improved by providing more detailed information and alerting users if the required compiler version is missing.
+  The messaging around [security policy compilation errors]({{< relref "/nim/nginx-app-protect/manage-waf-security-policies.md#check-for-compilation-errors" >}}) has been improved by providing more detailed information and alerting users if the required compiler version is missing.
 
 
 ### Changes in Default Behavior{#2-8-0-changes-in-behavior}
@@ -1047,7 +1047,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Manage and deploy configurations to NGINX App Protect WAF Instances**<a name="2-6-0-whats-new-Manage-and-deploy-configurations-to-NGINX-App-Protect-WAF-Instances"></a>
 
-  This release introduces the following features to [manage and deploy configurations to NGINX App Protect instances]({{< relref "/nim/app-protect/overview-nap-waf-config-management.md" >}}):
+  This release introduces the following features to [manage and deploy configurations to NGINX App Protect instances]({{< relref "/nim/nginx-app-protect/overview-nap-waf-config-management.md" >}}):
 
   - Create, upsert, and delete NGINX App Protect WAF security policies
   - Manage NGINX App Protect WAF security configurations by using the NGINX Management Suite user interface or REST API

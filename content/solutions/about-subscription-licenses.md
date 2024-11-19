@@ -21,9 +21,7 @@ journeys: ["researching", "getting started", "using", "renewing", "self service"
 personas: ["devops", "netops", "secops", "support"]
 versions: []
 authors: []
-build:
-  list: never
-  render: always
+
 ---
 
 ## Overview

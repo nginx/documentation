@@ -1,4 +1,4 @@
-To see which version of an NGINX Management Suite module is installed, run the following commands:
+To see which version of an NGINX Instance Manager module is installed, run the following commands:
 
 {{<tabs>}}
 

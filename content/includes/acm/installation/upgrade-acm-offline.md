@@ -25,7 +25,7 @@ To upgrade API Connectivity Manager in an offline environment, take the followin
 {{%/tab%}}
 {{</tabs>}}
 
-When installing API Connectivity Manager, you may need a newer version of NGINX Management Suite. The installation process will notify you of any version requirements before installing API Connectivity Manager and any dependent packages, including NGINX Management Suite. You may cancel the installation process if a backup of the NGINX Management Suite is needed before upgrading.
+When installing API Connectivity Manager, you may need a newer version of NGINX Instance Manager. The installation process will notify you of any version requirements before installing API Connectivity Manager and any dependent packages, including NGINX Instance Manager. You may cancel the installation process if a backup of the NGINX Instance Manager is needed before upgrading.
 
 3. Enable the API Connectivity Manager services:
 
@@ -39,9 +39,9 @@ When installing API Connectivity Manager, you may need a newer version of NGINX 
     sudo systemctl restart nms-acm
     ```
 
-    NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
+    NGINX Instance Manager components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
 
-5. To verify the NGINX Management Suite services are running, run the following command:
+5. To verify the NGINX Instance Manager services are running, run the following command:
 
     ```bash
     ps aufx | grep nms

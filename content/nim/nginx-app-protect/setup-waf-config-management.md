@@ -48,9 +48,9 @@ Be sure to download and install the correct WAF compiler version for your enviro
 
 - Each NGINX App Protect version has a corresponding WAF compiler version. You must install the WAF compiler that matches the version of NGINX App Protect that you have running.
 - If you have different NGINX App Protect versions running, install the correct WAF compiler package for each on the management plane host. Instance Manager will use the correct WAF compiler for each version to bundle the security configurations.
-- You can create [instance groups]({{< relref "/nim/instances/manage-instance-groups" >}}) to keep track of and manage all instances that have the same version installed.
+- You can create [instance groups]({{< relref "/nim/nginx-instances/manage-instance-groups" >}}) to keep track of and manage all instances that have the same version installed.
 
-For more information about the WAF compiler, refer to the [Security Bundle Compilation]({{< relref "/nim/app-protect/overview-nap-waf-config-management#security-bundle" >}}) section of the Policy Configuration overview topic.
+For more information about the WAF compiler, refer to the [Security Bundle Compilation]({{< relref "/nim/nginx-app-protect/overview-nap-waf-config-management#security-bundle" >}}) section of the Policy Configuration overview topic.
 
 ### WAF Compiler and Supported App Protect Versions {#nap-waf-compiler-compatibility}
 
@@ -1156,7 +1156,7 @@ nap_monitoring:
 <details>
 <summary>Verify access to the NGINX packages repository</summary>
 
-To allow Instance Manager to automatically download the latest Attack Signatures and Threat Campaigns, you need to [upload the certificate and key files]({{< relref "/nim/app-protect/setup-waf-config-management.md#upload-nginx-app-protect-waf-certificate-and-key" >}}) included with your subscription to allow access to the package repository.
+To allow Instance Manager to automatically download the latest Attack Signatures and Threat Campaigns, you need to [upload the certificate and key files]({{< relref "/nim/nginx-app-protect/setup-waf-config-management.md#upload-nginx-app-protect-waf-certificate-and-key" >}}) included with your subscription to allow access to the package repository.
 
 If you already uploaded your certificate and key files, use the command below to verify that they allow access to the package repo:
 

@@ -8,15 +8,14 @@ title: Install in a disconnected environment (deprecated)
 toc: true
 weight: 100
 noindex: true
-draft: true
+draft: false
+build:
+  list: never
+  render: always
 ---
 
-{{<call-out "warning" "Deprecated documentation notice" "fa fa-exclamation-triangle" >}}
-This document outlines manual steps that have been replaced by a simplified script-based process. For most users, we recommend using the updated process documented [here](<link-to-new-doc>).{{</call-out>}}
-
-<br>
-
-{{< include "/nim/decoupling/note-legacy-nms-references.md" >}}
+{{<call-out "caution" "Deprecated documentation notice" "fa fa-exclamation-triangle" >}}
+This document outlines manual steps that have been replaced by a simplified script-based process. For most users, we recommend using the updated process documented [here]({{< relref "nim/disconnected/offline-install-guide.md" >}}).{{</call-out>}}
 
 ## Overview
 

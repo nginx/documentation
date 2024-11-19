@@ -27,8 +27,8 @@ Instance Manager provides the following features:
 - [View, edit, and publish NGINX configurations]({{< relref "/nim/nginx-configs/publish-configs">}})
 - [Save NGINX configurations]({{< relref "/nim/nginx-configs/publish-configs#stage-config">}}) for future deployment
 - [Analyze NGINX configurations]({{< relref "/nim/nginx-configs/publish-configs">}}) for syntactic errors before publishing them
-- [Scan the network]({{< relref "/nim/instances/scan-instances#scan-ui">}}) to find unmanaged NGINX instances.
-- [Manage certificates]({{< relref "/nim/instances/manage-certificates">}})
+- [Scan the network]({{< relref "/nim/nginx-instances/scan-instances#scan-ui">}}) to find unmanaged NGINX instances.
+- [Manage certificates]({{< relref "/nim/nginx-instances/manage-certificates">}})
 - [Create users, roles, and role permissions]({{< relref "/nim/admin-guide/rbac/overview-rbac">}}) for role-based access control
 
 ---

@@ -1,4 +1,4 @@
-Take the following steps to install the Security Monitoring module on your NGINX Management Suite host.
+Take the following steps to install the Security Monitoring module on your NGINX Instance Manager host.
 
 1. To install the latest version of the Security Monitoring module, run the following command:
 
@@ -15,13 +15,13 @@ Take the following steps to install the Security Monitoring module on your NGINX
      sudo apt-get install -y nms-sm
      ```
 
-1. Restart the NGINX Management Suite services:
+1. Restart the NGINX Instance Manager services:
 
     ```bash
     sudo systemctl restart nms
     ```
 
-    NGINX Management Suite components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
+    NGINX Instance Manager components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
 
 1. To verify the NGINX Management Services are running, run the following command:
 

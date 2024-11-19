@@ -23,7 +23,7 @@ Parameters customization can be done with the [`ngx_mgmt_module`](https://nginx.
 
 It is highly recommended to secure and authorize NGINX Plus instance with NGINX Instance Manager by using client certificates unique to each endpoint.
 
-1. Obtain a certificate, a key, and a CA certificate on both the NGINX Management Suite and NGINX Plus instance. See the [Secure Traffic with Certificates]({{< relref "/nim/system-configuration/secure-traffic.md" >}}) for instructions on how to generate keys.
+1. Obtain a certificate, a key, and a CA certificate on both the NGINX Instance Manager and NGINX Plus instance. See the [Secure Traffic with Certificates]({{< relref "/nim/system-configuration/secure-traffic.md" >}}) for instructions on how to generate keys.
 
 2. In the configuration file of NGINX Plus instance, on the `main` level, add the [`mgmt`](https://nginx.org/en/docs/ngx_mgmt_module.html#mgmt) block:
 

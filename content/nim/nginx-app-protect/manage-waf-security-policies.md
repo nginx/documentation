@@ -44,8 +44,8 @@ Complete the following prerequisites before proceeding with this guide:
 The following are required to use support policy bundles:
 
 - You must have `UPDATE` permissions for the security policies specified in the request.
-- The correct `nms-nap-compiler` packages for the NGINX App Protect WAF version you're using are [installed on Instance Manager]({{< relref "/nim/app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}).
-- The attack signatures and threat campaigns that you want to use are [installed on Instance Manager]({{< relref "/nim/app-protect/setup-waf-config-management.md#set-up-attack-signatures-and-threat-campaigns" >}}).
+- The correct `nms-nap-compiler` packages for the NGINX App Protect WAF version you're using are [installed on Instance Manager]({{< relref "/nim/nginx-app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}).
+- The attack signatures and threat campaigns that you want to use are [installed on Instance Manager]({{< relref "/nim/nginx-app-protect/setup-waf-config-management.md#set-up-attack-signatures-and-threat-campaigns" >}}).
 
 ### How to Access the Web Interface
 

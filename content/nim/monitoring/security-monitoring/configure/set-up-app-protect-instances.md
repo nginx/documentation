@@ -221,7 +221,7 @@ Take the steps below to update your NGINX App Protect WAF configurations by usin
 
       The policy reference must use the `.tgz` file extension when using Instance Manager to perform precompiled publication of NGINX App Protect WAF policies and log profiles. The file path referenced must exist on the NGINX Instance Manager host, but it's ok if the policy file doesn't exist yet. If your Instance is not configured for precompiled publication, then use the `.json` file extension for polcies and log profiles. In this case, the file path referenced in the NGINX configuration must reside on the Instance.
 
-      If you are using custom security policies, at this stage, it's fine to use the default security policy shown in the example above. After completing the steps in this guide, refer to the instructions in [Set Up App Protect WAF Configuration Management]({{< relref "/nim/app-protect/setup-waf-config-management#add-waf-config" >}}) to add your custom security policy files to NGINX Instance Manager and update your NGINX configuration.
+      If you are using custom security policies, at this stage, it's fine to use the default security policy shown in the example above. After completing the steps in this guide, refer to the instructions in [Set Up App Protect WAF Configuration Management]({{< relref "/nim/nginx-app-protect/setup-waf-config-management#add-waf-config" >}}) to add your custom security policy files to NGINX Instance Manager and update your NGINX configuration.
 
    - Add the `app_protect_security_log_enable on` and the `app_protect_security_log` directive to any NGINX context where NGINX App Protect WAF is enabled and you want to be able to review attack data.
 
@@ -239,4 +239,4 @@ You should now be able to view data from your NGINX App Protect WAF instances in
 
 - [Grant Users Access to the Security Monitoring Dashboards]({{< relref "create-role-security-monitoring" >}}): Follow the steps in this guide to allow other users in your organization to access the Security Monitoring Dashboards.
 
-- If you are using Security Monitoring with Instance Manager, proceed to the [Set Up App Protect WAF Configuration Management]({{< relref "/nim/app-protect/setup-waf-config-management" >}}) guide.
+- If you are using Security Monitoring with Instance Manager, proceed to the [Set Up App Protect WAF Configuration Management]({{< relref "/nim/nginx-app-protect/setup-waf-config-management" >}}) guide.

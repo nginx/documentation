@@ -4,7 +4,7 @@ docs: DOCS-1324
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| NGINX Management Suite chart | Instance Manager |
+| NGINX Instance Manager chart | Instance Manager |
 |------------------------------|------------------|
 | 1.15.0                       | 2.18.0           |
 | 1.14.4                       | 2.17.4           |

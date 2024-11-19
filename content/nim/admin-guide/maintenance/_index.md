@@ -1,6 +1,6 @@
 ---
 title: Maintenance
 weight: 400
-url: /nginx-management-suite/admin-guides/maintenance/
+url: /nginx-instance-manager/admin-guide/maintenance/
 ---
 

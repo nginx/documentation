@@ -1,4 +1,4 @@
-To enable and start the NGINX Management Suite platform services, take the following steps:
+To enable and start the NGINX Instance Manager platform services, take the following steps:
 
 1. Enable the platform services:
 
@@ -19,7 +19,7 @@ To enable and start the NGINX Management Suite platform services, take the follo
    ```
 
 <details close>
-<summary><i class="fa-solid fa-circle-info"></i> Overview: NGINX Management Suite services</summary>
+<summary><i class="fa-solid fa-circle-info"></i> Overview: NGINX Instance Manager services</summary>
 
 <br>
 

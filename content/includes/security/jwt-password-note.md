@@ -2,10 +2,13 @@
 docs: 
 ---
 
-{{< note >}} For security, follow these practices with JSON Web Tokens (JWTs), passwords, and shell history:
 
-1. **JWTs:** JWTs are sensitive information. Store them securely. Delete them after use to prevent unauthorized access.
-
-1. **Shell history:** Commands that include JWTs or passwords are recorded in the history of your shell, in plain text. Clear your shell history after running such commands. For example, if you use bash, you can delete commands in your `~/.bash_history` file. Alternatively, you can run the `history -c` command to erase your shell history.
-
-Follow these practices to help ensure the security of your system and data. {{< /note >}}
+{{<call-out "important" "Protect sensitive data" "fas fa-shield-alt" >}}
+To protect your system and data, follow these security practices:
+ 
+1. **JWTs:** Treat JSON Web Tokens (JWTs) as sensitive data. Store them securely and delete them after use to prevent unauthorized access.
+ 
+2. **Shell history:** Commands with JWTs or passwords are saved in plain text in your shell history. After running such commands, clear the history to protect credentials. For example:
+   - Edit your shell history file (such as ~/.bash_history or ~/.zsh_history) to remove specific commands.
+   - Use `history -c` to clear all shell history in bash or zsh.
+{{</call-out>}}

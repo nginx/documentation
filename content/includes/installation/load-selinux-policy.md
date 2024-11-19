@@ -2,7 +2,7 @@
 docs: DOCS-1240
 ---
 
-1. Load the NGINX Management Suite policy:
+1. Load the NGINX Instance Manager policy:
 
     ```bash
     sudo semodule -n -i /usr/share/selinux/packages/nms.pp
@@ -31,7 +31,7 @@ docs: DOCS-1240
    sudo restorecon -F -R /var/log/nms
    ```
 
-1. Restart the NGINX Management Suite services:
+1. Restart the NGINX Instance Manager services:
 
     ```bash
     sudo systemctl restart nms

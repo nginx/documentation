@@ -9,5 +9,5 @@ menu:
     weight: 20
 title: Catalogs
 weight: 400
-url: /nginx-management-suite/reference/catalogs/
+url: /nginx-instance-manager/monitoring/catalogs/
 ---

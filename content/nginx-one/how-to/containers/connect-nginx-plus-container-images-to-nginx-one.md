@@ -10,27 +10,31 @@ toc: true
 weight: 400
 ---
 
-## Introduction
+## Overview
 
-By following this guide, you will be able to set up a Docker container with F5 NGINX Plus and the NGINX Agent, and then connect to the NGINX One Console.
+This guide explains how to set up an F5 NGINX Plus Docker container with NGINX Agent and connect it to the NGINX One Console.
 
 ---
 
 ## Before you start
 
-Before you start, make sure you have the following:
+Before you start, make sure you have:
 
-- A valid JSON Web Token (JWT) from your NGINX subscription. You can download the JWT from [MyF5](https://my.f5.com/manage/s/).
+- A valid JSON Web Token (JWT) for your NGINX subscription.
 - [A data plane key from NGINX One]({{< relref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}}).
 - Docker installed and running on your system.
+
+#### Download your JWT license from MyF5
+
+{{<include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 
 ---
 
 ## Process for private registry
 
-### Log in to NGINX private registry
+### Log in to the NGINX private registry
 
-First, log in to the NGINX private registry. Replace `YOUR_JWT_HERE` with your actual JWT.
+Use your JWT to log in to the NGINX private registry. Replace `YOUR_JWT_HERE` with your JWT.
 
 ```sh
 sudo docker login private-registry.nginx.com --username=YOUR_JWT_HERE --password=none
@@ -38,54 +42,61 @@ sudo docker login private-registry.nginx.com --username=YOUR_JWT_HERE --password
 
 {{< include "security/jwt-password-note.md" >}}
 
-### Pull the image
+### Pull the NGINX Plus image
 
-Next, pull the NGINX Plus image from the private registry. Replace `VERSION_TAG` with the specific version tag you need (for example, `alpine`, `debian`, or `ubi`).
+Pull the NGINX Plus image from the private registry. Replace `VERSION_TAG` with the desired version, such as `alpine`, `debian`, or `ubi`.
 
 ```sh
 sudo docker pull private-registry.nginx.com/nginx-plus/agent:VERSION_TAG
 ```
 
-{{<note>}}A version tag is required. Leaving out the version tag is not supported because `latest` is not a valid option. For more details about version tags, refer to [Deploying NGINX and NGINX Plus on Docker]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pulling-the-image" >}}).{{</note>}}
+You must specify a version tag. The `latest` tag is not supported. Learn more in the [Deploying NGINX and NGINX Plus on Docker]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pulling-the-image" >}}) guide.
 
 <br>
 
-{{<call-out "tip" "Example:" "fas fa-terminal" >}}
-To pull the `debian` image, use the following command:
+{{<call-out "" "Example:" "" >}}
+To pull the `debian` image:
 
 ```sh
 sudo docker pull private-registry.nginx.com/nginx-plus/agent:debian
 ```
 {{</call-out>}}
 
-### Start the container
+### Start the NGINX Plus container
 
-Finally, start the Docker container. Replace `YOUR_DATA_PLANE_KEY` with your actual NGINX One data plane key and `VERSION_TAG` with the specific version tag you pulled.
+Start the Docker container to connect it to NGINX One. Replace `YOUR_DATA_PLANE_KEY` with your data plane key and `YOUR_JWT_HERE` with your JWT. Replace `VERSION_TAG` with the version tag you pulled.
+
+**For NGINX Plus R33 or later**:
+
+- Use the `NGINX_LICENSE_JWT` variable to pass your JWT license
+- Alternatively, specify the license file path with `NGINX_LICENSE_PATH` (default: `/etc/nginx/license.jwt`).
+
+For more details, see [About subscription licenses]({{< relref "solutions/about-subscription-licenses.md" >}}).
 
 ```sh
 sudo docker run \
+--env=NGINX_LICENSE_JWT="YOUR_JWT_HERE" \
 --env=NGINX_AGENT_SERVER_GRPCPORT=443 \
 --env=NGINX_AGENT_SERVER_HOST=agent.connect.nginx.com \
---env=NGINX_AGENT_SERVER_TOKEN=YOUR_DATA_PLANE_KEY \
+--env=NGINX_AGENT_SERVER_TOKEN="YOUR_NGINX_ONE_DATA_PLANE_KEY_HERE" \
 --env=NGINX_AGENT_TLS_ENABLE=true \
---env=NGINX_AGENT_TLS_SKIP_VERIFY=false \
 --restart=always \
 --runtime=runc \
--d private-registry.nginx.com/nginx-plus/agent:VERSION_TAG
+-d private-registry.nginx.com/nginx-plus/agent:<VERSION_TAG>
 ```
 
 <br>
 
-{{<call-out "tip" "Example:" "fas fa-terminal" >}}
-To start the container with the `debian` image, use the following command:
+{{<call-out "" "Example:" "" >}}
+To start the container with the `debian` image:
 
 ```sh
 sudo docker run \
+--env=NGINX_LICENSE_JWT="YOUR_JWT_HERE" \
 --env=NGINX_AGENT_SERVER_GRPCPORT=443 \
 --env=NGINX_AGENT_SERVER_HOST=agent.connect.nginx.com \
---env=NGINX_AGENT_SERVER_TOKEN=YOUR_DATA_PLANE_KEY \
+--env=NGINX_AGENT_SERVER_TOKEN="YOUR_NGINX_ONE_DATA_PLANE_KEY_HERE" \
 --env=NGINX_AGENT_TLS_ENABLE=true \
---env=NGINX_AGENT_TLS_SKIP_VERIFY=false \
 --restart=always \
 --runtime=runc \
 -d private-registry.nginx.com/nginx-plus/agent:debian
@@ -97,7 +108,7 @@ sudo docker run \
 
 ## References
 
-For more detailed information, refer to the following resources:
+For more details, see:
 
 - [Deploying NGINX and NGINX Plus on Docker](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-docker/)
 - [Full List of Agent Environment Variables](https://docs.nginx.com/nginx-agent/configuration/configuration-overview/#nginx-agent-environment-variables)

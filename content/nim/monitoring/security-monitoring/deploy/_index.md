@@ -2,5 +2,5 @@
 title: Deploy
 description:
 weight: 1
-url: /nginx-instance-manager/security-monitoring/how-to/deploy
+url: /nginx-instance-manager/monitoring/security-monitoring/deploy/
 ---
