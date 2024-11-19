@@ -3,7 +3,7 @@ description: Deploy NGINX and F5 NGINX Plus as the Docker container.
 docs: DOCS-409
 doctypes:
 - task
-title: Deploying NGINX and NGINX Plus on Docker
+title: Deploying NGINX and NGINX Plus with Docker
 toc: true
 weight: 600
 ---
@@ -14,42 +14,78 @@ weight: 600
 ## Prerequisites
 
 - Docker installation
-- for NGINX Plus: *nginx-repo.crt* and *nginx-repo.key* files or JSON Web Token file
+- for NGINX Plus: JWT license file, *nginx-repo.crt* and *nginx-repo.key* files 
 - for NGINX Open Source: [Docker Hub](https://hub.docker.com/) account
 
 
 <span id="nginx_plus_official_images"></span>
-## Building NGINX Plus image for specific OS and architecture
+## Using official NGINX Plus Docker images
 
-Since NGINX Plus <a href="../../../releases/#r31">Release 31</a> you can pull an NIGNX Plus image from the official NGINX Plus Docker registry and upload it to your private registry.
+Since NGINX Plus <a href="../../../releases/#r31">Release 31</a> you can get an NIGNX Plus image from the official NGINX Plus Docker registry and upload it to your private registry.
+
+The NGINX Plus Docker registry is available at `https://private-registry.nginx.com/v2/`. It contains the following image types:
+
+- [NGINX Plus]({{< ref "/nginx/releases.md" >}}):
+  `https://private-registry.nginx.com/v2/nginx-plus/base`
+
+- [Unprivileged]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#nginx-plus-unprivileged-installation" >}}) installation of NGINX Plus:
+  `https://private-registry.nginx.com/v2/nginx-plus/rootless-base`
+
+- NGINX Plus bundled with [NGINX Agent](https://docs.nginx.com/nginx-agent/overview/):
+  `https://private-registry.nginx.com/v2/nginx-plus/agent`
+
+- Unprivileged installation of NGINX Plus and NGINX Agent:
+  `https://private-registry.nginx.com/v2/nginx-plus/rootless-agent`
+
+The images can be targeted for a particular operating system and NGINX Plus release using tags.
+
+### Tags for operating systems
+
+{{<bootstrap-table "table table-bordered">}}
+| Operating system                           | Basic OS tag | Tag examples                                  |
+|--------------------------------------------|--------------|-----------------------------------------------|
+| Alpine (x86_64, aarch64)                   | `alpine`     | `r33-alpine`, `r33-alpine-3.20`               |
+| Debian (x86_64, aarch64)                   | `debian`     | `r33-debian`, `r33-debian-bookworm`           |
+| Red Hat Enterprise Linux (x86_64, aarch64) | `ubi`        | `r33-ubi`, `r33-ubi-9`,  `r33-ubi-9-20240624` |
+{{</bootstrap-table>}}
+
+### Tags for NGINX Plus versions
+
+The NGINX Plus registry contains images for the two most recent versions of NGINX Plus. The basic operating system tag returns the latest version of NGINX Plus built for the latest version of this operating system.
+
+{{<call-out "tip" "Example:" "fas fa-terminal" >}}
+`nginx-plus-r33-ubi-9`, `nginx-plus-r32-alpine-3.19`.
+{{</call-out>}}
 
 The image may contain a particular version of NGINX Plus or contain a bundle of NGINX Plus and NGINX Agent, and can be targeted for a specific architecture.
 
-### Supported NGINX Plus Versions
+### Listing all tags
 
-- NGINX Plus Release 32
-- NGINX Plus Release 32 with [NGINX Agent](https://docs.nginx.com/nginx-agent/)
-- NGINX Plus Release 31
-- NGINX Plus Release 31 with [NGINX Agent](https://docs.nginx.com/nginx-agent/)
+For a complete tag list for NGINX Plus bundled with NGINX Agent images, use the command:
 
-### Supported Distributions
+```shell
+curl https://private-registry.nginx.com/v2/nginx-plus/<nginxplus-image-type>/tags/list --key <nginx-repo.key> --cert <nginx-repo.crt> | jq
+```
 
-- Alpine (x86_64, aarch64)
-- Debian (x86_64, aarch64)
-- Red Hat Enterprise Linux (x86_64, aarch64)
+where:
+- the `<nginxplus-image-type>` is the location of images in NGINX Plus private registry:
+  - `base` — NGINX Plus only 
+  - `rootless-base` — NGINX Plus run from `nginx` user
+` - `agent` — NGINX Plus along with NGINX Agent in a single image
+  - `rootless-agent` — NGINX Plus with NGINX Agent both run from `nginx` user
+  - `modules` — NGINX Plus dynamic modules <!-- As described in internal issue SE-3 -->
 
-### Supported Image Types
+- the `<nginx-repo.key>` is a local path to your client key from MyF5, for example, `/etc/ssl/nginx/nginx-repo-x12345.key`
 
-- base — NGINX Plus only
-- agent — NGINX Plus along with NGINX Agent in a single image
-- rootless-base — NGINX Plus run from `nginx` user
-- rootless-agent — NGINX Plus with NGINX Agent both run from `nginx` user
-- modules — NGINX Plus only <!-- As described in internal issue SE-3 -->
+- the `<nginx-repo.crt>` is a local path to your client certificate from MyF5, for example,`/etc/ssl/nginx/nginx-repo-x12345.crt`
+
+- the `jq` command is used to format the JSON output for easier reading and requires the [jq](https://jqlang.github.io/jq/) JSON processor to be installed.
 
 
-### Downloading the NGINX Plus certificate and key or JSON Web Token{#myf5-download}
 
-Before you get a container image, you should provide the SSL certificate and private key files or JSON Web Token file provided with your NGINX Plus license. These files grant access to the package repository from which the script will download the NGINX Plus package:
+### Downloading the JSON Web Token or NGINX Plus certificate and key {#myf5-download}
+
+Before you get a container image, you should provide the JSON Web Token file or SSL certificate and private key files provided with your NGINX Plus subscription. These files grant access to the package repository from which the script will download the NGINX Plus package:
 
 {{<tabs name="product_keys">}}
 
@@ -108,7 +144,7 @@ docker login private-registry.nginx.com
 
 Next, pull the image you need from `private-registry.nginx.com`.
 
-To pull an image, replace `<version-tag>` with the specific NGINX Plus version or the NGINX Plus version and OS version you need. For example, `r32-ubi-9`.
+To pull an image, replace `<version-tag>` with the specific NGINX Plus version or the NGINX Plus version and OS version you need.
 
 For NGINX Plus, run:
 
@@ -140,80 +176,6 @@ For NGINX modules, run:<!-- Is this enough info?-->
 docker pull private-registry.nginx.com/nginx-plus/modules:<version-tag>
 ```
 
-Tagging examples:
-
-- `nginx_release`—`OS_type`: `r32-ubi`, `r32-alpine`, `r32-debian`
-- `nginx_release`—`OS_type`—`OS_version`: `r32-ubi-9`, `r32-alpine-9.99`, `r32-debian-sid`
-- latest release image gets the `OS_type` tag: `alpine`, `debian` or `ubi`
-- latest debian-based images also get the short release tag (e.g. `R32`) and the `nginx-plus` tag
-
-
-You can use the Docker registry API to list the available image tags.
-Replace `<path-to-your-nginx-repo.key>` with the location of your client key and `<path-to-your-nginx-repo.crt>` with the location of your client certificate. The optional `jq` command is used to format the JSON output for easier reading and requires the [jq](https://jqlang.github.io/jq/) JSON processor to be installed.
-
-```shell
-curl https://private-registry.nginx.com/v2/nginx-plus/base/tags/list --key <path-to-your-nginx-repo.key> --cert <path-to-your-nginx-repo.crt> | jq
-```
-```json
-{
-  "name": "nginx-plus/base",
-  "tags": [
-    "alpine",
-    "debian",
-    "nginx-plus-20240313",
-    "nginx-plus-20240326",
-    "nginx-plus-r31-20240313",
-    "nginx-plus-r31-20240326",
-    "nginx-plus-r31-alpine-3.18-20240313",
-    "nginx-plus-r31-alpine-3.18-20240326",
-    "nginx-plus-r31-alpine-3.18",
-    "nginx-plus-r31-debian-bookworm-20240313",
-    "nginx-plus-r31-debian-bookworm-20240326",
-    "nginx-plus-r31-debian-bookworm",
-    "nginx-plus-r31-ubi-9-20240313",
-    "nginx-plus-r31-ubi-9-20240326",
-    "nginx-plus-r31-ubi-9",
-    "nginx-plus-r31",
-    "nginx-plus-r32-20240313",
-    "nginx-plus-r32-20240326",
-    "nginx-plus-r32-alpine-3.19-20240313",
-    "nginx-plus-r32-alpine-3.19-20240326",
-    "nginx-plus-r32-alpine-3.19",
-    "nginx-plus-r32-debian-bookworm-20240313",
-    "nginx-plus-r32-debian-bookworm-20240326",
-    "nginx-plus-r32-debian-bookworm",
-    "nginx-plus-r32-ubi-9-20240313",
-    "nginx-plus-r32-ubi-9-20240326",
-    "nginx-plus-r32-ubi-9",
-    "nginx-plus-r32",
-    "nginx-plus",
-    "r31-alpine-3.18-20240313",
-    "r31-alpine-3.18-20240326",
-    "r31-alpine-3.18",
-    "r31-debian-bookworm-20240313",
-    "r31-debian-bookworm-20240326",
-    "r31-debian-bookworm",
-    "r31-ubi-9-20240313",
-    "r31-ubi-9-20240326",
-    "r31-ubi-9",
-    "r31",
-    "r32-alpine-3.19-20240313",
-    "r32-alpine-3.19-20240326",
-    "r32-alpine-3.19",
-    "r32-alpine",
-    "r32-debian-bookworm-20240313",
-    "r32-debian-bookworm-20240326",
-    "r32-debian-bookworm",
-    "r32-debian",
-    "r32-ubi-9-20240313",
-    "r32-ubi-9-20240326",
-    "r32-ubi-9",
-    "r32-ubi",
-    "r32",
-    "ubi"
-  ]
-}
-```
 
 {{< include "security/jwt-password-note.md" >}}
 
@@ -234,8 +196,59 @@ docker tag private-registry.nginx.com/nginx-plus/base:<version-tag> <my-docker-r
 docker push <my-docker-registry>/nginx-plus/base:<version-tag>
 ```
 
+### Running the NGINX Plus container
+
+To start the Docker container, replace `YOUR_DATA_PLANE_KEY` with your data plane key and `YOUR_JWT_HERE` with your JWT, `VERSION_TAG` with the version tag you pulled.
+
+**For NGINX Plus R33**:
+
+- Use the `NGINX_LICENSE_JWT` variable to pass your JWT license
+- Alternatively, specify the license file path with `NGINX_LICENSE_PATH` (default: `/etc/nginx/license.jwt`).
+s
+For more information about NGINX Plus license and usage reporting see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}).
+
+To start the Docker container with NGINX Plus only:
+```sh
+sudo docker run \
+--env=NGINX_LICENSE_JWT="YOUR_JWT_HERE" \
+--restart=always \
+--runtime=runc \
+-d private-registry.nginx.com/nginx-plus/base:<VERSION_TAG>
+```
+
+To start the Docker container with NGINX Plus and NGINX Agent:
+```sh
+sudo docker run \
+--env=NGINX_LICENSE_JWT="YOUR_JWT_HERE" \
+--env=NGINX_AGENT_SERVER_GRPCPORT=443 \
+--env=NGINX_AGENT_SERVER_HOST=agent.connect.nginx.com \
+--env=NGINX_AGENT_SERVER_TOKEN="YOUR_NGINX_ONE_DATA_PLANE_KEY_HERE" \
+--env=NGINX_AGENT_TLS_ENABLE=true \
+--restart=always \
+--runtime=runc \
+-d private-registry.nginx.com/nginx-plus/agent:<VERSION_TAG>
+```
+
+<br>
+
+{{<call-out "" "Example:" "" >}}
+To start the container with the `debian` or `ubuntu` image:
+
+```sh
+sudo docker run \
+--env=NGINX_LICENSE_JWT="YOUR_JWT_HERE" \
+--env=NGINX_AGENT_SERVER_GRPCPORT=443 \
+--env=NGINX_AGENT_SERVER_HOST=agent.connect.nginx.com \
+--env=NGINX_AGENT_SERVER_TOKEN="YOUR_NGINX_ONE_DATA_PLANE_KEY_HERE" \
+--env=NGINX_AGENT_TLS_ENABLE=true \
+--restart=always \
+--runtime=runc \
+-d private-registry.nginx.com/nginx-plus/agent:debian
+{{</call-out>}}
+
+
 <span id="docker_oss"></span>
-## Running NGINX Open Source in a Docker Container
+## Using NGINX Open Source Docker Images
 
 You can create an NGINX instance in a Docker container using the NGINX Open Source image from the Docker Hub.
 
