@@ -29,6 +29,20 @@ F5 NGINX App Protect WAF v5, designed for NGINX Open Source and NGINX Plus envir
 - Basic understanding of NGINX and containerization concepts.
 - Software prerequisites include Docker or Kubernetes, depending on the chosen deployment method.
 
+## Technical Specifications
+
+NGINX App Protect WAF v5 supports the following operating systems:
+
+| Distribution | Version             |
+| ------------ | ------------------- |
+| Alpine       | 3.17                |
+| Debian       | 11, 12              |
+| Ubuntu       | 20.04, 22.04, 24.04 |
+| Amazon Linux | 2023                |
+| RHEL         | 8, 9                |
+| Rocky Linux  | 8                   |
+| Oracle Linux | 8.1                 |
+
 ## Deployment Types
 
 NGINX App Protect WAF v5 supports a range of deployment scenarios to meet various operational needs:
