@@ -6,14 +6,14 @@ test.describe("Testing search page", () => {
         await page.goto('/'); 
         await waitFor(() => handleConsentPopup(page));
 
-        const searchBox = page.locator('#searchbox');
+        const searchBox = page.locator('.CoveoSearchbox');
+        const searchButton = page.locator('.CoveoSearchButton');
         const searchValue = "proxy";
         expect(searchBox).toBeVisible();
 
         await searchBox.click();
         await page.keyboard.insertText(searchValue);
-        await page.keyboard.press('Enter');
-
+        await searchButton.click();
         await page.waitForURL(`/search.html#q=${searchValue}&sort=relevancy`);
         expect(await page.locator('div h1').innerHTML()).toBe('Search Results');
     });
