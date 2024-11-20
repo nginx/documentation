@@ -19,6 +19,7 @@ When the NGINX style guide does not cover a style, refer next to the [Microsoft 
 
 When writing documentation for our project, align with the default guide's voice and tone.
 
+
 ## F5 brand trademarks and product names
 
 - On the first mention of an enterprise NGINX product in a document, use the full product name. For example:
@@ -426,6 +427,8 @@ Ensure content and screenshots are anonymized and don't contain sensitive inform
 
 ## Guidelines for `includes`
 
+In an ideal world, we'd "write once, publish everywhere." To that end, we follow the principle of [Don't repeat yourself](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) in our documentation. As such, we use our tools to set up "includes", to call common content from files in the [content/includes](https://github.com/nginxinc/docs/tree/main/content/includes) directory.
+
 In an ideal world, we'd "write once, publish everywhere." It's possible with a concept known as `includes`, where an entry such as:
 
 ```
@@ -444,6 +447,8 @@ As includes disrupt the flow when reading a markdown file, we encourage you to f
 - Don’t nest includes inside other includes. While this technically works, it makes reviews harder.
 
 If you don't use an include with repeated content, include a `<!-- comment -->` which refers to other files with the same content.
+
+Do not use an include unless it's used in at least two locations. It's OK if those two locations are in the same file.
 
 ## Guidelines for command-line operations
 
@@ -496,6 +501,7 @@ this style guide over time. This guide uses the Major.Minor.Patch
 
 | Edition | Date          | Lead Author(s) | Comments                                              |
 |---------|---------------|----------------|-------------------------------------------------------|
+| 1.7   | November 20, 2024 | Mike Jang  | Specify "includes" must be in at leat two locations. |
 | 1.6   | October 23, 2024 | Jon Torre  | Incorporated specific guidelines from Unit's style guide |
 | 1.5   | October 3, 2024 | Mike Jang  | Include guidelines for "includes"                      |
 | 1.4   | Septemter 20, 2024 | Mike Jang  | Organize and clarify info on sensitive content |
