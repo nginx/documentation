@@ -1,10 +1,11 @@
 name: Check for Broken Links
 # Generates the Hugo production site and checks for broken links
 on:
+  workflow_dispatch:
   # Run on pull requests with changed md files
-  pull_request:
-    paths:
-    - 'content/**.md'
+  # pull_request:
+  #   paths:
+  #   - 'content/**.md'
 
 jobs:
   check-broken-links:
