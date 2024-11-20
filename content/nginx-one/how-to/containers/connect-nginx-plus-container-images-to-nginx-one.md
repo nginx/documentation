@@ -64,12 +64,11 @@ sudo docker pull private-registry.nginx.com/nginx-plus/agent:debian
 
 ### Start the NGINX Plus container
 
-Start the Docker container to connect it to NGINX One. Replace `YOUR_DATA_PLANE_KEY` with your data plane key and `YOUR_JWT_HERE` with your JWT. Replace `VERSION_TAG` with the version tag you pulled.
+Start the Docker container to connect it to NGINX One. Replace `YOUR_NGINX_ONE_DATA_PLANE_KEY_HERE` with your data plane key and `VERSION_TAG` with the version tag you pulled.
 
 **For NGINX Plus R33 or later**:
 
-- Use the `NGINX_LICENSE_JWT` variable to pass your JWT license
-- Alternatively, specify the license file path with `NGINX_LICENSE_PATH` (default: `/etc/nginx/license.jwt`).
+- Use the `NGINX_LICENSE_JWT` variable to pass your JWT license. Replace `YOUR_JWT_HERE` with your JWT.
 
 For more details, see [About subscription licenses]({{< relref "solutions/about-subscription-licenses.md" >}}).
 
