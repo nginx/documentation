@@ -1,0 +1,42 @@
+default: true
+
+MD002: false
+
+MD003: false
+
+MD004:
+  style: dash
+
+MD009: false
+
+MD010: false
+
+MD012: false
+
+MD013:
+  line_length: 5000
+  heading_line_length: 60
+  code_block_line_length: 80
+  code_blocks: true
+  tables: false
+  headings: true
+  headers: true
+  strict: false
+  stern: false
+
+MD022: false
+
+MD024:
+  siblings_only: true
+
+MD029: false
+
+MD033: false
+
+MD034: false
+
+MD041: false
+
+MD046: false
+
+MD051: false
