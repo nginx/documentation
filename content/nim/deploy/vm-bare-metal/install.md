@@ -15,7 +15,9 @@ weight: 10
 
 ## Overview
 
-This guide explains how to install NGINX Instance Manager on a virtual machine (VM) or bare metal. It includes key prerequisites like installing NGINX and setting up ClickHouse, as well as steps for adding a license, accessing the web interface, and optionally securing your deployment with Vault. 
+This guide explains how to install NGINX Instance Manager on a virtual machine (VM) or bare metal. It includes key prerequisites like installing NGINX and setting up ClickHouse, as well as steps for adding a license, accessing the web interface, and optionally securing your deployment with Vault.
+
+{{<call-out "note" "Access the deprecated manual steps" "">}}If you prefer to follow the original manual steps, you can access the [deprecated guide]({{< relref "nim/deploy/vm-bare-metal/install-nim-deprecated.md" >}}). Please note that this guide is no longer actively maintained and may not reflect the latest updates or best practices.{{</call-out>}}
 
 ## Supported versions
 
