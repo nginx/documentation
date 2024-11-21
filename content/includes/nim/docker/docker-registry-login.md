@@ -2,7 +2,7 @@
 docs: "DOCS-1666"
 ---
 
-1. Download your NGINX Instance Manager subscription's JSON Web Token from MyF5:
+1. Download your NGINX Instance Manager subscription's JSON Web Token from MyF5. You can use the same JSON Web Token as NGINX Plus in your MyF5 portal.
 
    {{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 
