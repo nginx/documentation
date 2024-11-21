@@ -12,123 +12,233 @@ on:
     # Runs every day at 7am UTC
     - cron: '0 7 * * *'
 
+env:
+  basepath: https://docs.nginx.com/
+  defaults: '--no-warnings --check-extern --ignore-url ^https://consent.trustarc.com'
+
+  # Ignore lists
+  nim_ignore: '--ignore-url ^https://product.apis.f5.com --ignore-url ^https://product-s.apis.f5.com --ignore-url ^https://www.maxmind.com'
+  app_dos_ignore: '--ignore-url ^http://serv/'
+  app_waf_ignore: '--ignore-url ^http://www.example.com --ignore-url ^file:// --ignore-url ^https://www.fastbot.de'
+  nic_ignore: '--ignore-url ^http://127.0.0.1 --ignore-url ^https://docs.nginx.com/nginx-ingress-controller/css'
+  naas_ignore: '--ignore-url ^https://docs.nginx.com/nginxaas/azure/css/'
+  mesh_ignore: '--ignore-url ^http://localhost --ignore-url ^https://lightstep.com'
+  nwaf_ignore: '--ignore-url ^https://www.owasp.org/'
+  nms_ignore: '--ignore-url ^https://myserver.host.com --ignore-url ^https://oauth2.googleapis.com --ignore-url ^https://openidconnect.googleapis.com --ignore-url ^https://www.base64url.com/'
+
 jobs:
   nginx-one:
     runs-on: ubuntu-latest
     steps:
+      # Build the linkchecker command
+      - name: Setup linkchecker cmds
+        run: |
+          echo "cmd=linkchecker "$basepath"nginx-one/ "$defaults"" >> "$GITHUB_ENV"
       # Install LinkChecker
       - name: Install LinkChecker
         run: sudo apt-get update && sudo apt-get install -y linkchecker
       # Run LinkChecker on nginx-one docs
       - name: Run LinkChecker nginx-one
-        run: linkchecker https://docs.nginx.com/nginx-one/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com
+        uses: nick-fields/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: ${{ env.cmd }}
 
   nginx-instance-manager:
     runs-on: ubuntu-latest
     steps:
+      # Build the linkchecker command
+      - name: Setup linkchecker cmds
+        run: |
+          echo "cmd=linkchecker "$basepath"nginx-instance-manager/ "$defaults" "$nim_ignore"" >> "$GITHUB_ENV"
       # Install LinkChecker
       - name: Install LinkChecker
         run: sudo apt-get update && sudo apt-get install -y linkchecker
       # Run LinkChecker on nginx-instance-manager docs
       - name: Run LinkChecker nginx-instance-manager
-        run: linkchecker  https://docs.nginx.com/nginx-instance-manager/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com --ignore-url ^https://product.apis.f5.com --ignore-url ^https://product-s.apis.f5.com --ignore-url ^https://www.maxmind.com
-  
+        uses: nick-fields/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: ${{ env.cmd }}
+        
   nginx-solutions:
     runs-on: ubuntu-latest
     steps:
+      # Build the linkchecker command
+      - name: Setup linkchecker cmds
+        run: |
+          echo "cmd=linkchecker "$basepath"solutions/ "$defaults"" >> "$GITHUB_ENV"
       # Install LinkChecker
       - name: Install LinkChecker
         run: sudo apt-get update && sudo apt-get install -y linkchecker
       # Run LinkChecker on nginx-solutions docs
       - name: Run LinkChecker nginx-solutions
-        run: linkchecker https://docs.nginx.com/solutions/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com
+        uses: nick-fields/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: ${{ env.cmd }}
         
   nginx-app-protect-dos:
     runs-on: ubuntu-latest
     steps:
+      # Build the linkchecker command
+      - name: Setup linkchecker cmds
+        run: |
+          echo "cmd=linkchecker "$basepath"nginx-app-protect-dos/ "$defaults" "$app_dos_ignore"" >> "$GITHUB_ENV"
       # Install LinkChecker
       - name: Install LinkChecker
         run: sudo apt-get update && sudo apt-get install -y linkchecker
       # Run LinkChecker on nginx-app-protect-dos docs
       - name: Run LinkChecker nginx-app-protect-dos
-        run: linkchecker https://docs.nginx.com/nginx-app-protect-dos/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com --ignore-url ^http://serv/
-  
+        uses: nick-fields/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: ${{ env.cmd }}
+
   nginx-app-protect-waf:
     runs-on: ubuntu-latest
     steps:
+      # Build the linkchecker command
+      - name: Setup linkchecker cmds
+        run: |
+          echo "cmd=linkchecker "$basepath"nginx-app-protect-waf/ "$defaults" "$app_waf_ignore"" >> "$GITHUB_ENV"
       # Install LinkChecker
       - name: Install LinkChecker
         run: sudo apt-get update && sudo apt-get install -y linkchecker
       # Step : Run LinkChecker on nginx-app-protect-waf docs
       - name: Run LinkChecker nginx-app-protect-waf
-        run: linkchecker https://docs.nginx.com/nginx-app-protect-waf/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com --ignore-url ^http://www.example.com --ignore-url ^file:// --ignore-url ^https://www.fastbot.de
+        uses: nick-fields/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: ${{ env.cmd }}
 
   nginx-ingress-controller:
     runs-on: ubuntu-latest
     steps:
+      # Build the linkchecker command
+      - name: Setup linkchecker cmds
+        run: |
+          echo "cmd=linkchecker "$basepath"nginx-ingress-controller/  "$defaults" "$nic_ignore"" >> "$GITHUB_ENV"
       # Install LinkChecker
       - name: Install LinkChecker
         run: sudo apt-get update && sudo apt-get install -y linkchecker
       # Run LinkChecker on nginx-ingress-controller docs
       - name: Run LinkChecker nginx-ingress-controller
-        run: linkchecker https://docs.nginx.com/nginx-ingress-controller/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com --ignore-url ^http://127.0.0.1 --ignore-url ^https://docs.nginx.com/nginx-ingress-controller/css
-  
+        uses: nick-fields/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: ${{ env.cmd }}
+
   nginxaas-azure:
     runs-on: ubuntu-latest
     steps:
+      # Build the linkchecker command
+      - name: Setup linkchecker cmds
+        run: |
+          echo "cmd=linkchecker "$basepath"nginxaas/azure/   "$defaults" "$naas_ignore"" >> "$GITHUB_ENV"
       # Install LinkChecker
       - name: Install LinkChecker
         run: sudo apt-get update && sudo apt-get install -y linkchecker
       # Run LinkChecker on nginxaas-azuret docs
       - name: Run LinkChecker nginxaas-azure
-        run: linkchecker https://docs.nginx.com/nginxaas/azure/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com --ignore-url ^https://docs.nginx.com/nginxaas/azure/css/
-        
+        uses: nick-fields/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: ${{ env.cmd }}
+      
   nginx-service-mesh:
     runs-on: ubuntu-latest
     steps:
+      # Build the linkchecker command
+      - name: Setup linkchecker cmds
+        run: |
+          echo "cmd=linkchecker "$basepath"nginx-service-mesh/ "$defaults" "$mesh_ignore"" >> "$GITHUB_ENV"
       # Install LinkChecker
       - name: Install LinkChecker
         run: sudo apt-get update && sudo apt-get install -y linkchecker
       # Run LinkChecker on nginx-service-mesh docs
       - name: Run LinkChecker nginx-service-mesh
-        run: linkchecker https://docs.nginx.com/nginx-service-mesh/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com --ignore-url ^http://localhost --ignore-url ^https://lightstep.com
+        uses: nick-fields/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: ${{ env.cmd }}
 
   nginx-amplify:
     runs-on: ubuntu-latest
     steps:
+      # Build the linkchecker command
+      - name: Setup linkchecker cmds
+        run: |
+          echo "cmd=linkchecker "$basepath"nginx-amplify/  "$defaults"" >> "$GITHUB_ENV"
       # Install LinkChecker
       - name: Install LinkChecker
         run: sudo apt-get update && sudo apt-get install -y linkchecker
       # Run LinkChecker on nginx-amplify docs
       - name: Run LinkChecker nginx-amplify
-        run: linkchecker https://docs.nginx.com/nginx-amplify/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com
+        uses: nick-fields/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: ${{ env.cmd }}
 
   nginx-controller:
     runs-on: ubuntu-latest
     steps:
+      # Build the linkchecker command
+      - name: Setup linkchecker cmds
+        run: |
+          echo "cmd=linkchecker "$basepath"nginx-controller/  "$defaults"" >> "$GITHUB_ENV"
       # Install LinkChecker
       - name: Install LinkChecker
         run: sudo apt-get update && sudo apt-get install -y linkchecker
       # Run LinkChecker on nginx-controller docs
       - name: Run LinkChecker nginx-controller
-        run: linkchecker https://docs.nginx.com/nginx-controller/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com
+        uses: nick-fields/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: ${{ env.cmd }}
 
   nginx-waf:
     runs-on: ubuntu-latest
     steps:
+      # Build the linkchecker command
+      - name: Setup linkchecker cmds
+        run: |
+          echo "cmd=linkchecker "$basepath"nginx-waf/ "$defaults" "$nwaf_ignore"" >> "$GITHUB_ENV"
       # Install LinkChecker
       - name: Install LinkChecker
         run: sudo apt-get update && sudo apt-get install -y linkchecker
       # Run LinkChecker on nginx-waf docs
       - name: Run LinkChecker nginx-waf
-        run: linkchecker https://docs.nginx.com/nginx-waf/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com --ignore-url ^https://www.owasp.org/
+        uses: nick-fields/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: ${{ env.cmd }}
 
   nginx-management-suite:
     runs-on: ubuntu-latest
     steps:
+      # Build the linkchecker command
+      - name: Setup linkchecker cmds
+        run: |
+          echo "cmd=linkchecker "$basepath"nginx-management-suite/ "$defaults" "$nms_ignore"" >> "$GITHUB_ENV"
       # Install LinkChecker
       - name: Install LinkChecker
         run: sudo apt-get update && sudo apt-get install -y linkchecker
       # Run LinkChecker on nginx-management-suite docs
       - name: Run LinkChecker nginx-management-suite
-        run: linkchecker https://docs.nginx.com/nginx-management-suite/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com --ignore-url ^https://myserver.host.com --ignore-url ^https://oauth2.googleapis.com --ignore-url ^https://openidconnect.googleapis.com --ignore-url ^https://www.base64url.com/
+        uses: nick-fields/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: ${{ env.cmd }}
