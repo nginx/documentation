@@ -27,7 +27,7 @@ The Clickhouse database is deployed in a separate container to improve resilienc
 ## What you need
 
 - A working version of [Docker](https://docs.docker.com/get-docker/)
-- Your NGINX Instance Manager subscription's JSON Web Token from [MyF5](https://my.f5.com/manage/s/subscriptions)
+- Your NGINX Instance Manager subscription's JSON Web Token from [MyF5](https://my.f5.com/manage/s/subscriptions) You can use the same JSON Web Token as NGINX Plus in your MyF5 portal.
 - This pre-configured `docker-compose.yaml` file:
   - {{<fa "download">}} {{<link "/scripts/docker-compose/docker-compose.yaml" "Download docker-compose.yaml file">}}.
   
