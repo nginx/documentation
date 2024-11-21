@@ -30,22 +30,18 @@ This article explains how to install NGINX Plus on different operating systems,
 
 3.  Get the SSL certificate, SSL key, and the JWT file associated with your NGINX Plus subscription from the MyF5 Customer Portal:
 
-    * Log in to [MyF5](https://my.f5.com/manage/s/).
-    * Go to **My Products & Plans > Subscriptions** to see your active subscriptions.
-    * Find your NGINX products or services subscription, and select the **Subscription ID** for details.
-    * Download the **nginx-repo.crt** and **nginx-repo.key** from the subscription page.
-    * Download the **JSON Web Token** from the subscription page.
+    {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
 
     {{< note >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /note >}}
 
-4.  Create the **/etc/nginx/** directory:
+4.  Create the **/etc/nginx/** directory for the JWT license file:
 
     ```shell
     sudo mkdir -p /etc/nginx/
     cd /etc/nginx/
     ```
 
-5.  Rename the downloaded **jwt** file to **license.jwt** and copy it to the **/etc/nginx/** directory:
+5.  Rename the downloaded JWT file to **license.jwt** and copy it to the **/etc/nginx/** directory:
 
     ```shell
     sudo cp license.jwt /etc/nginx/
@@ -105,22 +101,18 @@ This article explains how to install NGINX Plus on different operating systems,
 
 3.  Get the SSL certificate, SSL key, and the JWT file associated with your NGINX Plus subscription from the MyF5 Customer Portal:
 
-    * Log in to [MyF5](https://my.f5.com/manage/s/).
-    * Go to **My Products & Plans > Subscriptions** to see your active subscriptions.
-    * Find your NGINX products or services subscription, and select the **Subscription ID** for details.
-    * Download the **nginx-repo.crt** and **nginx-repo.key** from the subscription page.
-    * Download the **JSON Web Token** from the subscription page.
+    {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
 
     {{< note >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), the JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /note >}}
 
-4.  Create the **/etc/nginx/** directory:
+4.  Create the **/etc/nginx/** directory for the JWT license file:
 
     ```shell
     sudo mkdir -p /etc/nginx/
     cd /etc/nginx/
     ```
 
-5.  Rename the downloaded **jwt** file to **license.jwt** and copy it to the **/etc/nginx/** directory:
+5.  Rename the downloaded JWT file to **license.jwt** and copy it to the **/etc/nginx/** directory:
 
     ```shell
     sudo cp license.jwt /etc/nginx/
@@ -179,22 +171,18 @@ This article explains how to install NGINX Plus on different operating systems,
 
 3. Get the SSL certificate, SSL key, and the JWT file associated with your NGINX Plus subscription from the MyF5 Customer Portal.
 
-    * Log in to [MyF5](https://my.f5.com/manage/s/).
-    * Go to **My Products & Plans > Subscriptions** to see your active subscriptions.
-    * Find your NGINX products or services subscription, and select the **Subscription ID** for details.
-    * Download the **nginx-repo.crt** and **nginx-repo.key** from the subscription page.
-    * Download the **JSON Web Token** from the subscription page.
+    {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
 
     {{< note >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /note >}}
 
-4.  Create the **/etc/nginx/** directory:
+4.  Create the **/etc/nginx/** directory for the JWT license file:
 
     ```shell
     sudo mkdir -p /etc/nginx/
     cd /etc/nginx/
     ```
 
-5.  Rename the downloaded **jwt** file to **license.jwt** and copy it to the **/etc/nginx/** directory:
+5.  Rename the downloaded JWT file to **license.jwt** and copy it to the **/etc/nginx/** directory:
 
     ```shell
     sudo cp license.jwt /etc/nginx/
@@ -241,7 +229,7 @@ This article explains how to install NGINX Plus on different operating systems,
     sudo yum install epel-release
     ```
 
-    * add theNGINX App Protect repository by downloading the [app-protect-7.repo](https://cs.nginx.com/static/files/app-protect-7.repo) file to **/etc/yum.repos.d**:
+    * add the NGINX App Protect repository by downloading the [app-protect-7.repo](https://cs.nginx.com/static/files/app-protect-7.repo) file to **/etc/yum.repos.d**:
 
     ```shell
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-7.repo
@@ -280,22 +268,18 @@ This article explains how to install NGINX Plus on different operating systems,
 
 3.  Get the SSL certificate, SSL key, and the JWT file associated with your NGINX Plus subscription from the MyF5 Customer Portal:
 
-    * Log in to [MyF5](https://my.f5.com/manage/s/).
-    * Go to **My Products & Plans > Subscriptions** to see your active subscriptions.
-    * Find your NGINX products or services subscription, and select the **Subscription ID** for details.
-    * Download the **nginx-repo.crt** and **nginx-repo.key** from the subscription page.
-    * Download the **JSON Web Token** from the subscription page.
+    {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
 
     {{< note >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /note >}}
 
-4.  Create the **/etc/nginx/** directory:
+4.  Create the **/etc/nginx/** directory for the JWT license file:
 
     ```shell
     sudo mkdir -p /etc/nginx/
     cd /etc/nginx/
     ```
 
-5.  Rename the downloaded **jwt** file to **license.jwt** and copy it to the **/etc/nginx/** directory:
+5.  Rename the downloaded JWT file to **license.jwt** and copy it to the **/etc/nginx/** directory:
 
     ```shell
     sudo cp license.jwt /etc/nginx/
@@ -361,22 +345,18 @@ This article explains how to install NGINX Plus on different operating systems,
 
 3.  Get the SSL certificate, SSL key, and the JWT file associated with your NGINX Plus subscription from the MyF5 Customer Portal:
 
-    * Log in to [MyF5](https://my.f5.com/manage/s/).
-    * Go to **My Products & Plans > Subscriptions** to see your active subscriptions.
-    * Find your NGINX products or services subscription, and select the **Subscription ID** for details.
-    * Download the **nginx-repo.crt** and **nginx-repo.key** from the subscription page.
-    * Download the **JSON Web Token** from the subscription page.
+    {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
 
     {{< note >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /note >}}
 
-4.  Create the **/etc/nginx/** directory:
+4.  Create the **/etc/nginx/** directory for the JWT license file:
 
     ```shell
     sudo mkdir -p /etc/nginx/
     cd /etc/nginx/
     ```
 
-5.  Rename the downloaded **jwt** file to **license.jwt** and copy it to the **/etc/nginx/** directory:
+5.  Rename the downloaded JWT file to **license.jwt** and copy it to the **/etc/nginx/** directory:
 
     ```shell
     sudo cp license.jwt /etc/nginx/
@@ -444,22 +424,18 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
 
 3.  Get the SSL certificate, SSL key, and the JWT file associated with your NGINX Plus subscription from the MyF5 Customer Portal:
 
-    * Log in to [MyF5](https://my.f5.com/manage/s/).
-    * Go to **My Products & Plans > Subscriptions** to see your active subscriptions.
-    * Find your NGINX products or services subscription, and select the **Subscription ID** for details.
-    * Download the **nginx-repo.crt** and **nginx-repo.key** from the subscription page.
-    * Download the **JSON Web Token** from the subscription page.
+    {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
 
     {{< note >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /note >}}
 
-4.  Create the **/etc/nginx/** directory:
+4.  Create the **/etc/nginx/** directory for the JWT license file:
 
     ```shell
     sudo mkdir -p /etc/nginx/
     cd /etc/nginx/
     ```
 
-5.  Rename the downloaded **jwt** file to **license.jwt** and copy it to the **/etc/nginx/** directory:
+5.  Rename the downloaded JWT file to **license.jwt** and copy it to the **/etc/nginx/** directory:
 
     ```shell
     sudo cp license.jwt /etc/nginx/
@@ -484,15 +460,15 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
     For Debian:
 
     ```shell
-    sudo apt-get update
-    sudo apt-get install apt-transport-https lsb-release ca-certificates wget gnupg2 debian-archive-keyring
+    sudo apt update
+    sudo apt install apt-transport-https lsb-release ca-certificates wget gnupg2 debian-archive-keyring
     ```
 
     For Ubuntu:
 
     ```shell
-    sudo apt-get update
-    sudo apt-get install apt-transport-https lsb-release ca-certificates wget gnupg2 ubuntu-keyring
+    sudo apt update
+    sudo apt install apt-transport-https lsb-release ca-certificates wget gnupg2 ubuntu-keyring
     ```
 
 9.  Download and add [NGINX signing key](https://cs.nginx.com/static/keys/nginx_signing.key) and [App Protect security updates signing key](https://cs.nginx.com/static/keys/app-protect-security-updates.key):
@@ -543,19 +519,19 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
 13. Update the repository information:
 
     ```shell
-    sudo apt-get update
+    sudo apt update
     ```
 
 14. Install the **nginx-plus** package. Any older NGINX Plus package is automatically replaced.
 
     ```shell
-    sudo apt-get install -y nginx-plus
+    sudo apt install -y nginx-plus
     ```
 
 15. If you have NGINX App Protect subscription, install NGINX App Protect and its signatures:
 
     ```shell
-    sudo apt-get install app-protect app-protect-attack-signatures
+    sudo apt install app-protect app-protect-attack-signatures
     ```
 
 16. Check the `nginx` binary version to verify that NGINX Plus is installed correctly:
@@ -580,22 +556,18 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
 
 3.  Get the SSL certificate, SSL key, and the JWT file associated with your NGINX Plus subscription from the MyF5 Customer Portal:
 
-    * Log in to [MyF5](https://my.f5.com/manage/s/).
-    * Go to **My Products & Plans > Subscriptions** to see your active subscriptions.
-    * Find your NGINX products or services subscription, and select the **Subscription ID** for details.
-    * Download the **nginx-repo.crt** and **nginx-repo.key** from the subscription page.
-    * Download the **JSON Web Token** from the subscription page.
+    {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
 
     {{< note >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /note >}}
 
-4.  Create the **/usr/local/etc/nginx/** directory:
+4.  Create the **/usr/local/etc/nginx/** directory for the JWT license file:
 
     ```shell
     sudo mkdir -p /usr/local/etc/nginx
     cd /usr/local/etc/nginx
     ```
 
-5.  Rename the downloaded **jwt** file to **license.jwt** and copy it to the **/usr/local/etc/nginx** directory:
+5.  Rename the downloaded JWT file to **license.jwt** and copy it to the **/usr/local/etc/nginx** directory:
 
     ```shell
     sudo cp license.jwt /usr/local/etc/nginx
@@ -663,22 +635,18 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
 
 3.  Get the SSL certificate, SSL key, and the JWT file associated with your NGINX Plus subscription from the MyF5 Customer Portal:
 
-    * Log in to [MyF5](https://my.f5.com/manage/s/).
-    * Go to **My Products & Plans > Subscriptions** to see your active subscriptions.
-    * Find your NGINX products or services subscription, and select the **Subscription ID** for details.
-    * Download the **nginx-repo.crt** and **nginx-repo.key** from the subscription page.
-    * Download the **JSON Web Token** from the subscription page.
+    {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
 
     {{< note >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /note >}}
 
-4.  Create the **/etc/nginx/** directory:
+4.  Create the **/etc/nginx/** directory for the JWT license file:
 
     ```shell
     sudo mkdir -p /etc/nginx/
     cd /etc/nginx/
     ```
 
-5.  Rename the downloaded **jwt** file to **license.jwt** and copy it to the **/etc/nginx/** directory:
+5.  Rename the downloaded JWT file to **license.jwt** and copy it to the **/etc/nginx/** directory:
 
     ```shell
     sudo cp nginx-repo.jwt /etc/nginx/
@@ -752,22 +720,18 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
 
 3.  Get the SSL certificate, SSL key, and the JWT file associated with your NGINX Plus subscription from the MyF5 Customer Portal:
 
-    * Log in to [MyF5](https://my.f5.com/manage/s/).
-    * Go to **My Products & Plans > Subscriptions** to see your active subscriptions.
-    * Find your NGINX products or services subscription, and select the **Subscription ID** for details.
-    * Download the **nginx-repo.crt** and **nginx-repo.key** from the subscription page.
-    * Download the **JSON Web Token** from the subscription page.
+    {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
 
     {{< note >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /note >}}
 
-4.  Create the **/etc/nginx/** directory:
+4.  Create the **/etc/nginx/** directory for the JWT license file:
 
     ```shell
     sudo mkdir -p /etc/nginx/
     cd /etc/nginx/
     ```
 
-5.  Rename the downloaded **jwt** file to **license.jwt** and copy it to the **/etc/nginx/** directory.
+5.  Rename the downloaded JWT file to **license.jwt** and copy it to the **/etc/nginx/** directory.
 
 6.  Upload **nginx-repo.key** to **/etc/apk/cert.key** and **nginx-repo.crt** to **/etc/apk/cert.pem**. Please make sure that files do not contain other certificates and keys: Alpine Linux does not support mixing client certificates for different repositories.
 
@@ -873,8 +837,8 @@ NGINX‑authored and NGINX‑certified dynamic modules can be installed directly
 - For Debian and Ubuntu:
 
   ```shell
-  apt-get update
-  apt-get install <MODULE-NAME>
+  apt update
+  apt install <MODULE-NAME>
   ```
 
 - For FreeBSD:
@@ -924,8 +888,8 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
    - For Debian and Ubuntu:
 
      ```shell
-     sudo apt-get update
-     sudo apt-get install gcc make libpcre3-dev zlib1g-dev
+     sudo apt update
+     sudo apt install gcc make libpcre3-dev zlib1g-dev
      ```
 
    - For CentOS, Oracle Linux, and RHEL:
@@ -998,9 +962,9 @@ To enable a dynamic module:
 <span id="unpriv_install"></span>
 ## NGINX Plus Unprivileged Installation
 
-In some environments, access to the root account is restricted for security reasons. If you are using a Linux operating system, you will not be able to run a package manager for installing NGINX Plus without root privileges.
+In some environments, access to the root account is restricted for security reasons. On Linux systems, this limitation prevents the use of package managers to install NGINX Plus without root privileges.
 
-As a workaround, in such environments NGINX Plus can be installed with a special script that modifies NGINX Plus configuration file to allow it to run from a non-root user. The script:
+As a workaround, in such environments NGINX Plus can be installed with a special script that modifies NGINX Plus configuration file to allow it to run from a non-root user. This script performs the following actions:
 
 * Downloads the NGINX Plus packages
 
@@ -1094,39 +1058,35 @@ With this script, you can also upgrade an existing unprivileged installation of 
 
 This section explains how to install NGINX Plus and its [dynamic modules]({{< relref "/nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}) on a server with limited or no Internet access.
 
-To install NGINX Plus offline, you will need a machine connected to the Internet to get the NGINX Plus package, SSL certificate and key. Then your can transfer these files to the target server for offline installation.
+To install NGINX Plus offline, you will need a machine connected to the Internet to get the NGINX Plus package, JWT license, SSL certificate and key. Then your can transfer these files to the target server for offline installation.
 
-### Obtaining files on the machine connected to the Internet
+### Step 1: Obtaining files on the machine connected to the Internet
 
-1. Download your SSL certificate, private key, and NGINX Plus installation file from [MyF5 Customer Portal](https://account.f5.com/myf5/).
+1. Download your SSL certificate, private key, NGINX Plus installation file, and JWT license file from [MyF5 Customer Portal](https://account.f5.com/myf5/).
 
-    * Log in to [MyF5](https://my.f5.com/manage/s/).
-    * Go to **My Products & Plans > Subscriptions** to see your active subscriptions.
-    * Find your NGINX products or services subscription, and select the **Subscription ID** for details.
-    * Download the **nginx-repo.crt** and **nginx-repo.key** from the subscription page.
-    * Download the **JSON Web Token** from the subscription page.
+   {{< note >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /note >}}
 
-    {{< note >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /note >}}
-
-    * To download the NGINX Plus package and corresponding dynamic modules, select `Downloads`. Choose `NGINX` product group, `NGINX Plus` product line, Linux distribution, its version, and architecture. Choose the target file from the list and select `Download`.
+   {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
 
 2. Transfer the files to the target server that doesn't have online access and where NGINX Plus will be installed.
 
 
-### Installing NGINX Plus on a server without Internet connectivity
+### Step 2: Installing NGINX Plus on a server without Internet connectivity
 
 1.  If you have an older NGINX Plus package installed, it is recommended backing up the configuration and log files. For more information, see "[Upgrading NGINX Plus](#upgrade)".
 
 2.  Make sure you have obtained the SSL certificate, SSL key, and the JWT file associated with your NGINX Plus subscription from the MyF5 Customer Portal.
 
-3.  Create the **/etc/nginx/** directory:
+   {{< note >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /note >}}
+
+3.  Create the **/etc/nginx/** directory for the JWT license file:
 
     ```shell
     sudo mkdir -p /etc/nginx/
     cd /etc/nginx/
     ```
 
-4.  Rename the downloaded **jwt** file to **license.jwt** and copy it to the **/etc/nginx/** directory:
+4.  Rename the downloaded JWT file to **license.jwt** and copy it to the **/etc/nginx/** directory:
 
     ```shell
     sudo cp license.jwt /etc/nginx/
@@ -1174,9 +1134,17 @@ To install NGINX Plus offline, you will need a machine connected to the Internet
     nginx -v
     ```
 
-9.  Install NGINX Instance Manager 2.18 or later in your local environment. For more information, see [Disconnected environments](https://docs.nginx.com/nginx-instance-manager/disconnected/).
+9.  Install NGINX Instance Manager 2.18 or later in your local environment to enable usage reporting, which is mandatory since R33. For more information, see [Disconnected environments](https://docs.nginx.com/nginx-instance-manager/disconnected/) and [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}).
 
-10. Configure usage reporting of the installed NGINX Plus instance to NGINX Instance Manager:
+10. Configure usage reporting of the NGINX Plus instance to NGINX Instance Manager which is mandatory starting from R33.
+
+    In the `nginx.conf` configuration file, specify the following directives:
+
+    * the [`mgmt {}`](https://nginx.org/en/docs/ngx_mgmt_module.html#mgmt) block that handles NGINX Plus licensing and usage reporting configuration,
+
+    * the [`usage_report`](https://nginx.org/en/docs/ngx_mgmt_module.html#usage_report) directive that sets the domain name or IP address of NGINX Instance Manager,
+
+    * the [`enforce_initial_report`](https://nginx.org/en/docs/ngx_mgmt_module.html#usage_report) directive that enables the 180-day grace period for sending the initial usage report. The initial usage report must be received by F5 licensing endpoint during the grace period, otherwise traffic processing will be stopped:
 
     ```nginx
     mgmt {
@@ -1184,19 +1152,14 @@ To install NGINX Plus offline, you will need a machine connected to the Internet
         enforce_initial_report off;
     }
     ```
-    where the [`usage_report`](https://nginx.org/en/docs/ngx_mgmt_module.html#usage_report) directive sets the domain name or IP address of NGINX Instance Manager, and the [`enforce_initial_report`](https://nginx.org/en/docs/ngx_mgmt_module.html#usage_report) directive enables the 180-day grace period sending the initial usage report during which the initial usage report must be received by F5 licensing endpoint, otherwise nginx will stop processing traffic.
 
-11. Prepare and send the usage report to F5 licensing endpoint. For more information, see [Report usage to F5 in a disconnected environment](https://docs.nginx.com/nginx-instance-manager/disconnected/report-usage-disconnected-deployment/).
+11. In NGINX Instance Manager, prepare and send the usage report to F5 licensing endpoint. For more information, see [Report usage to F5 in a disconnected environment](https://docs.nginx.com/nginx-instance-manager/disconnected/report-usage-disconnected-deployment/).
 
 12. Upload the usage acknowledgement to NGINX Instance Manager. For more information, see [Report usage to F5 in a disconnected environment](https://docs.nginx.com/nginx-instance-manager/disconnected/report-usage-disconnected-deployment/#submit-usage-report).
 
 
 <span id="upgrade"></span>
 ## Upgrading NGINX Plus
-
-{{< note >}} Starting from [Release 33]({{< ref "nginx/releases.md#r33" >}}) (R33), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}).{{< /note >}}
-
-({{< ref "nginx/releases.md#r24" >}})
 
 {{< note >}} Starting from [Release 24]({{< ref "nginx/releases.md#r24" >}}) (R24), NGINX Plus repositories have been separated into individual repositories based on operating system distribution and license subscription. Before upgrading from previous NGINX Plus versions, you must first reconfigure your repositories to point to the correct location. To reconfigure your repository, follow the installation instructions above for your operating system. {{< /note >}}
 
@@ -1217,11 +1180,13 @@ To upgrade your NGINX Plus installation to the newest version:
       sudo cp -a /usr/local/etc/nginx /usr/local/etc/nginx-plus-backup
       sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
       ```
-2. Get the JWT file associated with your NGINX Plus subscription from the MyF5 Customer Portal:
+1. Get the JWT file associated with your NGINX Plus subscription from the MyF5 Customer Portal:
 
    {{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 
-3. Create the **/etc/nginx/** directory for Linux, or the ** /usr/local/etc/nginx** directory for FreeBSD:
+   {{< note >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /note >}}
+
+1. Create the **/etc/nginx/** directory for Linux or the **/usr/local/etc/nginx** directory for FreeBSD:
 
     ```shell
     sudo mkdir -p /etc/nginx #for Linux
@@ -1232,18 +1197,19 @@ To upgrade your NGINX Plus installation to the newest version:
     sudo mkdir -p /usr/local/etc/nginx #for FreeBSD
     cd /usr/local/etc/nginx
     ```
+    {{< note >}} {{< include "licensing-and-reporting/custom-paths-jwt.md" >}}  {{< /note >}}
 
-3. Rename the downloaded **jwt** file to **license.jwt** and copy it to the **/etc/nginx/** directory for Linux, or to the ** /usr/local/etc/nginx** directory for FreeBSD:
+1. Rename the downloaded JWT file to **license.jwt** and copy it to the **/etc/nginx/** directory for Linux, or to the **/usr/local/etc/nginx** directory for FreeBSD:
 
     ```shell
     sudo cp license.jwt /etc/nginx/  #for Linux
     ```
 
     ```shell
-    sudo cp license.jwt /etc/nginx/  #for FreeBSD
+    sudo cp license.jwt /usr/local/etc/nginx/  #for FreeBSD
     ```
 
-4. Upgrade to the new NGINX Plus package.
+1. Upgrade to the new NGINX Plus package.
 
    - For RHEL, Amazon Linux, CentOS, Oracle Linux, AlmaLinux and Rocky Linux:
 
@@ -1264,7 +1230,34 @@ To upgrade your NGINX Plus installation to the newest version:
      sudo pkg upgrade nginx-plus
      ```
 
-   To verify that the new NGINX Plus version is running, run:
+1. Configure NGINX Plus usage reporting which is mandatory starting from R33. By default, no configuration is required. However, configuration is required in specific scenarios, such as NGINX Plus is installed in an offline environment or if the JWT license file is located in a non-default directory.
+
+   For offline environments, usage reporting should be configured for NGINX Instance Manager 2.18 or later. In the `nginx.conf` configuration file, specify the following directives:
+
+   * the [`mgmt`](https://nginx.org/en/docs/ngx_mgmt_module.html#mgmt) context handles NGINX Plus licensing and usage reporting configuration,
+
+   * the [`usage_report`](https://nginx.org/en/docs/ngx_mgmt_module.html#usage_report) directive specifies the domain name or IP address of the NGINX Instance Manager,
+
+   * the [`enforce_initial_report`](https://nginx.org/en/docs/ngx_mgmt_module.html#usage_report) directive enables a 180-day grace period for sending the initial usage report. The initial usage report must be received by F5 licensing endpoint within this grace period. If the report is not received in time, traffic processing will be stopped:
+
+   ```nginx
+   mgmt {
+       usage_report endpoint=NIM_FQDN;
+       enforce_initial_report off;
+   }
+   ```
+   Then, in NGINX Instance Manager, prepare and send the usage report to F5 licensing endpoint. For more information, see [Report usage to F5 in a disconnected environment](https://docs.nginx.com/nginx-instance-manager/disconnected/report-usage-disconnected-deployment/).
+
+   If the JWT license file is located in a directory other than **/etc/nginx/** for Linux or **usr/local/etc/nginx/** for FreeBSD, you must specify its name and path in the [`license_token`](https://nginx.org/en/docs/ngx_mgmt_module.html#license_token) directive:
+
+   ```nginx
+   mgmt {
+       license_token custom/file/path/license.jwt;
+   }
+   ```
+   For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}).
+
+1. To verify that the new NGINX Plus version is upgraded, run:
 
    ```shell
    nginx -v
@@ -1275,9 +1268,6 @@ To upgrade your NGINX Plus installation to the newest version:
    ```shell
    nginx version: nginx/1.27.2 (nginx-plus-r33)
    ```
-
-5. In the `nginx.conf` file, configure license reporting to F5 licensing endpoint using the
-[`mgmt {}`](https://nginx.org/en/docs/ngx_mgmt_module.html) block. By default, no configuration is required. However, it becomes necessary when your NGINX Plus instance is installed in a disconnected environment, uses NGINX Instance manager for usage reporting, or uses a custom path for the license file. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}).
 
 <span id="upgrade_modules"></span>
 ## Upgrading NGINX Plus Modules
