@@ -75,11 +75,11 @@ Before you install or upgrade to NGINX Plus R33 or later, make sure to:
 
 ---
 
-## Set up your environment for reporting {#set-up-environment}
+## Prepare your environment for reporting {#set-up-environment}
 
 To ensure NGINX Plus R33 or later can send usage reports, follow these steps based on your environment:
 
-### For internet-connected environments:
+### For internet-connected environments
 
 {{< include "licensing-and-reporting/configure-internet-connected-environment.md" >}}
 
@@ -113,13 +113,13 @@ mgmt {
 
 ---
 
-## Reported usage metrics {#usage-metrics}
+## Understand reported usage metrics {#usage-metrics}
 
 {{< include "licensing-and-reporting/reported-usage-data.md" >}}
 
 ---
 
-## Explore more topics
+## Learn more about related topics
 
 ### NGINX Plus
 
@@ -145,3 +145,15 @@ The instructions below use the terms "internet-connected" and "network-restricte
 
 - **Internet-connected**: Follow the steps in [Report usage to F5]({{< relref "nim/admin-guide/license/report-usage-connected-deployment.md" >}}).
 - **Network-restricted**: Follow the steps in [Report usage to F5 in a network-restricted environment]({{< relref "nim/disconnected/report-usage-disconnected-deployment.md" >}}).
+
+## Watch instructional videos
+
+### Submit usage reports in a connected environment
+{{< youtube id="mnTJ1oYnZpk" >}}
+
+### Submit usage reports in a disconnected environment
+{{< youtube id="4wIM21bR9-g" >}}
+
+### Install or upgrade to NGINX Plus R33
+{{< youtube id="zHd7btagJRM" >}}
+

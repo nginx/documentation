@@ -2,7 +2,7 @@
 docs:
 ---
 
-The following JSON example shows the NGINX Plus usage data sent to F5 in a `POST` request, every hour by default.
+NGINX Plus automatically sends usage data to F5 every hour by default. This data is sent as a `POST` request and includes details like how much traffic is processed and how long the instance has been running. Here's an example of the data that's sent:
 
 ```json
 {
