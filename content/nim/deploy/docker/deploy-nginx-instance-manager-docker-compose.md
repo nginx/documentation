@@ -7,7 +7,7 @@ doctypes:
 - deployment guide
 tags:
 - docs
-title: "Deploy NGINX Instance Manager using Docker Compose"
+title: "Deploy using Docker Compose"
 toc: true
 versions: []
 weight: 100
@@ -17,10 +17,11 @@ docs: "DOCS-1653"
 
 ## Overview
 
-This guide will show you how to deploy and use F5 NGINX Instance Manager in Docker using Docker Compose. 
+This guide will show you how to deploy and use F5 NGINX Instance Manager in Docker using [Docker Compose](https://docs.docker.com/compose/). 
 
 This NGINX Instance Manager docker compose deployment is a single Docker image containing NGINX Instance Manager, Security Monitoring, and the latest App Protect compilers, which is orchestrated using a Docker Compose docker-compose.yaml definition. 
-The Clickhouse database is deployed in a separate container to improve resilience and make this a fault tolerant solution. You can also configure persistent storage
+
+The ClickHouse database is deployed in a separate container to improve resilience and make this a fault tolerant solution. You can also configure persistent storage
 
 ---
 
@@ -83,13 +84,13 @@ starting NIM via compose for development...
 
 You may modify the following variables in the `docker-compose.yaml` file:
 
-- NIM_LOG_LEVEL - set the NIM logging level.
-- NIM_METRICS_TTL - set a custom time-to-live in days value for metrics retention.
-- NIM_EVENTS_TTL -  set a custom time-to-live in days value for events retention.
-- NIM_SECURITY_TTL -  set a custom time-to-live in days value for security violation retention.
-- NIM_MAINTENANCE - enable maintenance mode to preform backup, restore and troubleshooting.
-- NIM_WATCHDOG_TIMEOUT - set a custom dpm watchdog timeout in seconds.
-- NIM_LICENSE_MODE_OF_OPERATION - set the NIM license mode of operation to either connected or disconnected. Default is connected.
+- `NIM_LOG_LEV`EL - set the NGINX Instance Manager logging level.
+- `NIM_METRICS_TTL` - set a custom time-to-live in days value for metrics retention.
+- `NIM_EVENTS_TTL` -  set a custom time-to-live in days value for events retention.
+- `NIM_SECURITY_TTL` -  set a custom time-to-live in days value for security violation retention.
+- `NIM_MAINTENANCE` - enable maintenance mode to preform backup, restore and troubleshooting.
+- `NIM_WATCHDOG_TIMEOUT` - set a custom dpm watchdog timeout in seconds.
+- `NIM_LICENSE_MODE_OF_OPERATION` - set the NGINX Instance Manager license mode of operation to either connected or disconnected. Default is connected.
 
 ---
 
@@ -98,12 +99,15 @@ You may modify the following variables in the `docker-compose.yaml` file:
 In the same `docker-compose.yaml` file, you can modify the following credentials:
 
 Set the admin password (required)
+
 ```yaml
 secrets:
   nim_admin_password:
     file: admin_password.txt
 ```
-Pass a custom .htpasswd file (Optional)
+
+Pass a custom `.htpasswd` file (Optional)
+
 ```yaml
   nim_credential_file:
     file: nim_creds.txt
@@ -121,6 +125,8 @@ secrets:
     file: ./certs/nim_ca.pem
 ```
 
+---
+
 ## Backup 
 
 Once you've set up your Docker containers, use the following command to back them up:
@@ -133,13 +139,14 @@ Backup has been successfully created: /data/backup/nim-backup-<date>.tgz
 
 If your system uses named volumes, inspect the `Mountpoint`. Alternatively, if you're using a shared NFS volume, then collect the data directly from the mount point.
 
-
 ```shell
 ~/compose$ docker inspect volume nim_nim-data | jq '.[0].Mountpoint'
 "/var/lib/docker/volumes/nim_nim-data/_data"
 ubuntu@ip-<address>:~/compose$ sudo ls -l /var/lib/docker/volumes/nim_nim-data/_data/backup
 -rw-r--r-- 1 root root 5786953 Sep 27 02:03 nim-backup-<date>.tgz
 ```
+
+---
 
 ## Restore 
 
@@ -149,12 +156,16 @@ Before you can restore a backup, set your containers to maintenance mode:
     environment:
       NIM_MAINTENANCE: "true"
 ```
+
 ```shell
 ~$ docker exec nim-nim-1 nim-restore /data/backup/nim-backup-<date>.tgz
 ...
 NGINX Instance Manager has been restored.
 ```
+
 Once the process is complete set `NIM_MAINTENANCE` to `false` and then run `docker-compose up -d`.
+
+---
 
 ## Storage
 
@@ -184,9 +195,11 @@ volumes:
       device: ":/mnt/nfs_share/clickhouse"
 ```
 
+---
+
 ## Support Data 
 
 In case of problems, it's a good practice to:
 
-* Collect logs `docker-compose logs --since 24h > my-logs-$(date +%Y-%m-%d).txt`
-* Collect backup information `docker exec nim-nim-1 nim-backup`
+- Collect logs `docker-compose logs --since 24h > my-logs-$(date +%Y-%m-%d).txt`
+- Collect backup information `docker exec nim-nim-1 nim-backup`
