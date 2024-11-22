@@ -48,7 +48,7 @@ To ensure that your NGINX Instance Manager deployment remains secure, follow the
 
 Complete the following steps before installing NGINX Instance Manager:
 
-- [ ] Download the certificate and private key for NGINX Instance Manager. The same certificate and private key as NGINX Plus can be used here.
+- [ ] Download the certificate and private key for NGINX Instance Manager. You can use the same certificate and private key as NGINX Plus.
   - [ ] The downloaded files have .crt and .key extensions
   - [ ] Record the location of these files on the target system. The default filenames / locations are:
     - `/etc/ssl/nginx/nginx-repo.crt`
@@ -170,7 +170,7 @@ To access the NGINX Instance Manager web interface, open a web browser and go to
 
 The default administrator username is `admin`, and the generated password is saved, in encrypted format, to the `/etc/nms/nginx/.htpasswd` file. The password was displayed in the terminal during installation. If you'd like to change this password, refer to the "[Set or Change User Passwords]({{< relref "/nim/admin-guide/authentication/basic-auth/set-up-basic-authentication.md#set-basic-passwords-script" >}})" section in the Basic Authentication topic.
 
-To license NGINX Instance Manager, you can use any JSON Web token available in your NGINX Subscription in MyF5. 
+To license NGINX Instance Manager, use a JSON Web token from your **NIM** Subscription in MyF5. 
 
 ---
 
