@@ -67,7 +67,7 @@ For NGINX configuration, these files are typically associated with the following
 
 ## Important considerations
 
-Most websites include valid information from public keys and certificates or CA bundles. However,the NGINX One Console accepts, but provides warnings for these use cases:
+Most websites include valid information from public keys and certificates or CA bundles. However, the NGINX One Console accepts, but provides warnings for these use cases:
 
 - When the public certificate is expired
 - When the leaf certificate part of a certificate chain is expired
