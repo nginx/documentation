@@ -6,7 +6,7 @@ tags:
     - docs
 title: Manage config sync groups
 toc: true
-weight: 200
+weight: 300
 ---
 
 
@@ -14,7 +14,7 @@ weight: 200
 
 This guide explains how to create and manage config sync groups in the F5 NGINX One Console. Config sync groups synchronize NGINX configurations across multiple NGINX instances, ensuring consistency and ease of management.
 
-If you’ve used [instance groups in NGINX Instance Manager]({{< relref "/nms/nim/how-to/instances/manage-instance-groups.md" >}}), you’ll find config sync groups in NGINX One similar, though the steps and terminology differ slightly.
+If you’ve used [instance groups in NGINX Instance Manager]({{< relref "/nim/nginx-instances/manage-instance-groups.md" >}}), you’ll find config sync groups in NGINX One similar, though the steps and terminology differ slightly.
 
 ## Before you start
 

@@ -20,16 +20,16 @@ jobs:
       # Run LinkChecker on nginx-plus docs
       - name: Run LinkChecker nginx-plus
         run: linkchecker https://docs.nginx.com/nginx/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com --ignore-url ^http://backend1.example.com --ignore-url ^http://www.example.com --ignore-url ^http://example.com --ignore-url ^https://my-nginx.example.com --ignore-url ^https://www.nginxroute53.com --ignore-url ^http://cafe --ignore-url ^http://192.168.1.23 --ignore-url ^https://company.com --ignore-url ^https://my-nginx-plus.example.com --ignore-url ^https://cognito-idp --ignore-url ^https:///www.okta.com
-  
-  nginx-ingress-controller:
+
+  nginx-oss:
     runs-on: ubuntu-latest
     steps:
       # Install LinkChecker
       - name: Install LinkChecker
         run: sudo apt-get update && sudo apt-get install -y linkchecker
-      # Run LinkChecker on nginx-ingress-controller docs
-      - name: Run LinkChecker nginx-ingress-controller
-        run: linkchecker https://docs.nginx.com/nginx-ingress-controller/ --no-warnings --check-extern --ignore-url ^https://aws.amazon.com/marketplace/search --ignore-url ^https://consent.trustarc.com --ignore-url ^http://127.0.0.1
+      # Run LinkChecker on nginx-oss docs
+      - name: Run LinkChecker nginx-oss
+        run: linkchecker https://nginx.org/en/docs/ --no-warnings --check-extern
   
   nginx-gateway-fabric:
     runs-on: ubuntu-latest
@@ -50,13 +50,3 @@ jobs:
       # Run LinkChecker on nginx-agent docs
       - name: Run LinkChecker nginx-agent
         run: linkchecker https://docs.nginx.com/nginx-agent/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com --ignore-url ^http://localhost 
-
-  nginxaas-azure:
-    runs-on: ubuntu-latest
-    steps:
-      # Install LinkChecker
-      - name: Install LinkChecker
-        run: sudo apt-get update && sudo apt-get install -y linkchecker
-      # Run LinkChecker on nginxaas-azuret docs
-      - name: Run LinkChecker nginxaas-azure
-        run: linkchecker https://docs.nginx.com/nginxaas/azure/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com

@@ -12,7 +12,7 @@ weight: 500
 Open source components included in the F5 NGINX Plus (package name is `nginx-plus`) are:
 
 
-- nginx/OSS 1.25.5, distributed under 2-clause BSD license.
+- nginx/OSS 1.27.2, distributed under 2-clause BSD license.
 
   Homepage: <https://nginx.org>
 

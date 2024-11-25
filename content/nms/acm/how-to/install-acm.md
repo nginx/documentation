@@ -83,13 +83,13 @@ weight: 10
 
 A valid license is required to make full use of all the features in API Connectivity Manager.
 
-Refer to the [Add a License]({{< relref "/nms/installation/add-license.md" >}}) topic for instructions on how to download and apply a trial license, subscription license, or Flexible Consumption Program license.
+Refer to the [Add a License]({{< relref "/nim/admin-guide/license/add-license.md" >}}) topic for instructions on how to download and apply a trial license, subscription license, or Flexible Consumption Program license.
 
 ---
 
 ## Upgrade API Connectivity Manager {#upgrade-acm}
 
-{{<note>}}When you confirm the upgrade, the upgrade process will automatically upgrade dependent packages as needed, including Instance Manager. If you prefer to [back up NGINX Management Suite]({{< relref "/nms/admin-guides/maintenance/backup-and-recovery.md" >}}) before upgrading, you can cancel the upgrade when prompted.{{</note>}}
+{{<note>}}When you confirm the upgrade, the upgrade process will automatically upgrade dependent packages as needed, including Instance Manager. If you prefer to [back up NGINX Management Suite]({{< relref "/nim/admin-guide/maintenance/backup-and-recovery.md" >}}) before upgrading, you can cancel the upgrade when prompted.{{</note>}}
 
 <br>
 
@@ -136,7 +136,7 @@ Refer to the [Add a License]({{< relref "/nms/installation/add-license.md" >}}) 
    sudo systemctl restart nginx
    ```
 
-5. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Management Suite.
+5. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nim/system-configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Management Suite.
 
 ---
 ## What's Next
@@ -157,7 +157,7 @@ Complete the following steps for each data plane instance you want to use with A
 
 ### Install Other NGINX Management Suite Modules
 
-- [Install Security Monitoring]({{< relref "/nms/installation/vm-bare-metal/install-security-monitoring.md" >}})
+- [Install Security Monitoring]({{< relref "/nim/monitoring/security-monitoring/deploy/install-security-monitoring.md" >}})
 
 ### Get Started with API Connectivity Manager
 

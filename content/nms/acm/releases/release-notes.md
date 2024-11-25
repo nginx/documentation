@@ -13,6 +13,42 @@ weight: 100
 
 ---
 
+## 1.9.3
+
+November 06, 2024
+
+### Upgrade Paths {#1-9-3-upgrade-paths}
+
+API Connectivity Manager  supports upgrades from these previous versions:
+
+- 1.6.0 - 1.9.2
+
+If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+<br>
+
+<details closed>
+<summary><i class="fa-solid fa-circle-exclamation"></i> Dependencies with Instance Manager</summary>
+
+{{< include "tech-specs/acm-nim-dependencies.md" >}}
+
+</details>
+
+
+### What's New{#1-9-3-whats-new}
+This release includes the following updates:
+
+- {{% icon-feature %}} **Stability and performance improvements**<a name="1-9-3-whats-new-Stability-and-performance-improvements"></a>
+
+  This release includes stability and performance improvements.
+
+
+### Known Issues{#1-9-3-known-issues}
+
+You can find information about known issues in the [Known Issues]({{< relref "/nms/acm/releases/known-issues.md" >}}) topic.
+
+---
+
 ## 1.9.2
 
 March 14, 2024
@@ -25,9 +61,7 @@ API Connectivity Manager  supports upgrades from these previous versions:
 
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
-{{< /see-also >}}
+
 
 <br>
 
@@ -70,9 +104,7 @@ API Connectivity Manager  supports upgrades from these previous versions:
 
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
-{{< /see-also >}}
+
 
 <br>
 
@@ -115,9 +147,7 @@ API Connectivity Manager  supports upgrades from these previous versions:
 
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
-{{< /see-also >}}
+
 
 <br>
 
@@ -188,9 +218,7 @@ API Connectivity Manager  supports upgrades from these previous versions:
 
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
-{{< /see-also >}}
+
 
 <br>
 
@@ -251,9 +279,7 @@ API Connectivity Manager  supports upgrades from these previous versions:
 
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
-{{< /see-also >}}
+
 
 <br>
 
@@ -311,9 +337,7 @@ API Connectivity Manager  supports upgrades from these previous versions:
 
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
-{{< /see-also >}}
+
 
 <br>
 
@@ -367,9 +391,7 @@ API Connectivity Manager  supports upgrades from these previous versions:
 
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
-{{< /see-also >}}
+
 
 <br>
 
@@ -386,7 +408,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Use role-based access control for enhanced security and governance**<a name="1-5-0-whats-new-Use-role-based-access-control-for-enhanced-security-and-governance"></a>
 
-  With new [built-in RBAC roles for API Connectivity Manager]({{< relref "/nms/admin-guides/rbac/rbac-getting-started.md#build-in-roles" >}}), administrators can grant or restrict user access to workspaces and features, empowering teams to manage their own workflows.
+  With new [built-in RBAC roles for API Connectivity Manager]({{< relref "/nim/admin-guide/rbac/overview-rbac.md#build-in-roles" >}}), administrators can grant or restrict user access to workspaces and features, empowering teams to manage their own workflows.
 
   {{<see-also>}}
   - [Set Up RBAC for API Owners]({{< relref "/nms/acm/tutorials/rbac-api-owners.md" >}})
@@ -478,9 +500,7 @@ API Connectivity Manager  supports upgrades from these previous versions:
 
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
-{{< /see-also >}}
+
 
 <br>
 
@@ -523,9 +543,7 @@ API Connectivity Manager  supports upgrades from these previous versions:
 
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
-{{< /see-also >}}
+
 
 <br>
 
@@ -550,7 +568,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Adds support for NGINX Plus R28**<a name="1-4-0-whats-new-Adds-support-for-NGINX-Plus-R28"></a>
 
-  API Connectivity Manager 1.4.0 is compatible with NGINX Plus R28. For requirements related to NGINX Management Suite and API Connectivity Manager, please refer to the [Technical Specifications]({{< relref "/nms/tech-specs.md" >}}) guide.
+  API Connectivity Manager 1.4.0 is compatible with NGINX Plus R28. For requirements related to NGINX Management Suite and API Connectivity Manager, please refer to the [Technical Specifications]({{< relref "/nim/fundamentals/tech-specs.md" >}}) guide.
 
 
 ### Resolved Issues{#1-4-0-resolved-issues}
@@ -577,9 +595,7 @@ API Connectivity Manager  supports upgrades from these previous versions:
 
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
-{{< /see-also >}}
+
 
 <br>
 
@@ -624,9 +640,7 @@ API Connectivity Manager  supports upgrades from these previous versions:
 
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
-{{< /see-also >}}
+
 
 <br>
 
@@ -734,9 +748,7 @@ API Connectivity Manager  supports upgrades from these previous versions:
 
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
-{{< /see-also >}}
+
 
 <br>
 
@@ -848,9 +860,7 @@ API Connectivity Manager  supports upgrades from these previous versions:
 
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
-{{< /see-also >}}
+
 
 <br>
 
@@ -895,9 +905,7 @@ API Connectivity Manager  supports upgrades from these previous versions:
 
 If your installed version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
-{{< see-also >}}
-Refer to the [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md#upgrade-api-connectivity-manager" >}}) for important information and steps to follow when upgrading API Connectivity Manager.
-{{< /see-also >}}
+
 
 <br>
 
@@ -914,7 +922,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Advanced Cluster Management**<a name="1-1-0-whats-new-Advanced-Cluster-Management"></a>
 
-  Including more than one proxy cluster with the same hostname in an environment replicates configuration across all clusters and assists with blue-green deployments. With advanced cluster management, you can use a load balancer in front of the clusters to slowly move to the newer version of the API gateway. For example, one cluster may belong to NGINX Plus version R26 and another to R27. See the [Technical Specifications]({{< relref "/nms/tech-specs.md#data-plane-dev-portal" >}}).
+  Including more than one proxy cluster with the same hostname in an environment replicates configuration across all clusters and assists with blue-green deployments. With advanced cluster management, you can use a load balancer in front of the clusters to slowly move to the newer version of the API gateway. For example, one cluster may belong to NGINX Plus version R26 and another to R27. See the [Technical Specifications]({{< relref "/nim/fundamentals/tech-specs.md#data-plane-dev-portal" >}}).
 
 - {{% icon-feature %}} **Advanced Routing feature is available now**<a name="1-1-0-whats-new-Advanced-Routing-feature-is-available-now"></a>
 

@@ -19,6 +19,7 @@ When the NGINX style guide does not cover a style, refer next to the [Microsoft 
 
 When writing documentation for our project, align with the default guide's voice and tone.
 
+
 ## F5 brand trademarks and product names
 
 - On the first mention of an enterprise NGINX product in a document, use the full product name. For example:
@@ -26,11 +27,11 @@ When writing documentation for our project, align with the default guide's voice
   - F5 NGINX Plus
   - F5 NGINX App Protect WAF
   - F5 NGINX Instance Manager
- 
+
 - Don't add "F5" to open source products. For example:
 
   - NGINX Unit
-  - NGINX Agent 
+  - NGINX Agent
 
 - For subsequent mentions of any enterprise product, you can drop the "F5". You must include the "NGINX" brand name in all uses. For example:
 
@@ -46,7 +47,7 @@ When writing documentation for our project, align with the default guide's voice
 
   - Using NGINX Plus Docker images with NGINX Instance Manager
 
-- Don't use articles ("the", "a") in front of product names. For example, use 
+- Don't use articles ("the", "a") in front of product names. For example, use
   - NGINX Agent (not "the NGINX Agent").
 - Always use the full brand name in the meta description. The meta description does not count as first mention of the product in the document.
 
@@ -180,6 +181,7 @@ The table provides guidelines about the terms you should and should not use for 
 | IPsec | Internet Protocol Security (IPsec), two caps. Note internal capitalization style of acronym. Do not use IPSec (three caps). | |
 | IPv4-in-IPv6 vs. IPv4 in IPv6 | You can hyphenate IPv4-in-IPv6 when used as an adjective, such as IPv4-in-IPv6 tunnels. Note that the internal v in IPv4 and IPv6 should remain in lowercase format. | |
 | ISO 9001:2015 certification | For example: ISO 9001:2015 certified" or ISO 9001:2015 certification Don't use: ISO certified or ISO certification (Per: ISO - Certification, for questions about the use of ISO Certificate terms and logo, please contact the GS quality team at *qmt) | |
+| it | Avoid ambiguous pronouns. Be explicit: "Check the status of the server. Restart ~~it~~ the server" | |
 | jargon | Jargon is the technical terminology or characteristic idiom of a special activity or group. Try hard to avoid it. Think about explaining something to a member of your family or a friend who doesn't know what you know. F5 products are highly technical, but strive to be as plainspoken as possible when describing or instructing. Spell out abbreviations on first use, use the clearest and easiest word to understand that will still accomplish the job, and so on. | |
 | kill | Avoid this term except in command line syntax, where it is a UNIX command for stopping processes. (It's actually an IEEE POSIX standard command.) Alternatives for describing the action are: § End the process § Interrupt the process § Quit the process § Shut down the process § Stop the process | |
 | known issue | Abbreviate as "KI" when using in public-facing documentation. | |
@@ -294,6 +296,7 @@ The table provides guidelines about the terms you should and should not use for 
 | tense | Strive to use the simple present tense rather than the past or future, unless necessary for clarity. Do not: The system will receive. Do: The system receives. Do not: The feature was introduced in NGINX Instance Manger 2.16. Do: The feature is introduced in NGINX Instance Manager 2.16. (Remember that for some users older versions are used in the present.) | |
 | text box | Use box. | |
 | that vs. which vs. who | Be careful. Don't use *that* when you mean *who*. Use *that* for objects and *who* for people. Also, make sure you don't mean *which*. *That* sets off essential clauses (containing information essential to the meaning of the sentence). *Which* sets off non-essential clauses (not containing information essential to the meaning of the sentence). Examples: The virtual servers that you configured are ready. (*that you configured* is essential to distinguish them from virtual servers that you did not yet configure.) The virtual servers, which you configured, are ready. (*which you formatted* is not essential because you do not have any configured ones to distinguish the configured ones from. This is just extra, non-essential, information. Note: *which* and the clause it modifies are set off by commas because you could eliminate the clause without changing the meaning of the sentence. You can't do that with restrictive *that* clauses. | |
+| There is / There are | Avoid starting sentences with "There is" or "There are." Instead, rephrase the sentence to start with the subject. | |
 | third-party trademarks | Writers do not need to trademark third-party product names/companies in content such as topics, help, or release notes. In our copyright page, we include this statement: All other product and company names herein may be trademarks of their respective owners. Rationale: It is not required, and some third parties have guidelines explicitly requesting that their marks are not marked. If a specific vendor requests it, then we can. But generally, we should not. | |
 | threshold event | We're not using this term in the documentation. The occurrence of system performance crossing a threshold and now behaving in a manner of interest to whoever established the threshold. A threshold event is generally associated with a notification. | |
 | touchscreen | One word, used to describe new active screens in hardware displaying settings. | |
@@ -322,6 +325,7 @@ The table provides guidelines about the terms you should and should not use for 
 | wget | command.| |
 | Wget | program. | |
 | whether or not | Don't use whether or not something happens. Use whether. Also see if vs. whether. | |
+| while | Avoid using while to mean although. Use although or though instead.<br> Avoid using while to mean whereas. Use whereas instead. | |
 | whitelist and blacklist, whitelisting and blacklisting | Do not use these terms. Use the following substitutions: white list (noun) = allow list (noun); whitelist (verb) = allowlist (verb); whitelisted (adjective) = allowlisted (adjective); black list (noun) = deny list (noun); blacklist (verb) = denylist (verb); blacklisted (adjective) = denylisted (adjective). <br> For more information, refer to K34150231: Exclusionary language in F5 products and documentation. | |
 | Wi-Fi vs. wifi vs. WiFi | Use Wi-Fi | |
 | wide IP | Use an article when describing: the wide IP or a wide IP, as appropriate). | |
@@ -344,6 +348,39 @@ When writing new documentation, use the following [templates](/templates):
 - Reference Article
 - Troubleshooting
 - Tutorial
+
+## Language guidelines
+
+- Prefer active voice and goal-oriented phrases:
+
+   | Do | Don't |
+   |----|-------|
+   | _To restart the system, run the following command.__ |_ For the system to be restarted, run the following command._ <br> Restarting the system can be achieved, if necessary, by running the following command._ |
+
+- Prefer that for essential clauses, which for non-defining details.
+
+- For optional, required, and forbidden actions, use proper modal verbs instead of ambiguous conditionals:
+
+   | Do | Don't |
+   |----|-------|
+   | _You may/should/must add additional security by following this guide._ | _If more security is necessary, follow this guide._ |
+
+   For more information about modal verb semantics, see [RFC-2119](https://tools.ietf.org/html/rfc2119).
+
+- In code snippets, follow established style conventions of respective languages, including indentation, line breaks, and naming.
+
+- Omit unnecessary words and phrases, courtesy sugaring in particular.
+
+   | Do | Don't |
+   |----|-------|
+   | _To enable this feature, do that._ | _Oops! To enable this feature, please do that._ |
+
+- Use hyphens to join compound adjectives before nouns, not after.
+
+   | Do | Don't |
+   |----|-------|
+   | _A well-known feature._ | _A feature well-known._ |
+   | _The feature is well known._ | _The feature is well-known._ |
 
 ## Titles: use sentence case
 
@@ -382,7 +419,7 @@ If you decide to include a screenshot, follow these guidelines:
 Ensure content and screenshots are anonymized and don't contain sensitive information:
 
 - Replace personal information (names, email addresses, phone numbers) with generic placeholders.
-- Replace sensitive data (IP addresses, passwords, domain names, SSH keys, OAuth 2 tokens, and other confidential information) with generic placeholders. 
+- Replace sensitive data (IP addresses, passwords, domain names, SSH keys, OAuth 2 tokens, and other confidential information) with generic placeholders.
   - Look for (and replace) sensitive words like `secret`
   - Look for (and replace) content such as UUIDs and OAuth 2 keys (which start with `eY`)
 - Limit the use of links to external (non-F5) sources. When necessary, only link to reputable sources and foundational sites, such as GitHub.com, Google.com, and Microsoft.com.
@@ -390,24 +427,24 @@ Ensure content and screenshots are anonymized and don't contain sensitive inform
 
 ## Guidelines for `includes`
 
-In an ideal world, we'd "write once, publish everywhere." It's possible with a concept known as `includes`, where an entry such as:
+In an ideal world, we'd "write once, publish everywhere." To support this goal, we follow the principle of [Don't repeat yourself](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) in our documentation. This principle shapes how we create and use `includes`, which pull reusable content from files in the [content/includes](https://github.com/nginxinc/docs/tree/main/content/includes) directory.
 
-```
+For example:
+
+```text
 {{< include "controller/helper-script-prereqs.md" >}}
 ```
 
-automatically pulls content from the `helper-script-prereqs.md` file in the `content/includes/controller` subdirectory.
+This entry automatically incorporates content from the `helper-script-prereqs.md` file in the `content/includes/controller` subdirectory.
 
-As includes disrupt the flow when reading a markdown file, we encourage you to follow these guidelines:
+To make sure includes are effective and easy to maintain, follow these practices:
 
-- Keep includes to a minimum
-- Set up includes in "small snippets"
-- Use includes on content that _rarely_ changes
-- Create includes for content that's repeated at least three times
-- Don’t add headers (like H2s) inside includes. Headers in includes don’t show up in the in-doc TOC. Plus, while an H2 might make sense in the include on its own, it may not fit well under an H4 in the main document. Headers should be added at the doc level.
-- Don’t nest includes inside other includes. While this technically works, it makes reviews harder.
-
-If you don't use an include with repeated content, include a `<!-- comment -->` which refers to other files with the same content.
+- **Use includes only for reusable content**: Create an include only if the content appears in at least **two locations**. Using an include for single-use content adds unnecessary complexity and makes maintenance harder.
+- **Keep includes small and modular**: Write narrowly scoped snippets to maximize flexibility and reuse.
+- **Avoid branded product names in includes**: Use the full product name (e.g., "NGINX Instance Manager"), but avoid including the branded version (e.g., "F5 NGINX Instance Manager"). The branded name is required only on the first mention in a document; this is a context-specific rule. Includes, however, are designed to be context-agnostic—they should not rely on or assume any prior content—so including the branded name could repeat information unnecessarily in locations where it has already been introduced.
+- **Don't include headers**: Avoid adding H2 or other headers inside includes. These headers won't appear in the document's table of contents (TOC) and may not fit well with the surrounding content hierarchy. Add headers directly in the document instead.
+- **Avoid nesting includes**: Don't place an include inside another include. While technically possible, it complicates reviews and maintenance. Use a flat structure for simplicity.
+- **Don't start documents with includes**: The opening of a document is usually the introduction, which explains its purpose. Includes are reused text, so starting multiple documents with identical content could look odd, especially in search results.
 
 ## Guidelines for command-line operations
 
@@ -422,7 +459,7 @@ sudo nginx -t
 ```
 
 
-- **sudo systemctl nginx reload**  
+- **sudo systemctl nginx reload**
   Use `reload` to apply configuration changes without stopping active connections. This keeps the NGINX service running while updating the configuration. It’s the preferred option for most changes because it avoids downtime and doesn’t interrupt users.
 
   *Note*: While `nginx -s reload` is also available, it works differently by reading the configuration file twice: once when sending the signal and again when the master process reloads. `nginx -s reload` is typically used in environments that don’t use `systemd`, such as Windows. On most modern Linux distributions that use `systemd`, it’s better to use `systemctl reload nginx` because it integrates directly with the system’s service manager.
@@ -460,6 +497,8 @@ this style guide over time. This guide uses the Major.Minor.Patch
 
 | Edition | Date          | Lead Author(s) | Comments                                              |
 |---------|---------------|----------------|-------------------------------------------------------|
+| 1.7   | November 20, 2024 | Mike Jang  | Specify "includes" must be in at leat two locations. |
+| 1.6   | October 23, 2024 | Jon Torre  | Incorporated specific guidelines from Unit's style guide |
 | 1.5   | October 3, 2024 | Mike Jang  | Include guidelines for "includes"                      |
 | 1.4   | Septemter 20, 2024 | Mike Jang  | Organize and clarify info on sensitive content |
 | 1.3   | August 12, 2024 | Jon Torre  | Include additional rules for product names |

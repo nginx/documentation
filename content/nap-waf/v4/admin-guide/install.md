@@ -33,6 +33,7 @@ NGINX App Protect WAF supports the following operating systems:
 - [RHEL 9 and above](#rhel-9-installation)
 - [Oracle Linux 8.1.x and above](#oracle-linux-81-installation)
 - [Amazon Linux 2](#amazon-linux-2-lts-installation) - (Deprecated starting from release 4.11)
+- [Amazon Linux 2023](#amazon-linux-2023-installation)
 - [Debian 10 (Buster)](#debian-10--debian-11--debian-12-installation) - (Deprecated starting from NGINX Plus R28)
 - [Debian 11 (Bullseye)](#debian-10--debian-11--debian-12-installation)
 - [Debian 12 (Bookworm)](#debian-10--debian-11--debian-12-installation)
@@ -40,7 +41,7 @@ NGINX App Protect WAF supports the following operating systems:
 - [Ubuntu 20.04 (Focal)](#ubuntu-1804--ubuntu-2004--ubuntu-2204--ubuntu-2404-installation)
 - [Ubuntu 22.04 (Jammy)](#ubuntu-1804--ubuntu-2004--ubuntu-2204--ubuntu-2404-installation)
 - [Ubuntu 24.04 (Noble)](#ubuntu-1804--ubuntu-2004--ubuntu-2204--ubuntu-2404-installation)
-- [Alpine 3.16](#alpine-316--alpine-317-installation)
+- [Alpine 3.16](#alpine-316--alpine-317-installation) - (Deprecated starting from NGINX Plus R33)
 - [Alpine 3.17](#alpine-316--alpine-317-installation)
 
 
@@ -813,6 +814,120 @@ If a user other than **nginx** is to be used, note the following:
     sudo systemctl start nginx
     ```
 
+---
+
+## Amazon Linux 2023 Installation
+
+1. If you already have NGINX packages in your system, back up your configuration and log files:
+
+    ```shell
+    sudo cp -a /etc/nginx /etc/nginx-plus-backup
+    sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
+    ```
+
+1. Create the `/etc/ssl/nginx/` directory:
+
+    ```shell
+    sudo mkdir -p /etc/ssl/nginx
+    ```
+
+1. Log into [MyF5](https://my.f5.com) and download the following two files:
+
+    ```shell
+    nginx-repo.key
+    nginx-repo.crt
+    ```
+
+1. Copy `nginx-repo.key` and `nginx-repo.crt` to the RHEL server's `/etc/ssl/nginx/` directory. Use an SCP client or another secure file transfer tool to perform this task.
+
+1. Install prerequisite packages:
+
+    ```shell
+    sudo dnf install ca-certificates wget
+    ```
+
+1. Remove any previously downloaded NGINX Plus repository files from `/etc/yum.repos.d`:
+
+    ```shell
+    sudo rm /etc/yum.repos.d/plus-*.repo
+    ```
+
+1. Add the NGINX Plus repository by downloading the file `plus-amazonlinux2023.repo` to `/etc/yum.repos.d`:
+
+    ```shell
+    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-amazonlinux2023.repo
+    ```
+
+1. Add the NGINX App Protect WAF repository by downloading the file `app-protect-amazonlinux2023.repo` to `/etc/yum.repos.d`:
+
+    ```shell
+    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-amazonlinux2023.repo
+    ```
+
+1. Enable Yum repositories to pull App Protect dependencies:
+
+    Download the file `dependencies.amazonlinux2023.repo` to `/etc/yum.repos.d`:
+
+    ```shell
+    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.amazonlinux2023.repo
+    ```
+
+1. Install the most recent version of the NGINX App Protect WAF package (which includes NGINX Plus):
+
+    ```shell
+    sudo dnf install app-protect
+    ```
+
+    Alternatively, you can use the following command to list available versions:
+
+    ```shell
+    sudo dnf --showduplicates list app-protect
+    ```
+
+    Then, install a specific version from the output of command above. For example:
+
+    ```shell
+    sudo dnf install app-protect-31+4.641.0
+    ```
+
+1. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
+
+    ```shell
+    sudo nginx -v
+    ```
+
+1. Load the NGINX App Protect WAF module on the main context in the `nginx.conf`:
+
+    ```nginx
+    load_module modules/ngx_http_app_protect_module.so;
+    ```
+
+1. Enable NGINX App Protect WAF on an `http/server/location` context in the `nginx.conf` file:
+
+    ```nginx
+    app_protect_enable on;
+    ```
+
+1. Optionally, install a prebuilt SELinux policy module for NGINX App Protect WAF (or configure SELinux as appropriate per your organization's security policies):
+
+    ```shell
+    sudo dnf install app-protect-selinux
+    ```
+
+    If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/v4/troubleshooting-guide/troubleshooting#selinux" >}}).
+
+1. To enable the NGINX/App Protect WAF service start at boot, run the command:
+
+    ```shell
+    sudo systemctl enable nginx.service
+    ```
+
+1. Start the NGINX service:
+
+    ```shell
+    sudo systemctl start nginx
+    ```
+
 ## Debian 10 / Debian 11 / Debian 12 Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
@@ -1264,7 +1379,7 @@ If a user other than **nginx** is to be used, note the following:
 
             app_protect_enable on;
             app_protect_security_log_enable on;
-            app_protect_security_log "/etc/nginx/custom_log_format.json" syslog:server=127.0.0.1:515;
+            app_protect_security_log "/etc/nginx/custom_log_format.json" syslog:server=127.0.0.1:514;
 
             location / {
                 client_max_body_size 0;
@@ -1538,6 +1653,43 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     yum -y install app-protect \
     && yum clean all \
+    && rm -rf /var/cache/yum
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Copy configuration files:
+COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY entrypoint.sh /root/
+
+CMD ["sh", "/root/entrypoint.sh"]
+```
+
+### Amazon Linux 2023 Docker Deployment Example
+
+```dockerfile
+# syntax=docker/dockerfile:1
+# For Amazon Linux 2023:
+FROM amazonlinux:2023
+
+# Install prerequisite packages:
+RUN dnf -y install wget ca-certificates
+
+# Add NGINX Plus repo:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-amazonlinux2023.repo
+
+# Add NAP dependencies repo:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.amazonlinux2023.repo
+
+# Add NGINX App-protect repo:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-amazonlinux2023.repo
+
+# Install NGINX App Protect WAF:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf -y install app-protect \
+    && dnf clean all \
     && rm -rf /var/cache/yum
 
 # Forward request logs to Docker log collector:

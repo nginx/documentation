@@ -41,7 +41,7 @@ Single sign-on is enabled by applying an OpenID Connect (OIDC) policy on the Dev
 
 Complete the following prerequisites before proceeding with this guide:
 
-- API Connectivity Manager is installed, licensed, and running. See [API Connectivity Manager Install Guide]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}).
+- API Connectivity Manager is installed, licensed, and running. See [API Connectivity Manager Install Guide]({{< relref "/nim/deploy/_index.md" >}}).
 - You have one or more Environments with [API Gateways]({{< relref "/nms/acm/getting-started/add-api-gateway" >}}) or [Developer Portals]({{< relref "/nms/acm/getting-started/add-devportal" >}}).
 
 ### Terminology

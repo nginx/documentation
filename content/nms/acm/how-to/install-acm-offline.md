@@ -1,5 +1,6 @@
 ---
-title: Offline Installation Guide
+title: "Offline Installation Guide"
+docs: "DOCS-1669"
 ---
 
 ## Install or Upgrade API Connectivity Manager {#install-or-upgrade-acm-offline}
@@ -128,7 +129,7 @@ To upgrade API Connectivity Manager to a newer version, take the following steps
    sudo systemctl restart nginx
    ```
 
-6. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nms/admin-guides/configuration/configure-selinux.md" >}}) guide to restore SELinux contexts (`restorecon`) for the files and directories related to NGINX Management Suite.
+6. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nim/system-configuration/configure-selinux.md" >}}) guide to restore SELinux contexts (`restorecon`) for the files and directories related to NGINX Management Suite.
 
 
 ### Set Up the Data Plane {#acm-offline-dependencies}

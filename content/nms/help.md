@@ -10,6 +10,7 @@ doctypes:
 - troubleshooting
 title: Help
 toc: false
+draft: true
 ---
 
 ## Overview
@@ -24,11 +25,11 @@ F5 NGINX Management Suite is a family of management plane solutions that enable 
 
 The documentation for NGINX Management Suite is divided into the following sections:
 
-### [Admin Guides]({{< relref "/nms/admin-guides/" >}})
+### [Admin Guides]({{< relref "/nim/admin-guide/" >}})
 
 - Learn how to install NGINX Management Suite and configure user access.
 
-### [Tech Specs]({{< relref "/nms/tech-specs" >}})
+### [Tech Specs]({{< relref "/nim/fundamentals/tech-specs" >}})
 
 - Learn about the requirements for NGINX Management Suite.
 
@@ -36,7 +37,7 @@ The documentation for NGINX Management Suite is divided into the following secti
 
 - Learn how to install and configure the NGINX Agent.
 
-### [Instance Manager]({{< relref "/nms/nim/" >}})
+### [Instance Manager]({{< relref "/nim/" >}})
 
 - Learn how to configure and use Instance Manager.
 
@@ -52,15 +53,15 @@ The documentation for NGINX Management Suite is divided into the following secti
 
 Check out some of our most consulted topics:
 
-### [Install Guide]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}})
+### [Install Guide]({{< relref "/nim/deploy/_index.md" >}})
 
 - Complete the steps in this guide to install NGINX Management Suite.
 
-### [Upgrade Guide]({{< relref "/nms/installation/upgrade-guide.md" >}})
+### [Upgrade Guide]({{< relref "/nim/deploy/uninstall-guide.md" >}})
 
 - This guide explains how to upgrade NGINX Management Suite and NGINX Agent.
 
-### [Tech Specs]({{< relref "/nms/tech-specs" >}})
+### [Tech Specs]({{< relref "/nim/fundamentals/tech-specs" >}})
 
 - This document lists the requirements for NGINX Management Suite, including supported platforms, hardware specs, sizing guidelines, supported browsers, and more.
 

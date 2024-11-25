@@ -53,7 +53,6 @@ Install the following prerequisites:
 - python3-pip
 - [distlib>=0.3.1](https://pypi.org/project/distlib/)
 
-**Note:**  For Ubuntu distributions, please apply the workaround described [here](https://kb.vmware.com/s/article/82229) which prevents cloned VMs from being assigned the same IP address.
 
 Install NGINX Plus [as described.](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/)
 

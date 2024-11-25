@@ -1,0 +1,49 @@
+---
+docs: DOCS-919
+doctypes:
+- tutorial
+tags:
+- docs
+title: "Overview: RBAC"
+toc: true
+weight: 1
+---
+
+## Overview
+
+Role-Based Access Control (RBAC) is a security system that governs access to resources within a software application. By assigning specific roles to users or groups, RBAC ensures that only authorized individuals have the ability to perform certain actions or access particular areas.
+
+The value of RBAC lies in its ability to provide clear and structured control over what users can see and do. This makes it easier to maintain security, streamline user management, and ensure compliance with internal policies or regulations. By giving users only the permissions they need to fulfill their roles, RBAC reduces the risk of unauthorized access and fosters a more efficient and secure operating environment.
+
+The following are essential concepts related to RBAC:
+
+- **Users**: Users are individual accounts identified by a username and credentials. You have the option to create users within F5 NGINX Instance Manager using basic authentication or to integrate with an external identity provider using OpenID Connect (OIDC).
+- **Roles**: Roles are sets of permissions linked to one or more features. Each role specifies the actions that are allowed for each feature, such as creating, reading, updating, or deleting. The pre-defined `admin` role grants full access to all features.
+
+   Users can have multiple roles simultaneously. In such cases, the permissions granted by each role are combined, providing an additive effect. For instance, a user with two roles, one granting read access to all NGINX instances and the other allowing create, update, and delete access to a specific instance, will be able to read all instances while having the ability to create, update, or delete only the designated instance for which they have permission.
+
+- **Groups**: Groups are collections of users. They are used only when integrating with external identity providers. Users from these providers can't be assigned roles directly within NGINX Instance Manager but inherit roles through membership in groups.
+- **Features**: In NGINX Instance Manager, features refer to distinct functional components or capabilities that let users perform a variety of tasks and access related resources. The sections below outline the features available for NGINX Instance Manager.
+- **Resource Object**: These are specific elements within a feature that can be targeted for precise access control. Essentially, a resource object is a finer-grained component within a feature that you can control access to. For example, if you are working with the Instance Management feature, you have the option to apply access control to specific entities like Resource Groups and/or Systems. This allows for more nuanced management of permissions within NGINX Instance Manager.
+
+## Features {#features}
+
+NGINX Instance Manager provides a range of capabilities called features, which system administrators can manage using role-based access control (RBAC). The availability of some features depends on your license. For more information on licensing, see the [Add a license]({{< relref "/nim/admin-guide/license/add-license.md" >}}) topic.
+
+### NGINX Instance Manager features
+
+#### Unlicensed
+
+{{< include "/nim/rbac/features/instance-manager-unlicensed.md" >}}
+
+#### Licensed
+
+{{< include "/nim/rbac/features/instance-manager-licensed.md" >}}
+
+### Endpoints
+
+To explore the API endpoints for NGINX Instance Manager, visit:
+
+- **API Endpoints**: `https://<NGINX_INSTANCE_MANAGER_FQDN>/ui/docs`.
+
+Replace `<NGINX_INSTANCE_MANAGER_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Instance Manager host.

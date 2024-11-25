@@ -1,4 +1,4 @@
-**Note**: To complete this step, make sure that `gpg` is installed on your system. You can install NGINX Agent using various command-line tools like `curl` or `wget`. If your NGINX Management Suite host is not set up with valid TLS certificates, you can use the insecure flags provided by those tools. See the following examples:
+**Note**: To complete this step, make sure that `gpg` is installed on your system. You can install NGINX Agent using various command-line tools like `curl` or `wget`. If your NGINX Instance Manager host is not set up with valid TLS certificates, you can use the insecure flags provided by those tools. See the following examples:
 
 {{<tabs name="install-agent-api">}}
 

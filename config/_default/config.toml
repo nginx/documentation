@@ -14,7 +14,7 @@ enableGitInfo = true
   nms = '/nginx-management-suite/:sections[1:]/:filename'
   amplify = '/nginx-amplify/:sections[1:]/:filename'
   mesh = '/nginx-service-mesh/:sections[1:]/:filename'
-
+  nim = '/nginx-instance-manager/:sections[1:]/:filename'
 
 [caches]
   [caches.modules]

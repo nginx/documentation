@@ -18,7 +18,25 @@ For more information on the NGINX App Protect WAF security features, see [NGINX 
 
 ## Supported Security Policy Features
 
-{{< include "nap-waf/config/v5/supported-security-policy-features-v5.md" >}}
+|Protection Mechanism | Description |
+| ---| --- |
+|[Attack Signatures](#attack-signatures-overview) | Default policy covers all the OWASP top 10 attack patterns enabling signature sets detailed in a section below. The user can disable any of them or add other sets. |
+|[Signature attack for Server Technologies](#server-technologies) | Support adding signatures per added server technology. |
+|[Threat Campaigns](#threat-campaigns) | These are patterns that detect all the known attack campaigns. They are very accurate and have almost no false positives, but are very specific and do not detect malicious traffic that is not part of those campaigns. The default policy enables threat campaigns but it is possible to disable it through the respective violation. |
+|[HTTP Compliance](#http-compliance)  | All HTTP protocol compliance checks are enabled by default except for GET with body and POST without body. It is possible to enable any of these two. Some of the checks enabled by default can be disabled, but others, such as bad HTTP version and null in request are performed by the NGINX parser and NGINX App Protect WAF only reports them. These checks cannot be disabled. |
+|[Evasion Techniques](#evasion-techniques) | All evasion techniques are enabled by default and each can be disabled. These include directory traversal, bad escaped character and more. |
+|[Data Guard](#data-guard---blocking) | Detects and masks Credit Card Number (CCN) and/or U.S. Social Security Number (SSN) and/or [custom patterns](#partial-masking-of-data-using-data-guard) in HTTP responses. Disabled by default but can be enabled. |
+|[Parameter parsing](#http-compliance) | Support only auto-detect parameter value type and acts according to the result: plain alphanumeric string, XML or JSON. |
+|[Disallowed file type extension](#disallowed-file-types) | Support any file type. Default includes a predefined list of file types. |
+|[Cookie enforcement](##enforcer-cookie-settings) | By default all cookies are allowed and not enforced for integrity. The user can add [specific cookies](##user---defined-http-headers), wildcards or explicit, that will be enforced for integrity. It is also possible to set the cookie attributes: HttpOnly, Secure and SameSite for cookies found in the response.|
+|[Sensitive Parameters](#Parameters) | Default policy masks the "password" parameter in the security log. It is possible to add more such parameters. See also Data Guard [detecting](#data-guard---blocking), [partial blocking](#partial-masking-of-data-using-data-guard) and [masking](#data-guard---masking).|
+|[JSON Content](#handling-xml-and-json-content) | JSON content profile detects malformed content and detects signatures and metacharacters in the property values. Default policy checks maximum structure depth. It is possible to enforce a provided JSON schema and/or enable more size restrictions: maximum total length Of JSON data;  maximum value length; maximum array length; tolerate JSON parsing errors. |
+|[XML Content](#handling-xml-and-json-content) | XML content profile detects malformed content and detects signatures in the element values. Default policy checks maximum structure depth. It is possible to enable more size restrictions: maximum total length of XML data, maximum number of elements are more. SOAP, Web Services and XML schema features are not supported. |
+|[Allowed methods](#allowed-methods) | Check HTTP allowed methods. By default all the standard HTTP methods are allowed. |
+|[Deny and Allow IP lists](#deny-and-allow-ip-lists) | Manually define denied & allowed IP addresses as well as IP addresses to never log. |
+|[XFF headers & trust](#xff-headers-and-trust) | Disabled by default. User can enable it and optionally add a list of custom XFF headers. |
+|[gRPC Protection](#grpc-protection-for-unary-traffic) | gRPC content profile detects malformed content, parses well-formed content, and extracts the text fields for detecting attack signatures and disallowed meta-characters. In addition, it enforces size restrictions and prohibition of unknown fields. The Interface Definition Language (IDL) files for the gRPC API must be attached to the profile. gRPC protection can be on [unary](#grpc-protection-for-unary-traffic) or [bidirectional](#grpc-protection-for-bidirectional-streaming) traffic.|
+|[Secure Traffic Between NGINX and App Protect Enforcer using mTLS](#secure-traffic-between-nginx-and-app-protect-enforcer-using-mtls) | Disabled by default. You can manually configure mTLS to secure the traffic between NGINX and App Protect Enforcer.|
 
 ### Disallowed File Types
 
@@ -406,8 +424,141 @@ app_protect_policy_file /policies_mount/new_default_policy.tgz;
 
 ### mTLS Configuration
 
-{{< include "nap-waf/config/v5/mtls-configuration-v5.md" >}}
+To enable mTLS in NGINX, you need to perform the following steps:
 
+1. Generate certificates and keys for both components - NGINX (client) and the App Protect Enforcer (server). 
+
+    Below are the steps for using self-signed certificates:
+
+    {{< note >}} The below commands will generate a self-signed certificates in `/etc/ssl/certs/`  valid for the default period of 30 days. You can adjust the command to fit your needs. For instance, to specify a different validity period, add the `-days` option followed by the number of days you want the certificate to be valid (for example, `-days 90`).
+	{{< /note >}}
+
+    ```shell
+	mkdir -p /etc/ssl/certs
+	openssl genpkey -algorithm RSA -out /etc/ssl/certs/app_protect_server_ca.key
+	openssl genpkey -algorithm RSA -out /etc/ssl/certs/app_protect_client_ca.key
+	openssl req -x509 -new -key /etc/ssl/certs/app_protect_server_ca.key -out /etc/ssl/certs/app_protect_server_ca.crt -subj "/O=F5/OU=app-protect/CN=mTLS Server Root CA"
+	openssl req -x509 -new -key /etc/ssl/certs/app_protect_client_ca.key -out /etc/ssl/certs/app_protect_client_ca.crt -subj "/O=F5/OU=app-protect/CN=mTLS Client Root CA"
+	```
+
+    Generate a certificate and key for the App Protect Enforcer (server):
+	
+    ```shell
+    openssl genpkey -algorithm RSA -out /etc/ssl/certs/app_protect_server.key
+	openssl req -new -key /etc/ssl/certs/app_protect_server.key -out /etc/ssl/certs/app_protect_server_csr.crt -subj "/O=F5/OU=app-protect/CN=mTLS"
+	openssl x509 -req -in /etc/ssl/certs/app_protect_server_csr.crt -CA /etc/ssl/certs/app_protect_server_ca.crt -CAkey /etc/ssl/certs/app_protect_server_ca.key -out /etc/ssl/certs/app_protect_server.crt -CAcreateserial
+	```
+
+    Generate a client certificate and key for the NGINX (client):
+
+    ```shell
+	openssl genpkey -algorithm RSA -out /etc/ssl/certs/app_protect_client.key
+	openssl req -new -key /etc/ssl/certs/app_protect_client.key -out /etc/ssl/certs/app_protect_client_csr.crt -subj "/O=F5/OU=app-protect/CN=mTLS"
+	openssl x509 -req -in /etc/ssl/certs/app_protect_client_csr.crt -CA /etc/ssl/certs/app_protect_client_ca.crt -CAkey /etc/ssl/certs/app_protect_client_ca.key -out /etc/ssl/certs/app_protect_client.crt -CAcreateserial
+	```
+
+2. Open the NGINX configuration file `nginx.conf` and perform the following steps:
+	
+	Create a top‑level [`stream {}`](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#stream) block or modify the existing one and add the following configuration:
+	
+	```nginx
+	stream {
+	    upstream enforcer {
+	        # Replace with the actual App Protect Enforcer address and port if different
+	        server 127.0.0.1:4431;
+	    }
+	        
+	    server {
+	        listen 5000;
+	        proxy_pass enforcer;
+	        proxy_ssl_server_name on;
+	        proxy_timeout 60m;
+	        proxy_ssl on;
+            proxy_ssl_certificate /etc/ssl/certs/app_protect_client.crt;
+		    proxy_ssl_certificate_key /etc/ssl/certs/app_protect_client.key;
+		    proxy_ssl_trusted_certificate /etc/ssl/certs/app_protect_server_ca.crt;
+	    }
+	```
+	
+	In the above configuration:
+	
+	- The `upstream enforcer` block specifies the App Protect Enforcer server listening on port `4431`
+	- The `proxy_pass` is used to proxy requests to the enforcer upstream
+	- `ssl_certificate` and `ssl_certificate_key` specify the NGINX (client) certificate and key
+	- The `proxy_ssl_trusted_certificate` enables the enforcer (server) certificate verification.
+
+	Use this stream server as the `app_protect_enforcer_address` value: 
+	    
+	```nginx
+	app_protect_enforcer_address 127.0.0.1:5000; 
+	```
+
+    Configuration Example: 
+
+    ```nginx
+    user nginx;
+    worker_processes auto;
+    worker_shutdown_timeout 10s; # NGINX gives worker processes 10 seconds to gracefully terminate before it will actively close connections
+    load_module modules/ngx_http_app_protect_module.so;
+    error_log /var/log/nginx/error.log notice;
+
+    events {
+            worker_connections 65536;
+        }
+
+    stream {
+    upstream enforcer {
+        server 127.0.0.1:4431;
+    }
+    
+    server {
+        listen 5000;
+        proxy_pass enforcer;
+        proxy_ssl_server_name on;
+        proxy_timeout 60m;
+        proxy_ssl on;
+        proxy_ssl_certificate /etc/ssl/certs/app_protect_client.crt;
+	    proxy_ssl_certificate_key /etc/ssl/certs/app_protect_client.key;
+	    proxy_ssl_trusted_certificate /etc/ssl/certs/app_protect_server_ca.crt;
+    }
+    
+    http {
+        include /etc/nginx/mime.types;
+        default_type application/octet-stream;
+        sendfile on;
+        keepalive_timeout 65;
+
+        app_protect_enforcer_address 127.0.0.1:5000; 
+    
+        server {
+            listen 80;
+            server_name localhost;
+            proxy_http_version 1.1;
+
+            app_protect_enable on;
+            app_protect_policy_file app_protect_default_policy;
+            app_protect_security_log_enable on;
+            app_protect_security_log log_all syslog:server=127.0.0.1:514;
+    
+            location / {
+                client_max_body_size 0;
+                default_type text/html;
+                # Pass traffic to backend
+                proxy_pass http://127.0.0.1:8080/;
+            }
+        }
+    }
+    ```
+
+3. Add the following environment variables to the `waf-enforcer` container in your Docker Compose or Kubernetes deployment file:
+
+    - ENFORCER_PORT
+    - ENFORCER_SERVER_CERT
+    - ENFORCER_SERVER_KEY
+    - ENFORCER_CA_FILE
+
+    Refer to the example for mTLS deployment in the admin guide, whether you're using [Docker]({{< relref "/nap-waf/v5/admin-guide/deploy-on-docker.md#docker-compose-file-with-mtls" >}}) or [Kubernetes]({{< relref "/nap-waf/v5/admin-guide/deploy-on-kubernetes.md#mtls-deployment" >}}).
+    
 ## Custom Dimensions Log Entries
 
 ### Overview
@@ -498,6 +649,48 @@ app_protect_policy_file /policies_mount/new_default_policy.tgz;
 ## Attack Types
 
 {{< include "nap-waf/config/common/attack-types.md" >}}
+
+---
+
+## Policy Converter
+
+The NGINX App Protect WAF v5 Policy Converter tool `/opt/app_protect/bin/convert-policy` is used to convert XML policies to JSON format. The converted JSON policy is based on the NGINX App Protect WAF policy base template and contains the minimal differences to it in JSON declarative policy format.
+
+The XML policy file can be obtained by exporting the policy from the BIG-IP system on which the policy is currently deployed.
+
+Using the tool:
+
+```shell
+/opt/app_protect/bin/convert-policy 
+```
+
+### Convert Policy using Command Line Interface (CLI Usage)
+
+The input policy can also be converted using convert-policy as a CLI tool from within NGINX App Protect WAF Converter container by using the following commands:
+
+```docker
+docker run -it --rm \
+  -v $(pwd):/policies \
+  --entrypoint="/opt/app_protect/bin/convert-policy" \
+  artifactory.f5net.com/f5-waf-docker/nap-x-compiler-image:latest -i test.json -o test.xml
+  -i /policies/input_policy.plc \
+  -o /policies/output_policy \
+  --full-export
+```
+
+### Command Line Options
+
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
+|Field Name   | Notes | 
+| ------------| ------| 
+| -i | Filename of input WAF or ASM binary policy |
+| -o | Filename of output declarative policy |
+| --bot-profile  | Filename of JSON Bot Profile (pre-converted to JSON from tmsh syntax) |
+| --logging-profile | Filename of JSON Logging Profile (pre-converted to JSON from tmsh syntax) |
+| --dos-profile | Filename of JSON DoS Profile (pre-converted to JSON from tmsh syntax) |
+| --full-export | If specified, the full policy with all entities will be exported. Otherwise, only entities that differ from the template will be included.<br> Default for the CLI is not specific (only differing entities). <br> Default for the REST endpoint above is "--full-export" (you can not override this).|{{</bootstrap-table>}}
+
+---
 
 ## Security Logs
 

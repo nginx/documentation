@@ -15,7 +15,7 @@ weight: 100
 
 This section lists the prerequisites for installing and configuring NGINX Agent. Follow the steps below to complete the requirements:
 
-1. [F5 NGINX Management Suite is installed on a server]({{< relref "/nms/installation/vm-bare-metal/_index.md" >}}).
+1. [F5 NGINX Management Suite is installed on a server]({{< relref "/nim/deploy/_index.md" >}}).
 
     {{<note>}} When installing and configuring NGINX Management Suite, take note of the fully qualified domain name (FQDN) and gRPC port number. You'll need this information to properly configure the NGINX Agent to communicate with NGINX Management Suite.
     {{</note>}}
@@ -52,7 +52,7 @@ To see if `nginx_agent_selinux` is installed, run the following command:
     {{%/tab%}}
     {{</tabs>}}
 
-5. Review the [Technical Specifications]({{< relref "/nms/tech-specs.md" >}}) guide for system requirements.
+5. Review the [Technical Specifications]({{< relref "/nim/fundamentals/tech-specs.md" >}}) guide for system requirements.
 
 ---
 
@@ -440,10 +440,10 @@ For instructions on how configure mTLS to secure communication between the NGINX
 
 ## NGINX Metrics
 
-After you register an NGINX instance with NGINX Management Suite, the NGINX Agent will collect and report metrics. For more information about the metrics that are reported, see [Overview: Instance Metrics]({{< relref "/nms/nim/about/overview-metrics.md" >}}).
+After you register an NGINX instance with NGINX Management Suite, the NGINX Agent will collect and report metrics. For more information about the metrics that are reported, see [Overview: Instance Metrics]({{< relref "/nim/monitoring/overview-metrics.md" >}}).
 
 ## Container Support
-NGINX Agent is a companion daemon for NGINX Open Source or NGINX Plus instances and must run in the same container to work. The NGINX Agent repository includes [Dockerfiles](https://github.com/nginx/agent/tree/main/scripts/docker/official/) that can be used to build custom container images. Images are created with an NGINX Open Source or NGINX Plus instance and are available for various operating systems.
+NGINX Agent is a companion daemon for NGINX Open Source or NGINX Plus instances and must run in the same container to work.
 
 See the requirements and supported operating systems in the [NGINX Agent Technical Specifications](https://docs.nginx.com/nginx-agent/technical-specifications/) topic.
 

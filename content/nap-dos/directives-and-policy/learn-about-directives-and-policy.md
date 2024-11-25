@@ -1,11 +1,8 @@
 ---
-description: Learn about F5 NGINX App Protect DoS Directives and Policy.
-docs: DOCS-667
-doctypes:
-- task
 title: NGINX App Protect DoS Directives and Policy
 toc: true
 weight: 120
+docs: DOCS-667
 ---
 
 ## Introduction
@@ -144,8 +141,8 @@ app_protect_dos_name po-example;
 ### Monitor directive (`app_protect_dos_monitor`)
 
 The `app_protect_dos_monitor` directive is used to monitor the stress level of the Protected Object.<br>
-Requests for this monitoring are sent from the localhost (127.0.0.1).<br>
-This directive is mandatory, except when using the HTTP1 protocol, where it is still strongly recommended for optimal performance.<br>
+Requests for this monitoring are sent from localhost (127.0.0.1) and pass through the NGINX configuration to simulate regular client traffic.<br>
+This directive is mandatory, except when using the `http1` protocol, where it is still strongly recommended for optimal performance.<br>
 
 **Syntax:**<br>
 app_protect_dos_monitor uri=path [protocol=http1|http2|grpc|websocket] [timeout=number] [proxy_protocol=on|off];
@@ -153,32 +150,35 @@ app_protect_dos_monitor uri=path [protocol=http1|http2|grpc|websocket] [timeout=
 **Arguments**<br>
 Monitor directive has four arguments - **uri**, **protocol**, **timeout** and **proxy_protocol**. The first is mandatory and the rest are optional.
 
-- **URI** - The destination to the desired protected object in the `nginx.conf`. The format is **scheme://server_name:port/location**.
+- **URI** - The URI of the Protected Object as defined in the `nginx.conf`. This must point to a location block that proxies traffic to the backend (upstream) to ensure accurate monitoring.<br>
+  Format: **scheme://server_name:port/location**.
 
-  {{< note >}}For gRPC, a specific method should be specified in the location. For example, `/RouteGuide/GetFeature`. {{< /note >}}
+  {{< note >}}For gRPC, the URI must specify a valid gRPC method (e.g., /RouteGuide/GetFeature).<br>
+  The health check is not a true gRPC client, so its requests do not conform to the gRPC wire protocol. As a result, the backend responds with grpc-status: 12 (UNIMPLEMENTED), which is expected and treated as a successful health check. Regular gRPC client traffic is unaffected by this behavior.{{< /note >}}
 
-- **Protocol** -  determines the protocol type of the service. Options are `http1 / http2 / grpc / websocket`. Default: `http1`.
+- **Protocol** -  determines the protocol type of the service. Options are `http1 / http2 / grpc / websocket`.<br>Default: `http1`.<br>
 
   {{< note >}}HTTP2 and gRPC are supported from NGINX App Protect DoS v2, while WebSocket is supported from NGINX App Protect DoS v4. {{< /note >}}
 
-- **Timeout** - determines how long (in seconds) should NGINX App Protect DoS wait for a response. Default: 10 seconds for `http1/http2/websocket` and 5 seconds for `grpc`.
+- **Timeout** - determines how long (in seconds) should NGINX App Protect DoS wait for a response. <br>Default: 10 seconds for `http1/http2/websocket` and 5 seconds for `grpc`.<br>
 
 - **Proxy Protocol** -  Should be used when the listen directive of the corresponding server block contains the proxy_protocol parameter.
-It adds an HAProxy PROXY protocol header to the monitor request.
-The format is **proxy_protocol | proxy_protocol=on**. Default: off.
+ It adds an HAProxy PROXY protocol header to the monitor request.
+  <br>Format is **proxy_protocol | proxy_protocol=on**.<br>
+  Default: off.<br>
 
   {{< note >}}The proxy_protocol is supported from NGINX App Protect DoS v3.1. {{< /note >}}
 
 
-#### For NGINX App Protect DoS v1
+#### For Older Versions (NGINX App Protect DoS v1)
 
-Monitor directive has one argument which is the `uri` to be monitored. Only HTTP1 is supported.
+In NGINX App Protect DoS v1, the app_protect_dos_monitor directive has only one argument: uri.
+Only HTTP1 is supported.
 
-The argument is a destination to the desired protected object in the `nginx.conf`: **scheme://server_name:port/location**.
 <br><br>
 **Examples:**
 
-1. http1 on port 80:
+1. HTTP/1 on Port 80:
 
 ```nginx
 listen 80;
@@ -192,7 +192,7 @@ location / {
 
 {{< note >}}For NGINX App Protect DoS v1, use: app_protect_dos_monitor <http://serv:80/>; {{< /note >}}
 
-2. http2 over SSL
+2. HTTP/2 Over SSL
 
 ```nginx
 listen 443 http2 reuseport ssl;
@@ -204,7 +204,7 @@ location / {
 }
 ```
 
-3. gRPC service on port 50051
+3. gRPC Service on Port 50051
 
 ```nginx
 listen 50051 http2 reuseport;
@@ -212,11 +212,13 @@ server_name my_grpc;
 
 location /routeguide. {
     # Protected Object is defined here
+    # Note: The URI must include a valid gRPC method (e.g., /routeguide.RouteGuide/GetFeature).
+    # The health check will expect a grpc-status of 12 (UNIMPLEMENTED) because it is not a true gRPC client.
     app_protect_dos_monitor uri=http://my_grpc:50051/routeguide.RouteGuide/GetFeature protocol=grpc;
 }
 ```
 
-4. Server with proxy_protocol
+4. Server with Proxy Protocol
 
 ```nginx
 listen 443 ssl http2 proxy_protocol;
@@ -224,12 +226,13 @@ server_name serv;
 
 location / {
     # Protected Object is defined here
+    # Note: Use proxy_protocol=on if the listen directive includes the "proxy_protocol" parameter.
     app_protect_dos_monitor uri=https://serv:443/ protocol=http2 timeout=5 proxy_protocol=on;
 }
 
-location /example2 {
+location /abc {
     # Protected Object is defined here
-    app_protect_dos_monitor uri=https://serv:443/ protocol=http2 timeout=5 proxy_protocol;
+    app_protect_dos_monitor uri=https://serv:443/abc protocol=http2 timeout=5 proxy_protocol;
 }
 ```
 
@@ -237,17 +240,17 @@ location /example2 {
 
 ```nginx
 listen 80;
-server_name wsapp;
+server_name wsserv;
 
-location /wsapp/ {
-    # WebSocket configuration, required by NGINX
+location /app/ {
+    # WebSocket configuration required by NGINX
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "Upgrade";
     proxy_set_header Host $host;
 
     # Protected Object is defined here
-    app_protect_dos_monitor uri=http://wsapp:80/ protocol=websocket;
+    app_protect_dos_monitor uri=http://wsserv:80/app/ protocol=websocket;
 }
 ```
 
@@ -257,8 +260,7 @@ Enable/Disable App Protect DoS security logger. It can be used in `location/serv
 
 Directive is optional. If not written, then logger is disabled.
 
-**Example:**<br>
-
+<br>**Example:**
 ```nginx
 app_protect_dos_security_log_enable on;
 ```
@@ -434,7 +436,10 @@ syn_drop mode is recommended for the deployments of NGINX App Protect DoS at the
 Using this mode when NGINX App Protect DoS is deployed behind L4/L7 load balancer may result in the load balancer’s starvation during an attack.
 
 {{< note >}}
-To use this directive you need to install eBPF package.
+To use this directive you need to install the eBPF package.
+
+For more information about eBPF, you can read the [Accelerating DDoS Mitigation with eBPF in F5 NGINX App Protect DoS](https://www.f5.com/company/blog/nginx/accelerating-ddos-mitigation-with-ebpf-in-f5-nginx-app-protect-dos) article.
+
 {{< /note >}}
 
 **Example:**

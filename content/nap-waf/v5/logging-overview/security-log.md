@@ -18,20 +18,18 @@ NGINX App Protect WAF uses its own logging mechanism for request logging rather 
 
 The Security log has the following properties:
 
- * **Log Configuration**: `app_protect_security_log` directive referencing security_log.json file
+ * **Log Configuration**: `app_protect_security_log` directive referencing a custom logging profile bundle file (tgz) or a built-in logging profile name, for example - `log_all`.
 
  * **Configuration contexts**: nginx.conf: `http`, `server`, `location`
 
- * **File Destination?** Yes. You can set the destination to either `stderr`, or an absolute path to a local file, or you can use syslog, and redirect the log with Netcat and pipe:
-    ```shell
-    nc -vv -l “[ip]” “[port]” > “[name_of_file]” 2>&1
-    ```
+ * **File Destination?** The destination can be set to either `stderr` or an absolute path to a local file. It is important to ensure that the path is mounted to the host, as the log will be generated from the `waf-enforcer` container.
 
  * **Syslog Destination?** Yes
 
 ### Directives in nginx.conf
 
 #### app_protect_security_log_enable
+
 This directive determines whether security logging will be enabled in the respective context.
 
 The security log attributes are determined by the `app_protect_security_log` directive. The directive can be at the following contexts: `http`, `server` and `location`. When not present at a certain context, the directive is inherited from the context above it: `location` from `server`, then from `http`. If there is no directive at any of these context levels, then the logging is disabled for the respective context.
@@ -41,6 +39,7 @@ The security log attributes are determined by the `app_protect_security_log` dir
 •	Levels: http, server, location
 
 •	Example: app_protect_security_log_enable on
+
 ##### Arguments
 
 {{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
@@ -49,38 +48,37 @@ The security log attributes are determined by the `app_protect_security_log` dir
 |ON-OFF | Yes | Whether to enable logging or not | off |
 {{</bootstrap-table>}}
 
-
 #### app_protect_security_log
+
 The security log attributes are determined by the `app_protect_security_log` directive, if it was enabled in the respective context. The directive can be at the following context levels: `http`, `server` and `location`. Multiple occurrences of this directive are allowed in a single context, and all the configured logs in this context will be used. When not present in a certain context, all the directives are inherited from the context above it: `location` from `server`, then from `http`. If there is no directive at any of these context levels, but logging is enabled then the default is used for the respective context.
 
-•	Syntax: app_protect_security_log [LOG-CONFIG-FILE] [DESTINATION]
+•	Syntax: app_protect_security_log [LOG-BUNDLE-FILE-OR-NAME] [DESTINATION]
 
 •	Levels: http, server, location
 
 •	Examples:
-~~~nginx
-app_protect_security_log "/etc/app_protect/conf/log_default.json" stderr;
-app_protect_security_log "/etc/app_protect/conf/log_default.json" /var/log/app_protect/security.log;
-app_protect_security_log "/etc/app_protect/conf/log_default.json" syslog:server=localhost:514;
-app_protect_security_log "/etc/app_protect/conf/log_default.json" syslog:server=my-specific-machine-name:514;
-app_protect_security_log "/etc/app_protect/conf/log_default.json" syslog:server=192.168.12.34:514;
-app_protect_security_log "/etc/app_protect/conf/log_default.json" syslog:server=my.domain.com:514;
-~~~
-•	**Note:** When using `stderr`, make sure that the process `bd-socket-plugin` is not redirecting the `stderr` output to file.<br>
-	- When using the Docker `entrypoint.sh` startup script from the admin guide, make sure that it doesn't redirect `stderr`.<br>
-	- When using services startup, make sure that the service startup file for `nginx-app-protect.service` doesn't redirect `stderr`.
+```nginx
+app_protect_security_log log_default stderr;
+app_protect_security_log /mounted_host_dir/logging_profile_01.tgz /mounted_host_dir/security.log;
+app_protect_security_log log_all syslog:server=localhost:514;
+app_protect_security_log log_grpc_all syslog:server=my-specific-machine-name:514;
+app_protect_security_log log_illegal syslog:server=192.168.12.34:51400;
+app_protect_security_log /shared_volume/logging_profile_02.tgz syslog:server=my.domain.com:514;
+```
 
 ##### Arguments
 
 {{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
 |Argument | Mandatory | Meaning | Default |
 | ---| ---| ---| --- |
-|LOG-CONFIG-FILE | No | The path to the log configuration file. See details below. | /etc/app_protect/conf/log_default.json This file is identical to "/opt/app_protect/share/defaults/log_illegal.json" after installation, but can be modified later. |
+|LOG-BUNDLE-FILE-OR-NAME | No | The path to the **compiled** logging profile bundle, or built-in profile name. See details below. | `log_default` (identical to `log_illegal`)|
 |DESTINATION | No | The destination of the log messages in NGINX format. The supported destinations options are `stderr`, or an absolute path to a local file, or syslog server as localhost, hostname, IP address or FQDN with an optional port.| syslog:server=localhost:514 |
 {{</bootstrap-table>}}
 
-
 ### Security Log Configuration File
+
+Before applying, the log configuration file (JSON) should be [compiled]({{< relref "/nap-waf/v5/admin-guide/compiler.md#logging-profile-compilation" >}}) into a logging profile bundle (tgz).
+
 The file is in JSON format and consists of two parts:
 1.	**filter:** which requests are to be logged.
 2.	**content:** how the message is formatted.
@@ -118,20 +116,21 @@ Content is mandatory. If the entire content field or any of its attributes are n
 
 ##### Default Logging Content
 
-This is the content of `/etc/app_protect/conf/log_default.json`. It is used by default when `app_protect_security_log_enabled on` is set, but `app_protect_security_log` is not:
+This is the content of `log_default.json`. It is pre-compield (built-in) and is used by default when `app_protect_security_log_enabled on` is set, but `app_protect_security_log` is not:
 
-~~~json
+```json
 {
     "filter": {
         "request_type": "illegal"
     },
+ 
     "content": {
         "format": "default",
         "max_request_size": "2k",
-        "max_message_size": "5k"
+        "max_message_size": "32k"
     }
 }
-~~~
+```
 
 ##### Log Illegal Requests in Key-Value Format
 
@@ -144,14 +143,14 @@ This is the content of `/etc/app_protect/conf/log_default.json`. It is used by d
         "format": "user-defined",
         "format_string": "client_ip=%ip_client%,client_port=%src_port%,request=%request%,violations=%violations%,signature_ids=%sig_ids%",
         "max_request_size": 2000,
-        "max_message_size": "5k"
+        "max_message_size": "32k"
     }
 }
 ```
 
 ##### Log State Changing Requests
 
-~~~json
+```json
 {
     "filter": {
         "request_type": "all"
@@ -159,10 +158,10 @@ This is the content of `/etc/app_protect/conf/log_default.json`. It is used by d
     "content": {
         "format": "default",
         "max_request_size": "2k",
-        "max_message_size": "5k"
+        "max_message_size": "32k"
     }
 }
-~~~
+```
 
 ##### A Verbose Custom Formatted Message
 
@@ -175,14 +174,14 @@ This is the content of `/etc/app_protect/conf/log_default.json`. It is used by d
         "format": "user-defined",
         "format_string": "Request ID %support_id%: %method% %uri% received on %date_time% from IP %ip_client% had the following violations: %violations%",
         "max_request_size": "2k",
-        "max_message_size": "5k"
+        "max_message_size": "32k"
     }
 }
 ```
 
 ##### Log with Escaped Character and Custom List Prefix / Delimiter / Suffix
 
-~~~json
+```json
 {
     "filter": {
         "request_type": "all"
@@ -190,7 +189,7 @@ This is the content of `/etc/app_protect/conf/log_default.json`. It is used by d
     "content": {
         "format": "default",
         "max_request_size": "2k",
-        "max_message_size": "5k",
+        "max_message_size": "32k",
         "escaping_characters": [
       	    {
                 "from": "/",
@@ -202,7 +201,7 @@ This is the content of `/etc/app_protect/conf/log_default.json`. It is used by d
         "list_suffix": "]"
     }
 }
-~~~
+```
 
 Note that in the last example:
 - any `/` character in list element string in security log will be replaced with `|`. For example: `string/another_string` will become `string|another_string`.
@@ -218,11 +217,13 @@ Both `default` and `grpc` strings start like this:
 "attack_type=\\"%attack_type%\\",blocking_exception_reason=\\"%blocking_exception_reason%\\",..."
 
 ### Syslog Transport
+
 The syslog transport is over TCP. It is currently unsecured, which means that SSL/TLS is not supported. We highly recommend that you do not send the logs directly to their remote destinations, but rather proxy them through a local syslog server residing on the same pod or same VM as NGINX App Protect WAF. The local syslog server will forward them over a secure channel to the remote destination. We recommend you use mutual authentication TLS (mTLS) to avoid any man-in-the-middle attacks attempting to hijack or alter the logs on their way.
 
 It is *not* guaranteed that all requests that match the filters will indeed reach their destination especially if the system is overwhelmed by the incoming traffic. In this case some log records may be dropped.
 
 ### Factory Configuration Files
+
 NGINX will provide example configuration files under /opt/app_protect/share/defaults/ with the following settings:
 
 {{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
@@ -230,8 +231,6 @@ NGINX will provide example configuration files under /opt/app_protect/share/defa
 | ---| ---| --- |
 |log_all | all | format=default |
 |log_blocked | blocked requests | format=default |
-|log_f5_arcsight | illegal requests | format=arcsight, sizes are system-defined and cannot be changed. |
-|log_f5_splunk | illegal requests | format=splunk, sizes are system-defined and cannot be changed. |
 |log_grpc_all | all | format=grpc |
 |log_grpc_blocked | blocked requests | format=grpc |
 |log_grpc_illegal | illegal requests | format=grpc |
@@ -240,12 +239,10 @@ NGINX will provide example configuration files under /opt/app_protect/share/defa
 
 
 ### Available Security Log Attributes
+
 The table below lists attributes that are generated in the security logs. When using customized logs (i.e., format=user-defined), you can add or remove entries from the list below. Per each attribute we show whether it is included in each of the predefined formats: `default` and `grpc`.
 
-
-
 {{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
-
 |Attribute Name | Description | Included in formats |
 | ---| ---| --- |
 | attack_type | A list of comma separated names of suspected attacks identified in a transaction. | default, grpc |
@@ -293,7 +290,6 @@ The table below lists attributes that are generated in the security logs. When u
 |violations | Comma-separated list of logical violation names (e.g., `VIOL_ATTACK_SIGNATURES`, `VIOL_HTTP_PROTOCOL`). | default, grpc |
 |vs_name | A unique identifier of the location in the nginx.conf file that this request is associated with. It contains the line number of the containing server block in nginx.conf, the server name, a numeric discriminator that distinguishes between multiple entries within the same server, and the location name.  For example: ’34-mydomain.com:0-~/.*php(2). | default, grpc |
 |x_forwarded_for_header_value | `X-Forwarded-For` header information. This option is commonly used when proxies are involved to track the originator of the request. | default, grpc |
-
 {{</bootstrap-table>}}
 
 ### Blocking Observability
@@ -306,7 +302,7 @@ Each detected signature is reported within a JSON block with the `VIOL_ATTACK_SI
 
 Here is an example of `json_log` field for a request with several violations and signatures:
 
-~~~JSON
+```JSON
 {
   "violations": [
     {
@@ -351,4 +347,4 @@ Here is an example of `json_log` field for a request with several violations and
     }
   ]
 }
-~~~
+```

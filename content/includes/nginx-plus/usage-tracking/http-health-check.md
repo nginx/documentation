@@ -16,7 +16,7 @@ You can track NGINX Plus instances using an [HTTP Health Check]({{< relref "ngin
     upstream receiver {
         zone receiver 64k;
 
-        # REQUIRED: Update NMS_FQDN with NGINX Management Suite IP Address or hostname.
+        # REQUIRED: Update NMS_FQDN with NGINX Instance Manager IP Address or hostname.
         # If configuring with hostname, please ensure to uncomment the resolver
         # directive below and define a DNS server that can resolve the hostname.
         server NMS_FQDN:443;

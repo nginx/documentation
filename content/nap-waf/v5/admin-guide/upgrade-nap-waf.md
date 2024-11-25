@@ -11,7 +11,7 @@ docs: "DOCS-1640"
 
 Learn how to upgrade F5 NGINX App Protect WAF on your managed NGINX instances using NGINX Instance Manager. This guide covers the steps to update both the NGINX Management Suite server and NGINX App Protect on the data plane, ensuring your security policies and configurations are up-to-date.
 
-Before starting, confirm that your data plane has the latest NGINX Agent compatible with NGINX App Protect. Also, verify that your NGINX Management Suite server has the [WAF compiler installed]({{< relref "/nms/nim/how-to/app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}). If you're updating the WAF compiler, simply upload the NGINX App Protect WAF certificate and key to NGINX Management Suite following the instructions to [Automatically Download and Install New WAF Compiler]({{< relref "/nms/nim/how-to/app-protect/setup-waf-config-management.md#automatically-download-and-install-new-waf-compiler" >}}).
+Before starting, confirm that your data plane has the latest NGINX Agent compatible with NGINX App Protect. Also, verify that your NGINX Management Suite server has the [WAF compiler installed]({{< relref "/nim/nginx-app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}). If you're updating the WAF compiler, simply upload the NGINX App Protect WAF certificate and key to NGINX Management Suite following the instructions to [Automatically Download and Install New WAF Compiler]({{< relref "/nim/nginx-app-protect/setup-waf-config-management.md#automatically-download-and-install-new-waf-compiler" >}}).
 
 ## Upgrade WAF Compiler on NGINX Management Suite
 
@@ -19,7 +19,7 @@ Upgrade NGINX App Protect by installing the new version of _nms-nap-compiler_ on
 
 Ensure the **nms-integrations** service recognizes both the new and existing _nms-nap-compiler_ versions. Complete this step before upgrading NGINX App Protect on your data planes.
 
-For details on matching NGINX App Protect WAF releases with their WAF compiler versions, refer to the the [WAF Compiler and Supported App Protect Versions]({{< relref "nms/nim/how-to/app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}) topic.
+For details on matching NGINX App Protect WAF releases with their WAF compiler versions, refer to the the [WAF Compiler and Supported App Protect Versions]({{< relref "/nim/nginx-app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}) topic.
 
 ## Upgrade NGINX App Protect on the Data Plane
 

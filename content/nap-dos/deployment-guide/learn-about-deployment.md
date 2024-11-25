@@ -21,8 +21,8 @@ NGINX Plus Release 24 and later supports NGINX App Protect DoS.
 
 NGINX App Protect DoS supports the following operating systems:
 
-- [CentOS 7.4.x and above](#centos-74-installation)
-- [RHEL 7.4.x and above](#rhel-74-installation)
+- [CentOS 7.4.x and above](#centos-74-installation) (Deprecated starting from NGINX Plus R33)
+- [RHEL 7.4.x and above](#rhel-74-installation) (Deprecated starting from NGINX Plus R33)
 - [RHEL 8.1.x / Rocky Linux 8 and above](#rhel-8--rocky-linux-8-installation)
 - [RHEL 9 and above](#rhel-9-installation)
 - [Debian 10 (Buster)](#debian--ubuntu-installation) - (Deprecated starting from NGINX Plus R28)
@@ -31,18 +31,19 @@ NGINX App Protect DoS supports the following operating systems:
 - [Ubuntu 18.04 (Bionic)](#debian--ubuntu-installation) - (Deprecated starting from NGINX Plus R30)
 - [Ubuntu 20.04 (Focal)](#debian--ubuntu-installation)
 - [Ubuntu 22.04 (Jammy)](#debian--ubuntu-installation)
-- [Alpine 3.15](#alpine-315x--317x-installation) - (Deprecated starting from NGINX Plus R30)
-- [Alpine 3.17](#alpine-315x--317x-installation)
+- [Ubuntu 24.04 (Noble)](#debian--ubuntu-installation)
+- [Alpine 3.15](#alpine-315x--317x--319x-installation) - (Deprecated starting from NGINX Plus R30)
+- [Alpine 3.17](#alpine-315x--317x--319x-installation)
+- [Alpine 3.19](#alpine-315x--317x--319x-installation)
 
 The NGINX App Protect DoS package has the following dependencies:
 
 1. **nginx-plus-module-appprotectdos** - NGINX Plus dynamic module for App Protect DoS
 2. **libcurl** - Software library for HTTP access
-3. **sudo** - Run commands as a privileged user
-4. **zeromq3** - Software library for fast, message-based applications
-5. **boost** - The free peer-reviewed portable C++ source libraries
-6. **openssl** - Toolkit for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocol
-7. **libelf** - Software library for ELF access
+3. **zeromq4** - Software library for fast, message-based applications
+4. **boost** - The free peer-reviewed portable C++ source libraries
+5. **openssl** - Toolkit for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocol
+6. **libelf** - Software library for ELF access
 
 See the NGINX Plus full list of prerequisites for more details. NGINX App Protect DoS can be installed as a module to an existing NGINX Plus installation or as a complete NGINX Plus with App Protect DoS installation in a clean environment or to a system with NGINX App Protect WAF.
 
@@ -441,13 +442,12 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     For L4 accelerated mitigation feature (RHEL 8.6+):
 
     ```shell
-    sudo dnf install app-protect-dos-ebpf
+    sudo dnf install app-protect-dos-ebpf-manager
     ```
 
     {{< note >}}
    L4 accelerated mitigation feature (RHEL 8.6+):
-   - `nginx-app-protect-dos` and `nginx` need to run with root privileges.
-   - `nginx-app-protect-dos` service executes the command: `ulimit -l unlimited`.
+   - `app-protect-dos-ebpf-manager` run with root privileges.
     {{< /note >}}
 
     Alternatively, you can use the following command to list available versions:
@@ -548,39 +548,32 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     a. Using the vi editor, create a file:
 
     ```shell
-    vi app-protect-dos-ebpf.te
+    vi app-protect-dos-ebpf-manager.te
     ```
 
     b. Insert the following contents into the file you have created:
 
     ```shell
-    module app-protect-dos-ebpf 2.0;
+    module app-protect-dos-ebpf-manager 1.0;
         require {
-        type bpf_t;
+        type root_t;
         type httpd_t;
-        type http_cache_port_t;
-        type initrc_t;
-        type initrc_var_run_t;
-        class capability sys_admin;
-        class process setrlimit;
-        class tcp_socket name_connect;
-        class file { append read write };
-        class bpf { map_read map_write };
+        type unconfined_service_t;
+        class sock_file write;
+        class unix_stream_socket connectto;
+        class shm { unix_read unix_write };
     }
-    allow httpd_t bpf_t:file { read write };
-    allow httpd_t http_cache_port_t:tcp_socket name_connect;
-    allow httpd_t initrc_t:bpf { map_read map_write };
-    allow httpd_t initrc_var_run_t:file append;
-    allow httpd_t self:capability sys_admin;
-    allow httpd_t self:process setrlimit;
+    allow httpd_t root_t:sock_file write;
+    allow httpd_t unconfined_service_t:shm { unix_read unix_write };
+    allow httpd_t unconfined_service_t:unix_stream_socket connectto;
     ```
 
     c. Run the following chain of commands:
 
     ```shell
-    sudo checkmodule -M -m -o app-protect-dos-ebpf.mod app-protect-dos-ebpf.te &&  \
-    sudo semodule_package -o app-protect-dos-ebpf.pp -m app-protect-dos-ebpf.mod &&  \
-    sudo semodule -i app-protect-dos-ebpf.pp;
+    sudo checkmodule -M -m -o app-protect-dos-ebpf-manager.mod app-protect-dos-ebpf-manager.te &&  \
+    sudo semodule_package -o app-protect-dos-ebpf-manager.pp -m app-protect-dos-ebpf-manager.mod &&  \
+    sudo semodule -i app-protect-dos-ebpf-manager.pp;
     ```
 
     If you encounter any issues, refer to the [Troubleshooting Guide]({{< relref "/nap-dos/troubleshooting-guide/how-to-troubleshoot.md" >}}).
@@ -599,7 +592,17 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo systemctl start nginx
     ```
 
+18. L4 mitigation
 
+    To enable the `app-protect-dos-ebpf-manager` service to start at boot, run the command:
+    ```shell
+    sudo systemctl enable nginx.service
+    ```
+    Start the `app-protect-dos-ebpf-manager` service:
+    ```
+    sudo systemctl start app-protect-dos-ebpf-manager
+    ```
+    
 ## RHEL 9+ Installation
 
 1. If you already have NGINX packages on your system, back up your configs and logs:
@@ -616,10 +619,8 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```
 
 3. Log in to the NGINX [Customer Portal](https://my.f5.com) and download the following two files:
-
    - nginx-repo.key
    - nginx-repo.crt
-
 
 4. Copy the downloaded files to the CentOS server’s `/etc/ssl/nginx/` directory. Use an SCP client or another secure file transfer tool to perform this task.
 
@@ -654,13 +655,12 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     For L4 accelerated mitigation feature (RHEL 9):
 
     ```shell
-    sudo dnf install app-protect-dos-ebpf
+    sudo dnf install app-protect-dos-ebpf-manager
     ```
 
     {{< note >}}
    L4 accelerated mitigation feature (RHEL 9):
-   - `nginx-app-protect-dos` and `nginx` need to run with root privileges.
-   - `nginx-app-protect-dos` service executes the command: `ulimit -l unlimited`.
+   - `app-protect-dos-ebpf-manager` run with root privileges.
     {{< /note >}}
 
     Alternatively, you can use the following command to list available versions:
@@ -760,39 +760,32 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     a. Using the vi editor, create a file:
 
     ```shell
-    vi app-protect-dos-ebpf.te
+    vi app-protect-dos-ebpf-manager.te
     ```
 
     b. Insert the following contents into the file created above:
 
     ```shell
-    module app-protect-dos-ebpf 2.0;
+    module app-protect-dos-ebpf-manager 1.0;
         require {
-        type bpf_t;
+        type root_t;
         type httpd_t;
-        type http_cache_port_t;
-        type initrc_t;
-        type initrc_var_run_t;
-        class capability sys_admin;
-        class process setrlimit;
-        class tcp_socket name_connect;
-        class file { append read write };
-        class bpf { map_read map_write };
+        type unconfined_service_t;
+        class sock_file write;
+        class unix_stream_socket connectto;
+        class shm { unix_read unix_write };
     }
-    allow httpd_t bpf_t:file { read write };
-    allow httpd_t http_cache_port_t:tcp_socket name_connect;
-    allow httpd_t initrc_t:bpf { map_read map_write };
-    allow httpd_t initrc_var_run_t:file append;
-    allow httpd_t self:capability sys_admin;
-    allow httpd_t self:process setrlimit;
+    allow httpd_t root_t:sock_file write;
+    allow httpd_t unconfined_service_t:shm { unix_read unix_write };
+    allow httpd_t unconfined_service_t:unix_stream_socket connectto;
     ```
 
     c. Run the following chain of commands:
 
     ```shell
-    sudo checkmodule -M -m -o app-protect-dos-ebpf.mod app-protect-dos-ebpf.te &&  \
-    sudo semodule_package -o app-protect-dos-ebpf.pp -m app-protect-dos-ebpf.mod &&  \
-    sudo semodule -i app-protect-dos-ebpf.pp;
+    sudo checkmodule -M -m -o app-protect-dos-ebpf-manager.mod app-protect-dos-ebpf-manager.te &&  \
+    sudo semodule_package -o app-protect-dos-ebpf-manager.pp -m app-protect-dos-ebpf-manager.mod &&  \
+    sudo semodule -i app-protect-dos-ebpf-manager.pp;
     ```
 
     If you encounter any issues, refer to the [Troubleshooting Guide]({{< relref "/nap-dos/troubleshooting-guide/how-to-troubleshoot.md" >}}).
@@ -811,6 +804,16 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo systemctl start nginx
     ```
 
+18. L4 mitigation
+
+    To enable the `app-protect-dos-ebpf-manager` service to start at boot, run the command:
+    ```shell
+    sudo systemctl enable nginx.service
+    ```
+    Start the `app-protect-dos-ebpf-manager` service:
+    ```
+    sudo systemctl start app-protect-dos-ebpf-manager
+    ```
 
 
 ## Debian / Ubuntu Installation
@@ -892,18 +895,16 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo apt-get install app-protect-dos
     ```
 
-    For L4 accelerated mitigation feature (Debian 11 /  Debian 12 / Ubuntu 20.04 / Ubuntu 22.04):
+    For L4 accelerated mitigation feature (Debian 11 /  Debian 12 / Ubuntu 20.04 / Ubuntu 22.04 / Ubuntu 24.04):
 
     ```shell
-    sudo apt-get install app-protect-dos-ebpf
+    sudo apt-get install app-protect-dos-ebpf-manager
     ```
 
    {{< note >}}
-   L4 accelerated mitigation feature (Debian 11 /  Debian 12 /  Ubuntu 20.04 / Ubuntu 22.04):
-   - `nginx-app-protect-dos` and `nginx` need to run with root privileges.
-   - `nginx-app-protect-dos` service executes the command: `ulimit -l unlimited`.
+   L4 accelerated mitigation feature (Debian 11 /  Debian 12 /  Ubuntu 20.04 / Ubuntu 22.04 / Ubuntu 24.04):
+   - `app-protect-dos-ebpf-manager` run with root privileges.
    {{< /note >}}
-
 
     Alternatively, to install a specific version, use the following commands to update and list available versions:
 
@@ -923,13 +924,13 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     For example for Debian 11:
 
     ```shell
-    sudo apt-get install app-protect-dos=27+2.4.0-1~bullseye nginx-plus-module-appprotectdos=27+2.4.0-1~bullseye
+    sudo apt-get install app-protect-dos=33+4.5.0-1~bullseye nginx-plus-module-appprotectdos=33+4.5.0--1~bullseye
     ```
 
     For example, for Debian 12:
 
     ```shell
-    sudo apt-get install app-protect-dos=32+4.4.0-1~bookworm nginx-plus-module-appprotectdos=32+4.4.0-1~bookworm
+    sudo apt-get install app-protect-dos=33+4.5.0-1~bookworm nginx-plus-module-appprotectdos=32+4.5.0-1~bookworm
     ```
 
     For example for Ubuntu 18.04:
@@ -941,13 +942,19 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     For example for Ubuntu 20.04:
 
      ```shell
-    sudo apt-get install app-protect-dos=27+2.4.0-1~focal nginx-plus-module-appprotectdos=27+2.4.0-1~focal
+    sudo apt-get install app-protect-dos=33+4.5.0-1~focal nginx-plus-module-appprotectdos=32+4.5.0-1~focal
     ```
 
     For example for Ubuntu 22.04:
 
      ```shell
-    sudo apt-get install app-protect-dos=27+2.4.0-1~jammy nginx-plus-module-appprotectdos=27+2.4.0-1~jammy
+    sudo apt-get install app-protect-dos=33+4.5.0-1~jammy nginx-plus-module-appprotectdos=32+4.5.0-1~jammy
+    ```
+
+    For example for Ubuntu 24.04:
+
+     ```shell
+    sudo apt-get install app-protect-dos=33+4.5.0-1~noble nginx-plus-module-appprotectdos=33+4.5.1-1~noble
     ```
 
 10. In the case of upgrading from a previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):
@@ -996,8 +1003,12 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```shell
     sudo service nginx start
     ```
-
-## Alpine 3.15.x / 3.17.x Installation
+17. Start the L4 service:
+    ```shell
+     sudo service app-protect-dos-ebpf-manager start
+    ```
+    
+## Alpine 3.15.x / 3.17.x / 3.19.x Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -1057,12 +1068,12 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     For L4 accelerated mitigation feature:
 
     ```shell
-    sudo sudo apk add app-protect-dos-ebpf
+    sudo sudo apk add app-protect-dos-ebpf-manager
     ```
 
    {{< note >}}
    L4 accelerated mitigation feature:
-   - `nginx-app-protect-dos` and `nginx` need to run with root privileges.
+   - `app-protect-dos-ebpf-manager` run with root privileges.
    {{< /note >}}
 
     Alternatively, to install a specific version, use the following commands to update and list available versions:
@@ -1075,7 +1086,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     Finally, install a specific version from the output of command above. For example:
 
     ```shell
-    sudo apk add nginx-plus app-protect-dos=27+2.4.0-r1
+    sudo apk add nginx-plus app-protect-dos=33+4.5.0-r1
     ```
 
 10. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):
@@ -1120,10 +1131,15 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     app_protect_dos_accelerated_mitigation on;
     ```
 
-15. Start the NGINX service:
+16. Start the NGINX service:
 
     ```shell
     rc-service nginx-app-protect-dos start
+    ```
+    
+17. Start the L4 service:
+    ```shell
+    rc-service app-protect-dos-ebpf-manager start
     ```
 
 ## Docker Deployment
@@ -1134,10 +1150,10 @@ You need root permissions to execute the following steps.
 
 1. Create a Dockerfile (see examples below) which copies the following files into the docker image:
 
-- `nginx-repo.crt`: Certificate for NGINX repository access
-- `nginx-repo.key`: Private key for NGINX repository access
-- `nginx.conf`: User defined `nginx.conf` with app-protect-dos enabled
-- `entrypoint.sh`: Docker startup script which spins up all App Protect DoS processes, must have executable permissions
+   - `nginx-repo.crt`: Certificate for NGINX repository access
+   - `nginx-repo.key`: Private key for NGINX repository access
+   - `nginx.conf`: User defined `nginx.conf` with `app-protect-dos` enabled
+   - `entrypoint.sh`: Docker startup script which spins up all App Protect DoS processes, must have executable permissions
 
 2. Log in to NGINX Plus Customer Portal and download your `nginx-repo.crt` and `nginx-repo.key` files.
 
@@ -1221,25 +1237,13 @@ You need root permissions to execute the following steps.
         tcp_nopush          on;
         keepalive_timeout   65;
     }
+    ```
+   
+   {{< important >}}
+   Make sure to replace upstream and proxy pass directives in this example with relevant application backend settings.
+   {{< /important >}}
 
-{{< important >}}
-Make sure to replace upstream and proxy pass directives in this example with relevant application backend settings.
-{{< /important >}}
-
-5. For L4 accelerated mitigation feature:<br />
-   Need to replace from the `nginx.conf` file the line:<br />
-
-   ```nginx
-   user nginx;
-   ```
-
-   to
-
-   ```nginx
-   user root;
-   ```
-
-6. In the same directory create an `entrypoint.sh` file with executable permissions, with the following content:
+5. In the same directory create an `entrypoint.sh` file with executable permissions, with the following content:
 
     For CentOS 7 / UBI 7:
 
@@ -1282,25 +1286,7 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
     ```
 
-    For Alpine / Debian / Ubuntu / UBI 8 / UBI 9 with L4 accelerated mitigation feature:
-
-    ```shell
-    #!/usr/bin/env bash
-
-    LOGDIR=/var/log/adm
-
-    # prepare environment
-    mkdir -p /var/run/adm /tmp/cores ${LOGDIR}
-    chmod 755 /var/run/adm /tmp/cores ${LOGDIR}
-    chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
-
-    # run processes
-    /bin/su -s /bin/bash -c "ulimit -l unlimited && /usr/bin/adminstall -e > ${LOGDIR}/admd.log 2>&1" ${USER}
-    /usr/sbin/nginx -g 'daemon off;' &
-    /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
-    ```
-
-7. Create a Docker image:
+6. Create a Docker image:
 
     ```shell
     docker build --no-cache -t app-protect-dos .
@@ -1308,31 +1294,73 @@ Make sure to replace upstream and proxy pass directives in this example with rel
 
     The `--no-cache` option tells Docker to build the image from scratch and ensures the installation of the latest version of NGINX Plus and NGINX App Protect DoS. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the Docker cache.
 
-    For L4 accelerated mitigation feature:
-
-   ```shell
-    docker build --no-cache --privileged -t app-protect-dos .
-    ```
-
-    The `--privileged` grants the Docker container root capabilities to all devices on the host system.
-
-8. Verify that the `app-protect-dos` image was created successfully with the docker images command:
+7. Verify that the `app-protect-dos` image was created successfully with the docker images command:
 
     ```shell
     docker images app-protect-dos
     ```
 
-9. Create a container based on this image, for example, `my-app-protect-dos` container:
+8. Create a container based on this image, for example, `my-app-protect-dos` container:
 
     ```shell
     docker run --name my-app-protect-dos -p 80:80 -d app-protect-dos
     ```
 
-10. Verify that the `my-app-protect-dos` container is up and running with the `docker ps` command:
+9. Verify that the `my-app-protect-dos` container is up and running with the `docker ps` command:
 
     ```shell
     docker ps
     ```
+   
+10. L4 Accelerated Mitigation Deployment Options:<br>
+    There are three different ways to deploy the L4 accelerated mitigation feature:<br>
+    1. Deploy in a Dedicated Container. <br>
+       Create a shared folder on the host:
+       ```shell
+       mkdir /shared
+       ```
+       This folder will be used to share data between containers.
+       Modify the `entrypoint.sh` to run the L4 mitigation:
+
+       ```shell
+       # run processes
+       /usr/bin/ebpf_manager_dos
+       ```
+
+       Create and run the L4 container:
+       ```shell
+       docker run --privileged --network host --mount type=bind,source=/sys/fs/bpf,target=/sys/fs/bpf -v /shared:/shared --name my-app-protect-dos-ebpf-manager -d app-protect-dos-ebpf-manager
+       ```
+
+       Create and run the main `app-protect-dos` container:
+       ```shell
+       docker run --name my-app-protect-dos -v /shared:/shared -p 80:80 -d app-protect-dos
+       ```
+    2. Deploy Directly on the Host.<br>
+       To run L4 mitigation directly on the host:<br>
+        1. Install the L4 mitigation on the host, as described in the OS-specific instructions.
+        2. Run the app-protect-dos container:
+             ```shell
+             docker run --name my-app-protect-dos -v /shared:/shared -p 80:80 -d app-protect-dos
+             ```
+    3. Run L4 Mitigation Inside the Same Container as `app-protect-dos`.<br>
+       To run both L4 mitigation and the main application within the same container:<br>
+        1. Modify the `entrypoint.sh`:
+           ```shell
+           ...
+           # run processes
+           /usr/bin/ebpf_manager_dos &
+           ...
+           ```
+        2. run the container:
+           ```shell
+           docker run --name my-app-protect-dos -p 80:80 -d app-protect-dos
+           ```
+
+   {{< note >}}
+   L4 accelerated mitigation feature:
+   - `app-protect-dos-ebpf-manager` need to run with root privileges.
+   {{< /note >}}
 
 ### CentOS 7.4 Docker Deployment Example
 
@@ -1531,12 +1559,12 @@ COPY entrypoint.sh  /root/
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
 
-### Ubuntu 18.04 (Bionic) / 20.04 (Focal) / 22.04 (Jammy) Docker Deployment Example
+### Ubuntu 18.04 (Bionic) / 20.04 (Focal) / 22.04 (Jammy) / 24.04 (Noble) Docker Deployment Example
 
 ```Dockerfile
 
 ARG OS_CODENAME
-# Where OS_CODENAME can be: bionic/focal/jammy
+# Where OS_CODENAME can be: bionic/focal/jammy/noble
 
 FROM ubuntu:${OS_CODENAME}
 
@@ -1573,9 +1601,9 @@ CMD /root/entrypoint.sh && tail -f /dev/null
 ### Alpine Docker Deployment Example
 
 ```Dockerfile
-# For Alpine 3.15 / 3.17:
+# For Alpine 3.15 / 3.17 / 3.19:
 ARG OS_CODENAME
-# Where OS_CODENAME can be: 3.15 / 3.17
+# Where OS_CODENAME can be: 3.15 / 3.17 / 3.19
 FROM alpine:${OS_CODENAME}
 
 # Download certificate and key from the customer portal (https://my.f5.com)
@@ -1723,7 +1751,7 @@ Make sure to replace upstream and proxy pass directives in this example with rel
    user root;
    ```
 
-6. In the same directory create an `entrypoint.sh` file with executable permissions, with the following content:
+5. In the same directory create an `entrypoint.sh` file with executable permissions, with the following content:
 
    For CentOS 7 / UBI 7:
 
@@ -1766,26 +1794,7 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
     ```
 
-
-   For Alpine / Debian / Ubuntu / UBI 8 / UBI 9 with L4 accelerated mitigation feature:
-
-    ```shell
-    #!/usr/bin/env bash
-    LOGDIR=/var/log/adm
-
-    # prepare environment
-    mkdir -p /var/run/adm /tmp/cores ${LOGDIR}
-    chmod 755 /var/run/adm /tmp/cores ${LOGDIR}
-    chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
-
-    # run processes
-    /bin/su -s /bin/bash -c "ulimit -l unlimited && /usr/bin/adminstall -e > ${LOGDIR}/admd.log 2>&1" ${USER}
-    /bin/su -s /bin/bash -c "/usr/share/ts/bin/bd-socket-plugin tmm_count 4 proc_cpuinfo_cpu_mhz 2000000 total_xml_memory 307200000 total_umu_max_size 3129344 sys_max_account_id 1024 no_static_config 2>&1 > /var/log/app_protect/bd-socket-plugin.log &" ${USER}
-    /usr/sbin/nginx -g 'daemon off;' &
-    /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
-    ```
-
-8. Create a Docker image:
+6. Create a Docker image:
 
     For CentOS:
 
@@ -1801,28 +1810,19 @@ Make sure to replace upstream and proxy pass directives in this example with rel
 
     The `--no-cache` option tells Docker to build the image from scratch and ensures the installation of the latest version of NGINX Plus and NGINX App Protect DoS. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the Docker cache.
 
-   For L4 accelerated mitigation feature:
-
-   ```shell
-   docker build --build-arg RHEL_ORGANIZATION=${RHEL_ORGANIZATION} --build-arg RHEL_ACTIVATION_KEY=${RHEL_ACTIVATION_KEY} --no-cache --privileged -t app-protect-dos .±
-    ```
-
-   The `--privileged` grants the Docker container root capabilities to all devices on the host system
-
-
-9. Verify that the `app-protect-dos` image was created successfully with the docker images command:
+7. Verify that the `app-protect-dos` image was created successfully with the docker images command:
 
     ```shell
     docker images app-protect-dos
     ```
 
-10. Create a container based on this image, for example, `my-app-protect-dos` container:
+8. Create a container based on this image, for example, `my-app-protect-dos` container:
 
     ```shell
     docker run --name my-app-protect-dos -p 80:80 -d app-protect-dos
     ```
 
-11. Verify that the `my-app-protect-dos` container is up and running with the `docker ps` command:
+9. Verify that the `my-app-protect-dos` container is up and running with the `docker ps` command:
 
     ```shell
     docker ps
@@ -1942,12 +1942,12 @@ COPY entrypoint.sh  /root/
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
 
-### Ubuntu 18.04 (Bionic) / 20.04 (Focal) / 22.04 (Jammy) Docker Deployment Example
+### Ubuntu 18.04 (Bionic) / 20.04 (Focal) / 22.04 (Jammy) / 24.04 (Noble)  Docker Deployment Example
 
 ```Dockerfile
 
 ARG OS_CODENAME
-# Where OS_CODENAME can be: bionic/focal/jammy
+# Where OS_CODENAME can be: bionic/focal/jammy/noble
 
 FROM ubuntu:${OS_CODENAME}
 
@@ -2217,7 +2217,7 @@ spec:
         name: cm-appprotect-dos-nginx
         items:
         - key: nginx.conf
-            path: nginx.conf
+          path: nginx.conf
     - name: root-script
       configMap:
           name: cm-appprotect-dos-entry

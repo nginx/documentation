@@ -42,6 +42,11 @@ Choose the appropriate `Dockerfile` example based on your Operating System (OS).
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-amazon.md" >}}
 
 {{%/tab%}}
+{{%tab name="Amazon Linux 2023"%}}
+
+{{< include "nap-waf/config/v5/build-nginx-image-oss/build-amazon-2023.md" >}}
+
+{{%/tab%}}
 {{%tab name="CentOS"%}}
 
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-centos.md" >}}
@@ -82,6 +87,11 @@ You are ready to [Build the image](#build-image-main)
 {{%tab name="Amazon Linux 2"%}}
 
 {{< include "nap-waf/config/v5/build-nginx-image-plus/build-amazon.md" >}}
+
+{{%/tab%}}
+{{%tab name="Amazon Linux 2023"%}}
+
+{{< include "nap-waf/config/v5/build-nginx-image-plus/build-amazon-2023.md" >}}
 
 {{%/tab%}}
 {{%tab name="CentOS"%}}

@@ -2,14 +2,14 @@
 docs: DOCS-1243
 ---
 
-Select the tab matching your Linux distribution, then follow the instructions to add the NGINX Management Suite repository.
+Select the tab matching your Linux distribution, then follow the instructions to add the NGINX Instance Manager repository.
 
 <br>
 
 {{<tabs name="install_repo">}}
 {{%tab name="CentOS, RHEL, RPM-Based"%}}
 
-Add the NGINX Management Suite repository:
+Add the NGINX Instance Manager repository:
 
 - **CentOS/RHEL**
 
@@ -36,7 +36,7 @@ Add the NGINX Management Suite repository:
 
 {{%tab name="Debian, Ubuntu, Deb-Based"%}}
 
-Add the NGINX Management Suite repository:
+Add the NGINX Instance Manager repository:
 
 - **Debian**
 
