@@ -29,7 +29,7 @@ authors: []
 
 In environments where NGINX Instance Manager has internet access but NGINX Plus doesn’t, NGINX Plus sends usage data to NGINX Instance Manager. NGINX Instance Manager will automatically send the usage reports to F5 for verification, or you can choose to send them manually.
 
-**If usage reporting fails, NGINX Plus stops accepting new connections.** There's an exception for previously reported instances — refer to [handling outages](#handling-outages) for more details.
+**If usage reporting fails, NGINX Plus will stop processing traffic.** There's an exception for previously reported instances — refer to [handling outages](#handling-outages) for more details.
 
 See the steps below to configure NGINX Plus to report usage data to NGINX Instance Manager and how to submit the report to F5 for verification.
 
@@ -66,7 +66,7 @@ NGINX Instance Manager will automatically report subscription entitlement and us
 
 ### Manual reporting
 
-{{<call-out "important" "Usage reporting requirement:" "fa-solid fa-exclamation-triangle" >}}You need to report usage to F5 regularly. **If usage isn’t reported for 180 days, NGINX Plus will stop accepting new connections**. For more details about the usage reporting process, see [About subscription licenses]({{< relref "solutions/about-subscription-licenses.md" >}}).{{</call-out>}}
+{{<call-out "important" "Usage reporting requirement:" "fa-solid fa-exclamation-triangle" >}}You need to report usage to F5 regularly. **If usage isn’t reported for 180 days, NGINX Plus will stop processing traffic**. For more details about the usage reporting process, see [About subscription licenses]({{< relref "solutions/about-subscription-licenses.md" >}}).{{</call-out>}}
 
 If you prefer submitting usage reports to F5 manually, follow these steps:
 

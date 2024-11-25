@@ -427,28 +427,24 @@ Ensure content and screenshots are anonymized and don't contain sensitive inform
 
 ## Guidelines for `includes`
 
-In an ideal world, we'd "write once, publish everywhere." To that end, we follow the principle of [Don't repeat yourself](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) in our documentation. As such, we use our tools to set up "includes", to call common content from files in the [content/includes](https://github.com/nginxinc/docs/tree/main/content/includes) directory.
+In an ideal world, we'd "write once, publish everywhere." To support this goal, we follow the principle of [Don't repeat yourself](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) in our documentation. This principle shapes how we create and use `includes`, which pull reusable content from files in the [content/includes](https://github.com/nginxinc/docs/tree/main/content/includes) directory.
 
-In an ideal world, we'd "write once, publish everywhere." It's possible with a concept known as `includes`, where an entry such as:
+For example:
 
-```
+```text
 {{< include "controller/helper-script-prereqs.md" >}}
 ```
 
-automatically pulls content from the `helper-script-prereqs.md` file in the `content/includes/controller` subdirectory.
+This entry automatically incorporates content from the `helper-script-prereqs.md` file in the `content/includes/controller` subdirectory.
 
-As includes disrupt the flow when reading a markdown file, we encourage you to follow these guidelines:
+To make sure includes are effective and easy to maintain, follow these practices:
 
-- Keep includes to a minimum
-- Set up includes in "small snippets"
-- Use includes on content that _rarely_ changes
-- Create includes for content that's repeated at least three times
-- Don’t add headers (like H2s) inside includes. Headers in includes don’t show up in the in-doc TOC. Plus, while an H2 might make sense in the include on its own, it may not fit well under an H4 in the main document. Headers should be added at the doc level.
-- Don’t nest includes inside other includes. While this technically works, it makes reviews harder.
-
-If you don't use an include with repeated content, include a `<!-- comment -->` which refers to other files with the same content.
-
-Do not use an include unless it's used in at least two locations. It's OK if those two locations are in the same file.
+- **Use includes only for reusable content**: Create an include only if the content appears in at least **two locations**. Using an include for single-use content adds unnecessary complexity and makes maintenance harder.
+- **Keep includes small and modular**: Write narrowly scoped snippets to maximize flexibility and reuse.
+- **Avoid branded product names in includes**: Use the full product name (e.g., "NGINX Instance Manager"), but avoid including the branded version (e.g., "F5 NGINX Instance Manager"). The branded name is required only on the first mention in a document; this is a context-specific rule. Includes, however, are designed to be context-agnostic—they should not rely on or assume any prior content—so including the branded name could repeat information unnecessarily in locations where it has already been introduced.
+- **Don't include headers**: Avoid adding H2 or other headers inside includes. These headers won't appear in the document's table of contents (TOC) and may not fit well with the surrounding content hierarchy. Add headers directly in the document instead.
+- **Avoid nesting includes**: Don't place an include inside another include. While technically possible, it complicates reviews and maintenance. Use a flat structure for simplicity.
+- **Don't start documents with includes**: The opening of a document is usually the introduction, which explains its purpose. Includes are reused text, so starting multiple documents with identical content could look odd, especially in search results.
 
 ## Guidelines for command-line operations
 
