@@ -15,7 +15,7 @@ weight: 10
 
 ## Overview
 
-This guide explains how to install NGINX Instance Manager on a virtual machine (VM) or bare metal. It includes key prerequisites like installing NGINX and setting up ClickHouse, as well as steps for adding a license, accessing the web interface, and optionally securing your deployment with Vault.
+This guide explains how to install F5 NGINX Instance Manager on a virtual machine (VM) or bare metal. It includes key prerequisites like installing NGINX and setting up ClickHouse, as well as steps for adding a license, accessing the web interface, and optionally securing your deployment with Vault.
 
 {{<call-out "note" "Access the deprecated manual steps" "">}}If you prefer to follow the original manual steps, you can access the [deprecated guide]({{< relref "nim/deploy/vm-bare-metal/install-nim-deprecated.md" >}}). Please note that this guide is no longer actively maintained and may not reflect the latest updates or best practices.{{</call-out>}}
 
@@ -129,6 +129,21 @@ Regenerated Admin password: <encrypted password>
 ```
 
 Save that password. You'll need it when you sign in to NGINX Instance Manager.
+
+### Verify with a GPG Key
+
+To verify the installation of NGINX Instance Manager with the GPG keys associated with F5 NGINX One, you need to specify:
+
+- Installation of NGINX One 
+- The location of the `license.jwt` file
+
+In this case, to install NGINX Instance Manager on Ubuntu 24.04, verified with GPG keys from the latest version of NGINX Plus, run the following command:
+
+```bash
+sudo bash install-nim-bundle.sh -p latest -d ubuntu24.04 -j /path/to/license.jwt
+```
+
+{{< note >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /note >}}
 
 ### Problems
 
