@@ -17,7 +17,7 @@ This guide shows you how to install and upgrade NGINX Instance Manager in enviro
 
 {{<call-out "note" "Access the deprecated manual steps" "">}}If you prefer to follow the original manual steps, you can access the [deprecated guide]({{< relref "nim/disconnected/offline-install-guide-deprecated.md" >}}). Please note that this guide is no longer actively maintained and may not reflect the latest updates or best practices.{{</call-out>}}
 
-## Before you begin
+# Before you begin
 
 You’ll need internet access for the steps in this section.
 
@@ -38,23 +38,30 @@ sudo bash install-nim-bundle.sh \
   -c <path/to/certificate.crt> \
   -k <path/to/private.key> \
   -m offline \
-  -d <distribution>
+  -d <distribution> \
+  -p <version> \
+  -v <version> \
+  -j <path/to/nginx-product.jwt>
 ```
 
 <br>
 
 By default, this command installs the latest version of NGINX Open Source. To install NGINX Plus or specify a different version of NGINX Open Source, use the `-p` or `-n` options as needed.
 
+Not al
+
 <br>
 
 **Explanation of options:**
 
-- **`-c`**: Path to the SSL certificate file.
-- **`-k`**: Path to the private key file.
+- **`-c`**: Uses the specified SSL certificate file. Copies the file to the /etc/ssl/nginx directory.
+- **`-k`**: Uses the specified private key file. Copies the file to the /etc/ssl/nginx directory.
 - **`-m`**: Sets the installation mode (use `offline` for disconnected environments).
 - **`-d`**: Defines the target distribution (replace `<distribution>` with one of the supported options below).
 - **`-n`**: Installs a specific version of NGINX Open Source. Use `latest` to install the most recent version or specify a version like `1.27.1`. If neither `-n` nor `-p` is specified, the script defaults to installing the latest version of NGINX Open Source.
 - **`-p`**: Installs the specified version of NGINX Plus. Use `latest` for the newest version or a specific release like `R32`. Overrides the `-n` option if both are specified.
+- **`-v`**: Installs the specified version of NGINX Instance Manager. Use `latest` for the newest version or a specific release like `2.18.0`. If you skip this option, the script assumes you want to install `latest`.
+- **`-j`**: Uses the specified JWT token.
 
 
 **Supported distributions:**
