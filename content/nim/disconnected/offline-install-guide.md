@@ -48,7 +48,7 @@ sudo bash install-nim-bundle.sh \
 
 By default, this command installs the latest version of NGINX Open Source. To install NGINX Plus or specify a different version of NGINX Open Source, use the `-p` or `-n` options as needed.
 
-Not al
+{{< note >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /note >}}
 
 <br>
 
