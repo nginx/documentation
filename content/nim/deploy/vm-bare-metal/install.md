@@ -140,7 +140,7 @@ To verify the installation of NGINX Instance Manager with the GPG keys associate
 In this case, to install NGINX Instance Manager on Ubuntu 24.04, verified with GPG keys from the latest version of NGINX Plus, run the following command:
 
 ```bash
-sudo bash install-nim-bundle.sh -p latest -d ubuntu24.04 -j /path/to/license.jwt
+sudo bash install-nim-bundle.sh -c /path/to/nginx-repo.crt -k /path/to/nginx-repo.key -p latest -d ubuntu24.04 -j /path/to/license.jwt
 ```
 
 {{< note >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /note >}}
