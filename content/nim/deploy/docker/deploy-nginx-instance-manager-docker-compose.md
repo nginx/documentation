@@ -84,7 +84,7 @@ starting NIM via compose for development...
 
 You may modify the following variables in the `docker-compose.yaml` file:
 
-- `NIM_LOG_LEV`EL - set the NGINX Instance Manager logging level.
+- `NIM_LOG_LEVEL` - set the NGINX Instance Manager logging level.
 - `NIM_METRICS_TTL` - set a custom time-to-live in days value for metrics retention.
 - `NIM_EVENTS_TTL` -  set a custom time-to-live in days value for events retention.
 - `NIM_SECURITY_TTL` -  set a custom time-to-live in days value for security violation retention.
