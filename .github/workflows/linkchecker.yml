@@ -1,261 +1,96 @@
 # Using https://github.com/wummel/linkchecker to test NGINX Documentation
 # Recursively checks all internal and external links in the docs.
 # Warnings for redirects are disabled
-# To ignore a url use the --ignore-url param. eg --ignore-url ^http://www.example.com
+# To ignore a url use the add to the env.ignore list. eg --ignore-url ^http://www.example.com
+# To add or remove a project edit the doc_paths list
 
 name: QE LinkChecker
 
-# This workflow runs on a schedule or can be run manually
 on:
   workflow_dispatch:
+    inputs:
+      basepath:
+        description: 'Base path for the documentation (default: https://docs.nginx.com)'
+        required: false
+        default: 'https://docs.nginx.com'
   schedule:
     # Runs every day at 7am UTC
     - cron: '0 7 * * *'
 
 env:
-  basepath: https://docs.nginx.com
   defaults: '--no-warnings --check-extern --ignore-url ^https://consent.trustarc.com'
-
-  # Ignore list
   ignore: >
-   --ignore-url ^http://127.0.0.1 --ignore-url ^http://localhost --ignore-url ^http://serv/ --ignore-url ^https://myserver.host.com
-   --ignore-url ^https://product.apis.f5.com --ignore-url ^https://product-s.apis.f5.com
-   --ignore-url ^http://www.example.com --ignore-url ^file:// --ignore-url ^https://www.fastbot.de
-   --ignore-url ^https://lightstep.com --ignore-url ^https://www.owasp.org/ --ignore-url ^https://www.maxmind.com 
-   --ignore-url ^https://oauth2.googleapis.com --ignore-url ^https://openidconnect.googleapis.com --ignore-url ^https://www.base64url.com/
-   --ignore-url ^https://docs.nginx.com/nginx-ingress-controller/css
-   --ignore-url ^https://docs.nginx.com/nginxaas/azure/css
-   --ignore-url ^https://docs.nginx.com/nginx-gateway-fabric/css
+    --ignore-url ^http://127.0.0.1 --ignore-url ^http://localhost --ignore-url ^http://serv/ --ignore-url ^https://myserver.host.com
+    --ignore-url ^https://product.apis.f5.com --ignore-url ^https://product-s.apis.f5.com
+    --ignore-url ^http://www.example.com --ignore-url ^file:// --ignore-url ^https://www.fastbot.de
+    --ignore-url ^https://lightstep.com --ignore-url ^https://www.owasp.org/ --ignore-url ^https://www.maxmind.com
+    --ignore-url ^https://oauth2.googleapis.com --ignore-url ^https://openidconnect.googleapis.com --ignore-url ^https://www.base64url.com/
+    --ignore-url ^https://docs.nginx.com/nginx-ingress-controller/css
+    --ignore-url ^https://docs.nginx.com/nginxaas/azure/css
+    --ignore-url ^https://docs.nginx.com/nginx-gateway-fabric/css
 
 jobs:
-  nginx-one:
+  link-checker:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        doc_paths:
+          - nginx-one
+          - nginx-instance-manager
+          - solutions
+          - nginx-app-protect-dos
+          - nginx-app-protect-waf
+          - nginx-ingress-controller
+          - nginxaas/azure
+          - nginx-service-mesh
+          - nginx-amplify
+          - nginx-controller
+          - nginx-waf
+          - nginx-management-suite
+          - nginx-gateway-fabric
     steps:
-      # Build the linkchecker command
-      - name: Setup linkchecker cmds
+      # Set basepath from workflow input or default
+      - name: Configure Basepath
         run: |
-          echo "cmd=linkchecker "$basepath"/nginx-one/ "$defaults" "$ignore"" >> "$GITHUB_ENV"
-      # Install LinkChecker
-      - name: Install LinkChecker
-        run: sudo apt-get update && sudo apt-get install -y linkchecker
-      # Run LinkChecker on nginx-one docs
-      - name: Run LinkChecker nginx-one
-        uses: nick-fields/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
-        with:
-          timeout_minutes: 10
-          max_attempts: 3
-          command: ${{ env.cmd }}
+         echo "basepath=${{ github.event.inputs.basepath }}" >> $GITHUB_ENV
+         echo "isProduction=${{ github.event.inputs.basepath == 'https://docs.nginx.com'}}" >> $GITHUB_ENV
 
-  nginx-instance-manager:
-    runs-on: ubuntu-latest
-    steps:
-      # Build the linkchecker command
-      - name: Setup linkchecker cmds
-        run: |
-          echo "cmd=linkchecker "$basepath"/nginx-instance-manager/ "$defaults" "$ignore"" >> "$GITHUB_ENV"
-      # Install LinkChecker
-      - name: Install LinkChecker
-        run: sudo apt-get update && sudo apt-get install -y linkchecker
-      # Run LinkChecker on nginx-instance-manager docs
-      - name: Run LinkChecker nginx-instance-manager
-        uses: nick-fields/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
+      - name: Login to Azure
+        if: env.isProduction != 'true'
+        uses: azure/login@a65d910e8af852a8061c627c456678983e180302 # v2.2.0
         with:
-          timeout_minutes: 10
-          max_attempts: 3
-          command: ${{ env.cmd }}
-        
-  nginx-solutions:
-    runs-on: ubuntu-latest
-    steps:
-      # Build the linkchecker command
-      - name: Setup linkchecker cmds
-        run: |
-          echo "cmd=linkchecker "$basepath"/solutions/ "$defaults" "$ignore"" >> "$GITHUB_ENV"
-      # Install LinkChecker
-      - name: Install LinkChecker
-        run: sudo apt-get update && sudo apt-get install -y linkchecker
-      # Run LinkChecker on nginx-solutions docs
-      - name: Run LinkChecker nginx-solutions
-        uses: nick-fields/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
+          creds: ${{secrets.AZURE_CREDENTIALS_DOCS}}
+ 
+      - name: Retrieve secrets from Keyvault
+        if: env.isProduction != 'true'
+        id: keyvault
+        uses: azure/cli@089eac9d8cc39f5d003e94f8b65efc51076c9cbd
         with:
-          timeout_minutes: 10
-          max_attempts: 3
-          command: ${{ env.cmd }}
-        
-  nginx-app-protect-dos:
-    runs-on: ubuntu-latest
-    steps:
-      # Build the linkchecker command
-      - name: Setup linkchecker cmds
-        run: |
-          echo "cmd=linkchecker "$basepath"/nginx-app-protect-dos/ "$defaults" "$ignore"" >> "$GITHUB_ENV"
-      # Install LinkChecker
-      - name: Install LinkChecker
-        run: sudo apt-get update && sudo apt-get install -y linkchecker
-      # Run LinkChecker on nginx-app-protect-dos docs
-      - name: Run LinkChecker nginx-app-protect-dos
-        uses: nick-fields/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
-        with:
-          timeout_minutes: 10
-          max_attempts: 3
-          command: ${{ env.cmd }}
+          inlineScript: |
+            secrets_get=(frontdoorUsername frontdoorPassword)
+            for secret_get in ${secrets_get[@]}
+            do
+              value=$(az keyvault secret show --name $secret_get --vault-name ${{ secrets.AZURE_KEY_VAULT_DOCS }} --query value --output tsv)
+              echo "::add-mask::$value"
+              echo "$secret_get=$value" >> $GITHUB_OUTPUT
+            done
 
-  nginx-app-protect-waf:
-    runs-on: ubuntu-latest
-    steps:
-      # Build the linkchecker command
-      - name: Setup linkchecker cmds
+      # Setup linkchecker command with optional password
+      - name: Setup LinkChecker Command
         run: |
-          echo "cmd=linkchecker "$basepath"/nginx-app-protect-waf/ "$defaults" "$ignore"" >> "$GITHUB_ENV"
-      # Install LinkChecker
-      - name: Install LinkChecker
-        run: sudo apt-get update && sudo apt-get install -y linkchecker
-      # Step : Run LinkChecker on nginx-app-protect-waf docs
-      - name: Run LinkChecker nginx-app-protect-waf
-        uses: nick-fields/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
-        with:
-          timeout_minutes: 10
-          max_attempts: 3
-          command: ${{ env.cmd }}
+          if [ "${{env.isProduction}}" != "true" ]; then
+            echo "cmd=echo '${{steps.keyvault.outputs.frontdoorPassword}}' | linkchecker -u '${{steps.keyvault.outputs.frontdoorUsername}}' ${{ env.basepath }}/${{ matrix.doc_paths }}/ ${{ env.defaults }} ${{ env.ignore }}" >> $GITHUB_ENV
+          else
+            echo "cmd=linkchecker ${{ env.basepath }}/${{ matrix.doc_paths }}/ ${{ env.defaults }} ${{ env.ignore }}" >> $GITHUB_ENV
+          fi
 
-  nginx-ingress-controller:
-    runs-on: ubuntu-latest
-    steps:
-      # Build the linkchecker command
-      - name: Setup linkchecker cmds
-        run: |
-          echo "cmd=linkchecker "$basepath"/nginx-ingress-controller/ "$defaults" "$ignore"" >> "$GITHUB_ENV"
       # Install LinkChecker
       - name: Install LinkChecker
-        run: sudo apt-get update && sudo apt-get install -y linkchecker
-      # Run LinkChecker on nginx-ingress-controller docs
-      - name: Run LinkChecker nginx-ingress-controller
-        uses: nick-fields/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
-        with:
-          timeout_minutes: 10
-          max_attempts: 3
-          command: ${{ env.cmd }}
+        run: |
+          sudo apt-get update && sudo apt-get install -y linkchecker
 
-  nginxaas-azure:
-    runs-on: ubuntu-latest
-    steps:
-      # Build the linkchecker command
-      - name: Setup linkchecker cmds
-        run: |
-          echo "cmd=linkchecker "$basepath"/nginxaas/azure/ "$defaults" "$ignore"" >> "$GITHUB_ENV"
-      # Install LinkChecker
-      - name: Install LinkChecker
-        run: sudo apt-get update && sudo apt-get install -y linkchecker
-      # Run LinkChecker on nginxaas-azuret docs
-      - name: Run LinkChecker nginxaas-azure
-        uses: nick-fields/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
-        with:
-          timeout_minutes: 10
-          max_attempts: 3
-          command: ${{ env.cmd }}
-      
-  nginx-service-mesh:
-    runs-on: ubuntu-latest
-    steps:
-      # Build the linkchecker command
-      - name: Setup linkchecker cmds
-        run: |
-          echo "cmd=linkchecker "$basepath"/nginx-service-mesh/ "$defaults" "$ignore"" >> "$GITHUB_ENV"
-      # Install LinkChecker
-      - name: Install LinkChecker
-        run: sudo apt-get update && sudo apt-get install -y linkchecker
-      # Run LinkChecker on nginx-service-mesh docs
-      - name: Run LinkChecker nginx-service-mesh
-        uses: nick-fields/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
-        with:
-          timeout_minutes: 10
-          max_attempts: 3
-          command: ${{ env.cmd }}
-
-  nginx-amplify:
-    runs-on: ubuntu-latest
-    steps:
-      # Build the linkchecker command
-      - name: Setup linkchecker cmds
-        run: |
-          echo "cmd=linkchecker "$basepath"/nginx-amplify/ "$defaults" "$ignore"" >> "$GITHUB_ENV"
-      # Install LinkChecker
-      - name: Install LinkChecker
-        run: sudo apt-get update && sudo apt-get install -y linkchecker
-      # Run LinkChecker on nginx-amplify docs
-      - name: Run LinkChecker nginx-amplify
-        uses: nick-fields/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
-        with:
-          timeout_minutes: 10
-          max_attempts: 3
-          command: ${{ env.cmd }}
-
-  nginx-controller:
-    runs-on: ubuntu-latest
-    steps:
-      # Build the linkchecker command
-      - name: Setup linkchecker cmds
-        run: |
-          echo "cmd=linkchecker "$basepath"/nginx-controller/ "$defaults" "$ignore"" >> "$GITHUB_ENV"
-      # Install LinkChecker
-      - name: Install LinkChecker
-        run: sudo apt-get update && sudo apt-get install -y linkchecker
-      # Run LinkChecker on nginx-controller docs
-      - name: Run LinkChecker nginx-controller
-        uses: nick-fields/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
-        with:
-          timeout_minutes: 10
-          max_attempts: 3
-          command: ${{ env.cmd }}
-
-  nginx-waf:
-    runs-on: ubuntu-latest
-    steps:
-      # Build the linkchecker command
-      - name: Setup linkchecker cmds
-        run: |
-          echo "cmd=linkchecker "$basepath"/nginx-waf/ "$defaults" "$ignore"" >> "$GITHUB_ENV"
-      # Install LinkChecker
-      - name: Install LinkChecker
-        run: sudo apt-get update && sudo apt-get install -y linkchecker
-      # Run LinkChecker on nginx-waf docs
-      - name: Run LinkChecker nginx-waf
-        uses: nick-fields/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
-        with:
-          timeout_minutes: 10
-          max_attempts: 3
-          command: ${{ env.cmd }}
-
-  nginx-management-suite:
-    runs-on: ubuntu-latest
-    steps:
-      # Build the linkchecker command
-      - name: Setup linkchecker cmds
-        run: |
-          echo "cmd=linkchecker "$basepath"/nginx-management-suite/ "$defaults" "$ignore"" >> "$GITHUB_ENV"
-      # Install LinkChecker
-      - name: Install LinkChecker
-        run: sudo apt-get update && sudo apt-get install -y linkchecker
-      # Run LinkChecker on nginx-management-suite docs
-      - name: Run LinkChecker nginx-management-suite
-        uses: nick-fields/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
-        with:
-          timeout_minutes: 10
-          max_attempts: 3
-          command: ${{ env.cmd }}
-  
-  nginx-gateway-fabric:
-    runs-on: ubuntu-latest
-    steps:
-      # Build the linkchecker command
-      - name: Setup linkchecker cmds
-        run: |
-          echo "cmd=linkchecker "$basepath"/nginx-gateway-fabric/ "$defaults" "$ignore"" >> "$GITHUB_ENV"
-      # Install LinkChecker
-      - name: Install LinkChecker
-        run: sudo apt-get update && sudo apt-get install -y linkchecker
-      # Run LinkChecker on nginx-gateway-fabric docs
-      - name: Run LinkChecker nginx-gateway-fabric
+      # Run LinkChecker
+      - name: Run LinkChecker on ${{ matrix.doc_paths }}
         uses: nick-fields/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
         with:
           timeout_minutes: 10
