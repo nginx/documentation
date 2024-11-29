@@ -14,8 +14,8 @@ on:
         required: false
         default: 'https://docs.nginx.com'
   schedule:
-    # Runs every day at 7am UTC
-    - cron: '0 7 * * *'
+    # Runs every day at 11am UTC
+    - cron: '0 11 * * *'
 
 env:
   defaults: '--no-warnings --check-extern --ignore-url ^https://consent.trustarc.com'
@@ -49,11 +49,15 @@ jobs:
           - nginx-management-suite
           - nginx-gateway-fabric
     steps:
-      # Set basepath from workflow input or default
-      - name: Configure Basepath
+      # Determine and set basepath for schedule or workflow_dispatch
+      - name: Set Basepath
         run: |
-         echo "basepath=${{ github.event.inputs.basepath }}" >> $GITHUB_ENV
-         echo "isProduction=${{ github.event.inputs.basepath == 'https://docs.nginx.com'}}" >> $GITHUB_ENV
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "basepath=${{ github.event.inputs.basepath }}" >> $GITHUB_ENV
+          else
+            echo "basepath=https://docs.nginx.com" >> $GITHUB_ENV
+          fi
+          echo "isProduction=${{ env.basepath == 'https://docs.nginx.com'}}" >> $GITHUB_ENV
 
       - name: Login to Azure
         if: env.isProduction != 'true'
