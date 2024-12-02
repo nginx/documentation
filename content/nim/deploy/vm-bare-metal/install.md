@@ -15,7 +15,13 @@ weight: 10
 
 ## Overview
 
-This guide explains how to install NGINX Instance Manager on a virtual machine (VM) or bare metal. It includes key prerequisites like installing NGINX and setting up ClickHouse, as well as steps for adding a license, accessing the web interface, and optionally securing your deployment with Vault.
+This guide explains how to install F5 NGINX Instance Manager on a virtual machine (VM) or bare metal. It includes key steps like:
+
+- Installing NGINX with the GPG keys associated with F5 NGINX One
+- Setting up ClickHouse
+- Adding a license
+- Accessing the web interface
+- Securing your deployment with Vault (optional)
 
 {{<call-out "note" "Access the deprecated manual steps" "">}}If you prefer to follow the original manual steps, you can access the [deprecated guide]({{< relref "nim/deploy/vm-bare-metal/install-nim-deprecated.md" >}}). Please note that this guide is no longer actively maintained and may not reflect the latest updates or best practices.{{</call-out>}}
 
@@ -55,7 +61,7 @@ Complete the following steps before installing NGINX Instance Manager:
   - [ ] Record the location of these files on the target system. The default filenames / locations are:
     - `/etc/ssl/nginx/nginx-repo.crt`
     - `/etc/ssl/nginx/nginx-repo.key`
-- [ ] Record your current version of NGINX Instance Manager, along with the supported version of NGINX OSS or NGINX Plus that you want to use.
+- [ ] Record your current version of NGINX Instance Manager, along with the supported version of NGINX OSS or NGINX Plus that you want to use, if necessary. The latest version will be used by default. 
 - [ ] (*Optional*) Install and configure Vault if you plan to use it.
 
 ### Download certificate and key {#download-cert-key}
@@ -68,9 +74,9 @@ Download the certificate and private key required for NGINX Instance Manager. Th
     sudo mkdir -p /etc/ssl/nginx
     ```
 
-2. Download the **SSL Certificate** and **Private Key** files from [MyF5](https://account.f5.com/myf5) or use the download link provided in your trial activation email.
+2. Download the **SSL Certificate**, **Private Key** and ***JSON Web Token*** files from [MyF5](https://account.f5.com/myf5) or use the download link provided in your trial activation email.
 
-3. Move and rename the downloaded files to the correct directory:
+3. Move and rename the cert and key files to the correct directory:
 
     ```bash
     sudo mv nginx-<subscription id>.crt /etc/ssl/nginx/nginx-repo.crt
@@ -87,10 +93,11 @@ The installation script also works for upgrades of both NGINX Instance Manager a
 
 We created an installation script, `install-nim-bundle.sh` to automate the NGINX Instance Manager installation process. By default, it:
 
-- Installs the latest version of NGINX OSS
-- Assumes you're connected to the internet for installations and upgrades
 - Reads SSL files from the /etc/ssl/nginx directory
-- Reads your JWT token from the directory defined in your NGINX configuration
+- Installs the latest version of NGINX OSS
+- Installs Clickhouse Database
+- Installs NGINX Instance Manager
+- Assumes you're connected to the internet for installations and upgrades
 
 {{< warning >}}
 
@@ -106,9 +113,11 @@ When you run the script, it downloads and installs NGINX Instance Manager.
 
 If you want to use the script with non-default options, use these switches:
 
-- To point to a repository key stored in a directory other than **/etc/ssl/nginx**: `-k /path/to/your/<nginx-repo.crt>` file
+- To point to a repository key stored in a directory other than **/etc/ssl/nginx**: `-k /path/to/your/<nginx-repo.key>` file
 - To point to a repository certificate stored in a directory other than **/etc/ssl/nginx**: `-c /path/to/your/<nginx-repo.crt>` file
-- To install NGINX Plus (instead of NGINX OSS): `-p <nginx_plus_version>`
+- To install NGINX Plus (instead of NGINX OSS): `-p <nginx_plus_version>  -j /path/to/license.jwt`
+
+{{< note >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /note >}}
 
 You also need to specify the current operating system. To get the latest list supported by the script, run the following command:
 
@@ -116,10 +125,16 @@ You also need to specify the current operating system. To get the latest list su
 grep '\-d distribution' install-nim-bundle.sh
 ```
 
-For example, to use the script to install NGINX Instance Manager on Ubuntu 24.04, with repository keys in the default `/etc/ssl/nginx` directory, with the latest version of NGINX Plus, run the following command:
+For example, to use the script to install NGINX Instance Manager on Ubuntu 24.04, with repository keys in the default `/etc/ssl/nginx` directory, with the latest version of NGINX OSS, run the following command:
 
 ```bash
-sudo bash install-nim-bundle.sh -p latest -d ubuntu24.04
+sudo bash install-nim-bundle.sh -n latest -d ubuntu24.04 -j /path/to/license.jwt
+```
+
+To install NGINX Instance Manager on Ubuntu 24.04 with the latest version of NGINX Plus by pointing to the location of your NGINX cert and key, run the following command:
+
+```bash
+sudo bash install-nim-bundle.sh -c /path/to/nginx-repo.crt -k /path/to/nginx-repo.key -p latest -d ubuntu24.04 -j /path/to/license.jwt
 ```
 
 In most cases, the script completes the installation of NGINX Instance Manager and associated packages. At the end of the process, you'll see an autogenerated password:
@@ -130,9 +145,9 @@ Regenerated Admin password: <encrypted password>
 
 Save that password. You'll need it when you sign in to NGINX Instance Manager.
 
-### Problems
+### Problems and additional script parameters
 
-If you see fatal errors when running the script, first run the following command, which includes command options that can help you bypass problems:
+There are multiple parameters to configure in the Installation script. If you see fatal errors when running the script, first run the following command, which includes command options that can help you bypass problems:
 
 ```bash
 bash install-nim-bundle.sh -h
@@ -154,16 +169,6 @@ NGINX Instance Manager uses the following default values for ClickHouse:
 
 {{< include "installation/clickhouse-defaults.md" >}}
 
-### (Optional) Install and configure Vault {#install-vault}
-
-NGINX Instance Manager can use [Vault](https://www.vaultproject.io/) as a datastore for secrets.
-
-To install and enable Vault, follow these steps:
-
-- Follow Vault's instructions to [install Vault 1.8.8 or later](https://www.vaultproject.io/docs/install) for your distribution.
-- Ensure you're running Vault in a [production-hardened environment](https://learn.hashicorp.com/tutorials/vault/production-hardening).
-- After installing NGINX Instance Manager, follow the steps to [configure Vault for storing secrets]({{< relref "/nim/system-configuration/configure-vault.md" >}}).
-
 ---
 
 ##### How to access the web interface
@@ -181,6 +186,16 @@ To license NGINX Instance Manager, use a JSON Web token from your **NIM** Subscr
 - If you use Vault, follow the steps in the [Configure Vault]({{< relref "/nim/system-configuration/configure-vault.md" >}}) guide to update the `/etc/nms/nms.conf` file. If you don't do so, NGINX Instance Manager won't be able to connect to Vault.
 
 - If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nim/system-configuration/configure-selinux.md" >}}) guide to restore SELinux contexts (`restorecon`) for the files and directories related to NGINX Instance Manager.
+
+### (Optional) Install and configure Vault {#install-vault}
+
+NGINX Instance Manager can use [Vault](https://www.vaultproject.io/) as a datastore for secrets.
+
+To install and enable Vault, follow these steps:
+
+- Follow Vault's instructions to [install Vault 1.8.8 or later](https://www.vaultproject.io/docs/install) for your distribution.
+- Ensure you're running Vault in a [production-hardened environment](https://learn.hashicorp.com/tutorials/vault/production-hardening).
+- After installing NGINX Instance Manager, follow the steps to [configure Vault for storing secrets]({{< relref "/nim/system-configuration/configure-vault.md" >}}).
 
 ---
 
