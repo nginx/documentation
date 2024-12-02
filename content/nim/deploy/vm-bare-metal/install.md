@@ -125,10 +125,10 @@ You also need to specify the current operating system. To get the latest list su
 grep '\-d distribution' install-nim-bundle.sh
 ```
 
-For example, to use the script to install NGINX Instance Manager on Ubuntu 24.04, with repository keys in the default `/etc/ssl/nginx` directory, with the latest version of NGINX Plus, run the following command:
+For example, to use the script to install NGINX Instance Manager on Ubuntu 24.04, with repository keys in the default `/etc/ssl/nginx` directory, with the latest version of NGINX OSS, run the following command:
 
 ```bash
-sudo bash install-nim-bundle.sh -p latest -d ubuntu24.04 -j /path/to/license.jwt
+sudo bash install-nim-bundle.sh -n latest -d ubuntu24.04 -j /path/to/license.jwt
 ```
 
 To install NGINX Instance Manager on Ubuntu 24.04 with the latest version of NGINX Plus by pointing to the location of your NGINX cert and key, run the following command:
