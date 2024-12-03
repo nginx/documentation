@@ -34,6 +34,12 @@ The ClickHouse database is deployed in a separate container to improve resilienc
   
 ---
 
+## Minimum Requirements
+
+This NGINX Instance Manager Docker deployment requires a minimum of 4 CPU cores and 4 GB of memory for basic use cases. However, every environment is unique, primarily due to variations in the NGINX configurations being managed. For instance, managing NGINX instances with hundreds of configuration files or those with WAF (NGINX App Protect) enabled can significantly increase resource demands.
+
+If your use case is limited to usage tracking without active management or agent communication, the minimum requirements should suffice. For more complex deployments, we recommend reviewing the technical specifications guide to ensure the resources allocated are sufficient to handle an increased workload, particularly for the ClickHouse database, which may need to manage a higher volume of reads and writes.
+
 ## Before you start
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}
