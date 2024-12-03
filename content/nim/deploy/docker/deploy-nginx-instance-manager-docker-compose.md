@@ -44,9 +44,9 @@ To set up Docker to communicate with the NGINX container registry located at `pr
 
 {{< include "/nim/docker/docker-registry-login.md" >}}
 
-### Usage 
+### NIM Compose Deployment
 
-Navigate to the directory where you downloaded `docker-compose.yaml`.  Run `docker login` and then `docker compose up`.
+Navigate to the directory where you downloaded `docker-compose.yaml`.  Run `docker login` and then `docker compose up -d`.
 
 ```shell
 ~$ docker login private-registry.nginx.com --username=<JWT_CONTENTS> --password=none
@@ -61,25 +61,6 @@ Navigate to the directory where you downloaded `docker-compose.yaml`.  Run `dock
  ✔ Container nim-nim-1           Started                                                                                           7.4s
 ```
 
-Alternatively, run `docker login` and then run the following make target command: `make nim-compose-up`.
-
-```shell
-~$ docker login private-registry.nginx.com --username=<JWT_CONTENTS> --password=none
-~$ make nim-compose-up
-Building nim bundled image in pipeline...
-Building nim standalone image in pipeline...
-Running nms-docker-images publish...
-starting NIM via compose for development...
-[+] Running 6/6
- ✔ Network nim_clickhouse        Created                                                                                           0.1s
- ✔ Network nim_external_network  Created                                                                                           0.2s
- ✔ Network nim_default           Created                                                                                           0.2s
- ✔ Container nim-precheck-1      Started                                                                                           0.8s
- ✔ Container nim-clickhouse-1    Healthy                                                                                           6.7s
- ✔ Container nim-nim-1           Started                                                                                           7.4s
-```
-
-
 ### Supported environment variables
 
 You may modify the following variables in the `docker-compose.yaml` file:
@@ -91,6 +72,21 @@ You may modify the following variables in the `docker-compose.yaml` file:
 - `NIM_MAINTENANCE` - enable maintenance mode to preform backup, restore and troubleshooting.
 - `NIM_WATCHDOG_TIMEOUT` - set a custom dpm watchdog timeout in seconds.
 - `NIM_LICENSE_MODE_OF_OPERATION` - set the NGINX Instance Manager license mode of operation to either connected or disconnected. Default is connected.
+
+### NIM Compose Stop or Tear Down
+
+Navigate to the directory where you downloaded `docker-compose.yaml`. If you started NIM Compose with `docker compose up -d`, stop NIM services once you've finished with them by running `docker compose stop`. You can bring everything down, removing the containers entirely, with the `docker compose down` command.
+
+```shell
+~$ docker compose down
+[+] Running 6/6
+ ✔ Container nim-nim-1           Removed                                                                                          30.6s
+ ✔ Container nim-clickhouse-1    Removed                                                                                          1.4s
+ ✔ Container nim-precheck-1      Removed                                                                                          0.0s
+ ✔ Network nim_default           Removed                                                                                          0.9s
+ ✔ Network nim_external_network  Removed                                                                                          0.4s
+ ✔ Network nim_clickhouse        Removed                                                                                          0.6s
+```
 
 ---
 
@@ -150,7 +146,7 @@ ubuntu@ip-<address>:~/compose$ sudo ls -l /var/lib/docker/volumes/nim_nim-data/_
 
 ## Restore 
 
-Before you can restore a backup, set your containers to maintenance mode:
+Before you can restore a backup, set your containers to maintenance mode in the same `docker-compose.yaml` file:
 
 ```yaml
     environment:
