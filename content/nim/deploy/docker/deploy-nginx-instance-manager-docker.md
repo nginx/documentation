@@ -30,7 +30,7 @@ This deployment is ideal for:
 
 {{< call-out "important" "This Docker option only works for Instance Manager 2.17" "fa-solid fa-triangle-exclamation" >}}
 Please use the Docker Compose option for Instance Manager 2.18 or later. 
-{{</call-out>}}
+{{< /call-out >}}
 
 Note: This option only works for Instance Manager 2,18. 
 
