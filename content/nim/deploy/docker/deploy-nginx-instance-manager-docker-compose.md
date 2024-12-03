@@ -34,9 +34,9 @@ The ClickHouse database is deployed in a separate container to improve resilienc
   
 ---
 
-## Minimum Requirements
+## Minimum requirements
 
-This NGINX Instance Manager Docker deployment requires a minimum of 4 CPU cores and 4 GB of memory for basic use cases. However, every environment is unique, primarily due to variations in the NGINX configurations being managed. For instance, managing NGINX instances with hundreds of configuration files or those with WAF (NGINX App Protect) enabled can significantly increase resource demands.
+Deploying NGINX Instance Manager with docker  requires a minimum of 4 CPU cores and 4 GB of memory for basic use cases. However, every environment is unique, primarily due to variations in the NGINX configurations being managed. For instance, managing NGINX instances with hundreds of configuration files or those with WAF (NGINX App Protect) enabled can significantly increase resource demands.
 
 If your use case is limited to usage tracking without active management or agent communication, the minimum requirements should suffice. For more complex deployments, we recommend reviewing the technical specifications guide to ensure the resources allocated are sufficient to handle an increased workload, particularly for the ClickHouse database, which may need to manage a higher volume of reads and writes.
 
@@ -50,7 +50,7 @@ To set up Docker to communicate with the NGINX container registry located at `pr
 
 {{< include "/nim/docker/docker-registry-login.md" >}}
 
-### NIM Compose Deployment
+### Compose deployment
 
 Navigate to the directory where you downloaded `docker-compose.yaml`.  Run `docker login` and then `docker compose up -d`.
 
@@ -79,9 +79,9 @@ You may modify the following variables in the `docker-compose.yaml` file:
 - `NIM_WATCHDOG_TIMEOUT` - set a custom dpm watchdog timeout in seconds.
 - `NIM_LICENSE_MODE_OF_OPERATION` - set the NGINX Instance Manager license mode of operation to either connected or disconnected. Default is connected.
 
-### NIM Compose Stop or Tear Down
+### Compose stop or tear down
 
-Navigate to the directory where you downloaded `docker-compose.yaml`. If you started NIM Compose with `docker compose up -d`, stop NIM services once you've finished with them by running `docker compose stop`. You can bring everything down, removing the containers entirely, with the `docker compose down` command.
+Navigate to the directory where you downloaded `docker-compose.yaml`. If you started NIM with `docker compose up -d`, stop NIM services once you've finished with them by running `docker compose stop`. You can bring everything down, removing the containers entirely, with the `docker compose down` command.
 
 ```shell
 ~$ docker compose down
