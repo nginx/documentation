@@ -84,7 +84,9 @@ You may modify the following variables in the `docker-compose.yaml` file:
 Navigate to the directory where you downloaded `docker-compose.yaml`. If you started NIM with `docker compose up -d`, stop NIM services once you've finished with them by running `docker compose stop`. You can bring everything down, removing the containers entirely, with the `docker compose down` command.
 
 ```shell
-~$ docker compose down
+docker compose down
+```
+```
 [+] Running 6/6
  ✔ Container nim-nim-1           Removed                                                                                          30.6s
  ✔ Container nim-clickhouse-1    Removed                                                                                          1.4s
