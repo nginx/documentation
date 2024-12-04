@@ -1,27 +1,11 @@
 ---
 title: "About subscription licenses"
 date: 2024-10-10T12:52:14-07:00
-# Change draft status to false to publish doc.
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: ""
-# Assign weights in increments of 100
-weight: 2
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: ""
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["task"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
-
+weight: 2
+type: concept
+product: Solutions
+docs: DOCS-000
 ---
 
 ## Overview
@@ -81,7 +65,11 @@ To ensure NGINX Plus R33 or later can send usage reports, follow these steps bas
 
 ### For internet-connected environments
 
-{{< include "licensing-and-reporting/configure-internet-connected-environment.md" >}}
+Allow outbound HTTPS traffic on TCP port `443` to communicate with F5's licensing endpoint (`product.connect.nginx.com`). Ensure that the following IP addresses are allowed:
+
+- `3.135.72.139`
+- `3.133.232.50`
+- `52.14.85.249`
 
 ### For network-restricted environments
 
