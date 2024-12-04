@@ -1,17 +1,14 @@
 ---
-docs: 
-doctypes:
-- task
-tags:
-- docs
 title: Install in a disconnected environment (deprecated)
-toc: true
 weight: 100
+toc: true
 noindex: true
-draft: false
 build:
   list: never
   render: always
+type: how-to
+product: NIM
+docs: DOCS-000
 ---
 
 {{<call-out "caution" "Deprecated documentation notice" "fa fa-exclamation-triangle" >}}
@@ -102,7 +99,12 @@ To download external dependencies:
         sudo dpkg -i ./*.deb
         ```
 
-    {{< include "installation/clickhouse-password.md" >}}
+    {{< call-out "important" "Setting a custom ClickHouse password" "fas fa-exclamation-triangle" >}}
+    
+    When installing ClickHouse, you can set a password or leave it blank (default is an empty string). If you set a password, make sure to update the **/etc/nms/nms.conf** file with it after installing NGINX Instance Manager. Otherwise, NGINX Instance Manager won't start. For more information on customizing ClickHouse settings, refer to the [Configure ClickHouse]({{< relref "/nim/system-configuration/configure-clickhouse.md" >}}) topic. 
+    
+    {{</ call-out >}}
+
 
 ---
 
@@ -124,7 +126,9 @@ To download external dependencies:
         sudo apt-get -y install -f /home/<user>/nms-instance-manager_<version>_amd64.deb
         ```
 
-    {{< include "installation/default-admin-password.md" >}}
+    {{< call-out "important" "Save the password!" "fas fa-exclamation-triangle" >}}
+    The administrator username (default: **admin**) and the generated password are displayed in the terminal during installation. Be sure to record the password and store it securely.
+    {{</ call-out >}}
 
 3. Enable and start NGINX Instance Manager services:
 

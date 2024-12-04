@@ -1,12 +1,10 @@
 ---
-docs: DOCS-1393
-doctypes:
-- tutorial
-tags:
-- docs
 title: Get started
 toc: true
 weight: 100
+type: how-to
+product: NGINX One
+docs: DOCS-1393
 ---
 
 This guide provides step-by-step instructions on how to activate and start using the F5 NGINX One Console. NGINX One is a management console for monitoring and managing NGINX data plane instances.
@@ -105,7 +103,22 @@ If you followed the [Installation and upgrade](https://docs.nginx.com/nginx-agen
 
 #### NGINX Agent installation script: supported distributions
 
-{{< include "nginx-one/nginx-agent/nginx-agent-install-script-specs.md" >}}
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Distribution                 | Version              | Architecture    |
+|------------------------------|----------------------|-----------------|
+| AlmaLinux                    | 8, 9                 | x86_64, aarch64 |
+| Alpine Linux                 | 3.16 - 3.18          | x86_64, aarch64 |
+| Amazon Linux                 | 2023                 | x86_64, aarch64 |
+| Amazon Linux 2               | LTS                  | x86_64, aarch64 |
+| CentOS                       | 7.4+                 | x86_64, aarch64 |
+| Debian                       | 11, 12               | x86_64, aarch64 |
+| Oracle Linux                 | 7.4+, 8.1+, 9        | x86_64          |
+| Red Hat Enterprise Linux     | 7.4+, 8.1+, 9        | x86_64, aarch64 |
+| Rocky Linux                  | 8, 9                 | x86_64, aarch64 |
+| Ubuntu                       | 20.04 LTS, 22.04 LTS | x86_64, aarch64 |
+
+{{</bootstrap-table>}}
 
 </span>
 

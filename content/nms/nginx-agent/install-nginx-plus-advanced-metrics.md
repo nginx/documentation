@@ -1,15 +1,12 @@
 ---
+title: Install NGINX Plus Metrics Module
 description: Follow the steps in this guide to install the F5 NGINX Plus dynamic metrics
   module and configure NGINX Agent to push app-centric metrics to NGINX Management
   Suite.
-docs: DOCS-1099
-doctypes:
-- task
-tags:
-- docs
-title: Install NGINX Plus Metrics Module
-toc: true
 weight: 110
+toc: true
+type: how-to
+docs: DOCS-1099
 ---
 
 ## Overview
@@ -33,7 +30,19 @@ Complete the following prerequisites before proceeding with the steps in this gu
     <details open>
     <summary><i class="fa-solid fa-circle-info"></i> Supported distributions</summary>
 
-    {{< include "agent/installation/advanced-metrics-distros.md" >}}
+    The NGINX Plus metrics module works with the following Linux distributions:
+
+    {{<bootstrap-table "table table-striped table-bordered">}}
+
+    | Distribution | Version(s)                           |
+    | ------------ | ------------------------------------ |
+    | Amazon Linux | 2 LTS                                |
+    | CentOS       | 7.4 and later in the 7.x family      |
+    | Debian       | 10 _buster-slim_, 11 _bullseye-slim_ |
+    | RHEL         | 8.x and later in the 8.x family      |
+    | Ubuntu       | 18.08, 20.04, 22.04                  |
+
+    {{</bootstrap-table>}}
 
     </details>
 
@@ -108,7 +117,25 @@ In the secure example, the `--skip-verify false` flag tells NGINX Agent to verif
 
 ## Configure NGINX Agent to use Advanced Metrics
 
-{{< include "agent/installation/enable-advanced-metrics.md" >}}
+NGINX Plus advanced metrics are application-centric metrics collected by the NGINX Agent.
+
+To enable advanced metrics, edit the `/etc/nginx-agent/nginx-agent.conf` file and add the following directives:
+
+```yaml
+extensions:
+  - advanced-metrics
+advanced_metrics:
+  socket_path: /var/run/nginx-agent/advanced-metrics.sock
+  aggregation_period: 1s
+  publishing_period: 3s
+  table_sizes_limits:
+    staging_table_max_size: 1000
+    staging_table_threshold: 1000
+    priority_table_max_size: 1000
+    priority_table_threshold: 1000
+```
+
+{{< see-also >}} See the [NGINX Agent CLI Flags & Usage]({{< relref "/nms/nginx-agent/install-nginx-agent.md#nginx-agent-cli-flags--usage" >}}) topic for a description of each of these flags. {{< /see-also >}}
 
 <br>
 
