@@ -201,9 +201,44 @@ To install and enable Vault, follow these steps:
 
 ## Upgrade NGINX Instance Manager {#upgrade-nim}
 
-You can now use the [installation script](#download-install) to upgrade NGINX Instance Manager and ClickHouse.
+{{<tabs name="upgrade_nim">}}
+{{%tab name="CentOS, RHEL, RPM-Based"%}}
 
-If you use SELinux, after an upgrade, follow the steps in the [Configure SELinux]({{< relref "/nim/system-configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for files and directories related to NGINX Instance Manager.
+1. To upgrade to the latest version of the Instance Manger, run the following command:
+
+   ```bash
+   sudo yum update -y nms-instance-manager
+   ```
+
+{{%/tab%}}
+
+{{%tab name="Debian, Ubuntu, Deb-Based"%}}
+
+1. To upgrade to the latest version of the Instance Manager, run the following command:
+
+   ```bash
+   sudo apt-get update
+   sudo apt-get install -y --only-upgrade nms-instance-manager
+   ```
+
+{{%/tab%}}
+{{</tabs>}}
+
+2. Restart the NGINX Instance Manager platform services:
+
+    ```bash
+    sudo systemctl restart nms
+    ```
+
+    NGINX Instance Manager components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
+
+3. Restart the NGINX web server:
+
+   ```bash
+   sudo systemctl restart nginx
+   ```
+
+4. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "nim/system-configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Instance Manager.
 
 ---
 
