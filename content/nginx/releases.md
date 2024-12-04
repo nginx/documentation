@@ -83,7 +83,7 @@ More information: [Announcing NGINX Plus R33](https://community.f5.com/kb/techni
 <span id="r33_p1"></span>
 ### NGINX Plus R33 Update
 
-This is a bug-fix release for NGINX Plus R33.
+This is a bugfix release for NGINX Plus R33.
 
 NGINX Plus R33 P1<br/>
 _4 December 2024_
