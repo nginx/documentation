@@ -52,7 +52,7 @@ To set up Docker to communicate with the NGINX container registry located at `pr
 
 ### Compose deployment
 
-Navigate to the directory where you downloaded `docker-compose.yaml`.  Run `docker login` and then `docker compose up -d`.
+Navigate to the directory where you downloaded `docker-compose.yaml`. With the following commands, use docker to log in to private-registry.nginx.com and then run `docker compose up -d`.
 
 ```shell
 ~$ docker login private-registry.nginx.com --username=<JWT_CONTENTS> --password=none
