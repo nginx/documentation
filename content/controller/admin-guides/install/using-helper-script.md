@@ -183,7 +183,7 @@ Use the `helper.sh` script to change the SMTP address; port; TLS; sender; and op
 For example:
 
 ``` bash
-/opt/nginx-controller/helper.sh configsmtp 192.0.2.0 25 false noreply@nginx.test true user1 password1
+/opt/nginx-controller/helper.sh configsmtp 192.0.2.0 25 false noreply@example.com true user1 password1
 ```
 
 <style>

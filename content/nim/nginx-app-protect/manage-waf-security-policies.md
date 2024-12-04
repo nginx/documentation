@@ -1,14 +1,12 @@
 ---
+title: Manage WAF Security Policies and Security Log Profiles
 description: Learn how to use F5 NGINX Management Suite Instance Manager to manage NGINX
   App Protect WAF security policies and security log profiles.
-docs: DOCS-1105
-doctypes:
-- task
-tags:
-- docs
-title: Manage WAF Security Policies and Security Log Profiles
-toc: true
 weight: 200
+toc: true
+type: how-to
+product: NIM
+docs: DOCS-1105
 ---
 
 ## Overview
@@ -49,7 +47,7 @@ The following are required to use support policy bundles:
 
 ### How to Access the Web Interface
 
-{{< include "nim/how-to-access-nim-ui.md" >}}
+To access the web interface, go to the FQDN for your NGINX Instance Manager host in a web browser and log in. Once you're logged in, select "Instance Manager" from the Launchpad menu.
 
 ### How to Access the REST API
 
