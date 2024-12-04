@@ -214,7 +214,7 @@ To install and enable Vault, follow these steps:
 
 {{%tab name="Debian, Ubuntu, Deb-Based"%}}
 
-1. To upgrade to the latest version of the Instance Manager, run the following command:
+1. To upgrade to the latest version of the NGINX Instance Manager, run the following command:
 
    ```bash
    sudo apt-get update
