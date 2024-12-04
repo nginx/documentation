@@ -82,7 +82,7 @@
                             },
                             "example": {
                                 "metadata": {
-                                    "name": "user@nginx.com"
+                                    "name": "user@example.com"
                                 }
                             }
                         }
@@ -116,10 +116,10 @@
                             },
                             "example": {
                                 "desiredState": {
-                                    "password": "NewPaw12!"
+                                    "password": "********"
                                 },
                                 "metadata": {
-                                    "name": "user@nginx.com"
+                                    "name": "user@example.com"
                                 }
                             }
                         }
@@ -172,7 +172,7 @@
                                         "bindUser": {
                                             "type": "PASSWORD",
                                             "username": "user@mydomain",
-                                            "password": "passwd1234"
+                                            "password": "********"
                                         },
                                         "pollIntervalSec": 3600,
                                         "groupCacheTimeSec": 7200,
@@ -694,8 +694,8 @@
                                         "userFormat": "UPN",
                                         "bindUser": {
                                             "type": "PASSWORD",
-                                            "username": "user@mydomain",
-                                            "password": "passwd1234"
+                                            "username": "user@example.com",
+                                            "password": "********"
                                         },
                                         "pollIntervalSec": 3600,
                                         "groupCacheTimeSec": 7200,
@@ -3112,7 +3112,7 @@
                                     "items": [
                                         {
                                             "metadata": {
-                                                "name": "john.doe@nginx.com",
+                                                "name": "john.doe@example.com",
                                                 "kind": "user",
                                                 "createTime": "2019-07-29T09:12:33.001Z",
                                                 "displayName": "John Doe",
@@ -3121,7 +3121,7 @@
                                             "desiredState": {
                                                 "firstName": "John",
                                                 "lastName": "Doe",
-                                                "email": "john.doe@nginx.com",
+                                                "email": "john.doe@example.com",
                                                 "password": "********",
                                                 "roles": [
                                                     {
@@ -3135,7 +3135,7 @@
                                                 "firstName": "John",
                                                 "lastName": "Doe",
                                                 "lastLogin": 1570132969,
-                                                "email": "john.doe@nginx.com",
+                                                "email": "john.doe@example.com",
                                                 "authn": "amplify",
                                                 "password": "********",
                                                 "roles": [
@@ -3182,15 +3182,15 @@
                             },
                             "example": {
                                 "metadata": {
-                                    "name": "john.doe@nginx.com",
+                                    "name": "john.doe@example.com",
                                     "displayName": "John Doe",
                                     "description": "NGINX controller user with prod env role"
                                 },
                                 "desiredState": {
                                     "firstName": "John",
                                     "lastName": "Doe",
-                                    "email": "john.doe@nginx.com",
-                                    "password": "passwd123",
+                                    "email": "john.doe@example.com",
+                                    "password": "*******",
                                     "roles": [
                                         {
                                             "ref": "/platform/roles/prod"
@@ -3216,7 +3216,7 @@
                                 },
                                 "example": {
                                     "metadata": {
-                                        "name": "john.doe@nginx.com",
+                                        "name": "john.doe@example.com",
                                         "kind": "user",
                                         "createTime": "2019-07-29T09:12:33.001Z",
                                         "displayName": "John Doe",
@@ -3225,7 +3225,7 @@
                                     "desiredState": {
                                         "firstName": "John",
                                         "lastName": "Doe",
-                                        "email": "john.doe@nginx.com",
+                                        "email": "john.doe@example.com",
                                         "password": "********",
                                         "roles": [
                                             {
@@ -3244,7 +3244,7 @@
                                         "firstName": "John",
                                         "lastName": "Doe",
                                         "lastLogin": 1570132969,
-                                        "email": "john.doe@nginx.com",
+                                        "email": "john.doe@example.com",
                                         "authn": "amplify",
                                         "password": "********",
                                         "roles": [
@@ -3311,7 +3311,7 @@
                                 },
                                 "example": {
                                     "metadata": {
-                                        "name": "john.doe@nginx.com",
+                                        "name": "john.doe@example.com",
                                         "kind": "user",
                                         "createTime": "2019-07-29T09:12:33.001Z",
                                         "displayName": "John Doe",
@@ -3320,7 +3320,7 @@
                                     "desiredState": {
                                         "firstName": "John",
                                         "lastName": "Doe",
-                                        "email": "john.doe@nginx.com",
+                                        "email": "john.doe@example.com",
                                         "password": "********",
                                         "roles": [
                                             {
@@ -3334,7 +3334,7 @@
                                         "firstName": "John",
                                         "lastName": "Doe",
                                         "lastLogin": 1570132969,
-                                        "email": "john.doe@nginx.com",
+                                        "email": "john.doe@example.com",
                                         "authn": "amplify",
                                         "password": "********",
                                         "roles": [
@@ -3390,15 +3390,15 @@
                             },
                             "example": {
                                 "metadata": {
-                                    "name": "john.doe@nginx.com",
+                                    "name": "john.doe@example.com",
                                     "displayName": "Jane Doe",
                                     "description": "NGINX controller user with prod env role"
                                 },
                                 "desiredState": {
                                     "firstName": "Jane",
                                     "lastName": "Doe",
-                                    "password": "NewPassWd1234",
-                                    "verifyPassword": "OldPassWd1234",
+                                    "password": "********",
+                                    "verifyPassword": "********",
                                     "roles": [
                                         {
                                             "ref": "/platform/roles/new"
@@ -3419,7 +3419,7 @@
                                 },
                                 "example": {
                                     "metadata": {
-                                        "name": "john.doe@nginx.com",
+                                        "name": "john.doe@example.com",
                                         "kind": "user",
                                         "createTime": "2019-07-29T09:12:33.001Z",
                                         "displayName": "Jane Doe",
@@ -3441,7 +3441,7 @@
                                         "firstName": "Jane",
                                         "lastName": "Doe",
                                         "lastLogin": 1570132969,
-                                        "email": "john.doe@nginx.com",
+                                        "email": "john.doe@example.com",
                                         "authn": "amplify",
                                         "password": "********",
                                         "roles": [
@@ -5631,7 +5631,7 @@
                     },
                     "email": {
                         "type": "string",
-                        "example": "john.doe@nginx.com",
+                        "example": "john.doe@example.com",
                         "description": "An email address that serves as the account's username. This must match the resource's metadata.name property.",
                         "format": "email"
                     },
@@ -5710,7 +5710,7 @@
                 },
                 "example": {
                     "metadata": {
-                        "name": "john.doe@nginx.com",
+                        "name": "john.doe@example.com",
                         "kind": "user",
                         "createTime": "2019-07-29T09:12:33.001Z",
                         "displayName": "Jane Doe",
@@ -5719,8 +5719,8 @@
                     "desiredState": {
                         "firstName": "Jane",
                         "lastName": "Doe",
-                        "password": "NewPassWd1234",
-                        "verifyPassword": "OldPassWd1234",
+                        "password": "********",
+                        "verifyPassword": "********",
                         "roles": [
                             {
                                 "ref": "/platform/roles/new"
@@ -5733,7 +5733,7 @@
                         "firstName": "Jane",
                         "lastName": "Doe",
                         "lastLogin": 1570132969,
-                        "email": "john.doe@nginx.com",
+                        "email": "john.doe@example.com",
                         "authn": "amplify",
                         "password": "********",
                         "roles": [
@@ -5787,8 +5787,8 @@
                 "example": {
                     "firstName": "Jane",
                     "lastName": "Doe",
-                    "password": "NewPassWd1234",
-                    "verifyPassword": "OldPassWd1234",
+                    "password": "********",
+                    "verifyPassword": "********",
                     "roles": [
                         {
                             "ref": "/platform/roles/new"
@@ -5811,7 +5811,7 @@
                     "items": [
                         {
                             "metadata": {
-                                "name": "john.doe@nginx.com",
+                                "name": "john.doe@example.com",
                                 "kind": "user",
                                 "createTime": "2019-07-29T09:12:33.001Z",
                                 "displayName": "John Doe",
@@ -5820,7 +5820,7 @@
                             "desiredState": {
                                 "firstName": "John",
                                 "lastName": "Doe",
-                                "email": "john.doe@nginx.com",
+                                "email": "john.doe@example.com",
                                 "password": "********",
                                 "roles": [
                                     {
@@ -5834,7 +5834,7 @@
                                 "firstName": "John",
                                 "lastName": "Doe",
                                 "lastLogin": 1570132969,
-                                "email": "john.doe@nginx.com",
+                                "email": "john.doe@example.com",
                                 "authn": "amplify",
                                 "password": "********",
                                 "roles": [
@@ -6460,8 +6460,8 @@
                         },
                         "example": {
                             "type": "BASIC",
-                            "username": "guest@nginx.com",
-                            "password": "Guest#12E"
+                            "username": "guest@example.com",
+                            "password": "********"
                         }
                     }
                 }
@@ -7202,7 +7202,7 @@
                         "credential": {
                             "type": "USER_PASS",
                             "user": "x",
-                            "password": "CF179AE4-3C99-45F5-A7CC-3284AA91CF67"
+                            "password": "********"
                         }
                     }
                 }
@@ -7308,7 +7308,7 @@
                         "credential": {
                             "type": "USER_PASS",
                             "user": "x",
-                            "password": "CF179AE4-3C99-45F5-A7CC-3284AA91CF67"
+                            "password": "********"
                         }
                     }
                 }

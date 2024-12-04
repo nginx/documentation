@@ -227,13 +227,13 @@ For example:
 - Login and capture the session cookie:
 
   ```curl
-  curl -c cookie.txt -X POST --url 'https://198.51.100.10/api/v1/platform/login' --header 'Content-Type: application/json' --data '{"credentials": {"type": "BASIC","username": "arthur@arthurdent.net","password": "Towel$123"}}'
+  curl -c cookie.txt -X POST --url 'https://<ip address>/api/v1/platform/login' --header 'Content-Type: application/json' --data '{"credentials": {"type": "BASIC","username": "<username>","password": "<password>"}}'
   ```
 
 - Use the session cookie to authenticate and get the session status:
 
   ```curl
-  curl -b cookie.txt -c cookie.txt -X GET --url 'https://198.51.100.10/api/v1/platform/login'
+  curl -b cookie.txt -c cookie.txt -X GET --url 'https://<ip address>/api/v1/platform/login'
   ```
 
 
