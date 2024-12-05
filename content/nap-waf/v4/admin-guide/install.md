@@ -15,10 +15,10 @@ F5 NGINX App Protect WAF provides web application firewall (WAF) security protec
 
 This guide explains how to deploy NGINX App Protect WAF as well as upgrade App Protect and the App Protect signature sets.<br>
 
-### Using NGINX App Protect with NGINX Management Suite
+### Using NGINX App Protect with NGINX Instance Manager
 
-NGINX Management Suite provides centralized configuration management and visibility for your NGINX App Protect WAF fleet.
-After completing the NGINX App Protect WAF installation, refer to the [NGINX Management Suite Installation Guide](https://docs.nginx.com/nginx-management-suite/admin-guides/installation/on-prem/install-guide/) for the deployment instructions.<br>
+NGINX Instance Manager provides centralized configuration management and visibility for your NGINX App Protect WAF fleet.
+After completing the NGINX App Protect WAF installation, refer to the [NGINX Instance Manager Installation Guide](https://docs.nginx.com/nginx-instance-manager/deploy/) for the deployment instructions.<br>
 
 ## Prerequisites
 
