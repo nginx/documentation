@@ -678,7 +678,7 @@ To configure a basic authentication scheme, take the following steps:
             {
               "data": [
                 {
-                  "apiKey": "testapikey1234",
+                  "apiKey": "<API key>",
                   "clientID": "userA"
                 }
               ]
@@ -985,15 +985,15 @@ To configure a basic authentication scheme, take the following steps:
 3. Pass traffic to the endpoints. The following example sends a request through a proxy to the Pet Store server, using Basic Authentication. A successful request will return a `200` status response.
 
    ```bash
-   curl -X GET -u user1:secret -H "Content-Type: application/json"  http://54.188.248.124/api/v3/pet/4
+   curl -X GET -u user1:secret -H "Content-Type: application/json"  http://<ip address>/api/v3/pet/4
 
-   {"id":4,"category":{"id":1,"name":"{{$$randomFirstName}}"},"name":"Steve","photoUrls":["http://placeimg.com/640/480/cats"],"tags":[{"id":0,"name":"string"}],"status":"available"}
+   {"id":4,"category":{"id":1,"name":"{{$$randomFirstName}}"},"name":"<name>","photoUrls":["http://example.com/640/480/cats"],"tags":[{"id":0,"name":"string"}],"status":"available"}
    ```
 
    In contrast, if the request lacks proper authentication, the response is "Unauthorized" with a status code of `401`
 
    ```bash
-   curl -X GET -H "Content-Type: application/json" http://54.188.248.124/v1/pet
+   curl -X GET -H "Content-Type: application/json" http://<ip address>/v1/pet
 
    {
        "message": "Unauthorized",
@@ -1633,7 +1633,7 @@ To configure the API Key Authentication security scheme, take the following step
             {
               "data": [
                 {
-                  "apiKey": "testapikey1234",
+                  "apiKey": "<API key>",
                   "clientID": "userA"
                 }
               ]
@@ -1869,7 +1869,7 @@ To configure the API Key Authentication security scheme, take the following step
                   },
                   "data": [
                     {
-                      "apiKey": "testapikey1234",
+                      "apiKey": "<API Key>",
                       "clientID": "userA",
                       "source": "ACM"
                     }
@@ -1933,14 +1933,14 @@ To configure the API Key Authentication security scheme, take the following step
    </details>
 
    ```bash
-   curl -X GET -H "apiKey:testapikey1234" -H "Content-Type: application/json"  http://54.188.248.124/api/v3/pet/4
-   {"id":4,"category":{"id":1,"name":"{{$$randomFirstName}}"},"name":"Steve","photoUrls":["http://placeimg.com/640/480/cats"],"tags":[{"id":0,"name":"string"}],"status":"available"}
+   curl -X GET -H "apiKey:<API key>" -H "Content-Type: application/json"  http://<ip address>/api/v3/pet/4
+   {"id":4,"category":{"id":1,"name":"{{$$randomFirstName}}"},"name":"<name>","photoUrls":["http://example.com/640/480/cats"],"tags":[{"id":0,"name":"string"}],"status":"available"}
    ```
 
    If the request lacks proper authentication, the response is "Unauthorized" with a status code of `401`
 
    ```bash
-   curl -X GET -H "Content-Type: application/json" http://54.188.248.124/v1/pet
+   curl -X GET -H "Content-Type: application/json" http://<ip address>/v1/pet
    {
        "message": "Unauthorized",
        "status": "401"
