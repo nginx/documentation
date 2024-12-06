@@ -1,11 +1,8 @@
 ---
-title: Install in a disconnected environment (deprecated)
+title: Manually install in a disconnected environment (deprecated)
 weight: 100
 toc: true
 noindex: true
-build:
-  list: never
-  render: always
 type: how-to
 product: NIM
 docs: DOCS-000

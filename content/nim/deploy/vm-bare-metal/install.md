@@ -5,27 +5,55 @@ doctypes:
 - tutorial
 tags:
 - docs
-title: Install on a virtual machine or bare metal
+title: Install on a virtual machine or bare metal using a script
 toc: true
 weight: 10
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}
 
-
 ## Overview
 
-This guide explains how to install F5 NGINX Instance Manager on a virtual machine (VM) or bare metal. It includes key steps like:
+This guide explains how to install F5 NGINX Instance Manager on a virtual machine or bare metal system using the `install-nim-bundle.sh` script.
 
-- Installing NGINX with the GPG keys associated with F5 NGINX One
-- Setting up ClickHouse
-- Adding a license
-- Accessing the web interface
-- Securing your deployment with Vault (optional)
+The script simplifies the installation by automating tasks such as verifying system requirements, configuring services, and managing environment-specific options. For more control or an alternative approach, you can refer to the [manual installation guide]({{< relref "nim/deploy/vm-bare-metal/install-nim-deprecated.md" >}}), which provides detailed, step-by-step instructions.
 
-{{<call-out "note" "Access the deprecated manual steps" "">}}If you prefer to follow the original manual steps, you can access the [deprecated guide]({{< relref "nim/deploy/vm-bare-metal/install-nim-deprecated.md" >}}). Please note that this guide is no longer actively maintained and may not reflect the latest updates or best practices.{{</call-out>}}
+---
 
-## Supported versions
+## Before you begin
+
+Follow these steps to prepare for installing NGINX Instance Manager:
+
+- **Download the certificate and private key** (see the steps [below](#download-cert-key)):  
+  Use the certificate and private key for NGINX Instance Manager (the same files used for NGINX Plus).  
+  - Ensure the files have `.crt` and `.key` extensions.  
+  - Save them to the target system. The default locations are:  
+    - `/etc/ssl/nginx/nginx-repo.crt`  
+    - `/etc/ssl/nginx/nginx-repo.key`  
+
+- **Check for previous deployments**:  
+  Ensure that NGINX Instance Manager and its components are not already installed.  
+  - If NGINX Instance Manager or its components (such as ClickHouse or NGINX) are detected, either follow the [upgrade instructions](#upgrade-nim) to update them or [manually remove the components](#uninstall-nim) before proceeding with the installation.
+
+- **Record the version details**:  
+  Note the current version of NGINX Instance Manager and confirm the supported version of NGINX OSS or NGINX Plus you intend to use.  
+  - By default, the script installs the latest version.
+
+- **(Optional) Install and configure Vault**:  
+  If you plan to use Vault, set it up before proceeding.
+
+### Security considerations
+
+To ensure that your NGINX Instance Manager deployment remains secure, follow these recommendations:
+
+- Install NGINX Instance Manager on a dedicated machine (bare metal, container, cloud, or VM).
+- Ensure that no other services are running on the same machine.
+
+---
+
+## Requirements
+
+### Supported NGINX versions and Linux distributions
 
 <details open>
 <summary><i class="fa-solid fa-circle-info"></i> Supported NGINX versions</summary>
@@ -41,30 +69,11 @@ This guide explains how to install F5 NGINX Instance Manager on a virtual machin
 
 </details>
 
----
 
-## Security considerations
-
-To ensure that your NGINX Instance Manager deployment remains secure, follow these recommendations:
-
-- Install NGINX Instance Manager on a dedicated machine (bare metal, container, cloud, or VM).
-- Ensure that no other services are running on the same machine.
 
 ---
 
-## Prerequisites
-
-Complete the following steps before installing NGINX Instance Manager:
-
-- [ ] Download the certificate and private key for NGINX Instance Manager. You can use the same certificate and private key as NGINX Plus.
-  - [ ] The downloaded files have .crt and .key extensions
-  - [ ] Record the location of these files on the target system. The default filenames / locations are:
-    - `/etc/ssl/nginx/nginx-repo.crt`
-    - `/etc/ssl/nginx/nginx-repo.key`
-- [ ] Record your current version of NGINX Instance Manager, along with the supported version of NGINX OSS or NGINX Plus that you want to use, if necessary. The latest version will be used by default. 
-- [ ] (*Optional*) Install and configure Vault if you plan to use it.
-
-### Download certificate and key {#download-cert-key}
+## Download certificate and key {#download-cert-key}
 
 Download the certificate and private key required for NGINX Instance Manager. These files are necessary for adding the official repository during installation and can also be used when installing NGINX Plus.
 
@@ -83,21 +92,42 @@ Download the certificate and private key required for NGINX Instance Manager. Th
     sudo mv nginx-<subscription id>.key /etc/ssl/nginx/nginx-repo.key
     ```
 
-### Download and run the installation script {#download-install}
+---
 
-{{< tip >}}
+## Download and run the installation script {#download-install}
 
-The installation script also works for upgrades of both NGINX Instance Manager and ClickHouse.
+### Prepare your system for installation
 
-{{< /tip >}}
+Follow these steps to get your system ready for a successful installation with the `install-nim-bundle.sh` script:
 
-We created an installation script, `install-nim-bundle.sh` to automate the NGINX Instance Manager installation process. By default, it:
+#### Resolve existing installations of NGINX Instance Manager
 
-- Reads SSL files from the /etc/ssl/nginx directory
-- Installs the latest version of NGINX OSS
-- Installs Clickhouse Database
-- Installs NGINX Instance Manager
-- Assumes you're connected to the internet for installations and upgrades
+The script supports only new installations. If NGINX Instance Manager is already installed, take one of the following actions:
+
+- **Upgrade manually**  
+  The script cannot perform upgrades. To update an existing installation, follow the [upgrade steps](#upgrade-nim) in this document.
+
+- **Uninstall first**  
+  Remove the current installation and its dependencies for a fresh start. Use the [uninstall steps](#uninstall-nim) to delete the primary components. Afterward, manually check for and remove leftover files such as repository configurations or custom settings to ensure a clean system.
+
+#### Verify SSL certificates and private keys
+
+Ensure that the required `.crt` and `.key` files are available, preferably in the default **/etc/ssl/nginx** directory. Missing certificates or keys will prevent the script from completing the installation.
+
+#### Use the manual installation steps if needed
+
+If the script fails or if you prefer more control over the process, consider using the [manual installation steps]({{< relref "nim/deploy/vm-bare-metal/install-nim-deprecated.md" >}}). These steps provide a reliable alternative for troubleshooting or handling complex setups.
+
+### Run the installation script
+
+The `install-nim-bundle.sh` script automates the installation of NGINX Instance Manager. By default, the script:
+
+- Assumes no prior installation of NGINX Instance Manager or its dependencies and performs a fresh installation.
+- Reads SSL files from the `/etc/ssl/nginx` directory.
+- Installs the latest version of NGINX Open Source (OSS).
+- Installs the ClickHouse database.
+- Installs NGINX Instance Manager.
+- Requires an active internet connection.
 
 {{< warning >}}
 
@@ -137,7 +167,7 @@ To install NGINX Instance Manager on Ubuntu 24.04 with the latest version of NGI
 sudo bash install-nim-bundle.sh -c /path/to/nginx-repo.crt -k /path/to/nginx-repo.key -p latest -d ubuntu24.04 -j /path/to/license.jwt
 ```
 
-In most cases, the script completes the installation of NGINX Instance Manager and associated packages. At the end of the process, you'll see an autogenerated password:
+In most cases, the script completes the installation of NGINX Instance Manager and associated packages. After installation is complete, the script takes a few minutes to generate a password. At the end of the process, you'll see an autogenerated password:
 
 ```bash
 Regenerated Admin password: <encrypted password>
@@ -152,6 +182,20 @@ There are multiple parameters to configure in the Installation script. If you se
 ```bash
 bash install-nim-bundle.sh -h
 ```
+
+### Access the web interface {#access-web-interface}
+
+After installation, you can access the NGINX Instance Manager web interface to begin managing your deployment.
+
+1. Open a web browser.
+2. Navigate to `https://<NIM_FQDN>`, replacing `<NIM_FQDN>` with the fully qualified domain name of your NGINX Instance Manager host.
+3. Log in using the default administrator username (`admin`) and the autogenerated password displayed during installation.
+
+Save the autogenerated password displayed at the end of the installation process. If you want to change the admin password, refer to the [Set user passwords]({{< relref "/nim/admin-guide/authentication/basic-auth/set-up-basic-authentication.md#set-basic-passwords" >}}) section in the Basic Authentication topic.
+
+---
+
+## Post-installation steps
 
 ### Configure ClickHouse {#configure-clickhouse}
 
@@ -169,24 +213,6 @@ NGINX Instance Manager uses the following default values for ClickHouse:
 
 {{< include "installation/clickhouse-defaults.md" >}}
 
----
-
-##### How to access the web interface
-
-To access the NGINX Instance Manager web interface, open a web browser and go to `https://<NIM_FQDN>`, replacing `<NIM_FQDN>` with the Fully Qualified Domain Name of your NGINX Instance Manager host.
-
-The default administrator username is `admin`, and the generated password is saved, in encrypted format, to the `/etc/nms/nginx/.htpasswd` file. The password was displayed in the terminal during installation. If you'd like to change this password, refer to the "[Set or Change User Passwords]({{< relref "/nim/admin-guide/authentication/basic-auth/set-up-basic-authentication.md#set-basic-passwords-script" >}})" section in the Basic Authentication topic.
-
-To license NGINX Instance Manager, use a JSON Web token from your **NIM** Subscription in MyF5. 
-
----
-
-## Post-installation steps (optional)
-
-- If you use Vault, follow the steps in the [Configure Vault]({{< relref "/nim/system-configuration/configure-vault.md" >}}) guide to update the `/etc/nms/nms.conf` file. If you don't do so, NGINX Instance Manager won't be able to connect to Vault.
-
-- If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nim/system-configuration/configure-selinux.md" >}}) guide to restore SELinux contexts (`restorecon`) for the files and directories related to NGINX Instance Manager.
-
 ### (Optional) Install and configure Vault {#install-vault}
 
 NGINX Instance Manager can use [Vault](https://www.vaultproject.io/) as a datastore for secrets.
@@ -197,6 +223,16 @@ To install and enable Vault, follow these steps:
 - Ensure you're running Vault in a [production-hardened environment](https://learn.hashicorp.com/tutorials/vault/production-hardening).
 - After installing NGINX Instance Manager, follow the steps to [configure Vault for storing secrets]({{< relref "/nim/system-configuration/configure-vault.md" >}}).
 
+### (Optional) Configure SELinux
+
+SELinux helps secure your deployment by enforcing mandatory access control policies.
+
+If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nim/system-configuration/configure-selinux.md" >}}) guide to restore SELinux contexts (`restorecon`) for the files and directories related to NGINX Instance Manager.
+
+### License NGINX Instance Manager
+
+{{< include "nim/admin-guide/license/connected-install-license-note.md" >}}
+
 ---
 
 ## Upgrade NGINX Instance Manager {#upgrade-nim}
@@ -204,21 +240,34 @@ To install and enable Vault, follow these steps:
 {{<tabs name="upgrade_nim">}}
 {{%tab name="CentOS, RHEL, RPM-Based"%}}
 
-1. To upgrade to the latest version of the NGINX Instance Manger, run the following command:
+1. To upgrade to the latest version of the NGINX Instance Manager, run the following command:
 
    ```bash
    sudo yum update -y nms-instance-manager
+   ```
+
+1. To upgrade to the latest version of Clickhouse, run the following command:
+
+   ```bash
+   sudo yum update -y clickhouse-server clickhouse-client
    ```
 
 {{%/tab%}}
 
 {{%tab name="Debian, Ubuntu, Deb-Based"%}}
 
-1. To upgrade to the latest version of the NGINX Instance Manager, run the following command:
+1. To upgrade to the latest version of the NGINX Instance Manager, run the following commands:
 
    ```bash
    sudo apt-get update
    sudo apt-get install -y --only-upgrade nms-instance-manager
+   ```
+
+1. To upgrade to the latest version of Clickhouse, run the following commands:
+
+   ```bash
+   sudo apt-get update
+   sudo apt-get install -y --only-upgrade clickhouse-server clickhouse-client
    ```
 
 {{%/tab%}}
@@ -238,28 +287,16 @@ To install and enable Vault, follow these steps:
    sudo systemctl restart nginx
    ```
 
-4. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "nim/system-configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Instance Manager.
+4. Restart the Clickhouse server:
+
+   ```bash
+   sudo systemctl restart clickhouse-server
+   ```
+
+5. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "nim/system-configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Instance Manager.
 
 ---
 
-## Uninstall NGINX Instance Manager
+## Uninstall NGINX Instance Manager {#uninstall-nim}
 
-Follow the steps below to uninstall NGINX Instance Manager and ClickHouse.
-
-- **For CentOS, RHEL, and RPM-based distributions:**
-
-   ```bash
-   sudo yum remove -y nms-*
-   sudo systemctl stop clickhouse-server
-   sudo yum remove -y clickhouse-server
-   ```
-
-- **For Debian, Ubuntu, and Deb-based distributions:**
-
-   ``` bash
-   sudo apt-get remove -y nms-*
-   sudo systemctl stop clickhouse-server
-   sudo apt-get remove -y clickhouse-server
-   ```
-
-	If you want to remove the package and its configuration files, use `apt-get purge -y <package>` instead of `apt-get remove -y`.
+{{< include "nim/uninstall/uninstall-nim.md" >}}
