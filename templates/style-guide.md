@@ -15,7 +15,8 @@ This style guide is intended for use by any contributors that are writing docume
 
 This document provides guidelines specific to documenting F5 NGINX products and open-source projects.
 
-When the NGINX style guide does not cover a style, refer next to the [Microsoft Style Guide](https://learn.microsoft.com/en-us/style-guide/welcome/) for user-facing content, and then to the [Chicago Manual of Style](https://www.chicagomanualofstyle.org/home.html). We use standard American spelling, and our preferred dictionary is the [American Heritage Dictionary](https://ahdictionary.com/).
+- Follow American English spelling and conventions. For spelling reference, use the [American Heritage Dictionary](https://ahdictionary.com/).
+- When the NGINX style guide does not cover a style, refer next to the [Microsoft Style Guide](https://learn.microsoft.com/en-us/style-guide/welcome/) for user-facing content, and then to the [Chicago Manual of Style](https://www.chicagomanualofstyle.org/home.html).
 
 When writing documentation for our project, align with the default guide's voice and tone.
 
@@ -103,6 +104,7 @@ The table provides guidelines about the terms you should and should not use for 
 | em dash | Allowed in the proper context. May be written using two dashes to ensure it converts correctly when displayed in the web version. | |
 | data source | | |
 | database | Do not abbreviate as "db". Always a single word. | |
+|date format | Use _month day, year_ format, as in December 4, 2024. Don't use _day month year_, as in 31 July 2016. <br>  In the UI, it's OK to use numbers and slashes for dates if the code supports that format and automatically displays the appropriate date format for different locales. For example, 12/4/2024. | This format aligns with standard American usage for consistency and clarity. |
 | DoS/DDoS/3DoS | Spell out on first reference:<br>- denial-of-service (DoS)<br>- distributed denial-of-service (DDoS)<br>- diverse distributed denial-of-service (3DoS) | |
 | e.g., i.e., etc. | Avoid using Latin abbreviations.<br>- e.g. = for example<br>- i.e. = in other words<br>- etc. = and so on | |
 | earlier and later | Use to describe versioning. For example, "This applies to versions earlier than NGINX Plus R31".<br>Do not use before, after, greater, lower, higher, below, above, and so on. | |
