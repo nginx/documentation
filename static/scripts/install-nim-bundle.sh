@@ -524,6 +524,18 @@ check_NIM_status(){
   fi
 }
 
+check_cert_key_path(){
+  if [[ ! -f "$NGINX_CERT_KEY_PATH" ]]; then
+    echo "Error: NGINX key not found. Please give cert path using -k"
+    exit 1
+  fi
+
+  if [[ ! -f "$NGINX_CERT_PATH" ]]; then
+    echo "Error: NGINX cert not found. Please give key path using -c"
+    exit 1
+  fi
+}
+
 OPTS_STRING="k:c:m:d:i:s:p:n:hv:t:j:"
 while getopts ${OPTS_STRING} opt; do
   case ${opt} in
@@ -592,16 +604,10 @@ while getopts ${OPTS_STRING} opt; do
   esac
 done
 
-if [ "${MODE}" == "online" ]; then
-  if [ ! -f "${NGINX_CERT_PATH}" ]; then
-      echo "NGINX cert path - ${NGINX_CERT_PATH} not found"
-      exit
-  fi
+check_cert_key_path
 
-  if [ ! -f "${NGINX_CERT_KEY_PATH}" ]; then
-      echo "NGINX cert key - ${NGINX_CERT_KEY_PATH} not found"
-      exit
-  fi
+if [ "${MODE}" == "online" ]; then
+
   install_nim_online
   check_NIM_status
 
