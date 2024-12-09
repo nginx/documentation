@@ -28,11 +28,9 @@ This deployment is ideal for:
 - Instance counting
 - Small-scale environments (20 instances or fewer)
 
-{{< call-out "important" "This Docker option only works for Instance Manager 2.17" "fa-solid fa-triangle-exclamation" >}}
-Please use the Docker Compose option for Instance Manager 2.18 or later. 
+{{< call-out "important" "This Docker option only works for Instance Manager 2.17 and will no longer be supported" "fa-solid fa-triangle-exclamation" >}}
+Please use the Docker Compose option for Instance Manager 2.18 or later, as it includes better resiliency and fault tolerance. 
 {{< /call-out >}}
-
-Note: This option only works for Instance Manager 2,18. 
 
 By the end of this guide, you'll be able to:
 
