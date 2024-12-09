@@ -536,6 +536,21 @@ check_cert_key_path(){
   fi
 }
 
+check_if_nim_installed(){
+
+  local all_services_present=0
+
+  if nms-core --version && nms-dpm --version && nms-integrations --version && nms-ingestion --version && nginx -version; then
+    all_services_present=1
+  fi
+
+  if [[ "$all_services_present" == 1 ]]; then
+    echo "NGINX Instance Manager (NIM) already installed."
+    nms-instance-manager --version
+    exit 0
+  fi
+}
+
 OPTS_STRING="k:c:m:d:i:s:p:n:hv:t:j:"
 while getopts ${OPTS_STRING} opt; do
   case ${opt} in
@@ -605,6 +620,7 @@ while getopts ${OPTS_STRING} opt; do
 done
 
 check_cert_key_path
+check_if_nim_installed
 
 if [ "${MODE}" == "online" ]; then
 
