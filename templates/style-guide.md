@@ -155,7 +155,7 @@ The table provides guidelines about the terms you should and should not use for 
 | hang | As in the system hangs or This hangs the system. OK in internal department stuff; but it's slang, and we should do better in our docs. For a write-around, try fail to respond, as in: If the program fails to respond, restart the system. Other possible terms to use, depending on the circumstances, could be: § causes the system to jam/get stuck/stop processing. § If horrid: halt, stop or crash; or cause an error. | |
 | hardware upgrade | Hardware upgrade is to install a system in place with a newer platform. For example: Check the version compatibility list before upgrading your software to make sure you do not need to perform a hardware upgrade as well. | |
 | has | One of those weak, vague verbs we're supposed to avoid as much as possible: Allow, do, enable, let, perform, be, has, make, and do. Use direct, active verbs instead. | |
-| Headings | Use imperative verbs (formerly, MyF5 used gerunds) | |
+| Headings | Use imperative verbs (formerly, MyF5 used gerunds)<br><br>Heading text must **not** link to other pages. | |
 | hears | When referring to products, avoid it, it's anthropomorphism. When referring to products, stay away from words like decides, knows, sees, listens, and hears. | |
 | help (capitalization style) | When referring to online help in our documentation, use lowercase format for instances of help as per legacy guidelines (unless specifically referring to the Help button). However, identify it as F5 online help in order to distinguish it from general instances of help as a verb and noun. | |
 | host name | Two words, except when a parameter. | |
@@ -497,6 +497,7 @@ this style guide over time. This guide uses the Major.Minor.Patch
 
 | Edition | Date          | Lead Author(s) | Comments                                              |
 |---------|---------------|----------------|-------------------------------------------------------|
+| 1.7   | December 4, 2024 | Jon Torre | Clarify that heading text must not contain a link to other pages. |
 | 1.7   | November 20, 2024 | Mike Jang  | Specify "includes" must be in at leat two locations. |
 | 1.6   | October 23, 2024 | Jon Torre  | Incorporated specific guidelines from Unit's style guide |
 | 1.5   | October 3, 2024 | Mike Jang  | Include guidelines for "includes"                      |
