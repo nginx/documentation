@@ -556,9 +556,8 @@ while getopts ${OPTS_STRING} opt; do
   case ${opt} in
     c)
       if [ ! -d "/etc/ssl/nginx" ]; then
-       mkdir /etc/ssl/nginx
-       check_last_command_status "mkdir /etc/ssl/nginx" $?
-
+        mkdir /etc/ssl/nginx
+        check_last_command_status "mkdir /etc/ssl/nginx" $?
       fi
       cp "${OPTARG}" ${NGINX_CERT_PATH}
       check_last_command_status "cp ${OPTARG} ${NGINX_CERT_PATH}" $?
@@ -568,8 +567,8 @@ while getopts ${OPTS_STRING} opt; do
         mkdir /etc/ssl/nginx
         check_last_command_status "mkdir /etc/ssl/nginx" $?
       fi
-        cp "${OPTARG}" ${NGINX_CERT_KEY_PATH}
-        check_last_command_status "cp ${OPTARG} ${NGINX_CERT_KEY_PATH}" $?
+      cp "${OPTARG}" ${NGINX_CERT_KEY_PATH}
+      check_last_command_status "cp ${OPTARG} ${NGINX_CERT_KEY_PATH}" $?
       ;;
     p)
       USE_NGINX_PLUS="true"
@@ -623,7 +622,6 @@ check_cert_key_path
 check_if_nim_installed
 
 if [ "${MODE}" == "online" ]; then
-
   install_nim_online
   check_NIM_status
 
