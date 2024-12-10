@@ -13,6 +13,7 @@ If you are an F5/NGINX employee, see the following guidance [For F5/NGINX Employ
 - [Submit a Pull Request](#submit-a-pull-request)
   - Review our [Git style guide](#git-style-guide)
   - Review our Documentation [style guide](./templates/style-guide.md)
+  - Review our [Contributing guidelines for writers](./CONTRIBUTING_DOCS.md)
 - [Issue Lifecycle](#issue-lifecycle)
 - [Content edited elsewhere](#content-edited-elsewhere)
 - [F5 Contributor License Agreement (CLA)](#f5-contributor-license-agreement)
@@ -83,7 +84,7 @@ This repository does not include all documentation available at https://docs.ngi
 - [NGINX Ingress Controller](https://github.com/nginxinc/kubernetes-ingress/)
 - [NGINX Gateway Fabric](https://github.com/nginxinc/nginx-gateway-fabric)
 
-You can find documentation source code in the `docs` or `site` subdirectories.
+In those repositories, you can find documentation source code in the `docs` or `site` subdirectories.
 
 ## F5 Contributor License Agreement
 
