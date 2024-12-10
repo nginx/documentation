@@ -1,29 +1,14 @@
 ---
 title: "R33 pre-release guidance for automatic upgrades"
 date: 2024-10-10T12:53:53-07:00
-# Change draft status to false to publish doc.
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: ""
-# Assign weights in increments of 100
 weight: 1
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-000"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["task"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
 noindex: true
 type: "r33-pre-release"
 draft: true
+type: concept
+product: Solutions
+docs: "DOCS-000"
 ---
 
 {{<call-out "caution" "NGINX R33: Immediate action required for automatic upgrades" "fa-solid fa-triangle-exclamation" >}}
@@ -96,7 +81,17 @@ To ensure NGINX Plus R33 can report telemetry data, follow these steps based on 
 
 #### For partially connected environments:
 
-{{< include "licensing-and-reporting/disconnected-network-settings.md" >}}
+1. On each NGINX Plus instance, update the `usage_report` directive in the [`mgmt`](https://nginx.org/en/docs/ngx_mgmt_module.html) block of the NGINX configuration (**/etc/nginx/nginx.conf**) to point to your NGINX Instance Manager host:
+
+   ``` nginx
+   usage_report endpoint=<NGINX_INSTANCE_MANAGER_HOST_FQDN> interval=1hr;
+   ```
+
+1. **Open port 443 for NGINX Instance Manager**:  
+   Ensure NGINX Plus can connect to NGINX Instance Manager to report usage data.
+
+If NGINX Instance Manager has internet access, it will automatically report usage data to F5. If it doesn't doesn't have internet access, you can manually [submit usage reports to F5 for verification and acknowledgement]({{< relref "nim/disconnected/report-usage-disconnected-deployment.md" >}}).
+
 
 #### For fully disconnected environments:
 

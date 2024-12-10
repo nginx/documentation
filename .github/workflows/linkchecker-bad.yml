@@ -31,16 +31,6 @@ jobs:
       - name: Run LinkChecker nginx-oss
         run: linkchecker https://nginx.org/en/docs/ --no-warnings --check-extern
   
-  nginx-gateway-fabric:
-    runs-on: ubuntu-latest
-    steps:
-      # Install LinkChecker
-      - name: Install LinkChecker
-        run: sudo apt-get update && sudo apt-get install -y linkchecker
-      # Step : Run LinkChecker on nginx-gateway-fabric docs
-      - name: Run LinkChecker nginx-gateway-fabric
-        run: linkchecker https://docs.nginx.com/nginx-gateway-fabric/ --no-warnings --check-extern --ignore-url ^https://consent.trustarc.com --ignore-url ^http://127.0.0.1 
-        
   nginx-agent:
     runs-on: ubuntu-latest
     steps:

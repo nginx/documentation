@@ -60,9 +60,11 @@ The following table shows the NGINX App Protect WAF Release version and its corr
 
 | NGINX App Protect WAF Release version | WAF Compiler               |
 |---------------------------------------|----------------------------|
+| NGINX App Protect WAF 5.4.0           | nms-nap-compiler-v5.210.0  |
 | NGINX App Protect WAF 5.3.0           | nms-nap-compiler-v5.144.0  |
 | NGINX App Protect WAF 5.2.0           | nms-nap-compiler-v5.48.0   |
 | NGINX App Protect WAF 5.1.0           | nms-nap-compiler-v5.17.0   |
+| NGINX App Protect WAF 4.12.0          | nms-nap-compiler-v5.210.0  |
 | NGINX App Protect WAF 4.11.0          | nms-nap-compiler-v5.144.0  |
 | NGINX App Protect WAF 4.10.0          | nms-nap-compiler-v5.48.0   |
 | NGINX App Protect WAF 4.9.0           | nms-nap-compiler-v5.17.0   |
@@ -98,7 +100,7 @@ The following table shows the NGINX App Protect WAF Release version and its corr
 Install the WAF compiler, then restart the `nms-integrations` service:
 
 ```bash
-sudo apt-get install nms-nap-compiler-v5.144.0
+sudo apt-get install nms-nap-compiler-v5.210.0
 ```
 
 {{<note>}}
@@ -106,7 +108,7 @@ sudo apt-get install nms-nap-compiler-v5.144.0
 - If you want to have more than one version of the `nms-nap-compiler` installed on your system at once, you'll need to append `-o Dpkg::Options::="--force-overwrite"` to the `nms-nap-compiler` installation commands after your initial `nms-nap-compiler` installation. For example, the installation command would look like this:
 
 ```bash
-sudo apt-get install nms-nap-compiler-v5.144.0 -o Dpkg::Options::="--force-overwrite"
+sudo apt-get install nms-nap-compiler-v5.210.0 -o Dpkg::Options::="--force-overwrite"
 ```
 
 {{</note>}}
@@ -118,7 +120,7 @@ Download the file dependencies.repo to `/etc/yum.repos.d`, enable the `codeready
 ```bash
 sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
 sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
-sudo yum install nms-nap-compiler-v5.144.0
+sudo yum install nms-nap-compiler-v5.210.0
 ```
 
 ### RHEL 7.4 or later; CentOS
@@ -127,7 +129,7 @@ Download the file `dependencies.repo` to `/etc/yum.repos.d`, enable the RHEL 7 s
 ```bash
 sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
 sudo yum-config-manager --enable rhui-REGION-rhel-server-optional rhui-REGION-rhel-server-releases rhel-7-server-optional-rpms
-sudo yum install nms-nap-compiler-v5.144.0
+sudo yum install nms-nap-compiler-v5.210.0
 ```
 
 ### Amazon Linux 2 LTS
@@ -139,7 +141,7 @@ sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-7.re
 sudo amazon-linux-extras enable epel
 sudo yum clean metadata
 sudo yum install epel-release
-sudo yum install nms-nap-compiler-v5.144.0
+sudo yum install nms-nap-compiler-v5.210.0
 ```
 
 ### Oracle Linux 7.4 or later
@@ -148,7 +150,7 @@ Download the file `dependencies.repo` to `/etc/yum.repos.d`, enable the `ol8_cod
 ```bash
 sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
 sudo yum-config-manager --enable ol8_codeready_builder
-sudo yum install nms-nap-compiler-v5.144.0
+sudo yum install nms-nap-compiler-v5.210.0
 ```
 
 ### Download from MyF5
@@ -1091,24 +1093,24 @@ Check if the WAF compiler has been installed and is working properly by viewing 
 sudo /opt/nms-nap-compiler/app_protect-<version>/bin/apcompile -h
 ```
 
-For example, to view the help description for WAF compiler 5.144.0, run the following command:
+For example, to view the help description for WAF compiler 5.210.0, run the following command:
 
 ``` bash
-sudo /opt/nms-nap-compiler/app_protect-5.144.0/bin/apcompile -h
+sudo /opt/nms-nap-compiler/app_protect-5.210.0/bin/apcompile -h
 ```
 
 The output looks similar to the following example:
 
 ```text
 USAGE:
-    /opt/nms-nap-compiler/app_protect-5.144.0/bin/apcompile <options>
+    /opt/nms-nap-compiler/app_protect-5.210.0/bin/apcompile <options>
 
 Examples:
-    /opt/nms-nap-compiler/app_protect-5.144.0/bin/apcompile -p /path/to/policy.json -o mypolicy.tgz
-    /opt/nms-nap-compiler/app_protect-5.144.0/bin/apcompile -p policyA.json -g myglobal.json -o /path/to/policyA_bundle.tgz
-    /opt/nms-nap-compiler/app_protect-5.144.0/bin/apcompile -g myglobalsettings.json --global-state-outfile /path/to/myglobalstate.tgz
-    /opt/nms-nap-compiler/app_protect-5.144.0/bin/apcompile -b /path/to/policy_bundle.tgz --dump
-    /opt/nms-nap-compiler/app_protect-5.144.0/bin/apcompile -l logprofA.json -o /path/to/logprofA_bundle.tgz
+    /opt/nms-nap-compiler/app_protect-5.210.0/bin/apcompile -p /path/to/policy.json -o mypolicy.tgz
+    /opt/nms-nap-compiler/app_protect-5.210.0/bin/apcompile -p policyA.json -g myglobal.json -o /path/to/policyA_bundle.tgz
+    /opt/nms-nap-compiler/app_protect-5.210.0/bin/apcompile -g myglobalsettings.json --global-state-outfile /path/to/myglobalstate.tgz
+    /opt/nms-nap-compiler/app_protect-5.210.0/bin/apcompile -b /path/to/policy_bundle.tgz --dump
+    /opt/nms-nap-compiler/app_protect-5.210.0/bin/apcompile -l logprofA.json -o /path/to/logprofA_bundle.tgz
 ...
 ```
 

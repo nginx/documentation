@@ -38,43 +38,8 @@ CURRENT_TIME=$(date +%s)
 TEMP_DIR="/tmp/${CURRENT_TIME}"
 TARGET_DISTRIBUTION=""
 PACKAGE_INSTALLER=""
-JWT_TOKEN_FILE_PATH=""
-NGINX_MGMT_BLOCK=$(cat <<'EOF'
-#mgmt {
-    #usage_report endpoint=nginx-mgmt.local interval=30m;
-    #resolver DNS_IP;
+NMS_NGINX_MGMT_BLOCK="mgmt { \n  usage_report endpoint=127.0.0.1 interval=30m; \n  ssl_verify off; \n}";
 
-    #uuid_file /var/lib/nginx/nginx.id;
-
-    #ssl_protocols TLSv1.2 TLSv1.3;
-    #ssl_ciphers DEFAULT;
-
-    #ssl_certificate          client.pem;
-    #ssl_certificate_key      client.key;
-
-    #ssl_trusted_certificate  trusted_ca_cert.crt;
-    #ssl_verify               on;
-    #ssl_verify_depth         2;
-#}
-EOF
-)
-
-NMS_NGINX_MGMT_BLOCK=$(cat <<'EOF'
-mgmt {
-    usage_report endpoint=nginx-mgmt.local interval=30m;
-    resolver DNS_IP;
-    uuid_file /var/lib/nginx/nginx.id;
-    ssl_protocols TLSv1.2 TLSv1.3;
-    ssl_ciphers DEFAULT;
-    ssl off;
-    ssl_certificate          /etc/ssl/nginx/nginx-repo.crt;
-    ssl_certificate_key      /etc/ssl/nginx/nginx-repo.key;
-    ssl_trusted_certificate  /etc/ssl/certs/ca-certificates.crt;
-    ssl_verify               off;
-    ssl_verify_depth         2;
-}
-EOF
-)
 
 # Added to account for the renaming of the adc dimension from application to app.
 if [ -f "/usr/share/nms/catalogs/dimensions/application.yml" ]; then
@@ -150,21 +115,15 @@ fi
 
 createNginxMgmtFile(){
   # Check if the mgmt block exists in the file
-    if grep -Fq "$NGINX_MGMT_BLOCK" "/etc/nginx/nginx.conf"; then
-        sed -i '/#mgmt {/,/#}/s/^\([[:space:]]*\)#/\1/' /etc/nginx/nginx.conf
-        # comment the resolver directive which might not be working
-        sed -i '/^\([[:space:]]*\)resolver DNS_IP;/ s/^/#/' /etc/nginx/nginx.conf
-        sudo sed -i '/mgmt {/,/}/s/\([[:space:]]*\)client.pem/\1\/etc\/ssl\/nginx\/nginx-repo.crt/' /etc/nginx/nginx.conf
-        sudo sed -i '/mgmt {/,/}/s/\([[:space:]]*\)client.key/\1\/etc\/ssl\/nginx\/nginx-repo.key/' /etc/nginx/nginx.conf
-        sudo sed -i '/mgmt {/,/}/s/\([[:space:]]*\)trusted_ca_cert.crt/\1\/etc\/ssl\/certs\/ca-certificates.crt/' /etc/nginx/nginx.conf
-        if [ ! -z ${JWT_TOKEN_FILE_PATH} ]; then
-          sed -i "/mgmt {/a\   license_token  ${JWT_TOKEN_FILE_PATH};" /etc/nginx/nginx.conf
-        fi
+    if grep -Eq '^[[:space:]]*#mgmt' "/etc/nginx/nginx.conf"; then
+        printf "nginx management block disabled, enabling mgmt block"
+        sed -i '/#mgmt {/,/#}/d' /etc/nginx/nginx.conf
+        # shellcheck disable=SC2059
+        printf "${NMS_NGINX_MGMT_BLOCK}" | tee -a /etc/nginx/nginx.conf
     else
-        echo "${NMS_NGINX_MGMT_BLOCK}" >> /etc/nginx/nginx.conf
-        if [ ! -z ${JWT_TOKEN_FILE_PATH} ]; then
-          sed -i "/mgmt {/a\   license_token  ${JWT_TOKEN_FILE_PATH};" /etc/nginx/nginx.conf
-        fi
+        printf "nginx management block not found, adding mgmt block"
+        # shellcheck disable=SC2059
+        printf  "${NMS_NGINX_MGMT_BLOCK}" | tee -a /etc/nginx/nginx.conf
     fi
 }
 
@@ -317,7 +276,7 @@ debian_install_nim(){
   echo "Installing nginx-instance-manager(nim)..."
   if [ "${NIM_VERSION}" == "latest" ]; then
     apt-get install -y nms-instance-manager
-    check_last_command_status "error installing nginx-instance-manager(nim)" $?
+    check_last_command_status "installing nginx-instance-manager(nim)" $?
   else
     package_version=$(findVersionForPackage "nms-instance-manager" "${NIM_VERSION}")
     cmd_status=$?
@@ -385,8 +344,13 @@ installBundleForDebianDistro() {
         check_last_command_status "apt-get install -y nms-sm=${NIM_SM_VERSION}" $?
       fi
       systemctl restart nms
+      sleep 120
       systemctl restart nginx
       systemctl start nms-sm
+  else
+    systemctl restart nms
+    sleep 120
+    systemctl restart nginx
   fi
 }
 
@@ -489,7 +453,7 @@ installBundleForRPMDistro(){
     echo "Installing nginx-instance-manager(nim)"
     if [ "${NIM_VERSION}" == "latest" ]; then
       yum install -y nms-instance-manager
-      check_last_command_status "error installing nginx-instance-manager(nim)" $?
+      check_last_command_status "installing nginx-instance-manager(nim)" $?
     else
       nim_pkg_version=$(findVersionForPackage "nms-instance-manager" "${NIM_VERSION}")
       yum install -y nms-instance-manager="${nim_pkg_version}"
@@ -497,6 +461,11 @@ installBundleForRPMDistro(){
     fi
     echo "Enabling  nms nms-core nms-dpm nms-ingestion nms-integrations"
     systemctl enable nms nms-core nms-dpm nms-ingestion nms-integrations --now
+
+    echo "Restarting nim"
+    systemctl restart nms
+
+    sleep 120
 
     echo "Restarting nginx API gateway"
     systemctl restart nginx
@@ -527,11 +496,11 @@ install_nim_online(){
 }
 
 printUsageInfo(){
-  echo "Usage: $0 [-k /path/to/nginx-repo.crt] [-c /path/to/nginx-repo.key] [-p nginx_plus_version] [-s security_module_version] -i [installable_tar_file_path] [-n nginx_oss_version] [-m mode(online/offline)]
+  echo "Usage: $0 [-c /path/to/nginx-repo.crt] [-k /path/to/nginx-repo.key] [-p nginx_plus_version] [-s security_module_version] -i [installable_tar_file_path] [-n nginx_oss_version] [-m mode(online/offline)]
        [-d distribution (ubuntu20.04,ubuntu22.04,ubuntu24.04,debian11,debian12,centos8,rhel8,rhel9,oracle7,oracle8,amzn2)] [-h print help]"
   printf "\n  -m  <mode> Online/Offline. Controls whether to install from the internet or from a package created using this script. \n"
-  printf "\n  -k  /path/to/your/<nginx-repo.crt> file.\n"
-  printf "\n  -c  /path/to/your/<nginx-repo.key> file.\n"
+  printf "\n  -c  /path/to/your/<nginx-repo.crt> file.\n"
+  printf "\n  -k  /path/to/your/<nginx-repo.key> file.\n"
   printf "\n  -p  <nginx_plus_version>. Include NGINX Plus version to install as an API gateway. Valid values are 'latest' and specific versions like R32. For a list, see https://docs.nginx.com/nginx/releases/. Supersedes -n.\n"
   printf "\n  -n  <nginx_oss_version>. Provide NGINX OSS version to install as an API gateway. Valid values are 'latest' or a specific version like 1.27.1. Ignored if you use -p to specify an NGINX Plus version. For a list, see https://nginx.org/en/download.html .\n"
   printf "\n  -s  <security-module-version>. Installs a security module along with NIM. You can specify latest or a version specified in https://docs.nginx.com/nginx-management-suite/security/releases/release-notes/.\n"
@@ -599,7 +568,11 @@ while getopts ${OPTS_STRING} opt; do
       NIM_VERSION=${OPTARG}
       ;;
     j)
-      JWT_TOKEN_FILE_PATH=${OPTARG}
+      if [ ! -d "/etc/nginx" ]; then
+         mkdir /etc/nginx
+         check_last_command_status "mkdir /etc/nginx" $?
+      fi
+         cp "${OPTARG}" "/etc/nginx/license.jwt"
       ;;
     t)
       CLICKHOUSE_VERSION=${OPTARG}

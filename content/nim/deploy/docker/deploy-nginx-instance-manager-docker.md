@@ -28,6 +28,10 @@ This deployment is ideal for:
 - Instance counting
 - Small-scale environments (20 instances or fewer)
 
+{{< call-out "important" "This Docker option only works for Instance Manager 2.17 and will no longer be supported" "fa-solid fa-triangle-exclamation" >}}
+Please use the [Docker Compose]({{< relref "/nim/deploy/docker/deploy-nginx-instance-manager-docker-compose.md" >}}) option for Instance Manager 2.18 or later, as it includes better resiliency and fault tolerance. 
+{{< /call-out >}}
+
 By the end of this guide, you'll be able to:
 
 - Perform a quick test without persistent storage.
@@ -41,7 +45,7 @@ By the end of this guide, you'll be able to:
 ## What you need
 
 - A working version of [Docker](https://docs.docker.com/get-docker/)
-- Your NGINX Instance Manager subscription's JSON Web Token from [MyF5](https://my.f5.com/manage/s/subscriptions)
+- Your NGINX Instance Manager subscription's JSON Web Token from [MyF5](https://my.f5.com/manage/s/subscriptions). You can use the same JSON Web Token as NGINX Plus in your MyF5 portal.
 
 ---
 

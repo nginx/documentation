@@ -5,13 +5,10 @@ doctypes:
 - tutorial
 tags:
 - docs
-title: Install or Upgrade Instance Manager (deprecated)
+title: Manually install on a virtual machine or bare metal (deprecated)
 toc: true
 weight: 10
 noindex: true
-build:
-  list: never
-  render: always
 ---
 
 
@@ -276,9 +273,7 @@ To install NGINX Instance Manager, you need to add the official repository to pu
 
 ### Add License
 
-A valid license is required to make full use of all the features in Instance Manager.
-
-Refer to the [Add a License]({{< relref "nim/admin-guide/license/add-license.md" >}}) topic for instructions on how to download and apply a trial license, subscription license, or Flexible Consumption Program license.
+{{< include "nim/admin-guide/license/connected-install-license-note.md" >}}
 
 ---
 

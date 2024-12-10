@@ -80,6 +80,16 @@ NGINX Plus R33 is supported on:
 
 More information: [Announcing NGINX Plus R33](https://community.f5.com/kb/technicalarticles/announcing-nginx-plus-r33-release/336403)
 
+<span id="r33_p1"></span>
+### NGINX Plus R33 Update
+
+This is a bugfix release for NGINX Plus R33.
+
+NGINX Plus R33 P1<br/>
+_4 December 2024_
+
+- Resolved an issue related to product code detection on Azure Marketplace VMs.
+
 
 <span id="r32"></span>
 ## NGINX Plus Release 32 (R32)

@@ -15,7 +15,8 @@ This style guide is intended for use by any contributors that are writing docume
 
 This document provides guidelines specific to documenting F5 NGINX products and open-source projects.
 
-When the NGINX style guide does not cover a style, refer next to the [Microsoft Style Guide](https://learn.microsoft.com/en-us/style-guide/welcome/) for user-facing content, and then to the [Chicago Manual of Style](https://www.chicagomanualofstyle.org/home.html). We use standard American spelling, and our preferred dictionary is the [American Heritage Dictionary](https://ahdictionary.com/).
+- Follow American English spelling and conventions. For spelling reference, use the [American Heritage Dictionary](https://ahdictionary.com/).
+- When the NGINX style guide does not cover a style, refer next to the [Microsoft Style Guide](https://learn.microsoft.com/en-us/style-guide/welcome/) for user-facing content, and then to the [Chicago Manual of Style](https://www.chicagomanualofstyle.org/home.html).
 
 When writing documentation for our project, align with the default guide's voice and tone.
 
@@ -103,6 +104,7 @@ The table provides guidelines about the terms you should and should not use for 
 | em dash | Allowed in the proper context. May be written using two dashes to ensure it converts correctly when displayed in the web version. | |
 | data source | | |
 | database | Do not abbreviate as "db". Always a single word. | |
+|date format | Use _month day, year_ format, as in December 4, 2024. Don't use _day month year_, as in 31 July 2016. <br>  In the UI, it's OK to use numbers and slashes for dates if the code supports that format and automatically displays the appropriate date format for different locales. For example, 12/4/2024. | This format aligns with standard American usage for consistency and clarity. |
 | DoS/DDoS/3DoS | Spell out on first reference:<br>- denial-of-service (DoS)<br>- distributed denial-of-service (DDoS)<br>- diverse distributed denial-of-service (3DoS) | |
 | e.g., i.e., etc. | Avoid using Latin abbreviations.<br>- e.g. = for example<br>- i.e. = in other words<br>- etc. = and so on | |
 | earlier and later | Use to describe versioning. For example, "This applies to versions earlier than NGINX Plus R31".<br>Do not use before, after, greater, lower, higher, below, above, and so on. | |
@@ -155,7 +157,7 @@ The table provides guidelines about the terms you should and should not use for 
 | hang | As in the system hangs or This hangs the system. OK in internal department stuff; but it's slang, and we should do better in our docs. For a write-around, try fail to respond, as in: If the program fails to respond, restart the system. Other possible terms to use, depending on the circumstances, could be: § causes the system to jam/get stuck/stop processing. § If horrid: halt, stop or crash; or cause an error. | |
 | hardware upgrade | Hardware upgrade is to install a system in place with a newer platform. For example: Check the version compatibility list before upgrading your software to make sure you do not need to perform a hardware upgrade as well. | |
 | has | One of those weak, vague verbs we're supposed to avoid as much as possible: Allow, do, enable, let, perform, be, has, make, and do. Use direct, active verbs instead. | |
-| Headings | Use imperative verbs (formerly, MyF5 used gerunds) | |
+| Headings | Use imperative verbs (formerly, MyF5 used gerunds)<br><br>Heading text must **not** link to other pages. | |
 | hears | When referring to products, avoid it, it's anthropomorphism. When referring to products, stay away from words like decides, knows, sees, listens, and hears. | |
 | help (capitalization style) | When referring to online help in our documentation, use lowercase format for instances of help as per legacy guidelines (unless specifically referring to the Help button). However, identify it as F5 online help in order to distinguish it from general instances of help as a verb and noun. | |
 | host name | Two words, except when a parameter. | |
@@ -183,6 +185,7 @@ The table provides guidelines about the terms you should and should not use for 
 | ISO 9001:2015 certification | For example: ISO 9001:2015 certified" or ISO 9001:2015 certification Don't use: ISO certified or ISO certification (Per: ISO - Certification, for questions about the use of ISO Certificate terms and logo, please contact the GS quality team at *qmt) | |
 | it | Avoid ambiguous pronouns. Be explicit: "Check the status of the server. Restart ~~it~~ the server" | |
 | jargon | Jargon is the technical terminology or characteristic idiom of a special activity or group. Try hard to avoid it. Think about explaining something to a member of your family or a friend who doesn't know what you know. F5 products are highly technical, but strive to be as plainspoken as possible when describing or instructing. Spell out abbreviations on first use, use the clearest and easiest word to understand that will still accomplish the job, and so on. | |
+| JWT license file | Include the word "license" when referring to the JSON Web Token that users download as part of their F5 NGINX subscription. | |
 | kill | Avoid this term except in command line syntax, where it is a UNIX command for stopping processes. (It's actually an IEEE POSIX standard command.) Alternatives for describing the action are: § End the process § Interrupt the process § Quit the process § Shut down the process § Stop the process | |
 | known issue | Abbreviate as "KI" when using in public-facing documentation. | |
 | knows | When referring to products, avoid it; it's anthropomorphism. When referring to products, stay away from words like decides, knows, sees, listens, and hears. Do not use possessive case for inanimate objects. | |
@@ -497,6 +500,8 @@ this style guide over time. This guide uses the Major.Minor.Patch
 
 | Edition | Date          | Lead Author(s) | Comments                                              |
 |---------|---------------|----------------|-------------------------------------------------------|
+| 1.9   | December 10, 2024 | Mike Jang | Specify the use of "license" when writing about the JWT token associated with licensed versions of NGINX. |
+| 1.8   | December 4, 2024 | Jon Torre | Clarify that heading text must not contain a link to other pages. |
 | 1.7   | November 20, 2024 | Mike Jang  | Specify "includes" must be in at leat two locations. |
 | 1.6   | October 23, 2024 | Jon Torre  | Incorporated specific guidelines from Unit's style guide |
 | 1.5   | October 3, 2024 | Mike Jang  | Include guidelines for "includes"                      |

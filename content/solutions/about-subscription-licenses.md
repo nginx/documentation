@@ -1,27 +1,11 @@
 ---
 title: "About subscription licenses"
 date: 2024-10-10T12:52:14-07:00
-# Change draft status to false to publish doc.
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: ""
-# Assign weights in increments of 100
-weight: 2
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: ""
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["task"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
-
+weight: 2
+type: concept
+product: Solutions
+docs: DOCS-000
 ---
 
 ## Overview
@@ -81,7 +65,11 @@ To ensure NGINX Plus R33 or later can send usage reports, follow these steps bas
 
 ### For internet-connected environments
 
-{{< include "licensing-and-reporting/configure-internet-connected-environment.md" >}}
+Allow outbound HTTPS traffic on TCP port `443` to communicate with F5's licensing endpoint (`product.connect.nginx.com`). Ensure that the following IP addresses are allowed:
+
+- `3.135.72.139`
+- `3.133.232.50`
+- `52.14.85.249`
 
 ### For network-restricted environments
 
@@ -125,12 +113,11 @@ mgmt {
 
 #### NGINX Plus installation guide
 
-- For detailed instructions on installing or upgrading NGINX Plus, visit the [NGINX Plus installation guide]({{< relref "nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}})
-
+For detailed instructions on installing or upgrading NGINX Plus, visit the [NGINX Plus installation guide]({{< relref "nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
 
 #### `mgmt` module and directives
 
-- For full details about the `mgmt` module and its directives, visit the [Module ngx_mgmt_module reference guide](https://nginx.org/en/docs/ngx_mgmt_module.html).
+For full details about the `mgmt` module and its directives, visit the [Module ngx_mgmt_module reference guide](https://nginx.org/en/docs/ngx_mgmt_module.html).
 
 ### NGINX Instance Manager
 
@@ -144,7 +131,18 @@ The instructions below use the terms "internet-connected" and "network-restricte
 #### Submit usage reports to F5 from NGINX Instance Manager {#submit-usage-reports-from-nim}
 
 - **Internet-connected**: Follow the steps in [Report usage to F5]({{< relref "nim/admin-guide/license/report-usage-connected-deployment.md" >}}).
-- **Network-restricted**: Follow the steps in [Report usage to F5 in a network-restricted environment]({{< relref "nim/disconnected/report-usage-disconnected-deployment.md" >}}).
+- **Network-restricted**: Follow the steps in [Report usage to F5 in a disconnected environment]({{< relref "nim/disconnected/report-usage-disconnected-deployment.md" >}}).
+
+### NGINX App Protect WAF
+
+For details on installing or upgrading NGINX App Protect WAF, visit the guide for the respective version:
+
+- [NGINX App Protect WAF v4 installation guide]({{< ref "/nap-waf/v4/admin-guide/install.md" >}})
+- [NGINX App Protect WAF v5 installation guide]({{< ref "/nap-waf/v5/admin-guide/install.md" >}})
+
+### NGINX App Protect DoS
+
+For detailed instructions on installing or upgrading NGINX App Protect DoS, visit the [NGINX App Protect DoS installation guide]({{< ref "/nap-dos/deployment-guide/learn-about-deployment.md" >}}).
 
 ## Watch instructional videos
 
@@ -156,4 +154,3 @@ The instructions below use the terms "internet-connected" and "network-restricte
 
 ### Install or upgrade to NGINX Plus R33
 {{< youtube id="zHd7btagJRM" >}}
-

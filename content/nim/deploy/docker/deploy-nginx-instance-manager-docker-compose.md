@@ -7,7 +7,7 @@ doctypes:
 - deployment guide
 tags:
 - docs
-title: "Deploy NGINX Instance Manager using Docker Compose"
+title: "Deploy using Docker Compose"
 toc: true
 versions: []
 weight: 100
@@ -17,21 +17,28 @@ docs: "DOCS-1653"
 
 ## Overview
 
-This guide will show you how to deploy and use F5 NGINX Instance Manager in Docker using Docker Compose. 
+This guide will show you how to deploy and use F5 NGINX Instance Manager in Docker using [Docker Compose](https://docs.docker.com/compose/). 
 
 This NGINX Instance Manager docker compose deployment is a single Docker image containing NGINX Instance Manager, Security Monitoring, and the latest App Protect compilers, which is orchestrated using a Docker Compose docker-compose.yaml definition. 
-The Clickhouse database is deployed in a separate container to improve resilience and make this a fault tolerant solution. You can also configure persistent storage
+
+The ClickHouse database is deployed in a separate container to improve resilience and make this a fault tolerant solution. You can also configure persistent storage
 
 ---
 
 ## What you need
 
 - A working version of [Docker](https://docs.docker.com/get-docker/)
-- Your NGINX Instance Manager subscription's JSON Web Token from [MyF5](https://my.f5.com/manage/s/subscriptions)
+- Your NGINX Instance Manager subscription's JSON Web Token from [MyF5](https://my.f5.com/manage/s/subscriptions) You can use the same JSON Web Token as NGINX Plus in your MyF5 portal.
 - This pre-configured `docker-compose.yaml` file:
   - {{<fa "download">}} {{<link "/scripts/docker-compose/docker-compose.yaml" "Download docker-compose.yaml file">}}.
   
 ---
+
+## Minimum requirements
+
+Deploying NGINX Instance Manager with docker requires a minimum of 4 CPU cores and 4 GB of memory for basic use cases. However, every environment is unique, primarily due to variations in the NGINX configurations being managed. For instance, managing NGINX instances with hundreds of configuration files or those with WAF (NGINX App Protect) enabled can significantly increase resource demands.
+
+If your use case is limited to usage tracking without active management or agent communication, the minimum requirements should suffice. For more complex deployments, we recommend reviewing the technical specifications guide to ensure the resources allocated are sufficient to handle an increased workload, particularly for the ClickHouse database, which may need to manage a higher volume of reads and writes.
 
 ## Before you start
 
@@ -43,9 +50,9 @@ To set up Docker to communicate with the NGINX container registry located at `pr
 
 {{< include "/nim/docker/docker-registry-login.md" >}}
 
-### Usage 
+### Compose deployment
 
-Navigate to the directory where you downloaded `docker-compose.yaml`.  Run `docker login` and then `docker compose up`.
+Navigate to the directory where you downloaded `docker-compose.yaml`. With the following commands, use docker to log in to private-registry.nginx.com and then run `docker compose up -d`.
 
 ```shell
 ~$ docker login private-registry.nginx.com --username=<JWT_CONTENTS> --password=none
@@ -60,36 +67,34 @@ Navigate to the directory where you downloaded `docker-compose.yaml`.  Run `dock
  ✔ Container nim-nim-1           Started                                                                                           7.4s
 ```
 
-Alternatively, run `docker login` and then run the following make target command: `make nim-compose-up`.
-
-```shell
-~$ docker login private-registry.nginx.com --username=<JWT_CONTENTS> --password=none
-~$ make nim-compose-up
-Building nim bundled image in pipeline...
-Building nim standalone image in pipeline...
-Running nms-docker-images publish...
-starting NIM via compose for development...
-[+] Running 6/6
- ✔ Network nim_clickhouse        Created                                                                                           0.1s
- ✔ Network nim_external_network  Created                                                                                           0.2s
- ✔ Network nim_default           Created                                                                                           0.2s
- ✔ Container nim-precheck-1      Started                                                                                           0.8s
- ✔ Container nim-clickhouse-1    Healthy                                                                                           6.7s
- ✔ Container nim-nim-1           Started                                                                                           7.4s
-```
-
-
 ### Supported environment variables
 
 You may modify the following variables in the `docker-compose.yaml` file:
 
-- NIM_LOG_LEVEL - set the NIM logging level.
-- NIM_METRICS_TTL - set a custom time-to-live in days value for metrics retention.
-- NIM_EVENTS_TTL -  set a custom time-to-live in days value for events retention.
-- NIM_SECURITY_TTL -  set a custom time-to-live in days value for security violation retention.
-- NIM_MAINTENANCE - enable maintenance mode to preform backup, restore and troubleshooting.
-- NIM_WATCHDOG_TIMEOUT - set a custom dpm watchdog timeout in seconds.
-- NIM_LICENSE_MODE_OF_OPERATION - set the NIM license mode of operation to either connected or disconnected. Default is connected.
+- `NIM_LOG_LEVEL` - set the NGINX Instance Manager logging level.
+- `NIM_METRICS_TTL` - set a custom time-to-live in days value for metrics retention.
+- `NIM_EVENTS_TTL` -  set a custom time-to-live in days value for events retention.
+- `NIM_SECURITY_TTL` -  set a custom time-to-live in days value for security violation retention.
+- `NIM_MAINTENANCE` - enable maintenance mode to preform backup, restore and troubleshooting.
+- `NIM_WATCHDOG_TIMEOUT` - set a custom dpm watchdog timeout in seconds.
+- `NIM_LICENSE_MODE_OF_OPERATION` - set the NGINX Instance Manager license mode of operation to either connected or disconnected. Default is connected.
+
+### Compose stop or tear down
+
+Navigate to the directory where you downloaded `docker-compose.yaml`. If you started NIM with `docker compose up -d`, stop NIM services once you've finished with them by running `docker compose stop`. You can bring everything down, removing the containers entirely, with the `docker compose down` command.
+
+```shell
+docker compose down
+```
+```
+[+] Running 6/6
+ ✔ Container nim-nim-1           Removed                                                                                          30.6s
+ ✔ Container nim-clickhouse-1    Removed                                                                                          1.4s
+ ✔ Container nim-precheck-1      Removed                                                                                          0.0s
+ ✔ Network nim_default           Removed                                                                                          0.9s
+ ✔ Network nim_external_network  Removed                                                                                          0.4s
+ ✔ Network nim_clickhouse        Removed                                                                                          0.6s
+```
 
 ---
 
@@ -98,12 +103,15 @@ You may modify the following variables in the `docker-compose.yaml` file:
 In the same `docker-compose.yaml` file, you can modify the following credentials:
 
 Set the admin password (required)
+
 ```yaml
 secrets:
   nim_admin_password:
     file: admin_password.txt
 ```
-Pass a custom .htpasswd file (Optional)
+
+Pass a custom `.htpasswd` file (Optional)
+
 ```yaml
   nim_credential_file:
     file: nim_creds.txt
@@ -121,6 +129,8 @@ secrets:
     file: ./certs/nim_ca.pem
 ```
 
+---
+
 ## Backup 
 
 Once you've set up your Docker containers, use the following command to back them up:
@@ -133,7 +143,6 @@ Backup has been successfully created: /data/backup/nim-backup-<date>.tgz
 
 If your system uses named volumes, inspect the `Mountpoint`. Alternatively, if you're using a shared NFS volume, then collect the data directly from the mount point.
 
-
 ```shell
 ~/compose$ docker inspect volume nim_nim-data | jq '.[0].Mountpoint'
 "/var/lib/docker/volumes/nim_nim-data/_data"
@@ -141,20 +150,26 @@ ubuntu@ip-<address>:~/compose$ sudo ls -l /var/lib/docker/volumes/nim_nim-data/_
 -rw-r--r-- 1 root root 5786953 Sep 27 02:03 nim-backup-<date>.tgz
 ```
 
+---
+
 ## Restore 
 
-Before you can restore a backup, set your containers to maintenance mode:
+Before you can restore a backup, set your containers to maintenance mode in the same `docker-compose.yaml` file:
 
 ```yaml
     environment:
       NIM_MAINTENANCE: "true"
 ```
+
 ```shell
 ~$ docker exec nim-nim-1 nim-restore /data/backup/nim-backup-<date>.tgz
 ...
 NGINX Instance Manager has been restored.
 ```
+
 Once the process is complete set `NIM_MAINTENANCE` to `false` and then run `docker-compose up -d`.
+
+---
 
 ## Storage
 
@@ -184,9 +199,11 @@ volumes:
       device: ":/mnt/nfs_share/clickhouse"
 ```
 
+---
+
 ## Support Data 
 
 In case of problems, it's a good practice to:
 
-* Collect logs `docker-compose logs --since 24h > my-logs-$(date +%Y-%m-%d).txt`
-* Collect backup information `docker exec nim-nim-1 nim-backup`
+- Collect logs `docker-compose logs --since 24h > my-logs-$(date +%Y-%m-%d).txt`
+- Collect backup information `docker exec nim-nim-1 nim-backup`
