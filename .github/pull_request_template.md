@@ -29,6 +29,6 @@ Before creating a PR, run through this checklist and mark each as complete.
 - [ ] If the change involves:
   - Code
   - Anything that resembles Personally identifying information (PII)
-  - URLs
+  - URLs (watch for [typosquatting](https://support.microsoft.com/en-us/topic/what-is-typosquatting-54a18872-8459-4d47-b3e3-d84d9a362eb0)
   - Significant new/revised content
-  The change will require at least two (2) approvals before merging. One requirement: use placeholders such as `<JWT Token>` in place of PII
+  The change will require at least two (2) approvals before merging. One requirement: use placeholders such as `<username>` in place of PII
