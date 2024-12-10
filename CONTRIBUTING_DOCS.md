@@ -16,7 +16,7 @@ If you're an employee of F5/NGINX, also read [For F5/NGINX Employees](./F5-NGINX
 You will need to install Hugo _or_ Docker to build and preview docs in your local development environment.
 Refer to the [Hugo installation instructions](https://gohugo.io/getting-started/installing/) for more information.
 
-**NOTE**: We are currently running [Hugo v0.134.3](https://github.com/gohugoio/hugo/releases/tag/v0.134.3) in production.
+**NOTE**: We are currently running [Hugo v0.134.2](https://github.com/gohugoio/hugo/releases/tag/v0.134.2) in production.
 
 
 Although not a strict requirement, markdown-link-check is also used in documentation development.
@@ -38,11 +38,9 @@ The configuration files are as follows:
 To build the documentation locally, use the `make` command in the documentation folder with these targets:
 
 ```text
-make docs          - Builds the documentation.
-make watch         - Runs a Hugo server to automatically preview changes on a local browser. Use this if you want to preview
-                     the documentation locally before submitting a PR.
-make drafts        - Runs a Hugo server, and displays documentation marked as drafts on a local browser. By default, drafts
-                     are not displayed.
+make watch        - Runs a local Hugo server, allowing for changes to be previewed in a  browser.
+make drafts        - Runs a local Hugo server similar to the `watch` target, but displays documents marked with `draft: true` in their metadata.
+make docs          - Builds the documentation in the local `public/` directory.
 make hugo-get      - Updates the go module file with the latest version of the theme.
 make hugo-tidy     - Removes unnecessary dependencies from the go module file.
 make hugo-update   - Runs the hugo-get and hugo-tidy targets in sequence.
