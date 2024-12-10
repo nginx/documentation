@@ -185,6 +185,7 @@ The table provides guidelines about the terms you should and should not use for 
 | ISO 9001:2015 certification | For example: ISO 9001:2015 certified" or ISO 9001:2015 certification Don't use: ISO certified or ISO certification (Per: ISO - Certification, for questions about the use of ISO Certificate terms and logo, please contact the GS quality team at *qmt) | |
 | it | Avoid ambiguous pronouns. Be explicit: "Check the status of the server. Restart ~~it~~ the server" | |
 | jargon | Jargon is the technical terminology or characteristic idiom of a special activity or group. Try hard to avoid it. Think about explaining something to a member of your family or a friend who doesn't know what you know. F5 products are highly technical, but strive to be as plainspoken as possible when describing or instructing. Spell out abbreviations on first use, use the clearest and easiest word to understand that will still accomplish the job, and so on. | |
+| JWT license file | Include the word "license" when referring to the JSON Web Token that users download as part of their F5 NGINX subscription. | |
 | kill | Avoid this term except in command line syntax, where it is a UNIX command for stopping processes. (It's actually an IEEE POSIX standard command.) Alternatives for describing the action are: § End the process § Interrupt the process § Quit the process § Shut down the process § Stop the process | |
 | known issue | Abbreviate as "KI" when using in public-facing documentation. | |
 | knows | When referring to products, avoid it; it's anthropomorphism. When referring to products, stay away from words like decides, knows, sees, listens, and hears. Do not use possessive case for inanimate objects. | |
@@ -499,7 +500,8 @@ this style guide over time. This guide uses the Major.Minor.Patch
 
 | Edition | Date          | Lead Author(s) | Comments                                              |
 |---------|---------------|----------------|-------------------------------------------------------|
-| 1.7   | December 4, 2024 | Jon Torre | Clarify that heading text must not contain a link to other pages. |
+| 1.9   | December 10, 2024 | Mike Jang | Specify the use of "license" when writing about the JWT token associated with licensed versions of NGINX. |
+| 1.8   | December 4, 2024 | Jon Torre | Clarify that heading text must not contain a link to other pages. |
 | 1.7   | November 20, 2024 | Mike Jang  | Specify "includes" must be in at leat two locations. |
 | 1.6   | October 23, 2024 | Jon Torre  | Incorporated specific guidelines from Unit's style guide |
 | 1.5   | October 3, 2024 | Mike Jang  | Include guidelines for "includes"                      |
