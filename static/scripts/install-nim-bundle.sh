@@ -526,16 +526,16 @@ check_NIM_status(){
   if ! curl -k https://localhost/ui 2>/dev/null | grep -q "NGINX"; then
     sleep 2
     if ! curl -k https://localhost/ui 2>/dev/null | grep -q "NGINX"; then
-    	echo "NIM failed to start"
+    	echo "Nginx Instance Manager failed to start"
       exit 1
     else
-      echo -e "${GREEN}NIM Successfully Started${NC}"
-      echo -e "\n[NOTE] - If NIM dashboard is still not accessible, Please ensure port 443 is exposed and accessible via firewall"
+      echo -e "${GREEN}Nginx Instance Manager Successfully Started${NC}"
+      echo -e "\n[NOTE] - If Nginx Instance Manager dashboard is still not accessible, Please ensure port 443 is exposed and accessible via firewall"
       exit 0
     fi
   else
-	  echo -e "${GREEN}NIM Successfully Started${NC}"
-    echo -e "\n[NOTE] - If NIM dashboard is still not accessible, Please ensure port 443 is exposed and accessible via firewall"
+	  echo -e "${GREEN}Nginx Instance Manager Successfully Started${NC}"
+    echo -e "\n[NOTE] - If Nginx Instance Manager dashboard is still not accessible, Please ensure port 443 is exposed and accessible via firewall"
     exit 0
   fi
 }
