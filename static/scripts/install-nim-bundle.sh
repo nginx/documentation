@@ -345,12 +345,12 @@ installBundleForDebianDistro() {
         check_last_command_status "apt-get install -y nms-sm=${NIM_SM_VERSION}" $?
       fi
     systemctl restart nms
-    sleep 20
+    sleep 10
     systemctl restart nginx
     systemctl start nms-sm
   else
     systemctl restart nms
-    sleep 20
+    sleep 10
     systemctl restart nginx
   fi
 }
@@ -466,7 +466,7 @@ installBundleForRPMDistro(){
     echo "Restarting nim"
     systemctl restart nms
 
-    sleep 20
+    sleep 10
 
     echo "Restarting nginx API gateway"
     systemctl restart nginx
@@ -515,6 +515,7 @@ printUsageInfo(){
 }
 
 check_NIM_status(){
+  sleep 5
   GREEN='\033[0;32m'
   NC='\033[0m'
 
@@ -848,20 +849,20 @@ else
             check_last_command_status "dpkg -i \"$pkg_nim\"" $?
         done
 
-            generate
-            echo "Starting clickhouse-server"
-            systemctl start clickhouse-server
+        generate
+        echo "Starting clickhouse-server"
+        systemctl start clickhouse-server
 
-            echo "Starting nginx"
-            systemctl start nginx
+        echo "Starting nginx"
+        systemctl start nginx
 
-            echo "Reloading nginx configuration"
-            systemctl restart nginx
+        echo "Reloading nginx configuration"
+        systemctl restart nginx
 
-            echo "Enabling and starting nim"
-            systemctl enable nms nms-core nms-dpm nms-ingestion nms-integrations --now
+        echo "Enabling and starting nim"
+        systemctl enable nms nms-core nms-dpm nms-ingestion nms-integrations --now
 
-            check_NIM_status
+        check_NIM_status
 
       elif cat /etc/*-release | grep -iq 'centos\|fedora\|rhel\|Amazon Linux'; then
         for pkg_nginx in "${TEMP_DIR}"/nginx*.rpm; do
@@ -893,6 +894,7 @@ else
 
         echo "Enabling and starting nim"
         systemctl enable nms nms-core nms-dpm nms-ingestion nms-integrations --now
+
         check_NIM_status
 
       else
