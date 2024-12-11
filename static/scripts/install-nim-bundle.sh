@@ -525,6 +525,7 @@ check_NIM_status(){
 	  echo -e "${GREEN}NIM Successfully Started${NC}"
     echo -e "\n[NOTE] - If NIM dashboard is still not accessible, Please ensure port 443 is exposed and accessible via firewall"
   fi
+  exit 0
 }
 
 check_cert_key_path(){
@@ -549,24 +550,7 @@ check_if_nim_installed(){
 
   if [[ "$all_services_present" == 1 ]]; then
     if [ "$UNINSTALL_NIM" == "true" ]; then
-      if cat /etc/*-release | grep -iq 'debian\|ubuntu'; then
-        apt-get remove nms-instance-manager
-        check_last_command_status "apt-get remove nms-instance-manager" $?
-        rm /etc/nginx/nginx.conf
-        check_last_command_status "rm /etc/nginx/nginx.conf" $?
-        echo "NGINX Instance Manager Uninstalled successfully"
-        exit 0
-      elif cat /etc/*-release | grep -iq 'centos\|fedora\|rhel\|Amazon Linux'; then
-        yum remove nms-instance-manager
-        check_last_command_status "yum remove nms-instance-manager" $?
-        rm /etc/nginx/nginx.conf
-        check_last_command_status "rm /etc/nginx/nginx.conf" $?
-        echo "NGINX Instance Manager Uninstalled successfully"
-        exit 0
-      else
-        printf "Unsupported distribution"
-        exit 1
-      fi
+      uninstall_nim
     else
       echo "NGINX Instance Manager already installed."
       exit 1
@@ -576,6 +560,34 @@ check_if_nim_installed(){
       echo "Cannot uninstall NGINX Instance Manager as it is not installed"
       exit 1
     fi
+  fi
+}
+
+uninstall_nim(){
+  if cat /etc/*-release | grep -iq 'debian\|ubuntu'; then
+    apt-get remove nms-instance-manager --purge
+    check_last_command_status "apt-get remove nms-instance-manager" $?
+    apt-get -y remove nginx --purge
+    apt-get -y remove nginx-plus --purge
+    rm -rf /etc/nginx
+    rm -rf /etc/nms
+    rm -rf /var/log/nms
+    echo "NGINX Instance Manager Uninstalled successfully"
+    exit 0
+  elif cat /etc/*-release | grep -iq 'centos\|fedora\|rhel\|Amazon Linux'; then
+    yum remove nms-instance-manager
+    check_last_command_status "yum remove nms-instance-manager" $?
+    yum -y remove nginx
+    yum -y remove nginx-plus
+    rm -rf /etc/nginx
+    rm -rf /etc/nms
+    rm -rf /var/log/nms
+    yum autoremove
+    echo "NGINX Instance Manager Uninstalled successfully"
+    exit 0
+  else
+    printf "Unsupported distribution"
+    exit 1
   fi
 }
 
