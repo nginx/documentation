@@ -135,7 +135,11 @@ findVersionForPackage(){
      readarray -t versions < <(apt-cache madison "${pkg_name}" | grep "${pkg_version}" | cut -d '|' -f2 | tr -d ' ')
      #readarray -t versions < <(echo "${available_versions[@]}"| grep "${pkg_version}") >&2
    else
-     readarray -t versions < <(yum list "${pkg_name}" --showduplicates | grep "${pkg_version}" | cut -d' ' -f2)
+     if [[ "$pkg_name" == "nginx" ]]; then
+      readarray -t versions < <(yum list "${pkg_name}" --repo nginx-stable --showduplicates | grep "${pkg_version}" | cut -d' ' -f2)
+     else
+      readarray -t versions < <(yum list "${pkg_name}" --showduplicates | grep "${pkg_version}" | tr -s ' ' | cut -d' ' -f2)
+     fi
      #readarray -t versions < <(echo "${available_versions[@]}"| grep "${pkg_version}" | cut -d' ' -f2) >&2
    fi
    # Print the array contents
@@ -407,14 +411,14 @@ installBundleForRPMDistro(){
                echo "Package nginx-plus with version ${NGINX_PLUS_VERSION} not found"
                exit $cmd_status
             fi
-            yum install -y nginx-plus="${nginx_plus_pkg_version}"
-            check_last_command_status "yum install -y nginx-plus=${nginx_plus_pkg_version}" $?
+            yum install -y nginx-plus-"${nginx_plus_pkg_version}"
+            check_last_command_status "yum install -y nginx-plus-${nginx_plus_pkg_version}" $?
          fi
          createNginxMgmtFile
     else
          echo "Installing nginx..."
          if [ "${NGINX_VERSION}" == "latest" ]; then
-            yum install -y nginx --disablerepo nginx-plus
+            yum install -y nginx --repo nginx-stable
             check_last_command_status "yum install -y nginx" $?
          else
             nginx_pkg_version=$(findVersionForPackage "nginx" "${NGINX_VERSION}")
@@ -423,8 +427,8 @@ installBundleForRPMDistro(){
                echo "Package nginx with version ${NGINX_VERSION} not found"
                exit $cmd_status
             fi
-            yum install -y nginx="${nginx_pkg_version}"
-            check_last_command_status "yum install -y nginx=${nginx_pkg_version}" $?
+            yum install -y nginx-"${nginx_pkg_version}" --repo nginx-stable
+            check_last_command_status "yum install -y nginx-${nginx_pkg_version}" $?
        fi
     fi
     echo "Enabling nginx service"
@@ -457,7 +461,7 @@ installBundleForRPMDistro(){
       check_last_command_status "installing nginx-instance-manager(nim)" $?
     else
       nim_pkg_version=$(findVersionForPackage "nms-instance-manager" "${NIM_VERSION}")
-      yum install -y nms-instance-manager="${nim_pkg_version}"
+      yum install -y nms-instance-manager-"${nim_pkg_version}"
       check_last_command_status "apt-get install -y nms-instance-manager=${nim_pkg_version}" $?
     fi
     echo "Enabling  nms nms-core nms-dpm nms-ingestion nms-integrations"
@@ -509,7 +513,7 @@ printUsageInfo(){
   printf "\n  -d  <distribution>. Include the label of a distribution. Requires -m Offline. This creates a file with Nginx Instance Manager dependencies and Nginx Instance Manager install packages for the specified distribution.\n"
   printf "\n  -v  <NIM_VERSION>. Nginx Instance Manager version to install/package.\n"
   printf "\n  -j  <JWT_TOKEN_FILE_PATH>. Path to the JWT token file used for license and usage consumption reporting.'\n"
-  printf "\n  -u  To uninstall Nginx Instance Manager and it's dependencies. \n"
+  printf "\n  -r  To uninstall Nginx Instance Manager and it's dependencies. \n"
   printf "\n  -h  Print this help message.\n"
   exit 0
 }
@@ -520,12 +524,20 @@ check_NIM_status(){
   NC='\033[0m'
 
   if ! curl -k https://localhost/ui 2>/dev/null | grep -q "NGINX"; then
-	  echo "Nginx Instance Manager failed to start"
+    sleep 2
+    if ! curl -k https://localhost/ui 2>/dev/null | grep -q "NGINX"; then
+    	echo "NIM failed to start"
+      exit 1
+    else
+      echo -e "${GREEN}NIM Successfully Started${NC}"
+      echo -e "\n[NOTE] - If NIM dashboard is still not accessible, Please ensure port 443 is exposed and accessible via firewall"
+      exit 0
+    fi
   else
-	  echo -e "${GREEN}Nginx Instance Manager Successfully Started${NC}"
-    echo -e "\n[NOTE] - If Nginx Instance Manager dashboard is still not accessible, Please ensure port 443 is exposed and accessible via firewall"
+	  echo -e "${GREEN}NIM Successfully Started${NC}"
+    echo -e "\n[NOTE] - If NIM dashboard is still not accessible, Please ensure port 443 is exposed and accessible via firewall"
+    exit 0
   fi
-  exit 0
 }
 
 check_cert_key_path(){
@@ -591,7 +603,7 @@ uninstall_nim(){
   fi
 }
 
-OPTS_STRING="k:c:m:d:i:s:p:n:hv:t:j:u"
+OPTS_STRING="k:c:m:d:i:s:p:n:hv:t:j:r"
 while getopts ${OPTS_STRING} opt; do
   case ${opt} in
     c)
@@ -643,7 +655,7 @@ while getopts ${OPTS_STRING} opt; do
     t)
       CLICKHOUSE_VERSION=${OPTARG}
           ;;
-    u)
+    r)
       UNINSTALL_NIM="true"
       ;;
     h)
