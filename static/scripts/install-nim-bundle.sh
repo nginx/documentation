@@ -414,7 +414,7 @@ installBundleForRPMDistro(){
     else
          echo "Installing nginx..."
          if [ "${NGINX_VERSION}" == "latest" ]; then
-            yum install -y nginx
+            yum install -y nginx --disablerepo nginx-plus
             check_last_command_status "yum install -y nginx" $?
          else
             nginx_pkg_version=$(findVersionForPackage "nginx" "${NGINX_VERSION}")
