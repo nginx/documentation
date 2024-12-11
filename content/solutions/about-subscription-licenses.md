@@ -113,12 +113,11 @@ mgmt {
 
 #### NGINX Plus installation guide
 
-- For detailed instructions on installing or upgrading NGINX Plus, visit the [NGINX Plus installation guide]({{< relref "nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}})
-
+For detailed instructions on installing or upgrading NGINX Plus, visit the [NGINX Plus installation guide]({{< relref "nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
 
 #### `mgmt` module and directives
 
-- For full details about the `mgmt` module and its directives, visit the [Module ngx_mgmt_module reference guide](https://nginx.org/en/docs/ngx_mgmt_module.html).
+For full details about the `mgmt` module and its directives, visit the [Module ngx_mgmt_module reference guide](https://nginx.org/en/docs/ngx_mgmt_module.html).
 
 ### NGINX Instance Manager
 
@@ -132,7 +131,18 @@ The instructions below use the terms "internet-connected" and "network-restricte
 #### Submit usage reports to F5 from NGINX Instance Manager {#submit-usage-reports-from-nim}
 
 - **Internet-connected**: Follow the steps in [Report usage to F5]({{< relref "nim/admin-guide/license/report-usage-connected-deployment.md" >}}).
-- **Network-restricted**: Follow the steps in [Report usage to F5 in a network-restricted environment]({{< relref "nim/disconnected/report-usage-disconnected-deployment.md" >}}).
+- **Network-restricted**: Follow the steps in [Report usage to F5 in a disconnected environment]({{< relref "nim/disconnected/report-usage-disconnected-deployment.md" >}}).
+
+### NGINX App Protect WAF
+
+For details on installing or upgrading NGINX App Protect WAF, visit the guide for the respective version:
+
+- [NGINX App Protect WAF v4 installation guide]({{< ref "/nap-waf/v4/admin-guide/install.md" >}})
+- [NGINX App Protect WAF v5 installation guide]({{< ref "/nap-waf/v5/admin-guide/install.md" >}})
+
+### NGINX App Protect DoS
+
+For detailed instructions on installing or upgrading NGINX App Protect DoS, visit the [NGINX App Protect DoS installation guide]({{< ref "/nap-dos/deployment-guide/learn-about-deployment.md" >}}).
 
 ## Watch instructional videos
 
@@ -144,4 +154,3 @@ The instructions below use the terms "internet-connected" and "network-restricte
 
 ### Install or upgrade to NGINX Plus R33
 {{< youtube id="zHd7btagJRM" >}}
-

@@ -1,1 +1,0 @@
-NGINX App Protect WAF can be secured with mutual TLS (mTLS) connection to provide an extra layer of security where the mutual authentication is set up between both the NGINX (client) and App Protect Enforcer (server). This adds an extra layer of security, ensuring that both parties are who they claim to be.

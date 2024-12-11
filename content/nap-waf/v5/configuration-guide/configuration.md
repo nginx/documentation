@@ -48,7 +48,7 @@ For more information on the NGINX App Protect WAF security features, see [NGINX 
 
 ## Attack Signatures Overview
 
-{{< include "nap-waf/config/v5/attack-signatures-overview-v5.md" >}}
+{{< include "/nap-waf/concept/attack-signatures.md" >}}
 
 ### Signature Settings
 
@@ -70,15 +70,70 @@ See [signature sets](#signature-sets) for configuring the signature sets include
 
 ### Policy Configuration Overview
 
-{{< include "nap-waf/config/v5/policy-configuration-overview-v5.md" >}}
+The NGINX App Protect WAF security policy configuration uses the declarative format based on a pre-defined base template. The policy is represented in a JSON file which you can edit to add, modify and remove security capabilities with respect to the base template. The JSON file then should be compiled to a bundle file (`.tgz`) using the [NGINX App Protect WAF Compiler]({{< relref "/nap-waf/v5/admin-guide/compiler.md" >}}). The way the policy is integrated into the NGINX configuration is via referencing the bundle file (using the full path) in the `nginx.conf` file.
+
+Refer to the [admin guide]({{< relref "/nap-waf/v5/admin-guide/install.md#using-policy-and-logging-profile-bundles" >}}) for instructions on how to mount bundle files to your deployment.
+
+NGINX App Protect WAF provides a [JSON Schema](https://json-schema.org/) which can be used to validate a JSON policy file to ensure file format compliance. The schema file can be generated using a script inside the NGINX App Protect WAF Compiler image:
+
+```shell
+sudo docker run --rm \
+ -v $(pwd):$(pwd) \
+ -w $(pwd) \
+ --entrypoint=/opt/app_protect/bin/generate_json_schema.pl \
+ private-registry.nginx.com/nap/waf-compiler:1.0.0
+```
+
+Replace the `1.0.0` with the version you use.
+
+This script will output the schema to a file named `policy.json` into the current working directory. Once the schema file is generated, you can use validation tools such as [AJV](https://ajv.js.org/standalone.html) to validate a JSON policy file.
+
+In the following example, the NGINX configuration file with App Protect enabled in the HTTP context and the policy `/policies/policy1.tgz` is used:
+
+```nginx
+user nginx;
+worker_processes  4;
+
+load_module modules/ngx_http_app_protect_module.so;
+
+error_log /var/log/nginx/error.log debug;
+
+events {
+    worker_connections  65536;
+}
+
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+    sendfile        on;
+    keepalive_timeout  65;
+
+    app_protect_enable on; # This is how you enable NGINX App Protect WAF in the relevant context/block
+    app_protect_policy_file "/etc/app_protect/conf/policy1.tgz"; # This is a reference to the policy bundle file to use. If not defined, the default policy is used
+    app_protect_security_log_enable on; # This section enables the logging capability
+    app_protect_security_log "/etc/app_protect/conf/log_all.tgz" syslog:server=127.0.0.1:514; # This is where the remote logger is defined in terms of: logging options (defined in the referenced file), log server IP, log server port
+
+    server {
+        listen       80;
+        server_name  localhost;
+        proxy_http_version 1.1;
+
+        location / {
+            client_max_body_size 0;
+            default_type text/html;
+            proxy_pass http://172.29.38.211/;
+        }
+    }
+}
+```
 
 ### Basic Configuration and the Default Policy
 
-{{< include "nap-waf/config/v5/basic-config-and-default-policy-v5.md" >}}
+{{< include "/nap-waf/concept/basic-config-default-policy.md" >}}
 
 ### The Strict Policy
 
-{{< include "nap-waf/config/v5/strict-policy-v5.md" >}}
+{{< include "/nap-waf/concept/strict-policy.md" >}}
 
 ### Default Policy Bundles
 
@@ -215,21 +270,35 @@ app_protect_policy_file /policies_mount/new_default_policy.tgz;
 
 ### apreload
 
-{{< include "nap-waf/config/v5/apreload.md" >}}
+{{< include "/nap-waf/concept/apreload.md" >}}
 
 ### apreload Events
 
-{{< include "nap-waf/config/v5/apreload-events.md" >}}
+apreload events use the same format as the current operation log events written in the NGINX error log, namely: `configuration_load_success` or `configuration_load_failure` with the details in JSON format. Refer to the [Operation logs]({{< relref "/nap-waf/v4/logging-overview/operation-logs.md" >}}) for more details.
+
+{{< note >}}
+Note that if any of the configuration files are invalid, apreload will discover that and return the proper error message in the `configuration_load_failure` event. The Enforcer continues to run with the previous configuration.{{< /note >}}
 
 ### Modification to nginx.conf file and App Protect Configurations
-{{< include "nap-waf/config/v5/modification-nginx-config.md" >}}
 
+When both `nginx.conf` file and App Protect configurations are modified, apreload enforces only the App Protect configurations but nginx reload enforces both. apreload is a script that you run remotely on the `nginx` container after you have modified the policy in the `nginx` container.  The result of the apreload script is viewable in the `waf-config-mgr` container log.
 
+For apreload, use the following command:
 
+```shell
+kubectl -n [namespace] exec -it [podname] -c waf-nginx -- bash /opt/app_protect/bin/apreload
+```
+
+Output:
+
+```shell
+kubectl -n [namespace] logs [podname] -c config-mgr
+sudo docker logs waf-config-mgr
+```
 
 ## External References
 
-{{< include "nap-waf/config/v5/external-references-v5.md" >}}
+{{< include "/nap-waf/concept/external-references.md" >}}
 
 ### Types of References
 
@@ -237,7 +306,25 @@ app_protect_policy_file /policies_mount/new_default_policy.tgz;
 
 ## OpenAPI Specification File Reference
 
-{{< include "nap-waf/config/v5/openapi-specification-file-reference-v5.md" >}}
+The OpenAPI Specification defines the spec file format needed to describe RESTful APIs. The spec file can be written either in JSON or YAML. Using a spec file simplifies the work of implementing API protection. Refer to the OpenAPI Specification (formerly called Swagger) for details.
+
+The simplest way to create an API protection policy is using an OpenAPI Specification file to import the details of the APIs. If you use an OpenAPI Specification file, NGINX App Protect WAF will automatically create a policy for the following properties (depending on what's included in the spec file):
+* Methods
+* URLs
+* Parameters
+* JSON profiles
+
+To obtain an OpenAPI-ready policy template, execute the following command:
+
+```shell
+sudo docker run --rm --entrypoint='' private-registry.nginx.com/nap/waf-compiler:1.0.0 cat /etc/app_protect/conf/NginxApiSecurityPolicy.json
+```
+
+Ensure to substitute 1.0.0 with the specific version that you are using.
+
+It contains violations related to OpenAPI set to blocking (enforced).
+
+{{< note >}} NGINX App Protect WAF supports only one OpenAPI Specification file reference per policy.{{< /note >}}
 
 ### Types of OpenAPI References
 
@@ -279,7 +366,7 @@ app_protect_policy_file /policies_mount/new_default_policy.tgz;
 
 ### Configuration
 
-{{< include "nap-waf/config/v5/bidirectional-configuration-v5.md" >}}
+{{< include "/nap-waf/how-to/bidirectional-configuration.md" >}}
 
 ### gRPC Bidirectional Streaming Enforcement
 
@@ -307,7 +394,7 @@ app_protect_policy_file /policies_mount/new_default_policy.tgz;
 
 ### gRPC Logging
 
-{{< include "nap-waf/config/v5/grpc-logging-v5.md" >}}
+{{< include "/nap-waf/concept/grpc-logging.md" >}}
 
 ## Securing GraphQL APIs with NGINX App protect WAF
 
@@ -319,7 +406,7 @@ app_protect_policy_file /policies_mount/new_default_policy.tgz;
 
 ## Enabling GraphQL with Basic Configuration
 
-{{< include "nap-waf/config/v5/enabling-graphql-v5.md" >}}
+{{< include "/nap-waf/how-to/enable-graphql.md" >}}
 
 ## GraphQL Advanced Configuration
 
@@ -331,7 +418,9 @@ app_protect_policy_file /policies_mount/new_default_policy.tgz;
 
 ### GraphQL Profile
 
-{{< include "nap-waf/config/v5/graphql-profile-v5.md" >}}
+{{< include "/nap-waf/concept/graphql-profile.md" >}}
+
+{{< note >}} For GraphQL profile default values and GraphQL violations reference, see NGINX App Protect WAF [Declarative Policy guide.]({{< relref "/nap-waf/v5/declarative-policy/policy.md" >}}) {{< /note >}}
 
 ### Define URL settings
 
@@ -353,7 +442,7 @@ app_protect_policy_file /policies_mount/new_default_policy.tgz;
 
 ### Condition Syntax Usage
 
-{{< include "nap-waf/config/v5/condition-syntax-usage-v5.md" >}}
+For the full reference of Override Rules condition syntax and usage see the NGINX App Protect WAF [Declarative Policy guide]({{< relref "/nap-waf/v5/declarative-policy/policy.md" >}}/#policy/override-rules).
 
 ### First Match Principle
 
@@ -394,11 +483,151 @@ app_protect_policy_file /policies_mount/new_default_policy.tgz;
 
 #### Access Profile
 
-{{< include "nap-waf/config/v5/json-web-tokens-access-profile-v5.md" >}}
+NGINX App Protect WAF introduces a new policy entity known as "**access profile**" to authenticate JSON Web Token. Access Profile is added to the app protect policy to enforce JWT settings. JSON Web Token needs to be applied to the URLs for enforcement and includes the actions to be taken with respect to access tokens. It is specifically associated with HTTP URLs and does not have any predefined default profiles.
+
+{{< note >}}At present, only one access profile is supported within the App Protect policy. However, the JSON schema for the policy will be designed to accommodate multiple profiles in the future.{{< /note >}}
+
+The access profile includes:
+
+- **Enforcement Settings**: here you can configure the "enforceMaximumLength," "enforceValidityPeriod," and "keyFiles" settings within the scope of this profile, allowing you to enable or disable them as needed.
+- **Location**: here you can modify the location settings, choosing between "header" or "query," as well as specifying the "name" for the header or parameter.
+- **Access Profile Settings**: here you can set the "maximumLength" as well as specify the "name" and "type" for the access profile, with "jwt" representing JSON Web Token.
+
+Access Profile example:
+
+Refer to the following example where all access profile properties are configured to enforce specific settings within the App Protect policy. In this instance, we have established an access profile named "**access_profile_jwt**" located in the **authorization header**. The "maximumLength" for the token is defined as **2000**, and "verifyDigitalSignature" is set to **true**.
+
+```shell
+{
+    "policy": {
+        "name": "jwt_policy",
+        "template": { "name": "POLICY_TEMPLATE_NGINX_BASE"
+        },
+        "access-profiles": [
+         {
+            "description": "",
+            "enforceMaximumLength": true,
+            "enforceValidityPeriod": false,
+            "keyFiles": [
+               {
+                  "contents": "{\r\n  \"keys\": [\r\n    {\r\n      \"alg\": \"RS256\",\r\n      \"e\": \"AQAB\",\r\n      \"kid\": \"1234\",\r\n      \"kty\": \"RSA\",\r\n      \"n\": \"tSbi8WYTScbuM4fe5qe4l60A2SG5oo3u5JDBtH_dPJTeQICRkrgLD6oyyHJc9BCe9abX4FEq_Qd1SYHBdl838g48FWblISBpn9--B4D9O5TPh90zAYP65VnViKun__XHGrfGT65S9HFykvo2KxhtxOFAFw0rE6s5nnKPwhYbV7omVS71KeT3B_u7wHsfyBXujr_cxzFYmyg165Yx9Z5vI1D-pg4EJLXIo5qZDxr82jlIB6EdLCL2s5vtmDhHzwQSdSOMWEp706UgjPl_NFMideiPXsEzdcx2y1cS97gyElhmWcODl4q3RgcGTlWIPFhrnobhoRtiCZzvlphu8Nqn6Q\",\r\n      \"use\": \"sig\",\r\n      \"x5c\": [\r\n        \"MIID1zCCAr+gAwIBAgIJAJ/bOlwBpErqMA0GCSqGSIb3DQEBCwUAMIGAMQswCQYDVQQGEwJpbDEPMA0GA1UECAwGaXNyYWVsMRAwDgYDVQQHDAd0ZWxhdml2MRMwEQYDVQQKDApmNW5ldHdvcmtzMQwwCgYDVQQLDANkZXYxDDAKBgNVBAMMA21heDEdMBsGCSqGSIb3DQEJARYOaG93ZHlAbWF0ZS5jb20wIBcNMjIxMTA3MTM0ODQzWhgPMjA1MDAzMjUxMzQ4NDNaMIGAMQswCQYDVQQGEwJpbDEPMA0GA1UECAwGaXNyYWVsMRAwDgYDVQQHDAd0ZWxhdml2MRMwEQYDVQQKDApmNW5ldHdvcmtzMQwwCgYDVQQLDANkZXYxDDAKBgNVBAMMA21heDEdMBsGCSqGSIb3DQEJARYOaG93ZHlAbWF0ZS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC1JuLxZhNJxu4zh97mp7iXrQDZIbmije7kkMG0f908lN5AgJGSuAsPqjLIclz0EJ71ptfgUSr9B3VJgcF2XzfyDjwVZuUhIGmf374HgP07lM+H3TMBg/rlWdWIq6f/9ccat8ZPrlL0cXKS+jYrGG3E4UAXDSsTqzmeco/CFhtXuiZVLvUp5PcH+7vAex/IFe6Ov9zHMVibKDXrljH1nm8jUP6mDgQktcijmpkPGvzaOUgHoR0sIvazm+2YOEfPBBJ1I4xYSnvTpSCM+X80UyJ16I9ewTN1zHbLVxL3uDISWGZZw4OXirdGBwZOVYg8WGuehuGhG2IJnO+WmG7w2qfpAgMBAAGjUDBOMB0GA1UdDgQWBBSHykVOY3Q1bWmwFmJbzBkQdyGtkTAfBgNVHSMEGDAWgBSHykVOY3Q1bWmwFmJbzBkQdyGtkTAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQCgcgp72Xw6qzbGLHyNMaCm9A6smtquKTdFCXLWVSOBix6WAJGPv1iKOvvMNF8ZV2RU44vS4Qa+o1ViBN8DXuddmRbShtvxcJzRKy1I73szZBMlZL6euRB1KN4m8tBtDj+rfKtPpheMtwIPbiukRjJrzRzSz3LXAAlxEIEgYSifKpL/okYZYRY6JF5PwSR0cvrfe/qa/G2iYF6Ps7knxy424RK6gpMbnhxb2gdhLPqDE50uxkr6dVHXbc85AuwAi983tOMhTyzDh3XTBEt2hr26F7jSeniC7TTIxmMgDdtYzRMwdb1XbubdtzUPnB/SW7jemK9I45kpKlUBDZD/QwER\"\r\n      ]\r\n    }\r\n  ]\r\n}",  # there can be more only one JWKs file (contents) in the policy JSON schema, however, the total amount of JWK in the JWKs is limited to 10.
+                  "fileName": "JWKSFile.json"
+               }
+            ],
+            "location": {
+               "in": "header",  # the other option is: "query"
+               "name": "authorization"  # the name of the header or parameter (according to "part")
+            },
+            "maximumLength": 2000,
+            "name": "access_profile_jwt",
+            "type": "jwt",
+            "usernameExtraction": {
+               "claimPropertyName": "sub",
+               "enabled": true,
+               "isMandatory": false
+            },
+            "verifyDigitalSignature": true
+        }
+      ],
+      "urls": [
+         {
+            "name": "/jwt",
+            "accessProfile": {
+               "name": "access_profile_jwt"
+            },
+            "attackSignaturesCheck": true,
+            "isAllowed": true,
+            "mandatoryBody": false,
+            "method": "*",
+            "methodsOverrideOnUrlCheck": false,
+            "name": "/jwt",
+            "performStaging": false,
+            "protocol": "http",
+            "type": "explicit"
+         }
+      ]
+    }
+}
+```
+
+{{< note >}} For access profile default values and their related field names, see NGINX App Protect WAF [Declarative Policy guide]({{< relref "/nap-waf/v5/declarative-policy/policy.md" >}}). {{< /note >}}
+
+#### Access Profile in URL Settings
+
+The next step to configure JWT is to define the URL settings. Add the access profile name that you defined previously under the access profiles in the "name" field. From the previous example, we associate the access profile "**access_profile_jwt**" with the "name": **/jwt** in the URLs section to become effective, which means URLs with /jwt name are permitted for this feature and will be used for all JWT API requests.
+
+Please note that the access profile cannot be deleted if it is in use in any URL.
 
 ### Authorization Rules in URLs
 
-{{< include "nap-waf/config/v5/json-web-tokens-auth-rules-urls-v5.md" >}}
+A new entity named as `authorizationRules` is introduced under the URL. This entity encompasses an authorization condition essential for "Claims" validation, enabling access to a specific URL based on claims of a JWT.
+The `authorizationRules` entity consists of the following two mandatory fields:
+
+- `name`: a unique descriptive name for the condition predicate
+- `condition`: a boolean expression that defines the conditions for granting access to the URL
+
+Here is an example of declarative policy using an `authorizationRules` entity under the access profile:
+```json
+{
+    "urls": [
+        {
+            "name": "/api/v3/shops/items/*",
+            "accessProfile": {
+                "name": "my_jwt"
+            },
+            "authorizationRules": [
+                {
+                    "condition": "claims['scope'].contains('pet:read') and claims['scope'].contains('pet:write')",
+                    "name": "auth_scope"
+                },
+                {
+                    "condition": "claims['roles'].contains('admin') or claims['roles'].contains('inventory-manager')",
+                    "name": "auth_roles"
+                },
+                {
+                    "condition": "claims['email'].endsWith('petshop.com')",
+                    "name": "auth_email"
+                }
+            ]
+        }
+    ]
+}
+``` 
+
+#### AuthorizationRules Condition Syntax Usage
+The `authorizationRules` use a Boolean expression to articulate the conditions for granting access to the URL. The conditions use the same syntax as in [Policy Override Rules](#override-rules) with one additional attribute **"claims"**.
+#### Claims Attribute
+The newly introduced attribute "claims" is a mapping of JSON paths for claims from the JWT to their respective values. Only structure nesting is supported using the "." notation. 
+A few points to remember regarding JWT claims:
+- Please note that at the moment, accessing individual cells within JSON arrays isn't possible. Instead, the entire array gets serialized as a string, and its elements can be evaluated using string operators like "contains".
+- While it's technically feasible to consolidate all conditions into one with "and" between them, it's not recommended. Dividing them into multiple conditions enhances the readability and clarity of the policy, particularly when explaining the reasons for authorization failure.
+For the full reference of authorizationRules condition syntax and usage see the NGINX App Protect WAF [Declarative Policy guide]({{< relref "nap-waf/v5/declarative-policy/policy.md" >}}/#policy/override-rules).
+See below example for JWT claims:
+ 
+```json
+{
+    "scope": "top-level:read",
+    "roles": [
+        "inventory-manager",
+        "price-editor"
+    ],
+    "sub": "joe@doe.com"
+    "address": {
+        "country": "US",
+        "state": "NY",
+        "city": "New York",
+        "street": "888 38th W"
+    }      
+}
+```
+then the claims can be:
+```
+claims['scope'] = "top-level:read" 
+claims['roles'] = "["inventory-manager", "price-editor]" # the whole array is presented as a string
+claims['address.country'] = "US" 
+claims['company'] = null # does not exist 
+claims['address'] = "{ \"address\": { .... } }" # JSON structs can be accessed using the dot "." notation
+```
 
 ### Attack Signatures
 
@@ -420,7 +649,7 @@ app_protect_policy_file /policies_mount/new_default_policy.tgz;
 
 ### Overview
 
-{{< include "nap-waf/config/v5/mtls-overview-v5.md" >}}
+NGINX App Protect WAF can be secured with mutual TLS (mTLS) connection to provide an extra layer of security where the mutual authentication is set up between both the NGINX (client) and App Protect Enforcer (server). This adds an extra layer of security, ensuring that both parties are who they claim to be.
 
 ### mTLS Configuration
 
@@ -623,11 +852,61 @@ To enable mTLS in NGINX, you need to perform the following steps:
 
 ### Global Directives
 
-{{< include "nap-waf/config/v5/global-directives-v5.md" >}}
+{{< include "/nap-waf/concept/global-directives.md" >}}
 
 ### App Protect Specific Directives
 
-{{< include "nap-waf/config/v5/app-protect-directives-v5.md" >}}
+This table summarizes the nginx.conf directives for NGINX App Protect WAF functionality.
+
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
+|Directive Name | Syntax | Functionality | nginx.conf Contexts | Example |
+| ---| ---| ---| ---| --- |
+|load_module | load_module <library_file_path> | NGINX directive to load the App Protect module. It must be invoked with the App Protect library path | Global | load_module modules/ngx_http_app_protect_module.so |
+|app_protect_enforcer_address | <hostname/ip>:<port> | The Enforcer service address. | HTTP | app_protect_enforcer_address 127.0.0.1:50000; |
+|app_protect_enable | app_protect_enable on &#124; off | Whether to enable App Protect at the respective context. If not present, inherits from the parent context | HTTP, Server, Location | app_protect_enable on |
+|app_protect_policy_file | app_protect_policy_file <file_path> | Set a App Protect policy configuring behavior for the respective context. | HTTP, Server, Location | app_protect_policy_file /config/waf/strict_policy.tgz |
+|app_protect_security_log_enable | app_protect_security_log_enable on &#124; off | Whether to enable the App Protect per-request log at the respective context. | HTTP, Server, Location | app_protect_security_log_enable on |
+|app_protect_security_log | app_protect_security_log <file_path> <destination> | Specifies the per-request logging: what to log and where | HTTP, Server, Location | app_protect_security_log /config/waf/log_illegal.tgz syslog:localhost:522 |
+|app_protect_custom_log_attribute | app_protect_custom_log_attribute <key_value> | Specifies the assigned location/server/http dimension of each request. | HTTP, Server, Location | app_protect_custom_log_attribute ‘environment' 'env1' |
+{{</bootstrap-table>}}
+
+#### Failure Mode
+
+If the App Protect daemons are down or disconnected from the NGINX workers, there are two modes of operation until they are up and connected again:
+
+- **Pass** the traffic without inspection. Use this when preferring availability over security. This mode is also known as "fail open".
+- **Drop** the traffic. Use this when preferring security over availability. This mode is also known as "fail closed".
+
+The default is to **pass**, fail open, but you can control this using the `app_protect_failure_mode_action` directive with one argument with two possible values: "pass" or "fail" for the two above options.
+
+This directive is also placed in the `http` block of the nginx.conf file.
+
+```nginx
+...
+http {
+    ...
+    app_protect_failure_mode_action drop;
+    ...
+    server {
+        listen       80;
+...
+    }
+...
+```
+
+#### Handling Compressed Requests
+
+Starting with NGINX App Protect WAF release version 4.6, the [`app_protect_compressed_requests_action`](#global-directives) directive has been deprecated from the nginx configuration. When configuring this directive in the `nginx.conf` file, App Protect will disregard any previously used values ("pass" or "drop") and issue a warning.
+
+#### Handling Decompression
+
+Now by default the enforcer will decompress all the HTTP compressed payload request and will apply the enforcement. The supported compression algorithms for this feature are "**gzip**" and "**deflate**". There will be no decompression, if the compression method is not supported.
+
+The 'Content-Encoding' header must match the compression algorithm used while sending compressed payload in a HTTP request, else the enforcer will fail to decompress the payload.
+
+The decompressed request must not exceed the size limit of 10 MB. If it does exceed this limit, NGINX App Protect WAF will only decompress the first 10 KB, ignoring the remainder, and trigger the `VIOL_REQUEST_MAX_LENGTH` violation, just as it would for an uncompressed request that exceeds 10 MB.
+
+In the cases where decompression fails,  NGINX App Protect WAF will continue with the scan in the same manner as it does for uncompressed requests.
 
 ## Violations
 
@@ -694,7 +973,7 @@ docker run -it --rm \
 
 ## Security Logs
 
-{{< include "nap-waf/config/v5/security-logs-v5.md" >}}
+Refer to [Logging Overview]({{< relref "/nap-waf/v5/logging-overview/security-log.md" >}}) section for more details on Security Logs.
 
 ## NGINX App Protect WAF Terminology
 
