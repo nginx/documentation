@@ -7,7 +7,7 @@ doctypes:
 - deployment guide
 tags:
 - docs
-title: "Deploy in a single container"
+title: "Deploy in a single container (demo only)"
 toc: true
 versions: []
 weight: 100
