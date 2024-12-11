@@ -1,4 +1,4 @@
-# Using https://github.com/wummel/linkchecker to test NGINX Documentation
+# Using https://github.com/linkchecker/linkchecker to test NGINX Documentation
 # Recursively checks all internal and external links in the docs.
 # Warnings for redirects are disabled
 # To ignore a url use the add to the env.ignore list. eg --ignore-url ^http://www.example.com
@@ -10,9 +10,14 @@ on:
   workflow_dispatch:
     inputs:
       basepath:
-        description: 'Base path for the documentation (default: https://docs.nginx.com)'
-        required: false
-        default: 'https://docs.nginx.com'
+        description: "Documentation site to test (default: https://docs.nginx.com)"
+        required: true
+        default: "https://docs.nginx.com"
+        type: choice
+        options:
+          - "https://docs.nginx.com"
+          - "https://docs-dev.nginx.com"
+          - "https://docs-staging.nginx.com"
   schedule:
     # Runs every day at 7am UTC
     - cron: '0 7 * * *'
@@ -21,13 +26,14 @@ env:
   defaults: '--no-warnings --check-extern --ignore-url ^https://consent.trustarc.com'
   ignore: >
     --ignore-url ^http://127.0.0.1 --ignore-url ^http://localhost --ignore-url ^http://serv/ --ignore-url ^https://myserver.host.com
-    --ignore-url ^https://product.apis.f5.com --ignore-url ^https://product-s.apis.f5.com
-    --ignore-url ^http://www.example.com --ignore-url ^file:// --ignore-url ^https://www.fastbot.de
-    --ignore-url ^https://lightstep.com --ignore-url ^https://www.owasp.org/ --ignore-url ^https://www.maxmind.com
+    --ignore-url ^https://product.apis.f5.com --ignore-url ^https://product-s.apis.f5.com --ignore-url ^https://linux.die.net/man/
+    --ignore-url ^http://www.example.com --ignore-url ^file:// --ignore-url ^https://www.fastbot.de --ignore-url ^https://www.domain.com
+    --ignore-url ^https://lightstep.com --ignore-url ^https://www.owasp.org/ --ignore-url ^https://www.maxmind.com --ignore-url ^https://www.splunk.com/
     --ignore-url ^https://oauth2.googleapis.com --ignore-url ^https://openidconnect.googleapis.com --ignore-url ^https://www.base64url.com/
-    --ignore-url ^https://docs.nginx.com/nginx-ingress-controller/css
-    --ignore-url ^https://docs.nginx.com/nginxaas/azure/css
-    --ignore-url ^https://docs.nginx.com/nginx-gateway-fabric/css
+    --ignore-url ^https://go.googlesource.com/ --ignore-url ^https://go.googlesource.com/sync --ignore-url ^https://linkerd.io/2.13/
+    --ignore-url ^https://\([a-zA-Z0-9-]+\).nginx.com/nginx-ingress-controller/css
+    --ignore-url ^https://\([a-zA-Z0-9-]+\).nginx.com/nginxaas/azure/css
+    --ignore-url ^https://\([a-zA-Z0-9-]+\).nginx.com/nginx-gateway-fabric/css
 
 jobs:
   link-checker:
@@ -96,6 +102,7 @@ jobs:
 
       # Run LinkChecker
       - name: Run LinkChecker on ${{ matrix.doc_paths }}
+        continue-on-error: ${{ env.isProduction != 'true' }}
         uses: nick-fields/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
         with:
           timeout_minutes: 10

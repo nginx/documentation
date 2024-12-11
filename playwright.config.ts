@@ -30,5 +30,6 @@ export default defineConfig({
         // Set Geolocation to Cork, Ireland
         geolocation: { longitude: -8.486316, latitude: 51.896893 },
         permissions: ['geolocation'],
+        video: 'retain-on-failure'
       },
 })

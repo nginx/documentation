@@ -106,6 +106,11 @@ This article explains how to install NGINX Plus on different operating systems,
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-7.4.repo
     ```
 
+    <details open>
+    <summary style="font-weight:bold;">Learn how to pin NGINX Plus to a specific version</summary>
+    {{<call-out "tip" "Tip: Pin NGINX Plus to a specific version" "fa-solid fa-thumbtack">}}{{< include "nginx-plus/install/pin-to-version/pin-rhel7-R32.md" >}}{{</call-out>}}
+    </details>
+
 1. {{< include "nginx-plus/install/install-nginx-plus-package-yum.md" >}}
 
 1. {{< include "nginx-plus/install/enable-nginx-service-at-boot.md" >}}
@@ -140,6 +145,11 @@ This article explains how to install NGINX Plus on different operating systems,
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.repo
     ```
 
+    <details open>
+    <summary style="font-weight:bold;">Learn how to pin NGINX Plus to a specific version</summary>
+    {{<call-out "tip" "Tip: Pin NGINX Plus to a specific version" "fa-solid fa-thumbtack">}}{{< include "nginx-plus/install/pin-to-version/pin-rhel8-R32.md" >}}{{</call-out>}}
+    </details>
+
 1. {{< include "nginx-plus/install/install-nginx-plus-package-dnf.md" >}}
 
 1. {{< include "nginx-plus/install/enable-nginx-service-at-boot.md" >}}
@@ -173,6 +183,11 @@ This article explains how to install NGINX Plus on different operating systems,
     ```shell
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-9.repo
     ```
+
+    <details open>
+    <summary style="font-weight:bold;">Learn how to pin NGINX Plus to a specific version</summary>
+    {{<call-out "tip" "Tip: Pin NGINX Plus to a specific version" "fa-solid fa-thumbtack">}}{{< include "nginx-plus/install/pin-to-version/pin-rhel9-R32.md" >}}{{</call-out>}}
+    </details>
 
 1. {{< include "nginx-plus/install/install-nginx-plus-package-dnf.md" >}}
 
@@ -242,6 +257,11 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
         https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" \
         | sudo tee /etc/apt/sources.list.d/nginx-plus.list
         ```
+
+    <details open>
+    <summary style="font-weight:bold;">Learn how to pin NGINX Plus to a specific version</summary>
+    {{<call-out "tip" "Tip: Pin NGINX Plus to a specific version" "fa-solid fa-thumbtack">}}{{< include "nginx-plus/install/pin-to-version/pin-debian-ubuntu-R32.md" >}}{{</call-out>}}
+    </details>
 
 1. Download the **nginx-plus** apt configuration to **/etc/apt/apt.conf.d**:
 
@@ -356,7 +376,7 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
 
 1. Add the **nginx-plus** repo.
 
-    For SLES 12:
+    **For SLES 12**:
 
     ```shell
     zypper addrepo -G -t yum -c \
@@ -364,7 +384,7 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
     nginx-plus
     ```
 
-    For SLES 15:
+    **For SLES 15**:
 
     ```shell
     zypper addrepo -G -t yum -c \
@@ -665,15 +685,15 @@ To perform an unprivileged installation of NGINX Plus:
 
    - first, list all available NGINX Plus versions from the repository:
 
-   ```shell
-   ./ngxunprivinst.sh list -c <cert_file> -k <key_file>
-   ```
+       ```shell
+       ./ngxunprivinst.sh list -c <cert_file> -k <key_file>
+       ```
 
    - then specify a particular NGINX Plus version with the `-v` option:
 
-   ```shell
-   ./ngxunprivinst.sh fetch -c <cert_file> -k <key_file> -v <version>
-   ```
+       ```shell
+       ./ngxunprivinst.sh fetch -c <cert_file> -k <key_file> -v <version>
+       ```
 
 1. Extract the downloaded packages to the provided NGINX Plus prefix `<path>`. An optional `-y` option will overwrite an existing installation (if any). Starting from version R33, the `-j` option that specifies the `<license_file>` is mandatory:
 
@@ -721,29 +741,29 @@ To install NGINX Plus offline, you will need a machine connected to the Internet
 
 1. Install the NGINX Plus package or a dynamic module. Any older NGINX Plus package is automatically replaced.
 
-    - for RHEL, Amazon Linux, CentOS, Oracle Linux, AlmaLinux and Rocky Linux:
+    - **For RHEL, Amazon Linux, CentOS, Oracle Linux, AlmaLinux and Rocky Linux**:
 
-     ```shell
-     sudo rpm -ihv <rpm_package_name>
-     ```
+         ```shell
+         sudo rpm -ihv <rpm_package_name>
+         ```
 
-    - for Debian, Ubuntu:
+    - **For Debian, Ubuntu**:
 
-     ```shell
-     sudo dpkg -i <deb_package_name>
-     ```
+         ```shell
+         sudo dpkg -i <deb_package_name>
+         ```
 
-    - for Alpine:
+    - **For Alpine**:
 
-     ```shell
-     apk add <apk_package_name>
-     ```
+         ```shell
+         apk add <apk_package_name>
+         ```
 
-    - for SLES:
+    - **For SLES**:
 
-     ```shell
-     rpm -ivh <rpm_package_name>
-     ```
+         ```shell
+         rpm -ivh <rpm_package_name>
+         ```
 
 1. {{< include "nginx-plus/install/check-nginx-binary-version.md" >}}
 
@@ -778,14 +798,14 @@ To upgrade your NGINX Plus installation to the newest version:
 
 1. If your system has previous NGINX or NGINX Plus packages on it, back up the configuration and log files.
 
-   - For Linux distributions:
+   - **For Linux distributions**:
 
      ```shell
      sudo cp -a /etc/nginx /etc/nginx-plus-backup
      sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
      ```
 
-   - For FreeBSD:
+   - **For FreeBSD**:
 
       ```shell
       sudo cp -a /usr/local/etc/nginx /usr/local/etc/nginx-plus-backup
@@ -800,50 +820,56 @@ To upgrade your NGINX Plus installation to the newest version:
 
 1. Create the **/etc/nginx/** directory for Linux or the **/usr/local/etc/nginx** directory for FreeBSD:
 
-    ```shell
-    sudo mkdir -p /etc/nginx #for Linux
-    cd /etc/nginx
-    ```
+    - **For Linux**:
+    
+        ```shell
+        sudo mkdir -p /etc/nginx
+        ```
 
-    ```shell
-    sudo mkdir -p /usr/local/etc/nginx #for FreeBSD
-    cd /usr/local/etc/nginx
-    ```
+    - **For FreeBSD**:
+    
+        ```shell
+        sudo mkdir -p /usr/local/etc/nginx
+        ```
 
-    {{< note >}} {{< include "licensing-and-reporting/custom-paths-jwt.md" >}}  {{< /note >}}
+    {{<call-out "note" "Using custom paths" "" >}}{{< include "licensing-and-reporting/custom-paths-jwt.md" >}}{{</call-out>}}
 
 1. After downloading the JWT file, copy it to the **/etc/nginx/** directory for Linux, or to the **/usr/local/etc/nginx** directory for FreeBSD, and make sure it's named **license.jwt**:
 
-    ```shell
-    sudo cp <downloaded-file-name>.jwt /etc/nginx/license.jwt  #for Linux
-    ```
+    - **For Linux**:
+    
+        ```shell
+        sudo cp <downloaded-file-name>.jwt /etc/nginx/license.jwt
+        ```
 
-    ```shell
-    sudo cp <downloaded-file-name>.jwt /usr/local/etc/nginx/license.jwt  #for FreeBSD
-    ```
+    - **For FreeBSD**:
 
-1. Upgrade to the new NGINX Plus package.
+        ```shell
+        sudo cp <downloaded-file-name>.jwt /usr/local/etc/nginx/license.jwt
+        ```
 
-   - For RHEL, Amazon Linux, CentOS, Oracle Linux, AlmaLinux and Rocky Linux:
+2. Upgrade to the new NGINX Plus package.
 
-     ```shell
-     sudo yum upgrade nginx-plus
-     ```
+   - **For RHEL, Amazon Linux, CentOS, Oracle Linux, AlmaLinux and Rocky Linux**:
 
-   - For Debian and Ubuntu:
+        ```shell
+        sudo yum upgrade nginx-plus
+        ```
 
-     ```shell
-     sudo apt update
-     sudo apt install nginx-plus
-     ```
+   - **For Debian and Ubuntu**:
 
-   - For FreeBSD:
+        ```shell
+        sudo apt update
+        sudo apt install nginx-plus
+        ```
 
-     ```shell
-     sudo pkg upgrade nginx-plus
-     ```
+   - **For FreeBSD**:
 
-1. Configure NGINX Plus usage reporting which is mandatory starting from R33. By default, no configuration is required. However, configuration is required in specific scenarios, such as NGINX Plus is installed in an offline environment or if the JWT license file is located in a non-default directory.
+        ```shell
+        sudo pkg upgrade nginx-plus
+        ```
+
+3. Configure NGINX Plus usage reporting which is mandatory starting from R33. By default, no configuration is required. However, configuration is required in specific scenarios, such as NGINX Plus is installed in an offline environment or if the JWT license file is located in a non-default directory.
 
    For offline environments, usage reporting should be configured for NGINX Instance Manager 2.18 or later. In the `nginx.conf` configuration file, specify the following directives:
 
@@ -872,7 +898,7 @@ To upgrade your NGINX Plus installation to the newest version:
 
    For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}).
 
-1. To verify that the new NGINX Plus version is upgraded, run:
+4. To verify that the new NGINX Plus version is upgraded, run:
 
    ```shell
    nginx -v
