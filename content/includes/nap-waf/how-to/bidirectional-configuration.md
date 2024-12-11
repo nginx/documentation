@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1627"
+docs: DOCS-000
 ---
 
 The only configuration related to streaming is the IDL file or more specifically the `rpc` declaration. The keyword `stream` indicates that the message on the respective side is streaming. <br> <br>For example:
@@ -47,7 +47,7 @@ message HelloReply {
 
 #### Enabling the gRPC Protection for Bidirectional Streaming
 
-For enabling the gRPC capability, an HTTP/2 server definition needs to be applied with the `grpc_pass` location in the `nginx.conf` file. In addition, the `app_protect_policy_file` directive points to a policy specific to gRPC. All the gRPC messages will be logged in Security Log under the `log_grpc_all` file. For more details on how these requests are handled in gRPC, refer to the [gRPC Logging](#grpc-logging) section.
+For enabling the gRPC capability, an HTTP/2 server definition needs to be applied with the `grpc_pass` location in the `nginx.conf` file. In addition, the `app_protect_policy_file` directive points to a policy specific to gRPC. All the gRPC messages will be logged in Security Log under the `log_grpc_all.json` file. For more details on how these requests are handled in gRPC, refer to the [gRPC Logging](#grpc-logging) section.
 
 ```nginx
 user nginx;
@@ -81,9 +81,9 @@ http {
         listen       80 default_server http2;
         server_name  localhost;
         app_protect_enable on;
-        app_protect_policy_file "/etc/app_protect/conf/grpc_policy.tgz";
+        app_protect_policy_file "/etc/app_protect/conf/grpc_policy.json";
         app_protect_security_log_enable on;
-        app_protect_security_log "/etc/app_protect/conf/log_grpc_all.tgz" /tmp/grpc.log;
+        app_protect_security_log "/opt/app_protect/share/defaults/log_grpc_all.json" /tmp/grpc.log;
 
         grpc_socket_keepalive on;
         grpc_read_timeout 30m;

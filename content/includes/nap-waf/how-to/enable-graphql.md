@@ -1,7 +1,3 @@
----
-docs: "DOCS-1536"
----
-
 This section describes how to configure GraphQL with minimal configuration. Refer to the following sections for GraphQL elements definitions and details about advanced configuration options.
 
 {{< note >}} GraphQL is supported on NGINX App Protect WAF version starting 4.2. Make sure you're running NGINX App Protect WAF version 4.2 or later to get GraphQL to work properly.{{< /note >}}
@@ -12,9 +8,9 @@ You can enable GraphQL on App Protect by following these steps:
 
 1. Create a GraphQL policy that includes the policy name. Note that GraphQL profile and GraphQL violation will be enabled by default in the default policy.
 You can enable GraphQL on App Protect with minimum effort by using the following GraphQL policy example.
-2. Add the GraphQL URL to the policy and associate the GraphQL default profile with it.
-3. Optionally, if the app that uses this policy serves only GraphQL traffic, then delete the wildcard URL "*" from the policy so that requests to any URL other than **/graphql** will trigger a violation. In the example below we assume this is the case.
-4. Update the `nginx.conf` file. To enforce GraphQL settings, update the `app_protect_policy_file` field with the GraphQL policy name in `nginx.conf` file. Perform nginx reload once `nginx.conf` file is updated to enforce the GraphQL settings.
+1. Add the GraphQL URL to the policy and associate the GraphQL default profile with it.
+1. Optionally, if the app that uses this policy serves only GraphQL traffic, then delete the wildcard URL "*" from the policy so that requests to any URL other than **/graphql** will trigger a violation. In the example below we assume this is the case.
+1. Update the `nginx.conf` file. To enforce GraphQL settings, update the `app_protect_policy_file` field with the GraphQL policy name in `nginx.conf` file. Perform nginx reload once `nginx.conf` file is updated to enforce the GraphQL settings.
 
 In the following policy example, the GraphQL "policy name" i.e. "graphql_policy", and graphql "urls" settings are defined.
 

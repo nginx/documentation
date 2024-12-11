@@ -1,8 +1,11 @@
----
-docs: "DOCS-1529"
----
+The Strict Policy is recommended as a starting point for applications requiring a higher level of security. Just like all other policies it is based on the base template, so it detects and blocks everything the default policy does.
+To obtain the Strict Policy, execute the following command:
 
-The Strict Policy is recommended as a starting point for applications requiring a higher level of security. Just like all other policies it is based on the base template, so it detects and blocks everything the default policy does. It can be found in: `/etc/app_protect/conf/NginxStrictPolicy.json`.
+```shell
+sudo docker run --rm -v $(pwd):$(pwd) --entrypoint='' private-registry.nginx.com/nap/waf-compiler:1.0.0 cat /etc/app_protect/conf/NginxStrictPolicy.json
+```
+
+Replace the `1.0.0` with the actual release version.
 
 In addition the Strict Policy also **blocks** the following:
 - Requests that have a Violation Rating of 3, "Needs examination". This occurs because the `VIOL_RATING_NEED_EXAMINATION` violation's block flag is enabled in the strict policy.

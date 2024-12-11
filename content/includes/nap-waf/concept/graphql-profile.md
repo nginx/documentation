@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1630"
+docs: DOCS-000
 ---
 
 The GraphQL Profile defines the GraphQL properties that are enforced by the security policy.
@@ -39,5 +39,3 @@ In the GraphQL profile example below, we changed the "defenseAttributes" to cust
          }
      ]
 ```
-
-{{< note >}}For GraphQL profile default values and GraphQL violations reference, see NGINX App Protect WAF [Declarative Policy guide.]({{< relref "/nap-waf/v5/declarative-policy/policy.md" >}}) {{< /note >}}
