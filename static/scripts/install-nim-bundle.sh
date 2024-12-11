@@ -24,6 +24,7 @@ NGINX_CERT_PATH="/etc/ssl/nginx/nginx-repo.crt"
 NGINX_CERT_KEY_PATH="/etc/ssl/nginx/nginx-repo.key"
 USE_NGINX_PLUS="false"
 USE_SM_MODULE="false"
+UNINSTALL_NIM="false"
 MODE="online"
 INSTALL_PATH=""
 NIM_VERSION="latest"
@@ -343,13 +344,13 @@ installBundleForDebianDistro() {
         apt-get install -y nms-sm="${sm_pkg_version}"
         check_last_command_status "apt-get install -y nms-sm=${NIM_SM_VERSION}" $?
       fi
-      systemctl restart nms
-      sleep 120
-      systemctl restart nginx
-      systemctl start nms-sm
+    systemctl restart nms
+    sleep 20
+    systemctl restart nginx
+    systemctl start nms-sm
   else
     systemctl restart nms
-    sleep 120
+    sleep 20
     systemctl restart nginx
   fi
 }
@@ -465,7 +466,7 @@ installBundleForRPMDistro(){
     echo "Restarting nim"
     systemctl restart nms
 
-    sleep 120
+    sleep 20
 
     echo "Restarting nginx API gateway"
     systemctl restart nginx
@@ -508,8 +509,9 @@ printUsageInfo(){
   printf "\n  -d  <distribution>. Include the label of a distribution. Requires -m Offline. This creates a file with NIM dependencies and NIM install packages for the specified distribution.\n"
   printf "\n  -v  <NIM_VERSION>. NIM version to install/package.\n"
   printf "\n  -j  <JWT_TOKEN_FILE_PATH>. Path to the JWT token file used for license and usage consumption reporting.'\n"
+  printf "\n  -u  To uninstall NIM and it's dependencies. \n"
   printf "\n  -h  Print this help message.\n"
-  exit 1
+  exit 0
 }
 
 check_NIM_status(){
@@ -545,13 +547,34 @@ check_if_nim_installed(){
   fi
 
   if [[ "$all_services_present" == 1 ]]; then
-    echo "NGINX Instance Manager (NIM) already installed."
-    nms-instance-manager --version
-    exit 0
+    if [ "$UNINSTALL_NIM" == "true" ]; then
+      if cat /etc/*-release | grep -iq 'debian\|ubuntu'; then
+        apt-get remove nms-instance-manager
+        check_last_command_status "apt-get remove nms-instance-manager" $?
+        echo "NGINX Instance Manager Uninstalled successfully"
+        exit 0
+      elif cat /etc/*-release | grep -iq 'centos\|fedora\|rhel\|Amazon Linux'; then
+        yum remove nms-instance-manager
+        check_last_command_status "yum remove nms-instance-manager" $?
+        echo "NGINX Instance Manager Uninstalled successfully"
+        exit 0
+      else
+        printf "Unsupported distribution"
+        exit 1
+      fi
+    else
+      echo "NGINX Instance Manager already installed."
+      exit 1
+    fi
+  else
+    if [ "$UNINSTALL_NIM" == "true" ]; then
+      echo "Cannot uninstall NGINX Instance Manager as it is not installed"
+      exit 1
+    fi
   fi
 }
 
-OPTS_STRING="k:c:m:d:i:s:p:n:hv:t:j:"
+OPTS_STRING="k:c:m:d:i:s:p:n:hv:t:j:u"
 while getopts ${OPTS_STRING} opt; do
   case ${opt} in
     c)
@@ -603,10 +626,16 @@ while getopts ${OPTS_STRING} opt; do
     t)
       CLICKHOUSE_VERSION=${OPTARG}
           ;;
+    u)
+      UNINSTALL_NIM="true"
+      ;;
     h)
        printUsageInfo
+       printUsageInfo
        exit 0
-       ;;
+      printUsageInfo
+       exit 0
+      ;;
     :)
       echo "Option -${OPTARG} requires an argument."
       exit 1
@@ -618,8 +647,8 @@ while getopts ${OPTS_STRING} opt; do
   esac
 done
 
-check_cert_key_path
 check_if_nim_installed
+check_cert_key_path
 
 if [ "${MODE}" == "online" ]; then
   install_nim_online
