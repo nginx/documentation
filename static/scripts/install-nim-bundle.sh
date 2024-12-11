@@ -552,11 +552,15 @@ check_if_nim_installed(){
       if cat /etc/*-release | grep -iq 'debian\|ubuntu'; then
         apt-get remove nms-instance-manager
         check_last_command_status "apt-get remove nms-instance-manager" $?
+        rm /etc/nginx/nginx.conf
+        check_last_command_status "rm /etc/nginx/nginx.conf" $?
         echo "NGINX Instance Manager Uninstalled successfully"
         exit 0
       elif cat /etc/*-release | grep -iq 'centos\|fedora\|rhel\|Amazon Linux'; then
         yum remove nms-instance-manager
         check_last_command_status "yum remove nms-instance-manager" $?
+        rm /etc/nginx/nginx.conf
+        check_last_command_status "rm /etc/nginx/nginx.conf" $?
         echo "NGINX Instance Manager Uninstalled successfully"
         exit 0
       else
