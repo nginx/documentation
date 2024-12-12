@@ -7,18 +7,17 @@
   },
   "servers": [
     {
-      "url": "/api/nginx/one/namespaces/default"
-    },
-    {
-      "url": "/api/v1/namespaces/{namespace}",
+      "url": "https://{tenant_cname}.console.ves.volterra.io/api/nginx/one/namespaces/{namespace}",
       "variables": {
         "namespace": {
+          "description": "The application namespace used to organize and scope API resources.",
           "default": "default"
+        },
+        "tenant_cname": {
+          "description": "The specific DNS name used to access your tenant.",
+          "default": "tenant-example"
         }
       }
-    },
-    {
-      "url": "/api"
     }
   ],
   "tags": [
@@ -193,7 +192,7 @@
         }
       },
       "patch": {
-        "x-nginx-one-action": "perform bulk operation",
+        "x-nginx-one-action": "bulk",
         "x-nginx-one-entity": "data plane key",
         "tags": [
           "Data Plane Key"
@@ -1562,7 +1561,7 @@
         }
       },
       "patch": {
-        "x-nginx-one-action": "perform bulk operation",
+        "x-nginx-one-action": "bulk",
         "x-nginx-one-entity": "config sync group",
         "tags": [
           "Config Sync Groups"
@@ -2501,7 +2500,7 @@
             }
           }
         }
-      }
+      },
     },
     "/certificates/parse": {
       "post": {
@@ -3708,11 +3707,13 @@
         "description": "Keywords for data plane key filters.\nWhen filtering on `status`, only the following `filter_values` are supported:\n  * revoked\n  * valid\n",
         "enum": [
           "name",
-          "status"
+          "status",
+          "object_id"
         ],
         "x-enum-varnames": [
           "filter_name_data_plane_key_name",
-          "filter_name_data_plane_key_status"
+          "filter_name_data_plane_key_status",
+          "filter_name_data_plane_key_object_id"
         ]
       },
       "FilterOperand": {
@@ -4265,7 +4266,8 @@
           "cve_severity",
           "config_recommendation",
           "key_object_id",
-          "system_id"
+          "system_id",
+          "object_id"
         ],
         "x-enum-varnames": [
           "filter_name_instances_hostname",
@@ -4276,7 +4278,8 @@
           "filter_name_instances_cve_severity",
           "filter_name_instances_config_recommendation",
           "filter_name_instances_key_object_id",
-          "filter_name_instances_system_id"
+          "filter_name_instances_system_id",
+          "filter_name_instances_object_id"
         ]
       },
       "InstanceObjectID": {
@@ -4617,7 +4620,7 @@
       },
       "CertAssociation": {
         "type": "object",
-        "description": "Details for a certificate that's associated with an instance.",
+        "description": "Details for a certificate that's associated with an instance or a config sync group.",
         "required": [
           "name",
           "object_id",
@@ -4805,7 +4808,7 @@
             "type": "object",
             "properties": {
               "certs": {
-                "description": "An array detailing each certificate's information, including its friendly name, unique identifier, applicable file system paths, subject name, and validity dates. \nIt provides insights into the operational status of each certificate, such as whether it's currently valid, nearing expiration, is not ready to be used, or has already expired.\n",
+                "description": "An array detailing each certificate's information, including its friendly name, unique identifier, applicable file system paths, subject name, and validity dates. \nIt provides insights into the operational status of each certificate, such as whether it's currently valid, nearing expiration, is not ready to be used, or has already expired.\nThe deployment status indicates whether the latest certs and key managed by NGINX One Console are deployed onto this data plane instance.\n",
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/CertAssociation"
@@ -5584,7 +5587,7 @@
           },
           {
             "type": "object",
-            "description": "Additional information of the NGINX config sync group including:\n* config sync status\n* config checksum\n* instances\n* last known publication status\n",
+            "description": "Additional information of the NGINX config sync group including:\n* config sync status\n* config checksum\n* instances\n* last known publication status\n* certs associated with this config sync group\n",
             "properties": {
               "config_status": {
                 "$ref": "#/components/schemas/ConfigSyncStatus"
@@ -5602,6 +5605,13 @@
               },
               "last_publication_status": {
                 "$ref": "#/components/schemas/ConfigSyncGroupPublicationStatus"
+              },
+              "certs": {
+                "description": "An array detailing each certificate's information, including its friendly name, unique identifier, applicable file system paths, subject name, and validity dates. \nIt provides insights into the operational status of each certificate, such as whether it's currently valid, nearing expiration, is not ready to be used, or has already expired.\nThe deployment status indicates whether the latest certs and key managed by NGINX One Console are deployed onto the data plane instances that are part of this config sync group.\n",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CertAssociation"
+                }
               }
             }
           }
@@ -5629,6 +5639,21 @@
               "nginx_id": "b636d4376dea15405589692d3c5d3869ff3a9b26b0e7bb4bb1aa7e658ace1437",
               "config_status": "in_sync",
               "config_version": "abc123def456"
+            }
+          ],
+          "certs": [
+            {
+              "subject_name": "test.com",
+              "name": "client",
+              "cert_type": "cert_key",
+              "not_after": "2024-01-06T00:01:30Z",
+              "not_before": "2023-12-07T00:01:30Z",
+              "cert_paths": [
+                "/etc/nginx/client.pem"
+              ],
+              "cert_status": "expiring",
+              "deployment_status": "latest",
+              "object_id": "cert_Tet21AeYTHCj7taOwVfzyw"
             }
           ]
         }
@@ -6144,6 +6169,51 @@
           },
           "modified_at": "2023-11-01T00:00:00Z",
           "created_at": "2023-10-01T00:00:00Z"
+        }
+      },
+      "CertificateBulkRequestData": {
+        "type": "object",
+        "description": "Part of bulk operation on a certificate, only `delete` is supported.",
+        "required": [
+          "action",
+          "object_id"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/CertificateObjectID"
+          },
+          "action": {
+            "$ref": "#/components/schemas/BulkRequestAction"
+          }
+        },
+        "example": {
+          "object_id": "cert_-uvR3F2TQGm18jnl7bpaGw",
+          "action": "delete"
+        }
+      },
+      "CertificateBulkRequest": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/CertificateBulkRequestData"
+        },
+        "minItems": 1,
+        "maxItems": 50,
+        "example": [
+          {
+            "object_id": "cert_-uvR3F2TQGm18jnl7bpaGw",
+            "action": "delete"
+          },
+          {
+            "object_id": "cert_PL0c1XodRemmzVEjiXSsTg",
+            "action": "delete"
+          }
+        ]
+      },
+      "CertificateBulkResponse": {
+        "description": "The certificate bulk operation outcome.",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/BulkRequestObjectStatus"
         }
       },
       "CertificateUpdateContent": {
@@ -6850,7 +6920,7 @@
       "MetricDimension": {
         "type": "string",
         "default": "display_name",
-        "description": "Static list of all metric dimensions.\n  * `display_name` - The display name of the NGINX instance.\n  * `file_path` - Path to a desired file.\n  * `parent_hostname` - The hostname of the NGINX Plus instance.\n  * `instance_object_id` - Instance Object ID is the unique identifier for an Instance registered with NGINX One Console.\n  * `location_zone` - The name of an HTTP location zone.\n  * `mount_point` - A filesystem mount point.\n  * `namespace` - The Namespace associated with the metric data.\n  * `network_interface` - A server network interface.\n  * `nginx_id` - The unique identifier of an nginx instance running on the data plane.\n  * `server_zone` - The name of an HTTP or Stream server zone.\n  * `system_id` - The unique identifier of the the operating system where nginx-agent is running.\n  * `tenant` - The Tenant associated with the metric data.\n  * `csg_object_id` - Config Sync Group Object ID is the unique identifier for a Config Sync Group registered with NGINX One Console.\n",
+        "description": "Static list of all metric dimensions.\n  * `display_name` - The display name of the NGINX instance.\n  * `file_path` - Path to a desired file.\n  * `parent_hostname` - The hostname of the NGINX Plus instance.\n  * `instance_object_id` - Instance Object ID is the unique identifier for an Instance registered with NGINX One Console.\n  * `location_zone` - The name of an HTTP location zone.\n  * `mount_point` - A filesystem mount point.\n  * `namespace` - The Namespace associated with the metric data.\n  * `network_interface` - A server network interface.\n  * `nginx_id` - The unique identifier of an nginx instance running on the data plane.\n  * `server_zone` - The name of an HTTP or Stream server zone.\n  * `system_id` - The unique identifier of the the operating system where nginx-agent is running.\n  * `tenant` - The Tenant associated with the metric data.\n  * `csg_object_id` - Config Sync Group Object ID is the unique identifier for a Config Sync Group registered with NGINX One Console.\n  * `mode` - Variant value associated with metric `system.cpu.time`.\n  * `state` - Variant value associated with metrics `system.filesystem.usage`, `system.memory.usage`.\n  * `io_direction` - Variant value associated with metric `system.network.io`.\n  * `status_range` - Variant value associated with metric `nginx.http.response.status`.\n",
         "enum": [
           "display_name",
           "file_path",
@@ -6864,7 +6934,11 @@
           "server_zone",
           "system_id",
           "tenant",
-          "csg_object_id"
+          "csg_object_id",
+          "mode",
+          "state",
+          "io_direction",
+          "status_range"
         ],
         "x-enum-varnames": [
           "metric_dimension_display_name",
@@ -6879,7 +6953,11 @@
           "metric_dimension_server_zone",
           "metric_dimension_system_id",
           "metric_dimension_tenant",
-          "metric_dimension_csg_object_id"
+          "metric_dimension_csg_object_id",
+          "metric_dimension_mode",
+          "metric_dimension_state",
+          "metric_dimension_io_direction",
+          "metric_dimension_status_range"
         ]
       },
       "BaseMetricQueryRequest": {
@@ -7197,6 +7275,24 @@
           },
           {
             "$ref": "#/components/schemas/MetricSystemNetBytesSent"
+          },
+          {
+            "$ref": "#/components/schemas/MetricSystemCpuTime"
+          },
+          {
+            "$ref": "#/components/schemas/MetricSystemFilesystemUsage"
+          },
+          {
+            "$ref": "#/components/schemas/MetricSystemMemoryUsage"
+          },
+          {
+            "$ref": "#/components/schemas/MetricSystemNetworkIo"
+          },
+          {
+            "$ref": "#/components/schemas/MetricNginxHttpRequests"
+          },
+          {
+            "$ref": "#/components/schemas/MetricNginxHttpResponseStatus"
           }
         ]
       },
@@ -7312,6 +7408,48 @@
           "system.net.bytes_sent"
         ]
       },
+      "MetricSystemCpuTime": {
+        "type": "string",
+        "description": "Total system CPU utilization for 'system' or 'user', percentage. A filter differentiator is needed for specific mode(s).\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension filter differentiator:\n  * mode (applicable filter values: 'system', 'user')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "enum": [
+          "system.cpu.time"
+        ]
+      },
+      "MetricSystemFilesystemUsage": {
+        "type": "string",
+        "description": "System disk usage statistic, percentage. A filter differentiator is needed for specific state(s).\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension filter differentiator:\n  * state (applicable filter values: 'used', 'free', 'in_use')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * mount_point\n",
+        "enum": [
+          "system.filesystem.usage"
+        ]
+      },
+      "MetricSystemMemoryUsage": {
+        "type": "string",
+        "description": "Total available statistic about system memory usage, bytes. A filter differentiator is needed for specific state(s).\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate      \n\nCatalog dimension filter differentiator:\n  * state (applicable filter values: 'used', 'free', 'total', 'pct_used')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "enum": [
+          "system.memory.usage"
+        ]
+      },
+      "MetricSystemNetworkIo": {
+        "type": "string",
+        "description": "Network I/O statistics. Number of bytes sent or received per network interface. A filter differentiator is needed for specific I/O direction(s).\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension filter differentiator:\n  * io_direction (applicable filter values: 'transmit', 'receive')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * network_interface\n",
+        "enum": [
+          "system.network.io"
+        ]
+      },
+      "MetricNginxHttpRequests": {
+        "type": "string",
+        "description": "Total number of client requests received from clients.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "enum": [
+          "nginx.http.requests"
+        ]
+      },
+      "MetricNginxHttpResponseStatus": {
+        "type": "string",
+        "description": "Number of responses for by status code range. A filter differentiator is needed for specific status range(s).\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension filter differentiator:\n  * status_range (applicable filter values: '4xx', '5xx')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id          \n  * server_zone\n  * location_zone\n",
+        "enum": [
+          "nginx.http.response.status"
+        ]
+      },
       "SettingsInstanceCleanup": {
         "type": "object",
         "description": "Preferences for automatic cleanup of stale NGINX One Instances.",
@@ -7335,9 +7473,7 @@
       "NginxUsageDeployment": {
         "type": "object",
         "required": [
-          "integration",
-          "cluster_id",
-          "cluster_node_count"
+          "integration"
         ],
         "properties": {
           "integration": {
