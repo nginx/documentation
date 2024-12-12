@@ -513,7 +513,7 @@ printUsageInfo(){
   printf "\n  -d  <distribution>. Include the label of a distribution. Requires -m Offline. This creates a file with NGINX Instance Manager dependencies and NGINX Instance Manager install packages for the specified distribution.\n"
   printf "\n  -v  <NIM_VERSION>. NGINX Instance Manager version to install/package.\n"
   printf "\n  -j  <JWT_TOKEN_FILE_PATH>. Path to the JWT token file used for license and usage consumption reporting.'\n"
-  printf "\n  -r  To uninstall NGINX Instance Manager and it's dependencies. \n"
+  printf "\n  -r  To uninstall NGINX Instance Manager and its dependencies. \n"
   printf "\n  -h  Print this help message.\n"
   exit 0
 }
