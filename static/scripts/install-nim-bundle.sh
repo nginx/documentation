@@ -22,6 +22,7 @@ fi
 
 NGINX_CERT_PATH="/etc/ssl/nginx/nginx-repo.crt"
 NGINX_CERT_KEY_PATH="/etc/ssl/nginx/nginx-repo.key"
+LICENSE_JWT_PATH=""
 USE_NGINX_PLUS="false"
 USE_SM_MODULE="false"
 UNINSTALL_NIM="false"
@@ -540,7 +541,7 @@ check_NIM_status(){
   fi
 }
 
-check_cert_key_path(){
+check_cert_key_jwt_path(){
   if [[ ! -f "$NGINX_CERT_KEY_PATH" ]]; then
     echo "Error: NGINX key not found. Please give cert path using -k"
     exit 1
@@ -549,6 +550,20 @@ check_cert_key_path(){
   if [[ ! -f "$NGINX_CERT_PATH" ]]; then
     echo "Error: NGINX cert not found. Please give key path using -c"
     exit 1
+  fi
+
+  if [[ "$USE_NGINX_PLUS" == true &&  "$NGINX_PLUS_VERSION" == "latest" ]]; then
+    if [[ ! -f "$LICENSE_JWT_PATH" ]]; then
+      echo "Error: JWT License not found. It is required with NGINX plus"
+      exit 1
+    fi
+    echo "Copying jwt"
+    if [ ! -d "/etc/nginx" ]; then
+      mkdir /etc/nginx
+      check_last_command_status "mkdir /etc/nginx" $?
+    fi
+    cp "${LICENSE_JWT_PATH}" "/etc/nginx/license.jwt"
+    check_last_command_status "cp $LICENSE_JWT_PATH /etc/nginx/license.jwt" $?
   fi
 }
 
@@ -576,8 +591,17 @@ check_if_nim_installed(){
 }
 
 uninstall_nim(){
+  # Clickhouse server, Clickhouse client, clickhouse static, nms, nginx
+  systemctl stop clickhouse-server
+  check_last_command_status "systemctl stop clickhouse-server" $?
+  systemctl stop nginx
+  check_last_command_status "systemctl stop nginx" $?
+  systemctl stop nms nms-core nms-dpm nms-ingestion nms-integrations
+  check_last_command_status "systemctl stop nms nms-core nms-dpm nms-ingestion nms-integrations" $?
+
   if cat /etc/*-release | grep -iq 'debian\|ubuntu'; then
-    apt-get remove nms-instance-manager --purge
+    apt-get -y remove clickhouse-common-static clickhouse-server clickhouse-client
+    apt-get -y remove nms-instance-manager --purge
     check_last_command_status "apt-get remove nms-instance-manager" $?
     apt-get -y remove nginx --purge
     apt-get -y remove nginx-plus --purge
@@ -587,7 +611,8 @@ uninstall_nim(){
     echo "NGINX Instance Manager Uninstalled successfully"
     exit 0
   elif cat /etc/*-release | grep -iq 'centos\|fedora\|rhel\|Amazon Linux'; then
-    yum remove nms-instance-manager
+    yum -y remove clickhouse-common-static clickhouse-server clickhouse-client
+    yum -y remove nms-instance-manager
     check_last_command_status "yum remove nms-instance-manager" $?
     yum -y remove nginx
     yum -y remove nginx-plus
@@ -646,15 +671,11 @@ while getopts ${OPTS_STRING} opt; do
       NIM_VERSION=${OPTARG}
       ;;
     j)
-      if [ ! -d "/etc/nginx" ]; then
-         mkdir /etc/nginx
-         check_last_command_status "mkdir /etc/nginx" $?
-      fi
-         cp "${OPTARG}" "/etc/nginx/license.jwt"
+      LICENSE_JWT_PATH=${OPTARG}
       ;;
     t)
       CLICKHOUSE_VERSION=${OPTARG}
-          ;;
+      ;;
     r)
       UNINSTALL_NIM="true"
       ;;
@@ -677,7 +698,7 @@ while getopts ${OPTS_STRING} opt; do
 done
 
 check_if_nim_installed
-check_cert_key_path
+check_cert_key_jwt_path
 
 if [ "${MODE}" == "online" ]; then
   install_nim_online
