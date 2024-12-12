@@ -32,6 +32,18 @@ h2 {
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## November 7, 2024
+
+### Certificates
+
+From the NGINX One Console you can now:
+
+- Monitor all certificates configured for use by your connected NGINX Instances.
+- Ensure that your certificates are current and correct.
+- Manage your certificates from a central location. This can help you simplify operations and remotely update, rotate, and deploy those certificates.
+
+For more information, see the full documentation on how you can [Manage Certificates]({{< relref "/nginx-one/how-to/certificates/manage-certificates.md" >}}).
+
 ## August 22, 2024
 
 ### Config sync groups
