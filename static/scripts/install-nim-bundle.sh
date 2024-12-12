@@ -22,8 +22,10 @@ fi
 
 NGINX_CERT_PATH="/etc/ssl/nginx/nginx-repo.crt"
 NGINX_CERT_KEY_PATH="/etc/ssl/nginx/nginx-repo.key"
+LICENSE_JWT_PATH=""
 USE_NGINX_PLUS="false"
 USE_SM_MODULE="false"
+UNINSTALL_NIM="false"
 MODE="online"
 INSTALL_PATH=""
 NIM_VERSION="latest"
@@ -134,7 +136,11 @@ findVersionForPackage(){
      readarray -t versions < <(apt-cache madison "${pkg_name}" | grep "${pkg_version}" | cut -d '|' -f2 | tr -d ' ')
      #readarray -t versions < <(echo "${available_versions[@]}"| grep "${pkg_version}") >&2
    else
-     readarray -t versions < <(yum list "${pkg_name}" --showduplicates | grep "${pkg_version}" | cut -d' ' -f2)
+     if [[ "$pkg_name" == "nginx" ]]; then
+      readarray -t versions < <(yum list "${pkg_name}" --repo nginx-stable --showduplicates | grep "${pkg_version}" | cut -d' ' -f2)
+     else
+      readarray -t versions < <(yum list "${pkg_name}" --showduplicates | grep "${pkg_version}" | tr -s ' ' | cut -d' ' -f2)
+     fi
      #readarray -t versions < <(echo "${available_versions[@]}"| grep "${pkg_version}" | cut -d' ' -f2) >&2
    fi
    # Print the array contents
@@ -273,10 +279,10 @@ debian_install_clickhouse(){
 
 debian_install_nim(){
 
-  echo "Installing nginx-instance-manager(nim)..."
+  echo "Installing NGINX Instance Manager..."
   if [ "${NIM_VERSION}" == "latest" ]; then
     apt-get install -y nms-instance-manager
-    check_last_command_status "installing nginx-instance-manager(nim)" $?
+    check_last_command_status "installing NGINX Instance Manager" $?
   else
     package_version=$(findVersionForPackage "nms-instance-manager" "${NIM_VERSION}")
     cmd_status=$?
@@ -300,7 +306,7 @@ debian_install_nim(){
   systemctl start nginx
   check_last_command_status " systemctl start nginx" $?
 
-  echo "Starting nim..."
+  echo "Starting NGINX Instance Manager..."
   systemctl start nms
   check_last_command_status " systemctl start nms" $?
   echo "Installation is complete"
@@ -343,13 +349,13 @@ installBundleForDebianDistro() {
         apt-get install -y nms-sm="${sm_pkg_version}"
         check_last_command_status "apt-get install -y nms-sm=${NIM_SM_VERSION}" $?
       fi
-      systemctl restart nms
-      sleep 120
-      systemctl restart nginx
-      systemctl start nms-sm
+    systemctl restart nms
+    sleep 5
+    systemctl restart nginx
+    systemctl start nms-sm
   else
     systemctl restart nms
-    sleep 120
+    sleep 5
     systemctl restart nginx
   fi
 }
@@ -406,14 +412,14 @@ installBundleForRPMDistro(){
                echo "Package nginx-plus with version ${NGINX_PLUS_VERSION} not found"
                exit $cmd_status
             fi
-            yum install -y nginx-plus="${nginx_plus_pkg_version}"
-            check_last_command_status "yum install -y nginx-plus=${nginx_plus_pkg_version}" $?
+            yum install -y nginx-plus-"${nginx_plus_pkg_version}"
+            check_last_command_status "yum install -y nginx-plus-${nginx_plus_pkg_version}" $?
          fi
          createNginxMgmtFile
     else
          echo "Installing nginx..."
          if [ "${NGINX_VERSION}" == "latest" ]; then
-            yum install -y nginx
+            yum install -y nginx --repo nginx-stable
             check_last_command_status "yum install -y nginx" $?
          else
             nginx_pkg_version=$(findVersionForPackage "nginx" "${NGINX_VERSION}")
@@ -422,8 +428,8 @@ installBundleForRPMDistro(){
                echo "Package nginx with version ${NGINX_VERSION} not found"
                exit $cmd_status
             fi
-            yum install -y nginx="${nginx_pkg_version}"
-            check_last_command_status "yum install -y nginx=${nginx_pkg_version}" $?
+            yum install -y nginx-"${nginx_pkg_version}" --repo nginx-stable
+            check_last_command_status "yum install -y nginx-${nginx_pkg_version}" $?
        fi
     fi
     echo "Enabling nginx service"
@@ -450,22 +456,22 @@ installBundleForRPMDistro(){
         sudo sed -i 's/centos/amzn2/g' /etc/yum.repos.d/nms.repo
     fi
 
-    echo "Installing nginx-instance-manager(nim)"
+    echo "Installing NGINX Instance Manager"
     if [ "${NIM_VERSION}" == "latest" ]; then
       yum install -y nms-instance-manager
       check_last_command_status "installing nginx-instance-manager(nim)" $?
     else
       nim_pkg_version=$(findVersionForPackage "nms-instance-manager" "${NIM_VERSION}")
-      yum install -y nms-instance-manager="${nim_pkg_version}"
+      yum install -y nms-instance-manager-"${nim_pkg_version}"
       check_last_command_status "apt-get install -y nms-instance-manager=${nim_pkg_version}" $?
     fi
     echo "Enabling  nms nms-core nms-dpm nms-ingestion nms-integrations"
     systemctl enable nms nms-core nms-dpm nms-ingestion nms-integrations --now
 
-    echo "Restarting nim"
+    echo "Restarting NGINX Instance Manager"
     systemctl restart nms
 
-    sleep 120
+    sleep 5
 
     echo "Restarting nginx API gateway"
     systemctl restart nginx
@@ -503,35 +509,132 @@ printUsageInfo(){
   printf "\n  -k  /path/to/your/<nginx-repo.key> file.\n"
   printf "\n  -p  <nginx_plus_version>. Include NGINX Plus version to install as an API gateway. Valid values are 'latest' and specific versions like R32. For a list, see https://docs.nginx.com/nginx/releases/. Supersedes -n.\n"
   printf "\n  -n  <nginx_oss_version>. Provide NGINX OSS version to install as an API gateway. Valid values are 'latest' or a specific version like 1.27.1. Ignored if you use -p to specify an NGINX Plus version. For a list, see https://nginx.org/en/download.html .\n"
-  printf "\n  -s  <security-module-version>. Installs a security module along with NIM. You can specify latest or a version specified in https://docs.nginx.com/nginx-management-suite/security/releases/release-notes/.\n"
-  printf "\n  -i  <installable_tar_file_path>. Include the path with an archive file to support NIM installation. Requires -m Offline."
-  printf "\n  -d  <distribution>. Include the label of a distribution. Requires -m Offline. This creates a file with NIM dependencies and NIM install packages for the specified distribution.\n"
-  printf "\n  -v  <NIM_VERSION>. NIM version to install/package.\n"
+  printf "\n  -s  <security-module-version>. Installs a security module along with NGINX Instance Manager. You can specify latest or a version specified in https://docs.nginx.com/nginx-management-suite/security/releases/release-notes/.\n"
+  printf "\n  -i  <installable_tar_file_path>. Include the path with an archive file to support NGINX Instance Manager installation. Requires -m Offline."
+  printf "\n  -d  <distribution>. Include the label of a distribution. Requires -m Offline. This creates a file with NGINX Instance Manager dependencies and NGINX Instance Manager install packages for the specified distribution.\n"
+  printf "\n  -v  <NIM_VERSION>. NGINX Instance Manager version to install/package.\n"
   printf "\n  -j  <JWT_TOKEN_FILE_PATH>. Path to the JWT token file used for license and usage consumption reporting.'\n"
+  printf "\n  -r  To uninstall NGINX Instance Manager and its dependencies. \n"
   printf "\n  -h  Print this help message.\n"
-  exit 1
+  exit 0
 }
 
 check_NIM_status(){
+  sleep 5
   GREEN='\033[0;32m'
   NC='\033[0m'
 
   if ! curl -k https://localhost/ui 2>/dev/null | grep -q "NGINX"; then
-	  echo "NIM failed to start"
+    sleep 2
+    if ! curl -k https://localhost/ui 2>/dev/null | grep -q "NGINX"; then
+    	echo "NGINX Instance Manager failed to start"
+      exit 1
+    else
+      echo -e "${GREEN}NGINX Instance Manager Successfully Started${NC}"
+      echo -e "\n[NOTE] - If NGINX Instance Manager dashboard is still not accessible, Please ensure port 443 is exposed and accessible via firewall"
+      exit 0
+    fi
   else
-	  echo -e "${GREEN}NIM Successfully Started${NC}"
-    echo -e "\n[NOTE] - If NIM dashboard is still not accessible, Please ensure port 443 is exposed and accessible via firewall"
+	  echo -e "${GREEN}NGINX Instance Manager Successfully Started${NC}"
+    echo -e "\n[NOTE] - If NGINX Instance Manager dashboard is still not accessible, Please ensure port 443 is exposed and accessible via firewall"
+    exit 0
   fi
 }
 
-OPTS_STRING="k:c:m:d:i:s:p:n:hv:t:j:"
+check_cert_key_jwt_path(){
+  if [[ ! -f "$NGINX_CERT_KEY_PATH" ]]; then
+    echo "Error: NGINX key not found. Please give cert path using -k"
+    exit 1
+  fi
+
+  if [[ ! -f "$NGINX_CERT_PATH" ]]; then
+    echo "Error: NGINX cert not found. Please give key path using -c"
+    exit 1
+  fi
+
+  if [[ "$USE_NGINX_PLUS" == true &&  "$NGINX_PLUS_VERSION" == "latest" ]]; then
+    if [[ ! -f "$LICENSE_JWT_PATH" ]]; then
+      echo "Error: JWT License not found. It is required with NGINX plus"
+      exit 1
+    fi
+    echo "Copying jwt"
+    if [ ! -d "/etc/nginx" ]; then
+      mkdir /etc/nginx
+      check_last_command_status "mkdir /etc/nginx" $?
+    fi
+    cp "${LICENSE_JWT_PATH}" "/etc/nginx/license.jwt"
+    check_last_command_status "cp $LICENSE_JWT_PATH /etc/nginx/license.jwt" $?
+  fi
+}
+
+check_if_nim_installed(){
+
+  local all_services_present=0
+
+  if nms-core --version && nms-dpm --version && nms-integrations --version && nms-ingestion --version && nginx -version; then
+    all_services_present=1
+  fi
+
+  if [[ "$all_services_present" == 1 ]]; then
+    if [ "$UNINSTALL_NIM" == "true" ]; then
+      uninstall_nim
+    else
+      echo "NGINX Instance Manager already installed."
+      exit 1
+    fi
+  else
+    if [ "$UNINSTALL_NIM" == "true" ]; then
+      echo "Cannot uninstall NGINX Instance Manager as it is not installed"
+      exit 1
+    fi
+  fi
+}
+
+uninstall_nim(){
+  # Clickhouse server, Clickhouse client, clickhouse static, nms, nginx
+  systemctl stop clickhouse-server
+  check_last_command_status "systemctl stop clickhouse-server" $?
+  systemctl stop nginx
+  check_last_command_status "systemctl stop nginx" $?
+  systemctl stop nms nms-core nms-dpm nms-ingestion nms-integrations
+  check_last_command_status "systemctl stop nms nms-core nms-dpm nms-ingestion nms-integrations" $?
+
+  if cat /etc/*-release | grep -iq 'debian\|ubuntu'; then
+    apt-get -y remove clickhouse-common-static clickhouse-server clickhouse-client
+    apt-get -y remove nms-instance-manager --purge
+    check_last_command_status "apt-get remove nms-instance-manager" $?
+    apt-get -y remove nginx --purge
+    apt-get -y remove nginx-plus --purge
+    rm -rf /etc/nginx
+    rm -rf /etc/nms
+    rm -rf /var/log/nms
+    echo "NGINX Instance Manager Uninstalled successfully"
+    exit 0
+  elif cat /etc/*-release | grep -iq 'centos\|fedora\|rhel\|Amazon Linux'; then
+    yum -y remove clickhouse-common-static clickhouse-server clickhouse-client
+    yum -y remove nms-instance-manager
+    check_last_command_status "yum remove nms-instance-manager" $?
+    yum -y remove nginx
+    yum -y remove nginx-plus
+    rm -rf /etc/nginx
+    rm -rf /etc/nms
+    rm -rf /var/log/nms
+    yum autoremove
+    echo "NGINX Instance Manager Uninstalled successfully"
+    exit 0
+  else
+    printf "Unsupported distribution"
+    exit 1
+  fi
+}
+
+OPTS_STRING="k:c:m:d:i:s:p:n:hv:t:j:r"
 while getopts ${OPTS_STRING} opt; do
   case ${opt} in
     c)
       if [ ! -d "/etc/ssl/nginx" ]; then
-       mkdir /etc/ssl/nginx
-       check_last_command_status "mkdir /etc/ssl/nginx" $?
-
+        mkdir /etc/ssl/nginx
+        check_last_command_status "mkdir /etc/ssl/nginx" $?
       fi
       cp "${OPTARG}" ${NGINX_CERT_PATH}
       check_last_command_status "cp ${OPTARG} ${NGINX_CERT_PATH}" $?
@@ -541,8 +644,8 @@ while getopts ${OPTS_STRING} opt; do
         mkdir /etc/ssl/nginx
         check_last_command_status "mkdir /etc/ssl/nginx" $?
       fi
-        cp "${OPTARG}" ${NGINX_CERT_KEY_PATH}
-        check_last_command_status "cp ${OPTARG} ${NGINX_CERT_KEY_PATH}" $?
+      cp "${OPTARG}" ${NGINX_CERT_KEY_PATH}
+      check_last_command_status "cp ${OPTARG} ${NGINX_CERT_KEY_PATH}" $?
       ;;
     p)
       USE_NGINX_PLUS="true"
@@ -568,19 +671,21 @@ while getopts ${OPTS_STRING} opt; do
       NIM_VERSION=${OPTARG}
       ;;
     j)
-      if [ ! -d "/etc/nginx" ]; then
-         mkdir /etc/nginx
-         check_last_command_status "mkdir /etc/nginx" $?
-      fi
-         cp "${OPTARG}" "/etc/nginx/license.jwt"
+      LICENSE_JWT_PATH=${OPTARG}
       ;;
     t)
       CLICKHOUSE_VERSION=${OPTARG}
-          ;;
+      ;;
+    r)
+      UNINSTALL_NIM="true"
+      ;;
     h)
        printUsageInfo
+       printUsageInfo
        exit 0
-       ;;
+      printUsageInfo
+       exit 0
+      ;;
     :)
       echo "Option -${OPTARG} requires an argument."
       exit 1
@@ -592,16 +697,10 @@ while getopts ${OPTS_STRING} opt; do
   esac
 done
 
-if [ "${MODE}" == "online" ]; then
-  if [ ! -f "${NGINX_CERT_PATH}" ]; then
-      echo "NGINX cert path - ${NGINX_CERT_PATH} not found"
-      exit
-  fi
+check_if_nim_installed
+check_cert_key_jwt_path
 
-  if [ ! -f "${NGINX_CERT_KEY_PATH}" ]; then
-      echo "NGINX cert key - ${NGINX_CERT_KEY_PATH} not found"
-      exit
-  fi
+if [ "${MODE}" == "online" ]; then
   install_nim_online
   check_NIM_status
 
@@ -707,7 +806,7 @@ else
         echo "Invalid target distribution. Supported target distributions: " "${!CLICKHOUSE_REPO[@]}"
         exit 1
     fi
-    echo  "Creating nim installation bundle for distribution ${CLICKHOUSE_PACKAGES[${target_distribution}]}..."
+    echo  "Creating NGINX Instance Manager installation bundle for distribution ${CLICKHOUSE_PACKAGES[${target_distribution}]}..."
     if [ -z "${target_distribution}" ]; then
         echo "${target_distribution} - no target distribution specified"
         exit 1
@@ -752,24 +851,24 @@ else
       nim_with_version=$(curl -fs --cert "${NGINX_CERT_PATH}" --key "${NGINX_CERT_KEY_PATH}" "${NMS_REPO[$target_distribution]}" \
        | grep -P "${package_file}" | sed -n 's/.*<a[^>]*href="\([^"]*\)".*/\1/p')
       if [[ "${#nim_with_version}" -eq 0 ]]; then
-        echo "Error: NIM $NIM_VERSION ($target_distribution) version not found on ${NMS_REPO[$target_distribution]}"
+        echo "Error: NGINX Instance Manager $NIM_VERSION ($target_distribution) version not found on ${NMS_REPO[$target_distribution]}"
         exit 1
       fi
       file_to_download="${NMS_REPO[$target_distribution]}${nim_with_version}"
       save_path="${TEMP_DIR}/${target_distribution}/$nim_with_version"
       echo -n "Downloading ${nim_with_version} ... "
       url_file_download "$file_to_download" "$save_path"
-      echo "Downloaded nim package - $save_path"
+      echo "Downloaded NGINX Instance Manager package - $save_path"
     done
     bundle_file="nim-${NIM_VERSION}-${target_distribution}.tar.gz"
-    echo -n "Creating nim install bundle ... ${bundle_file}"
+    echo -n "Creating NGINX Instance Manager install bundle ... ${bundle_file}"
     cp ${NGINX_CERT_PATH}  "${TEMP_DIR}/${target_distribution}/nginx-repo.crt"
     cp ${NGINX_CERT_KEY_PATH} "${TEMP_DIR}/${target_distribution}/nginx-repo.key"
     tar -zcf "$bundle_file" -C "${TEMP_DIR}/${target_distribution}" .
-    echo -e "\nSuccessfully created the nim bundle - $bundle_file"
+    echo -e "\nSuccessfully created the NGINX Instance Manager bundle - $bundle_file"
 
   else
-    echo "Installing nim bundle from the path ${INSTALL_PATH}"
+    echo "Installing NGINX Instance Manager bundle from the path ${INSTALL_PATH}"
     if [ -f "${INSTALL_PATH}" ]; then
       if [ ! -f "${TEMP_DIR}" ]; then
         mkdir -p "${TEMP_DIR}"
@@ -794,25 +893,25 @@ else
             check_last_command_status "dpkg -i \"$pkg_clickhouse_srv\"" $?
         done
         for pkg_nim in "${TEMP_DIR}"/nms-instance-manager*.deb; do
-            echo "Installing nim from ${pkg_nim}"
+            echo "Installing NGINX Instance Manager from ${pkg_nim}"
             DEBIAN_FRONTEND=noninteractive dpkg -i "$pkg_nim"
             check_last_command_status "dpkg -i \"$pkg_nim\"" $?
         done
 
-            generate
-            echo "Starting clickhouse-server"
-            systemctl start clickhouse-server
+        generate
+        echo "Starting clickhouse-server"
+        systemctl start clickhouse-server
 
-            echo "Starting nginx"
-            systemctl start nginx
+        echo "Starting nginx"
+        systemctl start nginx
 
-            echo "Reloading nginx configuration"
-            systemctl restart nginx
+        echo "Reloading nginx configuration"
+        systemctl restart nginx
 
-            echo "Enabling and starting nim"
-            systemctl enable nms nms-core nms-dpm nms-ingestion nms-integrations --now
+        echo "Enabling and starting NGINX Instance Manager"
+        systemctl enable nms nms-core nms-dpm nms-ingestion nms-integrations --now
 
-            check_NIM_status
+        check_NIM_status
 
       elif cat /etc/*-release | grep -iq 'centos\|fedora\|rhel\|Amazon Linux'; then
         for pkg_nginx in "${TEMP_DIR}"/nginx*.rpm; do
@@ -828,7 +927,7 @@ else
           yum localinstall -y -v --disableplugin=subscription-manager --skip-broken "$pkg_clickhouse_srv"
         done
         for pkg_nim in "${TEMP_DIR}"/nms-instance-manager*.rpm; do
-          echo "Installing nim from ${pkg_nim}"
+          echo "Installing NGINX Instance Manager from ${pkg_nim}"
           yum localinstall -y -v --disableplugin=subscription-manager --skip-broken "$pkg_nim"
         done
 
@@ -842,8 +941,9 @@ else
         echo "Reloading nginx configuration"
         systemctl restart nginx
 
-        echo "Enabling and starting nim"
+        echo "Enabling and starting NGINX Instance Manager"
         systemctl enable nms nms-core nms-dpm nms-ingestion nms-integrations --now
+
         check_NIM_status
 
       else
