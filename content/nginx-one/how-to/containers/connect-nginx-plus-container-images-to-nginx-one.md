@@ -26,7 +26,7 @@ Before you start, make sure you have:
 
 #### Download your JWT license from MyF5
 
-{{<include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
+{{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 
 ---
 

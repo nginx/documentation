@@ -9,7 +9,7 @@ toc: true
 weight: 650
 ---
 
-{{<include "nim/decoupling/note-legacy-nms-references.md" >}}
+{{< include "nim/decoupling/note-legacy-nms-references.md" >}}
 
 ## About certificates {#about-certificates}
 
