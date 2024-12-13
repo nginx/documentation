@@ -35,4 +35,4 @@ jobs:
         env:
           PRODUCT_NAME: nginx_documentation_${{ inputs.branch && inputs.branch || github.ref_name }}
           PROJECT_NAME: nic
-        run: java -jar wss-unified-agent.jar -noConfig true -wss.url ${{ secrets.WSS_URL }} -apiKey ${{ secrets.WSS_NGINX_TOKEN }} -product $PRODUCT_NAME -project $PROJECT_NAME -d .
+        run: java -jar wss-unified-agent.jar -noConfig true -wss.url ${{ secrets.WSS_URL }} -apiKey ${{ secrets.WS_APIKEY_NGINX }} -product ${{ secrets.WS_PRODUCT }} -project ${{ secrets.WS_PROJECT }} -d .
