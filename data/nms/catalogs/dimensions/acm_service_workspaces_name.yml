@@ -1,0 +1,6 @@
+description: "Service represents an abstract networked function and a service workspace is a logical concept introduced to segregate business units or teams and give ownership (BUs/LOBs) of their services"
+name: acm_service_workspaces_name
+db_column_name: acm_service_workspaces_name
+type: string
+modules:
+  - acm

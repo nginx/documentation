@@ -1,10 +1,10 @@
 
 ---
-name: plus.http.status.processing
+name: plus.http.ssl.handshakes
 categories:
 - nginx
-description: The number of client requests that are currently being processed.
-type: gauge
+description: The total number of successful SSL handshakes grouped by HTTP Server.
+type: counter
 source: plus_status
 unit: integer
 rate: double
@@ -27,4 +27,3 @@ dimensions:
 - instance_group
 - system.tags
 - server_zone
-- location_zone

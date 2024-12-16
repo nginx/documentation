@@ -1,0 +1,6 @@
+description: "NGINX is commonly referred as Reverse Proxy, a proxy is configured with hostname to intercept traffic targeted at that hostname"
+name: acm_api_proxy_hostname
+db_column_name: acm_api_proxy_hostname
+type: string
+modules:
+  - acm

@@ -1,9 +1,9 @@
 
 ---
-name: plus.http.status.processing
+name: plus.worker.conn.idle
 categories:
 - nginx
-description: The number of client requests that are currently being processed.
+description: The number of idle client connections that are currently being handled by the worker process.
 type: gauge
 source: plus_status
 unit: integer
@@ -26,5 +26,4 @@ dimensions:
 - nginx_id
 - instance_group
 - system.tags
-- server_zone
-- location_zone
+- process_id

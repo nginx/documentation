@@ -1,10 +1,10 @@
 
 ---
-name: plus.http.status.processing
+name: plus.http.upstream.peers.ssl.handshakes.failed
 categories:
 - nginx
-description: The number of client requests that are currently being processed.
-type: gauge
+description: The total number of failed SSL handshakes grouped by Upstream Peer.
+type: counter
 source: plus_status
 unit: integer
 rate: double
@@ -26,5 +26,7 @@ dimensions:
 - nginx_id
 - instance_group
 - system.tags
-- server_zone
-- location_zone
+- upstream
+- upstream_zone
+- peer.name
+- peer.address

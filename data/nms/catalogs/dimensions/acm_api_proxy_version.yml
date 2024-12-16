@@ -1,0 +1,6 @@
+description: "Proxy lifecycle is managed through versioning and the proxy version identifies a versioned proxy that is configured with hostname, listeners and routing instructions"
+name: acm_api_proxy_version
+db_column_name: acm_api_proxy_version
+type: string
+modules:
+  - acm
