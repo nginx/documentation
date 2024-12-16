@@ -27,7 +27,7 @@ NGINX Plus is available only as a binary; it is not distributed as source code. 
 | Oracle Linux                        | 8.1+ (x86_64, aarch64) <br> 9 (x86_64)          | 7.4+ (x86_64) **(deprecated)** <br> 8.1+ (x86_64, aarch64) <br> 9 (x86_64) |
 | Red Hat Enterprise Linux (RHEL)     | 8.1+ (x86_64, aarch64) <br> 9.0+ (x86_64, aarch64) | 7.4+ (x86_64) **(deprecated)** <br> 8.1+ (x86_64, aarch64) <br> 9.0+ (x86_64, aarch64) |
 | Rocky Linux                         | 8 (x86_64, aarch64) <br> 9 (x86_64, aarch64)    | 8 (x86_64, aarch64) <br> 9 (x86_64, aarch64)    |
-| SUSE Linux Enterprise Server (SLES) | 12 SP5 (x86_64) (deprecated) <br> 15 SP2+ (x86_64) | 12 SP5 (x86_64) <br> 15 SP2+ (x86_64)           |
+| SUSE Linux Enterprise Server (SLES) | 12 SP5 (x86_64) **(deprecated)** <br> 15 SP2+ (x86_64) | 12 SP5 (x86_64) <br> 15 SP2+ (x86_64)           |
 | Ubuntu                              | 20.04 LTS (x86_64, aarch64) <br> 22.04 LTS (x86_64, aarch64) <br> 24.04 LTS (x86_64, aarch64) | 20.04 LTS (x86_64, aarch64) <br> 22.04 LTS (x86_64, aarch64) <br> 24.04 LTS (x86_64, aarch64 **(new)** |
 {{</bootstrap-table>}}
 
