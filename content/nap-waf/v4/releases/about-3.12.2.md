@@ -11,7 +11,7 @@ This release is intended to support NGINX Instance Manager.
 
 ### New Features
 
-- The NGINX App Protect WAF release includes the support of NGINX Instance Manager capability to edit and publish policy bundles. <br> See [NGINX Instance Manager releases](https://docs.nginx.com/nginx-management-suite/nim/releases/).
+- The NGINX App Protect WAF release includes the support of NGINX Instance Manager capability to edit and publish policy bundles. <br> See [NGINX Instance Manager releases](https://docs.nginx.com/nginx-instance-manager/releases/).
 
 ### Supported Packages
 
