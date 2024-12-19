@@ -84,15 +84,18 @@ This article explains how to install NGINX Plus on different operating systems,
 
 ## Install NGINX Plus on RHEL 7.4+, CentOS 7.4+, and Oracle Linux 7.4+ {#install_rhel_centos}
 
-1. {{< include "nginx-plus/install/check-tech-specs.md" >}}
+{{< call-out "important" "Deprecation notice" "" >}}
+CentOS 7.4, RHEL 7.4, and Oracle Linux 7.4 are deprecated as of NGINX Plus Release 32 (R32) and are not supported in Release 33 (R33) or later. For the list of supported distributions, refer to the [NGINX Plus Tech Specs]({{< relref "nginx/technical-specs.md" >}}).
+{{</ call-out >}}
 
 1. {{< include "nginx-plus/install/back-up-config-and-logs.md" >}}
 
-1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
+1. Download the SSL certificate and private key associated with your NGINX Plus subscription from the MyF5 Customer Portal:
 
-1. {{< include "nginx-plus/install/create-dir-for-jwt.md" >}}
-
-1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
+    - Log in to [MyF5](https://my.f5.com/manage/s/).
+    - Go to **My Products & Plans > Subscriptions** to see your active subscriptions.
+    - Find your NGINX products or services subscription, and select the **Subscription ID** for details.
+    - Download the **nginx-repo.crt** and **nginx-repo.key** from the subscription page.
 
 1. {{< include "nginx-plus/install/install-ca-certificates-dependency-yum.md" >}}
 
@@ -116,8 +119,6 @@ This article explains how to install NGINX Plus on different operating systems,
 1. {{< include "nginx-plus/install/enable-nginx-service-at-boot.md" >}}
 
 1. {{< include "nginx-plus/install/check-nginx-binary-version.md" >}}
-
-1. {{< include "nginx-plus/install/configure-usage-reporting.md" >}}
 
 1. {{< include "nginx-plus/install/install-nginx-agent-for-nim.md" >}}
 
@@ -404,7 +405,7 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
 
 1. {{< include "nginx-plus/install/install-nginx-agent-for-nim.md" >}}
 
-## Install NGINX Plus on Alpine Linux {#install_alpine"}
+## Install NGINX Plus on Alpine Linux {#install_alpine}
 
 1. {{< include "nginx-plus/install/check-tech-specs.md" >}}
  
