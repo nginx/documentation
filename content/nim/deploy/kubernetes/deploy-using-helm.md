@@ -1,8 +1,12 @@
 ---
-docs: "DOCS-1651"
+docs: DOCS-1651
 title: "Deploy using Helm"
 toc: true
 weight: 100
+doctypes:
+- task
+tags:
+- docs
 ---
 
 ## Overview
@@ -130,7 +134,10 @@ Create a Docker registry secret on the cluster, using the JWT token as the usern
 {{< note >}} Make sure there are no extra characters or spaces when copying the JWT token. They can invalidate the token and cause 401 errors during authentication. {{< /note >}}
 
 ```shell
-kubectl create secret docker-registry regcred --docker-server=private-registry.nginx.com --docker-username=<JWT Token> --docker-password=none
+kubectl create secret docker-registry regcred \
+--docker-server=private-registry.nginx.com \
+--docker-username=<JWT Token> \
+--docker-password=none
 ```
 
 {{< warning >}} 
@@ -256,7 +263,13 @@ Run the `helm install` command to deploy NGINX Instance Manager:
 (Optional) Replace `<nms-chart-version>` with the desired chart version. If omitted, the latest version will be installed.
 
 ```shell
-helm install -n nms --set nms-hybrid.adminPasswordHash=$(openssl passwd -6 'YourPassword123#') nms nginx-stable/nms --create-namespace -f <path-to-your-values.yaml> [--version <chart-version>] --wait
+helm install -n nms \
+--set nms-hybrid.adminPasswordHash=$(openssl passwd -6 'YourPassword123#') \
+nms nginx-stable/nms \
+--create-namespace \
+-f <path-to-your-values.yaml> \
+[--version <chart-version>] \
+--wait
 ```
 
 To help you choose the right NGINX Instance Manager chart version, see the table in:
@@ -300,7 +313,12 @@ To upgrade:
 1. To upgrade the NGINX instance deployment, run the following command. This command updates the `nms` deployment with a new version from the `nginx-stable/nms` repository. It also hashes the provided password and uses the `values.yaml` file at the path you specify.
 
    ```bash
-   helm upgrade -n nms --set nms-hybrid.adminPasswordHash=$(openssl passwd -6 'YourPassword123#') nms nginx-stable/nms -f <path-to-your-values.yaml> [--version <nms-chart-version>] --wait
+    helm upgrade -n nms \
+    --set nms-hybrid.adminPasswordHash=$(openssl passwd -6 'YourPassword123#') \
+    nms nginx-stable/nms \
+    -f <path-to-your-values.yaml> \
+    [--version <nms-chart-version>] \
+    --wait
    ```
 
    - Replace `<path-to-your-values.yaml>` with the path to the `values.yaml` file you created]({{< relref "/nim/deploy/kubernetes/deploy-using-helm.md#configure-chart" >}}).

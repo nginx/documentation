@@ -59,12 +59,12 @@ Navigate to the directory where you downloaded `docker-compose.yaml`. With the f
 ~$ echo "admin" > admin_password.txt
 ~$ docker compose up -d
 [+] Running 6/6
- ✔ Network nim_clickhouse        Created                                                                                           0.1s
- ✔ Network nim_external_network  Created                                                                                           0.2s
- ✔ Network nim_default           Created                                                                                           0.2s
- ✔ Container nim-precheck-1      Started                                                                                           0.8s
- ✔ Container nim-clickhouse-1    Healthy                                                                                           6.7s
- ✔ Container nim-nim-1           Started                                                                                           7.4s
+ ✔ Network nim_clickhouse        Created   0.1s
+ ✔ Network nim_external_network  Created   0.2s
+ ✔ Network nim_default           Created   0.2s
+ ✔ Container nim-precheck-1      Started   0.8s
+ ✔ Container nim-clickhouse-1    Healthy   6.7s
+ ✔ Container nim-nim-1           Started   7.4s
 ```
 
 ### Supported environment variables
@@ -88,12 +88,12 @@ docker compose down
 ```
 ```
 [+] Running 6/6
- ✔ Container nim-nim-1           Removed                                                                                          30.6s
- ✔ Container nim-clickhouse-1    Removed                                                                                          1.4s
- ✔ Container nim-precheck-1      Removed                                                                                          0.0s
- ✔ Network nim_default           Removed                                                                                          0.9s
- ✔ Network nim_external_network  Removed                                                                                          0.4s
- ✔ Network nim_clickhouse        Removed                                                                                          0.6s
+ ✔ Container nim-nim-1           Removed   30.6s
+ ✔ Container nim-clickhouse-1    Removed    1.4s
+ ✔ Container nim-precheck-1      Removed    0.0s
+ ✔ Network nim_default           Removed    0.9s
+ ✔ Network nim_external_network  Removed    0.4s
+ ✔ Network nim_clickhouse        Removed    0.6s
 ```
 
 ---
