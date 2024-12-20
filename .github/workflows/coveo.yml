@@ -1,0 +1,112 @@
+name: Refresh coveo searchToken for docs dev/staging/production
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */23 * * *"
+
+jobs:
+  generate-coveo-search-token:
+    name: Generate Coveo Search Tokens
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - env_name: dev
+            env_api_key: "COVEO_API_DEV"
+            env_coveo_org_id: "f5networkx1h1607h"
+          - env_name: staging
+            env_api_key: "COVEO_API_STAGING"
+            env_coveo_org_id: "f5networksnonproduction1xqykzabw"
+          - env_name: prod
+            env_api_key: "COVEO_API_PROD"
+            env_coveo_org_id: "f5networksproduction5vkhn00h"
+    steps:
+      - name: Install jq
+        run: sudo apt-get install jq
+
+      - name: Generating token for ${{matrix.env_name}} ...
+        env:
+          COVEO_API_KEY: ${{secrets[matrix.env_api_key]}}
+          COVEO_SEARCH_HUB: "HUB_ES_Nginx_Docs_And_Org"
+        run: |
+          RESPONSE=$(curl -w "\nHTTP_CODE: %{http_code}" -s -X POST "https://${{matrix.env_coveo_org_id}}.org.coveo.com/rest/search/v2/token" \
+          -H "Accept: application/json" \
+          -H "Content-Type: application/json" \
+          -H "Authorization: Bearer ${COVEO_API_KEY}" \
+          -d '{
+              "searchHub": "'${COVEO_SEARCH_HUB}'",
+              "organization": "'${{matrix.env_coveo_org_id}}'",
+              "userIds": [
+                  {
+                  "type": "User",
+                  "name": "anonymous",
+                  "provider": "Email Security Provider"
+                  }
+              ]
+              }')
+          STATUS_CODE=$(echo "$RESPONSE" | grep HTTP_ | awk '{print $2}')
+          SEARCH_TOKEN=$(echo "$RESPONSE" | sed '$d' | jq -r '.token')
+
+          if [ $STATUS_CODE -ne 200 ]; then
+            echo "Error: HTTP request failed with status $STATUS_CODE"
+            exit 1
+          fi
+          if [ "$SEARCH_TOKEN" == "null" ]; then
+            echo "Error: Failed to extract search token from response"
+            exit 1
+          fi
+
+          mkdir coveo/
+          echo "{\"token\": \"$SEARCH_TOKEN\", \"org_id\": \"${{matrix.env_coveo_org_id}}\"}" > coveo/search_token.json
+
+      - name: Upload token for ${{matrix.env_name}}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{matrix.env_name}}
+          path: "./"
+
+  push-tokens-to-azure:
+    name: Push coveo search tokens to Azure
+    runs-on: ubuntu-latest
+    needs: generate-coveo-search-token
+    steps:
+      - name: Download Coveo search token
+        uses: actions/download-artifact@v4
+
+      - name: View files
+        run: ls -R
+
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          creds: ${{secrets.AZURE_CREDENTIALS_DOCS}}
+
+      - name: Retrieve secrets from Keyvault
+        id: keyvault
+        uses: azure/cli@089eac9d8cc39f5d003e94f8b65efc51076c9cbd
+        with:
+          inlineScript: |
+            secrets_get=(productionHostname previewHostname resourceGroupName cdnProfileName cdnName accountName)
+            for secret_get in ${secrets_get[@]}
+            do
+              value=$(az keyvault secret show --name $secret_get --vault-name ${{ secrets.AZURE_KEY_VAULT_DOCS }} --query value --output tsv)
+              echo "::add-mask::$value"
+              echo "$secret_get=$value" >> $GITHUB_OUTPUT
+            done
+
+      - name: Push to Azure container storage
+        run: |
+          az storage blob upload-batch \
+            -s ./ \
+            -d '$web' \
+            --account-name ${{steps.keyvault.outputs.accountName}} \
+            --overwrite \
+            --content-cache-control "no-store" \
+            --auth-mode login
+
+          az afd endpoint purge \
+            --resource-group ${{steps.keyvault.outputs.resourceGroupName}} \
+            --profile-name ${{steps.keyvault.outputs.cdnProfileName}} \
+            --endpoint-name ${{steps.keyvault.outputs.cdnName}} \
+            --domains docs.nginx.com docs-dev.nginx.com docs-staging.nginx.com \
+            --content-paths '/.netlify/functions/*'

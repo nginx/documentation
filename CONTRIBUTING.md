@@ -1,156 +1,93 @@
-# Contributing Guidelines
+# Contributing guidelines
 
-The following is a set of guidelines for contributing to this project. We really appreciate that you are considering contributing!
+The following is a set of guidelines for community contributions to this
+project. We really appreciate your desire to contribute!
 
-## Setup
+If you are an F5/NGINX employee, see the following guidance [For F5/NGINX Employees](./F5-NGINX-team-notes.md).
 
-You will need to install Hugo _or_ Docker to build and preview docs in your local development environment.
-Refer to the [Hugo installation instructions](https://gohugo.io/getting-started/installing/) for more information.
+## Table of contents
 
-**NOTE**: We are currently running [Hugo v0.134.2](https://github.com/gohugoio/hugo/releases/tag/v0.134.2) in production.
+- [Report a Bug](#report-a-bug)
+- [Suggest a Feature or Enhancement](#suggest-a-feature-or-enhancement)
+- [Open a Discussion](#open-a-discussion)
+- [Submit a Pull Request](#submit-a-pull-request)
+  - Review our [Git style guide](#git-style-guide)
+  - Review our Documentation [style guide](./templates/style-guide.md)
+  - Review our [Contributing guidelines for writers](./CONTRIBUTING_DOCS.md)
+- [Issue Lifecycle](#issue-lifecycle)
+- [Content edited elsewhere](#content-edited-elsewhere)
+- [F5 Contributor License Agreement (CLA)](#f5-contributor-license-agreement)
 
+## Report a bug
 
-Although not a strict requirement, markdown-link-check is also used in documentation development.
+To report a bug, open an issue on GitHub with the label `bug` using the
+available bug report issue template. Before reporting a bug, make sure the
+issue has not already been reported.
 
-If you have [Docker](https://www.docker.com/get-started/) installed, there are fallbacks for all requirements in the [Makefile](Makefile), meaning you don't need to install them.
+## Suggest a feature or enhancement
 
-- [Installing Hugo](https://gohugo.io/getting-started/installing/)
-- [Installing markdownlint-cli](https://github.com/igorshubovych/markdownlint-cli?tab=readme-ov-file#installation)
-- [Installing markdown-link-check](https://github.com/tcort/markdown-link-check?tab=readme-ov-file#installation).
+To suggest a feature or enhancement, open an issue on GitHub with the label
+`feature` or `enhancement` using the available feature request issue template.
+Please ensure the feature or enhancement has not already been suggested.
 
-The configuration files are as follows:
+## Open a discussion
 
-- *Hugo*: `config/default/config.toml`
-- *markdownlint-cli*: `.markdownlint.json`
-- *markdown-link-check* `md-linkcheck-config.json`
+If you want to start a conversation with the community and maintainers,
+we encourage you to use
+[GitHub Discussions](https://github.com/nginxinc/oss-docs/discussions).
 
-## Local Docs Development
+## Submit a Pull Request
 
-To build the documentation locally, use the `make` command in the documentation folder with these targets:
+To contribute to F5 NGINX documentation, follow these steps:
 
-```text
-make docs          - Builds the documentation.
-make watch         - Runs a Hugo server to automatically preview changes on a local browser. Use this if you want to preview
-                     the documentation locally before submitting a PR.
-make drafts        - Runs a Hugo server, and displays documentation marked as drafts on a local browser. By default, drafts
-                     are not displayed.
-make hugo-get      - Updates the go module file with the latest version of the theme.
-make hugo-tidy     - Removes unnecessary dependencies from the go module file.
-make hugo-update   - Runs the hugo-get and hugo-tidy targets in sequence.
-make lint-markdown - Runs [markdownlint](https://github.com/DavidAnson/markdownlint) on the content folder.
-make link-check    - Runs [markdown-link-check](https://github.com/tcort/markdown-link-check) on all Markdown files. Requires a running instance of Docker.
-make clean         - Removes the local `public` directory, which is the default output path used by Hugo.
-```
+- Fork the NGINX repository
+- Create a branch
+- Implement your changes in your branch
+- Submit a pull request (PR) when your changes are ready for review
 
-## Add new documentation
+Alternatively, you're welcome to suggest improvements to highlight problems with
+our documentation as described in our [support](./SUPPORT.md) page.
 
-We provide template files for different types of documentation. The templates, including instructions to use them and examples, are located in the [templates](templates) directory.
+### Git Style Guide
 
-We have templates for the following types of documentation:
-- Concept
-- Getting started
-- How-to guide
-- Installation guide
-- Reference
-- Release notes
-- Tutorial
+- Keep a clean, concise and meaningful Git commit history on your branch, rebasing locally and squashing before you submit a PR
+- Follow the guidelines of writing a good commit message as described here <https://chris.beams.io/posts/git-commit/>
+  and summarized in the next few points:
 
-## How to format docs
+  - In the subject line, use the present tense ("Add feature" not "Added feature")
+  - In the subject line, use the imperative mood ("Move cursor to..." not "Moves cursor to...")
+  - Limit the subject line to 72 characters or less
+  - Reference issues and pull requests liberally after the subject line
+  - Add more detailed description in the body of the git message (`git commit -a` to give you more space and time in
+    your text editor to write a good message instead of `git commit -am`)
 
-### Basic markdown formatting
+### Documentation style guide
 
-There are multiple ways to format text: for consistency and clarity, these are our conventions:
+For detailed guidance, see our documentation [style guide](./templates/style-guide.md).
 
-- Bold: Two asterisks on each side - `**Bolded text**`.
-- Italic: One underscore on each side - `_Italicized text_`.
-- Unordered lists: One dash - `- Unordered list item`.
-- Ordered lists: The 1 character followed by a stop - `1. Ordered list item`.
+## Issue lifecycle
 
-> **Note**: The ordered notation automatically enumerates lists when built by Hugo.
-Close every section with a horizontal line by using three dashes: `---`.
+To ensure a balance between work carried out by the NGINX team while encouraging community involvement on this project, we use the following
+issue lifecycle:
 
-### How to format internal links
+- A new issue is created by a community member
+- An owner on the NGINX team is assigned to the issue; this owner shepherds the issue through the subsequent stages in the issue lifecycle
+- The owner assigns one or more [labels](https://github.com/nginxinc/oss-docs/issues/labels) to the issue
+- The owner, in collaboration with the community member, determines what milestone to attach to an issue. They may be milestones correspond to product releases
 
-Internal links should use Hugo [ref and relref shortcodes](https://gohugo.io/content-management/cross-references/).
+## Content edited elsewhere
 
-- Although file extensions are optional for Hugo, we include them as best practice for page anchors.
-- Relative paths are preferred, but just the filename is permissible.
-- Paths without a leading forward slash (`/`) are first resolved relative to the current page, then the remainder of the website.
+This repository does not include all documentation available at https://docs.nginx.com. Other relevant repositories include:
 
-Here are two examples:
+- [NGINX Open Source](https://github.com/nginx/nginx)
+- [NGINX Unit](https://github.com/nginx/unit)
+- [NGINX Ingress Controller](https://github.com/nginxinc/kubernetes-ingress/)
+- [NGINX Gateway Fabric](https://github.com/nginxinc/nginx-gateway-fabric)
 
-```md
-To install <software>, refer to the [installation instructions]({{< ref "install.md" >}}).
-To install <integation>, refer to the [integration instructions]({{< relref "/integration/thing.md#section" >}}).
-```
+In those repositories, you can find documentation source code in the `docs` or `site` subdirectories.
 
-### How to add images
+## F5 Contributor License Agreement
 
-Use the `img` [shortcode](#using-hugo-shortcodes) to add images into your documentation.
+F5 requires all external contributors to agree to the terms of the F5 CLA (available [here](https://github.com/f5/.github/blob/main/CLA/cla-markdown.md)) before any of their changes can be incorporated into an F5 Open Source repository.
 
-1. Add the image to the `/static/img` directory.
-1. Add the `img` shortcode:
-    `{{< img src="<img-file.png>" alt="<Alternative text>">}}`
-   - **Alt text is required, and must describe in detail the content of the image.**
-   - **Do not include a forward slash at the beginning of the file path.**
-   - This will break the image when it's rendered: read about the  [Hugo relURL Function](https://gohugo.io/functions/relurl/#input-begins-with-a-slash) to learn more.
-
-> **Note**: The `img` shortcode accepts all of the same parameters as the Hugo [figure shortcode](https://gohugo.io/content-management/shortcodes/#figure).
-
-> **Important**: We have strict guidelines regarding the use of images in our documentation. Make sure that you keep the number of images to a minimum and that they are relevant to the content. Review the guidelines in our [style guide](/templates/style-guide.md#guidelines-for-screenshots).
-
-### How to use Hugo shortcodes
-
-[Hugo shortcodes](https://github.com/nginxinc/nginx-hugo-theme/tree/main/layouts/shortcodes) are used to format callouts, add images, and reuse content across different pages.
-
-For example, to use the `note` callout:
-
-```md
-{{< note >}}Provide the text of the note here.{{< /note >}}
-```
-
-The callout shortcodes support multi-line blocks:
-
-```md
-{{< caution >}}
-You should probably never do this specific thing in a production environment.
-
-If you do, and things break, don't say we didn't warn you.
-{{< /caution >}}
-```
-
-Supported callouts:
-- `note`
-- `tip`
-- `important`
-- `caution`
-- `warning`
-
-You can also create custom callouts using the `call-out` shortcode `{{< call-out "type" "header" "font-awesome icon >}}`. For example:
-
-```md
-{{<call-out "important" "JWT file required for upgrade" "fa fa-exclamation-triangle">}}
-```
-
-Here are some other shortcodes:
-
-- `fa`: Inserts a Font Awesome icon
-- `collapse`: Make a section collapsible
-- `tab`: Create mutually exclusive tabbed window panes, useful for parallel instructions
-- `table`: Add scrollbars to wide tables for browsers with smaller viewports
-- `link`: Link to a file, prepending its path with the Hugo baseUrl
-- `openapi`: Loads an OpenAPI specifcation and render it as HTML using ReDoc
-- `include`: Include the content of a file in another file; the included file must be present in the '/content/includes/' directory
-- `raw-html`: Include a block of raw HTML
-- `readfile`: Include the content of another file in the current file, which can be in an arbitrary location.
-- `bootstrap-table`: formats a table using Bootstrap classes; accepts any bootstrap table classes as additional arguments, e.g. `{{< bootstrap-table "table-bordered table-hover" }}`
-
-## Linting
-
-To run the markdownlint check, run the following command, which uses the .markdownlint.yaml file to specify rules. For `<content>`, specify the path to your Markdown files:
-
-```bash
-markdownlint -c .markdownlint.yaml <content>
-```
-
-> Note: You can run this tool on an entire directory or on an individual file.
+If you have not yet agreed to the F5 CLA terms and submit a PR to this repository, a bot will prompt you to view and agree to the F5 CLA. You will have to agree to the F5 CLA terms through a comment in the PR before any of your changes can be merged. Your agreement signature will be safely stored by F5 and no longer be required in future PRs.
