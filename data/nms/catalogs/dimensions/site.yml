@@ -1,0 +1,6 @@
+description: "The UUID of the site."
+name: site
+db_column_name: site
+type: string
+modules:
+  - adm

@@ -1,0 +1,6 @@
+description: "The ID of the worker process."
+name: process_id
+db_column_name: process_id
+type: string
+modules:
+  - platform

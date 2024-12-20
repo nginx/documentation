@@ -1,0 +1,6 @@
+description: "The name of the application."
+name: app_name
+db_column_name: app_name
+type: string
+modules:
+  - adm

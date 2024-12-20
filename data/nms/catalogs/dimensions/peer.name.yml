@@ -1,0 +1,6 @@
+description: "The name of a peer in an Upstream. A peer name has the name of the server specified in server directive"
+name: peer.name
+db_column_name: peer__name
+type: string
+modules:
+  - platform

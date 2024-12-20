@@ -1,0 +1,6 @@
+name: entitycud.instance sets
+description: "Instance Sets CUD events"
+modules:
+  - platform
+dimensions:
+  - message

@@ -1,0 +1,7 @@
+description: "The name of the NGINX instance group to manage set of instances that can be used for scaling and high availability."
+name: instance_group
+db_column_name: instance_group
+type: string
+modules:
+  - platform
+  - adm

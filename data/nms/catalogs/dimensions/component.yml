@@ -1,0 +1,6 @@
+description: "The UUID of the component."
+name: component
+db_column_name: component
+type: string
+modules:
+  - adm

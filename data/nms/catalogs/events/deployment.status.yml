@@ -1,0 +1,12 @@
+name: deployment.status
+description: "Status events related to deployments"
+modules:
+  - platform
+dimensions:
+  - message
+  - error
+  - publication_uuid
+  - deployment_uuid
+  - module
+  - instance
+  - instance_group

@@ -1,0 +1,6 @@
+description: "NGINX is commonly referred as Reverse Proxy, a proxy is an abstraction to represent that NGINX proxy is configured with hostname and listeners to intercept traffic and follow routing instructions and proxy name identifies the proxy."
+name: acm_api_proxy_name
+db_column_name: acm_api_proxy_name
+type: string
+modules:
+  - acm

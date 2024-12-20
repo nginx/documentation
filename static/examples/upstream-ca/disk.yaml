@@ -1,0 +1,7 @@
+apiVersion: v1
+upstreamAuthority: disk
+config:
+    cert_file_path: </path/to/cert.pem>
+    key_file_path: </path/to/key.pem>
+    # Optional fields
+    bundle_file_path: </path/to/rootCA.crt>

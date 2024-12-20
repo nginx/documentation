@@ -1,7 +1,5 @@
 # The reference article
 
-> Thank you for downloading this template from The Good Docs Project! Before using the template, read this template guide for information about how to complete each section. Want to explore more templates? Check them out in our [templates GitLab repository](https://gitlab.com/tgdp/templates).
-
 Reference articles provide information-oriented descriptions of specific components or characteristics of your product.
 The purpose of a reference article is to concisely present information as a structured set of entries, with little to no procedural or instructional content.
 
@@ -37,7 +35,3 @@ This is important for API reference docs and package descriptions documented in 
 * **Example 1**.
 
 * **Example 2**.
-
----
-
-> Explore other templates from [The Good Docs Project](https://thegooddocsproject.dev/). Use our [feedback form](https://thegooddocsproject.dev/feedback/?template=Reference%20guide) to give feedback on this template.

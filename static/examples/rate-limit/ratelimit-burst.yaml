@@ -1,0 +1,17 @@
+apiVersion: specs.smi.nginx.com/v1alpha2
+kind: RateLimit
+metadata:
+  name: ratelimit-burst
+  namespace: default
+spec:
+  destination:
+    kind: Service
+    name: dest-svc
+    namespace: default
+  sources:
+    - kind: Deployment
+      name: bursty-client
+      namespace: default
+  name: ratelimit-burst
+  rate: 1r/s
+  burst: 0

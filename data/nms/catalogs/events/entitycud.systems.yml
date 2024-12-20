@@ -1,0 +1,6 @@
+name: entitycud.systems
+description: "System CUD events"
+modules:
+  - platform
+dimensions:
+  - message

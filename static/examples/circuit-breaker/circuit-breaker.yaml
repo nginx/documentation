@@ -1,0 +1,15 @@
+apiVersion: specs.smi.nginx.com/v1alpha1
+kind: CircuitBreaker
+metadata:
+  name: circuit-breaker-example
+  namespace: default
+spec:
+  destination:
+    kind: Service
+    name: target-svc
+    namespace: default
+  errors: 3
+  timeoutSeconds: 30
+  fallback:
+    service: default/target-backup 
+    port: 80

@@ -1,0 +1,10 @@
+name: agent.status
+description: "Status events of NGINX Agent"
+modules:
+  - platform
+dimensions:
+  - system_id
+  - hostname
+  - instance_group
+  - system.tags
+  - message

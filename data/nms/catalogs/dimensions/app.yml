@@ -1,0 +1,6 @@
+description: "The UUID of an application."
+name: app
+db_column_name: app
+type: string
+modules:
+  - adm

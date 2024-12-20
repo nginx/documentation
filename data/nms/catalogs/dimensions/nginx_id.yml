@@ -1,0 +1,7 @@
+description: "The unique identifier of the an nginx instance running on the dataplane."
+name: nginx_id
+db_column_name: nginx_id
+type: string
+modules:
+  - platform
+  - adm

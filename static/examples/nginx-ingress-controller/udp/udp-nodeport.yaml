@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: udp-nodeport
+  namespace: nginx-ingress
+spec:
+  type: NodePort 
+  ports:
+  - port: 8900
+    targetPort: 8900
+    protocol: UDP
+    name: udp
+  selector:
+    app: nginx-ingress

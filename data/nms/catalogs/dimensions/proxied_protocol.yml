@@ -1,0 +1,7 @@
+description: "The protocol the request used for proxying"
+name: proxied_protocol
+db_column_name: proxied_protocol
+type: string
+modules:
+  - adm
+  - acm

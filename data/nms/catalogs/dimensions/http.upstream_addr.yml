@@ -1,0 +1,6 @@
+description: "The IP address and port, or the path to the UNIX-domain socket, of the upstream server."
+name: http.upstream_addr
+db_column_name: http__upstream_addr
+type: string
+modules:
+  - adm

@@ -1,0 +1,6 @@
+description: "Infrastructure represents physical infrastructure and an infra workspace is a logical concept introduced to segregate business units or teams and give ownership (BUs/LOBs) of their infrastructure"
+name: acm_infra_workspaces_name
+db_column_name: acm_infra_workspaces_name
+type: string
+modules:
+  - acm

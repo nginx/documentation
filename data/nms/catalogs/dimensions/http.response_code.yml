@@ -1,0 +1,6 @@
+description: "The 3-digit HTTP response status code. For example, '200', '404', '302'."
+name: http.response_code
+db_column_name: http__response_code
+type: string
+modules:
+  - adm

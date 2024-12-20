@@ -1,0 +1,6 @@
+description: "The URI (path) section of the URL in a request."
+name: http.uri
+db_column_name: http__uri
+type: string
+modules:
+  - adm

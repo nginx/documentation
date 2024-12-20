@@ -1,0 +1,6 @@
+description: “A string representation of module which the events is generated“
+name: module
+db_column_name: module
+type: string
+modules:
+  - platform

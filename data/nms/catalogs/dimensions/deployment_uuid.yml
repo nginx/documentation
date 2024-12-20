@@ -1,0 +1,6 @@
+description: “A unique identifier for each deployment of NGINX Config“
+name: deployment_uuid
+db_column_name: deployment_uuid
+type: string
+modules:
+  - platform

@@ -1,0 +1,7 @@
+description: "The display name of the NGINX instance"
+name: display_name
+db_column_name: display_name
+type: string
+modules:
+  - platform
+  - adm

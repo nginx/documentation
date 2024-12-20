@@ -1,0 +1,7 @@
+description: "System tags."
+name: system.tags
+db_column_name: system__tags
+type: string
+modules:
+  - platform
+  - adm

@@ -1,0 +1,6 @@
+description: "The version of HTTP."
+name: http.version_schema
+db_column_name: http__version_schema
+type: string
+modules:
+  - adm
