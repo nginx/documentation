@@ -1,0 +1,55 @@
+# Warning: this deployment is for demo purposes only and is not recommended for production environments
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: nsm-monitoring
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jaeger
+  namespace: nsm-monitoring
+  labels:
+    app.kubernetes.io/name: jaeger
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: jaeger
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: jaeger
+        injector.nsm.nginx.com/auto-inject: disabled
+    spec:
+      containers:
+      - name: jaeger
+        image: jaegertracing/all-in-one:latest
+        ports:
+        - containerPort: 16686
+        - containerPort: 6831
+          protocol: UDP
+        - containerPort: 14268
+        - containerPort: 14250
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jaeger
+  namespace: nsm-monitoring
+  labels:
+    app.kubernetes.io/name: jaeger
+spec:
+  selector:
+    app.kubernetes.io/name: jaeger
+  ports:
+  - name: frontend
+    port: 16686
+  - name: collector
+    port: 6831
+    protocol: UDP
+  - name: collector-http
+    port: 14268
+  - name: collector-grpc
+    port: 14250

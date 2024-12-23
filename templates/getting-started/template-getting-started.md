@@ -23,7 +23,7 @@ It is intended for {audience}. It assumes that you have basic knowledge of:
 
 :information_source: Link each concept to its corresponding content that helps users understand the concepts and ideas behind your software. 
 
-## Before you start
+## Before you begin
 
 :information_source: This section is optional.
 
@@ -85,7 +85,3 @@ Now that you've completed this quickstart, try these to learn more about {featur
 - Reference Link 1
 - Reference Link 2
 - Reference Link n
-
----
-
-> Explore other templates from [The Good Docs Project](https://thegooddocsproject.dev/). Use our [feedback form](https://thegooddocsproject.dev/feedback/?template=Quickstart) to give feedback on this template.

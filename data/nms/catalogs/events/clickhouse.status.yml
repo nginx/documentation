@@ -1,0 +1,6 @@
+name: clickhouse.status
+description: "Status events related to ClickHouse analytics database server"
+modules:
+  - platform
+dimensions:
+  - message

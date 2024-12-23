@@ -1,0 +1,6 @@
+name: entitycud.templates
+description: "Template CUD events"
+modules:
+  - platform
+dimensions:
+  - message

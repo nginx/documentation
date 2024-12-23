@@ -1,0 +1,6 @@
+description: "The name of the component."
+name: component_name
+db_column_name: component_name
+type: string
+modules:
+  - adm

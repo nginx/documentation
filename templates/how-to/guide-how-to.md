@@ -1,7 +1,5 @@
 # How-to guide
 
-> Thank you for downloading this template from The Good Docs Project! Before using the template, read this template guide for information about how to complete each section. Want to explore more templates? Check them out in our [templates GitLab repository](https://gitlab.com/tgdp/templates).
-
 ## Introduction
 
 The how-to take your users through a series of steps required to solve a specific problem. It shows your users how to solve a real-world problem or complete a task in your application, such as how to create an issue in GitHub.
@@ -167,7 +165,3 @@ It's likely that during explaining a multi-task process you will touch on other 
 -  [Diátaxis](https://diataxis.fr/). 2017. A systematic framework for technical documentation authoring.
 - Carey, M., et.al. 2014. [Developing Quality Technical Information: A Handbook for Writers and Editors](https://www.amazon.com/Developing-Quality-Technical-Information-Handbook/dp/0133118975/ref=sr_1_1?crid=ZJR527VZPRL6&keywords=developing+quality+technical+information&qid=1662901229&sprefix=developing+quality+t%2Caps%2C196&sr=8-1).
 - [Google Developer's Style Guide](https://developers.google.com/style/lists).
-
----
-
-> Explore other templates from [The Good Docs Project](https://thegooddocsproject.dev/). Use our [feedback form](https://thegooddocsproject.dev/feedback/?template=How-to%20guide) to give feedback on this template.

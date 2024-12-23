@@ -6,7 +6,7 @@ We use GitHub for tracking bugs and feature requests related to this project.
 
 Don't know how something in this project works? Curious if this project can achieve your desired functionality? Please open an issue on GitHub with the label `question`.
 
-Alternatively, open a [discussion](https://github.com/nginxinc/oss-docs/discussions) in this repository.
+Alternatively, open a [discussion](https://github.com/nginx/documentation/discussions) in this repository.
 
 ## NGINX Specific Questions and/or Issues
 
@@ -14,7 +14,7 @@ This isn't the right place to get support for NGINX specific questions, but the 
 
 ### Mailing List
 
-Want to get in touch with the NGINX development team directly? Try using the relevant mailing list found at <https://mailman.nginx.org/mailman3/lists/>!
+Want to get in touch with the NGINX development team directly? Try using the relevant mailing list found at <https://mailman.nginx.org/mailman3/lists/>,
 
 ### Documentation
 

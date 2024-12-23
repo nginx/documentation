@@ -1,0 +1,7 @@
+description: "The hostname of the NGINX Plus instance."
+name: hostname
+db_column_name: parent_hostname
+type: string
+modules:
+  - platform
+  - adm

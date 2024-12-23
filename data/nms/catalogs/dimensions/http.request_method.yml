@@ -1,0 +1,6 @@
+description: "The HTTP method of the request. For example, 'GET', 'POST', 'PUT'."
+name: http.request_method
+db_column_name: http__request_method
+type: string
+modules:
+  - adm

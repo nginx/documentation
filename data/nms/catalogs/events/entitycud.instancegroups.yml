@@ -1,0 +1,6 @@
+name: entitycud.instance groups
+description: "Instance Group CUD events"
+modules:
+  - platform
+dimensions:
+  - message

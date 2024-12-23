@@ -1,0 +1,6 @@
+description: “A string representation of error“
+name: error
+db_column_name: error
+type: string
+modules:
+  - platform

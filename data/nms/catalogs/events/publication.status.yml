@@ -1,0 +1,8 @@
+name: publication.status
+description: "Status events related to publication"
+modules:
+  - adm
+dimensions:
+  - message
+  - instance_group
+  - publication_uuid

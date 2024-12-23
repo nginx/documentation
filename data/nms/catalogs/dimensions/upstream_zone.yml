@@ -1,0 +1,6 @@
+description: "The name of the shared memory zone that keeps the groups configuration and run-time state"
+name: upstream_zone
+db_column_name: upstream_zone
+type: string
+modules:
+  - platform

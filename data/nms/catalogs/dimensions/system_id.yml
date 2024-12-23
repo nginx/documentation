@@ -1,0 +1,7 @@
+description: "The unique identifier of the the operating system where nginx-agent is running."
+name: system_id
+db_column_name: system_id
+type: string
+modules:
+  - platform
+  - adm

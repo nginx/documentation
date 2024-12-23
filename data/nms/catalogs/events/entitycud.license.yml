@@ -1,0 +1,6 @@
+name: entitycud.license
+description: "license CUD events"
+modules:
+  - platform
+dimensions:
+  - message

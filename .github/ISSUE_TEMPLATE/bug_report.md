@@ -24,8 +24,8 @@ A clear and concise description of what you expected to happen.
 
 ### Your environment
 
-- Version of this project or specific commit
-<!-- - Version of any relevant project languages -->
+- Version/release of this project or specific commit
+<!-- - Version/release of any relevant project languages -->
 - Target deployment platform
 
 ### Additional context

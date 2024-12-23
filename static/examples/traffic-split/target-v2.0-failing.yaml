@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: target-v2-0
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: target
+      version: "2.0"
+  template:
+    metadata:
+      labels:
+        app: target
+        version: "2.0"
+    spec:
+      containers:
+      - name: target-v2-0
+        image: "nginx"
+        ports:
+        - containerPort: 80
+          name: http
+        volumeMounts:
+          - mountPath: /etc/nginx
+            name: nginx-config
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: target-v2-0
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: target-v2-0
+data:
+  nginx.conf: |-
+    events {}
+    http {
+      server {
+        listen 80;
+        location / {
+          return 500 "target v2.0\n";
+        }
+      }
+    }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: target-v2-0
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
+  selector:
+    app: target
+    version: "2.0"

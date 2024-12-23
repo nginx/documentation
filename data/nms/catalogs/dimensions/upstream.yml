@@ -1,0 +1,6 @@
+description: "The name of an HTTP or Stream upstream server group."
+name: upstream
+db_column_name: upstream
+type: string
+modules:
+  - platform

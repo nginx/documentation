@@ -1,0 +1,111 @@
+# Using https://github.com/linkchecker/linkchecker to test NGINX Documentation
+# Recursively checks all internal and external links in the docs.
+# Warnings for redirects are disabled
+# To ignore a url use the add to the env.ignore list. eg --ignore-url ^http://www.example.com
+# To add or remove a project edit the doc_paths list
+
+name: QE LinkChecker
+
+on:
+  workflow_dispatch:
+    inputs:
+      basepath:
+        description: "Documentation site to test (default: https://docs.nginx.com)"
+        required: true
+        default: "https://docs.nginx.com"
+        type: choice
+        options:
+          - "https://docs.nginx.com"
+          - "https://docs-dev.nginx.com"
+          - "https://docs-staging.nginx.com"
+  schedule:
+    # Runs every day at 7am UTC
+    - cron: '0 7 * * *'
+
+env:
+  defaults: '--no-warnings --check-extern --ignore-url ^https://consent.trustarc.com'
+  ignore: >
+    --ignore-url ^http://127.0.0.1 --ignore-url ^http://localhost --ignore-url ^http://serv/ --ignore-url ^https://myserver.host.com
+    --ignore-url ^https://product.apis.f5.com --ignore-url ^https://product-s.apis.f5.com --ignore-url ^https://linux.die.net/man/
+    --ignore-url ^http://www.example.com --ignore-url ^file:// --ignore-url ^https://www.fastbot.de --ignore-url ^https://www.domain.com
+    --ignore-url ^https://lightstep.com --ignore-url ^https://www.owasp.org/ --ignore-url ^https://www.maxmind.com --ignore-url ^https://www.splunk.com/
+    --ignore-url ^https://oauth2.googleapis.com --ignore-url ^https://openidconnect.googleapis.com --ignore-url ^https://www.base64url.com/
+    --ignore-url ^https://go.googlesource.com/ --ignore-url ^https://go.googlesource.com/sync --ignore-url ^https://linkerd.io/2.13/
+    --ignore-url ^http://www.redirectpage.com/
+    --ignore-url ^https://\([a-zA-Z0-9-]+\).nginx.com/nginx-ingress-controller/css
+    --ignore-url ^https://\([a-zA-Z0-9-]+\).nginx.com/nginxaas/azure/css
+    --ignore-url ^https://\([a-zA-Z0-9-]+\).nginx.com/nginx-gateway-fabric/css
+
+jobs:
+  link-checker:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        doc_paths:
+          - nginx-one
+          - nginx-instance-manager
+          - solutions
+          - nginx-app-protect-dos
+          - nginx-app-protect-waf
+          - nginx-ingress-controller
+          - nginxaas/azure
+          - nginx-service-mesh
+          - nginx-amplify
+          - nginx-controller
+          - nginx-waf
+          - nginx-management-suite
+          - nginx-gateway-fabric
+    steps:
+      # Determine and set basepath for schedule or workflow_dispatch
+      - name: Set Basepath
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "basepath=${{ github.event.inputs.basepath }}" >> $GITHUB_ENV
+            echo "isProduction=${{ github.event.inputs.basepath == 'https://docs.nginx.com'}}" >> $GITHUB_ENV
+          else
+            echo "basepath=https://docs.nginx.com" >> $GITHUB_ENV
+            echo "isProduction=true" >> $GITHUB_ENV
+          fi
+
+      - name: Login to Azure
+        if: env.isProduction != 'true'
+        uses: azure/login@a65d910e8af852a8061c627c456678983e180302 # v2.2.0
+        with:
+          creds: ${{secrets.AZURE_CREDENTIALS_DOCS}}
+ 
+      - name: Retrieve secrets from Keyvault
+        if: env.isProduction != 'true'
+        id: keyvault
+        uses: azure/cli@089eac9d8cc39f5d003e94f8b65efc51076c9cbd
+        with:
+          inlineScript: |
+            secrets_get=(frontdoorUsername frontdoorPassword)
+            for secret_get in ${secrets_get[@]}
+            do
+              value=$(az keyvault secret show --name $secret_get --vault-name ${{ secrets.AZURE_KEY_VAULT_DOCS }} --query value --output tsv)
+              echo "::add-mask::$value"
+              echo "$secret_get=$value" >> $GITHUB_OUTPUT
+            done
+
+      # Setup linkchecker command with optional password
+      - name: Setup LinkChecker Command
+        run: |
+          if [ "${{env.isProduction}}" != "true" ]; then
+            echo "cmd=echo '${{steps.keyvault.outputs.frontdoorPassword}}' | linkchecker -u '${{steps.keyvault.outputs.frontdoorUsername}}' ${{ env.basepath }}/${{ matrix.doc_paths }}/ ${{ env.defaults }} ${{ env.ignore }}" >> $GITHUB_ENV
+          else
+            echo "cmd=linkchecker ${{ env.basepath }}/${{ matrix.doc_paths }}/ ${{ env.defaults }} ${{ env.ignore }}" >> $GITHUB_ENV
+          fi
+
+      # Install LinkChecker
+      - name: Install LinkChecker
+        run: |
+          sudo apt-get update && sudo apt-get install -y linkchecker
+
+      # Run LinkChecker
+      - name: Run LinkChecker on ${{ matrix.doc_paths }}
+        continue-on-error: ${{ env.isProduction != 'true' }}
+        uses: nick-fields/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: ${{ env.cmd }}

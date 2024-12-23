@@ -1,0 +1,6 @@
+description: "A server network interface."
+name: network_interface
+db_column_name: network_interface
+type: string
+modules:
+  - platform

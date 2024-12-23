@@ -31,7 +31,7 @@ once you've submitted the PR.
 
 ## License
 
-[Creative Commons License](/LICENSE)
+[BSD 2-Clause "Simplified" License](/LICENSE)
 
 &copy; [F5, Inc.](https://www.f5.com/) 2024
 

@@ -1,0 +1,19 @@
+apiDefinitions:
+  ctlrAdc: content/controller/api/reference/ctlr-adc-openapi.json
+  ctlrApim: content/controller/api/reference/ctlr-apim-openapi.json
+  ctlrAnalytics: content/controller/api/reference/ctlr-analytics-openapi.json
+  ctlrPlatform: content/controller/api/reference/ctlr-platform-openapi.json
+lint:
+  extends:
+    - recommended
+  rules:
+    tag-description: off
+    operation-summary: error
+    no-unresolved-refs: error
+    no-unused-components: error
+    operation-2xx-response: error
+    operation-operationId: error
+    operation-singular-tag: error
+    no-enum-type-mismatch: error
+    no-identical-paths: error
+    no-ambiguous-paths: error

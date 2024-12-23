@@ -1,0 +1,6 @@
+description: "The address of the peer server"
+name: peer.address
+db_column_name: peer__address
+type: string
+modules:
+  - platform

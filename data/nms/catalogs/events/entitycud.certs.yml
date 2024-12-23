@@ -1,0 +1,6 @@
+name: entitycud.certs
+description: "Certs CUD events"
+modules:
+  - platform
+dimensions:
+  - message

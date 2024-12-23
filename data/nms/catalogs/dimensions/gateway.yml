@@ -1,0 +1,6 @@
+description: "The UUID of the gateway."
+name: gateway
+db_column_name: gateway
+type: string
+modules:
+  - adm

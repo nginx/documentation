@@ -1,0 +1,11 @@
+name: nginx.status
+description: "Status events of NGINX"
+modules:
+  - platform
+dimensions:
+  - system_id
+  - nginx_id
+  - hostname
+  - instance_group
+  - system.tags
+  - message

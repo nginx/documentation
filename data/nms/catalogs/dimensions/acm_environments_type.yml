@@ -1,0 +1,6 @@
+description: "Type indicates usage of infrastructure in a production or non-production setting"
+name: acm_environments_type
+db_column_name: acm_environments_type
+type: string
+modules:
+  - acm

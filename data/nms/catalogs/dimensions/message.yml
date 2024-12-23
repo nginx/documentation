@@ -1,0 +1,6 @@
+description: "The transferred message with the event"
+name: message
+db_column_name: message
+type: string
+modules:
+  - platform

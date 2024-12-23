@@ -1,0 +1,6 @@
+description: "Path to a desired file."
+name: file_path
+db_column_name: file_path
+type: string
+modules:
+  - platform

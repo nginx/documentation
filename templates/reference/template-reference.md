@@ -23,7 +23,3 @@ Summarize what this reference article is about. Explain what all the entries def
 |:--- |:--- |:--- |:--- |
 |productCode|`string`|Yes|Code of the document product to return the schema for. <br> <ul><li>Here is a bulleted list with a \| (pipe) inside a table.</li><li>Another bulleted list.<ul><li>An indented list</li></ul></li><li>Back to the list.</li></ul> |
 |||||
-
----
-
-> Explore other templates from [The Good Docs Project](https://thegooddocsproject.dev/). Use our [feedback form](https://thegooddocsproject.dev/feedback/?template=Reference) to give feedback on this template.

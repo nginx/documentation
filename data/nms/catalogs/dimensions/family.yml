@@ -1,0 +1,7 @@
+description: "Showcases the family category of a given request, such as web or tcp-udp"
+name: family
+db_column_name: family
+type: string
+modules:
+  - adm
+  - acm

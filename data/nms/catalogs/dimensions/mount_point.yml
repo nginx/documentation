@@ -1,0 +1,6 @@
+description: "A filesystem mount point."
+name: mount_point
+db_column_name: mount_point
+type: string
+modules:
+  - platform

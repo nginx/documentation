@@ -1,0 +1,6 @@
+description: “A unique identifier for each published NGINX Config“
+name: publication_uuid
+db_column_name: publication_uuid
+type: string
+modules:
+  - adm

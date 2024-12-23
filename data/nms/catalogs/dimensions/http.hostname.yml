@@ -1,0 +1,6 @@
+description: "Hostname as provided in the 'Host' header field from client's request."
+name: http.hostname
+db_column_name: http__hostname
+type: string
+modules:
+  - adm
