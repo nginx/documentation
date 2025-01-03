@@ -4,7 +4,7 @@
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](https://github.com/nginxinc/template-repository/main/CODE_OF_CONDUCT.md)
 ![Commercial Support](https://badgen.net/badge/support/commercial/green?icon=awesome)
 
-<!-- These are the "repo [status badge](https://www.repostatus.org/)s" and the community support badges -->
+<!-- These are the "repo [status badge](https://www.repostatus.org/)s" and the community support badges test -->
 
 # NGINX documentation
 
