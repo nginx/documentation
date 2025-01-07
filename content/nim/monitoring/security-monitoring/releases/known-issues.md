@@ -1,19 +1,16 @@
 ---
+title: Known issues
 description: This document lists and describes the known issues and possible workarounds
   in the F5 NGINX Security Monitoring module. Fixed issues are removed
   after **45 days**.
-docs: DOCS-1077
-tags:
-- docs
-title: Known Issues
 toc: true
 weight: 200
+doctype: reference
+product: NIM
+docs: DOCS-1077
 ---
 
-{{<rn-styles>}}
-
 {{< tip >}}We recommend you upgrade to the latest version of the Security Monitoring module to take advantage of new features, improvements, and bug fixes.{{< /tip >}}
-
 
 ---
 

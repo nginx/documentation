@@ -1,16 +1,13 @@
 ---
+title: Add user access to Security Monitoring dashboards
 description: Learn how to grant users access to the F5 NGINX Security Monitoring dashboards.
-docs: DOCS-1026
-doctypes:
-- task
-tags:
-- docs
-title: Give Users Access to Security Monitoring Dashboards
 toc: true
 weight: 200
----
+doctype: how-to
+product: NIM
+docs: DOCS-1026
 
-{{< shortversions "1.0.0" "latest" "secvers" >}}
+---
 
 ## Overview
 
@@ -18,13 +15,15 @@ You can use F5 NGINX Security Monitoring to monitor NGINX App Protect WAF instan
 
 By completing the steps in this topic, you will create a role that gives users access to the Security Monitoring module and logs, and assign it to user accounts or groups.
 
-{{<note>}}The recommendations in this guide follow the principle of least privilege and do not grant users access to NGINX Instance Manager. You can create additional roles with custom modules, features, and permissions to suit your use case.{{</note>}}
+{{< note >}} The recommendations in this guide follow the principle of least privilege and do not grant users access to NGINX Instance Manager. You can create additional roles with custom modules, features, and permissions to suit your use case. {{</ note >}}
 
-## Before You Begin
+---
+
+## Before you begin
 
 Complete the following prerequisites before proceeding with this guide:
 
-- NGINX Security Monitoring is [installed]({{< relref "/nim/monitoring/security-monitoring/deploy/install-security-monitoring.md" >}}) and running.
+- NGINX Security Monitoring is [installed]({{< relref "/nim/monitoring/security-monitoring/install-security-monitoring.md" >}}) and running.
 - Your user account needs to be able to access the User Management settings in NGINX Instance Manager.
   The minimum required role permissions are:
 
@@ -44,19 +43,26 @@ Complete the following prerequisites before proceeding with this guide:
 
  {{</bootstrap-table>}}
 
+--- 
 
-## Create a Role
+## Create a role
 
 {{< include "nim/rbac/create-roles.md" >}}
 
-## Assign the Role
+---
+
+## Assign the role
 
 After you've created a role for Security Monitoring, assign the role to one or more users or to a user group.
 
-### Assign the Role to Users
+---
+
+### Assign the role to users
 
 {{< include "nim/rbac/assign-roles-to-users.md" >}}
 
-### Assign the Role to User Groups
+---
+
+### Assign the role to user groups
 
 {{< include "nim/rbac/assign-roles-to-user-groups.md" >}}

@@ -1,14 +1,12 @@
 ---
+title: Create App Protect WAF instances for Security Monitoring
 description: Learn how to set up F5 NGINX App Protect data plane instances for use with
   the NGINX Security Monitoring and NGINX Instance Manager.
-docs: DOCS-1107
-doctypes:
-- task
-tags:
-- docs
-title: Set Up App Protect Instances for Security Monitoring
 toc: true
 weight: 100
+type: how-to
+product: NIM
+docs: DOCS-1107
 ---
 
 ## Overview
@@ -18,7 +16,9 @@ F5 NGINX Security Monitoring supports the following use cases:
 - **Security Monitoring only**: Use only the Security Monitoring module to monitor data from NGINX App Protect WAF instances. You will be able to review the security dashboards to assess potential threats and identify opportunities to fine-tune your policies. Your NGINX App Protect WAF configurations are managed outside of the NGINX Instance Manager context.
 - **Security Monitoring and Instance Manager**: Use the Security Monitoring module with the NGINX Instance Manager. In addition to monitoring your application security, you will be able to manage your NGINX App Protect WAF  configurations and security policies in a single location and push pre-compiled updates to an instance or instance group.
 
-### Before You Begin
+---
+
+## Before you begin
 
 Complete the following prerequisites before proceeding with the steps in this guide.
 
@@ -32,10 +32,11 @@ Complete the following prerequisites before proceeding with the steps in this gu
    {{< include "nim/tech-specs/security-data-plane-dependencies.md" >}}
 
 1. Determine your use case: **Security Monitoring only** or **Security Monitoring and Configuration Management**.
-1. [Install the NGINX Security Monitoring module]({{< relref "/nim/monitoring/security-monitoring/deploy/install-security-monitoring.md" >}}) and [upload your license]({{< relref "/nim/admin-guide/license/add-license.md" >}}).
+1. [Install the NGINX Security Monitoring module]({{< relref "/nim/monitoring/security-monitoring/install-security-monitoring.md" >}}) and [upload your license]({{< relref "/nim/admin-guide/license/add-license.md" >}}).
 
+---
 
-## Install NGINX Agent {#agent-config}
+## Install NGINX Agent
 
 NGINX Agent is a companion daemon for NGINX Open Source or NGINX Plus instance that provides:
 
@@ -144,7 +145,9 @@ sudo sh ./install.sh --nap-monitoring true --nginx-app-protect-mode precompiled-
    sudo systemctl restart nginx-agent
    ```
 
-## Set Up Instances for Security Monitoring Only {#monitor-only}
+---
+
+## Create instances for Security Monitoring only
 
 Complete the steps in this section if you are only using the Security Monitoring module to monitor your application security. In this use case, you are **not using Instance Manager** to manage your WAF security policies.
 
@@ -198,7 +201,9 @@ Repeat the steps below on each NGINX App Protect WAF data plane instance.
 
 You should now be able to view data from your NGINX App Protect instances in the NGINX Security Monitoring dashboards.
 
-## Set up Instances for Security Monitoring with Instance Manager {#monitor-and-manage}
+---
+
+## Create instances for Security Monitoring with Instance Manager
 
 Complete the steps in this section if you want to use the Security Monitoring module **and** Instance Manager. In this use case, you will use NGINX Instance Manager to monitor threats and to manage your NGINX App Protect WAF configurations and security policies.
 
@@ -235,7 +240,7 @@ Take the steps below to update your NGINX App Protect WAF configurations by usin
 
 You should now be able to view data from your NGINX App Protect WAF instances in the Security Monitoring dashboard.
 
-## What's Next
+## See also
 
 - [Grant Users Access to the Security Monitoring Dashboards]({{< relref "create-role-security-monitoring" >}}): Follow the steps in this guide to allow other users in your organization to access the Security Monitoring Dashboards.
 

@@ -1,17 +1,13 @@
 ---
+title: Release notes
 description: These release notes list and describe the new features, enhancements,
   and resolved issues in the F5 NGINX Security Monitoring module.
-docs: DOCS-1078
-doctypes:
-- reference
-tags:
-- docs
-title: Release Notes
 toc: true
 weight: 100
+doctype: reference
+product: NIM
+docs: DOCS-1078
 ---
-
-{{<rn-styles>}}
 
 ---
 

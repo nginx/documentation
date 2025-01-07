@@ -1,28 +1,31 @@
 ---
-description: 
-docs: DOCS-1208
-doctypes:
-- tutorial
-tags:
-- docs
-title: "Install or Upgrade Security Monitoring"
+title: "Install or upgrade Security Monitoring"
 toc: true
-weight: 40
+weight: 100
+doctype: how-to
+product: NIM
+docs: DOCS-1208
 ---
 
 ## Overview
 
 Follow the steps in this guide to install or upgrade or upgrade the NGINX Security Monitoring module.
 
-## Before You Begin
+---
 
-### Security Considerations
+## Before you begin
+
+### Security considerations
 
 {{< include "installation/secure-installation.md" >}}
 
-### Installation Prerequisites
+---
+
+### Installation prerequisites
 
 {{< include "installation/nms-prerequisites.md" >}}
+
+---
 
 ### Dependencies with Instance Manager
 
@@ -77,11 +80,16 @@ Follow the steps in this guide to install or upgrade or upgrade the NGINX Securi
    ```
 
 
-### Accessing the Web Interface
+---
+
+### Access the web interface
 
 {{< include "installation/access-web-ui.md" >}}
 
-### Add License
+
+---
+
+### Add license
 
 A valid license is required to make full use of all the features in Security Monitoring module.
 
@@ -89,7 +97,7 @@ Refer to the [Add a License]({{< relref "/nim/admin-guide/license/add-license.md
 
 ---
 
-## Upgrade Security Monitoring {#upgrade-security-monitoring}
+## Upgrade Security Monitoring
 
 {{<call-out "important" "Instance Manager Dependency" >}}The upgrade process for Security Monitoring **does not** automatically upgrade Instance Manager, which is a package dependency. To ensure compatibility with Security Monitoring, you will need to manually [upgrade Instance Manager]({{< relref "/nim/deploy/vm-bare-metal/install.md#upgrade-nim" >}}) to a version supported by Security Monitoring. For specific version dependencies between Security Monitoring and Instance Manager, refer to the [Security Monitoring release notes]({{< relref "/nim/monitoring/security-monitoring/releases/release-notes.md" >}}).{{</call-out>}}
 
@@ -142,10 +150,8 @@ Refer to the [Add a License]({{< relref "/nim/admin-guide/license/add-license.md
 
 ---
 
-## What's Next
-
-### Set Up Data Plane
+## See also
 
 To set up your NGINX App Protect WAF data plane instances for use with Security Monitoring, refer to the following instructions:
 
-- [Set Up App Protect Instances for Security Monitoring]({{< relref "/nim/monitoring/security-monitoring/configure/set-up-app-protect-instances" >}})
+- [Create App Protect WAF instances for Security Monitoring]({{< relref "/nim/monitoring/security-monitoring/configure/set-up-app-protect-instances" >}})
