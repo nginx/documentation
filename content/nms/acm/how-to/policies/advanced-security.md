@@ -40,7 +40,7 @@ To complete the steps in this guide, you need the following:
 - You have one or more [Environments with an API Gateway]({{< relref "/nms/acm/getting-started/add-api-gateway" >}}).
 - You have [published one or more API Gateways]({{< relref "/nms/acm/getting-started/publish-api-proxy" >}}).
 - You have [installed and set up NGINX App Protect]({{< relref "/nap-waf/v4/admin-guide/install-nms" >}}).
-- NGINX Management Suite Security Monitoring is [installed]({{< relref "/nim/monitoring/security-monitoring/deploy/install-security-monitoring.md" >}}) and running.
+- NGINX Management Suite Security Monitoring is [installed]({{< relref "/nim/monitoring/security-monitoring/install-security-monitoring.md" >}}) and running.
 
 ---
 

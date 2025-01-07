@@ -157,7 +157,7 @@ Complete the following steps for each data plane instance you want to use with A
 
 ### Install Other NGINX Management Suite Modules
 
-- [Install Security Monitoring]({{< relref "/nim/monitoring/security-monitoring/deploy/install-security-monitoring.md" >}})
+- [Install Security Monitoring]({{< relref "/nim/monitoring/security-monitoring/install-security-monitoring.md" >}})
 
 ### Get Started with API Connectivity Manager
 
