@@ -13,16 +13,16 @@ The F5 NGINX Amplify Agent is currently officially packaged and supported for th
 
   * Ubuntu 22.04 "jammy" (amd64/arm64)
   * Ubuntu 20.04 "focal" (amd64/arm64)
-  * Ubuntu 18.04 "bionic" (amd64/arm64)
   * Debian 12 "bookworm" (amd64/arm64)
   * Debian 11 "bullseye" (amd64/arm64)
-  * Debian 10 "buster" (amd64/arm64)
   * RHEL/CentOS/OEL 9 (amd64/arm64)
   * Amazon Linux 2 LTS (amd64/arm64)
 
 The following platforms are no longer supported but still can be used with older agent packages powered by Python 3:
 
   * RHEL/CentOS/OEL 8 (amd64/arm64)
+  * Ubuntu 18.04 "bionic" (amd64/arm64)
+  * Debian 10 "buster" (amd64/arm64)
 
 The following platforms are no longer supported but still can be used with older agent packages powered by Python 2:
 

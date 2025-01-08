@@ -30,7 +30,7 @@ To suggest a feature or enhancement, open an issue on GitHub with the label
 `feature` or `enhancement` using the available feature request issue template.
 Please ensure the feature or enhancement has not already been suggested.
 
-## Open a discussion
+## Open a Discussion
 
 If you want to start a conversation with the community and maintainers,
 we encourage you to use
@@ -48,7 +48,7 @@ To contribute to F5 NGINX documentation, follow these steps:
 Alternatively, you're welcome to suggest improvements to highlight problems with
 our documentation as described in our [support](./SUPPORT.md) page.
 
-### Git Style Guide
+### Git style guide
 
 - Keep a clean, concise and meaningful Git commit history on your branch, rebasing locally and squashing before you submit a PR
 - Follow the guidelines of writing a good commit message as described here <https://chris.beams.io/posts/git-commit/>
@@ -60,6 +60,15 @@ our documentation as described in our [support](./SUPPORT.md) page.
   - Reference issues and pull requests liberally after the subject line
   - Add more detailed description in the body of the git message (`git commit -a` to give you more space and time in
     your text editor to write a good message instead of `git commit -am`)
+
+#### Branch protection rules
+
+This repository has the following branch protection rules in place:
+
+- **Pushing branches that contain the "internal/" prefix is not allowed.** This ensures internal development branches are not accidentally or purposefully pushed to this repo.
+- **Two approvers are required for all merges to main and release branches.** This ensures all code that is approved for release to production is appropriately reviewed. This rule applies to all branches with `*release*` in the branch name.
+- **Only NGINX DocOps Team members can create release branches.** This ensures the docs team is aware of all branches supporting specific product releases. This rule applies to all branches with `*release*` in the branch name.
+- **Pushes (force or otherwise) directly to main or release branches is not allowed.** Release branches serve as "main" for the release they are associated with. Restricting pushes directly to main and release branches ensures all content changes are reviewed and approved. This rule applies to all branches with `*release*` in the branch name and to "main".
 
 ### Documentation style guide
 

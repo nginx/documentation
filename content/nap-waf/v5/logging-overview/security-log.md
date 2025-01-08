@@ -256,7 +256,6 @@ The table below lists attributes that are generated in the security logs. When u
 | enforced_bot_anomalies | Comma-separated list of anomalies that caused the request to be blocked. | default, grpc |
 | grpc_method | The method name of the gRPC request (derived from the URI). Not to be confused with 'http_method`. Applicable only to requests that are processed by a gRPC Content Profile. The value is `N/A` in other cases. | grpc |
 | grpc_service | The service name of the gRPC request (derived from the URI). Applicable only to requests that are processed by a gRPC Content Profile. The value is `N/A` in other cases. | grpc |
-| grpc_message | The value of the `grpc-message` header | grpc |
 | compression_method | The compression algorithm used for the present message. Currently one of: <ul><li>gzip</li><li>deflate</li><li>none</li><li>n/a</li></ul> | grpc |
 |headers | The headers part of the request including the query string but not the body. | grpc |
 |ip_client | The source IP of the client initiating the request<br>       Note: if a proxy is being used, this may differ from the IP in the `X-Forwarded-For` header. | default, grpc |

@@ -37,13 +37,15 @@ In either case, NGINX One Console gives you a choice for data plane keys:
 - Create a new key
 - Use an existing key
 
-NGINX One Console takes the option you use, and adds the data plane key to a command that you'd use to register your target instance. You should see the call in the **Add Instance** screen in the console. The command looks like:
+NGINX One Console takes the option you use, and adds the data plane key to a command that you'd use to register your target instance. You should see the command in the **Add Instance** screen in the console.
+
+Connect to the host where your NGINX instance is running. Run the provided command to [install NGINX Agent]({{< relref "/nginx-one/getting-started#install-nginx-agent" >}}) dependencies and packages on that host.
 
 ```bash
-curl https://<tenant URL>/nginx-agent/install | DATA_PLANE_KEY="<data_plane_key>" sh -s -- -y
+curl https://agent.connect.nginx.com/nginx-agent/install | DATA_PLANE_KEY="<data_plane_key>" sh -s -- -y
 ```
 
-Sign in to the instance that you want to add. Run that command. If needed, the script [installs NGINX Agent]({{< relref "/nginx-one/getting-started#install-nginx-agent" >}}) dependencies and packages. Once the process is complete, you can configure that instance in your NGINX One Console.
+Once the process is complete, you can configure that instance in your NGINX One Console.
 
 ## Managed and Unmanaged Certificates
 
