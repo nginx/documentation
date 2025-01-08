@@ -9,7 +9,7 @@ docs: "DOCS-968"
 
 To use F5 NGINX Amplify to monitor your infrastructure, you need to install NGINX Amplify Agent on each system you wish to monitor.
 
-{{< note >}} NGINX Amplify Agent will drop *root* privileges on startup. It will then use the user ID of the user `nginx` to set its effective user ID. The package install procedure will add the `nginx` user automatically unless it's already found in the system. If the [user](http://nginx.org/en/docs/ngx_core_module.html#user) directive appears in the NGINX configuration, NGINX Amplify Agent will pick up the user specified in the NGINX config for its effective user ID (e.g. `www-data`). {{< /note >}}
+{{< note >}} NGINX Amplify Agent will drop *root* privileges on startup. It will then use the user ID of the user `nginx` to set its effective user ID. The package install procedure will add the `nginx` user automatically unless it's already found in the system. If the [user](https://nginx.org/en/docs/ngx_core_module.html#user) directive appears in the NGINX configuration, NGINX Amplify Agent will pick up the user specified in the NGINX config for its effective user ID (e.g. `www-data`). {{< /note >}}
 
 ## Using the Install Script
 
@@ -39,14 +39,14 @@ Take the following steps to install NGINX Amplify Agent:
 1. Add the NGINX public key.
 
    ```bash
-   curl -fs http://nginx.org/keys/nginx_signing.key | apt-key add -
+   curl -fs https://nginx.org/keys/nginx_signing.key | apt-key add -
    ```
 
    or
 
    ```bash
    wget -q -O - \
-   http://nginx.org/keys/nginx_signing.key | apt-key add -
+   https://nginx.org/keys/nginx_signing.key | apt-key add -
    ```
 
 2. Configure the repository as follows.
@@ -54,15 +54,15 @@ Take the following steps to install NGINX Amplify Agent:
     ```bash
     codename=`lsb_release -cs` && \
     os=`lsb_release -is | tr '[:upper:]' '[:lower:]'` && \
-    echo "deb http://packages.amplify.nginx.com/${os}/ ${codename} amplify-agent" > \
+    echo "deb https://packages.amplify.nginx.com/py3/${os} ${codename} amplify-agent" > \
     /etc/apt/sources.list.d/nginx-amplify.list
     ```
 
-3. Verify the repository config file (Ubuntu 14.04 example follows).
+3. Verify the repository config file (Ubuntu 22.04 example follows).
 
     ```bash
     cat /etc/apt/sources.list.d/nginx-amplify.list
-    deb http://packages.amplify.nginx.com/ubuntu/ trusty amplify-agent
+    deb https://packages.amplify.nginx.com/py3/ubuntu jammy amplify-agent
     ```
 
 4. Update the package index files.
@@ -82,14 +82,14 @@ Take the following steps to install NGINX Amplify Agent:
 1. Add the NGINX public key.
 
     ```bash
-    curl -sS -L -O http://nginx.org/keys/nginx_signing.key && \
+    curl -sS -L -O https://nginx.org/keys/nginx_signing.key && \
     rpm --import nginx_signing.key
     ```
 
    or
 
     ```bash
-    wget -q -O nginx_signing.key http://nginx.org/keys/nginx_signing.key && \
+    wget -q -O nginx_signing.key https://nginx.org/keys/nginx_signing.key && \
     rpm --import nginx_signing.key
     ```
 
@@ -99,23 +99,23 @@ Take the following steps to install NGINX Amplify Agent:
 
     ```bash
     release="7" && \
-    printf "[nginx-amplify]\nname=nginx amplify repo\nbaseurl=http://packages.amplify.nginx.com/centos/${release}/\$basearch\ngpgcheck=1\nenabled=1\n" > \
+    printf "[nginx-amplify]\nname=nginx amplify repo\nbaseurl=https://packages.amplify.nginx.com/py3/centos/${release}/\$basearch\ngpgcheck=1\nenabled=1\n" > \
     /etc/yum.repos.d/nginx-amplify.repo
     ```
 
     ```bash
     release="latest" && \
-    printf "[nginx-amplify]\nname=nginx amplify repo\nbaseurl=http://packages.amplify.nginx.com/amzn/${release}/\$basearch\ngpgcheck=1\nenabled=1\n" > \
+    printf "[nginx-amplify]\nname=nginx amplify repo\nbaseurl=https://packages.amplify.nginx.com/py3/amzn/${release}/\$basearch\ngpgcheck=1\nenabled=1\n" > \
     /etc/yum.repos.d/nginx-amplify.repo
     ```
 
-3. Verify the repository config file (RHEL 7.1 example follows).
+3. Verify the repository config file (RHEL 9.5 example follows).
 
     ```bash
     cat /etc/yum.repos.d/nginx-amplify.repo
     [nginx-amplify]
     name=nginx repo
-    baseurl=http://packages.amplify.nginx.com/centos/7/$basearch
+    baseurl=https://packages.amplify.nginx.com/centos/9/$basearch
     gpgcheck=1
     enabled=1
     ```

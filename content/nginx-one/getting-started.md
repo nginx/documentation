@@ -51,6 +51,14 @@ Data plane keys expire after one year. You can change this expiration date later
 
 After entering your data plane key, you'll see a `curl` command similar to the one below. Copy and run this command on each NGINX instance to install the NGINX Agent. Once installed, the NGINX Agent typically registers with NGINX One within a few seconds.
 
+{{<call-out "important" "Connecting to NGINX One" >}}
+The NGINX Agent must be able to establish a connection to the NGINX One Console's Agent endpoint (`agent.connect.nginx.com`). Ensure that any firewall rules you have in place for your NGINX hosts allows network traffic to port `443` for all of the following IPs:
+
+- `3.135.72.139`
+- `3.133.232.50`
+- `52.14.85.249`
+{{</call-out>}}
+
 To install the NGINX Agent on an NGINX instance:
 
 1. **Check if NGINX is running and start it if it's not:**

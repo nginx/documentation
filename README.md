@@ -8,7 +8,7 @@
 
 # NGINX documentation
 
-If you want to contribute to F5 NGINX documentation, you've come to the right place. We've organized a series of README-type files to help you get started:
+If you want to contribute to [F5 NGINX documentation](https://docs.nginx.com), you've come to the right place. We've organized a series of README-type files to help you get started:
 
 - [Contributing](/CONTRIBUTING.md) describes how you can contribute to our documentation.
   - [Contributing guidelines for experts](/CONTRIBUTING_DOCS.md) describes how you can contribute (and check your work) with Hugo, our static site generator

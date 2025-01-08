@@ -146,7 +146,7 @@ Here are some other shortcodes:
 - `tab`: Create mutually exclusive tabbed window panes, useful for parallel instructions
 - `table`: Add scrollbars to wide tables for browsers with smaller viewports
 - `link`: Link to a file, prepending its path with the Hugo baseUrl
-- `openapi`: Loads an OpenAPI specifcation and render it as HTML using ReDoc
+- `openapi`: Loads an OpenAPI specification and render it as HTML using ReDoc
 - `include`: Include the content of a file in another file; the included file must be present in the '/content/includes/' directory
 - `raw-html`: Include a block of raw HTML
 - `readfile`: Include the content of another file in the current file, which can be in an arbitrary location.
