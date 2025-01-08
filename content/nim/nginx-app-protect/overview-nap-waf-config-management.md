@@ -22,7 +22,6 @@ You can use NGINX App Protect WAF with Instance Manager to inspect incoming traf
 - Manage NGINX App Protect WAF security configurations by using the NGINX Management Suite user interface or REST API
 - Update Attack Signatures and Threat Campaign packages
 - Compile security configurations into a binary bundle for consumption by NGINX App Protect WAF instances
-- Provide metrics to the [NGINX Management Suite Security Monitoring]({{< relref "/nms/security/" >}}) module. The Security Monitoring module lets you monitor the security of your applications and APIs and get protection insights that help when analyzing possible threats and tuning security policies.
 
 ## Architecture
 

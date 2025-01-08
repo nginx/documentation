@@ -916,7 +916,7 @@ server {
 }
 ```
 
-{{< note >}}If you're using the NGINX Management Suite [Security Monitoring module]({{< relref "/nms/security/" >}}), you should already have the `app_protect_security_log` directive set to reference the `secops_dashboard.tgz` file as shown below. Do not change this setting.
+{{< note >}}If you're using the NGINX Management Suite Security Monitoring module, you should already have the `app_protect_security_log` directive set to reference the `secops_dashboard.tgz` file as shown below. Do not change this setting.
 
 ```nginx
 app_protect_security_log "/etc/nms/secops_dashboard.tgz" syslog:server=127.0.0.1:514;
