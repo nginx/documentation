@@ -15,7 +15,7 @@ Integrate Lua co-routines into the NGINX event-processing model with the communi
 
 1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
-2. Prior to installing the module, verify that the [NDK]({{< relref "ndk.md" >}}) module is already installed.
+2. Prior to installing the module, verify that the [NGINX Developer Kit (NDK)]({{< relref "nginx/admin-guide/dynamic-modules/ndk.md" >}}) module is already installed.
 
 
 <span id="install"></span>
@@ -64,18 +64,19 @@ Integrate Lua co-routines into the NGINX event-processing model with the communi
 
 ## Configuration
 
-After installation you will need to enable and configure the module in F5 NGINX Plus configuration file `nginx.conf`.
+After installation, enable and configure the modules in NGINX Plus configuration file `nginx.conf`.
 
 1. Enable dynamic loading of NDK and Lua modules with the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directives specified in the top-level (“`main`”) context:
 
    ```nginx
    load_module modules/ndk_http_module.so;
    load_module modules/ngx_http_lua_module.so;
+   load_module modules/ngx_stream_lua_module.so;
    ```
 
-   {{< note >}} The directives must be in this order. {{< /note >}}
+   {{< note >}} The `ndk_http_module.so` module must be placed first. {{< /note >}}
 
-2. Perform additional configuration as required by the [module](https://github.com/openresty/lua-nginx-module).
+2. Configure additional settings as needed for the modules. For details, see the [`lua-nginx-module`](https://github.com/openresty/lua-nginx-module) and [`stream-lua-nginx-module`](https://github.com/openresty/stream-lua-nginx-module) documentation.
 
 3. Test the configuration and reload NGINX Plus to enable the module:
 
@@ -87,7 +88,11 @@ After installation you will need to enable and configure the module in F5 NGINX 
 <span id="info"></span>
 ## More Info
 
-- [NGINX Lua Module Reference](https://github.com/openresty/lua-nginx-module)
+- [The `lua-nginx-module` Module Reference](https://github.com/openresty/lua-nginx-module)
+
+- [The `stream-lua-nginx-module` Module Reference](https://github.com/openresty/stream-lua-nginx-module)
+
+- [The NDK Module Reference](https://github.com/vision5/ngx_devel_kit)
 
 - [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
 
