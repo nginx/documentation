@@ -77,8 +77,6 @@ In environments where NGINX Plus instances cannot access the internet, you'll ne
 
 #### Configure NGINX Plus to report usage to NGINX Instance Manager
 
-{{<call-out "note" "Extra setup for self-signed certificates">}}If your NGINX Instance Manager environment uses self-signed certificates, see [Configure SSL verification for usage reporting with self-signed certificates]({{< relref "nim/system-configuration/secure-traffic.md#configure-ssl-verify" >}}).{{</call-out>}}
-
 To configure NGINX Plus R33 or later to report usage data to NGINX Instance Manger:
 
 {{< include "licensing-and-reporting/configure-nginx-plus-report-to-nim.md" >}}
