@@ -1,25 +1,32 @@
 ---
-title: Install NGINX Plus Metrics Module
+title: Install NGINX Plus Metrics Module for API Connectivity Manager
 description: Follow the steps in this guide to install the F5 NGINX Plus dynamic metrics
-  module and configure NGINX Agent to push app-centric metrics to NGINX Management
-  Suite.
+  module and configure NGINX Agent to push app-centric metrics to API Connectivity Manager.
 weight: 110
 toc: true
 type: how-to
 docs: DOCS-1099
 ---
 
+{{< eol-call-out "warning" "End of Sale Notice:" >}} F5 NGINX is announcing the End of Sale (EoS) for NGINX Instance Manager API Connectivity Manager Module, effective January 1, 2024.
+
+F5 maintains generous lifecycle policies that allow customers to continue support and receive product updates. Existing API Connectivity Manager Module customers can continue to use the product past the EoS date. License renewals are not available after September 30, 2024.
+
+See our End of Sale announcement for more details. {{< /eol-call-out >}}
+
 ## Overview
 
-The F5 NGINX Plus metrics module is a dynamic module that you can install on your NGINX Plus data plane instances. The metrics module reports advanced, app-centric metrics and dimensions like “application name” or “gateway” to the NGINX Agent, which then aggregates and publishes the data to the NGINX Management Suite. Advanced, app-centric metrics are used by particular NGINX Management Suite modules for features associated with HTTP requests.
+The F5 NGINX Plus metrics module is a dynamic module that you can install on your NGINX Plus data plane instances for use with API Connectivity Manager. The metrics module reports advanced, app-centric metrics and dimensions like “application name” or “gateway” to the NGINX Agent, which then aggregates and publishes the data to API Connectivity Manager. Advanced, app-centric metrics are used by particular API Connectivity Manager for features associated with HTTP requests.
+
+This module is not required or necessary for NGINX Instance Manager. 
 
 ---
 
 ## Before You Begin
 
-Complete the following prerequisites before proceeding with the steps in this guide. This guide assumes that you have NGINX Management Suite installed and configured.
+Complete the following prerequisites before proceeding with the steps in this guide. This guide assumes that you have NGINX Management Suite installed and configured with the API Connectivity Manager module.
 
-- Check that your NGINX data plane instances are running **NGINX Plus R24 or later**.
+- Check that your NGINX data plane instances are running **NGINX Plus R24** (last supported version of this module is NGINX Plus R33).
 
   To see which version of NGINX Plus is running on your instance, run the following command:
 
@@ -92,7 +99,7 @@ Do not push configuration changes to the impacted instance, or any instance grou
         sudo apt install nginx-plus-module-metrics
         ```
 
-### Install from NGINX Management Suite
+### Install from NGINX Management Suite (only supported in version 2.18 or earlier)
 
 To install the NGINX Plus metrics module from NGINX Management Suite, use a command-line tool like `curl` or `wget`.
 

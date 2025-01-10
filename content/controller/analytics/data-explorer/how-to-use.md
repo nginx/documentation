@@ -50,13 +50,13 @@ If you don't see a resource in the list, but you expect it to be there, check th
 
 To view data for a resource, select the resource's name from the resource list.
 
-{{< img src="/controller/analytics/data-explorer/images/data-explorer_resource.png">}}
+{{< img src="/ctlr/img/data-explorer_resource.png">}}
 
 ## Metrics
 
 The [list of metrics]({{< relref "/controller/analytics/catalogs/metrics.md" >}}) is sorted alphabetically, and you can use the search feature to filter the list. As previously mentioned, the list of metrics depends on the context you've selected for the Data Explorer. For example, if you've chosen Instances for the context, then the list of metrics will be for instances.
 
-{{< img src="/controller/analytics/data-explorer/images/data-explorer_metric.png">}}
+{{< img src="/ctlr/img/data-explorer_metric.png">}}
 
 When the selected metric changes, the **Aggregation** and **Group By** selectors are updated correspondingly (as well as the [list of resources](#select-a-resource) and the [Dimensions panel](#dimensions-panel)). Some metrics have different lists of **Aggregation** and **Group By** values. For example, the `http.response_code` dimension, which is a valid **Group By** value for the `http.request.count` metric, is not available for the `nginx.workers.cpu.user` metric because these items are from different contexts and aren't related to each other.
 
@@ -64,7 +64,7 @@ When the selected metric changes, the **Aggregation** and **Group By** selectors
 
 Use the Aggregation selector -- the &Sigma; symbol with possible values of `AVG`, `MAX`, `MIN`, `RATE`, and `SUM` -- to [aggregate the data]({{< relref "/controller/analytics/metrics/metrics-api.md#aggregations" >}}). The list of possible aggregation values depends on the metrics that's selected.
 
-{{< img src="/controller/analytics/data-explorer/images/data-explorer_aggregation.png">}}
+{{< img src="/ctlr/img/data-explorer_aggregation.png">}}
 
 ## Group by Dimension
 
@@ -72,7 +72,7 @@ Use the **Group By** selector to [group the data by a chosen dimension]({{< relr
 
 In the following example image, the data for the `bytes_rcvd` metric is grouped by the dimension `http.request_method`, which displays a data series for the HTTP methods `DELETE`, `GET`, `LINK`, and so on.
 
-{{< img src="/controller/analytics/data-explorer/images/data-explorer_group-by.png">}}
+{{< img src="/ctlr/img/data-explorer_group-by.png">}}
 
 When a **Group By** selection is applied, the chart displays a top-10 data series. For example, let's say you want to check disk usage, so you select the metric `system.disk.total` and `file_path` as the dimension to group by. The chart would then display the top-10 mount points with the highest values. If you have more than 10 mount points, you'll see the top-10 mount points plus an 11th data series that's an aggregation of the rest of the data using the same selection criteria. In other words, you'll see a chart of the 10 most used mount points plus a chart of all the other mount points aggregated into one data series. When a **Group By** dimension is selected, and there are more than 10 dimensions, the 11th data series is named "Other."
 
@@ -92,7 +92,7 @@ When you change the time range, the [list of resources](#select-a-resource) is u
 
 Next to the [time range](#time-range) selector, you'll find the `Compare To` list of options. This list allows you to compare data for the selected time frame with data from an earlier period. For example, you may want to view CPU usage for the last hour and compare the results to the same time from yesterday, last week, or even the previous year.
 
-{{< img src="/controller/analytics/data-explorer/images/data-explorer_comparison.png">}}
+{{< img src="/ctlr/img/data-explorer_comparison.png">}}
 
 {{< note >}}
 
@@ -119,7 +119,7 @@ For instructions on how to understand the Metrics API response, refer to the top
 
 On the right of the screen there is a panel with the list of dimensions available for the [selected metric](#metrics).
 
-{{< img src="/controller/analytics/data-explorer/images/data-explorer_dimensions-drawer.png">}}
+{{< img src="/ctlr/img/data-explorer_dimensions-drawer.png">}}
 
 Each dimension is presented as a section in which you can expand and see the values for it. The values are aggregated with the [selected aggregation method](#aggregation-mode) for the [selected time range](#time-range). They depend on the following selected parameters:
 

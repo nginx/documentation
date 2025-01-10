@@ -12,9 +12,7 @@ docs:
     }
     ```
 
-  {{<call-out "note" "Self-signed certificates" "" >}}
-    For details on using self-signed certificates, see [Configure SSL verification for usage reporting with self-signed certificates]({{< relref "nim/system-configuration/secure-traffic.md#configure-ssl-verify" >}}).
-  {{</call-out>}}
+    {{<call-out "note" "Extra steps for self-signed certificates">}}If you use self-signed certificates in your NGINX Instance Manager environment, follow the steps in [Configure SSL verification for usage reporting with self-signed certificates]({{< relref "nim/system-configuration/secure-traffic.md#configure-ssl-verify" >}}).{{</call-out>}}
 
 3. Reload NGINX:
 
