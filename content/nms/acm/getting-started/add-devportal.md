@@ -172,7 +172,7 @@ Because these settings are applied at the Infrastructure level, they are conside
 
 Note that many fields in the example JSON payload -- including the logo image and Markdown documents -- are base64-encoded.
 
-**Example JSON payload**: {{< fa "download" >}} {{< link "/nms/acm/getting-started/examples/customize-devportal.json" "customize-devportal.json" >}}
+**Example JSON payload**: {{< fa "download" >}} {{< link "/acm/customize-devportal.json" "customize-devportal.json" >}}
 
 Before you move on to the next guide, open the Dev Portal in your browser to view the changes.
 You should see the default Dev Portal replaced by the custom settings.
