@@ -99,7 +99,7 @@ Do not push configuration changes to the impacted instance, or any instance grou
         sudo apt install nginx-plus-module-metrics
         ```
 
-### Install from NGINX Management Suite (only supported in version 2.18 or lower)
+### Install from NGINX Management Suite (only supported in version 2.18 or earlier)
 
 To install the NGINX Plus metrics module from NGINX Management Suite, use a command-line tool like `curl` or `wget`.
 
