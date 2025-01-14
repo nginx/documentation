@@ -82,20 +82,17 @@ Follow these steps to review existing certificates for your instances.
 
 On the left-hand pane, select **Certificates**. In the window that appears, you see:
 
-- **Certificate Status** 
-  - Total number of certificates in one of these categories;
-    - Managed by NGINX One Console
-    - Detected on connected NGINX instances
-  - Valid certificates that expire more than 30 days from now
-  - Valid certificates that expire within the next 30 days
-  - Expired certificates
-  - Certificates that are not yet valid
-
-- **Management Status**
-  - Managed certificates are stored on NGINX One Console.
-    - You can use NGINX One Console to deploy, administer, and update certificates remotely.
-  - Unmanaged certificates are detected by NGINX One Console through the connected NGINX instance configuration. 
-    - If you choose to convert an unmanaged certificate to managed, you may need to upload the certificate and the key during the conversion.
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Term        | Definition |
+|-------------|-------------|
+| **Total** | Total number of certificates available to NGINX One Console |
+| **Valid (31+ days)** | Number of certificates that expire in 31 or more days |
+| **Expires Soon (<31 days)** | Number of certificates that expire in less than 31 days |
+| **Expired** | Number of exprired certificates |
+| **Not Ready** | Certificates with a start date in the future |
+| **Managed** | Managed by and stored in the NGINX One Console | 
+| **Unmanaged** | Detected by, and not managed by NGINX One Console. To convert to managed, you may need to upload the certificate and key during the process. |
+{{</bootstrap-table>}}
 
 You can **Add Filter** to filter certificates by:
 
