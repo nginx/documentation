@@ -74,7 +74,7 @@ jobs:
   lighthouseci:
     if: github.event.pull_request
     needs: call-docs-build-push
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
         with:
