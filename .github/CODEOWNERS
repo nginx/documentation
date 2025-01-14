@@ -13,8 +13,10 @@
 # Lines starting with '#' are comments.
 # Each line is a file pattern followed by one or more owners.
 
-# DocOps
+# DocOps Writers
 *                           @nginx/nginx-docs
+# DocOps Engineers
+.github/*                   @nginx/docs-engineering
 # NGINX Plus
 content/nginx/*             @nginx/plus-docs-approvers
 # NGINX Agent
