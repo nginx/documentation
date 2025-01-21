@@ -69,7 +69,7 @@ All communication between NGINX Ingress Controller and the upstream Services occ
 Therefore, NGINX Ingress Controller can only route traffic to Services in the mesh that have an `mtls-mode` of `permissive` or `strict`.
 In cases where you need to route traffic to both mTLS and non-mTLS Services, you may need another Ingress Controller that does not participate in the mTLS fabric.
 
-Refer to the NGINX Ingress Controller's [Running Multiple Ingress Controllers](https://docs.nginx.com/nginx-ingress-controller/installation/running-multiple-ingress-controllers/) guide for instructions on how to configure multiple Ingress Controllers.
+Refer to the NGINX Ingress Controller's [Running Multiple Ingress Controllers](https://docs.nginx.com/nginx-ingress-controller/installation/run-multiple-ingress-controllers/) guide for instructions on how to configure multiple Ingress Controllers.
 {{< /note >}}
 
 
