@@ -1,13 +1,17 @@
 ---
-title: "Resource validation"
+title: Resource validation
 weight: 400
 toc: true
-docs: "DOCS-1414"
+type: reference
+product: NGF
+docs: DOCS-1414
 ---
 
 ## Overview
 
 This document describes how NGINX Gateway Fabric validates Gateway API and NGINX Gateway Fabric Kubernetes resources.
+
+---
 
 ## Gateway API resource validation
 
@@ -18,6 +22,8 @@ NGINX Gateway Fabric validates Gateway API resources for several reasons:
 - _Correctness_: to conform to the Gateway API specification for handling invalid resources.
 
 The process involves four different steps, explained in detail in this document, with the goal of making sure that NGINX continues to handle traffic even if invalid Gateway API resources were created.
+
+---
 
 ### Step 1 - OpenAPI Scheme validation by Kubernetes API Server
 
@@ -33,6 +39,8 @@ The HTTPRoute "coffee" is invalid: spec.hostnames[0]: Invalid value: "cafe.!@#$%
 
 {{< note >}}While unlikely, bypassing this validation step is possible if the Gateway API CRDs are modified to remove the validation. If this happens, Step 4 will reject any invalid values (from NGINX perspective).{{< /note >}}
 
+---
+
 ### Step 2 - CEL validation by Kubernetes API Server
 
 The Kubernetes API server validates Gateway API resources using CEL validation embedded in the Gateway API CRDs. It validates Gateway API resources using advanced rules unavailable in the OpenAPI schema validation. For example, if you create a Gateway resource with a TCP listener that configures a hostname, the CEL validation will reject it with the following error:
@@ -47,6 +55,7 @@ The Gateway "some-gateway" is invalid: spec.listeners: Invalid value: "array": h
 
 More information on CEL in Kubernetes can be found [here](https://kubernetes.io/docs/reference/using-api/cel/).
 
+---
 
 ### Step 3 - Validation by NGINX Gateway Fabric
 
@@ -62,7 +71,6 @@ Below is an example of how NGINX Gateway Fabric rejects an invalid resource. The
 ```shell
 kubectl describe httproutes.gateway.networking.k8s.io coffee
 ```
-
 ```text
 . . .
 Status:
@@ -83,7 +91,9 @@ Status:
       Section Name:  http
 ```
 
-{{< note >}}This validation step always runs and cannot be bypassed.{{< /note >}}
+{{< note >}} This validation step always runs and cannot be bypassed. {{< /note >}}
+
+---
 
 ### Confirm validation
 
@@ -108,7 +118,9 @@ Status:
       Section Name:  http
 ```
 
-{{< note>}}Make sure the reported observed generation is the same as the resource generation.{{< /note >}}
+{{< note >}} Make sure the reported observed generation is the same as the resource generation. {{< /note >}}
+
+---
 
 ## NGINX Gateway Fabric Resource validation
 
@@ -125,6 +137,8 @@ The NginxGateway "nginx-gateway-config" is invalid: spec.logging.level: Unsuppor
 ```
 
 {{< note >}}While unlikely, bypassing this validation step is possible if the NGINX Gateway Fabric CRDs are modified to remove the validation. If this happens, Step 2 will report an error in the resource's status.{{< /note >}}
+
+---
 
 ### Step 2 - Validation by NGINX Gateway Fabric
 
@@ -153,6 +167,8 @@ Event:
 ```text
 Warning  UpdateFailed  1s (x2 over 1s)  nginx-gateway-fabric-nginx  Failed to update control plane configuration: logging.level: Unsupported value: "some-level": supported values: "info", "debug", "error"
 ```
+
+---
 
 ### Confirm validation
 

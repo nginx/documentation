@@ -1,11 +1,11 @@
 ---
-title: "Technical specifications"
-draft: false
+title: Technical specifications
 description: "NGINX Gateway Fabric technical specifications."
 weight: 200
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1434"
+type: reference
+product: NGF
+docs: DOCS-1434
 ---
 
 See the NGINX Gateway Fabric technical specifications page:

@@ -1,10 +1,10 @@
 ---
-title: "Secure traffic using Let's Encrypt and cert-manager"
+title: Secure traffic using Let's Encrypt and cert-manager
 weight: 100
 toc: true
 type: how-to
 product: NGF
-docs: "DOCS-1425"
+docs: DOCS-1425
 ---
 
 Learn how to issue and mange certificates using Let's Encrypt and cert-manager.

@@ -1,8 +1,10 @@
 ---
-title: "Gateway API Compatibility"
+title: Gateway API Compatibility
 weight: 200
 toc: true
-docs: "DOCS-1412"
+type: reference
+product: NGF
+docs: DOCS-1412
 ---
 
 Learn which Gateway API resources NGINX Gateway Fabric supports and to which level.
@@ -361,7 +363,7 @@ Fields:
       - `Accepted/True/PolicyReasonAccepted`
       - `Accepted/False/PolicyReasonInvalid`
 
-{{<note>}}If multiple `backendRefs` are defined for a HTTPRoute rule, all the referenced Services *must* have matching BackendTLSPolicy configuration. BackendTLSPolicy configuration is considered to be matching if 1. CACertRefs reference the same ConfigMap, or 2. WellKnownCACerts are the same, and 3. Hostname is the same.{{</note>}}
+{{< note >}} If multiple `backendRefs` are defined for a HTTPRoute rule, all the referenced Services *must* have matching BackendTLSPolicy configuration. BackendTLSPolicy configuration is considered to be matching if 1. CACertRefs reference the same ConfigMap, or 2. WellKnownCACerts are the same, and 3. Hostname is the same. {{< /note >}}
 
 ### Custom Policies
 

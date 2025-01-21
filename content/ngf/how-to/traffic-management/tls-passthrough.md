@@ -1,21 +1,29 @@
 ---
-title: "TLS Passthrough"
+title: Configure TLS passthrough
 weight: 800
 toc: true
-docs: "DOCS-000"
+type: how-to
+product: NGF
+docs: DOCS-000
 ---
 
 Learn how to use TLSRoutes to configure TLS Passthrough load-balancing with NGINX Gateway Fabric.
 
+---
+
 ## Overview
 
 In this guide, we will show how to configure TLS passthrough for your application, using a [TLSRoute](https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1alpha2.TLSRoute).
+
+---
 
 ## Note on Gateway API Experimental Features
 
 {{< important >}} TLSRoute is a Gateway API resource from the experimental release channel. {{< /important >}}
 
 {{< include "/ngf/installation/install-gateway-api-experimental-features.md" >}}
+
+---
 
 ## Before you begin
 
@@ -28,6 +36,8 @@ In this guide, we will show how to configure TLS passthrough for your applicatio
    ```
 
 {{< note >}} In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the Gateway will forward for. {{< /note >}}
+
+---
 
 ## Set up
 
@@ -184,6 +194,8 @@ EOF
 ```
 
 {{< note >}}To route to a Service in a Namespace different from the TLSRoute Namespace, create a [ReferenceGrant](https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1beta1.ReferenceGrant) to permit the cross-namespace reference. {{< /note >}}
+
+---
 
 ## Send traffic
 

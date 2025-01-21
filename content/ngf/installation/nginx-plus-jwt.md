@@ -1,8 +1,10 @@
 ---
-title: "NGINX Plus Image and JWT Requirement"
+title: NGINX Plus and JWT
 weight: 300
 toc: true
-docs: "DOCS-000"
+type: how-to
+product: NGF
+docs: DOCS-000
 ---
 
 ## Overview
@@ -13,15 +15,21 @@ This requirement is part of F5’s broader licensing program and aligns with ind
 
 The JWT is required for validating your subscription and reporting telemetry data. For environments connected to the internet, telemetry is automatically sent to F5’s licensing endpoint. In offline environments, telemetry is routed through [NGINX Instance Manager](https://docs.nginx.com/nginx-instance-manager/). Usage is reported every hour and on startup whenever NGINX is reloaded.
 
+---
+
 ## Set up the JWT
 
 The JWT needs to be configured before deploying NGINX Gateway Fabric. The JWT will be stored in two Kubernetes Secrets: one for downloading the NGINX Plus container image, and the other for running NGINX Plus.
 
 {{< include "/ngf/installation/jwt-password-note.md" >}}
 
+---
+
 ### Download the JWT from MyF5
 
 {{< include "/ngf/installation/nginx-plus/download-jwt.md" >}}
+
+---
 
 ### Docker Registry Secret
 
@@ -44,6 +52,8 @@ Specify the Secret name in the `imagePullSecrets` field of the `nginx-gateway` S
 {{% /tab %}}
 
 {{</tabs>}}
+
+---
 
 ### NGINX Plus Secret
 
@@ -83,7 +93,9 @@ and the following volume mount to the `nginx` container:
 
 {{</tabs>}}
 
-**If you are reporting to the default licensing endpoint, then you can now proceed with [installing NGINX Gateway Fabric]({{< ref "/ngf/installation/installing-ngf" >}}). Otherwise, follow the steps below to configure reporting to NGINX Instance Manager.**
+{{< note >}} If you are reporting to the default licensing endpoint, then you can now proceed with [installing NGINX Gateway Fabric]({{< ref "/ngf/installation/installing-ngf" >}}). Otherwise, follow the steps below to configure reporting to NGINX Instance Manager. {{< /note >}}
+
+---
 
 ### Reporting to NGINX Instance Manager {#nim}
 
@@ -110,6 +122,8 @@ usage_report endpoint=<your-endpoint>;
 {{% /tab %}}
 
 {{</tabs>}}
+
+---
 
 #### CA and Client certificate/key {#nim-cert}
 
@@ -172,7 +186,9 @@ ssl_certificate_key    /etc/nginx/certs-bootstrap/tls.key;
 
 <br>
 
-**Once these Secrets are created and configuration options are set, you can now [install NGINX Gateway Fabric]({{< ref "/ngf/installation/installing-ngf" >}}).**
+{{< note >}} Once these Secrets are created and configuration options are set, you can now [install NGINX Gateway Fabric]({{< ref "/ngf/installation/installing-ngf" >}}). {{< /note >}}
+
+---
 
 ## Installation flags to configure usage reporting {#flags}
 
@@ -196,6 +212,8 @@ If using manifests, the following command-line options should be set as necessar
 - `--usage-report-ca-secret` is the name of the Secret containing the NGINX Instance Manager CA certificate. Must exist in the same namespace that the NGINX Gateway Fabric control plane is running in (default namespace: nginx-gateway). Requires [extra configuration](#nim-cert) if specified.
 - `--usage-report-client-ssl-secret` is the name of the Secret containing the client certificate and key for authenticating with NGINX Instance Manager. Must exist in the same namespace that the NGINX Gateway Fabric control plane is running in (default namespace: nginx-gateway). Requires [extra configuration](#nim-cert) if specified.
 
+---
+
 ## What’s reported and how it’s protected {#telemetry}
 
 NGINX Plus reports the following data every hour by default:
@@ -210,6 +228,8 @@ NGINX Plus reports the following data every hour by default:
 - **NGINX uptime**: The number of reloads and worker connections during uptime.
 - **Usage report timestamps**: Start and end times for each usage report.
 - **Kubernetes node details**: Information about Kubernetes nodes.
+
+---
 
 ### Security and privacy of reported data
 
@@ -234,6 +254,8 @@ docker pull private-registry.nginx.com/nginx-gateway-fabric/nginx-plus:1.5.1
 ```
 
 Once you have successfully pulled the image, you can tag it as needed, then push it to a different container registry.
+
+---
 
 ## Alternative installation options
 

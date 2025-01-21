@@ -2,6 +2,8 @@
 title: "Use the SnippetsFilter API"
 weight: 800
 toc: true
+type: how-to
+product: NGF
 docs: "DOCS-000"
 ---
 
@@ -41,16 +43,16 @@ Snippets have the following disadvantages:
 
 ---
 
-## Best Practices when using SnippetsFilters
+## Best practices for SnippetsFilters
 
-There are endless ways to use `SnippetsFilters` to modify NGINX configuration, and thus there are many ways to generate invalid or undesired NGINX configuration.
+There are endless ways to use `SnippetsFilters` to modify NGINX configuration, and equal ways to generate invalid or undesired NGINX configuration.
 We have outlined a few best practices to keep in mind when using `SnippetsFilters` to keep NGINX Gateway Fabric functioning correctly:
 
 1. Using the [Roles and Personas](https://gateway-api.sigs.k8s.io/concepts/roles-and-personas/) defined in the Gateway API, `SnippetsFilter` access
    should be limited to Cluster operators. Application developers should not be able to create, modify, or delete `SnippetsFilters` as they affect other applications.
    `SnippetsFilter` creates a natural split of responsibilities between the Cluster operator and the Application developer: the Cluster operator creates a `SnippetsFilter`; the Application developer references the `SnippetsFilter` in an HTTPRoute/GRPCRoute to enable it.
-2. In a `SnippetsFilter`, only one Snippet per NGINX context is allowed, however multiple `SnippetsFilters` can be referenced in the same routing rule. As such, `SnippetsFilters` should not conflict with each other. If `SnippetsFilters` do conflict, they should not be referenced on the same routing rule.
-3. `SnippetsFilters` that define Snippets targeting NGINX contexts `main`, `http`, or `http.server`, can potentially affect more than the routing rule they are referenced by. Proceed with caution and verify the behavior of the NGINX configuration before creating those `SnippetsFilters` in a production scenario.
+1. In a `SnippetsFilter`, only one Snippet per NGINX context is allowed, however multiple `SnippetsFilters` can be referenced in the same routing rule. As such, `SnippetsFilters` should not conflict with each other. If `SnippetsFilters` do conflict, they should not be referenced on the same routing rule.
+1. `SnippetsFilters` that define Snippets targeting NGINX contexts `main`, `http`, or `http.server`, can potentially affect more than the routing rule they are referenced by. Proceed with caution and verify the behavior of the NGINX configuration before creating those `SnippetsFilters` in a production scenario.
 
 ---
 
@@ -216,6 +218,8 @@ Status:
 Events:                      <none>
 ```
 
+---
+
 ## Configure coffee to reference rate-limiting-sf SnippetsFilter
 
 To use the `rate-limiting-sf` `SnippetsFilter`, update the coffee HTTPRoute to reference it:
@@ -297,6 +301,8 @@ for i in `seq 1 10`; do curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://c
 
 You should see all successful responses from the coffee Pod, but they should be spaced apart roughly one second each as
 expected through the rate limiting configuration.
+
+---
 
 ## Configure tea to reference no-delay-rate-limiting-sf SnippetsFilter
 

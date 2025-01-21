@@ -1,15 +1,19 @@
 ---
-title: "Build NGINX Gateway Fabric and NGINX images"
+title: Build NGINX Gateway Fabric
 weight: 500
 toc: true
-docs: "DOCS-1431"
+type: how-to
+product: NGF
+docs: DOCS-1431
 ---
 
 ## Overview
 
 While most users will install NGINX Gateway Fabric [with Helm]({{< ref "/ngf/installation/installing-ngf/helm.md" >}}) or [Kubernetes manifests]({{< ref "/ngf/installation/installing-ngf/manifests.md" >}}), manually building the [NGINX Gateway Fabric and NGINX images]({{< ref "/ngf/overview/gateway-architecture.md#the-nginx-gateway-fabric-pod" >}}) can be helpful for testing and development purposes. Follow the steps in this document to build the NGINX Gateway Fabric and NGINX images.
 
-## Prerequisites
+---
+
+## Before you begin
 
 Before you can build the NGINX Gateway Fabric and NGINX images, make sure you have the following software
 installed on your machine:
@@ -20,6 +24,8 @@ installed on your machine:
 - [Go](https://go.dev/doc/install) v1.20
 
 If building the NGINX Plus image, you will also need a valid NGINX Plus license certificate (`nginx-repo.crt`) and key (`nginx-repo.key`) in the root of the repo.
+
+---
 
 ## Steps
 

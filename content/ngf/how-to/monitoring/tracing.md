@@ -1,17 +1,25 @@
 ---
-title: "Tracing"
-weight: 200
+title: Configure tracing
+weight: 100
 toc: true
-docs: "DOCS-000"
+type: how-to
+product: NGF
+docs: DOCS-000
 ---
 
-Learn how to configure tracing in NGINX Gateway Fabric.
+This guide explains how to enable tracing on HTTPRoutes in NGINX Gateway Fabric using the OpenTelemetry Collector. Jaeger is used to process and collect the traces.
+
+---
 
 ## Overview
 
-NGINX Gateway Fabric supports tracing using [OpenTelemetry](https://opentelemetry.io/). The official [NGINX OpenTelemetry Module](https://github.com/nginxinc/nginx-otel) instruments the NGINX data plane to export traces to a configured collector. Tracing data can be used with an OpenTelemetry Protocol (OTLP) exporter, such as the [OpenTelemetry Collector](https://github.com/open-telemetry/opentelemetry-collector). This collector can then export data to one or more upstream collectors like [Jaeger](https://www.jaegertracing.io/), [DataDog](https://docs.datadoghq.com/tracing/), and many others. This is called the [Agent model](https://opentelemetry.io/docs/collector/deployment/agent/).
+NGINX Gateway Fabric supports tracing using [OpenTelemetry](https://opentelemetry.io/).
 
-This guide explains how to enable tracing on HTTPRoutes using NGINX Gateway Fabric. It uses the OpenTelemetry Collector and Jaeger to process and collect the traces.
+The official [NGINX OpenTelemetry Module](https://github.com/nginxinc/nginx-otel) instruments the NGINX data plane to export traces to a configured collector. Tracing data can be used with an OpenTelemetry Protocol (OTLP) exporter, such as the [OpenTelemetry Collector](https://github.com/open-telemetry/opentelemetry-collector). 
+
+This collector can then export data to one or more upstream collectors like [Jaeger](https://www.jaegertracing.io/), [DataDog](https://docs.datadoghq.com/tracing/), and many others. This is called the [Agent model](https://opentelemetry.io/docs/collector/deployment/agent/).
+
+---
 
 ## Install the collectors
 
@@ -56,6 +64,8 @@ kubectl port-forward -n tracing svc/jaeger 16686:16686 &
 
 Visit [http://127.0.0.1:16686](http://127.0.0.1:16686) to view the dashboard.
 
+---
+
 ## Enable tracing
 
 To enable tracing, you must configure two resources:
@@ -67,6 +77,8 @@ To enable tracing, you must configure two resources:
 - `ObservabilityPolicy`: This resource is a [Direct PolicyAttachment](https://gateway-api.sigs.k8s.io/reference/policy-attachment/) that targets HTTPRoutes or GRPCRoutes. It is created by the [application developer](https://gateway-api.sigs.k8s.io/concepts/roles-and-personas/) and enables tracing for a specific route or routes. It requires the `NginxProxy` resource to exist in order to complete the tracing configuration.
 
 For all the possible configuration options for these resources, see the [API reference]({{< ref "/ngf/reference/api.md" >}}).
+
+---
 
 ### Install NGINX Gateway Fabric with global tracing configuration
 
@@ -167,6 +179,8 @@ Save the public IP address and port of NGINX Gateway Fabric into shell variables
 
 You can now create the application, route, and tracing policy.
 
+---
+
 ### Create the application and route
 
 Create the basic **coffee** application:
@@ -261,6 +275,8 @@ URI: /coffee
 
 You shouldn't see any information from the [Jaeger dashboard](http://127.0.0.1:16686) yet: you need to create the `ObservabilityPolicy`.
 
+---
+
 ### Create the ObservabilityPolicy
 
 To enable tracing for the coffee HTTPRoute, create the following policy:
@@ -329,7 +345,9 @@ Select a trace to view the attributes.
 
 The trace includes the attribute from the global NginxProxy resource as well as the attribute from the ObservabilityPolicy.
 
-## Further reading
+---
+
+## See also
 
 - [Custom policies]({{< relref "/ngf/overview/custom-policies.md" >}}): learn about how NGINX Gateway Fabric custom policies work.
 - [API reference]({{< relref "/ngf/reference/api.md" >}}): all configuration fields for the policies mentioned in this guide

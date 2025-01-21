@@ -1,7 +1,7 @@
 ---
-title: "Data plane configuration"
-toc: true
+title: Data plane configuration
 weight: 500
+toc: true
 type: how-to
 product: NGF
 docs: DOCS-000
@@ -23,11 +23,13 @@ When installed using the Helm chart, the NginxProxy resource is named `<release-
 
 {{< note >}} Some global configuration also requires an [associated policy]({{< ref "/ngf/overview/custom-policies.md" >}}) to fully enable a feature (such as [tracing]({{< ref "/ngf/how-to/monitoring/tracing.md" >}}), for example). {{< /note >}}
 
+---
+
 ## Viewing and Updating the Configuration
 
 If the `NginxProxy` resource already exists, you can view and edit it.
 
-{{< note >}} For the following examples, the name `ngf-proxy-config` should be updated to the name of the resource created for your installation.{{< /note >}}
+{{< note >}} For the following examples, the name `ngf-proxy-config` should be updated to the name of the resource created for your installation. {{< /note >}}
 
 To view the current configuration:
 
@@ -63,7 +65,9 @@ Status:
 
 If everything is valid, the `ResolvedRefs` condition should be `True`. Otherwise, you will see an `InvalidParameters` condition in the status.
 
-## Manually Creating the Configuration
+---
+
+## Manually create the configuration
 
 If the `NginxProxy` resource doesn't exist, you can create it and attach it to the GatewayClass.
 
@@ -115,7 +119,9 @@ Status:
 
 If everything is valid, the `ResolvedRefs` condition should be `True`. Otherwise, you will see an `InvalidParameters` condition in the status.
 
-## Configure the Data Plane Log Level
+---
+
+## Configure the data plane log level
 
 You can use the `NginxProxy` resource to dynamically configure the Data Plane Log Level.
 
@@ -141,6 +147,8 @@ To view the full list of supported log levels, see the `NginxProxy spec` in the 
 be [run with NGINX in debug mode](#run-nginx-gateway-fabric-with-nginx-in-debug-mode) upon startup through the addition
 of a few arguments. {{</ note >}}
 
+---
+
 ### Run NGINX Gateway Fabric with NGINX in debug mode
 
 To run NGINX Gateway Fabric with NGINX in debug mode, follow the [installation document]({{< ref "/ngf/installation/installing-ngf" >}}) with these additional steps:
@@ -159,6 +167,8 @@ as arguments and add `/bin/sh` as the command. The deployment manifest should lo
   - /bin/sh
 ...
 ```
+
+---
 
 ## Configure PROXY protocol and RewriteClientIP settings
 

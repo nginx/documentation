@@ -1,7 +1,7 @@
 ---
-title: "Modify HTTP request and response headers"
-toc: true
+title: Modify HTTP request and response headers
 weight: 600
+toc: true
 type: how-to
 product: NGF
 docs: DOCS-000
@@ -182,9 +182,13 @@ kubectl delete httproutes.gateway.networking.k8s.io headers
 kubectl delete -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.0/examples/http-request-header-filter/headers.yaml
 ```
 
+---
+
 ## ResponseHeaderModifier example
 
 Begin by configuring an application with custom headers and a simple HTTPRoute. The server response can be observed see its headers. The next step is to modify some of the headers using HTTPRoute filters to modify responses. Finally, verify the server responds with the modified headers.
+
+---
 
 ### Deploy the Headers application
 
@@ -207,6 +211,8 @@ pod/headers-6f854c478-hd2jr   1/1     Running   0          95s
 NAME                 TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)   AGE
 service/headers      ClusterIP   10.96.15.12   <none>        80/TCP    95s
 ```
+
+---
 
 ### Configure the basic HTTPRoute
 
@@ -241,6 +247,8 @@ This HTTPRoute has a few important properties:
 - `cafe.example.com` is the hostname that is matched for all requests to the backends defined in this HTTPRoute.
 - The `match` rule defines that all requests with the path prefix `/headers` are sent to the `headers` Service.
 
+---
+
 ### Send traffic to the Headers application
 
 Use `curl` with the `-i` flag to access the application and include the response headers in the output:
@@ -272,6 +280,8 @@ In the output above, you can see that the headers application adds the following
 - X-Header-Remove: remove
 
 The next section will modify these headers by adding a ResponseHeaderModifier filter to the headers HTTPRoute.
+
+---
 
 ### Update the HTTPRoute to modify the Response headers
 
@@ -317,6 +327,7 @@ Notice that this HTTPRoute has a `ResponseHeaderModifier` filter defined for the
 - Adds the value `this-is-the-appended-value` to the header `X-Header-Add`.
 - Removes `X-Header-Remove` header.
 
+---
 
 ### Send traffic to the modified Headers application
 
@@ -345,7 +356,7 @@ In the output above you can notice the modified response headers as the `X-Heade
 
 ---
 
-## Further reading
+## See also
 
 To learn more about the Gateway API and the resources we created in this guide, check out the following Kubernetes documentation resources:
 

@@ -1,7 +1,7 @@
 ---
-title: "HTTPS termination"
-toc: true
+title: HTTPS termination
 weight: 500
+toc: true
 type: how-to
 product: NGF
 docs: DOCS-1421

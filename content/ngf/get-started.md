@@ -1,7 +1,9 @@
 ---
 title: Get started
-toc: true
 weight: 200
+toc: true
+type: how-to
+product: NGF
 docs: DOCS-000
 ---
 

@@ -1,8 +1,10 @@
 ---
-title: "Installation with Kubernetes manifests"
+title: Installation with Kubernetes manifests
 weight: 200
 toc: true
-docs: "DOCS-1429"
+type: how-to
+product: NGF
+docs: DOCS-1429
 ---
 
 ## Overview
@@ -11,6 +13,8 @@ Learn how to install, upgrade, and uninstall NGINX Gateway Fabric using Kubernet
 
 {{< important >}} NGINX Plus users that are upgrading from version 1.4.0 to 1.5.x need to install an NGINX Plus JWT
 Secret before upgrading. Follow the steps in the [Before you begin](#before-you-begin) section to create the Secret, which is referenced in the updated deployment manifest for the newest version. {{< /important >}}
+
+---
 
 ## Before you begin
 
@@ -40,13 +44,19 @@ To complete this guide, you'll need to install:
 
 </details>
 
+---
+
 ## Deploy NGINX Gateway Fabric
 
 Deploying NGINX Gateway Fabric with Kubernetes manifests takes only a few steps. With manifests, you can configure your deployment exactly how you want. Manifests also make it easy to replicate deployments across environments or clusters, ensuring consistency.
 
+---
+
 ### 1. Install the Gateway API resources
 
 {{< include "/ngf/installation/install-gateway-api-resources.md" >}}
+
+---
 
 ### 2. Deploy the NGINX Gateway Fabric CRDs
 
@@ -61,6 +71,8 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/main/deploy/crds.yaml
 ```
+
+---
 
 ### 3. Deploy NGINX Gateway Fabric
 
@@ -158,6 +170,8 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1
 
 {{</tabs>}}
 
+---
+
 ### 4. Verify the Deployment
 
 To confirm that NGINX Gateway Fabric is running, check the pods in the `nginx-gateway` namespace:
@@ -173,16 +187,20 @@ NAME                             READY   STATUS    RESTARTS   AGE
 nginx-gateway-5d4f4c7db7-xk2kq   2/2     Running   0          112s
 ```
 
+---
+
 ### 5. Access NGINX Gateway Fabric
 
 {{< include "/ngf/installation/expose-nginx-gateway-fabric.md" >}}
+
+---
 
 ## Upgrade NGINX Gateway Fabric
 
 {{< important >}} NGINX Plus users that are upgrading from version 1.4.0 to 1.5.x need to install an NGINX Plus JWT
 Secret before upgrading. Follow the steps in the [Before you begin](#before-you-begin) section to create the Secret, which is referenced in the updated deployment manifest for the newest version. {{< /important >}}
 
-{{<tip>}}For guidance on zero downtime upgrades, see the [Delay Pod Termination](#configure-delayed-pod-termination-for-zero-downtime-upgrades) section below.{{</tip>}}
+{{< tip >}} For guidance on zero downtime upgrades, see the [Delay Pod Termination](#configure-delayed-pod-termination-for-zero-downtime-upgrades) section. {{</ tip >}}
 
 To upgrade NGINX Gateway Fabric and get the latest features and improvements, take the following steps:
 
@@ -213,6 +231,8 @@ To upgrade NGINX Gateway Fabric and get the latest features and improvements, ta
 1. **Upgrade NGINX Gateway Fabric deployment:**
 
    Select the deployment manifest that matches your current deployment from the table above in the [Deploy NGINX Gateway Fabric](#3-deploy-nginx-gateway-fabric) section and apply it.
+
+---
 
 ## Delay pod termination for zero downtime upgrades {#configure-delayed-pod-termination-for-zero-downtime-upgrades}
 
@@ -255,13 +275,15 @@ Follow these steps to configure delayed pod termination:
 
 1. Save the changes.
 
-{{<see-also>}}
+{{< see-also >}}
 For additional information on configuring and understanding the behavior of containers and pods during their lifecycle, refer to the following Kubernetes documentation:
 
 - [Container Lifecycle Hooks](https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks)
 - [Pod Lifecycle](https://kubernetes.io/docs/concepts/workloads/Pods/Pod-lifecycle/#Pod-termination)
 
-{{</see-also>}}
+{{< /see-also >}}
+
+---
 
 ## Uninstall NGINX Gateway Fabric
 

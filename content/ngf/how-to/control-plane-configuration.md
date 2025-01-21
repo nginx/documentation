@@ -1,7 +1,7 @@
 ---
-title: "Control plane configuration"
-toc: true
+title: Control plane configuration
 weight: 400
+toc: true
 type: how-to
 product: NGF
 docs: DOCS-1416
@@ -25,6 +25,8 @@ If the resource is invalid to the OpenAPI schema, the Kubernetes API server will
 Additionally, the control plane updates the status of the resource (if it exists) to reflect whether it is valid or not.
 
 **For a full list of configuration options that can be set, see the `NginxGateway spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}).**
+
+---
 
 ## Viewing and Updating the Configuration
 

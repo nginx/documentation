@@ -1,10 +1,10 @@
 ---
-title: "Securing backend traffic"
+title: Securing backend traffic
 weight: 200
 toc: true
 type: how-to
 product: NGF
-docs: "DOCS-1423"
+docs: DOCS-1423
 ---
 
 Learn how to encrypt HTTP traffic between NGINX Gateway Fabric and your backend pods.

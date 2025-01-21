@@ -2,12 +2,16 @@
 title: "Command-line reference guide"
 weight: 100
 toc: true
+type: reference
+product: NGF
 docs: "DOCS-1435"
 ---
 
 ## Overview
 
 Learn about the commands available for the executable file of the NGINX Gateway Fabric container.
+
+---
 
 ## Static mode
 
@@ -18,6 +22,8 @@ This command configures NGINX for a single NGINX Gateway Fabric resource.
 ```shell
   gateway static-mode [flags]
 ```
+
+---
 
 ### Flags
 
@@ -50,6 +56,8 @@ This command configures NGINX for a single NGINX Gateway Fabric resource.
 | _snippets-filters_                  | _bool_   | Enable SnippetsFilters feature. SnippetsFilters allow inserting NGINX configuration into the generated NGINX config for HTTPRoute and GRPCRoute resources.                                                                                                                                                                                                                               |
 
 {{% /bootstrap-table %}}
+
+---
 
 ## Sleep
 

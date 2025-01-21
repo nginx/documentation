@@ -1,8 +1,10 @@
 ---
-title: "Installation with Helm"
+title: Installation with Helm
 weight: 100
 toc: true
-docs: "DOCS-1430"
+type: how-to
+product: NGF
+docs: DOCS-1430
 ---
 
 ## Overview
@@ -11,6 +13,8 @@ Learn how to install, upgrade, and uninstall NGINX Gateway Fabric in a Kubernete
 
 {{< important >}} NGINX Plus users that are upgrading from version 1.4.0 to 1.5.x need to install an NGINX Plus JWT
 Secret before upgrading. Follow the steps in the [Before you begin](#before-you-begin) section to create the Secret. If you use a different name than the default `nplus-license` name, specify the Secret name by setting `--set nginx.usage.secretName=<secret-name>` when running `helm upgrade`. {{< /important >}}
+
+---
 
 ## Before you begin
 
@@ -41,11 +45,15 @@ To complete this guide, you'll need to install:
 
 </details>
 
+---
+
 ## Deploy NGINX Gateway Fabric
 
 ### Installing the Gateway API resources
 
 {{< include "/ngf/installation/install-gateway-api-resources.md" >}}
+
+---
 
 ### Install from the OCI registry
 
@@ -87,6 +95,8 @@ To wait for the Deployment to be ready, you can either add the `--wait` flag to 
 kubectl wait --timeout=5m -n nginx-gateway deployment/ngf-nginx-gateway-fabric --for=condition=Available
 ```
 
+---
+
 ### Install from sources {#install-from-sources}
 
 If you prefer to install directly from sources, instead of through the OCI helm registry, use the following steps.
@@ -127,6 +137,8 @@ helm install ngf . --set nginx.image.repository=private-registry.nginx.com/nginx
    kubectl wait --timeout=5m -n nginx-gateway deployment/ngf-nginx-gateway-fabric --for=condition=Available
    ```
 
+---
+
 ### Custom installation options
 
 #### Service type
@@ -145,6 +157,8 @@ To disable the creation of a Service:
 helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namespace -n nginx-gateway --set service.create=false
 ```
 
+---
+
 #### Experimental features
 
 We support a subset of the additional features provided by the Gateway API experimental channel. To enable the
@@ -154,21 +168,29 @@ experimental features of Gateway API which are supported by NGINX Gateway Fabric
 helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namespace -n nginx-gateway --set nginxGateway.gwAPIExperimentalFeatures.enable=true
 ```
 
-{{<note>}}Requires the Gateway APIs installed from the experimental channel.{{</note>}}
+{{< note >}} Requires the Gateway APIs installed from the experimental channel. {{< /note >}}
+
+---
 
 #### Examples
 
 You can find several examples of configuration options of the `values.yaml` file in the [helm examples](https://github.com/nginx/nginx-gateway-fabric/tree/v1.5.1/examples/helm) directory.
 
+---
+
 ### Access NGINX Gateway Fabric
 
 {{< include "/ngf/installation/expose-nginx-gateway-fabric.md" >}}
+
+---
 
 ## Upgrade NGINX Gateway Fabric
 
 {{<tip>}}For guidance on zero downtime upgrades, see the [Delay Pod Termination](#configure-delayed-pod-termination-for-zero-downtime-upgrades) section below.{{</tip>}}
 
 To upgrade NGINX Gateway Fabric and get the latest features and improvements, take the following steps:
+
+---
 
 ### Upgrade Gateway resources
 
@@ -187,6 +209,8 @@ To upgrade your Gateway API resources, take the following steps:
   ```shell
   kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/experimental?ref=v1.5.1" | kubectl apply -f -
   ```
+
+---
 
 ### Upgrade NGINX Gateway Fabric CRDs
 
@@ -208,48 +232,58 @@ To upgrade the CRDs, take the following steps:
    Warning: kubectl apply should be used on resource created by either kubectl create --save-config or kubectl apply.
    ```
 
+---
+
 ### Upgrade NGINX Gateway Fabric release
 
 {{< important >}} NGINX Plus users that are upgrading from version 1.4.0 to 1.5.x need to install an NGINX Plus JWT
-Secret before upgrading. Follow the steps in the [Before you begin](#before-you-begin) section to create the Secret. If you use a different name than the default `nplus-license` name, specify the Secret name by setting `--set nginx.usage.secretName=<secret-name>` when running `helm upgrade`. {{</ important >}}
+Secret before upgrading. Follow the steps in the [Before you begin](#before-you-begin) section to create the Secret. If you use a different name than the default `nplus-license` name, specify the Secret name by setting `--set nginx.usage.secretName=<secret-name>` when running `helm upgrade`. {{< /important >}}
 
 There are two possible ways to upgrade NGINX Gateway Fabric. You can either upgrade from the OCI registry, or download the chart and upgrade from the source.
 
+---
+
 #### Upgrade from the OCI registry
 
-- To upgrade to the latest stable release of NGINX Gateway Fabric, run:
+To upgrade to the latest stable release of NGINX Gateway Fabric, run:
 
-  ```shell
-  helm upgrade ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric -n nginx-gateway
-  ```
+```shell
+helm upgrade ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric -n nginx-gateway
+```
 
-  If needed, replace `ngf` with your chosen release name.
+If needed, replace `ngf` with your chosen release name.
+
+---
 
 #### Upgrade from sources
 
-1. {{< include "/ngf/installation/helm/pulling-the-chart.md" >}}
+{{< include "/ngf/installation/helm/pulling-the-chart.md" >}}
 
-1. To upgrade, run: the following command:
+To upgrade, run: the following command:
 
-   ```shell
-   helm upgrade ngf . -n nginx-gateway
-   ```
+```shell
+helm upgrade ngf . -n nginx-gateway
+```
 
-   If needed, replace `ngf` with your chosen release name.
+If needed, replace `ngf` with your chosen release name.
+
+---
 
 ## How to upgrade from NGINX OSS to NGINX Plus
 
-- To upgrade from NGINX OSS to NGINX Plus, update the Helm command to include the necessary values for Plus:
+To upgrade from NGINX OSS to NGINX Plus, update the Helm command to include the necessary values for Plus:
 
-  {{< note >}} If applicable, replace the F5 Container registry `private-registry.nginx.com` with your internal registry for your NGINX Plus image, and replace `nginx-plus-registry-secret` with your Secret name containing the registry credentials.{{< /note >}}
+{{< note >}} If applicable, replace the F5 Container registry `private-registry.nginx.com` with your internal registry for your NGINX Plus image, and replace `nginx-plus-registry-secret` with your Secret name containing the registry credentials.{{< /note >}}
 
-  {{< important >}} Ensure that you [Create the required JWT Secrets]({{< ref "/ngf/installation/nginx-plus-jwt.md" >}}) before installing.{{< /important >}}
+{{< important >}} Ensure that you [Create the required JWT Secrets]({{< ref "/ngf/installation/nginx-plus-jwt.md" >}}) before installing.{{< /important >}}
 
-  ```shell
-  helm upgrade ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric  --set nginx.image.repository=private-registry.nginx.com/nginx-gateway-fabric/nginx-plus --set nginx.plus=true --set serviceAccount.imagePullSecret=nginx-plus-registry-secret -n nginx-gateway
-  ```
+```shell
+helm upgrade ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric  --set nginx.image.repository=private-registry.nginx.com/nginx-gateway-fabric/nginx-plus --set nginx.plus=true --set serviceAccount.imagePullSecret=nginx-plus-registry-secret -n nginx-gateway
+```
 
-  If needed, replace `ngf` with your chosen release name.
+If needed, replace `ngf` with your chosen release name.
+
+---
 
 ## Delay pod termination for zero downtime upgrades {#configure-delayed-pod-termination-for-zero-downtime-upgrades}
 
@@ -298,6 +332,8 @@ For additional information on configuring and understanding the behavior of cont
 
 {{</see-also>}}
 
+---
+
 ## Uninstall NGINX Gateway Fabric
 
 Follow these steps to uninstall NGINX Gateway Fabric and Gateway API from your Kubernetes cluster:
@@ -324,6 +360,9 @@ Follow these steps to uninstall NGINX Gateway Fabric and Gateway API from your K
 3. **Remove the Gateway API resources:**
 
    - {{< include "/ngf/installation/uninstall-gateway-api-resources.md" >}}
+
+
+---
 
 ## Additional configuration
 

@@ -1,11 +1,15 @@
 ---
-title: "Client Settings Policy API"
+title: Client Settings Policy API
 weight: 800
+type: how-to
+product: NGF
 toc: true
-docs: "DOCS-000"
+docs: DOCS-000
 ---
 
 Learn how to use the `ClientSettingsPolicy` API.
+
+---
 
 ## Overview
 
@@ -30,7 +34,9 @@ This guide will show you how to use the `ClientSettingsPolicy` API to configure 
 
 For all the possible configuration options for `ClientSettingsPolicy`, see the [API reference]({{< ref "/ngf/reference/api.md" >}}).
 
-## Setup
+---
+
+## Before you begin
 
 - [Install]({{< ref "/ngf/installation/" >}}) NGINX Gateway Fabric.
 - Save the public IP address and port of NGINX Gateway Fabric into shell variables:
@@ -89,6 +95,8 @@ For all the possible configuration options for `ClientSettingsPolicy`, see the [
   Server address: 10.244.0.9:8080
   Server name: tea-76c7c85bbd-cf8nz
   ```
+
+---
 
 ## Configure client max body size
 
@@ -174,6 +182,8 @@ Server name: coffee-56b44d4c55-7ldjc
 ```
 
 You can repeat this test with the tea application to confirm that the policy affects both HTTPRoutes.
+
+---
 
 ### Set a different client max body size for a route
 
@@ -274,7 +284,9 @@ spec:
 EOF
 ```
 
-## Further reading
+---
+
+## See also
 
 - [Custom policies]({{< ref "/ngf/overview/custom-policies.md" >}}): learn about how NGINX Gateway Fabric custom policies work.
 - [API reference]({{< ref "/ngf/reference/api.md" >}}): all configuration fields for the `ClientSettingsPolicy` API.

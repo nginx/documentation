@@ -1,11 +1,15 @@
 ---
-title: "HTTP redirects and rewrites"
+title: HTTP redirects and rewrites
 weight: 400
 toc: true
-docs: "DOCS-1424"
+type: how-to
+product: NGF
+docs: DOCS-1424
 ---
 
 Learn how to redirect or rewrite your HTTP traffic using NGINX Gateway Fabric.
+
+---
 
 ## Overview
 
@@ -509,7 +513,7 @@ Location: http://cafe.example.com:8080/flavors?test=v1
 
 ---
 
-## Further reading
+## See also
 
 To learn more about redirects and rewrites using the Gateway API, see the following resource:
 

@@ -1,11 +1,15 @@
 ---
-title: "NGINX Plus dashboard"
+title: NGINX Plus dashboard
 weight: 300
 toc: true
-docs: "DOCS-1417"
+type: how-to
+product: NGF
+docs: DOCS-1417
 ---
 
 Learn how to view the NGINX Plus dashboard to see real-time metrics.
+
+---
 
 ## Overview
 
@@ -25,4 +29,4 @@ The dashboard will look like this:
 
 {{< img src="/ngf/img/nginx-plus-dashboard.png" alt="">}}
 
-{{< note >}}The [API](https://nginx.org/en/docs/http/ngx_http_api_module.html) used by the dashboard for metrics is also accessible using the `/api` path. {{< /note >}}
+{{< note >}} The [API](https://nginx.org/en/docs/http/ngx_http_api_module.html) used by the dashboard for metrics is also accessible using the `/api` path. {{< /note >}}

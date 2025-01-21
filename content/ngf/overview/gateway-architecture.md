@@ -1,19 +1,22 @@
 ---
-title: "Gateway architecture"
+title: Gateway architecture
 weight: 100
 toc: true
-docs: "DOCS-1413"
+type: reference
+product: NGF
+docs: DOCS-1413
 ---
 
 Learn about the architecture and design principles of NGINX Gateway Fabric.
 
 The intended audience for this information is primarily the two following groups:
 
-
 - _Cluster Operators_ who would like to know how the software works and understand how it can fail.
 - _Developers_ who would like to [contribute](https://github.com/nginx/nginx-gateway-fabric/blob/main/CONTRIBUTING.md) to the project.
 
 The reader needs to be familiar with core Kubernetes concepts, such as pods, deployments, services, and endpoints. For an understanding of how NGINX itself works, you can read the ["Inside NGINX: How We Designed for Performance & Scale"](https://www.nginx.com/blog/inside-nginx-how-we-designed-for-performance-scale/) blog post.
+
+---
 
 ## Overview
 
@@ -22,6 +25,8 @@ NGINX Gateway Fabric is an open source project that provides an implementation o
 For a list of supported Gateway API resources and features, see the [Gateway API Compatibility]({{< ref "/ngf/overview/gateway-api-compatibility.md" >}}) documentation.
 
 We have more information regarding our [design principles](https://github.com/nginx/nginx-gateway-fabric/blob/v1.5.1/docs/developer/design-principles.md) in the project's GitHub repository.
+
+---
 
 ## NGINX Gateway Fabric at a high level
 
@@ -45,6 +50,8 @@ The figure shows:
 The yellow and purple arrows represent connections related to the client traffic, and the black arrows represent access to the Kubernetes API. The resources within the cluster are color-coded based on the user responsible for their creation.
 
 For example, the Cluster Operator is denoted by the color green, indicating they create and manage all the green resources.
+
+---
 
 ## The NGINX Gateway Fabric pod
 
@@ -98,15 +105,21 @@ Below are additional connections not depcited on the diagram:
 
 - (HTTPS) NGF sends [product telemetry data]({{< ref "/ngf/overview/product-telemetry.md" >}}) to the F5 telemetry service.
 
+---
+
 ### Differences with NGINX Plus
 
 The previous diagram depicts NGINX Gateway Fabric using NGINX Open Source. NGINX Gateway Fabric with NGINX Plus has the following difference:
 
 - An _admin_ can connect to the NGINX Plus API using port 8765. NGINX only allows connections from localhost.
 
+---
+
 ## Updating upstream servers
 
 The normal process to update any changes to NGINX is to write the configuration files and reload NGINX. However, when using NGINX Plus, we can take advantage of the [NGINX Plus API](http://nginx.org/en/docs/http/ngx_http_api_module.html) to limit the amount of reloads triggered when making changes to NGINX. Specifically, when the endpoints of an application in Kubernetes change (Such as scaling up or down), the NGINX Plus API is used to update the upstream servers in NGINX with the new endpoints without a reload. This reduces the potential for a disruption that could occur when reloading.
+
+---
 
 ## Pod readiness
 
