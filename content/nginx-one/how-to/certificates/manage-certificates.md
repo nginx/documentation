@@ -14,13 +14,31 @@ weight: 100
 
 This guide explains how you can manage SSL/TLS certificates with the F5 NGINX One Console. Valid certificates support encrypted connections between NGINX and your users. 
 
+You may have separate sets of SSL/TLS certificates, as described in the following table: 
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Functionality     | Typical file names                                                 | Notes                                                                                  |
+|-------------------|--------------------------------------------------------------------|----------------------------------------------------------------------------------------|
+| Website traffic   | /etc/nginx/ssl/example.com.crt <br> /etc/nginx/ssl/example.com.key | Typically purchased from a Certificate Authority (CA)                                 |
+| Repository access | /etc/ssl/nginx/nginx-repo.crt <br> /etc/ssl/nginx/nginx-repo.key   | Supports access to repositories to download and install NGINX packages                |
+| NGINX Licensing   | /etc/ssl/nginx/server.crt <br> /etc/ssl/nginx/server.key   | Supports access to repositories. Based on licenses downloaded from https://my.f5.com/ |
+{{</bootstrap-table>}}
+
+Allowed directories depend on the [NGINX Agent]({{< relref "/nginx-one/getting-started/#install-nginx-agent" >}}). Look for the `/etc/nginx-agent/nginx-agent.conf` file.
+Find the `config_dirs` parameter in that file, as described in the NGINX Agent [Basic configuration](https://docs.nginx.com/nginx-agent/configuration/configuration-overview/#cli-flags--environment-variables).
+You may need to add a directory like `/etc/ssl` to that parameter.
+
 From the NGINX One Console you can:
 
 - Monitor all certificates configured for use by your connected NGINX Instances.
 - Ensure that your certificates are current and correct.
 - Manage your certificates from a central location. This can help you simplify operations and remotely update, rotate, and deploy those certificates.
 
-For more information on how you can use these certificates to secure your servers, refer to the section on [NGINX SSL termination]({{< relref "/nginx/admin-guide/security-controls/terminating-ssl-http.md" >}}).
+You can manage the certificates for:
+
+- [Unique instances]({{< relref "/nginx-one/how-to/nginx-configs/add-file.md#new-ssl-certificate-or-ca-bundle" >}})
+- For all instances that are members of a [Config Sync Group]({{< relref "/nginx-one/how-to/config-sync-groups/manage-config-sync-groups/#configuration-management" >}})
+
 
 {{< tip >}}
 
@@ -33,7 +51,7 @@ If you are managing the certificate from NGINX One Console, we recommend that yo
 Before you add and manage certificates with the NGINX One Console make sure:
 
 - You have access to the NGINX One Console
-- You have access through the F5 Distributed Cloud role, as described in the [Authentication]({{< relref "../../api/authentication.md" >}}) guide, to manage SSL/TLS certificates
+- You have access through the F5 Distributed Cloud role, as described in the [Authentication]({{< relref "/nginx-one/api/authentication.md" >}}) guide, to manage SSL/TLS certificates
   - You have the `f5xc-nginx-one-user` role for your account
 - Your SSL/TLS certificates and keys match
 
@@ -49,7 +67,18 @@ The NGINX One Console allows you to upload these certificates as text and as fil
 Make sure your certificates, keys, and pem files are encrypted to one of the following standards:
 
 - RSA
-- ECDSA
+- ECC/ECDSA
+
+In other words, any private key of this type should be supported, regardless of the curve types or hashing algorithm.
+
+For exmaple, if you use ECDSA private keys in PEM format, the PEM headers should contain:
+
+```
+-----BEGIN EC PRIVATE KEY-----
+<...base64-encoded key>
+-----END EC PRIVATE KEY-----
+
+```
 
 If you use one of these keys, the US National Institute of Standards and Technology, in [Publication 800-57 Part 3 (PDF)](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57Pt3r1.pdf), recommends a key size of at least
 2048 bits. It also has recommnedations for ECDSA.
@@ -145,7 +174,7 @@ If that certificate is managed and is part of a Config Sync Group, that change a
 
 ## Managed and unmanaged certificates
 
-If you register an instance to NGINX One Console, as described in [Add your NGINX instances to NGINX One]({{< relref "../../getting-started.md#add-your-nginx-instances-to-nginx-one" >}}), and the associated SSL/TLS certificates:
+If you register an instance to NGINX One Console, as described in [Add your NGINX instances to NGINX One]({{< relref "/nginx-one/getting-started.md#add-your-nginx-instances-to-nginx-one" >}}), and the associated SSL/TLS certificates:
 
 - Are used in their NGINX configuration
 - Do _not_ match an existing managed SSL certificate/CA bundle
