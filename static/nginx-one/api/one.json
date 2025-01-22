@@ -60,11 +60,6 @@
       "name": "Settings",
       "description": "Configuration option for different aspect of NGINX One service.\nYou can set NGINX Instance cleanup preferences.\n",
       "x-displayName": "Settings"
-    },
-    {
-      "name": "Inventory",
-      "description": "Get tenant usage information for NGINX Plus data plane instances. These metrics are collected by the NGINX data plane instances and reported to NGINX One Console.\n",
-      "x-displayName": "Inventory"
     }
   ],
   "paths": {
@@ -140,7 +135,7 @@
         "tags": [
           "Data Plane Key"
         ],
-        "summary": "Bulk operation on multiple data plane keys.",
+        "summary": "Bulk operation on multiple data plane keys",
         "operationId": "BulkDataPlaneKeys",
         "description": "Performs bulk operation on one or more data plane keys, only delete is supported.",
         "requestBody": {
@@ -1021,7 +1016,7 @@
         "tags": [
           "Config Sync Groups"
         ],
-        "summary": "Bulk operation on multiple config sync groups.",
+        "summary": "Bulk operation on multiple config sync groups",
         "operationId": "BulkConfigSyncGroups",
         "description": "Performs bulk operation on one or more config sync groups, only delete is supported.",
         "requestBody": {
@@ -2267,7 +2262,7 @@
         "tags": [
           "Instances"
         ],
-        "summary": "Bulk operation on multiple instances.",
+        "summary": "Bulk operation on multiple instances",
         "operationId": "BulkInstances",
         "description": "Performs bulk operation on one or more NGINX instances, only delete is supported.",
         "requestBody": {
@@ -3363,84 +3358,6 @@
           },
           "500": {
             "$ref": "#/components/responses/InternalServerErr"
-          }
-        }
-      }
-    },
-    "/inventory": {
-      "post": {
-        "x-feature-flag": "inventory",
-        "tags": [
-          "Inventory"
-        ],
-        "summary": "NGINX Plus: Retrieve tenant usage information",
-        "operationId": "getInventory",
-        "description": "Based on query parameters.\n\nYou can filter and aggregate metrics by name and `start_time` through `end_time`.\n",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/InventoryMetricQueryRequest"
-              },
-              "example": {
-                "start_time": "now-1d",
-                "end_time": "now",
-                "metrics": [
-                  {
-                    "name": "nginx.plus.instances",
-                    "aggregate": [
-                      "count",
-                      "sum",
-                      "avg",
-                      "min",
-                      "max"
-                    ]
-                  },
-                  {
-                    "name": "k8s.cluster.nodes",
-                    "aggregate": [
-                      "count",
-                      "sum",
-                      "avg",
-                      "min",
-                      "max"
-                    ]
-                  }
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successfully retrieved tenant usage information.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InventoryResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
           }
         }
       }
@@ -5981,7 +5898,8 @@
           "object_id",
           "config_version",
           "created_at",
-          "modified_at"
+          "modified_at",
+          "config_source"
         ],
         "properties": {
           "object_id": {
@@ -6000,13 +5918,28 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the NGINX configuration object was last modified for the instance."
+          },
+          "config_source": {
+            "type": "string",
+            "enum": [
+              "NGINX One",
+              "Other",
+              "Unspecified"
+            ],
+            "x-enum-varnames": [
+              "config_source_nginx_one",
+              "config_source_other",
+              "config_source_unspecified"
+            ],
+            "description": "The source from which the config was created:\n-  `NGINX One`: The config was created from NGINX One.\n-  `Other`: The config was created from data plane.\n-  `Unpecified`: The source of the config is unspecified.\n"
           }
         },
         "example": {
           "object_id": "nc_AamgWtYSSb6OWGljx3wNDA",
           "config_version": "Cm1hcCAkdXJpICRtYXBwZWRfc2V",
           "created_at": "2023-08-10T16:59:15Z",
-          "modified_at": "2023-08-10T16:59:15Z"
+          "modified_at": "2023-08-10T16:59:15Z",
+          "config_source": "NGINX One"
         }
       },
       "NginxCVEObject": {
@@ -6398,7 +6331,7 @@
             {
               "agent_version": "v2.30.3",
               "hostname": "4d116619f106",
-              "key": "<key>",
+              "key": "key_Tet21AeYTHCj7taOwVfzyw",
               "last_reported": "2023-12-06T22:37:24.120114Z",
               "nginx_build": {
                 "conf_path": "/etc/nginx/nginx.conf",
@@ -7512,41 +7445,6 @@
           "age_out_duration": 3
         }
       },
-      "NginxUsageDeployment": {
-        "type": "object",
-        "required": [
-          "integration"
-        ],
-        "properties": {
-          "integration": {
-            "type": "string",
-            "description": "Type of integration for NGINX Instance",
-            "enum": [
-              "nic",
-              "ngf"
-            ],
-            "x-enum-varnames": [
-              "integration_type_nic",
-              "integration_type_ngf"
-            ]
-          },
-          "cluster_id": {
-            "description": "UUID of the Kubernetes cluster where NGINX Instance is deployed",
-            "type": "string",
-            "format": "uuid"
-          },
-          "cluster_node_count": {
-            "type": "integer",
-            "description": "Number of nodes in the cluster where NGINX Instance is deployed",
-            "minimum": 0
-          },
-          "installation_id": {
-            "type": "string",
-            "description": "UUID of the individual NIC/NGF deployment relationship",
-            "format": "uuid"
-          }
-        }
-      },
       "HttpUsage": {
         "type": "object",
         "properties": {
@@ -7608,187 +7506,6 @@
       },
       "NginxUsageStream": {
         "$ref": "#/components/schemas/StreamUsage"
-      },
-      "NginxUsageTrackingRequest": {
-        "type": "object",
-        "description": "Request structure for sending usage information.",
-        "required": [
-          "version",
-          "uuid",
-          "nap",
-          "start_time",
-          "end_time"
-        ],
-        "properties": {
-          "version": {
-            "type": "string",
-            "description": "Version of the NGINX instance.",
-            "minLength": 2,
-            "maxLength": 15
-          },
-          "hostname": {
-            "type": "string",
-            "description": "Hostname of the NGINX instance.",
-            "minLength": 3,
-            "maxLength": 255
-          },
-          "uuid": {
-            "type": "string",
-            "description": "UID of the NGINX instance, can be in hyphenated or non-hyphenated format.",
-            "maxLength": 38
-          },
-          "nap": {
-            "type": "string",
-            "description": "NAP status of the NGINX instance.",
-            "enum": [
-              "inactive",
-              "active"
-            ],
-            "x-enum-varnames": [
-              "nap_status_inactive",
-              "nap_status_active"
-            ]
-          },
-          "http": {
-            "$ref": "#/components/schemas/NginxUsageHttp"
-          },
-          "stream": {
-            "$ref": "#/components/schemas/NginxUsageStream"
-          },
-          "deployment": {
-            "$ref": "#/components/schemas/NginxUsageDeployment"
-          },
-          "start_time": {
-            "type": "integer",
-            "description": "Usage collection start time (Unix epoch).",
-            "minimum": 0
-          },
-          "end_time": {
-            "type": "integer",
-            "description": "Usage collection end time (Unix epoch).",
-            "minimum": 0
-          },
-          "workers": {
-            "type": "integer",
-            "description": "Number of workers running on the NGINX Instance",
-            "minimum": 0
-          },
-          "uptime": {
-            "type": "integer",
-            "description": "Number of seconds the NGINX Instance has been continuously running",
-            "minimum": 0
-          },
-          "reloads": {
-            "type": "integer",
-            "description": "Number of times the instance was reloaded during uptime",
-            "minimum": 0
-          }
-        }
-      },
-      "InventoryResponse": {
-        "type": "object",
-        "required": [
-          "query_metadata",
-          "metrics"
-        ],
-        "properties": {
-          "query_metadata": {
-            "$ref": "#/components/schemas/InventoryMetricQueryMetadata"
-          },
-          "metrics": {
-            "description": "An array of collected metrics, which includes the name of the resource, aggregate function, and series details.",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Metric"
-            }
-          }
-        }
-      },
-      "InventoryMetricQueryMetadata": {
-        "description": "Includes details about the time period and resolution of the metrics query.\n",
-        "type": "object",
-        "properties": {
-          "start_time": {
-            "description": "The start time of your metrics query.",
-            "type": "string",
-            "format": "date-time",
-            "example": "2019-08-07T09:57:36.088757764Z"
-          },
-          "end_time": {
-            "description": "The end time of your metrics query.",
-            "type": "string",
-            "format": "date-time",
-            "example": "2019-08-07T09:57:36.088757764Z"
-          },
-          "resolution": {
-            "description": "The level of granularity for the time series data.",
-            "type": "string",
-            "example": "1h"
-          }
-        }
-      },
-      "Metric": {
-        "type": "object",
-        "required": [
-          "metric",
-          "series"
-        ],
-        "description": "This object represents a metric, including the name of the metric resource, aggregate function, and series details.\n",
-        "properties": {
-          "metric": {
-            "$ref": "#/components/schemas/InventoryMetricName"
-          },
-          "aggregate": {
-            "$ref": "#/components/schemas/InventoryMetricAggregation"
-          },
-          "series": {
-            "description": "An array of data points.\n",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Series"
-            },
-            "example": [
-              {
-                "data": [
-                  {
-                    "timestamp": "2019-08-07T09:00:00Z",
-                    "value": 10
-                  }
-                ]
-              },
-              {
-                "data": [
-                  {
-                    "timestamp": "2019-08-07T10:00:00Z",
-                    "value": 5
-                  }
-                ]
-              }
-            ]
-          }
-        }
-      },
-      "Series": {
-        "description": "This object represents a set of data points.",
-        "type": "object",
-        "required": [
-          "data"
-        ],
-        "properties": {
-          "data": {
-            "description": "Array of data points for a metric.\n",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MetricData"
-            },
-            "example": [
-              {
-                "timestamp": "2019-08-07T09:00:00Z",
-                "value": 10
-              }
-            ]
-          }
-        }
       },
       "MetricStartTime": {
         "description": "The start time of your metrics query.\n\nUsage:\n* `start_time` is required if `end_time` is specified.\n* If `start_time` and `end_time` isn't provided, the API returns metrics from the current time to the month before the current time.\n* The `start_time` cannot be older than 120 days before the current time.\n\nYou can set the `start_time` in these ways:\n* In ISO 8601 format. For example, \"2019-08-07T09:57:36.088757764Z\".\n* As an offset from the current time. For the offset, use `+` or `-`, followed by a number and unit [`y` (years), `M` (months), `w` (weeks), `d` (days), `h` (hours), `m` (minutes), or `s` (seconds)]. \n* Example of an offset: \"now-3h\" (3 hours before now).\n",
@@ -7926,7 +7643,7 @@
               "created_at": "2023-10-01T00:00:00Z",
               "revoked": false,
               "name": "my-data-plane-key",
-              "object_id": "<data plane object id>",
+              "object_id": "key_Tet21AeYTHCj7taOwVfzyw",
               "instances_count": 3
             }
           ]
@@ -7943,7 +7660,7 @@
           "expires_at": "2023-12-01T00:00:00Z",
           "key": "<data plane key>",
           "name": "my-data-plane-key",
-          "object_id": "<data plane object id>"
+          "object_id": "key_Tet21AeYTHCj7taOwVfzyw"
         }
       },
       "DataPlaneKey": {
@@ -7955,50 +7672,6 @@
           "name": "my-data-plane-key",
           "object_id": "key_wN3IhLCmR3qmwybG_6ptEg",
           "instances_count": 3
-        }
-      },
-      "NginxUsageTrackingRequest": {
-        "value": {
-          "version": "1.25.3",
-          "hostname": "nginx-plus-r30",
-          "uuid": "cef61b72-2a6b-4bb8-ae2b-c6cb9f44a487",
-          "nap": "inactive",
-          "http": {
-            "client": {
-              "received": 0,
-              "sent": 0,
-              "connections": 0,
-              "requests": 0
-            },
-            "upstream": {
-              "received": 0,
-              "sent": 0,
-              "connections": 0
-            }
-          },
-          "stream": {
-            "client": {
-              "received": 0,
-              "sent": 0,
-              "connections": 0
-            },
-            "upstream": {
-              "received": 0,
-              "sent": 0,
-              "connections": 0
-            }
-          },
-          "deployment": {
-            "integration": "nic",
-            "cluster_id": "b5db8897-86db-4cd2-8c61-4a915db93d6d",
-            "cluster_node_count": 5,
-            "installation_id": "238efb5a-2a59-48c5-96cf-7d195b8af044"
-          },
-          "workers": 2,
-          "uptime": 120,
-          "reloads": 0,
-          "start_time": 0,
-          "end_time": 0
         }
       }
     },
@@ -8059,12 +7732,6 @@
       "name": "Manage NGINX One Settings",
       "tags": [
         "Settings"
-      ]
-    },
-    {
-      "name": "NGINX Plus Usage Inventory",
-      "tags": [
-        "Inventory"
       ]
     }
   ]
