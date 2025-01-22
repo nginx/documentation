@@ -1,10 +1,10 @@
 ---
-description: ''
+description: ""
 docs: DOCS-1394
 doctypes:
-- reference
+  - reference
 tags:
-- docs
+  - docs
 title: Changelog
 toc: true
 weight: 99999
@@ -32,6 +32,16 @@ h2 {
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## January 20, 2025
+
+### Config Revert
+
+From the NGINX One Console you can now:
+
+- See a history of changes to the configuration on an instance or config sync group, as well as the content of the previous 5 configs published to that object
+- See a diff of previous config content to the current or previous config to easily see what changed between versions
+- Easily revert to those old config versions to quickly undo recent changes to an object's config
+
 ## November 7, 2024
 
 ### Certificates
@@ -56,7 +66,7 @@ For more information, see the full documentation on [Managing Config Sync Groups
 
 ### Instance object cleanup
 
-NGINX Instance objects that have been `unavailable` for a set period will be automatically cleaned up (deleted). By default, this period is 24 hours from the time the NGINX Instance object was last updated. An administrator can change or disable the cleanup process in the "Instance Settings" under Settings. Events will be generated for NGINX Instances that have been automatically cleaned up. See "Events" for a list of NGINX Instances that have been deleted automatically. 
+NGINX Instance objects that have been `unavailable` for a set period will be automatically cleaned up (deleted). By default, this period is 24 hours from the time the NGINX Instance object was last updated. An administrator can change or disable the cleanup process in the "Instance Settings" under Settings. Events will be generated for NGINX Instances that have been automatically cleaned up. See "Events" for a list of NGINX Instances that have been deleted automatically.
 
 ## June 11, 2024
 
@@ -86,9 +96,9 @@ We've updated the **Instance Details** and **Data Plane Keys** pages to make it 
 ### Breaking change
 
 - API responses now use "object_id" instead of "uuid". For example, **key_1mp6W5pqRxSZJugJN-yA8g**. We've introduced specific prefixes for different types of objects:
-  - Use **key_** for data-plane keys.
-  - Use **inst_** for NGINX instances.
-  - Use **nc_** for NGINX configurations.
+  - Use **key\_** for data-plane keys.
+  - Use **inst\_** for NGINX instances.
+  - Use **nc\_** for NGINX configurations.
 - Likewise, we've updated the JSON key from **uuid** to **object_id** in response objects.
 
 ## February 6, 2024
