@@ -69,7 +69,7 @@ All communication between NGINX Ingress Controller and the upstream Services occ
 Therefore, NGINX Ingress Controller can only route traffic to Services in the mesh that have an `mtls-mode` of `permissive` or `strict`.
 In cases where you need to route traffic to both mTLS and non-mTLS Services, you may need another Ingress Controller that does not participate in the mTLS fabric.
 
-Refer to the NGINX Ingress Controller's [Running Multiple Ingress Controllers](https://docs.nginx.com/nginx-ingress-controller/installation/running-multiple-ingress-controllers/) guide for instructions on how to configure multiple Ingress Controllers.
+Refer to the NGINX Ingress Controller's [Running Multiple Ingress Controllers](https://docs.nginx.com/nginx-ingress-controller/installation/run-multiple-ingress-controllers/) guide for instructions on how to configure multiple Ingress Controllers.
 {{< /note >}}
 
 
@@ -89,7 +89,7 @@ Before continuing, check the NGINX Ingress Controller [supported versions](#supp
 
 1. Build or Pull the NGINX OSS Ingress Controller image:
     - [Create and push your NGINX Docker image](https://docs.nginx.com/nginx-ingress-controller/installation/build-nginx-ingress-controller/).
-    - For NGINX OSS Ingress you can also [pull the NGINX Docker image](https://docs.nginx.com/nginx-ingress-controller/installation/pulling-ingress-controller-image/).
+    - For NGINX OSS Ingress you can also [pull the NGINX Docker image](https://docs.nginx.com/nginx-ingress-controller/installation/nic-images/).
 1. Set up Kubernetes Resources for [NGINX Ingress Controller](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/) using Kubernetes manifests:
     - [Configure role-based access control (RBAC)](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/#1-configure-rbac)
     - [Create Common Resources](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/#2-create-common-resources)

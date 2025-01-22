@@ -8,7 +8,7 @@ on:
         - cron: '0 1 * * *'
 jobs:
     trigger:
-        uses: nginxinc/docs/.github/workflows/build-push.yml@main
+        uses: nginx/documentation/.github/workflows/build-push.yml@main
         with:
             environment: "prod"
         secrets:
