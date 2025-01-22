@@ -155,10 +155,6 @@ Complete the following steps for each data plane instance you want to use with A
 
 - [Install the Developer Portal]({{< relref "/nms/acm/how-to/devportals/installation/install-dev-portal.md" >}})
 
-### Install Other NGINX Management Suite Modules
-
-- [Install Security Monitoring]({{< relref "/nim/monitoring/security-monitoring/install-security-monitoring.md" >}})
-
 ### Get Started with API Connectivity Manager
 
 - [Create Workspaces and Environments for your API Infrastructure]({{< relref "/nms/acm/how-to/infrastructure/manage-api-infrastructure.md" >}})
