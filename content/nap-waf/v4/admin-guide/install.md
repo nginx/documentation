@@ -1245,13 +1245,13 @@ If a user other than **nginx** is to be used, note the following:
 6. Add the NGINX Plus repository to `/etc/apk/repositories` file:
 
     ```shell
-    printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/-release`/main\n" | sudo tee -a /etc/apk/repositories
+    printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
     ```
 
 7. Add the NGINX App Protect WAF repository to `/etc/apk/repositories` file:
 
     ```shell
-    printf "https://pkgs.nginx.com/app-protect/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/-release`/main\n" | sudo tee -a /etc/apk/repositories
+    printf "https://pkgs.nginx.com/app-protect/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
 
     printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
     ```
