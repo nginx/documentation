@@ -1,0 +1,183 @@
+{{ define "main" }}
+
+<div id="main">
+  <div id="content">
+    <h2>nginx</h2>
+    <p>
+      nginx ("<i>engine x</i>") is an HTTP web server, reverse proxy, content
+      cache, load balancer, TCP/UDP proxy server, and mail proxy server.
+      Originally written by <a href="http://sysoev.ru/en/">Igor Sysoev</a>
+      and distributed under the
+      <a href="../LICENSE">2-clause BSD License</a>. Enterprise distributions,
+      commercial support and training are
+      <a href="en/enterprise.html">available from F5, Inc.</a>
+    </p>
+    <p>
+      <a href="en/docs/index.html">Docs</a>
+      •
+      <a href="https://github.com/nginx/nginx">Code</a>
+      •
+      <a href="en/docs/install.html">Install</a>
+      •
+      <a href="en/docs/beginners_guide.html">Beginner's Guide</a>
+    </p>
+    <center><h4>Latest News</h4></center>
+    <table class="news">
+      <tr>
+        <td class="date"><a name="2025-01-14"></a>2025-01-14</td>
+        <td>
+          <p>
+            <a href="en/docs/njs/index.html">njs-0.8.9</a>
+            version has been
+            <a href="en/docs/njs/changes.html#njs0.8.9">released</a>, featuring
+            <a href="en/docs/njs/reference.html#njs_api_fs">fs module</a>
+            for the <a href="en/docs/njs/engine.html">QuickJS</a> engine.
+          </p>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="date"><a name="2024-12-10"></a>2024-12-10</td>
+        <td>
+          <p>
+            <a href="en/docs/njs/index.html">njs-0.8.8</a>
+            version has been
+            <a href="en/docs/njs/changes.html#njs0.8.8">released</a>, featuring
+            <a href="en/docs/njs/reference.html#ngx_shared"
+              >shared dictionary</a
+            >
+            for the <a href="en/docs/njs/engine.html">QuickJS</a> engine.
+          </p>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="date"><a name="2024-11-26"></a>2024-11-26</td>
+        <td>
+          <p>
+            <a href="en/download.html">nginx-1.27.3</a>
+            mainline version has been released, featuring
+            <a
+              href="https://blog.nginx.org/blog/dynamic-dns-resolution-open-sourced-in-nginx"
+              >automatic re‑resolution</a
+            >
+            of hostnames in upstream groups using DNS.
+          </p>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="date"><a name="2024-10-22"></a>2024-10-22</td>
+        <td>
+          <p>
+            <a href="en/docs/njs/index.html">njs-0.8.7</a>
+            bugfix version has been
+            <a href="en/docs/njs/changes.html#njs0.8.7">released</a>.
+          </p>
+        </td>
+      </tr>
+    </table>
+    <p>
+      <a href="news.html">Older news</a>
+    </p>
+    <center><h4>Other NGINX Projects</h4></center>
+    <div class="projects">
+      <table>
+        <tr>
+          <td width="90px" align="center" valign="bottom">
+            <a href="/en/docs/njs/" valign="top"
+              ><img src="img/njs_logo.svg" width="38px" alt="njs logo"
+            /></a>
+            <h5>njs</h5>
+          </td>
+          <td valign="bottom">
+            NGINX JavaScript (njs) extends nginx functionality with an
+            ECMAScript-compatible interpreter for HTTP and Stream modules.<br /><a
+              href="/en/docs/njs/"
+              >Docs</a
+            >
+            • <a href="https://github.com/nginx/njs">Code</a>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2"><br /></td>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <td width="90px" align="center" valign="bottom">
+            <a href="https://unit.nginx.org/" valign="top"
+              ><img src="img/unit_robot.svg" width="38px" alt="Unit logo"
+            /></a>
+            <h5>Unit</h5>
+          </td>
+          <td valign="bottom">
+            NGINX Unit is a lightweight application runtime that simplifies the
+            application stack for running web apps and APIs.<br /><a
+              href="https://unit.nginx.org/"
+              >Docs</a
+            >
+            • <a href="https://github.com/nginx/unit">Code</a>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2"><br /></td>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <td width="90px" align="center" valign="bottom">
+            <a
+              href="https://docs.nginx.com/nginx-ingress-controller/"
+              valign="top"
+              ><img src="img/ingress_logo.svg" width="38px" alt="Ingress logo"
+            /></a>
+            <h5>Ingress</h5>
+          </td>
+          <td valign="bottom">
+            NGINX Ingress Controller connects Kubernetes apps and services with
+            rock solid request handling, auth, self-service CRDs, and easy
+            debugging.<br /><a
+              href="https://docs.nginx.com/nginx-ingress-controller/"
+              >Docs</a
+            >
+            • <a href="https://github.com/nginxinc/kubernetes-ingress">Code</a>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2"><br /></td>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <td width="90px" align="center" valign="bottom">
+            <a href="https://docs.nginx.com/nginx-gateway-fabric/" valign="top"
+              ><img
+                src="img/gateway_fabric_logo.svg"
+                width="38px"
+                alt="Gateway Fabric logo"
+            /></a>
+            <h5>Gateway Fabric</h5>
+          </td>
+          <td valign="bottom">
+            NGINX Gateway Fabric provides L4 and L7 routing capabilities in
+            Kubernetes, implementing the Gateway API using NGINX as the data
+            plane.<br /><a href="https://docs.nginx.com/nginx-gateway-fabric/"
+              >Docs</a
+            >
+            •
+            <a href="https://github.com/nginxinc/nginx-gateway-fabric">Code</a>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2"><br /></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+{{ end }}

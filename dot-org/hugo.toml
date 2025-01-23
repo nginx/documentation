@@ -1,0 +1,7 @@
+baseURL = 'https://nginx.org/'
+languageCode = 'en-us'
+title = 'nginx'
+
+[module]
+[[module.imports]]
+  path="github.com/nginxinc/nginx-hugo-theme"

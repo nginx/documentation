@@ -10,6 +10,7 @@
 
 # production
 ./public
+dot-org/public/*
 
 # misc
 *.pem
