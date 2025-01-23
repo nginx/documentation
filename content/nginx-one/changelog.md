@@ -34,13 +34,13 @@ Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
 ## January 20, 2025
 
-### Config Revert
+### Revert a configuration
 
 From the NGINX One Console you can now:
 
-- See a history of changes to the configuration on an instance or config sync group, as well as the content of the previous 5 configs published to that object
-- See a diff of previous config content to the current or previous config to easily see what changed between versions
-- Easily revert to those old config versions to quickly undo recent changes to an object's config
+- See a history of changes to the configuration on an instance or a Config Sync Group, as well as the content of the previous five configs published to that object
+- Review the differences between the current and other saved configurations
+- Revert to older configurations as needed
 
 ## November 7, 2024
 
