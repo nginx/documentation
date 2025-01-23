@@ -36,7 +36,7 @@ Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
 ### Revert a configuration
 
-From the NGINX One Console you can now:
+Using the NGINX One Console you can now:
 
 - See a history of changes to the configuration on an instance or a Config Sync Group, as well as the content of the previous five configs published to that object
 - Review the differences between the current and other saved configurations
