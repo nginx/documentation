@@ -125,7 +125,7 @@ Before continuing, check the NGINX Ingress Controller [supported versions](#supp
 
 1. Build or Pull the NGINX Plus Ingress Controller image:
     - [Create and push your NGINX Plus Docker image](https://docs.nginx.com/nginx-ingress-controller/installation/build-nginx-ingress-controller/).
-    - For NGINX Plus Ingress releases >= `1.12.0` you can also [pull the NGINX Plus Docker image](https://docs.nginx.com/nginx-ingress-controller/installation/pulling-ingress-controller-image/).
+    - For NGINX Plus Ingress releases >= `1.12.0` you can also [pull the NGINX Plus Docker image](https://docs.nginx.com/nginx-ingress-controller/installation/nic-images/).
 1. Set up Kubernetes Resources for [NGINX Plus Ingress Controller](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/) using Kubernetes manifests:
     - [Configure role-based access control (RBAC)](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/#1-configure-rbac)
     - [Create Common Resources](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/#2-create-common-resources)
@@ -265,7 +265,7 @@ You can either allow both ingress and egress traffic through the same NGINX Ingr
 or deploy two NGINX Ingress Controllers: one for handling ingress traffic only and the other for handling egress traffic.
 
 For the single deployment option, follow the [installation instructions](#install-nginx-ingress-controller-with-mtls-enabled) and the instructions to [Enable Egress](#enable-egress).
-If you would like to configure two Ingress Controllers to keep ingress and egress traffic separate you can leverage [Ingress Classes](https://docs.nginx.com/nginx-ingress-controller/installation/running-multiple-ingress-controllers/#ingress-class).
+If you would like to configure two Ingress Controllers to keep ingress and egress traffic separate you can leverage [Ingress Classes](https://docs.nginx.com/nginx-ingress-controller/installation/run-multiple-ingress-controllers/#ingress-class).
 
 ## Enable UDP Traffic
 
