@@ -29,13 +29,13 @@ You can deploy NGINX Instance Manager in the following environments:
 
 ## Sizing recommendations for Managing NGINX Instances {#system-sizing}
 
-The following recommendations provide the minimum guidelines for NGINX Instance Manager. These guidelines ensure adequate performance, but for optimal results, we strongly recommend using solid-state drives (SSDs) for storage.
+The following recommendations provide the minimum guidelines for NGINX Instance Manager. These guidelines ensure adequate performance, but for optimal results, we strongly recommend using solid-state drives (SSDs) for storage. If you set up [deployments with NGINX App Protect](#system-sizing-app-protect), you may need additional memory and CPU. 
 
 ### Standard NGINX configuration deployments
 
-This section outlines the recommendations for NGINX Instance Manager deployments with data plane instances using standard configurations. **Standard configurations** typically support up to **40 upstream servers** with associated location and server blocks, and up to **350 certificates**. This is ideal for medium-sized environments or applications with moderate traffic.
+This section outlines the recommendations for NGINX Instance Manager deployments with data plane instances using standard configurations, without NGINX App Protect. **Standard configurations** typically support up to **40 upstream servers** with associated location and server blocks, and up to **350 certificates**. This is ideal for medium-sized environments or applications with moderate traffic.
 
-We recommend using SSDs to enhance storage performance.
+We recommend using SSDs to enhance storage performance. 
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Number of Data Plane Instances | CPU    | Memory   | Network   | Storage |
@@ -49,7 +49,7 @@ These values represent the minimum resources needed for deployments that fall un
 
 ### Large NGINX configuration deployments
 
-For environments requiring more resources, **large configurations** are suitable. These configurations can support up to **300 upstream servers** and are designed for enterprise environments or applications handling high traffic and complex configurations.
+For environments requiring more resources, **large configurations** are suitable. These configurations can support up to **300 upstream servers** and are designed for enterprise environments or applications handling high traffic and complex configurations, without NGINX App Protect.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Number of Data Plane Instances | CPU    | Memory   | Network   | Storage |
@@ -57,6 +57,10 @@ For environments requiring more resources, **large configurations** are suitable
 | 50                             | 4 vCPU | 8 GB RAM | 1 GbE NIC | 1 TB    |
 | 250                            | 4 vCPU | 8 GB RAM | 1 GbE NIC | 2 TB    |
 {{</bootstrap-table>}}
+
+### NGINX configuration deployments with NGINX App Protect {#system-sizing-app-protect}
+
+If using NGINX App Protect features in NGINX Instance Manager, this requires additional CPU and Memory for policy compilation and security monitoring features. At a minimum, 8gb Memory and 4 CPUs are required for a standard NGINX App Protect use case (under 20 NGINX Plus instances). The requirements are heavily dependent on the number of policies being managed, the frequency of updates and the number of events being that occur in the security monitoring feature. 
 
 ### License and usage reporting only {#reporting-sizing}
 
