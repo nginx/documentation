@@ -32,6 +32,10 @@ h2 {
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## January 16, 2025
+
+In the Configuration Editor you can now highlight a portion of the configuration and click "Explain with AI" to have the NGINX One AI Assistant give an explanation and guidance. AI Assistant is trained on the official NGINX documentation.
+
 ## November 7, 2024
 
 ### Certificates
