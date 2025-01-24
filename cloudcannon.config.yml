@@ -11,12 +11,11 @@ collections_config:
     filter:
       base: strict
       include:
-        - feedback.md
         - ossc.md
         - search.md
         - success.md
     name: Standalone Website Pages
-    description: This collection contains standalone website pages like the search landing page and feedback form.
+    description: This collection contains standalone website pages like the search landing page.
     icon: notes
     sort_options:
       - key: weight

@@ -951,7 +951,7 @@ The input policy can also be converted using convert-policy as a CLI tool from w
 docker run -it --rm \
   -v $(pwd):/policies \
   --entrypoint="/opt/app_protect/bin/convert-policy" \
-  artifactory.f5net.com/f5-waf-docker/nap-x-compiler-image:latest -i test.json -o test.xml
+  waf-compiler-<version-tag>:custom -i test.json -o test.xml
   -i /policies/input_policy.plc \
   -o /policies/output_policy \
   --full-export

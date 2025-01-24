@@ -4,7 +4,6 @@ Disallow: /*/doctypes/*
 Disallow: /*/journeys/*
 Disallow: /*/personas/*
 Disallow: /*/tags/*
-Disallow: /feedback/
 Disallow: /search.html
 
 Sitemap: https://docs.nginx.com/sitemap_index.xml
