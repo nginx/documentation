@@ -1,9 +1,5 @@
 ---
 title: "Install NGINX Gateway Fabric"
-description:
+url: /nginx-gateway-fabric/installation/installing-ngf/
 weight: 100
-linkTitle: "Install NGINX Gateway Fabric"
-menu:
-  docs:
-    parent: Installation
 ---
