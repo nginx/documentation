@@ -32,7 +32,7 @@ h2 {
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
-## January 16, 2025
+## January 20, 2025
 
 In the F5 NGINX One Console, you can now select lines from your configuration files, and then select **Explain with AI**. The NGINX One AI Assistant explains those lines based on the official NGINX documentation.
 
