@@ -29,7 +29,7 @@ You can deploy NGINX Instance Manager in the following environments:
 
 ## Sizing recommendations for Managing NGINX Instances {#system-sizing}
 
-The following recommendations provide the minimum guidelines for NGINX Instance Manager. These guidelines ensure adequate performance, but for optimal results, we strongly recommend using solid-state drives (SSDs) for storage. See further down for requirements when NGINX App Protect is being used, as this requires additional memory and cpu. 
+The following recommendations provide the minimum guidelines for NGINX Instance Manager. These guidelines ensure adequate performance, but for optimal results, we strongly recommend using solid-state drives (SSDs) for storage. If you set up [deployments with NGINX App Protect](#system-sizing-app-protect), you may need additional memory and CPU. 
 
 ### Standard NGINX configuration deployments
 
@@ -58,7 +58,7 @@ For environments requiring more resources, **large configurations** are suitable
 | 250                            | 4 vCPU | 8 GB RAM | 1 GbE NIC | 2 TB    |
 {{</bootstrap-table>}}
 
-### NGINX configuration deployments with NGINX App Protect
+### NGINX configuration deployments with NGINX App Protect {#system-sizing-app-protect}
 
 If using NGINX App Protect features in NGINX Instance Manager, this requires additional CPU and Memory for policy compilation and security monitoring features. At a minimum, 8gb Memory and 4 CPUs are required for a standard NGINX App Protect use case (under 20 NGINX Plus instances). The requirements are heavily dependent on the number of policies being managed, the frequency of updates and the number of events being that occur in the security monitoring feature. 
 
