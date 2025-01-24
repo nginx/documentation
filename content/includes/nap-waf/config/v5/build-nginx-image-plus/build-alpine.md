@@ -1,7 +1,7 @@
 ```dockerfile
 # syntax=docker/dockerfile:1
 
-# Supported OS_VER's are 3.16/3.17
+# Supported OS_VER's are 3.16/3.17/3.19
 ARG OS_VER="3.17"
 
 # Base image
