@@ -1,6 +1,6 @@
 ---
 title: Manage WAF Security Policies and Security Log Profiles
-description: Learn how to use F5 NGINX Management Suite Instance Manager to manage NGINX
+description: Learn how to use F5 Instance Manager to manage NGINX
   App Protect WAF security policies and security log profiles.
 weight: 200
 toc: true
