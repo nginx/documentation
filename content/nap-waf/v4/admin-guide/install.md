@@ -1,12 +1,11 @@
 ---
-description: This guide explains how to deploy F5 NGINX App Protect WAF v4 as well as
-  upgrade App Protect and the App Protect signature sets.
-docs: DOCS-646
-doctypes:
-- task
 title: NGINX App Protect WAF Administration Guide
-toc: true
 weight: 100
+toc: true
+type: how-to
+product: NAP-WAF
+docs: DOCS-646
+
 ---
 
 ## Overview
@@ -41,23 +40,24 @@ NGINX App Protect WAF supports the following operating systems:
 - [Ubuntu 20.04 (Focal)](#ubuntu-1804--ubuntu-2004--ubuntu-2204--ubuntu-2404-installation)
 - [Ubuntu 22.04 (Jammy)](#ubuntu-1804--ubuntu-2004--ubuntu-2204--ubuntu-2404-installation)
 - [Ubuntu 24.04 (Noble)](#ubuntu-1804--ubuntu-2004--ubuntu-2204--ubuntu-2404-installation)
-- [Alpine 3.16](#alpine-316--alpine-317-installation) - (Deprecated starting from NGINX Plus R33)
-- [Alpine 3.17](#alpine-316--alpine-317-installation)
+- [Alpine 3.16](#alpine-316-317--319-installation) - (Deprecated starting from NGINX Plus R33)
+- [Alpine 3.17](#alpine-316-317--319-installation)
+- [Alpine 3.19](#alpine-316-317--319-installation)
 
 
 The NGINX App Protect WAF package has the following dependencies:
 
 1. **nginx-plus-module-appprotect** - NGINX Plus dynamic module for App Protect
-2. **app-protect-engine** - The App Protect enforcement engine
-3. **app-protect-plugin** - The App Protect connector API between the engine and the NGINX Plus dynamic module
-4. **app-protect-compiler** - The App Protect enforcement engine compiler agent
-5. **app-protect-common** - The App Protect shared libraries package
-6. **app-protect-geoip** - The App Protect geolocation update package
-6. **app-protect-graphql** - The App Protect shared library package for GraphQL protection
-7. **app-protect-attack-signatures** - The App Protect attack signatures update package
-8. **app-protect-threat-campaigns** - The App Protect threat campaigns update package
-9. **app-protect-bot-signatures** - The App Protect bot signatures update package
-9. **app-protect-selinux** - The prebuilt SELinux policy module for NGINX App Protect WAF (optional dependency)
+1. **app-protect-engine** - The App Protect enforcement engine
+1. **app-protect-plugin** - The App Protect connector API between the engine and the NGINX Plus dynamic module
+1. **app-protect-compiler** - The App Protect enforcement engine compiler agent
+1. **app-protect-common** - The App Protect shared libraries package
+1. **app-protect-geoip** - The App Protect geolocation update package
+1. **app-protect-graphql** - The App Protect shared library package for GraphQL protection
+1. **app-protect-attack-signatures** - The App Protect attack signatures update package
+1. **app-protect-threat-campaigns** - The App Protect threat campaigns update package
+1. **app-protect-bot-signatures** - The App Protect bot signatures update package
+1. **app-protect-selinux** - The prebuilt SELinux policy module for NGINX App Protect WAF (optional dependency)
 
 See the NGINX Plus full list of prerequisites for more details. NGINX App Protect WAF can be installed as a module to an existing NGINX Plus installation or as a complete NGINX Plus with App Protect installation in a clean environment.
 
@@ -1208,7 +1208,7 @@ If a user other than **nginx** is to be used, note the following:
 {{< /note >}}
 
 
-## Alpine 3.16 / Alpine 3.17 Installation
+## Alpine 3.16, 3.17 & 3.19 Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 

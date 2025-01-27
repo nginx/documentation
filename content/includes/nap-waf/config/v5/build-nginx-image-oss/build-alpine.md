@@ -1,8 +1,8 @@
 ```dockerfile
 # syntax=docker/dockerfile:1
 
-# Supported OS_VER's are 3.16/3.17
-ARG OS_VER="3.17"
+# Supported OS_VER's are 3.16/3.19
+ARG OS_VER="3.19"
 
 # Base image
 FROM alpine:${OS_VER}

@@ -1,11 +1,10 @@
 ---
-description: This guide explains how to deploy F5 NGINX App Protect WAF v5 release using Docker Compose.
-docs: DOCS-1365
-doctypes:
-- task
 title: Deploying NGINX App Protect WAF on Docker
+weight: 400
 toc: true
-weight: 300
+type: how-to
+product: NAP-WAF
+docs: DOCS-1365
 ---
 
 ## Prerequisites

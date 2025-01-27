@@ -1,10 +1,10 @@
 ---
-title: "Upgrade NGINX App Protect WAF on Managed Instances"
-description: "How to Upgrade F5 NGINX App Protect WAF on managed NGINX instances"
+title: Upgrade NGINX App Protect WAF on Managed Instances
 weight: 600
 toc: true
-tags: [ "NGINX Management Suite" ]
-docs: "DOCS-1640"
+type: how-to
+product: NAP-WAF
+docs: DOCS-1640
 ---
 
 ## Overview

@@ -1,11 +1,10 @@
 ---
-description: This guide explains how to deploy F5 NGINX App Protect WAF v5.
-docs: DOCS-1362
-doctypes:
-- task
 title: NGINX App Protect WAF Administration Guide
-toc: true
 weight: 100
+toc: true
+type: how-to
+product: NAP-WAF
+docs: DOCS-1362
 ---
 
 ## Introduction
@@ -35,7 +34,7 @@ NGINX App Protect WAF v5 supports the following operating systems:
 
 | Distribution | Version             |
 | ------------ | ------------------- |
-| Alpine       | 3.17                |
+| Alpine       | 3.17, 3.19          |
 | Debian       | 11, 12              |
 | Ubuntu       | 20.04, 22.04, 24.04 |
 | Amazon Linux | 2023                |

@@ -1,12 +1,10 @@
 ---
-description: This guide describes the steps to build, use, and update the F5 NGINX App
-  Protect WAF v5 Compiler.
-docs: DOCS-1367
-doctypes:
-- task
 title: NGINX App Protect WAF Compiler
-toc: true
 weight: 500
+toc: true
+type: how-to
+product: NAP-WAF
+docs: DOCS-1367
 ---
 
 ## Overview

@@ -1,6 +1,9 @@
 ---
 title: Installing NGINX App Protect WAF
+weight: 200
 toc: true
+type: how-to
+product: NAP-WAF
 docs: DOCS-1363
 ---
 
@@ -43,6 +46,13 @@ Please follow these steps before you install either NGINX Open Source or NGINX P
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-alpine" >}}
 
 {{%/tab%}}
+
+{{%tab name="Alpine Linux 3.19"%}}
+
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-alpine" >}}
+
+{{%/tab%}}
+
 {{%tab name="Amazon Linux 2"%}}
 
 1. Create the `/etc/ssl/nginx` directory:
@@ -138,6 +148,7 @@ Please follow these steps before you install either NGINX Open Source or NGINX P
     ```
 
 {{%/tab%}}
+
 {{%tab name="Alpine Linux 3.17"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-alpine.md" >}}
@@ -149,6 +160,19 @@ Please follow these steps before you install either NGINX Open Source or NGINX P
     ```
 
 {{%/tab%}}
+
+{{%tab name="Alpine Linux 3.19"%}}
+
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-alpine.md" >}}
+
+3. Install the NGINX App Protect WAF v5 package:
+
+    ```shell
+    sudo apk add app-protect-module-oss
+    ```
+
+{{%/tab%}}
+
 {{%tab name="Amazon Linux 2"%}}
 
 1. Create the file named `/etc/yum.repos.d/nginx.repo` with the following contents:
@@ -331,6 +355,19 @@ Please follow these steps before you install either NGINX Open Source or NGINX P
     ```
 
 {{%/tab%}}
+
+{{%tab name="Alpine Linux 3.19"%}}
+
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-alpine.md" >}}
+
+3. Install the NGINX App Protect WAF v5 package:
+
+    ```shell
+    sudo apk add app-protect-module-plus
+    ```
+
+{{%/tab%}}
+
 {{%tab name="Amazon Linux 2"%}}
 
 1. Download the NGINX Plus repository file [nginx-plus-amazon2.repo](https://cs.nginx.com/static/files/nginx-plus-amazon2.repo) to `/etc/yum.repos.d`:
@@ -697,6 +734,7 @@ Please follow these steps before you install either NGINX Open Source or NGINX P
     ```
 
 {{%/tab%}}
+
 {{%tab name="Alpine Linux 3.17"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-alpine.md" >}}
@@ -710,6 +748,21 @@ Please follow these steps before you install either NGINX Open Source or NGINX P
     ```
 
 {{%/tab%}}
+
+{{%tab name="Alpine Linux 3.19"%}}
+
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-alpine.md" >}}
+
+3. Download all NGINX Open Source packages, including all dependencies:
+
+    ```shell
+    sudo mkdir /etc/packages/
+    sudo apk update
+    sudo apk fetch --recursive --output /etc/packages app-protect-module-oss
+    ```
+
+{{%/tab%}}
+
 {{%tab name="Amazon Linux 2"%}}
 
 1. Create the file named `/etc/yum.repos.d/nginx.repo` with the following contents:
@@ -922,6 +975,21 @@ Please follow these steps before you install either NGINX Open Source or NGINX P
     ```
 
 {{%/tab%}}
+
+{{%tab name="Alpine Linux 3.19"%}}
+
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-alpine.md" >}}
+
+3. Download all NGINX Plus packages, including all dependencies:
+
+    ```shell
+    sudo mkdir /etc/packages/
+    sudo apk update
+    sudo apk fetch --recursive --output /etc/packages app-protect-module-plus
+    ```
+
+{{%/tab%}}
+
 {{%tab name="Amazon Linux 2023"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-amzn2023.md" >}}
@@ -1295,6 +1363,25 @@ sudo apk del app-protect-module-plus
 ```
 
 {{%/tab%}}
+
+{{%tab name="Alpine Linux 3.19"%}}
+ 
+For NGINX Open Source
+Uninstall the NGINX App Protect WAF v5 package:
+
+```shell
+sudo apk del app-protect-module-oss
+```
+  
+For NGINX Plus
+Uninstall the NGINX App Protect WAF v5 package:
+
+```shell
+sudo apk del app-protect-module-plus
+```
+
+{{%/tab%}}
+
 {{%tab name="Amazon Linux 2"%}}
 
 For NGINX Open Source
