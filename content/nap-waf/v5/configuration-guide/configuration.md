@@ -789,7 +789,7 @@ To enable mTLS in NGINX, you need to perform the following steps:
 
     Refer to the example for mTLS deployment in the admin guide, whether you're using [Docker]({{< relref "/nap-waf/v5/admin-guide/deploy-on-docker.md#docker-compose-file-with-mtls" >}}) or [Kubernetes]({{< relref "/nap-waf/v5/admin-guide/deploy-on-kubernetes.md#mtls-deployment" >}}).
     
-## Brute Force Attack Prevention
+## Brute Force Attack Preventions
 
 ### Overview
 
@@ -845,49 +845,44 @@ if failed logins reached a maximum threshold.
           When enabled, enables Brute Force Protection for all configured login URLs.
           When disabled, only brute force configurations for specific login pages are applied in case they exist.
 
-
     detectionCriteria:
           Specifies configuration for detecting distributed brute force attacks.
-
-      action:
+        action:
             Specifies action that is applied when the defined thresholds ( failedLoginAttemptsRateReached) is reached.
-
             - **alarm**: The system will log the login attempt.
 
-      detectDistributedBruteForceAttack:
+        detectDistributedBruteForceAttack:
             When enabled, the system detects distributed brute force attacks.
 
-      failedLoginAttemptsRateReached:
+        failedLoginAttemptsRateReached:
             After configured threshold (number of failed login attempts within measurementPeriod) defined action will be applied for the next login attempt.           
 
     loginAttemptsFromTheSameIp:
           Specifies configuration for detecting brute force attacks from IP Address.
 
-      action:
+        action:
             Specifies action that is applied when defined threshold is reached.
-
             - **alarm**: The system will log the login attempt.
             - **alarm-and-blocking-page**: The system will log the login attempt, block the request and send the Blocking page.
             - **alarm-and-drop**: The system will log the login attempt and reset the TCP connection.
 
-      enabled:
+        enabled:
             When enabled, the system counts failed login attempts from IP Address.
 
-      threshold:
+        threshold:
             After configured threshold (number of failed login attempts from IP Address) defined action will be applied for the next login attempt.
 
     loginAttemptsFromTheSameUser:
           Specifies configuration for detecting brute force attacks for Username.
 
-      action:
+        action:
             Specifies action that is applied when defined threshold is reached.
-
             - **alarm**: The system will log the login attempt.
 
-      enabled:
+        enabled:
             When enabled, the system counts failed login attempts for each Username.
 
-      threshold:
+        threshold:
             After configured threshold (number of failed login attempts for each Username) defined action will be applied for the next login attempt.
 
     measurementPeriod:
