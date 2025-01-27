@@ -80,3 +80,9 @@ If you prefer submitting usage reports to F5 manually, follow these steps:
 ## What's reported
 
 {{< include "licensing-and-reporting/reported-usage-data.md" >}}
+
+---
+
+## Error log location and monitoring {#log-monitoring}
+
+{{< include "licensing-and-reporting/log-location-and-monitoring.md" >}}

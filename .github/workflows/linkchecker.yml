@@ -31,7 +31,7 @@ env:
     --ignore-url ^https://lightstep.com --ignore-url ^https://www.owasp.org/ --ignore-url ^https://www.maxmind.com --ignore-url ^https://www.splunk.com/
     --ignore-url ^https://oauth2.googleapis.com --ignore-url ^https://openidconnect.googleapis.com --ignore-url ^https://www.base64url.com/
     --ignore-url ^https://go.googlesource.com/ --ignore-url ^https://go.googlesource.com/sync --ignore-url ^https://linkerd.io/2.13/
-    --ignore-url ^http://www.redirectpage.com/
+    --ignore-url ^http://www.redirectpage.com/ --ignore-url ^https://www.gnu.org/
     --ignore-url ^https://\([a-zA-Z0-9-]+\).nginx.com/nginx-ingress-controller/css
     --ignore-url ^https://\([a-zA-Z0-9-]+\).nginx.com/nginxaas/azure/css
     --ignore-url ^https://\([a-zA-Z0-9-]+\).nginx.com/nginx-gateway-fabric/css

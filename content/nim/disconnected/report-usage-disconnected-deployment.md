@@ -185,3 +185,9 @@ To upload the the usage acknowledgement:
 ## What’s reported {#telemetry}
 
 {{< include "licensing-and-reporting/reported-usage-data.md" >}}
+
+---
+
+## Error log location and monitoring {#log-monitoring}
+
+{{< include "licensing-and-reporting/log-location-and-monitoring.md" >}}
