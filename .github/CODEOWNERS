@@ -20,7 +20,7 @@
 .github/*                   @nginx/docs-engineering
 
 # NGINX Agent
-content/nginx/nms/agent/*   @nginx/agent-docs-approvers
+content/nginx/nms/agent/*   @nginx/nginx-agent 
 
 # NGINX App Protect DoS
 content/nap-dos/*           @nginx/dos-docs-approvers
