@@ -98,6 +98,10 @@ See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) comma
 
 - `spec`
   - `gatewayClassName`: Supported.
+  - `infrastructure`: Partially Supported.
+    - `parametersRef`: NginxProxy resource supported.
+    - `labels`: Not supported.
+    - `annotations`: Not supported.
   - `listeners`
     - `name`: Supported.
     - `hostname`: Supported.
