@@ -32,7 +32,7 @@ Follow the steps in this guide to:
 
 ## Secure traffic using Let's Encrypt and cert-manager
 
-{{<img src="img/cert-manager-gateway-workflow.png" alt="cert-manager ACME challenge and certificate management with Gateway API">}}
+{{<img src="ngf/img/cert-manager-gateway-workflow.png" alt="cert-manager ACME challenge and certificate management with Gateway API">}}
 
 The diagram above shows a simplified representation of the cert-manager ACME challenge and certificate issuance process using Gateway API. Please note that not all of the kubernetes objects created in this process are represented in this diagram.
 
