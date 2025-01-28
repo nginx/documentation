@@ -117,6 +117,12 @@ Make sure that input files are accessible to UID 101.
 
 To compile a security policy from a JSON file and create a policy bundle, execute the following command:
 
+{{< warning >}}
+
+Ensure that the output directory is writable, otherwise you may encounter a permission denied error.
+
+{{< /warning >}}
+
 ```shell
 docker run --rm \
  -v $(pwd):$(pwd) \
