@@ -1804,12 +1804,12 @@ COPY entrypoint.sh /root/
 CMD ["sh", "/root/entrypoint.sh"]
 ```
 
-### Alpine 3.16 / Alpine 3.17 Docker Deployment Example
+### Alpine 3.16 / Alpine 3.17 / Alpine 3.19 Docker Deployment Example
 
 ```dockerfile
 # syntax=docker/dockerfile:1
-# For Alpine 3.16 / 3.17:
-FROM alpine:3.16/3.17
+# For Alpine 3.16 / 3.17 / 3.19:
+FROM alpine:3.16/3.17/3.19
 
 # Download and add the NGINX signing keys:
 RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub \
@@ -2205,12 +2205,12 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect-compiler
 ```
 
-### Alpine 3.16 / Alpine 3.17 Converter Docker Deployment Example
+### Alpine 3.16 / Alpine 3.17 / Alpine 3.19 Converter Docker Deployment Example
 
 ```dockerfile
 # syntax=docker/dockerfile:1
-# For Alpine 3.16/3.17:
-FROM alpine:3.16/3.17
+# For Alpine 3.16/3.17/3.19:
+FROM alpine:3.16/3.17/3.19
 
 # Download and add the NGINX signing keys:
 RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub \
@@ -2636,7 +2636,7 @@ After having updated the Attack Signature package you have to reload the configu
     sudo apt-get install app-protect-attack-signatures=2020.07.16-1~noble
     ```
 
-### Alpine 3.16 / Alpine 3.17
+### Alpine 3.16 / Alpine 3.17 / Alpine 3.19
 
 1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
@@ -2784,7 +2784,7 @@ Example: app-protect-threat-campaigns-2022.07.21
     sudo dnf install app-protect-threat-campaigns-2023.12.11
     ```
 
-### Alpine 3.16 / Alpine 3.17
+### Alpine 3.16 / Alpine 3.17 / Alpine 3.19
 
 1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
@@ -3035,7 +3035,7 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     sudo dnf downgrade app-protect-bot-signatures-2023.12.11
     ```
 
-### Alpine 3.16 / Alpine 3.17
+### Alpine 3.16 / Alpine 3.17 / Alpine 3.19
 
 1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
@@ -3227,7 +3227,7 @@ app-protect-threat-campaigns \
 app-protect-bot-signatures
 ```
 
-### Alpine 3.16 / Alpine 3.17
+### Alpine 3.16 / Alpine 3.17 / Alpine 3.19
 
 ```shell
 sudo apk del app-protect \
