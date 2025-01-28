@@ -62,7 +62,11 @@ NGINX App Protect WAF v5 supports a range of deployment scenarios to meet variou
 
 NGINX App Protect WAF v5 enhances deployment speed through the pre-compilation of security policies and logging profiles into bundle files.
 
-Use the [NGINX App Protect WAF Compiler]({{< relref "/nap-waf/v5/admin-guide/compiler.md" >}}) to transform security policies and logging profiles from JSON format into a consumable bundle files.
+Use the [NGINX App Protect WAF Compiler]({{< ref "/nap-waf/v5/admin-guide/compiler.md" >}}) to transform security policies and logging profiles from JSON format into a consumable bundle files.
+
+For signature updates, read the [Update App Protect Signatures]({{< ref "/nap-waf/v5/admin-guide/compiler.md#update-app-protect-signatures" >}}) section of the compiler documentation.
+
+---
 
 ## Transitioning from NGINX App Protect WAF v4 to v5
 
@@ -97,6 +101,7 @@ We recommend that you deploy the NGINX App Protect WAF v5 in a staging environme
 1. Restart the deployment if it has already been initiated. Additionally, restart NGINX if utilizing the VM + containers deployment type.  After the migrations, check that the NGINX process is running in the NGINX error log and there are no issues.
 
 
+---
 
 ## Troubleshooting and FAQs
 
