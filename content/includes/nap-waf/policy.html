@@ -802,24 +802,10 @@
 <td>When enabled, enables Brute Force Protection for all configured login URLs. When disabled, only brute force configurations for specific login pages are applied in case they exist.</td>
 <td></td>
 </tr>
-
-<tr class="even">
-  <!ohad>
-</tr>
-<tr class="odd">
-  <!ohad>
-</tr>
 <tr class="even">
 <td><a href="#policy/brute-force-attack-preventions/detectionCriteria">detectionCriteria</a></td>
 <td>object</td>
 <td>Specifies configuration for detecting distributed brute force attacks.</td>
-<td></td>
-</tr>
-<tr class="odd">
- <!ohad>
-</tr>
-<tr class="even">
- <!ohad>
 <td></td>
 </tr>
 <tr class="odd">
@@ -872,89 +858,6 @@
 </tr>
 </tbody>
 </table>
-<h3 id="policy/brute-force-attack-preventions/captchaBypassCriteria">captchaBypassCriteria</h3>
-<table>
-<colgroup>
-<col style="width: 29%" />
-<col style="width: 5%" />
-<col style="width: 47%" />
-<col style="width: 17%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Field Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Allowed Values</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p><code>action</code></p></td>
-<td><p>string</p></td>
-<td><p>Specifies action that is applied when defined threshold is reached.</p>
-<blockquote>
-<ul>
-<li><strong>alarm-and-blocking-page</strong>: The system will log the login attempt, block the request and send the Blocking page.</li>
-<li><strong>alarm-and-drop</strong>: The system will log the login attempt and reset the TCP connection.</li>
-<li><strong>alarm-and-honeypot-page</strong>: The system will log the login attempt, block the request and send the Honeypot page. The Honeypot page is used for attacker deception. The page should look like an application failed login page. Unlike with the Blocking page, when the Honeypot page is sent an attacker is not able to distinguish a failed login response from a mitigation. As a result, the attacker will not change identity (Source IP or Device ID) and the brute force attack will be rendered ineffective. The Honeypot page is recommended when mitigation is request blocking.</li>
-</ul>
-</blockquote></td>
-<td><ul>
-<li>alarm-and-blocking-page</li>
-<li>alarm-and-drop</li>
-<li>alarm-and-honeypot-page</li>
-</ul></td>
-</tr>
-<tr class="even">
-<td><code>enabled</code></td>
-<td>boolean</td>
-<td>When enabled, the system counts successful CAPTCHA challenges with failed logins from IP Address / Device ID.</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>threshold</code></td>
-<td>integer minimum: 1 maximum: 100</td>
-<td>After configured threshold (number of successful CAPTCHA challenges with failed logins from IP Address / Device ID) defined action will be applied for the next login attempt</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h3 id="policy/brute-force-attack-preventions/clientSideIntegrityBypassCriteria">clientSideIntegrityBypassCriteria</h3>
-<table>
-<colgroup>
-<col style="width: 29%" />
-<col style="width: 5%" />
-<col style="width: 47%" />
-<col style="width: 17%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Field Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Allowed Values</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p><code>action</code></p></td>
-<td><p>string</p></td>
-<td><p>Specifies action that is applied when defined threshold is reached.</p>
-<tr class="even">
-<td><code>enabled</code></td>
-<td>boolean</td>
-<td>When enabled, the system counts successful challenges with failed logins from IP Address / Device ID / Username. Legitimate users who have disabled JavaScripting on their browsers for security reasons will fail a client side integrity challenge.</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>threshold</code></td>
-<td>integer minimum: 1 maximum: 100</td>
-<td>After configured threshold (number of successful challenges with failed logins from IP Address / Device ID / Username) defined action will be applied for the next login attempt</td>
-<td></td>
-</tr>
-</tbody>
-</table>
 <h3 id="policy/brute-force-attack-preventions/detectionCriteria">detectionCriteria</h3>
 <table>
 <colgroup>
@@ -1003,102 +906,6 @@
 <td><code>failedLoginAttemptsRateReached</code></td>
 <td>integer minimum: 1 maximum: 10000</td>
 <td>After configured threshold (number of failed login attempts within measurementPeriod) defined action will be applied for the next login attempt.</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h3 id="policy/brute-force-attack-preventions/leakedCredentialsCriteria">leakedCredentialsCriteria</h3>
-<table>
-<colgroup>
-<col style="width: 29%" />
-<col style="width: 5%" />
-<col style="width: 47%" />
-<col style="width: 17%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Field Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Allowed Values</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p><code>action</code></p></td>
-<td><p>string</p></td>
-<td><p>Specifies action when leaked credentials detected.</p>
-<blockquote>
-<ul>
-<li><strong>alarm</strong>: The system will log the login attempt.</li>
-<li><strong>alarm-and-blocking-page</strong>: The system will log the login attempt, block the request and send the Blocking page.</li>
-<li><strong>alarm-and-honeypot-page</strong>: The system will log the login attempt, block the request and send the Honeypot page. The Honeypot page is used for attacker deception. The page should look like an application failed login page. Unlike with the Blocking page, when the Honeypot page is sent an attacker is not able to distinguish a failed login response from a mitigation. As a result, the attacker will not change identity (Source IP or Device ID) and the brute force attack will be rendered ineffective. The Honeypot page is recommended when mitigation is request blocking.</li>
-<li><strong>alarm-and-leaked-credentials-response-page</strong>: The default response page warns the user that the username and password have been leaked and the password should be changed.</li>
-</ul>
-</blockquote></td>
-<td><ul>
-<li>alarm</li>
-<li>alarm-and-blocking-page</li>
-<li>alarm-and-honeypot-page</li>
-<li>alarm-and-leaked-credentials-response-page</li>
-</ul></td>
-</tr>
-<tr class="even">
-<td><code>enabled</code></td>
-<td>boolean</td>
-<td>When enabled, the system can match presented credentials to those in the credentials dictionary to detect leaked credentials.</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h3 id="policy/brute-force-attack-preventions/loginAttemptsFromTheSameDeviceId">loginAttemptsFromTheSameDeviceId</h3>
-<table>
-<colgroup>
-<col style="width: 29%" />
-<col style="width: 5%" />
-<col style="width: 47%" />
-<col style="width: 17%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Field Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Allowed Values</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p><code>action</code></p></td>
-<td><p>string</p></td>
-<td><p>Specifies action that is applied when defined threshold is reached.</p>
-<blockquote>
-<ul>
-<li><strong>alarm</strong>: The system will log the login attempt.</li>
-<li><strong>alarm-and-blocking-page</strong>: The system will log the login attempt, block the request and send the Blocking page.</li>
-<li><strong>alarm-and-client-side-integrity</strong>: The system determines whether the client is a legal browser or a bot by sending a page containing JavaScript code and waiting for a response. Legal browsers are able to execute JavaScript and produce a valid response, whereas bots cannot. A login attempt is logged if the client successfully passes the Client Side Integrity challenge.</li>
-<li><strong>alarm-and-drop</strong>: The system will log the login attempt and reset the TCP connection.</li>
-<li><strong>alarm-and-honeypot-page</strong>: The system will log the login attempt, block the request and send the Honeypot page. The Honeypot page is used for attacker deception. The page should look like an application failed login page. Unlike with the Blocking page, when the Honeypot page is sent an attacker is not able to distinguish a failed login response from a mitigation. As a result, the attacker will not change identity (Source IP or Device ID) and the brute force attack will be rendered ineffective. The Honeypot page is recommended when mitigation is request blocking.</li>
-</ul>
-</blockquote></td>
-<td><ul>
-<li>alarm</li>
-<li>alarm-and-blocking-page</li>
-<li>alarm-and-client-side-integrity</li>
-<li>alarm-and-drop</li>
-<li>alarm-and-honeypot-page</li>
-</ul></td>
-</tr>
-<tr class="even">
-<td><code>enabled</code></td>
-<td>boolean</td>
-<td>When enabled, the system counts failed login attempts for Device ID.</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>threshold</code></td>
-<td>integer minimum: 1 maximum: 100</td>
-<td>After configured threshold (number of failed login attempts for Device ID) defined action will be applied for the next login attempt.</td>
 <td></td>
 </tr>
 </tbody>
