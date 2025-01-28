@@ -20,7 +20,6 @@ When configuring NGINX App Protect WAF, `app_protect_enable` should always be en
 
 ## Supported Security Policy Features
 
-{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
 |Protection Mechanism | Description |
 | ---| --- |
 |[Attack Signatures](#attack-signatures-overview) | Default policy covers all the OWASP top 10 attack patterns enabling signature sets detailed in a section below. The user can disable any of them or add other sets. |
@@ -39,8 +38,7 @@ When configuring NGINX App Protect WAF, `app_protect_enable` should always be en
 |[Deny and Allow IP lists](#deny-and-allow-ip-lists) | Manually define denied & allowed IP addresses as well as IP addresses to never log. |
 |[XFF headers & trust](#xff-headers-and-trust) | Disabled by default. User can enable it and optionally add a list of custom XFF headers. |
 |[gRPC Protection](#grpc-protection-for-unary-traffic) | gRPC content profile detects malformed content, parses well-formed content, and extracts the text fields for detecting attack signatures and disallowed meta-characters. In addition, it enforces size restrictions and prohibition of unknown fields. The Interface Definition Language (IDL) files for the gRPC API must be attached to the profile. gRPC protection can be on [unary](#grpc-protection-for-unary-traffic) or [bidirectional](#grpc-protection-for-bidirectional-streaming) traffic.|
-{{</bootstrap-table>}}
-
+|[Brute Force Attack Preventions](#brute-force-attack-preventions) | Configure brute-force-attack-preventions parameters to secured areas of a web application from brute force attacks.|}
 
 ### Disallowed File Types
 {{< include "nap-waf/config/common/disallowed-file-types.md" >}}
@@ -653,6 +651,116 @@ claims['address'] = "{ \"address\": { .... } }" # JSON structs can be accessed u
 ### Other References
 {{< include "nap-waf/config/common/json-web-tokens-other-references.md" >}}
 
+## Brute Force Attack Preventions
+
+### Overview
+
+Brute force attacks are attempts to break in to secured areas of a web application by trying exhaustive, 
+systematic, username/password combinations to discover legitimate authentication credentials. 
+To prevent brute force attacks, WAF tracks the number of failed attempts to reach login pages 
+with enforced brute force protection. When brute force patterns are detected, 
+the WAF policy considers it to be an attack if the failed logon rate increased significantly or 
+if failed logins reached a maximum threshold.
+
+### Brute force policy example
+
+```json
+{
+    "policy": {
+        "name": "BruteForcePolicy",
+        "template": {
+            "name": "POLICY_TEMPLATE_NGINX_BASE"
+        },
+        "applicationLanguage": "utf-8",
+        "enforcementMode": "blocking",
+        "brute-force-attack-preventions" : [
+            {
+               "bruteForceProtectionForAllLoginPages" : true,
+               "detectionCriteria" : {
+                  "action" : "alarm",
+                  "detectDistributedBruteForceAttack" : true,
+                  "failedLoginAttemptsRateReached" : 100
+               },
+               "loginAttemptsFromTheSameIp" : {
+                  "action" : "alarm",
+                  "enabled" : true,
+                  "threshold" : 20
+               },
+               "loginAttemptsFromTheSameUser" : {
+                  "action" : "alarm",
+                  "enabled" : true,
+                  "threshold" : 3
+               },
+               "measurementPeriod" : 900,
+               "preventionDuration" : "3600",
+               "reEnableLoginAfter" : 3600,
+               "sourceBasedProtectionDetectionPeriod" : 3600
+            }
+        ]
+    }
+}
+
+```
+### brute-force-attack-preventions fields description
+
+    bruteForceProtectionForAllLoginPages:
+          When enabled, enables Brute Force Protection for all configured login URLs.
+          When disabled, only brute force configurations for specific login pages are applied in case they exist.
+
+    detectionCriteria:
+          Specifies configuration for detecting distributed brute force attacks.
+        action:
+            Specifies action that is applied when the defined thresholds ( failedLoginAttemptsRateReached) is reached.
+            - **alarm**: The system will log the login attempt.
+
+        detectDistributedBruteForceAttack:
+            When enabled, the system detects distributed brute force attacks.
+
+        failedLoginAttemptsRateReached:
+            After configured threshold (number of failed login attempts within measurementPeriod) defined action will be applied for the next login attempt.           
+
+    loginAttemptsFromTheSameIp:
+          Specifies configuration for detecting brute force attacks from IP Address.
+
+        action:
+            Specifies action that is applied when defined threshold is reached.
+            - **alarm**: The system will log the login attempt.
+            - **alarm-and-blocking-page**: The system will log the login attempt, block the request and send the Blocking page.
+            - **alarm-and-drop**: The system will log the login attempt and reset the TCP connection.
+
+        enabled:
+            When enabled, the system counts failed login attempts from IP Address.
+
+        threshold:
+            After configured threshold (number of failed login attempts from IP Address) defined action will be applied for the next login attempt.
+
+    loginAttemptsFromTheSameUser:
+          Specifies configuration for detecting brute force attacks for Username.
+
+        action:
+            Specifies action that is applied when defined threshold is reached.
+            - **alarm**: The system will log the login attempt.
+
+        enabled:
+            When enabled, the system counts failed login attempts for each Username.
+
+        threshold:
+            After configured threshold (number of failed login attempts for each Username) defined action will be applied for the next login attempt.
+
+    measurementPeriod:
+          Defines detection period (measured in seconds) for distributed brute force attacks.
+
+    preventionDuration:
+          Defines prevention period (measured in seconds) for distributed brute force attacks.
+
+    reEnableLoginAfter:
+          Defines prevention period (measured in seconds) for source-based brute force attacks.
+
+    sourceBasedProtectionDetectionPeriod:
+          Defines detection period (measured in seconds) for source-based brute force attacks.
+
+    url:
+          Reference to the URL used in login URL configuration (policy/login-pages). This login URL is protected by Brute Force Protection feature.
 
 ## Custom Dimensions Log Entries
 
