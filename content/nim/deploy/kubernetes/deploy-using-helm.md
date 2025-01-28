@@ -51,7 +51,7 @@ To deploy NGINX Instance Manager using a Helm chart, you need:
 
 ### Using Helm with a JWT token
 
-If you don't need a private registry, you can use a JWT token as a Docker configuration secret with Helm charts.
+You can use your NGINX JWT as a Docker configuration secret with Helm charts.
 
 Create a Docker registry secret on the cluster, using the JWT token as the username and `none` as the password. The Docker server is `private-registry.nginx.com`.
 
