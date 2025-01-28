@@ -1,39 +1,38 @@
 ---
-title: NGINX App Protect WAF 4.12
-weight: 110
+title: NGINX App Protect WAF 4.13
+weight: 100
 toc: true
 type: reference
 product: NAP-WAF
 docs: DOCS-000
 ---
 
-November 19th, 2024
+January 30th, 2025
+
+{{< include "nap-waf/upgrade-recompile-warning.md" >}}
 
 ---
 
-### New features
+## New features
 
-- Added support for Amazon Linux 2023
-- NGINX App Protect WAF now supports NGINX Plus R33. 
-
-Please read the [subscription licenses]({{< relref "/solutions/about-subscription-licenses.md" >}}) topic for information about R33.
 
 ---
 
-### Important notes
+## Important notes
 
-- Alpine 3.16 is no longer supported.
-
---- 
-
-### Resolved issues
-
-- Updated the Go version to 1.23.1
-- Fixed _apt-get update_ warning for Ubuntu 22.04 
 
 ---
 
-### Supported packages
+## Resolved issues
+
+
+---
+
+## Known issues
+
+---
+
+## Supported packages
 
 | Distribution name        | Package file                                       |
 |--------------------------|----------------------------------------------------|
