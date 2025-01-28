@@ -186,6 +186,27 @@ docker run \
  -dump -bundle $(pwd)/compiled_policy.tgz
 ```
 
+---
+
+## Update App Protect Signatures
+
+
+---
+
+### Update Attack Signatures
+
+
+---
+
+### Update Threat Campaigns
+
+
+---
+
+### Update Bot Signatures
+
+---
+
 ## Global Settings
 
 The global settings allows configuration of the following items:
