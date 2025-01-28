@@ -1044,7 +1044,11 @@ In the cases where decompression fails,  NGINX App Protect WAF will continue wit
 
 ---
 
-## Policy Converter
+## Converter tools
+
+NGINX App Protect WAF includes a number of tools that can be used to facilitate the process of porting existing resources or configuration files from the BIG-IP for use in the NGINX App Protect WAF environment. Note that these tools are available in the compiler package, and do not require a full installation of NGINX App Protect WAF or NGINX Plus.
+
+### Policy Converter
 
 The NGINX App Protect WAF v5 Policy Converter tool `/opt/app_protect/bin/convert-policy` is used to convert XML policies to JSON format. The converted JSON policy is based on the NGINX App Protect WAF policy base template and contains the minimal differences to it in JSON declarative policy format.
 
@@ -1056,7 +1060,7 @@ Using the tool:
 /opt/app_protect/bin/convert-policy 
 ```
 
-### Convert Policy using Command Line Interface (CLI Usage)
+#### Convert Policy using Command Line Interface (CLI Usage)
 
 The input policy can also be converted using convert-policy as a CLI tool from within NGINX App Protect WAF Converter container by using the following commands:
 
@@ -1070,7 +1074,7 @@ docker run -it --rm \
   --full-export
 ```
 
-### Command Line Options
+#### Command Line Options
 
 {{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
 |Field Name   | Notes | 
@@ -1081,6 +1085,173 @@ docker run -it --rm \
 | --logging-profile | Filename of JSON Logging Profile (pre-converted to JSON from tmsh syntax) |
 | --dos-profile | Filename of JSON DoS Profile (pre-converted to JSON from tmsh syntax) |
 | --full-export | If specified, the full policy with all entities will be exported. Otherwise, only entities that differ from the template will be included.<br> Default for the CLI is not specific (only differing entities). <br> Default for the REST endpoint above is "--full-export" (you can not override this).|{{</bootstrap-table>}}
+
+### User Defined Signatures Converter
+
+The User Defined Signatures Converter tool `/opt/app_protect/bin/convert-signatures` takes a User Defined Signatures XML file as input and exports the content as a JSON file suitable for use in an NGINX App Protect WAF environment.
+
+The tool can optionally accept a tag argument as an input. Otherwise, the default tag value `user-defined-signatures` is assigned to the exported JSON file.
+
+Note that the User Defined signatures XML file can be obtained by exporting the signatures from a BIG-IP device.
+
+Using the tool:
+```shell
+/opt/app_protect/bin/convert-signatures
+```
+
+Output:
+```shell
+USAGE:
+    /opt/app_protect/bin/convert-signatures
+
+Required arguments:
+    --outfile|o='/path/to/signatures.json'
+        File name to write JSON format export
+        Can also be set via an environment variable: EXPORT_FILE
+    --infile|i='/path/to/signatures.xml'
+        Advanced WAF/ASM User Defined Signatures file to Convert
+        Can also be set via an environment variable: IMPORT_FILE
+
+Optional arguments:
+    --tag|t='mytag'
+        Signature Tag to associate with User Defined Signatures.
+        If no tag is specified in the XML file, a default tag of 'user-defined-signatures' will be assigned.
+        Can also be set via an environment variable: TAG
+    --format|f='json'
+        Desired output format for signature file. Default 'json'
+        Supported formats: 'json'
+
+Optionally, using --help will issue this help message.
+```
+
+Example of generating a user defined signature JSON file (with default tag):
+```shell
+docker run -v `pwd`:`pwd` -w `pwd` --entrypoint /opt/app_protect/bin/convert-signatures docker_img:latest -i /path/to/signatures.xml -o /path/to/signatures.json | jq
+```
+
+Output:
+```json
+{
+    "filename": "/path/to/signatures.json",
+    "file_size": 1602,
+    "completed_successfully": true
+}
+```
+
+Example of the contents of the output file (displayed and piped into `jq`):
+```json
+{
+    "tag": "user-defined-signatures",
+    "signatures": [
+        {
+            "accuracy": "high",
+            "risk": "high",
+            "systems": [],
+            "rule": "content:\"header1\"; nocase;",
+            "description": "",
+            "signatureType": "request",
+            "signatureId": "300000000",
+            "revision": "1",
+            "lastUpdateMicros": 1731425468000000,
+            "name": "sig_1_header",
+            "attackType": {
+                "name": "Abuse of Functionality"
+            }
+        },
+        {
+            "signatureId": "300000002",
+            "signatureType": "request",
+            "attackType": {
+                "name": "Cross Site Scripting (XSS)"
+            },
+            "name": "sig_3_uri",
+            "lastUpdateMicros": 1731425631000000,
+            "revision": "1",
+            "risk": "high",
+            "accuracy": "high",
+            "description": "",
+            "rule": "uricontent:\"<script>\"; nocase;",
+            "systems": [
+                {
+                    "name": "Nginx"
+                }
+            ]
+        },
+        {
+            "name": "sig_2_param",
+            "attackType": {
+                "name": "Abuse of Functionality"
+            },
+            "lastUpdateMicros": 1731425549000000,
+            "revision": "1",
+            "signatureId": "300000001",
+            "signatureType": "request",
+            "description": "",
+            "rule": "valuecontent:!\"param\"; nocase; httponly; norm;",
+            "systems": [],
+            "accuracy": "high",
+            "risk": "high"
+        },
+        {
+            "systems": [
+                {
+                    "name": "Apache"
+                },
+                {
+                    "name": "Unix/Linux"
+                },
+                {
+                    "name": "Proxy Servers"
+                },
+                {
+                    "name": "Django"
+                }
+            ],
+            "description": "",
+            "rule": "valuecontent:\"json123\"; nocase; jsononly; norm;",
+            "risk": "high",
+            "accuracy": "high",
+            "lastUpdateMicros": 1731425782000000,
+            "revision": "1",
+            "attackType": {
+                "name": "Server-Side Request Forgery (SSRF)"
+            },
+            "name": "sig_5_",
+            "signatureType": "request",
+            "signatureId": "300000004"
+        },
+        {
+            "description": "",
+            "rule": "uricontent:\"etc\"; nocase;",
+            "systems": [
+                {
+                    "name": "Microsoft Windows"
+                },
+                {
+                    "name": "Unix/Linux"
+                }
+            ],
+            "accuracy": "high",
+            "risk": "high",
+            "name": "sig_4_",
+            "attackType": {
+                "name": "Path Traversal"
+            },
+            "lastUpdateMicros": 1731425708000000,
+            "revision": "1",
+            "signatureId": "300000003",
+            "signatureType": "request"
+        }
+    ]
+}
+```
+
+Example of generating a user defined signature JSON file (with custom tag):
+```shell
+docker run -v `pwd`:`pwd` -w `pwd` --entrypoint /opt/app_protect/bin/convert-signatures docker_img:latest -i /path/to/signatures.xml -o /path/to/signatures.json --tag "MyTag" | jq
+```
+
+Note that if the script is run without the required switches and their corresponding arguments, it will display the help message.
 
 ---
 
