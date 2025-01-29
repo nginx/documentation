@@ -21,7 +21,7 @@ weight: 100
 
 [NGINX Management Suite Security Monitoring]({{< relref "/nms/about.md#security-monitoring" >}}) provides a centralized visualization tool that lets you analyze threats, view protection insights, and identify areas for policy tuning.
 
-- For more information on how to configure Security Monitoring, see [Set Up App Protect Instances for Security Monitoring]({{< relref "/nim/monitoring/security-monitoring/set-up-app-protect-instances.md" >}}).
+- For more information on how to configure Security Monitoring, see [Set Up App Protect Instances for Security Monitoring]({{< relref "/nim/nginx-app-protect/security-monitoring/set-up-app-protect-instances.md" >}}).
 
 ---
 

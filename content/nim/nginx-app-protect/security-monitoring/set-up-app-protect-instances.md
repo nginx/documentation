@@ -188,5 +188,5 @@ Follow these steps to use Security Monitoring and Instance Manager together.
 
 ## See also
 
-- [Add user access to Security Monitoring dashboards]({{< relref "/nim/monitoring/security-monitoring/give-access-to-security-monitoring-dashboards.md" >}})
+- [Add user access to Security Monitoring dashboards]({{< relref "/nim/nginx-app-protect/security-monitoring/give-access-to-security-monitoring-dashboards.md" >}})
 - [Manage your app protect WAF configs]({{< relref "/nim/nginx-app-protect/setup-waf-config-management" >}})
