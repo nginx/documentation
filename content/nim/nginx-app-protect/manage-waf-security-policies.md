@@ -1,7 +1,5 @@
 ---
 title: Manage WAF Security Policies and Security Log Profiles
-description: Learn how to use F5 Instance Manager to manage NGINX
-  App Protect WAF security policies and security log profiles.
 weight: 200
 toc: true
 type: how-to
@@ -11,7 +9,7 @@ docs: DOCS-1105
 
 ## Overview
 
-F5 NGINX Management Suite Instance Manager provides the ability to manage the configuration of NGINX App Protect WAF instances either by the user interface or the REST API. This includes editing, updating, and deploying security policies, log profiles, attack signatures, and threat campaigns to individual instances and/or instance groups.
+F5 Instance Manager provides the ability to manage the configuration of NGINX App Protect WAF instances either by the user interface or the REST API. This includes editing, updating, and deploying security policies, log profiles, attack signatures, and threat campaigns to individual instances and/or instance groups.
 
 In Instance Manager v2.14.0 and later, you can compile a security policy, attack signatures, and threat campaigns into a security policy bundle. A security policy bundle consists of the security policy, the attack signatures, and threat campaigns for a particular version of NGINX App Protect WAF, and additional supporting files that make it possible for NGINX App Protect WAF to use the bundle. Because the security policy bundle is pre-compiled, the configuration gets applied faster than when you individually reference the security policy, attack signature, and threat campaign files.
 
@@ -65,7 +63,7 @@ To access the web interface, go to the FQDN for your NGINX Instance Manager host
 
 To create a security policy using the Instance Manager web interface:
 
-1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in. Then, from the Launchpad menu, select **Instance Manager**.
+1. In a web browser, go to the FQDN for your NGINX Instance Manager host and log in. Then, from the Launchpad menu, select **Instance Manager**.
 2. On the left menu, select **App Protect**.
 3. On the *Security Policies* page, select **Create**.
 4. On the *Create Policy* page, fill out the necessary fields:

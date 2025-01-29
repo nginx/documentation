@@ -1,17 +1,10 @@
 ---
-title: "Round-robin reverse proxy with an augment template"
-date: 2024-03-12T16:01:58-07:00
-draft: false
-description: "Learn how to set up a round-robin reverse proxy using NGINX Instance Manager with base and augment templates."
+title: Round-robin reverse proxy with an augment template
 weight: 100
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1655"
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["tutorial"]
-journeys: ["getting started", "using"]
-versions: []
-authors: []
+type: tutorial
+product: NIM
+docs: DOCS-1655
 ---
 
 ## Overview
@@ -49,7 +42,7 @@ Before you start the tutorial, you should:
 
 In this section, you'll learn how to create a [base config template]({{< relref "nim/nginx-configs/config-templates/concepts/config-templates.md" >}}).
 
-1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Management Suite host, and log in.
+1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Instance Manager host, and log in.
 2. From the Launchpad menu, choose **Instance Manager**.
 3. On the left menu, select **Templates**.
 4. Select **Create**.

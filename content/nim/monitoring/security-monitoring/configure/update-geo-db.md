@@ -1,9 +1,7 @@
 ---
 title: Update the geolocation database used in dashboards
-description: Learn how to update the Geolocation Database used in F5 NGINX Management
-  Suite Security Monitoring dashboards.
-toc: true
 weight: 400
+toc: true
 type: how-to
 product: NIM
 docs: DOCS-1108
@@ -11,7 +9,7 @@ docs: DOCS-1108
 
 ## Overview
 
-You can use F5 NGINX Security Monitoring to monitor NGINX App Protect WAF instances. The Security Monitoring analytics dashboard uses MaxMind's GeoLite2 Free Database to provide extra Geolocation data for Security Violations.
+You can use the Security Monitoring module to monitor NGINX App Protect WAF instances. The Security Monitoring analytics dashboard uses MaxMind's GeoLite2 Free Database to provide extra Geolocation data for Security Violations.
 
 By completing the steps in this topic, you will be able to update the Security Monitoring module to get the latest Geolocation database such that the dashboards can provide accurate data.
 
@@ -21,9 +19,8 @@ By completing the steps in this topic, you will be able to update the Security M
 
 Complete the following prerequisites before proceeding with this guide:
 
-- NGINX Security Monitoring is [installed]({{< relref "/nim/monitoring/security-monitoring/install-security-monitoring.md" >}}) and running.
+- The Security Monitoring module is [installed]({{< relref "/nim/monitoring/security-monitoring/install-security-monitoring.md" >}}) and running.
 - NGINX App Protect is configured, and the Security Monitoring dashboard is gathering security violations
-
 
 --- 
 

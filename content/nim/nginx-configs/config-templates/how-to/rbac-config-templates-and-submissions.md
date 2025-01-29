@@ -1,27 +1,10 @@
 ---
-title: "RBAC for config templates and submissions"
-date: 2024-03-29T09:35:06-07:00
-# Change draft status to false to publish doc
-draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO.
-# The description text appears in search results and at the top of the doc.
-description: ""
-# Assign weights in increments of 100
+title: RBAC for config templates and submissions
 weight: 300
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1505"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["tutorial"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
+type: how-to
+product: NIM
+docs: DOCS-1505
 ---
 
 ## Overview
@@ -37,7 +20,7 @@ With role-based access control (RBAC), administrators can determine who can crea
 
 To complete these steps, you need administrator access.
 
-1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Management Suite host, and log in.
+1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Instance Manager host, and log in.
 
 2. Select **Settings** (gear icon) in the upper-right corner of the dashboard.
 
