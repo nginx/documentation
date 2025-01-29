@@ -2432,13 +2432,13 @@ After having updated the Attack Signature package you have to reload the configu
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-7.repo
     ```
 
-2. Update the attack signatures:
+2. Update the attack signatures to the latest:
 
     ```shell
     sudo yum install app-protect-attack-signatures
     ```
 
-    To install a specific version, list the available versions:
+3. To install a specific version, list the available versions:
 
     ```shell
     sudo yum --showduplicates list app-protect-attack-signatures
@@ -2464,13 +2464,13 @@ After having updated the Attack Signature package you have to reload the configu
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
     ```
 
-2. Update the attack signatures:
+2. Update the attack signatures to the latest:
 
     ```shell
     sudo dnf install app-protect-attack-signatures
     ```
 
-    To install a specific version, list the available versions:
+3. To install a specific version, list the available versions:
 
     ```shell
     sudo dnf --showduplicates list app-protect-attack-signatures
@@ -2496,13 +2496,13 @@ After having updated the Attack Signature package you have to reload the configu
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
     ```
 
-2. Update the attack signatures:
+2. Update the attack signatures to the latest:
 
     ```shell
     sudo dnf install app-protect-attack-signatures
     ```
 
-    To install a specific version, list the available versions:
+3. To install a specific version, list the available versions:
 
     ```shell
     sudo dnf --showduplicates list app-protect-attack-signatures
@@ -2543,13 +2543,13 @@ After having updated the Attack Signature package you have to reload the configu
     sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
     ```
 
-4. Update the attack signatures:
+4. Update the attack signatures to the latest:
 
     ```shell
     sudo apt-get update && sudo apt-get install app-protect-attack-signatures
     ```
 
-    To install a specific version, list the available versions:
+5. To install a specific version, list the available versions:
 
     ```shell
     sudo apt-cache policy app-protect-attack-signatures
@@ -2598,13 +2598,13 @@ After having updated the Attack Signature package you have to reload the configu
     sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
     ```
 
-4. Update the attack signatures:
+4. Update the attack signatures to the latest:
 
     ```shell
     sudo apt-get update && sudo apt-get install app-protect-attack-signatures
     ```
 
-    To install a specific version, list the available versions:
+5. To install a specific version, list the available versions:
 
     ```shell
     sudo apt-cache policy app-protect-attack-signatures
@@ -2714,13 +2714,13 @@ Example: app-protect-threat-campaigns-2022.07.21
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-7.repo
     ```
 
-2. Update Threat Campaigns:
+2. Update Threat Campaigns  to the latest:
 
     ```shell
     sudo yum install app-protect-threat-campaigns
     ```
 
-    To install a specific version, list the available versions:
+3. To install a specific version, list the available versions:
 
     ```shell
     sudo yum --showduplicates list app-protect-threat-campaigns
@@ -2740,13 +2740,13 @@ Example: app-protect-threat-campaigns-2022.07.21
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
     ```
 
-2. Update Threat Campaigns:
+2. Update Threat Campaigns to the latest:
 
     ```shell
     sudo dnf install app-protect-threat-campaigns
     ```
 
-    To install a specific version, list the available versions:
+3. To install a specific version, list the available versions:
 
     ```shell
     sudo dnf --showduplicates list app-protect-threat-campaigns
@@ -2766,13 +2766,13 @@ Example: app-protect-threat-campaigns-2022.07.21
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
     ```
 
-2. Update Threat Campaigns:
+2. Update Threat Campaigns to the latest:
 
     ```shell
     sudo dnf install app-protect-threat-campaigns
     ```
 
-    To install a specific version, list the available versions:
+3. To install a specific version, list the available versions:
 
     ```shell
     sudo dnf --showduplicates list app-protect-threat-campaigns
@@ -2798,13 +2798,13 @@ Example: app-protect-threat-campaigns-2022.07.21
     sudo wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
     ```
 
-3. Update Threat Campaigns:
+3. Update Threat Campaigns to the latest:
 
     ```shell
     sudo apk update && sudo apk add app-protect-threat-campaigns
     ```
 
-    To install a specific version, list the available versions:
+4. To install a specific version, list the available versions:
 
     ```shell
     sudo apk search app-protect-threat-campaigns
@@ -2839,13 +2839,13 @@ Example: app-protect-threat-campaigns-2022.07.21
     sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
     ```
 
-4. Update Threat Campaigns:
+4. Update Threat Campaigns to the latest:
 
     ```shell
     sudo apt-get update && sudo apt-get install app-protect-threat-campaigns
     ```
 
-    To install a specific version, list the available versions:
+5. To install a specific version, list the available versions:
 
     ```shell
     sudo apt-cache policy app-protect-threat-campaigns
@@ -2894,13 +2894,13 @@ Example: app-protect-threat-campaigns-2022.07.21
     sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
     ```
 
-4. Update Threat Campaigns:
+4. Update Threat Campaigns to the latest:
 
     ```shell
     sudo apt-get update && sudo apt-get install app-protect-threat-campaigns
     ```
 
-    To install a specific version, list the available versions:
+5. To install a specific version, list the available versions:
 
     ```shell
     sudo apt-cache policy app-protect-threat-campaigns
@@ -2947,13 +2947,13 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-7.repo
     ```
 
-2. Update bot signatures:
+2. Update bot signatures to the latest:
 
     ```shell
     sudo yum install app-protect-bot-signatures
     ```
 
-    To install a specific version, list the available versions:
+3. To install a specific version, list the available versions:
 
     ```shell
     sudo yum --showduplicates list app-protect-bot-signatures
@@ -2979,13 +2979,13 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
     ```
 
-2. Update Bot Signatures:
+2. Update Bot Signatures to the latest:
 
     ```shell
     sudo dnf install app-protect-bot-signatures
     ```
 
-    To install a specific version, list the available versions:
+3. To install a specific version, list the available versions:
 
     ```shell
     sudo dnf --showduplicates list app-protect-bot-signatures
@@ -3011,13 +3011,13 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
     ```
 
-2. Update Bot Signatures:
+2. Update Bot Signatures to the latest:
 
     ```shell
     sudo dnf install app-protect-bot-signatures
     ```
 
-    To install a specific version, list the available versions:
+3. To install a specific version, list the available versions:
 
     ```shell
     sudo dnf --showduplicates list app-protect-bot-signatures
@@ -3049,13 +3049,13 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     sudo wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
     ```
 
-3. Update Bot Signatures:
+3. Update Bot Signatures to the latest:
 
     ```shell
     sudo apk update && sudo apk add app-protect-bot-signatures
     ```
 
-    To install a specific version, list the available versions:
+4. To install a specific version, list the available versions:
 
     ```shell
     sudo apk search app-protect-bot-signatures
@@ -3091,13 +3091,13 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
     ```
 
-4. Update Bot Signatures:
+4. Update Bot Signatures to the latest:
 
     ```shell
     sudo apt-get update && sudo apt-get install app-protect-bot-signatures
     ```
 
-    To install a specific version, list the available versions:
+5. To install a specific version, list the available versions:
 
     ```shell
     sudo apt-cache policy app-protect-bot-signatures
@@ -3141,13 +3141,13 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
     ```
 
-4. Update Bot Signatures:
+4. Update Bot Signatures to the latest:
 
     ```shell
     sudo apt-get update && sudo apt-get install app-protect-bot-signatures
     ```
 
-    To install a specific version, list the available versions:
+5. To install a specific version, list the available versions:
 
     ```shell
     sudo apt-cache policy app-protect-bot-signatures
