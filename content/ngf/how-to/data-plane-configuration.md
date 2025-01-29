@@ -209,7 +209,7 @@ EOF
 To attach the `ngf-proxy-config` NginxProxy to the GatewayClass:
 
 ```shell
-kubectl edit gatewayclass <gateway-class-name>
+kubectl edit gatewayclass nginx
 ```
 
 This will open your default editor, allowing you to add the following to the `spec`:
@@ -225,7 +225,7 @@ parametersRef:
 After updating, you can check the status of the GatewayClass to see if the configuration is valid:
 
 ```shell
-kubectl describe gatewayclasses <gateway-class-name>
+kubectl describe gatewayclass nginx
 ```
 
 ```text
