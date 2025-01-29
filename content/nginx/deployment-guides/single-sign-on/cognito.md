@@ -134,8 +134,8 @@ Configure NGINX Plus as the OpenID Connect relying party:
 
    - `set $oidc_authz_endpoint` – `<My-Cognito-Domain-Name>/oauth2/authorize`
    - `set $oidc_token_endpoint` – `<My-Cognito-Domain-Name>/oauth2/token`
-   - `set $oidc_client` – Value in the <span style="white-space: nowrap; font-weight:bold;">App client id</span> field from [Step 11 of _Configuring Amazon Cognito_](#cognito-app-client-id-secret) (in this guide, `2or4cs8bjo1lkbq6143tqp6ist`)
-   - `set $oidc_client_secret` – Value in the <span style="white-space: nowrap; font-weight:bold;">App client secret</span> field from [Step 11 of _Configuring Amazon Cognito_](#cognito-app-client-id-secret) (in this guide, `1k63m3nrcnu...`)
+   - `set $oidc_client` – Value in the <span style="white-space: nowrap; font-weight:bold;">App client id</span> field from [Step 11 of _Configuring Amazon Cognito_](#cognito-app-client-id-secret)
+   - `set $oidc_client_secret` – Value in the <span style="white-space: nowrap; font-weight:bold;">App client secret</span> field from [Step 11 of _Configuring Amazon Cognito_](#cognito-app-client-id-secret)
    - `set $oidc_hmac_key` – A unique, long, and secure phrase
 
 4. Configure the JWK file. The file's URL is
