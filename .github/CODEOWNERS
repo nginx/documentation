@@ -15,19 +15,31 @@
 
 # DocOps Writers
 *                           @nginx/nginx-docs
+
 # DocOps Engineers
 .github/*                   @nginx/docs-engineering
-# NGINX Plus
-content/nginx/*             @nginx/plus-docs-approvers
+
 # NGINX Agent
-content/nginx/nms/agent/*   @nginx/agent-docs-approvers
-# NGINX One
-content/nginx-one/*         @nginx/one-docs-approvers
-# NGINX Instance Manager
-content/nms/nim/*           @nginx/nim-docs-approvers
-content/nim/*               @nginx/nim-docs-approvers
+content/nginx/nms/agent/*   @nginx/nginx-agent 
+
+# NGINX App Protect DoS
+content/nap-dos/*           @nginx/dos-docs-approvers
+
 # NGINX App Protect WAF
 content/nap-waf/*           @nginx/nap-docs-approvers
 data/nap-waf/*              @nginx/nap-docs-approvers
-# NGINX App Protect DoS
-content/nap-dos/*           @nginx/dos-docs-approvers
+
+# NGINX Gateway Fabric
+content/ngf/*               @nginx/nginx-gateway-fabric
+content/includes/ngf/*      @nginx/nginx-gateway-fabric
+
+# NGINX Instance Manager
+content/nms/nim/*           @nginx/nim-docs-approvers
+content/nim/*               @nginx/nim-docs-approvers
+
+# NGINX Plus
+content/nginx/*             @nginx/plus-docs-approvers
+
+# NGINX One
+content/nginx-one/*         @nginx/one-docs-approvers
+

@@ -7,14 +7,15 @@ pygmentsUseClasses = true
 enableGitInfo = true
 
 [permalinks]
+  amplify = '/nginx-amplify/:sections[1:]/:filename'
   controller = '/nginx-controller/:sections[1:]/:filename'
+  mesh = '/nginx-service-mesh/:sections[1:]/:filename'
   modsec-waf = '/nginx-waf/:sections[1:]/:filename'
   nap-dos = '/nginx-app-protect-dos/:sections[1:]/:filename'
   nap-waf = '/nginx-app-protect-waf/:sections[1:]/:filename'
-  nms = '/nginx-management-suite/:sections[1:]/:filename'
-  amplify = '/nginx-amplify/:sections[1:]/:filename'
-  mesh = '/nginx-service-mesh/:sections[1:]/:filename'
+  ngf = '/nginx-gateway-fabric/:sections[1:]/:filename'
   nim = '/nginx-instance-manager/:sections[1:]/:filename'
+  nms = '/nginx-management-suite/:sections[1:]/:filename'
 
 [caches]
   [caches.modules]
@@ -36,7 +37,7 @@ enableGitInfo = true
   buildtype = "webdocs"
   RSSLink = "/index.xml"
   author = "NGINX Inc." # add your company name
-  github = "nginxinc" # add your github profile name
+  github = "nginx" # add your github profile name
   twitter = "@nginx" # add your twitter profile
   noindex_kinds = [
     "taxonomy",

@@ -99,6 +99,12 @@ mgmt {
 
 ---
 
+## Error log location and monitoring {#log-monitoring}
+
+{{< include "licensing-and-reporting/log-location-and-monitoring.md" >}}
+
+---
+
 ## Understand reported usage metrics {#usage-metrics}
 
 {{< include "licensing-and-reporting/reported-usage-data.md" >}}
