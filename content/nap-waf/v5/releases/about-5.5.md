@@ -16,9 +16,9 @@ January 30th, 2025
 ## New features
 
 - Added support for Alpine 3.19
-- Added a policy for [Brute force attack preventions]({{< ref "/nap-waf/v5/configuration-guide/configuration.md#brute-force-attack-preventions" >}})
+- Added support for [Brute force attack preventions]({{< ref "/nap-waf/v5/configuration-guide/configuration.md#brute-force-attack-preventions" >}})
 - Enforcer can now upgrade without requiring policies to be recompiled
-- The standalone converter now supports [user-defined signatures]({{< ref "/nap-waf/v5/admin-guide/compiler.md#update-app-protect-signatures" >}}).
+- The standalone converter within the Compiler now supports [user-defined signatures]({{< ref "/nap-waf/v5/admin-guide/compiler.md#update-app-protect-signatures" >}}).
 
 ---
 

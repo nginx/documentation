@@ -20,7 +20,7 @@ The F5 NGINX App Protect WAF v5 Compiler is a tool that compiles security polici
 ## Building Compiler Image
 
 {{< important >}}
-Regularly rebuild your compiler image and recompile security policies to ensure you are using the latest security updates.
+To ensure you are using the latest security updates, it is recommended to regularly rebuild your compiler image with the latest signature packages and recompile security policies.
 {{< /important >}}
 
 1. Download Certificates
