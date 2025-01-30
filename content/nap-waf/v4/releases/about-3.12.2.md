@@ -1,7 +1,9 @@
 ---
 title: NGINX App Protect WAF 3.12.2
-toc: true
 weight: 620
+toc: true
+type: reference
+product: NAP-WAF
 docs: DOCS-988
 ---
 
