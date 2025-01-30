@@ -9,8 +9,6 @@ docs: DOCS-000
 
 January 30th, 2025
 
-{{< include "nap-waf/upgrade-recompile-warning.md" >}}
-
 ---
 
 ## New features
