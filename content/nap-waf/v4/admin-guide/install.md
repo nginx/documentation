@@ -40,10 +40,8 @@ NGINX App Protect WAF supports the following operating systems:
 - [Ubuntu 20.04 (Focal)](#ubuntu-1804--ubuntu-2004--ubuntu-2204--ubuntu-2404-installation)
 - [Ubuntu 22.04 (Jammy)](#ubuntu-1804--ubuntu-2004--ubuntu-2204--ubuntu-2404-installation)
 - [Ubuntu 24.04 (Noble)](#ubuntu-1804--ubuntu-2004--ubuntu-2204--ubuntu-2404-installation)
-- [Alpine 3.16](#alpine-316-317--319-installation) - (Deprecated starting from NGINX Plus R33)
 - [Alpine 3.17](#alpine-316-317--319-installation)
 - [Alpine 3.19](#alpine-316-317--319-installation)
-
 
 The NGINX App Protect WAF package has the following dependencies:
 
@@ -1808,8 +1806,8 @@ CMD ["sh", "/root/entrypoint.sh"]
 
 ```dockerfile
 # syntax=docker/dockerfile:1
-# For Alpine 3.16 / 3.17 / 3.19:
-FROM alpine:3.16/3.17/3.19
+# For Alpine 3.16/3.17/3.19:
+FROM alpine:3.19
 
 # Download and add the NGINX signing keys:
 RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub \
@@ -2210,7 +2208,7 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
 ```dockerfile
 # syntax=docker/dockerfile:1
 # For Alpine 3.16/3.17/3.19:
-FROM alpine:3.16/3.17/3.19
+FROM alpine:3.19
 
 # Download and add the NGINX signing keys:
 RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub \

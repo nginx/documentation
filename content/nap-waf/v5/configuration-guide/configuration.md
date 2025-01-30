@@ -791,8 +791,6 @@ To enable mTLS in NGINX, you need to perform the following steps:
     
 ## Brute Force Attack Preventions
 
-### Overview
-
 Brute force attacks are attempts to break in to secured areas of a web application by trying exhaustive, 
 systematic, username/password combinations to discover legitimate authentication credentials. 
 To prevent brute force attacks, WAF tracks the number of failed attempts to reach login pages 
@@ -839,7 +837,7 @@ if failed logins reached a maximum threshold.
 }
 
 ```
-### brute-force-attack-preventions fields description
+### Brute force attack fields description
 
     bruteForceProtectionForAllLoginPages:
           When enabled, enables Brute Force Protection for all configured login URLs.
@@ -850,9 +848,6 @@ if failed logins reached a maximum threshold.
         action:
             Specifies action that is applied when the defined thresholds ( failedLoginAttemptsRateReached) is reached.
             - **alarm**: The system will log the login attempt.
-
-        detectDistributedBruteForceAttack:
-            When enabled, the system detects distributed brute force attacks.
 
         failedLoginAttemptsRateReached:
             After configured threshold (number of failed login attempts within measurementPeriod) defined action will be applied for the next login attempt.           
@@ -971,7 +966,6 @@ if failed logins reached a maximum threshold.
 
 This table summarizes the nginx.conf directives for NGINX App Protect WAF functionality.
 
-{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
 |Directive Name | Syntax | Functionality | nginx.conf Contexts | Example |
 | ---| ---| ---| ---| --- |
 |load_module | load_module <library_file_path> | NGINX directive to load the App Protect module. It must be invoked with the App Protect library path | Global | load_module modules/ngx_http_app_protect_module.so |
@@ -981,7 +975,6 @@ This table summarizes the nginx.conf directives for NGINX App Protect WAF functi
 |app_protect_security_log_enable | app_protect_security_log_enable on &#124; off | Whether to enable the App Protect per-request log at the respective context. | HTTP, Server, Location | app_protect_security_log_enable on |
 |app_protect_security_log | app_protect_security_log <file_path> <destination> | Specifies the per-request logging: what to log and where | HTTP, Server, Location | app_protect_security_log /config/waf/log_illegal.tgz syslog:localhost:522 |
 |app_protect_custom_log_attribute | app_protect_custom_log_attribute <key_value> | Specifies the assigned location/server/http dimension of each request. | HTTP, Server, Location | app_protect_custom_log_attribute ‘environment' 'env1' |
-{{</bootstrap-table>}}
 
 #### Failure Mode
 
