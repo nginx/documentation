@@ -73,6 +73,7 @@ Regularly rebuild your compiler image and recompile security policies to ensure 
     # non-root default user (UID 101)
     USER nginx
     ```
+{{< note >}}The user can upgrade or downgrade one of the Signatures by specifying a specific version, for example: app-protect-attack-signatures-2020.04.30.{{< /note >}}
 
 You can use the Docker registry API to list the available image tags.
 Replace `<path-to-your-nginx-repo.key>` with the location of your client key and `<path-to-your-nginx-repo.crt>` with the location of your client certificate. The optional `jq` command is used to format the JSON output for easier reading and requires the [jq](https://jqlang.github.io/jq/) JSON processor to be installed.
@@ -185,25 +186,6 @@ docker run \
  waf-compiler-<version-tag>:custom \
  -dump -bundle $(pwd)/compiled_policy.tgz
 ```
-
----
-
-## Update App Protect Signatures
-
-
----
-
-### Update Attack Signatures
-
-
----
-
-### Update Threat Campaigns
-
-
----
-
-### Update Bot Signatures
 
 ---
 
