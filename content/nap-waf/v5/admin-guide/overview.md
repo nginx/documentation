@@ -1,11 +1,10 @@
 ---
-description: This guide explains how to deploy F5 NGINX App Protect WAF v5.
-docs: DOCS-1362
-doctypes:
-- task
 title: NGINX App Protect WAF Administration Guide
-toc: true
 weight: 100
+toc: true
+type: how-to
+product: NAP-WAF
+docs: DOCS-1362
 ---
 
 ## Introduction
@@ -35,7 +34,7 @@ NGINX App Protect WAF v5 supports the following operating systems:
 
 | Distribution | Version             |
 | ------------ | ------------------- |
-| Alpine       | 3.17                |
+| Alpine       | 3.17, 3.19          |
 | Debian       | 11, 12              |
 | Ubuntu       | 20.04, 22.04, 24.04 |
 | Amazon Linux | 2023                |
@@ -63,7 +62,11 @@ NGINX App Protect WAF v5 supports a range of deployment scenarios to meet variou
 
 NGINX App Protect WAF v5 enhances deployment speed through the pre-compilation of security policies and logging profiles into bundle files.
 
-Use the [NGINX App Protect WAF Compiler]({{< relref "/nap-waf/v5/admin-guide/compiler.md" >}}) to transform security policies and logging profiles from JSON format into a consumable bundle files.
+Use the [NGINX App Protect WAF Compiler]({{< ref "/nap-waf/v5/admin-guide/compiler.md" >}}) to transform security policies and logging profiles from JSON format into a consumable bundle files.
+
+For signature updates, read the [Update App Protect Signatures]({{< ref "/nap-waf/v5/admin-guide/compiler.md#update-app-protect-signatures" >}}) section of the compiler documentation.
+
+---
 
 ## Transitioning from NGINX App Protect WAF v4 to v5
 
@@ -98,6 +101,7 @@ We recommend that you deploy the NGINX App Protect WAF v5 in a staging environme
 1. Restart the deployment if it has already been initiated. Additionally, restart NGINX if utilizing the VM + containers deployment type.  After the migrations, check that the NGINX process is running in the NGINX error log and there are no issues.
 
 
+---
 
 ## Troubleshooting and FAQs
 

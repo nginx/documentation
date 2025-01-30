@@ -1,17 +1,19 @@
 ---
-title: "Upgrade NGINX App Protect WAF on Managed Instances"
-description: "How to Upgrade F5 NGINX App Protect WAF on managed NGINX instances"
+title: Upgrade NGINX App Protect WAF on Managed Instances
 weight: 600
 toc: true
-tags: [ "NGINX Management Suite" ]
-docs: "DOCS-1640"
+type: how-to
+product: NAP-WAF
+docs: DOCS-1640
 ---
 
 ## Overview
 
 Learn how to upgrade F5 NGINX App Protect WAF on your managed NGINX instances using NGINX Instance Manager. This guide covers the steps to update both the NGINX Management Suite server and NGINX App Protect on the data plane, ensuring your security policies and configurations are up-to-date.
 
-Before starting, confirm that your data plane has the latest NGINX Agent compatible with NGINX App Protect. Also, verify that your NGINX Management Suite server has the [WAF compiler installed]({{< relref "/nim/nginx-app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}). If you're updating the WAF compiler, simply upload the NGINX App Protect WAF certificate and key to NGINX Management Suite following the instructions to [Automatically Download and Install New WAF Compiler]({{< relref "/nim/nginx-app-protect/setup-waf-config-management.md#automatically-download-and-install-new-waf-compiler" >}}).
+Before starting, confirm that your data plane has the latest NGINX Agent compatible with NGINX App Protect. Also, verify that your NGINX Management Suite server has the [WAF compiler installed]({{< relref "/nim/nginx-app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}). If you're updating the WAF compiler, simply upload the NGINX App Protect WAF certificate and key to NGINX Management Suite following the instructions to [Automatically Download and Install New WAF Compiler]({{< relref "/nim/nginx-app-protect/setup-waf-config-management.md#automatically-download-and-install-new-waf-compiler" >}}). The compiler version may not be greater than the enforcer one.
+
+if you're updating the WAF enforcer, make sure that its major version is the same as of the WAF compiler and the minor version is greater than the compiler's.
 
 ## Upgrade WAF Compiler on NGINX Management Suite
 
