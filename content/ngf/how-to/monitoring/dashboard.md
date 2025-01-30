@@ -30,3 +30,30 @@ The dashboard will look like this:
 {{< img src="/ngf/img/nginx-plus-dashboard.png" alt="">}}
 
 {{< note >}} The [API](https://nginx.org/en/docs/http/ngx_http_api_module.html) used by the dashboard for metrics is also accessible using the `/api` path. {{< /note >}}
+
+### Configure dashboard access through NginxProxy
+
+To allow access to the Nginx Plus dashboard from different sources than the default `127.0.0.1`, we can use the NginxProxy resource
+to allow access to other IPAddresses or CIDR blocks.
+
+The following NginxProxy configuration allows access to the Nginx Plus dashboard from the IPAddresses `127.0.0.3` and 
+`25.0.0.3` and the CIDR block `27.0.0.1/32`:
+
+```yaml
+apiVersion: gateway.nginx.org/v1alpha1
+kind: NginxProxy
+metadata:
+   name: ngf-proxy-config
+spec:
+   nginxPlus:
+      allowedAddresses:
+         - type: IPAddress
+           value: 127.0.0.3
+         - type: IPAddress
+           value: 25.0.0.3
+         - type: CIDR
+           value: 27.0.0.1/32
+```
+
+For more information on configuring the NginxProxy resource, visit our [data plane configuration]({{< ref "data-plane-configuration.md" >}}) document
+which explains how to either configure an NginxProxy resource on install, manually create an NginxProxy resource, or edit an existing NginxProxy resource. 
