@@ -84,14 +84,15 @@ issue lifecycle:
 - The owner assigns one or more [labels](https://github.com/nginxinc/oss-docs/issues/labels) to the issue
 - The owner, in collaboration with the community member, determines what milestone to attach to an issue. They may be milestones correspond to product releases
 
-## Content edited elsewhere
+## Additional NGINX documentation
 
-This repository does not include all documentation available at https://docs.nginx.com. Other relevant repositories include:
+This repository does not include all of the source content for the NGINX documentation. Other relevant repositories include:
 
-- [NGINX Open Source](https://github.com/nginx/nginx)
-- [NGINX Unit](https://github.com/nginx/unit)
-- [NGINX Ingress Controller](https://github.com/nginxinc/kubernetes-ingress/)
-- [NGINX Gateway Fabric](https://github.com/nginxinc/nginx-gateway-fabric)
+- [NGINX Open Source](https://github.com/nginx/nginx) - source for [NGINX changelog](https://nginx.org/en/CHANGES)
+- [nginx.org](https://github.com/nginx/nginx.org) - source for https://nginx.org
+- [NGINX Unit](https://github.com/nginx/unit) - source for https://unit.nginx.org
+- [NGINX Ingress Controller](https://github.com/nginxinc/kubernetes-ingress/) - source for https://docs.nginx.com/nginx-ingress-controller
+- [NGINX Agent](https://github.com/nginx/agent) - source for https://docs.nginx.com/nginx-agent
 
 In those repositories, you can find documentation source code in the `docs` or `site` subdirectories.
 
