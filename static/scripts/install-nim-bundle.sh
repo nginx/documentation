@@ -118,14 +118,14 @@ fi
 createNginxMgmtFile(){
   # Check if the mgmt block exists in the file
     if grep -Eq '^[[:space:]]*mgmt' "/etc/nginx/nginx.conf"; then
-        printf "nginx management found, skipping adding nginx mgmt block"
+        printf "Nginx 'mgmt' block found, skipping addition of nginx 'mgmt' block"
     elif grep -Eq '^[[:space:]]*#mgmt' "/etc/nginx/nginx.conf"; then
-        printf "nginx management block disabled, enabling mgmt block"
+        printf "Nginx 'mgmt' block disabled, enabling 'mgmt' block"
         sed -i '/#mgmt {/,/#}/d' /etc/nginx/nginx.conf
         # shellcheck disable=SC2059
         printf "${NMS_NGINX_MGMT_BLOCK}" | tee -a /etc/nginx/nginx.conf
     else
-        printf "nginx management block not found, adding mgmt block"
+        printf "Nginx 'mgmt' block not found, adding 'mgmt' block"
         # shellcheck disable=SC2059
         printf  "${NMS_NGINX_MGMT_BLOCK}" | tee -a /etc/nginx/nginx.conf
     fi
@@ -340,7 +340,7 @@ installBundleForDebianDistro() {
       nim_major_version=$(nms-core --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | awk -F. '{print $1}')
       nim_minor_version=$(nms-core --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | awk -F. '{print $1}')
       if [[ $nim_major_version -ge 2 && $nim_minor_version -ge 19 ]]; then
-        echo "Warning: NIM version >=2.19.0 comes with security module installed already. skipping installing security module"
+        echo "Note: NGINX Instance Manager version 2.19.0 or later comes with security monitoring installed. skipping installing security monitoring"
       else
         printf "Installing security module...\n"
         if [ "${NIM_SM_VERSION}" == "latest" ]; then
@@ -538,15 +538,14 @@ printSupportedOS(){
   printf "\n  ubuntu20.04(focal)"
   printf "\n  ubuntu22.04(jammy)"
   printf "\n  ubuntu24.04(noble)"
-  printf "\n  debian11"
-  printf "\n  debian12"
-  printf "\n  centos8(Cent OS 8)"
+  printf "\n  debian11(bullseye)"
+  printf "\n  debian12(bookworm)"
+  printf "\n  centos8(CentOS 8)"
   printf "\n  rhel8(Redhat Enterprise Linux Version 8)"
   printf "\n  rhel9( Redhat Enterprise Linux Version 9)"
   printf "\n  oracle7(Oracle Linux Version 7)"
   printf "\n  oracle8(Oracle Linux Version 8)"
   printf "\n  amzn2(Amazon Linux 2)"
-  printf "\n  "
   exit 0
 }
 
