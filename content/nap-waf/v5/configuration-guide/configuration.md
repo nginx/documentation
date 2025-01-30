@@ -837,64 +837,6 @@ if failed logins reached a maximum threshold.
 }
 
 ```
-### Brute force attack fields description
-
-    bruteForceProtectionForAllLoginPages:
-          When enabled, enables Brute Force Protection for all configured login URLs.
-          When disabled, only brute force configurations for specific login pages are applied in case they exist.
-
-    detectionCriteria:
-          Specifies configuration for detecting distributed brute force attacks.
-        action:
-            Specifies action that is applied when the defined thresholds ( failedLoginAttemptsRateReached) is reached.
-            - **alarm**: The system will log the login attempt.
-
-        failedLoginAttemptsRateReached:
-            After configured threshold (number of failed login attempts within measurementPeriod) defined action will be applied for the next login attempt.           
-
-    loginAttemptsFromTheSameIp:
-          Specifies configuration for detecting brute force attacks from IP Address.
-
-        action:
-            Specifies action that is applied when defined threshold is reached.
-            - **alarm**: The system will log the login attempt.
-            - **alarm-and-blocking-page**: The system will log the login attempt, block the request and send the Blocking page.
-            - **alarm-and-drop**: The system will log the login attempt and reset the TCP connection.
-
-        enabled:
-            When enabled, the system counts failed login attempts from IP Address.
-
-        threshold:
-            After configured threshold (number of failed login attempts from IP Address) defined action will be applied for the next login attempt.
-
-    loginAttemptsFromTheSameUser:
-          Specifies configuration for detecting brute force attacks for Username.
-
-        action:
-            Specifies action that is applied when defined threshold is reached.
-            - **alarm**: The system will log the login attempt.
-
-        enabled:
-            When enabled, the system counts failed login attempts for each Username.
-
-        threshold:
-            After configured threshold (number of failed login attempts for each Username) defined action will be applied for the next login attempt.
-
-    measurementPeriod:
-          Defines detection period (measured in seconds) for distributed brute force attacks.
-
-    preventionDuration:
-          Defines prevention period (measured in seconds) for distributed brute force attacks.
-
-    reEnableLoginAfter:
-          Defines prevention period (measured in seconds) for source-based brute force attacks.
-
-    sourceBasedProtectionDetectionPeriod:
-          Defines detection period (measured in seconds) for source-based brute force attacks.
-
-    url:
-          Reference to the URL used in login URL configuration (policy/login-pages). This login URL is protected by Brute Force Protection feature.
-
 
 ## Custom Dimensions Log Entries
 
