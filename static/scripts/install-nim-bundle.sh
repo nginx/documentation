@@ -15,11 +15,6 @@ if ! cmd=$(command -v "tar") || [ ! -x "$cmd" ]; then
     exit 1
 fi
 
-if ! cmd=$(command -v "wget") || [ ! -x "$cmd" ]; then
-    echo "wget command not found. Install wget to run this script."
-    exit 1
-fi
-
 NGINX_CERT_PATH="/etc/ssl/nginx/nginx-repo.crt"
 NGINX_CERT_KEY_PATH="/etc/ssl/nginx/nginx-repo.key"
 LICENSE_JWT_PATH=""
@@ -401,7 +396,7 @@ installBundleForRPMDistro(){
     fi
     printf "[nginx-plus]\nname=nginx-plus repo\nbaseurl=https://pkgs.nginx.com/plus/$os_type/\$releasever/\$basearch/\nsslclientcert=/etc/ssl/nginx/nginx-repo.crt\nsslclientkey=/etc/ssl/nginx/nginx-repo.key\ngpgcheck=0\nenabled=1" >> /etc/yum.repos.d/nginx-plus.repo
 
-    yum install -y yum-utils wget epel-release ca-certificates
+    yum install -y yum-utils curl epel-release ca-certificates
     yum-config-manager --enable  nginx-stable
     yum-config-manager --enable  nginx-plus
 
@@ -457,7 +452,7 @@ installBundleForRPMDistro(){
     systemctl start clickhouse-server
     check_last_command_status "systemctl start clickhouse-server" $?
 
-    wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nms.repo
+    curl -o /etc/yum.repos.d/nms.repo https://cs.nginx.com/static/files/nms.repo
     check_last_command_status "get -P /etc/yum.repos.d https://cs.nginx.com/static/files/nms.repo" $?
 
     if cat /etc/*-release | grep -iq 'Amazon Linux'; then
@@ -515,9 +510,8 @@ install_nim_online(){
 }
 
 printUsageInfo(){
-  echo "Usage: $0 [-c /path/to/nginx-repo.crt] [-k /path/to/nginx-repo.key] [-p nginx_plus_version] [-s security_module_version] -i [installable_tar_file_path] [-n nginx_oss_version] [-m mode(online/offline)]
-       [-d distribution (ubuntu20.04,ubuntu22.04,ubuntu24.04,debian11,debian12,centos8,rhel8,rhel9,oracle7,oracle8,amzn2)] [-h print help]"
-  printf "\n  -m  <mode> Online/Offline. Controls whether to install from the internet or from a package created using this script. \n"
+  echo "Usage: $0 [-c /path/to/nginx-repo.crt] [-k /path/to/nginx-repo.key] [-p nginx_plus_version] [-s security_module_version] -i [installable_tar_file_path] [-n nginx_oss_version] [-m mode(online/offline)] [-d distribution (ubuntu20.04,ubuntu22.04,ubuntu24.04,debian11,debian12,centos8,rhel8,rhel9,oracle7,oracle8,amzn2)] [-h print help]"
+  printf "\n\n  -m  <mode> online/offline. Controls whether to install from the internet or from a package created using this script. \n"
   printf "\n  -c  /path/to/your/<nginx-repo.crt> file.\n"
   printf "\n  -k  /path/to/your/<nginx-repo.key> file.\n"
   printf "\n  -p  <nginx_plus_version>. Include NGINX Plus version to install as an API gateway. Valid values are 'latest' and specific versions like R32. For a list, see https://docs.nginx.com/nginx/releases/. Supersedes -n.\n"
@@ -533,19 +527,18 @@ printUsageInfo(){
 }
 
 printSupportedOS(){
-  echo "This script can be run on the following operating systems
-       [-d distribution (ubuntu20.04,ubuntu22.04,ubuntu24.04,debian11,debian12,centos8,rhel8,rhel9,oracle7,oracle8,amzn2)] [-h print help]"
-  printf "\n  ubuntu20.04(focal)"
-  printf "\n  ubuntu22.04(jammy)"
-  printf "\n  ubuntu24.04(noble)"
-  printf "\n  debian11(bullseye)"
-  printf "\n  debian12(bookworm)"
-  printf "\n  centos8(CentOS 8)"
-  printf "\n  rhel8(Redhat Enterprise Linux Version 8)"
-  printf "\n  rhel9( Redhat Enterprise Linux Version 9)"
-  printf "\n  oracle7(Oracle Linux Version 7)"
-  printf "\n  oracle8(Oracle Linux Version 8)"
-  printf "\n  amzn2(Amazon Linux 2)"
+  printf "This script can be run on the following operating systems"
+  printf "\n  1. ubuntu20.04(focal)"
+  printf "\n  2. ubuntu22.04(jammy)"
+  printf "\n  3. ubuntu24.04(noble)"
+  printf "\n  4. debian11(bullseye)"
+  printf "\n  5. debian12(bookworm)"
+  printf "\n  6. centos8(CentOS 8)"
+  printf "\n  7. rhel8(Redhat Enterprise Linux Version 8)"
+  printf "\n  8. rhel9( Redhat Enterprise Linux Version 9)"
+  printf "\n  9. oracle7(Oracle Linux Version 7)"
+  printf "\n 10. oracle8(Oracle Linux Version 8)"
+  printf "\n 11. amzn2(Amazon Linux 2)\n"
   exit 0
 }
 
@@ -671,7 +664,7 @@ This action deletes all files in the following directories: /etc/nms , /etc/ngin
   fi
 }
 
-OPTS_STRING="k:c:m:d:i:s:p:n:hv:t:j:rf:"
+OPTS_STRING="k:c:m:d:i:s:p:n:hv:t:j:rf:l"
 while getopts ${OPTS_STRING} opt; do
   case ${opt} in
     c)
