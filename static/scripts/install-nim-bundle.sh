@@ -474,6 +474,32 @@ installBundleForRPMDistro(){
     echo "Restarting NGINX Instance Manager"
     systemctl restart nms
 
+    if [ "${USE_SM_MODULE}" == "true" ]; then
+      nim_major_version=$(nms-core --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | awk -F. '{print $1}')
+      nim_minor_version=$(nms-core --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | awk -F. '{print $1}')
+      if [[ $nim_major_version -ge 2 && $nim_minor_version -ge 19 ]]; then
+        echo "Note: NGINX Instance Manager version 2.19.0 or later comes with security monitoring installed. skipping installing security monitoring"
+      else
+        printf "Installing security module...\n"
+        if [ "${NIM_SM_VERSION}" == "latest" ]; then
+          yum install -y nms-sm
+          check_last_command_status "yum install -y nms-sm" $?
+        else
+          sm_pkg_version=$(findVersionForPackage "nms-sm" "${NIM_SM_VERSION}")
+          cmd_status=$?
+          if [ $cmd_status -ne 0 ]; then
+             echo "Package nms-sm with version ${NIM_SM_VERSION} not found"
+             exit $cmd_status
+          fi
+          yum install -y nms-sm="${sm_pkg_version}"
+          check_last_command_status "yum install -y nms-sm=${NIM_SM_VERSION}" $?
+        fi
+        systemctl restart nms
+        sleep 5
+        systemctl restart nginx
+        systemctl start nms-sm
+    fi
+
     sleep 5
 
     echo "Restarting nginx API gateway"
@@ -699,6 +725,11 @@ while getopts ${OPTS_STRING} opt; do
       ;;
     m)
       MODE="${OPTARG}"
+      if [[ "${MODE}" != "online" || "${MODE}" != "offline" ]]; then
+          echo "invalid mode ${MODE}"
+          echo "supported values for mode are 'online' or 'offline'"
+          exit 1
+      fi
       ;;
     d)
       TARGET_DISTRIBUTION=${OPTARG}
