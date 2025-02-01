@@ -724,7 +724,7 @@ while getopts ${OPTS_STRING} opt; do
       ;;
     m)
       MODE="${OPTARG}"
-      if [[ "${MODE}" != "online" || "${MODE}" != "offline" ]]; then
+      if [[ "${MODE}" != "online" && "${MODE}" != "offline" ]]; then
           echo "invalid mode ${MODE}"
           echo "supported values for mode are 'online' or 'offline'"
           exit 1
