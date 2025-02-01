@@ -498,10 +498,9 @@ installBundleForRPMDistro(){
         sleep 5
         systemctl restart nginx
         systemctl start nms-sm
+      fi
     fi
-
     sleep 5
-
     echo "Restarting nginx API gateway"
     systemctl restart nginx
 }
