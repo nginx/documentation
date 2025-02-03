@@ -331,9 +331,10 @@ installBundleForDebianDistro() {
   debian_install_nginx
   debian_install_clickhouse
   debian_install_nim
+  echo "security module installation opted : ${USE_SM_MODULE}"
   if [ "${USE_SM_MODULE}" == "true" ]; then
       nim_major_version=$(nms-core --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | awk -F. '{print $1}')
-      nim_minor_version=$(nms-core --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | awk -F. '{print $1}')
+      nim_minor_version=$(nms-core --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | awk -F. '{print $2}')
       if [[ $nim_major_version -ge 2 && $nim_minor_version -ge 19 ]]; then
         echo "Note: NGINX Instance Manager version 2.19.0 or later comes with security monitoring installed. skipping installing security monitoring"
       else
