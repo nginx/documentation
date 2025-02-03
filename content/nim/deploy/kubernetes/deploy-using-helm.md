@@ -104,7 +104,7 @@ The `values.yaml` file customizes the Helm chart installation without editing th
 1. Create a `values.yaml` file similar to this example:
 
     - In the `imagePullSecrets` section, add the credentials for your private Docker registry.
-    - Change the Version tag to the version of NGINX Instance Manager you would like to install. See "Install the chart" below for versions.
+    - Change the version tag to the version of NGINX Instance Manager you would like to install. See "Install the chart" below for versions.
 
     {{< see-also >}} For more on creating a secret, see Kubernetes [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/). {{</ see-also >}}
 
