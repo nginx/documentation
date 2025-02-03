@@ -1533,7 +1533,7 @@ Opaque tokens are supported out-of-the-box with the API Connectivity Manager OAu
 ```bash
 POST https://192.0.2.4/my/test/api
 HEADERS:
-  Authorization: 'Bearer _0XBPWQQ_1ff4199b-57c3-4b26-905c-3e95fc8cd836'
+  Authorization: 'Bearer <OAuth 2 token>'
 ```
 
 ```bash

@@ -20,7 +20,6 @@ When configuring NGINX App Protect WAF, `app_protect_enable` should always be en
 
 ## Supported Security Policy Features
 
-{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
 |Protection Mechanism | Description |
 | ---| --- |
 |[Attack Signatures](#attack-signatures-overview) | Default policy covers all the OWASP top 10 attack patterns enabling signature sets detailed in a section below. The user can disable any of them or add other sets. |
@@ -39,8 +38,7 @@ When configuring NGINX App Protect WAF, `app_protect_enable` should always be en
 |[Deny and Allow IP lists](#deny-and-allow-ip-lists) | Manually define denied & allowed IP addresses as well as IP addresses to never log. |
 |[XFF headers & trust](#xff-headers-and-trust) | Disabled by default. User can enable it and optionally add a list of custom XFF headers. |
 |[gRPC Protection](#grpc-protection-for-unary-traffic) | gRPC content profile detects malformed content, parses well-formed content, and extracts the text fields for detecting attack signatures and disallowed meta-characters. In addition, it enforces size restrictions and prohibition of unknown fields. The Interface Definition Language (IDL) files for the gRPC API must be attached to the profile. gRPC protection can be on [unary](#grpc-protection-for-unary-traffic) or [bidirectional](#grpc-protection-for-bidirectional-streaming) traffic.|
-{{</bootstrap-table>}}
-
+|[Brute Force Attack Preventions](#brute-force-attack-preventions) | Configure brute-force-attack-preventions parameters to secured areas of a web application from brute force attacks.|}
 
 ### Disallowed File Types
 {{< include "nap-waf/config/common/disallowed-file-types.md" >}}
@@ -653,6 +651,55 @@ claims['address'] = "{ \"address\": { .... } }" # JSON structs can be accessed u
 ### Other References
 {{< include "nap-waf/config/common/json-web-tokens-other-references.md" >}}
 
+## Brute Force Attack Preventions
+
+### Overview
+
+Brute force attacks are attempts to break in to secured areas of a web application by trying exhaustive, 
+systematic, username/password combinations to discover legitimate authentication credentials. 
+To prevent brute force attacks, WAF tracks the number of failed attempts to reach login pages 
+with enforced brute force protection. When brute force patterns are detected, 
+the WAF policy considers it to be an attack if the failed logon rate increased significantly or 
+if failed logins reached a maximum threshold.
+
+### Brute force policy example
+
+```json
+{
+    "policy": {
+        "name": "BruteForcePolicy",
+        "template": {
+            "name": "POLICY_TEMPLATE_NGINX_BASE"
+        },
+        "applicationLanguage": "utf-8",
+        "enforcementMode": "blocking",
+        "brute-force-attack-preventions" : [
+            {
+               "bruteForceProtectionForAllLoginPages" : true,
+               "detectionCriteria" : {
+                  "action" : "alarm",
+                  "failedLoginAttemptsRateReached" : 100
+               },
+               "loginAttemptsFromTheSameIp" : {
+                  "action" : "alarm",
+                  "enabled" : true,
+                  "threshold" : 20
+               },
+               "loginAttemptsFromTheSameUser" : {
+                  "action" : "alarm",
+                  "enabled" : true,
+                  "threshold" : 3
+               },
+               "measurementPeriod" : 900,
+               "preventionDuration" : "3600",
+               "reEnableLoginAfter" : 3600,
+               "sourceBasedProtectionDetectionPeriod" : 3600
+            }
+        ]
+    }
+}
+
+```
 
 ## Custom Dimensions Log Entries
 

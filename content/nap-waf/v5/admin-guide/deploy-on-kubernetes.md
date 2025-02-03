@@ -1,12 +1,10 @@
 ---
-description: This guide explains how to deploy F5 NGINX App Protect WAF v5 release in
-  a Kubernetes environment.
-docs: DOCS-1366
-doctypes:
-- task
 title: Deploying NGINX App Protect WAF on Kubernetes
+weight: 300
 toc: true
-weight: 400
+type: how-to
+product: NAP-WAF
+docs: DOCS-1366
 ---
 
 ## Prerequisites
