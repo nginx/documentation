@@ -34,16 +34,21 @@ The `PREFIX` argument specifies the repo name in your private container registry
 
 <span id="amazon-eks"></span>
 ## Creating an Amazon EKS Cluster
-You can create an Amazon EKS cluster using the AWS Management Console, the AWS CLI, or the `eksctl` command line utility. This guide covers the `eksctl` command as it is the simplest option. 
+You can create an Amazon EKS cluster with:
+- the AWS Management Console
+- the AWS CLI
+- the `eksctl` command line utility. 
 
-1. Use the instructions in the [eksctl.io documentation](https://eksctl.io/installation/) to install or update the `eksctl` command.
+This guide covers the `eksctl` command as it is the simplest option. 
+
+1. Follow the instructions in the [eksctl.io documentation](https://eksctl.io/installation/) to install or update the `eksctl` command.
 
 2. Create an Amazon EKS cluster by following the instructions in the [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/getting-started-eksctl.html). Select the <span style="white-space: nowrap; font-weight:bold;">Managed nodes – Linux</span> option for each step. Note that the <span style="white-space: nowrap;">`eksctl create cluster`</span> command in the first step can take ten minutes or more.
 
 <span id="amazon-ecr"></span>
 ## Pushing the NGINX Plus Ingress Controller Image to AWS ECR
 
-This step is only required if you do not plan on using the prebuilt NGINX Open Source image.
+This step is only required if you do not plan to use the prebuilt NGINX Open Source image.
 
 1. Use the [AWS documentation](https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-create.html) to create a repository in the Amazon Elastic Container Registry (ECR). In Step 4 of the AWS instructions, name the repository <span style="white-space: nowrap; font-weight:bold;">nginx-plus-ic</span> as that is what we use in this guide. 
 
@@ -60,7 +65,7 @@ This step is only required if you do not plan on using the prebuilt NGINX Open S
    ```shell
    docker tag <registry/image>:edge <aws_account_id>.dkr.ecr.<aws-region-code>.amazonaws.com/<ecr_repo>:edge
    ```
-   - `<registry/image>` is the repo name you specified with the `PREFIX` parameter to the <span style="white-space: nowrap;">`make` `container`</span> command (see [Prerequisites](#prereqs)). In this guide it is <span style="white-space: nowrap;">`nginx/nginx-plus-ingress`</span>.
+   - `<registry/image>` is the repo name you set with the `PREFIX` parameter to the <span style="white-space: nowrap;">`make` `container`</span> command (see [Prerequisites](#prereqs)). In this guide it is <span style="white-space: nowrap;">`nginx/nginx-plus-ingress`</span>.
    - `<ecr_repo>` is the AWS ECR repository you created in Step 1 above. In this guide it is called <span style="white-space: nowrap;">`nginx-plus-ic`</span>.
 
    The final command is:
@@ -135,7 +140,7 @@ Apply the manifest <span style="white-space: nowrap; font-weight:bold;">deployme
 
 3. Follow the [instructions](https://github.com/nginx/kubernetes-ingress/tree/main/examples/ingress-resources/complete-example) to deploy our Cafe demo app into the EKS cluster. It will be load balanced by your NGINX Plus Ingress Controller.
    * In Step 1 of deploying the demo app, save the public IP address into the `IC_IP` shell variable. Set `IC_HTTPS_PORT` to 443.
-   * Note that the `kubectl` commands are relative to the `deployment/examples/ingress-resources/complete-example` directory of the [kubernetes-ingress](https://github.com/nginx/kubernetes-ingress) repository.
+   * The `kubectl` commands are relative to the <span style="white-space: nowrap; font-weight:bold;">deployment/examples/ingress-resources/complete-example</span> directory of the [kubernetes-ingress](https://github.com/nginx/kubernetes-ingress) repository.
    * Run the `curl` command listed in the instructions. It will access the demo app and populate the NGINX Plus Ingress Controller logs.
 
 4. Run the following commands to check if the PROXY Protocol is enabled: 
