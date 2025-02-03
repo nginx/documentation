@@ -10,59 +10,60 @@ toc: true
 weight: 400
 ---
 
-This guide explains how to use the NGINX Open Source or F5 NGINX Plus Ingress Controller for Kubernetes as the Ingress controller for a Kubernetes cluster hosted in the Amazon Elastic Kubernetes Service (EKS).
+This guide explains how to use NGINX Open Source or F5 NGINX Plus Ingress Controller for Amazon Elastic Kubernetes Services (EKS).
 
-**Note:** The instructions in this document apply to both the NGINX and NGINX Plus Ingress Controllers for Kubernetes. For ease of reading, the document refers to NGINX Plus only.
+**Note:** These instructions apply to both the NGINX and NGINX Plus Ingress Controllers for Kubernetes. For ease of reading, the document refers to NGINX Plus only.
 
 
 <span id="prereqs"></span>
 ## Prerequisites
 
 - [An AWS account](https://docs.aws.amazon.com/AmazonSimpleDB/latest/DeveloperGuide/AboutAWSAccounts.html).
-- A prebuilt image of the NGINX or NGINX Plus Ingress Controller for Kubernetes. For NGINX Open Source, NGINX provides a prebuilt image on DockerHub, or you can build your own with our instructions. For NGINX Plus, you must build an image.
+- A prebuilt image of the NGINX or NGINX Plus Ingress Controller for Kubernetes. 
+  - For NGINX Open Source you can use the pre-built image [on DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/). You can also build your own image.
+  - For NGINX Plus, you must build an image.
 
-  **Note:** If you build the image, do not push it to a public registry.  Run the following <span style="white-space: nowrap;">`make` `container`</span> command. Include the `PREFIX` argument to specify the repo in your private registry where the container is created; this also sets the name that you can later use to reference the image, instead of its numerical ID. In this example we set it to <span style="white-space: nowrap; font-weight:bold;">nginx/nginx-plus-ingress</span>.
-
+**Note:** If you build the image, do not push it to a public registry.  Run the <span style="white-space: nowrap;">`make` `container`</span> command below.
 
 ```shell
 make container DOCKERFILE=DockerfileForPlus PREFIX=nginx/nginx-plus-ingress
 ```
 
+The `PREFIX` argument specifies the repo name in your private container registry. In this example, we set it to <span style="white-space: nowrap; font-weight:bold;">nginx/nginx-plus-ingress</span>. You can later use that name to reference the image instead of its numerical ID.
+   
+
 <span id="amazon-eks"></span>
 ## Creating an Amazon EKS Cluster
-In this guide we’re using the `eksctl` command to create an Amazon EKS cluster (you can also use the AWS Management Console or AWS CLI).
+You can create an Amazon EKS cluster using the AWS Management Console, the AWS CLI, or the `eksctl` command line utility. This guide covers the `eksctl` command as it is the simplest option. 
 
-1. If the `eksctl` command is not already installed, or to make sure you have the latest version, follow the instructions in the [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html#installing-eksctl).
+1. Use the instructions in the [eksctl.io documentation](https://eksctl.io/installation/) to install or update the `eksctl` command.
 
-2. Create an Amazon EKS cluster by following the instructions on the **eksctl** tab in the [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html). In Step 1 of those instructions, use the <span style="white-space: nowrap;">`eksctl` `create` `cluster`</span> command shown in the **Cluster with Linux‑only workloads** section.
-
-
+2. Create an Amazon EKS cluster by following the instructions in the [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/getting-started-eksctl.html). Select the <span style="white-space: nowrap; font-weight:bold;">Managed nodes – Linux</span> option for each step. Note that the <span style="white-space: nowrap;">`eksctl create cluster`</span> command in the first step can take ten minutes or more.
 
 <span id="amazon-ecr"></span>
 ## Pushing the NGINX Plus Ingress Controller Image to AWS ECR
 
-1. Create a repository in the Amazon Elastic Container Registry (ECR) using the instructions in the [AWS documentation](https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-create.html). In this guide, we name the repository <span style="white-space: nowrap; font-weight:bold;">nginx-plus-ic</span> in Step 5 of the AWS instructions.
+This step is only required if you do not plan on using the prebuilt NGINX Open Source image.
 
-2. Run the following AWS CLI command. It generates an authorization token for your AWS ECR registry and outputs the <span style="white-space: nowrap;">`docker` `login`</span> command for logging into the registry. For details about the command, see the [AWS documentation](https://docs.aws.amazon.com/cli/latest/reference/ecr/get-login.html).
+1. Use the [AWS documentation](https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-create.html) to create a repository in the Amazon Elastic Container Registry (ECR). In Step 4 of the AWS instructions, name the repository <span style="white-space: nowrap; font-weight:bold;">nginx-plus-ic</span> as that is what we use in this guide. 
+
+2. Run the following AWS CLI command. It generates an auth token for your AWS ECR registry and pipes it into the <span style="white-space: nowrap;">`docker` `login`</span> command. This lets AWS ECR authenticate and authorize the upcoming Docker requests. For details about the command, see the [AWS documentation](https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry_auth.html).
 
    ```shell
-   aws ecr get-login --no-include-email --region <aws_region_code>
+   aws ecr get-login-password --region <aws_region_code> | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<aws_region_code>.amazonaws.com
    ```
-
-3. Run the <span style="white-space: nowrap;">`docker` `login`</span>  command generated in Step 2.
-
-4. Run the following command to apply the tag `edge` to your NGINX Plus Ingress Controller image, where:
-
-   - `<registry/image>` is the value you specified with the `PREFIX` parameter to the <span style="white-space: nowrap;">`make` `container`</span> command you ran to create the NGINX Plus Ingress Controller image (see [Prerequisites](#prereqs)). In this guide it is <span style="white-space: nowrap;">`nginx/nginx-plus-ingress`</span>.
-   - `<aws_account_id>` is your AWS account number. For instructions on retrieving the ID, see the [AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/console_account-alias.html).
    - `<aws_region_code>` is the same region name you specified in Step 2 above.
-   - `<ecr_repo>` is the AWS ECR repository you created in Step 1 above. In this guide it is called <span style="white-space: nowrap;">`nginx-plus-ic`</span>.
+   - `<aws_account_id>` is your AWS account number. For instructions on retrieving the ID, see the [AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/console_account-alias.html).
+
+3. Run the following command to apply the tag `edge` to your NGINX Plus Ingress Controller image:
 
    ```shell
    docker tag <registry/image>:edge <aws_account_id>.dkr.ecr.<aws-region-code>.amazonaws.com/<ecr_repo>:edge
    ```
+   - `<registry/image>` is the repo name you specified with the `PREFIX` parameter to the <span style="white-space: nowrap;">`make` `container`</span> command (see [Prerequisites](#prereqs)). In this guide it is <span style="white-space: nowrap;">`nginx/nginx-plus-ingress`</span>.
+   - `<ecr_repo>` is the AWS ECR repository you created in Step 1 above. In this guide it is called <span style="white-space: nowrap;">`nginx-plus-ic`</span>.
 
-   So in this guide, the command is
+   The final command is:
 
    ```shell
    docker tag nginx/nginx-plus-ingress:edge <aws_account_id>.dkr.ecr.<aws_region_code>.amazonaws.com/nginx-plus-ic:edge
@@ -76,33 +77,31 @@ In this guide we’re using the `eksctl` command to create an Amazon EKS cluster
 
 <span id="ingress-controller"></span>
 ## Installing the NGINX Plus Ingress Controller
-Install your NGINX Plus Ingress Controller image in the Amazon EKS cluster you created in [Creating an Amazon EKS Cluster](#amazon-eks), using the instructions in [our documentation](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/).
+
+Use [our documentation](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/) to install the NGINX Plus Ingress Controller in your Amazon EKS cluster.
+
+Complete the steps up to and including [Confirm NGINX Ingress Controller is running](https://docs.nginx.com/nginx-ingress-controller/installation/installing-nic/installation-with-manifests/#confirm-nginx-ingress-controller-is-running). Next, follow the instructions below to create a Network Load Balancer to route traffic to the NGINX Plus Ingress Controller.
 
 <span id="nlb"></span>
-## Using NLB in Front of the NGINX Plus Ingress Controller
+## Using a Network Load Balancer in Front of the NGINX Plus Ingress Controller
 
-By default, Amazon EKS uses [Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/introduction.html) for Kubernetes services of type `LoadBalancer`. We recommend that you use [Network Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/introduction.html) (NLB) instead, and this section provides instructions for configuring it. We also recommend that you enable the PROXY Protocol for both the NGINX Plus Ingress Controller and your NLB target groups. If you choose not to enable the PROXY protocol, see the [Appendix](#appendix).
+We assume you've cloned the [kubernetes-ingress](https://github.com/nginx/kubernetes-ingress) repository in the previous step.
 
-We assume you performed all the steps in the instructions referenced in [Installing the NGINX Plus Ingress Controller](#ingress-controller), and [built a service for your NGINX Plus Ingress Controller](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/#create-a-service-for-the-ingress-controller-pods). If you created a `LoadBalancer` service, you can either edit its configuration or add a new `LoadBalancer` service. If you created a `NodePort` service, you must add a new `LoadBalancer` service now.
+We need a Kubernetes `LoadBalancer` service to route traffic to the NGINX Plus Ingress Controller. By default, Amazon EKS will create a [Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/introduction.html) for Kubernetes services of type `LoadBalancer`. However, we recommend that you create a [Network Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/introduction.html) (NLB). It operates at the transport layer and is optimized for high performance and low latency. 
+
+We also recommend enabling the PROXY Protocol for both the NGINX Plus Ingress Controller and your NLB target groups. This is used to forward client connection information. If you choose not to enable the PROXY protocol, see the [Appendix](#appendix).
 
 ### Configuring a `LoadBalancer` Service to Use NLB
 
-
-1. In <span style="white-space: nowrap; font-weight:bold;">service/loadbalancer-aws-elb.yaml</span>, add the following annotation to the existing or new `LoadBalancer` service:
-
-   ```yaml
-   service.beta.kubernetes.io/aws-load-balancer-type: nlb
-   ```
-
-2. Run the following command:
+Apply the manifest <span style="white-space: nowrap; font-weight:bold;">deployments/service/loadbalancer-aws-elb.yaml</span> to create a `LoadBalancer` of type NLB:
 
    ```shell
-   kubectl apply -f service/loadbalancer-aws-elb.yaml
+   kubectl apply -f deployments/service/loadbalancer-aws-elb.yaml
    ```
 
 ### Enabling the PROXY Protocol
 
-1. Add the following keys to the <span style="white-space: nowrap; font-weight:bold;">common/nginx-config.yaml</span> config map file:
+1. Add the following keys to the <span style="white-space: nowrap; font-weight:bold;">deployments/common/nginx-config.yaml</span> config map file:
 
    ```yaml
    proxy-protocol: "True"
@@ -110,41 +109,56 @@ We assume you performed all the steps in the instructions referenced in [Install
    set-real-ip-from: "0.0.0.0/0"
    ```
 
-2. Run the following command to update the config map:
+2. Run the following command to update the config map. This will enable the PROXY protocol for the NGINX Plus Ingress Controller:
 
    ```shell
-   kubectl apply -f common/nginx-config.yaml
+   kubectl apply -f deployments/common/nginx-config.yaml
    ```
 
-3. Enable the PROXY Protocol on the target group associated with the NLB created for your `LoadBalancer` service, by performing the steps in the **Enable Proxy Protocol** section of the [AWS documentation](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-target-groups.html#proxy-protocol).
+3. Enable the PROXY Protocol for the target groups linked to the NLB. Follow the steps in the **Enable proxy protocol** section of the [AWS documentation](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/edit-target-group-attributes.html#proxy-protocol) to do this.
 
 
 <span id="testing"></span>
 ## Testing
 
-1. Follow the [instructions](https://github.com/nginxinc/kubernetes-ingress/tree/master/examples/complete-example) for setting up our sample deployment of a demo app load balanced by the NGINX Plus Ingress controller.
-
-2. Navigate in a browser to **<http://cafe.example.com/coffee>** (or issue the `curl` command against that URL).
-
-3. Run the following command to display the name of the running Ingress pod:
+1. Get the DNS name of the NGINX Plus Ingress Controller with the command below. Find the value of the "LoadBalancer Ingress" in the output.
 
    ```shell
-   kubectl get pods -namespace=nginx-ingress
+   kubectl describe svc nginx-ingress --namespace=nginx-ingress
    ```
 
-4. Run the following command to display the logs from the NGINX Plus Ingress Controller, where `<pod_name>` is the name you learned in the previous step. If the logged IP address matches the IP address from which you accessed **<http://cafe> .example.com/coffee**, the PROXY Protocol is enabled.
+2. Resolve the DNS name into an IP address using `nslookup`:
 
    ```shell
-   kubectl logs nginx-ingress-<pod_name> -n nginx-ingress
+   nslookup <dns-name>
    ```
+
+3. Follow the [instructions](https://github.com/nginx/kubernetes-ingress/tree/main/examples/ingress-resources/complete-example) to deploy our Cafe demo app into the EKS cluster. It will be load balanced by your NGINX Plus Ingress Controller.
+   * In Step 1 of deploying the demo app, save the public IP address into the `IC_IP` shell variable. Set `IC_HTTPS_PORT` to 443.
+   * Note that the `kubectl` commands are relative to the `deployment/examples/ingress-resources/complete-example` directory of the [kubernetes-ingress](https://github.com/nginx/kubernetes-ingress) repository.
+   * Run the `curl` command listed in the instructions. It will access the demo app and populate the NGINX Plus Ingress Controller logs.
+
+4. Run the following commands to check if the PROXY Protocol is enabled: 
+   1. Display the name of the running pod of the NGINX Plus Ingress Controller:
+
+      ```shell
+      kubectl get pods -n nginx-ingress
+      ```
+   2. Display the logs from the NGINX Plus Ingress Controller. Replace `<pod_name>` with the name from the previous step. If the logged IP address matches the one you used to access the demo app, then the PROXY Protocol is enabled.
+
+      ```shell
+      kubectl logs <pod_name> -n nginx-ingress
+      ```
 
 
 <span id="appendix"></span>
 ## Appendix: Disabling the PROXY Protocol
 
-If you choose to disable the PROXY Protocol, perform these steps.
+If you want to disable the PROXY Protocol, perform these steps.
 
-1. If the <span style="white-space: nowrap; font-weight:bold;">common/nginx-config.yaml</span> config map file includes these keys, remove them:
+1. Disable the PROXY Protocol for the target groups linked to the NLB. Undo the steps in the **Enable proxy protocol** section of the [AWS documentation](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/edit-target-group-attributes.html#proxy-protocol).
+
+2. Remove the following keys from <span style="white-space: nowrap; font-weight:bold;">deployments/common/nginx-config.yaml</span> the config map file:
 
    ```yaml
    proxy-protocol: "True"
@@ -152,14 +166,13 @@ If you choose to disable the PROXY Protocol, perform these steps.
    set-real-ip-from: "0.0.0.0/0"
    ```
 
-
 2. Run the following command to update the config map:
 
    ```shell
-   kubectl apply -f common/nginx-config.yaml
+   kubectl apply -f deployments/common/nginx-config.yaml
    ```
 
-3. In the <span style="white-space: nowrap; font-weight:bold;">service/loadbalancer-aws-elb.yaml</span> service file, add the `externalTrafficPolicy` key in the `spec` section and set it to `Local`, as in this example:
+3. In the <span style="white-space: nowrap; font-weight:bold;">deployments/service/loadbalancer-aws-elb.yaml</span> service file, add the `externalTrafficPolicy` key in the `spec` section. Set it to `Local`, as in this example:
 
    ```yaml
    apiVersion: v1
@@ -190,10 +203,9 @@ If you choose to disable the PROXY Protocol, perform these steps.
 4. Run the following command to update the service:
 
    ```shell
-   kubectl apply -f service/loadbalancer-aws-elb.yaml
+   kubectl apply -f deployments/service/loadbalancer-aws-elb.yaml
    ```
 
 ### Revision History
 
-- Version 1 (March 2020) – Initial version (NGINX Plus Release 20)
-
+- Version 2 (February 2025) – Initial version (NGINX Plus Release 20)
