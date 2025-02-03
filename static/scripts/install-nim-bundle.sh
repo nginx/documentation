@@ -541,12 +541,13 @@ printUsageInfo(){
   printf "\n  -k  /path/to/your/<nginx-repo.key> file.\n"
   printf "\n  -p  <nginx_plus_version>. Include NGINX Plus version to install as an API gateway. Valid values are 'latest' and specific versions like R32. For a list, see https://docs.nginx.com/nginx/releases/. Supersedes -n.\n"
   printf "\n  -n  <nginx_oss_version>. Provide NGINX OSS version to install as an API gateway. Valid values are 'latest' or a specific version like 1.27.1. Ignored if you use -p to specify an NGINX Plus version. For a list, see https://nginx.org/en/download.html .\n"
-  printf "\n  -s  <security-module-version>. Installs a security module along with NGINX Instance Manager. You can specify latest or a version specified in https://docs.nginx.com/nginx-management-suite/security/releases/release-notes/.\n"
+  printf "\n  -s  <security-module-version>. Installs a security module along with NGINX Instance Manager. You can specify latest or a version specified in https://docs.nginx.com/nginx-instance-manager/monitoring/security-monitoring/releases/release-notes/.\n"
   printf "\n  -i  <installable_tar_file_path>. Include the path with an archive file to support NGINX Instance Manager installation. Requires -m Offline."
   printf "\n  -d  <distribution>. Include the label of a distribution. Requires -m Offline. This creates a file with NGINX Instance Manager dependencies and NGINX Instance Manager install packages for the specified distribution.\n"
   printf "\n  -v  <NIM_VERSION>. NGINX Instance Manager version to install/package.\n"
-  printf "\n  -j  <JWT_TOKEN_FILE_PATH>. Path to the JWT token file used for license and usage consumption reporting.'\n"
+  printf "\n  -j  <JWT_TOKEN_FILE_PATH>. Path to the JWT token file used for license and usage consumption reporting.\n"
   printf "\n  -r  To uninstall NGINX Instance Manager and its dependencies. \n"
+  printf "\n  -l  Print supported operating systems.\n"
   printf "\n  -h  Print this help message.\n"
   exit 0
 }
