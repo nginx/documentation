@@ -49,85 +49,9 @@ To deploy NGINX Instance Manager using a Helm chart, you need:
 
 ### Using Docker
 
-#### Configure Docker to access the NGINX Instance Manager public registry
-
-{{< include "nim/docker/docker-registry-login.md" >}}
-
-#### Pull the NGINX Instance Manager images
-You can now pull the necessary images for NGINX Instance Manager from the private registry at `private-registry.nginx.com`.
-
-Replace `<version-tag>` with the specific version you want to use.
-
-{{< note >}} The `latest` tag is not supported. {{< /note >}}
-
-```shell
-docker pull private-registry.nginx.com/nms/apigw:<version-tag>
-docker pull private-registry.nginx.com/nms/core:<version-tag>
-docker pull private-registry.nginx.com/nms/dpm:<version-tag>
-docker pull private-registry.nginx.com/nms/ingestion:<version-tag>
-docker pull private-registry.nginx.com/nms/integrations:<version-tag>
-docker pull private-registry.nginx.com/nms/utility:<version-tag>
-```
-
-If needed, you can push these images to your own private registry.
-
-#### Push images to your private registry
-
-After pulling the images, tag them and upload them to your private registry.
-
-1. Log in to your private registry:
-
-   ```shell
-   docker login <my-docker-registry>
-   ```
-
-2. Tag and push each image. Replace `<my-docker-registry>` with your registry’s path and `<version-tag>` with the version you’re using (for example, `2.17.0`):
-
-   - For the `apigw` image:
-
-     ```shell
-     docker tag private-registry.nginx.com/nms/apigw:<version-tag> <my-docker-registry>/nms/apigw:<version-tag>
-     docker push <my-docker-registry>/nms/apigw:<version-tag>
-     ```
-
-   - For the `core` image:
-
-     ```shell
-     docker tag private-registry.nginx.com/nms/core:<version-tag> <my-docker-registry>/nms/core:<version-tag>
-     docker push <my-docker-registry>/nms/core:<version-tag>
-     ```
-
-   - For the `dpm` image:
-
-     ```shell
-     docker tag private-registry.nginx.com/nms/dpm:<version-tag> <my-docker-registry>/nms/dpm:<version-tag>
-     docker push <my-docker-registry>/nms/dpm:<version-tag>
-     ```
-
-   - For the `ingestion` image:
-
-     ```shell
-     docker tag private-registry.nginx.com/nms/ingestion:<version-tag> <my-docker-registry>/nms/ingestion:<version-tag>
-     docker push <my-docker-registry>/nms/ingestion:<version-tag>
-     ```
-
-   - For the `integrations` image:
-
-     ```shell
-     docker tag private-registry.nginx.com/nms/integrations:<version-tag> <my-docker-registry>/nms/integrations:<version-tag>
-     docker push <my-docker-registry>/nms/integrations:<version-tag>
-     ```
-
-   - For the `utility` image:
-
-     ```shell
-     docker tag private-registry.nginx.com/nms/utility:<version-tag> <my-docker-registry>/nms/utility:<version-tag>
-     docker push <my-docker-registry>/nms/utility:<version-tag>
-     ```
-
 ### Using Helm with a JWT token
 
-If you don't need a private registry, you can use a JWT token as a Docker configuration secret with Helm charts.
+You can use your NGINX JWT as a Docker configuration secret with Helm charts.
 
 Create a Docker registry secret on the cluster, using the JWT token as the username and `none` as the password. The Docker server is `private-registry.nginx.com`.
 
@@ -179,8 +103,8 @@ The `values.yaml` file customizes the Helm chart installation without editing th
 
 1. Create a `values.yaml` file similar to this example:
 
-    - Replace `<my-docker-registry:port>` with your private Docker registry and port (if needed).
     - In the `imagePullSecrets` section, add the credentials for your private Docker registry.
+    - Change the version tag to the version of NGINX Instance Manager you would like to install. See "Install the chart" below for versions.
 
     {{< see-also >}} For more on creating a secret, see Kubernetes [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/). {{</ see-also >}}
 
@@ -190,27 +114,27 @@ The `values.yaml` file customizes the Helm chart installation without editing th
             - name: regcred
         apigw:
             image:
-                repository: <my-docker-registry:port>/nms-apigw
+                repository: private-registry.nginx.com/nms-apigw
                 tag: <version>
         core:
             image:
-                repository: <my-docker-registry:port>/nms-core
+                repository: private-registry.nginx.com/nms-core
                 tag: <version>
         dpm:
             image:
-                repository: <my-docker-registry:port>/nms-dpm
+                repository: private-registry.nginx.com/nms-dpm
                 tag: <version>
         ingestion:
             image:
-                repository: <my-docker-registry:port>/nms-ingestion
+                repository: private-registry.nginx.com/nms-ingestion
                 tag: <version>
         integrations:
             image:
-                repository: <my-docker-registry:port>/nms-integrations
+                repository: private-registry.nginx.com/nms-integrations
                 tag: <version>
         utility:
             image:
-                repository: <my-docker-registry:port>/nms-utility
+                repository: private-registry.nginx.com/nms-utility
                 tag: <version>
     ```
 
@@ -220,36 +144,7 @@ The `values.yaml` file customizes the Helm chart installation without editing th
 
 ---
 
-## Manage network policies
 
-To apply network policies for NGINX Instance Manager, ensure Kubernetes has a [network plugin](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/) installed before the Helm chart installation.
-
-By default, the following network policies will be created in the release namespace:
-
-```shell
-kubectl get netpol -n nms
-```
-
-```text
-NAME           POD-SELECTOR                          AGE
-apigw          app.kubernetes.io/name=apigw          4m47s
-clickhouse     app.kubernetes.io/name=clickhouse     4m47s
-core           app.kubernetes.io/name=core           4m47s
-dpm            app.kubernetes.io/name=dpm            4m47s
-ingestion      app.kubernetes.io/name=ingestion      4m47s
-integrations   app.kubernetes.io/name=integrations   4m47s
-utility        app.kubernetes.io/name=integrations   4m47s
-```
-
-To disable network policies, update the `values.yaml` file:
-
-```yaml
-networkPolicies:
-    # Set this to true to enable network policies for NGINX Instance Manager.
-    enabled: false
-```
-
----
 
 ## Install the chart
 
@@ -339,6 +234,37 @@ helm uninstall --namespace nms nms
 ```
 
 This deletes the `nms` application and all associated Kubernetes resources.
+
+---
+
+## Manage network policies
+
+To apply network policies for NGINX Instance Manager, ensure Kubernetes has a [network plugin](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/) installed before the Helm chart installation.
+
+By default, the following network policies will be created in the release namespace:
+
+```shell
+kubectl get netpol -n nms
+```
+
+```text
+NAME           POD-SELECTOR                          AGE
+apigw          app.kubernetes.io/name=apigw          4m47s
+clickhouse     app.kubernetes.io/name=clickhouse     4m47s
+core           app.kubernetes.io/name=core           4m47s
+dpm            app.kubernetes.io/name=dpm            4m47s
+ingestion      app.kubernetes.io/name=ingestion      4m47s
+integrations   app.kubernetes.io/name=integrations   4m47s
+utility        app.kubernetes.io/name=integrations   4m47s
+```
+
+To disable network policies, update the `values.yaml` file:
+
+```yaml
+networkPolicies:
+    # Set this to true to enable network policies for NGINX Instance Manager.
+    enabled: false
+```
 
 ---
 
