@@ -42,6 +42,10 @@ Using the NGINX One Console you can now:
 - Review the differences between the current and other saved configurations
 - Revert to older configurations as needed
 
+### AI Assistant
+
+In the F5 NGINX One Console, you can now select lines from your configuration files, and then select **Explain with AI**. The NGINX One AI Assistant explains those lines based on the official NGINX documentation.
+
 ## November 7, 2024
 
 ### Certificates
