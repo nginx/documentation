@@ -1,7 +1,9 @@
 ---
 title: NGINX App Protect WAF 5.4
-toc: true
 weight: 870
+toc: true
+type: reference
+product: NAP-WAF
 docs: DOCS-000
 ---
 
@@ -11,7 +13,7 @@ November 19th, 2024
 
 ---
 
-### New features
+## New features
 
 - Added support for Amazon Linux 2023
 - Added support for [readOnlyFileSystem in Kubernetes deployments]({{< relref "/nap-waf/v5/admin-guide/deploy-on-kubernetes.md#configure-read-only-file-systems" >}})
@@ -22,20 +24,20 @@ Please read the [subscription licenses]({{< relref "/solutions/about-subscriptio
 
 ---
 
-### Important notes
+## Important notes
 
 - Alpine 3.16 is no longer supported.
 
 ---
 
-### Resolved issues
+## Resolved issues
 
 - Updated the Go version to 1.23.1
 - Fixed _apt-get update_ warning for Ubuntu 22.04 
 
 ---
 
-### Known issues
+## Known issues
 
 On Ubuntu 24.04, you may receive the following error when uninstalling an old version of NGINX App Protect and installing a newer version:
 
@@ -55,9 +57,9 @@ sudo service nginx restart
 
 ---
 
-### Supported packages
+## Supported packages
 
-#### App Protect Module for NGINX Open Source
+### NGINX Open Source
 
 | Distribution name        | Package file                                                      |
 |--------------------------|-------------------------------------------------------------------|
@@ -74,7 +76,7 @@ sudo service nginx restart
 
 --- 
 
-#### App Protect Module for NGINX Plus
+### NGINX Plus
 
 | Distribution name        | Package file                                                   |
 |--------------------------|----------------------------------------------------------------|

@@ -1,7 +1,9 @@
 ---
 title: NGINX App Protect WAF 5.1
-toc: true
 weight: 900
+toc: true
+type: reference
+product: NAP-WAF
 docs: DOCS-1479
 ---
 
@@ -9,7 +11,9 @@ April 18, 2024
 
 {{< include "nap-waf/upgrade-recompile-warning.md" >}}
 
-### New Features
+---
+
+### New features
 
 In this release, F5 NGINX App Protect WAF supports NGINX Open Source 1.25.4 and NGINX Plus R31 P1.
 
@@ -22,7 +26,17 @@ In this release, F5 NGINX App Protect WAF supports NGINX Open Source 1.25.4 and 
     - **EdDSA**
 - [Time-Based Signature Staging]({{< relref "nap-waf/v5/configuration-guide/configuration.md#time-based-signature-staging" >}})
 
-### Supported Packages
+---
+
+### Resolved issues
+
+- 10219 & 10512 Fixed - Resolved issues related to base64 detection and decoding.
+- 10465 Fixed - Resolved the "header already sent" alert message in the NGINX error log.
+- 10844 Fixed - Resolved an issue ensuring the WAF-enforcer container starts up, even if a local file logging destination is inaccessible.
+
+---
+
+### Supported packages
 
 #### App Protect Module for NGINX Open Source
 
@@ -91,9 +105,3 @@ In this release, F5 NGINX App Protect WAF supports NGINX Open Source 1.25.4 and 
 ##### RHEL 9+
 
 - app-protect-module-plus-31+5.17.0-1.el9.ngx.x86_64.rpm
-
-### Resolved Issues
-
-- 10219 & 10512 Fixed -  Resolved issues related to base64 detection and decoding.
-- 10465 Fixed - Resolved the "header already sent" alert message in the NGINX error log.
-- 10844 Fixed - Resolved an issue ensuring the WAF-enforcer container starts up, even if a local file logging destination is inaccessible.

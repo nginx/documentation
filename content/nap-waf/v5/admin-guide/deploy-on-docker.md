@@ -1,11 +1,10 @@
 ---
-description: This guide explains how to deploy F5 NGINX App Protect WAF v5 release using Docker Compose.
-docs: DOCS-1365
-doctypes:
-- task
 title: Deploying NGINX App Protect WAF on Docker
+weight: 400
 toc: true
-weight: 300
+type: how-to
+product: NAP-WAF
+docs: DOCS-1365
 ---
 
 ## Prerequisites
@@ -209,7 +208,7 @@ In your nginx configuration:
 2. Configure the Enforcer address at the `http` context:
 
     ```nginx
-    app_protect_enforcer_address waf-enforcer:50000;
+    app_protect_enforcer_address 127.0.0.1:50000;
     ```
 
 3. Enable NGINX App Protect WAF on an `http/server/location` context (make sure you only enable NGINX App Protect WAF with `proxy_pass`/`grpc_pass` locations):
@@ -523,11 +522,11 @@ You are ready to [Build the image](#build-image-sub)
 {{< include "nap-waf/setup-docker-registry.md" >}}
 
 #### Download Waf-Enforcer and Waf-Config-mgr Images
-Pull the `waf-enforcer` and `waf-config-mgr` images. Replace `5.2.0` with the actual release version you are deploying. 
+Pull the `waf-enforcer` and `waf-config-mgr` images. Replace `5.4.0` with the actual release version you are deploying. 
 
 ```shell
-docker pull private-registry.nginx.com/nap/waf-enforcer:5.2.0
-docker pull private-registry.nginx.com/nap/waf-config-mgr:5.2.0
+docker pull private-registry.nginx.com/nap/waf-enforcer:5.4.0
+docker pull private-registry.nginx.com/nap/waf-config-mgr:5.4.0
 ```
 
 #### Saving and Transferring Images
@@ -540,13 +539,13 @@ docker pull private-registry.nginx.com/nap/waf-config-mgr:5.2.0
 2. Save the `waf-enforcer` docker image:
 
     ```shell
-    docker save -o waf-enforcer.tar private-registry.nginx.com/nap/waf-enforcer:5.2.0
+    docker save -o waf-enforcer.tar private-registry.nginx.com/nap/waf-enforcer:5.4.0
     ```
 
 3. Save the `waf-config-mgr` docker image:
 
     ```shell
-    docker save -o waf-config-mgr.tar private-registry.nginx.com/nap/waf-config-mgr:5.2.0
+    docker save -o waf-config-mgr.tar private-registry.nginx.com/nap/waf-config-mgr:5.4.0
     ```
 
 4. Transfer the tar files from the online machine to the offline/air-gapped machine:
@@ -602,7 +601,7 @@ In this guide, we have created the following files under `/conf/` directory on t
 
 #### Docker Compose File
 
-Create a `docker-compose.yml` with the following configuration on the offline machine: Replace `5.2.0` with the actual release version you are deploying.
+Create a `docker-compose.yml` with the following configuration on the offline machine: Replace `5.4.0` with the actual release version you are deploying.
 
 ```yaml
 services:
@@ -622,7 +621,7 @@ services:
 
   waf-enforcer:
     container_name: waf-enforcer
-    image: "private-registry.nginx.com/nap/waf-enforcer:5.2.0"
+    image: "private-registry.nginx.com/nap/waf-enforcer:5.4.0"
     environment:
       - ENFORCER_PORT=50000
     volumes:
@@ -633,7 +632,7 @@ services:
 
   waf-config-mgr:
     container_name: waf-config-mgr
-    image: "private-registry.nginx.com/nap/waf-config-mgr:5.2.0"
+    image: "private-registry.nginx.com/nap/waf-config-mgr:5.4.0"
     volumes:
       - app_protect_bd_config:/opt/app_protect/bd_config
       - app_protect_config:/opt/app_protect/config

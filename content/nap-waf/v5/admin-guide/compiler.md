@@ -1,12 +1,10 @@
 ---
-description: This guide describes the steps to build, use, and update the F5 NGINX App
-  Protect WAF v5 Compiler.
-docs: DOCS-1367
-doctypes:
-- task
 title: NGINX App Protect WAF Compiler
-toc: true
 weight: 500
+toc: true
+type: how-to
+product: NAP-WAF
+docs: DOCS-1367
 ---
 
 ## Overview
@@ -22,7 +20,7 @@ The F5 NGINX App Protect WAF v5 Compiler is a tool that compiles security polici
 ## Building Compiler Image
 
 {{< important >}}
-Regularly rebuild your compiler image and recompile security policies to ensure you are using the latest security updates.
+To ensure you are using the latest security updates, it is recommended to regularly rebuild your compiler image with the latest signature packages and recompile security policies.
 {{< /important >}}
 
 1. Download Certificates
@@ -75,6 +73,7 @@ Regularly rebuild your compiler image and recompile security policies to ensure 
     # non-root default user (UID 101)
     USER nginx
     ```
+{{< note >}}The user can upgrade or downgrade one of the Signatures by specifying a specific version, for example: app-protect-attack-signatures-2020.04.30.{{< /note >}}
 
 You can use the Docker registry API to list the available image tags.
 Replace `<path-to-your-nginx-repo.key>` with the location of your client key and `<path-to-your-nginx-repo.crt>` with the location of your client certificate. The optional `jq` command is used to format the JSON output for easier reading and requires the [jq](https://jqlang.github.io/jq/) JSON processor to be installed.
@@ -118,6 +117,12 @@ Make sure that input files are accessible to UID 101.
 ### Policy Compilation
 
 To compile a security policy from a JSON file and create a policy bundle, execute the following command:
+
+{{< warning >}}
+
+Ensure that the output directory is writable, otherwise you may encounter a permission denied error.
+
+{{< /warning >}}
 
 ```shell
 docker run --rm \
@@ -181,6 +186,8 @@ docker run \
  waf-compiler-<version-tag>:custom \
  -dump -bundle $(pwd)/compiled_policy.tgz
 ```
+
+---
 
 ## Global Settings
 

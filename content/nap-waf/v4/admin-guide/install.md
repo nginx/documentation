@@ -1,12 +1,11 @@
 ---
-description: This guide explains how to deploy F5 NGINX App Protect WAF v4 as well as
-  upgrade App Protect and the App Protect signature sets.
-docs: DOCS-646
-doctypes:
-- task
 title: NGINX App Protect WAF Administration Guide
-toc: true
 weight: 100
+toc: true
+type: how-to
+product: NAP-WAF
+docs: DOCS-646
+
 ---
 
 ## Overview
@@ -41,23 +40,22 @@ NGINX App Protect WAF supports the following operating systems:
 - [Ubuntu 20.04 (Focal)](#ubuntu-1804--ubuntu-2004--ubuntu-2204--ubuntu-2404-installation)
 - [Ubuntu 22.04 (Jammy)](#ubuntu-1804--ubuntu-2004--ubuntu-2204--ubuntu-2404-installation)
 - [Ubuntu 24.04 (Noble)](#ubuntu-1804--ubuntu-2004--ubuntu-2204--ubuntu-2404-installation)
-- [Alpine 3.16](#alpine-316--alpine-317-installation) - (Deprecated starting from NGINX Plus R33)
-- [Alpine 3.17](#alpine-316--alpine-317-installation)
-
+- [Alpine 3.17](#alpine-316-317--319-installation)
+- [Alpine 3.19](#alpine-316-317--319-installation)
 
 The NGINX App Protect WAF package has the following dependencies:
 
 1. **nginx-plus-module-appprotect** - NGINX Plus dynamic module for App Protect
-2. **app-protect-engine** - The App Protect enforcement engine
-3. **app-protect-plugin** - The App Protect connector API between the engine and the NGINX Plus dynamic module
-4. **app-protect-compiler** - The App Protect enforcement engine compiler agent
-5. **app-protect-common** - The App Protect shared libraries package
-6. **app-protect-geoip** - The App Protect geolocation update package
-6. **app-protect-graphql** - The App Protect shared library package for GraphQL protection
-7. **app-protect-attack-signatures** - The App Protect attack signatures update package
-8. **app-protect-threat-campaigns** - The App Protect threat campaigns update package
-9. **app-protect-bot-signatures** - The App Protect bot signatures update package
-9. **app-protect-selinux** - The prebuilt SELinux policy module for NGINX App Protect WAF (optional dependency)
+1. **app-protect-engine** - The App Protect enforcement engine
+1. **app-protect-plugin** - The App Protect connector API between the engine and the NGINX Plus dynamic module
+1. **app-protect-compiler** - The App Protect enforcement engine compiler agent
+1. **app-protect-common** - The App Protect shared libraries package
+1. **app-protect-geoip** - The App Protect geolocation update package
+1. **app-protect-graphql** - The App Protect shared library package for GraphQL protection
+1. **app-protect-attack-signatures** - The App Protect attack signatures update package
+1. **app-protect-threat-campaigns** - The App Protect threat campaigns update package
+1. **app-protect-bot-signatures** - The App Protect bot signatures update package
+1. **app-protect-selinux** - The prebuilt SELinux policy module for NGINX App Protect WAF (optional dependency)
 
 See the NGINX Plus full list of prerequisites for more details. NGINX App Protect WAF can be installed as a module to an existing NGINX Plus installation or as a complete NGINX Plus with App Protect installation in a clean environment.
 
@@ -1208,7 +1206,7 @@ If a user other than **nginx** is to be used, note the following:
 {{< /note >}}
 
 
-## Alpine 3.16 / Alpine 3.17 Installation
+## Alpine 3.16, 3.17 & 3.19 Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -1804,12 +1802,12 @@ COPY entrypoint.sh /root/
 CMD ["sh", "/root/entrypoint.sh"]
 ```
 
-### Alpine 3.16 / Alpine 3.17 Docker Deployment Example
+### Alpine 3.16 / Alpine 3.17 / Alpine 3.19 Docker Deployment Example
 
 ```dockerfile
 # syntax=docker/dockerfile:1
-# For Alpine 3.16 / 3.17:
-FROM alpine:3.16/3.17
+# For Alpine 3.16/3.17/3.19:
+FROM alpine:3.19
 
 # Download and add the NGINX signing keys:
 RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub \
@@ -2205,12 +2203,12 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect-compiler
 ```
 
-### Alpine 3.16 / Alpine 3.17 Converter Docker Deployment Example
+### Alpine 3.16 / Alpine 3.17 / Alpine 3.19 Converter Docker Deployment Example
 
 ```dockerfile
 # syntax=docker/dockerfile:1
-# For Alpine 3.16/3.17:
-FROM alpine:3.16/3.17
+# For Alpine 3.16/3.17/3.19:
+FROM alpine:3.19
 
 # Download and add the NGINX signing keys:
 RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub \
@@ -2432,13 +2430,13 @@ After having updated the Attack Signature package you have to reload the configu
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-7.repo
     ```
 
-2. Update the attack signatures:
+2. Update the attack signatures to the latest:
 
     ```shell
     sudo yum install app-protect-attack-signatures
     ```
 
-    To install a specific version, list the available versions:
+3. To install a specific version, list the available versions:
 
     ```shell
     sudo yum --showduplicates list app-protect-attack-signatures
@@ -2464,13 +2462,13 @@ After having updated the Attack Signature package you have to reload the configu
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
     ```
 
-2. Update the attack signatures:
+2. Update the attack signatures to the latest:
 
     ```shell
     sudo dnf install app-protect-attack-signatures
     ```
 
-    To install a specific version, list the available versions:
+3. To install a specific version, list the available versions:
 
     ```shell
     sudo dnf --showduplicates list app-protect-attack-signatures
@@ -2496,13 +2494,13 @@ After having updated the Attack Signature package you have to reload the configu
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
     ```
 
-2. Update the attack signatures:
+2. Update the attack signatures to the latest:
 
     ```shell
     sudo dnf install app-protect-attack-signatures
     ```
 
-    To install a specific version, list the available versions:
+3. To install a specific version, list the available versions:
 
     ```shell
     sudo dnf --showduplicates list app-protect-attack-signatures
@@ -2543,13 +2541,13 @@ After having updated the Attack Signature package you have to reload the configu
     sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
     ```
 
-4. Update the attack signatures:
+4. Update the attack signatures to the latest:
 
     ```shell
     sudo apt-get update && sudo apt-get install app-protect-attack-signatures
     ```
 
-    To install a specific version, list the available versions:
+5. To install a specific version, list the available versions:
 
     ```shell
     sudo apt-cache policy app-protect-attack-signatures
@@ -2598,13 +2596,13 @@ After having updated the Attack Signature package you have to reload the configu
     sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
     ```
 
-4. Update the attack signatures:
+4. Update the attack signatures to the latest:
 
     ```shell
     sudo apt-get update && sudo apt-get install app-protect-attack-signatures
     ```
 
-    To install a specific version, list the available versions:
+5. To install a specific version, list the available versions:
 
     ```shell
     sudo apt-cache policy app-protect-attack-signatures
@@ -2636,7 +2634,7 @@ After having updated the Attack Signature package you have to reload the configu
     sudo apt-get install app-protect-attack-signatures=2020.07.16-1~noble
     ```
 
-### Alpine 3.16 / Alpine 3.17
+### Alpine 3.16 / Alpine 3.17 / Alpine 3.19
 
 1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
@@ -2714,13 +2712,13 @@ Example: app-protect-threat-campaigns-2022.07.21
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-7.repo
     ```
 
-2. Update Threat Campaigns:
+2. Update Threat Campaigns  to the latest:
 
     ```shell
     sudo yum install app-protect-threat-campaigns
     ```
 
-    To install a specific version, list the available versions:
+3. To install a specific version, list the available versions:
 
     ```shell
     sudo yum --showduplicates list app-protect-threat-campaigns
@@ -2740,13 +2738,13 @@ Example: app-protect-threat-campaigns-2022.07.21
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
     ```
 
-2. Update Threat Campaigns:
+2. Update Threat Campaigns to the latest:
 
     ```shell
     sudo dnf install app-protect-threat-campaigns
     ```
 
-    To install a specific version, list the available versions:
+3. To install a specific version, list the available versions:
 
     ```shell
     sudo dnf --showduplicates list app-protect-threat-campaigns
@@ -2766,13 +2764,13 @@ Example: app-protect-threat-campaigns-2022.07.21
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
     ```
 
-2. Update Threat Campaigns:
+2. Update Threat Campaigns to the latest:
 
     ```shell
     sudo dnf install app-protect-threat-campaigns
     ```
 
-    To install a specific version, list the available versions:
+3. To install a specific version, list the available versions:
 
     ```shell
     sudo dnf --showduplicates list app-protect-threat-campaigns
@@ -2784,7 +2782,7 @@ Example: app-protect-threat-campaigns-2022.07.21
     sudo dnf install app-protect-threat-campaigns-2023.12.11
     ```
 
-### Alpine 3.16 / Alpine 3.17
+### Alpine 3.16 / Alpine 3.17 / Alpine 3.19
 
 1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
@@ -2798,13 +2796,13 @@ Example: app-protect-threat-campaigns-2022.07.21
     sudo wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
     ```
 
-3. Update Threat Campaigns:
+3. Update Threat Campaigns to the latest:
 
     ```shell
     sudo apk update && sudo apk add app-protect-threat-campaigns
     ```
 
-    To install a specific version, list the available versions:
+4. To install a specific version, list the available versions:
 
     ```shell
     sudo apk search app-protect-threat-campaigns
@@ -2839,13 +2837,13 @@ Example: app-protect-threat-campaigns-2022.07.21
     sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
     ```
 
-4. Update Threat Campaigns:
+4. Update Threat Campaigns to the latest:
 
     ```shell
     sudo apt-get update && sudo apt-get install app-protect-threat-campaigns
     ```
 
-    To install a specific version, list the available versions:
+5. To install a specific version, list the available versions:
 
     ```shell
     sudo apt-cache policy app-protect-threat-campaigns
@@ -2894,13 +2892,13 @@ Example: app-protect-threat-campaigns-2022.07.21
     sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
     ```
 
-4. Update Threat Campaigns:
+4. Update Threat Campaigns to the latest:
 
     ```shell
     sudo apt-get update && sudo apt-get install app-protect-threat-campaigns
     ```
 
-    To install a specific version, list the available versions:
+5. To install a specific version, list the available versions:
 
     ```shell
     sudo apt-cache policy app-protect-threat-campaigns
@@ -2947,13 +2945,13 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-7.repo
     ```
 
-2. Update bot signatures:
+2. Update bot signatures to the latest:
 
     ```shell
     sudo yum install app-protect-bot-signatures
     ```
 
-    To install a specific version, list the available versions:
+3. To install a specific version, list the available versions:
 
     ```shell
     sudo yum --showduplicates list app-protect-bot-signatures
@@ -2979,13 +2977,13 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
     ```
 
-2. Update Bot Signatures:
+2. Update Bot Signatures to the latest:
 
     ```shell
     sudo dnf install app-protect-bot-signatures
     ```
 
-    To install a specific version, list the available versions:
+3. To install a specific version, list the available versions:
 
     ```shell
     sudo dnf --showduplicates list app-protect-bot-signatures
@@ -3011,13 +3009,13 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
     ```
 
-2. Update Bot Signatures:
+2. Update Bot Signatures to the latest:
 
     ```shell
     sudo dnf install app-protect-bot-signatures
     ```
 
-    To install a specific version, list the available versions:
+3. To install a specific version, list the available versions:
 
     ```shell
     sudo dnf --showduplicates list app-protect-bot-signatures
@@ -3035,7 +3033,7 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     sudo dnf downgrade app-protect-bot-signatures-2023.12.11
     ```
 
-### Alpine 3.16 / Alpine 3.17
+### Alpine 3.16 / Alpine 3.17 / Alpine 3.19
 
 1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
@@ -3049,13 +3047,13 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     sudo wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
     ```
 
-3. Update Bot Signatures:
+3. Update Bot Signatures to the latest:
 
     ```shell
     sudo apk update && sudo apk add app-protect-bot-signatures
     ```
 
-    To install a specific version, list the available versions:
+4. To install a specific version, list the available versions:
 
     ```shell
     sudo apk search app-protect-bot-signatures
@@ -3091,13 +3089,13 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
     ```
 
-4. Update Bot Signatures:
+4. Update Bot Signatures to the latest:
 
     ```shell
     sudo apt-get update && sudo apt-get install app-protect-bot-signatures
     ```
 
-    To install a specific version, list the available versions:
+5. To install a specific version, list the available versions:
 
     ```shell
     sudo apt-cache policy app-protect-bot-signatures
@@ -3141,13 +3139,13 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
     ```
 
-4. Update Bot Signatures:
+4. Update Bot Signatures to the latest:
 
     ```shell
     sudo apt-get update && sudo apt-get install app-protect-bot-signatures
     ```
 
-    To install a specific version, list the available versions:
+5. To install a specific version, list the available versions:
 
     ```shell
     sudo apt-cache policy app-protect-bot-signatures
@@ -3227,7 +3225,7 @@ app-protect-threat-campaigns \
 app-protect-bot-signatures
 ```
 
-### Alpine 3.16 / Alpine 3.17
+### Alpine 3.16 / Alpine 3.17 / Alpine 3.19
 
 ```shell
 sudo apk del app-protect \
