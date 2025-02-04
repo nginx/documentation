@@ -795,8 +795,7 @@ To enable mTLS in NGINX, you need to perform the following steps:
 
 Brute force attacks are attempts to break in to secured areas of a web application by trying exhaustive,
 systematic, username/password combinations to discover legitimate authentication credentials. 
-To prevent brute force attacks,  NGINX App Protect WAF monitors both IP addresses and/or usernames and tracks the number of 
-failed login attempts reached a maximum threshold. 
+To prevent brute force attacks, NGINX App Protect WAF monitors IP addresses, usernames, and the number of failed login attempts beyond a maximum threshold. 
 When brute force patterns are detected, the NGINX App Protect WAF policy either trigger an alarm or block the attack if the failed 
 login attempts reached a maximum threshold for a specific username or coming from a specific IP address.
 To enable brute force protection, at least one login page must be created.
