@@ -15,11 +15,6 @@ if ! cmd=$(command -v "tar") || [ ! -x "$cmd" ]; then
     exit 1
 fi
 
-if ! cmd=$(command -v "wget") || [ ! -x "$cmd" ]; then
-    echo "wget command not found. Install wget to run this script."
-    exit 1
-fi
-
 NGINX_CERT_PATH="/etc/ssl/nginx/nginx-repo.crt"
 NGINX_CERT_KEY_PATH="/etc/ssl/nginx/nginx-repo.key"
 LICENSE_JWT_PATH=""
@@ -34,14 +29,14 @@ NGINX_PLUS_VERSION="latest"
 NIM_SM_VERSION="latest"
 CLICKHOUSE_VERSION="latest"
 CLICKHOUSE_LATEST_VERSION="24.9.2.42"
-NGINX_LATEST_VERSION=1.25.5-1
-NIM_LATEST_VERSION=2.18.0
+NGINX_LATEST_VERSION=1.27.3-1
+NIM_LATEST_VERSION=2.19.0
 CURRENT_TIME=$(date +%s)
 TEMP_DIR="/tmp/${CURRENT_TIME}"
 TARGET_DISTRIBUTION=""
 PACKAGE_INSTALLER=""
 NMS_NGINX_MGMT_BLOCK="mgmt { \n  usage_report endpoint=127.0.0.1 interval=30m; \n  ssl_verify off; \n}";
-
+NIM_FQDN=""
 
 # Added to account for the renaming of the adc dimension from application to app.
 if [ -f "/usr/share/nms/catalogs/dimensions/application.yml" ]; then
@@ -117,13 +112,15 @@ fi
 
 createNginxMgmtFile(){
   # Check if the mgmt block exists in the file
-    if grep -Eq '^[[:space:]]*#mgmt' "/etc/nginx/nginx.conf"; then
-        printf "nginx management block disabled, enabling mgmt block"
+    if grep -Eq '^[[:space:]]*mgmt' "/etc/nginx/nginx.conf"; then
+        printf "Nginx 'mgmt' block found, skipping addition of nginx 'mgmt' block"
+    elif grep -Eq '^[[:space:]]*#mgmt' "/etc/nginx/nginx.conf"; then
+        printf "Nginx 'mgmt' block disabled, enabling 'mgmt' block"
         sed -i '/#mgmt {/,/#}/d' /etc/nginx/nginx.conf
         # shellcheck disable=SC2059
         printf "${NMS_NGINX_MGMT_BLOCK}" | tee -a /etc/nginx/nginx.conf
     else
-        printf "nginx management block not found, adding mgmt block"
+        printf "Nginx 'mgmt' block not found, adding 'mgmt' block"
         # shellcheck disable=SC2059
         printf  "${NMS_NGINX_MGMT_BLOCK}" | tee -a /etc/nginx/nginx.conf
     fi
@@ -334,25 +331,32 @@ installBundleForDebianDistro() {
   debian_install_nginx
   debian_install_clickhouse
   debian_install_nim
+  echo "security module installation opted : ${USE_SM_MODULE}"
   if [ "${USE_SM_MODULE}" == "true" ]; then
-      printf "Installing security module...\n"
-      if [ "${NIM_SM_VERSION}" == "latest" ]; then
-        apt-get install -y nms-sm
-        check_last_command_status "apt-get install -y nms-sm" $?
+      nim_major_version=$(nms-core --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | awk -F. '{print $1}')
+      nim_minor_version=$(nms-core --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | awk -F. '{print $2}')
+      if [[ $nim_major_version -ge 2 && $nim_minor_version -ge 19 ]]; then
+        echo "Note: NGINX Instance Manager version 2.19.0 or later comes with security monitoring installed. skipping installing security monitoring"
       else
-        sm_pkg_version=$(findVersionForPackage "nms-sm" "${NIM_SM_VERSION}")
-        cmd_status=$?
-        if [ $cmd_status -ne 0 ]; then
-           echo "Package nms-sm with version ${NIM_SM_VERSION} not found"
-           exit $cmd_status
+        printf "Installing security module...\n"
+        if [ "${NIM_SM_VERSION}" == "latest" ]; then
+          apt-get install -y nms-sm
+          check_last_command_status "apt-get install -y nms-sm" $?
+        else
+          sm_pkg_version=$(findVersionForPackage "nms-sm" "${NIM_SM_VERSION}")
+          cmd_status=$?
+          if [ $cmd_status -ne 0 ]; then
+             echo "Package nms-sm with version ${NIM_SM_VERSION} not found"
+             exit $cmd_status
+          fi
+          apt-get install -y nms-sm="${sm_pkg_version}"
+          check_last_command_status "apt-get install -y nms-sm=${NIM_SM_VERSION}" $?
         fi
-        apt-get install -y nms-sm="${sm_pkg_version}"
-        check_last_command_status "apt-get install -y nms-sm=${NIM_SM_VERSION}" $?
+        systemctl restart nms
+        sleep 5
+        systemctl restart nginx
+        systemctl start nms-sm
       fi
-    systemctl restart nms
-    sleep 5
-    systemctl restart nginx
-    systemctl start nms-sm
   else
     systemctl restart nms
     sleep 5
@@ -393,7 +397,7 @@ installBundleForRPMDistro(){
     fi
     printf "[nginx-plus]\nname=nginx-plus repo\nbaseurl=https://pkgs.nginx.com/plus/$os_type/\$releasever/\$basearch/\nsslclientcert=/etc/ssl/nginx/nginx-repo.crt\nsslclientkey=/etc/ssl/nginx/nginx-repo.key\ngpgcheck=0\nenabled=1" >> /etc/yum.repos.d/nginx-plus.repo
 
-    yum install -y yum-utils wget epel-release ca-certificates
+    yum install -y yum-utils curl epel-release ca-certificates
     yum-config-manager --enable  nginx-stable
     yum-config-manager --enable  nginx-plus
 
@@ -449,7 +453,7 @@ installBundleForRPMDistro(){
     systemctl start clickhouse-server
     check_last_command_status "systemctl start clickhouse-server" $?
 
-    wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nms.repo
+    curl -o /etc/yum.repos.d/nms.repo https://cs.nginx.com/static/files/nms.repo
     check_last_command_status "get -P /etc/yum.repos.d https://cs.nginx.com/static/files/nms.repo" $?
 
     if cat /etc/*-release | grep -iq 'Amazon Linux'; then
@@ -471,8 +475,33 @@ installBundleForRPMDistro(){
     echo "Restarting NGINX Instance Manager"
     systemctl restart nms
 
+    if [ "${USE_SM_MODULE}" == "true" ]; then
+      nim_major_version=$(nms-core --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | awk -F. '{print $1}')
+      nim_minor_version=$(nms-core --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | awk -F. '{print $1}')
+      if [[ $nim_major_version -ge 2 && $nim_minor_version -ge 19 ]]; then
+        echo "Note: NGINX Instance Manager version 2.19.0 or later comes with security monitoring installed. skipping installing security monitoring"
+      else
+        printf "Installing security module...\n"
+        if [ "${NIM_SM_VERSION}" == "latest" ]; then
+          yum install -y nms-sm
+          check_last_command_status "yum install -y nms-sm" $?
+        else
+          sm_pkg_version=$(findVersionForPackage "nms-sm" "${NIM_SM_VERSION}")
+          cmd_status=$?
+          if [ $cmd_status -ne 0 ]; then
+             echo "Package nms-sm with version ${NIM_SM_VERSION} not found"
+             exit $cmd_status
+          fi
+          yum install -y nms-sm="${sm_pkg_version}"
+          check_last_command_status "yum install -y nms-sm=${NIM_SM_VERSION}" $?
+        fi
+        systemctl restart nms
+        sleep 5
+        systemctl restart nginx
+        systemctl start nms-sm
+      fi
+    fi
     sleep 5
-
     echo "Restarting nginx API gateway"
     systemctl restart nginx
 }
@@ -495,27 +524,48 @@ install_nim_online(){
     PACKAGE_INSTALLER="rpm"
     installBundleForRPMDistro
     generate
+
   else
     printf "Unsupported distribution"
     exit 1
   fi
+  if [[ -n ${NIM_FQDN} ]] ; then
+    /etc/nms/scripts/certs.sh ${NIM_FQDN}
+  fi
+  curl -s -o /dev/null --cert ${NGINX_CERT_PATH} --key ${NGINX_CERT_KEY_PATH} "https://pkgs.nginx.com/nms/?using_install_script=true&app=nim&mode=online"
 }
 
 printUsageInfo(){
-  echo "Usage: $0 [-c /path/to/nginx-repo.crt] [-k /path/to/nginx-repo.key] [-p nginx_plus_version] [-s security_module_version] -i [installable_tar_file_path] [-n nginx_oss_version] [-m mode(online/offline)]
-       [-d distribution (ubuntu20.04,ubuntu22.04,ubuntu24.04,debian11,debian12,centos8,rhel8,rhel9,oracle7,oracle8,amzn2)] [-h print help]"
-  printf "\n  -m  <mode> Online/Offline. Controls whether to install from the internet or from a package created using this script. \n"
+  echo "Usage: $0 [-c /path/to/nginx-repo.crt] [-k /path/to/nginx-repo.key] [-p nginx_plus_version] [-s security_module_version] -i [installable_tar_file_path] [-n nginx_oss_version] [-m mode(online/offline)] [-d distribution (ubuntu20.04,ubuntu22.04,ubuntu24.04,debian11,debian12,centos8,rhel8,rhel9,oracle7,oracle8,amzn2)] [-h print help]"
+  printf "\n\n  -m  <mode> online/offline. Controls whether to install from the internet or from a package created using this script. \n"
   printf "\n  -c  /path/to/your/<nginx-repo.crt> file.\n"
   printf "\n  -k  /path/to/your/<nginx-repo.key> file.\n"
   printf "\n  -p  <nginx_plus_version>. Include NGINX Plus version to install as an API gateway. Valid values are 'latest' and specific versions like R32. For a list, see https://docs.nginx.com/nginx/releases/. Supersedes -n.\n"
   printf "\n  -n  <nginx_oss_version>. Provide NGINX OSS version to install as an API gateway. Valid values are 'latest' or a specific version like 1.27.1. Ignored if you use -p to specify an NGINX Plus version. For a list, see https://nginx.org/en/download.html .\n"
-  printf "\n  -s  <security-module-version>. Installs a security module along with NGINX Instance Manager. You can specify latest or a version specified in https://docs.nginx.com/nginx-management-suite/security/releases/release-notes/.\n"
+  printf "\n  -s  <security-module-version>. Installs a security module along with NGINX Instance Manager. You can specify latest or a version specified in https://docs.nginx.com/nginx-instance-manager/monitoring/security-monitoring/releases/release-notes/.\n"
   printf "\n  -i  <installable_tar_file_path>. Include the path with an archive file to support NGINX Instance Manager installation. Requires -m Offline."
   printf "\n  -d  <distribution>. Include the label of a distribution. Requires -m Offline. This creates a file with NGINX Instance Manager dependencies and NGINX Instance Manager install packages for the specified distribution.\n"
   printf "\n  -v  <NIM_VERSION>. NGINX Instance Manager version to install/package.\n"
-  printf "\n  -j  <JWT_TOKEN_FILE_PATH>. Path to the JWT token file used for license and usage consumption reporting.'\n"
+  printf "\n  -j  <JWT_TOKEN_FILE_PATH>. Path to the JWT token file used for license and usage consumption reporting.\n"
   printf "\n  -r  To uninstall NGINX Instance Manager and its dependencies. \n"
+  printf "\n  -l  Print supported operating systems.\n"
   printf "\n  -h  Print this help message.\n"
+  exit 0
+}
+
+printSupportedOS(){
+  printf "This script can be run on the following operating systems"
+  printf "\n  1. ubuntu20.04(focal)"
+  printf "\n  2. ubuntu22.04(jammy)"
+  printf "\n  3. ubuntu24.04(noble)"
+  printf "\n  4. debian11(bullseye)"
+  printf "\n  5. debian12(bookworm)"
+  printf "\n  6. centos8(CentOS 8)"
+  printf "\n  7. rhel8(Redhat Enterprise Linux Version 8)"
+  printf "\n  8. rhel9( Redhat Enterprise Linux Version 9)"
+  printf "\n  9. oracle7(Oracle Linux Version 7)"
+  printf "\n 10. oracle8(Oracle Linux Version 8)"
+  printf "\n 11. amzn2(Amazon Linux 2)\n"
   exit 0
 }
 
@@ -641,7 +691,7 @@ This action deletes all files in the following directories: /etc/nms , /etc/ngin
   fi
 }
 
-OPTS_STRING="k:c:m:d:i:s:p:n:hv:t:j:r"
+OPTS_STRING="k:c:m:d:i:s:p:n:hv:t:j:rf:l"
 while getopts ${OPTS_STRING} opt; do
   case ${opt} in
     c)
@@ -676,6 +726,11 @@ while getopts ${OPTS_STRING} opt; do
       ;;
     m)
       MODE="${OPTARG}"
+      if [[ "${MODE}" != "online" && "${MODE}" != "offline" ]]; then
+          echo "invalid mode ${MODE}"
+          echo "supported values for mode are 'online' or 'offline'"
+          exit 1
+      fi
       ;;
     d)
       TARGET_DISTRIBUTION=${OPTARG}
@@ -692,13 +747,17 @@ while getopts ${OPTS_STRING} opt; do
     r)
       UNINSTALL_NIM="true"
       ;;
+    f)
+      NIM_FQDN=${OPTARG}
+      ;;
     h)
        printUsageInfo
-       printUsageInfo
-       exit 0
-      printUsageInfo
        exit 0
       ;;
+    l)
+       printSupportedOS
+       exit 0
+       ;;
     :)
       echo "Option -${OPTARG} requires an argument."
       exit 1
@@ -968,5 +1027,6 @@ else
       echo "Provided install path ${INSTALL_PATH} doesn't exists"
       exit 1
     fi
+    curl -s -o /dev/null --cert ${NGINX_CERT_PATH} --key ${NGINX_CERT_KEY_PATH} "https://pkgs.nginx.com/nms/?using_install_script=true&app=nim&mode=online"
   fi
 fi
