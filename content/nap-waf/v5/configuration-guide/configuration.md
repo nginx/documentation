@@ -825,6 +825,9 @@ A login page specifies the login URL that users must pass through to get authent
 ``` 
              
 {{< note >}} For further configuration details, see NGINX App Protect WAF Declarative Policy Guide [Declarative Policy guide]({{< relref "/nap-waf/v5/declarative-policy/policy/#policy/login-pages" >}}). {{< /note >}}
+
+---
+
 ### Brute force policy example
 
 Example1: A single brute force configuration is applied universally to all login pages.
