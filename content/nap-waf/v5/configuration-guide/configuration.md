@@ -800,6 +800,8 @@ When brute force patterns are detected, the NGINX App Protect WAF policy either 
 login attempts reached a maximum threshold for a specific username or coming from a specific IP address.
 To enable brute force protection, at least one login page must be created.
 
+---
+
 ### Login page policy example
 
 A login page specifies the login URL that users must pass through to get authenticated. The configuration of a login URL includes the URL itself, the username and passwords parameters and the validation criteria (how we know that a login was successful or failed)
