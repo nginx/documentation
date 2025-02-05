@@ -9,13 +9,13 @@ toc: true
 weight: 100
 ---
 
-This guide explains how to deploy F5 NGINX Plus in a high-availability configuration on Google Compute Engine (GCE). GCE is Google Cloud Platform's (GCP) service for running workloads on virtual machines. In this setup, multiple NGINX Plus instances work together. They balance incoming connections across your app environments.
+This guide explains how to deploy F5 NGINX Plus in a high-availability configuration on Google Compute Engine (GCE). GCE is the Google Cloud Platform (GCP) service for running workloads on virtual machines. In this setup, multiple NGINX Plus instances work together, in active pairs. They load balance incoming connections across your app environments.
 
 
 **Notes:**
 
-- The GCE environment changes constantly. This could include names and arrangements of GUI elements. This guide was accurate when published. But, some GCE GUI elements might have changed over time. Use this guide as a reference and adapt to the current GCE working environment as necessary.
-- The configuration described in this guide allows anyone from a public IP address to access the NGINX Plus instances. While this works in common scenarios in a test environment, we do not recommend it in production.   Block external HTTP/HTTPS access to <span style="color:#666666; font-weight:bolder; white-space: nowrap;">app-1</span> and <span style="color:#666666; font-weight:bolder; white-space: nowrap;">app-2</span> instances before production deployment. Also, remove the external IP addresses for all application instances to be accessible only on the internal GCE network.
+- The GCE environment changes constantly. This could include names and arrangements of GUI elements. This guide was accurate when published. But, some GCE GUI elements might have changed over time. Use this guide as a reference and adapt to the current GCE working environment.
+- The configuration described in this guide allows anyone from a public IP address to access the NGINX Plus instances. While this works in common scenarios in a test environment, we do not recommend it in production. Block external HTTP/HTTPS access to <span style="color:#666666; font-weight:bolder; white-space: nowrap;">app-1</span> and <span style="color:#666666; font-weight:bolder; white-space: nowrap;">app-2</span> instances to external IP address before production deployment. Alternatively, remove the external IP addresses for all application instances, so they're accessible only on the internal GCE network.
 
 
 
@@ -24,23 +24,23 @@ This guide explains how to deploy F5 NGINX Plus in a high-availability configura
 
 The deployment combines the following technologies:
 
-- [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) –  Load balances HTTP connections across multiple instances of two applications. We provide instructions for manually installing on a GCE VM image and setting up the prebuilt NGINX Plus VM image. Both are available in the Google Marketplace.
+- [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) – Load balances HTTP connections across multiple instances of two applications. We provide instructions for manual installation on a GCE VM image and setting up the prebuilt NGINX Plus VM image. Both are available in the Google Marketplace.
 - PHP-FPM – Supports the two sample applications.
-- [GCE network load balancer](https://cloud.google.com/compute/docs/load-balancing/network) – enables TCP connectivity between clients and NGINX Plus load-balancing (LB) instances in a GCP region. It also maintains session persistence for each NGINX Plus instance.
+- [GCE network load balancer](https://cloud.google.com/compute/docs/load-balancing/network) – Enables TCP connectivity between clients and NGINX Plus load-balancing (LB) instances in a GCP region. It also maintains session persistence for each NGINX Plus instance.
 - [GCE instance groups](https://cloud.google.com/compute/docs/instance-groups) – Provide a mechanism for managing a group of VM instances as a unit.
 - [GCE health checks](https://cloud.google.com/compute/docs/load-balancing/health-checks) – Maintain high availability of the NGINX Plus LB instances by controlling when GCE creates a new LB instance in the instance group.
 
 <img src="/nginx/images/gce-all-active-load-balancing-topology.png" alt="Topology of the all‑active deployment of NGINX Plus as the Google Cloud Platform load balancer." width="1024" height="1000" class="aligncenter size-full wp-image-47509" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-[Session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence) is managed at the network layer by the GCE network load balancer (based on client IP address). The NGINX Plus LB instance also manages it at the application layer (via a session cookie).  
+[Session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence) is managed at the network layer by the GCE network load balancer (based on client IP address). The NGINX Plus LB instance also manages it at the application layer (with a session cookie).  
 
-The GCE network load balancer assigns each new client to a specific NGINX Plus load balancer. This association persists as long as the LB instance is up and functional.
+The GCE network LB assigns each new client to a specific NGINX Plus LB. This association persists as long as the LB instance is up and functional.
 
-NGINX Plus LB uses Round Robin to forward requests to specific app instances. It also adds a session cookie. It keeps future requests from the same client on the same app instance as long as it's running.
+NGINX Plus LB uses the round-robin algorithm to forward requests to specific app instances. It also adds a session cookie. It keeps future requests from the same client on the same app instance as long as it's running.
 
-This guide's deployment uses two app instance groups: – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">app-1</span> and <span style="color:#666666; font-weight:bolder; white-space: nowrap;">app-2</span>. It demonstrates [load balancing](https://www.nginx.com/products/nginx/load-balancing/) between different app types. But both groups have the same app configurations.
+This deployment guide uses two groups of app instances: – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">app-1</span> and <span style="color:#666666; font-weight:bolder; white-space: nowrap;">app-2</span>. It demonstrates [load balancing](https://www.nginx.com/products/nginx/load-balancing/) between different app types. But both groups have the same app configurations.
 
-The deployment can easily adapt. It can distribute unique connections to different groups of app instances. This can be done by creating discrete upstream blocks and routing content based on the URI. 
+You can adapt the deployment to distribute unique connections to different groups of app instances. This can be done by creating discrete upstream blocks and routing content based on the URI. 
 
 Please see the reference docs for details on configuring multiple [upstream server groups](https://nginx.org/en/docs/http/ngx_http_upstream_module.html).
 
@@ -57,7 +57,7 @@ This guide assumes that you:
   - Managing IAM policies
 - Understand basic networking.
 - Have an NGINX Plus subscription. You can start a [free 30‑day trial](https://www.nginx.com/free-trial-request/) if you don't already have a paid subscription.
-- Know how to install NGINX Plus. Have a basic understanding of its load balancing and application delivery modes. Be familiar with its configuration syntax.
+- Know how to install NGINX Plus. Have a basic understanding of performance in load balancing and application delivery modes. Be familiar with its configuration syntax.
 - Are familiar with GitHub and know how to [clone a repository](https://help.github.com/en/articles/cloning-a-repository/).
 
 All component names, like projects and instances, are examples only. You can change them to suit your needs.
@@ -98,7 +98,7 @@ Create firewall rules that allow access to the HTTP and HTTPS ports on your GCE 
    - <span style="font-weight:bold; white-space: nowrap;">Source filter</span> – On the drop-down menu, select either <span style="color:#666666; font-weight:bolder;">Allow from any source (0.0.0.0/0)</span>, or <span style="color:#666666; font-weight:bolder; white-space: nowrap;">IP range</span> if you want to restrict access to users on your private network. In the second case, fill in the <span style="font-weight:bold; white-space: nowrap;">Source IP ranges</span> field that opens. In the screenshot, we are allowing unrestricted access.
    - <span style="font-weight:bold; white-space: nowrap;">Allowed protocols and ports</span> – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">tcp:80; tcp:8080; tcp:443</span>
 
-     **Note:** As the guide's intro said, opening these ports for your app instances is only appropriate in a test environment. Before deploying the architecture in production, we recommend creating a new firewall rule. This rule blocks all port access to the external IP address for your application instances. Alternatively, you can disable external IP addresses for the instances. This will allow access only to the internal GCE network.
+     **Note:** As noted in the introduction, allowing access from any public IP address is appropriate only in a test environment. Before deploying the architecture in production, create a firewall rule. Use this rule to block access to the external IP address for your application instances. Alternatively, you can disable external IP addresses for the instances. This limits access only to the internal GCE network.
 
    - <span style="font-weight:bold; white-space: nowrap;">Target tags</span> – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx-plus-http-fw-rule</span>
 
@@ -113,10 +113,10 @@ Create three GCE source instances. Use them as templates for later instance grou
 
 You can create source instances in either of two ways:
 
-- [Based on a standard GCE VM image](#source-vm), you install NGINX Plus manually. This guide uses the latest Ubuntu LTS image at publication (<span style="white-space: nowrap;">Ubuntu 16.04 LTS</span>). You can use any Unix or Linux OS that [NGINX Plus supports]({{< relref "../../technical-specs.md" >}}).
+- [Based on a standard GCE VM image](#source-vm), you install NGINX Plus manually. This guide uses the latest Ubuntu LTS image at publication (<span style="white-space: nowrap;">Ubuntu 24.04 LTS</span>). You can use any Unix or Linux OS that [NGINX Plus supports]({{< relref "../../technical-specs.md" >}}).
 - [Based on the prebuilt NGINX Plus image](#source-prebuilt) in the Google Marketplace, which at the time of publication runs on <span style="white-space: nowrap;">Ubuntu 14.04 LTS</span>.
 
-The two methods have very different instructions. But, after you create the source instances, all later instructions are the same.
+The methods to create a source instance are different. Once you've created the source instances, all later instructions are the same.
 
 <span id="source-vm"></span>
 ### Creating Source Instances from VM Images
@@ -170,7 +170,7 @@ Create three source VM instances based on a GCE VM image. We're basing our insta
 
    <img src="/nginx/images/gce-ubuntu-instance-networking.png" alt="Screenshot of the Networking subtab used during creation of a new VM instance, part of deploying NGINX Plus as the Google Cloud load balancer." width="488" height="279" class="aligncenter size-full wp-image-47487" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-6. If you're using your own SSH public key instead of your default keys, paste the hexadecimal key string on the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">SSH Keys</span> subtab. Right into the box that reads <span style="color:#666666; font-family:consolas; font-weight:bolder; white-space: nowrap;">Enter entire key data</span>.
+6. If you're using your own SSH public key instead of your default GCE keys, paste the hexadecimal key string on the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">SSH Keys</span> subtab. Right into the box that reads <span style="color:#666666; font-family:consolas; font-weight:bolder; white-space: nowrap;">Enter entire key data</span>.
 
    <img src="/nginx/images/gce-ubuntu-instance-ssh-keys.png" alt="Screenshot of the SSH Keys subtab used during creation of a new VM instance, part of deploying NGINX Plus as the Google Cloud Platform load balancer." width="488" height="205" class="aligncenter size-full wp-image-47488" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
@@ -297,7 +297,7 @@ Both the configuration and content files are available at the [NGINX GitHub repo
       wget https://github.com/nginxinc/NGINX-Demos/blob/master/gce-nginx-plus-deployment-guide-files/etc_nginx_conf.d/gce-all-active-lb.conf
       ```
 
-5. On the LB instance (<span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx-plus-lb</span>), use your text editor to open <span style="font-weight:bold; white-space: nowrap;">gce-all-active-lb.conf</span>. Change the `server` directives in the `upstream` block to reference the internal IP addresses of the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx-plus-app-1</span> and <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx-plus-app-2</span> instances (substitute the address for the expression in angle brackets). The two application instances do not need any action.
+5. On the LB instance (<span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx-plus-lb</span>), use a text editor to open <span style="font-weight:bold; white-space: nowrap;">gce-all-active-lb.conf</span>. Change the `server` directives in the `upstream` block to reference the internal IP addresses of the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx-plus-app-1</span> and <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx-plus-app-2</span> instances (substitute the address for the expression in angle brackets). You do not need to modify the two application instances.
 
    You can look up internal IP addresses in the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Internal IP</span> column of the table on the <span style="font-weight:bold; white-space: nowrap;">Compute Engine > VM instances</span> summary page.
 
@@ -318,7 +318,7 @@ Both the configuration and content files are available at the [NGINX GitHub repo
    mv default.conf default.conf.bak
    ```
 
-7. Enable the NGINX Plus [live activity monitoring](https://www.nginx.com/products/nginx/live-activity-monitoring/) dashboard for the instance. Do this by copying <span style="font-weight:bold; white-space: nowrap;">status.html</span> from the <span style="font-weight:bold; white-space: nowrap;">etc\_nginx\_conf.d</span> subdirectory of the cloned repository to <span style="font-weight:bold; white-space: nowrap;">/etc/nginx/conf.d</span>.
+7. Enable the NGINX Plus [live activity monitoring](https://www.nginx.com/products/nginx/live-activity-monitoring/) dashboard for the instance. Copy <span style="font-weight:bold; white-space: nowrap;">status.html</span> from the <span style="font-weight:bold; white-space: nowrap;">etc\_nginx\_conf.d</span> subdirectory of the cloned repository to <span style="font-weight:bold; white-space: nowrap;">/etc/nginx/conf.d</span>.
 
    You can also run the following commands to download the configuration file directly from the GitHub repository:
 
@@ -404,12 +404,12 @@ Create three source instances based on a prebuilt NGINX Plus image running on <
    - <span style="font-weight:bold; white-space: nowrap;">External IP</span> – <span style="color:#666666; font-weight:bolder;">Ephemeral</span> (the default)
    - <span style="font-weight:bold; white-space: nowrap;">Boot disk and local disks</span> – Uncheck the checkbox labeled <span style="color:#666666; font-weight:bolder;">Delete boot disk when instance is deleted</span>.
    - <span style="font-weight:bold; white-space: nowrap;">Additional disks</span> – No changes
-   - **Network** – We recommend keeping the default settings. If you must change them, for example, when configuring a production environment,click <span style="color:#3366cc;">default</span> Then, click <span style="color:#3366cc;">EDIT</span> on the opened <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Network details</span> page. After making your changes click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Save </span> button.
+   - **Network** – If you must change the defaults, for example, when configuring a production environment, select <span style="color:#3366cc;">default</span> Then, select <span style="color:#3366cc;">EDIT</span> on the opened <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Network details</span> page. After making your changes select the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Save </span> button.
    - **Firewall** – Verify that neither check box is checked (the default). The firewall rule named in the **Tags** field that's above on the current page (see the first bullet in this list) controls this type of access.
    - <span style="font-weight:bold; white-space: nowrap;">Automatic restart</span> – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">On (recommended)</span> (the default)
    - <span style="font-weight:bold; white-space: nowrap;">On host maintenance</span> – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Migrate VM instance (recommended)</span> (the default)
    - <span style="font-weight:bold; white-space: nowrap;">Custom metadata</span> – No changes
-   - <span style="font-weight:bold; white-space: nowrap;">SSH Keys</span> – If you're using your own SSH public key instead of your default keys, paste the hexadecimal key string into the box labeled <span style="color:#666666; font-family:consolas; font-weight:bolder; white-space: nowrap;">Enter entire key data</span>.
+   - <span style="font-weight:bold; white-space: nowrap;">SSH Keys</span> – If you're using your own SSH public key instead of your default GCE keys, paste the hexadecimal key string into the box labeled <span style="color:#666666; font-family:consolas; font-weight:bolder; white-space: nowrap;">Enter entire key data</span>.
    - <span style="font-weight:bold; white-space: nowrap;">Serial port</span> – Verify that the check box labeled <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Enable connecting to serial ports</span> is not checked (the default).
 
    The screenshot shows the results of your changes. It omits some fields that can't be edited or for which we recommend keeping the defaults.
@@ -447,7 +447,7 @@ Create the second application instance by cloning the first one.
    - <span style="color:#666666; font-weight:bolder;">Management</span> – In the **Tags** field: <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx-plus-http-fw-rule</span>
    - <span style="color:#666666; font-weight:bolder;">Disks</span> – The <span style="font-weight:bold; white-space: nowrap;">Deletion rule</span> checkbox (labeled <span style="color:#666666; font-weight:bolder;">Delete boot disk when instance is deleted</span>) is <span style="text-decoration: underline;">not</span> checked
 
-7. Click the <span style="background-color:#3366cc; color:white;"> Create </span> button.
+7. Select the <span style="background-color:#3366cc; color:white;"> Create </span> button.
 
 <span id="source-prebuilt-lb"></span>
 #### Creating the Load-Balancing Instance from a Prebuilt Image
@@ -468,7 +468,7 @@ Install and configure PHP and FastCGI on the instances.
 1. Connect to the instance over SSH using the method of your choice. GCE provides a built‑in mechanism:
 
    - Navigate to the <span style="font-weight:bold; white-space: nowrap;">Compute Engine > VM instances</span> tab.
-   - In the table, find the row for the instance. Click the triangle icon in the <span style="color:#666666; font-weight:bolder;">Connect</span> column at the far right. Then, select a method (for example, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Open in browser window</span>).
+   - In the table, find the row for the instance. Select the triangle icon in the <span style="color:#666666; font-weight:bolder;">Connect</span> column at the far right. Then, select a method (for example, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Open in browser window</span>).
 
    The screenshot shows instances based on the prebuilt NGINX Plus images.
 
@@ -569,7 +569,7 @@ Both the configuration and content files are available at the [NGINX GitHub repo
 
    Directive documentation: [server](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server), [`sticky cookie`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#sticky), [upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream), [zone](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone)
 
-5. Rename **default.conf** to **default.conf.bak** so that NGINX Plus does not load it. The configuration files for the all-active deployment include equal instructions. They also have extra, function-specific directives.
+5. Rename **default.conf** to **default.conf.bak** so that NGINX Plus does not load it. The configuration files for the all-active deployment include equivalent instructions. They also have extra, function-specific directives.
 
    ```shell
    mv default.conf default.conf.bak
@@ -598,7 +598,7 @@ Both the configuration and content files are available at the [NGINX GitHub repo
    nginx -s reload
    ```
 
-8. Verify the instance is working by accessing it at its external IP address. (As noted, we recommend blocking access to the app's external IPs in production.) The external IP address for the instance appears on the <span style="font-weight:bold; white-space: nowrap;">Compute Engine > VM instances</span> summary page, in the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">External IP</span> column of the table.
+8. Verify the instance is working by accessing it at its external IP address. (As noted, we recommend blocking access, in production, to the external IPs of the app.) The external IP address for the instance appears on the <span style="font-weight:bold; white-space: nowrap;">Compute Engine > VM instances</span> summary page, in the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">External IP</span> column of the table.
 
    - Access the <span style="font-weight:bold; white-space: nowrap;">index.html</span> page either in a browser or by running this `curl` command.
 
@@ -615,7 +615,7 @@ Both the configuration and content files are available at the [NGINX GitHub repo
 <span id="gold"></span>
 ## Task 3: Creating "Gold" Images
 
-Create _gold images_, which are base images that GCE clones automatically when it needs to scale up the number of instances. They are derived from the instances you created in [Creating Source Instances](#source). Before creating the images, delete the source instances. This will break the attachment between them and the disk. (you can't create an image from a disk attached to a VM instance).
+Create _gold images_, which are base images that GCE clones automatically when it needs to scale up the number of instances. They are derived from the instances you created in [Creating Source Instances](#source). Before creating the images, delete the source instances. This breaks the attachment between them and the disk. (you can't create an image from a disk attached to a VM instance).
 
 1. Verify that the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX Plus All-Active-LB</span> project is still selected in the Google Cloud Platform header bar.
 
@@ -708,7 +708,7 @@ Create _instance templates_. They are the compute workloads in instance groups. 
    - <span style="font-weight:bold; white-space: nowrap;">Identity and API access</span> – Unless you want more granular control over access, keep the defaults in the <span style="font-weight:bold; white-space: nowrap;">Service account</span> field (<span style="color:#666666; font-weight:bolder;">Compute Engine default service account</span>) and <span style="font-weight:bold; white-space: nowrap;">Access scopes</span> field (<span style="color:#666666; font-weight:bolder; white-space: nowrap;">Allow default access</span>).
    - **Firewall** – Verify that neither check box is checked (the default). The firewall rule invoked in the **Tags** field on the <span style="color:#666666; font-weight:bolder;">Management</span> subtab (see Step 6 below) controls this type of access.
 
-5. Click <span style="color:#3366cc; white-space: nowrap;">Management, disk, networking, SSH keys</span> (indicated with a red arrow in the following screenshot) to open that set of subtabs.
+5. Select <span style="color:#3366cc; white-space: nowrap;">Management, disk, networking, SSH keys</span> (indicated with a red arrow in the following screenshot) to open that set of subtabs.
 
    <img src="/nginx/images/gce-create-instance-template.png" alt="Screenshot of the interface for creating a Google Compute Engine (GCE) instance template, used during deployment of NGINX Plus as the Google load balancer." width="498" height="798" class="aligncenter size-full wp-image-47473" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
@@ -945,7 +945,7 @@ Set up a GCE network load balancer. It will distribute incoming client traffic t
 
     <img src="/nginx/images/gce-backend-configuration.png" alt="Screenshot of the interface for backend configuration of GCE network load balancer, used during deployment of NGINX Plus as the Google Cloud Platform load balancer." width="862" height="584" class="aligncenter size-full wp-image-47466" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-13. Click <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Frontend configuration</span> in the left column. This opens up the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Frontend configuration</span> interface on the right column.
+13. Select <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Frontend configuration</span> in the left column. This opens up the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Frontend configuration</span> interface on the right column.
 
 14. Create three <span style="font-weight:bold; white-space: nowrap;">Protocol-IP-Port</span> tuples, each with:
 
