@@ -803,103 +803,33 @@
 <td></td>
 </tr>
 <tr class="even">
-<td><a href="#policy/brute-force-attack-preventions/detectionCriteria">detectionCriteria</a></td>
-<td>object</td>
-<td>Specifies configuration for detecting distributed brute force attacks.</td>
-<td></td>
-</tr>
-<tr class="odd">
 <td><a href="#policy/brute-force-attack-preventions/loginAttemptsFromTheSameIp">loginAttemptsFromTheSameIp</a></td>
 <td>object</td>
 <td>Specifies configuration for detecting brute force attacks from IP Address.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/brute-force-attack-preventions/loginAttemptsFromTheSameUser">loginAttemptsFromTheSameUser</a></td>
 <td>object</td>
 <td>Specifies configuration for detecting brute force attacks for Username.</td>
 <td></td>
 </tr>
-<tr class="odd">
-<td><code>measurementPeriod</code></td>
-<td>integer minimum: 60 maximum: 90000</td>
-<td>Defines detection period (measured in seconds) for distributed brute force attacks.</td>
-<td></td>
-</tr>
 <tr class="even">
-<td><code>preventionDuration</code></td>
-<td><ul>
-<li>integer minimum: 60 maximum: 90000</li>
-<li>string</li>
-</ul></td>
-<td>Defines prevention period (measured in seconds) for distributed brute force attacks.</td>
-<td><ul>
-<li>Integer values</li>
-<li>"unlimited"</li>
-</ul></td>
-</tr>
-<tr class="odd">
 <td><code>reEnableLoginAfter</code></td>
 <td>integer minimum: 60 maximum: 90000</td>
 <td>Defines prevention period (measured in seconds) for source-based brute force attacks.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>sourceBasedProtectionDetectionPeriod</code></td>
 <td>integer minimum: 60 maximum: 90000</td>
 <td>Defines detection period (measured in seconds) for source-based brute force attacks.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/urls">url</a></td>
 <td>object</td>
 <td>Reference to the URL used in login URL configuration (policy/login-pages). This login URL is protected by Brute Force Protection feature.</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h3 id="policy/brute-force-attack-preventions/detectionCriteria">detectionCriteria</h3>
-<table>
-<colgroup>
-<col style="width: 29%" />
-<col style="width: 5%" />
-<col style="width: 47%" />
-<col style="width: 17%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Field Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Allowed Values</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p><code>action</code></p></td>
-<td><p>string</p></td>
-<td><p>Specifies action that is applied when one of the defined thresholds (credentialsStuffingMatchesReached, failedLoginAttemptsRateReached) is reached.</p>
-<blockquote>
-<ul>
-<li><strong>alarm</strong>: The system will log the login attempt.</li>
-<li><strong>alarm-and-client-side-integrity</strong>: The system determines whether the client is a legal browser or a bot by sending a page containing JavaScript code and waiting for a response. Legal browsers are able to execute JavaScript and produce a valid response, whereas bots cannot. A login attempt is logged if the client successfully passes the Client Side Integrity challenge.</li>
-</ul>
-</blockquote></td>
-<td><ul>
-<li>alarm</li>
-<li>alarm-and-client-side-integrity</li>
-</ul></td>
-</tr>
-<tr class="even">
-<td><code>credentialsStuffingMatchesReached</code></td>
-<td>integer minimum: 1 maximum: 10000</td>
-<td>After configured threshold (number of detected login attempts that match known leaked credentials library) defined action will be applied for the next login attempt.</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>failedLoginAttemptsRateReached</code></td>
-<td>integer minimum: 1 maximum: 10000</td>
-<td>After configured threshold (number of failed login attempts within measurementPeriod) defined action will be applied for the next login attempt.</td>
 <td></td>
 </tr>
 </tbody>
@@ -929,17 +859,11 @@
 <ul>
 <li><strong>alarm</strong>: The system will log the login attempt.</li>
 <li><strong>alarm-and-blocking-page</strong>: The system will log the login attempt, block the request and send the Blocking page.</li>
-<li><strong>alarm-and-client-side-integrity</strong>: The system determines whether the client is a legal browser or a bot by sending a page containing JavaScript code and waiting for a response. Legal browsers are able to execute JavaScript and produce a valid response, whereas bots cannot. A login attempt is logged if the client successfully passes the Client Side Integrity challenge.</li>
-<li><strong>alarm-and-drop</strong>: The system will log the login attempt and reset the TCP connection.</li>
-<li><strong>alarm-and-honeypot-page</strong>: The system will log the login attempt, block the request and send the Honeypot page. The Honeypot page is used for attacker deception. The page should look like an application failed login page. Unlike with the Blocking page, when the Honeypot page is sent an attacker is not able to distinguish a failed login response from a mitigation. As a result, the attacker will not change identity (Source IP or Device ID) and the brute force attack will be rendered ineffective. The Honeypot page is recommended when mitigation is request blocking.</li>
 </ul>
 </blockquote></td>
 <td><ul>
 <li>alarm</li>
 <li>alarm-and-blocking-page</li>
-<li>alarm-and-client-side-integrity</li>
-<li>alarm-and-drop</li>
-<li>alarm-and-honeypot-page</li>
 </ul></td>
 </tr>
 <tr class="even">
@@ -980,12 +904,10 @@
 <blockquote>
 <ul>
 <li><strong>alarm</strong>: The system will log the login attempt.</li>
-<li><strong>alarm-and-client-side-integrity</strong>: The system determines whether the client is a legal browser or a bot by sending a page containing JavaScript code and waiting for a response. Legal browsers are able to execute JavaScript and produce a valid response, whereas bots cannot. A login attempt is logged if the client successfully passes the Client Side Integrity challenge.</li>
 </ul>
 </blockquote></td>
 <td><ul>
 <li>alarm</li>
-<li>alarm-and-client-side-integrity</li>
 </ul></td>
 </tr>
 <tr class="even">
