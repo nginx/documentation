@@ -1,19 +1,11 @@
 ---
-description: Follow the steps in this guide to scan for and discover NGINX instances.
-docs: DOCS-828
-doctypes:
-- tutorial
-tags:
-- docs
 title: Scan and discover NGINX instances
-toc: true
 weight: 110
+toc: true
+typo: how-to
+product: NIM
+docs: DOCS-828
 ---
-
-<style>
-  h3 {font-weight: 400; padding-top: 20px;}
-  hr {margin-top: 40px; margin-bottom: 40px;}
-</style>
 
 {{< shortversions "2.0.0" "latest" "nimvers" >}}
 
@@ -40,7 +32,7 @@ If no host discovery options are provided, Instance Manager sends an ICMP echo r
 
 ## Scan using the web interface {#scan-ui}
 
-1. In a web browser, go to the FQDN for your F5 NGINX Management Suite host and log in.
+1. In a web browser, go to the FQDN for your F5 NGINX Instance Manager host and log in.
 2. In the left menu, select **Scan**.
 3. Enter subnets and masks that correspond to your network.
 

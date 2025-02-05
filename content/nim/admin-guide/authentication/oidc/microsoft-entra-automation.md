@@ -1,12 +1,10 @@
 ---
-docs: DOCS-1197
-doctypes:
-- tutorial
-tags:
-- docs
 title: Automate OIDC with Microsoft Entra
-toc: true
 weight: 300
+toc: true
+type: how-to
+product: NIM
+docs: DOCS-1197
 ---
 
 ## Overview
@@ -50,7 +48,7 @@ Before proceeding, first secure NGINX Instance Manager with OpenID Connect (OIDC
 3. Fill in the role details. Use the information from an existing user group in NGINX Instance Manager, such as from the [Create user groups in Instance Manager]({{< relref "/nim/admin-guide/authentication/oidc/microsoft-entra-setup.md#create-user-groups-in-nginx-instance-manager" >}}) step:
    - In the **Display name** field, enter a role name (e.g., "Admin").
    - In **Allowed member types**, select **Applications**.
-   - In the **Value** field, enter the value for the role. This must match the user group in NGINX Management Suite.
+   - In the **Value** field, enter the value for the role. This must match the user group in Instance Manager.
    - Provide a description for the role.
 4. Select **Save**.
 
@@ -158,12 +156,12 @@ Additionally, complete the following steps:
 
     {{< note >}}The `roles` claim will contain the role ID of the role you created in the [Create an app role](#create-app-role) step.{{< /note >}}
 
-## Access NGINX Management Suite API using the access token
+## Access NGINX Instance Manager API using the access token
 
-To access the NGINX Management Suite API using the access token, send the token in the `Authorization` header of the request as a Bearer token. For example, using `curl`:
+To access the NGINX Instance Manager API using the access token, send the token in the `Authorization` header of the request as a Bearer token. For example, using `curl`:
 
 ```bash
 curl -v -k --header "Authorization: Bearer <access-token>" https://<nms-ip>/api/platform/v1/userinfo
 ```
 
-Replace `<access-token>` with the token you obtained from Microsoft Entra and `<nms-ip>` with the IP address of your NGINX Management Suite instance.
+Replace `<access-token>` with the token you obtained from Microsoft Entra and `<nms-ip>` with the IP address of your NGINX Instance Manager instance.

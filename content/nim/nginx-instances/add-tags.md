@@ -1,13 +1,10 @@
 ---
-description: Follow the steps in this guide to create tags for organizing your instances.
-docs: DOCS-829
-doctypes:
-- tutorial
-tags:
-- docs
 title: Organize instances with tags
-toc: true
 weight: 650
+toc: true
+type: how-to
+product: NIM
+docs: DOCS-829
 ---
 
 ## Overview
@@ -43,7 +40,7 @@ To add tags to the configuration file, take the following steps:
 
 To add tags using the Instance Manager web interface, take the following steps:
 
-1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in.
+1. In a web browser, go to the FQDN for your NGINX Instance Manager host and log in.
 
 1. In the left menu, select **Instances**.
 

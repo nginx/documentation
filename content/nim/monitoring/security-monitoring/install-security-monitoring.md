@@ -1,5 +1,5 @@
 ---
-title: "Install or upgrade Security Monitoring"
+title: Install or upgrade Security Monitoring
 toc: true
 weight: 100
 doctype: how-to
@@ -9,7 +9,7 @@ docs: DOCS-1208
 
 ## Overview
 
-Follow the steps in this guide to install or upgrade or upgrade the NGINX Security Monitoring module.
+Follow the steps in this guide to install or upgrade or upgrade the Security Monitoring module.
 
 ---
 

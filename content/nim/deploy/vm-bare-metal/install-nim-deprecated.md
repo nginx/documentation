@@ -1,14 +1,11 @@
 ---
-description: 
-docs: DOCS-1211
-doctypes:
-- tutorial
-tags:
-- docs
 title: Manually install on a virtual machine or bare metal (deprecated)
-toc: true
 weight: 10
+toc: true
 noindex: true
+type: how-to
+product: NIM
+docs: DOCS-1211
 ---
 
 
@@ -316,4 +313,4 @@ To install NGINX Instance Manager, you need to add the official repository to pu
    sudo systemctl restart nginx
    ```
 
-4. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "nim/system-configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Management suite.
+4. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "nim/system-configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Instance Manager.

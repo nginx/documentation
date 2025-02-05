@@ -1,21 +1,19 @@
 ---
-description: Learn how to use NGINX Management Suite Instance Manager to publish NGINX
-  App Protect WAF configurations.
-docs: DOCS-1114
-tags:
-- docs
 title: WAF Configuration Management
-toc: true
 weight: 100
+toc: true
+type: how-to
+product: NIM
+docs: DOCS-1114
 ---
 
 ## Overview
 
-You can use NGINX Management Suite Instance Manager to publish configurations to your NGINX App Protect WAF data plane instances.
+You can use NGINX Instance Manager to publish configurations to your NGINX App Protect WAF data plane instances.
 
 ## Publish WAF Configurations
 
-1. Set up your NGINX Management Suite Instance Manager instance:
+1. Set up your NGINX Instance Manager instance:
 
    - [Install the WAF Compiler]({{< relref "/nim/nginx-app-protect/setup-waf-config-management#install-the-waf-compiler" >}})
 

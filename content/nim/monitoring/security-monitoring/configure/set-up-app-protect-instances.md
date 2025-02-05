@@ -1,9 +1,7 @@
 ---
 title: Create App Protect WAF instances for Security Monitoring
-description: Learn how to set up F5 NGINX App Protect data plane instances for use with
-  the NGINX Security Monitoring and NGINX Instance Manager.
-toc: true
 weight: 100
+toc: true
 type: how-to
 product: NIM
 docs: DOCS-1107
@@ -11,7 +9,7 @@ docs: DOCS-1107
 
 ## Overview
 
-F5 NGINX Security Monitoring supports the following use cases:
+The Security Monitoring module supports the following use cases:
 
 - **Security Monitoring only**: Use only the Security Monitoring module to monitor data from NGINX App Protect WAF instances. You will be able to review the security dashboards to assess potential threats and identify opportunities to fine-tune your policies. Your NGINX App Protect WAF configurations are managed outside of the NGINX Instance Manager context.
 - **Security Monitoring and Instance Manager**: Use the Security Monitoring module with the NGINX Instance Manager. In addition to monitoring your application security, you will be able to manage your NGINX App Protect WAF  configurations and security policies in a single location and push pre-compiled updates to an instance or instance group.
@@ -32,7 +30,7 @@ Complete the following prerequisites before proceeding with the steps in this gu
    {{< include "nim/tech-specs/security-data-plane-dependencies.md" >}}
 
 1. Determine your use case: **Security Monitoring only** or **Security Monitoring and Configuration Management**.
-1. [Install the NGINX Security Monitoring module]({{< relref "/nim/monitoring/security-monitoring/install-security-monitoring.md" >}}) and [upload your license]({{< relref "/nim/admin-guide/license/add-license.md" >}}).
+1. [Install the Security Monitoring module]({{< relref "/nim/monitoring/security-monitoring/install-security-monitoring.md" >}}) and [upload your license]({{< relref "/nim/admin-guide/license/add-license.md" >}}).
 
 ---
 
@@ -199,7 +197,7 @@ Repeat the steps below on each NGINX App Protect WAF data plane instance.
    sudo systemctl restart nginx
    ```
 
-You should now be able to view data from your NGINX App Protect instances in the NGINX Security Monitoring dashboards.
+You should now be able to view data from your NGINX App Protect instances in the Security Monitoring dashboards.
 
 ---
 

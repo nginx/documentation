@@ -1,15 +1,11 @@
 ---
-description: This topic describes possible issues users might encounter when using
-  Instance Manager. When possible, suggested workarounds are provided.
-docs: DOCS-1224
-doctypes:
-- reference
-tags:
-- docs
 title: Troubleshooting
-toc: true
 weight: 1000
+toc: true
 draft: true
+type: how-to
+product: NIM
+docs: DOCS-1224
 ---
 
 ## New NGINX instances don't show up in Instance Manager
@@ -104,7 +100,7 @@ When attempting to upgrade Instance Manager on a Debian-based system, the comman
 
 To manually update the public key, take the following steps:
 
-1. Download a new key from the NGINX Management Suite host:
+1. Download a new key from the Instance Manager host:
 
    - Secure:
 
