@@ -80,16 +80,24 @@ NGINX Plus R33 is supported on:
 
 More information: [Announcing NGINX Plus R33](https://community.f5.com/kb/technicalarticles/announcing-nginx-plus-r33-release/336403)
 
-<span id="r33_p1"></span>
-### NGINX Plus R33 Update
 
-This is a bugfix release for NGINX Plus R33.
+<span id="r33_p1"></span>
+### NGINX Plus R33 Updates
 
 NGINX Plus R33 P1<br/>
 _4 December 2024_
 
+This is a bugfix release for NGINX Plus R33.
+
 - Resolved an issue related to product code detection on Azure Marketplace VMs.
 
+
+NGINX Plus R33 P2<br/>
+_5 February 2025_
+
+This is a security release for NGINX Plus R33.
+
+- Security Fix [CVE-2025-23419](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-23419) in SNI that adds a restriction for TLSv1.3 cross-SNI session resumption.
 
 <span id="r32"></span>
 ## NGINX Plus Release 32 (R32)
@@ -104,9 +112,9 @@ NGINX Plus R32 is a feature release:
 
 - NGINX Plus [official container images](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-docker/)
 
-- [Virtual servers](http://nginx.org/en/docs/stream/ngx_stream_core_module.html#server_name) in the [`stream`](http://nginx.org/en/docs/stream/ngx_stream_core_module.html) module
+- [Virtual servers](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#server_name) in the [`stream`](https://nginx.org/en/docs/stream/ngx_stream_core_module.html) module
 
-- The `deferred`, `accept_filter`, and `setfib` parameters of the [listen](http://nginx.org/en/docs/stream/ngx_stream_core_module.html#listen) directive in the [`stream`](http://nginx.org/en/docs/stream/ngx_stream_core_module.html) module
+- The `deferred`, `accept_filter`, and `setfib` parameters of the [listen](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#listen) directive in the [`stream`](https://nginx.org/en/docs/stream/ngx_stream_core_module.html) module
 
 - Cache line size detection for some architectures
 
@@ -172,9 +180,9 @@ More information: [Announcing NGINX Plus R32](https://www.f5.com/company/blog/ng
 
 
 <span id="r32_p1"></span>
-### NGINX Plus R32 Update
+### NGINX Plus R32 Updates
 
-This is a security release for NGINX Plus R32.
+These are security releases for NGINX Plus R32.
 
 NGINX Plus R32 P1<br/>
 _14 August 2024_
@@ -187,6 +195,13 @@ _14 August 2024_
 
 - Various fixes in SSL certificate caching
 
+
+NGINX Plus R32 P2<br/>
+_5 February 2025_
+
+- Security Fix [CVE-2025-23419](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-23419) in SNI that adds a restriction for TLSv1.3 cross-SNI session resumption.
+
+- Regression issue fix in SSL Certificate Caching.
 
 <span id="r31"></span>
 ## NGINX Plus Release 31 (R31)
