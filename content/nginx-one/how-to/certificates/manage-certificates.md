@@ -59,10 +59,12 @@ Before you add and manage certificates with the NGINX One Console make sure:
 
 NGINX One Console supports certificates for access to repositories. You may need a copy of these files from your Certificate Authority (CA)  to upload them to NGINX One Console:
 
-- SSL Certificate (with a `.cer` or `.pem` file extension)
-- Privacy certificate (with a `.pem` file extension)
+- SSL Certificate
+  - Example file extensions: .crt, .pem
+- Privacy certificate
+  - Example file extensions: .key, .pem
 
-The NGINX One Console allows you to upload these certificates as text and as files. You can also upload your own certificate files (with .crt and .key file extensions).
+The NGINX One Console allows you to upload these certificates as text and as files. You can also upload your own certificate files (with file extensions such as .crt and .key).
 
 Make sure your certificates, keys, and pem files are encrypted to one of the following standards:
 
@@ -75,7 +77,7 @@ For exmaple, if you use ECDSA private keys in PEM format, the PEM headers should
 
 ```
 -----BEGIN EC PRIVATE KEY-----
-<...base64-encoded key>
+<BASE64 ENCODED KEY>
 -----END EC PRIVATE KEY-----
 
 ```
@@ -170,7 +172,7 @@ To delete a certificate, find the name in the **Certificates** screen. Find the 
 
 If that certificate is managed and is part of a Config Sync Group, that change affects all instances in that group.
 
-{{< warning >}} Do not delete certificates that are being used by an instance or a Config Sync Group. Deleting such certificates leads to failure in affected NGINX deployments. {{< /warning >}}
+{{< warning >}} Be cautious if you want to delete certificates that are being used by an instance or a Config Sync Group. Deleting such certificates leads to failure in affected NGINX deployments. {{< /warning >}}
 
 ## Managed and unmanaged certificates
 
