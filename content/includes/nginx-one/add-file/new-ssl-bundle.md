@@ -20,13 +20,12 @@ Select **Save and Continue**. You're taken to another screen where you can speci
 
 - **Certificate File Path**
   - Enter the full path to your certificate, such as
-    - /etc/ssl/nginx/server.crt
-    - /etc/ssl/nginx/server.pem
+    - /etc/nginx/server.crt
+    - /etc/nginx/server.pem
 
 - **Key File Path**
   - Enter the full path to your certificate key, such as
-    - /etc/ssl/nginx/server.key
-  - If you're using a `.pem` file, you won't have a separate key.
+    - /etc/nginx/server.key
 
 With the **Add Item** button, you can add the file to additional directories.
 
