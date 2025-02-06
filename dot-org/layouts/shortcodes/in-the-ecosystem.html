@@ -1,0 +1,25 @@
+<p>
+    NGINX is dedicated to supporting the open-source community through active participation, sponsorships, leadership roles, and contributions to various foundations, organizations, and projects.
+</p>
+
+{{ $engagements := resources.Get "ecosystem-engagements.json" | transform.Unmarshal }}
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-between">
+    {{ range $engagements }}
+        <article class="flex flex-col gap-2">
+            <div class="h-[175px] bg-white flex justify-center items-center p-12 ngx-card-border">
+                {{ with resources.Get .image }}
+                    <img src="{{ .RelPermalink }}" alt="logo">
+                {{ end }}
+            </div>
+            <div class="flex flex-col gap-1">
+                <h3 class="font-bold text-xl text-wrap">{{.title}}</h3>
+                <p class="text-sm text-wrap">{{.description}}</p>
+                <a href="{{.siteURL}}" class="txt-ngx-green text-sm font-bold w-fit flex gap-0.5 items-center link-hover" target="_blank">
+                    Visit site
+                    {{ partial "svg/arrow-right-solid.svg" (dict "size" 14 )}}
+                </a>
+            </div>
+        </article>
+    {{ end }}
+</div>
