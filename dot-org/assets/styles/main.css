@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+@theme {
+
+    --color-ngx-green: var(--nginx-green);
+    --color-ngx-green-light: #00c94c;
+    --color-ngx-green-dark: #017e31
+}
+
+.ngx-button {
+    @apply bg-ngx-green uppercase text-center px-6 py-2 rounded-sm font-semibold w-fit text-white hover:bg-ngx-green-dark transition;
+}
+
+@layer base {
+    :root {
+        --nginx-green: #009639;
+        --offwhite-bg: #fdfdfd;
+        --card-border: #D9D9D9;
+    }
+}
+
+/* `nginx-hugo-theme` Overrides*/
+.main {
+    display: block; !important;
+}
+
+a {
+    color: inherit;
+}
+
+p {
+    margin: 0; !important;
+
+}
+
+h2 {
+    margin: 0; !important;
+}
+
+ol {
+    @apply list-decimal list-inside text-lg;
+}
+
+ul {
+    @apply list-disc list-inside text-lg;
+}
+
+ol > li::marker {
+    @apply font-semibold;
+}
+
+.section-text-content > h2 {
+    @apply font-bold text-3xl uppercase underline underline-offset-8 mb-2;
+    text-decoration-color: var(--nginx-green);
+}
+
+
+.section-text-content {
+    @apply gap-4 flex flex-col;
+}
+
+.section-text-content > p {
+    @apply text-lg;
+}
+
+.section-text-content > p > a {
+    @apply underline underline-offset-2;
+}
+
+.section
+
+/*End nginx-hugo-theme overrides*/
+
+@layer base {
+    :root {
+        --nginx-green: #009639;
+        --offwhite-bg: #fdfdfd;
+        --card-border: #D9D9D9;
+
+    }
+}
+
+.link-hover {
+    @apply hover:underline hover:underline-offset-4;
+}
+
+.ngx-section-container {
+    @apply px-5 md:px-0 flex-col flex gap-8 container mx-auto;
+}
+
+.proj-image-bg {
+    background-color: #24292F;
+}
+
+.hero-gradient {
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(26,41,59,1) 51%, rgba(36,45,57,1) 100%);
+}
+
+.bg-offwhite {
+    background-color: var(--offwhite-bg);
+}
+
+.footer-social-icon {
+    @apply h-[25px] w-[25px] text-white flex justify-center items-center;
+}
+
+.txt-ngx-green {
+    color: var(--nginx-green);
+}
+
+.ngx-card-border {
+    border: 1px solid var(--card-border);
+}
+
+.ngx-section-header {
+    @apply font-bold text-3xl uppercase underline underline-offset-8;
+    text-decoration-color: var(--nginx-green);
+}
+
+.content-width {
+    @apply 2xl:max-w-2xl xl:max-w-xl ;
+}
+
+.content-padding-x {
+    @apply px-[150px];
+}
+
+.content-padding-y {
+    @apply py-12 md:py-[75px];
+}
+
+.btn-primary {
+    @apply w-fit text-white font-semibold ;
+    background-color: var(--nginx-green);
+}
+
+body {
+    @apply antialiased;
+}

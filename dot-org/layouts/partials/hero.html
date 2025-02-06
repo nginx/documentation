@@ -1,0 +1,27 @@
+<section class="w-full hero-gradient flex">
+    <!--  Content Width Target -->
+    <div class="container flex m-auto flex-col md:flex-row">
+        <div class="w-full flex justify-center md:w-1/2 text-white flex-col gap-4 ">
+            <div class="flex flex-col text-white gap-4 py-16 px-5 lg:p-0 ">
+                <h4 class="text-2xl uppercase text-white font-bold">NGINX OPEN SOURCE</h4>
+                <div class="flex gap-x-2 items-center">
+                    {{ with resources.Get "images/icon-logo.png" }}
+                        <img src="{{ .RelPermalink }}" alt="icon-logo" class="w-[50px] h-[50px]"/>
+                    {{ end }}
+                    <h2 class="text-4xl">We power the web</h2>
+                </div>
+                <p class="text-lg">
+                    NGINX <strong>creates</strong>, <strong>supports</strong>, and <strong>contribute</strong> open source
+                    software that empowers individuals and organizations to solve problems, innovate, and collaborate
+                    in a transparent and inclusive way.
+                </p>
+                <a class="uppercase ngx-button text-center px-4 py-2 rounded-sm" href="/projects">Discover Projects</a>
+            </div>
+        </div>
+        <div class="hidden md:visible md:flex md:w-1/2 justify-center items-center">
+            {{ with resources.Get "images/hero-graphic.png" }}
+                <img src="{{ .RelPermalink }}" class="lg:p-32" alt="hero-graphic"/>
+            {{ end }}
+        </div>
+    </div>
+</section>

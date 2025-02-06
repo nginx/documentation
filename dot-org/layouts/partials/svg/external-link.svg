@@ -1,0 +1,5 @@
+<svg viewBox="0 0 26 25" width="{{ default 26 .size}}" height="{{ default 25 .size}}" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M19.2708 13.5417V19.7917C19.2708 20.3442 19.0513 20.8741 18.6606 21.2648C18.2699 21.6555 17.74 21.875 17.1875 21.875H5.72917C5.17663 21.875 4.64673 21.6555 4.25603 21.2648C3.86533 20.8741 3.64584 20.3442 3.64584 19.7917V8.33333C3.64584 7.7808 3.86533 7.25089 4.25603 6.86019C4.64673 6.46949 5.17663 6.25 5.72917 6.25H11.9792" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M16.1458 3.125H22.3958V9.375" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M10.9375 14.5833L22.3958 3.125" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
