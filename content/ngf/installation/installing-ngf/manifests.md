@@ -63,7 +63,7 @@ Deploying NGINX Gateway Fabric with Kubernetes manifests takes only a few steps.
 #### Stable release
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.5.1/deploy/crds.yaml
+kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.1/deploy/crds.yaml
 ```
 
 #### Edge version
@@ -85,7 +85,7 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/ma
 Deploys NGINX Gateway Fabric with NGINX OSS.
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.5.1/deploy/default/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.1/deploy/default/deploy.yaml
 ```
 
 {{% /tab %}}
@@ -95,7 +95,7 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1
 Deploys NGINX Gateway Fabric with NGINX OSS and an AWS Network Load Balancer service.
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.5.1/deploy/aws-nlb/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.1/deploy/aws-nlb/deploy.yaml
 ```
 
 {{% /tab %}}
@@ -105,7 +105,7 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1
 Deploys NGINX Gateway Fabric with NGINX OSS and `nodeSelector` to deploy on Linux nodes.
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.5.1/deploy/azure/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.1/deploy/azure/deploy.yaml
 ```
 
 {{% /tab %}}
@@ -117,7 +117,7 @@ NGINX Plus Docker registry, and the `imagePullSecretName` is the name of the Sec
 The NGINX Plus JWT Secret used to run NGINX Plus is also specified in a volume mount and the `--usage-report-secret` parameter. These Secrets are created as part of the [Before you begin](#before-you-begin) section.
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.5.1/deploy/nginx-plus/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.1/deploy/nginx-plus/deploy.yaml
 ```
 
 {{% /tab %}}
@@ -127,7 +127,7 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1
 Deploys NGINX Gateway Fabric with NGINX OSS and experimental features.
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.5.1/deploy/experimental/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.1/deploy/experimental/deploy.yaml
 ```
 
 {{< note >}} Requires the Gateway APIs installed from the experimental channel. {{< /note >}}
@@ -141,7 +141,7 @@ NGINX Plus Docker registry, and the `imagePullSecretName` is the name of the Sec
 The NGINX Plus JWT Secret used to run NGINX Plus is also specified in a volume mount and the `--usage-report-secret` parameter. These Secrets are created as part of the [Before you begin](#before-you-begin) section.
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.5.1/deploy/nginx-plus-experimental/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.1/deploy/nginx-plus-experimental/deploy.yaml
 ```
 
 {{< note >}} Requires the Gateway APIs installed from the experimental channel. {{< /note >}}
@@ -153,7 +153,7 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1
 Deploys NGINX Gateway Fabric with NGINX OSS using a Service type of `NodePort`.
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.5.1/deploy/nodeport/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.1/deploy/nodeport/deploy.yaml
 ```
 
 {{% /tab %}}
@@ -163,7 +163,7 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1
 Deploys NGINX Gateway Fabric with NGINX OSS on OpenShift.
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.5.1/deploy/openshift/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.1/deploy/openshift/deploy.yaml
 ```
 
 {{% /tab %}}
@@ -211,13 +211,13 @@ To upgrade NGINX Gateway Fabric and get the latest features and improvements, ta
    - To upgrade the Gateway API resources, run:
 
      ```shell
-     kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/standard?ref=v1.5.1" | kubectl apply -f -
+     kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/standard?ref=v1.6.1" | kubectl apply -f -
      ```
 
      or, if you installed the from the experimental channel:
 
      ```shell
-     kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/experimental?ref=v1.5.1" | kubectl apply -f -
+     kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/experimental?ref=v1.6.1" | kubectl apply -f -
      ```
 
 1. **Upgrade NGINX Gateway Fabric CRDs:**
@@ -225,7 +225,7 @@ To upgrade NGINX Gateway Fabric and get the latest features and improvements, ta
    - To upgrade the Custom Resource Definitions (CRDs), run:
 
      ```shell
-     kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.5.1/deploy/crds.yaml
+     kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.1/deploy/crds.yaml
      ```
 
 1. **Upgrade NGINX Gateway Fabric deployment:**
@@ -300,7 +300,7 @@ Follow these steps to uninstall NGINX Gateway Fabric and Gateway API from your K
      ```
 
      ```shell
-     kubectl delete -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.5.1/deploy/crds.yaml
+     kubectl delete -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.1/deploy/crds.yaml
      ```
 
 1. **Remove the Gateway API resources:**
