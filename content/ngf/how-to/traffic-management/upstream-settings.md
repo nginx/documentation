@@ -26,7 +26,7 @@ See the [custom policies]({{< relref "overview/custom-policies.md" >}}) document
 
 This guide will show you how to use the `UpstreamSettingsPolicy` API to configure the upstream zone size and keepalives for your applications.
 
-For all the possible configuration options for `UpstreamSettingsPolicy`, see the [API reference]({{< relref "reference/api.md" >}}).
+For all the possible configuration options for `UpstreamSettingsPolicy`, see the [API reference]({{< relref "/ngf/reference/api.md" >}}).
 
 ---
 
@@ -391,5 +391,5 @@ upstream default_tea_80 {
 
 ## Further reading
 
-- [Custom policies]({{< relref "overview/custom-policies.md" >}}): learn about how NGINX Gateway Fabric custom policies work.
-- [API reference]({{< relref "reference/api.md" >}}): all configuration fields for the `UpstreamSettingsPolicy` API.
+- [Custom policies]({{< relref "/ngf/overview/custom-policies.md" >}}): learn about how NGINX Gateway Fabric custom policies work.
+- [API reference]({{< relref "/ngf/reference/api.md" >}}): all configuration fields for the `UpstreamSettingsPolicy` API.

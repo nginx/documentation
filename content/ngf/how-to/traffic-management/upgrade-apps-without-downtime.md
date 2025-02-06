@@ -13,7 +13,7 @@ Learn how to use NGINX Gateway Fabric to upgrade applications without downtime.
 
 ## Overview
 
-{{< note >}} See the [Architecture document]({{< relref "/overview/gateway-architecture.md" >}}) to learn more about NGINX Gateway Fabric architecture.{{< /note >}}
+{{< note >}} See the [Architecture document]({{< relref "/ngf/overview/gateway-architecture.md" >}}) to learn more about NGINX Gateway Fabric architecture.{{< /note >}}
 
 NGINX Gateway Fabric allows upgrading applications without downtime. To understand the upgrade methods, you need to be familiar with the NGINX features that help prevent application downtime: Graceful configuration reloads and upstream server updates.
 
