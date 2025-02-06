@@ -15,7 +15,7 @@ This guide explains how to enable tracing on HTTPRoutes in NGINX Gateway Fabric 
 
 NGINX Gateway Fabric supports tracing using [OpenTelemetry](https://opentelemetry.io/).
 
-The official [NGINX OpenTelemetry Module](https://github.com/nginxinc/nginx-otel) instruments the NGINX data plane to export traces to a configured collector. Tracing data can be used with an OpenTelemetry Protocol (OTLP) exporter, such as the [OpenTelemetry Collector](https://github.com/open-telemetry/opentelemetry-collector). 
+The official [NGINX OpenTelemetry Module](https://github.com/nginxinc/nginx-otel) instruments the NGINX data plane to export traces to a configured collector. Tracing data can be used with an OpenTelemetry Protocol (OTLP) exporter, such as the [OpenTelemetry Collector](https://github.com/open-telemetry/opentelemetry-collector).
 
 This collector can then export data to one or more upstream collectors like [Jaeger](https://www.jaegertracing.io/), [DataDog](https://docs.datadoghq.com/tracing/), and many others. This is called the [Agent model](https://opentelemetry.io/docs/collector/deployment/agent/).
 
@@ -64,8 +64,6 @@ kubectl port-forward -n tracing svc/jaeger 16686:16686 &
 
 Visit [http://127.0.0.1:16686](http://127.0.0.1:16686) to view the dashboard.
 
----
-
 ## Enable tracing
 
 To enable tracing, you must configure two resources:
@@ -104,7 +102,7 @@ The span attribute will be added to all tracing spans.
 To install:
 
 ```shell
-helm install ngf oci://ghcr.io/nginxinc/charts/nginx-gateway-fabric --create-namespace -n nginx-gateway -f values.yaml
+helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namespace -n nginx-gateway -f values.yaml
 ```
 
 You should see the following configuration:
@@ -178,8 +176,6 @@ Save the public IP address and port of NGINX Gateway Fabric into shell variables
    ```
 
 You can now create the application, route, and tracing policy.
-
----
 
 ### Create the application and route
 
@@ -283,7 +279,7 @@ To enable tracing for the coffee HTTPRoute, create the following policy:
 
 ```yaml
 kubectl apply -f - <<EOF
-apiVersion: gateway.nginx.org/v1alpha1
+apiVersion: gateway.nginx.org/v1alpha2
 kind: ObservabilityPolicy
 metadata:
   name: coffee
