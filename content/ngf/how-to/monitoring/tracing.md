@@ -64,6 +64,8 @@ kubectl port-forward -n tracing svc/jaeger 16686:16686 &
 
 Visit [http://127.0.0.1:16686](http://127.0.0.1:16686) to view the dashboard.
 
+---
+
 ## Enable tracing
 
 To enable tracing, you must configure two resources:
@@ -176,6 +178,8 @@ Save the public IP address and port of NGINX Gateway Fabric into shell variables
    ```
 
 You can now create the application, route, and tracing policy.
+
+---
 
 ### Create the application and route
 
