@@ -37,17 +37,18 @@ If building the NGINX Plus image, you will also need a valid NGINX Plus license 
    ```
 
 1. Build the images:
+
    - To build both the NGINX Gateway Fabric and NGINX images:
 
-      ```makefile
-      make PREFIX=myregistry.example.com/nginx-gateway-fabric build-prod-images
-      ```
+     ```makefile
+     make PREFIX=myregistry.example.com/nginx-gateway-fabric build-prod-images
+     ```
 
    - To build both the NGINX Gateway Fabric and NGINX Plus images:
 
-      ```makefile
-      make PREFIX=myregistry.example.com/nginx-gateway-fabric build-prod-images-with-plus
-      ```
+     ```makefile
+     make PREFIX=myregistry.example.com/nginx-gateway-fabric build-prod-images-with-plus
+     ```
 
    - To build just the NGINX Gateway Fabric image:
 

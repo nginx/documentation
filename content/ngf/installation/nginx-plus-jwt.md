@@ -159,10 +159,10 @@ You also need to define the proper volume mount to mount the Secrets to the ngin
 - name: nginx-plus-usage-certs
   projected:
     sources:
-    - secret:
-        name: nim-ca
-    - secret:
-        name: nim-client
+      - secret:
+          name: nim-ca
+      - secret:
+          name: nim-client
 ```
 
 and the following volume mounts to the `nginx` container:

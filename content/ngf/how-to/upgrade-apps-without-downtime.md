@@ -58,12 +58,12 @@ For example, an application can be exposed using a routing rule like below:
 
 ```yaml
 - matches:
-  - path:
-      type: PathPrefix
-      value: /
+    - path:
+        type: PathPrefix
+        value: /
   backendRefs:
-  - name: my-app
-    port: 80
+    - name: my-app
+      port: 80
 ```
 
 {{< note >}} See the [Cafe example](https://github.com/nginx/nginx-gateway-fabric/tree/v1.6.1/examples/cafe-example) for a basic example. {{< /note >}}
@@ -107,16 +107,16 @@ A more flexible and precise way to implement canary releases is to configure a t
 
 ```yaml
 - matches:
-  - path:
-      type: PathPrefix
-      value: /
+    - path:
+        type: PathPrefix
+        value: /
   backendRefs:
-  - name: my-app-old
-    port: 80
-    weight: 95
-  - name: my-app-new
-    port: 80
-    weight: 5
+    - name: my-app-old
+      port: 80
+      weight: 95
+    - name: my-app-new
+      port: 80
+      weight: 5
 ```
 
 {{< note >}} Every request coming from the same client won't necessarily be sent to the same backend. NGINX will independently split each request among the backend references. {{< /note >}}
@@ -125,16 +125,16 @@ By updating the rule you can further increase the share of traffic the new versi
 
 ```yaml
 - matches:
-  - path:
-      type: PathPrefix
-      value: /
+    - path:
+        type: PathPrefix
+        value: /
   backendRefs:
-  - name: my-app-old
-    port: 80
-    weight: 0
-  - name: my-app-new
-    port: 80
-    weight: 1
+    - name: my-app-old
+      port: 80
+      weight: 0
+    - name: my-app-new
+      port: 80
+      weight: 1
 ```
 
 See the [Traffic splitting example](https://github.com/nginx/nginx-gateway-fabric/tree/v1.6.1/examples/traffic-splitting) from our repository.

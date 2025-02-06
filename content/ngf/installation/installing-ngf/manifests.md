@@ -23,6 +23,7 @@ To complete this guide, you'll need to install:
 - [kubectl](https://kubernetes.io/docs/tasks/tools/), a command-line interface for managing Kubernetes clusters.
 
 {{< important >}} If you’d like to use NGINX Plus, some additional setup is also required: {{</ important >}}
+
 <details closed>
 <summary>NGINX Plus JWT setup</summary>
 

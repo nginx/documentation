@@ -59,13 +59,14 @@ We have outlined a few best practices to keep in mind when using `SnippetsFilter
 ## Setup
 
 - To enable Snippets, [install]({{< ref "/ngf/installation/" >}}) NGINX Gateway Fabric with these modifications:
+
   - Using Helm: set the `nginxGateway.snippetsFilters.enable=true` Helm value.
   - Using Kubernetes manifests: set the `--snippets-filters` flag in the nginx-gateway container argument, add `snippetsfilters` to the RBAC
     rules with verbs `list` and `watch`, and add `snippetsfilters/status` to the RBAC rules with verb `update`. See this [example manifest](https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/main/deploy/snippets-filters/deploy.yaml) for clarification.
 
 - Save the public IP address and port of NGINX Gateway Fabric into shell variables:
 
-   ```text
+  ```text
   GW_IP=<ip address>
   GW_PORT=<port number>
   ```
@@ -82,13 +83,13 @@ We have outlined a few best practices to keep in mind when using `SnippetsFilter
 
   ```yaml
   kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.1/examples/snippets-filter/gateway.yaml
-   ```
+  ```
 
 - Create HTTPRoutes for the coffee and tea applications:
 
   ```yaml
   kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.1/examples/snippets-filter/httproutes.yaml
-   ```
+  ```
 
 - Test the configuration:
 
@@ -111,7 +112,7 @@ We have outlined a few best practices to keep in mind when using `SnippetsFilter
 
   ```shell
   curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/tea
-   ```
+  ```
 
   This request should receive a response from the tea Pod:
 

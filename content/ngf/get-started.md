@@ -36,14 +36,14 @@ Create the file _cluster-config.yaml_ with the following contents, noting the hi
 apiVersion: kind.x-k8s.io/v1alpha4
 kind: Cluster
 nodes:
-- role: control-plane
-  extraPortMappings:
-  - containerPort: 31437
-    hostPort: 8080
-    protocol: TCP
-  - containerPort: 31438
-    hostPort: 8443
-    protocol: TCP
+  - role: control-plane
+    extraPortMappings:
+      - containerPort: 31437
+        hostPort: 8080
+        protocol: TCP
+      - containerPort: 31438
+        hostPort: 8443
+        protocol: TCP
 ```
 
 {{< warning >}}
@@ -73,7 +73,7 @@ Thanks for using kind! 😊
 ```
 
 {{< note >}}
-If you have cloned [the NGINX Gateway Fabric repository](https://github.com/nginx/nginx-gateway-fabric/tree/main), you can also create a kind cluster from the root folder with the following *make* command:
+If you have cloned [the NGINX Gateway Fabric repository](https://github.com/nginx/nginx-gateway-fabric/tree/main), you can also create a kind cluster from the root folder with the following _make_ command:
 
 ```shell
 make create-kind-cluster
@@ -166,16 +166,16 @@ spec:
     app.kubernetes.io/name: nginx-gateway-fabric
     app.kubernetes.io/instance: ngf
   ports:
-  - name: http
-    port: 80
-    protocol: TCP
-    targetPort: 80
-    nodePort: 31437
-  - name: https
-    port: 443
-    protocol: TCP
-    targetPort: 443
-    nodePort: 31438
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 80
+      nodePort: 31437
+    - name: https
+      port: 443
+      protocol: TCP
+      targetPort: 443
+      nodePort: 31438
 ```
 
 Apply it using `kubectl`:

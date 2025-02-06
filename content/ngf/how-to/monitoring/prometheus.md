@@ -136,18 +136,18 @@ If you need to disable metrics:
 1. Set the `-metrics-disable` [command-line argument]({{< ref "/ngf/reference/cli-help.md">}}) to `true` in the NGINX Gateway Fabric Pod's configuration. Remove any other `-metrics-*` arguments.
 2. In the Pod template for NGINX Gateway Fabric, delete the metrics port entry from the container ports list:
 
-    ```yaml
-    - name: metrics
-      containerPort: 9113
-    ```
+   ```yaml
+   - name: metrics
+     containerPort: 9113
+   ```
 
 3. Also, remove the following annotations from the NGINX Gateway Fabric Pod template:
 
-    ```yaml
-    annotations:
-        prometheus.io/scrape: "true"
-        prometheus.io/port: "9113"
-    ```
+   ```yaml
+   annotations:
+     prometheus.io/scrape: "true"
+     prometheus.io/port: "9113"
+   ```
 
 #### Changing the default port
 
@@ -156,19 +156,19 @@ To change the default port for metrics:
 1. Update the `-metrics-port` [command-line argument]({{< ref "/ngf/reference/cli-help.md">}}) in the NGINX Gateway Fabric Pod's configuration to your chosen port number.
 2. In the Pod template, change the metrics port entry to reflect the new port:
 
-    ```yaml
-    - name: metrics
-      containerPort: <new-port>
-    ```
+   ```yaml
+   - name: metrics
+     containerPort: <new-port>
+   ```
 
 3. Modify the `prometheus.io/port` annotation in the Pod template to match the new port:
 
-    ```yaml
-    annotations:
-        <...>
-        prometheus.io/port: "<new-port>"
-        <...>
-    ```
+   ```yaml
+   annotations:
+       <...>
+       prometheus.io/port: "<new-port>"
+       <...>
+   ```
 
 ---
 
@@ -180,9 +180,9 @@ For enhanced security with HTTPS:
 
 2. Add an HTTPS scheme annotation to the Pod template:
 
-    ```yaml
-    annotations:
-        <...>
-        prometheus.io/scheme: "https"
-        <...>
-    ```
+   ```yaml
+   annotations:
+       <...>
+       prometheus.io/scheme: "https"
+       <...>
+   ```

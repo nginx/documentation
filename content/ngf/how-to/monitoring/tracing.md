@@ -123,8 +123,8 @@ spec:
     exporter:
       endpoint: otel-collector.tracing.svc:4317
     spanAttributes:
-    - key: cluster-attribute-key
-      value: cluster-attribute-value
+      - key: cluster-attribute-key
+        value: cluster-attribute-value
 ```
 
 ```shell
@@ -144,24 +144,24 @@ spec:
     name: ngf-proxy-config
 status:
   conditions:
-  - lastTransitionTime: "2024-05-22T15:18:35Z"
-    message: GatewayClass is accepted
-    observedGeneration: 1
-    reason: Accepted
-    status: "True"
-    type: Accepted
-  - lastTransitionTime: "2024-05-22T15:18:35Z"
-    message: Gateway API CRD versions are supported
-    observedGeneration: 1
-    reason: SupportedVersion
-    status: "True"
-    type: SupportedVersion
-  - lastTransitionTime: "2024-05-22T15:18:35Z"
-    message: parametersRef resource is resolved
-    observedGeneration: 1
-    reason: ResolvedRefs
-    status: "True"
-    type: ResolvedRefs
+    - lastTransitionTime: "2024-05-22T15:18:35Z"
+      message: GatewayClass is accepted
+      observedGeneration: 1
+      reason: Accepted
+      status: "True"
+      type: Accepted
+    - lastTransitionTime: "2024-05-22T15:18:35Z"
+      message: Gateway API CRD versions are supported
+      observedGeneration: 1
+      reason: SupportedVersion
+      status: "True"
+      type: SupportedVersion
+    - lastTransitionTime: "2024-05-22T15:18:35Z"
+      message: parametersRef resource is resolved
+      observedGeneration: 1
+      reason: ResolvedRefs
+      status: "True"
+      type: ResolvedRefs
 ```
 
 If you already have NGINX Gateway Fabric installed, then you can create the `NginxProxy` resource and link it to the GatewayClass `parametersRef`:
@@ -172,10 +172,10 @@ kubectl edit gatewayclasses.gateway.networking.k8s.io nginx
 
 Save the public IP address and port of NGINX Gateway Fabric into shell variables:
 
-   ```text
-   GW_IP=XXX.YYY.ZZZ.III
-   GW_PORT=<port number>
-   ```
+```text
+GW_IP=XXX.YYY.ZZZ.III
+GW_PORT=<port number>
+```
 
 You can now create the application, route, and tracing policy.
 

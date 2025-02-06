@@ -24,6 +24,7 @@ To complete this guide, you'll need to install:
 - [Helm 3.0 or later](https://helm.sh/docs/intro/install/), for deploying and managing applications on Kubernetes.
 
 {{< important >}} If you’d like to use NGINX Plus, some additional setup is also required: {{</ important >}}
+
 <details closed>
 <summary>NGINX Plus JWT setup</summary>
 
@@ -129,13 +130,13 @@ helm install ngf . --set nginx.image.repository=private-registry.nginx.com/nginx
 
 {{</tabs>}}
 
-   `ngf` is the name of the release, and can be changed to any name you want. This name is added as a prefix to the Deployment name.
+`ngf` is the name of the release, and can be changed to any name you want. This name is added as a prefix to the Deployment name.
 
-   To wait for the Deployment to be ready, you can either add the `--wait` flag to the `helm install` command, or run the following after installing:
+To wait for the Deployment to be ready, you can either add the `--wait` flag to the `helm install` command, or run the following after installing:
 
-   ```shell
-   kubectl wait --timeout=5m -n nginx-gateway deployment/ngf-nginx-gateway-fabric --for=condition=Available
-   ```
+```shell
+kubectl wait --timeout=5m -n nginx-gateway deployment/ngf-nginx-gateway-fabric --for=condition=Available
+```
 
 ---
 
@@ -360,7 +361,6 @@ Follow these steps to uninstall NGINX Gateway Fabric and Gateway API from your K
 3. **Remove the Gateway API resources:**
 
    - {{< include "/ngf/installation/uninstall-gateway-api-resources.md" >}}
-
 
 ---
 

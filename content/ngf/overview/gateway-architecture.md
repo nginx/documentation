@@ -89,7 +89,7 @@ The following list describes the connections, preceeded by their types in parent
 1. (Signal) To reload NGINX, _NGF_ sends the [reload signal](https://nginx.org/en/docs/control.html) to the **NGINX master**.
 1. (File I/O)
    - Write: The _NGINX master_ writes its PID to the `nginx.pid` file stored in the `nginx-run` volume.
-   - Read: The _NGINX master_ reads _configuration files_  and the _TLS cert and keys_ referenced in the configuration when it starts or during a reload. These files, certificates, and keys are stored in the `nginx-conf` and `nginx-secrets` volumes that are mounted to both the `nginx-gateway` and `nginx` containers.
+   - Read: The _NGINX master_ reads _configuration files_ and the _TLS cert and keys_ referenced in the configuration when it starts or during a reload. These files, certificates, and keys are stored in the `nginx-conf` and `nginx-secrets` volumes that are mounted to both the `nginx-gateway` and `nginx` containers.
 1. (File I/O)
    - Write: The _NGINX master_ writes to the auxiliary Unix sockets folder, which is located in the `/var/run/nginx`
      directory.

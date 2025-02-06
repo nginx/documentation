@@ -21,7 +21,6 @@ The following image shows the traffic flow that we will be creating with these r
 
 The goal is to create a set of rules that will result in client requests being sent to specific backends based on the request attributes. In this diagram, we have two versions of the `coffee` service. Traffic for v1 needs to be directed to the old application, while traffic for v2 needs to be directed towards the new application. We also have two `tea` services, one that handles GET operations and one that handles POST operations. Both the `tea` and `coffee` applications share the same Gateway.
 
-
 ---
 
 ## Before you begin
@@ -29,10 +28,10 @@ The goal is to create a set of rules that will result in client requests being s
 - [Install]({{< ref "/ngf/installation/" >}}) NGINX Gateway Fabric.
 - Save the public IP address and port of NGINX Gateway Fabric into shell variables:
 
-   ```text
-   GW_IP=XXX.YYY.ZZZ.III
-   GW_PORT=<port number>
-   ```
+  ```text
+  GW_IP=XXX.YYY.ZZZ.III
+  GW_PORT=<port number>
+  ```
 
 {{< note >}} In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for. {{< /note >}}
 
@@ -117,7 +116,7 @@ This HTTPRoute has a few important properties:
 - The `parentRefs` references the gateway resource that we created, and specifically defines the `http` listener to attach to, via the `sectionName` field.
 - `cafe.example.com` is the hostname that is matched for all requests to the backends defined in this HTTPRoute.
 - The first rule defines that all requests with the path prefix `/coffee` and no other matching conditions are sent to the `coffee-v1` Service.
-- The second rule defines two matching conditions. If *either* of these conditions match, requests are forwarded to the `coffee-v2` Service:
+- The second rule defines two matching conditions. If _either_ of these conditions match, requests are forwarded to the `coffee-v2` Service:
 
   - Request with the path prefix `/coffee` and header `version=v2`
   - Request with the path prefix `/coffee` and the query parameter `TEST=v2`
