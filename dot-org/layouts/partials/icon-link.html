@@ -1,0 +1,8 @@
+{{ $defaultClasses := "w-6 h-6 flex justify-center items-center rounded-full hover:opacity-75" }}
+{{ if .AnchorClasses }}
+    {{ $defaultClasses = printf "%s" .AnchorClasses | printf "%s %s" $defaultClasses| printf "%s" }}
+{{ end }}
+
+<a href="{{ .TargetURL }}" target="_blank" class="{{ $defaultClasses }}">
+    {{ partial .TargetIconPath .SvgAttributes}}
+</a>
