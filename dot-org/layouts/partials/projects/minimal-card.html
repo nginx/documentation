@@ -1,0 +1,25 @@
+<div class="bg-white full-width ngx-card-border flex flex-col p-6 gap-4 w-full">
+    <div class="flex flex-col grow gap-1">
+        <h4 class="text-uppercase text-xl uppercase">Project Title</h4>
+        <p class="text-sm text-gray-600">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Feugait hendrerit enim dolor dignissim Quod soluta aliquyam laoreet commodi no. Ad erat ullamco.
+        </p>
+    </div>
+    <div class="flex gap-1">
+        {{ $svgAttr := (dict "size" "25" ) }}
+        {{ $iconLinkArgs := (dict
+            "TargetURL" "#"
+            "TargetIconPath" "svg/github-logo.svg"
+            "SvgAttributes" $svgAttr
+        )}}
+        {{ partial "icon-link.html" $iconLinkArgs }}
+
+        {{ $iconLinkArgs := (dict
+            "TargetURL" "#"
+            "TargetIconPath" "svg/external-link.svg"
+            "SvgAttributes" $svgAttr
+        )}}
+
+        {{ partial "icon-link.html" $iconLinkArgs }}
+    </div>
+</div>

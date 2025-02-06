@@ -1,0 +1,23 @@
+<div class="w-full bg-white ngx-card-border flex">
+    <div class="w-56 h-56 shrink-0 proj-image-bg flex items-center justify-center">
+        {{ with .Resources.Get (.Param "image")  }}
+            <img src="{{ .RelPermalink }}" alt="{{ .Title }}" class="w-36 h-36"/>
+        {{ end }}
+    </div>
+    <div class="p-4 gap-2 flex-col flex">
+        <h3 class="font-semibold text-2xl">{{ .Title }}</h3>
+        <p class="text-gray-600 grow text-wrap">
+            {{ .Plain | htmlUnescape }}
+        </p>
+        <div class="flex w-full gap-1">
+            {{ if .Params.github_url }}
+                {{ $iconLinkArgs := (dict "TargetURL" .Params.github_url "TargetIconPath" "svg/github-logo.svg") }}
+                {{ partial "icon-link.html" $iconLinkArgs }}
+            {{ end }}
+            {{ if .Params.external_url }}
+                {{ $iconLinkArgs := (dict "TargetURL" .Params.external_url "TargetIconPath" "svg/external-link.svg") }}
+                {{ partial "icon-link.html" $iconLinkArgs }}
+            {{ end }}
+        </div>
+    </div>
+</div>
