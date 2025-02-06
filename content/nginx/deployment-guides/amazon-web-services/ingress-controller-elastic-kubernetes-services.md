@@ -127,7 +127,7 @@ Apply the manifest `deployments/service/loadbalancer-aws-elb.yaml` to create a `
 <span id="testing"></span>
 ## Testing
 
-1. Get the DNS name of the NGINX Plus Ingress Controller with the command below. Find the value of the "LoadBalancer Ingress" in the output.
+1. Get the DNS name of NGINX Ingress Controller with the command below. Find the value of the "LoadBalancer Ingress" in the output.
 
    ```shell
    kubectl describe svc nginx-ingress --namespace=nginx-ingress
