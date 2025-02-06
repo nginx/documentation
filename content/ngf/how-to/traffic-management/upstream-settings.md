@@ -22,7 +22,7 @@ The settings in `UpstreamSettingsPolicy` correspond to the following NGINX direc
 `UpstreamSettingsPolicy` is a [Direct Policy Attachment](https://gateway-api.sigs.k8s.io/reference/policy-attachment/) that can be applied to one or more services in the same namespace as the policy.
 `UpstreamSettingsPolicies` can only be applied to HTTP or gRPC services, in other words, services that are referenced by an HTTPRoute or GRPCRoute.
 
-See the [custom policies]({{< relref "overview/custom-policies.md" >}}) document for more information on policies.
+See the [custom policies]({{< relref "/ngf/overview/custom-policies.md" >}}) document for more information on policies.
 
 This guide will show you how to use the `UpstreamSettingsPolicy` API to configure the upstream zone size and keepalives for your applications.
 
