@@ -1,0 +1,12 @@
+{{ $thumbnailURL := .Resources.Get (.Param "thumbnail") }}
+<article class="flex flex-col gap-3">
+    <div class="w-full aspect-[2/1] bg-cover" style="background-image: url('{{ $thumbnailURL.RelPermalink }}');"></div>
+    <div>
+        <h5 class="font-bold text-lg">{{ .Title }}</h5>
+        {{ .Summary }}
+    </div>
+    <a href="#" class="txt-ngx-green font-bold flex items-center w-fit gap-1 link-hover">
+        Read more
+        {{ partial "svg/external-link.svg" (dict "size" "18") }}
+    </a>
+</article>
