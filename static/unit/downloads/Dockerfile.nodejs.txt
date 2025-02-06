@@ -1,0 +1,33 @@
+# keep our base image as small as possible
+FROM unit:1.31.1-node20
+# Alternatively, you can download the base image from AWS ECR:
+# FROM public.ecr.aws/nginx/unit:1.31.1-node20
+
+# port used by the listener in config.json
+EXPOSE 8080
+
+#application setup
+RUN mkdir /www/ && echo '#!/usr/bin/env node                             \n\
+    require("unit-http").createServer(function (req, res) {                \
+        res.writeHead(200, {"Content-Type": "text/plain"});                \
+        res.end("Hello, Node.js on Unit!")                                 \
+    }).listen()                                                            \
+    ' > /www/app.js                                                        \
+# make app.js executable; link unit-http locally
+    && cd /www && chmod +x app.js                                          \
+    && npm link unit-http                                                  \
+# prepare the app config for Unit
+    && echo '{                                                             \
+    "listeners": {                                                         \
+        "*:8080": {                                                        \
+            "pass": "applications/node_app"                                \
+        }                                                                  \
+    },                                                                     \
+    "applications": {                                                      \
+        "node_app": {                                                      \
+            "type": "external",                                            \
+            "working_directory": "/www/",                                  \
+            "executable": "app.js"                                         \
+        }                                                                  \
+    }                                                                      \
+    }' > /docker-entrypoint.d/config.json
