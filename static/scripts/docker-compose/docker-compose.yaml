@@ -14,7 +14,7 @@ secrets:
   #  file: ./certs/nim_ca.pem
 services:
   nim:
-    image: private-registry.nginx.com/nms/nim-standalone-compose:2.18.0
+    image: private-registry.nginx.com/nms/nim-standalone-compose:2.19.0
     depends_on:
       clickhouse:
         condition: service_healthy
@@ -26,6 +26,7 @@ services:
       - clickhouse
     volumes:
       - nim-data:/data
+      - proxy-certs:/usr/local/share/ca-certificates
     # Uncomment to set custom service limits
     #deploy:
     #  resources:
@@ -62,6 +63,23 @@ services:
       NIM_WATCHDOG_TIMEOUT: "60"
       # set the NIM license mode of operation to either connected or disconnected. Default is connected.
       NIM_LICENSE_MODE_OF_OPERATION: "connected"
+      # Enable this setting to use proxy
+      PROXY_ENABLE: false
+      # Configure this setting to set the host of the proxy server to be used
+      PROXY_HOST: ""
+      # Configure this setting to set the protocol of the proxy server to be used - http/https (default - http)
+      PROXY_PROTOCOL: "http"
+      # Configure this setting to set the port of the proxy server to be used
+      PROXY_PORT: 3128
+      # Enable this setting to use basic auth for proxy
+      PROXY_AUTH_REQUIRED: false
+      # Configure this setting to set the user name in basic auth (proxy_auth_required: true)
+      PROXY_AUTH_USERNAME: ""
+      # Configure this setting to set the password in basic auth (proxy_auth_required: true)
+      # Recommended to use .env file for the password
+      # PROXY_PASSWORD: ""
+      # Configure this setting to set the proxy connection verification (is the proxy trusted by the host)
+      PROXY_SSL_VERIFY: true
   clickhouse:
     image: clickhouse/clickhouse-server:23-alpine
     hostname: clickhouse
@@ -107,8 +125,10 @@ networks:
     driver: bridge
     internal: true
 volumes:
-  # By default docker compose will create a named volume 
-  # Refer to https://docs.docker.com/reference/compose-file/volumes/ for additional storage options such as nfs 
+  # By default docker compose will create a named volume
+  # Refer to https://docs.docker.com/reference/compose-file/volumes/ for additional storage options such as nfs
+  proxy-certs:
+    driver: local
   nim-data:
     driver: local
     #driver_opts:

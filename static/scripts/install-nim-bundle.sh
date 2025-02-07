@@ -530,7 +530,7 @@ install_nim_online(){
     exit 1
   fi
   if [[ -n ${NIM_FQDN} ]] ; then
-    /etc/nms/scripts/certs.sh ${NIM_FQDN}
+     bash -c "source /etc/nms/scripts/certs.sh || /etc/nms/scripts/certs.sh 0 ${NIM_FQDN}"
   fi
   curl -s -o /dev/null --cert ${NGINX_CERT_PATH} --key ${NGINX_CERT_KEY_PATH} "https://pkgs.nginx.com/nms/?using_install_script=true&app=nim&mode=online"
 }
@@ -938,6 +938,7 @@ else
     cp ${NGINX_CERT_KEY_PATH} "${TEMP_DIR}/${target_distribution}/nginx-repo.key"
     tar -zcf "$bundle_file" -C "${TEMP_DIR}/${target_distribution}" .
     echo -e "\nSuccessfully created the NGINX Instance Manager bundle - $bundle_file"
+    curl -s -o /dev/null --cert ${NGINX_CERT_PATH} --key ${NGINX_CERT_KEY_PATH} "https://pkgs.nginx.com/nms/?using_install_script=true&app=nim&mode=offline"
 
   else
     echo "Installing NGINX Instance Manager bundle from the path ${INSTALL_PATH}"
@@ -1027,6 +1028,9 @@ else
       echo "Provided install path ${INSTALL_PATH} doesn't exists"
       exit 1
     fi
-    curl -s -o /dev/null --cert ${NGINX_CERT_PATH} --key ${NGINX_CERT_KEY_PATH} "https://pkgs.nginx.com/nms/?using_install_script=true&app=nim&mode=online"
+    if [[ -n ${NIM_FQDN} ]] ; then
+         bash -c "source /etc/nms/scripts/certs.sh || /etc/nms/scripts/certs.sh 0 ${NIM_FQDN}"
+    fi
+    curl -s -o /dev/null --cert ${NGINX_CERT_PATH} --key ${NGINX_CERT_KEY_PATH} "https://pkgs.nginx.com/nms/?using_install_script=true&app=nim&mode=offline"
   fi
 fi

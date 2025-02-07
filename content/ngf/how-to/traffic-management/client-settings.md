@@ -17,11 +17,11 @@ The `ClientSettingsPolicy` API allows Cluster Operators and Application Develope
 
 The settings in `ClientSettingsPolicy` correspond to the following NGINX directives:
 
-- [`client_max_body_size`](<https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size>)
-- [`client_body_timeout`](<https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_timeout>)
-- [`keepalive_requests`](<https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_requests>)
-- [`keepalive_time`](<https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_time>)
-- [`keepalive_timeout`](<https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_timeout>)
+- [`client_max_body_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)
+- [`client_body_timeout`](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_timeout)
+- [`keepalive_requests`](https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_requests)
+- [`keepalive_time`](https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_time)
+- [`keepalive_timeout`](https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_timeout)
 
 `ClientSettingsPolicy` is an [Inherited PolicyAttachment](https://gateway-api.sigs.k8s.io/reference/policy-attachment/) that can be applied to a Gateway, HTTPRoute, or GRPCRoute in the same namespace as the `ClientSettingsPolicy`.
 
@@ -41,7 +41,7 @@ For all the possible configuration options for `ClientSettingsPolicy`, see the [
 - [Install]({{< ref "/ngf/installation/" >}}) NGINX Gateway Fabric.
 - Save the public IP address and port of NGINX Gateway Fabric into shell variables:
 
-   ```text
+  ```text
   GW_IP=XXX.YYY.ZZZ.III
   GW_PORT=<port number>
   ```
@@ -51,20 +51,20 @@ For all the possible configuration options for `ClientSettingsPolicy`, see the [
 - Create the coffee and tea example applications:
 
   ```yaml
-  kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.5.1/examples/client-settings-policy/app.yaml
+  kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.1/examples/client-settings-policy/app.yaml
   ```
 
 - Create a Gateway:
 
   ```yaml
-  kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.5.1/examples/client-settings-policy/gateway.yaml
-   ```
+  kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.1/examples/client-settings-policy/gateway.yaml
+  ```
 
 - Create HTTPRoutes for the coffee and tea applications:
 
   ```yaml
-  kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.5.1/examples/client-settings-policy/httproutes.yaml
-   ```
+  kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.1/examples/client-settings-policy/httproutes.yaml
+  ```
 
 - Test the configuration:
 
@@ -87,7 +87,7 @@ For all the possible configuration options for `ClientSettingsPolicy`, see the [
 
   ```shell
   curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/tea
-   ```
+  ```
 
   This request should receive a response from the tea Pod:
 
