@@ -335,7 +335,7 @@ installBundleForDebianDistro() {
   if [ "${USE_SM_MODULE}" == "true" ]; then
       nim_major_version=$(nms-core --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | awk -F. '{print $1}')
       nim_minor_version=$(nms-core --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | awk -F. '{print $2}')
-      echo "Install nim major version: ${nim_major_version}, minor Version:${nim_minor_version}"
+      echo "Installed NIM major Version: ${nim_major_version}, minor Version:${nim_minor_version}"
       if [[ $nim_major_version -ge 2 && $nim_minor_version -ge 19 ]]; then
         echo "Note: NGINX Instance Manager version 2.19.0 or later comes with security monitoring installed. skipping installing security monitoring"
       else
@@ -479,7 +479,7 @@ installBundleForRPMDistro(){
     if [ "${USE_SM_MODULE}" == "true" ]; then
       nim_major_version=$(nms-core --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | awk -F. '{print $1}')
       nim_minor_version=$(nms-core --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | awk -F. '{print $2}')
-      echo "Install nim major version: ${nim_major_version}, minor Version:${nim_minor_version}"
+      echo "Installed NIM major Version: ${nim_major_version}, minor Version:${nim_minor_version}"
       if [[ $nim_major_version -ge 2 && $nim_minor_version -ge 19 ]]; then
         echo "Note: NGINX Instance Manager version 2.19.0 or later comes with security monitoring installed. skipping installing security monitoring"
       else
@@ -533,7 +533,7 @@ install_nim_online(){
   fi
   if [[ -n ${NIM_FQDN} ]] ; then
      if [ -d "${NIM_CERTS_DIR}" ]; then
-        echo "removing existing nim certs"
+        echo "removing existing NIM certs"
         rm -rf "/etc/nms/certs"
      fi
      bash -c "source /etc/nms/scripts/certs.sh 0 \"${NIM_FQDN}\" || /etc/nms/scripts/certs.sh 0 ${NIM_FQDN}"
