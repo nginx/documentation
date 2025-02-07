@@ -94,7 +94,7 @@ The first step is to allocate an Elastic IP address, which becomes the fixed IP 
 
 1. Log in to the [AWS Management Console](https://console.aws.amazon.com/ec2/) for EC2 (**<https://console.aws.amazon.com/ec2/>**).
 
-2. In the left navigation bar, select **Elastic IPs**. Then, select either of the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Allocate new address </span> buttons.
+2. In the navigation bar, select **Elastic IPs**. Then, select either of the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Allocate new address </span> buttons.
 
     <a href="/nginx/images/aws-nlb-eip-open.png"><img src="/nginx/images/aws-nlb-eip-open.png" alt="" width="1024" height="466" class="aligncenter size-full wp-image-54932" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
@@ -117,7 +117,7 @@ The new Elastic IP address displays on the **Elastic IPs** dashboard. Make a no
 
    <a href="/nginx/images/aws-nlb-load-balancer-open.png"><img src="/nginx/images/aws-nlb-load-balancer-open.png" alt="" width="1025" height="438" class="aligncenter size-full wp-image-54850" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
-2. The **Select load balancer type** window opens. Click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create </span> button in the center <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Network Load Balancer </span> panel.
+2. The **Select load balancer type** window opens. Select the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create </span> button in the center <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Network Load Balancer </span> panel.
 
    <a href="/nginx/images/aws-nlb-load-balancer-types.png"><img src="/nginx/images/aws-nlb-load-balancer-types.png" alt="" width="1024" height="330" class="aligncenter size-full wp-image-54849" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
@@ -166,7 +166,7 @@ In this step, you create a _target group_, using the **Step 2: Configure Routing
 
    <a href="/nginx/images/aws-nlb-load-balancer-routing.png"><img src="/nginx/images/aws-nlb-load-balancer-routing.png" alt="" width="1024" height="840" class="aligncenter size-full wp-image-54847" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
-3. Click the <span style="background-color:#cccccc; font-weight:bolder; white-space: nowrap;"> Next: Register Targets </span> button. The **Step 3: Register Targets** window opens.
+3. Select the <span style="background-color:#cccccc; font-weight:bolder; white-space: nowrap;"> Next: Register Targets </span> button. The **Step 3: Register Targets** window opens.
 
 <span id="nlb-register-instances"></span>
 ### Register Instances in the Target Group
