@@ -13,15 +13,13 @@ tags:
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}
 
-This guide provides a step-by-step tutorial on how to set up F5 NGINX Instance Manager on a Kubernetes cluster using Helm. You'll learn how to download and use Docker images and customize your deployment.
+This guide explains how to deploy F5 NGINX Instance Manager on a Kubernetes or OpenShift cluster using Helm. You’ll learn how to download and use Docker images and customize your deployment.
 
 ### About Helm
 
 Helm charts are pre-configured packages of Kubernetes resources deployed with a single command. They let you define, install, and upgrade Kubernetes applications easily.
 
 Helm charts consist of files that describe a group of related Kubernetes resources, like deployments, services, and ingress. They also allow you to manage dependencies between applications, making it easier to deploy multi-tier or complex applications.
-
-{{< call-out "important" "Supportability considerations" >}} NGINX Instance Manager **does not** support [OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift). For better compatibility, use [NGINX Ingress Controller](https://docs.nginx.com/nginx-ingress-controller/). {{< /call-out >}}
 
 ---
 
@@ -41,8 +39,6 @@ To deploy NGINX Instance Manager using a Helm chart, you need:
 
 {{< /bootstrap-table >}}
 
-
-
 ---
 
 ## Get the NGINX Instance Manager images
@@ -57,12 +53,23 @@ Create a Docker registry secret on the cluster, using the JWT token as the usern
 
 {{< note >}} Make sure there are no extra characters or spaces when copying the JWT token. They can invalidate the token and cause 401 errors during authentication. {{< /note >}}
 
-```shell
-kubectl create secret docker-registry regcred \
---docker-server=private-registry.nginx.com \
---docker-username=<JWT Token> \
---docker-password=none
-```
+- **Kubernetes**:
+
+  ```shell
+  kubectl create secret docker-registry regcred \
+  --docker-server=private-registry.nginx.com \
+  --docker-username=<JWT Token> \
+  --docker-password=none
+  ```
+
+- **OpenShift**:
+
+  ```shell
+  oc create secret docker-registry regcred \
+  --docker-server=private-registry.nginx.com \
+  --docker-username=<JWT Token> \
+  --docker-password=none
+  ```
 
 {{< warning >}} 
 
@@ -74,9 +81,18 @@ This can be ignored (since no password is used), but if others have access to th
 
 To confirm the secret is created:
 
-```shell
-kubectl get secret regcred --output=yaml
-```
+- **Kubernetes**:
+
+  ```shell
+  kubectl get secret regcred --output=yaml
+  ```
+
+- **OpenShift**:
+
+  ```shell
+  oc get secret regcred --output=yaml
+  ```
+
 
 You can now use this secret for Helm deployments and point the charts to the public registry.
 
@@ -99,14 +115,16 @@ The first command adds the `nginx-stable` repository to your local Helm repo lis
 
 ## Create a Helm deployment values.yaml file
 
-The `values.yaml` file customizes the Helm chart installation without editing the chart itself. You can specify image repositories, environment variables, resource requests, and more.
+The `values.yaml` file customizes the Helm chart installation without modifying the chart itself. You can use it to specify image repositories, environment variables, resource requests, and other settings.
 
 1. Create a `values.yaml` file similar to this example:
 
     - In the `imagePullSecrets` section, add the credentials for your private Docker registry.
     - Change the version tag to the version of NGINX Instance Manager you would like to install. See "Install the chart" below for versions.
+    - Replace `<my-docker-registry:port>` with your private Docker registry and port (if applicable).
+    - If deploying on OpenShift, add the `openshift.enabled: true` setting.
 
-    {{< see-also >}} For more on creating a secret, see Kubernetes [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/). {{</ see-also >}}
+    {{< see-also >}} For details on creating a secret, see Kubernetes [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/). {{</ see-also >}}
 
     ```yaml
     nms-hybrid:
@@ -138,13 +156,74 @@ The `values.yaml` file customizes the Helm chart installation without editing th
                 tag: <version>
     ```
 
-    This file specifies the Docker images for `apigw`, `core`, `dpm`, `ingestion`, `integrations`, and `utility`. It also indicates that a secret called `regcred` should be used for pulling images.
+2. Save and close the `values.yaml` file.
 
-1. Save and close the `values.yaml` file.
+---
+
+## Enabling OpenShift  
+
+If deploying on OpenShift, include this setting in the `values.yaml` file:
+
+```yaml
+nms-hybrid:
+  openshift:
+    enabled: true
+```
+
+### How OpenShift handles security constraints
+
+When `openshift.enabled: true` is set in the `values.yaml` file, the NGINX Instance Manager deployment automatically creates a **custom Security Context Constraint (SCC)** and links it to the Service Account used by all pods.  
+
+By default, OpenShift enforces strict security policies that require containers to run as **non-root** users. The NGINX Instance Manager deployment needs specific user IDs (UIDs) for certain services, such as **1000** for `nms` and **101** for `nginx` and `clickhouse`. Since the default SCCs do not allow these UIDs, a **custom SCC** is created. This ensures that the deployment can run with the necessary permissions while maintaining OpenShift’s security standards.  
+
+The custom SCC allows these UIDs by setting the `runAsUser` field, which controls which users can run containers. To verify that the SCC has been created, run:  
+
+```shell
+oc get scc nms-restricted-v2-scc --output=yaml
+```
+
 
 ---
 
 
+To apply network policies for NGINX Instance Manager, ensure Kubernetes has a [network plugin](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/) installed before the Helm chart installation.
+
+By default, the following network policies will be created in the release namespace:
+
+- **Kubernetes**:
+
+  ```shell
+  kubectl get netpol -n nms
+  ```
+
+- **OpenShift**:
+
+  ```shell
+  oc get netpol -n nms
+  ```
+
+  **Output**
+
+  ```text
+  NAME           POD-SELECTOR                          AGE
+  apigw          app.kubernetes.io/name=apigw          4m47s
+  clickhouse     app.kubernetes.io/name=clickhouse     4m47s
+  core           app.kubernetes.io/name=core           4m47s
+  dpm            app.kubernetes.io/name=dpm            4m47s
+  ingestion      app.kubernetes.io/name=ingestion      4m47s
+  integrations   app.kubernetes.io/name=integrations   4m47s
+  utility        app.kubernetes.io/name=integrations   4m47s
+  ```
+
+To disable network policies, update the `values.yaml` file:
+
+```yaml
+networkPolicies:
+    # Set this to true to enable network policies for NGINX Instance Manager.
+    enabled: false
+```
+
+---
 
 ## Install the chart
 
