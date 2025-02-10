@@ -41,7 +41,7 @@ The goal is to create a set of rules that will result in client requests being s
 
 ### Deploy the Coffee applications
 
-Begin by deploying the `coffee-v1` and `coffee-v2` applications:
+Begin by deploying the `coffee-v1`, `coffee-v2` and `coffee-v3` applications:
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.1/examples/advanced-routing/coffee.yaml
@@ -108,6 +108,24 @@ spec:
     backendRefs:
     - name: coffee-v2-svc
       port: 80
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /coffee
+      headers:
+      - name: headerRegex
+        type: RegularExpression
+        value: "header-[a-z]{1}"
+    - path:
+        type: PathPrefix
+        value: /coffee
+      queryParams:
+      - name: queryRegex
+        type: RegularExpression
+        value: "query-[a-z]{1}"
+    backendRefs:
+    - name: coffee-v3-svc
+      port: 80
 EOF
 ```
 
@@ -116,10 +134,19 @@ This HTTPRoute has a few important properties:
 - The `parentRefs` references the gateway resource that we created, and specifically defines the `http` listener to attach to, via the `sectionName` field.
 - `cafe.example.com` is the hostname that is matched for all requests to the backends defined in this HTTPRoute.
 - The first rule defines that all requests with the path prefix `/coffee` and no other matching conditions are sent to the `coffee-v1` Service.
-- The second rule defines two matching conditions. If _either_ of these conditions match, requests are forwarded to the `coffee-v2` Service:
+- The second rule defines two matching conditions. If *either* of these conditions match, requests are forwarded to the `coffee-v2` Service:
 
-  - Request with the path prefix `/coffee` and header `version=v2`
-  - Request with the path prefix `/coffee` and the query parameter `TEST=v2`
+  - Request with the path prefix `/coffee` and header `version=v2`.
+  - Request with the path prefix `/coffee` and the query parameter `TEST=v2`.
+
+  {{< note >}} The match type is `Exact` for both header and query param, by default. {{< /note >}}
+
+- The third rule defines two matching conditions. If *either* of these conditions match, requests are forwarded to the `coffee-v3` Service:
+
+  - Request with the path prefix `/coffee` and header `HeaderRegex=Header-[a-z]{1}`.
+  - Request with the path prefix `/coffee` and the query parameter `QueryRegex=Query-[a-z]{1}`.
+
+  {{< note >}} The match type used here is `RegularExpression`. A request will succeed if the header or query parameter value matches the specified regular expression. {{< /note >}}
 
   If you want both conditions to be required, you can define headers and queryParams in the same match object.
 
@@ -159,6 +186,25 @@ Either request should result in a response from the `coffee-v2` Pod.
 ```text
 Server address: 10.244.0.9:8080
 Server name: coffee-v2-68bd55f798-s9z5q
+```
+
+If we want our request to be routed to `coffee-v3`, then we need to meet the defined conditions. We can include a header matching the regular expression:
+
+```shell
+curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/coffee -H "headerRegex:header-a"
+```
+
+or include a query parameter matching the regular expression:
+
+```shell
+curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/coffee?queryRegex=query-a
+```
+
+Either request should result in a response from the `coffee-v3` Pod.
+
+```text
+Server address: 10.244.0.104:8080
+Server name: coffee-v3-66d58645f4-6zsl2
 ```
 
 ---

@@ -167,8 +167,8 @@ See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) comma
   - `rules`
     - `matches`
       - `path`: Partially supported. Only `PathPrefix` and `Exact` types.
-      - `headers`: Partially supported. Only `Exact` type.
-      - `queryParams`: Partially supported. Only `Exact` type.
+      - `headers`: Supported.
+      - `queryParams`: Supported.
       - `method`: Supported.
     - `filters`
       - `type`: Supported.
@@ -219,7 +219,7 @@ See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) comma
   - `rules`
     - `matches`
       - `method`: Partially supported. Only `Exact` type with both `method.service` and `method.method` specified.
-      - `headers`: Partially supported. Only `Exact` type.
+      - `headers`: Supported
     - `filters`
       - `type`: Supported.
       - `requestHeaderModifier`: Supported. If multiple filters are configured, NGINX Gateway Fabric will choose the first and ignore the rest.
