@@ -209,6 +209,7 @@ The table provides guidelines about the terms you should and should not use for 
 | make | One of those weak, vague verbs we're supposed to avoid as much as possible: Allow, do, enable, let, perform, enter [usually implies type and press Enter], be, has, make and do. Use direct, active verbs instead. | |
 | man pages, MAN number | Man pages (short for manual pages) are OK to mention in content if appropriate. MAN numbers refer to the manual publication numbers that appear in the front matter of our documentation (such as MAN-0123-04). | |
 | management interface | Synonymous for management port. | |
+| management plane | Use *control plane*. | |
 | management port | Synonymous for management interface. | |
 | manually vs. “from scratch” | Use manually or specify when describing how to create a process from the beginning or at the start. Avoid from scratch to ensure clarity and prevent future localization issues. | |
 | master | Do not use this term in documentation unless you are referring to/quoting specific command line syntax or process. For example: "The nginx master process...". Some possible alternatives, depending on your use case: primary, prime, principal, control, or, possibly, server. For more information, refer to K34150231: Exclusionary language in F5 products and documentation. | |
