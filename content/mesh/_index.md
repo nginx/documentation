@@ -6,5 +6,6 @@ linkTitle: "NGINX Service Mesh"
 menu: docs
 cascade:
    type: "mesh-eos"
+   noindex: true
 url: /nginx-service-mesh/
 ---
