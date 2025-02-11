@@ -93,6 +93,7 @@ The table provides guidelines about the terms you should and should not use for 
 | command line and command prompt (usage) | Use "command line".<br><br>NOUN: …at the command line.<br>ADJ: …using command-line tools.<br>At the command prompt, type...<br>Do not use command-line prompt.| |
 | configure | Do not use, except when describing the configuration of an NGINX product, such as when installing NGINX or NGINX Agent.<br>In most cases, use "set up" instead.| |
 | contractions | Contractions are okay to use as long as they're not ambiguous. | |
+| control plane | Write as two words. Definition: The part of a network architecture that manages routing, signaling, and policy enforcement. | |
 | Cookie persistence (option type) | | |
 | cookie/cookies (noun) | | |
 | covers | As in, "this section/topic/chapter covers the following...". Instead, use a phrase such as, "This topic deals with..." or "This topic provides the following information...". More options: communicates, presents, offers, introduces, explains, describes. | |
@@ -102,6 +103,7 @@ The table provides guidelines about the terms you should and should not use for 
 | data center | Write this as two words. | |
 | domain name | example.com, example.net, example.org, or localhost per [RFC 2606](https://www.rfc-editor.org/rfc/rfc2606.html). | |
 | em dash | Allowed in the proper context. May be written using two dashes to ensure it converts correctly when displayed in the web version. | |
+| data plane | Write as two words. Definition: The part of a network architecture responsible for forwarding packets based on established rules. | |
 | data source | | |
 | database | Do not abbreviate as "db". Always a single word. | |
 |date format | Use _month day, year_ format, as in December 4, 2024. Don't use _day month year_, as in 31 July 2016. <br>  In the UI, it's OK to use numbers and slashes for dates if the code supports that format and automatically displays the appropriate date format for different locales. For example, 12/4/2024. | This format aligns with standard American usage for consistency and clarity. |
@@ -197,7 +199,7 @@ The table provides guidelines about the terms you should and should not use for 
 | lets, allows | Avoid. These verbs are system-focused and not user-focused. They may be appropriate to employ in a description about the feature, but not when describing what a user can accomplish by using the feature. | |
 | list box | When possible, don't use the UI item name. Use the label name instead. If necessary for clarity, use list. | |
 | listens | When referring to products, avoid it, it's anthropomorphism. However, it is acceptable only in conjunction with UNIX daemons, which listenon the port specified by a user. When referring to products, stay away from words like decides, knows, sees, listens, and hears. | |
-| load balance, load balancing, load balancer | No hyphen, even as an adjective. | |
+| load balance, load balancing, load balancer | Write as two words. No hyphen, even as an adjective. Definition : A system that distributes network or application traffic across multiple servers to optimize resource use and reliability. | |
 | local domain name system server vs. | Do not use; use local domain name system server or variations as applicable, such as local DNS server or LDNS server and so on. | |
 | Log error message types (format) | The message type should be formatted in lowercase, such as: log_error. | |
 | Log in syntax for products | *Login* is an adjective or noun. Log in is a verb. *Log in* to (F5 product) or verify your login credentials.  | |
