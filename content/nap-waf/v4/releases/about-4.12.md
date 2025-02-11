@@ -28,8 +28,8 @@ Please read the [subscription licenses]({{< relref "/solutions/about-subscriptio
 
 ### Resolved issues
 
-- Updated the Go version to 1.23.1
-- Fixed _apt-get update_ warning for Ubuntu 22.04 
+- 11973 Fixed - Updated the Go version to 1.23.1
+- 11469 Fixed _apt-get update_ warning for Ubuntu 22.04 
 
 ---
 
