@@ -18,6 +18,8 @@ NGINX Instance Manager’s implementation of OIDC is designed to work with any I
 
 {{<call-out "tip" "Do you need to configure a specific IdP?">}}To learn how to configure OIDC with a specific identity provider, refer to the linked topics in the [Set up specific IdPs for OIDC](#oidc-specific-idps) section at the bottom of this page.{{</call-out>}}
 
+{{<call-out "important" "OIDC is not supported in forward-proxy mode" "fa-solid fa-triangle-exclamation" >}}OpenID Connect (OIDC) authentication is not supported when NGINX Instance Manager is running in [forward-proxy mode]({{< relref "nim/system-configuration/configure-forward-proxy.md" >}}). OIDC is configured on the NGINX Plus layer and cannot pass authentication requests through a forward proxy.{{</call-out>}}
+
 ## Create roles and user groups in NGINX Instance Manager {#configure-nim}
 
 When using OIDC for authentication, administrators don't need to create and manage users in NGINX Instance Manager. Instead, they create user groups in NGINX Instance Manager that match groups in their IdP. The roles assigned to the user group set the access level and permissions for users based on their group membership. Users who aren't in a group with an assigned role won't have access to NGINX Instance Manager.

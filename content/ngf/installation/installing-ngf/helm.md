@@ -24,6 +24,7 @@ To complete this guide, you'll need to install:
 - [Helm 3.0 or later](https://helm.sh/docs/intro/install/), for deploying and managing applications on Kubernetes.
 
 {{< important >}} If you’d like to use NGINX Plus, some additional setup is also required: {{</ important >}}
+
 <details closed>
 <summary>NGINX Plus JWT setup</summary>
 
@@ -129,13 +130,13 @@ helm install ngf . --set nginx.image.repository=private-registry.nginx.com/nginx
 
 {{</tabs>}}
 
-   `ngf` is the name of the release, and can be changed to any name you want. This name is added as a prefix to the Deployment name.
+`ngf` is the name of the release, and can be changed to any name you want. This name is added as a prefix to the Deployment name.
 
-   To wait for the Deployment to be ready, you can either add the `--wait` flag to the `helm install` command, or run the following after installing:
+To wait for the Deployment to be ready, you can either add the `--wait` flag to the `helm install` command, or run the following after installing:
 
-   ```shell
-   kubectl wait --timeout=5m -n nginx-gateway deployment/ngf-nginx-gateway-fabric --for=condition=Available
-   ```
+```shell
+kubectl wait --timeout=5m -n nginx-gateway deployment/ngf-nginx-gateway-fabric --for=condition=Available
+```
 
 ---
 
@@ -174,7 +175,7 @@ helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namesp
 
 #### Examples
 
-You can find several examples of configuration options of the `values.yaml` file in the [helm examples](https://github.com/nginx/nginx-gateway-fabric/tree/v1.5.1/examples/helm) directory.
+You can find several examples of configuration options of the `values.yaml` file in the [helm examples](https://github.com/nginx/nginx-gateway-fabric/tree/v1.6.1/examples/helm) directory.
 
 ---
 
@@ -201,13 +202,13 @@ To upgrade your Gateway API resources, take the following steps:
 - To upgrade the Gateway API resources, run:
 
   ```shell
-  kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/standard?ref=v1.5.1" | kubectl apply -f -
+  kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/standard?ref=v1.6.1" | kubectl apply -f -
   ```
 
   or, if you installed the from the experimental channel:
 
   ```shell
-  kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/experimental?ref=v1.5.1" | kubectl apply -f -
+  kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/experimental?ref=v1.6.1" | kubectl apply -f -
   ```
 
 ---
@@ -223,7 +224,7 @@ To upgrade the CRDs, take the following steps:
 2. Upgrade the CRDs:
 
    ```shell
-   kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.5.1/deploy/crds.yaml
+   kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.1/deploy/crds.yaml
    ```
 
    {{<note>}}Ignore the following warning, as it is expected.{{</note>}}
@@ -354,16 +355,15 @@ Follow these steps to uninstall NGINX Gateway Fabric and Gateway API from your K
 
      ```shell
      kubectl delete ns nginx-gateway
-     kubectl delete -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.5.1/deploy/crds.yaml
+     kubectl delete -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.1/deploy/crds.yaml
      ```
 
 3. **Remove the Gateway API resources:**
 
    - {{< include "/ngf/installation/uninstall-gateway-api-resources.md" >}}
 
-
 ---
 
 ## Additional configuration
 
-For a full list of the Helm Chart configuration parameters, read [the NGINX Gateway Fabric Helm Chart](https://github.com/nginx/nginx-gateway-fabric/blob/v1.5.1/charts/nginx-gateway-fabric/README.md#configuration).
+For a full list of the Helm Chart configuration parameters, read [the NGINX Gateway Fabric Helm Chart](https://github.com/nginx/nginx-gateway-fabric/blob/v1.6.1/charts/nginx-gateway-fabric/README.md#configuration).

@@ -14,6 +14,83 @@ weight: 200
 
 {{< tip >}}We recommend you upgrade to the latest version of Instance Manager to take advantage of new features, improvements, and bug fixes.{{< /tip >}}
 
+---
+
+## 2.18.0
+November 8, 2024
+
+### {{% icon-resolved %}} Error messages persist after fix {#45024}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Issue ID       | Status |
+|----------------|--------|
+| 45024 | Fixed in Instance Manager 2.19.0   |
+
+### Description
+There is an issue that causes previous error messages to persist in the web interface, even after fixing the error causing the message.
+
+{{</bootstrap-table>}}
+
+#### Description
+There is an issue that causes previous error messages to persist in the web interface, even after fixing the error.
+
+### {{% icon-resolved %}} .tgz files are not accepted in templates {#45301}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Issue ID       | Status |
+|----------------|--------|
+| 45301 | Fixed in Instance Manager 2.19.0   |
+
+{{</bootstrap-table>}}
+
+#### Description
+`.tgz` files are not accepted in templates while `.tar.gz` files are.
+
+### {{% icon-resolved %}} NGINX configuration error messages overlap outside the error window {#45570}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Issue ID       | Status |
+|----------------|--------|
+| 45570 | Fixed in Instance Manager 2.19.0   |
+
+{{</bootstrap-table>}}
+
+#### Description
+If there is an NGINX configuration error when pushing a template configuration, the text overlaps outside the error window.
+
+### {{% icon-resolved %}} Syntax errors while saving template configuration {#45573}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Issue ID       | Status |
+|----------------|--------|
+| 45573 | Fixed in Instance Manager 2.19.0   |
+
+{{</bootstrap-table>}}
+
+#### Description
+Saving templates as “staged configs” causes syntax errors due to Augment templates being multiple directories down the tree.
+
+---
+
+## 2.17.3
+September 13, 2024
+
+### {{% icon-resolved %}} The web interface can't display more than 100 certificates {#45565}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Issue ID       | Status |
+|----------------|--------|
+| 45565 | Fixed in Instance Manager 2.19.0   |
+
+{{</bootstrap-table>}}
+
+#### Description
+The Certificate Management screen can only show up to 100 certificates.
 
 ---
 

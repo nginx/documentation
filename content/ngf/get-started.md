@@ -36,14 +36,14 @@ Create the file _cluster-config.yaml_ with the following contents, noting the hi
 apiVersion: kind.x-k8s.io/v1alpha4
 kind: Cluster
 nodes:
-- role: control-plane
-  extraPortMappings:
-  - containerPort: 31437
-    hostPort: 8080
-    protocol: TCP
-  - containerPort: 31438
-    hostPort: 8443
-    protocol: TCP
+  - role: control-plane
+    extraPortMappings:
+      - containerPort: 31437
+        hostPort: 8080
+        protocol: TCP
+      - containerPort: 31438
+        hostPort: 8443
+        protocol: TCP
 ```
 
 {{< warning >}}
@@ -73,7 +73,7 @@ Thanks for using kind! 😊
 ```
 
 {{< note >}}
-If you have cloned [the NGINX Gateway Fabric repository](https://github.com/nginx/nginx-gateway-fabric/tree/main), you can also create a kind cluster from the root folder with the following *make* command:
+If you have cloned [the NGINX Gateway Fabric repository](https://github.com/nginx/nginx-gateway-fabric/tree/main), you can also create a kind cluster from the root folder with the following _make_ command:
 
 ```shell
 make create-kind-cluster
@@ -90,7 +90,7 @@ make create-kind-cluster
 Use `kubectl` to add the API resources for NGINX Gateway Fabric with the following command:
 
 ```shell
-kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/standard?ref=v1.5.1" | kubectl apply -f -
+kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/standard?ref=v1.6.1" | kubectl apply -f -
 ```
 
 ```text
@@ -105,7 +105,7 @@ customresourcedefinition.apiextensions.k8s.io/referencegrants.gateway.networking
 To use experimental features, you'll need to install the API resources from the experimental channel instead.
 
 ```shell
-kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/experimental?ref=v1.5.1" | kubectl apply -f -
+kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/experimental?ref=v1.6.1" | kubectl apply -f -
 ```
 
 {{< /note >}}
@@ -121,7 +121,7 @@ helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namesp
 ```
 
 ```text
-Pulled: ghcr.io/nginx/charts/nginx-gateway-fabric:1.5.1
+Pulled: ghcr.io/nginx/charts/nginx-gateway-fabric:1.6.1
 Digest: sha256:9bbd1a2fcbfd5407ad6be39f796f582e6263512f1f3a8969b427d39063cc6fee
 NAME: ngf
 LAST DEPLOYED: Mon Oct 21 14:45:14 2024
@@ -159,23 +159,23 @@ metadata:
   labels:
     app.kubernetes.io/name: nginx-gateway-fabric
     app.kubernetes.io/instance: ngf
-    app.kubernetes.io/version: "1.5.1"
+    app.kubernetes.io/version: "1.6.1"
 spec:
   type: NodePort
   selector:
     app.kubernetes.io/name: nginx-gateway-fabric
     app.kubernetes.io/instance: ngf
   ports:
-  - name: http
-    port: 80
-    protocol: TCP
-    targetPort: 80
-    nodePort: 31437
-  - name: https
-    port: 443
-    protocol: TCP
-    targetPort: 443
-    nodePort: 31438
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 80
+      nodePort: 31437
+    - name: https
+      port: 443
+      protocol: TCP
+      targetPort: 443
+      nodePort: 31438
 ```
 
 Apply it using `kubectl`:

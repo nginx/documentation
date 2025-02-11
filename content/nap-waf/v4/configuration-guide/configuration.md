@@ -655,15 +655,44 @@ claims['address'] = "{ \"address\": { .... } }" # JSON structs can be accessed u
 
 ### Overview
 
-Brute force attacks are attempts to break in to secured areas of a web application by trying exhaustive, 
+Brute force attacks are attempts to break in to secured areas of a web application by trying exhaustive,
 systematic, username/password combinations to discover legitimate authentication credentials. 
-To prevent brute force attacks, WAF tracks the number of failed attempts to reach login pages 
-with enforced brute force protection. When brute force patterns are detected, 
-the WAF policy considers it to be an attack if the failed logon rate increased significantly or 
-if failed logins reached a maximum threshold.
+To prevent brute force attacks, NGINX App Protect WAF monitors IP addresses, usernames, and the number of failed login attempts beyond a maximum threshold. 
+When brute force patterns are detected, the NGINX App Protect WAF policy either trigger an alarm or block the attack if the failed 
+login attempts reached a maximum threshold for a specific username or coming from a specific IP address.
+To enable brute force protection, at least one login page must be created. 
+The login page entity is created separately and is not included in the brute force configuration block.
 
+---
+
+### Login page policy example
+
+A login page specifies the login URL that users must pass through to get authenticated. The configuration of a login URL includes the URL itself, the username and passwords parameters and the validation criteria (how we know that a login was successful or failed)
+```json
+	    "login-pages": [
+            {
+               "accessValidation" : {
+                  "responseContains": "Success"
+               },
+               "authenticationType": "form",
+               "url" : {
+                  "method" : "*",
+                  "name" : "/html_login",
+                  "protocol" : "http",
+                  "type" : "explicit"
+               },
+               "usernameParameterName": "username",
+               "passwordParameterName": "password"
+            }
+        ]
+``` 
+             
+{{< note >}} For further configuration details, see NGINX App Protect WAF Declarative Policy Guide [Declarative Policy guide]({{< relref "/nap-waf/v4/declarative-policy/policy/#policy/login-pages" >}}). {{< /note >}}
+
+---
 ### Brute force policy example
 
+Example1: A single brute force configuration is applied universally to all login pages.
 ```json
 {
     "policy": {
@@ -676,10 +705,6 @@ if failed logins reached a maximum threshold.
         "brute-force-attack-preventions" : [
             {
                "bruteForceProtectionForAllLoginPages" : true,
-               "detectionCriteria" : {
-                  "action" : "alarm",
-                  "failedLoginAttemptsRateReached" : 100
-               },
                "loginAttemptsFromTheSameIp" : {
                   "action" : "alarm",
                   "enabled" : true,
@@ -690,16 +715,52 @@ if failed logins reached a maximum threshold.
                   "enabled" : true,
                   "threshold" : 3
                },
-               "measurementPeriod" : 900,
-               "preventionDuration" : "3600",
                "reEnableLoginAfter" : 3600,
                "sourceBasedProtectionDetectionPeriod" : 3600
             }
         ]
     }
 }
-
 ```
+
+Example2: Different brute force configurations can be defined for individual login pages. 
+          With each configuration referencing a specific login page.
+```json
+{
+    "policy": {
+        "name": "BruteForcePolicySpec",
+        "template": {
+            "name": "POLICY_TEMPLATE_NGINX_BASE"
+        },
+        "applicationLanguage": "utf-8",
+        "enforcementMode": "blocking",
+        "brute-force-attack-preventions" : [
+            {
+               "bruteForceProtectionForAllLoginPages" : false,
+               "loginAttemptsFromTheSameIp" : {
+                  "action" : "alarm",
+                  "enabled" : true,
+                  "threshold" : 20
+               },
+               "loginAttemptsFromTheSameUser" : {
+                  "action" : "alarm",
+                  "enabled" : true,
+                  "threshold" : 3
+               },
+               "reEnableLoginAfter" : 3600,
+               "sourceBasedProtectionDetectionPeriod" : 3600,
+               "url": {
+                 "method": "*",
+                 "name": "/html_login",
+                 "protocol": "http"
+		       }
+            }
+        ],
+
+    }
+}
+```
+{{< note >}} For further configuration details, see NGINX App Protect WAF Declarative Policy Guide [Declarative Policy guide]({{< relref "/nap-waf/v4/declarative-policy/policy/#policy/brute-force-attack-preventions" >}}). {{< /note >}}
 
 ## Custom Dimensions Log Entries
 
