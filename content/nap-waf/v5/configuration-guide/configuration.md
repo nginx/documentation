@@ -862,8 +862,8 @@ Example1: A single brute force configuration is applied universally to all login
 }
 ```
 
-Example2: Different brute force configurations can be defined for individual login pages. 
-          With each configuration referencing a specific login page.
+Example2: Different brute force configurations can be defined for individual login pages, 
+          with each configuration referencing a specific login page.
 ```json
 {
     "policy": {
