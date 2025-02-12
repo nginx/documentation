@@ -216,6 +216,7 @@ By default, the following network policies will be created in the release namesp
   dpm            app.kubernetes.io/name=dpm            4m47s
   ingestion      app.kubernetes.io/name=ingestion      4m47s
   integrations   app.kubernetes.io/name=integrations   4m47s
+  secmon         app.kubernetes.io/name=secmon         4m47s
   utility        app.kubernetes.io/name=integrations   4m47s
   ```
 
