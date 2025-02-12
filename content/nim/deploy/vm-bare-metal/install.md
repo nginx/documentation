@@ -253,7 +253,7 @@ If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nim
 1. To upgrade to the latest version of the NGINX Instance Manager, run the following command:
 
    ```bash
-   sudo yum update -y nms-instance-manager
+   sudo yum update -y nms-instance-manager --allowerasing
    ```
 
 1. To upgrade to the latest version of Clickhouse, run the following command:

@@ -16,6 +16,95 @@ The release notes for F5 NGINX Instance Manager highlight the latest features, i
 
 ---
 
+## 2.19.0
+
+February 6, 2025
+
+### Upgrade Paths {#2-19-0-upgrade-paths}
+
+NGINX Instance Manager supports upgrades from these previous versions:
+
+- 2.16.x - 2.18.x
+
+If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+### Important Note about upgrades to NGINX Instance Manager 2.19 for API Connectivity Manager (ACM) users<a name="2-19-0-preamble-important-note-about-upgrades-for-this-release-(primarily-for-api-connectivity-manager-(acm)-users)"></a>
+
+NGINX Instance Manager 2.19 is the first iteration of NGINX Instance Manager as a standalone product without modules such as API Connectivity Manager (which is [EoS](https://my.f5.com/manage/s/article/K000137989)). NGINX Instance Manager now includes Security Monitoring (previously a module) as a feature under App Protect in the web interface. The Instance Manager helm charts and docker compose options include Security Monitoring also.
+
+Instance Manager 2.19 will not be compatible or supported with EoS API Connectivity Manager. API Connectivity Manager users get support of Instance Manager up to 2.18 and upgrades to Instance Manager 2.19 will not succeed if API Connectivity Manager is installed. 
+
+### What's New{#2-19-0-whats-new}
+This release includes the following updates:
+
+- {{% icon-feature %}} **NGINX Instance Manager is now a standalone product**<a name="2-19-0-whats-new-NGINX-Instance-Manager-is-now-a-standalone-product"></a>
+
+   Starting with this release, NGINX Instance Manager is a standalone product without any dependencies from other NGINX products (NGINX Management Suite, API Connectivity Manager).
+
+   The Security Monitoring module is now a feature of NGINX Instance Manager found in the "App Protect" section.
+
+   If NGINX API Connectivity Manager is currently running as a module in NGINX Instance Manager or NGINX Management Suite in your environment, you will need to remove the module before upgrading to 2.19.0.
+
+- {{% icon-feature %}} **Forward proxy support using the HTTP CONNECT method**<a name="2-19-0-whats-new-Forward-proxy-support-using-the-HTTP-CONNECT-method"></a>
+
+   NGINX Instance Manager can now be configured to use the CONNECT HTTP method to request that a proxy establish a HTTP(S) tunnel to an outbound server. This covers all use-cases that require outbound access such as App Protect Signature updates, licensing and usage reporting.
+
+  - Documentation: [Configure NGINX Instance Manager to use a forward proxy]({{< relref "nim/system-configuration/configure-forward-proxy.md" >}})
+
+- {{% icon-feature %}} **Support for OpenShift Deployments using Helm**<a name="2-19-0-whats-new-Support-for-OpenShift-Deployments-using-Helm"></a>
+
+   Added an `OpenShift` flag to the Helm charts that creates a security context constraint resource to support NGINX Instance Manager in OpenShift.
+
+  - Documentation: [Deploy NGINX Instance Manager using Helm]({{< relref "nim/deploy/kubernetes/deploy-using-helm.md" >}})
+
+- {{% icon-feature %}} **VM-based active-passive HA Support with keepalived**<a name="2-19-0-whats-new-VM-based-active-passive-HA-Support-with-keepalived"></a>
+
+   This release includes documentation for a basic HA (High availability) setup with two nodes, for bare metal and VM based environments. This feature uses keepalived and a failover script if a primary NGINX Instance Manager node fails.
+
+  - Documentation: [Configure high availability (HA) for NGINX Instance Manager]({{< relref "nim/system-configuration/configure-high-availability.md" >}})
+
+- {{% icon-feature %}} **Added "Export" feature  for templates**<a name="2-19-0-whats-new-Added-Export-feature-for-templates"></a>
+
+   We have added a new option to export templates using the NGINX Instance Manager web interface.
+
+### Changes in Default Behavior{#2-19-0-changes-in-behavior}
+
+This release has the following changes in default behavior:
+
+- {{% icon-feature %}} **Prompt to specify an FQDN for NIM when generating SSL certificates during installation**<a name="2-19-0-changes-in-behavior-Prompt-to-specify-an-FQDN-for-NIM-when-generating-SSL-certificates-during-installation"></a>
+
+   When installing, users will be prompted to enter a fully qualified domain name (FQDN) to include in the Subject Alternative Name (SAN) of the NGINX Instance Manager's self-signed certificate generated during installation. This FQDN can serve as the server name for NGINX Instance Manager. Users can also specify this FQDN in the Installation Script
+
+   {{< note >}}Starting with NGINX Plus R33, usage data reporting requires validating the SSL certificate of NGINX Instance Manager via the `ssl_verify` directive in the `mgmt` block. Proper SAN configuration ensures seamless SSL verification.{{< /note >}}
+
+- {{% icon-feature %}} **Watchdog enhancements to improve stability**<a name="2-19-0-changes-in-behavior-Watchdog-enhancements-to-improve-stability"></a>
+
+   We have introduced new configurable element in `nms.conf` called `enable_watchdog_notifications`. When enabled, if any process takes longer than expected to respond the customer will get a notification in the web interface warning about the unresponsive process. Previously, a Watchdog process was stopping the process and led to configurations not applying.
+
+- {{% icon-feature %}} **Expired unmanaged certificates are eventually removed from the web interface**<a name="2-19-0-changes-in-behavior-Expired-unmanaged-certificates-are-eventually-removed-from-the-web-interface"></a>
+
+   Starting in 2.19.0, remote certificates that are expired are removed from the web interface after 30 days.
+
+### Resolved Issues{#2-19-0-resolved-issues}
+This release fixes the following issues. Select an issue's ID link to view its details.
+
+- {{% icon-resolved %}} .tgz files are not accepted in templates [(45301)]({{< relref "/nim/releases/known-issues.md#45301" >}})<a name="2-19-0-resolved-issues-tgz-files-are-not-accepted-in-templates"></a>
+
+- {{% icon-resolved %}} The web interface can't display more than 100 certificates [(45565)]({{< relref "/nim/releases/known-issues.md#45565" >}})<a name="2-19-0-resolved-issues-The-web-interface-can-t-display-more-than-100-certificates"></a>
+
+- {{% icon-resolved %}} Syntax errors while saving template configuration [(45573)]({{< relref "/nim/releases/known-issues.md#45573" >}})<a name="2-19-0-resolved-issues-Syntax-errors-while-saving-template-configuration"></a>
+
+- {{% icon-resolved %}} Error messages persist after fix [(45024)]({{< relref "/nim/releases/known-issues.md#45024" >}})<a name="2-19-0-resolved-issues-Error-messages-persist-after-fix"></a>
+
+- {{% icon-resolved %}} NGINX configuration error messages overlap outside the error window [(45570)]({{< relref "/nim/releases/known-issues.md#45570" >}})<a name="2-19-0-resolved-issues-NGINX-configuration-error-messages-overlap-outside-the-error-window"></a>
+
+
+### Known Issues{#2-19-0-known-issues}
+
+You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+
+---
+
 ## 2.18.0
 
 November 8, 2024
@@ -57,7 +146,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Resilient Docker Compose NGINX Instance Manager deployment**<a name="2-18-0-whats-new-resilient-docker-compose-nginx-instance-manager-deployment"></a>
 
-  In 2.17, we released a [bundled container image]({{< relref "nim/deploy/docker/deploy-nginx-instance-manager-docker.md" >}}) with all NGINX Instance Manager components. While this is a great option for demos and lab environments, it is not the most fault-tolerant for production. 
+  In 2.17, we released a [bundled container image]({{< relref "nim/deploy/docker/deploy-nginx-instance-manager-docker.md" >}}) with all NGINX Instance Manager components. While this is a great option for demos and lab environments, it is not the most fault-tolerant for production.
 
   This [Docker Compose option]({{< relref "nim/deploy/docker/deploy-nginx-instance-manager-docker-compose.md" >}}) unlocks another easy, production-ready installation method for customers using Docker. It will also make upgrades easier when new Docker images are released by F5 NGINX. This option includes health checking, NGINX App Protect compilation support, and security monitoring.
 
@@ -79,6 +168,8 @@ This release fixes the following issues. Select an issue's ID link to view its d
 ### Known Issues{#2-18-0-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+
+---
 
 ## 2.17.4
 

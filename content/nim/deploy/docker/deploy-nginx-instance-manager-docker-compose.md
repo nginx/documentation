@@ -52,12 +52,23 @@ To set up Docker to communicate with the NGINX container registry located at `pr
 
 ### Compose deployment
 
-Navigate to the directory where you downloaded `docker-compose.yaml`. With the following commands, use docker to log in to private-registry.nginx.com and then run `docker compose up -d`.
+{{<call-out "note" "Configuring a forward proxy:" "" >}}
+
+If you are configuring a **forward proxy**, follow the steps in the [Forward Proxy Configuration Guide]({{< relref "nim/system-configuration/configure-forward-proxy.md" >}}) to modify `docker-compose.yaml` with the correct proxy settings **before** deploying NGINX Instance Manager.
+
+{{</call-out>}}
+
+Go to the directory where you downloaded `docker-compose.yaml`. Use the following commands to log in to `private-registry.nginx.com` and deploy NGINX Instance Manager.
 
 ```shell
-~$ docker login private-registry.nginx.com --username=<JWT_CONTENTS> --password=none
-~$ echo "admin" > admin_password.txt
-~$ docker compose up -d
+docker login private-registry.nginx.com --username=<JWT_CONTENTS> --password=none
+echo "admin" > admin_password.txt
+docker compose up -d
+```
+
+If the deployment succeeds, you’ll see output similar to this:
+
+```text
 [+] Running 6/6
  ✔ Network nim_clickhouse        Created   0.1s
  ✔ Network nim_external_network  Created   0.2s
@@ -65,19 +76,17 @@ Navigate to the directory where you downloaded `docker-compose.yaml`. With the f
  ✔ Container nim-precheck-1      Started   0.8s
  ✔ Container nim-clickhouse-1    Healthy   6.7s
  ✔ Container nim-nim-1           Started   7.4s
-```
+ ```
 
 ### Supported environment variables
 
-You may modify the following variables in the `docker-compose.yaml` file:
+{{< include "nim/docker/docker-compose-env-vars.md" >}}
 
-- `NIM_LOG_LEVEL` - set the NGINX Instance Manager logging level.
-- `NIM_METRICS_TTL` - set a custom time-to-live in days value for metrics retention.
-- `NIM_EVENTS_TTL` -  set a custom time-to-live in days value for events retention.
-- `NIM_SECURITY_TTL` -  set a custom time-to-live in days value for security violation retention.
-- `NIM_MAINTENANCE` - enable maintenance mode to preform backup, restore and troubleshooting.
-- `NIM_WATCHDOG_TIMEOUT` - set a custom dpm watchdog timeout in seconds.
-- `NIM_LICENSE_MODE_OF_OPERATION` - set the NGINX Instance Manager license mode of operation to either connected or disconnected. Default is connected.
+<br>
+
+{{<call-out "tip" "See also:" "" >}} 
+For details on configuring a forward proxy, see the [Forward Proxy Configuration Guide]({{< relref "nim/system-configuration/configure-forward-proxy.md" >}}).
+{{</call-out>}}
 
 ### Compose stop or tear down
 
