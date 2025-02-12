@@ -5,5 +5,6 @@ url: /nginx-management-suite/
 layout: "nms-eos-list"
 cascade:
   logo: "NGINX-Management-Suite-product-icon.svg"
+  noindex: true
 ---
 
