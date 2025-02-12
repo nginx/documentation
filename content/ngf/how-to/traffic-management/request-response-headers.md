@@ -22,10 +22,10 @@ This guide describes how to configure the headers application to modify the head
 - [Install]({{< ref "/ngf/installation/" >}}) NGINX Gateway Fabric.
 - Save the public IP address and port of NGINX Gateway Fabric into shell variables:
 
-   ```text
-   GW_IP=XXX.YYY.ZZZ.III
-   GW_PORT=<port number>
-   ```
+  ```text
+  GW_IP=XXX.YYY.ZZZ.III
+  GW_PORT=<port number>
+  ```
 
 {{< note >}} In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for .{{< /note >}}
 
@@ -67,7 +67,7 @@ This examples demonstrates how to configure traffic routing for a simple echo se
 Begin by deploying the example application `headers`. It is a simple application that returns the request headers which will be modified later.
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.0/examples/http-request-header-filter/headers.yaml
+kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.1/examples/http-request-header-filter/headers.yaml
 ```
 
 This will create the headers Service and a Deployment with one Pod. Run the following command to verify the resources were created:
@@ -132,9 +132,9 @@ This HTTPRoute has a few important properties:
 - The `match` rule defines that all requests with the path prefix `/headers` are sent to the `headers` Service.
 - It has a `RequestHeaderModifier` filter defined for the path prefix `/headers`. This filter:
 
-    1. Sets the value for header `My-Overwrite-Header` to `this-is-the-only-value`.
-    1. Appends the value `compress` to the `Accept-Encoding` header and `this-is-an-appended-value` to the `My-Cool-header`.
-    1. Removes `User-Agent` header.
+  1. Sets the value for header `My-Overwrite-Header` to `this-is-the-only-value`.
+  1. Appends the value `compress` to the `Accept-Encoding` header and `this-is-an-appended-value` to the `My-Cool-header`.
+  1. Removes `User-Agent` header.
 
 ---
 
@@ -179,7 +179,7 @@ kubectl delete httproutes.gateway.networking.k8s.io headers
 ```
 
 ```shell
-kubectl delete -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.0/examples/http-request-header-filter/headers.yaml
+kubectl delete -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.1/examples/http-request-header-filter/headers.yaml
 ```
 
 ---
@@ -195,7 +195,7 @@ Begin by configuring an application with custom headers and a simple HTTPRoute. 
 Begin by deploying the example application `headers`. It is a simple application that adds response headers that will be modified later.
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.0/examples/http-response-header-filter/headers.yaml
+kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.1/examples/http-response-header-filter/headers.yaml
 ```
 
 This will create the headers Service and a Deployment with one Pod. Run the following command to verify the resources were created:
@@ -352,7 +352,7 @@ X-Header-Set: overwritten-value
 ok
 ```
 
-In the output above you can notice the modified response headers as the `X-Header-Unmodified` remains unchanged as we did not include it in the filter and `X-Header-Remove` header is absent. The header `X-Header-Add` gets appended with the new value and `X-Header-Set` gets overwritten to `overwritten-value` as defined in the *HttpRoute*.
+In the output above you can notice the modified response headers as the `X-Header-Unmodified` remains unchanged as we did not include it in the filter and `X-Header-Remove` header is absent. The header `X-Header-Add` gets appended with the new value and `X-Header-Set` gets overwritten to `overwritten-value` as defined in the _HttpRoute_.
 
 ---
 
