@@ -6,6 +6,7 @@ weight: 2100
 cascade:
   logo: "NGINX-Controller-product-icon-RGB.svg"
   type: "ctlr-eos"
+  noindex: true
 url: /nginx-controller/
 ---
 
