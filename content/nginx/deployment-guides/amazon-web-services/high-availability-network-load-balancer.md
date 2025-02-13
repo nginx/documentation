@@ -357,12 +357,3 @@ chmod +x cleanup.sh
 ./cleanup.sh
 ```
 
-### Revision History
-
-- Version 6 (February 2025) - Revisions for readability
-- Version 5 (March 2020) – Fix link missed in Version 4
-- Version 4 (November 2019) – Change link to GitHub repo for automated setup
-- Version 3 (April 2019) – Modularization of Appendix
-- Version 2 (April 2018) – Revisions to Appendix
-- Version 1 (November 2017) – Initial version (NGINX Plus Release 13)
-
