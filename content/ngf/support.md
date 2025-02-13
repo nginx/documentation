@@ -40,6 +40,6 @@ Visit the [project’s GitHub repository](https://github.com/nginxinc/nginx-supp
 
 - If you have any suggestions or enhancement requests, please [open an idea](https://github.com/nginx/nginx-gateway-fabric/discussions/categories/ideas) on GitHub discussions.
 
-- You can contact us directly, by sending an email to [kubernetes@nginx.com](mailto:kubernetes@nginx.com) or on the [NGINX Community Slack](https://nginxcommunity.slack.com/channels/nginx-gateway-fabric), in the #nginx-gateway-fabric channel.
+- You can also get help through the [NGINX Community Forum](https://community.nginx.org/).
 
 - If you need dedicated support for NGINX Gateway Fabric, or you would like to leverage our [advanced NGINX Plus features](https://docs.nginx.com/nginx-gateway-fabric/overview/nginx-plus/), you can contact [F5 Sales](https://www.f5.com/content/f5-com/en_us/products/get-f5).

@@ -6,6 +6,7 @@ description: |
 weight: 5000
 url: /nginx-waf/
 cascade:
+  noindex: true
   logo: "NGINX-WAF-product-icon-RGB.svg"
 ---
 
