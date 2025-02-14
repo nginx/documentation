@@ -1,12 +1,12 @@
 ---
+title: Create Amazon EC2 Instances for NGINX Open Source and NGINX Plus
+weight: 600
 description: Create Amazon Elastic Compute Cloud (EC2) instances for running NGINX
   Open Source and F5 NGINX Plus.
-docs: DOCS-444
-doctypes:
-- task
-title: Create Amazon EC2 Instances for NGINX Open Source and NGINX Plus
 toc: true
-weight: 600
+type: how-to
+product: NGINX+
+docs: DOCS-444
 ---
 
 This guide explains how to create instances in the Amazon Elastic Compute Cloud (EC2) that can run NGINX Open Source and F5 NGINX Plus.
