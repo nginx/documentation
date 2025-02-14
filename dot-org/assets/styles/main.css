@@ -101,6 +101,10 @@ ol > li::marker {
     background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(26,41,59,1) 51%, rgba(36,45,57,1) 100%);
 }
 
+.hero-image-container {
+    @apply hidden md:visible md:flex md:w-1/2 justify-center items-center;
+}
+
 .bg-offwhite {
     background-color: var(--offwhite-bg);
 }
