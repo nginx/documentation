@@ -2,6 +2,7 @@
 title: Community
 params:
     display_breadcrumb: false
+    hero_desc: lorem ipsum dolor sit amet consectetur adipiscing elit te nostrud labore anim voluptua laborum suscipit liber
 ---
 
 {{< page-section title="Welcome" >}}

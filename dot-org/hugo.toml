@@ -1,6 +1,6 @@
 baseURL = 'https://nginx.org/'
 languageCode = 'en-us'
-title = 'nginx'
+title = 'NGINX Open Source'
 
 [module]
   [[module.imports]]
