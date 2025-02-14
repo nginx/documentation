@@ -1,0 +1,31 @@
+{{ $banner := .Site.GetPage "banner" }}
+
+{{ if and ($banner) ($banner.Params.display) }}
+<!--TODO: handle for variant param. (info, error, warning)-->
+<div id="banner-container" class="banner-container relative h-12">
+    <p class="banner-title">
+        {{ $banner.Title }}
+    </p>
+<!--   dot character -->
+    <span>&#9702;</span>
+    {{ $banner.Content }}
+    <button id="close-banner-btn" class="absolute right-4 text-white w-4 hover:opacity-75 cursor-pointer">
+        {{ partial "svg/close.svg" . }}
+    </button>
+</div>
+
+{{ end }}
+
+<script defer language="javascript">
+  document.addEventListener("DOMContentLoaded", () => {
+    const banner = document.querySelector("#banner-container");
+    const closeBtn = document.querySelector("#close-banner-btn");
+
+
+    closeBtn.addEventListener("click", () => {
+      banner.classList.remove("h-12");
+      banner.classList.add("h-0");
+      closeBtn.classList.add("hidden");
+    });
+  })
+</script>

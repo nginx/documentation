@@ -4,6 +4,8 @@
     --color-ngx-green: var(--nginx-green);
     --color-ngx-green-light: #00c94c;
     --color-ngx-green-dark: #017e31;
+
+    --font-display: "Inter", "sans-serif";
 }
 
 body {
@@ -135,4 +137,20 @@ ol > li::marker {
 
 .get-involved-item {
     @apply bg-white flex flex-col items-center p-6 gap-2 w-full;
+}
+
+.banner-title {
+    @apply font-bold;
+}
+
+.banner-container {
+    @apply bg-ngx-green text-center flex justify-center flex-wrap text-white items-center gap-1 transition-all ease-in-out overflow-hidden;
+}
+
+.banner-container > p {
+    @apply text-sm;
+}
+
+.banner-container > p > a {
+    @apply underline underline-offset-2;
 }
