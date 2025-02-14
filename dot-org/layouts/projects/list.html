@@ -19,7 +19,7 @@
                 <h4 class="uppercase">Filter & Search Projects</h4>
                 {{ partial "projects/projects-search.html" . }}
             </div>
-            <div class="md:col-span-2 grid grid-cols-2 gap-8">
+            <div class="md:col-span-2 grid md:grid-cols-2 gap-8">
                 {{ range seq 9 }}
                     {{ partial "projects/minimal-card.html" . }}
                 {{ end }}
