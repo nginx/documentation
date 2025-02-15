@@ -11,41 +11,44 @@ docs: DOCS-444
 
 This guide explains how to create instances in the Amazon Elastic Compute Cloud (EC2) that can run NGINX Open Source and F5 NGINX Plus.
 
-For NGINX Plus, you can buy a prebuilt Amazon Machine Image (AMI) from the AWS Marketplace for a faster option. You can find AMIs for various operating systems, e.g., Amazon Linux, Red Hat Enterprise Linux, and Ubuntu. For instructions, see [Installing NGINX Plus AMIs on Amazon EC2]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-amazon-web-services.md" >}}).
+For NGINX Plus, you can buy a prebuilt Amazon Machine Image (AMI) from the AWS Marketplace for a faster option. You can find AMIs for various operating systems, such as Amazon Linux, Red Hat Enterprise Linux, and Ubuntu. For instructions, see [Installing NGINX Plus AMIs on Amazon EC2]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-amazon-web-services.md" >}}).
 
 ## Before you begin
 
-To complete this guide, you will need the following prerequisites:
+To complete this guide, you need the following:
 
 - An [AWS account](http://docs.aws.amazon.com/AmazonSimpleDB/latest/DeveloperGuide/AboutAWSAccounts.html).
-- To follow the [Ansible instructions]({{< relref "#automate-ansible" >}}), you should have basic Linux system administration skills. This includes installing software, managing files and folders, and using the command line.
-- To install NGINX Plus, you need a paid subscription or a [30‑day free trial](https://www.nginx.com/free-trial-request)
-- You will need root privileges on the hosts where NGINX Open Source or NGINX Plus will be installed. Use `sudo` before commands as needed.
+- Basic Linux system administration skills, including installing software, managing files and folders, and using the command line, to follow the [Ansible instructions]({{< relref "#automate-ansible" >}}).
+- A paid subscription or a [30-day free trial](https://www.nginx.com/free-trial-request) for NGINX Plus.
+- Root privileges on the hosts where NGINX Open Source or NGINX Plus will be installed, with `sudo` access as needed.
 
 ## Create an Amazon EC2 Instance {#create-ec2-instances}
 
-1. Log into the EC2 dashboard in the AWS Management Console: **[https://console.aws.amazon.com/ec2](https://console.aws.amazon.com/ec2)**.
+1. Log in to the EC2 dashboard in the AWS Management Console: **[https://console.aws.amazon.com/ec2](https://console.aws.amazon.com/ec2)**.
 
-1. In the left navigation bar, choose **Instances**. Then click the **Launch Instances** button in the top right corner.
+1. In the left navigation bar, choose **Instances**. Then select **Launch Instances** in the top right corner.
 
 1. On the **Launch an Instance** page, give your new instance a name in the **Name and Tags** section. This name will show in the Name column of the summary table on the EC2 Instances dashboard. This guide is using "instance-name."
 
-1. In the **Application and OS Images (Amazon Machine Image)** section click the image of the Linux distribution of your choice.
+1. In the **Application and OS Images (Amazon Machine Image)** section select the image of the Linux distribution of your choice.
 
    {{< img src="/img/aws/aws-nlb-instance-choose-ami.png" alt="Screenshot of AMI section on the EC2 Launch Instance page">}}
 
-1. In the **Instance Type** section, use the dropdown to choose an appropriate instance type. The screenshot shows the **t2.micro** instance type selected by default. This type is sufficient for demo purposes.
+1. In the **Instance Type** section, choose an appropriate instance type. The screenshot shows the **t2.micro** instance type selected by default. This type is sufficient for demo purposes.
 
    {{<note >}}At the time of publication, AWS offered 750 hours of free usage each month for this instance type. This applies during your first year with an AWS account. Keep in mind, though, that several NGINX instances running all day will use the free 750 hours up quickly. For example, 6 instances will use them in just over 5 days. If you use 8 instances, you'll hit the limit in under 4 days.{{</note>}}
 
    {{< img src="/img/aws/aws-nlb-instance-choose-type.png" alt="Screenshot of Instance Type on the EC2 Launch Instance page">}}
 
-1. In the **Key pair (login)** section, you can select an existing key pair, or create a new one. If you click on "Create new key pair," a window will pop up allowing you to download a key pair to your specifications.
+1. In the **Key pair (login)** section, select an existing key pair or create a new one. If you choose **Create new key pair**, a window appears, allowing you to download the key pair.
    {{<note>}} It's best practice — and necessary in production — to create a separate key for each EC2 instance. This way, if a key is compromised, only that one instance is at risk.{{</note>}}
 
-1. Scroll down to the **Network settings** section. You can leave the defaults for VPC, and Subnet. Under **Firewall (Security Groups)** you can either create a new security group or use an existing one. If this is your first setup, keep “Create security group” checked. Also, select “Allow HTTP traffic from the internet.” If desired, also check “Allow HTTPS traffic from the internet”.
+1. Scroll to the **Network settings** section. You can keep the default **VPC** and **Subnet** settings. Under **Firewall (Security Groups),** either create a new security group or use an existing one.  
+   - If this is your first setup, keep **Create security group** selected.  
+   - Select **Allow HTTP traffic from the internet.**  
+   - (Optional) Select **Allow HTTPS traffic from the internet** if needed.
 
-   This will create the following inbound security group rules:
+   This creates the following inbound security group rules:
 
    1. Accept SSH connections from all sources 
       - **Type** – SSH
@@ -71,15 +74,15 @@ To complete this guide, you will need the following prerequisites:
 
 1. In the **Configure Storage** section, leave the defaults unchanged.
 
-1. In the right-hand panel, verify the settings shown in the **Summary** are correct. If so, click the **Launch Instance** button in the lower-right corner. 
+1. In the right panel, verify the settings in the **Summary** section. If everything is correct, select **Launch Instance**.
 
    {{< img src="/img/aws/aws-instance-summary.png" alt="Screenshot of the Summary panel on the EC2 Launch Instance page with button to launch instance">}}
 
-1. After you launch the instance, you will be redirected. The new page will show a success message confirming that your instance launched successfully. Click on the id of the new instance to be taken back to the EC2 Instances page.
+1. After launching the instance, you are redirected to a confirmation page with a success message. Select the instance ID to return to the **EC2 Instances** page.
 
       {{< img src="/img/aws/aws-instance-launch-success.png" alt="Screenshot of the Summary panel on the EC2 Launch Instance page with button to launch instance">}}
 
-1. On the EC2 Instances page, you can see all the instances you have created so far, including your new instance. The following screenshot shows a single instance:
+1. On the **EC2 Instances** page, you can view all your instances, including the new one. The following screenshot shows a single instance:
 
       {{< img src="/img/aws/aws-generic-instance-display-first.png" alt="Screenshot of the EC2 Instances page with a single instance">}}
 
@@ -88,13 +91,13 @@ To complete this guide, you will need the following prerequisites:
     - In the left navigation bar, select **Security Groups**.
     - Select the security group by clicking its radio button in the leftmost column of the table. A panel opens in the lower part of the window displaying details about the group.
     - In the **Inbound** tab, verify that the rules you created in Step 7 are listed.
-    - Open the **Outbound** tab and click the **Edit outbound rules** button to create a rule for outbound traffic. The set of rules depends on which ports you have used for traffic handled by NGINX Open Source or NGINX Plus instances:
+    - Open the **Outbound** tab and select **Edit outbound rules** to create a rule for outbound traffic. The rules depend on the ports used for traffic handled by NGINX Open Source or NGINX Plus instances:
 
-        - By default, AWS adds an outbound rule to allow all traffic to all destinations. You can remove that rule by clicking the **Delete** button.
+        - By default, AWS adds an outbound rule that allows all traffic to all destinations. You can remove this rule by selecting **Delete**.
         - If you use port 80 for client traffic and health checks from a load balancer, like [AWS Network Load Balancer]({{< relref "high-availability-network-load-balancer.md" >}}), you only need one rule.
         - If you set up different ports for various tasks, or if you use ports like 443 for HTTPS, adjust them accordingly.
 
-      In the Destination field, start typing your security group's name or ID. It should be listed under Security Groups. The example here shows **sg-0dd4d3c5284052f99**.
+      In the **Destination** field, start typing your security group's name or ID. It should appear under **Security Groups**. The example below shows **sg-0dd4d3c5284052f99**.
 
          {{< img src="/img/aws/aws-generic-instance-security-outbound.png" alt="Screenshot of the EC2 Security Group outbound rules page">}}
 
@@ -106,9 +109,9 @@ To complete this guide, you will need the following prerequisites:
 To install and configure NGINX Open Source or NGINX Plus on an instance, open a terminal window and connect to the instance over SSH.
 
 1. Navigate to the **Instances** tab on the EC2 Dashboard if you are not there already.
-1. Click the row for an instance to select it.
-1. Click the **Connect** button above the list of instances. You will be redirected to the  **Connect To Instance** page. The **SSH client** tab will be selected by default.
-1. Follow the instructions on the page, which are customized to the selected instance. There is a sample `ssh` command with the name of the key file and the hostname of your instance.
+1. Select the row for an instance to highlight it.  
+1. Select **Connect** above the list of instances. You are redirected to the **Connect to Instance** page, with the **SSH client** tab selected by default.  
+1. Follow the instructions on the page, which are customized for the selected instance. A sample `ssh` command includes the key file name and the instance hostname.
    
    {{< img src="/img/aws/aws-nlb-instance-connect.png" alt="Screenshot of the EC2 Instance Connect with SSH page">}}
 
@@ -154,7 +157,7 @@ NGINX, Inc. releases a combined Ansible role for NGINX Open Source and NGINX P
    ansible-playbook playbook.yml
    ```
 
-1. Confirm that Nginx is installed by running `nginx -v`.
+1. Confirm that NGINX is installed by running `nginx -v`.
 
 
 ## Optional: Create an NGINX Open Source AMI
@@ -163,17 +166,17 @@ To simplify installing NGINX Open Source on several instances, create an AMI fro
 
 1. Follow the instructions in [Create Amazon EC2 Instance]({{< relref "#create-ec2-instances" >}}) and [Install NGINX software]({{< relref "#install-nginx-software" >}}).
 
-1. Navigate to the **Instances** tab on the Amazon EC2 Dashboard.
+1. Go to the **Instances** tab on the Amazon EC2 Dashboard.
 
 1. Select the base instance with NGINX installed by clicking its row in the table.
 
-1. Click the **Actions** button and select **Image and templates** and then **Create Image**.
+1. Select **Actions**, then choose **Image and templates** > **Create Image**.
 
    {{< img src="/img/aws/aws-generic-create-image-menu.png" alt="Screenshot of the EC2 Create Image button menu">}}
 
-1. On the **Create Image** page, enter the **Image name** and optionally give an **Image description**. Then click the **Create image** button. You will be returned to the Instances page with a green alert message that the image is being created.
+1. On the **Create Image** page, enter the **Image name** and optionally add an **Image description**. Then select **Create image**. You are returned to the **Instances** page with a green alert confirming that the image is being created.
 
-1. To verify that the image was created, navigate to the **AMIs** tab and find the new image by the name you gave it.
+1. To verify that the image was created, go to the **AMIs** tab and find the new image by its name.
 
 ### Revision History
 
