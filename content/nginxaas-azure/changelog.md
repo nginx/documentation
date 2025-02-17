@@ -11,7 +11,7 @@ To see a list of currently active issues, visit the [Known issues]({{< relref "/
 
 To review older entries, visit the [Changelog archive]({{< relref "/nginxaas-azure/changelog-archive" >}}) section.
 
-## Feb 10, 2025
+## February 10, 2025
 
 - {{% icon-feature %}} **NGINXaaS Load Balancer for Kubernetes is now Generally Available**
 
