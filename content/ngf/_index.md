@@ -1,4 +1,4 @@
 ---
-title: "Welcome to the NGINX Gateway Fabric documentation"
+title: "NGINX Gateway Fabric"
 url: /nginx-gateway-fabric/
 ---
