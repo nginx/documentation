@@ -9,7 +9,7 @@ url: /nginxaas/azure/billing/usage-and-cost-estimator/
 
 {{< raw-html >}}
 
-<link rel="stylesheet" href="../../css/cost-calculator_v2.css">
+<link rel="stylesheet" href="nginxaas-azure/css/cost-calculator_v2.css">
 <div id="calculator">
     <h3 id="calculator-section-heading">
             Cost Estimation for Standard V2 Plan
@@ -142,5 +142,5 @@ Max(
         </div>
     </div>
 </div>
-<script type="module" src="nginxaas-azure/../../js/cost-calculator_v2.js"></script>
+<script type="module" src="nginxaas-azure/js/cost-calculator_v2.js"></script>
 {{< /raw-html >}}
