@@ -1,0 +1,236 @@
+#calculator .form-field {
+    margin: 8px 0 20px 0;
+}
+#calculator .form-field label {
+    display: block;
+    font-size: 14px;
+    font-weight: 300;
+    color: #000000;
+
+    line-height: 20px;
+}
+#calculator .form-field label span.label-details, .subtitle {
+    font-size: 12px;
+    color: #6C778C;
+}
+
+#calculator input, select {
+    width: 300px;
+    height: 24px;
+
+    margin-top: 4px;
+    color: #000000;
+
+}
+
+#calculator input[type=radio], #calculator input[type=checkbox] {
+    width: 24px;
+}
+
+#calculator .section {
+    margin: 0 auto 24px auto;
+    max-width: 900px;
+}
+
+#calculator #totals-section {
+    padding: 20px 0;
+
+}
+#calculator #totals-section .total-text { 
+    font-weight: 700;
+    margin-right: 50px;
+}
+
+#calculator details {
+    position: relative;
+}
+
+#calculator details > summary {
+    list-style: none;
+    padding-left: 20px;
+    margin: 20px 2px;
+    text-decoration: underline;
+    color: #515357;
+}
+#calculator details > summary::before {
+    content: "\FF0B";
+    border: 2px solid gray;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 2px;
+    left: 0;
+    height: 11px;
+    width: 11px;
+    font-size: 10px;
+    font-weight: 600;
+    border-radius: 50%;
+    text-decoration: none;
+}
+#calculator details[open] > summary::before {
+    content: "\FF0D";
+}
+
+#calculator .details-content {
+    padding: 10px;
+    display: flex;
+    
+    width: 100%;
+}
+
+#calculator .details-section {
+    padding: 10px;
+    background-color: rgba(217, 217, 217, 0.1);
+    margin-right: 10px;
+    flex: 1;
+}
+#calculator .details-section:first-child {
+    flex: 2;
+}
+
+#calculator .bandwidth-input-container::after {
+    content: "Mbps";
+    color: #6C778C;
+    font-size: 12px;
+    margin-left: -60px;
+}
+#calculator .avg-conn-duration-container::after {
+    content: "seconds";
+    color: #6C778C;
+    font-size: 12px;
+    margin-left: -70px;
+}
+
+#calculator #ncuEstimateValue {
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    font-weight: 700;
+}
+
+#calculator input:invalid + #ncuValidation::after {
+    content: "Must be a multiple of 10, with a minimum of 10";
+    color: #aa0000;
+    padding-left: 5px;
+    font-size: 12px;
+}
+
+#calculator .totals {
+    display: flex;
+    justify-content: left;
+}
+#calculator .totals > span {
+    margin-right: 20px;
+}
+
+
+#calculator table {
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+#calculator th {
+    padding-bottom: 16px;
+}
+
+#calculator tr.selected {
+    background-color: #e9f3ea;
+}
+
+
+#calculator .math {
+    font-weight: 300;
+    font-size: 12px;
+    background-color: #f7f7f7;
+
+    margin: 8px 0 4px 0;
+    padding: 8px;
+}
+
+#calculator pre {
+    font-family: inherit;
+}
+
+#calculator var {
+    font-family: inherit;
+    font-weight: bolder;
+}
+
+#calculator .titleCol {
+    font-weight: 400;
+    vertical-align: bottom;
+}
+
+#calculator dt {
+    margin: 24px 0 8px 0;
+}
+#calculator dd {
+    margin-bottom: 8px;
+}
+
+#calculator h3 {
+    display: flex;
+    justify-content: space-between;
+}
+
+#calculator h3 label {
+    font-size: 14px;
+    width: 40%;
+    text-align: right;
+}
+#calculator h3 label input {
+    width: 20px;
+    vertical-align: middle;
+}
+
+/* added for iteration 3 */
+
+#calculator .form-section {
+    border: 1px solid #B7B7B7;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+#calculator .form-section h4 {
+    font-weight: 600;
+}
+#calculator .form-section-content {
+    padding: 20px 18px;
+}
+#calculator .form-section-content:last-child {
+    padding-bottom: 18px;
+    border-top: 1px solid #B7B7B7;
+}
+
+@media print {
+    body { 
+        visibility: hidden;
+        height: 0;
+     }
+
+    footer {
+        display: none;
+    }
+
+    #calculator { 
+        visibility: visible; 
+        position: absolute;
+        top: 20px;
+
+        margin: 0 auto;
+
+        width: 100%;
+    }
+
+    #calculator h3#calculator-section-heading {
+        justify-content: left;
+    }
+    
+    #calculator h3#calculator-section-heading button {
+        visibility: hidden;
+    }
+
+    #calculator-section-heading::before {
+        content: "NGINX as a Service for Azure\00a0"
+    }
+}
