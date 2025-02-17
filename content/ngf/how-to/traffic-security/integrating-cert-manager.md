@@ -7,7 +7,7 @@ product: NGF
 docs: DOCS-1425
 ---
 
-Learn how to issue and mange certificates using Let's Encrypt and cert-manager.
+Learn how to issue and manage certificates using Let's Encrypt and cert-manager.
 
 ## Overview
 
