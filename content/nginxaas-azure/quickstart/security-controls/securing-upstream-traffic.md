@@ -52,7 +52,7 @@ If your configuration is using the [njs module]({{< relref "/nginxaas-azure/quic
 
 Toggle `yes` to include the CA file as proctectd file when using Azure Portal as show below:
 
-![Screenshot of the Azure portal showing the toggle for protected files](nginxaas-azure/add-ca-as-protected-file.png)
+{{< img src="nginxaas-azure/add-ca-as-protected-file.png" alt="Screenshot of the Azure portal showing the toggle for protected files" >}}
 
 ### Configuring upstreams
 

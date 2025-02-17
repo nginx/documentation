@@ -58,7 +58,7 @@ To view the status of your SSL/TLS certificates, [enable monitoring]({{< relref 
 
    {{</bootstrap-table>}}
 
-   ![Interface screenshot showing the Azure metric nginxaas.certificates](nginxaas-azure/azure-metrics-nginxaas.certificates.png)
+   {{< img src="nginxaas-azure/azure-metrics-nginxaas.certificates.png" alt="Interface screenshot showing the Azure metric nginxaas.certificates" >}}
 
 ## Common certificate errors
 

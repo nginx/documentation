@@ -43,7 +43,7 @@ Enabling logs using the **NGINX Logs** blade on your NGINXaaS deployment is now 
 
 1. Select preferred **Destination details**.
 
-   ![Screenshot of the Diagnostic Settings configuration page](nginxaas-azure/diagnostic-settings.png)
+   {{< img src="nginxaas-azure/diagnostic-settings.png" alt="Screenshot of the Diagnostic Settings configuration page" >}}
 
 For more information about diagnostic settings destinations, please see the [Diagnostic Settings Destinations](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/diagnostic-settings#destinations) documentation.
 

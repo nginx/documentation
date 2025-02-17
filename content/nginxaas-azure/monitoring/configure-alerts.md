@@ -39,14 +39,14 @@ This guide explains how to create and configure metrics-based alerts for your NG
 
 5. In the **Conditions** tab, select a **Signal name**, for example, "nginx.http.request.count".
 
-   ![Screenshot of the Conditions tab showing how to select a Signal name from the list](nginxaas-azure/alert-select-signal.png)
+   {{< img src="nginxaas-azure/alert-select-signal.png" alt="Screenshot of the Conditions tab showing how to select a Signal name from the list" >}}
 
 6. Define the **alert logic** such as:
 
    - Set the threshold and average as per your requirements.
    - Set the frequency to evaluate alerts as per your requirements.
 
-   ![Screenshot of the alert logic page showing how to set the threshold and frequency](nginxaas-azure/alert-logic.png)
+   {{< img src="nginxaas-azure/alert-logic.png" alt="Screenshot of the alert logic page showing how to set the threshold and frequency" >}}
 
 7. Define the **actions**:
 

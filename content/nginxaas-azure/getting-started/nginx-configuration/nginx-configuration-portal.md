@@ -54,7 +54,7 @@ NGINX configuration is validated real-time to check for syntax and compatibility
 
 For example, if you create/update an NGINX config with a particular directive that is not allowed, the service will analyse your NGINX config and provide real-time feedback.
 
-![NGINX Configuration validation error](nginxaas-azure/validation-error.png)
+{{< img src="nginxaas-azure/validation-error.png" alt="NGINX Configuration validation error" >}}
 
 
 The editing experience consists of a single view for both editing and validation
