@@ -4,6 +4,7 @@ weight: 200
 categories: ["concepts"]
 toc: true
 docs: "DOCS-1474"
+url: /nginxaas/azure/billing/usage-and-cost-estimator/
 ---
 
 {{< raw-html >}}

@@ -4,6 +4,7 @@ weight: 100
 categories: ["tasks"]
 toc: true
 docs: "DOCS-882"
+url: /nginxaas/azure/troubleshooting/troubleshooting/
 ---
 
 ## Contact NGINX support
@@ -16,7 +17,7 @@ To contact support about F5 NGINX as a Service for Azure (NGINXaaS):
 
 3. Select **Raise a Support ticket**.
 
-   ![Screenshot of the Azure portal showing the Raise support ticket button](/nginxaas-azure/raise-ticket.png)
+   ![Screenshot of the Azure portal showing the Raise support ticket button](nginxaas-azure/raise-ticket.png)
 
 4. You will be redirected to **MyF5** to create a new case. Log in to MyF5 with your F5 account.
 
@@ -24,7 +25,7 @@ To contact support about F5 NGINX as a Service for Azure (NGINXaaS):
 
 5. Go to the **Case Management** section and select **Create new case**.
 
-   ![Screenshot of the MyF5 portal showing the Create new case button](/nginxaas-azure/new-case.png)
+   ![Screenshot of the MyF5 portal showing the Create new case button](nginxaas-azure/new-case.png)
 
 6. Select **NGINXaaS** in the Product dropdown.
 
@@ -36,7 +37,7 @@ To contact support about F5 NGINX as a Service for Azure (NGINXaaS):
 - Date and time of the issue
 - Resource ID
 
-![Screenshot of the Azure portal showing the Properties section](/nginxaas-azure/properties.png)
+![Screenshot of the Azure portal showing the Properties section](nginxaas-azure/properties.png)
 
 8. Complete the **Additional information** and **Contact details** sections of your case and select **Submit**.
 

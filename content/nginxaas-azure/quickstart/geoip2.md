@@ -3,6 +3,7 @@ title: "GeoIP2"
 weight: 700
 categories: ["tasks"]
 toc: true
+url: /nginxaas/azure/quickstart/geoip2/
 ---
 
 ## Overview

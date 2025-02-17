@@ -4,6 +4,7 @@ weight: 300
 categories: ["tasks"]
 toc: true
 docs: "DOCS-1475"
+url: /nginxaas/azure/quickstart/security-controls/securing-upstream-traffic/
 ---
 
 Learn how to encrypt HTTP traffic between F5 NGINX as a Service for Azure (NGINXaaS) and an upstream group or a proxied server. To secure TCP traffic to upstream servers, follow the [NGINX Plus guide](https://docs.nginx.com/nginx/admin-guide/security-controls/securing-tcp-traffic-upstream/). As with securing HTTP traffic, you will need to [add the SSL/TLS client certificate]({{< relref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal.md">}}) to the NGINXaaS deployment.
@@ -51,7 +52,7 @@ If your configuration is using the [njs module]({{< relref "/nginxaas-azure/quic
 
 Toggle `yes` to include the CA file as proctectd file when using Azure Portal as show below:
 
-![Screenshot of the Azure portal showing the toggle for protected files](/nginxaas-azure/add-ca-as-protected-file.png)
+![Screenshot of the Azure portal showing the toggle for protected files](nginxaas-azure/add-ca-as-protected-file.png)
 
 ### Configuring upstreams
 

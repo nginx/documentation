@@ -4,6 +4,7 @@ weight: 100
 categories: ["tasks"]
 toc: true
 docs: "DOCS-875"
+url: /nginxaas/azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal/
 ---
 
 ## Overview

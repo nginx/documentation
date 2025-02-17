@@ -3,6 +3,7 @@ title: "Add certificates using Terraform"
 weight: 300
 categories: ["tasks"]
 toc: true
+url: /nginxaas/azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-terraform/
 ---
 
 ## Overview

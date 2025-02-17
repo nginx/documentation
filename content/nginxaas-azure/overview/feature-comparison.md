@@ -5,6 +5,7 @@ description: "Compare NGINXaaS for Azure with other NGINX offerings."
 categories: ["concepts"]
 toc: false
 docs: "DOCS-1473"
+url: /nginxaas/azure/overview/feature-comparison/
 ---
 
 {{<bootstrap-table "table table-striped table-bordered">}}

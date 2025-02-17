@@ -3,6 +3,7 @@ title: "Use a certificate from Azure Key Vault"
 weight: 50
 categories: ["tasks"]
 toc: true
+url: /nginxaas/azure/quickstart/security-controls/certificates/
 ---
 
 ## Overview

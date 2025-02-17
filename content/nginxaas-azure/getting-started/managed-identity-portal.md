@@ -4,6 +4,7 @@ weight: 300
 categories: ["tasks"]
 toc: true
 docs: "DOCS-872"
+url: /nginxaas/azure/getting-started/managed-identity-portal/
 ---
 
 ## Overview

@@ -4,6 +4,7 @@ weight: 100
 categories: ["tasks"]
 toc: true
 docs: "DOCS-989"
+url: /nginxaas/azure/quickstart/scaling/
 ---
 
 F5 NGINX as a Service for Azure (NGINXaaS) supports manual and automatic scaling of your deployment, allowing you to adapt to application traffic demands while controlling cost.

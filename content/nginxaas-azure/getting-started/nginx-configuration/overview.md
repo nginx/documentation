@@ -3,6 +3,7 @@ title: "Overview"
 weight: 50
 categories: ["tasks"]
 toc: true
+url: /nginxaas/azure/getting-started/nginx-configuration/overview/
 ---
 
 This document provides details about using NGINX configuration files with your

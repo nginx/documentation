@@ -4,6 +4,7 @@ weight: 100
 categories: ["concepts"]
 toc: true
 docs: "DOCS-879"
+url: /nginxaas/azure/overview/overview/
 ---
 
 ## What Is F5 NGINX as a Service for Azure?
@@ -38,7 +39,7 @@ NGINXaaS for Azure is supported in the following regions:
 
 ## NGINXaaS architecture
 
-![The diagram illustrates the architecture of F5 NGINXaaS for Azure within a Microsoft Azure environment. It shows admins using Azure API/SDK, Azure Portal, Azure CLI, and Terraform to interact with the NGINX Plus component in the IaaS layer for edge routing. The diagram also depicts subnet delegation from the NGINX Plus component to a customer subscription, which includes Azure Key Vault, Azure Monitor, other Azure services, and multiple application servers (App Server 1, App Server 2, App Server N)](/nginxaas-azure/n4a-architecture.png)
+![The diagram illustrates the architecture of F5 NGINXaaS for Azure within a Microsoft Azure environment. It shows admins using Azure API/SDK, Azure Portal, Azure CLI, and Terraform to interact with the NGINX Plus component in the IaaS layer for edge routing. The diagram also depicts subnet delegation from the NGINX Plus component to a customer subscription, which includes Azure Key Vault, Azure Monitor, other Azure services, and multiple application servers (App Server 1, App Server 2, App Server N)](nginxaas-azure/n4a-architecture.png)
 
 - Azure management tools (API, CLI, portal, terraform) work with NGINXaaS to create, update, and delete deployments
 - Each NGINXaaS deployment has dedicated network and compute resources. There is no possibility of [noisy neighbor problems](https://learn.microsoft.com/en-us/azure/architecture/antipatterns/noisy-neighbor/noisy-neighbor) or data leakage between deployments
@@ -56,7 +57,7 @@ With the Standard Plan, NGINXaaS uses the following redundancy features to keep 
 
 ### Data plane traffic
 
-![The diagram illustrates the architecture of F5 NGINXaaS for Azure, showing end users accessing a public IP that routes through a network security group within a customer's Azure subscription. This leads to a delegated subnet in a virtual network, which connects to a zone-redundant load balancer within the NGINXaaS subscription. The load balancer distributes traffic across NGINX Plus instances in multiple availability zones, ensuring scalability and redundancy](/nginxaas-azure/n4a-data-plane-architecture.svg)
+![The diagram illustrates the architecture of F5 NGINXaaS for Azure, showing end users accessing a public IP that routes through a network security group within a customer's Azure subscription. This leads to a delegated subnet in a virtual network, which connects to a zone-redundant load balancer within the NGINXaaS subscription. The load balancer distributes traffic across NGINX Plus instances in multiple availability zones, ensuring scalability and redundancy](nginxaas-azure/n4a-data-plane-architecture.svg)
 
 NGINXaaS uses new Azure networking capabilities to keep end-user traffic private. Each NGINX Plus instance passes traffic to  downstream services using an elastic network card (NIC) that exists inside your subscription. These NICs are injected into a delegated virtual network. A network security group controls traffic to your NGINX Plus instances.
 

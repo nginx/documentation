@@ -4,6 +4,7 @@ weight: 100
 categories: ["tasks"]
 toc: true
 docs: "DOCS-880"
+url: /nginxaas/azure/getting-started/prerequisites/
 ---
 
 Before you deploy F5 NGINX as a Service for Azure (NGINXaaS) you need to meet the following prerequisites:

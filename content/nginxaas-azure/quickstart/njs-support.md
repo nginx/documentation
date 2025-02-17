@@ -4,6 +4,7 @@ weight: 400
 categories: ["tasks"]
 toc: true
 docs: "DOCS-874"
+url: /nginxaas/azure/quickstart/njs-support/
 ---
 
 F5 NGINX as a Service for Azure (NGINXaaS) supports the open-source [njs module](https://nginx.org/en/docs/http/ngx_http_js_module.html), allowing the extension of NGINX functionality with a subset of the Javascript language.

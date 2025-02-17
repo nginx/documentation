@@ -4,6 +4,7 @@ weight: 100
 categories: ["tasks"]
 toc: true
 docs: "DOCS-1369"
+url: /nginxaas/azure/monitoring/enable-logging/logging-using-portal/
 ---
 
 ## Overview
@@ -42,7 +43,7 @@ Enabling logs using the **NGINX Logs** blade on your NGINXaaS deployment is now 
 
 1. Select preferred **Destination details**.
 
-   ![Screenshot of the Diagnostic Settings configuration page](/nginxaas-azure/diagnostic-settings.png)
+   ![Screenshot of the Diagnostic Settings configuration page](nginxaas-azure/diagnostic-settings.png)
 
 For more information about diagnostic settings destinations, please see the [Diagnostic Settings Destinations](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/diagnostic-settings#destinations) documentation.
 

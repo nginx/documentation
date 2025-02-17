@@ -3,6 +3,7 @@ title: "Connect to upstreams with Azure Private Link"
 weight: 400
 categories: ["tasks"]
 toc: true
+url: /nginxaas/azure/quickstart/security-controls/private-link-to-upstreams/
 ---
 
 [Azure Private Link](https://learn.microsoft.com/en-us/azure/private-link/private-link-overview) eliminates exposure to the public internet by handling traffic over Microsoft's backbone network. This is especially useful if your NGINXaaS deployment and your upstreams are in different virtual networks.
@@ -27,7 +28,7 @@ The following example demonstrates this process using an existing virtual machin
 <details close>
 <summary>Create a Private Link service - Azure CLI</summary>
 
-### Prerequisites 
+### Prerequisites
 
 - Resource Group
 - Virtual Network
@@ -150,7 +151,7 @@ The following example demonstrates this process using an existing NGINXaaS deplo
 <details close>
 <summary>Create a private endpoint - Azure CLI</summary>
 
-### Prerequisites 
+### Prerequisites
 
 - Resource Group
 - Virtual Network
@@ -172,7 +173,7 @@ Please ensure the following environment variables are exported before copying th
 
 You must create a new subnet for the private endpoint because the existing NGINXaaS deployment's subnet is already delegated.
 
-```bash 
+```bash
 $ az network vnet subnet create \
   --resource-group $DEP_RESOURCE_GROUP \
   --vnet-name $DEP_VNET_NAME \
@@ -190,7 +191,7 @@ $ az network private-endpoint create \
     --resource-group $DEP_RESOURCE_GROUP \
     --subnet subnet-priv-endpoint \
     --manual-request false \
-    --vnet-name $DEP_VNET_NAME 
+    --vnet-name $DEP_VNET_NAME
 ```
 
 ### Update your NGINXaaS configuration with the private endpoint's IP address

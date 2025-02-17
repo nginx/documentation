@@ -4,6 +4,7 @@ weight: 100
 categories: ["tasks"]
 toc: true
 docs: "DOCS-873"
+url: /nginxaas/azure/getting-started/nginx-configuration/nginx-configuration-portal/
 ---
 
 An NGINX configuration can be applied to the deployment using the Azure portal in two different ways:
@@ -53,7 +54,7 @@ NGINX configuration is validated real-time to check for syntax and compatibility
 
 For example, if you create/update an NGINX config with a particular directive that is not allowed, the service will analyse your NGINX config and provide real-time feedback.
 
-![NGINX Configuration validation error](/nginxaas-azure/validation-error.png)
+![NGINX Configuration validation error](nginxaas-azure/validation-error.png)
 
 
 The editing experience consists of a single view for both editing and validation

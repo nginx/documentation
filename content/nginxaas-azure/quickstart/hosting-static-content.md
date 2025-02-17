@@ -4,6 +4,7 @@ weight: 200
 categories: ["tasks"]
 toc: true
 docs: "DOCS-1344"
+url: /nginxaas/azure/quickstart/hosting-static-content/
 ---
 
 F5 NGINX as a Service for Azure (NGINXaaS) supports hosting static content which allows users to serve static websites from their deployment.

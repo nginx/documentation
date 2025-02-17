@@ -2,6 +2,7 @@
 title: "2023"
 weight: 100
 toc: true
+url: /nginxaas/azure/changelog-archive/changelog-2023/
 ---
 
 Learn about the updates, new features, and resolved bugs in F5 NGINX as a Service for Azure during the year 2023.

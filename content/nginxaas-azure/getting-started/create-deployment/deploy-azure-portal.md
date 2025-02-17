@@ -4,6 +4,7 @@ weight: 100
 categories: ["tasks"]
 toc: true
 docs: "DOCS-878"
+url: /nginxaas/azure/getting-started/create-deployment/deploy-azure-portal/
 ---
 
 ## Overview
@@ -71,7 +72,7 @@ You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](
 
 1. After the deployment finishes, select the NGINX deployment from the list (with "Type: NGINXaaS") to view information about the deployed resource.
 
-   ![Resource Deployment Completed page showing the available deployments and the new NGINXaaS type deployment in the Deployment details section.](/nginxaas-azure/deployment-complete.png)
+   ![Resource Deployment Completed page showing the available deployments and the new NGINXaaS type deployment in the Deployment details section.](nginxaas-azure/deployment-complete.png)
 
 
 ## Test your deployment
@@ -80,7 +81,7 @@ You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](
 
    {{<note>}}You will not see the default NGINX welcome screen if you unchecked "Apply default NGINX configuration" in the [Networking Tab screen]({{< relref "create-deployment.md#networking-tab" >}}) above. You can proceed with providing your own NGINX configuration as outlined in the [NGINX configuration]({{< relref "nginx-configuration.md#networking-tab" >}}) section.{{</note>}}
 
-   ![NGINXaaS Overview page showing the IP address of the deployment in the Essentials section.](/nginxaas-azure/test-deployment.png)
+   ![NGINXaaS Overview page showing the IP address of the deployment in the Essentials section.](nginxaas-azure/test-deployment.png)
 
 
 ## What's next

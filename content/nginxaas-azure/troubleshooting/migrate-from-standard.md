@@ -3,6 +3,7 @@ title: "Migrating from Standard to Standard V2"
 weight: 200
 categories: ["tasks"]
 toc: true
+url: /nginxaas/azure/troubleshooting/migrate-from-standard/
 ---
 
 ## Overview

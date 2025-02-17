@@ -4,6 +4,7 @@ weight: 100
 categories: ["concepts"]
 toc: true
 docs: "DOCS-885"
+url: /nginxaas/azure/billing/overview/
 ---
 
 ## Pricing plans

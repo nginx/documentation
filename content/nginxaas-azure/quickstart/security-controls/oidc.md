@@ -4,6 +4,7 @@ weight: 300
 categories: ["tasks"]
 toc: true
 docs: "DOCS-1646"
+url: /nginxaas/azure/quickstart/security-controls/oidc/
 ---
 
 ## Overview
