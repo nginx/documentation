@@ -72,7 +72,7 @@ jobs:
         uses: azure/login@a65d910e8af852a8061c627c456678983e180302 # v2.2.0
         with:
           creds: ${{secrets.AZURE_CREDENTIALS_DOCS}}
- 
+
       - name: Retrieve secrets from Keyvault
         if: env.isProduction != 'true'
         id: keyvault

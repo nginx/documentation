@@ -392,7 +392,7 @@ In this example, the IP address will be checked in the `GeoLite2-Country.mmdb` d
 <span id="info"></span>
 ## More Info
 
-- [GeoIP2 Dynamic Module Installation Instructions]({{< relref "geoip2.md" >}})
+- [GeoIP2 Dynamic Module Installation Instructions]({{< relref "/nginx/admin-guide/dynamic-modules/geoip2.md" >}})
 
 - [MaxMind GeoIP2 Databases](https://www.maxmind.com/en/geoip2-databases)
 

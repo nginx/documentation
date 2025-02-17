@@ -16,7 +16,9 @@ enableGitInfo = true
   ngf = '/nginx-gateway-fabric/:sections[1:]/:filename'
   nim = '/nginx-instance-manager/:sections[1:]/:filename'
   nms = '/nginx-management-suite/:sections[1:]/:filename'
+  unit = '/nginx-unit/:sections[1:]/:filename'
   agent = '/nginx-agent/:sections[1:]/:filename'
+  nginxaas = '/nginxaas/azure/:sections[1:]/:filename'
 
 [caches]
   [caches.modules]
