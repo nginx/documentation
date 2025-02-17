@@ -1,6 +1,6 @@
 ---
 title: "2022"
-weight: 200
+weight: 300
 toc: true
 url: /nginxaas/azure/changelog-archive/changelog-2022/
 ---
