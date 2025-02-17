@@ -9,7 +9,7 @@ toc: true
 weight: 100
 ---
 
-These instructions explain how to deploy NGNX Plus in the Amazon Web Services (AWS) cloud. Use these instructions to create a highly available, active-active deployment with load balancing.
+These instructions explain how to deploy F5 NGINX Plus in the Amazon Web Services (AWS) cloud. Use these instructions to create a highly available, active-active deployment with load balancing.
 
 This solution combines the AWS Network Load Balancer (NLB) with F5 NGINX Plus. In this solution, AWS NLB provides fast, efficient handling of Layer 4 traffic. NGINX Plus provides Layer 7 features such as load balancing, caching, and content-based routing. When combined, they form a fast, powerful, reliable, and relatively low-cost solution.
 
