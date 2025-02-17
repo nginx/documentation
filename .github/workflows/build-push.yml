@@ -59,7 +59,7 @@ jobs:
     uses: nginxinc/docs-actions/.github/workflows/docs-build-push.yml@9c59fab05a8131f4d691ba6ea2b6a119f3ef832a # v1.0.7
     with:
       production_url_path: ""
-      preview_url_path: "/previews/docs"
+      preview_url_path: "${{ vars.PREVIEW_URL_PATH }}"
       docs_source_path: "public"
       docs_build_path: "./"
       doc_type: "hugo"

@@ -132,27 +132,31 @@ The `values.yaml` file customizes the Helm chart installation without modifying 
             - name: regcred
         apigw:
             image:
-                repository: private-registry.nginx.com/nms-apigw
+                repository: private-registry.nginx.com/nms/apigw
                 tag: <version>
         core:
             image:
-                repository: private-registry.nginx.com/nms-core
+                repository: private-registry.nginx.com/nms/core
                 tag: <version>
         dpm:
             image:
-                repository: private-registry.nginx.com/nms-dpm
+                repository: private-registry.nginx.com/nms/dpm
                 tag: <version>
         ingestion:
             image:
-                repository: private-registry.nginx.com/nms-ingestion
+                repository: private-registry.nginx.com/nms/ingestion
                 tag: <version>
         integrations:
             image:
-                repository: private-registry.nginx.com/nms-integrations
+                repository: private-registry.nginx.com/nms/integrations
+                tag: <version>
+        secmon:
+            image:
+                repository: private-registry.nginx.com/nms/secmon
                 tag: <version>
         utility:
             image:
-                repository: private-registry.nginx.com/nms-utility
+                repository: private-registry.nginx.com/nms/utility
                 tag: <version>
     ```
 
@@ -212,6 +216,7 @@ By default, the following network policies will be created in the release namesp
   dpm            app.kubernetes.io/name=dpm            4m47s
   ingestion      app.kubernetes.io/name=ingestion      4m47s
   integrations   app.kubernetes.io/name=integrations   4m47s
+  secmon         app.kubernetes.io/name=secmon         4m47s
   utility        app.kubernetes.io/name=integrations   4m47s
   ```
 
