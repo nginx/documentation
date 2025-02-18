@@ -2,7 +2,7 @@
 
 {{ if and ($banner) ($banner.Params.display) }}
 <!--TODO: handle for variant param. (info, error, warning)-->
-<div id="banner-container" class="banner-container relative h-12">
+<div id="banner-container" class="banner-container relative px-8 py-2">
     <p class="banner-title">
         {{ $banner.Title }}
     </p>
@@ -23,7 +23,7 @@
 
 
     closeBtn.addEventListener("click", () => {
-      banner.classList.remove("h-12");
+      banner.classList.remove("px-8", "py-2");
       banner.classList.add("h-0");
       closeBtn.classList.add("hidden");
     });
