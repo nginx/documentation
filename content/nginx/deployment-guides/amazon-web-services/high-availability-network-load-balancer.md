@@ -248,7 +248,7 @@ The deployed solution in these instructions uses six EC2 instances. Two instance
 
 *Step‑by‑step* instructions for creating EC2 instances and installing NGINX Open Source and NGINX Plus are available. Refer to our deployment guide, [Creating Amazon EC2 Instances for NGINX Open Source and NGINX Plus]({{< ref "/nginx/deployment-guides/amazon-web-services/ec2-instances-for-nginx.md" >}}).
 
-{{< note >}} When installing NGINX Open Source or NGINX Plus, you connect to each instance over SSH. To save time, leave the SSH connection to each instance open after installing the software. This way, you can reuse the connection when configuring the instance. {{< note >}} 
+{{<note>}} When installing NGINX Open Source or NGINX Plus, you connect to each instance over SSH. To save time, leave the SSH connection to each instance open after installing the software. This way, you can reuse the connection when configuring the instance. {{</note>}} 
 
 Assign the following names to the instances, then install the indicated NGINX software. The screenshot below shows the resulting **Instances** table.
 
@@ -303,7 +303,7 @@ You can automate set up of the six instances described in these instructions. Au
 
 These scripts also create a new set of networking rules and security group settings. These rules and settings help avoid conflicts with any pre‑existing network settings. After you run the scripts, continue to the [instructions for creating an AWS NLB](#nlb-configure). No further setup is required.
 
-{{< note >}} These scripts also create a new VPC. They do not use the default VPC described in the [instructions in our Deployment Guide]({{< ref "/nginx/deployment-guides/amazon-web-services/ec2-instances-for-nginx.md >}}).  {{< /note >}}
+{{< note >}} These scripts also create a new VPC. They do not use the default VPC described in the [instructions in our Deployment Guide]({{< ref "/nginx/deployment-guides/amazon-web-services/ec2-instances-for-nginx.md" >}}).  {{< /note >}}
 
 To run the scripts, follow these instructions:
 
