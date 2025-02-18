@@ -3,8 +3,8 @@ title: 'Unit'
 type: project
 params:
   image: /unit_robot.svg
-  github_url: https://github.com/nginx/nginx
-  external_url: https://nginx.org
+  github_url: https://github.com/nginx/unit
+  external_url: https://unit.nginx.org
   is_featured: false
 ---
 

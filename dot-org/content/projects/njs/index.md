@@ -3,8 +3,8 @@ title: 'NJS'
 type: project
 params:
   image: /njs_logo.svg
-  github_url: https://github.com/nginx/nginx
-  external_url: https://nginx.org
+  github_url: https://github.com/nginx/njs
+  external_url: https://njs.nginx.org
   is_featured: false
 ---
 
