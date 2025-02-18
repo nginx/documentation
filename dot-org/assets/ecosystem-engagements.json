@@ -7,31 +7,31 @@
   },
   {
     "title": "Let's Encrypt",
-    "image": "ecosystem/cncf-color-bg.svg",
+    "image": "ecosystem/le-logo-standard.svg",
     "description":"Let's Encrypt is a non-profit certificate authority run by Internet Security Research Group that provides X.509 certificates for Transport Layer Security encryption at no charge",
     "siteURL": "https://letsencrypt.org/"
   },
   {
     "title": "CD Foundation",
-    "image": "ecosystem/cncf-color-bg.svg",
+    "image": "ecosystem/cdf-color.svg",
     "description": "CD Foundation is an open source community improving the world's ability to deliver software with security and speed.",
     "siteURL": "https://cd.foundation/"
   },
   {
     "title": "Bytecode Alliance",
-    "image": "ecosystem/cncf-color-bg.svg",
+    "image": "ecosystem/bytecode-alliance-logo.svg",
     "description": "The Bytecode Alliance is a nonprofit organization dedicated to creating secure new software foundations, building on standards such as WebAssembly and WebAssembly System Interface (WASI).",
     "siteURL": "https://bytecodealliance.org/"
   },
   {
     "title": "TODO Group",
-    "image": "ecosystem/cncf-color-bg.svg",
+    "image": "ecosystem/todo-color.svg",
     "description": "TODO is an open community of practitioners who aim to create and share knowledge, collaborate on practices, tools, and other ways to run successful and effective Open Source Program Offices or similar Open Source initiatives",
     "siteURL": "https://todogroup.org/"
   },
   {
     "title": "The Linux Foundation",
-    "image": "ecosystem/cncf-color-bg.svg",
+    "image": "ecosystem/lf-stacked-color.svg",
     "description": "The Linux Foundation is a non-profit technology consortium founded in 2000 as a merger between Open Source Development Labs and the Free Standards Group. Its primary objectives are to standardize Linux, support its growth, and promote its commercial adoption.",
     "siteURL": "https://www.linuxfoundation.org/"
   }
