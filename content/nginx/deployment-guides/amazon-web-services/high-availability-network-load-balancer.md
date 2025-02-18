@@ -27,7 +27,7 @@ AWS NLB uses a [flow hash routing algorithm](https://docs.aws.amazon.com/elasti
 
 [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) is the commercial version of [NGINX Open Source](http://nginx.org/en) software, which extends the power of NGINX with enterprise-ready capabilities.
 
-NGINX Plus complements AWS NLB. It operates at Layer 7 (the application layer) where it uses advanced criteria when load balancing. These criteria include schemes that rely on content of requests and the results of [active health checks]({{< relref "../../admin-guide/load-balancer/http-health-check.md" >}}).
+NGINX Plus complements AWS NLB. It operates at Layer 7 (the application layer) where it uses advanced criteria when load balancing. These criteria include schemes that rely on content of requests and the results of [active health checks]({{< ref "/nginx/admin-guide/load-balancer/http-health-check.md" >}}).
 
 NGINX Plus also provides reverse‑proxy and load balancing features, including:
 
