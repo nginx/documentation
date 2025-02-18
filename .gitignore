@@ -24,6 +24,7 @@ watchdocs.json
 # Local Hugo artifacts
 public/*
 .hugo_build.lock
+**/hugo_stats.json
 resources/
 *.orig
 
