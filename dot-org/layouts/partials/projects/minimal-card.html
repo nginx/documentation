@@ -5,21 +5,28 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Feugait hendrerit enim dolor dignissim Quod soluta aliquyam laoreet commodi no. Ad erat ullamco.
         </p>
     </div>
-    <div class="flex gap-1">
-        {{ $svgAttr := (dict "size" "25" ) }}
-        {{ $iconLinkArgs := (dict
-            "TargetURL" "#"
-            "TargetIconPath" "svg/github-logo.svg"
-            "SvgAttributes" $svgAttr
-        )}}
-        {{ partial "icon-link.html" $iconLinkArgs }}
+    <div class="flex justify-between w-full">
+        <div class="flex gap-1">
+            {{ $svgAttr := (dict "size" "25" ) }}
+            {{ $iconLinkArgs := (dict
+                "TargetURL" "#"
+                "TargetIconPath" "svg/github-logo.svg"
+                "SvgAttributes" $svgAttr
+            )}}
+            {{ partial "icon-link.html" $iconLinkArgs }}
 
-        {{ $iconLinkArgs := (dict
-            "TargetURL" "#"
-            "TargetIconPath" "svg/external-link.svg"
-            "SvgAttributes" $svgAttr
-        )}}
+            {{ $iconLinkArgs := (dict
+                "TargetURL" "#"
+                "TargetIconPath" "svg/external-link.svg"
+                "SvgAttributes" $svgAttr
+            )}}
 
-        {{ partial "icon-link.html" $iconLinkArgs }}
+            {{ partial "icon-link.html" $iconLinkArgs }}
+        </div>
+        <div class="flex flex-wrap items-end gap-1">
+            {{ range seq 2 }}
+                {{ partial "misc/chip.html" . }}
+            {{ end }}
+        </div>
     </div>
 </div>
