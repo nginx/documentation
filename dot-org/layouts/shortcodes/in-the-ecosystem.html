@@ -9,7 +9,7 @@
         <article class="flex flex-col gap-2">
             <div class="h-[175px] bg-white flex justify-center items-center p-12 ngx-card-border">
                 {{ with resources.Get .image }}
-                    <img src="{{ .RelPermalink }}" alt="logo">
+                    <img src="{{ .RelPermalink }}" alt="logo" class="h-full">
                 {{ end }}
             </div>
             <div class="flex flex-col gap-1">
