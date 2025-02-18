@@ -245,6 +245,8 @@ spec:
           volumeMounts:
             - name: app-protect-bd-config
               mountPath: /opt/app_protect/bd_config
+            - name: app-protect-config
+              mountPath: /opt/app_protect/config
         - name: waf-enforcer
           image: private-registry.nginx.com/nap/waf-enforcer:<version-tag>
           imagePullPolicy: IfNotPresent
