@@ -151,10 +151,6 @@ ol > li::marker {
     @apply bg-ngx-green text-center flex justify-center flex-wrap text-white items-center gap-1 transition-all ease-in-out overflow-hidden;
 }
 
-.banner-container > p {
-    @apply text-sm;
-}
-
 .banner-container > p > a {
     @apply underline underline-offset-2;
 }
