@@ -190,7 +190,7 @@ By default, OpenShift enforces strict security policies that require containers 
 
 {{< note >}} If you’re encountering errors with the custom [Security Context Constraints](https://docs.openshift.com/container-platform/4.15/authentication/managing-security-context-constraints.html), it may be due to insufficient permissions to access the Security Context Constraints resource. Please contact a Cluster Administrator to request access, either via a ClusterRoleBinding or by adjusting your user role. {{< /note >}}
 
-To verify that the custom SCC has been created, run only after installing the helm chart:
+To verify that the custom SCC has been created, after installing the helm chart, run:
 
 ```shell
 oc get scc nms-restricted-v2-scc --output=yaml
@@ -207,7 +207,7 @@ Run the `helm install` command to deploy NGINX Instance Manager:
 
    {{< important >}} Remember to save the password for future use. Only the encrypted password is stored, and there's no way to recover or reset it if lost. {{< /important >}}
 
-(Optional) Replace `<chart-version>` with the desired chart version. If omitted, the latest version will be installed. At present, only version 2.19.0 is supported.
+(Optional) Replace `<chart-version>` with the desired chart version. If omitted, the latest version will be installed. Currently only version 2.19.0 is supported.
 
 ```shell
 helm install -n nms \
