@@ -259,7 +259,7 @@ To upgrade:
 1. [Adjust your `values.yaml` file](#create-a-helm-deployment-values.yaml-file) if needed.
 1. To upgrade the NGINX Instance Manager deployment, run the following command. This command updates the `nms` deployment with a new version from the `nginx-stable/nms-hybrid` repository. It also hashes the provided password and uses the `values.yaml` file at the path you specify.
 
-(Optional) Replace `<chart-version>` with the desired chart version. If omitted, the latest version will be installed. At present, only version 2.19.0 is supported.
+(Optional) Replace `<chart-version>` with the desired chart version. If omitted, the latest version will be installed. Currently only version 2.19.0 is supported.
 
    ```bash
     helm upgrade -n nms \
