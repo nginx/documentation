@@ -1,8 +1,19 @@
 {{ $banner := .Site.GetPage "banner" }}
 
 {{ if and ($banner) ($banner.Params.display) }}
-<!--TODO: handle for variant param. (info, error, warning)-->
-<div id="banner-container" class="banner-container relative px-8 py-2">
+
+<!-- handle for three variants: "info", "warn", "critical"-->
+{{ $bgColorMap := dict "info" "bg-ngx-green" "warn" "bg-yellow-600" "critical" "bg-red-700" }}
+
+{{ $bgClass := index $bgColorMap ($banner.Params.variant) }}
+
+<!-- if nonsense variant supplied, default to ngx-green as bg -->
+{{ if not $bgClass }}
+    {{ $bgClass = "bg-ngx-green"}}
+{{ end }}
+
+
+<div id="banner-container" class="banner-container relative px-8 py-2 {{ $bgClass }}">
     <p class="banner-title">
         {{ $banner.Title }}
     </p>

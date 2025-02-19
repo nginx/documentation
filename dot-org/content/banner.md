@@ -4,7 +4,7 @@ build:
   publishResources: false
   list: never
 params:
-  variant: "info"
+  variant: "warn"
   display: true  
 ---
 

@@ -148,7 +148,7 @@ ol > li::marker {
 }
 
 .banner-container {
-    @apply bg-ngx-green text-center flex justify-center flex-wrap text-white items-center gap-1 transition-all ease-in-out overflow-hidden;
+    @apply text-center flex justify-center flex-wrap text-white items-center gap-1 transition-all ease-in-out overflow-hidden;
 }
 
 .banner-container > p > a {
