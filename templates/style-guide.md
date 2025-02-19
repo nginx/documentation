@@ -449,7 +449,7 @@ To make sure includes are effective and easy to maintain, follow these practices
 - **Keep includes small and modular**: Write narrowly scoped snippets to maximize flexibility and reuse.
 - **Avoid branded product names in includes**: Use the full product name (e.g., "NGINX Instance Manager"), but avoid including the branded version (e.g., "F5 NGINX Instance Manager"). The branded name is required only on the first mention in a document; this is a context-specific rule. Includes, however, are designed to be context-agnostic—they should not rely on or assume any prior content—so including the branded name could repeat information unnecessarily in locations where it has already been introduced.
 - **Don't include headers**: Avoid adding H2 or other headers inside includes. These headers won't appear in the document's table of contents (TOC) and may not fit well with the surrounding content hierarchy. Add headers directly in the document instead.
-- **Avoid nesting includes**: Unless the intent is crystal clear, don't place an include inside another include. While technically possible, it complicates reviews and maintenance. Use a flat structure for simplicity.
+- **Avoid nesting includes**: If there’s another way to achieve the same outcome, avoid nesting includes. While technically possible, it complicates reviews and maintenance. Use a flat structure for simplicity.
 - **Don't start documents with includes**: The opening of a document is usually the introduction, which explains its purpose. Includes are reused text, so starting multiple documents with identical content could look odd, especially in search results.
 
 ## Guidelines for command-line operations
