@@ -420,6 +420,32 @@ If you decide to include a screenshot, follow these guidelines:
 - Use simple arrows and rectangles to highlight important items. Use a high-contrast color to make the annotations stand out.
 - Include a description (`<img alt>` text) for the screenshot that provides a brief summary of the content and context. This description helps screen readers describe the image to visually impaired users. For example, "Area chart titled 'NGINX Active Connections' showing the number of active connections over time for the current date. The x-axis represents the time of day, and the y-axis represents the number of connections, ranging from 0 to 10,000. The chart is color-coded with different shades to indicate varying levels of connections." For examples and guidelines for effective alt text, see the BBC's useful guide [How to write text descriptions (alt text)](https://www.bbc.co.uk/gel/how-to-write-text-descriptions-alt-text).
 
+### Guidelines for alternative text
+
+Alt text supports accessibilty. Screen readers read alt text to describe images to users. Images that are not available are replaced by alt text.
+
+Excellent alt text should describe the context of the image, not the content. To compose alt text, consider how you would describe an image for visually impaired users.
+
+When you compose alt text, follow these guidelines:
+
+- Limit the text to a maximum of 155 characters.
+  Some screen readers stop reading after this limit.
+- If the image includes complex information like a workflow diagram, use short alt text
+  to identify the image. Be sure to include detailed information in the text.
+- Use punctuation.
+- Do not use a period if the text is not a full sentence.
+- Use a period after every full sentence.
+- Use sentence case. Avoid using all caps.
+  Some screen readers read capitals as individual letters.
+- Do not use phrases like **Image of** or **Graphic of**.
+- Do not use a string of keywords.
+  Include keywords in the text to enhance context.
+- Introduce the image in the topic, not the alt text.
+- Try to avoid repeating text you've already used in the topic.
+- Do not use inline styling like bold, italics, or backticks.
+  Screen readers read `**text**` as `star star text star star`.
+- Use an empty alt text tag (`alt=""`) instead of omitting the tag altogether when the image does not add any unique information to the page. For example, when the image is decorative or is already fully described in the body text or caption. An empty alt tag tells assistive technologies that you have omitted the text intentionally, while a missing alt tag is ambiguous.
+
 ## Sensitive and personally identifying information
 
 Ensure content and screenshots are anonymized and don't contain sensitive information:
@@ -503,6 +529,7 @@ this style guide over time. This guide uses the Major.Minor.Patch
 
 | Edition | Date          | Lead Author(s) | Comments                                              |
 |---------|---------------|----------------|-------------------------------------------------------|
+| 1.10  | January 27, 2025 | Mike Jang | Include detailed description of alt text. Criteria inspired by GitLab. |
 | 1.9   | December 10, 2024 | Mike Jang | Specify the use of "license" when writing about the JWT token associated with licensed versions of NGINX. |
 | 1.8   | December 4, 2024 | Jon Torre | Clarify that heading text must not contain a link to other pages. |
 | 1.7   | November 20, 2024 | Mike Jang  | Specify "includes" must be in at leat two locations. |
