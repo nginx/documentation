@@ -182,6 +182,8 @@ openshift:
   enabled: true
 ```
 
+{{< note >}} The NIM deployment on OpenShift has been tested with OpenShift v4.13.0 Server. {{< /note >}}
+
 ### How OpenShift handles security constraints
 
 When `openshift.enabled: true` is set in the `values.yaml` file, the NGINX Instance Manager deployment automatically creates a **custom [Security Context Constraints](https://docs.redhat.com/en/documentation/openshift_container_platform/4.13/html/authentication_and_authorization/managing-pod-security-policies) (SCCs)** and links it to the Service Account used by all pods.  
