@@ -90,7 +90,7 @@ make create-kind-cluster
 Use `kubectl` to add the API resources for NGINX Gateway Fabric with the following command:
 
 ```shell
-kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/standard?ref=v1.6.1" | kubectl apply -f -
+kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/standard?ref=v{{< version-ngf >}}" | kubectl apply -f -
 ```
 
 ```text
@@ -105,7 +105,7 @@ customresourcedefinition.apiextensions.k8s.io/referencegrants.gateway.networking
 To use experimental features, you'll need to install the API resources from the experimental channel instead.
 
 ```shell
-kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/experimental?ref=v1.6.1" | kubectl apply -f -
+kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/experimental?ref=v{{< version-ngf >}}" | kubectl apply -f -
 ```
 
 {{< /note >}}
@@ -121,7 +121,7 @@ helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namesp
 ```
 
 ```text
-Pulled: ghcr.io/nginx/charts/nginx-gateway-fabric:1.6.1
+Pulled: ghcr.io/nginx/charts/nginx-gateway-fabric:{{< version-ngf >}}
 Digest: sha256:9bbd1a2fcbfd5407ad6be39f796f582e6263512f1f3a8969b427d39063cc6fee
 NAME: ngf
 LAST DEPLOYED: Mon Oct 21 14:45:14 2024
@@ -159,7 +159,7 @@ metadata:
   labels:
     app.kubernetes.io/name: nginx-gateway-fabric
     app.kubernetes.io/instance: ngf
-    app.kubernetes.io/version: "1.6.1"
+    app.kubernetes.io/version: "{{< version-ngf >}}"
 spec:
   type: NodePort
   selector:
