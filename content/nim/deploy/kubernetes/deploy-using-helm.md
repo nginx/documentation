@@ -188,7 +188,7 @@ When `openshift.enabled: true` is set in the `values.yaml` file, the NGINX Insta
 
 By default, OpenShift enforces strict security policies that require containers to run as **non-root** users. The NGINX Instance Manager deployment needs specific user IDs (UIDs) for certain services, such as **1000** for `nms` and **101** for `nginx` and `clickhouse`. Since the default SCCs do not allow these UIDs, a **custom SCC** is created. This ensures that the deployment can run with the necessary permissions while maintaining OpenShift’s security standards. The custom SCC allows these UIDs by setting the `runAsUser` field, which controls which users can run containers.  
 
-{{< note >}} If you’re encountering errors with the custom [Security Context Constraints](https://docs.openshift.com/container-platform/4.15/authentication/managing-security-context-constraints.html), it may be due to insufficient permissions to access the Security Context Constraints resource. Please contact a Cluster Administrator to request access, either via a ClusterRoleBinding or by adjusting your user role. {{< /note >}}
+{{< note >}} If you’re encountering errors with the custom [Security Context Constraints](https://docs.redhat.com/en/documentation/openshift_container_platform/4.15/html/authentication_and_authorization/managing-pod-security-policies), you may not have permissions to access the Security Context Constraints resource. Please contact a Cluster Administrator to request access, either through a cluster role binding or by adjusting your user role. {{< /note >}}
 
 To verify that the custom SCC has been created, after installing the helm chart, run:
 
@@ -219,7 +219,7 @@ nms nginx-stable/nms-hybrid \
 --wait
 ```
 
-To help you choose the right NGINX Instance Manager chart version, refer to the table (applicable for NIM versions up to v2.18.0) in:
+To help you choose the right NGINX Instance Manager chart version, see the following table (through version v2.18.0):
 
 {{< include "nim/kubernetes/nms-chart-supported-module-versions.md" >}}
 
