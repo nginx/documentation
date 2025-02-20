@@ -7,7 +7,43 @@ docs: "DOCS-1093"
 
 {{< note >}}You can find the full changelog, contributor list and assets for NGINX Agent in the [GitHub repository](https://github.com/nginx/agent/releases).{{< /note >}}
 
-See the list of supported Operating Systems and architectures in the [Technical Specifications]({{< relref "/agent/technical-specifications.md" >}}).
+See the list of supported Operating Systems and architectures in the [Technical Specifications]({{< relref "./technical-specifications.md" >}}).
+
+---
+## Release [v2.40.0](https://github.com/nginx/agent/releases/tag/v2.40.0)
+
+### 🌟 Highlights
+
+- The source code for the [NGINX Agent documentation](https://docs.nginx.com/nginx-agent/) has moved to the [NGINX Documentation](https://github.com/nginx/documentation/) repository. We invite you to [contribute](https://github.com/nginx/documentation/blob/main/CONTRIBUTING.md), improve the Agent docs and report any issues you find in the documentation repository.
+
+### 🐛 Bug Fixes
+
+In this release we have resolved the following issues:
+
+- Lua config apply by [@oliveromahony](https://github.com/oliveromahony) in [#963](https://github.com/nginx/agent/pull/963)
+- Fix release workflow by [@dhurley](https://github.com/dhurley) in [#991](https://github.com/nginx/agent/pull/991)
+
+### 📝 Documentation
+
+We have made the following updates to the documentation:
+
+- Docs: updating links from /nginx-management-suite/nim to /nginx-instance-manager by [@nginx-aoife](https://github.com/nginx-aoife) in [#927](https://github.com/nginx/agent/pull/927)
+- Autodeploy main docs to production by [@nginx-jack](https://github.com/nginx-jack) in [#924](https://github.com/nginx/agent/pull/924)
+- docs: remove docs by [@JTorreG](https://github.com/JTorreG) in [#976](https://github.com/nginx/agent/pull/976)
+- Add a docs page to explain NGINX Agent features by [@nginx-seanmoloney](https://github.com/nginx-seanmoloney) in [#941](https://github.com/nginx/agent/pull/941)
+- docs: Fix NGINX install link and dockerfile section by [@JTorreG](https://github.com/JTorreG) in [#928](https://github.com/nginx/agent/pull/928)
+
+### 🔨 Maintenance
+
+We have made the following maintenance-related minor changes:
+
+- Fail release job if packages fail to publish by [@dhurley](https://github.com/dhurley) in [#923](https://github.com/nginx/agent/pull/923)
+- Update performance test Dockerfile to use NGINX R32 by [@dhurley](https://github.com/dhurley) in [#937](https://github.com/nginx/agent/pull/937)
+- Updated golang.org/x/net version by [@oliveromahony](https://github.com/oliveromahony) in [#954](https://github.com/nginx/agent/pull/954)
+- Update performance test dependencies by [@dhurley](https://github.com/dhurley) in [#984](https://github.com/nginx/agent/pull/984)
+- Refactor integration tests by [@dhurley](https://github.com/dhurley) in [#985](https://github.com/nginx/agent/pull/985)
+- Update dependencies by [@dhurley](https://github.com/dhurley) in [#98](https://github.com/nginx/agent/pull/98)
+- Updated the crypto library version by [@oliveromahony](https://github.com/oliveromahony) in [#947](https://github.com/nginx/agent/pull/947)
 
 ---
 ## Release [v2.39.0](https://github.com/nginx/agent/releases/tag/v2.39.0)
@@ -247,36 +283,4 @@ We have made the following maintenance-related minor changes:
 - Bump the version of github.com/opencontainers/runc dependency by [@dhurley](https://github.com/dhurley) in [#657](https://github.com/nginx/agent/pull/657)
 - Remove unnecessary freebsd logic for finding process executable by [@dhurley](https://github.com/dhurley) in [#668](https://github.com/nginx/agent/pull/668)
 - Add additional checks in chunking functionality by [@dhurley](https://github.com/dhurley) in [#671](https://github.com/nginx/agent/pull/671)
-
----
-## Release [v2.33.0](https://github.com/nginx/agent/releases/tag/v2.33.0)
-
-### 🚀 Features
-
-This release introduces the following new features:
-
-- feat: Add Support for NAP 5 by [@edarzins](https://github.com/edarzins) in [#604](https://github.com/nginx/agent/pull/604)
-
-### 🐛 Bug Fixes
-
-In this release we have resolved the following issues:
-
-- Fix  nfpm.yaml for apk packages by [@dhurley](https://github.com/dhurley) in [#597](https://github.com/nginx/agent/pull/597)
-- fix unit test by [@oliveromahony](https://github.com/oliveromahony) in [#607](https://github.com/nginx/agent/pull/607)
-- Fix user workflow performance tests by [@dhurley](https://github.com/dhurley) in [#612](https://github.com/nginx/agent/pull/612)
-- fix Advanced Metrics  by [@aphralG](https://github.com/aphralG) in [#598](https://github.com/nginx/agent/pull/598)
-
-### 📝 Documentation
-
-We have made the following updates to the documentation:
-
-- chore: Add the 2.32.2 Changelog to the docs website by [@Jcahilltorre](https://github.com/Jcahilltorre) in [#601](https://github.com/nginx/agent/pull/601)
-
-### 🔨 Maintenance
-
-We have made the following maintenance-related minor changes:
-
-- Bump the version of protobuf by [@oliveromahony](https://github.com/oliveromahony) in [#602](https://github.com/nginx/agent/pull/602)
-- replace duplicate isContainer call by [@oliveromahony](https://github.com/oliveromahony) in [#596](https://github.com/nginx/agent/pull/596)
-- Add logging to NGINX API http requests by [@dhurley](https://github.com/dhurley) in [#605](https://github.com/nginx/agent/pull/605)
 
